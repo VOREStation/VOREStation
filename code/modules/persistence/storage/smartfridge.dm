@@ -51,8 +51,13 @@
 
 		// Delete some stacks if we want
 		if(stacks_go_missing)
+<<<<<<< HEAD
 			var/fuzzy = rand(55,65)*0.01 // loss of 35-45% with rounding down
 			count = round(count*fuzzy)
+=======
+			var/fuzzy = rand(65,75)
+			count = round(count*0.01*fuzzy) // loss of 25-35% with rounding down
+>>>>>>> 2572de94579... Merge pull request #8774 from Woodratt/10192022_Sheetnerf
 			if(count <= 0)
 				continue
 

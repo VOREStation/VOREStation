@@ -13513,10 +13513,14 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/security/restroom)
 "gjB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 9
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/turf/simulated/wall/r_wall,
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
+	dir = 8
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
 "gjW" = (
 /turf/simulated/floor/plating/sif/planetuse,
@@ -14215,10 +14219,6 @@
 	},
 /obj/item/stack/material/phoron{
 	pixel_y = 2
-	},
-/obj/item/stack/material/phoron{
-	pixel_x = 1;
-	pixel_y = 3
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/chemistry)
@@ -18201,12 +18201,6 @@
 /obj/item/stack/material/glass{
 	amount = 50
 	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass/reinforced{
-	amount = 20
-	},
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
@@ -19543,6 +19537,13 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/library)
+"jkO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/valve,
+/turf/simulated/floor/plating,
+/area/surface/station/engineering/reactor_room)
 "jkY" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -22240,6 +22241,12 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/medical/storage/primary_storage)
+"kpQ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/engineering/reactor_room)
 "kqa" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -22571,12 +22578,6 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/stack/material/plasteel{
 	amount = 15
-	},
-/obj/item/stack/material/plasteel{
-	amount = 15
-	},
-/obj/item/stack/material/steel{
-	amount = 50
 	},
 /obj/item/stack/material/steel{
 	amount = 50
@@ -30312,6 +30313,15 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/foyer)
+"nTX" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/engineering/reactor_room)
 "nTZ" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
@@ -34501,13 +34511,13 @@
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
 "pDQ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 6
-	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -43527,7 +43537,12 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/hallway/secondary/groundfloor/civilian)
 "tJR" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
 "tJS" = (
@@ -45381,7 +45396,6 @@
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/hydroponics)
 "uHq" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
@@ -46188,6 +46202,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/surface/station/hallway/primary/groundfloor/east)
+"vaW" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/engineering/reactor_room)
 "vbc" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -53300,7 +53321,7 @@
 	amount = 20
 	},
 /obj/item/stack/rods{
-	amount = 50
+	amount = 25
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/workshop)
@@ -104754,8 +104775,8 @@ lpT
 jbt
 nAa
 sTX
-jEw
-jEw
+gjB
+jkO
 pwl
 qWU
 bkB
@@ -105011,7 +105032,7 @@ hrd
 yda
 itt
 jaY
-bcX
+tJR
 nZP
 eBc
 pCl
@@ -105268,7 +105289,7 @@ aZv
 aZv
 udx
 lxx
-lxx
+vaW
 lxx
 jWD
 rDt
@@ -105525,7 +105546,7 @@ hHt
 hKN
 tgg
 vwK
-uwn
+nTX
 uwn
 wMM
 pCl
@@ -105782,7 +105803,7 @@ wnA
 sPH
 nKU
 jaY
-bcX
+tJR
 nZP
 eBc
 oRg
@@ -106039,7 +106060,7 @@ bkB
 pYG
 hFe
 lxx
-lxx
+vaW
 lxx
 jWD
 uCG
@@ -106296,10 +106317,10 @@ vZV
 pyL
 jIS
 vwK
-uwn
+nTX
 uwn
 wMM
-pCl
+kpQ
 bkB
 nCe
 twu
@@ -106555,8 +106576,8 @@ bcX
 bcX
 pDQ
 uHq
-tJR
-gjB
+aZv
+bkB
 xTx
 nCe
 twu

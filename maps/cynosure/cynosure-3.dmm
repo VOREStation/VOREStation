@@ -13638,8 +13638,6 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
 /obj/item/stack/material/plasteel{
 	amount = 10;
 	pixel_x = -2;
@@ -23005,22 +23003,6 @@
 	},
 /obj/item/stack/material/steel{
 	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = 2;
-	pixel_y = -2
 	},
 /obj/item/stack/material/glass{
 	amount = 50;
