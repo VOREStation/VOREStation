@@ -97,10 +97,10 @@
 	if (getBruteLoss() || getFireLoss() || getHalLoss() || getToxLoss() || getOxyLoss() || getBrainLoss()) //fails if they have any of the main damage types
 		return FALSE
 	for (var/obj/item/organ/O in organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
-		if (O.damage)
+		if (O.is_damaged() || O.status)
 			return FALSE
 	for (var/obj/item/organ/O in internal_organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
-		if (O.damage)
+		if (O.is_damaged() || O.status)
 			return FALSE
 	return TRUE
 
