@@ -26,7 +26,7 @@ var/global/list/robot_modules = list(
 	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
-	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_AKHANI = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0, LANGUAGE_TERMINUS = 1, LANGUAGE_ZADDAT = 0)
+	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_SIVIAN= 0, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_AKHANI = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0, LANGUAGE_TERMINUS = 1, LANGUAGE_ZADDAT = 0)
 	var/sprites = list()
 	var/can_be_pushed = 1
 	var/no_slip = 0
@@ -599,6 +599,7 @@ var/global/list/robot_modules = list(
 		)
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
+					LANGUAGE_SIVIAN 	= 1,
 					LANGUAGE_UNATHI		= 1,
 					LANGUAGE_SIIK		= 1,
 					LANGUAGE_AKHANI		= 1,

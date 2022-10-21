@@ -26,7 +26,7 @@
 	syllables = list(
 "vol", "zum", "coo","zoo","bi","do","ooz","ite","og","re","si","ite","ish",
 "ar","at","on","ee","east","ma","da", "rim")
-	partial_understanding = list(LANGUAGE_SKRELLIAN = 30, LANGUAGE_SOL_COMMON = 30)
+	partial_understanding = list(LANGUAGE_SKRELLIAN = 30, LANGUAGE_SOL_COMMON = 30, LANGUAGE_SIVIAN = 40)
 
 //TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
 /datum/language/common/get_spoken_verb(var/msg_end)
@@ -125,6 +125,26 @@
 "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin",
 "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi")
 
+//Local language
+/datum/language/sivian
+	name = LANGUAGE_SIVIAN
+	desc = "A hybrid language local to the Vir system, heavily incorporating elements from the languages of early Scandinavian colonists into a form of Galactic Common."
+	speech_verb = "says"
+	whisper_verb = "whispers"
+	colour = "sivian"
+	key = "7"
+	partial_understanding = list(LANGUAGE_SOL_COMMON = 20, LANGUAGE_GALCOM = 40)
+	space_chance = 45
+	syllables = list (
+	"all", "are", "det", "enn", "ere", "hen", "kan", "lig", "men", "ren", "som", "ver", "vir", "var", "vis", "ikk", "ter", "ork",
+	"den", "ing", "jeg", "jag", "han", "hir", "hil", "ans", "kan", "kir", "bor", "bir", "um", "om", "ve", "ur", "ha", "he", "hyu",
+	"er", "ad", "ath", "bjo,", "gun", "gur", "gir", "fyr", "thar", "thir", "thad", "thei", "ayr", "for", "fjo", "jor", "jik", "jar",
+	"yor", "yar", "yik", "rik", "os", "olm", "erm", "ferk", "borg", "bork", "smorg", // Scandi
+	"meng", "tao", "bu", "qu", "ai", "xin", "pin", "wa", "cang", "chun", "ding", "gang", "ling", "gao", "jian", "sun", "tong",
+	"xie", "zu", "miao", "po", "nu", // Chinese (galcom)
+	"our", "oul", "tou", "eve", "ome", "ion", "ais", // Romance (galcom)
+	"zaoo", "zix", "vol") //Skrell (galcom)
+
 /datum/language/sign
 	name = LANGUAGE_SIGN
 	desc = "A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments."
@@ -145,8 +165,12 @@
 // which is exactly what sign language does.
 /datum/language/sign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
 	log_say("(SIGN) [message]", speaker)
+<<<<<<< HEAD
 	var/verb_to_use = pick(signlang_verb)
 	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
+=======
+	speaker.say_signlang(message, pick(signlang_verb), src)
+>>>>>>> ac532f4633d... Adds Sivian Creole Language (#8767)
 
 
 // Silly language for those times when you try to talk a languague you normally can't

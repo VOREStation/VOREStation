@@ -138,6 +138,7 @@
 	colour = "solcom"
 	key = "1"
 	flags = WHITELISTED
+	partial_understanding = list(LANGUAGE_SIVIAN = 20)
 	//syllables are at the bottom of the file
 
 /datum/language/human/get_spoken_verb(var/msg_end)

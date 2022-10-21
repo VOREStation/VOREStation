@@ -204,6 +204,7 @@
 
 	R.add_language(LANGUAGE_SOL_COMMON, 1)
 	R.add_language(LANGUAGE_TRADEBAND, 1)
+	R.add_language(LANGUAGE_SIVIAN, 1)
 	R.add_language(LANGUAGE_UNATHI, 1)
 	R.add_language(LANGUAGE_SIIK, 1)
 	R.add_language(LANGUAGE_AKHANI, 1)

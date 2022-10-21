@@ -112,6 +112,7 @@
 	add_language("Robot Talk", 1)
 	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_SOL_COMMON, 1)
+	add_language(LANGUAGE_SIVIAN, 1)
 	add_language(LANGUAGE_UNATHI, 1)
 	add_language(LANGUAGE_SIIK, 1)
 	add_language(LANGUAGE_AKHANI, 1)

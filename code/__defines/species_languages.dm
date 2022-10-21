@@ -95,6 +95,11 @@
 #define LANGUAGE_ALAI "Alai"
 #define LANGUAGE_ZADDAT "Vedahq"
 #define LANGUAGE_PROMETHEAN "Promethean Biolinguistics"
+<<<<<<< HEAD
+=======
+#define LANGUAGE_BLOB "Chemosense Transmission"
+#define LANGUAGE_SIVIAN "Sivian Creole"
+>>>>>>> ac532f4633d... Adds Sivian Creole Language (#8767)
 #define LANGUAGE_GIBBERISH "Babel"
 
 // Language flags.

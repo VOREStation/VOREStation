@@ -5,6 +5,7 @@
 	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
+					LANGUAGE_SIVIAN = 0,
 					LANGUAGE_TRADEBAND = 1,
 					LANGUAGE_UNATHI = 0,
 					LANGUAGE_SIIK	= 0,
