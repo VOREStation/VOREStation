@@ -44,7 +44,7 @@
 	var/flags_inv = 0
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
-	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
+	var/item_flags = EMPTY_BITFIELD //Miscellaneous flags pertaining to equippable objects.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)

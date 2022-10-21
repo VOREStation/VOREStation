@@ -10,8 +10,13 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "jar"
 	w_class = ITEMSIZE_SMALL
+<<<<<<< HEAD
 	matter = list(MAT_GLASS = 200)
 	flags = NOBLUDGEON
+=======
+	matter = list("glass" = 200)
+	item_flags = NOBLUDGEON
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse, /mob/living/simple_mob/animal/sif/leech, /mob/living/simple_mob/animal/sif/frostfly, /mob/living/simple_mob/animal/sif/glitterfly)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
 	drop_sound = 'sound/items/drop/glass.ogg'

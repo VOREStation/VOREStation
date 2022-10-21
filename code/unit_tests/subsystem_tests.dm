@@ -35,8 +35,13 @@
 	set background = TRUE // avoid infinite loop warning; SS will still wait for us.
 	var/fail = FALSE
 	for(var/atom/atom in world)
+<<<<<<< HEAD
 		if(!(atom.initialized))
 			log_bad("Uninitialized atom: [atom.log_info_line()]")
+=======
+		if(!(atom.atom_flags & ATOM_INITIALIZED) && !QDELETED(atom)) // Not ideal to skip over qdeleted atoms, but a lot of current code uses pre-init qdels
+			log_bad("Uninitialized atom: [atom.type] - [atom.get_log_info_line()]")
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 			fail = TRUE
 	if(fail)
 		fail("There were uninitialized atoms.")

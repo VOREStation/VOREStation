@@ -1,7 +1,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans
 	volume = 40 //just over one and a half cups
 	amount_per_transfer_from_this = 5
-	flags = 0 //starts closed
+	atom_flags = EMPTY_BITFIELD //starts closed
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 

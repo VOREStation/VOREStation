@@ -195,7 +195,7 @@ var/list/name_to_material
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/negation = 0             // Objects that respect this will randomly absorb impacts with this var as the percent chance.
 	var/spatial_instability = 0  // Objects that have trouble staying in the same physical space by sheer laws of nature have this. Percent for respecting items to cause teleportation.
-	var/conductive = 1           // Objects without this var add NOCONDUCT to flags on spawn.
+	var/conductive = 1           // Objects without this var add ATOM_IS_INSULATED to flags on spawn.
 	var/conductivity = null      // How conductive the material is. Iron acts as the baseline, at 10.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	var/luminescence

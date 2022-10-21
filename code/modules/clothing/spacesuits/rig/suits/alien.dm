@@ -47,8 +47,7 @@
 	suit_type = "alien"
 	icon_state = "vox_rig"
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
-	flags = PHORONGUARD
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL | PHORONGUARD
 	siemens_coefficient = 0.2
 	offline_slowdown = 2.5
 	allowed = list(

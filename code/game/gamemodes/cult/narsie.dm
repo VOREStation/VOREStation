@@ -190,10 +190,9 @@ var/global/list/narsie_list = list()
 				continue
 
 		if (dist <= consume_range && !istype(A, /turf/space))
-			var/turf/T = A
-			if(T.holy)
-				T.holy = 0 //Nar-Sie doesn't give a shit about sacred grounds.
-			T.cultify()
+			var/turf/turf = A
+			turf.turf_flags &= ~TURF_IS_BLESSED
+			turf.cultify()
 
 /obj/singularity/narsie/proc/old_narsie(const/atom/A)
 	if(!(A.singuloCanEat()))

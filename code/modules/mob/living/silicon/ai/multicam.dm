@@ -145,7 +145,7 @@ Whatever you did that made the last camera window disappear-- don't do that agai
 	name = ""
 	icon = 'icons/misc/pic_in_pic.dmi'
 	icon_state = "room_background"
-	flags = NOJAUNT
+	turf_flags = TURF_PREVENTS_JAUNT
 	plane = SPACE_PLANE
 	layer = AREA_LAYER + 0.1
 

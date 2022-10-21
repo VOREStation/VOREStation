@@ -110,6 +110,6 @@
 	#ifdef CARDINAL_INPUT_ONLY
 
 	/// Movement dir of the most recently pressed movement key.  Used in cardinal-only movement mode.
-	var/last_move_dir_pressed = NONE
+	var/last_move_dir_pressed = EMPTY_BITFIELD
 
 	#endif

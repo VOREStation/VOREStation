@@ -12,7 +12,7 @@
 	var/contain_state = "net_full"
 
 	w_class = ITEMSIZE_SMALL
-	flags = NOBLUDGEON
+	item_flags = NOBLUDGEON
 
 	slowdown = 0.5
 

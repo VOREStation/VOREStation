@@ -316,11 +316,18 @@
 	if(!length(target))
 		var/datum/C = target
 		if(!C.signal_enabled)
-			return NONE
+			return EMPTY_BITFIELD
 		var/proctype = C.signal_procs[src][sigtype]
+<<<<<<< HEAD
 		return NONE | CallAsync(C, proctype, arguments)
 	. = NONE
 	for(var/datum/C as anything in target)
+=======
+		return EMPTY_BITFIELD | CallAsync(C, proctype, arguments)
+	. = EMPTY_BITFIELD
+	for(var/I in target)
+		var/datum/C = I
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 		if(!C.signal_enabled)
 			continue
 		var/proctype = C.signal_procs[src][sigtype]

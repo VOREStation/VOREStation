@@ -19,7 +19,7 @@
 	name = "grab"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
-	flags = 0
+	atom_flags = EMPTY_BITFIELD
 	var/obj/screen/grab/hud = null
 	var/mob/living/affecting = null
 	var/mob/living/carbon/human/assailant = null

@@ -7,7 +7,7 @@
 
 /turf/unsimulated/Initialize(mapload)
 	if(skip_init)
-		initialized = TRUE
+		atom_flags |= ATOM_INITIALIZED // this is a blight
 		return INITIALIZE_HINT_NORMAL
 	. = ..()
 

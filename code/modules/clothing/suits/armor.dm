@@ -543,7 +543,7 @@
 	name = "explorer suit"
 	desc = "A lightweight explorer plate carrier. It can be equipped with armor plates, but only protects from the cold on it's own."
 	icon_state = "explorer"
-	flags = THICKMATERIAL
+	item_flags = THICKMATERIAL
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 

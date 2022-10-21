@@ -27,7 +27,7 @@
 
 /obj/item/clothing/mask/chewable/Initialize()
 	. = ..()
-	flags |= NOREACT // so it doesn't react until you light it
+	atom_flags |= ATOM_REAGENTS_SKIP_REACTIONS // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 	for(var/R in filling)
 		reagents.add_reagent(R, filling[R])
@@ -294,5 +294,9 @@
 	chew()
 	if(chewtime < 1)
 		if(ismob(loc))
+<<<<<<< HEAD
 			to_chat(loc, "<span class='notice'>There's no more of \the [name] left!</span>")
+=======
+			to_chat(loc, SPAN_NOTICE("There's no more of \the [name] left!"))
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 		spitout(0)

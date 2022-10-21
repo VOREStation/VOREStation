@@ -31,9 +31,14 @@
 // Can't be equipped by any other species due to bone structure and vox cybernetics.
 /obj/item/clothing/suit/space/vox
 	w_class = ITEMSIZE_NORMAL
+<<<<<<< HEAD
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank)
+=======
+	item_flags = THICKMATERIAL | PHORONGUARD
+	allowed = list(/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/melee/energy/sword,/obj/item/handcuffs,/obj/item/tank)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	armor = list(melee = 60, bullet = 50, laser = 40,energy = 15, bomb = 30, bio = 100, rad = 50)
 	siemens_coefficient = 0.2
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
@@ -43,8 +48,7 @@
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	siemens_coefficient = 0.2
-	flags = PHORONGUARD
-	item_flags = THICKMATERIAL | AIRTIGHT
+	item_flags = THICKMATERIAL | AIRTIGHT | PHORONGUARD
 	flags_inv = 0
 	species_restricted = list(SPECIES_VOX)
 

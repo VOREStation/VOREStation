@@ -10,8 +10,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
-	flags = PHORONGUARD
-	item_flags = THICKMATERIAL | ALLOW_SURVIVALFOOD
+	item_flags = THICKMATERIAL | ALLOW_SURVIVALFOOD | PHORONGUARD
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
@@ -26,8 +25,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 0.9
-	flags = PHORONGUARD
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL | PHORONGUARD
 
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general

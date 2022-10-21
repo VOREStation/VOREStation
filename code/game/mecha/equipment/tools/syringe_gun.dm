@@ -20,7 +20,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize()
 	. = ..()
-	flags |= NOREACT
+	atom_flags |= ATOM_REAGENTS_SKIP_REACTIONS
 	syringes = new
 	known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
 	processed_reagents = new
@@ -32,7 +32,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/critfail()
 	..()
-	flags &= ~NOREACT
+	atom_flags &= ~ATOM_REAGENTS_SKIP_REACTIONS
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()

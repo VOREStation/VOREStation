@@ -460,7 +460,7 @@
 		return 1
 
 	for(var/obj/O in B)
-		if(O.density && !istype(O, /obj/machinery/door) && !(O.flags & ON_BORDER))
+		if(O.density && !istype(O, /obj/machinery/door) && !(O.atom_flags & ATOM_HAS_TRANSITION_PRIORITY))
 			return 1
 
 	return 0

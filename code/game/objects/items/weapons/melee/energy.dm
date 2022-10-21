@@ -7,7 +7,8 @@
 	sharp = FALSE
 	edge = FALSE
 	armor_penetration = 50
-	flags = NOCONDUCT | NOBLOODY
+	atom_flags = ATOM_IS_INSULATED
+	item_flags = NOBLOODY
 	var/lrange = 2
 	var/lpower = 2
 	var/lcolor = "#0099FF"
@@ -262,7 +263,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	flags = NOBLOODY
+	item_flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	sharp = TRUE
 	edge = TRUE
@@ -349,7 +350,7 @@
 	sharp = TRUE
 	edge = TRUE
 	armor_penetration = 0
-	flags = NOBLOODY
+	item_flags = NOBLOODY
 	lrange = 2
 	lpower = 2
 	lcolor = "#0000FF"
@@ -422,7 +423,7 @@
 	throw_speed = 1
 	throw_range = 1
 	w_class = ITEMSIZE_LARGE//So you can't hide it in your pocket or some such.
-	flags = NOBLOODY
+	item_flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system

@@ -1,6 +1,5 @@
 #define DEBUG
 // Turf-only flags.
-#define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
 
 #define TRANSITIONEDGE 1 // Distance from edge to move to another z-level.
 

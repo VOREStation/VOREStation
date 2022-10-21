@@ -100,8 +100,13 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	w_class = ITEMSIZE_LARGE
+<<<<<<< HEAD
 	flags = NOBLOODY
 	var/circuit = /obj/item/weapon/circuitboard/geiger
+=======
+	item_flags = NOBLOODY
+	var/circuit = /obj/item/circuitboard/geiger
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/number = 0
 	var/last_tick //used to delay the powercheck
 	var/wiresexposed = 0

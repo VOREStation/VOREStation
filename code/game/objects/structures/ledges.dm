@@ -7,13 +7,13 @@
 	climbable = TRUE
 	anchored = TRUE
 	var/solidledge = 1
-	flags = ON_BORDER
+	atom_flags = ATOM_HAS_TRANSITION_PRIORITY
 	layer = STAIRS_LAYER
 	icon_state = "ledge"
 
 /obj/structure/ledge_corner
 	icon_state = "ledge-corner"
-	flags = 0
+	atom_flags = EMPTY_BITFIELD
 	name = "rock ledge"
 	desc = "An easily scaleable rocky ledge."
 	icon = 'icons/obj/ledges.dmi'

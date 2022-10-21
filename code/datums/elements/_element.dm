@@ -6,7 +6,7 @@
  */
 /datum/element
 	/// Option flags for element behaviour
-	var/element_flags = NONE
+	var/element_flags = EMPTY_BITFIELD
 	/**
 	  * The index of the first attach argument to consider for duplicate elements
 	  *

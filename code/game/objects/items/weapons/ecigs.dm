@@ -151,7 +151,7 @@
 	icon_state = "ecartridge"
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 10)
 	volume = 20
-	flags = OPENCONTAINER
+	atom_flags = ATOM_REAGENTS_IS_OPEN
 
 /obj/item/weapon/reagent_containers/ecig_cartridge/New()
 	create_reagents(volume)

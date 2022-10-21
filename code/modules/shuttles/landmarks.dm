@@ -7,7 +7,8 @@
 	unacidable = TRUE
 	simulated = FALSE
 	invisibility = 101
-	flags = SLANDMARK_FLAG_AUTOSET // We generally want to use current area/turf as base.
+
+	var/landmark_flags = LANDMARK_CREATES_SAFE_SITE // We generally want to use current area/turf as base.
 
 	//ID of the landmark
 	var/landmark_tag
@@ -30,7 +31,7 @@
 		. = INITIALIZE_HINT_LATELOAD
 
 	// Even if this flag is set, hardcoded values take precedence.
-	if(flags & SLANDMARK_FLAG_AUTOSET)
+	if(landmark_flags & LANDMARK_CREATES_SAFE_SITE)
 		if(ispath(base_area))
 			var/area/A = locate(base_area)
 			if(!istype(A))
@@ -122,8 +123,12 @@
 /obj/effect/shuttle_landmark/automatic
 	name = "Navpoint"
 	landmark_tag = "navpoint"
+<<<<<<< HEAD
 	flags = SLANDMARK_FLAG_AUTOSET
 	var/original_name = null // Save our mapped-in name so we can rebuild our name when moving sectors.
+=======
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 /obj/effect/shuttle_landmark/automatic/Initialize()
 	original_name = name

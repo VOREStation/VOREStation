@@ -3,7 +3,7 @@
 	name = "space helmet"
 	icon_state = "capspace"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
-	item_flags = 0
+	item_flags = EMPTY_BITFIELD
 	flags_inv = HIDEFACE|BLOCKHAIR
 	permeability_coefficient = 0.01
 	armor = list(melee = 65, bullet = 50, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 50)
@@ -16,7 +16,7 @@
 	w_class = ITEMSIZE_HUGE
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	item_flags = 0
+	item_flags = EMPTY_BITFIELD
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
 	slowdown = 1.5
@@ -46,7 +46,7 @@
 	icon_state = "beret_badge"
 	item_state_slots = list(slot_r_hand_str = "beret", slot_l_hand_str = "beret")
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
-	item_flags = 0
+	item_flags = EMPTY_BITFIELD
 	flags_inv = BLOCKHAIR
 	siemens_coefficient = 0.9
 
@@ -55,7 +55,7 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
-	item_flags = 0
+	item_flags = EMPTY_BITFIELD
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
 
@@ -64,7 +64,7 @@
 	desc = "Festive!"
 	icon_state = "santa"
 	slowdown = 0
-	item_flags = 0
+	item_flags = EMPTY_BITFIELD
 	allowed = list(/obj/item) //for stuffing exta special presents
 
 //Space pirate outfit
@@ -73,7 +73,7 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
-	item_flags = 0
+	item_flags = EMPTY_BITFIELD
 	flags_inv = BLOCKHAIR
 	body_parts_covered = 0
 	siemens_coefficient = 0.9
@@ -102,3 +102,20 @@
 	icon_state = "syndicate-orange"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	slowdown = 2
+<<<<<<< HEAD
+=======
+
+//civilian recreational spacesuit
+
+/obj/item/clothing/head/helmet/space/sports
+	name = "performance sports space helmet"
+	icon_state = "sports_void"
+	desc = "A sleek space helmet for the civilian extra-vehicular extreme sports market. Please replace after any impact!"
+
+/obj/item/clothing/suit/space/sports
+	name = "performance sports spacesuit"
+	desc = "A high-dexterity spacesuit for the civilian extra-vehicular extreme sports market, for when zero-g sports in controlled environments are just too tame."
+	description_fluff = "Ward-Takahashi zero-gravity performance sportswear does not require an EVA certification to purchase, though user manuals do list it as 'recommended' on condition of a 2550 lawsuit."
+	icon_state = "sports_void"
+	slowdown = 0
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging

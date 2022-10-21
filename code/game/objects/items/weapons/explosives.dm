@@ -5,7 +5,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
-	flags = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ILLEGAL = 2)
 	var/datum/wires/explosive/c4/wires = null
@@ -75,8 +75,17 @@
 		target = get_atom_on_turf(src)
 	if(!target)
 		target = src
+<<<<<<< HEAD
 	if(location)
 		explosion(location, blast_dev, blast_heavy, blast_light, blast_flash)
+=======
+
+	var/turf/T = get_turf(target)
+	if (!T && length(location))
+		T = locate(location[1], location[2], location[3])
+	if (T)
+		explosion(T, blast_dev, blast_heavy, blast_light, blast_flash)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 	if(target)
 		if (istype(target, /turf/simulated/wall))

@@ -29,7 +29,7 @@
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/gloves/G = H.gloves
-		if(istype(G) && ((G.flags & THICKMATERIAL && prob(70)) || istype(G, /obj/item/clothing/gloves/gauntlets)))
+		if(istype(G) && ((G.item_flags & THICKMATERIAL && prob(70)) || istype(G, /obj/item/clothing/gloves/gauntlets)))
 			burn_user = FALSE
 
 		if(burn_user)

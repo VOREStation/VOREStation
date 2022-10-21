@@ -109,7 +109,7 @@
 	name = "insulated gauntlets"
 	icon_state = "gloves-vox"
 	item_state = "gloves-vox"
-	flags = PHORONGUARD
+	item_flags = PHORONGUARD
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	species_restricted = list("Vox")
@@ -127,7 +127,7 @@
 	icon_state = "knuckledusters"
 	matter = list(MAT_STEEL = 500)
 	attack_verb = list("punched", "beaten", "struck")
-	flags = THICKMATERIAL	// Stops rings from increasing hit strength
+	item_flags = THICKMATERIAL	// Stops rings from increasing hit strength
 	siemens_coefficient = 1
 	fingerprint_chance = 100
 	overgloves = 1
@@ -167,6 +167,7 @@
 
 /obj/item/clothing/gloves/ranger/yellow
 	glovecolor = "yellow"
+<<<<<<< HEAD
 
 /obj/item/clothing/gloves/waterwings
 	name = "water wings"
@@ -174,3 +175,5 @@
 	icon_state = "waterwings"
 
 
+=======
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging

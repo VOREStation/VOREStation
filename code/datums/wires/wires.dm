@@ -10,7 +10,7 @@
 	/// When the TGUI window is opened, "wires" will be appended to it's title, and it would become "APC wires".
 	var/proper_name = "Unknown"
 	/// The total number of wires that our holder atom has.
-	var/wire_count = NONE
+	var/wire_count = 0
 	/// A list of all wires. For a list of valid wires defines that can go here, see `code/__DEFINES/wires.dm`
 	var/list/wires
 	/// A list of all cut wires. The same values that can go into `wires` will get added and removed from this list.

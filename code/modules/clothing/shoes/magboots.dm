@@ -2,7 +2,7 @@
 	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle. They're large enough to be worn over other footwear."
 	name = "magboots"
 	icon_state = "magboots0"
-	flags = PHORONGUARD
+	item_flags = PHORONGUARD
 	item_state_slots = list(slot_r_hand_str = "magboots", slot_l_hand_str = "magboots")
 	species_restricted = null
 	center_of_mass = list("x" = 17,"y" = 12)
@@ -88,7 +88,7 @@
 	name = "vox magclaws"
 	item_state = "boots-vox"
 	icon_state = "boots-vox"
-	flags = PHORONGUARD
+	item_flags = PHORONGUARD
 	species_restricted = list(SPECIES_VOX)
 
 	action_button_name = "Toggle the magclaws"

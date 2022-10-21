@@ -5,8 +5,14 @@
 	icon_state = "cleaner"
 	item_state = "cleaner"
 	center_of_mass = list("x" = 16,"y" = 10)
+<<<<<<< HEAD
 	flags = OPENCONTAINER|NOBLUDGEON
 	matter = list(MAT_GLASS = 300, MAT_STEEL = 300)
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+	item_flags = NOBLUDGEON
+	matter = list("glass" = 300, MAT_STEEL = 300)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL

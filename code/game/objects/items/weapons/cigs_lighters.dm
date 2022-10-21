@@ -103,7 +103,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/Initialize()
 	. = ..()
-	flags |= NOREACT // so it doesn't react until you light it
+	atom_flags |= ATOM_REAGENTS_SKIP_REACTIONS // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 	if(smoketime && !max_smoketime)
 		max_smoketime = smoketime
@@ -181,7 +181,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			e.start()
 			qdel(src)
 			return
-		flags &= ~NOREACT // allowing reagents to react after being lit
+		atom_flags &= ~ATOM_REAGENTS_SKIP_REACTIONS // allowing reagents to react after being lit
 		reagents.handle_reactions()
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)

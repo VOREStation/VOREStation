@@ -35,9 +35,14 @@
 	name = "flesh mass"
 	icon_state = "lingspacesuit"
 	desc = "A huge, bulky mass of pressure and temperature-resistant organic tissue, evolved to facilitate space travel."
+<<<<<<< HEAD
 	flags = 0	//Not THICKMATERIAL because it's organic tissue, so if somebody tries to inject something into it,
 				//it still ends up in your blood. (also balance but muh fluff)
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/tank/oxygen)
+=======
+	item_flags = EMPTY_BITFIELD
+	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/tank/oxygen)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //No armor at all.
 	canremove = FALSE
 
@@ -55,7 +60,7 @@
 	name = "flesh mass"
 	icon_state = "lingspacehelmet"
 	desc = "A covering of pressure and temperature-resistant organic tissue with a glass-like chitin front."
-	flags = BLOCKHAIR //Again, no THICKMATERIAL.
+	flags_inv = BLOCKHAIR
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 	canremove = FALSE

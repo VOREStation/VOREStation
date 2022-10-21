@@ -3,10 +3,16 @@
 	desc = "A tray usually full of fluid for growing plants."
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "hydrotray3"
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
 	flags = OPENCONTAINER
+=======
+	density = 1
+	anchored = 1
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	volume = 100
 
 	var/mechanical = 1         // Set to 0 to stop it from drawing the alert lights.

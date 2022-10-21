@@ -23,8 +23,14 @@
 	possible_transfer_amounts = list(5)
 	volume = 10
 	can_be_placed_into = null
+<<<<<<< HEAD
 	flags = OPENCONTAINER | NOBLUDGEON
 	unacidable = FALSE
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+	item_flags = NOBLUDGEON
+	unacidable = 0
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
 

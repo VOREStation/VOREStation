@@ -1,7 +1,7 @@
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
-	var/flags = 0
+	var/atom_flags = EMPTY_BITFIELD
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast = null
@@ -22,7 +22,7 @@
 	var/datum/reagents/reagents = null
 
 	//var/chem_is_open_container = 0
-	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
+	// replaced by ATOM_REAGENTS_IS_OPEN flags and atom/proc/is_open_container()
 	///Chemistry.
 
 	// Overlays
@@ -38,8 +38,6 @@
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
-	// Track if we are already had initialize() called to prevent double-initialization.
-	var/initialized = FALSE
 
 	/// Last name used to calculate a color for the chatmessage overlays
 	var/chat_color_name
@@ -51,6 +49,7 @@
 	var/chat_color_hover
 
 /atom/New(loc, ...)
+<<<<<<< HEAD
 	// Don't call ..() unless /datum/New() ever exists
 
 	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
@@ -71,6 +70,22 @@
 	// var/list/created = SSatoms.created_atoms
 	// if(created)
 	// 	created += src
+=======
+	//atom creation method that preloads variables at creation
+	if(global.use_preloader && (src.type == global._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		global._preloader.load(src)
+
+	var/do_initialize = SSatoms?.atom_init_stage
+	if(do_initialize > INITIALIZATION_INSSATOMS_LATE)
+		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
+		SSatoms.InitAtom(src, args)
+	else
+		var/list/argument_list
+		if(length(args) > 1)
+			argument_list = args.Copy(2)
+		if(length(argument_list))
+			LAZYSET(global.pre_init_created_atoms, src, argument_list)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 // Note: I removed "auto_init" feature (letting types disable auto-init) since it shouldn't be needed anymore.
 // 	You can replicate the same by checking the value of the first parameter to initialize() ~Leshana
@@ -82,11 +97,29 @@
 // Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
+<<<<<<< HEAD
 	if(QDELETED(src))
 		stack_trace("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
+=======
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
+	if (atom_flags & ATOM_INITIALIZED)
+		crash_with("Warning: [src]([type]) initialized multiple times!")
+	atom_flags |= ATOM_INITIALIZED
+	if (QDELING(src))
+		crash_with("GC: -- [type] had Initialize() called after qdel() --")
+	if (IsAbstract())
+		log_debug("Abstract atom [type] created!")
+		return INITIALIZE_HINT_QDEL
+	if (light_power && light_range)
+		update_light()
+	if (opacity && isturf(loc))
+		var/turf/T = loc
+		T.has_opaque_atom = TRUE
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	return INITIALIZE_HINT_NORMAL
 
 /atom/Destroy()
@@ -131,7 +164,7 @@
 // returns true if open
 // false if closed
 /atom/proc/is_open_container()
-	return flags & OPENCONTAINER
+	return atom_flags & ATOM_REAGENTS_IS_OPEN
 
 /*//Convenience proc to see whether a container can be accessed in a certain way.
 
@@ -448,8 +481,10 @@
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
 
-	if(flags & NOBLOODY)
-		return 0
+	if (isitem(src))
+		var/obj/item/item = src
+		if(item.item_flags & NOBLOODY)
+			return 0
 
 	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()

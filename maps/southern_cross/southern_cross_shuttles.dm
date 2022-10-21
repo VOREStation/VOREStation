@@ -234,7 +234,7 @@
 } \
 /obj/effect/shuttle_landmark/southern_cross/escape_pod##NUMBER/transit { \
 	landmark_tag = "escape_pod_"+ #NUMBER +"_transit"; \
-	flags = SLANDMARK_FLAG_AUTOSET; \
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE; \
 }
 
 ESCAPE_POD(1)
@@ -274,7 +274,7 @@ ESCAPE_POD(8)
 
 /obj/effect/shuttle_landmark/southern_cross/cryostorage_transit
 	landmark_tag = "cryostorage_transit"
-	flags = SLANDMARK_FLAG_AUTOSET
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE
 
 // Large Escape Pod 1
 /datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
@@ -302,7 +302,7 @@ ESCAPE_POD(8)
 
 /obj/effect/shuttle_landmark/southern_cross/large_escape_pod1/transit
 	landmark_tag = "large_escape_pod1_transit"
-	flags = SLANDMARK_FLAG_AUTOSET
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE
 
 // Large Escape Pod 2
 /datum/shuttle/autodock/ferry/escape_pod/large_escape_pod2
@@ -330,7 +330,7 @@ ESCAPE_POD(8)
 
 /obj/effect/shuttle_landmark/southern_cross/large_escape_pod2/transit
 	landmark_tag = "large_escape_pod2_transit"
-	flags = SLANDMARK_FLAG_AUTOSET
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE
 
 
 // Destination datums
@@ -367,5 +367,3 @@ ESCAPE_POD(8)
 
 
 // Heist shuttle
-
-

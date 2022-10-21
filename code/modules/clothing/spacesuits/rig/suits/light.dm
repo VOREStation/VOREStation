@@ -80,7 +80,7 @@
 /obj/item/clothing/shoes/lightrig/hacker
 	siemens_coefficient = 0.4
 	step_volume_mod = 0.3 //Special sneaky cyber-soles, for infiltration.
-	flags = NOSLIP //They're not magboots, so they're not super good for exterior hull walking, BUT for interior infiltration they'll do swell.
+	item_flags = NOSLIP //They're not magboots, so they're not super good for exterior hull walking, BUT for interior infiltration they'll do swell.
 
 /obj/item/clothing/gloves/gauntlets/rig/light/hacker
 	siemens_coefficient = 0

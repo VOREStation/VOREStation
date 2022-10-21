@@ -88,7 +88,7 @@
 		layer = ABOVE_MOB_LAYER
 	//climbable = FALSE //flipping tables allows them to be used as makeshift barriers
 	flipped = 1
-	flags |= ON_BORDER
+	atom_flags |= ATOM_HAS_TRANSITION_PRIORITY
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
 		if(T && T.flipped == 0 && material && T.material && T.material.name == material.name)
@@ -105,8 +105,13 @@
 
 	reset_plane_and_layer()
 	flipped = 0
+<<<<<<< HEAD
 	//climbable = initial(climbable)
 	flags &= ~ON_BORDER
+=======
+	climbable = initial(climbable)
+	atom_flags &= ~ATOM_HAS_TRANSITION_PRIORITY
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
 		if(T && T.flipped == 1 && T.dir == src.dir && material && T.material&& T.material.name == material.name)

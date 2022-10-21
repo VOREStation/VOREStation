@@ -345,7 +345,11 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/UpdateMineral()
 	clear_ore_effects()
+<<<<<<< HEAD
 	if(mineral)
+=======
+	if((atom_flags & ATOM_INITIALIZED) && istype(mineral))
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 		new /obj/effect/mineral(src, mineral)
 	update_icon()
 
@@ -688,5 +692,49 @@ var/list/mining_overlay_cache = list()
 
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
+<<<<<<< HEAD
 		UpdateMineral()
 	update_icon()
+=======
+		if(atom_flags & ATOM_INITIALIZED)
+			UpdateMineral()
+	update_icon()
+
+// The value of range is turf-radius.
+// digsite_type allows you to specify what type of digsite is spawned. code/modules/xenoarchaeology/finds/finds_defines.dm
+// allow_anomalies is the probability, if any, of spawning an artifact in a turf, in the range. Garden and Animal digsites overwrite this probability.
+/turf/simulated/mineral/proc/make_digsite(var/range = 0, var/digsite_type , var/allow_anomalies = 5)
+	var/digsite = digsite_type ? digsite_type : get_random_digsite_type()
+
+	for(var/turf/simulated/mineral/T in range(range,src))
+		if(LAZYLEN(T.finds))
+			continue
+
+		if(isnull(T.geologic_data))
+			T.geologic_data = new /datum/geosample(T)
+
+		if(isnull(T.finds) || isemptylist(T.finds))
+			T.finds = list()
+			if(prob(50))
+				T.finds.Add(new /datum/find(digsite, rand(10, 190)))
+			else if(prob(75))
+				T.finds.Add(new /datum/find(digsite, rand(10, 90)))
+				T.finds.Add(new /datum/find(digsite, rand(110, 190)))
+			else
+				T.finds.Add(new /datum/find(digsite, rand(10, 50)))
+				T.finds.Add(new /datum/find(digsite, rand(60, 140)))
+				T.finds.Add(new /datum/find(digsite, rand(150, 190)))
+
+			//sometimes a find will be close enough to the surface to show
+			var/datum/find/F = T.finds[1]
+			if(F.excavation_required <= F.view_range)
+				T.archaeo_overlay = "overlay_archaeo[rand(1,3)]"
+				T.update_icon()
+
+		if(!isnull(allow_anomalies) && prob(allow_anomalies))
+			//have a chance for an artifact to spawn here, but not in animal or plant digsites
+			if(isnull(T.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
+				T.artifact_find = new()
+
+		T.update_icon()
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging

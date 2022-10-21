@@ -5,7 +5,7 @@
 	icon = 'icons/obj/hydroponics_products.dmi'
 	icon_state = "blank"
 	desc = "Nutritious! Probably."
-	flags = NOCONDUCT
+	atom_flags = ATOM_IS_INSULATED
 	slot_flags = SLOT_HOLSTER
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'

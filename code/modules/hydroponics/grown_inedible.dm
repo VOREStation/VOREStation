@@ -35,7 +35,7 @@
 	desc = "A reminder of meals gone by."
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "corncob"
-	flags = NOCONDUCT
+	atom_flags = ATOM_IS_INSULATED
 	w_class = ITEMSIZE_SMALL
 	throwforce = 0
 	throw_speed = 4
@@ -54,7 +54,7 @@
 	desc = "A peel from a banana."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "banana_peel"
-	flags = NOCONDUCT
+	atom_flags = ATOM_IS_INSULATED
 	w_class = ITEMSIZE_SMALL
 	throwforce = 0
 	throw_speed = 4

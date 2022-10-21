@@ -25,7 +25,7 @@
 	var/old_y = 0
 	var/datum/riding/riding_datum = null
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
-	var/movement_type = NONE
+	var/movement_type = EMPTY_BITFIELD
 
 	var/cloaked = FALSE //If we're cloaked or not
 	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
@@ -346,7 +346,7 @@
 					return
 
 			// Call our thingy to inform everyone we moved
-			Moved(oldloc, NONE, TRUE)
+			Moved(oldloc, EMPTY_BITFIELD, TRUE)
 
 		// Break pulling if we are too far to pull now.
 		if(pulledby && (pulledby.z != src.z || get_dist(pulledby, src) > 1))

@@ -10,7 +10,7 @@
 	health = 150
 	visible = 0.0
 	use_power = USE_POWER_OFF
-	flags = ON_BORDER
+	atom_flags = ATOM_HAS_TRANSITION_PRIORITY
 	opacity = 0
 	var/obj/item/weapon/airlock_electronics/electronics = null
 	explosion_resistance = 5

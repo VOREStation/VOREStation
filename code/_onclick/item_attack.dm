@@ -92,7 +92,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
-	if(!force || (flags & NOBLUDGEON))
+	if(!force || (item_flags & NOBLUDGEON))
 		return 0
 	if(M == user && user.a_intent != I_HURT)
 		return 0

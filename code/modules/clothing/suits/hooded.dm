@@ -366,7 +366,7 @@
 	desc = "An armoured suit for exploring harsh environments."
 	icon_state = "explorer"
 	item_state = "explorer"
-	flags = THICKMATERIAL
+	item_flags = THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS

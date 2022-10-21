@@ -85,8 +85,7 @@
 /obj/item/clothing/mask/gas/swat/vox
 	name = "\improper alien mask"
 	desc = "Clearly not designed for a human face."
-	flags = PHORONGUARD
-	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | PHORONGUARD
 	species_restricted = list(SPECIES_VOX)
 	filtered_gases = list("oxygen", "nitrous_oxide")
 	var/mask_open = FALSE	// Controls if the Vox can eat through this mask

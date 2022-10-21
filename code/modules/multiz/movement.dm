@@ -345,7 +345,11 @@
 // Things that prevent objects standing on them from falling into turf below
 /obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if((target.z < z) && !hatch_open)
+<<<<<<< HEAD
 		return FALSE // TODO - Technically should be density = TRUE and flags |= ON_BORDER
+=======
+		return FALSE // TODO - Technically should be density = 1 and flags |= ATOM_HAS_TRANSITION_PRIORITY
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
@@ -363,7 +367,11 @@
 	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
+<<<<<<< HEAD
 		return FALSE // TODO - Technically should be density = TRUE and flags |= ON_BORDER
+=======
+		return FALSE // TODO - Technically should be density = 1 and flags |= ATOM_HAS_TRANSITION_PRIORITY
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 // So you'll slam when falling onto a grille
 /obj/structure/lattice/CheckFall(var/atom/movable/falling_atom)
@@ -423,14 +431,14 @@
 
 // Called on everything that falling_atom might hit. Return TRUE if you're handling it so find_fall_target() will stop checking.
 /atom/proc/CheckFall(var/atom/movable/falling_atom)
-	if(density && !(flags & ON_BORDER))
+	if(density && !(atom_flags & ATOM_HAS_TRANSITION_PRIORITY))
 		return TRUE
 
 // If you are hit: how is it handled.
 // Return TRUE if the generic fall_impact should be called
 // Return FALSE if you handled it yourself or if there's no effect from hitting you
 /atom/proc/check_impact(var/atom/movable/falling_atom)
-	if(density && !(flags & ON_BORDER))
+	if(density && !(atom_flags & ATOM_HAS_TRANSITION_PRIORITY))
 		return TRUE
 
 // By default all turfs are gonna let you hit them regardless of density.

@@ -21,7 +21,7 @@ In short:
 	*/
 
 /datum/universal_state/hell/DecayTurf(var/turf/T)
-	if(!T.holy)
+	if(!(T.turf_flags & TURF_IS_BLESSED))
 		T.cultify()
 		for(var/obj/machinery/light/L in T.contents)
 			new /obj/structure/cult/pylon(L.loc)
@@ -70,7 +70,7 @@ In short:
 
 /datum/universal_state/hell/proc/MiscSet()
 	for(var/turf/simulated/floor/T in world)
-		if(!T.holy && prob(1))
+		if(!(T.turf_flags & TURF_IS_BLESSED) && prob(1))
 			new /obj/effect/gateway/active/cult(T)
 
 	for (var/obj/machinery/firealarm/alm in machines)

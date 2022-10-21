@@ -348,10 +348,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/key in areas)
 		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
+<<<<<<< HEAD
 			areas -= key
 		if(A.z in using_map?.hidden_levels)
 			areas -= key
 
+=======
+			areas -= A
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	return areas
 
 /mob/observer/dead/proc/jumpable_mobs()
@@ -392,7 +396,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "Not when you're not dead!")
 		return
 
+<<<<<<< HEAD
 	usr.forceMove(pick(get_area_turfs(A || jumpable_areas()[areaname])))
+=======
+	usr.forceMove(pick(get_area_turfs(A)))
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	usr.on_mob_jump()
 
 /mob/observer/dead/verb/follow(mobname as anything in jumpable_mobs())
@@ -404,6 +412,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "Not when you're not dead!")
 		return
 
+<<<<<<< HEAD
 	var/mob/M
 
 	if(!mobname)
@@ -420,6 +429,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	ManualFollow(M || jumpable_mobs()[mobname])
+=======
+	var/target = jumpable_mobs()[input]
+	if(!target) return
+	ManualFollow(target)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 /mob/observer/dead/forceMove(atom/destination)
 	if(client?.holder)
@@ -562,7 +576,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_rights(R_ADMIN|R_FUN|R_EVENT, 0, src))
 		return 0
 
-	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
+	return (T?.turf_flags & TURF_IS_BLESSED) && (is_manifest || (mind in cult.current_antagonists))
 
 /mob/observer/dead/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -986,6 +1000,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Blank pAI alert"
 	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
 
+<<<<<<< HEAD
 	var/time_till_respawn = time_till_respawn()
 	if(time_till_respawn == -1) // Special case, never allowed to respawn
 		to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
@@ -997,6 +1012,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr,"<span class='warning'>You cannot alert pAI cards when you are banned from playing as a pAI.</span>")
 		return
 
+=======
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	if(usr.client.prefs?.be_special & BE_PAI)
 		var/choice = tgui_alert(usr, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
 		if(choice == "Yes")

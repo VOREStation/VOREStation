@@ -5,7 +5,7 @@
 	description_info = "Some blob types will have core effects when the chunk is used in-hand, toggled with an alt click, or constantly active."
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blobcore"
-	flags = OPENCONTAINER
+	atom_flags = ATOM_REAGENTS_IS_OPEN
 	var/datum/blob_type/blob_type	// The blob type this dropped from.
 
 	var/active_ability_cooldown = 20 SECONDS

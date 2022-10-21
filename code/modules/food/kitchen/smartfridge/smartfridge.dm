@@ -12,7 +12,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags = NOREACT
+	atom_flags = ATOM_REAGENTS_SKIP_REACTIONS
 	var/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/list/item_records = list()
 	var/datum/stored_item/currently_vending = null	//What we're putting out of the machine.
@@ -216,15 +216,20 @@
 			if(params["amount"])
 				amount = params["amount"]
 			else
+<<<<<<< HEAD
 				amount = tgui_input_number(usr, "How many items?", "How many items would you like to take out?", 1)
 			
+=======
+				amount = input("How many items?", "How many items would you like to take out?", 1) as num|null
+
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src))
 				return FALSE
-			
+
 			var/index = text2num(params["index"])
 			if(index < 1 || index > LAZYLEN(item_records))
 				return TRUE
-			
+
 			vend(item_records[index], amount)
 			return TRUE
 	return FALSE

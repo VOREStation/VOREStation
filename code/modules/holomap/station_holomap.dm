@@ -30,9 +30,15 @@
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
 
+<<<<<<< HEAD
 /obj/machinery/station_map/New()
 	..()
 	flags |= ON_BORDER // Why? It doesn't help if its not density
+=======
+/obj/machinery/station_map/Initialize()
+	. = ..()
+	atom_flags |= ATOM_HAS_TRANSITION_PRIORITY // Why? It doesn't help if its not density
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 /obj/machinery/station_map/Initialize()
 	. = ..()

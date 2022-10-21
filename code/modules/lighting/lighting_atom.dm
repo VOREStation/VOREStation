@@ -91,6 +91,7 @@
 		else
 			light = new/datum/light_source(src, .)
 
+<<<<<<< HEAD
 
 /**
  * Updates the atom's opacity value.
@@ -105,6 +106,8 @@
 	. = opacity
 	opacity = new_opacity
 
+=======
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 /atom/movable/set_opacity(new_opacity)
 	. = ..()

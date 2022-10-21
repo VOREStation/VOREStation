@@ -7,8 +7,13 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 /obj/machinery/r_n_d/circuit_imprinter
 	name = "Circuit Imprinter"
 	icon_state = "circuit_imprinter"
+<<<<<<< HEAD
 	flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+	circuit = /obj/item/circuitboard/circuit_imprinter
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/list/datum/design/queue = list()
 	var/progress = 0
 

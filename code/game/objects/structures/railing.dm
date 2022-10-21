@@ -7,8 +7,13 @@
 	throwpass = 1
 	climbable = TRUE
 	layer = WINDOW_LAYER
+<<<<<<< HEAD
 	anchored = TRUE
 	flags = ON_BORDER
+=======
+	anchored = 1
+	atom_flags = ATOM_HAS_TRANSITION_PRIORITY
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	icon_state = "railing0"
 	var/broken = FALSE
 	var/health = 70
@@ -329,5 +334,5 @@
 		if(istype(O,/obj/structure))
 			var/obj/structure/S = O
 			if(S.climbable) continue
-		if(O && O.density && !(O.flags & ON_BORDER && !(turn(O.dir, 180) & dir)))
+		if(O && O.density && !(O.atom_flags & ATOM_HAS_TRANSITION_PRIORITY && !(turn(O.dir, 180) & dir)))
 			return O

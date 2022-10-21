@@ -6,9 +6,15 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	description_info = "You can use alt-click while holding a mop to stow the mop. Alt-click holding a reagent container will empty the contents into the bucket without trying to put the container in any attached trash bag."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
+<<<<<<< HEAD
 	anchored = FALSE
 	density = TRUE
 	flags = OPENCONTAINER
+=======
+	anchored = 0
+	density = 1
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	climbable = TRUE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -374,9 +380,15 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
+<<<<<<< HEAD
 	anchored = TRUE
 	density = TRUE
 	flags = OPENCONTAINER
+=======
+	anchored = 1
+	density = 1
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/weapon/storage/bag/trash/mybag	= null

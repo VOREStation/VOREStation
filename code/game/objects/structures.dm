@@ -9,9 +9,15 @@
 	var/parts
 	var/list/climbers
 	var/block_turf_edges = FALSE // If true, turf edge icons will not be made on the turf this occupies.
+<<<<<<< HEAD
 	
 	var/list/connections
 	var/list/other_connections
+=======
+
+	var/list/connections = list("0", "0", "0", "0")
+	var/list/other_connections = list("0", "0", "0", "0")
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/list/blend_objects = newlist() // Objects which to blend with
 	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
 
@@ -96,7 +102,7 @@
 		if(istype(O,/obj/structure))
 			var/obj/structure/S = O
 			if(S.climbable) continue
-		if(O && O.density && !(O.flags & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
+		if(O && O.density && !(O.atom_flags & ATOM_HAS_TRANSITION_PRIORITY)) //ATOM_HAS_TRANSITION_PRIORITY structures are handled by the Adjacent() check.
 			return O
 	return 0
 

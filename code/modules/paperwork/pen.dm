@@ -127,8 +127,13 @@
  * Reagent Pens
  */
 
+<<<<<<< HEAD
 /obj/item/weapon/pen/reagent
 	flags = OPENCONTAINER
+=======
+/obj/item/pen/reagent
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/weapon/pen/reagent/New()

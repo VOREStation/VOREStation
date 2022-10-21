@@ -15,8 +15,13 @@
 	wrapper_color = COLOR_BLUE
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/zoom = 7)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random
 	flags = 0
+=======
+/obj/item/reagent_containers/glass/beaker/vial/random
+	atom_flags = EMPTY_BITFIELD
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin
@@ -29,8 +34,12 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/Initialize()
 	. = ..()
 	if(is_open_container())
+<<<<<<< HEAD
 		flags ^= OPENCONTAINER
 
+=======
+		atom_flags ^= ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/list/picked_reagents = pickweight(random_reagent_list)
 	for(var/reagent in picked_reagents)
 		reagents.add_reagent(reagent, picked_reagents[reagent])

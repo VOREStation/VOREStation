@@ -9,7 +9,7 @@
 	sharp = FALSE
 	edge = FALSE
 	throwforce = 7
-	flags = NOCONDUCT
+	atom_flags = ATOM_IS_INSULATED
 	w_class = ITEMSIZE_NORMAL
 	drop_sound = 'sound/items/drop/metalweapon.ogg'
 	pickup_sound = 'sound/items/pickup/metalweapon.ogg'
@@ -270,5 +270,10 @@
 		target.taunt(user)
 
 // Borg version, for the lost module.
+<<<<<<< HEAD
 /obj/item/weapon/melee/baton/shocker/robot
 	use_external_power = TRUE
+=======
+/obj/item/melee/baton/shocker/robot
+	use_external_power = TRUE
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging

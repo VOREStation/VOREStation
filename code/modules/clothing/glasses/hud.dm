@@ -1,7 +1,7 @@
 /obj/item/clothing/glasses/hud
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
-	flags = 0 //doesn't protect eyes because it's a monocle, duh
+	atom_flags = EMPTY_BITFIELD //doesn't protect eyes because it's a monocle, duh
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)
 
 /obj/item/clothing/glasses/hud/health

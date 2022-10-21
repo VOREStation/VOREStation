@@ -184,7 +184,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	decays = FALSE
 	parent_organ = BP_TORSO
 	clone_source = TRUE
-	flags = OPENCONTAINER
+	atom_flags = ATOM_REAGENTS_IS_OPEN
 	var/list/owner_flavor_text = list()
 
 /obj/item/organ/internal/brain/slime/is_open_container()

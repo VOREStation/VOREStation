@@ -33,7 +33,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/soap.dmi'
 	icon_state = "soap"
-	flags = NOCONDUCT
+	atom_flags = ATOM_IS_INSULATED
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_HOLSTER
 	throwforce = 0

@@ -14,8 +14,13 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
 	w_class = ITEMSIZE_SMALL
+<<<<<<< HEAD
 	flags = OPENCONTAINER | NOCONDUCT
 	unacidable = TRUE //glass doesn't dissolve in acid
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN | ATOM_IS_INSULATED
+	unacidable = 1 //glass doesn't dissolve in acid
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	drop_sound = 'sound/items/drop/bottle.ogg'
 	pickup_sound = 'sound/items/pickup/bottle.ogg'
 
@@ -75,14 +80,19 @@
 	..()
 	if(is_open_container())
 		to_chat(usr, "<span class = 'notice'>You put the lid on \the [src].</span>")
-		flags ^= OPENCONTAINER
+		atom_flags ^= ATOM_REAGENTS_IS_OPEN
 	else
 		to_chat(usr, "<span class = 'notice'>You take the lid off \the [src].</span>")
-		flags |= OPENCONTAINER
+		atom_flags |= ATOM_REAGENTS_IS_OPEN
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+=======
+/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+	if(force && !(item_flags & NOBLUDGEON) && user.a_intent == I_HURT)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 		return	..()
 
 	if(standard_feed_mob(user, M))
@@ -135,7 +145,7 @@
 			update_name_label()
 	if(istype(W,/obj/item/weapon/storage/bag))
 		..()
-	if(W && W.w_class <= w_class && (flags & OPENCONTAINER) && user.a_intent != I_HELP)
+	if(W && W.w_class <= w_class && (atom_flags & ATOM_REAGENTS_IS_OPEN) && user.a_intent != I_HELP)
 		to_chat(user, "<span class='notice'>You dip \the [W] into \the [src].</span>")
 		reagents.touch_obj(W, reagents.total_volume)
 
@@ -217,8 +227,12 @@
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120)
+<<<<<<< HEAD
 	flags = OPENCONTAINER
 	rating = 3
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -228,7 +242,7 @@
 	matter = list(MAT_GLASS = 500)
 	volume = 60
 	amount_per_transfer_from_this = 10
-	flags = OPENCONTAINER | NOREACT
+	atom_flags = ATOM_REAGENTS_IS_OPEN | ATOM_REAGENTS_SKIP_REACTIONS
 
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	name = "bluespace beaker"
@@ -239,8 +253,12 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
+<<<<<<< HEAD
 	flags = OPENCONTAINER
 	rating = 5
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"
@@ -252,7 +270,7 @@
 	w_class = ITEMSIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,30)
-	flags = OPENCONTAINER
+	atom_flags = ATOM_REAGENTS_IS_OPEN
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
 	name = "beaker (cryoxadone)"
@@ -269,7 +287,7 @@
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120)
-	flags = OPENCONTAINER
+	atom_flags = ATOM_REAGENTS_IS_OPEN
 
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."
@@ -283,8 +301,13 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
+<<<<<<< HEAD
 	flags = OPENCONTAINER
 	unacidable = FALSE
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+	unacidable = 0
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 
@@ -341,8 +364,13 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
+<<<<<<< HEAD
 	flags = OPENCONTAINER
 	unacidable = FALSE
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+	unacidable = 0
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 

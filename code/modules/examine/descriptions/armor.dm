@@ -43,7 +43,7 @@
 
 	armor_stats += "\n"
 
-	if(flags & AIRTIGHT)
+	if(item_flags & AIRTIGHT)
 		armor_stats += "It is airtight. \n"
 
 	if(min_pressure_protection == 0)
@@ -54,7 +54,7 @@
 	if(max_pressure_protection != null)
 		armor_stats += "Wearing this will protect you from high pressures. \n"
 
-	if(flags & THICKMATERIAL)
+	if(item_flags & THICKMATERIAL)
 		armor_stats += "The material is exceptionally thick. \n"
 
 	if(max_heat_protection_temperature == FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE)

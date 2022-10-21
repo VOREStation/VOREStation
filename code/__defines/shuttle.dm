@@ -5,10 +5,6 @@
 #define SHUTTLE_FLAGS_ZERO_G  4		// Shuttle has no internal gravity generation
 #define SHUTTLE_FLAGS_ALL (~SHUTTLE_FLAGS_NONE)
 
-// shuttle_landmark flags
-#define SLANDMARK_FLAG_AUTOSET 1    // If set, will set base area and turf type to same as where it was spawned at
-#define SLANDMARK_FLAG_ZERO_G  2    // Zero-G shuttles moved here will lose gravity unless the area has ambient gravity.
-
 // Overmap landable shuttles (/obj/effect/overmap/visitable/ship/landable on a /datum/shuttle/autodock/overmap)
 #define SHIP_STATUS_LANDED   1		// Ship is at any other shuttle landmark.
 #define SHIP_STATUS_TRANSIT  2		// Ship is at it's shuttle datum's transition shuttle landmark.

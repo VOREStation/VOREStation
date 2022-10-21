@@ -1,8 +1,13 @@
 /obj/machinery/r_n_d/protolathe
 	name = "Protolathe"
 	icon_state = "protolathe"
+<<<<<<< HEAD
 	flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
+=======
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+	circuit = /obj/item/circuitboard/protolathe
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 5000
@@ -267,6 +272,7 @@
 	if(!istype(S))
 		warning("[src] tried to eject material '[material]', which didn't generate a proper stack when asked!")
 		return
+<<<<<<< HEAD
 
 	// Reduce our amount stored
 	materials[matstring] -= ejected * S.perunit
@@ -274,3 +280,8 @@
 	// Recurse if we have enough left for more sheets
 	if(recursive && materials[matstring] >= S.perunit)
 		eject_materials(matstring, -1)
+=======
+	materials[material] -= ejected * S.perunit
+	if(recursive && materials[material] >= S.perunit)
+		eject_materials(material, -1)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging

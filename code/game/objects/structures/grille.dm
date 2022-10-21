@@ -150,7 +150,7 @@
 		return
 //window placing end
 
-	else if((W.flags & NOCONDUCT) || !shock(user, 70))
+	else if((W.atom_flags & ATOM_IS_INSULATED) || !shock(user, 70))
 		user.setClickCooldown(user.get_attack_speed(W))
 		user.do_attack_animation(src)
 		playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
@@ -286,4 +286,3 @@
 	health -= damage
 	spawn(1) healthcheck()
 	return 1
-

@@ -6,6 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
+<<<<<<< HEAD
 	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
 	light_color = "#00ff00"
@@ -13,6 +14,11 @@
 	blocks_emissive = NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/circuit = /obj/item/weapon/circuitboard/intercom
+=======
+	canhear_range = 2
+	item_flags = NOBLOODY
+	var/circuit = /obj/item/circuitboard/intercom
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/number = 0
 	var/wiresexposed = 0
 

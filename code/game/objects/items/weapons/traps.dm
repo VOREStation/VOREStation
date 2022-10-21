@@ -237,7 +237,7 @@
 	if(!istype(W))
 		return
 
-	if((W.flags & NOCONDUCT) || !shock(user, 70, pick(BP_L_HAND, BP_R_HAND)))
+	if((W.atom_flags & ATOM_IS_INSULATED) || !shock(user, 70, pick(BP_L_HAND, BP_R_HAND)))
 		user.setClickCooldown(user.get_attack_speed(W))
 		user.do_attack_animation(src)
 		playsound(src, 'sound/effects/grillehit.ogg', 40, 1)

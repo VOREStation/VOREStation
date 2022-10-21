@@ -1,11 +1,10 @@
 /area/submap
 	name = "Submap Area"
 	icon_state = "submap"
-	flags = RAD_SHIELDED
 	ambience = AMBIENCE_RUINS
 	secret_name = TRUE
 	forbid_events = TRUE
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | RAD_SHIELDED
 
 /area/submap/event //To be used for Events not for regular PoIs
 	name = "Unknown"

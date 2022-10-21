@@ -3,7 +3,7 @@
 /area/mine
 	icon_state = "mining"
 	sound_env = ASTEROID
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/mine/explored
 	name = "Mine"
@@ -28,22 +28,22 @@
 /area/outpost/mining_north
 	name = "North Mining Outpost"
 	icon_state = "outpost_mine_north"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/outpost/mining_west
 	name = "West Mining Outpost"
 	icon_state = "outpost_mine_west"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/outpost/abandoned
 	name = "Abandoned Outpost"
 	icon_state = "dark"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 // Main mining outpost
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/outpost/mining_main/airlock
 	name = "Mining Outpost Airlock"
@@ -95,7 +95,7 @@
 // Engineering Outpost
 /area/outpost/engineering
 	icon_state = "outpost_engine"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/outpost/engineering/hallway
 	name = "Engineering Outpost Hallway"
@@ -169,7 +169,7 @@
 // Research Outpost
 /area/outpost/research
 	icon_state = "outpost_research"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/outpost/research/hallway
 	name = "Research Outpost Hallway"

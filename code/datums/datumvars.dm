@@ -60,7 +60,7 @@
 	IF_VV_OPTION(VV_HK_CALLPROC)
 		usr.client.callproc_datum(src)
 	IF_VV_OPTION(VV_HK_ADDCOMPONENT)
-		if(!check_rights(NONE))
+		if(!check_rights(EMPTY_BITFIELD))
 			return
 		var/list/names = list()
 		var/list/componentsubtypes = sortTim(subtypesof(/datum/component), /proc/cmp_typepaths_asc)

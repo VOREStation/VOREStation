@@ -35,6 +35,7 @@ SUBSYSTEM_DEF(atoms)
 
 	var/count
 	var/list/mapload_arg = list(TRUE)
+<<<<<<< HEAD
 	if(atoms)
 		created_atoms = list()
 		count = atoms.len
@@ -48,6 +49,22 @@ SUBSYSTEM_DEF(atoms)
 		for(var/atom/A in world) // This must be world, since this operation adds all the atoms to their specific lists.
 			if(!A.initialized)
 				InitAtom(A, mapload_arg)
+=======
+	var/count = 0
+	var/atom/created
+	var/list/arguments
+	for (var/i = 1 to length(created_atoms))
+		created = created_atoms[i]
+		if (!(created.atom_flags & ATOM_INITIALIZED))
+			arguments = created_atoms[created] ? mapload_arg + created_atoms[created] : mapload_arg
+			InitAtom(created, arguments)
+			CHECK_TICK
+	created_atoms.Cut()
+	if (!subsystem_initialized)
+		for (var/atom/atom in world)
+			if (!(atom.atom_flags & ATOM_INITIALIZED))
+				InitAtom(atom, mapload_arg)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 				++count
 				CHECK_TICK
 
@@ -93,7 +110,16 @@ SUBSYSTEM_DEF(atoms)
 				qdel(A)
 				qdeleted = TRUE
 			else
+<<<<<<< HEAD
 				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
+=======
+				bad_init_calls[atom_type] |= DID_NOT_RETURN_HINT
+	if (!atom)
+		qdeleted = TRUE
+	else if (!(atom.atom_flags & ATOM_INITIALIZED))
+		bad_init_calls[atom_type] |= DID_NOT_SET_INITIALIZED
+	return qdeleted || QDELING(atom)
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 	if(!A)	//possible harddel
 		qdeleted = TRUE

@@ -204,7 +204,7 @@
 					hit(50)
 			return
 
-	if(W.flags & NOBLUDGEON) return
+	if(W.item_flags & NOBLUDGEON) return
 
 	if(W.is_screwdriver())
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
@@ -296,8 +296,12 @@
 	throw_range = 5
 	throwforce = 0
 	w_class = ITEMSIZE_SMALL
+<<<<<<< HEAD
 	flags = NOBLOODY
 	unacidable = TRUE
+=======
+	item_flags = NOBLOODY
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/active = 0
 
 /obj/item/weapon/holo/esword/green/New()

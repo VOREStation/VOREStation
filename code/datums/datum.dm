@@ -11,7 +11,7 @@
 	var/list/list/signal_procs // List of lists
 	var/signal_enabled = FALSE
 	var/weakref/weakref // Holder of weakref instance pointing to this datum
-	var/datum_flags = NONE
+	var/datum_flags = EMPTY_BITFIELD
 
 #ifdef REFERENCE_TRACKING
 	var/tmp/running_find_references

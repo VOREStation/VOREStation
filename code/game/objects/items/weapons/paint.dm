@@ -14,8 +14,13 @@ var/global/list/cached_icons = list()
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(10,20,30,60)
 	volume = 60
+<<<<<<< HEAD
 	unacidable = FALSE
 	flags = OPENCONTAINER
+=======
+	unacidable = 0
+	atom_flags = ATOM_REAGENTS_IS_OPEN
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	var/paint_type = "red"
 
 /obj/item/weapon/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
@@ -67,4 +72,3 @@ var/global/list/cached_icons = list()
 /obj/item/weapon/reagent_containers/glass/paint/white
 	icon_state = "paint_white"
 	paint_type = "white"
-

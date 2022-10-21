@@ -23,8 +23,7 @@
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
-	flags = PHORONGUARD
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL | PHORONGUARD
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
@@ -119,7 +118,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
 	cold_protection =    HEAD|FACE|EYES
-	flags =              THICKMATERIAL|AIRTIGHT
+	item_flags = THICKMATERIAL|AIRTIGHT
 	species_restricted = null
 
 /obj/item/clothing/suit/lightrig
@@ -129,7 +128,7 @@
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv =          HIDEJUMPSUIT
-	flags =              THICKMATERIAL
+	item_flags = THICKMATERIAL
 	species_restricted = null
 
 /obj/item/clothing/shoes/lightrig
@@ -142,7 +141,7 @@
 
 /obj/item/clothing/gloves/gauntlets/lightrig
 	name = "gloves"
-	flags = THICKMATERIAL
+	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS

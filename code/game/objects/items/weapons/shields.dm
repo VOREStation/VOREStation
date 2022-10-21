@@ -118,7 +118,7 @@
 	icon_state = "eshield"
 	item_state = "eshield"
 	slot_flags = SLOT_EARS
-	flags = NOCONDUCT
+	atom_flags = ATOM_IS_INSULATED
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1

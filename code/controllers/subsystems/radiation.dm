@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(radiation)
 
 		if(source.respect_maint)
 			var/area/A = T.loc
-			if(A.flags & RAD_SHIELDED)
+			if(A.atom_flags & RAD_SHIELDED)
 				continue // In shielded area
 
 		var/dist = get_dist(source.source_turf, T)

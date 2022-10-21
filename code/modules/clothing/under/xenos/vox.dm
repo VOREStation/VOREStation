@@ -2,7 +2,7 @@
 	has_sensor = 0
 	species_restricted = list(SPECIES_VOX)
 	starting_accessories = list(/obj/item/clothing/accessory/storage/vox)	// Dont' start with a backback, so free webbing
-	flags = PHORONGUARD
+	item_flags = PHORONGUARD
 
 /obj/item/clothing/under/vox/vox_casual
 	name = "alien clothing"
@@ -22,9 +22,7 @@
 	name = "alien mesh"
 	desc = "An alien mesh. Seems to be made up mostly of pockets and writhing flesh."
 	icon_state = "webbing-vox"
-
-	flags = PHORONGUARD
-
+	item_flags = PHORONGUARD
 	slots = 3
 
 /obj/item/clothing/accessory/storage/vox/Initialize()

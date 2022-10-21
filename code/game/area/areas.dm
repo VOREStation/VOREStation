@@ -13,13 +13,22 @@
 	plane = PLANE_LIGHTING_ABOVE //In case we color them
 	luminosity = 0
 	mouse_opacity = 0
+
+	var/area_flags = 0
+
 	var/lightswitch = 1
 
 	var/eject = null
 
 	var/debug = 0
+
 	var/requires_power = 1
+<<<<<<< HEAD
 	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
+=======
+
+	var/always_unpowered = 0	//this gets overriden to 1 for space in area/Initialize()
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 
 	// Power channel status - Is it currently energized?
 	var/power_equip = TRUE

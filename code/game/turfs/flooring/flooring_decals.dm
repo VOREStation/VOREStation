@@ -10,7 +10,16 @@ var/list/floor_decals = list()
 	layer = DECAL_LAYER
 	var/supplied_dir
 
+<<<<<<< HEAD
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
+=======
+// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize()
+// somewhere in this chain. Alternatively repath to /obj/floor_decal or some other
+// abstract handler that explicitly doesn't invoke any obj behavior.
+/obj/effect/floor_decal/Initialize(var/ml, var/newdir, var/newcolour)
+	SHOULD_CALL_PARENT(FALSE)
+	atom_flags |= ATOM_INITIALIZED // this is a blight
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	supplied_dir = newdir
 	if(newcolour)
 		color = newcolour

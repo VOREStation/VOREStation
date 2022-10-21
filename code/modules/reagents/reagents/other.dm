@@ -367,7 +367,7 @@
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	..()
 	if(volume >= 5)
-		T.holy = 1
+		T.turf_flags |= TURF_IS_BLESSED
 	return
 
 /datum/reagent/ammonia

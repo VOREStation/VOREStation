@@ -3,7 +3,7 @@
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "retail_idle"
-	flags = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	slot_flags = SLOT_BELT
 	req_access = list(access_heads)
 	w_class = ITEMSIZE_SMALL
@@ -421,5 +421,9 @@
 /obj/item/device/retail_scanner/cargo
 	account_to_connect = "Cargo"
 
+<<<<<<< HEAD
 /obj/item/device/retail_scanner/civilian
+=======
+/obj/item/retail_scanner/civilian
+>>>>>>> 56bf74c21f8... Merge pull request #8762 from Spookerton/spkrtn/sys/flagging
 	account_to_connect = "Civilian"
