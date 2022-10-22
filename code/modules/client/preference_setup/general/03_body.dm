@@ -70,9 +70,21 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			continue
 		if(instance.ckeys_allowed && (!client || !(client.ckey in instance.ckeys_allowed)))
 			continue
+<<<<<<< HEAD
 		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed))) //VOREStation Edit: Custom Species
 			continue
 		.[instance.name] = instance
+=======
+
+		// Is an admin OR
+		// Instance is species-whitelisted AND current species matches whitelist OR
+		// config ckey-whitelist is enabled AND ckey matches whitelist AND the ckey-whitelist enables this instance for current species.
+		// That last list is entirely arbitrary. Take complaints up with Kholdstare.
+		if((istype(client) && check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) || \
+				(LAZYLEN(instance.species_allowed) && species && (species in instance.species_allowed)) || \
+				(config.genemod_whitelist && client.is_whitelisted(/whitelist/genemod) && LAZYLEN(instance.whitelist_allowed) && (species in instance.whitelist_allowed)))
+			.[instance.name] = instance
+>>>>>>> 712c59328f1... Implements a path-based, player-specific whitelisting system (#8725)
 
 /datum/category_item/player_setup_item/general/body
 	name = "Body"

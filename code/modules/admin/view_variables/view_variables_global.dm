@@ -72,7 +72,6 @@
 		"admin_log",
 		"admin_ranks",
 		"admin_state",
-		"alien_whitelist",
 		"alldirs",
 		"ahelp_tickets",
 		"adminfaxes",

@@ -108,7 +108,9 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/sendFax,
 	/client/proc/despawn_player,
 	/datum/admins/proc/view_feedback,
-	/client/proc/debug_global_variables
+	/client/proc/debug_global_variables,
+	/client/proc/admin_add_whitelist,
+	/client/proc/admin_del_whitelist
 	)
 
 var/list/admin_verbs_ban = list(
@@ -240,7 +242,9 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/view_feedback,
 	/client/proc/debug_global_variables,
 	/client/proc/ping_webhook,
-	/client/proc/reload_webhooks
+	/client/proc/reload_webhooks,
+	/client/proc/admin_add_whitelist,
+	/client/proc/admin_del_whitelist
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

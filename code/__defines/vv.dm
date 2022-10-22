@@ -55,3 +55,7 @@
 // /atom
 #define VV_HK_ATOM_EXPLODE "turf_explode"
 #define VV_HK_ATOM_EMP "turf_emp"
+
+// /client
+#define VV_HK_ADD_WHITELIST "add_whitelist"
+#define VV_HK_DEL_WHITELIST "del_whitelist"

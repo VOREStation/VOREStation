@@ -2044,6 +2044,18 @@
 				PlayerNotesFilter()
 		return
 
+	if(href_list["modify_whitelist"])
+		var/client/C = locate(href_list["modify_whitelist"])
+		if(!istype(C))
+			return
+		var/entry = input(usr, "Please enter the path of the whitelist you wish to modify:", "Whitelist target", "") as text|null
+		if(!entry || !ispath(text2path(entry)))
+			return
+		if(href_list["set_value"] == "1")
+			C.add_whitelist(entry)
+		else if(href_list["set_value"] == "0")
+			C.remove_whitelist(entry)
+
 /mob/living/proc/can_centcom_reply()
 	return 0
 
