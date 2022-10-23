@@ -133,3 +133,9 @@ Talon pin
 	display_name = "Talon pin"
 	description = "A small enamel pin of the Talon logo."
 	path = /obj/item/clothing/accessory/talon
+
+//Rat badge
+
+/datum/gear/accessory/altevian_badge
+	display_name = "altevian badge"
+	path = /obj/item/clothing/accessory/altevian_badge
