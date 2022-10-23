@@ -66,6 +66,10 @@
 	display_name = "Security HUDpatch MKII"
 	path = /obj/item/clothing/glasses/hud/security/eyepatch2
 
+/datum/gear/eyes/security/tac_sec_visor
+	display_name = "Tactical AR visor (Security)"
+	path = /obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis
+
 /datum/gear/eyes/medical/medpatch
 	display_name = "Health HUDpatch"
 	path = /obj/item/clothing/glasses/hud/health/eyepatch

@@ -54,6 +54,7 @@ hunterbirk - Xenochimera
 idcaboutaname - Protean
 idcaboutaname - Black-Eyed Shadekin
 inuzari - Diona
+iivoracious - Black-Eyed Shadekin
 jademanique - Black-Eyed Shadekin
 jademanique - Protean
 jademanique - Teppi
@@ -65,6 +66,8 @@ kira72 - Xenochimera
 konner1055 - Black-Eyed Shadekin
 konner1055 - Protean
 ktccd - Diona
+lazzar - Black-Eyed Shadekin
+lianvee - Black-Eyed Shadekin
 lillianfyre - Xenochimera
 lizehrd - Xenochimera
 looptyloo - Protean

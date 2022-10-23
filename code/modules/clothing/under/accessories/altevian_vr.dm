@@ -76,3 +76,34 @@
 	icon_state = "altevian-scarf-purple"
 	item_state = "altevian-scarf-purple"
 	overlay_state = "altevian-scarf-purple"
+
+
+
+/obj/item/clothing/accessory/altevian_badge
+	name = "Altevian Civilian Badge"
+	desc = "An emblem commonly seen worn by the altevians off-work or by visitors of their ships."
+	icon_state = "altevian_badge"
+	slot = ACCESSORY_SLOT_MEDAL
+
+/obj/item/clothing/accessory/altevian_badge/aquila
+	name = "Royal Altevian Navy Emblem"
+	desc = "An emblem commonly seen worn by the altevians for their work operations."
+	icon_state = "altevian_aquila"
+
+/obj/item/clothing/accessory/altevian_badge/aquila/silver
+	icon_state = "altevian_aquila_silver"
+
+/obj/item/clothing/accessory/altevian_badge/aquila/bronze
+	icon_state = "altevian_aquila_bronze"
+
+/obj/item/clothing/accessory/altevian_badge/aquila/black
+	icon_state = "altevian_aquila_black"
+
+/obj/item/clothing/accessory/altevian_badge/aquila/exotic
+	icon_state = "altevian_aquila_exotic"
+
+/obj/item/clothing/accessory/altevian_badge/aquila/phoron
+	icon_state = "altevian_aquila_phoron"
+
+/obj/item/clothing/accessory/altevian_badge/aquila/hydrogen
+	icon_state = "altevian_aquila_hydrogen"

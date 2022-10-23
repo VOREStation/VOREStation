@@ -1225,6 +1225,7 @@
 		/obj/item/clothing/mask/bandana/red = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security = 5,
 		/obj/item/clothing/accessory/armband = 5,
+		/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis = 5, //VoreStation edit - cool visor!!!
 		/obj/item/clothing/glasses/hud/security/eyepatch2 = 5, //VoreStation edit - cool eyepatch!
 		/obj/item/clothing/accessory/holster/armpit = 2,	//VOREStation edit - gives some variety of available holsters for those who forgot to bring their own
 		/obj/item/clothing/accessory/holster/waist = 2,	//VOREStation edit - But also reduces the number per type, so there's 8 overall rather than like, 20

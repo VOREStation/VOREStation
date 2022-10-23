@@ -151,3 +151,10 @@
 	desc = ""
 	icon_state = "cyberdoe_s"
 	do_colouration = 0
+
+/datum/sprite_accessory/wing/mantisarms
+	name = "Mantis arms"
+	desc = ""
+	icon_state = "mantisarms_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
