@@ -153,13 +153,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 /datum/chatOutput/proc/become_broken()
 	broken = TRUE
 	loaded = FALSE
-
 	if(!owner)
 		qdel(src)
 		return
-
 	update_vis()
-
+	if (!owner.is_preference_enabled(/datum/client_preference/vchat_enable))
+		return
 	spawn()
 	if(owner.is_preference_enabled(/datum/client_preference/vchat_enable))
 		tgui_alert_async(owner,"VChat didn't load after some time. Switching to use oldchat as a fallback. Try using 'Reload VChat' verb in OOC verbs, or reconnecting to try again.")
