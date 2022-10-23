@@ -455,7 +455,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "<span class='warning'>You cannot follow a mob standing on holy grounds!</span>")
 		return
 	if(get_z(target) in using_map?.secret_levels)
-		to_chat(src, SPAN_WARNING("Sorry, that target is in an area that ghosts aren't allowed to go."))
+		to_chat(src, "<span class='warning'>Sorry, that target is in an area that ghosts aren't allowed to go.</span>")
 		return
 	if(target != src)
 		if(following && following == target)
@@ -463,7 +463,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		following = target
 		to_chat(src, "<span class='notice'>Now following [target]</span>")
 		if(ismob(target))
-			forceMove(get_turf(target))
+			var/target_turf = get_turf(target)
+			if(!target_turf)
+				to_chat(usr, "<span class='warning'>This mob does not seem to exist in the tangible world.</span>")
+				return
+			forceMove(target_turf)
 			var/mob/M = target
 			M.following_mobs += src
 		else
