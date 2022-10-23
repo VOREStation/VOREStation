@@ -26,7 +26,11 @@
 	syllables = list(
 "vol", "zum", "coo","zoo","bi","do","ooz","ite","og","re","si","ite","ish",
 "ar","at","on","ee","east","ma","da", "rim")
+<<<<<<< HEAD
 	partial_understanding = list(LANGUAGE_SKRELLIAN = 30, LANGUAGE_SOL_COMMON = 30)
+=======
+	partial_understanding = list(LANGUAGE_SOL_COMMON = 70, LANGUAGE_TRADEBAND = 40, LANGUAGE_TERMINUS = 30, LANGUAGE_GUTTER = 20, LANGUAGE_SIVIAN = 30, LANGUAGE_SKRELLIAN = 30, LANGUAGE_SKRELLIANFAR = 15, LANGUAGE_SCHECHI = 5, LANGUAGE_UNATHI = 5, LANGUAGE_SIIK = 5)
+>>>>>>> 4e1845e0998... Merge pull request #8778 from Cerebulon/mutual_intel
 
 //TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
 /datum/language/common/get_spoken_verb(var/msg_end)
@@ -44,6 +48,7 @@
 	speech_verb = "enunciates"
 	colour = "say_quote"
 	key = "2"
+	partial_understanding = list(LANGUAGE_GALCOM = 40, LANGUAGE_SOL_COMMON = 20, LANGUAGE_TERMINUS = 40, LANGUAGE_GUTTER = 10, LANGUAGE_SIVIAN = 10, LANGUAGE_SKRELLIAN = 40, LANGUAGE_SKRELLIANFAR = 15)
 	syllables = list(
 "fea","vea","vei","veh","vee","feh","fa","soa","su","sua","sou","se","seh","twa","twe","twi",
 "ahm","lea","lee","nae","nah","pa","pau","fae","fai","soh","mou","ahe","ll","ea","ai","thi",
@@ -58,8 +63,13 @@
 	exclaim_verb = "insinuates"
 	colour = "terminus"
 	key = "4"
+<<<<<<< HEAD
 	// flags = WHITELISTED (VOREstation edit)
 	// partial_understanding = list(LANGUAGE_SOL_COMMON = 20) (VOREStation Edit: It is a Zorren language now)
+=======
+	flags = WHITELISTED
+	partial_understanding = list(LANGUAGE_GALCOM = 30, LANGUAGE_SOL_COMMON = 20, LANGUAGE_TRADEBAND = 40, LANGUAGE_GUTTER = 20, LANGUAGE_SIVIAN = 15, LANGUAGE_SKRELLIAN = 15)
+>>>>>>> 4e1845e0998... Merge pull request #8778 from Cerebulon/mutual_intel
 	syllables = list (".a", "spa", "pan", "blaif", "stra", "!u", "!ei", "!am", "by", ".y", "gry", "zbly", "!y", "fl",
  	"sm", "rn", "cpi", "ku", "koi", "pr", "glau", "stu", "ved", "ki", "tsa", "xau", "jbu", "sny", "stro", "nu",
  	"uan", "ju", "!i", "ge", "luk", "an", "ar", "at", "es", "et", "bel", "ki", "jaa", "ch", "ki", "gh", "ll", "uu", "wat")
@@ -72,7 +82,7 @@
 	colour = "rough"
 	key = "3"
 	space_chance = 45
-	partial_understanding = list(LANGUAGE_GALCOM = 10, LANGUAGE_TRADEBAND = 20, LANGUAGE_SOL_COMMON = 20)
+	partial_understanding = list(LANGUAGE_GALCOM = 20, LANGUAGE_SOL_COMMON = 20, LANGUAGE_TRADEBAND = 10, LANGUAGE_TERMINUS = 20, LANGUAGE_SIVIAN = 15, LANGUAGE_SKRELLIAN = 15, LANGUAGE_SIIK = 10)
 	syllables = list (
 "gra","ba","ba","breh","bra","rah","dur","ra","ro","gro","go","ber","bar","geh","heh", "gra",
 "a", "ai", "an", "ang", "ao", "ba", "bai", "ban", "bang", "bao", "bei", "ben", "beng", "bi", "bian", "biao",
@@ -125,6 +135,29 @@
 "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin",
 "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi")
 
+<<<<<<< HEAD
+=======
+//Local language
+/datum/language/sivian
+	name = LANGUAGE_SIVIAN
+	desc = "A hybrid language local to the Vir system, heavily incorporating elements from the languages of early Scandinavian colonists into a form of Galactic Common."
+	speech_verb = "says"
+	whisper_verb = "whispers"
+	colour = "sivian"
+	key = "7"
+	partial_understanding = list(LANGUAGE_GALCOM = 30, LANGUAGE_SOL_COMMON = 40, LANGUAGE_TRADEBAND = 10, LANGUAGE_TERMINUS = 15, LANGUAGE_GUTTER = 15, LANGUAGE_SKRELLIAN = 5)
+	space_chance = 45
+	syllables = list (
+	"all", "are", "det", "enn", "ere", "hen", "kan", "lig", "men", "ren", "som", "ver", "vir", "var", "vis", "ikk", "ter", "ork",
+	"den", "ing", "jeg", "jag", "han", "hir", "hil", "ans", "kan", "kir", "bor", "bir", "um", "om", "ve", "ur", "ha", "he", "hyu",
+	"er", "ad", "ath", "bjo,", "gun", "gur", "gir", "fyr", "thar", "thir", "thad", "thei", "ayr", "for", "fjo", "jor", "jik", "jar",
+	"yor", "yar", "yik", "rik", "os", "olm", "erm", "ferk", "borg", "bork", "smorg", // Scandi
+	"meng", "tao", "bu", "qu", "ai", "xin", "pin", "wa", "cang", "chun", "ding", "gang", "ling", "gao", "jian", "sun", "tong",
+	"xie", "zu", "miao", "po", "nu", // Chinese (galcom)
+	"our", "oul", "tou", "eve", "ome", "ion", "ais", // Romance (galcom)
+	"zaoo", "zix", "vol") //Skrell (galcom)
+
+>>>>>>> 4e1845e0998... Merge pull request #8778 from Cerebulon/mutual_intel
 /datum/language/sign
 	name = LANGUAGE_SIGN
 	desc = "A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments."

@@ -32,6 +32,7 @@
 	key = "o"
 	flags = WHITELISTED
 	space_chance = 40
+	partial_understanding = list(LANGUAGE_ZADDAT = 15, LANGUAGE_GALCOM = 5)
 	syllables = list(
 		"za", "az", "ze", "ez", "zi", "iz", "zo", "oz", "zu", "uz", "zs", "sz",
  		"ha", "ah", "he", "eh", "hi", "ih", "ho", "oh", "hu", "uh", "hs", "sh",
@@ -58,6 +59,7 @@
 	colour = "tajaran"
 	key = "j"
 	flags = WHITELISTED
+	partial_understanding = list(LANGUAGE_GALCOM = 5, LANGUAGE_GUTTER = 10, LANGUAGE_AKHANI = 20)
 	syllables = list("mrr","rr","tajr","kir","raj","kii","mir","kra","ahk","nal","vah","khaz","jri","ran","darr",
 	"mi","jri","dynh","manq","rhe","zar","rrhaz","kal","chur","eech","thaa","dra","jurl","mah","sanu","dra","ii'r",
 	"ka","aasi","far","wa","baq","ara","qara","zir","saam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
@@ -80,6 +82,7 @@
 	colour = "akhani"
 	key = "h"
 	flags = WHITELISTED
+	partial_understanding = list(LANGUAGE_SIIK = 20)
 	syllables = list("mrr","rr","marr","tar","ahk","ket","hal","kah","dra","nal","kra","vah","dar","hrar", "eh",
 	"ara","ka","zar","mah","ner","zir","mur","hai","raz","ni","ri","nar","njar","jir","ri","ahn","kha","sir",
 	"kar","yar","kzar","rha","hrar","err","fer","rir","rar","yarr","arr","ii'r","jar","kur","ran","rii","ii",
@@ -123,8 +126,26 @@
 	key = "k"
 	space_chance = 30
 	flags = WHITELISTED
+	partial_understanding = list(LANGUAGE_GALCOM = 20, LANGUAGE_SOL_COMMON = 5, LANGUAGE_TRADEBAND = 40, LANGUAGE_TERMINUS = 15, LANGUAGE_GUTTER = 15, LANGUAGE_SIVIAN = 5, LANGUAGE_SKRELLIANFAR = 75, LANGUAGE_SCHECHI = 15)
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
+<<<<<<< HEAD
+=======
+/datum/language/skrellfar
+	name = LANGUAGE_SKRELLIANFAR
+	desc = "The most common language among the Skrellian Far Kingdoms. Has an even higher than usual concentration of inaudible phonemes."
+	speech_verb = "warbles"
+	ask_verb = "warbles"
+	exclaim_verb = "sings"
+	whisper_verb = "hums"
+	colour = "skrellfar"
+	key = "p"
+	space_chance = 30
+	flags = WHITELISTED
+	partial_understanding = list(LANGUAGE_GALCOM = 15, LANGUAGE_TRADEBAND = 15, LANGUAGE_SKRELLIAN = 90)
+	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix", "...", "oo", "q", "nq", "x", "xq", "ll", "...", "...", "...") //should sound like there's holes in it
+
+>>>>>>> 4e1845e0998... Merge pull request #8778 from Cerebulon/mutual_intel
 /datum/language/skrell/get_random_name(var/gender)
 	var/list/first_names = file2list('config/names/first_name_skrell.txt')
 	var/list/last_names = file2list('config/names/last_name_skrell.txt')
@@ -138,6 +159,10 @@
 	colour = "solcom"
 	key = "1"
 	flags = WHITELISTED
+<<<<<<< HEAD
+=======
+	partial_understanding = list(LANGUAGE_GALCOM = 70, LANGUAGE_TRADEBAND = 20, LANGUAGE_TERMINUS = 20, LANGUAGE_GUTTER = 20, LANGUAGE_SIVIAN = 40, LANGUAGE_SKRELLIAN = 5)
+>>>>>>> 4e1845e0998... Merge pull request #8778 from Cerebulon/mutual_intel
 	//syllables are at the bottom of the file
 
 /datum/language/human/get_spoken_verb(var/msg_end)
@@ -185,6 +210,7 @@
 	key = "v"
 	flags = WHITELISTED
 	space_chance = 50
+	partial_understanding = list(LANGUAGE_GALCOM = 5, LANGUAGE_SKRELLIAN = 15)
 	syllables = list(
 			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha", "scha", "a", "a",
 			"ce", "re", "me", "se", "ne", "te", "le", "she", "sche", "e", "e",
@@ -205,6 +231,7 @@
 	key = "z"
 	flags = WHITELISTED
 	space_chance = 20
+	partial_understanding = list(LANGUAGE_UNATHI = 15)
 	syllables = list("z", "dz", "i", "iv", "ti", "az", "hix", "xo", "av", "xo", "x", "za", "at", "vi")
 
 /datum/language/promethean

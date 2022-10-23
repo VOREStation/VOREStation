@@ -20,8 +20,12 @@
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
 	var/machine_understands = 1		  // Whether machines can parse and understand this language
+<<<<<<< HEAD
 	var/list/partial_understanding	  // List of languages that can /somehwat/ understand it, format is: name = chance of understanding a word
 	var/ignore_adverb = FALSE 		  // For inaudible languages that we dont want adverb for
+=======
+	var/list/partial_understanding	  // List of languages that can /somewhat/ understand it, format is: name = chance of understanding a word
+>>>>>>> 4e1845e0998... Merge pull request #8778 from Cerebulon/mutual_intel
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
