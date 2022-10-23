@@ -776,7 +776,7 @@
 	if(istype(I, /obj/item/device/paicard))
 		var/obj/item/device/paicard/palcard = I
 		var/mob/living/silicon/pai/pocketpal = palcard.pai
-		if(!pocketpal.devourable)
+		if(pocketpal && (!pocketpal.devourable))
 			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
 			return
 
