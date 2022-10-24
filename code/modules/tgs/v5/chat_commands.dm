@@ -8,6 +8,9 @@
 	var/afks = 0
 	var/active = 0
 	var/bellied = 0
+	var/map_name = "n\a"
+	if(using_map && using_map.full_name)
+		map_name = using_map.full_name
 
 	for(var/X in GLOB.clients)
 		var/client/C = X
@@ -21,7 +24,7 @@
 		else
 			active++
 
-	return "Current server status:\n**Web Manifest:** <https://vore-station.net/manifest.php>\n**Players:** [counts]\n**Active:** [active]\n**AFK:** [afks]\n**Bellied:** [bellied]\n\n**Round Duration:** [roundduration2text()]"
+	return "Current server status:\n**Web Manifest:** <https://vore-station.net/manifest.php>\n**Players:** [counts]\n**Active:** [active]\n**AFK:** [afks]\n**Bellied:** [bellied]\n\n**Round Duration:** [roundduration2text()]\n**Current Map:** [map_name]"
 
 /datum/tgs_chat_command/parsetest
 	name = "parsetest"
