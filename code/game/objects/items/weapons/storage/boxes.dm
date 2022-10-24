@@ -410,10 +410,10 @@
 
 /obj/item/weapon/storage/box/freezer
 	name = "portable freezer"
-	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
+	desc = "This nifty shock-resistant, self-refrigerating device will keep your 'groceries' nice and non-spoiled."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "portafreezer"
-	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
+	item_state_slots = list(slot_r_hand_str = "firstaid-advanced", slot_l_hand_str = "firstaid-advanced")
 	foldable = null
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/organ)
@@ -452,6 +452,7 @@
 /obj/item/weapon/storage/box/capguntoy
 	name = "\improper AlliCo \"Zipper\" Cap Gun"
 	icon = 'icons/obj/gun_toy.dmi'
+<<<<<<< HEAD
 	icon_state = "cap_gun_box"
 	desc = "This box is shaped on the inside so that only the \"Zipper\" Capgun and extra caps can fit."
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
@@ -505,3 +506,11 @@
 	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donk_kit"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
+=======
+	icon_state = "foambox"
+	starts_with = list(/obj/item/ammo_casing/afoam_dart = 15)
+	max_w_class = ITEMSIZE_TINY
+	max_storage_space = ITEMSIZE_COST_TINY * 15
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
+>>>>>>> 3e845aa05fa... Merge pull request #8782 from Cerebulon/medical_resprites

@@ -169,7 +169,7 @@
 /obj/machinery/sleeper/attack_hand(var/mob/user)
 	if(!controls_inside)
 		return FALSE
-	
+
 	if(user == occupant)
 		tgui_interact(user)
 
@@ -186,6 +186,7 @@
 	var/occupantData[0]
 	// var/crisis = 0
 	if(occupant)
+		icon_state = "sleeper_2"
 		occupantData["name"] = occupant.name
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
@@ -351,6 +352,7 @@
 
 		if(filtering > 0)
 			if(beaker)
+				icon_state = "sleeper_2"
 				if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
 					var/pumped = 0
 					for(var/datum/reagent/x in occupant.reagents.reagent_list)

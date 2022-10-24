@@ -129,7 +129,11 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = src.loc
 	occupant = null
+<<<<<<< HEAD
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+=======
+	icon_state = "body_scanner_0"
+>>>>>>> 3e845aa05fa... Merge pull request #8782 from Cerebulon/medical_resprites
 	SStgui.update_uis(src)
 	return
 
@@ -182,7 +186,11 @@
 
 	var/occupantData[0]
 	if(occupant && ishuman(occupant))
+<<<<<<< HEAD
 		update_icon() //VOREStation Edit - Health display for consoles with light and such.
+=======
+		icon_state = "body_scanner_2"
+>>>>>>> 3e845aa05fa... Merge pull request #8782 from Cerebulon/medical_resprites
 		var/mob/living/carbon/human/H = occupant
 		occupantData["name"] = H.name
 		occupantData["stat"] = H.stat

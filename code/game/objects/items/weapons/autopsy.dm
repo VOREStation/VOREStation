@@ -6,7 +6,7 @@
 	name = "biopsy scanner"
 	desc = "Extracts information on wounds."
 	icon = 'icons/obj/autopsy_scanner.dmi'
-	icon_state = ""
+	icon_state = "autopsy_scanner"
 	item_state = "autopsy_scanner"
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)

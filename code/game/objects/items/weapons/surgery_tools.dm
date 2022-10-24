@@ -203,6 +203,7 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
+	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /obj/item/weapon/surgical/bone_clamp
