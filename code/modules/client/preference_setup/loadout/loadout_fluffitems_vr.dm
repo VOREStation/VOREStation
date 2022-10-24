@@ -1444,7 +1444,6 @@
 	display_name = "Lucky's amour"
 	ckeywhitelist = list ("thedavestdave")
 	character_name = list("Lucky")
-	allowed_roles = "Chaplain"
 
 /datum/gear/fluff/greek_dress
     path = /obj/item/clothing/under/fluff/greek_dress
