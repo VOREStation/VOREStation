@@ -20,10 +20,18 @@
 
 /datum/gear/utility/communicator/New()
 	..()
+<<<<<<< HEAD
 	var/list/communicators = list()
 	for(var/obj/item/device/communicator_type as anything in typesof(/obj/item/device/communicator) - list(/obj/item/device/communicator/integrated,/obj/item/device/communicator/commlink)) //VOREStation Edit - Remove Commlink
 		communicators[initial(communicator_type.name)] = communicator_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(communicators))
+=======
+	var/commtype = list()
+	commtype["communicator"] = /obj/item/communicator
+	commtype["communicator, watch"] = /obj/item/communicator/watch
+	commtype["communicator, sleek"] = /obj/item/communicator/sleek
+	gear_tweaks += new/datum/gear_tweak/path(commtype)
+>>>>>>> eea7f4d73a8... Merge pull request #8755 from Greenjoe12345/commphone
 
 /datum/gear/utility/camera
 	display_name = "camera"
