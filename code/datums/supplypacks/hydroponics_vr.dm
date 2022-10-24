@@ -71,3 +71,9 @@
 	cost = 10
 	containertype = /obj/structure/largecrate/animal/jerboa
 	containername = "Jerboa crate"
+
+/datum/supply_pack/hydro/tits
+	name = "A pair of great tits"
+	cost = 10
+	containertype = /obj/structure/largecrate/tits
+	containername = "A pair of great tits"
