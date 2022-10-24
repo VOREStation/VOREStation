@@ -75,7 +75,6 @@
 			/obj/item/clothing/under/waiter,
 			/obj/item/clothing/under/gladiator,
 			/obj/item/clothing/under/soviet,
-			/obj/item/clothing/under/scratch,
 			/obj/item/clothing/under/wedding/bride_white,
 			/obj/item/clothing/suit/chef,
 			/obj/item/clothing/suit/storage/apron/overalls,

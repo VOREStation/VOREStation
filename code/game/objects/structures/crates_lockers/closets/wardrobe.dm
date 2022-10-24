@@ -444,9 +444,15 @@
 		/obj/item/clothing/under/suit_jacket/really_black/skirt,
 		/obj/item/clothing/under/suit_jacket/red,
 		/obj/item/clothing/under/suit_jacket/red/skirt,
+<<<<<<< HEAD
 		/obj/item/clothing/under/scratch,
 		/obj/item/clothing/under/scratch/skirt,
 		/obj/item/weapon/storage/backpack/satchel = 2)
+=======
+		/obj/item/clothing/under/lawyer/white,
+		/obj/item/clothing/under/lawyer/white/skirt,
+		/obj/item/storage/backpack/satchel = 2)
+>>>>>>> 07c02a713a4... Merge pull request #8780 from Cerebulon/new_basics_civilian
 
 /obj/structure/closet/wardrobe/captain
 	name = "site manager's wardrobe"

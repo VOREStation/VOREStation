@@ -8,11 +8,15 @@
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	randpixel = 0
 	center_of_mass = null
+<<<<<<< HEAD
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD
+=======
+	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD | PHORONGUARD
+	flags_inv = HIDEEARS|BLOCKHAIR
+>>>>>>> 07c02a713a4... Merge pull request #8780 from Cerebulon/new_basics_civilian
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE

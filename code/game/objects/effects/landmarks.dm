@@ -199,6 +199,7 @@
 	new /obj/item/clothing/head/that(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/scratch/New()
 	new /obj/item/clothing/gloves/white(src.loc)
 	new /obj/item/clothing/shoes/white(src.loc)
@@ -208,6 +209,10 @@
 	delete_me = 1
 
 /obj/effect/landmark/costume/highlander/New()
+=======
+/obj/effect/landmark/costume/highlander/Initialize()
+	..()
+>>>>>>> 07c02a713a4... Merge pull request #8780 from Cerebulon/new_basics_civilian
 	new /obj/item/clothing/under/kilt(src.loc)
 	new /obj/item/clothing/head/beret(src.loc)
 	delete_me = 1

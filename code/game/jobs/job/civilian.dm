@@ -53,6 +53,7 @@
 /datum/alt_title/cook
 	title = "Cook"
 	title_blurb = "A Cook has the same duties, though they may be less experienced."
+	title_outfit = /decl/hierarchy/outfit/job/service/chef/cook
 
 //////////////////////////////////
 //			Botanist

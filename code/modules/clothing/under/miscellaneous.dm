@@ -22,16 +22,6 @@
 	icon_state = "captain_fly"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 
-/obj/item/clothing/under/scratch
-	name = "white suit"
-	desc = "A white suit, suitable for an excellent host"
-	icon_state = "scratch"
-
-/obj/item/clothing/under/scratch/skirt
-	name = "white skirt suit"
-	icon_state = "scratch_skirt"
-	item_state_slots = list(slot_r_hand_str = "scratch", slot_l_hand_str = "scratch")
-
 /obj/item/clothing/under/sl_suit
 	desc = "It's a very amish looking suit."
 	name = "amish suit"
@@ -199,25 +189,26 @@
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/suit_jacket/really_black
-	name = "executive suit"
-	desc = "A formal black suit and red tie, intended for the station's finest."
+	name = "casual black suit"
+	desc = "An informal black suit, intended for the station's finest."
 	icon_state = "really_black_suit"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/suit_jacket/really_black/skirt
-	name = "executive skirt suit"
-	desc = "A formal black suit and red necktie, intended for the station's finest."
+	name = "casual skirt suit"
+	desc = "An informal black suit, intended for the station's finest."
+	index = 1
 	icon_state = "really_black_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/female
-	name = "female executive suit"
+	name = "feminine executive suit"
 	desc = "A formal trouser suit for women, intended for the station's finest."
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/suit_jacket/female/skirt
 	name = "executive skirt"
-	desc = "A formal suit skirt  for women, intended for the station's finest."
+	desc = "A formal suit skirt for women, intended for the station's finest."
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	icon_state = "black_suit_fem"
 	item_state = "black_formal_skirt"

@@ -5,12 +5,11 @@
 	icon_state = "void"
 	item_state_slots = list(slot_r_hand_str = "syndicate", slot_l_hand_str = "syndicate")
 	heat_protection = HEAD
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
-
-//	flags_inv = HIDEEARS|BLOCKHAIR
 
 	//Species-specific stuff.
 	species_restricted = list("Human", "Promethean")
@@ -45,9 +44,15 @@
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
 	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
+<<<<<<< HEAD
 	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
 	var/obj/item/device/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
 	
+=======
+	var/obj/item/tank/tank = null              // Deployable tank, if any.
+	var/obj/item/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
+
+>>>>>>> 07c02a713a4... Merge pull request #8780 from Cerebulon/new_basics_civilian
 	//Cycler settings
 	var/no_cycle = FALSE	//stop this item from being put in a cycler
 

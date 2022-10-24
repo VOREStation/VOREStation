@@ -50,6 +50,8 @@
 
 /decl/hierarchy/outfit/job/service/chef/cook
 	name = OUTFIT_JOB_NAME("Cook")
+	suit = /obj/item/clothing/suit/storage/apron/white
+	head = /obj/item/clothing/head/surgery/hairnet
 	id_pda_assignment = "Cook"
 
 // Rykka adds Server Outfit
@@ -81,10 +83,17 @@
 
 /decl/hierarchy/outfit/job/librarian
 	name = OUTFIT_JOB_NAME("Librarian")
+<<<<<<< HEAD
 	uniform = /obj/item/clothing/under/suit_jacket/red
 	l_hand = /obj/item/weapon/barcodescanner
 	id_type = /obj/item/weapon/card/id/civilian
 	pda_type = /obj/item/device/pda/librarian
+=======
+	uniform = /obj/item/clothing/under/suit_jacket/tan
+	l_hand = /obj/item/barcodescanner
+	id_type = /obj/item/card/id/civilian
+	pda_type = /obj/item/pda/librarian
+>>>>>>> 07c02a713a4... Merge pull request #8780 from Cerebulon/new_basics_civilian
 
 /decl/hierarchy/outfit/job/librarian/journalist
 	id_type = /obj/item/weapon/card/id/civilian/journalist
