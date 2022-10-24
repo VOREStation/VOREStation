@@ -54,6 +54,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/arrival/start
 	name = "\improper Arrival Area"
 	icon_state = "start"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/admin
 	name = "\improper Admin room"
@@ -69,7 +70,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle
 	requires_power = 0
+<<<<<<< HEAD
 	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 	sound_env = SMALL_ENCLOSED
 	base_turf = /turf/space
 	forbid_events = TRUE
@@ -363,7 +368,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Independent Station"
 	icon_state = "yellow"
 	requires_power = 0
+<<<<<<< HEAD
 	flags = RAD_SHIELDED
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_RAD_SHIELDED
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 	base_turf = /turf/space
 	ambience = AMBIENCE_HIGHSEC
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
@@ -555,7 +564,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Maintenance
 
 /area/maintenance
+<<<<<<< HEAD
 	flags = RAD_SHIELDED
+=======
+	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	ambience = AMBIENCE_MAINTENANCE
@@ -651,7 +664,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/disposal
 	name = "Waste Disposal"
 	icon_state = "disposal"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT //If trash items got this far, they can be safely deleted.
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //If trash items got this far, they can be safely deleted.
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/maintenance/engineering
 	name = "Engineering Maintenance"
@@ -966,12 +983,20 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/heads/hop
 	name = "\improper Command - HoP's Office"
 	icon_state = "head_quarters"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/crew_quarters/heads/hor
 	name = "\improper Research - RD's Office"
 	icon_state = "head_quarters"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/crew_quarters/heads/chief
 	name = "\improper Engineering - CE's Office"
@@ -1007,7 +1032,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
+<<<<<<< HEAD
 	flags = RAD_SHIELDED
+=======
+	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 	ambience = AMBIENCE_GENERIC
 	forbid_events = TRUE
 	forbid_singulo = TRUE
@@ -1314,7 +1343,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
 	forbid_events = TRUE
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
@@ -1384,10 +1417,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 //Engineering
 
-/area/engineering/
+/area/engineering
 	name = "\improper Engineering"
 	icon_state = "engineering"
 	ambience = AMBIENCE_ENGINEERING
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/engineering/atmos
  	name = "\improper Atmospherics"
@@ -1524,6 +1558,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "SolarcontrolA"
 	sound_env = SMALL_ENCLOSED
 
+/area/assembly
+	area_flags = AREA_FLAG_IS_STATION_AREA
+
 /area/assembly/chargebay
 	name = "\improper Mech Bay"
 	icon_state = "mechbay"
@@ -1549,11 +1586,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Teleporter"
 	icon_state = "teleporter"
 	music = "signal"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/gateway
 	name = "\improper Gateway"
 	icon_state = "teleporter"
 	music = "signal"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/AIsattele
 	name = "\improper AI Satellite Teleporter Room"
@@ -1561,6 +1600,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	music = "signal"
 
 //MedBay
+/area/medical
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/medical/medbay
 	name = "\improper Medbay Hallway - Port"
@@ -1677,12 +1718,20 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/surgery
 	name = "\improper Operating Theatre 1"
 	icon_state = "surgery"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT //This WOULD become a filth pit
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //This WOULD become a filth pit
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/medical/surgery2
 	name = "\improper Operating Theatre 2"
 	icon_state = "surgery"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/medical/surgeryobs
 	name = "\improper Operation Observation Room"
@@ -1719,7 +1768,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/sleeper
 	name = "\improper Emergency Treatment Centre"
 	icon_state = "exam_room"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT //Trust me.
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //Trust me.
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/medical/first_aid_station_starboard
 	name = "\improper Starboard First-Aid Station"
@@ -1732,6 +1785,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 
 //Security
+/area/security
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/security/main
 	name = "\improper Security Office"
@@ -1892,10 +1947,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/janitor/
 	name = "\improper Custodial Closet"
 	icon_state = "janitor"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/hydroponics/cafegarden
 	name = "\improper Cafeteria Garden"
@@ -1910,6 +1967,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/quartermaster
 	name = "\improper Quartermasters"
 	icon_state = "quart"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/quartermaster/office
 	name = "\improper Cargo Office"
@@ -1935,7 +1993,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/quartermaster/delivery
 	name = "\improper Cargo - Delivery Office"
 	icon_state = "quart"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT //So trash doesn't pile up too hard.
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //So trash doesn't pile up too hard.
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/quartermaster/miningdock
 	name = "\improper Cargo Mining Dock"
@@ -1943,6 +2005,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 
 // SCIENCE
+/area/rnd
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/rnd/research
 	name = "\improper Research and Development"
@@ -1976,7 +2040,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/rnd/rdoffice
 	name = "\improper Research Director's Office"
 	icon_state = "head_quarters"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/rnd/supermatter
 	name = "\improper Supermatter Lab"
@@ -2019,6 +2087,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "server"
 
 //Storage
+/area/storage
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/storage/tools
 	name = "Auxiliary Tool Storage"
@@ -2313,39 +2383,46 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
 	sound_env = SMALL_ENCLOSED
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/ai_server_room
 	name = "Messaging Server Room"
 	icon_state = "ai_server"
 	sound_env = SMALL_ENCLOSED
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/ai_cyborg_station
 	name = "\improper Cyborg Station"
 	icon_state = "ai_cyborg"
 	sound_env = SMALL_ENCLOSED
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/aisat
 	name = "\improper AI Satellite"
 	icon_state = "ai"
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/aisat_interior
 	name = "\improper AI Satellite"
 	icon_state = "ai"
 	ambience = AMBIENCE_AI // The lack of inheritence hurts my soul.
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/AIsatextFP
 	name = "\improper AI Sat Ext"
@@ -2353,6 +2430,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	dynamic_lighting = 0
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/AIsatextFS
 	name = "\improper AI Sat Ext"
@@ -2360,6 +2438,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	dynamic_lighting = 0
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/AIsatextAS
 	name = "\improper AI Sat Ext"
@@ -2367,6 +2446,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	dynamic_lighting = 0
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/AIsatextAP
 	name = "\improper AI Sat Ext"
@@ -2374,11 +2454,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	dynamic_lighting = 0
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/NewAIMain
 	name = "\improper AI Main New"
 	icon_state = "storage"
 	ambience = AMBIENCE_AI
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 
 
@@ -2416,46 +2498,56 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 // Telecommunications Satellite
 /area/tcommsat/
 	ambience = AMBIENCE_ENGINEERING
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcommsat/entrance
 	name = "\improper Telecomms Teleporter"
 	icon_state = "tcomsatentrance"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcommsat/chamber
 	name = "\improper Telecomms Central Compartment"
 	icon_state = "tcomsatcham"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcomsat
 	name = "\improper Telecomms Satellite"
 	icon_state = "tcomsatlob"
 	ambience = AMBIENCE_ENGINEERING
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcomfoyer
 	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatfoyer"
 	ambience = AMBIENCE_ENGINEERING
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcomwest
 	name = "\improper Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
 	ambience = AMBIENCE_ENGINEERING
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcomeast
 	name = "\improper Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
 	ambience = AMBIENCE_ENGINEERING
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcommsat/computer
 	name = "\improper Telecomms Control Room"
 	icon_state = "tcomsatcomp"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcommsat/lounge
 	name = "\improper Telecommunications Satellite Lounge"
 	icon_state = "tcomsatlounge"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcommsat/powercontrol
 	name = "\improper Telecommunications Power Control"
 	icon_state = "tcomsatwest"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 
 // Away Missions

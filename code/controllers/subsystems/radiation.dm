@@ -72,7 +72,11 @@ SUBSYSTEM_DEF(radiation)
 
 		if(source.respect_maint)
 			var/area/A = T.loc
+<<<<<<< HEAD
 			if(A.flags & RAD_SHIELDED)
+=======
+			if(A.atom_flags & AREA_FLAG_IS_RAD_SHIELDED)
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 				continue // In shielded area
 
 		var/dist = get_dist(source.source_turf, T)

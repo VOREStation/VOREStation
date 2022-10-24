@@ -1,5 +1,6 @@
 /area/ai_monitored
 	name = "AI Monitored Area"
+	area_flags = AREA_FLAG_IS_STATION_AREA
 	var/obj/machinery/camera/motioncamera = null
 
 

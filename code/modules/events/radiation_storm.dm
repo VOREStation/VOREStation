@@ -37,7 +37,11 @@
 		var/area/A = get_area(C)
 		if(!A)
 			continue
+<<<<<<< HEAD
 		if(A.flags & RAD_SHIELDED)
+=======
+		if(A.area_flags & AREA_FLAG_IS_RAD_SHIELDED)
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 			continue
 		if(istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C

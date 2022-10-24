@@ -5,7 +5,11 @@
 	ambience = AMBIENCE_RUINS
 	secret_name = TRUE
 	forbid_events = TRUE
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_RAD_SHIELDED
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/submap/event //To be used for Events not for regular PoIs
 	name = "Unknown"

@@ -24,7 +24,11 @@
 
 /datum/event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in machines)
-		if(isNotStationLevel(V.z))	continue
+		if(isNotStationLevel(V.z))
+			continue
+		var/area/A = get_area(V)
+		if(!(A?.area_flags & AREA_FLAG_IS_STATION_AREA))
+			continue
 		vendingMachines.Add(V)
 
 	if(!vendingMachines.len)

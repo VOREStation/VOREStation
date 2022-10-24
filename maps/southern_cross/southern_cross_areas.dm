@@ -19,7 +19,7 @@
 
 /area/surface
 	name = "The Surface (Don't Use)"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 
 /area/surface/center
 	name = "Center"
@@ -125,7 +125,7 @@
 
 
 /area/surface/cave
-	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+	flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 	always_unpowered = TRUE
 
 /area/surface/cave
@@ -154,6 +154,7 @@
 
 /area/surface/outpost
 	ambience = AMBIENCE_GENERIC
+	area_flags = AREA_FLAG_IS_STATION_AREA
 
 //Wilderness Shuttle Shelter
 
@@ -409,7 +410,7 @@
 	icon_state = "shuttle"
 	requires_power = 0
 	dynamic_lighting = 1
-	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+	flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/turbolift/start
 	name = "\improper Turbolift Start"
@@ -654,7 +655,7 @@
 	name = "\improper First Deck First-Aid Station"
 
 /area/storage/emergency_storage/
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	name = "Emergency Storage"
 	icon_state = "emergencystorage"
 
@@ -758,7 +759,7 @@
 /area/crew_quarters/heads/sc/
 	name = "\improper Command - Head Office"
 	icon_state = "head_quarters"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters/heads/sc/hop
@@ -796,7 +797,7 @@
 /area/engineering/engi_restroom
 	name = "\improper Engineering Restroom"
 	icon_state = "toilet"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
 /area/engineering/hallway/atmos_hallway
@@ -874,7 +875,7 @@
 /area/medical/medical_restroom
 	name = "\improper Medbay Restroom"
 	icon_state = "medbay_restroom"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
 /area/security/aid_station
@@ -888,7 +889,7 @@
 /area/security/security_restroom
 	name = "\improper Security - Restroom"
 	icon_state = "security_bathroom"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
 /area/storage/emergency_storage/seconddeck/ap_emergency
@@ -912,7 +913,7 @@
 /area/rnd/research_restroom_sc
 	name = "\improper Research Restroom"
 	icon_state = "research_restroom"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
 /area/rnd/research_lockerroom
@@ -1077,7 +1078,7 @@
 	name = "\improper Response Team Ship"
 	icon_state = "centcom"
 	requires_power = 0
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/shuttle/response_ship/start
@@ -1138,7 +1139,7 @@
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 1
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 
 /area/shuttle/shuttle1/start
 	name = "Shuttle One"
@@ -1188,7 +1189,7 @@
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 1
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 
 /area/shuttle/shuttle2/start
 	name = "Shuttle Two"
@@ -1257,7 +1258,7 @@
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station
@@ -1265,7 +1266,7 @@
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station/start
@@ -1326,7 +1327,7 @@
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/skipjack_station/transit
@@ -1380,7 +1381,7 @@
 	name = "\improper Ninja Base"
 	icon_state = "green"
 	requires_power = 0
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/ninja_dojo/dojo

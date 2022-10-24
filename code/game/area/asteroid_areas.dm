@@ -43,7 +43,11 @@
 // Main mining outpost
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/outpost/mining_main/airlock
 	name = "Mining Outpost Airlock"
@@ -95,7 +99,11 @@
 // Engineering Outpost
 /area/outpost/engineering
 	icon_state = "outpost_engine"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/outpost/engineering/hallway
 	name = "Engineering Outpost Hallway"
@@ -169,7 +177,11 @@
 // Research Outpost
 /area/outpost/research
 	icon_state = "outpost_research"
+<<<<<<< HEAD
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+=======
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+>>>>>>> 623c6c06a02... Merge pull request #8786 from MistakeNot4892/boda
 
 /area/outpost/research/hallway
 	name = "Research Outpost Hallway"

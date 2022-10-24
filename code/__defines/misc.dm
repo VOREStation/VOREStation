@@ -48,8 +48,10 @@
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
 
 
-//Persistence
-#define AREA_FLAG_IS_NOT_PERSISTENT 8 // SSpersistence will not track values from this area.
+//Area flags, possibly more to come
+#define AREA_FLAG_IS_RAD_SHIELDED   1 //shielded from radiation, clearly
+#define AREA_FLAG_IS_NOT_PERSISTENT 2 // SSpersistence will not track values from this area.
+#define AREA_FLAG_IS_STATION_AREA   4 // This area is valid for the purposes of vending machine rampancy (for now)
 
 //	Shuttles.
 
@@ -96,9 +98,6 @@
 #define HYDRO_SPEED_MULTIPLIER 1
 
 #define DEFAULT_JOB_TYPE /datum/job/assistant
-
-//Area flags, possibly more to come
-#define RAD_SHIELDED 1 //shielded from radiation, clearly
 
 // OnTopic return values
 #define TOPIC_NOACTION 0
