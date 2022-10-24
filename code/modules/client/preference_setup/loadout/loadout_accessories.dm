@@ -36,9 +36,14 @@
 
 
 /datum/gear/accessory/wallet/womens
+<<<<<<< HEAD
 	display_name = "wallet, womens"
 	path = /obj/item/weapon/storage/wallet/womens
 	cost = 0 //VOREStation Edit
+=======
+	display_name = "wallet, womens (colorable)"
+	path = /obj/item/storage/wallet/womens
+>>>>>>> 92810583685... Merge pull request #8794 from Cerebulon/medical_util_fix
 
 /datum/gear/accessory/wallet/womens/New()
 	..()

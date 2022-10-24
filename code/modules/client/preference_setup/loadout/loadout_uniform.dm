@@ -413,6 +413,7 @@
 	display_name = "utility, black"
 	path = /obj/item/clothing/under/utility
 
+<<<<<<< HEAD
 /datum/gear/uniform/utility/blue
 	display_name = "utility, blue"
 	path = /obj/item/clothing/under/utility/blue
@@ -420,6 +421,20 @@
 /datum/gear/uniform/utility/grey
 	display_name = "utility, grey"
 	path = /obj/item/clothing/under/utility/grey
+=======
+/datum/gear/uniform/utility/New()
+	..()
+	var/list/utils = list()
+	for(var/util in typesof(/obj/item/clothing/under/utility, /obj/item/clothing/under/gsa_work, /obj/item/clothing/under/gsa))
+		var/obj/item/clothing/under/util_type = util
+		utils[initial(util_type.name)] = util_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(utils))
+
+/datum/gear/uniform/utility_medical
+	display_name = "utility, medical"
+	path = /obj/item/clothing/under/rank/medical/utility
+	allowed_roles = list("Chief Medical Officer", "Paramedic", "Medical Doctor", "Psychiatrist", "Search and Rescue", "Chemist")
+>>>>>>> 92810583685... Merge pull request #8794 from Cerebulon/medical_util_fix
 
 /datum/gear/uniform/sweater
 	display_name = "sweater, grey"
