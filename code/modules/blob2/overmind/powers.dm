@@ -86,7 +86,8 @@
 			B = temp
 			break
 
-		CHECK_TICK // Iterating over a list containing hundreds of blobs can get taxing.
+		if(TICK_CHECK) // Iterating over a list containing hundreds of blobs can get taxing.
+			return // Swapped to TICK_CHECK because previous usage was sleeping entire mob subsystem.
 
 	if(B)
 		forceMove(B.loc)
@@ -129,7 +130,8 @@
 			B = temp
 			break
 
-		CHECK_TICK
+		if(TICK_CHECK)
+			return // Blobs are tick checked but this while loop is not. Previous usage was sleeping the entire mob subsystem.
 
 	if(B)
 		forceMove(B.loc)
@@ -171,7 +173,8 @@
 			B = temp
 			break
 
-		CHECK_TICK
+		if(TICK_CHECK)
+			return // Do not sleep the entire mob subsystem pls.
 
 	if(B)
 		forceMove(B.loc)

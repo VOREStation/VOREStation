@@ -135,8 +135,7 @@
 	return 0
 
 /mob/proc/Life()
-//	if(organStructure)
-//		organStructure.ProcessOrgans()
+	SHOULD_NOT_SLEEP(TRUE)
 	return
 
 #define UNBUCKLED 0

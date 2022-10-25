@@ -134,7 +134,10 @@ length to avoid portals or something i guess?? Not that they're counted right no
 
 	open.Enqueue(new /PathNode(start, null, 0, call(start, dist)(end), 0))
 
-	while(!open.IsEmpty() && !path)
+	var/how_many_iter = 0
+	var/sanity = 500 // From some local testing, AStar() tends to hit tick check or succeed around the 450 mark.
+	while(!open.IsEmpty() && !path && sanity)
+		sanity--
 		var/PathNode/current = open.Dequeue()
 		closed.Add(current.position)
 
@@ -177,5 +180,8 @@ length to avoid portals or something i guess?? Not that they're counted right no
 
 			if(max_nodes && open.Length() > max_nodes)
 				open.Remove(open.Length())
+
+		if(TICK_CHECK)
+			return // Took too long, give up.
 
 	return path

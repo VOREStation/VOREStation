@@ -159,6 +159,8 @@
 
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view)
 
+	set waitfor = FALSE // Due to input() below and this being used in Life() procs.
+
 	if((usr && stat) || (!use_me && usr == src))
 		to_chat(src, "You are unable to emote.")
 		return

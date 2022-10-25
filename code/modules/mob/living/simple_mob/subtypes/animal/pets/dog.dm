@@ -119,8 +119,57 @@
 	desc = "It's a corgi."
 	var/turns_since_scan = 0
 	var/obj/movement_target
+<<<<<<< HEAD
 	makes_dirt = FALSE	//VOREStation edit: no more dirt
 	holder_type = /obj/item/weapon/holder/corgi
+=======
+	var/moving_to_lunch = FALSE
+
+/mob/living/simple_mob/animal/passive/dog/corgi/Ian/proc/move_to_lunch()
+	set waitfor = FALSE
+	if(!movement_target || moving_to_lunch)
+		return
+	moving_to_lunch = TRUE
+	step_to(src,movement_target,1)
+	sleep(3)
+	if(QDELETED(src) || !movement_target || incapacitated())
+		moving_to_lunch = FALSE
+		return
+	step_to(src,movement_target,1)
+	sleep(3)
+	if(QDELETED(src) || !movement_target || incapacitated())
+		moving_to_lunch = FALSE
+		return
+	step_to(src,movement_target,1)
+	if(QDELETED(src) || !movement_target || incapacitated())
+		moving_to_lunch = FALSE
+		return
+	moving_to_lunch = FALSE
+
+	if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
+		if (movement_target.loc.x < src.x)
+			set_dir(WEST)
+		else if (movement_target.loc.x > src.x)
+			set_dir(EAST)
+		else if (movement_target.loc.y < src.y)
+			set_dir(SOUTH)
+		else if (movement_target.loc.y > src.y)
+			set_dir(NORTH)
+		else
+			set_dir(SOUTH)
+
+		if(isturf(movement_target.loc) )
+			UnarmedAttack(movement_target)
+		else if(ishuman(movement_target.loc) && prob(20))
+			visible_emote("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
+
+/mob/living/simple_mob/animal/passive/dog/corgi/Ian/proc/dance()
+	set waitfor = FALSE
+	visible_emote(pick("dances around","chases their tail"))
+	for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+		set_dir(i)
+		sleep(1)
+>>>>>>> 7d63b37f6b6... Merge pull request #8789 from MistakeNot4892/bots
 
 /mob/living/simple_mob/animal/passive/dog/corgi/Ian/Life()
 	..()
@@ -141,35 +190,10 @@
 						movement_target = S
 						break
 			if(movement_target)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-
-				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
-						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
-						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
-						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
-						set_dir(NORTH)
-					else
-						set_dir(SOUTH)
-
-					if(isturf(movement_target.loc) )
-						UnarmedAttack(movement_target)
-					else if(ishuman(movement_target.loc) && prob(20))
-						visible_emote("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
+				move_to_lunch()
 
 		if(prob(1))
-			visible_emote(pick("dances around","chases their tail"))
-			spawn(0)
-				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					set_dir(i)
-					sleep(1)
+			dance()
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/simple_mob/animal/passive/dog/corgi/Lisa

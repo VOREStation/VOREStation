@@ -181,22 +181,23 @@ GLOBAL_LIST_EMPTY(all_blobs)
 			B.overmind = overmind
 		B.density = TRUE
 		if(T.Enter(B,src)) //NOW we can attempt to move into the tile
-			sleep(1) // To have the slide animation work.
-			B.density = initial(B.density)
-			B.forceMove(T)
-			B.update_icon()
-			if(B.overmind && expand_reaction)
-				B.overmind.blob_type.on_expand(src, B, T, B.overmind)
+			do_slide_animation(B, T, expand_reaction)
 			return B
-
-		else
-			blob_attack_animation(T, controller)
-			T.blob_act(src) //if we can't move in hit the turf again
-			qdel(B) //we should never get to this point, since we checked before moving in. destroy the blob so we don't have two blobs on one tile
-			return null
+		blob_attack_animation(T, controller)
+		T.blob_act(src) //if we can't move in hit the turf again
+		qdel(B) //we should never get to this point, since we checked before moving in. destroy the blob so we don't have two blobs on one tile
+		return null
 	else
 		blob_attack_animation(T, controller) //if we can't, animate that we attacked
-	return null
+
+/obj/structure/blob/proc/do_slide_animation(var/obj/structure/blob/B, var/turf/T, var/expand_reaction)
+	set waitfor = FALSE
+	sleep(1) // To have the slide animation work.
+	B.density = initial(B.density)
+	B.forceMove(T)
+	B.update_icon()
+	if(B.overmind && expand_reaction)
+		B.overmind.blob_type.on_expand(src, B, T, B.overmind)
 
 /obj/structure/blob/proc/consume_tile()
 	for(var/atom/A in loc)

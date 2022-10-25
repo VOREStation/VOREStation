@@ -171,7 +171,6 @@
 /mob/living/simple_mob/proc/handle_guts()
 	for(var/obj/item/organ/OR in internal_organs)
 		OR.process()
-
 	for(var/obj/item/organ/OR in organs)
 		OR.process()
 

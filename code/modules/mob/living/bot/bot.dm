@@ -37,6 +37,7 @@
 	var/max_target_dist = 50 // How far we are willing to go
 	var/max_patrol_dist = 250
 
+	var/started_moving_along_path = 0
 	var/target_patience = 5
 	var/frustration = 0
 	var/max_frustration = 0
@@ -72,6 +73,7 @@
 	SetStunned(0)
 	SetParalysis(0)
 
+<<<<<<< HEAD
 	if(on && !client && !busy && !paicard)
 		spawn(0)
 			handleAI()
@@ -93,6 +95,11 @@
 		if(open)
 			. += span_info("You can use a <b>crowbar</b> to remove it.")
 */
+=======
+	if(on && !client && !busy)
+		handleAI()
+
+>>>>>>> 7d63b37f6b6... Merge pull request #8789 from MistakeNot4892/bots
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
 		health = getMaxHealth()
@@ -189,6 +196,38 @@
 /mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
 	return 0
 
+// Some boilerplate here and below, but this is a quickfix to stop Ater nuking the mob type, so heigh ho.
+/mob/living/bot/proc/stepTowardsTarget(var/delay, var/panic_speed_mod)
+	set waitfor = FALSE
+	var/started_moving_at = world.time
+	started_moving_along_path = started_moving_at
+	if(!wait_if_pulled || !pulledby)
+		for(var/i = 1 to (target_speed + panic_speed_mod))
+			sleep(delay)
+			if(started_moving_along_path != started_moving_at)
+				return // We have started another move iteration.
+			stepToTarget() // Calls A*, very expensive; is not necessarily safe. In a perfect world this would
+			if(TICK_CHECK) // not be behind a set waitfor = FALSE, but we do not live in a perfect world and
+				break      // SSmobs fires too slowly for chases to work using A* without sleeping.
+	if(started_moving_along_path != started_moving_at)
+		return // We have started another move iteration.
+	if(max_frustration && frustration > max_frustration * target_speed)
+		handleFrustrated(1)
+
+/mob/living/bot/proc/stepAlongPatrol(var/delay, var/panic_speed_mod)
+	set waitfor = FALSE
+	var/started_moving_at = world.time
+	started_moving_along_path = started_moving_at
+	for(var/i = 1 to (patrol_speed + panic_speed_mod))
+		sleep(delay)
+		if(started_moving_along_path != started_moving_at)
+			return // We have started another move iteration.
+		handlePatrol() // Does not call A*; is more or less safe.
+	if(started_moving_along_path != started_moving_at)
+		return // We have started another move iteration.
+	if(max_frustration && frustration > max_frustration * patrol_speed)
+		handleFrustrated(0)
+
 /mob/living/bot/proc/handleAI()
 	if(ignore_list.len)
 		for(var/atom/A in ignore_list)
@@ -196,16 +235,12 @@
 				ignore_list -= A
 	handleRegular()
 
-	var/panic_speed_mod = 0
-
-	if(panic_on_alert)
-		panic_speed_mod = handlePanic()
-
 	if(target && confirmTarget(target))
 		if(Adjacent(target))
 			handleAdjacentTarget()
 		else
 			handleRangedTarget()
+<<<<<<< HEAD
 		if(!wait_if_pulled || !pulledby)
 			for(var/i = 1 to (target_speed + panic_speed_mod))
 				sleep(20 / (target_speed + panic_speed_mod + 1))
@@ -238,6 +273,25 @@
 					if(LAZYLEN(can_go))
 						if(step_towards(src, pick(can_go)))
 							return
+=======
+		var/panic_speed_mod = panic_on_alert ? handlePanic() : 0
+		stepTowardsTarget(round(20 / (target_speed + panic_speed_mod + 1)), panic_speed_mod)
+		return
+
+	resetTarget()
+	lookForTargets()
+	if(will_patrol && !pulledby && !target)
+		if(patrol_path && patrol_path.len)
+			stepAlongPatrol(round(20 / (patrol_speed + 1)), (panic_on_alert ? handlePanic() : 0))
+			return
+		startPatrol()
+		return
+
+	if((locate(/obj/machinery/door) in loc) && !pulledby) //Don't hang around blocking doors, but don't run off if someone tries to pull us through one.
+		var/turf/my_turf = get_turf(src)
+		var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
+		if(!LAZYLEN(can_go) || !step_towards(src, pick(can_go)))
+>>>>>>> 7d63b37f6b6... Merge pull request #8789 from MistakeNot4892/bots
 			handleIdle()
 
 /mob/living/bot/proc/handleRegular()
