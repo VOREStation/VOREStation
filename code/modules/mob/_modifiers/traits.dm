@@ -50,15 +50,15 @@
 	name = "High Metabolsim"
 	desc = "Your body's metabolism is faster than average."
 
-	metabolism_percent = 2.0
-	incoming_healing_percent = 1.4
+	metabolism_percent = 1.33
+	incoming_healing_percent = 1.33
 
 /datum/modifier/trait/low_metabolism
 	name = "Low Metabolism"
 	desc = "Your body's metabolism is slower than average."
 
-	metabolism_percent = 0.5
-	incoming_healing_percent = 0.6
+	metabolism_percent = 0.67
+	incoming_healing_percent = 0.67
 
 /datum/modifier/trait/taller
 	name = "Taller"
@@ -88,39 +88,26 @@
 /datum/modifier/trait/fat
 	name = "Overweight"
 	desc = "You are heavier than average."
-
-	metabolism_percent = 1.2
 	icon_scale_x_percent = 1.054
 	icon_scale_y_percent = 1
-	slowdown = 1.1
-	max_health_percent = 1.05
 
 /datum/modifier/trait/obese
 	name = "Obese"
 	desc = "You are much heavier than average."
-	metabolism_percent = 1.4
 	icon_scale_x_percent = 1.095
 	icon_scale_y_percent = 1
-	slowdown = 1.2
-	max_health_percent = 1.10
 
 /datum/modifier/trait/thin
 	name = "Thin"
 	desc = "You are skinnier than average."
-	metabolism_percent = 0.8
 	icon_scale_x_percent = 0.945
 	icon_scale_y_percent = 1
-	max_health_percent = 0.95
-	outgoing_melee_damage_percent = 0.95
 
 /datum/modifier/trait/thinner
 	name = "Very Thin"
 	desc = "You are much skinnier than average."
-	metabolism_percent = 0.6
 	icon_scale_x_percent = 0.905
 	icon_scale_y_percent = 1
-	max_health_percent = 0.90
-	outgoing_melee_damage_percent = 0.9
 
 /datum/modifier/trait/colorblind_protanopia
 	name = "Protanopia"
@@ -162,4 +149,8 @@
 	desc = "You are fully colorblind. Your condition is rare, but you can see no colors at all."
 
 	client_color = MATRIX_Monochromia
+<<<<<<< HEAD
 	wire_colors_replace = GREYSCALE_COLOR_REPLACE
+=======
+	wire_colors_replace = GREYSCALE_COLOR_REPLACE
+>>>>>>> a317c39a2fc... Merge pull request #8785 from Spookerton/spkrtn/cng/bigger-not-slower
