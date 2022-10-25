@@ -288,7 +288,7 @@
 					direct = turn(direct, pick(90, -90))
 					n = get_step(my_mob, direct)
 
-	total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
+	//total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
 	my_mob.setMoveCooldown(total_delay)
 
 	if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
@@ -300,7 +300,7 @@
 
 	// If we ended up moving diagonally, increase delay.
 	if((direct & (direct - 1)) && mob.loc == n)
-		my_mob.setMoveCooldown(total_delay * 2)
+		my_mob.setMoveCooldown(total_delay * SQRT_TWO)
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()

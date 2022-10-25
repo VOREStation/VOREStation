@@ -202,8 +202,13 @@ default behaviour is:
 		if(!T2) // Map edge
 			now_pushing = 0
 			return
+<<<<<<< HEAD
 		var/move_time = movement_delay(loc, t)
 		move_time = DS2NEARESTTICK(move_time)
+=======
+		var/move_time = movement_delay(loc, t) * SQRT_TWO
+		//move_time = DS2NEARESTTICK(move_time)
+>>>>>>> 2d3a6e6d24e... Merge pull request #8790 from Spookerton/spkrtn/cng/move-it-move-it
 		if(AM.Move(T2, t, move_time))
 			Move(T, t, move_time)
 
