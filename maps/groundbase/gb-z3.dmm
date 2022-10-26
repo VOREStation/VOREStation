@@ -1636,6 +1636,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
+"zW" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = -28;
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level3/escapepad)
 "Aa" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/medical,
@@ -6782,7 +6794,7 @@ ow
 ow
 Ii
 Ii
-Ii
+zW
 hl
 Kr
 Kr
