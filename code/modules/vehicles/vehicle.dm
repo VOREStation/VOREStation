@@ -197,12 +197,17 @@
 		return FALSE
 	if(powered && cell.charge < charge_use)
 		return FALSE
+	if(on)
+		return FALSE
 	on = 1
+	playsound(src, 'sound/machines/vehicle/ignition.ogg', 50, 1, -3)
 	set_light(initial(light_range))
 	update_icon()
 	return TRUE
 
 /obj/vehicle/proc/turn_off()
+	if(!on)
+		return FALSE
 	if(!mechanical)
 		return FALSE
 	on = 0

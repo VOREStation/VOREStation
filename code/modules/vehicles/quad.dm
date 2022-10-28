@@ -19,7 +19,9 @@
 	key_type = /obj/item/weapon/key/quadbike
 
 	var/frame_state = "quad" //Custom-item proofing!
+	var/paint_base = 'icons/obj/vehicles_64x64.dmi'
 	var/custom_frame = FALSE
+	var/datum/looping_sound/vehicle_engine/soundloop
 
 	paint_color = "#ffffff"
 
@@ -28,7 +30,13 @@
 /obj/vehicle/train/engine/quadbike/New()
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
+<<<<<<< HEAD
+=======
+	soundloop = new(list(src), FALSE)
+	. = ..()
+>>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
 	turn_off()
+	update_icon()
 
 /obj/vehicle/train/engine/quadbike/built/New()
 	key = new key_type(src)
@@ -38,7 +46,15 @@
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	..()
 
+<<<<<<< HEAD
 /obj/item/weapon/key/quadbike
+=======
+/obj/vehicle/train/engine/quadbike/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
+
+/obj/item/key/quadbike
+>>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
 	name = "key"
 	desc = "A keyring with a small steel key, and a blue fob reading \"ZOOM!\"."
 	icon = 'icons/obj/vehicles.dmi'
@@ -47,20 +63,28 @@
 
 /obj/vehicle/train/engine/quadbike/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..() //Move it move it, so we can test it test it.
-	if(!istype(loc, old_loc.type) && !istype(old_loc, loc.type))	//Did we move at all, and are we changing turf types?
-		if(istype(loc, /turf/simulated/floor/water))
-			speed_mod = outdoors_speed_mod * 4 //It kind of floats due to its tires, but it is slow.
-		else if(istype(loc, /turf/simulated/floor/outdoors/rocks))
-			speed_mod = initial(speed_mod) //Rocks are good, rocks are solid.
-		else if(istype(loc, /turf/simulated/floor/outdoors/dirt) || istype(loc, /turf/simulated/floor/outdoors/grass))
-			speed_mod = outdoors_speed_mod //Dirt and grass are the outdoors bench mark.
-		else if(istype(loc, /turf/simulated/floor/outdoors/mud))
-			speed_mod = outdoors_speed_mod * 1.5 //Gets us roughly 1. Mud may be fun, but it's not the best.
-		else if(istype(loc, /turf/simulated/floor/outdoors/snow))
-			speed_mod = outdoors_speed_mod * 1.7 //Roughly a 1.25. Snow is coarse and wet and gets everywhere, especially your electric motors.
-		else
-			speed_mod = initial(speed_mod)
-		update_car(train_length, active_engines)
+	get_turf_speeds(old_loc)
+	handle_vehicle_icon()
+
+/obj/vehicle/train/engine/quadbike/proc/get_turf_speeds(atom/prev_loc)
+	// Same speed if turf type doesn't change
+	if(istype(loc, prev_loc.type) || istype(prev_loc, loc.type))
+		return
+	if(istype(loc, /turf/simulated/floor/water))
+		speed_mod = outdoors_speed_mod * 4 //It kind of floats due to its tires, but it is slow.
+	else if(istype(loc, /turf/simulated/floor/outdoors/rocks))
+		speed_mod = initial(speed_mod) //Rocks are good, rocks are solid.
+	else if(istype(loc, /turf/simulated/floor/outdoors/dirt) || istype(loc, /turf/simulated/floor/outdoors/grass) || istype(loc, /turf/simulated/floor/outdoors/newdirt) || istype(loc, /turf/simulated/floor/outdoors/newdirt_nograss))
+		speed_mod = outdoors_speed_mod //Dirt and grass are the outdoors bench mark.
+	else if(istype(loc, /turf/simulated/floor/outdoors/mud))
+		speed_mod = outdoors_speed_mod * 1.5 //Gets us roughly 1. Mud may be fun, but it's not the best.
+	else if(istype(loc, /turf/simulated/floor/outdoors/snow))
+		speed_mod = outdoors_speed_mod * 1.7 //Roughly a 1.25. Snow is coarse and wet and gets everywhere, especially your electric motors.
+	else
+		speed_mod = initial(speed_mod)
+	update_car(train_length, active_engines)
+
+/obj/vehicle/train/engine/quadbike/proc/handle_vehicle_icon()
 	switch(dir) //Due to being a Big Boy sprite, it has to have special pixel shifting to look 'normal' when being driven.
 		if(1)
 			pixel_y = -6
@@ -71,10 +95,16 @@
 		if(8)
 			pixel_y = 0
 
+<<<<<<< HEAD
 
 /obj/vehicle/train/engine/quadbike/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)
 		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
+=======
+/obj/vehicle/train/engine/quadbike/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/multitool) && open)
+		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
+>>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()
@@ -99,12 +129,12 @@
 		add_overlay(Overmob_color)
 		return
 
-	var/image/Bodypaint = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[frame_state]_a", layer = src.layer)
+	var/image/Bodypaint = new(icon = paint_base, icon_state = "[frame_state]_a", layer = src.layer)
 	Bodypaint.color = paint_color
 	add_overlay(Bodypaint)
 
-	var/image/Overmob = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[frame_state]_overlay", layer = src.layer + 0.2) //over mobs
-	var/image/Overmob_color = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[frame_state]_overlay_a", layer = src.layer + 0.2) //over the over mobs, gives the color.
+	var/image/Overmob = new(icon = paint_base, icon_state = "[frame_state]_overlay", layer = src.layer + 0.2) //over mobs
+	var/image/Overmob_color = new(icon = paint_base, icon_state = "[frame_state]_overlay_a", layer = src.layer + 0.2) //over the over mobs, gives the color.
 	Overmob.plane = MOB_PLANE
 	Overmob_color.plane = MOB_PLANE
 	Overmob_color.color = paint_color
@@ -151,6 +181,18 @@
 			throw_dirs -= get_dir(M, tow) //Don't throw it at the trailer either.
 	var/turf/T = get_step(M, pick(throw_dirs))
 	M.throw_at(T, 1, 1, src)
+
+/obj/vehicle/train/engine/quadbike/turn_on()
+	..()
+	if(on)
+		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		soundloop.start()
+
+/obj/vehicle/train/engine/quadbike/turn_off()
+	if(on)
+		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
+		soundloop.stop()
+	..()
 
 /*
  * Trailer bits and bobs.
