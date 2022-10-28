@@ -325,6 +325,7 @@
 		/obj/item/device/radio/headset,
 		/obj/item/clothing/gloves,
 		/obj/item/taperoll,
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/spray/pepper,
 		/obj/item/weapon/handcuffs,
 		/obj/item/device/flash,
@@ -334,6 +335,17 @@
 		///obj/item/weapon/gun/projectile/colt/detective,	//Detectives don't get projectile weapons as standard here
 		/obj/item/weapon/gun/energy/stunrevolver/detective,	//In keeping with the same vein as above, they can store their special one
 		/obj/item/device/holowarrant
+=======
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/handcuffs,
+		/obj/item/flash,
+		/obj/item/flame/lighter,
+		/obj/item/reagent_containers/food/snacks/donut/,
+		/obj/item/ammo_magazine,
+		/obj/item/gun/projectile/colt/detective,
+		/obj/item/holowarrant,
+		/obj/item/reagent_containers/food/drinks/flask
+>>>>>>> 5903278048c... Merge pull request #8799 from Doctress/boozycops
 		)
 
 /obj/item/weapon/storage/belt/soulstone

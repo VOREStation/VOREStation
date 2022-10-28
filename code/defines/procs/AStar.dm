@@ -134,7 +134,13 @@ length to avoid portals or something i guess?? Not that they're counted right no
 
 	open.Enqueue(new /PathNode(start, null, 0, call(start, dist)(end), 0))
 
+<<<<<<< HEAD
 	while(!open.IsEmpty() && !path)
+=======
+	var/sanity = 500 // From some local testing, AStar() tends to hit tick check or succeed around the 450 mark.
+	while(!open.IsEmpty() && !path && sanity)
+		sanity--
+>>>>>>> 5903278048c... Merge pull request #8799 from Doctress/boozycops
 		var/PathNode/current = open.Dequeue()
 		closed.Add(current.position)
 
