@@ -118,6 +118,30 @@
 	modifier_type = /datum/modifier/trait/obese
 	mutually_exclusive = list(/datum/trait/modifier/physical/fat, /datum/trait/modifier/physical/thinner, /datum/trait/modifier/physical/thin)
 
+/datum/trait/modifier/physical/slow_minor
+	name = "Slow Mover (Minor)"
+	modifier_type = /datum/modifier/trait/slow_minor
+	mutually_exclusive = list(
+		/datum/trait/modifier/physical/slow_moderate,
+		/datum/trait/modifier/physical/slow_major
+	)
+
+/datum/trait/modifier/physical/slow_moderate
+	name = "Slow Mover (Moderate)"
+	modifier_type = /datum/modifier/trait/slow_moderate
+	mutually_exclusive = list(
+		/datum/trait/modifier/physical/slow_minor,
+		/datum/trait/modifier/physical/slow_major
+	)
+
+/datum/trait/modifier/physical/slow_major
+	name = "Slow Mover (Major)"
+	modifier_type = /datum/modifier/trait/slow_major
+	mutually_exclusive = list(
+		/datum/trait/modifier/physical/slow_minor,
+		/datum/trait/modifier/physical/slow_moderate
+	)
+
 /datum/trait/modifier/physical/colorblind_protanopia
 	name = "Protanopia"
 	desc = "You have a form of red-green colorblindness. You cannot see reds, and have trouble distinguishing them from yellows and greens."
