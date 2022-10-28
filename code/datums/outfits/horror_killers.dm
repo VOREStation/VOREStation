@@ -3,7 +3,7 @@
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	gloves = /obj/item/clothing/gloves/black
-	mask = /obj/item/clothing/mask/gas/clown_hat
+	mask = /obj/item/clothing/mask/gas/costume
 	head = /obj/item/clothing/head/chaplain_hood
 	l_ear = /obj/item/device/radio/headset
 	glasses = /obj/item/clothing/glasses/thermal/plain/monocle
@@ -41,8 +41,13 @@
 	gloves = /obj/item/clothing/gloves/black
 	l_ear = /obj/item/device/radio/headset
 	glasses = /obj/item/clothing/glasses/sunglasses
+<<<<<<< HEAD
 	l_pocket = /obj/item/weapon/melee/energy/sword
 	mask = /obj/item/clothing/mask/gas/clown_hat
+=======
+	l_pocket = /obj/item/melee/energy/sword
+	mask = /obj/item/clothing/mask/gas/costume
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/syndicate/station_access

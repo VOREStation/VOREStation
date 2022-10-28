@@ -60,6 +60,7 @@
 		qdel(src)
 	..()
 
+<<<<<<< HEAD
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"
@@ -74,6 +75,8 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply. This one is gold."
 	icon_state = "plaguedoctor2"
 
+=======
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
@@ -131,55 +134,80 @@
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 0, bio = 50, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/mask/gas/clown_hat
-	name = "clown wig and mask"
-	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
-	icon_state = "clown"
-	item_state_slots = list(slot_r_hand_str = "clown_hat", slot_l_hand_str = "clown_hat")
-
-/obj/item/clothing/mask/gas/sexyclown
-	name = "sexy-clown wig and mask"
-	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
-	icon_state = "sexyclown"
-	item_state_slots = list(slot_r_hand_str = "clown_hat", slot_l_hand_str = "clown_hat")
-
-/obj/item/clothing/mask/gas/mime
-	name = "mime mask"
-	desc = "The traditional mime's mask. It has an eerie facial posture."
-	icon_state = "mime"
-	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
-
-/obj/item/clothing/mask/gas/monkeymask
-	name = "monkey mask"
-	desc = "A mask used when acting as a monkey."
-	icon_state = "monkeymask"
-	body_parts_covered = HEAD|FACE|EYES
-
-/obj/item/clothing/mask/gas/sexymime
-	name = "sexy mime mask"
-	desc = "A traditional female mime's mask."
-	icon_state = "sexymime"
-	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
-
-/obj/item/clothing/mask/gas/guy
-	name = "guy fawkes mask"
-	desc = "A mask stylised to depict Guy Fawkes."
-	icon_state = "guyfawkes"
-	flags_inv = HIDEEARS|HIDEFACE
-	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
-
 /obj/item/clothing/mask/gas/commando
 	name = "commando mask"
 	icon_state = "fullgas"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	siemens_coefficient = 0.2
 
-/obj/item/clothing/mask/gas/cyborg
+/obj/item/clothing/mask/gas/vox
+	name = "alien respirator"
+	desc = "A respiratory filter designed for an alien facial structure. The filter intakes seem nasally fitted, and the mouth covering is articulated to allow the wearer to eat."
+	icon_state = "respirator"
+	body_parts_covered = EYES
+	w_class = ITEMSIZE_SMALL
+	flags_inv = 0
+	species_restricted = list(SPECIES_VOX)
+	filtered_gases = list("phoron", "nitrous_oxide", "oxygen")
+
+//Costume masks
+
+/obj/item/clothing/mask/gas/costume
+	name = "clown wig and mask"
+	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
+	icon_state = "clown"
+	item_state_slots = list(slot_r_hand_str = "clown_hat", slot_l_hand_str = "clown_hat")
+
+/obj/item/clothing/mask/gas/costume/plaguedoctor
+	name = "plague doctor mask"
+	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
+	icon_state = "plaguedoctor"
+	item_state_slots = list(slot_r_hand_str = "gas", slot_l_hand_str = "gas")
+	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
+	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/gas/costume/plaguedoctor/gold
+	name = "gold plague doctor mask"
+	desc = "A modern version of the age old classic, this mask is both capable of filtering air, and connecting to an air supply. This one is gold."
+	icon_state = "plaguedoctor2"
+
+/obj/item/clothing/mask/gas/costume/sexyclown
+	name = "sexy-clown wig and mask"
+	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
+	icon_state = "sexyclown"
+	item_state_slots = list(slot_r_hand_str = "clown_hat", slot_l_hand_str = "clown_hat")
+
+/obj/item/clothing/mask/gas/costume/mime
+	name = "mime mask"
+	desc = "The traditional mime's mask. It has an eerie facial posture."
+	icon_state = "mime"
+	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
+
+/obj/item/clothing/mask/gas/costume/monkeymask
+	name = "monkey mask"
+	desc = "A mask used when acting as a monkey."
+	icon_state = "monkeymask"
+	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/gas/costume/sexymime
+	name = "sexy mime mask"
+	desc = "A traditional female mime's mask."
+	icon_state = "sexymime"
+	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
+
+/obj/item/clothing/mask/gas/costume/guy
+	name = "guy fawkes mask"
+	desc = "A mask stylised to depict Guy Fawkes."
+	icon_state = "guyfawkes"
+	flags_inv = HIDEEARS|HIDEFACE
+	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
+
+/obj/item/clothing/mask/gas/costume/cyborg
 	name = "cyborg visor"
 	desc = "Beep boop"
 	icon_state = "death"
 
-/obj/item/clothing/mask/gas/owl_mask
+/obj/item/clothing/mask/gas/costume/owl_mask
 	name = "owl mask"
 	desc = "Twoooo!"
 	icon_state = "owl"

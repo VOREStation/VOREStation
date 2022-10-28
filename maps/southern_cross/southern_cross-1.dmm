@@ -92611,9 +92611,15 @@
 /obj/item/clothing/gloves/rainbow,
 /obj/item/clothing/head/soft/rainbow,
 /obj/item/clothing/shoes/rainbow,
+<<<<<<< HEAD
 /obj/item/clothing/under/color/rainbow,
 /obj/item/weapon/bedsheet/rainbow,
 /obj/item/weapon/pen/crayon/rainbow,
+=======
+/obj/item/clothing/under/costume/rainbow,
+/obj/item/bedsheet/rainbow,
+/obj/item/pen/crayon/rainbow,
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 /obj/random/crate,
 /turf/simulated/floor,
 /area/construction/seconddeck/construction2)

@@ -56,6 +56,7 @@
 /datum/material/cardboard/generate_recipes()
 	..()
 	recipes += list(
+<<<<<<< HEAD
 		new /datum/stack_recipe("box", /obj/item/weapon/storage/box, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("donut box", /obj/item/weapon/storage/box/donut/empty, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("egg box", /obj/item/weapon/storage/fancy/egg_box, pass_stack_color = TRUE, recycle_material = "[name]"),
@@ -64,6 +65,16 @@
 		new /datum/stack_recipe("mouse traps box", /obj/item/weapon/storage/box/mousetraps, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("cardborg suit", /obj/item/clothing/suit/cardborg, 3, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("cardborg helmet", /obj/item/clothing/head/cardborg, pass_stack_color = TRUE, recycle_material = "[name]"),
+=======
+		new /datum/stack_recipe("box", /obj/item/storage/box, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("donut box", /obj/item/storage/box/donut/empty, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("egg box", /obj/item/storage/fancy/egg_box, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("light tubes box", /obj/item/storage/box/lights/tubes, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("light bulbs box", /obj/item/storage/box/lights/bulbs, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("mouse traps box", /obj/item/storage/box/mousetraps, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("cardborg suit", /obj/item/clothing/suit/costume/cardborg, 3, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("cardborg helmet", /obj/item/clothing/head/collectable/cardborg, pass_stack_color = TRUE, recycle_material = "[name]"),
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 		new /datum/stack_recipe("pizza box", /obj/item/pizzabox, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe_list("folders",list(
 			new /datum/stack_recipe("blue folder", /obj/item/weapon/folder/blue, recycle_material = "[name]"),

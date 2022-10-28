@@ -292,9 +292,15 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 
 	starts_with = list(
 		/obj/item/clothing/shoes/brown,
+<<<<<<< HEAD
 		/obj/item/weapon/paper/Court = 3,
 		/obj/item/weapon/pen,
 		/obj/item/clothing/suit/judgerobe,
+=======
+		/obj/item/paper/Court = 3,
+		/obj/item/pen,
+		/obj/item/clothing/suit/costume/judgerobe,
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 		/obj/item/clothing/head/powdered_wig,
 		/obj/item/weapon/storage/briefcase)
 

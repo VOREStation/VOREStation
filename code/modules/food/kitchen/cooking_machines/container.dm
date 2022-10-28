@@ -15,7 +15,7 @@
 		/obj/item/weapon/paper,
 		/obj/item/clothing/head/wizard,
 		/obj/item/clothing/head/cakehat,
-		/obj/item/clothing/mask/gas/clown_hat,
+		/obj/item/clothing/mask/gas/costume,
 		/obj/item/clothing/head/beret
 	)
 

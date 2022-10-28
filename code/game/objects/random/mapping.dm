@@ -434,11 +434,19 @@
 				/obj/structure/closet/crate/science
 			),
 			prob(1);list(
+<<<<<<< HEAD
 				/obj/item/clothing/head/bearpelt,
 				/obj/item/clothing/under/soviet,
 				/obj/item/clothing/under/soviet,
 				/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial,
 				/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial,
+=======
+				/obj/item/clothing/head/collectable/bearpelt,
+				/obj/item/clothing/under/costume/soviet,
+				/obj/item/clothing/under/costume/soviet,
+				/obj/item/gun/projectile/shotgun/pump/rifle/ceremonial,
+				/obj/item/gun/projectile/shotgun/pump/rifle/ceremonial,
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
@@ -475,11 +483,19 @@
 				/obj/item/weapon/storage/backpack/clown,
 				/obj/item/clothing/under/rank/clown,
 				/obj/item/clothing/shoes/clown_shoes,
+<<<<<<< HEAD
 				/obj/item/device/pda/clown,
 				/obj/item/clothing/mask/gas/clown_hat,
 				/obj/item/weapon/bikehorn,
 				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/weapon/pen/crayon/rainbow,
+=======
+				/obj/item/pda/clown,
+				/obj/item/clothing/mask/gas/costume,
+				/obj/item/bikehorn,
+				/obj/item/reagent_containers/spray/waterflower,
+				/obj/item/pen/crayon/rainbow,
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
@@ -487,7 +503,7 @@
 				/obj/item/clothing/shoes/black,
 				/obj/item/device/pda/mime,
 				/obj/item/clothing/gloves/white,
-				/obj/item/clothing/mask/gas/mime,
+				/obj/item/clothing/mask/gas/costume/mime,
 				/obj/item/clothing/head/beret,
 				/obj/item/clothing/suit/suspenders,
 				/obj/item/weapon/pen/crayon/mime,

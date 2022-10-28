@@ -25,7 +25,7 @@
 /datum/supply_pack/randomised/costumes/hats
 	num_contained = 4
 	contains = list(
-			/obj/item/clothing/head/collectable/chef,
+			/obj/item/clothing/head/collectable,
 			/obj/item/clothing/head/collectable/paper,
 			/obj/item/clothing/head/collectable/tophat,
 			/obj/item/clothing/head/collectable/captain,
@@ -54,13 +54,12 @@
 /datum/supply_pack/randomised/costumes/costume
 	num_contained = 3
 	contains = list(
-			/obj/item/clothing/suit/pirate,
-			/obj/item/clothing/suit/judgerobe,
+			/obj/item/clothing/suit/costume,
+			/obj/item/clothing/suit/costume/judgerobe,
 			/obj/item/clothing/accessory/wcoat,
-			/obj/item/clothing/suit/hastur,
-			/obj/item/clothing/suit/holidaypriest,
+			/obj/item/clothing/suit/costume/hastur,
+			/obj/item/clothing/suit/costume/holidaypriest,
 			/obj/item/clothing/suit/nun,
-			/obj/item/clothing/suit/imperium_monk,
 			/obj/item/clothing/suit/ianshirt,
 			/obj/item/clothing/under/suit_jacket/green,
 			/obj/item/clothing/under/suit_jacket/teal,
@@ -70,17 +69,22 @@
 			/obj/item/clothing/suit/suspenders,
 			/obj/item/clothing/suit/storage/toggle/labcoat/mad,
 			/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
-			/obj/item/clothing/under/schoolgirl,
-			/obj/item/clothing/under/owl,
+			/obj/item/clothing/under/costume/schoolgirl,
+			/obj/item/clothing/under/costume/owl,
 			/obj/item/clothing/under/waiter,
+<<<<<<< HEAD
 			/obj/item/clothing/under/gladiator,
 			/obj/item/clothing/under/soviet,
 			/obj/item/clothing/under/scratch,
+=======
+			/obj/item/clothing/under/costume/gladiator,
+			/obj/item/clothing/under/costume/soviet,
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 			/obj/item/clothing/under/wedding/bride_white,
 			/obj/item/clothing/suit/chef,
 			/obj/item/clothing/suit/storage/apron/overalls,
-			/obj/item/clothing/under/redcoat,
-			/obj/item/clothing/under/kilt
+			/obj/item/clothing/under/costume/redcoat,
+			/obj/item/clothing/under/costume/kilt
 			)
 	name = "Costumes crate"
 	cost = 10
@@ -129,10 +133,10 @@
 	num_contained = 3
 	contains = list(
 			/obj/item/clothing/head/redcoat,
-			/obj/item/clothing/head/mailman,
-			/obj/item/clothing/head/plaguedoctorhat,
-			/obj/item/clothing/head/pirate,
-			/obj/item/clothing/head/hasturhood,
+			/obj/item/clothing/head/collectable/mailman,
+			/obj/item/clothing/head/collectable/plaguedoctorhat,
+			/obj/item/clothing/head/collectable/pirate,
+			/obj/item/clothing/head/collectable/hasturhood,
 			/obj/item/clothing/head/powdered_wig,
 			/obj/item/clothing/head/pin/flower,
 			/obj/item/clothing/head/pin/flower/yellow,
@@ -140,9 +144,9 @@
 			/obj/item/clothing/head/pin/flower/pink,
 			/obj/item/clothing/head/pin/clover,
 			/obj/item/clothing/head/pin/butterfly,
-			/obj/item/clothing/mask/gas/owl_mask,
-			/obj/item/clothing/mask/gas/monkeymask,
-			/obj/item/clothing/head/helmet/gladiator,
+			/obj/item/clothing/mask/gas/costume/owl_mask,
+			/obj/item/clothing/mask/gas/costume/monkeymask,
+			/obj/item/clothing/head/helmet/collectable/gladiator,
 			/obj/item/clothing/head/ushanka
 			)
 

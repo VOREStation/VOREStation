@@ -19,7 +19,7 @@
 
 /spell/targeted/equip_item/horsemask/New()
 	..()
-	equipped_summons = list("[slot_wear_mask]" = /obj/item/clothing/mask/horsehead)
+	equipped_summons = list("[slot_wear_mask]" = /obj/item/clothing/mask/costume/horsehead)
 
 /spell/targeted/equip_item/horsemask/cast(list/targets, mob/user = usr)
 	..()
@@ -30,10 +30,17 @@
 
 /spell/targeted/equip_item/horsemask/summon_item(var/new_type)
 	var/obj/item/new_item = new new_type
+<<<<<<< HEAD
 	new_item.canremove = FALSE		//curses!
 	new_item.unacidable = TRUE
 	if(istype(new_item, /obj/item/clothing/mask/horsehead))
 		var/obj/item/clothing/mask/horsehead/magichead = new_item
+=======
+	new_item.canremove = 0		//curses!
+	new_item.unacidable = 1
+	if(istype(new_item, /obj/item/clothing/mask/costume/horsehead))
+		var/obj/item/clothing/mask/costume/horsehead/magichead = new_item
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 		magichead.flags_inv = null	//so you can still see their face
 		magichead.voicechange = 1	//NEEEEIIGHH
 	return new_item

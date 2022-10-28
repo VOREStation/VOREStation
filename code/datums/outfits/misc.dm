@@ -19,7 +19,7 @@
 
 /decl/hierarchy/outfit/soviet_soldier
 	name = "Soviet soldier"
-	uniform = /obj/item/clothing/under/soviet
+	uniform = /obj/item/clothing/under/costume/soviet
 	shoes = /obj/item/clothing/shoes/boots/combat
 	head = /obj/item/clothing/head/ushanka/soviet
 	gloves = /obj/item/clothing/gloves/combat
@@ -28,10 +28,15 @@
 
 /decl/hierarchy/outfit/soviet_soldier/admiral
 	name = "Soviet admiral"
+<<<<<<< HEAD
 	head = /obj/item/clothing/head/hgpiratecap
 	l_ear = /obj/item/device/radio/headset/heads/captain
+=======
+	head = /obj/item/clothing/head/collectable/hgpiratecap
+	l_ear = /obj/item/radio/headset/heads/captain
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
-	suit = /obj/item/clothing/suit/hgpirate
+	suit = /obj/item/clothing/suit/costume/hgpirate
 
 	id_slot = slot_wear_id
 	id_type = /obj/item/weapon/card/id/centcom	//station

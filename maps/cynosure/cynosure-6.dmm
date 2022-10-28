@@ -4726,7 +4726,7 @@
 /area/centcom/specops)
 "fCC" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/clothing/head/bearpelt,
+/obj/item/clothing/head/collectable/bearpelt,
 /obj/item/clothing/head/bowler,
 /obj/item/clothing/head/caphat/cap,
 /obj/item/clothing/head/beaverhat,
@@ -4752,9 +4752,9 @@
 /obj/item/clothing/head/justice/green,
 /obj/item/clothing/head/justice/pink,
 /obj/item/clothing/head/justice/yellow,
-/obj/item/clothing/head/philosopher_wig,
-/obj/item/clothing/head/plaguedoctorhat,
-/obj/item/clothing/head/xenos,
+/obj/item/clothing/head/collectable/philosopher_wig,
+/obj/item/clothing/head/collectable/plaguedoctorhat,
+/obj/item/clothing/head/collectable/xenos,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "fCK" = (
@@ -9974,7 +9974,7 @@
 	},
 /area/centcom/main_hall)
 "loZ" = (
-/obj/item/clothing/head/philosopher_wig,
+/obj/item/clothing/head/collectable/philosopher_wig,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
@@ -11158,7 +11158,7 @@
 "mIb" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/clothing/glasses/thermal/plain/monocle,
-/obj/item/clothing/head/pirate,
+/obj/item/clothing/head/collectable/pirate,
 /turf/simulated/shuttle/floor/darkred,
 /area/skipjack_station/start)
 "mIs" = (
@@ -12518,13 +12518,13 @@
 /obj/item/clothing/under/hosformalmale,
 /obj/item/clothing/under/hosformalfem,
 /obj/item/clothing/under/harness,
-/obj/item/clothing/under/gladiator,
+/obj/item/clothing/under/costume/gladiator,
 /obj/item/clothing/under/ert,
-/obj/item/clothing/under/schoolgirl,
-/obj/item/clothing/under/redcoat,
-/obj/item/clothing/under/sexymime,
-/obj/item/clothing/under/sexyclown,
-/obj/item/clothing/under/soviet,
+/obj/item/clothing/under/costume/schoolgirl,
+/obj/item/clothing/under/costume/redcoat,
+/obj/item/clothing/under/costume/sexymime,
+/obj/item/clothing/under/costume/sexyclown,
+/obj/item/clothing/under/costume/soviet,
 /obj/item/clothing/under/space,
 /obj/item/clothing/under/swimsuit/stripper/mankini,
 /obj/item/clothing/under/suit_jacket/female,
@@ -12933,7 +12933,7 @@
 /area/shuttle/merchant/home)
 "oPQ" = (
 /obj/structure/table/standard,
-/obj/item/clothing/under/color/rainbow,
+/obj/item/clothing/under/costume/rainbow,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/head/collectable/petehat{
 	pixel_y = 5
@@ -17757,15 +17757,14 @@
 /area/shuttle/escape/centcom)
 "tTz" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/clothing/suit/hgpirate,
-/obj/item/clothing/suit/imperium_monk,
+/obj/item/clothing/suit/costume/hgpirate,
 /obj/item/clothing/suit/leathercoat,
-/obj/item/clothing/suit/justice,
-/obj/item/clothing/suit/justice,
-/obj/item/clothing/suit/justice,
-/obj/item/clothing/suit/justice,
-/obj/item/clothing/suit/justice,
-/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/costume/justice,
+/obj/item/clothing/suit/costume/justice,
+/obj/item/clothing/suit/costume/justice,
+/obj/item/clothing/suit/costume/justice,
+/obj/item/clothing/suit/costume/justice,
+/obj/item/clothing/suit/costume,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "tTN" = (
@@ -19524,8 +19523,13 @@
 /area/skipjack_station/start)
 "vTt" = (
 /obj/structure/table/steel_reinforced,
+<<<<<<< HEAD
 /obj/item/clothing/head/philosopher_wig,
 /obj/item/device/radio/intercom{
+=======
+/obj/item/clothing/head/collectable/philosopher_wig,
+/obj/item/radio/intercom{
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	desc = "Talk through this. Evilly";
 	dir = 4;
 	frequency = 1213;
@@ -20788,7 +20792,7 @@
 	},
 /area/wizard_station)
 "xfC" = (
-/obj/item/clothing/head/xenos,
+/obj/item/clothing/head/collectable/xenos,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},

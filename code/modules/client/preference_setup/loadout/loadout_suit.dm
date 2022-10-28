@@ -649,6 +649,7 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+<<<<<<< HEAD
 /datum/gear/suit/miscellaneous/kimono
 	display_name = "kimono selection"
 	path = /obj/item/clothing/suit/kimono/red
@@ -667,3 +668,17 @@
 	"Earth kimono" = /obj/item/clothing/suit/kimono/earth
 	)
 	gear_tweaks += new/datum/gear_tweak/path(kimonos)
+=======
+/datum/gear/suit/costumes
+	display_name = "costume overclothing selection"
+	description = "A selection of fancy-dress costumes worn on the suit slot."
+	path = /obj/item/clothing/suit/costume
+
+/datum/gear/suit/costumes/New()
+	..()
+	var/list/costumes = list()
+	for(var/costume in typesof(/obj/item/clothing/suit/costume))
+		var/obj/item/clothing/suit/costume/costume_type = costume
+		costumes[initial(costume_type.name)] = costume_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(costumes))
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb

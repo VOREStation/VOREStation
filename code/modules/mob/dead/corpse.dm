@@ -134,10 +134,17 @@
 	name = "Clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
+<<<<<<< HEAD
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
 	corpsepocket1 = /obj/item/weapon/bikehorn
 	corpseback = /obj/item/weapon/storage/backpack/clown
+=======
+	corpseradio = /obj/item/radio/headset
+	corpsemask = /obj/item/clothing/mask/gas/costume
+	corpsepocket1 = /obj/item/bikehorn
+	corpseback = /obj/item/storage/backpack/clown
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	corpseid = 1
 	corpseidjob = "Clown"
 	corpseidaccess = "Clown"
@@ -146,7 +153,7 @@
 
 /obj/effect/landmark/mobcorpse/pirate
 	name = "Pirate"
-	corpseuniform = /obj/item/clothing/under/pirate
+	corpseuniform = /obj/item/clothing/under/costume/pirate
 	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
 	corpsehelmet = /obj/item/clothing/head/bandana
@@ -155,16 +162,16 @@
 
 /obj/effect/landmark/mobcorpse/pirate/ranged
 	name = "Pirate Gunner"
-	corpsesuit = /obj/item/clothing/suit/pirate
-	corpsehelmet = /obj/item/clothing/head/pirate
+	corpsesuit = /obj/item/clothing/suit/costume
+	corpsehelmet = /obj/item/clothing/head/collectable/pirate
 
 
 
 /obj/effect/landmark/mobcorpse/russian
 	name = "Russian"
-	corpseuniform = /obj/item/clothing/under/soviet
+	corpseuniform = /obj/item/clothing/under/costume/soviet
 	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
-	corpsehelmet = /obj/item/clothing/head/bearpelt
+	corpsehelmet = /obj/item/clothing/head/collectable/bearpelt
 
 /obj/effect/landmark/mobcorpse/russian/ranged
 	corpsehelmet = /obj/item/clothing/head/ushanka

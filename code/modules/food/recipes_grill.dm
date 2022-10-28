@@ -73,8 +73,13 @@
 /datum/recipe/clownburger
 	appliance = GRILL
 	items = list(
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/clothing/mask/gas/clown_hat
+=======
+		/obj/item/reagent_containers/food/snacks/bun,
+		/obj/item/clothing/mask/gas/costume
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/clownburger
 
@@ -325,4 +330,8 @@
 		/obj/item/weapon/reagent_containers/food/snacks/chickenkatsu,
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/chickenfillet
+=======
+	result = /obj/item/reagent_containers/food/snacks/chickenfillet
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb

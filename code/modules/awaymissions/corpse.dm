@@ -183,10 +183,17 @@
 	name = "Clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
+<<<<<<< HEAD
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
 	corpsepocket1 = /obj/item/weapon/bikehorn
 	corpseback = /obj/item/weapon/storage/backpack/clown
+=======
+	corpseradio = /obj/item/radio/headset
+	corpsemask = /obj/item/clothing/mask/gas/costume
+	corpsepocket1 = /obj/item/bikehorn
+	corpseback = /obj/item/storage/backpack/clown
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	corpseid = 1
 	corpseidjob = "Clown"
 	corpseidaccess = "Clown"

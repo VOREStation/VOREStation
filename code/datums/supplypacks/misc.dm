@@ -108,7 +108,7 @@
 			/obj/item/clothing/head/nun_hood,
 			/obj/item/clothing/suit/storage/hooded/chaplain_hoodie,
 			/obj/item/clothing/suit/storage/hooded/chaplain_hoodie/whiteout,
-			/obj/item/clothing/suit/holidaypriest,
+			/obj/item/clothing/suit/costume/holidaypriest,
 			/obj/item/clothing/under/wedding/bride_white,
 			/obj/item/weapon/storage/backpack/cultpack,
 			/obj/item/weapon/storage/fancy/candle_box = 3
@@ -199,3 +199,16 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/large/xion
 	containername = "pump crate"
+<<<<<<< HEAD
+=======
+
+/datum/supply_pack/misc/desktoys
+	name = "Desk toys"
+	contains = list(
+		/obj/item/toy/desk/newtoncradle = 2,
+		/obj/item/toy/desk/fan = 2,
+		/obj/item/toy/desk/officetoy = 2,
+		/obj/item/toy/desk/dippingbird = 2)
+	cost = 15
+	containertype = /obj/structure/closet/crate/oculum
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb

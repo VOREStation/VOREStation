@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/silicon
-	head = /obj/item/clothing/head/cardborg
+	head = /obj/item/clothing/head/collectable/cardborg
 	hierarchy_type = /decl/hierarchy/outfit/job/silicon
 
 /decl/hierarchy/outfit/job/silicon/ai
@@ -8,4 +8,4 @@
 
 /decl/hierarchy/outfit/job/silicon/cyborg
 	name = OUTFIT_JOB_NAME("Cyborg")
-	suit = /obj/item/clothing/suit/cardborg
+	suit = /obj/item/clothing/suit/costume/cardborg

@@ -102,7 +102,7 @@
 		if(88)
 			new/obj/item/xenos_claw(src)
 		if(89)
-			new/obj/item/clothing/head/bearpelt(src)
+			new/obj/item/clothing/head/collectable/bearpelt(src)
 		if(90)
 			new/obj/item/organ/internal/heart(src)
 		if(91)
@@ -115,18 +115,27 @@
 			new/obj/item/weapon/storage/backpack/clown(src)
 			new/obj/item/clothing/under/rank/clown(src)
 			new/obj/item/clothing/shoes/clown_shoes(src)
+<<<<<<< HEAD
 			new/obj/item/device/pda/clown(src)
 			new/obj/item/clothing/mask/gas/clown_hat(src)
 			new/obj/item/weapon/bikehorn(src)
 			//new/obj/item/weapon/stamp/clown(src) I'd add it, but only clowns can use it
 			new/obj/item/weapon/pen/crayon/rainbow(src)
 			new/obj/item/weapon/reagent_containers/spray/waterflower(src)
+=======
+			new/obj/item/pda/clown(src)
+			new/obj/item/clothing/mask/gas/costume(src)
+			new/obj/item/bikehorn(src)
+			//new/obj/item/stamp/clown(src) I'd add it, but only clowns can use it
+			new/obj/item/pen/crayon/rainbow(src)
+			new/obj/item/reagent_containers/spray/waterflower(src)
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 		if(95)
 			new/obj/item/clothing/under/mime(src)
 			new/obj/item/clothing/shoes/black(src)
 			new/obj/item/device/pda/mime(src)
 			new/obj/item/clothing/gloves/white(src)
-			new/obj/item/clothing/mask/gas/mime(src)
+			new/obj/item/clothing/mask/gas/costume/mime(src)
 			new/obj/item/clothing/head/beret(src)
 			new/obj/item/clothing/suit/suspenders(src)
 			new/obj/item/weapon/pen/crayon/mime(src)

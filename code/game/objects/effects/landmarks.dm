@@ -156,6 +156,7 @@
 	delete_me = 1
 
 //SUBCLASSES.  Spawn a bunch of items and disappear likewise
+<<<<<<< HEAD
 /obj/effect/landmark/costume/chicken/New()
 	new /obj/item/clothing/suit/chickensuit(src.loc)
 	new /obj/item/clothing/head/chicken(src.loc)
@@ -166,6 +167,20 @@
 	new /obj/item/clothing/under/gladiator(src.loc)
 	new /obj/item/clothing/head/helmet/gladiator(src.loc)
 	qdel(src)
+=======
+/obj/effect/landmark/costume/chicken/Initialize()
+	..()
+	new /obj/item/clothing/suit/costume/chickensuit(src.loc)
+	new /obj/item/clothing/head/collectable/chicken(src.loc)
+	new /obj/item/reagent_containers/food/snacks/egg(src.loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/costume/gladiator/Initialize()
+	..()
+	new /obj/item/clothing/under/costume/gladiator(src.loc)
+	new /obj/item/clothing/head/helmet/collectable/gladiator(src.loc)
+	return INITIALIZE_HINT_QDEL
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 /obj/effect/landmark/costume/madscientist/New()
 	new /obj/item/clothing/under/suit_jacket/green(src.loc)
@@ -181,8 +196,14 @@
 	new /obj/item/clothing/shoes/boots/jackboots(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/nyangirl/New()
 	new /obj/item/clothing/under/schoolgirl(src.loc)
+=======
+/obj/effect/landmark/costume/nyangirl/Initialize()
+	..()
+	new /obj/item/clothing/under/costume/schoolgirl(src.loc)
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	new /obj/item/clothing/head/kitty(src.loc)
 	delete_me = 1
 
@@ -199,6 +220,7 @@
 	new /obj/item/clothing/head/that(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/scratch/New()
 	new /obj/item/clothing/gloves/white(src.loc)
 	new /obj/item/clothing/shoes/white(src.loc)
@@ -209,6 +231,11 @@
 
 /obj/effect/landmark/costume/highlander/New()
 	new /obj/item/clothing/under/kilt(src.loc)
+=======
+/obj/effect/landmark/costume/highlander/Initialize()
+	..()
+	new /obj/item/clothing/under/costume/kilt(src.loc)
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	new /obj/item/clothing/head/beret(src.loc)
 	delete_me = 1
 
@@ -225,6 +252,7 @@
 
 /obj/effect/landmark/costume/plaguedoctor/New()
 	new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit(src.loc)
+<<<<<<< HEAD
 	new /obj/item/clothing/head/plaguedoctorhat(src.loc)
 	delete_me = 1
 
@@ -232,6 +260,16 @@
 	new /obj/item/clothing/under/owl(src.loc)
 	new /obj/item/clothing/mask/gas/owl_mask(src.loc)
 	delete_me = 1
+=======
+	new /obj/item/clothing/head/collectable/plaguedoctorhat(src.loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/costume/nightowl/Initialize()
+	..()
+	new /obj/item/clothing/under/costume/owl(src.loc)
+	new /obj/item/clothing/mask/gas/costume/owl_mask(src.loc)
+	return INITIALIZE_HINT_QDEL
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 /obj/effect/landmark/costume/waiter/New()
 	new /obj/item/clothing/under/waiter(src.loc)
@@ -240,19 +278,34 @@
 	new /obj/item/clothing/suit/storage/apron(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/pirate/New()
 	new /obj/item/clothing/under/pirate(src.loc)
 	new /obj/item/clothing/suit/pirate(src.loc)
 	var/CHOICE = pick( /obj/item/clothing/head/pirate , /obj/item/clothing/head/bandana )
+=======
+/obj/effect/landmark/costume/pirate/Initialize()
+	..()
+	new /obj/item/clothing/under/costume/pirate(src.loc)
+	new /obj/item/clothing/suit/costume(src.loc)
+	var/CHOICE = pick( /obj/item/clothing/head/collectable/pirate , /obj/item/clothing/head/bandana )
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	new CHOICE(src.loc)
 	new /obj/item/clothing/glasses/eyepatch(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/commie/New()
 	new /obj/item/clothing/under/soviet(src.loc)
+=======
+/obj/effect/landmark/costume/commie/Initialize()
+	..()
+	new /obj/item/clothing/under/costume/soviet(src.loc)
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	new /obj/item/clothing/head/ushanka(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/imperium_monk/New()
 	new /obj/item/clothing/suit/imperium_monk(src.loc)
 	if (prob(25))
@@ -262,6 +315,12 @@
 /obj/effect/landmark/costume/holiday_priest/New()
 	new /obj/item/clothing/suit/holidaypriest(src.loc)
 	qdel(src)
+=======
+/obj/effect/landmark/costume/holiday_priest/Initialize()
+	..()
+	new /obj/item/clothing/suit/costume/holidaypriest(src.loc)
+	return INITIALIZE_HINT_QDEL
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 /obj/effect/landmark/costume/marisawizard/fake/New()
 	new /obj/item/clothing/head/wizard/marisa/fake(src.loc)
@@ -270,9 +329,15 @@
 
 /obj/effect/landmark/costume/cutewitch/New()
 	new /obj/item/clothing/under/sundress(src.loc)
+<<<<<<< HEAD
 	new /obj/item/clothing/head/witchwig(src.loc)
 	new /obj/item/weapon/staff/broom(src.loc)
 	delete_me = 1
+=======
+	new /obj/item/clothing/head/collectable/witchwig(src.loc)
+	new /obj/item/staff/broom(src.loc)
+	return INITIALIZE_HINT_QDEL
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 /obj/effect/landmark/costume/fakewizard/New()
 	new /obj/item/clothing/suit/wizrobe/fake(src.loc)
@@ -280,6 +345,7 @@
 	new /obj/item/weapon/staff/(src.loc)
 	delete_me = 1
 
+<<<<<<< HEAD
 /obj/effect/landmark/costume/sexyclown/New()
 	new /obj/item/clothing/mask/gas/sexyclown(src.loc)
 	new /obj/item/clothing/under/sexyclown(src.loc)
@@ -289,3 +355,20 @@
 	new /obj/item/clothing/mask/gas/sexymime(src.loc)
 	new /obj/item/clothing/under/sexymime(src.loc)
 	delete_me = 1
+=======
+/obj/effect/landmark/costume/sexyclown/Initialize()
+	..()
+	new /obj/item/clothing/mask/gas/costume/sexyclown(src.loc)
+	new /obj/item/clothing/under/costume/sexyclown(src.loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/costume/sexymime/Initialize()
+	..()
+	new /obj/item/clothing/mask/gas/costume/sexymime(src.loc)
+	new /obj/item/clothing/under/costume/sexymime(src.loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/crashed_pod
+	name = "Crash Survivor Spawn"
+	delete_me = FALSE
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb

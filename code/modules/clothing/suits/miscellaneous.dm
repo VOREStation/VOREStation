@@ -86,13 +86,18 @@
  * Costume
  */
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/pirate
+=======
+/obj/item/clothing/suit/costume
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	name = "pirate coat"
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
 	body_parts_covered = UPPER_TORSO|ARMS
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/poncho
 	name = "poncho"
 	desc = "A simple, comfortable poncho."
@@ -106,6 +111,24 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/hgpirate
+=======
+/obj/item/clothing/suit/costume/lobster
+	name = "lobster costume"
+	desc = "Pass the butter."
+	icon_state = "lobster"
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET|HEAD
+
+/obj/item/clothing/suit/costume/chickensuit
+	name = "Chicken Suit"
+	desc = "Not a costume for cowards."
+	icon_state = "chickensuit"
+	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	siemens_coefficient = 2.0
+
+/obj/item/clothing/suit/costume/hgpirate
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	name = "pirate captain coat"
 	desc = "Yarr."
 	icon_state = "hgpirate"
@@ -113,28 +136,15 @@
 	flags_inv = HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
-/obj/item/clothing/suit/cyborg_suit
+/obj/item/clothing/suit/costume/cyborg_suit
 	name = "cyborg suit"
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
-/obj/item/clothing/suit/greatcoat
-	name = "great coat"
-	desc = "A heavy great coat"
-	icon_state = "gentlecoat"
-	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
-	flags_inv = HIDEHOLSTER
-
-/obj/item/clothing/suit/johnny_coat
-	name = "johnny~~ coat"
-	desc = "Johnny~~"
-	icon_state = "gentlecoat"
-	item_state_slots = list(slot_r_hand_str = "johnny_coat", slot_l_hand_str = "johnny_coat")
-	flags_inv = HIDEHOLSTER
-
-/obj/item/clothing/suit/justice
+/obj/item/clothing/suit/costume/justice
 	name = "justice suit"
 	desc = "This pretty much looks ridiculous."
 	icon_state = "gentle_coat"
@@ -142,21 +152,20 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
-/obj/item/clothing/suit/judgerobe
+/obj/item/clothing/suit/costume/judgerobe
 	name = "judge's robe"
 	desc = "This robe commands authority."
 	icon_state = "judge"
+<<<<<<< HEAD
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
+=======
+	allowed = list(/obj/item/storage/fancy/cigarettes,/obj/item/spacecash)
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
-/obj/item/clothing/suit/storage/apron/overalls
-	name = "coveralls"
-	desc = "A set of denim overalls."
-	icon_state = "overalls"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-
-/obj/item/clothing/suit/syndicatefake
+/obj/item/clothing/suit/costume/syndicatefake
 	name = "red space suit replica"
 	icon_state = "syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
@@ -165,31 +174,16 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
-/obj/item/clothing/suit/hastur
-	name = "Hastur's Robes"
-	desc = "Robes not meant to be worn by man"
+/obj/item/clothing/suit/costume/hastur
+	name = "Hastur's robes"
+	desc = "Robes once worn in Lost Carcosa."
 	icon_state = "hastur"
 	item_state_slots = list(slot_r_hand_str = "rad", slot_l_hand_str = "rad")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
-/obj/item/clothing/suit/imperium_monk
-	name = "Imperium monk"
-	desc = "Have YOU killed a xenos today?"
-	icon_state = "imperium_monk"
-	body_parts_covered = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
-
-/obj/item/clothing/suit/chickensuit
-	name = "Chicken Suit"
-	desc = "A suit made long ago by the ancient empire KFC."
-	icon_state = "chickensuit"
-	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET
-	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
-	siemens_coefficient = 2.0
-
-/obj/item/clothing/suit/monkeysuit
-	name = "Monkey Suit"
+/obj/item/clothing/suit/costume/monkeysuit
+	name = "monkey suit"
 	desc = "A suit that looks like a primate"
 	icon_state = "monkeysuit"
 	item_state_slots = list(slot_r_hand_str = "brown_jacket", slot_l_hand_str = "brown_jacket")
@@ -197,22 +191,22 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 2.0
 
-/obj/item/clothing/suit/holidaypriest
-	name = "Holiday Priest"
+/obj/item/clothing/suit/costume/holidaypriest
+	name = "priestly vestments"
 	desc = "This is a nice holiday my son."
 	icon_state = "holidaypriest"
 	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
-/obj/item/clothing/suit/cardborg
+/obj/item/clothing/suit/costume/cardborg
 	name = "cardborg suit"
 	desc = "An ordinary cardboard box with holes cut in the sides."
 	icon_state = "cardborg"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
-/obj/item/clothing/suit/skeleton
+/obj/item/clothing/suit/costume/skeleton
 	name = "skeleton costume"
 	desc = "A body-tight costume with the human skeleton lined out on it."
 	icon_state = "skelecost"
@@ -220,7 +214,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEGLOVES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "judge", slot_l_hand_str = "judge")
 
-/obj/item/clothing/suit/engicost
+/obj/item/clothing/suit/costume/engicost
 	name = "sexy engineering voidsuit costume"
 	desc = "It's supposed to look like an engineering voidsuit... It doesn't look like it could protect from much radiation."
 	icon_state = "engicost"
@@ -228,7 +222,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "eng_voidsuit", slot_l_hand_str = "eng_voidsuit")
 
-/obj/item/clothing/suit/maxman
+/obj/item/clothing/suit/costume/maxman
 	name = "doctor maxman costume"
 	desc = "A costume made to look like Dr. Maxman, the famous male-enhancement salesman. Complete with red do-rag and sleeveless labcoat."
 	icon_state = "maxman"
@@ -236,7 +230,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 
-/obj/item/clothing/suit/iasexy
+/obj/item/clothing/suit/costume/iasexy
 	name = "sexy internal affairs suit"
 	desc = "Now where's your pen?~"
 	icon_state = "iacost"
@@ -244,7 +238,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 
-/obj/item/clothing/suit/sexyminer
+/obj/item/clothing/suit/costume/sexyminer
 	name = "sexy miner costume"
 	desc = "For when you need to get your rocks off."
 	icon_state = "sexyminer"
@@ -252,7 +246,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "miner", slot_l_hand_str = "miner")
 
-/obj/item/clothing/suit/sumo
+/obj/item/clothing/suit/costume/sumo
 	name = "inflatable sumo wrestler costume"
 	desc = "An inflated sumo wrestler costume. It's quite hot."
 	icon_state = "sumo"
@@ -261,7 +255,7 @@
 	item_state_slots = list(slot_r_hand_str = "classicponcho", slot_l_hand_str = "classicponcho")
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/suit/hackercost
+/obj/item/clothing/suit/costume/hackercoat
 	name = "classic hacker costume"
 	desc = "You would feel insanely cool wearing this."
 	icon_state = "hackercost"
@@ -269,7 +263,7 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "leather_coat", slot_l_hand_str = "leather_coat")
 
-/obj/item/clothing/suit/lumber
+/obj/item/clothing/suit/costume/lumber
 	name = "sexy lumberjack costume"
 	desc = "Smells of dusky pine. Includes chest hair and beard."
 	icon_state = "sexylumber"
@@ -277,12 +271,106 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "red_labcoat", slot_l_hand_str = "red_labcoat")
 
+<<<<<<< HEAD
+=======
+/obj/item/clothing/suit/costume/marine
+	name = "marine armor"
+	desc = "A set of marine prop armor from the popular game 'Ruin'."
+	icon_state = "marine"
+	body_parts_covered = FEET|LOWER_TORSO|UPPER_TORSO|LEGS
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	item_state_slots = list(slot_r_hand_str = "green_labcoat", slot_l_hand_str = "green_labcoat")
+
+/obj/item/clothing/suit/costume/hotdog
+	name = "hot dog costume"
+	desc = "Frankly ridiculous."
+	icon_state = "hotdog"
+	item_state_slots = list(slot_r_hand_str = "hotdog", slot_l_hand_str = "hotdog")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_inv = HIDETIE|HIDEHOLSTER|HIDEEARS|BLOCKHEADHAIR
+
+/obj/item/clothing/suit/costume/dog
+	name = "dog costume"
+	desc = "Strangely musky."
+	icon_state = "dog_costume"
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET|HEAD
+
+/obj/item/clothing/suit/costume/bunny
+	name = "bunny costume"
+	desc = "Whenever they catch you, they will kill you. But first they must catch you."
+	icon_state = "bunnysuit"
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET|HEAD
+
+/obj/item/clothing/suit/costume/snowman
+	name = "snowman costume"
+	desc = "Dressed for the ball."
+	icon_state = "snowman"
+	flags_inv = HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/suit/costume/bee
+	name = "bee costume"
+	desc = "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible..."
+	icon_state = "bee"
+	flags_inv = HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/suit/costume/roman
+	name = "roman legionary costume"
+	desc = "Replica ancient armour. Hit the road."
+	icon_state = "roman"
+	flags_inv = HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/suit/costume/pharaoh
+	name = "pharaonic costume"
+	desc = "The garments of ancient kings."
+	icon_state = "pharaoh"
+	flags_inv = HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/suit/costume/vampire
+	name = "vampire overcoat"
+	desc = "This costume kind of sucks."
+	icon_state = "vampire"
+	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
+	flags_inv = HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/suit/costume/icefairy
+	name = "icy fairy wings"
+	desc = "They really move!"
+	icon_state = "ice_fairy_wings"
+	flags_inv = HIDETIE|HIDEHOLSTER
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 /*
  * Misc
  */
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
+=======
+/obj/item/clothing/suit/storage/apron/overalls
+	name = "coveralls"
+	desc = "A set of denim overalls."
+	icon_state = "overalls"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+
+/obj/item/clothing/suit/greatcoat
+	name = "great coat"
+	desc = "A heavy great coat"
+	icon_state = "gentlecoat"
+	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/straight_jacket //A mispelling from time immemorial...
+	name = "straitjacket"
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	desc = "A suit that completely restrains the wearer."
 	icon_state = "straight_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS

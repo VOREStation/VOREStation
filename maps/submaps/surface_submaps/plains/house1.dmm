@@ -20,10 +20,17 @@
 "at" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
 "au" = (/obj/structure/toilet,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
 "av" = (/obj/structure/table/marble,/obj/random/drinkbottle,/turf/simulated/floor/tiled,/area/submap/house1)
+<<<<<<< HEAD
 "aw" = (/obj/item/device/flashlight/lantern,/turf/simulated/floor/tiled,/area/submap/house1)
 "ax" = (/obj/structure/table/glass,/obj/structure/window/reinforced,/obj/item/weapon/coin/phoron,/turf/simulated/floor/wood,/area/submap/house1)
 "ay" = (/obj/item/clothing/head/bearpelt{pixel_y = 6},/obj/structure/table/glass,/obj/structure/window/reinforced,/turf/simulated/floor/wood,/area/submap/house1)
 "az" = (/obj/item/weapon/material/harpoon,/obj/structure/table/glass,/obj/structure/window/reinforced,/turf/simulated/floor/wood,/area/submap/house1)
+=======
+"aw" = (/obj/item/flashlight/lantern,/turf/simulated/floor/tiled,/area/submap/house1)
+"ax" = (/obj/structure/table/glass,/obj/structure/window/reinforced,/obj/item/coin/phoron{start_anomalous = 1},/turf/simulated/floor/wood,/area/submap/house1)
+"ay" = (/obj/item/clothing/head/collectable/bearpelt{pixel_y = 6},/obj/structure/table/glass,/obj/structure/window/reinforced,/turf/simulated/floor/wood,/area/submap/house1)
+"az" = (/obj/item/material/harpoon{start_anomalous = 1},/obj/structure/table/glass,/obj/structure/window/reinforced,/turf/simulated/floor/wood,/area/submap/house1)
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 "aA" = (/obj/structure/table/glass,/obj/structure/window/reinforced,/obj/item/clothing/accessory/medal/conduct{pixel_y = 6},/turf/simulated/floor/wood,/area/submap/house1)
 "aB" = (/obj/structure/sink{icon_state = "sink"; dir = 8; pixel_x = -12; pixel_y = 2},/obj/structure/mirror{dir = 4; pixel_x = -28; pixel_y = 0},/turf/simulated/floor/tiled/freezer,/area/submap/house1)
 "aC" = (/obj/item/weapon/towel,/turf/simulated/floor/tiled/freezer,/area/submap/house1)

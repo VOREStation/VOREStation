@@ -31,9 +31,15 @@
 		croptops[initial(croptop_type.name)] = croptop_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(croptops))
 
+<<<<<<< HEAD
 /datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
+=======
+/datum/gear/uniform/cropsweater
+	display_name = "cropped sweater"
+	path = /obj/item/clothing/under/wednesday
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 /datum/gear/uniform/cuttop
 	display_name = "cut top, grey"
@@ -786,7 +792,27 @@
 	path = /obj/item/clothing/under/corp/veymed
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 
+<<<<<<< HEAD
 /datum/gear/uniform/brandsuit/kaleidoscope
 	display_name = "outfit, kaleidoscope (Science)"
 	path = 	/obj/item/clothing/under/corp/kaleidoscope
 	allowed_roles = list("Research Director","Scientist","Xenobiologist")
+=======
+/datum/gear/uniform/chaplain_stripe
+	display_name = "jumpsuit, chaplain striped"
+	path = /obj/item/clothing/under/rank/chaplain/alt
+	allowed_roles = list("Chaplain")
+
+/datum/gear/uniform/costumes
+	display_name = "costume clothing selection"
+	description = "A selection of fancy-dress costumes worn on the clothing slot."
+	path = /obj/item/clothing/under/costume
+
+/datum/gear/uniform/costumes/New()
+	..()
+	var/list/costumes = list()
+	for(var/costume in typesof(/obj/item/clothing/under/costume))
+		var/obj/item/clothing/under/costume/costume_type = costume
+		costumes[initial(costume_type.name)] = costume_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(costumes))
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb

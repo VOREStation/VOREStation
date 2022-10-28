@@ -63,6 +63,7 @@
 	display_name = "cap, black"
 	path = /obj/item/clothing/head/soft/black
 
+<<<<<<< HEAD
 /datum/gear/head/cap/blue
 	display_name = "cap, blue"
 	path = /obj/item/clothing/head/soft/blue
@@ -77,6 +78,27 @@
 
 /datum/gear/head/cap/corp
 	display_name = "cap, corporate (Security)"
+=======
+/datum/gear/head/cap/New()
+	..()
+	var/captype = list()
+	captype["soft cap, black"] = /obj/item/clothing/head/soft/black
+	captype["soft cap, blue"] = /obj/item/clothing/head/soft/blue
+	captype["soft cap, green"] = /obj/item/clothing/head/soft/green
+	captype["soft cap, grey"] = /obj/item/clothing/head/soft/grey
+	captype["soft cap, major bill's"] = /obj/item/clothing/head/soft/mbill
+	captype["soft cap, orange"] = /obj/item/clothing/head/soft/orange
+	captype["soft cap, purple"] = /obj/item/clothing/head/soft/purple
+	captype["soft cap, rainbow"] = /obj/item/clothing/head/soft/rainbow
+	captype["soft cap, red"] = /obj/item/clothing/head/soft/red
+	captype["soft cap, solgov"] = /obj/item/clothing/head/soft/solgov
+	captype["soft cap, white"] = /obj/item/clothing/head/soft/mime
+	captype["soft cap, yellow"] = /obj/item/clothing/head/soft/yellow
+	gear_tweaks += new/datum/gear_tweak/path(captype)
+
+/datum/gear/head/sec_cap
+	display_name = "cap, soft security selection (Security)"
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 	path = /obj/item/clothing/head/soft/sec/corp
 	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
@@ -238,8 +260,13 @@
 	path = /obj/item/clothing/head/that
 
 /datum/gear/head/wig/philosopher
+<<<<<<< HEAD
 	display_name = "natural philosopher's wig"
 	path = /obj/item/clothing/head/philosopher_wig
+=======
+	display_name = "wig, natural philosopher"
+	path = /obj/item/clothing/head/collectable/philosopher_wig
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
 
 /datum/gear/head/wig
 	display_name = "powdered wig"
@@ -426,6 +453,7 @@
 	display_name = "black and gold headdress"
 	path = /obj/item/clothing/head/blackngoldheaddress
 
+<<<<<<< HEAD
 /datum/gear/head/plaguedoctor
 	display_name = "plague doctor's hat"
 	path = /obj/item/clothing/head/plaguedoctorhat
@@ -437,3 +465,47 @@
 /datum/gear/head/wheat
 	display_name = "straw hat"
 	path = /obj/item/clothing/head/wheat
+=======
+/datum/gear/head/nonla
+	display_name = "non la"
+	path = /obj/item/clothing/head/nonla
+
+/datum/gear/head/buckethat
+	display_name = "hat, bucket"
+	path = /obj/item/clothing/head/buckethat
+
+/datum/gear/head/buckethat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/head/redcoat
+	display_name = "hat, tricorne"
+	path =/obj/item/clothing/head/redcoat
+
+/datum/gear/head/tanker
+	display_name = "tanker cap selection"
+	path = /obj/item/clothing/head/hardhat
+	cost = 2
+
+/datum/gear/head/tanker/New()
+	..()
+	var/list/tankercaps = list()
+	for(var/tankercap in typesof(/obj/item/clothing/head/helmet/tank))
+		var/obj/item/clothing/head/helmet/tank/cap_type = tankercap
+		tankercaps[initial(cap_type.name)] = cap_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tankercaps))
+
+/datum/gear/head/costumes
+	display_name = "costume hat selection"
+	description = "A selection of fancy-dress hats."
+	path = /obj/item/clothing/head/collectable
+	cost = 2
+
+/datum/gear/head/costumes/New()
+	..()
+	var/list/costumes = list()
+	for(var/costume in typesof(/obj/item/clothing/head/collectable))
+		var/obj/item/clothing/head/collectable/costume_type = costume
+		costumes[initial(costume_type.name)] = costume_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(costumes))
+>>>>>>> 540b5cf6487... Merge pull request #8797 from Cerebulon/holloweeb
