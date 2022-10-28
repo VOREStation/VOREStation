@@ -572,6 +572,12 @@
 		var/obj/item/I = locate(href_list["lookitem"])
 		src.examinate(I)
 
+	if (href_list["lookitem_desc_only"])
+		var/obj/item/I = locate(href_list["lookitem_desc_only"])
+		if(!I)
+			return
+		usr.examinate(I, 1)
+
 	if (href_list["lookmob"])
 		var/mob/M = locate(href_list["lookmob"])
 		src.examinate(M)

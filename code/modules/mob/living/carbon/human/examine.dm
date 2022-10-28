@@ -76,6 +76,10 @@
 		BP_L_LEG = skip_body & EXAMINE_SKIPLEGS,
 		BP_R_LEG = skip_body & EXAMINE_SKIPLEGS)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 	var/gender_hidden = (skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)
 	var/gender_key = get_visible_gender(user, gender_hidden)
 
@@ -107,22 +111,23 @@
 	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
 		//Ties
 		var/tie_msg
+		var/tie_msg_warn
 		if(istype(w_uniform,/obj/item/clothing/under) && !(skip_gear & EXAMINE_SKIPTIE))
 			var/obj/item/clothing/under/U = w_uniform
 			if(LAZYLEN(U.accessories))
-				var/list/accessories_visible = list() //please let this fix the stupid fucking runtimes
+				tie_msg += ". Attached to it is"
+				tie_msg_warn += "! Attached to it is"
+				var/list/accessory_descs = list()
 				if(skip_gear & EXAMINE_SKIPHOLSTER)
 					for(var/obj/item/clothing/accessory/A in U.accessories)
 						if(A.show_examine && !istype(A, /obj/item/clothing/accessory/holster)) // If we're supposed to skip holsters, actually skip them
-							accessories_visible.Add(A)
+							accessory_descs += "\a [A]"
 				else
 					for(var/obj/item/clothing/accessory/A in U.accessories)
 						if(A.concealed_holster == 0 && A.show_examine)
-							accessories_visible.Add(A)
+							accessory_descs += "<a href='?src=\ref[src];lookitem_desc_only=\ref[A]'>\a [A]</a>"
 
-				if(accessories_visible.len)
-					tie_msg += " Attached to it is [english_list(accessories_visible)]."
-
+<<<<<<< HEAD
 		var/list/pocket_msg
 		if(l_store)
 			var/l_store_message = l_store.pocket_description(src, user)
@@ -139,61 +144,116 @@
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[w_uniform][bicon(w_uniform)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [w_uniform.name]![tie_msg]</span>"
 		else
 			msg += "[T.He] [T.is] wearing \icon[w_uniform][bicon(w_uniform)] \a [w_uniform].[tie_msg]"
+=======
+				tie_msg += " [lowertext(english_list(accessory_descs))]."
+		if(w_uniform.blood_DNA)
+			msg += "<span class='warning'>[T.He] [T.is] wearing [bicon(w_uniform)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[w_uniform]'>[w_uniform.name]</a>![tie_msg]</span>"
+		else
+			msg += "[T.He] [T.is] wearing [bicon(w_uniform)] <a href='?src=\ref[src];lookitem_desc_only=\ref[w_uniform]'>\a [w_uniform]</a>.[tie_msg]"
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//head
 	if(head && !(skip_gear & EXAMINE_SKIPHELMET) && head.show_examine)
 		if(head.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[head][bicon(head)] [head.gender==PLURAL?"some":"a"] [(head.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [head.name] on [T.his] head!</span>"
 		else
 			msg += "[T.He] [T.is] wearing \icon[head][bicon(head)] \a [head] on [T.his] head."
+=======
+			msg += "<span class='warning'>[T.He] [T.is] wearing [bicon(head)] [head.gender==PLURAL?"some":"a"] [(head.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[head]'>[head.name]</a> on [T.his] head!</span>"
+		else
+			msg += "[T.He] [T.is] wearing [bicon(head)] <a href='?src=\ref[src];lookitem_desc_only=\ref[head]'>\a [head]</a> on [T.his] head."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//suit/armour
 	if(wear_suit)
 		var/tie_msg
+		var/tie_msg_warn
 		if(istype(wear_suit,/obj/item/clothing/suit))
 			var/obj/item/clothing/suit/U = wear_suit
 			if(LAZYLEN(U.accessories))
-				tie_msg += " Attached to it is [english_list(U.accessories)]."
+				tie_msg += ". Attached to it is"
+				tie_msg_warn += "! Attached to it is"
+				var/list/accessory_descs = list()
+				for(var/accessory in U.accessories)
+					accessory_descs += "<a href='?src=\ref[src];lookitem_desc_only=\ref[accessory]'>\a [accessory]</a>"
+				tie_msg += " [lowertext(english_list(accessory_descs))]."
 
 		if(wear_suit.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_suit][bicon(wear_suit)] [wear_suit.gender==PLURAL?"some":"a"] [(wear_suit.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [wear_suit.name][tie_msg]!</span>"
 		else
 			msg += "[T.He] [T.is] wearing \icon[wear_suit][bicon(wear_suit)] \a [wear_suit].[tie_msg]"
+=======
+			msg += "<span class='warning'>[T.He] [T.is] wearing [bicon(wear_suit)] [wear_suit.gender==PLURAL?"some":"a"] [(wear_suit.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[wear_suit]'>[wear_suit.name]</a>![tie_msg]</span>"
+		else
+			msg += "[T.He] [T.is] wearing [bicon(wear_suit)] <a href='?src=\ref[src];lookitem_desc_only=\ref[wear_suit]'>\a [wear_suit]</a>.[tie_msg]"
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 		//suit/armour storage
 		if(s_store && !(skip_gear & EXAMINE_SKIPSUITSTORAGE) && s_store.show_examine)
 			if(s_store.blood_DNA)
+<<<<<<< HEAD
 				msg += "<span class='warning'>[T.He] [T.is] carrying \icon[s_store][bicon(s_store)] [s_store.gender==PLURAL?"some":"a"] [(s_store.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [s_store.name] on [T.his] [wear_suit.name]!</span>"
 			else
 				msg += "[T.He] [T.is] carrying \icon[s_store][bicon(s_store)] \a [s_store] on [T.his] [wear_suit.name]."
+=======
+				msg += "<span class='warning'>[T.He] [T.is] carrying [bicon(s_store)] [s_store.gender==PLURAL?"some":"a"] [(s_store.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[s_store]'>[s_store.name]</a> on [T.his] [wear_suit.name]!</span>"
+			else
+				msg += "[T.He] [T.is] carrying [bicon(s_store)] <a href='?src=\ref[src];lookitem_desc_only=\ref[s_store]'>\a [s_store]</a> on [T.his] [wear_suit.name]."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//back
 	if(back && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
 		if(back.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.has] \icon[back][bicon(back)] [back.gender==PLURAL?"some":"a"] [(back.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [back] on [T.his] back.</span>"
 		else
 			msg += "[T.He] [T.has] \icon[back][bicon(back)] \a [back] on [T.his] back."
+=======
+			msg += "<span class='warning'>[T.He] [T.has] [bicon(back)] [back.gender==PLURAL?"some":"a"] [(back.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[back]'>[back]</a> on [T.his] back.</span>"
+		else
+			msg += "[T.He] [T.has] [bicon(back)] <a href='?src=\ref[src];lookitem_desc_only=\ref[back]'>\a [back]</a> on [T.his] back."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//left hand
 	if(l_hand && l_hand.show_examine)
 		if(l_hand.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.is] holding \icon[l_hand][bicon(l_hand)] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [l_hand.name] in [T.his] left hand!</span>"
 		else
 			msg += "[T.He] [T.is] holding \icon[l_hand][bicon(l_hand)] \a [l_hand] in [T.his] left hand."
+=======
+			msg += "<span class='warning'>[T.He] [T.is] holding [bicon(l_hand)] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>[l_hand.name]</a> in [T.his] left hand!</span>"
+		else
+			msg += "[T.He] [T.is] holding [bicon(l_hand)] <a href='?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>\a [l_hand]</a> in [T.his] left hand."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//right hand
 	if(r_hand && r_hand.show_examine)
 		if(r_hand.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.is] holding \icon[r_hand][bicon(r_hand)] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [r_hand.name] in [T.his] right hand!</span>"
 		else
 			msg += "[T.He] [T.is] holding \icon[r_hand][bicon(r_hand)] \a [r_hand] in [T.his] right hand."
+=======
+			msg += "<span class='warning'>[T.He] [T.is] holding [bicon(r_hand)] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>[r_hand.name]</a> in [T.his] right hand!</span>"
+		else
+			msg += "[T.He] [T.is] holding [bicon(r_hand)] <a href='?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>\a [r_hand]</a> in [T.his] right hand."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//gloves
 	if(gloves && !(skip_gear & EXAMINE_SKIPGLOVES) && gloves.show_examine)
 		if(gloves.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.has] \icon[gloves][bicon(gloves)] [gloves.gender==PLURAL?"some":"a"] [(gloves.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [gloves.name] on [T.his] hands!</span>"
 		else
 			msg += "[T.He] [T.has] \icon[gloves][bicon(gloves)] \a [gloves] on [T.his] hands."
+=======
+			msg += "<span class='warning'>[T.He] [T.has] [bicon(gloves)] [gloves.gender==PLURAL?"some":"a"] [(gloves.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[gloves]'>[gloves.name]</a> on [T.his] hands!</span>"
+		else
+			msg += "[T.He] [T.has] [bicon(gloves)] <a href='?src=\ref[src];lookitem_desc_only=\ref[gloves]'>\a [gloves]</a> on [T.his] hands."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 	else if(blood_DNA && !(skip_body & EXAMINE_SKIPHANDS))
 		msg += "<span class='warning'>[T.He] [T.has] [(hand_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained hands!</span>"
 
@@ -211,16 +271,28 @@
 	//belt
 	if(belt && !(skip_gear & EXAMINE_SKIPBELT) && belt.show_examine)
 		if(belt.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.has] \icon[belt][bicon(belt)] [belt.gender==PLURAL?"some":"a"] [(belt.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [belt.name] about [T.his] waist!</span>"
 		else
 			msg += "[T.He] [T.has] \icon[belt][bicon(belt)] \a [belt] about [T.his] waist."
+=======
+			msg += "<span class='warning'>[T.He] [T.has] [bicon(belt)] [belt.gender==PLURAL?"some":"a"] [(belt.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[belt]'>[belt.name]</a> about [T.his] waist!</span>"
+		else
+			msg += "[T.He] [T.has] [bicon(belt)] <a href='?src=\ref[src];lookitem_desc_only=\ref[belt]'>\a [belt]</a> about [T.his] waist."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//shoes
 	if(shoes && !(skip_gear & EXAMINE_SKIPSHOES) && shoes.show_examine)
 		if(shoes.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[shoes][bicon(shoes)] [shoes.gender==PLURAL?"some":"a"] [(shoes.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [shoes.name] on [T.his] feet!</span>"
 		else
 			msg += "[T.He] [T.is] wearing \icon[shoes][bicon(shoes)] \a [shoes] on [T.his] feet."
+=======
+			msg += "<span class='warning'>[T.He] [T.is] wearing [bicon(shoes)] [shoes.gender==PLURAL?"some":"a"] [(shoes.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[shoes]'>[shoes.name]</a> on [T.his] feet!</span>"
+		else
+			msg += "[T.He] [T.is] wearing [bicon(shoes)] <a href='?src=\ref[src];lookitem_desc_only=\ref[shoes]'>\a [shoes]</a> on [T.his] feet."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 	else if(feet_blood_DNA && !(skip_body & EXAMINE_SKIPHANDS))
 		msg += "<span class='warning'>[T.He] [T.has] [(feet_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained feet!</span>"
 
@@ -231,13 +303,20 @@
 			descriptor = "in [T.his] mouth"
 
 		if(wear_mask.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.has] \icon[wear_mask][bicon(wear_mask)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [wear_mask.name] [descriptor]!</span>"
 		else
 			msg += "[T.He] [T.has] \icon[wear_mask][bicon(wear_mask)] \a [wear_mask] [descriptor]."
+=======
+			msg += "<span class='warning'>[T.He] [T.has] [bicon(wear_mask)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[wear_mask]'>[wear_mask.name]</a> [descriptor]!</span>"
+		else
+			msg += "[T.He] [T.has] [bicon(wear_mask)] <a href='?src=\ref[src];lookitem_desc_only=\ref[wear_mask]'>\a [wear_mask]</a> [descriptor]."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//eyes
 	if(glasses && !(skip_gear & EXAMINE_SKIPEYEWEAR) && glasses.show_examine)
 		if(glasses.blood_DNA)
+<<<<<<< HEAD
 			msg += "<span class='warning'>[T.He] [T.has] \icon[glasses][bicon(glasses)] [glasses.gender==PLURAL?"some":"a"] [(glasses.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [glasses] covering [T.his] eyes!</span>"
 		else
 			msg += "[T.He] [T.has] \icon[glasses][bicon(glasses)] \a [glasses] covering [T.his] eyes."
@@ -263,6 +342,23 @@
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_id][bicon(wear_id)] \a [wear_id] yet something doesn't seem right...</span>"
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id][bicon(wear_id)] \a [wear_id]."
+=======
+			msg += "<span class='warning'>[T.He] [T.has] [bicon(glasses)] [glasses.gender==PLURAL?"some":"a"] [(glasses.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[glasses]'>[glasses]</a> covering [T.his] eyes!</span>"
+		else
+			msg += "[T.He] [T.has] [bicon(glasses)] <a href='?src=\ref[src];lookitem_desc_only=\ref[glasses]'>\a [glasses]</a> covering [T.his] eyes."
+
+	//left ear
+	if(l_ear && !(skip_gear & EXAMINE_SKIPEARS) && l_ear.show_examine)
+		msg += "[T.He] [T.has] [bicon(l_ear)] <a href='?src=\ref[src];lookitem_desc_only=\ref[l_ear]'>\a [l_ear]</a> on [T.his] left ear."
+
+	//right ear
+	if(r_ear && !(skip_gear & EXAMINE_SKIPEARS) && r_ear.show_examine)
+		msg += "[T.He] [T.has] [bicon(r_ear)] <a href='?src=\ref[src];lookitem_desc_only=\ref[r_ear]'>\a [r_ear]</a> on [T.his] right ear."
+
+	//ID
+	if(wear_id && wear_id.show_examine)
+		msg += "[T.He] [T.is] wearing [bicon(wear_id)]<a href='?src=\ref[src];lookitem_desc_only=\ref[wear_id]'>\a [wear_id]</a>."
+>>>>>>> 2bfc862d6a9... On-mob item examination (#8775)
 
 	//Jitters
 	if(is_jittery)
