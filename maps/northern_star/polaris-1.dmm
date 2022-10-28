@@ -7598,7 +7598,7 @@
 "cQf" = (/obj/structure/bed/chair/comfy/black{dir = 8},/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -24},/obj/machinery/light_switch{pixel_x = 12; pixel_y = -24},/obj/structure/cable/green,/turf/simulated/floor/carpet,/area/crew_quarters/longue_area)
 "cQg" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 1},/turf/simulated/floor/wood,/area/crew_quarters/longue_area)
 "cQh" = (/obj/machinery/door/airlock{name = "Unisex Showers"},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled/freezer,/area/crew_quarters/locker/locker_toilet)
-"cQi" = (/obj/item/latexballon,/turf/simulated/floor,/area/crew_quarters/locker/locker_toilet)
+"cQi" = (/obj/item/toy/balloon/latex,/turf/simulated/floor,/area/crew_quarters/locker/locker_toilet)
 "cQj" = (/obj/machinery/firealarm{dir = 8; pixel_x = -24},/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_1)
 "cQk" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_1)
 "cQl" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_1)

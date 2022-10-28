@@ -93907,7 +93907,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/construction/seconddeck/construction2)
 "dsS" = (
-/obj/item/latexballon,
+/obj/item/toy/balloon/latex,
 /turf/simulated/floor,
 /area/construction/seconddeck/construction2)
 "dsT" = (

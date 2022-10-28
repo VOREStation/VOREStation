@@ -221,8 +221,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/random/action_figure,
 		/obj/random/action_figure,
 		/obj/random/action_figure,
-		/obj/item/toy/nanotrasenballoon,
-		/obj/item/toy/syndicateballoon,
+		/obj/random/balloon,
+		/obj/random/balloon,
 		/obj/item/toy/sword,
 		/obj/item/toy/sword,
 		/obj/item/toy/sword,
@@ -257,7 +257,9 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/accessory/scarf/christmas,
 		/obj/item/clothing/accessory/scarf/christmas,
 		/obj/item/clothing/accessory/scarf/christmas,
-		/obj/item/clothing/accessory/scarf/christmas
+		/obj/item/clothing/accessory/scarf/christmas,
+		/obj/structure/balloon/candycane,
+		/obj/structure/balloon/xmas
 		)
 
 /datum/supply_drop_loot/materials
@@ -309,6 +311,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/medical/New()
 	..()
 	contents = list(
+<<<<<<< HEAD
 		/obj/item/weapon/storage/firstaid/regular,
 		/obj/item/weapon/storage/firstaid/fire,
 		/obj/item/weapon/storage/firstaid/toxin,
@@ -321,3 +324,17 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
 		/obj/item/weapon/storage/box/syringes,
 		/obj/item/weapon/storage/box/autoinjectors)
+=======
+		/obj/item/storage/firstaid/regular,
+		/obj/item/storage/firstaid/fire,
+		/obj/item/storage/firstaid/toxin,
+		/obj/item/storage/firstaid/o2,
+		/obj/item/storage/firstaid/adv,
+		/obj/item/storage/firstaid/combat,
+		/obj/item/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/storage/box/syringes,
+		/obj/item/storage/box/autoinjectors)
+>>>>>>> 51a70ffa951... Merge pull request #8796 from Cerebulon/bloons

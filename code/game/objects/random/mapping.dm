@@ -300,13 +300,13 @@
 				/obj/structure/closet/crate
 			),
 			prob(2);list(
-				/obj/item/latexballon,
-				/obj/item/latexballon,
+				/obj/item/toy/balloon/random,
+				/obj/item/toy/balloon/random,
 				/obj/structure/closet/crate
 			),
 			prob(2);list(
-				/obj/item/toy/syndicateballoon,
-				/obj/item/toy/syndicateballoon,
+				/obj/item/toy/balloon/syndicate,
+				/obj/item/toy/balloon/syndicate,
 				/obj/structure/closet/crate
 			),
 			prob(2);list(

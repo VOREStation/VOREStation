@@ -782,8 +782,13 @@
 				/obj/item/toy/katana,
 				/obj/item/toy/snappop,
 				/obj/item/toy/sword,
+<<<<<<< HEAD
 				/obj/item/toy/balloon,
 				/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
+=======
+				/obj/random/balloon,
+				/obj/item/gun/projectile/revolver/toy/crossbow,
+>>>>>>> 51a70ffa951... Merge pull request #8796 from Cerebulon/bloons
 				/obj/item/toy/blink,
 				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/toy/eight_ball,
@@ -799,6 +804,19 @@
 				/obj/item/toy/mecha/mauler,
 				/obj/item/toy/mecha/odysseus,
 				/obj/item/toy/mecha/phazon)
+
+/obj/random/balloon
+	name = "random balloon"
+	desc = "This is a random balloon."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "colorballoon"
+
+/obj/random/balloon/item_to_spawn()
+	return pick(prob(7);/obj/item/toy/balloon/random,
+			prob(2);/obj/item/toy/balloon/latex,
+			prob(2);/obj/item/toy/balloon/nitrile,
+			prob(1);/obj/item/toy/balloon/syndicate,
+			prob(1);/obj/item/toy/balloon/nanotrasen)
 
 /obj/random/mouseremains
 	name = "random mouseremains"
