@@ -128,6 +128,7 @@
 	if(findtext(subtext, "*"))
 		// abort abort!
 		to_chat(emoter, SPAN_WARNING("You may use only one \"["*"]\" symbol in your emote."))
+		to_chat(emoter, SPAN_WARNING(message))
 		return
 
 	if(pretext)
