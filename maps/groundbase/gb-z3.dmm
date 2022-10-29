@@ -267,7 +267,7 @@
 	base_area = /area/groundbase/cargo/office;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
 	docking_controller = "belter_docking";
-	landmark_tag = "belter-station"
+	landmark_tag = "belter_station"
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter)
