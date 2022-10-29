@@ -88,16 +88,9 @@
 		if(8)
 			pixel_y = 0
 
-<<<<<<< HEAD
-
 /obj/vehicle/train/engine/quadbike/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)
 		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
-=======
-/obj/vehicle/train/engine/quadbike/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/multitool) && open)
-		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
->>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()
