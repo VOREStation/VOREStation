@@ -68,3 +68,15 @@
 	set_trait(TRAIT_POTENCY,50)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#7A5454")
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.35)
+
+/datum/seed/berry/peppercorn
+	name = "peppercorns"
+	seed_name = "peppercorn berry"
+	kitchen_tag = "peppercorns"
+	display_name = "peppercorn bush"
+	chems = list("blackpepper" = list(5,10))
+
+/datum/seed/berry/peppercorn/New()
+	..()
+	set_trait(TRAIT_PRODUCT_COLOUR,"#303030")
+	set_trait(TRAIT_WATER_CONSUMPTION, 2)
