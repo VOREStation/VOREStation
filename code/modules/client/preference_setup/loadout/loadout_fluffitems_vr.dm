@@ -320,6 +320,18 @@
 	ckeywhitelist = list("chaleur")
 	character_name = list("Hisako Arato")
 
+/datum/gear/fluff/perrin_robes
+	path = /obj/item/clothing/under/fluff/gildedrobe_perrin
+	display_name = "Perrin's Robes"
+	ckeywhitelist = list("codeme")
+	character_name = list("Perrin Kade")
+
+/datum/gear/fluff/perrin_shoes
+	path = /obj/item/clothing/shoes/fluff/gildedshoes_perrin
+	display_name = "Perrin's Shoes"
+	ckeywhitelist = list("codeme")
+	character_name = list("Perrin Kade")
+
 /datum/gear/fluff/jade_stamp
 	path = /obj/item/weapon/stamp/fluff/jade_horror
 	display_name = "Official Council of Mid Horror rubber stamp"
@@ -1114,6 +1126,12 @@
 	ckeywhitelist = list("stiphs")
 	character_name = list("Lilith Vespers")
 
+/datum/gear/fluff/greek_dress
+    path = /obj/item/clothing/under/fluff/greek_dress
+    display_name = "mytilenean Dress"
+    ckeywhitelist = list("sudate")
+    character_name = list("Shea Corbett")
+
 /datum/gear/fluff/silent_mimemask
 	path = /obj/item/clothing/mask/gas/sexymime
 	display_name = "Silent Stripe's Mime Mask"
@@ -1176,6 +1194,13 @@
 	display_name = "Roy's Unity Medal"
 	ckeywhitelist = list("thedavestdave")
 	character_name = list("Roy Tilton")
+
+/datum/gear/fluff/lucky_amour
+	path = /obj/item/clothing/suit/armor/combat/crusader_costume/lucky
+	display_name = "Lucky's amour"
+	ckeywhitelist = list ("thedavestdave")
+	character_name = list("Lucky")
+	allowed_roles = list("Chaplain")
 
 /datum/gear/fluff/monty_balaclava
 	path = /obj/item/clothing/mask/balaclava
@@ -1438,16 +1463,3 @@
 	display_name = "Health Service Achievement medal"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
-
-/datum/gear/fluff/lucky_amour
-	path = /obj/item/clothing/suit/armor/combat/crusader_costume/lucky
-	display_name = "Lucky's amour"
-	ckeywhitelist = list ("thedavestdave")
-	character_name = list("Lucky")
-	allowed_roles = list("Chaplain")
-
-/datum/gear/fluff/greek_dress
-    path = /obj/item/clothing/under/fluff/greek_dress
-    display_name = "mytilenean Dress"
-    ckeywhitelist = list("sudate")
-    character_name = list("Shea Corbett")
