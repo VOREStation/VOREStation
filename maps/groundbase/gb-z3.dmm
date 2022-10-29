@@ -263,8 +263,10 @@
 /area/shuttle/groundbase/exploration)
 "ec" = (
 /obj/effect/shuttle_landmark/premade/groundbase{
+	base_area = /area/groundbase/cargo/office;
+	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
 	landmark_tag = "belter-station";
-	name = "belter_station"
+	name = Rascal Pass Cargo
 	},
 /obj/structure/shuttle/window,
 /turf/simulated/shuttle/floor,
@@ -2647,13 +2649,10 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "OB" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	id_tag = "belter_docking"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/shuttle/wall,
 /area/shuttle/belter)
 "OD" = (
 /obj/structure/cable/yellow{
@@ -3284,11 +3283,18 @@
 /obj/machinery/computer/ship/helm,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
+"Ye" = (
+/obj/machinery/portable_atmospherics/canister/air{
+	desc = Label says: "Open if retention field fails"
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/belter)
 "Yn" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
 "Yo" = (
 /obj/machinery/atmospheric_field_generator/perma,
+/obj/machinery/door/airlock/external,
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter)
 "Yy" = (
@@ -14824,7 +14830,7 @@ yU
 yU
 Lf
 Lf
-wh
+OB
 qA
 zS
 MQ
@@ -15253,7 +15259,7 @@ Lf
 wh
 qA
 zS
-OB
+MQ
 wh
 IS
 IS
@@ -15395,7 +15401,7 @@ Lf
 wh
 zS
 Zy
-zS
+Ye
 wh
 IS
 IS
