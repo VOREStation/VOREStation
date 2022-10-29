@@ -145,24 +145,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Code Shenanigans for Tether lateload maps
-/datum/map_template/tether_lateload
-	allow_duplicates = FALSE
-	var/associated_map_datum
-
-/datum/map_template/tether_lateload/on_map_loaded(z)
-	if(!associated_map_datum || !ispath(associated_map_datum))
-		log_game("Extra z-level [src] has no associated map datum")
-		return
-
-	new associated_map_datum(using_map, z)
-
-/datum/map_z_level/tether_lateload
-	z = 0
-
-/datum/map_z_level/tether_lateload/New(var/datum/map/map, mapZ)
-	if(mapZ && !z)
-		z = mapZ
-	return ..(map)
 
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
