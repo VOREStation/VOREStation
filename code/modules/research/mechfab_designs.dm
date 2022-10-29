@@ -817,7 +817,7 @@
 	id = "vehicle_chassis_snowmobile"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 12000, MAT_SILVER = 3000, MAT_PLASTIC = 3000, MAT_OSMIUM = 1000)
-	build_path = /obj/item/vehicle_assembly/snowmobile
+	build_path = /obj/item/weapon/vehicle_assembly/snowmobile
 
 /*
  * Rigsuits
