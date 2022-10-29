@@ -262,13 +262,13 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "ec" = (
-/obj/effect/shuttle_landmark/premade/groundbase{
+/obj/structure/shuttle/window,
+/obj/effect/shuttle_landmark{
 	base_area = /area/groundbase/cargo/office;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
-	landmark_tag = "Belter-station";
-	name = "Belter Landing"
+	docking_controller = "belter_docking";
+	landmark_tag = "belter-station"
 	},
-/obj/structure/shuttle/window,
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter)
 "ed" = (
@@ -644,11 +644,6 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
-"kb" = (
-/turf/simulated/shuttle/floor,
-/area/shuttle/belter{
-	tag = "Belter"
-	})
 "km" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -14842,7 +14837,7 @@ Lf
 Lf
 OB
 qA
-kb
+MX
 MQ
 wh
 Lf
@@ -15126,7 +15121,7 @@ Lf
 Lf
 wh
 qA
-kb
+MX
 MQ
 wh
 Lf
@@ -15268,7 +15263,7 @@ gc
 Lf
 wh
 qA
-kb
+MX
 MQ
 wh
 IS
