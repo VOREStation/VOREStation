@@ -39,12 +39,8 @@
 	icon_state = "quad-frame"
 	pixel_x = -16
 
-<<<<<<< HEAD
 /obj/item/weapon/vehicle_assembly/quadbike/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	..()
-=======
-/obj/item/vehicle_assembly/quadbike/attackby(var/obj/item/W as obj, var/mob/user as mob)
->>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
 
 	switch(build_stage)
 		if(0)
