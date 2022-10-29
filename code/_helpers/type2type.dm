@@ -293,8 +293,6 @@
 		return strtype
 	return copytext(strtype, delim_pos)
 
-<<<<<<< HEAD
-=======
 // Concatenates a list of strings into a single string.  A seperator may optionally be provided.
 /proc/list2text(list/ls, sep)
 	if (ls.len <= 1) // Early-out code for empty or singleton lists.
@@ -396,8 +394,6 @@
 		last_found  = found + delim_len
 	while (found)
 
-
->>>>>>> b9e2f498c3f... Merge pull request #8737 from Spookerton/spkrtn/fix/type2parent-correction
 /proc/type2parent(child)
 	var/string_type = "[child]"
 	var/last_slash = findlasttext(string_type, "/")
