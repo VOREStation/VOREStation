@@ -266,7 +266,7 @@
 	base_area = /area/groundbase/cargo/office;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
 	landmark_tag = "belter-station";
-	name = Rascal Pass Cargo
+	name = belter Landing
 	},
 /obj/structure/shuttle/window,
 /turf/simulated/shuttle/floor,
