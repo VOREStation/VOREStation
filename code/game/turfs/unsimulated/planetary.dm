@@ -52,7 +52,7 @@
 /turf/unsimulated/wall/planetary/sif
 	oxygen		= 114.50978 * 0.181
 	nitrogen	= 114.50978 * 0.819
-	temperature	= 243.15 // Roughly -30C / -22F
+	temperature	= 273.15 // 0C
 
 //High Alt Sif
 /turf/unsimulated/wall/planetary/sif/alt
