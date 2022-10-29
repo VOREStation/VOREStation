@@ -45225,6 +45225,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
 	dir = 1
 	},
+/obj/vehicle/train/engine/quadbike/snowmobile/random{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/garage)
 "uBP" = (
