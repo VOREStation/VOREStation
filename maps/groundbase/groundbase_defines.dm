@@ -19,6 +19,10 @@
 #define Z_LEVEL_GATEWAY						18
 #define Z_LEVEL_OM_ADVENTURE				19
 
+//Roque Mine
+#define Z_LEVEL_ROGUEMINE_1					13
+#define Z_LEVEL_ROGUEMINE_2					14
+
 //Camera networks
 #define NETWORK_HALLS "Halls"
 
@@ -236,6 +240,10 @@
 		Z_LEVEL_BEACH,
 		Z_LEVEL_AEROSTAT
 		)
+
+	belter_docked_z = 		list(Z_LEVEL_GB_TOP)
+	belter_transit_z =	 	list(Z_LEVEL_MISC)
+	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1, Z_LEVEL_ROGUEMINE_2)
 
 	planet_datums_to_make = list(
 		/datum/planet/virgo3b,
