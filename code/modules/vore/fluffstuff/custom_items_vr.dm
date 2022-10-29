@@ -1451,8 +1451,7 @@
 	M.add_language(LANGUAGE_ECHOSONG)
 	to_chat(M,"<span class='notice'>LANGUAGES - INITIALISED</span>")
 
-//thedavestdave Lucky
-///I know this is pretty bodgey but if it stupid and it works it isn't stupid
+//thedavestdave - Lucky
 /obj/item/clothing/suit/armor/combat/crusader_costume/lucky
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "luck"

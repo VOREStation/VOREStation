@@ -118,6 +118,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/glowberryseed
 	seed_type = "glowberries"
 
+/obj/item/seeds/peppercornseed
+	seed_type = "peppercorns"
+
 /obj/item/seeds/bananaseed
 	seed_type = "banana"
 

@@ -4025,6 +4025,7 @@
 #include "code\modules\vore\eating\vorepanel_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_boxes_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_clothes_vr.dm"
+#include "code\modules\vore\fluffstuff\custom_implants_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_items_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_mecha_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_permits_vr.dm"
