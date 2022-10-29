@@ -142,13 +142,13 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 					Holiday["Vore Day"] = "A holiday representing the innate desire in all/most/some/a few of us to devour each other or be devoured. \
 					That's probably why you're here, isn't it? Get to it, then!"
 //VOREStation Add End.
-//				if(10)
-//					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer,
-//					on Ahdomai. It is named after the Tajaran deity of Light, and huge celebrations are common."
-//				if(11)
-//					Holiday["Tajaran Contact Day"] = "The anniversary of first contact between SolGov and the tajaran species, widely observed\
-//					throughout tajaran and human space. Marks the date that in 2513, a human exploration team investigating electromagnetic \
-//					emissions from the Meralar system made radio contact with the tajaran scientific outpost that had broadcast them."
+/*				if(10)
+					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer,
+					on Ahdomai. It is named after the Tajaran deity of Light, and huge celebrations are common."
+				if(11)
+					Holiday["Tajaran Contact Day"] = "The anniversary of first contact between SolGov and the tajaran species, widely observed\
+					throughout tajaran and human space. Marks the date that in 2513, a human exploration team investigating electromagnetic \
+					emissions from the Meralar system made radio contact with the tajaran scientific outpost that had broadcast them."*/
 				if(20)
 					Holiday["Obon"] = "An ancient Earth holiday originating in east Asia, for the honouring of one's ancestral spirits. \
 					Traditions include the maintenance of grave sites and memorials, and community traditional dance performances."
