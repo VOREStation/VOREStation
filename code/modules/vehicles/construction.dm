@@ -279,13 +279,13 @@
  * Snowmobile.
  */
 
-/obj/item/vehicle_assembly/snowmobile
+/obj/item/weapon/vehicle_assembly/snowmobile
 	name = "snowmobile assembly"
 	desc = "The frame of a snowmobile."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "snowmobile-frame"
 
-/obj/item/vehicle_assembly/snowmobile/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/weapon/vehicle_assembly/snowmobile/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	switch(build_stage)
 		if(0)
 			if(istype(W, /obj/item/stack/material/steel))
@@ -301,7 +301,7 @@
 				return
 
 		if(1)
-			if(istype(W, /obj/item/stock_parts/console_screen))
+			if(istype(W, /obj/item/weapon/stock_parts/console_screen))
 				user.drop_item()
 				qdel(W)
 				to_chat(user, "<span class='notice'>You add the lights to \the [src].</span>")
@@ -309,7 +309,7 @@
 				return
 
 		if(2)
-			if(istype(W, /obj/item/stock_parts/spring))
+			if(istype(W, /obj/item/weapon/stock_parts/spring))
 				user.drop_item()
 				qdel(W)
 				to_chat(user, "<span class='notice'>You add the control system to \the [src].</span>")
@@ -330,7 +330,7 @@
 				return
 
 		if(4)
-			if(istype(W, /obj/item/cell))
+			if(istype(W, /obj/item/weapon/cell))
 				user.drop_item()
 				W.forceMove(src)
 				cell = W
