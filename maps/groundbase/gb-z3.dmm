@@ -2547,7 +2547,7 @@
 "MX" = (
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter{
-	tag = "Belter"
+	tag = null
 	})
 "Nb" = (
 /obj/structure/bed/chair/shuttle{
