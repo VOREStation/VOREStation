@@ -265,8 +265,8 @@
 /obj/effect/shuttle_landmark/premade/groundbase{
 	base_area = /area/groundbase/cargo/office;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
-	landmark_tag = "belter-station";
-	name = belter Landing
+	landmark_tag = "Belter-station";
+	name = "Belter Landing"
 	},
 /obj/structure/shuttle/window,
 /turf/simulated/shuttle/floor,
