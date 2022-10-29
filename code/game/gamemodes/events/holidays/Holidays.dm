@@ -121,10 +121,10 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 				if(20)
 					Holiday["Civil Servant's Day"] = "Civil Servant's Day is a holiday observed in SCG member states that honors civil servants everywhere,\
 					(especially those who are members of the armed forces and the emergency services), or have been or have been civil servants in the past."
-//				if(25)
-//					Holiday["Merhyat Njarha"] = "A Njarir'Akhan tajaran tradition translating to \"Harmony of the House\", in which Njarjirii citizens pay \
-//					homage to their ruling house and their ancestors. Traditions include large communal meals and dances hosted by the ruling house, \
-//					and the intensive upkeep of community spaces."
+/*				if(25)
+					Holiday["Merhyat Njarha"] = "A Njarir'Akhan tajaran tradition translating to \"Harmony of the House\", in which Njarjirii citizens pay \
+					homage to their ruling house and their ancestors. Traditions include large communal meals and dances hosted by the ruling house, \
+					and the intensive upkeep of community spaces."*/
 
 		if(7)	//Jul
 			switch(DD)
