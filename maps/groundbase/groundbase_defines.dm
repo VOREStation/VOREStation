@@ -20,8 +20,8 @@
 #define Z_LEVEL_OM_ADVENTURE				19
 
 //Roque Mine
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
+#define Z_LEVEL_ROGUEMINE_1					20
+#define Z_LEVEL_ROGUEMINE_2					21
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
