@@ -30,11 +30,8 @@
 /obj/vehicle/train/engine/quadbike/New()
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
-<<<<<<< HEAD
-=======
 	soundloop = new(list(src), FALSE)
 	. = ..()
->>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
 	turn_off()
 	update_icon()
 
@@ -46,15 +43,11 @@
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	..()
 
-<<<<<<< HEAD
-/obj/item/weapon/key/quadbike
-=======
 /obj/vehicle/train/engine/quadbike/Destroy()
 	QDEL_NULL(soundloop)
 	return ..()
 
-/obj/item/key/quadbike
->>>>>>> 62b57acf8cc... Snowmobiles and Quadhancements V2 (#8776)
+/obj/item/weapon/key/quadbike
 	name = "key"
 	desc = "A keyring with a small steel key, and a blue fob reading \"ZOOM!\"."
 	icon = 'icons/obj/vehicles.dmi'
