@@ -7,7 +7,7 @@
 #define MOLES_O2SIF (MOLES_CELLSIF * O2SIF) // O2 value on Sif(18%)
 #define MOLES_N2SIF (MOLES_CELLSIF * N2SIF) // N2 value on Sif(82%)
 
-#define TEMPERATURE_SIF 273.15 // 0C
+#define TEMPERATURE_SIF 243.15 // Roughly -30C / -22F
 #define TEMPERATURE_ALTSIF 225.15
 
 /turf/simulated/floor/outdoors/mud/sif/planetuse
