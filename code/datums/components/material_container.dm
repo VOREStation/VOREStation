@@ -152,6 +152,11 @@
 			to_chat(user, "<span class='warning'>[parent] cannot contain [material].</span>")
 			return
 
+	// Our sheet had no material. Whoops.
+	if(!material_per_sheet)
+		to_chat(user, "<span class='warning'>[S] does not contain any matter acceptable by [parent].</span>")
+		return
+
 	// If we can't fit the material for one sheet, we're full.
 	if(!has_space(matter_per_sheet))
 		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
