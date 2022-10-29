@@ -153,7 +153,7 @@
 			return
 
 	// Our sheet had no material. Whoops.
-	if(!material_per_sheet)
+	if(!matter_per_sheet)
 		to_chat(user, "<span class='warning'>[S] does not contain any matter acceptable by [parent].</span>")
 		return
 
