@@ -339,7 +339,7 @@
 				return
 
 		if(5)
-			if(istype(W, /obj/item/stock_parts/motor))
+			if(istype(W, /obj/item/weapon/stock_parts/motor))
 				user.drop_item()
 				qdel(W)
 				to_chat(user, "<span class='notice'>You add the motor to \the [src].</span>")
