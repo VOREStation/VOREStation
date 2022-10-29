@@ -334,7 +334,7 @@
 		///obj/item/weapon/gun/projectile/colt/detective,	//Detectives don't get projectile weapons as standard here
 		/obj/item/weapon/gun/energy/stunrevolver/detective,	//In keeping with the same vein as above, they can store their special one
 		/obj/item/device/holowarrant,
-		/obj/item/reagent_containers/food/drinks/flask
+		/obj/item/weapon/reagent_containers/food/drinks/flask
 		)
 
 /obj/item/weapon/storage/belt/soulstone
