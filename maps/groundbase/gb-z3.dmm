@@ -644,6 +644,11 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
+"kb" = (
+/turf/simulated/shuttle/floor,
+/area/shuttle/belter{
+	tag = "Belter"
+	})
 "km" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -2544,6 +2549,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
+"MX" = (
+/turf/simulated/shuttle/floor,
+/area/shuttle/belter{
+	tag = Belter
+	})
 "Nb" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -3285,7 +3295,7 @@
 /area/shuttle/groundbase/exploration)
 "Ye" = (
 /obj/machinery/portable_atmospherics/canister/air{
-	desc = Label says: "Open if retention field fails"
+	desc = null
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter)
@@ -14832,7 +14842,7 @@ Lf
 Lf
 OB
 qA
-zS
+kb
 MQ
 wh
 Lf
@@ -14974,7 +14984,7 @@ Lf
 Lf
 Yo
 zS
-zS
+MX
 MQ
 wh
 Lf
@@ -15116,7 +15126,7 @@ Lf
 Lf
 wh
 qA
-zS
+kb
 MQ
 wh
 Lf
@@ -15258,7 +15268,7 @@ gc
 Lf
 wh
 qA
-zS
+kb
 MQ
 wh
 IS
