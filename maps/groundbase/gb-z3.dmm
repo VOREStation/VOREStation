@@ -262,7 +262,10 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "ec" = (
-/obj/effect/shuttle_landmark/premade/groundbase,
+/obj/effect/shuttle_landmark/premade/groundbase{
+	landmark_tag = "belter-station";
+	name = "belter_station"
+	},
 /obj/structure/shuttle/window,
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter)
