@@ -196,7 +196,7 @@
 		list("Debris Field - Z1 Space"),
 		list("Fuel Depot - Z1 Space"),
 		list("Offmap Ship - Talon V2"),
-		list("Asteroid Belt 1","Asteroid Belt 2"),
+		list("Asteroid Belt 1","Asteroid Belt 2")
 		)
 
 	lateload_gateway = list(
