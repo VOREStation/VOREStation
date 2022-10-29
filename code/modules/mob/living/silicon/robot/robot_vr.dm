@@ -65,7 +65,15 @@
 					   "uptall-engineering",
 					   "uptall-miner",
 					   "uptall-security",
-					   "uptall-science"
+					   "uptall-science",
+					   "worm-standard",
+					   "worm-engineering",
+					   "worm-janitor",
+					   "worm-crisis",
+					   "worm-miner",
+					   "worm-security",
+					   "worm-surgeon",
+					   "worm-service"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
