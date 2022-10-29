@@ -3288,7 +3288,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
 "Yo" = (
-/obj/structure/atmospheric_retention_field,
+/obj/machinery/atmospheric_field_generator/perma,
 /turf/simulated/shuttle/floor,
 /area/shuttle/belter)
 "Yy" = (
