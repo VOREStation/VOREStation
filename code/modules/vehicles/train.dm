@@ -13,6 +13,7 @@
 
 	var/active_engines = 0
 	var/train_length = 0
+	var/latch_on_start = 1
 
 	var/obj/vehicle/train/lead
 	var/obj/vehicle/train/tow
@@ -25,7 +26,8 @@
 /obj/vehicle/train/Initialize()
 	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
-		latch(T, null)
+		if(latch_on_start)
+			latch(T, null)
 
 /obj/vehicle/train/Move()
 	var/old_loc = get_turf(src)
@@ -156,7 +158,7 @@
 		return
 
 	if (T.tow)
-		if(user)	
+		if(user)
 			to_chat(user, "<font color='red'>[T] is already towing something.</font>")
 		return
 

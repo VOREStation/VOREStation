@@ -140,5 +140,7 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .blue					{color: #0000FF;}
 .green					{color: #00DD00;}
 
+.pnarrate				{color: #009AB2;}
+
 
 </style>"}
