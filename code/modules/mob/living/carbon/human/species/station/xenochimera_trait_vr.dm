@@ -64,6 +64,8 @@
 	custom_only = FALSE
 
 /datum/trait/positive/winged_flight/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
 	name = "Xenochhimera: Winged Flight"
 	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
 	cost = 0
