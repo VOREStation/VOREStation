@@ -183,7 +183,7 @@
 	vr_sprites = list(
 						"Acheron" = "mechoid-Combat",
 						"ZOOM-BA" = "zoomba-combat",
-						"W02M" = "worm-security",
+						"W02M" = "worm-combat",
 						"Feminine Humanoid" = "uptall-security"
 					 )
 

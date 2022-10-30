@@ -72,6 +72,7 @@
 					   "worm-crisis",
 					   "worm-miner",
 					   "worm-security",
+					   "worm-combat",
 					   "worm-surgeon",
 					   "worm-service"
 					   )					//List of all used sprites that are in robots_vr.dmi
