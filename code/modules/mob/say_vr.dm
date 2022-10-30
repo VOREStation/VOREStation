@@ -323,6 +323,9 @@
 		return
 	if(stat == DEAD)
 		return say_dead(message)
+	if(stat)
+		to_chat(src, "<span class= 'warning'>You need to be concious to narrate: [message]</span>")
+		return
 	message = "<span class='name'>([name])</span> <span class='pnarrate'>[message]</span>"
 
 	//Below here stolen from emotes
