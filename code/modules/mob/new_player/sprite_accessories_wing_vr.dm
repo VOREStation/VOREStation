@@ -129,6 +129,45 @@
 	extra_overlay = "harpywings_batmarkings"
 	extra_overlay2 = "neckfur"
 
+/datum/sprite_accessory/wing/harpyarmwings
+	name = "harpy arm wings, colorable"
+	desc = ""
+	icon_state = "harpyarmwings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/harpyarmwings_alt
+	name = "harpy arm wings alt, colorable"
+	desc = ""
+	icon_state = "harpyarmwings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/harpyarmwings_alt_neckfur
+	name = "harpy arm wings alt & neckfur"
+	desc = ""
+	icon_state = "harpyarmwings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "neckfur"
+
+/datum/sprite_accessory/wing/harpyarmwings_bat
+	name = "harpy arm wings, bat"
+	desc = ""
+	icon_state = "harpyarmwings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpyarmwings_batmarkings"
+
+/datum/sprite_accessory/wing/harpyarmwings_bat_neckfur
+	name = "harpy arm wings, bat & neckfur"
+	desc = ""
+	icon_state = "harpyarmwings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpyarmwings_batmarkings"
+	extra_overlay2 = "neckfur"
+
 /datum/sprite_accessory/wing/neckfur
 	name = "neck fur"
 	desc = ""
