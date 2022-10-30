@@ -196,6 +196,8 @@ h1.alert, h2.alert		{color: #000000;}
 .inverted .blue				{color: #6666FF;}
 .inverted .green			{color: #44FF44;}
 
+.pnarrate					{color: #009AB2;}
+
 /*BIG IMG.icon 			{width: 32px; height: 32px;}*/
 img.icon				{vertical-align: middle; max-height: 1em;}
 img.icon.bigicon		{max-height: 32px;}
