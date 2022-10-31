@@ -87,7 +87,7 @@
 /obj/item/clothing/head/helmet/space/void/engineering/salvage
 	name = "salvage voidsuit helmet"
 	desc = "A heavily modified salvage voidsuit helmet. It has been fitted with radiation-resistant plating."
-	icon_state = "rig0-salvage"
+	icon_state = "rig0-engineeringsav"
 	item_state_slots = list(
 		slot_l_hand_str = "eng_helm",
 		slot_r_hand_str = "eng_helm",
