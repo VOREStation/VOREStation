@@ -75,7 +75,7 @@
 
 /obj/item/weapon/material/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/item/weapon/material/apply_hit_effect()
 	..()

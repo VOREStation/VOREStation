@@ -561,7 +561,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
         /obj/item/clothing/accessory/bracelet/material/gold,
         /obj/item/clothing/accessory/bracelet/material/silver,
         /obj/item/clothing/accessory/locket,
-        /obj/item/clothing/accessory/poncho/blue,
+        /obj/item/clothing/accessory/storage/poncho/blue,
         /obj/item/clothing/shoes/boots/cowboy,
         /obj/item/clothing/suit/storage/toggle/bomber,
         /obj/item/clothing/under/frontier,

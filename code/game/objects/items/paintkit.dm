@@ -57,6 +57,28 @@
 
 	..()
 
+<<<<<<< HEAD
+=======
+/// Ponchos specifically, but other accessories may eventually need this.
+/// Consequence of snowflake-y teshari code.
+/obj/item/kit/accessory
+	name = "accessory modification kit"
+	desc = "A kit for modifying accessories."
+
+/obj/item/kit/accessory/can_customize(var/obj/item/I)
+	return istype(I, /obj/item/clothing/accessory/storage/poncho)
+
+/obj/item/kit/accessory/customize(var/obj/item/I, var/mob/user)
+	if(can_customize(I))
+		if(istype(I, /obj/item/clothing/accessory/storage/poncho))
+			var/obj/item/clothing/accessory/storage/poncho/P = I
+			P.icon_override_state = new_icon_override_file
+			P.sprite_sheets[SPECIES_TESHARI] = new_icon_override_file  /// Will look the same on teshari and other species.
+			P.item_state = new_icon
+			to_chat(user, "You set about modifying the poncho into [new_name].")
+		return ..()
+
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 // Root hardsuit kit defines.
 // Icons for modified hardsuits need to be in the proper .dmis because suit cyclers may cock them up.
 /obj/item/device/kit/suit

@@ -287,42 +287,112 @@
 	unacidable = FALSE
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
+	var/obj/item/holding
+	var/helmet_type = /obj/item/clothing/head/helmet/bucket
+	var/static/list/accept_items_for_mashing = list(
+		/obj/item/reagent_containers/food/snacks,
+		/obj/item/material/snow/snowball,
+		/obj/item/stack/material/snow
+	)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user as mob)
+=======
+/obj/item/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user)
+
+	// Turn bucket into a janibot.
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 	if(isprox(D))
 		to_chat(user, "You add [D] to [src].")
 		qdel(D)
 		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
 		user.drop_from_inventory(src)
 		qdel(src)
-		return
-	else if(D.is_wirecutter())
-		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")
-		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket)
+		return TRUE
+
+	// Turn bucket into a helmet.
+	if(D.is_wirecutter() && helmet_type)
+		to_chat(user, SPAN_NOTICE("You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now."))
+		user.put_in_hands(new helmet_type)
 		user.drop_from_inventory(src)
 		qdel(src)
-		return
-	else if(istype(D, /obj/item/stack/material) && D.get_material_name() == MAT_STEEL)
+		return TRUE
+
+	// Turn bucket into a robot assembly.
+	if(istype(D, /obj/item/stack/material) && D.get_material_name() == MAT_STEEL)
 		var/obj/item/stack/material/M = D
 		if (M.use(1))
 			var/obj/item/weapon/secbot_assembly/edCLN_assembly/B = new /obj/item/weapon/secbot_assembly/edCLN_assembly
 			B.loc = get_turf(src)
-			to_chat(user, "<span class='notice'>You armed the robot frame.</span>")
+			to_chat(user, SPAN_NOTICE("You armed the robot frame."))
 			if (user.get_inactive_hand()==src)
 				user.remove_from_mob(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
+<<<<<<< HEAD
 			to_chat(user, "<span class='warning'>You need one sheet of metal to arm the robot frame.</span>")
 	else if(istype(D, /obj/item/weapon/mop) || istype(D, /obj/item/weapon/soap) || istype(D, /obj/item/weapon/reagent_containers/glass/rag))  //VOREStation Edit - "Allows soap and rags to be used on buckets"
+=======
+			to_chat(user, SPAN_WARNING("You need one sheet of metal to arm the robot frame."))
+		return  TRUE
+
+	// Wet mop with reagents in bucket.
+	if(istype(D, /obj/item/mop))
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 		if(reagents.total_volume < 1)
-			to_chat(user, "<span class='warning'>\The [src] is empty!</span>")
+			to_chat(user, SPAN_WARNING("\The [src] is empty!"))
 		else
 			reagents.trans_to_obj(D, 5)
-			to_chat(user, "<span class='notice'>You wet \the [D] in \the [src].</span>")
+			to_chat(user, SPAN_NOTICE("You wet \the [D] in \the [src]."))
 			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
-	else
-		return ..()
+		return TRUE
+
+	// Put a fruit or snack into the bucket for mashing.
+	if(!holding)
+		var/is_mashable = FALSE
+		for(var/mashable_type in accept_items_for_mashing)
+			if(istype(D, mashable_type))
+				is_mashable = TRUE
+				break
+		if(!is_mashable)
+			return ..()
+		if(reagents.total_volume >= reagents.maximum_volume)
+			to_chat(user, SPAN_WARNING("\The [src] is almost overflowing; pour some liquid out first."))
+			return TRUE
+		if(user.unEquip(D, target = src))
+			holding = D
+			visible_message(SPAN_NOTICE("\The [user] drops \the [D] into \the [src]."))
+		return TRUE
+
+	// Mash the fruit in the bucket. This `else` is not accidental!
+	else if(!(D.item_flags & NOBLUDGEON))
+		visible_message("\The [user] begins mashing \the [holding] with \the [D]...")
+		if(do_after(user, 3 SECONDS, src) && !QDELETED(src) && reagents.total_volume < reagents.maximum_volume)
+			visible_message("\The [user] finishes mashing \the [holding] with \the [D].")
+			if(holding.reagents)
+				holding.reagents.trans_to_obj(src, holding.reagents.total_volume)
+			QDEL_NULL(holding)
+		return TRUE
+
+	return ..()
+
+/obj/item/reagent_containers/glass/bucket/Destroy()
+	QDEL_NULL(holding)
+	return ..()
+
+/obj/item/reagent_containers/glass/bucket/examine(mob/user)
+	. = ..()
+	if(loc == user && holding)
+		. += "There is \a [holding] in \the [src]."
+
+/obj/item/reagent_containers/glass/bucket/attack_self(mob/user)
+	if(holding)
+		holding.dropInto(get_turf(user))
+		visible_message(SPAN_NOTICE("\The [user] tips \the [holding] out of \the [src]."))
+		holding = null
+		return TRUE
+	. = ..()
 
 /obj/item/weapon/reagent_containers/glass/bucket/update_icon()
 	cut_overlays()
@@ -350,6 +420,7 @@
 	if(isprox(D))
 		to_chat(user, "This wooden bucket doesn't play well with electronics.")
 		return
+<<<<<<< HEAD
 	else if(istype(D, /obj/item/weapon/material/knife/machete/hatchet))
 		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")
 		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket/wood)
@@ -366,6 +437,9 @@
 		return
 	else
 		return ..()
+=======
+	return ..()
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 
 /obj/item/weapon/reagent_containers/glass/cooler_bottle
 	desc = "A bottle for a water-cooler."

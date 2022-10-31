@@ -216,12 +216,18 @@
 
 /datum/gear/suit/poncho
 	display_name = "poncho selection"
+<<<<<<< HEAD
 	path = /obj/item/clothing/accessory/poncho
 	cost = 1
+=======
+	description = "A selection of ponchos in basic and departmental colours."
+	path = /obj/item/clothing/accessory/storage/poncho
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 
 /datum/gear/suit/poncho/New()
 	..()
 	var/list/ponchos = list()
+<<<<<<< HEAD
 	for(var/poncho_style in (typesof(/obj/item/clothing/accessory/poncho) - typesof(/obj/item/clothing/accessory/poncho/roles)))
 		var/obj/item/clothing/accessory/poncho/poncho = poncho_style
 		ponchos[initial(poncho.name)] = poncho
@@ -247,9 +253,21 @@
 	display_name = "cloak selection, departments"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cargo
 	cost = 1
+=======
+	for(var/poncho_style in (typesof(/obj/item/clothing/accessory/storage/poncho) - typesof(/obj/item/clothing/accessory/storage/poncho/roles/cloak)))
+		var/obj/item/clothing/accessory/storage/poncho/poncho = poncho_style
+		ponchos[initial(poncho.name)] = poncho
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
+
+/datum/gear/suit/cloak_department
+	display_name = "cloak, departmental selection"
+	description = "A selection of cloaks in departmental colours."
+	path = /obj/item/clothing/accessory/storage/poncho/roles/cloak/cargo
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 
 /datum/gear/suit/roles/cloak/New()
 	..()
+<<<<<<< HEAD
 	var/list/cloaks = list(
 		"Cargo cloak" = /obj/item/clothing/accessory/poncho/roles/cloak/cargo,
 		"Mining cloak" = /obj/item/clothing/accessory/poncho/roles/cloak/mining,
@@ -308,6 +326,17 @@
 	display_name = "cloak, colorable"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
 	cost = 1
+=======
+	var/list/cloaks = list()
+	for(var/cloak_style in (typesof(/obj/item/clothing/accessory/storage/poncho/roles/cloak)))
+		var/obj/item/clothing/accessory/storage/poncho/roles/cloak/cloak = cloak_style
+		cloaks[initial(cloak.name)] = cloak
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
+
+/datum/gear/suit/cloak_custom //A colorable cloak
+	display_name = "cloak (colorable)"
+	path = /obj/item/clothing/accessory/storage/poncho/roles/cloak/custom
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 
 /datum/gear/suit/cloak_custom/New()
 	..()

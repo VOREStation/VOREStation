@@ -14,7 +14,13 @@
 
 /datum/material/leather/generate_recipes()
 	recipes = list(
+<<<<<<< HEAD
 		new /datum/stack_recipe("bedsheet", /obj/item/weapon/bedsheet, 10, time = 30 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+=======
+		new /datum/stack_recipe("poncho", /obj/item/clothing/accessory/storage/poncho/crafted, 8, time = 5 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("cloak", /obj/item/clothing/accessory/storage/poncho/crafted/cloak, 8, time = 5 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("bedsheet", /obj/item/bedsheet, 10, time = 30 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 		new /datum/stack_recipe("uniform", /obj/item/clothing/under/color/white, 8, time = 15 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("foot wraps", /obj/item/clothing/shoes/footwraps, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("gloves", /obj/item/clothing/gloves/white, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),

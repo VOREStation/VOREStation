@@ -54,8 +54,13 @@
 	shoes = /obj/item/clothing/shoes/boots/cowboy
 	head = /obj/item/clothing/head/cowboy
 	gloves = /obj/item/clothing/gloves/fingerless
+<<<<<<< HEAD
 	suit = /obj/item/clothing/accessory/poncho
 	r_hand = /obj/item/weapon/gun/projectile/revolver/capgun
+=======
+	suit = /obj/item/clothing/accessory/storage/poncho
+	r_hand = /obj/item/gun/projectile/revolver/capgun
+>>>>>>> b7f3f78ae09... Merge pull request #8804 from MistakeNot4892/crafts
 
 /decl/hierarchy/outfit/costume/cowboy/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform

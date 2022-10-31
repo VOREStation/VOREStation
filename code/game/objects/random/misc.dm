@@ -988,11 +988,11 @@
 	icon_state = "classicponcho"
 
 /obj/random/thermalponcho/item_to_spawn()
-	return pick(prob(5);/obj/item/clothing/accessory/poncho/thermal,
-				prob(3);/obj/item/clothing/accessory/poncho/thermal/red,
-				prob(3);/obj/item/clothing/accessory/poncho/thermal/green,
-				prob(3);/obj/item/clothing/accessory/poncho/thermal/purple,
-				prob(3);/obj/item/clothing/accessory/poncho/thermal/blue)
+	return pick(prob(5);/obj/item/clothing/accessory/storage/poncho/thermal,
+				prob(3);/obj/item/clothing/accessory/storage/poncho/thermal/red,
+				prob(3);/obj/item/clothing/accessory/storage/poncho/thermal/green,
+				prob(3);/obj/item/clothing/accessory/storage/poncho/thermal/purple,
+				prob(3);/obj/item/clothing/accessory/storage/poncho/thermal/blue)
 
 /obj/random/pouch
 	name = "Random Storage Pouch"
