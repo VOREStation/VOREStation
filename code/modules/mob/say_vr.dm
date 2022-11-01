@@ -61,6 +61,8 @@
 		var/list/vis_objs = vis["objs"]
 
 		for(var/mob/M as anything in vis_mobs)
+			if(isnewplayer(M))
+				continue
 			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
@@ -348,6 +350,8 @@
 		if(M)
 			if(isobserver(M))
 				message = "[message] ([ghost_follow_link(src, M)])"
+			if(isnewplayer(M))
+				continue
 			if(M.stat == UNCONSCIOUS || M.sleeping > 0)
 				continue
 			to_chat(M, message)
