@@ -355,7 +355,7 @@
 					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.name].</span>"
 			else
 				wound_flavor_text["[temp.name]"] = ""
-			if(temp.dislocated == 2)
+			if(temp.dislocated == 1) //VOREStation Edit Bugfix
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.joint] is dislocated!</span>"
 			if(temp.brute_dam > temp.min_broken_damage || (temp.status & (ORGAN_BROKEN | ORGAN_MUTATED)))
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span>"
@@ -459,9 +459,4 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 	else if(istype(M, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
-		switch(hudtype)
-			if("security")
-				return R.hudmode == "Security"
-			if("medical")
-				return R.hudmode == "Medical"
-	return 0
+		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off
