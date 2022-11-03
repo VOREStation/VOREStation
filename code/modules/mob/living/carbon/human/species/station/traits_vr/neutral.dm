@@ -277,6 +277,73 @@
 	custom_only = FALSE
 	allergen = ALLERGEN_COFFEE
 
+/datum/trait/neutral/allergy_reaction
+	name = "Reaction: Disable Toxicity"
+	desc = "Take this trait to disable the toxic damage effect of being exposed to one of your allergens. Combine with the Disable Suffocation trait to have purely nonlethal reactions."
+	cost = 0
+	custom_only = FALSE
+	var/reaction = AG_TOX_DMG
+
+/datum/trait/neutral/allergy_reaction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.allergen_reaction ^= reaction
+	..(S,H)
+
+/datum/trait/neutral/allergy_reaction/oxy
+	name = "Reaction: Disable Suffocation"
+	desc = "Take this trait to disable the oxygen deprivation damage effect of being exposed to one of your allergens. Combine with the Disable Toxicity trait to have purely nonlethal reactions."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_OXY_DMG
+
+/datum/trait/neutral/allergy_reaction/brute
+	name = "Reaction: Spontaneous Trauma"
+	desc = "When exposed to one of your allergens, your skin develops unnatural bruises and other 'stigmata'-like injuries. Be aware that untreated wounds may become infected."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_PHYS_DMG
+
+/datum/trait/neutral/allergy_reaction/burn
+	name = "Reaction: Blistering"
+	desc = "When exposed to one of your allergens, your skin develops unnatural blisters and burns, as if exposed to fire. Be aware that untreated burns are very susceptible to infection!"
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_BURN_DMG
+
+/datum/trait/neutral/allergy_reaction/pain
+	name = "Reaction: Disable Pain"
+	desc = "Take this trait to disable experiencing pain after being exposed to one of your allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_PAIN
+
+/datum/trait/neutral/allergy_reaction/weaken
+	name = "Reaction: Knockdown"
+	desc = "When exposed to one of your allergens, you will experience sudden and abrupt loss of muscle control and tension, resulting in immediate collapse and immobility. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_WEAKEN
+
+/datum/trait/neutral/allergy_reaction/blurry
+	name = "Reaction: Disable Blurring"
+	desc = "Take this trait to disable the blurred/impeded vision effect of allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_BLURRY
+
+/datum/trait/neutral/allergy_reaction/sleepy
+	name = "Reaction: Fatigue"
+	desc = "When exposed to one of your allergens, you will experience fatigue and tiredness, and may potentially pass out entirely. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_SLEEPY
+
+/datum/trait/neutral/allergy_reaction/confusion
+	name = "Reaction: Disable Confusion"
+	desc = "Take this trait to disable the confusion/disorientation effect of allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_CONFUSE
+
 /datum/trait/neutral/allergen_reduced_effect
 	name = "Reduced Allergen Reaction"
 	desc = "This trait drastically reduces the effects of allergen reactions. If you don't have any allergens set, it does nothing. It does not apply to special reactions (such as unathi drowsiness from sugars)."
