@@ -32,8 +32,18 @@
 	name = "Random Items"
 	desc = "Buys you as many random items you can afford. Convenient packaging NOT included."
 
+<<<<<<< HEAD
 /datum/uplink_item/item/badassery/random_many/cost(obj/item/device/uplink/U, var/telecrystals)
 	return max(1, telecrystals)
+=======
+/datum/uplink_item/item/badassery/random_many/cost(obj/item/uplink/U, mob/M)
+	if(istype(M))
+		return max(1, M.mind?.tcrystals)
+	if(istype(M, /datum/mind))
+		var/datum/mind/m = M
+		return max(1, m.tcrystals)
+	return max(1, M)
+>>>>>>> 263f84d6554... Merge pull request #8815 from Atermonera/badassery_runtimes
 
 /datum/uplink_item/item/badassery/random_many/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/M)
 	var/list/bought_items = list()

@@ -186,7 +186,7 @@ var/datum/uplink/uplink = new()
 		if(!I)
 			break
 		bought_items += I
-		remaining_TC -= I.cost(remaining_TC, U)
+		remaining_TC -= I.cost(U, remaining_TC)
 
 	return bought_items
 
@@ -198,6 +198,6 @@ var/datum/uplink/uplink = new()
 		if(!I)
 			break
 		bought_items += I
-		remaining_TC -= I.cost(remaining_TC, U)
+		remaining_TC -= I.cost(U, remaining_TC)
 
 	return bought_items
