@@ -13,7 +13,7 @@
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/obj/item/gun/energy/laser/practice{
+/obj/item/weapon/gun/energy/laser/practice{
 	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -120,7 +120,7 @@
 /obj/random/crate,
 /obj/item/target/syndicate,
 /obj/item/target/syndicate,
-/obj/item/storage/box/practiceshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/practice,
 /obj/item/ammo_magazine/m45/practice,
 /obj/item/ammo_magazine/m45/practice,
 /obj/item/ammo_magazine/s45/practice,
@@ -152,7 +152,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "I" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "matt"

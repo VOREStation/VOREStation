@@ -35,7 +35,7 @@
 	dir = 4
 	},
 /obj/structure/mopbucket,
-/obj/item/mop,
+/obj/item/weapon/mop,
 /obj/effect/spider/stickyweb,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
@@ -46,8 +46,8 @@
 /obj/effect/floor_decal/corner/purple/bordercorner{
 	dir = 4
 	},
-/obj/item/reagent_containers/glass/bucket,
-/obj/structure/sink/generic{
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/structure/sink{
 	dir = 8;
 	pixel_x = 12;
 	pixel_y = -4
@@ -78,7 +78,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 6
 	},
-/obj/item/camera_assembly,
+/obj/item/weapon/camera_assembly,
 /obj/effect/spider/stickyweb,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
@@ -105,7 +105,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "y" = (
-/obj/item/stool{
+/obj/item/weapon/stool{
 	dir = 1
 	},
 /obj/effect/spider/stickyweb,
@@ -143,7 +143,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 9
 	},
-/obj/item/stool/padded{
+/obj/item/weapon/stool/padded{
 	dir = 8
 	},
 /obj/random/plushie,
@@ -175,9 +175,9 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/storage/box/mousetraps,
-/obj/item/storage/box/lights/mixed,
-/obj/item/reagent_containers/spray/cleaner{
+/obj/item/weapon/storage/box/mousetraps,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/weapon/reagent_containers/spray/cleaner{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -273,14 +273,14 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/paper_bin,
-/obj/item/pen,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
 /obj/effect/decal/cleanable/cobweb2{
 	icon_state = "spiderling";
 	name = "dead spider"
 	},
 /obj/effect/spider/stickyweb,
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 21
 	},

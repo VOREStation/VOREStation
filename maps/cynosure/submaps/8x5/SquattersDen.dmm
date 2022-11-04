@@ -5,7 +5,7 @@
 "e" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave,
-/obj/item/storage/box/donkpockets{
+/obj/item/weapon/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -14,7 +14,7 @@
 "f" = (
 /obj/structure/bed/padded,
 /obj/item/clothing/suit/ianshirt,
-/obj/item/bedsheet/ian,
+/obj/item/weapon/bedsheet/ian,
 /obj/structure/sign/poster/custom{
 	dir = 8;
 	pixel_x = -32;
@@ -28,7 +28,7 @@
 /area/template_noop)
 "m" = (
 /obj/machinery/light_construct/small,
-/obj/item/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "A" = (
@@ -58,11 +58,11 @@
 /area/template_noop)
 "L" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/cans/waterbottle{
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle{
 	pixel_x = 6;
 	pixel_y = 12
 	},
-/obj/item/flashlight/lamp/green{
+/obj/item/device/flashlight/lamp/green{
 	pixel_x = -6;
 	pixel_y = 1
 	},
@@ -90,7 +90,7 @@
 "Y" = (
 /obj/structure/table/standard,
 /obj/random/snack,
-/obj/item/reagent_containers/food/drinks/dry_ramen{
+/obj/item/weapon/reagent_containers/food/drinks/dry_ramen{
 	pixel_x = -6;
 	pixel_y = 6
 	},

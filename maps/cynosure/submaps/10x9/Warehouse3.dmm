@@ -63,9 +63,9 @@
 /obj/structure/closet/crate/ward{
 	dir = 8
 	},
-/obj/item/weldingtool/electric,
-/obj/item/weldingtool/electric,
-/obj/item/weldingtool/electric,
+/obj/item/weapon/weldingtool/electric,
+/obj/item/weapon/weldingtool/electric,
+/obj/item/weapon/weldingtool/electric,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
@@ -124,11 +124,11 @@
 /obj/structure/closet/crate/oculum{
 	dir = 2
 	},
-/obj/item/pack/cardemon,
-/obj/item/pack/cardemon,
-/obj/item/pack/spaceball,
-/obj/item/pack/spaceball,
-/obj/item/pack/cardemon,
+/obj/item/weapon/pack/cardemon,
+/obj/item/weapon/pack/cardemon,
+/obj/item/weapon/pack/spaceball,
+/obj/item/weapon/pack/spaceball,
+/obj/item/weapon/pack/cardemon,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "r" = (
@@ -204,8 +204,8 @@
 	dir = 6
 	},
 /obj/structure/closet/crate/einstein,
-/obj/item/cell,
-/obj/item/cell,
+/obj/item/weapon/cell,
+/obj/item/weapon/cell,
 /obj/random/powercell,
 /obj/random/powercell,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -247,9 +247,9 @@
 	dir = 8
 	},
 /obj/structure/closet/crate/large/secure/heph,
-/obj/item/cell/device/weapon/empty,
-/obj/item/cell/device/weapon/empty,
-/obj/item/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon/empty,
+/obj/item/weapon/cell/device/weapon/empty,
+/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "H" = (
@@ -260,7 +260,7 @@
 	dir = 10
 	},
 /obj/structure/closet/crate/zenghu,
-/obj/item/storage/box/autoinjectors,
+/obj/item/weapon/storage/box/autoinjectors,
 /obj/random/medical/pillbottle,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)

@@ -22,7 +22,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "m" = (
-/obj/item/stool/padded{
+/obj/item/weapon/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -38,11 +38,11 @@
 /area/template_noop)
 "t" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/glass2/square{
+/obj/item/weapon/reagent_containers/food/drinks/glass2/square{
 	pixel_x = 4;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/weapon/reagent_containers/food/drinks/glass2/square,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "A" = (
@@ -63,11 +63,11 @@
 /area/template_noop)
 "J" = (
 /obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/flashlight/lamp/green{
+/obj/item/device/flashlight/lamp/green{
 	pixel_x = 10
 	},
 /obj/machinery/light_construct/small{
@@ -81,7 +81,7 @@
 /area/template_noop)
 "L" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/weapon/reagent_containers/food/condiment/enzyme{
 	pixel_x = -8;
 	pixel_y = 6
 	},
@@ -92,7 +92,7 @@
 /turf/simulated/wall/r_concrete,
 /area/template_noop)
 "W" = (
-/obj/item/stool/padded{
+/obj/item/weapon/stool/padded{
 	dir = 8
 	},
 /obj/random/maintenance/clean,

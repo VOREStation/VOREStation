@@ -75,7 +75,7 @@
 /turf/template_noop,
 /area/template_noop)
 "s" = (
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 21
 	},
@@ -95,19 +95,19 @@
 /area/template_noop)
 "x" = (
 /obj/structure/table/gamblingtable,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/coin/silver{
+/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/weapon/coin/silver{
 	pixel_x = 7;
 	pixel_y = 12
 	},
-/obj/item/coin/silver{
+/obj/item/weapon/coin/silver{
 	pixel_x = 12;
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)
 "y" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#2D2D2D";
 	color_secondary = "#000000";
 	graffiti_type = "uboa"
@@ -172,7 +172,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "N" = (
-/obj/item/stool/padded{
+/obj/item/weapon/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -185,7 +185,7 @@
 /area/template_noop)
 "S" = (
 /obj/structure/table/gamblingtable,
-/obj/item/deck/cards,
+/obj/item/weapon/deck/cards,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "T" = (

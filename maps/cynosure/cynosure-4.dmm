@@ -311,7 +311,7 @@
 /obj/machinery/turretid/lethal{
 	ailock = 1;
 	check_synth = 1;
-	control_area = "\improper Telecoms Satellite";
+	control_area = "\improper Telecomms Satellite";
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms lethal turret control";
 	pixel_y = 24;
@@ -1127,6 +1127,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -1220,6 +1221,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -1432,6 +1434,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
@@ -2102,6 +2105,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -2132,6 +2136,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{
@@ -2200,6 +2205,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{
@@ -2382,7 +2388,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor{
+/turf/simulated/floor/tiled/monotile{
 	dir = 8
 	},
 /area/tcommsat/cynosure/lounge)
@@ -2407,7 +2413,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central6{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/monofloor{
+/turf/simulated/floor/tiled/monotile{
 	dir = 4
 	},
 /area/tcommsat/cynosure/lounge)
@@ -2768,6 +2774,7 @@
 /obj/machinery/power/apc/super/critical{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -2788,6 +2795,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
@@ -2837,7 +2845,7 @@
 "DH" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/monofloor{
+/turf/simulated/floor/tiled/monotile{
 	dir = 1
 	},
 /area/tcommsat/cynosure/teleporter)
@@ -3454,6 +3462,8 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
 /turf/simulated/floor/tiled,
 /area/tcommsat/cynosure/lounge)
 "Ju" = (
@@ -3475,7 +3485,7 @@
 	},
 /obj/machinery/hologram/holopad,
 /obj/effect/floor_decal/industrial/outline/grey,
-/turf/simulated/floor/tiled/monofloor{
+/turf/simulated/floor/tiled/monotile{
 	dir = 8
 	},
 /area/tcommsat/cynosure/computer)
@@ -3510,7 +3520,7 @@
 /obj/machinery/turretid/stun{
 	ailock = 1;
 	check_synth = 1;
-	control_area = "\improper Telecoms Foyer";
+	control_area = "\improper Telecomms Foyer";
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms Foyer turret control";
 	pixel_y = 24;
@@ -4699,6 +4709,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{

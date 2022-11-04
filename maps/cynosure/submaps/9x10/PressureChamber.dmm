@@ -11,7 +11,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "e" = (
-/obj/item/storage/briefcase/inflatable{
+/obj/item/weapon/storage/briefcase/inflatable{
 	pixel_y = 8
 	},
 /turf/simulated/floor/plating,
@@ -87,7 +87,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "O" = (
-/obj/item/book/manual/atmospipes,
+/obj/item/weapon/book/manual/atmospipes,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -22

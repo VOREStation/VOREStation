@@ -28,7 +28,7 @@
 /area/template_noop)
 "f" = (
 /obj/structure/table/standard,
-/obj/item/wrapping_paper,
+/obj/item/weapon/wrapping_paper,
 /obj/item/toy/colorballoon{
 	color = "#FFCC00"
 	},
@@ -161,8 +161,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/storage/fancy/whitecandle_box,
-/obj/item/storage/box/matches{
+/obj/item/weapon/storage/fancy/whitecandle_box,
+/obj/item/weapon/storage/box/matches{
 	pixel_x = -4;
 	pixel_y = -8
 	},

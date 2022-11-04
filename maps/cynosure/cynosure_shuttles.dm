@@ -68,6 +68,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "centcom_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, Transport Shuttle is approaching Cynosure Station."
 	departure_message = "Attention, Transport Shuttle is departing Cynosure Station."
@@ -92,6 +93,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "admin_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, Administration Shuttle is approaching Cynosure Station."
 	departure_message = "Attention, Administration Shuttle is departing Cynosure Station."
@@ -120,6 +122,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "response_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, the Emergency Response Team's shuttle is approaching Cynosure Station."
 	departure_message = "Attention, the Emergency Response Team's shuttle is departing Cynosure Station."
@@ -142,6 +145,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "trade_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, Beruang is approaching Cynosure Station."
 	departure_message = "Attention, Beruang is departing Cynosure Station."
@@ -171,6 +175,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "ninja_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -197,6 +202,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "skipjack_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -223,6 +229,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "merc_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -247,6 +254,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "merc_elite_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -308,7 +316,7 @@
 } \
 /obj/effect/shuttle_landmark/cynosure/escape_pod##NUMBER/transit { \
 	landmark_tag = "escape_pod_"+ #NUMBER +"_transit"; \
-	flags = SLANDMARK_FLAG_AUTOSET; \
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE; \
 }
 
 ESCAPE_POD(1)
@@ -341,7 +349,7 @@ ESCAPE_POD(1)
 
 /obj/effect/shuttle_landmark/cynosure/large_escape_pod1/transit
 	landmark_tag = "large_escape_pod1_transit"
-	flags = SLANDMARK_FLAG_AUTOSET
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE
 
 // Large Escape Pod 2
 /datum/shuttle/autodock/ferry/escape_pod/large_escape_pod2
@@ -369,7 +377,7 @@ ESCAPE_POD(1)
 
 /obj/effect/shuttle_landmark/cynosure/large_escape_pod2/transit
 	landmark_tag = "large_escape_pod2_transit"
-	flags = SLANDMARK_FLAG_AUTOSET
+	landmark_flags = LANDMARK_CREATES_SAFE_SITE
 
 //Cynosure Station Docks
 
@@ -420,24 +428,25 @@ ESCAPE_POD(1)
 // Explorer Shuttle
 
 /datum/shuttle/autodock/overmap/explorer_shuttle
-	name = "Exploration Shuttle"
+	name = "NTC Calvera"
 	warmup_time = 0
 	current_location = "nav_pad4_cynosure"
 	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/exploration/general, /area/shuttle/exploration/cockpit, /area/shuttle/exploration/cargo)
 	fuel_consumption = 3
-	ceiling_type = /turf/simulated/floor/reinforced/airless
+	ceiling_type = /turf/simulated/floor/reinforced
 
 /obj/effect/overmap/visitable/ship/landable/explorer_shuttle
-	name = "Exploration Shuttle"
+	name = "NTC Calvera"
 	desc = "The exploration team's shuttle."
+	scanner_desc = "A Wulf Vagabond-class short-range expedition shuttle. It is broadcasting NanoTrasen identification codes: VIR-472-320377 - NTC Calvera."
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
-	shuttle = "Exploration Shuttle"
+	shuttle = "NTC Calvera"
 
 /obj/machinery/computer/shuttle_control/explore/explorer_shuttle
 	name = "takeoff and landing console"
-	shuttle_tag = "Exploration Shuttle"
+	shuttle_tag = "NTC Calvera"
 	req_one_access = list(access_explorer)
 
 /*

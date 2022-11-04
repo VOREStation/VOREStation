@@ -53,8 +53,8 @@
 /area/template_noop)
 "C" = (
 /obj/structure/closet,
-/obj/item/towel/random,
-/obj/item/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "F" = (

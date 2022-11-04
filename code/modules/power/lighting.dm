@@ -272,6 +272,9 @@ var/global/list/light_type_cache = list()
 	shows_alerts = FALSE	//VOREStation Edit
 	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
 
+/obj/machinery/light/small/no_nightshift
+	nightshift_allowed = FALSE
+
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
 

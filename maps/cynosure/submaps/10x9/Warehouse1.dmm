@@ -11,10 +11,10 @@
 /obj/structure/closet/crate/ward{
 	dir = 2
 	},
-/obj/item/gun/energy/lasertag/blue,
-/obj/item/gun/energy/lasertag/blue,
-/obj/item/gun/energy/lasertag/red,
-/obj/item/gun/energy/lasertag/red,
+/obj/item/weapon/gun/energy/lasertag/blue,
+/obj/item/weapon/gun/energy/lasertag/blue,
+/obj/item/weapon/gun/energy/lasertag/red,
+/obj/item/weapon/gun/energy/lasertag/red,
 /obj/item/clothing/suit/bluetag,
 /obj/item/clothing/suit/bluetag,
 /obj/item/clothing/suit/redtag,
@@ -39,21 +39,21 @@
 /area/template_noop)
 "g" = (
 /obj/structure/closet/crate/ummarcar,
-/obj/item/toner,
-/obj/item/toner,
-/obj/item/toner,
-/obj/item/clipboard,
-/obj/item/clipboard,
-/obj/item/pen/red,
-/obj/item/pen/blue,
-/obj/item/pen/blue,
-/obj/item/camera_film,
-/obj/item/folder/blue,
-/obj/item/folder/red,
-/obj/item/folder/yellow,
-/obj/item/hand_labeler,
-/obj/item/tape_roll,
-/obj/item/paper_bin,
+/obj/item/device/toner,
+/obj/item/device/toner,
+/obj/item/device/toner,
+/obj/item/weapon/clipboard,
+/obj/item/weapon/clipboard,
+/obj/item/weapon/pen/red,
+/obj/item/weapon/pen/blue,
+/obj/item/weapon/pen/blue,
+/obj/item/device/camera_film,
+/obj/item/weapon/folder/blue,
+/obj/item/weapon/folder/red,
+/obj/item/weapon/folder/yellow,
+/obj/item/weapon/hand_labeler,
+/obj/item/weapon/tape_roll,
+/obj/item/weapon/paper_bin,
 /obj/item/sticky_pad/random,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
@@ -78,9 +78,9 @@
 "i" = (
 /obj/structure/closet/crate/freezer/centauri,
 /obj/random/meat,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/storage/fancy/egg_box,
+/obj/item/weapon/reagent_containers/food/drinks/milk,
+/obj/item/weapon/reagent_containers/food/drinks/soymilk,
+/obj/item/weapon/storage/fancy/egg_box,
 /turf/simulated/floor/tiled,
 /area/template_noop)
 "j" = (
@@ -96,10 +96,10 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /obj/structure/closet/crate/large/einstein,
-/obj/item/cell,
-/obj/item/cell,
-/obj/item/cell/high,
-/obj/item/cell/high,
+/obj/item/weapon/cell,
+/obj/item/weapon/cell,
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/high,
 /obj/random/powercell,
 /obj/random/powercell,
 /obj/machinery/alarm{
@@ -182,9 +182,9 @@
 	},
 /obj/item/frame/apc,
 /obj/structure/closet/crate/focalpoint,
-/obj/item/module/power_control,
+/obj/item/weapon/module/power_control,
 /obj/item/stack/cable_coil/random,
-/obj/item/cell/apc,
+/obj/item/weapon/cell/apc,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "w" = (
@@ -244,9 +244,9 @@
 /area/template_noop)
 "D" = (
 /obj/structure/closet/crate/thinktronic,
-/obj/item/pda,
-/obj/item/pda,
-/obj/item/pda,
+/obj/item/device/pda,
+/obj/item/device/pda,
+/obj/item/device/pda,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
 "E" = (
@@ -372,11 +372,11 @@
 "Q" = (
 /obj/structure/closet/crate/nanothreads,
 /obj/random/thermalponcho,
-/obj/item/melee/umbrella/random,
-/obj/item/melee/umbrella/random,
-/obj/item/towel/random,
-/obj/item/towel/random,
-/obj/item/towel/random,
+/obj/item/weapon/melee/umbrella/random,
+/obj/item/weapon/melee/umbrella/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /obj/random/maintenance/clean,
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 1
@@ -422,14 +422,14 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/unathi,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "Y" = (

@@ -9,7 +9,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "f" = (
-/obj/structure/bed/chair/sofa/blue/right{
+/obj/structure/bed/chair/sofa/right/blue{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -45,15 +45,15 @@
 	},
 /obj/effect/floor_decal/spline/plain,
 /obj/structure/table/sifwoodentable,
-/obj/item/storage/box/cups,
+/obj/item/weapon/storage/box/cups,
 /obj/random/maintenance/medical,
 /obj/random/maintenance/medical,
 /turf/simulated/floor/carpet/tealcarpet,
 /area/template_noop)
 "u" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/folder/white,
-/obj/item/pen{
+/obj/item/weapon/folder/white,
+/obj/item/weapon/pen{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -68,7 +68,7 @@
 /turf/simulated/wall/r_wall,
 /area/template_noop)
 "z" = (
-/obj/structure/bed/chair/sofa/blue/left{
+/obj/structure/bed/chair/sofa/left/blue{
 	dir = 1
 	},
 /obj/random/contraband,
@@ -89,18 +89,18 @@
 /turf/simulated/floor/carpet/tealcarpet,
 /area/template_noop)
 "H" = (
-/obj/structure/bed/chair/sofa/blue/left{
+/obj/structure/bed/chair/sofa/left/blue{
 	dir = 8
 	},
 /obj/random/maintenance/medical,
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 21
 	},
 /turf/simulated/floor/carpet/tealcarpet,
 /area/template_noop)
 "J" = (
-/obj/item/radio/intercom/department/medbay{
+/obj/item/device/radio/intercom/department/medbay{
 	dir = 8;
 	pixel_x = 21
 	},
@@ -115,7 +115,7 @@
 /turf/simulated/floor/carpet/tealcarpet,
 /area/template_noop)
 "O" = (
-/obj/structure/bed/chair/sofa/blue/right{
+/obj/structure/bed/chair/sofa/right/blue{
 	dir = 1
 	},
 /obj/random/maintenance/medical,

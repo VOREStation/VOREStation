@@ -76,7 +76,7 @@
 /area/template_noop)
 "Q" = (
 /obj/structure/frame,
-/obj/item/circuitboard/recharge_station,
+/obj/item/weapon/circuitboard/recharge_station,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "V" = (

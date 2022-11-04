@@ -34,14 +34,6 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/unathi,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
-/obj/item/reagent_containers/food/snacks/unajerky,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "g" = (
@@ -49,7 +41,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/retail_scanner/cargo,
+/obj/item/device/retail_scanner/cargo,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
 "h" = (
@@ -256,7 +248,7 @@
 "D" = (
 /obj/structure/table/reinforced,
 /obj/structure/windoor_assembly/secure,
-/obj/item/deskbell,
+/obj/item/weapon/deskbell,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
 "E" = (
@@ -309,7 +301,7 @@
 	dir = 1
 	},
 /obj/item/stamp,
-/obj/item/paper/sticky,
+/obj/item/weapon/paper/sticky,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
 "K" = (
@@ -379,8 +371,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/paper_bin,
-/obj/item/pen/fountain,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen/fountain,
 /obj/random/junk,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)

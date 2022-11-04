@@ -2,6 +2,7 @@
 /obj/effect/overmap/visitable/planet/Sif
 	name = "Sif"
 	desc = "A cold, Earth-like planet. Cynosure Station is located here."
+	scanner_desc = "The third planet in the Vir system. SCG membership registered 2332. Primary settlement: New Reykjavik. Sensors detect abundant flora and fauna. Atmosphere suitable for human habitation. High activity on communications wavebands."
 	map_z = list(
 		Z_LEVEL_STATION_ONE,
 		Z_LEVEL_STATION_TWO,
@@ -39,7 +40,9 @@
 	tmp.pixel_y = skybox_offset_y
 	return tmp
 /obj/effect/overmap/visitable/telecomm_sat
-	name = "Telecommunications Satellite"
+	name = "NLS CommRelay Sif-48"
+	desc = "A small satellite with multiple antennas, providing telecommuncation connections to  groundside facilities."
+	scanner_desc = "An automated satellite in orbit of Sif. It is broadcasting NanoTrasen identification codes: VIR-524-285935."
 	icon_state = "object"
 	initial_generic_waypoints = list(
 		"nav_telecomm_dockarm" //Tcomm sat docking

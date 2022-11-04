@@ -170,12 +170,12 @@
 	pixel_x = -32;
 	poster_decl = /decl/poster/bay_3
 	},
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 21
 	},
 /obj/random/technology_scanner,
-/obj/item/bikehorn/rubberducky,
+/obj/item/weapon/bikehorn/rubberducky,
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/template_noop)

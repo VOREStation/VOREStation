@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aF" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -8,7 +8,7 @@
 /area/template_noop)
 "bv" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass{
 	pixel_x = 11
 	},
 /turf/simulated/floor/lino,
@@ -57,7 +57,7 @@
 "hu" = (
 /obj/structure/table/marble,
 /obj/random/drinkbottle,
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 21
 	},
@@ -79,7 +79,7 @@
 /area/template_noop)
 "lq" = (
 /obj/machinery/floor_light/prebuilt,
-/obj/item/flashlight/glowstick,
+/obj/item/device/flashlight/glowstick,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "mE" = (
@@ -158,7 +158,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "sx" = (
-/obj/item/flashlight/glowstick/orange,
+/obj/item/device/flashlight/glowstick/orange,
 /obj/machinery/atmospherics/unary/vent_scrubber,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
@@ -166,7 +166,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
-/obj/structure/device/piano/minimoog,
+/obj/structure/musician/piano,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "vV" = (
@@ -181,7 +181,7 @@
 	dir = 1
 	},
 /obj/structure/table/wooden_reinforced,
-/obj/item/radio/intercom/entertainment{
+/obj/item/device/radio/intercom/entertainment{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
@@ -234,7 +234,7 @@
 	pixel_x = 12;
 	pixel_y = 24
 	},
-/obj/item/stool{
+/obj/item/weapon/stool{
 	dir = 8
 	},
 /obj/machinery/power/apc{
@@ -267,18 +267,18 @@
 /obj/machinery/newscaster{
 	pixel_y = 26
 	},
-/obj/item/reagent_containers/food/drinks/flask/barflask{
+/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/flame/lighter/random{
+/obj/item/weapon/flame/lighter/random{
 	pixel_x = -9
 	},
 /obj/random/cigarettes,
 /turf/simulated/floor/lino,
 /area/template_noop)
 "GM" = (
-/obj/item/stool{
+/obj/item/weapon/stool{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -319,7 +319,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "JK" = (
-/obj/item/stool/padded{
+/obj/item/weapon/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -348,7 +348,7 @@
 /area/template_noop)
 "MI" = (
 /obj/machinery/floor_light/prebuilt,
-/obj/item/flashlight/glowstick/yellow,
+/obj/item/device/flashlight/glowstick/yellow,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "MQ" = (
@@ -380,9 +380,9 @@
 	dir = 9
 	},
 /obj/structure/table/wooden_reinforced,
-/obj/item/storage/wallet/random,
+/obj/item/weapon/storage/wallet/random,
 /obj/random/cash,
-/obj/item/megaphone,
+/obj/item/device/megaphone,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "QN" = (
@@ -444,11 +444,11 @@
 /area/template_noop)
 "Vt" = (
 /obj/machinery/floor_light/prebuilt,
-/obj/item/flashlight/glowstick/blue,
+/obj/item/device/flashlight/glowstick/blue,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "Xg" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 4
 	},
 /obj/random/contraband,
@@ -459,7 +459,7 @@
 /area/template_noop)
 "Xi" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/lino,
 /area/template_noop)
 "Xn" = (
@@ -474,7 +474,7 @@
 /turf/simulated/floor/lino,
 /area/template_noop)
 "XF" = (
-/obj/item/flashlight/glowstick/red,
+/obj/item/device/flashlight/glowstick/red,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -498,7 +498,7 @@
 	poster_decl = /decl/poster/bay_27
 	},
 /obj/random/drinkbottle,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass{
 	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/dark,

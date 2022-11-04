@@ -229,6 +229,9 @@
 /obj/machinery/door/airlock/external/bolted/cycling
 	frequency = 1379
 
+/obj/machinery/door/airlock/external/white
+	icon = 'icons/obj/doors/Doorextwhite.dmi'
+
 /obj/machinery/door/airlock/glass_external
 	name = "External Airlock"
 	icon = 'icons/obj/doors/Doorextglass.dmi'

@@ -12,7 +12,7 @@
 /obj/structure/table/standard,
 /obj/random/medical,
 /obj/random/maintenance/medical,
-/obj/item/storage/box/monkeycubes{
+/obj/item/weapon/storage/box/monkeycubes{
 	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/white,
@@ -55,7 +55,7 @@
 /obj/structure/frame/computer{
 	dir = 8
 	},
-/obj/item/circuitboard/operating,
+/obj/item/weapon/circuitboard/operating,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "s" = (
@@ -69,7 +69,7 @@
 	dir = 8
 	},
 /obj/machinery/iv_drip,
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 21
 	},
@@ -89,7 +89,7 @@
 	pixel_y = -32;
 	poster_decl = /decl/poster/pol_4
 	},
-/obj/structure/sink/generic{
+/obj/structure/sink{
 	dir = 8;
 	pixel_x = 12;
 	pixel_y = -4
@@ -126,12 +126,12 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/storage/box/bodybags{
+/obj/item/weapon/storage/box/bodybags{
 	pixel_x = 3;
 	pixel_y = 5
 	},
 /obj/random/maintenance/medical,
-/obj/item/storage/box/gloves,
+/obj/item/weapon/storage/box/gloves,
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
@@ -145,7 +145,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/storage/firstaid/surgery,
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "K" = (
@@ -232,7 +232,7 @@
 	},
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/blood,
-/obj/item/radio/intercom/department/medbay{
+/obj/item/device/radio/intercom/department/medbay{
 	dir = 8;
 	pixel_x = 21
 	},

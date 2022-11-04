@@ -3,7 +3,7 @@
 /turf/simulated/wall/concrete,
 /area/template_noop)
 "b" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
@@ -15,7 +15,6 @@
 /area/template_noop)
 "d" = (
 /obj/structure/table/woodentable,
-/obj/item/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "g" = (
@@ -59,11 +58,11 @@
 /area/template_noop)
 "q" = (
 /obj/structure/table/woodentable,
-/obj/item/paicard,
+/obj/item/device/paicard,
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "r" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /obj/random/maintenance,
@@ -84,7 +83,7 @@
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "x" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
@@ -108,7 +107,7 @@
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "C" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#FF9300";
 	color_secondary = "#A55403";
 	graffiti_type = "end"
@@ -116,7 +115,7 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "D" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#FFF200";
 	color_secondary = "#886422";
 	graffiti_type = "guy"
@@ -125,7 +124,7 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "E" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA00FF";
 	color_secondary = "#810CFF";
 	graffiti_type = "revolution"
@@ -142,7 +141,7 @@
 /area/template_noop)
 "J" = (
 /obj/structure/table/woodentable,
-/obj/item/storage/fancy/markers,
+/obj/item/weapon/storage/fancy/markers,
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "L" = (
@@ -166,7 +165,7 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "Q" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 8
 	},
 /obj/item/clothing/mask/gas,
@@ -195,7 +194,7 @@
 /area/template_noop)
 "W" = (
 /obj/structure/table/woodentable,
-/obj/item/storage/box/cups{
+/obj/item/weapon/storage/box/cups{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -215,7 +214,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/obj/item/storage/box/donkpockets{
+/obj/item/weapon/storage/box/donkpockets{
 	pixel_x = -3;
 	pixel_y = -3
 	},

@@ -314,6 +314,10 @@
 	oxygen = 0
 	nitrogen = ATMOSTANK_NITROGEN
 
+/turf/simulated/floor/reinforced/supermatter_core
+	oxygen = 0
+	nitrogen = MOLES_N2STANDARD
+
 /turf/simulated/floor/reinforced/oxygen
 	oxygen = ATMOSTANK_OXYGEN
 	nitrogen = 0

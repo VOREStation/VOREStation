@@ -162,7 +162,7 @@
 	dir = 5
 	},
 /obj/random/crate,
-/obj/item/floor_painter,
+/obj/item/device/floor_painter,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,

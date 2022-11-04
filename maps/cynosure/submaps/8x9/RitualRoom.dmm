@@ -27,7 +27,7 @@
 /turf/template_noop,
 /area/template_noop)
 "n" = (
-/obj/item/storage/backpack/cultpack,
+/obj/item/weapon/storage/backpack/cultpack,
 /obj/item/clothing/suit/storage/hooded/chaplain_hoodie,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/clean,
@@ -43,7 +43,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "r" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "rune4"
@@ -55,7 +55,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "u" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "rune6"
@@ -64,14 +64,14 @@
 /area/template_noop)
 "x" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/flame/candle/black,
+/obj/item/weapon/flame/candle/black,
 /obj/effect/floor_decal/chapel{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "z" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "rune5"
@@ -91,7 +91,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "D" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "rune1"
@@ -99,7 +99,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "F" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "rune2"
@@ -108,7 +108,7 @@
 /area/template_noop)
 "H" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/flame/candle/black,
+/obj/item/weapon/flame/candle/black,
 /obj/effect/floor_decal/chapel{
 	dir = 1
 	},
@@ -125,7 +125,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "N" = (
-/obj/effect/spawner/graffiti{
+/obj/effect/graffitispawner{
 	color = "#DA0000";
 	color_secondary = "#810C0C";
 	graffiti_type = "rune3"
@@ -147,7 +147,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "V" = (
-/obj/item/stool/padded,
+/obj/item/weapon/stool/padded,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
@@ -156,14 +156,14 @@
 /area/template_noop)
 "X" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/storage/fancy/blackcandle_box{
+/obj/item/weapon/storage/fancy/blackcandle_box{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/item/flame/lighter/random{
+/obj/item/weapon/flame/lighter/random{
 	pixel_x = -6
 	},
-/obj/item/storage/bible/booze{
+/obj/item/weapon/storage/bible/booze{
 	icon_state = "tome";
 	name = "tome";
 	pixel_x = 2

@@ -3,11 +3,11 @@
 /turf/simulated/wall/r_concrete,
 /area/template_noop)
 "b" = (
-/obj/item/coin/silver{
+/obj/item/weapon/coin/silver{
 	pixel_x = 4;
 	pixel_y = -3
 	},
-/obj/item/coin/iron,
+/obj/item/weapon/coin/iron,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "c" = (
@@ -20,7 +20,7 @@
 "e" = (
 /obj/random/crate,
 /obj/random/coin,
-/obj/item/coin/iron,
+/obj/item/weapon/coin/iron,
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/monotile,
@@ -38,7 +38,7 @@
 /area/template_noop)
 "g" = (
 /obj/random/crate,
-/obj/item/coin/aluminium,
+/obj/item/weapon/coin/aluminium,
 /obj/random/plushie,
 /obj/item/toy/plushie/carp/gold,
 /obj/random/mech_toy,
@@ -63,7 +63,7 @@
 "l" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
-/obj/item/coin/silver{
+/obj/item/weapon/coin/silver{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -76,10 +76,10 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 4
 	},
-/obj/item/coin/gold{
+/obj/item/weapon/coin/gold{
 	pixel_x = -4
 	},
-/obj/item/coin/aluminium,
+/obj/item/weapon/coin/aluminium,
 /obj/machinery/light_construct{
 	dir = 4
 	},
@@ -113,7 +113,7 @@
 "q" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
-/obj/item/coin/gold{
+/obj/item/weapon/coin/gold{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -159,7 +159,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "w" = (
-/obj/item/moneybag,
+/obj/item/weapon/moneybag,
 /turf/simulated/floor/tiled,
 /area/template_noop)
 "x" = (
@@ -175,7 +175,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5,
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
 /obj/effect/floor_decal/spline/plain,
-/obj/item/coin/silver{
+/obj/item/weapon/coin/silver{
 	pixel_x = 2;
 	pixel_y = -4
 	},
@@ -192,7 +192,7 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 6
 	},
-/obj/item/reagent_containers/blood/empty,
+/obj/item/weapon/reagent_containers/blood/empty,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "B" = (
@@ -207,14 +207,14 @@
 /area/template_noop)
 "D" = (
 /obj/structure/closet/crate/allico,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
-/obj/item/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
 "E" = (
@@ -224,10 +224,10 @@
 /obj/effect/floor_decal/corner/brown/bordercorner{
 	dir = 1
 	},
-/obj/item/coin/gold{
+/obj/item/weapon/coin/gold{
 	pixel_x = 4
 	},
-/obj/item/coin/silver{
+/obj/item/weapon/coin/silver{
 	pixel_x = -6;
 	pixel_y = -4
 	},
@@ -235,7 +235,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "F" = (
-/obj/item/coin/gold{
+/obj/item/weapon/coin/gold{
 	pixel_x = -2;
 	pixel_y = -4
 	},
@@ -317,7 +317,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner{
 	dir = 1
 	},
-/obj/item/coin/silver,
+/obj/item/weapon/coin/silver,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "O" = (
@@ -327,7 +327,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner{
 	dir = 4
 	},
-/obj/item/coin/uranium,
+/obj/item/weapon/coin/uranium,
 /obj/item/stack/tile/floor,
 /obj/machinery/light_construct{
 	dir = 1
@@ -345,7 +345,7 @@
 /area/template_noop)
 "R" = (
 /obj/structure/closet/crate/centauri,
-/obj/item/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/random/mre,
 /obj/random/mre,
 /obj/random/mre,
@@ -376,7 +376,7 @@
 "W" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
-/obj/item/coin/platinum,
+/obj/item/weapon/coin/platinum,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
 "X" = (
@@ -396,15 +396,15 @@
 /obj/random/crate,
 /obj/random/cash/big,
 /obj/random/coin,
-/obj/item/coin/gold{
+/obj/item/weapon/coin/gold{
 	pixel_x = -6;
 	pixel_y = -4
 	},
-/obj/item/coin/gold{
+/obj/item/weapon/coin/gold{
 	pixel_x = 3;
 	pixel_y = -4
 	},
-/obj/item/coin/silver{
+/obj/item/weapon/coin/silver{
 	pixel_x = -2;
 	pixel_y = 2
 	},
