@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 ))
 
 // The to_chat() macro calls this proc
-/proc/__to_chat(var/target, var/message)
+/proc/__to_vchat(var/target, var/message)
 	// First do logging in database
 	if(isclient(target))
 		var/client/C = target
@@ -371,7 +371,7 @@ var/to_chat_src
 		if(!C)
 			return // No client? No care.
 		else if(C.chatOutput.broken)
-			DIRECT_OUTPUT(C, original_message)
+			to_target(C, original_message)
 			return
 		else if(!C.chatOutput.loaded)
 			return // If not loaded yet, do nothing and history-sending on load will get it.

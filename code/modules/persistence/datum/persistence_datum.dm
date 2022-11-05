@@ -112,7 +112,7 @@
 		to_store[++to_store.len] = CompileEntry(thing)
 
 	if(to_store.len)
-		to_file(file(filename), json_encode(to_store))
+		text2file(json_encode(to_store), filename)
 
 /datum/persistent/proc/RemoveValue(var/atom/value)
 	qdel(value)

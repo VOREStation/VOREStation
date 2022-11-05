@@ -72,9 +72,14 @@
 	update_icon()
 
 /obj/structure/closet/Destroy()
+<<<<<<< HEAD
 	qdel_null(door_obj)
 	closet_appearance = null
 	return ..()
+=======
+	. = ..()
+	QDEL_NULL(door_obj)
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 
 /obj/structure/closet/examine(mob/user)
 	. = ..()

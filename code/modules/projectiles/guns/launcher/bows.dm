@@ -123,9 +123,18 @@
 	item_state = "bow_hardlight"
 	desc = "An energy bow, capable of producing arrows from an internal power supply."
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
 	qdel_null(bolt)
 	update_icon()
+=======
+/obj/item/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
+	if(istype(bolt, /obj/item/arrow/energy))	// Let's not delete a Real Arrow^tm
+		QDEL_NULL(bolt)
+		update_icon()
+	else
+		. = ..()
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 
 /obj/item/weapon/gun/launcher/crossbow/bow/hardlight/attack_self(mob/living/user)
 	if(drawn)

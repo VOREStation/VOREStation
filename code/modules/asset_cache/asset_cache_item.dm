@@ -17,7 +17,7 @@
 		md5 = md5(fcopy_rsc(file))
 		if (!md5)
 			CRASH("invalid asset sent to asset cache")
-		log_world("asset cache unexpected success of second fcopy_rsc")
+		to_world_log("asset cache unexpected success of second fcopy_rsc")
 	src.name = name
 	url = name
 	resource = file

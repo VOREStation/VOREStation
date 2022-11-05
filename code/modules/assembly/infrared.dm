@@ -39,7 +39,7 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
-		QDEL_LIST_NULL(i_beams)
+		QDEL_NULL_LIST(i_beams)
 	return on
 
 /obj/item/device/assembly/infra/update_icon()
@@ -54,7 +54,7 @@
 
 /obj/item/device/assembly/infra/process()
 	if(!on && i_beams)
-		QDEL_LIST_NULL(i_beams)
+		QDEL_NULL_LIST(i_beams)
 		return
 
 	if(!i_beams && secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))
@@ -73,8 +73,13 @@
 		i_beams |= I
 		I.visible = visible
 
+<<<<<<< HEAD
 /obj/item/device/assembly/infra/attack_hand()
 	QDEL_LIST_NULL(i_beams)
+=======
+/obj/item/assembly/infra/attack_hand()
+	QDEL_NULL_LIST(i_beams)
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 	..()
 
 /obj/item/device/assembly/infra/Move()
@@ -84,19 +89,19 @@
 
 /obj/item/device/assembly/infra/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	QDEL_LIST_NULL(i_beams)
+	QDEL_NULL_LIST(i_beams)
 
 /obj/item/device/assembly/infra/holder_movement()
 	if(!holder)
 		return FALSE
-	QDEL_LIST_NULL(i_beams)
+	QDEL_NULL_LIST(i_beams)
 	return TRUE
 
 /obj/item/device/assembly/infra/proc/trigger_beam()
 	if(!process_cooldown())
 		return FALSE
 	pulse(0)
-	QDEL_LIST_NULL(i_beams) //They will get recreated next process() if the situation is still appropriate
+	QDEL_NULL_LIST(i_beams) //They will get recreated next process() if the situation is still appropriate
 	if(!holder)
 		visible_message("\icon[src][bicon(src)] *beep* *beep*")
 

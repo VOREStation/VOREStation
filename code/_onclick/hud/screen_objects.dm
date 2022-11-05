@@ -756,13 +756,13 @@
 
 
 /obj/screen/movable/mapper_holder/Destroy()
-	qdel_null(mask_full)
-	qdel_null(mask_ping)
-	qdel_null(bg)
+	QDEL_NULL(mask_full)
+	QDEL_NULL(mask_ping)
+	QDEL_NULL(bg)
 
-	qdel_null(frame)
-	qdel_null(powbutton)
-	qdel_null(mapbutton)
+	QDEL_NULL(frame)
+	QDEL_NULL(powbutton)
+	QDEL_NULL(mapbutton)
 
 	extras_holder = null
 	owner = null

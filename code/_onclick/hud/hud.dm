@@ -205,7 +205,7 @@ var/list/global_huds = list(
 
 /datum/hud/Destroy()
 	. = ..()
-	qdel_null(minihuds)
+	QDEL_NULL(minihuds)
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null

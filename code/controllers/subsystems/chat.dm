@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(chat)
 			if(!C || !C.chatOutput)
 				continue // No client? No care.
 			else if(C.chatOutput.broken)
-				DIRECT_OUTPUT(C, original_message)
+				to_target(C, original_message)
 				continue
 			else if(!C.chatOutput.loaded)
 				continue // If not loaded yet, do nothing and history-sending on load will get it.
@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(chat)
 		if(!C || !C.chatOutput)
 			return // No client? No care.
 		else if(C.chatOutput.broken)
-			DIRECT_OUTPUT(C, original_message)
+			to_target(C, original_message)
 			return
 		else if(!C.chatOutput.loaded)
 			return // If not loaded yet, do nothing and history-sending on load will get it.

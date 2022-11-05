@@ -56,9 +56,15 @@
 	ion_trail.set_up(src)
 	ion_trail.stop()
 
+<<<<<<< HEAD
 /obj/item/device/uav/Destroy()
 	qdel_null(cell)
 	qdel_null(ion_trail)
+=======
+/obj/item/uav/Destroy()
+	QDEL_NULL(cell)
+	QDEL_NULL(ion_trail)
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	return ..()

@@ -89,7 +89,7 @@
 				var/mob/M = thing
 				if(!M.is_preference_enabled(pref_check))
 					continue
-			SEND_SOUND(thing, S)
+			sound_to(thing, S)
 		else
 			playsound(thing, S, volume, vary, extra_range, ignore_walls = !opacity_check, preference = pref_check)
 

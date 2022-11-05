@@ -34,6 +34,7 @@
 	finished = TRUE
 	return candidates
 
+<<<<<<< HEAD
 /// Test a candidate for allowance to join as this
 /datum/ghost_query/proc/evaluate_candidate(mob/observer/dead/candidate)
 	if(!istype(candidate))
@@ -76,6 +77,28 @@
 	// This response is always fine, doesn't warrant retesting
 	switch(response)
 		if("Never for this round")
+=======
+/datum/ghost_query/proc/ask_question(var/client/C)
+	spawn(0)
+		if(!C)
+			return
+		window_flash(C)
+		if(query_sound)
+			sound_to(C, sound(query_sound))
+		var/response = alert(C, question, "[role_name] request", "Yes", "No", "Never for this round")
+		if(response == "Yes")
+			response = alert(C, "Are you sure you want to play as a [role_name]?", "[role_name] request", "Yes", "No") // Protection from a misclick.
+		if(!C || !src)
+			return
+		if(response == "Yes")
+			if(finished || (cutoff_number && candidates.len >= cutoff_number) )
+				to_chat(C, "<span class='warning'>Unfortunately, you were not fast enough, and there are no more available roles.  Sorry.</span>")
+				return
+			candidates.Add(C.mob)
+			if(cutoff_number && candidates.len >= cutoff_number)
+				finished = TRUE // Finish now if we're full.
+		else if(response == "Never for this round")
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 			if(be_special_flag)
 				D.client.prefs.be_special ^= be_special_flag
 				to_chat(D, "<span class='notice'>You will not be prompted to join similar roles to [role_name] for the rest of this round. Note: If you save your character now, it will save this permanently.</span>")

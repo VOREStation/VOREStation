@@ -52,24 +52,24 @@ SUBSYSTEM_DEF(timer)
 		if(bucket_auto_reset)
 			bucket_resolution = 0
 
-		log_world("Timer bucket reset. world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+		to_world_log("Timer bucket reset. world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 		for (var/i in 1 to length(bucket_list))
 			var/datum/timedevent/bucket_head = bucket_list[i]
 			if (!bucket_head)
 				continue
 
-			log_world("Active timers at index [i]:")
+			to_world_log("Active timers at index [i]:")
 
 			var/datum/timedevent/bucket_node = bucket_head
 			var/anti_loop_check = 1000
 			do
-				log_world(get_timer_debug_string(bucket_node))
+				to_world_log(get_timer_debug_string(bucket_node))
 				bucket_node = bucket_node.next
 				anti_loop_check--
 			while(bucket_node && bucket_node != bucket_head && anti_loop_check)
-		log_world("Active timers in the second_queue queue:")
+		to_world_log("Active timers in the second_queue queue:")
 		for(var/I in second_queue)
-			log_world(get_timer_debug_string(I))
+			to_world_log(get_timer_debug_string(I))
 
 	var/next_clienttime_timer_index = 0
 	var/len = length(clienttime_timers)

@@ -281,7 +281,7 @@
 
 	else if(href_list["job_wiki"])
 		var/rank = href_list["job_wiki"]
-		open_link(user,"[config.wikiurl][rank]")
+		send_link(user,"[config.wikiurl][rank]")
 
 	return ..()
 

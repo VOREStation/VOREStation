@@ -12,27 +12,30 @@
 
 // #define to_chat(target, message) target << message Not anymore!
 //#define to_chat to_chat_filename=__FILE__;to_chat_line=__LINE__;to_chat_src=src;__to_chat
-#define to_chat __to_chat
-#define to_world(message) to_chat(world, message)
-#define to_world_log(message) world.log << message
-// TODO - Baystation has this log to crazy places. For now lets just world.log, but maybe look into it later.
-#define log_world(message) to_world_log(message)
-#define to_file(file_entry, source_var) file_entry << source_var
-#define from_file(file_entry, target_var) file_entry >> target_var
-#define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
-#define send_rsc(target, rsc_content, rsc_name)	target << browse_rsc(rsc_content, rsc_name)
-#define open_link(target, url) target << link(url)
 
-// From TG, might be useful to have.
-// Didn't port SEND_TEXT() since to_chat() appears to serve the same purpose.
-#define DIRECT_OUTPUT(A, B) A << B
-#define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
-#define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
-//#define WRITE_LOG is in logging.dm
+
+// General I/O semantics
+#define to_target(target, payload)            target << (payload)
+#define from_target(target, receiver)         target >> (receiver)
+
+
+// Common use patterns
+#define to_chat __to_vchat
+#define to_world(message)                     to_chat(world, message)
+#define to_world_log(message)                 to_target(world.log, message)
+#define legacy_chat(target, message)          to_target(target, message)
+#define sound_to(target, sound)               to_target(target, sound)
+#define image_to(target, image)               to_target(target, image)
+#define show_browser(target, content, title)  to_target(target, browse(content, title))
+#define close_browser(target, title)          to_target(target, browse(null, title))
+#define send_rsc(target, content, title)      to_target(target, browse_rsc(content, title))
+#define send_link(target, url)                to_target(target, link(url))
+#define send_output(target, msg, control)     to_target(target, output(msg, control))
+#define to_save(handle, value)                to_target(handle, value)
+#define from_save(handle, target_var)         from_target(handle, target_var)
+
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
-
-#define qdel_null(x) if(x) { qdel(x) ; x = null }
 
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 

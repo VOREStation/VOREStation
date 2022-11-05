@@ -15,7 +15,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	var/datum/controller/exclude_these = new
 	gvars_datum_in_built_vars = exclude_these.vars + list("gvars_datum_protected_varlist", "gvars_datum_in_built_vars", "gvars_datum_init_order")
 
-	log_world("[vars.len - gvars_datum_in_built_vars.len] global variables")
+	to_world_log("[vars.len - gvars_datum_in_built_vars.len] global variables")
 
 	Initialize(exclude_these)
 
@@ -55,7 +55,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 			for(var/I in global_procs)
 				expected_global_procs -= replacetext("[I]", "InitGlobal", "")
 			var/english_missing = expected_global_procs.Join(", ")
-			log_world("Missing procs: [english_missing]")
+			to_world_log("Missing procs: [english_missing]")
 	for(var/I in global_procs)
 		var/start_tick = world.time
 		call(src, I)()

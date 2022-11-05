@@ -112,7 +112,7 @@
 	
 	map_image_cache.Cut()
 	icon_image_cache.Cut()
-	qdel_null(extras_holder)
+	QDEL_NULL(extras_holder)
 
 	return ..()
 

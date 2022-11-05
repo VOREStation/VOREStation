@@ -1036,7 +1036,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
 	to_chat(src, "<span class='ghostalert'><a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a></span>")
 	if(sound)
-		SEND_SOUND(src, sound(sound))
+		sound_to(src, sound(sound))
 
 /mob/observer/dead/verb/respawn()
 	set name = "Respawn"

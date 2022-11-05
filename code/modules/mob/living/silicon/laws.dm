@@ -81,7 +81,7 @@
 	if((last_law_notification + 1 SECOND) > world.time)
 		return
 	last_law_notification = world.time
-	SEND_SOUND(src, 'sound/machines/defib_success.ogg')
+	sound_to(src, 'sound/machines/defib_success.ogg')
 	window_flash(client)
 	to_chat(src, span("warning", message))
 

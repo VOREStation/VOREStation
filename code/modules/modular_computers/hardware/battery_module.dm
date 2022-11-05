@@ -70,8 +70,13 @@
 	battery.charge = 0
 	..()
 
+<<<<<<< HEAD
 /obj/item/weapon/computer_hardware/battery_module/Destroy()
 	qdel_null(battery)
+=======
+/obj/item/computer_hardware/battery_module/Destroy()
+	QDEL_NULL(battery)
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 	return ..()
 
 /obj/item/weapon/computer_hardware/battery_module/proc/charge_to_full()

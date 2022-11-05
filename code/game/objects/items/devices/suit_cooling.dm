@@ -33,8 +33,13 @@
 	if(ispath(cell))
 		cell = new cell(src)
 
+<<<<<<< HEAD
 /obj/item/device/suit_cooling_unit/Destroy()
 	qdel_null(cell)
+=======
+/obj/item/suit_cooling_unit/Destroy()
+	QDEL_NULL(cell)
+>>>>>>> 24068ba2eb1... Merge pull request #8810 from Spookerton/spkrtn/cng/macro-changes-for-micro-reasons
 	return ..()
 
 /obj/item/device/suit_cooling_unit/process()

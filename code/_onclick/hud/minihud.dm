@@ -12,7 +12,7 @@
 	unapply_to_hud()
 	if(needs_processing)
 		STOP_PROCESSING(SSprocessing, src)
-	QDEL_LIST_NULL(screenobjs)
+	QDEL_NULL_LIST(screenobjs)
 	return ..()
 
 // Apply to a real /datum/hud

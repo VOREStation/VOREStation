@@ -29,7 +29,7 @@
 	unregister_dangerous_to_step()
 	if(trap)
 		QDEL_NULL(trap)
-	qdel_null(wires)
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/effect/mine/Moved(atom/oldloc)
