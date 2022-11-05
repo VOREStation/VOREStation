@@ -507,14 +507,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/rnd/exploration)
-"arS" = (
-/obj/machinery/door/airlock/medical{
-	id_tag = "Resleeving Shower";
-	name = "Resleeving Lab";
-	req_one_access = null
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/medical/cloning)
 "arT" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -1627,6 +1619,14 @@
 	},
 /turf/simulated/open,
 /area/surface/station/garage)
+"aPk" = (
+/obj/machinery/door/airlock/medical{
+	id_tag = "Resleeving Shower";
+	name = "Resleeving Lab";
+	req_one_access = null
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/medical/cloning)
 "aPr" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 6
@@ -2606,12 +2606,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/sif/planetuse,
 /area/surface/outside/station/solar/westsolar)
-"bke" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/wall,
-/area/surface/station/medical/cloning)
 "bkk" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -3538,6 +3532,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/cloning)
 "bDH" = (
@@ -3713,6 +3708,13 @@
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoarcheology/surface)
+"bJN" = (
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating/sif/planetuse,
+/area/surface/outside/station/solar/northeastsolar)
 "bJT" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -5950,6 +5952,20 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/storage/primarytool)
+"cOG" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/obj/structure/sign/directions/medical/resleeving{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "cOO" = (
 /turf/simulated/wall,
 /area/surface/station/engineering/engineering_monitoring)
@@ -6680,6 +6696,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
+"dcy" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/surface/station/medical/cloning)
 "dcz" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -7560,22 +7582,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/storage)
-"dxm" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/medical{
-	id_tag = "AutoResleeving";
-	name = "Auto-Resleeving Lab";
-	req_access = list(5);
-	req_one_access = null
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/medical/cloning)
 "dxu" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/zone_divider,
@@ -8279,20 +8285,6 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/simulated/floor/grass,
 /area/surface/station/park)
-"dOQ" = (
-/obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/sign/directions/bar{
-	pixel_x = 32
-	},
-/obj/machinery/light/small{
-	brightness_color = "#DA0205";
-	brightness_power = 1;
-	brightness_range = 5;
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/surface/station/maintenance/north/gnd)
 "dOT" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -10205,22 +10197,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/arrivals/cynosure)
-"eGK" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/sign/directions/bar{
-	pixel_x = 32
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/surface/station/maintenance/north/gnd)
 "eGS" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/weapon/paper_bin,
@@ -11752,20 +11728,6 @@
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/research_lockerroom)
-"fmP" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/catwalk,
-/obj/structure/sign/directions/medical/resleeving{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/maintenance/north/gnd)
 "fmV" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/security/briefing_room)
@@ -13671,6 +13633,22 @@
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
+"gje" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/medical{
+	id_tag = "AutoResleevingMaint";
+	name = "Auto-Resleeving Lab";
+	req_access = list(5);
+	req_one_access = null
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/medical/cloning)
 "gjp" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8;
@@ -14128,17 +14106,6 @@
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/research_lockerroom)
-"gvi" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/obj/structure/sign/directions/medical/resleeving{
-	dir = 1;
-	pixel_x = -32
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/maintenance/north/gnd)
 "gvo" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/dice/d20,
@@ -22847,10 +22814,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/gnd)
-"kzb" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/surface/station/maintenance/north/gnd)
 "kzh" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -23110,6 +23073,17 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/arrivals/cynosure)
+"kEG" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/sign/directions/medical/resleeving{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "kEP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24067,6 +24041,20 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/pool)
+"ldp" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/sign/directions/bar{
+	pixel_x = 32
+	},
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "ldy" = (
 /obj/machinery/iv_drip,
 /obj/effect/floor_decal/corner/pink/full{
@@ -24295,6 +24283,9 @@
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -26041,11 +26032,16 @@
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/surgery)
 "lVK" = (
-/obj/machinery/washing_machine,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "AutoResleevingMaint";
+	name = "Door Control";
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/cloning)
@@ -33293,10 +33289,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/east/gnd)
-"oWG" = (
-/obj/structure/cable/yellow,
-/turf/simulated/floor/plating/sif/planetuse,
-/area/surface/outside/station/solar/northeastsolar)
 "oWK" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass{
@@ -35924,6 +35916,22 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled,
 /area/surface/station/garage)
+"qeO" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/sign/directions/bar{
+	pixel_x = 32
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "qeP" = (
 /obj/machinery/atmospherics/tvalve/mirrored/bypass,
 /turf/simulated/floor/tiled,
@@ -38787,6 +38795,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
+"rmx" = (
+/obj/structure/cable/yellow,
+/turf/simulated/floor/plating/sif/planetuse,
+/area/surface/outside/station/solar/northeastsolar)
 "rmG" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -40426,13 +40438,6 @@
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
-"rZa" = (
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/plating/sif/planetuse,
-/area/surface/outside/station/solar/northeastsolar)
 "rZm" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
@@ -48091,12 +48096,6 @@
 	},
 /area/surface/outside/station/reactorpond)
 "vCf" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -49227,6 +49226,14 @@
 /obj/machinery/chemical_dispenser/bar_alc/full,
 /turf/simulated/floor/lino,
 /area/surface/station/crew_quarters/bar)
+"wfk" = (
+/obj/structure/catwalk,
+/obj/structure/sign/directions/medical/resleeving{
+	dir = 1;
+	pixel_x = 32
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "wfn" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -50505,14 +50512,6 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /turf/simulated/floor/tiled,
 /area/surface/station/arrivals/cynosure)
-"wND" = (
-/obj/structure/catwalk,
-/obj/structure/sign/directions/medical/resleeving{
-	dir = 1;
-	pixel_x = 32
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/maintenance/north/gnd)
 "wNJ" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -53223,16 +53222,15 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/east)
 "xVF" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 4
-	},
-/obj/structure/closet/wardrobe/medic_white,
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
 	pixel_y = 30
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/cloning)
@@ -53548,6 +53546,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/east/gnd)
+"yaF" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "yaQ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor/corner,
@@ -89975,8 +89977,8 @@ mQy
 vVN
 hfX
 dSl
-dxm
-bke
+gje
+dcy
 iMZ
 hoR
 gQG
@@ -90243,14 +90245,14 @@ lcA
 tGb
 caA
 nLw
-kzb
+yaF
 hWz
-kzb
-dOQ
+yaF
+ldp
 asP
 asP
 dfb
-wND
+wfk
 mEg
 wNW
 hEY
@@ -90498,9 +90500,9 @@ tAm
 tAm
 nLM
 eav
-gvi
-kzb
-kzb
+kEG
+yaF
+yaF
 uNv
 hBW
 qhE
@@ -90746,7 +90748,7 @@ nLw
 oBQ
 hfX
 hfX
-arS
+aPk
 hfX
 hfX
 mzq
@@ -91003,13 +91005,13 @@ nLw
 ubD
 wTW
 wTW
-eGK
-fmP
+qeO
+cOG
 atd
 wDs
 jdY
 uVS
-kzb
+yaF
 jZP
 jZP
 oRs
@@ -101031,9 +101033,9 @@ rft
 rft
 rft
 rft
-oWG
+rmx
 rFS
-rZa
+bJN
 fqU
 fqU
 fqU
@@ -103087,9 +103089,9 @@ rft
 rft
 rft
 rft
-oWG
+rmx
 rFS
-rZa
+bJN
 fqU
 fqU
 fqU

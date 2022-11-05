@@ -7,17 +7,17 @@
 #define Z_LEVEL_TCOMM					5
 #define Z_LEVEL_CENTCOM					6
 #define Z_LEVEL_SURFACE_WILD			7
-#define Z_LEVEL_OFFMAP1						8
-#define Z_LEVEL_ROGUEMINE_1					9
-#define Z_LEVEL_ROGUEMINE_2					10
-#define Z_LEVEL_BEACH						11
-#define Z_LEVEL_BEACH_CAVE					12
-#define Z_LEVEL_AEROSTAT					13
-#define Z_LEVEL_AEROSTAT_SURFACE			14
-#define Z_LEVEL_DEBRISFIELD					15
-#define Z_LEVEL_FUELDEPOT					16
-#define Z_LEVEL_GATEWAY						17
-#define Z_LEVEL_OM_ADVENTURE				18
+#define Z_LEVEL_OFFMAP1						9
+#define Z_LEVEL_ROGUEMINE_1					10
+#define Z_LEVEL_ROGUEMINE_2					11
+#define Z_LEVEL_BEACH						12
+#define Z_LEVEL_BEACH_CAVE					13
+#define Z_LEVEL_AEROSTAT					14
+#define Z_LEVEL_AEROSTAT_SURFACE			15
+#define Z_LEVEL_DEBRISFIELD					16
+#define Z_LEVEL_FUELDEPOT					17
+#define Z_LEVEL_GATEWAY						18
+#define Z_LEVEL_OM_ADVENTURE				19
 
 /datum/map/cynosure/New()
 	..()
@@ -103,7 +103,7 @@
 							NETWORK_ALARM_FIRE,
 							NETWORK_SUPPLY
 							)
-	usable_email_tlds = list("freemail.nt")
+	usable_email_tlds = list("sifnet.nt")
 	allowed_spawns = list(
 		"Arrivals Shuttle",
 		"Gateway",
@@ -112,6 +112,11 @@
 		"Wilderness",
 		"ITV Talon Cryo"
 	)
+	spawnpoint_died = /datum/spawnpoint/arrivals
+	spawnpoint_left = /datum/spawnpoint/arrivals
+	spawnpoint_stayed = /datum/spawnpoint/cryo
+
+	meteor_strike_areas = list(/area/surface/outside/plains/normal)
 
 
 	use_overmap = 			TRUE
@@ -140,6 +145,49 @@
 			Z_LEVEL_STATION_THREE,
 			Z_LEVEL_SURFACE_WILD
 		)
+
+	lateload_z_levels = list(
+		list("Offmap Ship - Talon V2"),
+		list("Asteroid Belt 1","Asteroid Belt 2"),
+		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
+		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
+		list("Debris Field - Z1 Space"),
+		list("Fuel Depot - Z1 Space")
+		)
+
+	lateload_gateway = list(
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post"),
+		list(list("Honleth Highlands A", "Honleth Highlands B")),
+		list("Arynthi Lake Underground A","Arynthi Lake A"),
+		list("Arynthi Lake Underground B","Arynthi Lake B"),
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Wild West")
+		)
+
+	lateload_overmap = list(
+		list("Grass Cave")
+		)
+
+	ai_shell_restricted = TRUE
+	ai_shell_allowed_levels = list(
+		Z_LEVEL_STATION_ONE,
+		Z_LEVEL_STATION_TWO,
+		Z_LEVEL_STATION_THREE,
+		Z_LEVEL_SURFACE_WILD
+		)
+
+	belter_docked_z = 		list(Z_LEVEL_STATION_TWO)
+	belter_transit_z =	 	list(Z_LEVEL_CENTCOM)
+	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
+						 		 Z_LEVEL_ROGUEMINE_2)
+
+	mining_station_z =		list(Z_LEVEL_STATION_ONE)
+	mining_outpost_z =		list(Z_LEVEL_STATION_TWO)
+
+	planet_datums_to_make = list(/datum/planet/sif,
+								/datum/planet/virgo4)
 
 /datum/map/cynosure/perform_map_generation()
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
@@ -195,7 +243,7 @@
 	to_world_log("Generated ores in [(REALTIMEOFDAY - time_started) / 10] second\s.")
 
 	// Forest/wilderness generation.
-	new /datum/random_map/noise/sif(       null, 1, 1, Z_LEVEL_STATION_TWO,      world.maxx, world.maxy)
+	new /datum/random_map/noise/sif(null, 1, 1, Z_LEVEL_STATION_TWO,      world.maxx, world.maxy)
 	new /datum/random_map/noise/sif/forest(null, 1, 1, Z_LEVEL_SURFACE_WILD, world.maxx, world.maxy)
 
 	return 1
@@ -203,8 +251,8 @@
 /datum/map/cynosure/get_map_info()
 	. = list()
 	. +=  "[full_name] is a a cutting-edge anomaly research facility on the frozen garden world of Sif, jewel of the Vir system.<br>"
-	. +=  "Following the Skathari Incursion, an invasion of reality-bending creatures from the remnants of a dead universe, the known galaxy has been thrown into disarray.<br>"
-	. +=  "The Solar Confederate Government struggles under its own weight, with new factions arising with promises of autonomy, security or profit like circling vultures.<br>"
+	. +=  "Recently established to investigate anomalous readings coming from the sector, it brings with it promise of great fortune and fame for those bold enough to dabble in the unknown.<br>"
+	. +=  "The Commonwealth of Sol-Procyon struggles under its own weight, with new factions arising with promises of autonomy, security or profit like circling vultures.<br>"
 	. +=  "Humanity already stands on the precipice of a technological singularity that few are ready to face, and the winds of change whip at their backs.<br>"
 	. +=  "On the edge of Sif's Anomalous Region, NanoTrasen seeks to exploit new phenomena stirred by the Incursion... That's where you come in."
 	return jointext(., "<br>")
@@ -313,6 +361,10 @@
 		Z_LEVEL_STATION_THREE,
 		Z_LEVEL_SURFACE_WILD
 	)
+/datum/planet/virgo4
+	expected_z_levels = list(
+		Z_LEVEL_BEACH
+	)
 
 /obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()
 	teleport_x = src.x - 4
@@ -369,19 +421,6 @@
 
 /obj/effect/map_effect/portal/master/side_b/wilderness_to_plains/river
 	portal_id = "caves_wilderness-river"
-
-//Suit Storage Units
-
-/obj/machinery/suit_cycler/exploration
-	name = "Explorer suit cycler"
-	model_text = "Exploration"
-	req_one_access = list(access_explorer)
-
-/obj/machinery/suit_cycler/pilot
-	name = "Pilot suit cycler"
-	model_text = "Pilot"
-	req_access = null
-	req_one_access = list(access_explorer)
 
 // Putting this here in order to not disrupt existing maps/downstreams.
 /turf/simulated/open
