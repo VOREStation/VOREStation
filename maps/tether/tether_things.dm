@@ -286,7 +286,7 @@
 // Shelter Capsule extra restrictions
 /datum/map_template/shelter/New()
 	..()
-	banned_areas += list(/area/tether/surfacebase/fish_farm, /area/tether/surfacebase/public_garden)
+	banned_areas += list(/area/tether/surfacebase/fish_farm, /area/tether/surfacebase/public_garden, /area/tether/surfacebase/tram)
 
 //
 // ### Wall Machines On Full Windows ###
