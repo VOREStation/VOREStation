@@ -12,7 +12,7 @@
 	var/hitstaken = 0
 	var/locked = 1
 	var/smashed = 0
-	var/starts_with_axe = FALSE
+	var/starts_with_axe = TRUE
 
 /obj/structure/fireaxecabinet/Initialize()
 	. = ..()
@@ -189,5 +189,5 @@
 	icon_state = text("fireaxe[][][][]",hasaxe,open,hitstaken,smashed)
 
 
-/obj/structure/fireaxecabinet/full
-	starts_with_axe = TRUE
+/obj/structure/fireaxecabinet/empty
+	starts_with_axe = FALSE

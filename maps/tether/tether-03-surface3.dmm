@@ -6527,9 +6527,6 @@
 /area/tether/surfacebase/outside/outside3)
 "ajH" = (
 /obj/machinery/computer/secure_data,
-/obj/structure/fireaxecabinet{
-	pixel_y = 30
-	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "ajI" = (

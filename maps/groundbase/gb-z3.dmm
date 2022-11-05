@@ -4,9 +4,6 @@
 /area/groundbase/exploration/equipment)
 "ab" = (
 /obj/machinery/suit_cycler/medical,
-/obj/structure/sign/scenery/fakefireaxe{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "ac" = (

@@ -539,9 +539,6 @@
 "bq" = (
 /obj/machinery/vending/wardrobe/atmosdrobe,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/sign/scenery/fakefireaxe{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
 "br" = (
