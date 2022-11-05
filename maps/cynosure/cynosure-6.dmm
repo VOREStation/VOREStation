@@ -1050,7 +1050,7 @@
 	},
 /area/ninja_dojo/dojo)
 "biG" = (
-/obj/machinery/computer/shuttle_control{
+/obj/machinery/computer/shuttle_control/arrivals{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec/raised,
@@ -1417,9 +1417,10 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/syndicate_elite/mothership)
 "bCv" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
-/turf/simulated/floor/tiled/milspec/raised,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "bCA" = (
 /obj/structure/table/bench/padded,
@@ -6499,6 +6500,9 @@
 /area/shuttle/supply)
 "hyg" = (
 /obj/machinery/iv_drip,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "hyN" = (
@@ -6843,11 +6847,9 @@
 	},
 /area/centcom/medical)
 "hQJ" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 5
-	},
-/obj/structure/bed/roller,
-/turf/simulated/floor/tiled/milspec/sterile,
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/escape/centcom)
 "hRs" = (
 /obj/machinery/recharge_station,
@@ -9540,10 +9542,10 @@
 	},
 /area/centcom/main_hall)
 "kEg" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 9
+/obj/machinery/atmospherics/unary/cryo_cell{
+	layer = 3.3
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/escape/centcom)
 "kEj" = (
 /obj/machinery/newscaster{
@@ -11579,7 +11581,8 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/merchant/home)
 "mPt" = (
-/turf/simulated/wall/tgmc/whitewall,
+/obj/structure/bed/roller,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "mQd" = (
 /obj/structure/table/marble,
@@ -11732,12 +11735,6 @@
 	},
 /turf/simulated/shuttle/wall/dark/no_join,
 /area/shuttle/arrival/pre_game)
-"mZs" = (
-/obj/machinery/atmospherics/unary/cryo_cell{
-	layer = 3.3
-	},
-/turf/simulated/floor/tiled/milspec/raised,
-/area/shuttle/escape/centcom)
 "nac" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
@@ -18139,9 +18136,6 @@
 /obj/effect/floor_decal/sign/small_f,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
-"tPd" = (
-/turf/simulated/wall/tgmc/window/white/reinf,
-/area/shuttle/escape/centcom)
 "tPB" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -20162,6 +20156,7 @@
 	},
 /area/centcom/specops)
 "vXp" = (
+/obj/effect/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/shuttle/escape/centcom)
 "vYZ" = (
@@ -21369,6 +21364,7 @@
 /turf/simulated/shuttle/floor/white,
 /area/centcom/evac)
 "xib" = (
+/obj/effect/wingrille_spawn/reinforced,
 /turf/simulated/floor/tiled/milspec,
 /area/shuttle/arrival/pre_game)
 "xid" = (
@@ -29927,10 +29923,10 @@ tCz
 tQa
 lqf
 lqf
+tQa
 xib
 xib
-xib
-xib
+tQa
 lqf
 lqf
 tQa
@@ -30955,10 +30951,10 @@ fuj
 tgY
 pNX
 dZT
+tQa
 xib
 xib
-xib
-xib
+tQa
 nol
 pNU
 jbe
@@ -31983,10 +31979,10 @@ imU
 tQa
 qzL
 qzL
+tQa
 xib
 xib
-xib
-xib
+tQa
 qzL
 qzL
 tQa
@@ -36262,10 +36258,10 @@ eVJ
 eVJ
 gOt
 gOt
+eVJ
 vXp
 vXp
-vXp
-vXp
+eVJ
 gnm
 gnm
 eVJ
@@ -37540,7 +37536,7 @@ puk
 puk
 rBz
 uwu
-mZs
+eVJ
 hQJ
 hyg
 uak
@@ -37797,9 +37793,9 @@ puk
 puk
 rBz
 uwu
-bCv
+eVJ
 kEg
-xiF
+bCv
 tTj
 pGP
 umC
@@ -38570,7 +38566,7 @@ puk
 rBz
 uwu
 eMi
-xiF
+mPt
 eMi
 pGP
 kpG
@@ -38832,10 +38828,10 @@ eVJ
 eVJ
 kuN
 nmf
-mPt
-tPd
-tPd
-mPt
+eVJ
+vXp
+vXp
+eVJ
 kuN
 kuN
 eVJ

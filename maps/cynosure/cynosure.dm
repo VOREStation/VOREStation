@@ -8,23 +8,8 @@
 	#include "cynosure_presets.dm"
 	#include "cynosure_shuttles.dm"
 
-	#include "loadout/loadout_accessories.dm"
-	#include "loadout/loadout_head.dm"
-	#include "loadout/loadout_suit.dm"
-	#include "loadout/loadout_uniform.dm"
-
-	#include "datums/supplypacks/munitions.dm"
 	#include "datums/random_map.dm"
-	#include "datums/spawn.dm"
 
-	#include "items/encryptionkey_cyno.dm"
-	#include "items/headset_cyno.dm"
-	#include "items/clothing/cyno_suit.dm"
-	#include "items/clothing/cyno_under.dm"
-	#include "items/clothing/cyno_accessory.dm"
-	#include "job/outfits.dm"
-	#include "structures/closets/misc.dm"
-	#include "structures/closets/security.dm"
 	#include "turfs/outdoors.dm"
 	#include "overmap/sectors.dm"
 

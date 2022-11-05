@@ -2,7 +2,7 @@
 
 /area/surface
 	name = "The Surface (Don't Use)"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED
 
 /area/surface/center
 	name = "Center"
@@ -43,7 +43,7 @@
 /area/surface/outside
 	ambience = AMBIENCE_SIF
 	always_unpowered = TRUE
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 	outdoors = OUTDOORS_YES
 
 // The area near the station, so POIs don't show up right next to the outpost.
@@ -102,7 +102,7 @@
 	name = "Gautelfr River"
 
 /area/surface/cave
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 	always_unpowered = TRUE
 
 // The bottom half that connects to the outpost and is safer.
@@ -128,7 +128,7 @@
 /area/surface/station
 	ambience = AMBIENCE_GENERIC
 	outdoors = OUTDOORS_NO
-	area_flags = AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_STATION_AREA
 
 //AI
 
@@ -510,13 +510,13 @@
 /area/surface/station/crew_quarters/heads/cmo
 	name = "\improper Medbay - CMO's Office"
 	icon_state = "head_quarters"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/surface/station/crew_quarters/heads/hop
 	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 /area/surface/station/crew_quarters/heads/hos
@@ -670,7 +670,7 @@
 //Maintenance
 
 /area/surface/station/maintenance
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_STATION_AREA
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	ambience = AMBIENCE_MAINTENANCE
@@ -804,7 +804,7 @@
 /area/surface/station/construction
 	name = "\improper Engineering Construction Area"
 	icon_state = "yellow"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
 
 /area/surface/station/construction/bar
 	name = "\improper Bar Basement"
@@ -866,7 +866,7 @@
 /area/surface/station/medical/etc
 	name = "\improper Medical - Emergency Treatment Centre"
 	icon_state = "exam_room"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //Trust me.
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //Trust me.
 
 /area/surface/station/medical/hallway
 	name = "\improper Medbay - Hallway"
@@ -938,12 +938,12 @@
 /area/surface/station/medical/surgery
 	name = "\improper Medbay - Operating Theatre 1"
 	icon_state = "surgery"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //This WOULD become a filth pit
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //This WOULD become a filth pit
 
 /area/surface/station/medical/surgery2
 	name = "\improper Medbay - Operating Theatre 2"
 	icon_state = "surgery"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
 
 /area/surface/station/medical/surgeryobs
 	name = "\improper Medbay - Operation Observation"
@@ -991,7 +991,7 @@
 /area/surface/outside/station
 	name = "\improper Station"
 	ambience = AMBIENCE_SIF
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
 
 /area/surface/outside/station/roof
 	name = "\improper Roof"
@@ -1068,7 +1068,7 @@
 
 /area/surface/station/quartermaster/delivery
 	name = "\improper Cargo - Delivery Office"
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //So trash doesn't pile up too hard.
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA //So trash doesn't pile up too hard.
 
 /area/surface/station/quartermaster/lockerroom
 	name = "\improper Cargo Locker Room"
@@ -1345,7 +1345,7 @@
 	icon_state = "shuttle"
 	requires_power = 0
 	dynamic_lighting = 1
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_STATION_AREA
 
 /area/turbolift/start
 	name = "\improper Turbolift Start"
@@ -1494,7 +1494,7 @@
 	name = "\improper Telecomms Satellite"
 	icon_state = "tcomsatcham"
 	ambience = AMBIENCE_ENGINEERING
-	area_flags = AREA_FLAG_IS_STATION_AREA
+//	area_flags = AREA_FLAG_IS_STATION_AREA
 
 /area/tcommsat/cynosure/entrance
 	name = "\improper Telecomms Entrance"
@@ -1553,7 +1553,7 @@
 	name = "\improper Response Team Ship"
 	icon_state = "centcom"
 	requires_power = 0
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/shuttle/response_ship/start
@@ -1633,7 +1633,7 @@
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station
@@ -1641,7 +1641,7 @@
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station/start
@@ -1702,7 +1702,7 @@
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/skipjack_station/transit
@@ -1756,7 +1756,7 @@
 	name = "\improper Ninja Base"
 	icon_state = "green"
 	requires_power = 0
-	area_flags = AREA_FLAG_IS_RAD_SHIELDED
+//	area_flags = AREA_FLAG_IS_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/ninja_dojo/dojo

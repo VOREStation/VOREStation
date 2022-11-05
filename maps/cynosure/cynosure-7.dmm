@@ -23,18 +23,18 @@
 /obj/structure/cliff/automatic{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "dj" = (
 /obj/vehicle/boat/sifwood,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/normal)
 "eZ" = (
 /turf/simulated/wall/sifwood,
 /area/surface/wilderness/shack)
 "fy" = (
 /obj/structure/cliff/automatic,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "fP" = (
 /obj/structure/table/sifwoodentable,
@@ -46,13 +46,13 @@
 /obj/structure/cliff/automatic{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "hb" = (
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "id" = (
 /turf/simulated/wall/sifwood,
@@ -70,7 +70,7 @@
 /obj/structure/cliff/automatic{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "kx" = (
 /obj/structure/prop/rock/small/alt,
@@ -84,13 +84,13 @@
 	dir = 6
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "mZ" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "ne" = (
 /turf/simulated/floor/outdoors/grass/sif,
@@ -106,7 +106,7 @@
 /turf/simulated/floor/water/deep,
 /area/surface/outside/river/gautelfr)
 "oR" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/deep)
 "pM" = (
 /turf/simulated/mineral/sif,
@@ -115,7 +115,7 @@
 /obj/structure/cliff/automatic{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "qr" = (
 /obj/structure/kitchenspike,
@@ -169,7 +169,7 @@
 	dir = 2
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "wN" = (
 /turf/simulated/floor/outdoors/dirt/sif,
@@ -192,10 +192,10 @@
 /area/surface/outside/river/gautelfr)
 "Aq" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/normal)
 "Ax" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/normal)
 "Ay" = (
 /turf/simulated/floor/water,
@@ -205,7 +205,7 @@
 	dir = 8
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "BR" = (
 /obj/structure/cliff/automatic{
@@ -227,7 +227,7 @@
 /turf/simulated/floor/outdoors/grass/sif,
 /area/surface/outside/wilderness/mountains)
 "Fg" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/path/wilderness)
 "FF" = (
 /turf/simulated/shuttle/wall/voidcraft,
@@ -239,7 +239,7 @@
 /obj/structure/cliff/automatic{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "GK" = (
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
@@ -280,7 +280,7 @@
 /obj/structure/cliff/automatic/corner{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "MK" = (
 /obj/effect/map_effect/portal/line/side_b{
@@ -296,7 +296,7 @@
 /area/surface/outside/wilderness/mountains)
 "PH" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/deep)
 "Qw" = (
 /obj/structure/prop/rock/small/water,
@@ -342,24 +342,24 @@
 /obj/structure/cliff/automatic/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "VU" = (
 /obj/structure/cliff/automatic{
 	dir = 2
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "Wz" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 6
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "XN" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/path/wilderness)
 "Yh" = (
 /obj/structure/cliff/automatic/corner{
@@ -368,7 +368,7 @@
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/wilderness/mountains)
 "Zo" = (
 /obj/effect/map_effect/portal/line/side_b{

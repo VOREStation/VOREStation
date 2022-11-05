@@ -1047,7 +1047,7 @@
 /area/surface/station/security/lobby)
 "aEE" = (
 /obj/structure/cliff/automatic/corner,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "aFa" = (
 /obj/effect/floor_decal/techfloor{
@@ -1286,7 +1286,7 @@
 /obj/structure/cliff/automatic{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "aHL" = (
 /obj/effect/zone_divider,
@@ -2132,7 +2132,7 @@
 /obj/structure/cliff/automatic/ramp{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "baV" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -3617,7 +3617,7 @@
 /area/surface/station/hydroponics)
 "bHg" = (
 /obj/structure/cliff/automatic/ramp,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "bHr" = (
 /obj/machinery/door/airlock{
@@ -4221,7 +4221,7 @@
 /area/surface/station/medical/etc)
 "bVN" = (
 /obj/structure/cliff/automatic,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "bWC" = (
 /obj/structure/window/reinforced,
@@ -4921,7 +4921,7 @@
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "cow" = (
 /obj/structure/table/marble,
@@ -6401,7 +6401,7 @@
 	dir = 10
 	},
 /obj/item/clothing/glasses/hud/security,
-/obj/structure/closet/secure_closet/security/cynosure,
+/obj/structure/closet/secure_closet/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
 "cXn" = (
@@ -6951,7 +6951,7 @@
 	},
 /obj/item/device/taperecorder,
 /obj/item/device/megaphone,
-/obj/structure/closet/secure_closet/hos/cynosure,
+/obj/structure/closet/secure_closet/hos,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/crew_quarters/heads/hos)
 "dko" = (
@@ -7665,6 +7665,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
 /turf/simulated/floor/tiled/old_tile/blue,
 /area/surface/station/arrivals/cynosure/cryo)
 "dBO" = (
@@ -7759,7 +7762,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/structure/closet/secure_closet/security/cynosure,
+/obj/structure/closet/secure_closet/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
 "dDp" = (
@@ -8020,7 +8023,7 @@
 	dir = 8
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "dKa" = (
 /obj/structure/sign/directions/ladderwell{
@@ -9205,7 +9208,7 @@
 /area/surface/station/janitor)
 "eoi" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "eor" = (
 /obj/structure/cable{
@@ -10343,7 +10346,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/etc)
 "eKw" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outpost/checkpoint)
 "eKA" = (
 /obj/machinery/disposal,
@@ -10973,7 +10976,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/medical/emt_bay)
 "eXA" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "eXO" = (
 /obj/structure/cable/cyan{
@@ -13385,7 +13388,7 @@
 	dir = 8;
 	pixel_x = -21
 	},
-/obj/structure/closet/secure_closet/security/cynosure,
+/obj/structure/closet/secure_closet/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
 "gdi" = (
@@ -14040,11 +14043,10 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/south)
 "gvb" = (
-/obj/effect/landmark/start{
-	name = "Survivalist"
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/plains/normal)
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/light/flamp,
+/turf/simulated/floor/grass,
+/area/surface/station/park)
 "gve" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 10
@@ -14275,7 +14277,7 @@
 /obj/structure/cliff/automatic{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "gAJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -14370,7 +14372,7 @@
 /obj/structure/fence/end{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "gBL" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -14821,12 +14823,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/gnd)
-"gJv" = (
-/obj/effect/landmark{
-	name = "JoinLateCheckpoint"
-	},
-/turf/simulated/floor/outdoors/dirt/sif,
-/area/surface/outside/path/plains)
 "gJA" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
@@ -15235,7 +15231,7 @@
 /obj/structure/fence/corner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "gTA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -15703,6 +15699,9 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/medical/cloning)
 "hgd" = (
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
 /turf/simulated/floor/tiled/old_tile/blue,
 /area/surface/station/arrivals/cynosure/cryo)
 "hgs" = (
@@ -17723,10 +17722,6 @@
 	},
 /turf/simulated/wall,
 /area/surface/station/crew_quarters/cafeteria)
-"ike" = (
-/obj/machinery/computer/cryopod/checkpoint,
-/turf/unsimulated/wall/planetary/sif,
-/area/surface/outpost/checkpoint)
 "ikq" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_coffee/full{
@@ -19237,7 +19232,7 @@
 /area/surface/station/hallway/primary/groundfloor/south)
 "iVY" = (
 /obj/structure/fence/end,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "iWb" = (
 /obj/effect/floor_decal/borderfloor{
@@ -19294,7 +19289,7 @@
 /obj/structure/fence/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "iYA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
@@ -20705,7 +20700,7 @@
 /area/surface/station/crew_quarters/heads/hos)
 "jIh" = (
 /obj/structure/fence/post,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "jIj" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -21094,9 +21089,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/arrivals/cynosure)
 "jQl" = (
@@ -21174,7 +21166,7 @@
 "jRb" = (
 /obj/structure/fence,
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "jRo" = (
 /obj/structure/disposalpipe/segment,
@@ -21390,7 +21382,9 @@
 	},
 /area/space)
 "jUL" = (
-/obj/machinery/cryopod/robot/door/checkpoint,
+/obj/structure/barricade{
+	layer = 3.3
+	},
 /turf/simulated/floor/outdoors/dirt/sif,
 /area/surface/outpost/checkpoint)
 "jUQ" = (
@@ -28154,7 +28148,7 @@
 	dir = 9
 	},
 /obj/structure/cliff/automatic/corner,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "mQx" = (
 /obj/structure/cable{
@@ -29732,7 +29726,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/crew_quarters/heads/hos)
 "nCe" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "nCg" = (
 /obj/structure/table/marble,
@@ -30230,7 +30224,7 @@
 /area/surface/station/engineering/workshop)
 "nME" = (
 /obj/structure/fence/corner,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "nMJ" = (
 /obj/structure/cable{
@@ -30752,12 +30746,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/medical/emt_bay)
-"nXB" = (
-/obj/effect/landmark{
-	name = "JoinLateCheckpoint"
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/plains/normal)
 "nXP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -30817,6 +30805,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals3{
 	dir = 6
+	},
+/obj/effect/landmark{
+	name = "Observer-Start"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/crew_quarters/cafeteria)
@@ -33315,7 +33306,7 @@
 /obj/structure/cliff/automatic{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "oYn" = (
 /obj/structure/reagent_dispensers/water_cooler/full,
@@ -33618,6 +33609,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
+	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
 	},
 /turf/simulated/floor/tiled/old_tile/blue,
 /area/surface/station/arrivals/cynosure/cryo)
@@ -33951,7 +33945,7 @@
 "plA" = (
 /obj/structure/fence/corner,
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "plP" = (
 /turf/simulated/wall/r_concrete,
@@ -38089,7 +38083,7 @@
 	dir = 8
 	},
 /obj/item/clothing/glasses/hud/security,
-/obj/structure/closet/secure_closet/security/cynosure,
+/obj/structure/closet/secure_closet/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
 "qWT" = (
@@ -39471,7 +39465,7 @@
 	dir = 8
 	},
 /obj/item/clothing/glasses/hud/security,
-/obj/structure/closet/secure_closet/security/cynosure,
+/obj/structure/closet/secure_closet/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
 "rEs" = (
@@ -40423,12 +40417,6 @@
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
 /area/surface/outside/plains/station)
-"sby" = (
-/obj/effect/landmark/start{
-	name = "Survivalist"
-	},
-/turf/simulated/floor/outdoors/dirt/sif,
-/area/surface/outpost/checkpoint)
 "scm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/spline/plain{
@@ -40764,7 +40752,7 @@
 /obj/structure/fence/corner{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "snA" = (
 /obj/effect/floor_decal/borderfloor,
@@ -41014,6 +41002,9 @@
 "ssB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
 	},
 /turf/simulated/floor/tiled/old_tile/blue,
 /area/surface/station/arrivals/cynosure/cryo)
@@ -41829,7 +41820,7 @@
 /obj/structure/fence/post{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "sLv" = (
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -42742,7 +42733,7 @@
 /area/surface/station/chapel/main)
 "tjO" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "tjX" = (
 /obj/machinery/alarm{
@@ -42965,7 +42956,7 @@
 "tnh" = (
 /obj/item/weapon/reagent_containers/spray/pepper,
 /obj/item/device/flash,
-/obj/structure/closet/secure_closet/detective/cynosure,
+/obj/structure/closet/secure_closet/detective,
 /turf/simulated/floor/lino,
 /area/surface/station/security/detectives_office)
 "tnJ" = (
@@ -44128,6 +44119,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
 /turf/simulated/floor/tiled/old_tile/blue,
 /area/surface/station/arrivals/cynosure/cryo)
 "tMM" = (
@@ -44674,6 +44668,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
 	},
 /turf/simulated/floor/tiled/old_tile/blue,
 /area/surface/station/arrivals/cynosure/cryo)
@@ -47773,7 +47770,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/ward)
 "vwy" = (
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/normal)
 "vwK" = (
 /obj/machinery/atmospherics/pipe/cap/visible{
@@ -48901,7 +48898,7 @@
 /obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "vZO" = (
 /obj/structure/target_stake,
@@ -49896,7 +49893,7 @@
 "wAU" = (
 /obj/structure/cliff/automatic/corner,
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "wBO" = (
 /obj/structure/cable{
@@ -50733,10 +50730,9 @@
 	dir = 4
 	},
 /obj/machinery/chemical_dispenser/full,
-/obj/structure/sign/poster/custom{
+/obj/structure/sign/periodic{
 	dir = 4;
-	pixel_x = 32;
-	poster_decl = /decl/poster/pol_17
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/chemistry)
@@ -51236,7 +51232,7 @@
 /area/surface/station/engineering/reactor_room)
 "xdu" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/normal)
 "xdA" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -51651,7 +51647,7 @@
 /area/surface/station/maintenance/kitchen)
 "xpd" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "xpy" = (
 /obj/structure/table/woodentable,
@@ -51799,12 +51795,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/security/restroom)
-"xsG" = (
-/obj/effect/landmark{
-	name = "JoinLateCheckpoint"
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outpost/checkpoint)
 "xsT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -52146,7 +52136,7 @@
 /obj/structure/fence/corner{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "xBS" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -52364,7 +52354,7 @@
 	dir = 5
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "xHf" = (
 /obj/machinery/vending/hydronutrients{
@@ -52640,7 +52630,7 @@
 "xNj" = (
 /obj/structure/cliff/automatic,
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/plateau)
 "xNB" = (
 /obj/structure/cable/green{
@@ -53282,7 +53272,7 @@
 	dir = 4
 	},
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "xXF" = (
 /obj/structure/closet{
@@ -53643,7 +53633,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/mask,
+/turf/simulated/floor/outdoors/grass/sif/random,
 /area/surface/outside/plains/station)
 "yeD" = (
 /obj/structure/disposalpipe/segment{
@@ -54336,7 +54326,7 @@ eKw
 eKw
 eKw
 tbX
-ike
+tbX
 jUL
 jUL
 jUL
@@ -55105,15 +55095,15 @@ eKw
 eKw
 eKw
 eKw
-xsG
 eKw
-sby
+eKw
+poX
 fyc
-gJv
+fyc
 vwy
-gvb
 vwy
-nXB
+vwy
+vwy
 vwy
 vwy
 vwy
@@ -86067,13 +86057,13 @@ oqM
 oqM
 oqM
 oqM
-oqM
+gvb
 oqM
 bql
 lxE
 bql
 oqM
-oqM
+gvb
 oqM
 oqM
 oqM
@@ -87095,13 +87085,13 @@ oqM
 oqM
 oqM
 oqM
-oqM
+gvb
 oqM
 bql
 lxE
 bql
 oqM
-oqM
+gvb
 oqM
 oqM
 oqM

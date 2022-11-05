@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(mapping)
 	var/dmm_suite/maploader = null
 	var/obj/effect/landmark/engine_loader/engine_loader
 	var/list/shelter_templates = list()
+	var/list/static_submap_landmarks = list()
+	var/list/engine_submap_landmarks = list()
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
@@ -23,7 +25,7 @@ SUBSYSTEM_DEF(mapping)
 	if(config.generate_map)
 		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
 		using_map.perform_map_generation()
-	
+
 	loadEngine()
 	preloadShelterTemplates() // VOREStation EDIT: Re-enable Shelter Capsules
 	// Mining generation probably should be here too
@@ -40,6 +42,36 @@ SUBSYSTEM_DEF(mapping)
 		template = new template()
 		map_templates[template.name] = template
 	return TRUE
+
+/// Loads submaps at a specific point on the main map, using landmarks.
+/datum/controller/subsystem/mapping/proc/load_static_submaps(list/submap_paths)
+//	log_mapload("Going to load [submap_paths.len] static PoI\s.")
+	for(var/thing in submap_paths)
+		var/obj/effect/landmark/submap_position/P = thing
+
+		var/turf/T = get_turf(P)
+		if(!istype(T))
+//			log_mapload("[log_info_line(src)] not on a turf! Cannot place PoI template.")
+			continue
+
+		var/datum/map_template/template = P.get_submap_template()
+		if(!istype(template))
+//			log_mapload("[log_info_line(src)] was not given a submap template, but was instead given [log_info_line(template)].")
+			return
+
+//		log_mapload("[P.name] chose '[template.name]' to load.")
+		admin_notice("[P.name] chose '[template.name]' to load.", R_DEBUG)
+
+		P.moveToNullspace()
+//		var/time_started = REALTIMEOFDAY
+		if(P.annihilate_bounds)
+			template.annihilate_bounds(T)
+
+		template.load(T)
+//		var/time_ended = (REALTIMEOFDAY - time_started) / 10
+//		if(verbose_loading_time_logs)
+//			log_mapload("[template.name] loaded in [time_ended] second\s.")
+		qdel(P)
 
 /datum/controller/subsystem/mapping/proc/loadEngine()
 	if(!engine_loader)
@@ -112,7 +144,7 @@ SUBSYSTEM_DEF(mapping)
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
 				MT.load_new_z(centered = FALSE)
-	
+
 	if(LAZYLEN(also_load)) //Just copied from gateway picking, this is so we can have a kind of OM map version of the same concept.
 		var/picklist = pick(also_load)
 

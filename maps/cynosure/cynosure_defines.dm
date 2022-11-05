@@ -15,6 +15,7 @@
 
 	lobby_screens = list('maps/cynosure/title_cynosure.png')
 
+/*
 	lobby_tracks = list(
 		/decl/music_track/chasing_time,
 		/decl/music_track/epicintro2015,
@@ -24,6 +25,7 @@
 		/decl/music_track/asfarasitgets,
 		/decl/music_track/space_oddity,
 		/decl/music_track/martiancowboy)
+*/
 
 	holomap_smoosh = list(list(
 		Z_LEVEL_STATION_ONE,
@@ -123,29 +125,10 @@
 			Z_LEVEL_SURFACE_WILD
 		)
 
-	the_station_areas = list(
-	/area/surface/station,
-	/area/shuttle/arrival,
-	/area/shuttle/escape/station,
-	/area/shuttle/escape_pod1/station,
-	/area/shuttle/escape_pod2/station,
-	/area/shuttle/escape_pod3/station,
-	/area/shuttle/escape_pod5/station,
-	/area/shuttle/large_escape_pod1/station,
-	/area/shuttle/large_escape_pod2/station,
-	/area/shuttle/mining/station,
-	/area/shuttle/transport1/station,
-	/area/shuttle/prison/station,
-	/area/shuttle/administration/station,
-	/area/shuttle/specops/station
-	)
-
-	hallway_areas = /area/surface/station/hallway
-	maintenance_areas = /area/surface/station/maintenance
-
 /datum/map/cynosure/perform_map_generation()
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
 
+/*	// Temporarily disabled due to submap divergence
 	// Cave submaps are first.
 	SSmapping.seed_area_submaps(
 		list(Z_LEVEL_STATION_ONE),
@@ -153,6 +136,7 @@
 		/area/surface/cave/unexplored/normal,
 		/datum/map_template/surface/mountains/normal
 	)
+
 	SSmapping.seed_area_submaps(
 		list(Z_LEVEL_STATION_ONE),
 		75,
@@ -183,6 +167,7 @@
 		/datum/map_template/surface/wilderness/deep
 	)
 	// If Space submaps are made, add a line to make them here as well.
+*/
 
 	// Now for the tunnels.
 	var/time_started = REALTIMEOFDAY
@@ -227,11 +212,11 @@
 /datum/map_z_level/cynosure/station/station_one
 	z = Z_LEVEL_STATION_ONE
 	name = "Underground"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_UNDERGROUND
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED //|MAP_LEVEL_UNDERGROUND
 	base_turf = /turf/simulated/floor/outdoors/rocks/caves
 	holomap_offset_x = SOUTHERN_CROSS_HOLOMAP_MARGIN_X - 40
 	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*0
-	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA)
+//	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/map_z_level/cynosure/station/station_two
 	z = Z_LEVEL_STATION_TWO
@@ -240,7 +225,7 @@
 	base_turf = /turf/simulated/open
 	holomap_offset_x = SOUTHERN_CROSS_HOLOMAP_MARGIN_X - 40
 	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*1
-	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA, EVENT_REGION_SUBTERRANEAN)
+//	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA, EVENT_REGION_SUBTERRANEAN)
 
 /datum/map_z_level/cynosure/station/station_three
 	z = Z_LEVEL_STATION_THREE
@@ -249,21 +234,21 @@
 	base_turf = /turf/simulated/open
 	holomap_offset_x = HOLOMAP_ICON_SIZE - SOUTHERN_CROSS_HOLOMAP_MARGIN_X - SOUTHERN_CROSS_MAP_SIZE - 40
 	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*1
-	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA)
+//	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/map_z_level/cynosure/empty_space
 	z = Z_LEVEL_EMPTY_SPACE
 	name = "Empty"
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 76
-	event_regions = list(EVENT_REGION_DEEPSPACE)
+//	event_regions = list(EVENT_REGION_DEEPSPACE)
 
 /datum/map_z_level/cynosure/tcomm
 	z = Z_LEVEL_TCOMM
 	name = "Telecommunications Satellite"
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT
 	transit_chance = 24
-	event_regions = list(EVENT_REGION_SPACESTATION)
+//	event_regions = list(EVENT_REGION_SPACESTATION)
 
 /datum/map_z_level/cynosure/centcom
 	z = Z_LEVEL_CENTCOM
@@ -275,7 +260,7 @@
 	name = "Wilderness"
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks/sif/planetuse
-	event_regions = list(EVENT_REGION_PLANETSURFACE)
+//	event_regions = list(EVENT_REGION_PLANETSURFACE)
 
 //Teleport to Mine
 

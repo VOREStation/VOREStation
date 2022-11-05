@@ -791,14 +791,6 @@
 	pixel_x = 21
 	},
 /obj/effect/floor_decal/spline/plain,
-/obj/structure/window/reinforced{
-	dir = 8;
-	pixel_x = -6
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 7
-	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/park/skybridge)
 "ayR" = (
@@ -6506,10 +6498,10 @@
 /turf/simulated/open,
 /area/surface/station/engineering/reactor_room)
 "erp" = (
-/obj/structure/railing,
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/structure/railing,
 /turf/simulated/open,
 /area/surface/station/park/skybridge)
 "erq" = (
@@ -11606,9 +11598,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/structure/sign/level/two{
 	dir = 8;
 	pixel_x = 50
@@ -12494,10 +12483,6 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "hYb" = (
@@ -12590,9 +12575,6 @@
 /obj/machinery/camera/network/second_floor{
 	c_tag = "Second Floor - Skybridge 1";
 	dir = 1
-	},
-/obj/structure/window/reinforced{
-	pixel_y = -6
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
@@ -14440,10 +14422,6 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
@@ -16431,15 +16409,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/qm)
-"keB" = (
-/obj/effect/wingrille_spawn/reinforced_phoron,
-/obj/machinery/door/blast/regular{
-	id = "SupermatterPort";
-	layer = 3.3;
-	name = "Reactor Core Blast Door"
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/engineering/reactor_room)
 "kfW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
@@ -16694,9 +16663,6 @@
 "kos" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/green/bordercorner,
-/obj/structure/window/reinforced{
-	pixel_y = -6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "kox" = (
@@ -16706,12 +16672,6 @@
 	},
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = 6;
-	pixel_y = 1
 	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/park/skybridge)
@@ -16728,10 +16688,6 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
@@ -19396,9 +19352,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/green/border,
-/obj/structure/window/reinforced{
-	pixel_y = -6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "mwp" = (
@@ -19918,16 +19871,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai)
-"mMz" = (
-/obj/effect/wingrille_spawn/reinforced_phoron,
-/obj/machinery/door/blast/regular{
-	dir = 4;
-	id = "SupermatterPort";
-	layer = 3.3;
-	name = "Reactor Core Blast Door"
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/engineering/reactor_room)
 "mMC" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -22589,7 +22532,7 @@
 "oEy" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/red/border,
-/obj/structure/closet/secure_closet/warden/cynosure,
+/obj/structure/closet/secure_closet/warden,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/warden)
 "oEP" = (
@@ -23420,10 +23363,6 @@
 	},
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
@@ -24867,9 +24806,6 @@
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
-	pixel_y = -6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "qcZ" = (
@@ -25176,9 +25112,6 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
-/obj/structure/window/reinforced{
-	pixel_y = -6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "qrc" = (
@@ -26037,9 +25970,6 @@
 "qRF" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
-/obj/structure/window/reinforced{
-	pixel_y = -6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "qRK" = (
@@ -31001,10 +30931,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	pixel_x = 6
-	},
 /obj/structure/sign/level/two{
 	dir = 4;
 	pixel_x = -48
@@ -31436,9 +31362,6 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
 /obj/machinery/light/spot,
-/obj/structure/window/reinforced{
-	pixel_y = -6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "usO" = (
@@ -31498,15 +31421,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/locker_room)
-"uwi" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/yellow/bordercorner{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/surface/station/park/skybridge)
 "uwA" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/reactor_monitoring)
@@ -36759,10 +36673,6 @@
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 6
-	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "xJS" = (
@@ -37723,10 +37633,6 @@
 	},
 /obj/machinery/camera/network/second_floor{
 	c_tag = "Second Floor - Skybridge 2"
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
@@ -70356,7 +70262,7 @@ xzd
 jaR
 nwd
 usH
-uwi
+usA
 uwO
 uwO
 uwO
@@ -90405,9 +90311,9 @@ hPv
 vYK
 aJd
 aTJ
-keB
-keB
-keB
+aTJ
+aTJ
+aTJ
 aTJ
 aJd
 riP
@@ -90661,11 +90567,11 @@ hPv
 hPv
 vYK
 aJd
-mMz
-hPv
-hPv
-hPv
-mMz
+aTJ
+aTJ
+aTJ
+aTJ
+aTJ
 aJd
 riP
 hPv
@@ -90918,11 +90824,11 @@ mPV
 hPv
 vYK
 iKZ
-mMz
-hPv
-hPv
-hPv
-mMz
+aTJ
+aTJ
+aTJ
+aTJ
+aTJ
 iKZ
 riP
 hPv
@@ -91176,9 +91082,9 @@ tBu
 tBu
 aTJ
 aTJ
-hPv
-hPv
-hPv
+aTJ
+aTJ
+aTJ
 aTJ
 aTJ
 tBu
