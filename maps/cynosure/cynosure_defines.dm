@@ -7,25 +7,39 @@
 #define Z_LEVEL_TCOMM					5
 #define Z_LEVEL_CENTCOM					6
 #define Z_LEVEL_SURFACE_WILD			7
+#define Z_LEVEL_OFFMAP1						8
+#define Z_LEVEL_ROGUEMINE_1					9
+#define Z_LEVEL_ROGUEMINE_2					10
+#define Z_LEVEL_BEACH						11
+#define Z_LEVEL_BEACH_CAVE					12
+#define Z_LEVEL_AEROSTAT					13
+#define Z_LEVEL_AEROSTAT_SURFACE			14
+#define Z_LEVEL_DEBRISFIELD					15
+#define Z_LEVEL_FUELDEPOT					16
+#define Z_LEVEL_GATEWAY						17
+#define Z_LEVEL_OM_ADVENTURE				18
+
+/datum/map/cynosure/New()
+	..()
+	var/choice = pickweight(list(
+		"title" = 10,
+		"tether" = 50,
+		"tether_night" = 50,
+		"tether2_night" = 50,
+		"tether2_dog" = 1,
+		"tether2_love" = 1,
+		"tether_future" = 10,
+		"logo1" = 20,
+		"logo2" = 20,
+		"gateway" = 5
+	))
+	if(choice)
+		lobby_screens = list(choice)
 
 /datum/map/cynosure
 	name = "Cynosure"
 	full_name = "Cynosure Station"
 	path = "cynosure"
-
-	lobby_screens = list('maps/cynosure/title_cynosure.png')
-
-/*
-	lobby_tracks = list(
-		/decl/music_track/chasing_time,
-		/decl/music_track/epicintro2015,
-		/decl/music_track/human,
-		/decl/music_track/marhaba,
-		/decl/music_track/treacherous_voyage,
-		/decl/music_track/asfarasitgets,
-		/decl/music_track/space_oddity,
-		/decl/music_track/martiancowboy)
-*/
 
 	holomap_smoosh = list(list(
 		Z_LEVEL_STATION_ONE,
@@ -33,6 +47,10 @@
 		Z_LEVEL_STATION_THREE))
 
 	zlevel_datum_type = /datum/map_z_level/cynosure
+
+	lobby_icon = 'icons/misc/title_vr.dmi'
+	lobby_screens = list("tether2_night")
+	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	station_name  = "Cynosure Station"
 	station_short = "Cynosure"
@@ -44,7 +62,6 @@
 	company_name  = "NanoTrasen"
 	company_short = "NT"
 	starsys_name  = "Vir"
-	use_overmap = TRUE
 
 	shuttle_docked_message = "The scheduled shuttle to the %dock_name% has landed at Cynosure departures pad. It will depart in approximately %ETD%."
 	shuttle_leaving_dock = "The Crew Transfer Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
@@ -92,14 +109,13 @@
 		"Gateway",
 		"Cryogenic Storage",
 		"Cyborg Storage",
-		"Checkpoint",
 		"Wilderness",
 		"ITV Talon Cryo"
 	)
 
 
 	use_overmap = 			TRUE
-	overmap_size = 			20
+	overmap_size = 			30
 	overmap_event_areas = 	6
 	default_skybox = /datum/skybox_settings/cynosure
 
@@ -370,3 +386,10 @@
 // Putting this here in order to not disrupt existing maps/downstreams.
 /turf/simulated/open
 	dynamic_lighting = TRUE
+
+#include "../expedition_vr/aerostat/_aerostat.dm"
+/datum/map_template/common_lateload/away_aerostat
+	name = "Remmi Aerostat - Z1 Aerostat"
+	desc = "The Virgo 2 Aerostat away mission."
+	mappath = 'maps/expedition_vr/aerostat/aerostat.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat

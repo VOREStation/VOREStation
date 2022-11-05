@@ -19,10 +19,12 @@
 	icon = 'icons/obj/turbolift_preview_3x3.dmi'
 	name = "Cynosure turbolift map placeholder - Center"
 	dir = WEST
+	depth = 3
 	lift_size_x = 3
 	lift_size_y = 3
 
 	areas_to_use = list(
+		/area/turbolift/center_bmt,
 		/area/turbolift/center_gnd,
 		/area/turbolift/center_snd
 		)

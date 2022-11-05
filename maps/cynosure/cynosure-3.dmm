@@ -9504,7 +9504,7 @@
 	},
 /obj/item/device/radio/intercom/department/security{
 	dir = 8;
-	pixel_x = 21
+	pixel_x = 28
 	},
 /obj/structure/sign/level/two/large{
 	pixel_y = -32
@@ -17302,7 +17302,7 @@
 "kRF" = (
 /obj/structure/table/bench/padded,
 /obj/item/device/radio/intercom/department/medbay{
-	pixel_y = 21
+	pixel_y = 28
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -17715,7 +17715,7 @@
 /obj/effect/floor_decal/corner/lime/diagonal,
 /obj/item/device/radio/intercom/department/medbay{
 	dir = 4;
-	pixel_x = -21
+	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/virology)
@@ -18465,7 +18465,7 @@
 	},
 /obj/item/device/radio/intercom/department/medbay{
 	dir = 8;
-	pixel_x = 21
+	pixel_x = 28
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
@@ -19156,6 +19156,7 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 8
 	},
+/obj/machinery/door/airlock/glass_security,
 /turf/simulated/floor/tiled,
 /area/surface/station/security/hallway/snd)
 "mrM" = (
@@ -19475,10 +19476,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Medbay Maintenance Access";
-	req_access = list(5)
-	},
+/obj/machinery/door/airlock/maintenance/medical,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/medbay/snd)
 "mDw" = (
@@ -20539,9 +20537,6 @@
 /area/surface/station/medical/office)
 "nno" = (
 /obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -36013,6 +36008,7 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 4
 	},
+/obj/machinery/door/airlock/glass_security,
 /turf/simulated/floor/tiled,
 /area/surface/station/security/hallway/snd)
 "xoH" = (
@@ -37374,7 +37370,7 @@
 "ydp" = (
 /obj/item/device/radio/intercom/department/security{
 	dir = 8;
-	pixel_x = 21
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/hallway/snd)

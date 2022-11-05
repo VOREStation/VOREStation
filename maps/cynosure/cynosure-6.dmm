@@ -3411,6 +3411,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
 	pixel_y = -2
 	},
+/obj/structure/closet/walllocker/emerglocker/south,
 /turf/simulated/floor/tiled/milspec,
 /area/shuttle/arrival/pre_game)
 "ebh" = (
@@ -4991,17 +4992,10 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "fKI" = (
-/obj/effect/landmark{
-	name = "Response Team"
-	},
-/obj/effect/landmark{
-	name = "Commando"
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "dark"
-	},
-/area/centcom/specops)
+/obj/effect/floor_decal/milspec/color/white,
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/shuttle/arrival/pre_game)
 "fLN" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 5
@@ -8588,14 +8582,12 @@
 	},
 /area/tdome)
 "jIe" = (
-/obj/effect/landmark{
-	name = "Commando"
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "dark"
-	},
-/area/centcom/specops)
+/obj/structure/bed/chair/shuttle,
+/obj/effect/floor_decal/milspec/color/white,
+/obj/effect/floor_decal/milspec/color/silver/half,
+/obj/structure/closet/walllocker/emerglocker/west,
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/shuttle/escape/centcom)
 "jIu" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/structure/closet/crate/solar,
@@ -12023,6 +12015,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
+/obj/structure/closet/walllocker/emerglocker/north,
 /turf/simulated/floor/tiled/milspec,
 /area/shuttle/arrival/pre_game)
 "noE" = (
@@ -14463,6 +14456,13 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"qeS" = (
+/obj/structure/bed/chair/shuttle,
+/obj/effect/floor_decal/milspec/color/white,
+/obj/effect/floor_decal/milspec/color/silver/half,
+/obj/structure/closet/walllocker/emerglocker/east,
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/shuttle/escape/centcom)
 "qfC" = (
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
@@ -16014,19 +16014,6 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
-"rBk" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = -32
-	},
-/obj/effect/landmark{
-	name = "JoinLate"
-	},
-/obj/effect/floor_decal/milspec/color/white,
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/shuttle/arrival/pre_game)
 "rBz" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 1
@@ -18851,13 +18838,11 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = 32
-	},
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
 /obj/effect/floor_decal/milspec/color/white,
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "uAX" = (
@@ -18972,10 +18957,8 @@
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = -32
-	},
 /obj/effect/floor_decal/milspec/color/white,
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "uHS" = (
@@ -30180,7 +30163,7 @@ tQa
 thM
 bIS
 cSk
-rBk
+uGT
 bAY
 bAY
 uGT
@@ -30444,7 +30427,7 @@ pNU
 pNU
 pNU
 qWz
-qWz
+fKI
 tQa
 eIF
 pWO
@@ -31472,7 +31455,7 @@ pNU
 pNU
 pNU
 qWz
-qWz
+fKI
 tQa
 psb
 pWO
@@ -36515,10 +36498,10 @@ chh
 omB
 kpG
 kpG
-qXg
+jIe
 qXg
 bXb
-qXg
+jIe
 umC
 iNK
 sdu
@@ -38571,10 +38554,10 @@ eMi
 pGP
 kpG
 kpG
-qXg
+qeS
 qXg
 irx
-qXg
+qeS
 umC
 clN
 xCV
@@ -38723,9 +38706,9 @@ puk
 puk
 ewB
 qFF
-fKI
+pUv
 gde
-fKI
+pUv
 qFF
 ewB
 pUv
@@ -38980,9 +38963,9 @@ puk
 puk
 ewB
 qFF
-fKI
+pUv
 gde
-fKI
+pUv
 qFF
 ewB
 pUv
@@ -39237,9 +39220,9 @@ puk
 puk
 ewB
 qFF
-fKI
+pUv
 gde
-fKI
+pUv
 qFF
 ewB
 pUv
@@ -39494,9 +39477,9 @@ puk
 puk
 ewB
 dtg
-jIe
 pUv
-jIe
+pUv
+pUv
 pUv
 xJb
 pUv

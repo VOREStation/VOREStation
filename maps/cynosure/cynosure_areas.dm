@@ -1398,11 +1398,18 @@
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/turbolift/eng_snd
-	name = "lift (ground floor)"
+	name = "lift (second floor)"
 	lift_floor_label = "Second Floor"
 	lift_floor_name = "Second Floor"
 	lift_announce_str = "Arriving at Second Floor: Atmospherics. EVA. CE Office. Locker Rooms."
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+
+/area/turbolift/center_bmt
+	name = "lift (basement)"
+	lift_floor_label = "Basement"
+	lift_floor_name = "Basement"
+	lift_announce_str = "Arriving at Basement: Gateway."
+	base_turf = /turf/simulated/floor
 
 /area/turbolift/center_gnd
 	name = "lift (ground floor)"
@@ -1412,13 +1419,13 @@
 	base_turf = /turf/simulated/open
 
 /area/turbolift/center_snd
-	name = "lift (ground floor)"
+	name = "lift (second floor)"
 	lift_floor_label = "Second Floor"
 	lift_floor_name = "Second Floor"
 	lift_announce_str = "Arriving at Second Floor: Cargo. Research. Crew Facilities. Command Operations. Meeting Room. AI Core. Escape Pod"
 
 /area/turbolift/cargo_gnd
-	name = "lift (first deck)"
+	name = "lift (ground floor)"
 	lift_floor_label = "Ground Floor"
 	lift_floor_name = "Ground Floor"
 	lift_announce_str = "Arriving at Cargo Delivery Bay."
@@ -1426,7 +1433,7 @@
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
 
 /area/turbolift/cargo_snd
-	name = "lift (second deck)"
+	name = "lift (second floor)"
 	lift_floor_label = "Second Floor"
 	lift_floor_name = "Second Floor"
 	lift_announce_str = "Arriving at Cargo Office."
@@ -1436,7 +1443,7 @@
 	name = "lift (basement)"
 	lift_floor_label = "Basement"
 	lift_floor_name = "Basement"
-	lift_announce_str = "Arriving at Basement: Morgue.Medical Storage."
+	lift_announce_str = "Arriving at Basement: Morgue. Medical Storage. Resleeving. Breakroom."
 	base_turf = /turf/simulated/floor
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
@@ -1444,7 +1451,7 @@
 	name = "lift (ground floor)"
 	lift_floor_label = "Ground Floor"
 	lift_floor_name = "Ground Floor"
-	lift_announce_str = "Arriving at Ground Floor: Emergency Treatment. Surgery. Cloning. Chemistry. Foyer."
+	lift_announce_str = "Arriving at Ground Floor: Emergency Treatment. Surgery. Auto-Resleeving. Chemistry. Foyer."
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/turbolift/med_snd
@@ -1478,7 +1485,7 @@
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/turbolift/sec_snd
-	name = "lift (ground floor)"
+	name = "lift (second floor)"
 	lift_floor_label = "Second Floor"
 	lift_floor_name = "Second Floor"
 	lift_announce_str = "Arriving at Second Floor: Armory. Warden Office. Cells."
