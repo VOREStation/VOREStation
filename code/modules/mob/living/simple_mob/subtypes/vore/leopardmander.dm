@@ -48,6 +48,8 @@
 	vore_bump_emote = "tries to snap up"
 	max_tox = 0 // for virgo3b survivability
 
+	nom_mob = TRUE
+
 /datum/category_item/catalogue/fauna/leopardmander
 	name = "Sivian Fauna - Va'aen Drake"
 	desc = "Classification: S Draconis uncia\

@@ -52,6 +52,8 @@
 	var/extra_posessive = FALSE					// Enable if you want their tummy hugs to be inescapable
 	var/autorest_cooldown = 100
 
+	nom_mob = TRUE
+
 /mob/living/simple_mob/vore/pakkun/Life()
 	. = ..()
 	if(client)

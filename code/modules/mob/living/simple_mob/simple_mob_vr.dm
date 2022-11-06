@@ -53,6 +53,7 @@
 	can_be_drop_pred = TRUE				// Mobs are pred by default.
 	var/damage_threshold  = 0 //For some mobs, they have a damage threshold required to deal damage to them.
 
+	var/nom_mob = FALSE //If a mob is meant to be hostile for vore purposes but is otherwise not hostile, if true makes certain AI ignore the mob
 
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
