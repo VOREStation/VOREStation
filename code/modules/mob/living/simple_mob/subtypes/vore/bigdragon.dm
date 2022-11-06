@@ -191,6 +191,7 @@ I think I covered everything.
 	player_msg = "You're a variant of the large dragon stripped of its firebreath attack (harm intent). You can still charge (disarm) and tail sweep (grab). Rest to heal slowly. Check your abilities tab for functions."
 	norange = 1
 	noenrage = 1
+	nom_mob = TRUE
 
 // Weakened variant for maintpreds
 /mob/living/simple_mob/vore/bigdragon/friendly/maintpred
@@ -946,6 +947,17 @@ I think I covered everything.
 		if(L.stat)
 			if(L.stat == DEAD && !handle_corpse) // Leave dead things alone
 				return
+		if(isanimal(L))	//Don't attack simplemobs unless they are hostile.
+			var/mob/living/simple_mob/M = L
+			if(M.client)	//Don't attack players for no reason even if they're a traditionally hostile mob
+				return 0
+			if(M.nom_mob)	//Don't attack mobs that are hostile for their vore functions to work
+				return 0
+			if(M.ai_holder)	//Don't attack non-hostile mobs
+				if(M.ai_holder.hostile)
+					return 1
+				else return 0
+			else return 0
 		if(holder.IIsAlly(L))
 			if(confirmPatient(L))
 				holder.a_intent = I_HELP
