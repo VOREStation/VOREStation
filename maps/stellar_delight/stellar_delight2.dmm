@@ -1903,9 +1903,6 @@
 /obj/machinery/camera/network/engineering{
 	dir = 4
 	},
-/obj/structure/sign/scenery/fakefireaxe{
-	pixel_x = -32
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos/monitoring)
 "dU" = (
@@ -18681,9 +18678,6 @@
 	},
 /obj/structure/flora/pottedplant/smallcactus{
 	pixel_y = 14
-	},
-/obj/structure/fireaxecabinet{
-	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/briefingroom)

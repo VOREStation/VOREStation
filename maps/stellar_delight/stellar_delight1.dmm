@@ -19580,9 +19580,6 @@
 /area/security/detectives_office)
 "Pz" = (
 /obj/structure/table/bench/marble,
-/obj/structure/fireaxecabinet{
-	pixel_y = -32
-	},
 /obj/effect/landmark/start/paramedic,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/paramedic)

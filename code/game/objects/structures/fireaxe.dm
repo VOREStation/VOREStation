@@ -12,10 +12,13 @@
 	var/hitstaken = 0
 	var/locked = 1
 	var/smashed = 0
+	var/starts_with_axe = TRUE
 
 /obj/structure/fireaxecabinet/Initialize()
 	. = ..()
-	fireaxe = new /obj/item/weapon/material/twohanded/fireaxe()
+	if(starts_with_axe)
+		fireaxe = new /obj/item/weapon/material/twohanded/fireaxe()
+	update_icon()
 
 /obj/structure/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
@@ -184,3 +187,7 @@
 	if(fireaxe)
 		hasaxe = 1
 	icon_state = text("fireaxe[][][][]",hasaxe,open,hitstaken,smashed)
+
+
+/obj/structure/fireaxecabinet/empty
+	starts_with_axe = FALSE
