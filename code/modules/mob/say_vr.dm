@@ -115,7 +115,7 @@
 
 ///// PSAY /////
 
-/mob/verb/psay(message as text|null)
+/mob/verb/psay(message as text)
 	set category = "IC"
 	set name = "Psay"
 	set desc = "Talk to people affected by complete absorbed or dominate predator/prey."
@@ -212,7 +212,7 @@
 
 ///// PME /////
 
-/mob/verb/pme(message as text|null)
+/mob/verb/pme(message as message)
 	set category = "IC"
 	set name = "Pme"
 	set desc = "Emote to people affected by complete absorbed or dominate predator/prey."
@@ -307,7 +307,7 @@
 		M.forced_psay = FALSE
 		M.me_verb(message)
 
-/mob/living/verb/player_narrate(message as text|null)
+/mob/living/verb/player_narrate(message as message)
 	set category = "IC"
 	set name = "Narrate (Player)"
 	set desc = "Narrate an action or event! An alternative to emoting, for when your emote shouldn't start with your name!"
