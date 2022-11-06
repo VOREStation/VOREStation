@@ -907,10 +907,3 @@
 	icon_state = "tesh-beak-alt"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-
-/datum/sprite_accessory/marking/vr_crab_claws
-	name = "Crab claws"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "crabclaws"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_HAND,BP_R_HAND)
