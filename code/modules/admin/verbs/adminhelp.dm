@@ -207,7 +207,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/FullMonty(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
+	if(initiator && initiator.mob)
+		. = ADMIN_FULLMONTY_NONAME(initiator.mob)
+	else
+		. = "Initiator disconnected."
 	if(state == AHELP_ACTIVE)
 		. += ClosureLinks(ref_src)
 
