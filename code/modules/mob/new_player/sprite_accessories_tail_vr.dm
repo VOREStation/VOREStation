@@ -1202,10 +1202,10 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/perrin_tentacles
-	name = "octopus tentacles (Perrin Kade)"
+	name = "octopus tentacles"
 	desc = ""
 	icon_state = "perrintentacles"
-	ckeys_allowed = list("codeme")
+	ckeys_allowed = list("codeme", "siennaathens")
 
 //LONG TAILS ARE NOT TAUR BUTTS >:O
 /datum/sprite_accessory/tail/longtail

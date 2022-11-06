@@ -1066,6 +1066,18 @@
 	character_name = list("Cerise Duelliste")
 	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Detective")
 
+/datum/gear/fluff/sidona_robes
+	path = /obj/item/clothing/under/fluff/gildedrobe_perrin
+	display_name = "Sidona's Robes"
+	ckeywhitelist = list("siennaathens ")
+	character_name = list("Sidona Kaal")
+
+/datum/gear/fluff/sidona_shoes
+	path = /obj/item/clothing/shoes/fluff/gildedshoes_perrin
+	display_name = "Sidona's Shoes"
+	ckeywhitelist = list("siennaathens")
+	character_name = list("Sidona Kaal")
+
 /datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
 	path = /obj/item/device/modkit_conversion/hasd
 	display_name = "NT-HASD 556's Modkit"
