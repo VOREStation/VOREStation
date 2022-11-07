@@ -5600,9 +5600,6 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/structure/fireaxecabinet{
-	pixel_x = -32
-	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -37439,13 +37436,6 @@
 /obj/item/weapon/material/knife,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/xenobiology/xenoflora_isolation)
-"qGc" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5,
-/obj/effect/floor_decal/steeldecal/steel_decals_central5{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/surface/station/park)
 "qGi" = (
 /obj/machinery/recharge_station,
 /obj/effect/floor_decal/corner/white/diagonal,
@@ -86413,13 +86403,13 @@ qwT
 qwT
 nPp
 oqM
-oqM
+bql
 bql
 niD
 eVB
 xjU
 bql
-oqM
+bql
 oqM
 qwT
 qwT
@@ -86671,11 +86661,11 @@ bql
 bql
 bql
 bql
-bql
+pfh
 cHj
 cQp
 klL
-qGc
+pfh
 bql
 bql
 bql
@@ -86927,13 +86917,13 @@ qwT
 qwT
 qwT
 oqM
-oqM
+bql
 bql
 raN
 oRf
 ssV
 bql
-oqM
+bql
 oqM
 qwT
 qwT

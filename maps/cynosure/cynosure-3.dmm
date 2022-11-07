@@ -791,6 +791,10 @@
 	pixel_x = 21
 	},
 /obj/effect/floor_decal/spline/plain,
+/obj/machinery/camera/network/second_floor{
+	c_tag = "Second Floor - Skybridge East";
+	dir = 8
+	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/park/skybridge)
 "ayR" = (
@@ -6498,10 +6502,10 @@
 /turf/simulated/open,
 /area/surface/station/engineering/reactor_room)
 "erp" = (
-/obj/structure/railing{
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
 	dir = 4
 	},
-/obj/structure/railing,
 /turf/simulated/open,
 /area/surface/station/park/skybridge)
 "erq" = (
@@ -9005,8 +9009,8 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/office)
 "fWH" = (
-/obj/structure/railing,
-/obj/structure/railing{
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
 	dir = 8
 	},
 /turf/simulated/open,
@@ -12519,15 +12523,6 @@
 "hYK" = (
 /turf/simulated/wall,
 /area/surface/station/command/meeting_room)
-"hYU" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/surface/station/park/skybridge)
 "hYY" = (
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 9
@@ -12569,15 +12564,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/medical/patient_wing)
-"hZx" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/green/border,
-/obj/machinery/camera/network/second_floor{
-	c_tag = "Second Floor - Skybridge 1";
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/surface/station/park/skybridge)
 "hZz" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green,
@@ -16663,6 +16649,7 @@
 "kos" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/green/bordercorner,
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "kox" = (
@@ -16672,6 +16659,11 @@
 	},
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
+	},
+/obj/structure/railing/grey,
+/obj/machinery/camera/network/second_floor{
+	c_tag = "Second Floor - Skybridge West";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/park/skybridge)
@@ -17677,7 +17669,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/west)
 "lki" = (
-/obj/structure/railing{
+/obj/structure/railing/grey{
 	dir = 4
 	},
 /turf/simulated/open,
@@ -19353,6 +19345,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/green/border,
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "mwp" = (
@@ -23654,9 +23647,6 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
-/obj/structure/fireaxecabinet{
-	pixel_x = -32
-	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/engineering/atmos)
 "puU" = (
@@ -24801,6 +24791,7 @@
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 8
 	},
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "qcZ" = (
@@ -25107,6 +25098,7 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "qrc" = (
@@ -25965,6 +25957,7 @@
 "qRF" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/green/border,
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "qRK" = (
@@ -30451,12 +30444,6 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/engineering/engi_restroom)
-"tNH" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/surface/station/park/skybridge)
 "tNX" = (
 /obj/machinery/computer/rdconsole,
 /obj/effect/floor_decal/borderfloorblack{
@@ -31344,10 +31331,16 @@
 /turf/simulated/floor/wood,
 /area/surface/station/command/liaison)
 "usA" = (
-/obj/structure/railing{
+/obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/turf/simulated/open,
+/obj/effect/floor_decal/corner/green/border{
+	dir = 1
+	},
+/obj/machinery/camera/network/second_floor{
+	c_tag = "Second Floor - Skybridge Center"
+	},
+/turf/simulated/floor/tiled,
 /area/surface/station/park/skybridge)
 "usH" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
@@ -32455,10 +32448,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/security/prison)
 "vdW" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
+/obj/structure/railing/grey{
 	dir = 8
 	},
 /turf/simulated/open,
@@ -36392,7 +36382,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/engineering/hallway/sndaccess)
 "xzd" = (
-/obj/structure/railing,
+/obj/structure/railing/grey,
 /turf/simulated/open,
 /area/surface/station/park/skybridge)
 "xzL" = (
@@ -37620,18 +37610,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_2)
-"yki" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/obj/machinery/camera/network/second_floor{
-	c_tag = "Second Floor - Skybridge 2"
-	},
-/turf/simulated/floor/tiled,
-/area/surface/station/park/skybridge)
 "ykr" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -67946,7 +67924,7 @@ fVK
 oUA
 jpK
 kox
-usA
+uwO
 uwO
 uwO
 uwO
@@ -68197,7 +68175,7 @@ uwO
 uwO
 uwO
 uwO
-tNH
+vdW
 fWH
 pkT
 maE
@@ -68459,7 +68437,7 @@ xzd
 hXU
 pos
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -68716,7 +68694,7 @@ xzd
 jaR
 maE
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -68973,7 +68951,7 @@ xzd
 jaR
 gpz
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -69229,8 +69207,8 @@ uwO
 xzd
 jaR
 gpz
-hZx
-usA
+qRF
+uwO
 uwO
 uwO
 uwO
@@ -69487,7 +69465,7 @@ xzd
 jaR
 gpz
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -69744,7 +69722,7 @@ xzd
 jaR
 maE
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -70001,7 +69979,7 @@ xzd
 jaR
 fFn
 qqT
-usA
+uwO
 uwO
 uwO
 uwO
@@ -70254,11 +70232,11 @@ uwO
 uwO
 uwO
 uwO
-xzd
-jaR
+lIs
+usA
 nwd
 usH
-usA
+lIs
 uwO
 uwO
 uwO
@@ -70515,7 +70493,7 @@ xzd
 kpn
 nyo
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -70772,7 +70750,7 @@ xzd
 jaR
 maE
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -71029,7 +71007,7 @@ xzd
 jaR
 gpz
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -71283,10 +71261,10 @@ uwO
 uwO
 uwO
 xzd
-yki
+jaR
 gpz
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -71543,7 +71521,7 @@ xzd
 jaR
 gpz
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -71800,7 +71778,7 @@ xzd
 jaR
 maE
 qRF
-usA
+uwO
 uwO
 uwO
 uwO
@@ -72057,7 +72035,7 @@ xzd
 jaR
 oyC
 mwc
-usA
+uwO
 uwO
 uwO
 uwO
@@ -72314,7 +72292,7 @@ erp
 xJA
 gJr
 qcX
-hYU
+lki
 lki
 uwO
 uwO
