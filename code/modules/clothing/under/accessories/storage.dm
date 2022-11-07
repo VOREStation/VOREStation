@@ -97,9 +97,33 @@
 /obj/item/clothing/accessory/storage/knifeharness/Initialize()
 	. = ..()
 	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
+<<<<<<< HEAD
 	hold.can_hold = list(/obj/item/weapon/material/knife/machete/hatchet/unathiknife,\
 	/obj/item/weapon/material/knife,\
 	/obj/item/weapon/material/knife/plastic)
 
 	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife(hold)
 	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife(hold)
+=======
+	hold.can_hold = list(/obj/item/material/knife/machete/hatchet/unathiknife,\
+	/obj/item/material/knife,\
+	/obj/item/material/knife/plastic)
+
+	new /obj/item/material/knife/machete/hatchet/unathiknife(hold)
+	new /obj/item/material/knife/machete/hatchet/unathiknife(hold)
+
+/obj/item/clothing/accessory/storage/overalls
+	name = "dark overalls"
+	desc = "Heavy-duty overalls with reflective strips for use on the work site, with plenty of convenient pockets to boot."
+	icon_state = "mining_overalls"
+
+/obj/item/clothing/accessory/storage/overalls/engineer
+	name = "brown overalls"
+	desc = "Heavy-duty overalls for use on the work site, with plenty of convenient pockets to boot."
+	icon_state = "engineering_overalls"
+
+/obj/item/clothing/accessory/storage/overalls/chief
+	name = "chief engineer's overalls"
+	desc = "Heavy duty overalls, bleached white to signify a \"Chief Engineer.\" Keeping them clean until the end of shift is a challenge unto itself."
+	icon_state = "ce_overalls"
+>>>>>>> 3584065199b... Merge pull request #8818 from Cerebulon/newbasicscargo

@@ -5,15 +5,18 @@
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargotech,
-		/obj/item/clothing/under/rank/cargotech/skirt,
-		/obj/item/clothing/under/rank/cargotech/jeans,
-		/obj/item/clothing/under/rank/cargotech/jeans/female,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
 		/obj/item/clothing/shoes/boots/winter/supply,
 		/obj/item/clothing/shoes/black,
+<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_cargo,
 		/obj/item/device/radio/headset/headset_cargo/alt,
 		/obj/item/clothing/gloves/black,
+=======
+		/obj/item/radio/headset/headset_cargo,
+		/obj/item/radio/headset/headset_cargo/alt,
+		/obj/item/clothing/gloves/duty,
+>>>>>>> 3584065199b... Merge pull request #8818 from Cerebulon/newbasicscargo
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/clothing/head/soft)
 
@@ -33,13 +36,16 @@
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargo,
-		/obj/item/clothing/under/rank/cargo/skirt,
-		/obj/item/clothing/under/rank/cargo/jeans,
-		/obj/item/clothing/under/rank/cargo/jeans/female,
 		/obj/item/clothing/shoes/brown,
+<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_qm, //VOREStation Edit,
 		/obj/item/device/radio/headset/headset_qm/alt, //VOREStation Edit,
 		/obj/item/clothing/gloves/black,
+=======
+		/obj/item/radio/headset/headset_cargo,
+		/obj/item/radio/headset/headset_cargo/alt,
+		/obj/item/clothing/gloves/duty,
+>>>>>>> 3584065199b... Merge pull request #8818 from Cerebulon/newbasicscargo
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/weapon/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas,
@@ -67,7 +73,8 @@
 	starts_with = list(
 		/obj/item/device/radio/headset/headset_mine,
 		/obj/item/clothing/under/rank/miner,
-		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/accessory/storage/overalls,
+		/obj/item/clothing/gloves/duty,
 		/obj/item/clothing/shoes/black,
 		/obj/item/device/analyzer,
 		/obj/item/weapon/storage/bag/ore,

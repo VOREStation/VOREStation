@@ -177,6 +177,18 @@
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
 
+/datum/gear/accessory/overalls
+	display_name = "utility overalls selection (Engineering, Cargo)"
+	path = /obj/item/clothing/accessory/storage/overalls
+	allowed_roles = list("Station Engineer", "Atmospheric Technician", "Chief Engineer", "Cargo Technician", "Quartermaster", "Shaft Miner")
+
+/datum/gear/accessory/overalls/New()
+	..()
+	var/overalltype = list()
+	overalltype["overalls, high-vis stripe"] = /obj/item/clothing/accessory/storage/overalls
+	overalltype["overalls, brown"] = /obj/item/clothing/accessory/storage/overalls/engineer
+	gear_tweaks += new/datum/gear_tweak/path(overalltype)
+
 /datum/gear/accessory/fannypack
 	display_name = "fannypack selection"
 	cost = 2

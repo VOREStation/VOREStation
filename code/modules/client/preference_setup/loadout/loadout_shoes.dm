@@ -38,12 +38,22 @@
 	path = /obj/item/clothing/shoes/boots/jackboots/thigh
 
 /datum/gear/shoes/workboots
-	display_name = "workboots"
+	display_name = "workboots selection"
 	path = /obj/item/clothing/shoes/boots/workboots
 
+<<<<<<< HEAD
 /datum/gear/shoes/workboots/toeless
 	display_name = "toe-less workboots"
 	path = /obj/item/clothing/shoes/boots/workboots/toeless
+=======
+/datum/gear/shoes/workboots/New()
+	..()
+	var/list/works = list()
+	for(var/work in typesof(/obj/item/clothing/shoes/boots/workboots))
+		var/obj/item/clothing/shoes/boots/workboots/work_type = work
+		works[initial(work_type.name)] = work_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(works))
+>>>>>>> 3584065199b... Merge pull request #8818 from Cerebulon/newbasicscargo
 
 /datum/gear/shoes/black
 	display_name = "shoes, black"

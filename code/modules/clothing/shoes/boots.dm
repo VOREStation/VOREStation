@@ -107,9 +107,21 @@
 /obj/item/clothing/shoes/boots/workboots/toeless
 	name = "toe-less workboots"
 	desc = "A pair of toeless work boots designed for use in industrial settings. Modified for species whose toes have claws."
-	icon_state = "workbootstoeless"
+	icon_state = "workboots_toeless"
 	item_state_slots = list(slot_r_hand_str = "workboots", slot_l_hand_str = "workboots")
 	species_restricted = null
+
+/obj/item/clothing/shoes/boots/workboots/dark
+	icon_state = "workboots_dark"
+
+/obj/item/clothing/shoes/boots/workboots/grey
+	icon_state = "workboots_grey"
+
+/obj/item/clothing/shoes/boots/workboots/toeless/dark
+	icon_state = "workboots_dark_toeless"
+
+/obj/item/clothing/shoes/boots/workboots/toeless/grey
+	icon_state = "workboots_grey_toeless"
 
 /obj/item/clothing/shoes/boots/winter
 	name = "winter boots"
