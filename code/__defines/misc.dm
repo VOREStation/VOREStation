@@ -323,6 +323,49 @@ var/global/list/##LIST_NAME = list();\
 
 #define DEFAULT_OVERMAP_RANGE 0 // Makes general computers and devices be able to connect to other overmap z-levels on the same tile.
 
+<<<<<<< HEAD
+=======
+
+//Various stuff used in Persistence
+
+#define SPAN_ITALIC(X) "<span class='italic'>[X]</span>"
+
+#define SPAN_NOTICE(X) "<span class='notice'>[X]</span>"
+
+#define SPAN_WARNING(X) "<span class='warning'>[X]</span>"
+
+#define SPAN_DANGER(X) "<span class='danger'>[X]</span>"
+
+#define SPAN_OCCULT(X) "<span class='cult'>[X]</span>"
+
+#define SPAN_GOOD(X) "<span class='green'>[X]</span>"
+
+#define FONT_SMALL(X) "<font size='1'>[X]</font>"
+
+#define FONT_NORMAL(X) "<font size='2'>[X]</font>"
+
+#define FONT_LARGE(X) "<font size='3'>[X]</font>"
+
+#define FONT_HUGE(X) "<font size='4'>[X]</font>"
+
+#define FONT_GIANT(X) "<font size='5'>[X]</font>"
+
+// Volume Channel Defines
+
+#define VOLUME_CHANNEL_MASTER "Master"
+#define VOLUME_CHANNEL_AMBIENCE "Ambience"
+#define VOLUME_CHANNEL_ALARMS "Alarms"
+#define VOLUME_CHANNEL_DOORS "Doors"
+
+// Make sure you update this or clients won't be able to adjust the channel
+GLOBAL_LIST_INIT(all_volume_channels, list(
+	VOLUME_CHANNEL_MASTER,
+	VOLUME_CHANNEL_AMBIENCE,
+	VOLUME_CHANNEL_ALARMS,
+	VOLUME_CHANNEL_DOORS,
+))
+
+>>>>>>> a5c28a2224f... Merge pull request #8811 from Spookerton/spkrtn/cng/alt8808
 /*
 	Used for wire name appearances. Replaces the color name on the left with the one on the right.
 	The color on the left is the one used as the actual color of the wire, but it doesn't look good when written.

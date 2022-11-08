@@ -211,19 +211,19 @@
 			found += A.search_contents_for(path,filter_path)
 	return found
 
-//All atoms
-/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
+
+/atom/proc/examine(mob/user, infix = "", suffix = "")
 	var/f_name = "\a [src][infix]."
-	if(src.blood_DNA && !istype(src, /obj/effect/decal))
-		if(gender == PLURAL)
+	if (blood_DNA && !istype(src, /obj/effect/decal))
+		if (gender == PLURAL)
 			f_name = "some "
 		else
 			f_name = "a "
-		if(blood_color != SYNTH_BLOOD_COLOUR)
+		if (blood_color != SYNTH_BLOOD_COLOUR)
 			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
 			f_name += "oil-stained [name][infix]."
+<<<<<<< HEAD
 
 	var/list/output = list("\icon[src.examine_icon()][bicon(src)] That's [f_name] [suffix]", desc)
 
@@ -236,6 +236,28 @@
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
+=======
+	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
+	if (user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
+		user.client.statpanel = "Examine"
+	else if (user.client)
+		var/list/extras = list()
+		if (user.client.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
+			if (description_info)
+				output += description_info
+		else if (description_info)
+			extras += SPAN_NOTICE("usage")
+		if (description_fluff)
+			extras += SPAN_GOOD("lore")
+		if (description_antag && (isobserver(user) || player_is_antag(user.mind)))
+			extras += SPAN_WARNING("antag")
+		if (length(extras))
+			output += "Extra [english_list(extras)] information is available: [CreateAtomTopic(@"[Show Examine]", user, ATOM_TOPIC_EXAMINE)]"
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
+	return output
+
+
+>>>>>>> a5c28a2224f... Merge pull request #8811 from Spookerton/spkrtn/cng/alt8808
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
 /atom/proc/examine_icon()
 	return icon(icon=src.icon, icon_state=src.icon_state, dir=SOUTH, frame=1, moving=0)
@@ -719,6 +741,7 @@
 /atom/proc/get_visible_gender(mob/user, force)
 	return gender
 
+<<<<<<< HEAD
 /atom/proc/interact(mob/user)
 	return
 
@@ -729,3 +752,71 @@
 // Airflow and ZAS zones now uses CanZASPass() instead of this proc.
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	return !density
+=======
+
+/**
+* Constructs an atom/Topic link for the callee.
+* label - The text content of the link.
+* user - The mob to verify is the source of this topic.
+* atom_act - The topic behavior key to actually trigger.
+* data - Extra params to send, if any. null, or params
+* text ";key=value;foo=bar", or a map ("key" = "value").
+* PREFER the map form for safety.
+*/
+/atom/proc/CreateAtomTopic(label, mob/user, atom_act, list/data)
+	if (!ismob(user) || !user.client)
+		return "(CreateAtomTopic: invalid user)"
+	if (!istext(atom_act) || !length(atom_act))
+		return "(CreateAtomTopic: invalid atom_act)"
+	var/params = ""
+	if (islist(data))
+		for (var/key in data)
+			params += ";[key]=[data[key]]"
+	else if (istext(data))
+		params = data
+	else if (!isnull(data))
+		return "(CreateAtomTopic: invalid data)"
+	return {"<a href="?src=\ref[src];usr=\ref[user];atom_act=[atom_act][params]">[label]</a>"}
+
+
+/// The atom_act for the /atom/proc/AtomTopicExamine behavior.
+/atom/var/const/ATOM_TOPIC_EXAMINE = "examine"
+
+/// Called via atom/Topic. Sets the user's open statpanel to "Examine" if they have a client.
+/atom/proc/AtomTopicExamine(mob/user)
+	if (user.client)
+		user.client.statpanel = "Examine"
+
+
+/**
+* Receives Topic links from users. Generally, these should be
+* created using atom/CreateAtomTopic.
+* Expected keys:
+* "usr" - The ref of the user sending this topic. Validated
+* against the ref of usr.
+* "atom_act" - The behavior this topic expects to call.
+* atom/Topic permits arbitrary tail data so that complex
+* behavior may be implemented easily. This data can be
+* set easily through using CreateAtomTopic(..., list/data).
+* Return:
+* True if this topic is considered handled and should be
+* ignored by subtype implementations of Topic.
+*/
+/atom/Topic(href, list/query)
+	. = ..()
+	if (.)
+		return
+	var/atom_act = query["atom_act"]
+	if (!atom_act)
+		return
+	var/mob/user = usr
+	if (ref(user) != query["usr"])
+		return TRUE
+	switch (atom_act)
+		if (ATOM_TOPIC_EXAMINE)
+			AtomTopicExamine(user)
+			return TRUE
+		else
+			log_debug({"User [user] sent invalid atom_act "[atom_act]" in atom/Topic."})
+// NB: It is probably best to keep atom/Topic at the tail of this file.
+>>>>>>> a5c28a2224f... Merge pull request #8811 from Spookerton/spkrtn/cng/alt8808
