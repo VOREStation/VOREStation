@@ -603,7 +603,7 @@
 	msg_prey_grab_fail = "%owner steps down onto you with one of their vines, squishing you and forcing you onto the ground!"
 
 /datum/sprite_accessory/tail/taur/rat
-	name = "Rat (dual color)"
+	name = "Rat (Taur)"
 	icon_state = "rat_s"
 	extra_overlay = "rat_markings"
 	clip_mask_state = "taur_clip_mask_rat"
@@ -617,3 +617,14 @@
 	suit_sprites = 'icons/mob/taursuits_noodle_vr.dmi'
 	clip_mask_state = "taur_clip_mask_noodle"
 	icon_sprite_tag = "noodle"
+
+/datum/sprite_accessory/tail/taur/sect_drone
+	name = "Sect Drone (Taur)"
+	icon_state = "sect_drone"
+	extra_overlay = "sect_drone_markings"
+	icon_sprite_tag = "sect_drone"
+
+/datum/sprite_accessory/tail/taur/sect_drone/fat
+	name = "Fat Sect Drone (Taur)"
+	icon_state = "fat_sect_drone"
+	extra_overlay = "fat_sect_drone_markings"
