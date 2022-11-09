@@ -116,17 +116,12 @@
 		removed *= 2
 
 	if(alien == IS_SLIME)
-<<<<<<< HEAD
-		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed)
-	
-=======
 		M.adjustToxLoss(removed) //Sterilizing, if only by a little bit. Also already doubled above.
 
 	var/strength_mod = 3 * M.species.chem_strength_alcohol //Alcohol is 3x stronger when injected into the veins.
 	if(!strength_mod)
 		return
 
->>>>>>> 0d21ab1bba6... Merge pull request #8823 from MistakeNot4892/booze
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 	var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
 
@@ -164,9 +159,6 @@
 
 	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
 		M.adjust_nutrition(nutriment_factor * removed)
-
-	if(alien == IS_SLIME)
-		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed * 2)
 
 	var/effective_dose = dose * M.species.chem_strength_alcohol
 	if(!effective_dose)
