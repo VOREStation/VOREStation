@@ -112,19 +112,21 @@
 		L.adjust_fire_stacks(amount / 15)
 
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
-	if(issmall(M)) removed *= 2
-	var/strength_mod = 3 * M.species.alcohol_mod //Alcohol is 3x stronger when injected into the veins.
-	if(alien == IS_SKRELL)
-		strength_mod *= 5
-	if(alien == IS_TAJARA)
-		strength_mod *= 1.25
-	if(alien == IS_UNATHI)
-		strength_mod *= 0.75
-	if(alien == IS_DIONA)
-		strength_mod = 0
+	if(issmall(M))
+		removed *= 2
+
 	if(alien == IS_SLIME)
+<<<<<<< HEAD
 		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed)
 	
+=======
+		M.adjustToxLoss(removed) //Sterilizing, if only by a little bit. Also already doubled above.
+
+	var/strength_mod = 3 * M.species.chem_strength_alcohol //Alcohol is 3x stronger when injected into the veins.
+	if(!strength_mod)
+		return
+
+>>>>>>> 0d21ab1bba6... Merge pull request #8823 from MistakeNot4892/booze
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 	var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
 
@@ -156,36 +158,35 @@
 		M.hallucination = max(M.hallucination, halluci*3)
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
+
+	if(issmall(M))
+		removed *= 2
+
 	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
 		M.adjust_nutrition(nutriment_factor * removed)
-	var/strength_mod = 1 * M.species.alcohol_mod
-	if(alien == IS_SKRELL)
-		strength_mod *= 5
-	if(alien == IS_TAJARA)
-		strength_mod *= 1.25
-	if(alien == IS_UNATHI)
-		strength_mod *= 0.75
-	if(alien == IS_DIONA)
-		strength_mod = 0
+
 	if(alien == IS_SLIME)
 		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed * 2)
 
+	var/effective_dose = dose * M.species.chem_strength_alcohol
+	if(!effective_dose)
+		return
+
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
-	if(dose * strength_mod >= strength) // Early warning
+	if(effective_dose >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
-	if(dose * strength_mod >= strength * 2) // Slurring
+	if(effective_dose >= strength * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
-	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
+	if(effective_dose >= strength * 3) // Confusion - walking in random directions
 		M.Confuse(20)
-	if(dose * strength_mod >= strength * 4) // Blurry vision
+	if(effective_dose >= strength * 4) // Blurry vision
 		M.eye_blurry = max(M.eye_blurry, 10)
-	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
+	if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
-	if(dose * strength_mod >= strength * 6) // Toxic dose
+	if(effective_dose >= strength * 6) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
-	if(dose * strength_mod >= strength * 7) // Pass out
+	if(effective_dose >= strength * 7) // Pass out
 		M.Paralyse(20)
 		M.Sleeping(30)
 
