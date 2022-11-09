@@ -137,9 +137,16 @@
 	new /obj/item/weapon/pickaxe/five_pick(src)
 	new /obj/item/weapon/pickaxe/six_pick(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/excavation/handle_item_insertion()
 	..()
 	sort_picks()
+=======
+/obj/item/storage/excavation/handle_item_insertion()
+	. = ..()
+	if(.)
+		sort_picks()
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 
 /obj/item/weapon/storage/excavation/proc/sort_picks()
 	var/list/obj/item/weapon/pickaxe/picksToSort = list()

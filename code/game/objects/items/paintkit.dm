@@ -49,13 +49,18 @@
 		use(1, user)
 
 // Generic use
+<<<<<<< HEAD
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/kit))
 		var/obj/item/device/kit/K = W
+=======
+/obj/item/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/kit))
+		var/obj/item/kit/K = W
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 		K.customize(src, user)
-		return
-
-	..()
+		return TRUE
+	return ..()
 
 // Root hardsuit kit defines.
 // Icons for modified hardsuits need to be in the proper .dmis because suit cyclers may cock them up.

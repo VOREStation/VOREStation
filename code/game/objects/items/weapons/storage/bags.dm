@@ -304,7 +304,8 @@
 // Modified handle_item_insertion.  Would prefer not to, but...
 /obj/item/weapon/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	var/obj/item/stack/material/S = W
-	if(!istype(S)) return 0
+	if(!istype(S))
+		return FALSE
 
 	var/amount
 	var/inserted = 0
@@ -335,7 +336,7 @@
 	if(usr.s_active)
 		usr.s_active.show_to(usr)
 	update_icon()
-	return 1
+	return TRUE
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken

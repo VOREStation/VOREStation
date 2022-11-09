@@ -1,5 +1,6 @@
 
 /obj/attackby(var/obj/item/O, var/mob/user)
+<<<<<<< HEAD
 	. = ..()
 
 	if(locate(/obj/item/hose_connector) in src)
@@ -33,6 +34,32 @@
 						AC.my_hose.disconnect()
 
 				return
+=======
+	if(O.is_wirecutter() && (locate(/obj/item/hose_connector) in src))
+		var/list/available_sockets = list()
+		for(var/obj/item/hose_connector/HC in src)
+			if(HC.my_hose)
+				available_sockets |= HC
+		if(LAZYLEN(available_sockets))
+			if(available_sockets.len == 1)
+				var/obj/item/hose_connector/AC = available_sockets[1]
+				var/choice = alert("Are you sure you want to disconnect [AC]?", "Confirm", "Yes", "No")
+				if(choice == "Yes" && Adjacent(user))
+					visible_message("[user] disconnects \the hose from \the [src].")
+					AC.my_hose.disconnect()
+			else
+				var/choice = input("Select a target hose connector.", "Socket Disconnect", null) as null|anything in available_sockets
+				if(!choice || QDELETED(user) || QDELETED(O) || O.loc != user || user.incapacitated() || (loc != user && !user.Adjacent(src)))
+					return TRUE
+				var/obj/item/hose_connector/AC = choice
+				var/confirm = alert("Are you sure you want to disconnect [AC]?", "Confirm", "Yes", "No")
+				if(confirm == "No" || QDELETED(user) || QDELETED(O) || O.loc != user || user.incapacitated() || (loc != user && !user.Adjacent(src)))
+					return TRUE
+				visible_message("[user] disconnects \the hose from \the [src].")
+				AC.my_hose.disconnect()
+		return TRUE
+	return ..()
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 
 /obj/item/hose_connector
 	name = "hose connector"

@@ -25,14 +25,14 @@
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
 		if(attempt_attach_accessory(A, user))
-			return
-
+			return TRUE
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attackby(I, user)
-		return
-
-	..()
+			if(QDELETED(I) || I.loc != user)
+				break
+		return TRUE
+	return ..()
 
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)

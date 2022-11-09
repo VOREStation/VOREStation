@@ -482,8 +482,14 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
+<<<<<<< HEAD
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
+=======
+/obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+	if(!istype(W))
+		return FALSE
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 
 	if(!stall_insertion(W, usr)) // Can sleep here and delay removal for slow storage
 		return 0
@@ -515,7 +521,7 @@
 		W.on_enter_storage(src)
 
 	update_icon()
-	return 1
+	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
@@ -564,11 +570,20 @@
 	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
+<<<<<<< HEAD
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
+=======
+/obj/item/storage/attackby(obj/item/W as obj, mob/user as mob, silent)
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 
+	. = ..()
+	if(.)
+		return
+
+	//Robots can't interact with storage items.
 	if(isrobot(user))
-		return //Robots can't interact with storage items.
+		return FALSE
 
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LP = W
@@ -582,16 +597,23 @@
 					remove_from_storage(L, T)
 					qdel(L)
 		if(amt_inserted)
+<<<<<<< HEAD
 			to_chat(user, "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining.")
 			return
+=======
+			if (!silent)
+				to_chat(user, "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining.")
+		return TRUE
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 
 	if(!can_be_inserted(W))
-		return
+		return FALSE
 
 	if(istype(W, /obj/item/weapon/tray))
 		var/obj/item/weapon/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
+<<<<<<< HEAD
 				to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
 				return
 			else
@@ -600,6 +622,18 @@
 					user.client.screen -= W
 				W.dropped(user)
 				to_chat(user, "<span class='warning'>God damn it!</span>")
+=======
+				if (!silent)
+					to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
+				return TRUE
+			W.forceMove(get_turf(user))
+			if ((user.client && user.s_active != src))
+				user.client.screen -= W
+			W.dropped(user)
+			if (!silent)
+				to_chat(user, "<span class='warning'>God damn it!</span>")
+			return TRUE
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)

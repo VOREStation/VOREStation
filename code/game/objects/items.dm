@@ -278,18 +278,25 @@
 		R.activate_module(src)
 		R.hud_used.update_robot_modules_display()
 
+<<<<<<< HEAD
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	. = ..()
 	if(istype(W, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
+=======
+/obj/item/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(!. && istype(W, /obj/item/storage))
+		var/obj/item/storage/S = W
+>>>>>>> bbb4bcef436... Merge pull request #8821 from MistakeNot4892/poncho
 		if(S.use_to_pickup)
 			if(S.collection_mode) //Mode is set to collect all items
 				if(isturf(src.loc))
 					S.gather_all(src.loc, user)
-
-			else if(S.can_be_inserted(src))
-				S.handle_item_insertion(src)
-	return
+					return TRUE
+		if(S.can_be_inserted(src))
+			S.handle_item_insertion(src)
+			return TRUE
 
 /obj/item/proc/talk_into(mob/M as mob, text)
 	return
