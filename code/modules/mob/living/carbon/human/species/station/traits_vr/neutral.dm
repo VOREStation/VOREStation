@@ -424,6 +424,14 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("chem_strength_alcohol" = 1.5)
+	
+/datum/trait/neutral/alcohol_tolerance_reset
+	name = "Liver of Unremarkableness"
+	desc = "This trait exists to reset alcohol (in)tolerance for non-custom species to baseline normal. It can only be taken by Skrell, Tajara, Unathi, Diona, and Prometheans, as it would have no effect on other species."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("chem_strength_alcohol" = 1)
+	allowed_species = list(SPECIES_SKRELL,SPECIES_TAJARAN,SPECIES_UNATHI,SPECIES_DIONA,SPECIES_PROMETHEAN)
 
 /datum/trait/neutral/alcohol_tolerance_basic
 	name = "Liver of Iron"
