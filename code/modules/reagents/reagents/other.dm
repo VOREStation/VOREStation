@@ -379,6 +379,19 @@
 	reagent_state = GAS
 	color = "#404030"
 
+/datum/reagent/ammonia/affect_blood(mob/living/carbon/M, alien, removed)
+	if(alien == IS_VOX)
+		M.adjustOxyLoss(-15 * removed * (M.species?.chem_strength_heal || 1))
+		holder.remove_reagent("lexorin", 2 * removed)
+		return
+	. = ..()
+
+/datum/reagent/ammonia/affect_ingest(mob/living/carbon/M, alien, removed)
+	if(alien == IS_VOX)
+		affect_blood(M, alien, removed)
+		return
+	. = ..()
+
 /datum/reagent/diethylamine
 	name = "Diethylamine"
 	id = "diethylamine"
