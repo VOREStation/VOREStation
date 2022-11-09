@@ -1216,8 +1216,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway/snd)
 "aPH" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/structure/table/standard,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_1)
 "aPW" = (
@@ -3568,8 +3567,6 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/hallway/snd)
 "cpQ" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
 /obj/effect/zone_divider,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_3)
@@ -9616,8 +9613,11 @@
 /turf/simulated/floor/plating,
 /area/surface/station/security/hallway/cell_hallway)
 "goE" = (
-/turf/simulated/wall/concrete,
-/area/surface/station/crew_quarters/sleep/Dorm_2)
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/surface/station/security/lobby)
 "goT" = (
 /obj/structure/closet/lawcloset,
 /obj/item/device/flash,
@@ -13076,10 +13076,11 @@
 	pixel_x = 24;
 	pixel_y = -12
 	},
-/obj/structure/table/standard,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/orangedouble,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_1)
 "itI" = (
@@ -18941,8 +18942,6 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/westskybridge)
 "miE" = (
-/obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
 /obj/structure/sign/clock{
 	pixel_x = 32
 	},
@@ -20490,10 +20489,11 @@
 	pixel_x = 24;
 	pixel_y = -12
 	},
-/obj/structure/table/standard,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/browndouble,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_5)
 "nmz" = (
@@ -20529,9 +20529,6 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/office)
 "nno" = (
-/obj/structure/railing{
-	dir = 8
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -25717,10 +25714,6 @@
 	},
 /turf/simulated/open,
 /area/surface/station/ai)
-"qLg" = (
-/obj/effect/zone_divider,
-/turf/simulated/wall/concrete,
-/area/surface/station/crew_quarters/sleep/Dorm_4)
 "qLx" = (
 /obj/structure/bed/psych,
 /turf/simulated/floor/carpet/sblucarpet,
@@ -30597,9 +30590,6 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/security/hallway/stairwell)
-"tTk" = (
-/turf/simulated/wall/concrete,
-/area/surface/station/crew_quarters/sleep/Dorm_4)
 "tTX" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
@@ -30882,11 +30872,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/engineering/engine_eva)
 "ucJ" = (
-/obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/brown,
 /obj/structure/sign/clock{
 	pixel_x = -32
 	},
+/obj/structure/bed/padded,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_4)
 "udq" = (
@@ -31127,10 +31117,11 @@
 	pixel_x = 24;
 	pixel_y = -12
 	},
-/obj/structure/table/standard,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/bluedouble,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_3)
 "uiT" = (
@@ -33821,8 +33812,6 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/ai/upload_foyer)
 "wdD" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
 /obj/structure/sign/clock{
 	pixel_x = 32
 	},
@@ -35606,8 +35595,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/office)
 "xgD" = (
-/obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/table/standard,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_5)
 "xgF" = (
@@ -37682,11 +37670,10 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_b)
 "ymd" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
 /obj/structure/sign/clock{
 	pixel_x = 32
 	},
+/obj/structure/table/standard,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_3)
 
@@ -62035,11 +62022,11 @@ pPO
 vHY
 tws
 cDA
-goE
-goE
-goE
-tTk
-qLg
+cDA
+cDA
+cDA
+kYR
+aLp
 kYR
 kYR
 kYR
@@ -68692,7 +68679,7 @@ uwO
 uwO
 xzd
 jaR
-maE
+gpz
 qRF
 uwO
 uwO
@@ -69463,7 +69450,7 @@ uwO
 uwO
 xzd
 jaR
-gpz
+maE
 qRF
 uwO
 uwO
@@ -71005,7 +70992,7 @@ uwO
 uwO
 xzd
 jaR
-gpz
+maE
 qRF
 uwO
 uwO
@@ -71776,7 +71763,7 @@ uwO
 uwO
 xzd
 jaR
-maE
+gpz
 qRF
 uwO
 uwO
@@ -75359,9 +75346,9 @@ kgz
 vws
 hFV
 cVu
-ubn
-ubn
-ubn
+goE
+goE
+goE
 npn
 eum
 wEo

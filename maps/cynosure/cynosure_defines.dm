@@ -7,17 +7,11 @@
 #define Z_LEVEL_TCOMM					5
 #define Z_LEVEL_CENTCOM					6
 #define Z_LEVEL_SURFACE_WILD			7
-#define Z_LEVEL_OFFMAP1						9
-#define Z_LEVEL_ROGUEMINE_1					10
-#define Z_LEVEL_ROGUEMINE_2					11
-#define Z_LEVEL_BEACH						12
-#define Z_LEVEL_BEACH_CAVE					13
-#define Z_LEVEL_AEROSTAT					14
-#define Z_LEVEL_AEROSTAT_SURFACE			15
-#define Z_LEVEL_DEBRISFIELD					16
-#define Z_LEVEL_FUELDEPOT					17
-#define Z_LEVEL_GATEWAY						18
-#define Z_LEVEL_OM_ADVENTURE				19
+#define Z_LEVEL_OFFMAP1						8
+#define Z_LEVEL_DEBRISFIELD					9
+#define Z_LEVEL_FUELDEPOT					10
+#define Z_LEVEL_GATEWAY						11
+#define Z_LEVEL_OM_ADVENTURE				12
 
 /datum/map/cynosure/New()
 	..()
@@ -149,8 +143,6 @@
 	lateload_z_levels = list(
 		list("Offmap Ship - Talon V2"),
 		list("Asteroid Belt 1","Asteroid Belt 2"),
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
 		list("Fuel Depot - Z1 Space")
 		)
@@ -178,73 +170,15 @@
 		Z_LEVEL_SURFACE_WILD
 		)
 
-	belter_docked_z = 		list(Z_LEVEL_STATION_TWO)
-	belter_transit_z =	 	list(Z_LEVEL_CENTCOM)
-	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
-						 		 Z_LEVEL_ROGUEMINE_2)
-
 	mining_station_z =		list(Z_LEVEL_STATION_ONE)
-	mining_outpost_z =		list(Z_LEVEL_STATION_TWO)
+	mining_outpost_z =		list(Z_LEVEL_STATION_ONE)
 
-	planet_datums_to_make = list(/datum/planet/sif,
-								/datum/planet/virgo4)
+	planet_datums_to_make = list(/datum/planet/sif)
 
 /datum/map/cynosure/perform_map_generation()
-	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
 
-/*	// Temporarily disabled due to submap divergence
-	// Cave submaps are first.
-	SSmapping.seed_area_submaps(
-		list(Z_LEVEL_STATION_ONE),
-		75,
-		/area/surface/cave/unexplored/normal,
-		/datum/map_template/surface/mountains/normal
-	)
-
-	SSmapping.seed_area_submaps(
-		list(Z_LEVEL_STATION_ONE),
-		75,
-		/area/surface/cave/unexplored/deep,
-		/datum/map_template/surface/mountains/deep
-	)
-
-	// Plains to make them less plain.
-	SSmapping.seed_area_submaps(
-		list(Z_LEVEL_STATION_TWO),
-		100,
-		/area/surface/outside/plains/normal,
-		/datum/map_template/surface/plains
-	) // Center area is WIP until map editing settles down.
-
-	// Wilderness is next.
-	SSmapping.seed_area_submaps(
-		list(Z_LEVEL_SURFACE_WILD),
-		75,
-		/area/surface/outside/wilderness/normal,
-		/datum/map_template/surface/wilderness/normal
-	)
-
-	SSmapping.seed_area_submaps(
-		list(Z_LEVEL_SURFACE_WILD),
-		75,
-		/area/surface/outside/wilderness/deep,
-		/datum/map_template/surface/wilderness/deep
-	)
-	// If Space submaps are made, add a line to make them here as well.
-*/
-
-	// Now for the tunnels.
-	var/time_started = REALTIMEOFDAY
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_STATION_ONE, world.maxx, world.maxy) // Create the mining Z-level.
-	to_world_log("Generated caves in [(REALTIMEOFDAY - time_started) / 10] second\s.")
-	time_started = REALTIMEOFDAY
-	new /datum/random_map/noise/sif/underground(null, 1, 1, Z_LEVEL_STATION_ONE, world.maxx, world.maxy)
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_STATION_ONE, 64, 64)         // Create the mining ore distribution map.
-	to_world_log("Generated ores in [(REALTIMEOFDAY - time_started) / 10] second\s.")
-
-	// Forest/wilderness generation.
-	new /datum/random_map/noise/sif(null, 1, 1, Z_LEVEL_STATION_TWO,      world.maxx, world.maxy)
-	new /datum/random_map/noise/sif/forest(null, 1, 1, Z_LEVEL_SURFACE_WILD, world.maxx, world.maxy)
 
 	return 1
 
@@ -293,7 +227,7 @@
 
 /datum/map_z_level/cynosure/station/station_three
 	z = Z_LEVEL_STATION_THREE
-	name = "Deck 2"
+	name = "Upper Level"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/open
 	holomap_offset_x = HOLOMAP_ICON_SIZE - SOUTHERN_CROSS_HOLOMAP_MARGIN_X - SOUTHERN_CROSS_MAP_SIZE - 40
@@ -361,10 +295,6 @@
 		Z_LEVEL_STATION_THREE,
 		Z_LEVEL_SURFACE_WILD
 	)
-/datum/planet/virgo4
-	expected_z_levels = list(
-		Z_LEVEL_BEACH
-	)
 
 /obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()
 	teleport_x = src.x - 4
@@ -422,13 +352,8 @@
 /obj/effect/map_effect/portal/master/side_b/wilderness_to_plains/river
 	portal_id = "caves_wilderness-river"
 
+/*
 // Putting this here in order to not disrupt existing maps/downstreams.
 /turf/simulated/open
 	dynamic_lighting = TRUE
-
-#include "../expedition_vr/aerostat/_aerostat.dm"
-/datum/map_template/common_lateload/away_aerostat
-	name = "Remmi Aerostat - Z1 Aerostat"
-	desc = "The Virgo 2 Aerostat away mission."
-	mappath = 'maps/expedition_vr/aerostat/aerostat.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
+*/

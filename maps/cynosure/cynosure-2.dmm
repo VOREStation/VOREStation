@@ -4181,7 +4181,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/gnd)
 "bUO" = (
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/surface/station/storage/primarytool)
 "bUS" = (
@@ -8839,11 +8839,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/storage/primarytool)
-"eeL" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/turf/simulated/floor/tiled/neutral,
-/area/surface/station/medical/etc)
 "eeQ" = (
 /obj/item/modular_computer/console/preset/command{
 	dir = 1
@@ -13139,7 +13134,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/surface/station/storage/primarytool)
 "fWH" = (
@@ -15242,7 +15237,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/surface/station/storage/primarytool)
 "gTb" = (
@@ -35807,10 +35802,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai/upload)
-"qbj" = (
-/obj/turbolift_map_holder/cynosure/center,
-/turf/unsimulated/mask,
-/area/surface/station/hallway/primary/groundfloor/east)
 "qbC" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -43389,7 +43380,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/surface/station/storage/primarytool)
 "twu" = (
@@ -87407,7 +87398,7 @@ qMT
 bwp
 xzt
 bVG
-eeL
+gQu
 ppb
 pEY
 xRb
@@ -90772,7 +90763,7 @@ fRF
 mOM
 mOM
 mOM
-qbj
+mOM
 fRF
 lQW
 ekU

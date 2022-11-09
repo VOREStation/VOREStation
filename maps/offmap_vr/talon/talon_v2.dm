@@ -54,7 +54,7 @@ var/global/list/latejoin_talon = list()
 	skybox_pixel_x = 270
 	skybox_pixel_y = 60
 
-	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	levels_for_distress = list(1, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
 	unowned_areas = list(/area/shuttle/talonboat,/area/shuttle/talonpod)
 
 // The shuttle's 'shuttle' computer
@@ -70,7 +70,7 @@ var/global/list/latejoin_talon = list()
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Talon's Shuttle"
 
-	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	levels_for_distress = list(1, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonboat
@@ -113,7 +113,7 @@ var/global/list/latejoin_talon = list()
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Talon's Escape Pod"
 
-	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	levels_for_distress = list(1, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonpod

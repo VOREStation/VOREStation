@@ -167,7 +167,7 @@
 /area/surface/station/engineering/hallway/bmt)
 "aq" = (
 /obj/effect/floor_decal/spline/plain{
-	dir = 8
+	dir = 10
 	},
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
@@ -427,12 +427,15 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoarcheology/exp_prep)
 "aO" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 8
-	},
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 22
+	},
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 9
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
@@ -951,6 +954,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/mining_main/locker)
+"bO" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/engineering/north)
 "bQ" = (
 /obj/structure/closet/hydrant{
 	pixel_x = -32
@@ -1249,6 +1261,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
@@ -1744,15 +1761,16 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/medbay/bmt)
 "dm" = (
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
 /area/surface/cave/unexplored/normal)
@@ -2133,6 +2151,9 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/secondary/bmt/weststairwell)
+"eb" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "ec" = (
 /obj/structure/sink{
 	dir = 8;
@@ -3212,6 +3233,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/drone_fabrication)
+"gi" = (
+/obj/structure/sign/poster/custom{
+	dir = 1;
+	pixel_y = 32;
+	poster_decl = /decl/poster/bay_11
+	},
+/obj/structure/table/rack,
+/obj/random/soap_common,
+/obj/random/soap_common,
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "gj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -3566,6 +3598,14 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/bmt/west)
+"gV" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/surface/cave/unexplored/normal)
 "gW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3908,16 +3948,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/west/elevator)
-"hD" = (
-/obj/structure/curtain/open/shower/medical,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/surface/station/construction/bmt/construction2)
 "hE" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -4048,14 +4078,6 @@
 "hN" = (
 /turf/simulated/wall/concrete,
 /area/surface/station/storage/tech)
-"hO" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 6
-	},
-/turf/simulated/floor/water/pool{
-	name = "hot tub"
-	},
-/area/surface/station/construction/bmt/construction2)
 "hP" = (
 /obj/structure/closet/hydrant{
 	pixel_x = -32
@@ -4130,6 +4152,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/bar)
@@ -4336,15 +4363,12 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/south)
 "iu" = (
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 5
-	},
-/obj/effect/floor_decal/techfloor/orange/corner{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -4682,9 +4706,17 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/construction/basement)
 "iW" = (
-/obj/machinery/light_construct/flamp,
-/turf/simulated/floor/wood/broken,
-/area/surface/station/construction/bmt/construction1)
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/medical/south)
 "iX" = (
 /obj/structure/bed/chair/comfy/teal{
 	dir = 4
@@ -4739,6 +4771,9 @@
 "ja" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 5
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/construction/bar)
@@ -5110,6 +5145,16 @@
 "jL" = (
 /turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction4)
+"jM" = (
+/obj/structure/curtain/open/shower/medical,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "jN" = (
 /obj/structure/table/rack{
 	layer = 2.6
@@ -5389,7 +5434,7 @@
 /area/surface/station/hallway/primary/bmt/west)
 "ki" = (
 /obj/effect/floor_decal/spline/plain{
-	dir = 9
+	dir = 8
 	},
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
@@ -5411,6 +5456,16 @@
 /obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/engineering/hallway/bmt)
+"kk" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/curtain/open/shower/medical,
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "kl" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -5454,7 +5509,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway)
 "kr" = (
-/turf/simulated/floor/plating,
+/turf/unsimulated/mask,
 /area/surface/station/hallway/primary/bmt/east)
 "ks" = (
 /turf/simulated/wall/concrete,
@@ -6715,9 +6770,6 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/north)
 "mD" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -6729,6 +6781,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
@@ -6919,6 +6976,7 @@
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/mining_main/refinery)
 "mZ" = (
+/obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
 	},
@@ -7267,6 +7325,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/analysis)
+"nO" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/mining)
 "nQ" = (
 /obj/item/weapon/ore/iron{
 	pixel_x = -3;
@@ -7477,6 +7548,12 @@
 "om" = (
 /turf/simulated/wall/concrete,
 /area/surface/station/maintenance/incinerator)
+"on" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/eaststairwell)
 "oo" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -8353,17 +8430,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
-"pW" = (
-/obj/structure/curtain/open/shower/medical,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/weapon/towel/random,
-/turf/simulated/floor/tiled/techfloor,
-/area/surface/station/construction/bmt/construction2)
 "pY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -8402,9 +8468,6 @@
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/mining_main/refinery)
 "qc" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
 	},
@@ -8610,7 +8673,7 @@
 	pixel_x = -32;
 	poster_decl = /decl/poster/vore_43
 	},
-/turf/simulated/floor/wood/broken,
+/turf/simulated/floor/wood,
 /area/surface/station/construction/bmt/construction1)
 "qu" = (
 /obj/structure/railing,
@@ -8809,8 +8872,12 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/eaststairwell)
 "qJ" = (
-/obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techfloor,
+/obj/effect/floor_decal/spline/plain{
+	dir = 9
+	},
+/turf/simulated/floor/water/pool{
+	name = "hot tub"
+	},
 /area/surface/station/construction/bmt/construction2)
 "qK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -9218,6 +9285,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/south)
 "rB" = (
@@ -9308,12 +9381,6 @@
 "rH" = (
 /turf/simulated/wall/concrete,
 /area/surface/station/rnd/hallway/bmt)
-"rI" = (
-/obj/effect/floor_decal/spline/plain,
-/turf/simulated/floor/water/pool{
-	name = "hot tub"
-	},
-/area/surface/station/construction/bmt/construction2)
 "rJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -9640,6 +9707,13 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/outpost/research/xenoarcheology/restroom)
+"so" = (
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -28
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/surface/station/construction/bmt/construction5)
 "sp" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -9736,6 +9810,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/research/south)
+"sA" = (
+/obj/structure/curtain/open/shower/medical,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/weapon/towel/random,
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "sB" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -10008,6 +10093,17 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/outpost/research/xenoarcheology/analysis)
+"sW" = (
+/obj/machinery/deployable/barrier{
+	anchored = 1;
+	req_access = list()
+	},
+/obj/effect/floor_decal/corner/blue{
+	dir = 10
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/surface/station/construction/bar)
 "sX" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -10185,14 +10281,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
 "tn" = (
-/obj/structure/sign/poster/custom{
-	dir = 1;
-	pixel_y = 32;
-	poster_decl = /decl/poster/bay_11
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 6
 	},
-/obj/structure/table/rack,
-/obj/random/soap_common,
-/obj/random/soap_common,
+/obj/effect/floor_decal/techfloor/orange/corner,
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
 "to" = (
@@ -10262,6 +10354,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
+"tu" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/engineering/south)
 "tv" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -11134,7 +11230,7 @@
 /area/surface/outpost/research/xenoarcheology/entrance)
 "vi" = (
 /obj/effect/floor_decal/spline/plain{
-	dir = 4
+	dir = 6
 	},
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
@@ -11610,9 +11706,6 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/analysis)
 "wc" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
@@ -11921,12 +12014,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/rnd/hallway/bmt)
 "wE" = (
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 6
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/effect/floor_decal/techfloor/orange/corner,
-/turf/simulated/floor/tiled/techfloor,
-/area/surface/station/construction/bmt/construction2)
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/security)
 "wF" = (
 /obj/machinery/ai_status_display,
 /turf/simulated/wall/concrete,
@@ -13358,12 +13450,6 @@
 	},
 /area/surface/station/mining_main/exterior)
 "zm" = (
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 9
-	},
-/obj/effect/floor_decal/techfloor/orange/corner{
-	dir = 1
-	},
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
@@ -14218,6 +14304,15 @@
 /turf/simulated/floor/plating,
 /area/surface/station/storage/tech)
 "AT" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
 "AU" = (
@@ -14610,6 +14705,10 @@
 	},
 /obj/random/maintenance,
 /obj/random/powercell,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -28
+	},
 /turf/simulated/floor/wood,
 /area/surface/station/construction/bmt/construction1)
 "BF" = (
@@ -14737,6 +14836,15 @@
 	outdoors = 0
 	},
 /area/surface/station/hallway/primary/bmt/south)
+"BQ" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 5
+	},
+/obj/item/weapon/bikehorn/rubberducky,
+/turf/simulated/floor/water/pool{
+	name = "hot tub"
+	},
+/area/surface/station/construction/bmt/construction2)
 "BR" = (
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/north)
@@ -14978,6 +15086,11 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/bar)
 "Cr" = (
@@ -15007,6 +15120,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
@@ -15225,9 +15343,8 @@
 /area/surface/station/rnd/toxins_launch)
 "CO" = (
 /obj/effect/floor_decal/spline/plain{
-	dir = 5
+	dir = 4
 	},
-/obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
 	},
@@ -15436,6 +15553,9 @@
 	pixel_y = 24
 	},
 /obj/effect/catwalk_plated/dark,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/research/east)
 "Dm" = (
@@ -15549,6 +15669,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/anomaly)
+"Dv" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/engineering/south)
 "Dw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -16335,6 +16468,18 @@
 /obj/item/device/integrated_circuit_printer,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/research/south)
+"Fa" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/surface/cave/unexplored/normal)
 "Fc" = (
 /obj/item/weapon/storage/box/lights/tubes,
 /turf/simulated/floor/plating,
@@ -16533,8 +16678,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
+"Fz" = (
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 5
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "FA" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -16745,6 +16904,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/hallway/primary/bmt/west/elevator)
+"FW" = (
+/obj/effect/floor_decal/corner/red/full{
+	dir = 1
+	},
+/obj/machinery/deployable/barrier{
+	req_access = list()
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/surface/station/construction/bar)
 "FX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -17071,7 +17242,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/wood/broken,
+/turf/simulated/floor/wood,
 /area/surface/station/construction/bmt/construction1)
 "GB" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -17629,6 +17800,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/weststairwell/bmt)
+"HR" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/surface/cave/unexplored/normal)
 "HS" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -17717,8 +17894,9 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
 "HZ" = (
-/turf/simulated/floor/wood/broken,
-/area/surface/station/construction/bmt/construction1)
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/security)
 "Ia" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techmaint,
@@ -17983,7 +18161,7 @@
 /area/surface/outpost/research/xenoarcheology/longtermstorage)
 "IB" = (
 /obj/turbolift_map_holder/cynosure/center,
-/turf/simulated/floor/plating,
+/turf/unsimulated/mask,
 /area/surface/station/hallway/primary/bmt/east)
 "ID" = (
 /obj/machinery/alarm{
@@ -18776,6 +18954,15 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/rnd/mixing)
+"Ki" = (
+/obj/machinery/deployable/barrier{
+	req_access = list()
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/surface/station/construction/bar)
 "Kj" = (
 /turf/simulated/mineral/floor/ignore_mapgen/sif,
 /area/surface/cave/explored/normal)
@@ -19544,13 +19731,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/construction/bar)
 "LK" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/curtain/open/shower/medical,
+/obj/effect/floor_decal/techfloor/orange,
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
 "LL" = (
@@ -20688,6 +20869,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/meter,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
 "NU" = (
@@ -21568,6 +21752,18 @@
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
+"Pr" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/surface/station/construction/bar)
 "Ps" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -22086,6 +22282,13 @@
 "Qm" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "HotTub";
+	name = "Hot Tub Privacy Mode";
+	pixel_x = 24;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
@@ -23640,6 +23843,15 @@
 	},
 /turf/simulated/floor/carpet/tealcarpet,
 /area/surface/station/construction/bmt/construction4)
+"Tl" = (
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 10
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/station/construction/bmt/construction2)
 "To" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -23961,6 +24173,10 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/research/xenoarcheology/restroom)
+"TT" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/surface/cave/unexplored/normal)
 "TU" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -24064,6 +24280,13 @@
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/maintenance/bar)
+"Uf" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/surface/station/construction/bar)
 "Ug" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24632,6 +24855,14 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/east)
+"Vl" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/turf/simulated/floor/water/pool{
+	name = "hot tub"
+	},
+/area/surface/station/construction/bmt/construction2)
 "Vm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24963,6 +25194,12 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/bar)
 "VW" = (
@@ -25091,17 +25328,17 @@
 /turf/simulated/wall/r_concrete,
 /area/surface/station/storage/tech)
 "Wi" = (
-/obj/item/frame/apc,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
 "Wj" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 10
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
 	},
-/turf/simulated/floor/water/pool{
-	name = "hot tub"
-	},
+/turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
 "Wk" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -25800,6 +26037,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction6)
 "Xx" = (
@@ -25906,15 +26148,16 @@
 /area/surface/outpost/research/xenoarcheology)
 "XJ" = (
 /obj/random/obstruction,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/construction/bmt/construction5)
@@ -26429,18 +26672,27 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
+"YH" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/obj/machinery/deployable/barrier{
+	req_access = list()
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/surface/station/construction/bar)
 "YI" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/bar)
 "YJ" = (
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 10
-	},
-/obj/effect/floor_decal/techfloor/orange/corner{
+/obj/item/clothing/suit/caution,
+/obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/obj/item/clothing/suit/caution,
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/construction/bmt/construction2)
 "YL" = (
@@ -26631,6 +26883,9 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/north)
 "Zf" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/west)
 "Zg" = (
@@ -54074,7 +54329,7 @@ uX
 cb
 cb
 cb
-cb
+nO
 Lk
 AD
 gj
@@ -56370,7 +56625,7 @@ xC
 rZ
 eJ
 IP
-HZ
+xk
 Lr
 cB
 MR
@@ -56622,7 +56877,7 @@ zg
 HE
 HE
 cB
-iW
+Cg
 xk
 xk
 xk
@@ -58136,7 +58391,7 @@ jw
 dU
 Ps
 Ps
-Ps
+iW
 Gj
 Ps
 kl
@@ -58144,7 +58399,7 @@ Ps
 Ps
 Ps
 Ps
-Ps
+iW
 FT
 iv
 eY
@@ -58410,9 +58665,9 @@ HE
 HE
 HE
 HE
-HE
 XR
 sF
+eb
 QJ
 tm
 Zd
@@ -58667,13 +58922,13 @@ HE
 HE
 HE
 HE
-HE
 XR
+gi
 tn
-wE
 ab
 ab
 ab
+Fz
 iu
 IF
 XR
@@ -58924,9 +59179,9 @@ HE
 HE
 HE
 HE
-HE
 XR
-hD
+jM
+LK
 qJ
 ki
 aq
@@ -59181,13 +59436,13 @@ HE
 HE
 HE
 HE
-HE
 XR
-pW
-qJ
+sA
+LK
+Vl
 qc
 mZ
-rI
+Wj
 mD
 Vr
 XR
@@ -59219,7 +59474,7 @@ Oa
 Ka
 uq
 uq
-uq
+Pr
 uq
 uq
 zs
@@ -59438,13 +59693,13 @@ HE
 HE
 HE
 HE
-HE
 XR
+kk
 LK
-qJ
+BQ
 CO
 vi
-hO
+Wj
 mD
 cO
 XR
@@ -59695,9 +59950,9 @@ HE
 HE
 HE
 HE
-HE
 XR
 sF
+Tl
 YJ
 Qm
 hb
@@ -59729,7 +59984,7 @@ BA
 XX
 nG
 KO
-Yo
+YH
 vN
 Uq
 Ks
@@ -59737,7 +59992,7 @@ Ks
 Ks
 Ks
 fy
-as
+sW
 KO
 HE
 HE
@@ -61779,8 +62034,8 @@ HE
 HE
 HE
 HE
-HE
-HE
+gs
+gs
 BA
 pf
 jr
@@ -62035,14 +62290,14 @@ HE
 HE
 HE
 HE
-HE
-HE
-HE
+gs
+gs
+HF
 BA
 fo
 zM
 KO
-In
+FW
 sb
 fy
 Uq
@@ -62050,7 +62305,7 @@ aP
 fy
 qe
 Ks
-ou
+Uf
 KO
 HE
 HE
@@ -62292,9 +62547,9 @@ HE
 HE
 HE
 HE
-HE
-HE
-HE
+gs
+HF
+HF
 BA
 kD
 BA
@@ -62560,7 +62815,7 @@ KO
 yb
 yb
 PG
-yb
+Ki
 yb
 yb
 yb
@@ -63814,7 +64069,7 @@ HE
 HE
 HE
 LF
-py
+on
 ks
 yX
 JI
@@ -63830,7 +64085,7 @@ vA
 fz
 iX
 HK
-RT
+so
 TQ
 gM
 TY
@@ -63839,9 +64094,9 @@ Ng
 pd
 Xw
 pd
-HF
-HF
-HF
+Fa
+gV
+gV
 dm
 HF
 HF
@@ -64096,13 +64351,13 @@ AT
 Cv
 mE
 pd
-HF
+HR
 HF
 sj
 pT
 ae
 HF
-HF
+TT
 Mk
 OB
 Mk
@@ -64626,7 +64881,7 @@ gv
 gv
 gv
 ka
-ka
+Dv
 jP
 ka
 MC
@@ -65598,7 +65853,7 @@ HE
 HE
 HE
 tR
-Jv
+wE
 Ll
 tR
 HE
@@ -67188,7 +67443,7 @@ Kj
 Kj
 Kj
 Mk
-hA
+tu
 Mk
 HE
 HE
@@ -68963,7 +69218,7 @@ HE
 HE
 lk
 BR
-Me
+bO
 uY
 Nt
 Nt
@@ -69198,7 +69453,7 @@ HE
 HE
 tR
 Ll
-Jv
+HZ
 tR
 HE
 HE

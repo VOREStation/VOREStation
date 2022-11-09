@@ -8,10 +8,10 @@
 	#include "cynosure_presets.dm"
 	#include "cynosure_shuttles.dm"
 
-	#include "..\offmap_vr\common_offmaps.dm"
+	#include "..\offmap_vr\cyno_offmaps.dm"
 	#include "..\tether\tether_jobs.dm"
 
-	#include "datums/random_map.dm"
+//	#include "datums/random_map.dm"
 
 	#include "turfs/outdoors.dm"
 	#include "overmap/sectors.dm"
