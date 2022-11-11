@@ -424,7 +424,6 @@
 
 	if(hasHUD(user,"best"))
 		var/perpname = name
-		var/employee = "None"
 
 		if(wear_id)
 			if(istype(wear_id, /obj/item/weapon/card/id))
@@ -475,8 +474,6 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
-		//	if("best")
-		//		return istype(H.glasses, /obj/item/clothing/glasses/omnihud/all)
 	else if(istype(M, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
 		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off
