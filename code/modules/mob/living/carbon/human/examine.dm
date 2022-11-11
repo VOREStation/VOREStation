@@ -422,6 +422,24 @@
 		msg += "<span class='deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>"
 		msg += "<span class='deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
 
+	if(hasHUD(user,"best"))
+		var/perpname = name
+		var/employee = "None"
+
+		if(wear_id)
+			if(istype(wear_id, /obj/item/weapon/card/id))
+				var/obj/item/weapon/card/id/I = wear_id
+				perpname = I.registered_name
+			else if(istype(wear_id, /obj/item/device/pda))
+				var/obj/item/device/pda/P = wear_id
+				perpname = P.owner
+
+		for (var/datum/data/record/R in data_core.general)
+			if (R.fields["name"] == perpname)
+				employee = R.fields["p_stat"]
+
+		msg += "<span class='deptradio'>Employment records:</span> <a href='?src=\ref[src];emprecord=`'>\[View\]</a> <a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"
+
 
 	var/flavor_text = print_flavor_text()
 	if(flavor_text)
@@ -457,6 +475,8 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
+		//	if("best")
+		//		return istype(H.glasses, /obj/item/clothing/glasses/omnihud/all)
 	else if(istype(M, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
 		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off
