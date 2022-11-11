@@ -423,20 +423,6 @@
 		msg += "<span class='deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
 
 	if(hasHUD(user,"best"))
-		var/perpname = name
-
-		if(wear_id)
-			if(istype(wear_id, /obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/I = wear_id
-				perpname = I.registered_name
-			else if(istype(wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/P = wear_id
-				perpname = P.owner
-
-		for (var/datum/data/record/R in data_core.general)
-			if (R.fields["name"] == perpname)
-				employee = R.fields["p_stat"]
-
 		msg += "<span class='deptradio'>Employment records:</span> <a href='?src=\ref[src];emprecord=`'>\[View\]</a> <a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"
 
 
