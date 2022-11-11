@@ -121,7 +121,7 @@ var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,
                                              /datum/reagent/ethanol/pwine,
                                              /datum/reagent/ethanol/threemileisland,
                                              /datum/reagent/ethanol/toxins_special,
-											 /datum/reagent/ethanol/voxdelight,
+                                             /datum/reagent/ethanol/riaaak,
 											 /datum/reagent/ethanol/soemmerfire,
 											 /datum/reagent/ethanol/slimeshot)
 

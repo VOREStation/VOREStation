@@ -423,3 +423,40 @@
 	volume = 60
 	center_of_mass = list("x"=15, "y"=4)
 
+<<<<<<< HEAD
+=======
+// Vox flasks.
+/obj/item/reagent_containers/food/drinks/flask/vox
+	name = "vox canister"
+	desc = "A stubby airtight canister made from hammered plates of blue-green alloy."
+	icon_state = "voxflask"
+	volume = 30
+	var/initial_reagents
+
+/obj/item/reagent_containers/food/drinks/flask/vox/Initialize()
+	. = ..()
+	var/largest_reagent
+	for(var/rid in initial_reagents)
+		var/amt = initial_reagents[rid]
+		reagents.add_reagent(rid, amt)
+		if(!largest_reagent || amt > initial_reagents[largest_reagent])
+			largest_reagent = rid
+	if(largest_reagent)
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if(R.id == largest_reagent)
+				name = "[name] ([R.name])"
+				break
+
+/obj/item/reagent_containers/food/drinks/flask/vox/protoslurry
+	initial_reagents = list("voxslurry" = 30)
+
+/obj/item/reagent_containers/food/drinks/flask/vox/repairgel
+	initial_reagents = list("voxmeds" = 30)
+
+/obj/item/reagent_containers/food/drinks/flask/vox/riaak
+	initial_reagents = list("voxbooze" = 30)
+
+// This is mainly there for debugging as there's no other way to get it atm.
+/obj/item/reagent_containers/food/drinks/flask/vox/alkahest
+	initial_reagents = list("voxenzyme" = 30)
+>>>>>>> 7a630efbcc1... Merge pull request #8750 from MistakeNot4892/voxchems

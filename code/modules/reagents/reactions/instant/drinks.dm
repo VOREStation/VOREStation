@@ -997,13 +997,6 @@
 	required_reagents = list("tonic" = 1, "holywater" = 1, "honey" = 1)
 	result_amount = 3
 
-/decl/chemical_reaction/instant/drinks/voxdelight
-	name = "Vox's Delight"
-	id = "voxdelight"
-	result = "voxdelight"
-	required_reagents = list("phoron" = 3, "fuel" = 1, "water" = 1)
-	result_amount = 4
-
 /decl/chemical_reaction/instant/drinks/screamingviking
 	name = "Screaming Viking"
 	id = "screamingviking"

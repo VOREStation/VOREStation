@@ -4086,26 +4086,6 @@
 
 	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from whiskey(grains), cola (caffeine) and vodka(grains)
 
-/datum/reagent/ethanol/voxdelight
-	name = "Vox's Delight"
-	id = "voxdelight"
-	description = "A dangerous combination of all things flammable. Why would you drink this?"
-	taste_description = "corrosive death"
-	color = "#7c003a" // rgb(124, 0, 58)
-	strength = 10
-
-	glass_name = "Vox's Delight"
-	glass_desc = "Not recommended if you enjoy having organs."
-
-/datum/reagent/drink/voxdelight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_DIONA)
-		return
-	if(alien == IS_VOX)
-		M.adjustToxLoss(-0.5 * removed)
-		return
-	M.adjustToxLoss(3 * removed)
-
 /datum/reagent/ethanol/screamingviking
 	name = "Screaming Viking"
 	id = "screamingviking"
