@@ -12,6 +12,7 @@
 /area/lunaship
 	requires_power = 1
 	has_gravity = 1
+	flags = RAD_SHIELDED
 
 /area/lunaship/cockpit
 	name = "LUNA - Control Core"
@@ -43,13 +44,13 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/lunaship
-	name = "LUNA"
-	desc = "Spacefaring vessel. Friendly IFF detected."
+	name = "ISV LUNA"
+	desc = "Experimental multifunction vessel. Friendly IFF detected."
 	icon_state = "moe_frigate"
 	scanner_desc = @{"[i]Registration[/i]: LUNA
-[i]Class[/i]: Large Corvette (Low Displacement)
-[i]Transponder[/i]: Transmitting (CIV), non-hostile
-[b]Notice[/b]: Automated vessel"}
+[i]Class[/i]: Large Corvette - Multifunctional
+[i]Transponder[/i]: Transmitting [CIV], non-hostile.
+[b]Notice[/b]: Automated vessel. Abnormal energy emissions detected. "}
 	color = "#00aaff" //Bluey
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
