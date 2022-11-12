@@ -1477,15 +1477,23 @@
 /area/stellardelight/deck2/fore)
 "cZ" = (
 /obj/item/device/flashlight/lamp/green{
+	pixel_x = 7;
+	pixel_y = 16
+	},
+/obj/item/weapon/folder/blue_captain{
+	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/item/weapon/folder/blue_captain,
 /obj/structure/table/darkglass,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
 /obj/machinery/requests_console/preset/captain{
 	pixel_x = -30
+	},
+/obj/item/weapon/melee/chainofcommand,
+/obj/item/weapon/folder/blue_captain{
+	pixel_x = -6
 	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/crew_quarters/captain)
@@ -10517,14 +10525,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/storage)
 "xv" = (
-/obj/item/weapon/melee/chainofcommand,
-/obj/item/weapon/coin/phoron{
-	desc = "The face of the coin shows a portrait of the explorer who discovered the Virgo-Erigone system. The back depicts a Zodiac symbol that represents Virgo.";
-	name = "limited edition phoron coin"
-	},
-/obj/item/weapon/folder/blue_captain,
-/obj/item/weapon/stamp/captain,
 /obj/structure/table/darkglass,
+/obj/machinery/computer/skills{
+	pixel_x = 9
+	},
+/obj/item/weapon/paper_bin{
+	pixel_x = -7;
+	pixel_y = -2
+	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/crew_quarters/captain)
 "xw" = (
@@ -11717,6 +11725,7 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
+/obj/machinery/papershredder,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/briefingroom)
 "Ae" = (
@@ -12028,9 +12037,6 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "AO" = (
-/obj/machinery/computer/skills{
-	pixel_y = 7
-	},
 /obj/structure/table/darkglass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -12039,6 +12045,16 @@
 	id = "captaindoor";
 	pixel_x = -15;
 	pixel_y = 2
+	},
+/obj/item/weapon/stamp/captain{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/weapon/coin/phoron{
+	desc = "The face of the coin shows a portrait of the explorer who discovered the Virgo-Erigone system. The back depicts a Zodiac symbol that represents Virgo.";
+	name = "limited edition phoron coin";
+	pixel_x = 11;
+	pixel_y = -3
 	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/crew_quarters/captain)
