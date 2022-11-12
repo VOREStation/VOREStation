@@ -2,53 +2,53 @@
 "ad" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/lunaship/park)
-"aF" = (
-/obj/structure/closet/walllocker_double/east,
-/obj/item/device/nif/protean,
-/obj/item/device/nif/protean,
-/obj/item/device/nif/protean,
-/obj/item/organ/internal/nano/orchestrator,
-/obj/item/organ/internal/nano/orchestrator,
-/obj/item/organ/internal/nano/orchestrator,
-/obj/item/organ/internal/nano/refactory,
-/obj/item/organ/internal/nano/refactory,
-/obj/item/organ/internal/nano/refactory,
-/obj/item/device/mmi/digital/posibrain/nano,
-/obj/item/device/mmi/digital/posibrain/nano,
-/obj/item/device/mmi/digital/posibrain/nano,
-/turf/simulated/floor/wood,
-/area/lunaship/office)
-"aL" = (
-/obj/effect/floor_decal/milspec/color/orange/corner{
-	dir = 8
-	},
+"af" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/turf/simulated/floor/tiled/techmaint,
+/area/lunaship/hallway_starboard)
+"al" = (
+/obj/structure/table/woodentable,
+/obj/item/device/perfect_tele,
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/item/weapon/implantcase/armblade,
+/turf/simulated/floor/wood,
+/area/lunaship/office)
+"aF" = (
+/obj/structure/hull_corner,
+/turf/space,
+/area/space)
+"aL" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/milspec,
+/turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "aQ" = (
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/park)
@@ -83,30 +83,33 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/lunaship/hallway_starboard)
 "bj" = (
-/obj/effect/floor_decal/milspec/color/orange/half{
-	dir = 8
-	},
-/obj/structure/railing/grey,
-/obj/machinery/power/apc/hyper{
-	alarms_hidden = 1;
-	dir = 8;
-	pixel_x = -25;
-	req_access = list(777)
-	},
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable/cyan,
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/engineering)
+/turf/space/internal_edge/top,
+/area/lunaship/park)
 "bx" = (
 /obj/machinery/power/shield_generator/upgraded{
 	field_radius = 39;
 	initial_shield_modes = 2113;
+	req_one_access = 777;
 	target_radius = 39
+	},
+/obj/structure/cable/cyan,
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
+"by" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
 "bD" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -115,65 +118,61 @@
 	},
 /turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
-"bE" = (
-/obj/machinery/power/apc/hyper{
-	alarms_hidden = 1;
-	dir = 4;
-	pixel_x = 25;
-	req_access = list(777)
-	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/hallway_port)
 "bF" = (
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
+"bK" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/hallway_starboard)
 "bP" = (
 /turf/space/internal_edge/top,
 /area/lunaship/cockpit)
 "bU" = (
 /turf/space/internal_edge/topright,
 /area/lunaship/cockpit)
-"cc" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
 "cj" = (
-/turf/space/internal_edge/bottomleft,
-/area/lunaship/cockpit)
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/space,
+/area/space)
 "cx" = (
 /turf/space/internal_edge/left,
-/area/lunaship/cockpit)
+/area/lunaship/park)
 "cM" = (
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "cQ" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/lunaship/engineering)
-"dl" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+"cU" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/park)
+/turf/simulated/floor/carpet/turcarpet,
+/area/lunaship/office)
+"dl" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "dB" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -193,27 +192,20 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
-"dM" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/lunaship/engineering)
 "dN" = (
-/obj/machinery/portable_atmospherics/canister/empty,
 /obj/machinery/atmospherics/portables_connector{
 	piping_layer = 3
 	},
+/obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "ew" = (
-/obj/item/weapon/soap/nanotrasen,
-/obj/effect/floor_decal/milspec_sterile/green/corner{
+/obj/machinery/body_scanconsole{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/medical/east,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/soap/nanotrasen,
+/obj/effect/floor_decal/milspec_sterile/green/corner{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "fc" = (
@@ -276,11 +268,15 @@
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/lunaship/bar)
 "gl" = (
-/obj/machinery/pointdefense_control{
-	id_tag = "aro3_pd"
+/obj/machinery/sleep_console{
+	dir = 2;
+	pixel_x = -1
 	},
-/turf/simulated/floor/tiled/milspec/raised,
-/area/lunaship/cockpit)
+/obj/effect/floor_decal/milspec_sterile/green/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
 "gp" = (
 /obj/machinery/light{
 	dir = 4;
@@ -293,45 +289,69 @@
 	outdoors = 0
 	},
 /area/lunaship/park)
-"gF" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4
+"gI" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
 	},
-/turf/simulated/floor/plating/eris/under,
-/area/lunaship/engineering)
-"gT" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 9
-	},
+/obj/structure/lattice,
 /obj/structure/cable/cyan{
 	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/space,
+/area/space)
+"gT" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "gY" = (
-/obj/item/modular_computer/console/preset/civilian{
-	dir = 4
+/obj/structure/bed/chair/office/dark{
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "gZ" = (
-/obj/structure/hull_corner,
-/turf/space,
-/area/space)
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/water/deep/indoors,
+/area/lunaship/park)
 "he" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/machinery/sleeper,
+/obj/effect/floor_decal/milspec_sterile/green/half{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/milspec/raised,
-/area/lunaship/cockpit)
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
 "hr" = (
 /turf/simulated/floor/water/indoors/surfluid,
 /area/lunaship/cockpit)
+"hs" = (
+/obj/machinery/power/smes/buildable/hybrid{
+	input_attempt = 1;
+	input_level = 250000;
+	input_level_max = 250000;
+	output_level = 190000
+	},
+/obj/structure/cable/cyan,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/lunaship/engineering)
 "hu" = (
 /obj/machinery/recharge_station,
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -343,24 +363,33 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "hH" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 4
+/obj/machinery/power/apc/hyper{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_y = 25;
+	req_access = list(777)
 	},
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 12;
-	pixel_y = -5
+/obj/machinery/power/terminal{
+	dir = 1;
+	icon_state = "term"
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/park)
 "hR" = (
 /obj/effect/floor_decal/milspec/color/black/half,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "ih" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/lunaship/hallway_port)
 "il" = (
@@ -373,11 +402,46 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
-"iv" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 6
+"iq" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
+"iu" = (
+/obj/machinery/power/apc/hyper{
+	alarms_hidden = 1;
+	dir = 8;
+	pixel_x = -25;
+	req_access = list(777)
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/lunaship/office)
+"iv" = (
+/obj/effect/floor_decal/milspec_sterile/green/corner{
+	dir = 4
+	},
+/obj/machinery/power/apc/hyper{
+	alarms_hidden = 1;
+	dir = 4;
+	pixel_x = 25;
+	req_access = list(777)
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable/cyan,
+/turf/simulated/floor/tiled/milspec/sterile{
+	opacity = 1
+	},
 /area/lunaship/medical)
 "iw" = (
 /obj/structure/cable/cyan{
@@ -422,8 +486,14 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "iN" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
+	dir = 10
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
@@ -444,11 +514,18 @@
 /turf/space/internal_edge/bottom,
 /area/lunaship/cockpit)
 "jK" = (
-/obj/machinery/computer/ship/helm{
-	req_one_access = list(777)
+/obj/effect/floor_decal/milspec_sterile/green/corner{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/milspec/raised,
-/area/lunaship/cockpit)
+/obj/structure/table/glass,
+/obj/item/device/paicard/sleevecard,
+/obj/item/device/paicard/sleevecard,
+/obj/item/device/sleevemate{
+	pixel_y = -5
+	},
+/obj/item/device/sleevemate,
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
 "jQ" = (
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
@@ -481,10 +558,18 @@
 	},
 /area/lunaship/park)
 "kF" = (
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 4
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -492,35 +577,40 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "kL" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 8
 	},
-/turf/simulated/floor/water/deep/indoors,
-/area/lunaship/park)
+/obj/structure/table/glass,
+/obj/item/device/healthanalyzer/advanced{
+	pixel_x = -5
+	},
+/obj/item/device/healthanalyzer/advanced{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
 "kM" = (
-/obj/structure/closet/walllocker_double/east,
-/obj/item/capture_crystal/master,
-/obj/item/capture_crystal/great,
-/obj/item/capture_crystal/great,
-/obj/item/capture_crystal/ultra,
-/obj/item/capture_crystal/ultra,
-/obj/item/capture_crystal,
-/obj/item/capture_crystal,
-/obj/item/capture_crystal,
-/obj/item/capture_crystal,
-/turf/simulated/floor/wood,
-/area/lunaship/office)
+/obj/effect/floor_decal/milspec_sterile/green/corner{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/structure/closet/walllocker/medical/west,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
 "lm" = (
 /obj/machinery/ion_engine{
 	dir = 1
 	},
 /turf/simulated/wall/rpshull,
 /area/lunaship/engineering)
-"ln" = (
-/obj/structure/fans/hardlight,
-/turf/simulated/floor/tiled/eris/steel/panels,
-/area/lunaship/hallway_port)
 "lI" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 4
@@ -536,11 +626,12 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
+/obj/item/device/lightreplacer,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "mj" = (
-/turf/space/internal_edge/left,
-/area/lunaship/park)
+/turf/space/internal_edge/topleft,
+/area/lunaship/cockpit)
 "mp" = (
 /obj/machinery/optable{
 	name = "Robotics Operating Table"
@@ -552,22 +643,61 @@
 /area/lunaship/robotics_bay)
 "mr" = (
 /obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/wood,
+/area/lunaship/office)
+"mx" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
+"na" = (
+/obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/lunaship/office)
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "nc" = (
-/obj/structure/closet/wardrobe,
-/turf/simulated/floor/wood,
-/area/lunaship/office)
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/firstaid/bonemed,
+/obj/item/weapon/storage/firstaid/clotting,
+/obj/structure/closet/walllocker/medical/west,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
 "ng" = (
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 8
@@ -603,23 +733,89 @@
 /area/lunaship/robotics_bay)
 "ns" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
+	d1 = 2;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
+	dir = 10
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "ny" = (
+/obj/effect/floor_decal/milspec/color/blue/half{
+	dir = 5
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
+"nC" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
 "nM" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1;
+	density = 0;
+	name = "trash bin";
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/hallway_port)
+"nZ" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/lunaship/office)
+"oc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
+"od" = (
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "luna_private_bed";
+	name = "Door Lock";
+	pixel_x = -25
+	},
+/turf/simulated/floor/wood,
+/area/lunaship/office)
+"oj" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/space,
+/area/space)
+"oD" = (
+/turf/space/internal_edge/left,
+/area/lunaship/cockpit)
+"oG" = (
+/turf/simulated/floor/tiled/eris/steel/bar_flat,
+/area/lunaship/bar)
+"pj" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -628,65 +824,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/milspec,
-/area/lunaship/hallway_port)
-"nZ" = (
-/obj/machinery/power/apc/hyper{
-	alarms_hidden = 1;
-	dir = 8;
-	pixel_x = -25;
-	req_access = list(777)
-	},
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/lunaship/office)
-"oc" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 8
-	},
-/obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/structure/closet/walllocker/medical/west,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
-"oi" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/hallway_port)
-"oD" = (
-/obj/structure/hull_corner/long_vert{
-	dir = 6
-	},
-/turf/space,
-/area/space)
-"oG" = (
-/turf/simulated/floor/tiled/eris/steel/bar_flat,
-/area/lunaship/bar)
-"pj" = (
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/milspec,
 /area/lunaship/office)
 "px" = (
 /obj/structure/lattice,
 /obj/machinery/power/pointdefense{
 	id_tag = "luna_ship_pd"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
 	},
 /turf/space,
 /area/space)
@@ -697,6 +842,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/lunaship/bar)
 "pO" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
 "pR" = (
@@ -707,7 +855,10 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating/eris/under,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)
 "pT" = (
 /obj/structure/hull_corner/long_vert{
@@ -715,15 +866,44 @@
 	},
 /turf/space,
 /area/space)
-"qn" = (
-/obj/effect/floor_decal/milspec/color/orange/corner{
-	dir = 1
+"pV" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
+"qn" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
+"qx" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/space,
+/area/space)
 "qz" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/space)
+"qB" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/water/indoors/surfluid,
+/area/lunaship/engineering)
 "rb" = (
 /turf/simulated/floor/water/indoors/surfluid,
 /area/lunaship/engineering)
@@ -733,6 +913,14 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
+"rn" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
 "rv" = (
 /obj/structure/closet/walllocker_double/west,
 /obj/fiftyspawner/phoron,
@@ -747,6 +935,18 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
+"rA" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/space,
+/area/space)
 "rB" = (
 /obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
 /obj/structure/cable/cyan{
@@ -761,18 +961,43 @@
 /area/lunaship/park)
 "rD" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/turcarpet,
 /area/lunaship/office)
 "rK" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/lunaship/hallway_port)
+"rX" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/wood,
+/area/lunaship/office)
 "rZ" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -784,25 +1009,31 @@
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "sa" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/computer/ship/engines{
+	req_one_access = list(777)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/medical)
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "si" = (
 /turf/space,
 /area/space)
-"sw" = (
-/obj/structure/undies_wardrobe,
-/turf/simulated/floor/wood,
-/area/lunaship/office)
 "sC" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/lunaship/medical)
+"sD" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/lunaship/office)
 "sT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -843,63 +1074,100 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "sZ" = (
-/obj/effect/floor_decal/milspec_sterile/green/half,
+/obj/item/weapon/soap/nanotrasen,
+/obj/effect/floor_decal/milspec_sterile/green/corner{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/medical/east,
+/obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/soap/nanotrasen,
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
+"th" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/lunaship/hallway_port)
+"tl" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
-"th" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/lunaship/hallway_port)
+/turf/space,
+/area/space)
 "tm" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 9
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "ts" = (
+/obj/machinery/vending/nifsoft_shop,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/lunaship/office)
+"ud" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/turcarpet,
-/area/lunaship/office)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/lunaship/engineering)
 "ui" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/effect/floor_decal/milspec_sterile/green,
+/obj/machinery/vending/medical{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/milspec/raised,
-/area/lunaship/cockpit)
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
+"um" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
 "uq" = (
 /turf/space/internal_edge/right,
 /area/lunaship/park)
 "uQ" = (
-/obj/structure/hull_corner/long_vert{
-	dir = 5
+/obj/structure/bed/chair/bay/comfy/captain{
+	dir = 1
 	},
-/obj/structure/lattice,
-/turf/space,
-/area/space)
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "uS" = (
-/obj/structure/closet/crate/bin{
-	anchored = 1;
-	density = 0;
-	name = "trash bin";
-	pixel_y = 3
-	},
-/turf/simulated/floor/tiled/milspec,
+/turf/simulated/wall/tgmc/durawall,
 /area/lunaship/hallway_port)
 "ve" = (
 /turf/simulated/wall/tgmc/durawall,
@@ -912,13 +1180,20 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
 "vs" = (
-/obj/structure/hull_corner{
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
 	dir = 4
 	},
-/turf/space,
-/area/space)
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/medical)
 "vt" = (
 /obj/effect/floor_decal/milspec_sterile/green/half,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "vw" = (
@@ -932,12 +1207,9 @@
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "vy" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "vD" = (
@@ -948,8 +1220,20 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/lunaship/hallway_starboard)
+"vO" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/atmospherics/portables_connector{
+	piping_layer = 3
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/lunaship/engineering)
 "vQ" = (
 /obj/structure/closet/walllocker_double/west,
 /obj/fiftyspawner/steel,
@@ -978,6 +1262,15 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
+"vU" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/space,
+/area/space)
 "vW" = (
 /obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
 	dir = 4
@@ -1007,16 +1300,44 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
-"wV" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
+"wM" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/turf/simulated/wall/rpshull,
+/area/space)
+"wV" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal{
+	dir = 1;
+	icon_state = "term"
+	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/lunaship/engineering)
+"wZ" = (
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "xa" = (
 /obj/effect/floor_decal/milspec/color/blue/half{
@@ -1028,23 +1349,32 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
 "xg" = (
-/obj/machinery/ntnet_relay,
-/turf/simulated/floor/plating/eris/under,
-/area/lunaship/engineering)
-"xv" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/hallway_port)
+"xv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
 "xJ" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/lunaship/office)
@@ -1067,24 +1397,23 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
 "yw" = (
-/turf/space/internal_edge/topleft,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
 "yB" = (
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	icon_state = "4-8"
 	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+	dir = 8
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
@@ -1096,6 +1425,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
 "yL" = (
+/obj/effect/floor_decal/milspec/color/blue/half{
+	dir = 6
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -1107,61 +1439,50 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
 "yQ" = (
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 1;
+	icon_state = "map_on";
+	name = "gas pump - waste - scrubbers"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "yX" = (
-/obj/effect/floor_decal/milspec/color/orange/half{
-	dir = 8
-	},
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/engineering)
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "zl" = (
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/lunaship/hallway_starboard)
 "zp" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
 "zr" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
+/obj/structure/closet/walllocker/medical/east,
+/obj/item/clothing/gloves/sterile/nitrile,
+/obj/item/clothing/gloves/sterile/nitrile,
+/obj/item/clothing/gloves/sterile/nitrile,
+/obj/item/weapon/storage/belt/medical,
+/obj/item/weapon/storage/belt/medical,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "zE" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "zG" = (
@@ -1186,9 +1507,23 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
+	opacity = 1
+	},
 /turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
+"Ad" = (
+/obj/structure/lattice,
+/obj/machinery/power/pointdefense{
+	id_tag = "luna_ship_pd"
+	},
+/obj/structure/cable/cyan,
+/turf/space,
+/area/space)
+"Ae" = (
+/obj/machinery/ntnet_relay,
+/turf/simulated/floor/plating/eris/under,
+/area/lunaship/engineering)
 "Ag" = (
 /turf/simulated/floor/water/deep/indoors,
 /area/lunaship/park)
@@ -1223,19 +1558,19 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
 "As" = (
-/obj/effect/floor_decal/milspec/color/blue/half{
-	dir = 6
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/hallway_port)
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
+	opacity = 1
+	},
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "Ax" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1243,33 +1578,28 @@
 	},
 /turf/simulated/floor/water/indoors/surfluid,
 /area/lunaship/robotics_bay)
-"Az" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/hallway_port)
 "AR" = (
-/obj/structure/hull_corner/long_vert{
-	dir = 5
-	},
-/turf/space,
-/area/space)
-"Ba" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/office)
-"Bd" = (
-/obj/machinery/vending/nifsoft_shop,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/eris/steel/panels,
+/area/lunaship/hallway_port)
+"AS" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/bluedouble,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
+"Ba" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/lunaship/hallway_port)
+"Bd" = (
+/obj/structure/fans/hardlight,
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/steel/panels,
+/area/lunaship/hallway_port)
 "Bg" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -1283,8 +1613,15 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "Br" = (
+/obj/machinery/power/smes/buildable/hybrid{
+	input_attempt = 1;
+	input_level = 250000;
+	input_level_max = 250000;
+	output_level = 190000
+	},
+/obj/structure/cable/cyan,
 /obj/effect/floor_decal/industrial/warning{
-	dir = 5
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)
@@ -1292,6 +1629,14 @@
 /obj/effect/floor_decal/milspec/color/black/corner,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
+"Cf" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/space,
+/area/space)
 "Cw" = (
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 9
@@ -1302,19 +1647,24 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
 "CA" = (
-/obj/structure/hull_corner/long_vert{
-	dir = 6
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
-/obj/structure/lattice,
-/turf/space,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/lunaship/hallway_port)
+"CJ" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/rpshull,
 /area/space)
-"CZ" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/lunaship/office)
 "Dm" = (
 /obj/machinery/mech_recharger{
 	icon = 'icons/turf/shuttle_alien_blue.dmi'
@@ -1324,6 +1674,30 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
+"Dt" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/space,
+/area/space)
+"Du" = (
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
+"DJ" = (
+/obj/machinery/door/airlock/angled_tgmc{
+	id_tag = "luna_private_bed";
+	name = "bedroom"
+	},
+/turf/simulated/floor/wood,
+/area/lunaship/office)
 "DP" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1331,19 +1705,26 @@
 	},
 /turf/simulated/floor/water/indoors/surfluid,
 /area/lunaship/engineering)
-"Ee" = (
-/obj/machinery/sleep_console{
-	dir = 2;
-	pixel_x = -1
+"DZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
 	},
-/obj/effect/floor_decal/milspec_sterile/green/corner{
-	dir = 1
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/lunaship/engineering)
+"Ee" = (
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "Eg" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/lunaship/hallway_starboard)
@@ -1372,13 +1753,13 @@
 /turf/simulated/floor/water/indoors/surfluid,
 /area/lunaship/robotics_bay)
 "EK" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/obj/effect/floor_decal/milspec_sterile/green/half{
 	dir = 4
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12;
+	pixel_y = -5
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
@@ -1388,31 +1769,52 @@
 	},
 /turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
-"ER" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 4
+"EQ" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
+/turf/space,
+/area/space)
+"ER" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
 "Fb" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
 /turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
 "Fh" = (
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
-"FU" = (
-/obj/effect/floor_decal/milspec_sterile/green/corner{
-	dir = 8
+"Fs" = (
+/obj/structure/hull_corner{
+	dir = 4
 	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/space,
+/area/space)
+"FU" = (
+/obj/effect/floor_decal/milspec_sterile/green/half,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "FV" = (
@@ -1425,61 +1827,74 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
 "Ge" = (
-/obj/machinery/door/airlock/angled_tgmc{
-	id_tag = "luna_private_bed";
-	name = "bedroom"
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/turf/simulated/floor/wood,
-/area/lunaship/office)
+/turf/simulated/wall/rpshull,
+/area/space)
 "Gn" = (
 /obj/structure/hull_corner{
 	dir = 1
 	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/space,
 /area/space)
-"GQ" = (
+"Gu" = (
 /obj/structure/cable/cyan{
-	d1 = 2;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/turf/simulated/wall/rpshull,
+/area/space)
+"GI" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/wood,
-/area/lunaship/office)
+/turf/simulated/floor/reinforced/airless,
+/area/space)
+"GQ" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/water/indoors/surfluid,
+/area/lunaship/cockpit)
 "GT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
-"GX" = (
-/obj/machinery/atmospherics/binary/pump/on{
-	dir = 1;
-	icon_state = "map_on";
-	name = "gas pump - waste - scrubbers"
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/lunaship/engineering)
 "GY" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/power/apc/hyper{
+	alarms_hidden = 1;
+	dir = 4;
+	pixel_x = 25;
+	req_access = list(777)
+	},
+/obj/machinery/power/terminal{
+	dir = 4
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
+"Hf" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/space,
+/area/space)
 "Hh" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/milspec,
@@ -1494,8 +1909,12 @@
 	},
 /area/lunaship/park)
 "Hz" = (
-/obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/hallway_port)
+"HC" = (
+/obj/structure/table/steel,
+/obj/item/device/flashlight/lamp,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "HR" = (
@@ -1512,11 +1931,13 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "HW" = (
-/obj/machinery/button/remote/airlock{
+/obj/structure/closet/walllocker_double/north{
 	dir = 4;
-	id = "luna_private_bed";
-	name = "Door Lock";
-	pixel_x = -25
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/obj/machinery/computer/ship/navigation/telescreen{
+	pixel_y = 23
 	},
 /turf/simulated/floor/wood,
 /area/lunaship/office)
@@ -1526,19 +1947,32 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
-"Ib" = (
-/obj/structure/table/woodentable,
-/obj/item/device/perfect_tele,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/lunaship/office)
 "Ih" = (
 /obj/machinery/telecomms/allinone,
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
+"Iv" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
+"Jn" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
 "Jv" = (
 /obj/machinery/light{
 	dir = 1
@@ -1546,24 +1980,17 @@
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "JK" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 4
-	},
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/park)
 "JM" = (
 /obj/machinery/vending/boozeomat{
 	density = 0;
@@ -1580,22 +2007,20 @@
 /turf/space,
 /area/space)
 "JW" = (
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
-	dir = 4
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/medical)
 "Ke" = (
-/obj/effect/floor_decal/milspec_sterile/green/corner{
-	dir = 1
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 9
 	},
-/obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/structure/closet/walllocker/medical/west,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
@@ -1617,23 +2042,33 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/bar)
 "KQ" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/obj/machinery/sleeper,
-/obj/effect/floor_decal/milspec_sterile/green/half{
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
+"KX" = (
+/obj/effect/floor_decal/milspec_sterile/green/corner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
-"KX" = (
-/obj/effect/floor_decal/milspec_sterile/green,
-/obj/machinery/vending/medical{
-	dir = 4
+"KY" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/space)
+"Lo" = (
+/obj/effect/floor_decal/milspec/color/orange/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/engineering)
 "LA" = (
 /obj/structure/closet/walllocker_double/east,
 /obj/item/device/defib_kit/jumper_kit,
@@ -1644,20 +2079,11 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
-"LI" = (
-/obj/structure/fans/hardlight,
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
-/turf/simulated/floor/tiled/eris/steel/panels,
-/area/lunaship/hallway_port)
 "LO" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
-/obj/structure/cable/cyan,
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)
 "LS" = (
 /obj/structure/lattice,
@@ -1672,6 +2098,23 @@
 "Mw" = (
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/park)
+"Mx" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
+"MM" = (
+/turf/space/internal_edge/bottomleft,
+/area/lunaship/cockpit)
 "MX" = (
 /obj/machinery/mecha_part_fabricator/pros{
 	req_access = list()
@@ -1687,8 +2130,17 @@
 "No" = (
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/bar)
+"Np" = (
+/obj/effect/floor_decal/milspec/color/orange/half{
+	dir = 8
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/engineering)
 "NH" = (
-/turf/simulated/wall/tgmc/durawall,
+/turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
 "NQ" = (
 /turf/space/internal_edge/topleft,
@@ -1701,30 +2153,45 @@
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "NS" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/turcarpet,
+/obj/structure/closet/walllocker_double/east,
+/obj/item/device/nif/protean,
+/obj/item/device/nif/protean,
+/obj/item/device/nif/protean,
+/obj/item/organ/internal/nano/orchestrator,
+/obj/item/organ/internal/nano/orchestrator,
+/obj/item/organ/internal/nano/orchestrator,
+/obj/item/organ/internal/nano/refactory,
+/obj/item/organ/internal/nano/refactory,
+/obj/item/organ/internal/nano/refactory,
+/obj/item/device/mmi/digital/posibrain/nano,
+/obj/item/device/mmi/digital/posibrain/nano,
+/obj/item/device/mmi/digital/posibrain/nano,
+/turf/simulated/floor/wood,
 /area/lunaship/office)
+"Om" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/lunaship/engineering)
 "Oo" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/turcarpet,
+/obj/structure/closet/walllocker_double/east,
+/obj/item/capture_crystal/master,
+/obj/item/capture_crystal/great,
+/obj/item/capture_crystal/great,
+/obj/item/capture_crystal/ultra,
+/obj/item/capture_crystal/ultra,
+/obj/item/capture_crystal,
+/obj/item/capture_crystal,
+/obj/item/capture_crystal,
+/obj/item/capture_crystal,
+/turf/simulated/floor/wood,
 /area/lunaship/office)
 "OG" = (
+/obj/structure/closet/wardrobe,
+/turf/simulated/floor/wood,
+/area/lunaship/office)
+"OH" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -1732,14 +2199,37 @@
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/turcarpet,
-/area/lunaship/office)
-"OH" = (
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/hallway_port)
+"OK" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/hallway_port)
+"OQ" = (
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/lunaship/engineering)
+"OX" = (
+/turf/space/internal_edge/right,
+/area/lunaship/cockpit)
+"Pe" = (
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
 	dir = 8;
@@ -1750,57 +2240,55 @@
 	dir = 8
 	},
 /obj/structure/cable/cyan,
-/turf/simulated/floor/tiled/milspec/raised,
-/area/lunaship/cockpit)
-"OQ" = (
-/obj/structure/cable/cyan{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/lunaship/engineering)
-"OX" = (
-/turf/space/internal_edge/right,
-/area/lunaship/cockpit)
-"Pe" = (
+/obj/machinery/power/quantumpad,
+/obj/structure/railing/grey,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/water/indoors/surfluid,
-/area/lunaship/engineering)
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "PJ" = (
-/obj/machinery/bodyscanner{
-	dir = 4
-	},
-/obj/effect/floor_decal/milspec_sterile/green/corner,
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
-"PL" = (
-/obj/effect/floor_decal/milspec_sterile/green/corner{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/obj/item/device/paicard/sleevecard,
-/obj/item/device/paicard/sleevecard,
-/obj/item/device/sleevemate{
-	pixel_y = -5
-	},
-/obj/item/device/sleevemate,
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
-"Qp" = (
-/obj/effect/floor_decal/milspec/color/blue/half{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
-/area/lunaship/hallway_port)
+/area/lunaship/office)
+"PL" = (
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 9
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/lunaship/medical)
+"PS" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/space)
+"PY" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/lunaship/office)
+"Qp" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "Qu" = (
 /obj/machinery/shipsensors{
 	dir = 1;
@@ -1820,23 +2308,12 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
 "Rf" = (
-/obj/effect/floor_decal/milspec_sterile/green/corner{
-	dir = 4
+/obj/machinery/pointdefense_control{
+	id_tag = "luna_ship_pd";
+	req_one_access = 777
 	},
-/obj/machinery/power/apc/hyper{
-	alarms_hidden = 1;
-	dir = 4;
-	pixel_x = 25;
-	req_access = list(777)
-	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/structure/cable/cyan,
-/turf/simulated/floor/tiled/milspec/sterile{
-	opacity = 1
-	},
-/area/lunaship/medical)
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "Ri" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/lunaship/office)
@@ -1873,17 +2350,12 @@
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "RS" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 8
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/table/glass,
-/obj/item/device/healthanalyzer/advanced{
-	pixel_x = -5
-	},
-/obj/item/device/healthanalyzer/advanced{
-	pixel_x = -5;
-	pixel_y = -5
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "SC" = (
@@ -1903,11 +2375,21 @@
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/lunaship/bar)
 "SF" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/carpet/turcarpet,
 /area/lunaship/office)
+"SN" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
 "Tb" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 4
@@ -1916,44 +2398,45 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/engineering)
 "Tk" = (
-/obj/machinery/power/rtg/kugelblitz{
-	pixel_y = 10
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
+/obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/cyan{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)
 "Ty" = (
-/obj/machinery/computer/ship/engines{
+/obj/machinery/computer/ship/helm{
 	req_one_access = list(777)
 	},
 /turf/simulated/floor/tiled/milspec/raised,
 /area/lunaship/cockpit)
 "TA" = (
-/obj/structure/closet/walllocker_double/north{
-	dir = 4;
-	pixel_x = 32;
-	pixel_y = 0
+/obj/structure/hull_corner/long_vert{
+	dir = 5
 	},
-/obj/machinery/computer/ship/navigation/telescreen{
-	pixel_y = 23
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/turf/simulated/floor/wood,
-/area/lunaship/office)
+/turf/space,
+/area/space)
 "TY" = (
-/obj/effect/floor_decal/milspec/color/orange/half,
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
+/obj/effect/floor_decal/milspec/color/orange/corner{
+	dir = 8
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1974,57 +2457,99 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/engineering)
-"UR" = (
-/obj/machinery/power/apc/hyper{
-	alarms_hidden = 1;
-	dir = 1;
-	pixel_y = 25;
-	req_access = list(777)
+"UP" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
 	},
-/obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
-	},
+/obj/structure/lattice,
 /obj/structure/cable/cyan{
-	icon_state = "0-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/milspec,
-/area/lunaship/park)
+/turf/space,
+/area/space)
+"UR" = (
+/obj/item/modular_computer/console/preset/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/lunaship/office)
+"Vm" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/lunaship/hallway_port)
 "Vp" = (
-/obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/structure/table/woodentable,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "Vu" = (
 /turf/space/internal_edge/bottomright,
 /area/lunaship/cockpit)
 "Vx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/turcarpet,
 /area/lunaship/office)
 "Vz" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/turcarpet,
 /area/lunaship/office)
 "VV" = (
 /obj/structure/fans/hardlight,
 /obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/lunaship/hallway_starboard)
+"VY" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/lunaship/office)
 "Wg" = (
 /obj/structure/railing/grey,
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "Wj" = (
-/obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+/obj/machinery/power/rtg/kugelblitz{
+	pixel_y = 10
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating/eris/under,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)
 "Wm" = (
 /obj/structure/table/steel,
@@ -2048,25 +2573,17 @@
 /turf/simulated/wall/tgmc/durawall,
 /area/lunaship/hallway_starboard)
 "Wz" = (
-/obj/machinery/body_scanconsole{
+/obj/machinery/bodyscanner{
 	dir = 4
 	},
-/obj/effect/floor_decal/milspec_sterile/green/corner{
-	dir = 1
-	},
+/obj/effect/floor_decal/milspec_sterile/green/corner,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "WC" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/obj/structure/table/woodentable,
-/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/carpet/turcarpet,
 /area/lunaship/office)
 "Xg" = (
 /obj/structure/cable/cyan{
@@ -2079,11 +2596,26 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/lunaship/bar)
+"Xn" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "Xo" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "Xp" = (
+/obj/effect/floor_decal/milspec/color/orange/half,
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -2095,8 +2627,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/lunaship/office)
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/engineering)
 "XE" = (
 /obj/machinery/autolathe,
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -2105,37 +2637,47 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "XO" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
-"Yf" = (
-/obj/effect/floor_decal/milspec_sterile/green/half{
-	dir = 4
+"XZ" = (
+/obj/effect/floor_decal/milspec/color/orange/half{
+	dir = 8
 	},
-/obj/structure/closet/walllocker/medical/east,
-/obj/item/clothing/gloves/sterile/nitrile,
-/obj/item/clothing/gloves/sterile/nitrile,
-/obj/item/clothing/gloves/sterile/nitrile,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
-/turf/simulated/floor/tiled/milspec/sterile,
-/area/lunaship/medical)
+/obj/structure/railing/grey,
+/obj/machinery/power/apc/hyper{
+	alarms_hidden = 1;
+	dir = 8;
+	pixel_x = -25;
+	req_access = list(777)
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/cyan,
+/turf/simulated/floor/tiled/milspec,
+/area/lunaship/engineering)
+"Yf" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/space,
+/area/space)
 "YD" = (
 /obj/structure/hull_corner/long_vert{
 	dir = 9
 	},
 /obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/space,
 /area/space)
 "YU" = (
-/obj/machinery/atmospherics/portables_connector{
-	piping_layer = 3
-	},
-/obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/plating/eris/under,
 /area/lunaship/engineering)
 "Zh" = (
@@ -2144,6 +2686,15 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/park)
+"Zm" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/space,
+/area/space)
 "Zr" = (
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 10
@@ -2165,6 +2716,13 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/park)
+"ZD" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "ZI" = (
 /obj/effect/floor_decal/milspec/color/orange/half,
 /obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
@@ -2182,6 +2740,22 @@
 "ZL" = (
 /turf/simulated/floor/reinforced/airless,
 /area/space)
+"ZM" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/wall/rpshull,
+/area/space)
+"ZN" = (
+/obj/structure/railing/grey,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/milspec/raised,
+/area/lunaship/cockpit)
 "ZO" = (
 /obj/machinery/computer/ship/sensors{
 	req_one_access = list(777)
@@ -2901,6 +3475,7 @@ si
 si
 si
 si
+ZT
 si
 si
 si
@@ -2920,6 +3495,7 @@ si
 si
 si
 si
+ZT
 si
 si
 si
@@ -2937,9 +3513,7 @@ si
 si
 si
 si
-si
-si
-si
+ZT
 si
 si
 si
@@ -2963,7 +3537,6 @@ si
 si
 si
 si
-ZT
 si
 si
 si
@@ -2979,21 +3552,16 @@ si
 si
 si
 si
-si
-si
-si
-si
-ZT
-si
-si
-si
-si
-si
-si
-si
-si
-si
-si
+px
+Zm
+dl
+Wn
+ZL
+ZL
+Wn
+LS
+TA
+Ad
 si
 si
 si
@@ -3001,7 +3569,13 @@ si
 si
 si
 si
-ZT
+si
+si
+si
+si
+si
+si
+si
 si
 si
 si
@@ -3040,17 +3614,17 @@ si
 si
 si
 si
-px
-LS
-CA
-Wn
-ZL
-ZL
-Wn
-LS
-uQ
-px
+cj
+um
+wM
+wM
+GI
+KY
+wM
+wM
+pV
 si
+Yf
 si
 si
 si
@@ -3100,21 +3674,21 @@ si
 si
 si
 si
-si
-si
-oD
-Wn
-Wn
-Wn
+qx
+wM
+wM
+Gu
 ZL
+LS
 ZL
-Wn
-Wn
-Wn
-si
-AR
-si
-si
+PS
+LS
+ZL
+ZM
+wM
+wM
+Cf
+Yf
 si
 si
 si
@@ -3157,28 +3731,28 @@ si
 si
 si
 si
+px
+ER
+ER
+mx
+wM
+Gu
 si
 si
-si
-si
-si
-oD
-Wn
-Wn
-Wn
+LS
 ZL
 LS
 ZL
-ZL
+PS
 LS
 ZL
-Wn
-Wn
-Wn
-si
-AR
+LS
 si
 si
+ZM
+wM
+Cf
+Yf
 si
 si
 si
@@ -3219,31 +3793,31 @@ si
 si
 si
 si
-px
-LS
-LS
-CA
-Wn
-Wn
 si
-si
-LS
-ZL
-LS
-ZL
-ZL
-LS
+rA
+wM
+Gu
 ZL
 LS
 si
 si
-Wn
-Wn
+LS
+ZL
+qz
+ZL
+PS
+qz
+ZL
+LS
 si
-AR
 si
 si
 si
+ZM
+wM
+nC
+UP
+Ad
 si
 si
 si
@@ -3280,33 +3854,33 @@ si
 si
 si
 si
-si
-si
-CA
-Wn
-Wn
+qx
+wM
+Gu
+Qu
+ZL
 ZL
 LS
+sC
+sC
+sC
+sC
+uS
+AR
+Bd
+uS
+Ri
+Ri
+Ri
+Ri
 si
 si
 LS
 ZL
-qz
-ZL
-ZL
-qz
-ZL
-LS
-si
-si
-si
-si
-Wn
-Wn
-LS
-uQ
-px
-si
+ZM
+wM
+Cf
+Yf
 si
 si
 si
@@ -3340,37 +3914,37 @@ si
 si
 si
 si
-si
-Wn
-oD
-Wn
-Wn
-Qu
-ZL
-ZL
-LS
-sC
-sC
-sC
-sC
-NH
-ln
-LI
-NH
-Ri
-Ri
-Ri
-Ri
-si
+aF
+Ge
+Gu
 si
 LS
 ZL
-Wn
-Wn
+ZL
+sC
+sC
+sC
+sC
+ui
+sC
+NH
+NH
+OK
+NH
+Ri
+UR
+Ri
+Ri
+Ri
+Ri
+LS
+ZL
+LS
 si
-AR
-si
-si
+ZM
+wM
+Cf
+Yf
 si
 si
 si
@@ -3401,39 +3975,39 @@ si
 si
 si
 si
+aF
+Wn
+CJ
 si
-gZ
-Wn
-Wn
 si
 LS
-ZL
-ZL
 sC
 sC
 sC
 sC
+kM
+nc
 KX
 sC
 pO
-pO
-pO
-pO
+Ba
+Vm
+Hz
 Ri
 gY
+Vp
+al
 Ri
 Ri
 Ri
 Ri
 LS
-ZL
+si
+si
 LS
-si
-Wn
-Wn
-si
-AR
-si
+ZM
+wM
+Fs
 si
 si
 si
@@ -3462,40 +4036,40 @@ si
 si
 si
 si
-si
-gZ
+aF
 Wn
+Wn
+Iv
 si
-si
-si
-LS
 sC
 sC
 sC
 sC
+jK
+kL
 Ke
 oc
 FU
-sC
-oi
+vs
+NH
 th
-th
-Az
-Ri
+CA
+NH
+PJ
 SF
 WC
-Ib
+SF
+VY
+iu
 Ri
 Ri
 Ri
 Ri
-LS
 si
-si
 LS
-Wn
-Wn
-vs
+ZL
+LS
+Du
 si
 si
 si
@@ -3524,41 +4098,41 @@ si
 si
 si
 si
-gZ
 Wn
 Wn
-LS
 si
+Iv
+LS
 sC
 sC
-sC
-sC
+gl
+he
 PL
 RS
 tm
 iN
 vt
 JW
-pO
+xg
 ih
 rK
-pO
+OH
 pj
 Vz
 Vx
-Vz
+cU
 xJ
 nZ
+PY
+rX
 Ri
 Ri
 Ri
 Ri
-si
-LS
 ZL
 LS
-Wn
-si
+vU
+Ad
 si
 si
 si
@@ -3586,13 +4160,13 @@ si
 si
 si
 si
-Wn
-Wn
 si
-LS
+si
+si
+Iv
 LS
 sC
-sC
+ew
 Ee
 KQ
 gT
@@ -3600,27 +4174,27 @@ vy
 EK
 zr
 sZ
-sa
+sC
 nM
 xv
 zp
 GY
-Ba
+Ri
 ts
 Oo
 NS
 mr
 rD
-CZ
-sw
+Vz
+xJ
+DJ
+od
 Ri
 Ri
 Ri
-Ri
-ZL
-LS
-LS
-px
+si
+si
+si
 si
 si
 si
@@ -3647,38 +4221,38 @@ si
 si
 si
 si
-si
-si
-si
-si
-LS
-LS
+px
+ER
+ER
+ER
+Hf
+sC
 sC
 Wz
-cc
+cM
 cM
 kF
 iv
-hH
-Yf
-ew
+sC
+sC
+sC
 sC
 uS
 ny
 yL
-bE
+uS
 Ri
-Bd
-kM
-aF
-GQ
+Ri
+Ri
+Ri
+Ri
 OG
-ts
-mr
-Ge
+SF
+sD
+Ri
 HW
-Ri
-Ri
+AS
+HC
 Ri
 si
 si
@@ -3709,40 +4283,40 @@ si
 si
 si
 si
-px
-LS
-LS
-LS
-LS
-sC
-sC
-PJ
-ER
-ER
+si
+si
+si
+ad
+ad
+ad
+ad
+ad
+ad
+Mw
 JK
-Rf
-sC
-sC
-sC
-sC
-NH
+ad
+mj
+oD
+oD
+oD
+jd
 Qp
 As
-NH
-Ri
-Ri
-Ri
-Ri
-Ri
-nc
-Vz
+jd
+oD
+oD
+oD
+MM
+cQ
+cQ
+Mb
 Xp
-Ri
-TA
-Hz
-Vp
-Ri
-si
+cQ
+cQ
+cQ
+cQ
+cQ
+lm
 si
 si
 si
@@ -3772,40 +4346,40 @@ si
 si
 si
 si
-si
-si
 ad
 ad
 ad
+NQ
+cx
+cx
+cx
 ad
-ad
-ad
-Mw
+hH
 aQ
 ad
+bP
+hr
+hr
+hr
 yw
-cx
-cx
-cx
-jd
-he
+Kn
 Fb
-jd
-cx
-cx
-cx
-cj
+Pe
+hr
+hr
+hr
+jF
 cQ
-cQ
-Mb
+Np
+Lo
 TY
-cQ
-cQ
-cQ
-cQ
+XZ
+qB
+rb
+rb
+qB
 cQ
 lm
-si
 si
 si
 si
@@ -3833,39 +4407,39 @@ si
 si
 si
 si
-si
-ad
 ad
 ad
 NQ
 NQ
-mj
-mj
-ad
-UR
-dl
+NQ
+Ag
+Ag
+Ag
+gZ
+gC
+ku
 ad
 bP
 hr
+Kn
 hr
-hr
-ui
+Kn
 Kn
 bD
-OH
-hr
+na
+yX
 hr
 hr
 jF
 cQ
-yX
+Jv
 qn
 aL
-bj
-Pe
+Wg
 rb
 rb
-Pe
+rb
+rb
 cQ
 lm
 si
@@ -3896,38 +4470,38 @@ si
 si
 si
 ad
-ad
 NQ
 NQ
-mj
 Ag
 Ag
 Ag
-kL
+EG
+EG
+gC
 gC
 ku
 ad
 bP
+sa
+Kn
+Kn
+yX
 hr
-Kn
-Kn
-Kn
-Kn
-Kn
-Kn
-Kn
-Kn
+GQ
+iq
+yX
+hr
 hr
 jF
 cQ
-Jv
+vO
 zE
 ns
-Wg
-rb
-rb
-rb
-rb
+vw
+ud
+Om
+DZ
+Ae
 cQ
 lm
 si
@@ -3954,29 +4528,29 @@ si
 si
 si
 si
-si
-si
+ZT
 si
 ad
-NQ
-NQ
-Ag
+ad
+bj
 Ag
 Ag
 EG
-EG
+gC
+gC
+gC
 gC
 gC
 ku
 ad
 bP
 Ty
+uQ
 Kn
+yX
 hr
 Kn
-Kn
-Kn
-hr
+iq
 Kn
 Kn
 hr
@@ -3985,13 +4559,13 @@ cQ
 dN
 XO
 yQ
-vw
+Xo
 yB
 LO
 Wj
-xg
 cQ
 lm
+si
 si
 si
 si
@@ -4016,14 +4590,14 @@ si
 si
 si
 si
-ZT
+si
 si
 ad
 ad
-NQ
+bj
 Ag
 Ag
-EG
+gC
 gC
 gC
 gC
@@ -4032,27 +4606,27 @@ gC
 ku
 ad
 bP
-jK
 Kn
 Kn
 Kn
-Kn
+yX
+hr
 Kn
 bx
+Rf
 Kn
-hr
 hr
 jF
 cQ
 YU
-gF
-GX
-Xo
+YU
+YU
+YU
 OQ
-dM
+LO
 Tk
 cQ
-lm
+si
 si
 si
 si
@@ -4082,7 +4656,7 @@ si
 si
 ad
 ad
-il
+bj
 Ag
 Ag
 EG
@@ -4095,14 +4669,14 @@ ku
 ad
 bP
 EP
+uQ
 Kn
-Kn
-Kn
-Kn
-Kn
-gl
-Kn
+yX
 hr
+Kn
+Kn
+Kn
+Kn
 hr
 jF
 cQ
@@ -4110,7 +4684,7 @@ ix
 sU
 NR
 Xo
-rZ
+wZ
 Br
 wV
 cQ
@@ -4158,13 +4732,13 @@ ad
 bP
 ZO
 Kn
+Kn
+yX
 hr
+GQ
 Kn
-Kn
-Kn
+yX
 hr
-Kn
-Kn
 hr
 jF
 cQ
@@ -4173,7 +4747,7 @@ RO
 RA
 vw
 dB
-LO
+hs
 pR
 Ih
 cQ
@@ -4209,7 +4783,7 @@ ad
 ad
 il
 il
-uq
+il
 Ag
 Ag
 Ag
@@ -4220,13 +4794,13 @@ ad
 bP
 hr
 Kn
+hr
 Kn
 Kn
 Kn
 Kn
-Kn
-Kn
-Kn
+yX
+hr
 hr
 jF
 cQ
@@ -4272,7 +4846,7 @@ ad
 ad
 ad
 il
-il
+uq
 uq
 uq
 ad
@@ -4283,10 +4857,10 @@ bP
 hr
 hr
 hr
+ZD
 Kn
 Kn
-Kn
-Kn
+ZN
 hr
 hr
 hr
@@ -4392,10 +4966,10 @@ si
 si
 si
 px
-LS
-LS
-LS
-LS
+ER
+ER
+ER
+Zm
 ve
 ve
 Fh
@@ -4457,7 +5031,7 @@ si
 si
 si
 si
-LS
+Iv
 LS
 ve
 Fh
@@ -4519,7 +5093,7 @@ si
 Wn
 Wn
 si
-LS
+Iv
 LS
 ve
 ve
@@ -4549,8 +5123,8 @@ EF
 EF
 ZL
 LS
-LS
-px
+oj
+Ad
 si
 si
 si
@@ -4581,7 +5155,7 @@ si
 iA
 Wn
 Wn
-LS
+Iv
 si
 ve
 ve
@@ -4611,7 +5185,7 @@ si
 LS
 ZL
 LS
-Wn
+Du
 si
 si
 si
@@ -4643,7 +5217,7 @@ si
 si
 iA
 Wn
-Wn
+CJ
 si
 si
 LS
@@ -4657,7 +5231,7 @@ Fh
 ve
 fd
 QP
-QP
+af
 Hh
 EF
 XE
@@ -4671,8 +5245,8 @@ LS
 si
 si
 LS
-Wn
-Wn
+Ge
+wM
 Gn
 si
 si
@@ -4705,8 +5279,8 @@ si
 si
 si
 iA
-Wn
-Wn
+ZM
+rn
 si
 LS
 ZL
@@ -4719,7 +5293,7 @@ bF
 ve
 Rd
 Rd
-Rd
+bK
 Rd
 EF
 EF
@@ -4731,9 +5305,9 @@ LS
 ZL
 LS
 si
-Wn
-Wn
-si
+Ge
+wM
+EQ
 pT
 si
 si
@@ -4768,9 +5342,9 @@ si
 si
 si
 si
-zG
-Wn
-Wn
+Dt
+wM
+rn
 Qu
 ZL
 ZL
@@ -4791,9 +5365,9 @@ si
 si
 LS
 ZL
-Wn
-Wn
-si
+Ge
+wM
+EQ
 pT
 si
 si
@@ -4832,9 +5406,9 @@ si
 si
 si
 si
-JT
-Wn
-Wn
+gI
+wM
+rn
 ZL
 LS
 si
@@ -4843,7 +5417,7 @@ LS
 ZL
 qz
 ZL
-ZL
+PS
 qz
 ZL
 LS
@@ -4851,11 +5425,11 @@ si
 si
 si
 si
-Wn
-Wn
-LS
-YD
-px
+Ge
+wM
+Mx
+by
+Ad
 si
 si
 si
@@ -4894,26 +5468,26 @@ si
 si
 si
 px
-LS
-LS
-zG
-Wn
-Wn
+ER
+ER
+tl
+wM
+rn
 si
 si
 LS
 ZL
 LS
 ZL
-ZL
+PS
 LS
 ZL
 LS
 si
 si
-Wn
-Wn
-si
+Ge
+wM
+EQ
 pT
 si
 si
@@ -4960,20 +5534,20 @@ si
 si
 si
 si
-zG
-Wn
-Wn
-Wn
+Dt
+wM
+wM
+rn
 ZL
 LS
 ZL
-ZL
+PS
 LS
 ZL
-Wn
-Wn
-Wn
-si
+Ge
+wM
+wM
+EQ
 pT
 si
 si
@@ -5025,14 +5599,14 @@ si
 si
 si
 zG
-Wn
-Wn
-Wn
-ZL
-ZL
-Wn
-Wn
-Wn
+SN
+wM
+wM
+GI
+Xn
+wM
+wM
+Jn
 si
 pT
 si
@@ -5087,7 +5661,7 @@ si
 si
 si
 px
-LS
+Hf
 JT
 Wn
 ZL
@@ -5095,7 +5669,7 @@ ZL
 Wn
 LS
 YD
-px
+Ad
 si
 si
 si
