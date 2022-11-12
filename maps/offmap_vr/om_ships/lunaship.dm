@@ -4,8 +4,8 @@
 #endif
 
 // Map template for spawning the shuttle
-/datum/map_template/om_ships/aro3
-	name = "OM Ship - LUNA (New Z)"
+/datum/map_template/om_ships/lunaship
+	name = "OM Ship - LUNA"
 	desc = "It's LUNA! As a spaceship."
 	mappath = 'lunaship.dmm'
 
