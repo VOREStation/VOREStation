@@ -32,6 +32,47 @@
 	name = "LUNA - Robotics Bay"
 /area/lunaship/engineering
 	name = "LUNA - Engineering"
+/area/luna/flight_boat_dock
+	name = "LUNA - Boat Dock"
+	requires_power = 0
+
+/area/shuttle/luna_ship_boat
+	name = "LUNA - Ship's Boat"
+	requires_power = 1
+	dynamic_lighting = 1
+	base_turf = /turf/simulated/floor/reinforced
+
+/obj/effect/shuttle_landmark/premade/luna_near_fore
+	name = "Near ISV LUNA (Fore)"
+	landmark_tag = "luna_near_fore"
+
+/obj/effect/shuttle_landmark/premade/luna_near_fore_port
+	name = "Near ISV LUNA (Fore-Port)"
+	landmark_tag = "luna_near_fore_port"
+
+/obj/effect/shuttle_landmark/premade/luna_near_fore_star
+	name = "Near ISV LUNA (Fore-Starboard)"
+	landmark_tag = "luna_near_fore_star"
+
+/obj/effect/shuttle_landmark/premade/luna_near_aft
+	name = "Near ISV LUNA (Aft)"
+	landmark_tag = "luna_near_aft"
+
+/obj/effect/shuttle_landmark/premade/luna_near_aft_port
+	name = "Near ISV LUNA (Aft-Port)"
+	landmark_tag = "luna_near_aft_port"
+
+/obj/effect/shuttle_landmark/premade/luna_near_aft_star
+	name = "Near ISV LUNA (Aft-Starboard)"
+	landmark_tag = "luna_near_aft_star"
+
+/obj/effect/shuttle_landmark/premade/luna_wing_port
+	name = "ISV LUNA (Port Wingtip)"
+	landmark_tag = "luna_wing_star"
+
+/obj/effect/shuttle_landmark/premade/luna_wing_star
+	name = "ISV LUNA (Starboard Wingtip)"
+	landmark_tag = "luna_wing_star"
 
 
 /turf/simulated/floor/water/indoors/surfluid
