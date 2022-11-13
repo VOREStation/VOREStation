@@ -299,7 +299,7 @@
 
 /obj/structure/bed/chair/sofa/update_layer()
 	// Corner east/west should be on top of mobs, any other state's north should be.
-	if((corner_piece && ((dir & EAST) || (dir & WEST))) || (!corner_piece && (dir & NORTH)))
+	if(!corner_piece && (dir & NORTH))
 		plane = MOB_PLANE
 		layer = MOB_LAYER + 0.1
 	else
@@ -317,6 +317,18 @@
 	icon_state = "sofacorner"
 	base_icon = "sofacorner"
 	corner_piece = TRUE
+
+/obj/structure/bed/chair/sofa/corner/update_icon()
+	..()
+	var/cache_key = "[base_icon]-armrest-[padding_material ? padding_material.name : "no_material"]-permanent"
+	if(isnull(stool_cache[cache_key]))
+		var/image/I = image(icon, "[base_icon]_armrest")
+		I.plane = MOB_PLANE
+		I.layer = ABOVE_MOB_LAYER
+		if(padding_material)
+			I.color = padding_material.icon_colour
+		stool_cache[cache_key] = I
+	add_overlay(stool_cache[cache_key])
 
 // Wooden nonsofa - no corners
 /obj/structure/bed/chair/sofa/pew

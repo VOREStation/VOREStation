@@ -30,7 +30,7 @@
 	spawn_positions = 2
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer,
-						"Gardener" = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit)
+						"Gardener" = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit, "Rancher" = /datum/alt_title/rancher)
 
 /datum/alt_title/hydroponicist
 	title = "Hydroponicist"
@@ -44,6 +44,10 @@
 /datum/alt_title/florsit
 	title = "Florist"
 	title_blurb = "A Florist may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
+
+/datum/alt_title/rancher
+	title = "Rancher"
+	title_blurb = "A Rancher is tasked with the care, feeding, raising, and harvesting of livestock."
 
 
 /datum/job/qm

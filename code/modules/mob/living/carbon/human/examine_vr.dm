@@ -78,6 +78,9 @@
 			if("medical")
 				if(omni.mode == "med" || omni.mode == "best")
 					return TRUE
+			if("best")
+				if(omni.mode == "best")
+					return TRUE
 
 	return FALSE
 

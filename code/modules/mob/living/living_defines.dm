@@ -55,7 +55,8 @@
 
 	var/image/dsoverlay = null //Overlay used for darksight eye adjustments
 
-	var/glow_toggle = 0					// If they're glowing!
+	var/glow_toggle = FALSE					// If they're glowing!
+	var/glow_override = FALSE				// Ignore the manual toggle
 	var/glow_range = 2
 	var/glow_intensity = null
 	var/glow_color = "#FFFFFF"			// The color they're glowing!
@@ -80,4 +81,4 @@
 	var/flying = 0				// Allows flight
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
-	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown. 
+	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown.

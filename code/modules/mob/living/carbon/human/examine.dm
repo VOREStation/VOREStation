@@ -422,6 +422,9 @@
 		msg += "<span class='deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>"
 		msg += "<span class='deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
 
+	if(hasHUD(user,"best"))
+		msg += "<span class='deptradio'>Employment records:</span> <a href='?src=\ref[src];emprecord=`'>\[View\]</a> <a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"
+
 
 	var/flavor_text = print_flavor_text()
 	if(flavor_text)
