@@ -323,11 +323,14 @@ var/list/GPS_list = list()
 				. = TRUE
 
 	if(href_list["tag"])
+<<<<<<< HEAD
 		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag, 10)
 		a = uppertext(copytext(sanitize(a), 1, 11))
+=======
+		var/a = input("Please enter desired tag.", name, gps_tag) as text
+>>>>>>> 71cfa6381cf... Merge pull request #8828 from Spookerton/spkrtn/cng/gps-settag
 		if(in_range(src, usr))
-			gps_tag = a
-			name = "global positioning system ([gps_tag])"
+			SetTag(a)
 			to_chat(usr, "You set your GPS's tag to '[gps_tag]'.")
 			. = TRUE
 
@@ -346,7 +349,17 @@ var/list/GPS_list = list()
 	if(. && loc == usr)
 		display(usr)
 
+<<<<<<< HEAD
 /obj/item/device/gps/on // Defaults to off to avoid polluting the signal list with a bunch of GPSes without owners. If you need to spawn active ones, use these.
+=======
+
+/obj/item/gps/proc/SetTag(new_tag)
+	gps_tag = uppertext(copytext(sanitize(new_tag), 1, 11))
+	name = "global positioning system ([gps_tag])"
+
+
+/obj/item/gps/on // Defaults to off to avoid polluting the signal list with a bunch of GPSes without owners. If you need to spawn active ones, use these.
+>>>>>>> 71cfa6381cf... Merge pull request #8828 from Spookerton/spkrtn/cng/gps-settag
 	tracking = TRUE
 
 /obj/item/device/gps/command
