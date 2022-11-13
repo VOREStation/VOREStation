@@ -88,6 +88,14 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
+/datum/robolimb/unbranded_alt3
+	company = "Unbranded - Muscleplast"
+	desc = "A high-end custom arm resembling metallic muscle, with polished plates overlaid on some segments and visible connecting cable at the joints."
+	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_alt3.dmi'
+	unavailable_to_build = 1
+	modular_bodyparts = MODULAR_BODYPART_CYBERNETIC
+	parts = list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)
+
 /datum/robolimb/unbranded_tajaran
 	company = "Unbranded - Tajaran"
 	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
