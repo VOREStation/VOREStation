@@ -414,6 +414,11 @@
 	icon_state = "hair_dirk"
 	flags = HAIR_VERY_SHORT
 
+/datum/sprite_accessory/hair/doll
+	name = "Doll"
+	icon_state = "hair_doll"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/donutbun
 	name = "Donut Bun"
 	icon_state = "hair_donutbun"
