@@ -157,7 +157,16 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/zoom,
 	/decl/emote/audible/mothscream,
 	/decl/emote/audible/mothchitter,
-	/decl/emote/audible/mothlaugh
+	/decl/emote/audible/mothlaugh,
+	/decl/emote/audible/multichirp,
+	/decl/emote/audible/gnarl,
+	/decl/emote/audible/teshsqueak,
+	/decl/emote/audible/teshchirp,
+	/decl/emote/audible/teshtrill,
+	/decl/emote/visible/bounce,
+	/decl/emote/visible/jiggle,
+	/decl/emote/visible/lightup,
+	/decl/emote/visible/vibrate
 
 	//VOREStation Add End
 )
