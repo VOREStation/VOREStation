@@ -1005,5 +1005,54 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 /obj/item/proc/vendor_action(var/obj/machinery/vending/V)
 	return
 
+<<<<<<< HEAD
 /obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
 	return
+=======
+// Called when a simple animal finishes eating the item.
+/obj/item/proc/animal_consumed(var/mob/user)
+	user.visible_message(SPAN_NOTICE("\The [user] finishes eating \the [src]."), SPAN_NOTICE("You finish eating \the [src]."))
+	qdel(src)
+
+
+/obj/item/proc/BlockInteraction(mob/living/user, silent, list/options)
+	var/static/list/default_options = list(
+		"type" = /mob/living,
+		"distance" = TRUE,
+		"incapacitation" = INCAPACITATION_DEFAULT,
+		"dexterity" = FALSE
+	)
+	. = TRUE // A code per case is possible. For now, just TRUE if the interaction should be blocked.
+	if (QDELETED(user))
+		return
+	if (!options)
+		options = default_options
+	var/test_type = options["type"]
+	if (test_type)
+		if (!istype(user, test_type))
+			if (!silent)
+				to_chat(user, SPAN_WARNING("You're the wrong kind of mob to use \the [src]."))
+			return
+	var/test_distance = options["distance"]
+	if (test_distance > 0)
+		if (test_distance <= 1)
+			if (!Adjacent(user)) //Adjacency is more costly than simple distance, but common use.
+				if (!silent)
+					to_chat(user, SPAN_WARNING("You're not close enough to \the [src]."))
+				return
+		else if (get_dist(src, user) > test_distance)
+			if (!silent)
+				to_chat(user, SPAN_WARNING("You're not close enough to \the [src]."))
+			return
+	var/test_incapacitation = options["incapacitation"]
+	if (test_incapacitation)
+		if (user.incapacitated(test_incapacitation))
+			if (!silent)
+				to_chat(user, SPAN_WARNING("You're in no condition to use \the [src]."))
+			return
+	var/test_dexterity = options["dexterity"]
+	if (test_dexterity)
+		if (!user.check_dexterity(test_dexterity, src, silent)) // Handles its own failure message.
+			return
+	return FALSE
+>>>>>>> 11ff35ddb7e... Merge pull request #8812 from Spookerton/spkrtn/cng/pushing-the-envelope
