@@ -26,10 +26,12 @@
 
 /decl/hierarchy/outfit/job/security/detective
 	name = OUTFIT_JOB_NAME("Detective")
-	head = /obj/item/clothing/head/det
 	uniform = /obj/item/clothing/under/det
 	suit = /obj/item/clothing/suit/storage/det_trench
+<<<<<<< HEAD
 	l_pocket = /obj/item/weapon/flame/lighter/zippo
+=======
+>>>>>>> 1d9f63d02ce... Merge pull request #8820 from Cerebulon/newbasicssecurity
 	shoes = /obj/item/clothing/shoes/laceup
 	r_hand = /obj/item/weapon/storage/briefcase/crimekit
 	id_type = /obj/item/weapon/card/id/security/detective
@@ -38,6 +40,7 @@
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/norm
 	backpack_contents = list(/obj/item/weapon/storage/box/evidence = 1)
 
+<<<<<<< HEAD
 //VOREStation Edit - More cyberpunky
 /decl/hierarchy/outfit/job/security/detective/forensic
 	name = OUTFIT_JOB_NAME("Forensic technician")
@@ -45,6 +48,12 @@
 	suit = /obj/item/clothing/suit/storage/det_trench/alt2
 	uniform = /obj/item/clothing/under/det
 //VOREStation Edit End
+=======
+/decl/hierarchy/outfit/job/security/forensic
+	name = OUTFIT_JOB_NAME("Forensic technician")
+	uniform = /obj/item/clothing/under/rank/security/forensics
+	suit = /obj/item/clothing/suit/storage/forensics/blue
+>>>>>>> 1d9f63d02ce... Merge pull request #8820 from Cerebulon/newbasicssecurity
 
 /decl/hierarchy/outfit/job/security/officer
 	name = OUTFIT_JOB_NAME("Security Officer")

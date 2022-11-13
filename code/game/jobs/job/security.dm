@@ -98,7 +98,7 @@
 /datum/alt_title/forensic_tech
 	title = "Forensic Technician"
 	title_blurb = "A Forensic Technician works more with hard evidence and labwork than a Detective, but they share the purpose of solving crimes."
-	title_outfit = /decl/hierarchy/outfit/job/security/detective/forensic
+	title_outfit = /decl/hierarchy/outfit/job/security/forensic
 
 //////////////////////////////////
 //		Security Officer

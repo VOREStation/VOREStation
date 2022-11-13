@@ -140,7 +140,7 @@
 
 //Forensics
 /obj/item/clothing/suit/storage/forensics
-	name = "jacket"
+	name = "forensics windbreaker"
 	desc = "A forensics technician jacket."
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEHOLSTER
@@ -150,24 +150,24 @@
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/forensics/red
-	name = "red jacket"
+	name = "red forensics windbreaker"
 	desc = "A red forensics technician jacket."
 	icon_state = "forensics_red"
 	item_state_slots = list(slot_r_hand_str = "suit_red", slot_l_hand_str = "suit_red")
 
 /obj/item/clothing/suit/storage/forensics/red/long
-	name = "long red jacket"
+	name = "long red forensics windbreaker"
 	desc = "A long red forensics technician jacket."
 	icon_state = "forensics_red_long"
 
 /obj/item/clothing/suit/storage/forensics/blue
-	name = "blue jacket"
+	name = "blue forensics windbreaker"
 	desc = "A blue forensics technician jacket."
 	icon_state = "forensics_blue"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 
 /obj/item/clothing/suit/storage/forensics/blue/long
-	name = "long blue jacket"
+	name = "long blue forensics windbreaker."
 	desc = "A long blue forensics technician jacket."
 	icon_state = "forensics_blue_long"
 
