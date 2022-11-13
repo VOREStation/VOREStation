@@ -1995,6 +1995,8 @@ shaved
 // Vox things
 /datum/sprite_accessory/hair/vox
 	name = "Long Vox braid"
+	icon = 'icons/mob/hair_vox.dmi'
+	icon_add = 'icons/mob/hair_vox_add.dmi'
 	icon_state = "vox_longbraid"
 	species_allowed = list(SPECIES_VOX)
 
@@ -2013,6 +2015,41 @@ shaved
 /datum/sprite_accessory/hair/vox/quills_mohawk
 	name = "Quill Mohawk"
 	icon_state = "vox_mohawk"
+
+/datum/sprite_accessory/marking/vox
+	name = "Vox Neck Markings"
+	icon_state = "neck_markings"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_VOX)
+	icon = 'icons/mob/human_races/markings_vox.dmi'
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/vox/claws
+	name = "Vox Claws"
+	icon_state = "claws"
+	body_parts = list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_TORSO)
+
+/datum/sprite_accessory/marking/vox/beak
+	name = "Vox Beak"
+	icon_state = "beak"
+
+/datum/sprite_accessory/marking/vox/scutes
+	name = "Vox Scutes"
+	icon_state = "scutes"
+	body_parts = list(BP_L_ARM, BP_L_HAND, BP_R_ARM, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
+
+/datum/sprite_accessory/marking/vox/arm_markings
+	name = "Vox Arm Markings (Left)"
+	icon_state = "arm_markings"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/vox/arm_markings/right
+	name = "Vox Arm Markings (Right)"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/vox/crest
+	name = "Vox Crest Colouration"
+	icon_state = "crest"
 
 //Tajaran Facial Hair
 

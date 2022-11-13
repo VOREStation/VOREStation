@@ -49,11 +49,20 @@
 	siemens_coefficient = 0.2
 
 	flags = NO_SCAN | NO_DEFIB
+<<<<<<< HEAD
 	spawn_flags = SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR
+=======
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR
+	limb_blend = ICON_MULTIPLY
+>>>>>>> e7ca4ddd930... Merge pull request #8822 from MistakeNot4892/voxicon
 
 	blood_color = "#9066BD"
 	flesh_color = "#808D11"
+	tail = "voxtail"
+	tail_hair = "quills"
+	tail_blend = ICON_MULTIPLY
 
 	reagent_tag = IS_VOX
 

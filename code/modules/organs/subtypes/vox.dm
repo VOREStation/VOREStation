@@ -1,5 +1,6 @@
 /obj/item/organ/external/head/vox
 	eye_icon = "vox_eyes_s"
+	eye_icon_location = 'icons/mob/eyes_vox.dmi'
 
 //vox got different organs within. This will also help with regular surgeons knowing the organs within an alien as alien as vox.
 /obj/item/organ/internal/brain/vox

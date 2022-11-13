@@ -22,6 +22,10 @@
 			r_skin = rand (0,255)
 			g_skin = rand (0,255)
 			b_skin = rand (0,255)
+
+	for(var/marking in body_markings)
+		body_markings[marking] = rgb(rand(0,255), rand(0,255), rand(0,255))
+
 	if(current_species.appearance_flags & HAS_UNDERWEAR)
 		all_underwear.Cut()
 		for(var/datum/category_group/underwear/WRC in global_underwear.categories)
