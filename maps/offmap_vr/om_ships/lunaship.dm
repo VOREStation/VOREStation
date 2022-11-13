@@ -95,6 +95,6 @@
 	color = "#00aaff" //Bluey
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
-	initial_generic_waypoints = list("lunaship_foreport", "lunaship_forestbd", "lunaship_aftport", "lunaship_aftstbd", "lunaship_fore", "lunaship_port", "lunaship_stbd", "lunaship_aft")
+	initial_generic_waypoints = list("luna_near_fore_port", "luna_near_fore_star", "luna_near_aft_port", "luna_near_aft_star", "luna_near_fore", "luna_wing_port", "luna_wing_star", "luna_near_aft")
 	fore_dir = NORTH
 	known = FALSE
