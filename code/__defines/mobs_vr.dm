@@ -47,7 +47,5 @@
 //for custom bodytypes
 
 #define SELECTS_BODYTYPE_FALSE			0
-
-#define SELECTS_BODYTYPE_CUSTOM		1
-
+#define SELECTS_BODYTYPE_CUSTOM			1
 #define SELECTS_BODYTYPE_SHAPESHIFTER	2
