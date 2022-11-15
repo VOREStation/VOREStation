@@ -4924,17 +4924,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
 "rX" = (
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/structure/closet/crate/medical{
-	name = "NanoTrasen Emergency Supply Crate";
-	desc = "A crate full of emergency supplies to help with response and rescue operations. A logo of NanoTrasen with a checkmark is stamped on the crate."
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "sdboat"
 	},
@@ -4944,11 +4933,6 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid,
-/obj/item/bodybag/cryobag,
-/obj/item/bodybag/cryobag,
 /turf/simulated/floor/tiled,
 /area/shuttle/sdboat/aft{
 	base_turf = /turf/simulated/floor/reinforced/airless

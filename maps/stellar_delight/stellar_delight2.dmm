@@ -20036,6 +20036,25 @@
 	},
 /turf/simulated/wall/bay/r_wall/steel,
 /area/engineering/engine_room)
+"RZ" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/crate/medical{
+	name = "NanoTrasen Emergency Supply Crate";
+	desc = "A crate full of emergency supplies to help with response and rescue operations. A logo of NanoTrasen with a checkmark is stamped on the crate."
+	},
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid,
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/bridge)
 "Sb" = (
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
@@ -33759,7 +33778,7 @@ jU
 TP
 Ld
 Uj
-Zj
+RZ
 Zj
 rN
 ry
