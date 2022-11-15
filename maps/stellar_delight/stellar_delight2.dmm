@@ -1788,6 +1788,18 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "dG" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/north{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
 /obj/effect/floor_decal/emblem/stellardelight{
 	dir = 9
 	},
@@ -3069,6 +3081,24 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos/monitoring)
+"gz" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/east{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/port)
 "gA" = (
 /obj/structure/railing/grey{
 	dir = 4
@@ -6112,6 +6142,24 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
+"nh" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/west{
+	name = "Emergency Cabinet";
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies."
+	},
+/obj/effect/floor_decal/milspec/color/green/half{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/fore)
 "ni" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/engineering/engine_room)
@@ -10760,6 +10808,24 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/stellardelight/deck2/combustionworkshop)
+"xS" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/east{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/fore)
 "xT" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -14543,6 +14609,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
+"Gk" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/east{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/starboard)
 "Gl" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -21233,8 +21317,17 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/storage/tech)
 "UW" = (
-/obj/structure/sign/poster{
-	dir = 1
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/north{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
@@ -23278,6 +23371,21 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/storage/primary)
+"ZB" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/south{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/turf/simulated/floor/tiled/eris/white/cargo,
+/area/stellardelight/deck2/triage)
 "ZC" = (
 /obj/item/weapon/stool/padded{
 	dir = 8
@@ -31259,7 +31367,7 @@ Cj
 tP
 tU
 jd
-Cj
+gz
 Bf
 NG
 cO
@@ -31791,7 +31899,7 @@ zO
 Qe
 Qe
 Qe
-Qe
+nh
 PZ
 GY
 Qe
@@ -32965,7 +33073,7 @@ wz
 RQ
 Ze
 Eo
-Ze
+ZB
 QP
 gu
 Kf
@@ -33817,7 +33925,7 @@ zD
 ik
 Ze
 og
-Ze
+ZB
 QP
 sJ
 nJ
@@ -34918,7 +35026,7 @@ Zr
 OV
 Zr
 Ye
-Zr
+xS
 Zr
 Zm
 OV
@@ -35800,7 +35908,7 @@ Tk
 yu
 IX
 Mk
-Mk
+Gk
 LH
 Mk
 pm
