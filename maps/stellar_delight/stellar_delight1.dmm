@@ -13412,14 +13412,12 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Ce" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/bay/reinforced,
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "researchwindowlockdown"
-	},
 /obj/structure/low_wall/bay/reinforced/steel,
-/turf/simulated/floor,
+/obj/structure/window/bay/reinforced,
+/obj/machinery/door/blast/angled{
+	dir = 4
+	},
+/turf/space,
 /area/rnd/xenobiology/xenoflora_storage)
 "Cf" = (
 /obj/structure/cable/pink{
@@ -15451,11 +15449,11 @@
 /area/medical/morgue)
 "GI" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/bay/reinforced,
 /obj/machinery/door/blast/angled/open{
 	dir = 2;
 	id = "researchwindowlockdown"
 	},
+/obj/structure/window/bay/reinforced,
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/stellardelight/deck1/researchhall)
@@ -17834,6 +17832,15 @@
 "LF" = (
 /turf/simulated/wall/bay/purple,
 /area/maintenance/stellardelight/deck1/starboardaft)
+"LG" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/bay/reinforced,
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/machinery/door/blast/angled{
+	id = "xenofloralockdown"
+	},
+/turf/simulated/floor,
+/area/rnd/xenobiology/xenoflora)
 "LH" = (
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
@@ -20390,6 +20397,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "researchwindowlockdown";
+	name = "Window Lockdown";
+	pixel_x = -24;
+	pixel_y = 23
+	},
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "Rn" = (
@@ -20774,6 +20788,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"RV" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/bay/reinforced,
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/machinery/door/blast/angled{
+	id = "xenofloralockdown"
+	},
+/turf/simulated/floor,
+/area/rnd/xenobiology/xenoflora_storage)
 "RX" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
@@ -37287,7 +37310,7 @@ cT
 NV
 sj
 Oo
-bj
+LG
 uq
 vF
 uq
@@ -37429,7 +37452,7 @@ Qy
 wB
 DG
 PB
-bj
+LG
 bD
 vF
 uq
@@ -37713,7 +37736,7 @@ FA
 IR
 DG
 PB
-bj
+LG
 bD
 vF
 uq
@@ -37855,7 +37878,7 @@ XT
 kC
 sj
 Oo
-bj
+LG
 uq
 vF
 uq
@@ -38423,7 +38446,7 @@ pL
 Nq
 Yz
 YC
-pQ
+RV
 uq
 vF
 uq
@@ -38704,8 +38727,8 @@ Ce
 Ce
 pQ
 pQ
-pQ
-pQ
+Ce
+Ce
 pQ
 pQ
 bD
