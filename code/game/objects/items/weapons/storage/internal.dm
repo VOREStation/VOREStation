@@ -4,6 +4,7 @@
 	preserve_item = 1
 	var/obj/item/master_item
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/internal/New(obj/item/MI)
 	master_item = MI
 	loc = master_item
@@ -14,6 +15,26 @@
 /obj/item/weapon/storage/internal/Destroy()
 	master_item = null
 	. = ..()
+=======
+
+/obj/item/storage/internal/Destroy()
+	master_atom = null
+	return ..()
+
+
+/obj/item/storage/internal/Initialize()
+	. = ..()
+	master_atom = loc
+	if (!istype(master_atom))
+		return INITIALIZE_HINT_QDEL
+	loc = master_atom
+	verbs -= /obj/item/verb/verb_pickup
+
+
+/obj/item/storage/internal/LateInitializeName()
+	name = master_atom.name
+
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 
 /obj/item/weapon/storage/internal/attack_hand()
 	return		//make sure this is never picked up

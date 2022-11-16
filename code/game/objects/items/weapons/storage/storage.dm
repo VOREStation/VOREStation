@@ -37,8 +37,14 @@
 	var/obj/screen/storage/storage_continue = null
 	/// For dynamic storage, the rightmost pixel column for the whole storage display. Decorative.
 	var/obj/screen/storage/storage_end = null
+<<<<<<< HEAD
 
 	/// The "X" button at the far right of the storage
+=======
+	var/obj/stored_start = null
+	var/obj/stored_continue = null
+	var/obj/stored_end = null
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 	var/obj/screen/close/closer = null
 
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
@@ -48,6 +54,7 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/list/starts_with //Things to spawn on the box on spawn
+<<<<<<< HEAD
 	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
 	/// If you can use this storage while in a pocket
 	var/pocketable = FALSE
@@ -106,6 +113,9 @@
 		update_icon()
 
 	calibrate_size()
+=======
+
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
@@ -114,13 +124,73 @@
 	QDEL_NULL(storage_start)
 	QDEL_NULL(storage_continue)
 	QDEL_NULL(storage_end)
+<<<<<<< HEAD
 	QDEL_NULL(closer)
 
 	if(ismob(loc))
 		var/mob/M = loc
 		M.remove_from_mob(src)
 
+=======
+	QDEL_NULL(stored_start)
+	QDEL_NULL(stored_continue)
+	QDEL_NULL(stored_end)
+	QDEL_NULL(closer)
+	return ..()
+
+
+/obj/item/storage/Initialize()
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 	. = ..()
+	if (allow_quick_empty)
+		verbs += /obj/item/storage/verb/quick_empty
+	else
+		verbs -= /obj/item/storage/verb/quick_empty
+	if (allow_quick_gather)
+		verbs += /obj/item/storage/verb/toggle_gathering_mode
+	else
+		verbs -= /obj/item/storage/verb/toggle_gathering_mode
+	boxes = new
+	boxes.master = src
+	boxes.icon_state = "block"
+	boxes.screen_loc = "7,7 to 10,8"
+	storage_start = new
+	storage_start.master = src
+	storage_start.icon_state = "storage_start"
+	storage_start.screen_loc = "7,7 to 10,8"
+	storage_continue = new
+	storage_continue.master = src
+	storage_continue.icon_state = "storage_continue"
+	storage_continue.screen_loc = "7,7 to 10,8"
+	storage_end = new
+	storage_end.master = src
+	storage_end.icon_state = "storage_end"
+	storage_end.screen_loc = "7,7 to 10,8"
+	stored_start = new
+	stored_start.icon_state = "stored_start"
+	stored_continue = new
+	stored_continue.icon_state = "stored_continue"
+	stored_end = new
+	stored_end.icon_state = "stored_end"
+	closer = new
+	closer.master = src
+	closer.icon_state = "storage_close"
+	closer.hud_layerise()
+	orient2hud()
+	if (islist(starts_with))
+		for (var/newtype in starts_with)
+			var/count = starts_with[newtype] || 1
+			while (count)
+				count--
+				new newtype (src)
+		starts_with = null
+	calibrate_size()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/item/storage/LateInitialize()
+	LateInitializeName()
+
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if(!canremove)
@@ -691,7 +761,11 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/proc/calibrate_size()
+=======
+/obj/item/storage/proc/calibrate_size()
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 	var/total_storage_space = 0
 	for(var/obj/item/I in contents)
 		total_storage_space += I.get_storage_cost()
@@ -775,6 +849,11 @@
 		can_hold[I.type]++
 		max_w_class = max(I.w_class, max_w_class)
 		max_storage_space += I.get_storage_cost()
+
+
+/obj/item/storage/proc/LateInitializeName()
+	return
+
 
 /*
  * Trinket Box - READDING SOON

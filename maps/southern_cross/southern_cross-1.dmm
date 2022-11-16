@@ -112975,6 +112975,7 @@
 	pixel_x = -8;
 	pixel_y = 4
 	},
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid/regular{
 	empty = 1;
 	name = "First-Aid (empty)"
@@ -112986,6 +112987,19 @@
 /obj/item/weapon/storage/firstaid/regular{
 	empty = 1;
 	name = "First-Aid (empty)"
+=======
+/obj/item/storage/firstaid/regular{
+	name = "First-Aid (empty)";
+	starts_with = null
+	},
+/obj/item/storage/firstaid/regular{
+	name = "First-Aid (empty)";
+	starts_with = null
+	},
+/obj/item/storage/firstaid/regular{
+	name = "First-Aid (empty)";
+	starts_with = null
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 	},
 /obj/item/device/healthanalyzer,
 /obj/item/device/healthanalyzer,

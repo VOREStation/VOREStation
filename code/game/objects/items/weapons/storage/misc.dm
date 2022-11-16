@@ -37,6 +37,7 @@ var/list/random_weighted_donuts = list(
 	max_storage_space = ITEMSIZE_COST_SMALL * 6
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/donut)
 	foldable = /obj/item/stack/material/cardboard
+<<<<<<< HEAD
 	//starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 6)
 
 /obj/item/weapon/storage/box/donut/Initialize()
@@ -48,6 +49,16 @@ var/list/random_weighted_donuts = list(
 	update_icon()
 
 /obj/item/weapon/storage/box/donut/update_icon()
+=======
+
+/obj/item/storage/box/donut/Initialize()
+	PopulateDonutSelection()
+	. = ..()
+	update_icon()
+
+
+/obj/item/storage/box/donut/update_icon()
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 	cut_overlays()
 	var/x_offset = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
@@ -56,8 +67,21 @@ var/list/random_weighted_donuts = list(
 		add_overlay(ma)
 		x_offset += 3
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/box/donut/empty
 	empty = TRUE
+=======
+
+/obj/item/storage/box/donut/proc/PopulateDonutSelection()
+	starts_with = list()
+	for (var/i = 1 to 6)
+		starts_with += pickweight(random_weighted_donuts)
+
+
+/obj/item/storage/box/donut/empty/PopulateDonutSelection()
+	return
+
+>>>>>>> dee21e6adf5... Merge pull request #8827 from Spookerton/spkrtn/cng/internal-storage-names
 
 /obj/item/weapon/storage/box/wormcan
 	icon = 'icons/obj/food.dmi'
