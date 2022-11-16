@@ -168,3 +168,18 @@
 	cost = 300
 	containertype = /obj/structure/closet/crate
 	containername = "cordless jukebox speakers crate"
+
+/datum/supply_pack/misc/explorer_headsets
+	name = "shortwave-capable headsets (x4)"
+	contains = list(
+		/obj/item/device/radio/headset/explorer = 4
+	)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "exploration radio headsets crate"
+	access = list(
+		access_explorer,
+		access_eva,
+		access_pilot
+	)
+	one_access = TRUE
