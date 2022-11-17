@@ -23,7 +23,7 @@
 		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/weapon/gun/energy/netgun,
 		/obj/item/weapon/gun/projectile/pirate,
-		/obj/item/clothing/accessory/permit/gun,
+		/obj/item/weapon/card/emag/one,
 		/obj/item/weapon/gun/projectile/dartgun,
 		/obj/item/clothing/gloves/black/bloodletter,
 		/obj/item/weapon/gun/energy/mouseray/metamorphosis
@@ -263,7 +263,7 @@
 					prob(1);/obj/item/device/flashlight/glowstick/yellow,
 					prob(1);/obj/item/device/flashlight/pen,
 					prob(1);/obj/item/device/paicard,
-					prob(1);/obj/item/weapon/card/emag,
+					prob(1);/obj/item/clothing/accessory/permit/gun,
 					prob(1);/obj/item/clothing/mask/gas/voice,
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,

@@ -8,3 +8,6 @@
 /obj/item/weapon/card/emag/used/Initialize()
 	. = ..()
 	uses = rand(1, 5)
+
+/obj/item/weapon/card/emag/one
+	uses = 1
