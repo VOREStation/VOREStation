@@ -146,22 +146,6 @@
 			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
 
-/obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
-	. = ..()
-	if(. && ishuman(M) && !disable_warning)
-		var/mob/living/carbon/human/H = M
-		if(!H.resizable)
-			return
-		if(H.size_multiplier != target_size)
-			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
-				return
-			last_activated = world.time
-			original_size = H.size_multiplier
-			H.resize(target_size, uncapped = emagged, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
-			log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
-
 /obj/item/clothing/gloves/bluespace/mob_can_unequip(mob/M, gloves, disable_warning = 0)
 	. = ..()
 	if(. && ishuman(M) && original_size && !disable_warning)
