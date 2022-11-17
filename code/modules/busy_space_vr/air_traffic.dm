@@ -4,12 +4,12 @@
 var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller
-	var/delay_min = 20 MINUTES			//How long between ATC traffic, minimum
-	var/delay_max = 30 MINUTES			//Ditto, maximum
+	var/delay_min = 45 MINUTES			//How long between ATC traffic, minimum
+	var/delay_max = 90 MINUTES			//Ditto, maximum
 							//Shorter delays means more traffic, which gives the impression of a busier system, but also means a lot more radio noise
 	var/backoff_delay = 5 MINUTES			//How long to back off if we can't talk and want to.  Default is 5 mins.
-	var/initial_delay = 2 MINUTES			//How long to wait before sending the first message of the shift.
-	var/next_message = 20 MINUTES			//When the next message should happen in world.time - Making it default to min value
+	var/initial_delay = 15 MINUTES			//How long to wait before sending the first message of the shift.
+	var/next_message = 45 MINUTES			//When the next message should happen in world.time - Making it default to min value
 	var/force_chatter_type				//Force a specific type of messages
 
 	var/squelched = 0				//If ATC is squelched currently
