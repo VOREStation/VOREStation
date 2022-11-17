@@ -22,7 +22,6 @@
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/weapon/gun/energy/netgun,
-		/obj/item/weapon/card/emag/one,
 		/obj/item/weapon/gun/projectile/dartgun,
 		/obj/item/clothing/gloves/black/bloodletter,
 		/obj/item/weapon/gun/energy/mouseray/metamorphosis
