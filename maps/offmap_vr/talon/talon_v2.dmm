@@ -9176,7 +9176,7 @@
 /area/talon_v2/bridge)
 "Ec" = (
 /obj/machinery/door/airlock/maintenance/cargo{
-	id_tag = talon_minerdoor;
+	id_tag = "talon_minerdoor";
 	req_one_access = list(301)
 	},
 /turf/simulated/floor/plating,
@@ -9208,7 +9208,7 @@
 /area/talon_v2/armory)
 "Ei" = (
 /obj/machinery/door/airlock/mining{
-	id_tag = talon_minerdoor;
+	id_tag = "talon_minerdoor";
 	name = "Miner's Cabin";
 	req_one_access = list(301)
 	},
