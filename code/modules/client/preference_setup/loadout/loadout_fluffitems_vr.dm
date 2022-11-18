@@ -851,6 +851,12 @@
 	ckeywhitelist = list("pandora029")
 	character_name = list("Seona Young")
 
+/datum/gear/fluff/seona_big_plushie
+	path = /obj/item/toy/plushie/fluff/seona_mofuorb
+	display_name = "comically oversized fox plushie"
+	ckeywhitelist = list("pandora029")
+	character_name = list("Seona Young")
+
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Lily's Unity Medal"

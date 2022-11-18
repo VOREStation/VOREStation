@@ -15,6 +15,19 @@
 			new /datum/stack_recipe("dark office chair", /obj/structure/bed/chair/office/dark, 5, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 			new /datum/stack_recipe("light office chair", /obj/structure/bed/chair/office/light, 5, one_per_turf = 1, on_floor = 1, recycle_material = "[name]")
 			)),
+		new /datum/stack_recipe_list("comfy chairs", list(
+			new /datum/stack_recipe("beige comfy chair", /obj/structure/bed/chair/comfy/beige, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("black comfy chair", /obj/structure/bed/chair/comfy/black, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("brown comfy chair", /obj/structure/bed/chair/comfy/brown, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("lime comfy chair", /obj/structure/bed/chair/comfy/lime, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("teal comfy chair", /obj/structure/bed/chair/comfy/teal, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("red comfy chair", /obj/structure/bed/chair/comfy/red, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("blue comfy chair", /obj/structure/bed/chair/comfy/blue, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("purple comfy chair", /obj/structure/bed/chair/comfy/purp, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("green comfy chair", /obj/structure/bed/chair/comfy/green, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("yellow comfy chair", /obj/structure/bed/chair/comfy/yellow, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("orange comfy chair", /obj/structure/bed/chair/comfy/orange, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			)),
 		new /datum/stack_recipe_list("rounded chairs", list(
 			new /datum/stack_recipe("beige rounded chair", /obj/structure/bed/chair/comfy/rounded/beige, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 			new /datum/stack_recipe("black rounded chair", /obj/structure/bed/chair/comfy/rounded/black, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),

@@ -127,9 +127,12 @@
 	var/emagged = FALSE
 	var/target_size = 1
 
-/obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
-	. = ..()
-	if(. && ishuman(M) && !disable_warning)
+/obj/item/proc/equip_special()
+	return
+
+/obj/item/clothing/gloves/bluespace/equip_special()
+	var/mob/M = src.loc
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.resizable)
 			return
