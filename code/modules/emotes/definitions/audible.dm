@@ -238,6 +238,12 @@
 	emote_message_3p_target = "trills at TARGET."
 	emote_sound = 'sound/voice/teshtrill.ogg' // Copyright CC BY-NC 3.0 Arnaud Coutancier (freesound.org) for the source audio.
 
+/decl/emote/audible/teshscream
+	key = "teshscream"
+	emote_message_1p = "You scream!"
+	emote_message_3p = "screams!"
+	emote_sound = 'sound/voice/teshscream.ogg'
+
 /decl/emote/audible/prbt
 	key = "prbt"
 	emote_message_1p = "You prbt."
