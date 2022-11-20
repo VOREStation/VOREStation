@@ -164,16 +164,23 @@
 		add_overlay(image('icons/obj/crayons.dmi',crayon.colourName))
 	appearance = ma
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/pen/crayon))
 		switch(W:colourName)
+=======
+/obj/item/storage/fancy/crayons/attackby(obj/item/W, mob/user)
+	if(istype(W,/obj/item/pen/crayon))
+		var/obj/item/pen/crayon/crayon = W
+		switch(crayon.colourName)
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 			if("mime")
 				to_chat(user, "This crayon is too sad to be contained in this box.")
-				return
+				return TRUE
 			if("rainbow")
 				to_chat(user, "This crayon is too powerful to be contained in this box.")
-				return
-	..()
+				return TRUE
+	return ..()
 
 /obj/item/weapon/storage/fancy/markers
 	name = "box of markers"
@@ -206,16 +213,23 @@
 		ma.add_overlay(image('icons/obj/crayons.dmi',"m"+marker.colourName))
 	appearance = ma
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/fancy/markers/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/pen/crayon/marker))
 		switch(W:colourName)
+=======
+/obj/item/storage/fancy/markers/attackby(obj/item/W, mob/user)
+	if(istype(W,/obj/item/pen/crayon/marker))
+		var/obj/item/pen/crayon/marker/marker = W
+		switch(marker.colourName)
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 			if("mime")
 				to_chat(user, "This marker is too depressing to be contained in this box.")
-				return
+				return TRUE
 			if("rainbow")
 				to_chat(user, "This marker is too childish to be contained in this box.")
-				return
-	..()
+				return TRUE
+	return ..()
 
 /*
  * Cracker Pack
@@ -496,9 +510,16 @@
 	else
 		add_overlay("ledb")
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	update_icon()
+=======
+/obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(.)
+		update_icon()
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 
 /*
  * Box of Chocolates

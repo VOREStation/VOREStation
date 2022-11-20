@@ -146,7 +146,7 @@
 	if(istype(O,/obj/item/device/kit/suit))
 		var/obj/item/device/kit/suit/kit = O
 		kit.customize(src, user)
-		return
+		return TRUE
 	return ..()
 
 /obj/item/device/kit/suit/rig

@@ -17,8 +17,14 @@
 	var/icon_broken = "lockbox+b"
 
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/lockbox/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/card/id))
+=======
+/obj/item/storage/lockbox/attackby(obj/item/W, mob/user)
+
+	if (istype(W, /obj/item/card/id))
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 		if(src.broken)
 			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 			return
@@ -28,25 +34,30 @@
 				src.icon_state = src.icon_locked
 				to_chat(user, "<span class='notice'>You lock \the [src]!</span>")
 				close_all()
-				return
 			else
 				src.icon_state = src.icon_closed
 				to_chat(user, "<span class='notice'>You unlock \the [src]!</span>")
-				return
 		else
 			to_chat(user, "<span class='warning'>Access Denied</span>")
+<<<<<<< HEAD
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))
+=======
+		return TRUE
+
+	if(istype(W, /obj/item/melee/energy/blade))
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 		if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
-	if(!locked)
-		..()
-	else
+
+	if(locked)
 		to_chat(user, "<span class='warning'>It's locked!</span>")
-	return
+		return TRUE
+
+	return ..()
 
 
 /obj/item/weapon/storage/lockbox/show_to(mob/user as mob)

@@ -19,9 +19,16 @@
 	if (pockets.handle_mousedrop(usr, over_object))
 		..(over_object)
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	pockets.attackby(W, user)
+=======
+/obj/item/clothing/suit/storage/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(!.)
+		return pockets.attackby(W, user)
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 
 /obj/item/clothing/suit/storage/emp_act(severity)
 	pockets.emp_act(severity)

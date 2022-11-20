@@ -555,6 +555,7 @@
 	update_icon()
 	return 1
 
+<<<<<<< HEAD
 /// Called before insertion completes, allowing you to delay or cancel it
 /obj/item/weapon/storage/proc/stall_insertion(obj/item/W, mob/user)
 	return TRUE
@@ -566,9 +567,17 @@
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
+=======
+//This proc is called when you want to place an item into the storage item.
+/obj/item/storage/attackby(obj/item/W, mob/user, silent)
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 
 	if(isrobot(user))
+<<<<<<< HEAD
 		return //Robots can't interact with storage items.
+=======
+		return ..()
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LP = W
@@ -585,6 +594,7 @@
 			to_chat(user, "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining.")
 			return
 
+<<<<<<< HEAD
 	if(!can_be_inserted(W))
 		return
 
@@ -595,14 +605,34 @@
 				to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
 				return
 			else
+=======
+	if(can_be_inserted(W))
+		if(istype(W, /obj/item/tray))
+			var/obj/item/tray/T = W
+			if(T.calc_carry() > 0)
+				if(prob(85))
+					if (!silent)
+						to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
+					return TRUE
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 				W.forceMove(get_turf(user))
 				if ((user.client && user.s_active != src))
 					user.client.screen -= W
 				W.dropped(user)
+<<<<<<< HEAD
 				to_chat(user, "<span class='warning'>God damn it!</span>")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
+=======
+				if (!silent)
+					to_chat(user, "<span class='warning'>God damn it!</span>")
+				return TRUE
+		W.add_fingerprint(user)
+		return handle_item_insertion(W, silent)
+
+	return ..()
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 
 /obj/item/weapon/storage/dropped(mob/user as mob)
 	return

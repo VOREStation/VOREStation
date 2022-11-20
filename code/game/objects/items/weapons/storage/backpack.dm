@@ -49,12 +49,17 @@
 	name = "dufflebag of holding"
 	icon_state = "holdingduffle"
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
+=======
+/obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/storage/backpack/holding))
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
 		qdel(W)
-		return
-	. = ..()
+		return TRUE
+	return ..()
 
 //Please don't clutter the parent storage item with stupid hacks.
 /obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)

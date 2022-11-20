@@ -372,8 +372,9 @@
 			user.visible_message("<span class='notice'>[user] manages to light the match on the matchbox.</span>")
 		else
 			playsound(src, 'sound/items/cigs_lighters/matchstick_hit.ogg', 25, 0, -1)
-	W.update_icon()
-	return
+		W.update_icon()
+		return TRUE
+	return ..()
 
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"

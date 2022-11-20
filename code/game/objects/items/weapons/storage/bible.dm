@@ -109,7 +109,14 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 			A.reagents.del_reagent("water")
 			A.reagents.add_reagent("holywater",water2holy)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/bible/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
 		playsound(src, src.use_sound, 50, 1, -5)
 	..()
+=======
+/obj/item/storage/bible/attackby(obj/item/W, mob/user)
+	if (src.use_sound)
+		playsound(src, src.use_sound, 50, 1, -5)
+	return ..()
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix

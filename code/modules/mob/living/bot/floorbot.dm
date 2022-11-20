@@ -58,6 +58,10 @@
 		data["eattiles"] = eattiles
 		data["maketiles"] = maketiles
 		data["bmode"] = dir2text(targetdirection)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 	return data
 
 /mob/living/bot/floorbot/attack_hand(var/mob/user)
@@ -340,13 +344,19 @@
 
 /* Assembly */
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/living/user as mob)
+=======
+/obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/living/user)
+
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 	if(!istype(T, /obj/item/stack/tile/floor))
-		..()
-		return
+		return ..()
+
 	if(contents.len >= 1)
 		to_chat(user, "<span class='notice'>They wont fit in as there is already stuff inside.</span>")
-		return
+		return TRUE
+
 	if(user.s_active)
 		user.s_active.close(user)
 	if(T.use(10))
@@ -357,7 +367,7 @@
 		qdel(src)
 	else
 		to_chat(user, "<span class='warning'>You need 10 floor tiles for a floorbot.</span>")
-	return
+	return TRUE
 
 /obj/item/weapon/toolbox_tiles
 	desc = "It's a toolbox with tiles sticking out the top"

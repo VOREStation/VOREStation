@@ -471,15 +471,22 @@
 
 /* Construction */
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid/attackby(var/obj/item/robot_parts/S, mob/user as mob)
 	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return
+=======
+/obj/item/storage/firstaid/attackby(var/obj/item/W, mob/user)
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 
-	if(contents.len >= 1)
-		to_chat(user, "<span class='notice'>You need to empty [src] out first.</span>")
-		return
+	var/valid_for_construction = istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm)
+	if(istype(W, /obj/item/organ/external/arm))
+		var/obj/item/organ/external/arm/arm = W
+		if(arm.robotic == ORGAN_ROBOT)
+			valid_for_construction = TRUE
 
+<<<<<<< HEAD
 	var/obj/item/weapon/firstaid_arm_assembly/A = new /obj/item/weapon/firstaid_arm_assembly
 	if(istype(src, /obj/item/weapon/storage/firstaid/fire))
 		A.skin = "ointment"
@@ -505,17 +512,29 @@
 
 	var/obj/item/weapon/firstaid_arm_assembly/A = new /obj/item/weapon/firstaid_arm_assembly
 	if(istype(src, /obj/item/weapon/storage/firstaid/fire))
+=======
+	if(!valid_for_construction)
+		return ..()
+
+	if(contents.len)
+		to_chat(user, SPAN_NOTICE("You need to empty [src] out first."))
+		return TRUE
+
+	var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly(get_turf(src))
+	if(istype(src, /obj/item/storage/firstaid/fire))
+>>>>>>> 4219662fdaf... Merge pull request #8836 from MistakeNot4892/storagefix
 		A.skin = "ointment"
 	else if(istype(src, /obj/item/weapon/storage/firstaid/toxin))
 		A.skin = "tox"
 	else if(istype(src, /obj/item/weapon/storage/firstaid/o2))
 		A.skin = "o2"
 
-	qdel(S)
+	qdel(W)
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
+	to_chat(user, SPAN_NOTICE("You add the robot arm to the first aid kit."))
 	user.drop_from_inventory(src)
 	qdel(src)
+	return TRUE
 
 /obj/item/weapon/firstaid_arm_assembly
 	name = "first aid/robot arm assembly"
