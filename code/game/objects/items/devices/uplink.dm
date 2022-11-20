@@ -27,8 +27,17 @@
 	. = ..()
 	addtimer(CALLBACK(src, .proc/next_offer), offer_time) //It seems like only the /hidden type actually makes use of this...
 
+<<<<<<< HEAD
 /obj/item/device/uplink/get_item_cost(var/item_type, var/item_cost)
 	return (discount_item && (item_type == discount_item)) ? max(1, round(item_cost*discount_amount)) : item_cost
+=======
+
+/obj/item/uplink/proc/GetAdjustedCost(datum/uplink_item/item, current_cost)
+	if (item == discount_item)
+		return max(1, round(current_cost * discount_amount))
+	return current_cost
+
+>>>>>>> e4535669c9b... Merge pull request #8839 from Spookerton/spkrtn/fix/no-infinite-tc
 
 /obj/item/device/uplink/proc/next_offer()
 	return //Stub, used on children.
@@ -169,7 +178,7 @@
 				"items" = (category == selected_cat ? list() : null)
 			)
 		for(var/datum/uplink_item/item in category.items)
-			var/cost = item.cost(src, user) || "???"
+			var/cost = item.cost(src, user.mind.tcrystals) || "???"
 			cat["items"] += list(list(
 				"name" = item.name,
 				"cost" = cost,

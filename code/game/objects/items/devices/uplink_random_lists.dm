@@ -34,7 +34,7 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 		if(!prob(RI.keep_probability))
 			continue
 		var/datum/uplink_item/I = uplink.items_assoc[RI.uplink_item]
-		if(I.cost(U) > telecrystals)
+		if(I.cost(U, telecrystals) > telecrystals)
 			continue
 		if(bought_items && (I in bought_items) && !prob(RI.reselect_probability))
 			continue

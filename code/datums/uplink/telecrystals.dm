@@ -35,5 +35,10 @@
 /datum/uplink_item/item/telecrystal/all
 	name = "Telecrystals - Empty Uplink"
 
+<<<<<<< HEAD
 /datum/uplink_item/item/telecrystal/all/cost(obj/item/device/uplink/U, mob/M)
 	return max(1, M.mind.tcrystals)
+=======
+/datum/uplink_item/item/telecrystal/all/cost(obj/item/uplink/uplink, available_telecrystals)
+	return max(1, available_telecrystals)
+>>>>>>> e4535669c9b... Merge pull request #8839 from Spookerton/spkrtn/fix/no-infinite-tc

@@ -32,8 +32,15 @@
 	name = "Random Items"
 	desc = "Buys you as many random items you can afford. Convenient packaging NOT included."
 
+<<<<<<< HEAD
 /datum/uplink_item/item/badassery/random_many/cost(obj/item/device/uplink/U, var/telecrystals)
 	return max(1, telecrystals)
+=======
+
+/datum/uplink_item/item/badassery/random_many/cost(obj/item/uplink/U, available_telecrystals)
+	return max(1, available_telecrystals)
+
+>>>>>>> e4535669c9b... Merge pull request #8839 from Spookerton/spkrtn/fix/no-infinite-tc
 
 /datum/uplink_item/item/badassery/random_many/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/M)
 	var/list/bought_items = list()
