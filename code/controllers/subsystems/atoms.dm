@@ -31,6 +31,7 @@ SUBSYSTEM_DEF(atoms)
 
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 
+<<<<<<< HEAD
 	LAZYINITLIST(late_loaders)
 
 	var/count
@@ -48,6 +49,28 @@ SUBSYSTEM_DEF(atoms)
 		for(var/atom/A in world) // This must be world, since this operation adds all the atoms to their specific lists.
 			if(!A.initialized)
 				InitAtom(A, mapload_arg)
+=======
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atom/submap_atoms)
+	if (atom_init_stage <= INITIALIZATION_INSSATOMS_LATE)
+		return
+	atom_init_stage = INITIALIZATION_INNEW_MAPLOAD
+	var/list/mapload_arg = list(TRUE)
+	var/count = 0
+	var/atom/created
+	var/list/arguments
+	var/list/atom/initialize_queue = submap_atoms || created_atoms
+	for (var/i = 1 to length(initialize_queue))
+		created = initialize_queue[i]
+		if (!(created.atom_flags & ATOM_INITIALIZED))
+			arguments = initialize_queue[created] ? mapload_arg + initialize_queue[created] : mapload_arg
+			InitAtom(created, arguments)
+			CHECK_TICK
+	initialize_queue.Cut()
+	if (!subsystem_initialized)
+		for (var/atom/atom in world)
+			if (!(atom.atom_flags & ATOM_INITIALIZED))
+				InitAtom(atom, mapload_arg)
+>>>>>>> c99ef8568df... Merge pull request #8838 from Spookerton/spkrtn/fix/init-bandaid
 				++count
 				CHECK_TICK
 
