@@ -118,10 +118,13 @@
 
 		//Dead when hatching
 		if(stat == DEAD)
+			var/sickness_duration = 10 MINUTES
 			//Reviving from ded takes extra nutrition - if it isn't provided from outside sources, it comes from you
 			if(!hasnutriment())
 				nutrition=nutrition * 0.75
+				sickness_duration = 20 MINUTES
 			chimera_hatch()
+			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
 			visible_message("<span class='warning'><p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p></span>") //Bloody hell...
 			clear_alert("hatch")
@@ -167,6 +170,13 @@
 	weakened = 2
 
 	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
+
+/datum/modifier/resleeving_sickness/chimera //near identical to the regular version, just with different flavortexts
+	name = "imperfect regeneration"
+	desc = "You feel rather weak and unfocused, having just regrown your body not so long ago."
+
+	on_created_text = "<span class='warning'><font size='3'>You feel weak and unsteady, that regeneration having been rougher than most.</font></span>"
+	on_expired_text = "<span class='notice'><font size='3'>You feel your strength and focus return to you.</font></span>"
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
