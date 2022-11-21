@@ -109,6 +109,8 @@
 
 	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
 
+	var/protean_drop_whitelist = FALSE
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)

@@ -360,6 +360,8 @@ var/global/list/disallowed_protean_accessories = list(
 	things_to_drop -= internal_organs //Mah sqeedily spooch
 
 	for(var/obj/item/I in things_to_drop) //rip hoarders
+		if(I.protean_drop_whitelist)
+			continue
 		drop_from_inventory(I)
 
 	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
