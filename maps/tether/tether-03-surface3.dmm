@@ -44692,19 +44692,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"xlK" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/glass,
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/obj/machinery/door/blast/gate/thin{
-	dir = 2;
-	id = "cafe";
-	layer = 3.3
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
 "xlW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -60089,7 +60076,7 @@ beI
 bgn
 aKu
 anj
-xlK
+avo
 avz
 avM
 asX
