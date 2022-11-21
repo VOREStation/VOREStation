@@ -163,6 +163,7 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/teshsqueak,
 	/decl/emote/audible/teshchirp,
 	/decl/emote/audible/teshtrill,
+	/decl/emote/audible/teshscream,
 	/decl/emote/visible/bounce,
 	/decl/emote/visible/jiggle,
 	/decl/emote/visible/lightup,

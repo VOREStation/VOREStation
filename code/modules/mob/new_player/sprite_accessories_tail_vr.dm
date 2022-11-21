@@ -1207,6 +1207,100 @@
 	icon_state = "perrintentacles"
 	ckeys_allowed = list("codeme", "siennaathens")
 
+/datum/sprite_accessory/tail/teshbeethorax
+	name = "Teshari bee thorax"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "beethorax_tesh"
+
+/datum/sprite_accessory/tail/teshbuggo
+	name = "Teshari bug abdomen, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbug_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/teshbuggobee
+	name = "Teshari bug abdomen, bee top, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbug_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshbee_markings"
+
+/datum/sprite_accessory/tail/teshbeefull
+	name = "Teshari bug abdomen, bee full, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbug_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshbeefull_markings"
+
+/datum/sprite_accessory/tail/teshbuggounder
+	name = "Teshari bug abdomen, underside, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbug_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshunder_markings"
+
+/datum/sprite_accessory/tail/teshbuggofirefly
+	name = "Teshari bug abdomen, firefly, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbug_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshfirefly_markings"
+
+/datum/sprite_accessory/tail/fatteshbuggo
+	name = "Teshari fat bug abdomen, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbugfat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fatteshbuggobee
+	name = "Teshari fat bug abdomen, bee top, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbugfat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshfatbee_markings"
+
+/datum/sprite_accessory/tail/fatteshbeefull
+	name = "Teshari fat bug abdomen, bee full, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbugfat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshfatbeefull_markings"
+
+/datum/sprite_accessory/tail/fatteshbuggounder
+	name = "Teshari fat bug abdomen, underside, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbugfat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshfatunder_markings"
+
+/datum/sprite_accessory/tail/fatteshbuggofirefly
+	name = "Teshari fat bug abdomen, firefly, dual-colorable"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "teshbugfat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshfatfirefly_markings"
+
 //LONG TAILS ARE NOT TAUR BUTTS >:O
 /datum/sprite_accessory/tail/longtail
 	name = "You should not see this..."

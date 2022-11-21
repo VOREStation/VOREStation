@@ -129,3 +129,8 @@
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "beret_talon_officer"
 	item_state = "baret_talon_command"
+
+/obj/item/clothing/head/cowboy
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
+		)

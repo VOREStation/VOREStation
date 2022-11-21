@@ -276,3 +276,15 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "aeromorph_flat_1"
 	extra_overlay2 = "aeromorph_flat_2"
+
+/datum/sprite_accessory/wing/teshbee
+	name = "Teshari bee wings"
+	desc = ""
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	icon_state = "beewings_tesh"
+
+/datum/sprite_accessory/wing/teshdragonfly
+	name = "Teshari dragonfly wings"
+	desc = ""
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	icon_state = "dragonfly_tesh"
