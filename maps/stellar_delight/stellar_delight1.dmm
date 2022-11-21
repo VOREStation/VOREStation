@@ -48,6 +48,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "af" = (
@@ -8858,6 +8859,7 @@
 	},
 /obj/item/weapon/gun/energy/sizegun,
 /obj/item/weapon/storage/box/donut,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "ss" = (
@@ -9061,6 +9063,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "sM" = (
@@ -13266,6 +13269,7 @@
 "BM" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "BN" = (
@@ -13772,6 +13776,7 @@
 	pixel_y = 7
 	},
 /obj/item/weapon/pen,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "CR" = (
@@ -16320,6 +16325,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "Iu" = (
@@ -22738,6 +22744,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "VG" = (
@@ -24356,6 +24363,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "YY" = (
@@ -24403,6 +24411,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "Zc" = (
