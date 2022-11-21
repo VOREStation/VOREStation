@@ -11768,6 +11768,7 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
+/obj/item/weapon/gun/energy/sizegun,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "asF" = (

@@ -6066,6 +6066,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
+"np" = (
+/obj/item/weapon/book/manual/security_space_law,
+/obj/item/gunbox/warden,
+/obj/structure/closet/secure_closet/warden,
+/obj/item/weapon/gun/energy/sizegun,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/warden)
 "nq" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -8553,12 +8560,6 @@
 "tv" = (
 /turf/simulated/floor,
 /area/groundbase/cargo/mining)
-"tw" = (
-/obj/item/weapon/book/manual/security_space_law,
-/obj/item/gunbox/warden,
-/obj/structure/closet/secure_closet/warden,
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/security/warden)
 "tx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/remote/airlock{
@@ -27005,7 +27006,7 @@ iw
 GS
 HW
 uZ
-tw
+np
 qa
 OC
 qa
