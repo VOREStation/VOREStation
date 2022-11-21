@@ -5259,6 +5259,16 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"kV" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "researchwindowlockdown"
+	},
+/obj/structure/window/bay/reinforced,
+/obj/structure/low_wall/bay/reinforced/steel,
+/turf/simulated/floor,
+/area/rnd/xenobiology/xenoflora_storage)
 "kY" = (
 /obj/structure/cable/pink{
 	icon_state = "1-2"
@@ -20598,7 +20608,7 @@
 "Ry" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/angled/open{
-	dir = 2;
+	dir = 4;
 	id = "researchwindowlockdown"
 	},
 /obj/structure/window/bay/reinforced,
@@ -38735,11 +38745,11 @@ xo
 SR
 Vg
 pQ
-RV
-RV
+kV
+kV
 pQ
 pQ
-RV
+kV
 Ry
 pQ
 pQ
