@@ -67,7 +67,6 @@
 			))
 		var/path = choice[1]
 		var/value = choice[2]
-		visible_message("Filling crate with [path] for [value] points!")
 		contents += new path()
 		lootvalue += value
 
