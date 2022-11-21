@@ -1679,8 +1679,7 @@
 	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
 	name = "Emergency Cabinet"
 	},
-/obj/structure/lattice,
-/turf/simulated/open,
+/turf/simulated/floor,
 /area/stellardelight/deck2/fore)
 "gy" = (
 /obj/structure/closet/secure_closet/engineering_chief,
@@ -1866,14 +1865,6 @@
 	},
 /area/tcommsat/chamber)
 "gY" = (
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
 /obj/structure/closet/walllocker_double/south{
 	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
 	name = "Emergency Cabinet"
@@ -2136,19 +2127,10 @@
 	},
 /area/tcommsat/chamber)
 "ie" = (
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
 /obj/structure/closet/walllocker_double/south{
 	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
 	name = "Emergency Cabinet"
 	},
-/obj/structure/lattice,
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
 "if" = (
@@ -9076,14 +9058,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_server_room)
 "GV" = (
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
 /obj/structure/closet/walllocker_double/south{
 	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
 	name = "Emergency Cabinet"
@@ -24555,7 +24529,7 @@ qp
 Qp
 Hf
 gO
-gx
+qF
 rc
 tJ
 aQ
@@ -24697,7 +24671,7 @@ oP
 dN
 UA
 Fj
-sO
+gx
 EJ
 rx
 rx
@@ -26449,7 +26423,7 @@ OA
 cz
 ow
 ok
-ie
+ow
 aA
 yw
 bb
