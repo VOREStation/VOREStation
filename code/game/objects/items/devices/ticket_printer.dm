@@ -16,8 +16,11 @@
 /obj/item/device/ticket_printer/proc/print_a_ticket(mob/user)
 
 	var/ticket_name = sanitize(tgui_input_text(user, "The Name of the person you are issuing the ticket to.", "Name", max_length = 100))
-
-	var/details = sanitize(tgui_input_text(user, "What is the ticket for? Avoid entering personally identafiable information in this section. (Max length: 200)", "Ticket Details", max_length = 200))
+	if(!ticket_name)
+		return
+	var/details = sanitize(tgui_input_text(user, "What is the ticket for? Avoid entering personally identifiable information in this section. This information should not be used to harrass or otherwise make the person feel uncomfortable. (Max length: 200)", "Ticket Details", max_length = 200))
+	if(!details)
+		return
 
 	var/turf/our_turf = get_turf(user)
 
@@ -27,12 +30,13 @@
 
 	p.info = final
 	p.name = "Security Citation: [ticket_name]"
+	playsound(user, 'sound/items/ticket_printer.ogg', 75, 1)
 
-	GLOB.security_tickets |= details
-	GLOB.security_ticket_counter++
+	security_printer_tickets |= details
 	log_and_message_admins("has issued '[ticket_name]' a security citation: \"[details]\"", user)
 	last_print = world.time
-	playsound(our_turf, 'sound/items/ticket_printer.ogg', vary = TRUE)
+	to_world(details)
+	to_world("[security_printer_tickets.len]")
 
 /obj/item/weapon/paper/sec_ticket
 	name = "Security Citation"
@@ -46,5 +50,5 @@
 	icon_state = "sec_ticket"
 
 /obj/item/weapon/paper/sec_ticket/update_icon()
-	icon = icon
-	icon_state = icon_state
+		icon = icon
+		icon_state = icon_state
