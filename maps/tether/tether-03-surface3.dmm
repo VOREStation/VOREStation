@@ -1749,6 +1749,7 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
 "acE" = (
@@ -1767,6 +1768,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
 "acG" = (
@@ -4618,6 +4620,7 @@
 	},
 /obj/machinery/recharger,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
 "agQ" = (

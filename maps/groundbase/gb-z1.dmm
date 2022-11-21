@@ -119,6 +119,7 @@
 	dir = 8;
 	pixel_x = 30
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "aq" = (
@@ -1466,6 +1467,8 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/item/device/ticket_printer,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
 "do" = (
@@ -4487,6 +4490,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "jY" = (
@@ -7458,6 +7462,7 @@
 /obj/machinery/camera/network/security{
 	dir = 4
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "qR" = (
@@ -8557,6 +8562,7 @@
 /obj/item/weapon/book/manual/security_space_law,
 /obj/item/gunbox/warden,
 /obj/structure/closet/secure_closet/warden,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/warden)
 "tx" = (
@@ -11411,6 +11417,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Au" = (
@@ -12156,6 +12163,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Co" = (
@@ -14165,6 +14173,7 @@
 	icon_state = "0-4"
 	},
 /obj/random/paicard,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/hos)
 "Hw" = (
@@ -16426,6 +16435,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "MS" = (
@@ -21163,6 +21173,7 @@
 	pixel_x = 2;
 	pixel_y = 3
 	},
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/detective)
 "YO" = (
