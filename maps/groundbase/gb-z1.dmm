@@ -8563,6 +8563,7 @@
 /obj/item/gunbox/warden,
 /obj/structure/closet/secure_closet/warden,
 /obj/item/device/ticket_printer,
+/obj/item/weapon/gun/energy/sizegun,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/warden)
 "tx" = (
