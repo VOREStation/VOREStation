@@ -1666,6 +1666,22 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
+"gx" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/south{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "gy" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/device/radio/intercom{
@@ -1849,6 +1865,22 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
+"gY" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/south{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/stellardelight/deck2/port)
 "hb" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -2103,6 +2135,22 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
+"ie" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/south{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
 "if" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2847,6 +2895,10 @@
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "sdboat"
+	},
+/obj/structure/closet/emergsuit_wall{
+	dir = 1;
+	pixel_y = -32
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/sdboat/aft{
@@ -4872,14 +4924,14 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
 "rX" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "sdboat"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/sdboat/aft{
@@ -9024,12 +9076,24 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_server_room)
 "GV" = (
-/obj/structure/lattice,
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/walllocker_double/south{
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
 	},
+/obj/structure/lattice,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -10754,6 +10818,7 @@
 	dir = 1
 	},
 /obj/item/device/retail_scanner/security,
+/obj/item/device/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "MO" = (
@@ -22960,7 +23025,7 @@ Ig
 Ig
 Ig
 Cz
-CS
+gY
 ad
 Ze
 cY
@@ -24490,7 +24555,7 @@ qp
 Qp
 Hf
 gO
-qF
+gx
 rc
 tJ
 aQ
@@ -25658,7 +25723,7 @@ ow
 ow
 ow
 CJ
-ow
+ie
 th
 ep
 Mp
@@ -26384,7 +26449,7 @@ OA
 cz
 ow
 ok
-ow
+ie
 aA
 yw
 bb
