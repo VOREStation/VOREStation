@@ -6152,8 +6152,8 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/structure/closet/walllocker_double/west{
-	name = "Emergency Cabinet";
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies."
+	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
+	name = "Emergency Cabinet"
 	},
 /obj/effect/floor_decal/milspec/color/green/half{
 	dir = 8
@@ -20045,8 +20045,8 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/structure/closet/crate/medical{
-	name = "NanoTrasen Emergency Supply Crate";
-	desc = "A crate full of emergency supplies to help with response and rescue operations. A logo of NanoTrasen with a checkmark is stamped on the crate."
+	desc = "A crate full of emergency supplies to help with response and rescue operations. A logo of NanoTrasen with a checkmark is stamped on the crate.";
+	name = "NanoTrasen Emergency Supply Crate"
 	},
 /obj/item/weapon/storage/briefcase/inflatable,
 /obj/item/weapon/storage/firstaid/adv,
@@ -21335,21 +21335,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/storage/tech)
-"UW" = (
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/structure/closet/walllocker_double/north{
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
-	name = "Emergency Cabinet"
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/crew_quarters/recreation_area)
 "UX" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/carpet,
@@ -33048,7 +33033,7 @@ VG
 KH
 zz
 nt
-UW
+mt
 Bp
 oS
 oS
@@ -35036,7 +35021,7 @@ FA
 Zr
 sj
 FU
-Zr
+xS
 Zr
 vj
 pZ
@@ -35045,7 +35030,7 @@ Zr
 OV
 Zr
 Ye
-xS
+Zr
 Zr
 Zm
 OV
