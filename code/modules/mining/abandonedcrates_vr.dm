@@ -4,7 +4,7 @@
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
 	var/lootvalue = 0
 	while(lootvalue <= 10) //if the initial generation gives you less than 10 points of stuff, add more stuff
-		//decide how valuable the thing should be
+		//pick a thing to add to the crate - the format is "list(filepath, value) = weight,"
 		var/choice = list()
 		choice = pickweight(list(
 			list(/obj/item/weapon/storage/backpack/dufflebag/cratebooze,5) = 5,
