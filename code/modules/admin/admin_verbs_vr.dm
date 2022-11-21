@@ -65,7 +65,8 @@
 
 	if(security_printer_tickets.len >= 1)
 		var/input = tgui_input_list(usr, "Which message?", "Security Tickets", security_printer_tickets)
-
+		if(!input)
+			return
 		if(tgui_alert(usr, "Do you want to remove the following message from the global list? \"[input]\"", "Remove Ticket", list("Yes", "No")) == "Yes")
 			security_printer_tickets -= input
 
