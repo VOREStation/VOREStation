@@ -21,7 +21,7 @@
 
 	var/turf/our_turf = get_turf(user)
 
-	var/final = "<head><style>body {font-family: Verdana; background-color: #C1BDA3;}</style></head><center><h3>Nanotrasen Security Citation</h3><hr>This security citation has been issued to </br><big>[capitalize(ticket_name)]</big></center><b>Reason</b>:<br><i>[details]</i><hr><center><small>See your local representative at Central Command after the shift is over to resolve this issue.</small><br><img src = ntlogo.png></font></center>"
+	var/final = "<head><style>body {font-family: Verdana; background-color: #C1BDA3;}</style></head><center><h3>Nanotrasen Security Citation</h3><hr>This security citation has been issued to <br><big>[capitalize(ticket_name)]</big></center><b>Reason</b>:<br><i>[details]</i><hr><center><small>See your local representative at Central Command after the shift is over to resolve this issue.</small><br><img src = ntlogo.png></font></center>"
 
 	var/obj/item/weapon/paper/sec_ticket/p = new /obj/item/weapon/paper/sec_ticket(our_turf)
 
@@ -32,7 +32,7 @@
 	GLOB.security_ticket_counter++
 	log_and_message_admins("has issued '[ticket_name]' a security citation: \"[details]\"", user)
 	last_print = world.time
-	playsound(src, 'sound/items/ticket_printer.ogg', vary = TRUE)
+	playsound(our_turf, 'sound/items/ticket_printer.ogg', vary = TRUE)
 
 /obj/item/weapon/paper/sec_ticket
 	name = "Security Citation"
