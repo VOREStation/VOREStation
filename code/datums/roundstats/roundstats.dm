@@ -25,6 +25,8 @@ GLOBAL_VAR_INIT(prey_eaten_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(prey_absorbed_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(prey_digested_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(items_digested_roundstat, 0)	//VOREStation Edit - Obviously
+GLOBAL_VAR_INIT(security_ticket_counter, 0)		//VOREStation Edit
+GLOBAL_LIST_EMPTY(security_tickets)				//VOREStation Edit
 
 /hook/roundend/proc/RoundTrivia()//bazinga
 	var/list/valid_stats_list = list() //This is to be populated with the good shit
@@ -53,6 +55,26 @@ GLOBAL_VAR_INIT(items_digested_roundstat, 0)	//VOREStation Edit - Obviously
 		valid_stats_list.Add("The elevator moved up [GLOB.turbo_lift_floors_moved_roundstat] floors today!")
 	else if(GLOB.disposals_flush_shift_roundstat > 40)
 		valid_stats_list.Add("The disposal system flushed a whole [GLOB.disposals_flush_shift_roundstat] times for this shift. We should really invest in waste treatement.")
+
+	//VOREStation add Start - Ticket time!
+	if(GLOB.security_ticket_counter > 0)
+		valid_stats_list.Add("<span class = 'danger'>[GLOB.security_ticket_counter] tickets were issued today!</span>")
+		var/ourticket = pick(GLOB.security_tickets)
+		ourticket = null
+		GLOB.security_tickets -= ourticket
+		if(ourticket)
+			valid_stats_list.Add("\"[ourticket]\"")
+			ourticket = pick(GLOB.security_tickets)
+			GLOB.security_tickets -= ourticket
+			ourticket = null
+			if(ourticket)
+				valid_stats_list.Add("\"[ourticket]\"")
+				ourticket = pick(GLOB.security_tickets)
+				GLOB.security_tickets -= ourticket
+				ourticket = null
+				if(ourticket)
+					valid_stats_list.Add("\"[ourticket]\"")
+					ourticket = pick(GLOB.security_tickets)
 
 	//VOREStation Add Start - Vore stats lets gooooo
 	if(GLOB.prey_eaten_roundstat > 0)
