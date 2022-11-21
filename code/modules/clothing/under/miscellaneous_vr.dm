@@ -178,6 +178,15 @@
 		user.visible_message("<span class='notice'>\The [user] swipes the [emag_source] over the \the [src].</span>","<span class='notice'>You swipes the [emag_source] over the \the [src].</span>")
 		return 1
 
+/obj/item/clothing/gloves/bluespace/emagged
+	emagged = TRUE
+
+/obj/item/clothing/gloves/bluespace/emagged/Initialize()
+	. = ..()
+	target_size = (rand(1,300)) /100
+	if(target_size < 0.1)
+		target_size = 0.1
+
 //Same as Nanotrasen Security Uniforms
 /obj/item/clothing/under/ert
 	armor = list(melee = 5, bullet = 10, laser = 10, energy = 5, bomb = 5, bio = 0, rad = 0)
