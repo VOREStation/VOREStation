@@ -25,8 +25,7 @@ GLOBAL_VAR_INIT(prey_eaten_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(prey_absorbed_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(prey_digested_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(items_digested_roundstat, 0)	//VOREStation Edit - Obviously
-//GLOBAL_VAR_INIT(security_tickets, 0)			//VOREStation Edit
-var/global/list/security_printer_tickets = list()
+var/global/list/security_printer_tickets = list()	//VOREStation Edit
 
 
 /hook/roundend/proc/RoundTrivia()//bazinga

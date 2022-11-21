@@ -16,9 +16,15 @@
 /obj/item/device/ticket_printer/proc/print_a_ticket(mob/user)
 
 	var/ticket_name = sanitize(tgui_input_text(user, "The Name of the person you are issuing the ticket to.", "Name", max_length = 100))
+	if(length(ticket_name) > 100)
+		tgui_alert_async(usr, "Entered name too long. 100 character limit.","Error")
+		return
 	if(!ticket_name)
 		return
 	var/details = sanitize(tgui_input_text(user, "What is the ticket for? Avoid entering personally identifiable information in this section. This information should not be used to harrass or otherwise make the person feel uncomfortable. (Max length: 200)", "Ticket Details", max_length = 200))
+	if(length(details) > 200)
+		tgui_alert_async(usr, "Entered details too long. 200 character limit.","Error")
+		return
 	if(!details)
 		return
 
@@ -35,8 +41,6 @@
 	security_printer_tickets |= details
 	log_and_message_admins("has issued '[ticket_name]' a security citation: \"[details]\"", user)
 	last_print = world.time
-	to_world(details)
-	to_world("[security_printer_tickets.len]")
 
 /obj/item/weapon/paper/sec_ticket
 	name = "Security Citation"
