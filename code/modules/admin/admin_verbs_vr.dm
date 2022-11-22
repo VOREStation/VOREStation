@@ -69,6 +69,7 @@
 			return
 		if(tgui_alert(usr, "Do you want to remove the following message from the global list? \"[input]\"", "Remove Ticket", list("Yes", "No")) == "Yes")
 			security_printer_tickets -= input
+			log_and_message_admins("removed a security ticket from the global list: \"[input]\"", usr)
 
 	else
 		tgui_alert_async(usr, "The ticket list is empty.","Empty")
