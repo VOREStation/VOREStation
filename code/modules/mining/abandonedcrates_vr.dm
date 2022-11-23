@@ -31,7 +31,8 @@
 			list(pick(subtypesof(/obj/item/toy/mecha)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/figure)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/plushie)), 4) = 2,
-			list(pick(subtypesof(/obj/item/weapon/storage/mre)), 2) = 2,
+			list(pick(subtypesof(/obj/item/weapon/storage/mre)), 2) = 3,
+			list(pick(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/bottle/) - /obj/item/weapon/reagent_containers/food/drinks/bottle/small), 1) = 5,
 			list(pick(subtypesof(/obj/item/weapon/storage/firstaid)), 4) = 2,
 			list(pick(subtypesof(/obj/item/weapon/soap)), 1) = 2,
 			list(/obj/item/toy/syndicateballoon, 3) = 2,
@@ -49,6 +50,7 @@
 			list(/obj/item/weapon/pickaxe/plasmacutter, 5) = 2,
 			list(/obj/item/toy/katana, 1) = 2,
 			list(/obj/item/seeds/random, 2) = 2,
+			list(/obj/item/weapon/gun/energy/pummeler, 11) = 2,
 			list(pick(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug)), 1) = 1,
 			list(/obj/item/weed_extract, 2) = 1,
 			list(/obj/item/xenos_claw, 1) = 1,
@@ -61,8 +63,28 @@
 			list(/obj/item/weapon/storage/backpack/mime/loaded, 5) = 1,
 			list(/obj/item/weapon/vampiric, 2) = 1,
 			list(/obj/item/weapon/archaeological_find, 3) = 1,
-			list(/obj/item/weapon/melee/energy/sword, 6) = 1,
+			list(pick(subtypesof(/obj/item/weapon/melee/energy/sword) - /obj/item/weapon/melee/energy/sword/charge), 6) = 1,
+			list(pick(/obj/item/weapon/melee/energy/axe, /obj/item/weapon/melee/energy/spear), 11) = 1,
 			list(/obj/item/weapon/storage/backpack/luchador/loaded, 3) = 1,
+			list(pick(prob(300);/obj/item/weapon/gun/energy/mouseray,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/corgi,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/woof,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/cat,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/chicken,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/lizard,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/rabbit,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/fennec,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/monkey,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/wolpin,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/otie,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/direwolf,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/giantrat,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/redpanda,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/catslug,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/teppi,
+				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis,
+				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
+				), 8) = 1,
 			list(/obj/item/device/personal_shield_generator/belt/mining/loaded, 6) = 1
 			))
 		var/path = choice[1]
@@ -76,7 +98,9 @@
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
+		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 		)
 
 /obj/item/weapon/storage/backpack/dufflebag/cratedrills
