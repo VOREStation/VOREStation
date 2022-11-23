@@ -123,7 +123,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(badges))
 
 /datum/gear/suit/altevian_officer_suit
-	description = "An emblem commonly seen worn by the altevians for their work operations."
+	description = "A comfortable official suit for altevian command officers."
 	display_name = "altevian officer's suit selection, site manager"
 	whitelisted = SPECIES_ALTEVIAN
 	allowed_roles = list("Site Manager")
