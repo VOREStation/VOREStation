@@ -122,6 +122,21 @@
 						"red emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/hydrogen)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(badges))
 
+/datum/gear/suit/altevian_officer_suit
+	description = "An emblem commonly seen worn by the altevians for their work operations."
+	display_name = "altevian officer's suit selection, site manager"
+	whitelisted = SPECIES_ALTEVIAN
+	allowed_roles = list("Site Manager")
+	sort_category = "Xenowear"
+
+/datum/gear/suit/altevian_officer_suit/New()
+	..()
+	var/list/suits = list()
+	for(var/ratsuit in typesof(/obj/item/clothing/suit/captunic/capjacket/altevian_admiral))
+		var/obj/item/clothing/suit/captunic/capjacket/altevian_admiral/specific_ratsuit = ratsuit
+		suits[initial(specific_ratsuit.name)] = specific_ratsuit
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(suits))
+
 // Taur stuff
 /datum/gear/suit/taur/drake_cloak
 	display_name = "drake cloak (Drake-taur)"
