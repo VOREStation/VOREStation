@@ -7,40 +7,44 @@
 		//pick a thing to add to the crate - the format is "list(filepath, value) = weight,"
 		var/choice = list()
 		choice = pickweight(list(
-			list(/obj/item/weapon/storage/backpack/dufflebag/cratebooze,5) = 5,
-			list(/obj/item/weapon/storage/backpack/dufflebag/cratedrills, 5) = 5,
-			list(/obj/item/weapon/reagent_containers/glass/beaker/bluespace, 3) = 5,
-			list(/obj/item/weapon/ore/diamond, 1) = 10,
-			list(/obj/item/weapon/ore/osmium, 1) = 10,
-			list(/obj/item/weapon/ore/hydrogen, 1) = 10,
-			list(/obj/item/weapon/ore/verdantium, 1) = 10,
-			list(/obj/item/weapon/ore/uranium, 1) = 10,
-			list(/obj/item/weapon/reagent_containers/glass/beaker/noreact, 3) = 5,
+			list(pick(/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/osmium,
+				/obj/item/weapon/ore/hydrogen,
+				/obj/item/weapon/ore/verdantium,
+				/obj/item/weapon/ore/uranium), 1) = 10,
+			list(pick(subtypesof(/obj/item/weapon/coin)), 2) = 10,
 			list(/obj/item/weapon/spacecash/c500, 4) = 5,
 			list(/obj/item/weapon/spacecash/c200, 2) = 10,
 			list(/obj/item/weapon/spacecash/c100, 1) = 10,
 			list(/obj/item/weapon/spacecash/c50, 1) = 10,
 			list(/obj/item/weapon/spacecash/c20, 1) = 10,
-			list(/obj/item/weapon/melee/baton, 5) = 5,
+			list(pick(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/bottle/) - /obj/item/weapon/reagent_containers/food/drinks/bottle/small), 1) = 5,
+			list(/obj/item/weapon/storage/backpack/dufflebag/cratebooze,5) = 5,
+			list(/obj/item/weapon/storage/backpack/dufflebag/cratedrills, 5) = 5,
+			list(/obj/item/weapon/reagent_containers/glass/beaker/bluespace, 3) = 5,
+			list(/obj/item/weapon/reagent_containers/glass/beaker/noreact, 3) = 5,
+			list(/obj/item/weapon/melee/baton, 5) = 4,
+			list(pick(subtypesof(/obj/item/weapon/storage/mre)), 2) = 3,
+			list(/obj/item/seeds/random, 2) = 3,
+			list(/obj/item/clothing/under/chameleon, 5) = 3,
+			list(/obj/item/weapon/melee/classic_baton, 6) = 3,
+			list(/obj/item/weapon/rig/industrial, 6) = 3,
+			list(/obj/item/toy/katana, 1) = 2,
+			list(/obj/item/clothing/head/kitty, 1) = 2,
+			list(pick(subtypesof(/obj/item/weapon/soap)), 1) = 2,
 			list(/obj/item/clothing/under/shorts/red, 1) = 2,
 			list(/obj/item/clothing/under/shorts/blue, 1) = 2,
 			list(/obj/item/clothing/accessory/tie/horrible, 1) = 2,
-			list(/obj/item/clothing/under/chameleon, 5) = 2,
-			list(/obj/item/weapon/melee/classic_baton, 6) = 2,
+			list(pick(subtypesof(/obj/item/weapon/stock_parts) - /obj/item/weapon/stock_parts/subspace), 2) = 3,
 			list(/obj/item/latexballon, 2) = 2,
+			list(/obj/item/toy/syndicateballoon, 3) = 2,
+			list(/obj/item/clothing/suit/ianshirt, 3) = 2,
+			list(/obj/item/clothing/head/bearpelt, 4) = 2,
+			list(/obj/item/weapon/archaeological_find, 3) = 2,
 			list(pick(subtypesof(/obj/item/toy/mecha)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/figure)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/plushie)), 4) = 2,
-			list(pick(subtypesof(/obj/item/weapon/storage/mre)), 2) = 3,
-			list(pick(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/bottle/) - /obj/item/weapon/reagent_containers/food/drinks/bottle/small), 1) = 5,
 			list(pick(subtypesof(/obj/item/weapon/storage/firstaid)), 4) = 2,
-			list(pick(subtypesof(/obj/item/weapon/soap)), 1) = 2,
-			list(/obj/item/toy/syndicateballoon, 3) = 2,
-			list(/obj/item/weapon/rig/industrial, 6) = 2,
-			list(/obj/item/clothing/head/kitty, 1) = 2,
-			list(pick(subtypesof(/obj/item/weapon/coin)), 2) = 10,
-			list(/obj/item/clothing/suit/ianshirt, 3) = 2,
-			list(pick(subtypesof(/obj/item/weapon/stock_parts) - /obj/item/weapon/stock_parts/subspace), 2) = 2,
 			list(/obj/item/weapon/pickaxe/silver, 3) = 2,
 			list(/obj/item/weapon/pickaxe/drill, 3) = 2,
 			list(/obj/item/weapon/pickaxe/jackhammer, 4) = 2,
@@ -48,24 +52,12 @@
 			list(/obj/item/weapon/pickaxe/diamond, 5) = 2,
 			list(/obj/item/weapon/pickaxe/diamonddrill, 6) = 2,
 			list(/obj/item/weapon/pickaxe/plasmacutter, 5) = 2,
-			list(/obj/item/toy/katana, 1) = 2,
-			list(/obj/item/seeds/random, 2) = 2,
-			list(/obj/item/weapon/gun/energy/pummeler, 11) = 2,
-			list(pick(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug)), 1) = 1,
-			list(/obj/item/weed_extract, 2) = 1,
-			list(/obj/item/xenos_claw, 1) = 1,
-			list(/obj/item/clothing/head/bearpelt, 4) = 1,
-			list(/obj/item/organ/internal/heart, 1) = 1,
-			list(/obj/item/device/soulstone, 5) = 1,
-			list(/obj/item/weapon/material/sword/katana, 5) = 1,
-			list(/obj/item/weapon/dnainjector/xraymut, 6) = 1,
-			list(/obj/item/weapon/storage/backpack/clown/loaded, 5) = 1,
-			list(/obj/item/weapon/storage/backpack/mime/loaded, 5) = 1,
-			list(/obj/item/weapon/vampiric, 2) = 1,
-			list(/obj/item/weapon/archaeological_find, 3) = 1,
-			list(pick(subtypesof(/obj/item/weapon/melee/energy/sword) - /obj/item/weapon/melee/energy/sword/charge), 6) = 1,
-			list(pick(/obj/item/weapon/melee/energy/axe, /obj/item/weapon/melee/energy/spear), 11) = 1,
-			list(/obj/item/weapon/storage/backpack/luchador/loaded, 3) = 1,
+			list(/obj/item/device/soulstone, 5) = 2,
+			list(/obj/item/weapon/material/sword/katana, 5) = 2,
+			list(/obj/item/device/personal_shield_generator/belt/mining/loaded, 6) = 2,
+			list(pick(subtypesof(/obj/item/weapon/melee/energy/sword) - /obj/item/weapon/melee/energy/sword/charge), 6) = 2,
+			list(pick(/obj/item/weapon/dnainjector/xraymut, /obj/item/weapon/dnainjector/nobreath, /obj/item/weapon/dnainjector/insulation), 6) = 2,
+			list(/obj/item/weapon/gun/energy/netgun, 7) = 2,
 			list(pick(prob(300);/obj/item/weapon/gun/energy/mouseray,
 				prob(50);/obj/item/weapon/gun/energy/mouseray/corgi,
 				prob(50);/obj/item/weapon/gun/energy/mouseray/woof,
@@ -84,8 +76,18 @@
 				prob(5);/obj/item/weapon/gun/energy/mouseray/teppi,
 				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis,
 				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
-				), 8) = 1,
-			list(/obj/item/device/personal_shield_generator/belt/mining/loaded, 6) = 1
+				), 8) = 2,
+			list(/obj/item/weapon/gun/energy/pummeler, 11) = 2,
+			list(pick(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug)), 1) = 1,
+			list(/obj/item/xenos_claw, 1) = 1,
+			list(/obj/item/organ/internal/heart, 1) = 1,
+			list(/obj/item/weapon/vampiric, 2) = 1,
+			list(/obj/item/weed_extract, 2) = 1,
+			list(/obj/item/weapon/storage/backpack/luchador/loaded, 3) = 1,
+			list(/obj/item/weapon/storage/backpack/clown/loaded, 5) = 1,
+			list(/obj/item/weapon/storage/backpack/mime/loaded, 5) = 1,
+			list(pick(/obj/item/weapon/melee/energy/axe, /obj/item/weapon/melee/energy/spear), 11) = 1,
+			list(/obj/item/weapon/storage/backpack/sport/hyd/catchemall, 11) = 1
 			))
 		var/path = choice[1]
 		var/value = choice[2]
@@ -140,3 +142,20 @@
 		/obj/item/weapon/storage/belt/champion,
 		/obj/item/clothing/mask/luchador
 	)
+
+
+/obj/item/weapon/storage/backpack/sport/hyd/catchemall
+	name = "sports backpack"
+	desc = "A green sports backpack."
+	starts_with = list(
+		/obj/item/clothing/head/soft/red,
+		/obj/item/clothing/suit/varsity/blue,
+		/obj/item/clothing/under/pants/youngfolksjeans,
+		/obj/item/device/cataloguer,
+		/obj/item/capture_crystal
+	)
+
+/obj/item/weapon/storage/backpack/sport/hyd/catchemall/Initialize() //gotta have your starter 'mon too (or an improved way to catch one)
+	..()
+	var/path = pick(subtypesof(/obj/item/capture_crystal))
+	contents += new path()
