@@ -46,10 +46,12 @@
 
 	// Note, if you ever want to expand supported_types, you must manually add the custom state argument to their tgui_interact
 	// DISABLED: too fancy, too high-effort // A.tgui_interact(user, custom_state = hack_state)
-	// Just brute-force it open
+	// Just brute-force it
 	if(istype(A, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/D = A
-		if(D.locked == TRUE && full_override == FALSE)
+		if(!D.arePowerSystemsOn())
+			to_chat(user, "<span class='warning'>No response from remote, check door power.</span>")
+		else if(D.locked == TRUE && full_override == FALSE)
 			to_chat(user, "<span class='warning'>Unable to override door bolts!</span>")
 		else if(D.locked == TRUE && full_override == TRUE && D.arePowerSystemsOn())
 			to_chat(user, "<span class='notice'>Door bolts overridden.</span>")
