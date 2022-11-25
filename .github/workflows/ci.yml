@@ -10,7 +10,7 @@ env:
 jobs:
   file_tests:
     name: Run Linters
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Ensure +x on CI directory
@@ -36,7 +36,7 @@ jobs:
 
   dreamchecker:
     name: DreamChecker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
 
@@ -68,8 +68,12 @@ jobs:
         map: ['tether', 'stellar_delight', 'groundbase']
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
+<<<<<<< HEAD
     # needs: ['file_tests', 'dreamchecker']
     runs-on: ubuntu-latest
+=======
+    runs-on: ubuntu-20.04
+>>>>>>> 6074b622cfd... Merge pull request #8845 from Spookerton/spkrtn/sys/temp-downgrade-workflows
     steps:
       - uses: actions/checkout@v3
       - name: Ensure +x on CI directory

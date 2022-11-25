@@ -1,0 +1,11 @@
+name: Enforce PR labels
+on:
+  pull_request:
+    types: [labeled, unlabeled, opened, edited, synchronize]
+jobs:
+  enforce-label:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: yogevbd/enforce-label-action@2.2.2
+      with:
+        BANNED_LABELS: "Input: Staff,Input: Author,Needs Announcement,Needs Changelog,Needs Documentation,Stale"
