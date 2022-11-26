@@ -8,7 +8,7 @@
 	if(!istype(target))
 		return
 
-	var/list/smite_types = list(SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE,SMITE_AUTOSAVE_WIDE)
+	var/list/smite_types = list(SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_AD_SPAM,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE,SMITE_AUTOSAVE_WIDE)
 
 	var/smite_choice = tgui_input_list(usr, "Select the type of SMITE for [target]","SMITE Type Choice", smite_types)
 	if(!smite_choice)
@@ -127,6 +127,10 @@
 
 		if(SMITE_AUTOSAVE_WIDE)
 			fake_autosave(target, src, TRUE)
+
+		if(SMITE_AD_SPAM)
+			if(target.client)
+				create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
 
 		else
 			return //Injection? Don't print any messages.
