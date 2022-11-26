@@ -304,6 +304,43 @@
 	user << browse(dat, "window=library")
 	onclose(user, "library")
 
+//VOREStation Addition Start
+/obj/machinery/librarycomp/attack_ghost(mob/user)
+
+	var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
+	if(!show_admin_options)
+		. = ..()
+
+	else
+		usr.set_machine(src)
+		var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+
+		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
+		establish_old_db_connection()
+
+		if(!dbcon_old.IsConnected())
+			dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+		else
+			dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
+			<table>
+			<tr><td><A href='?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='?src=\ref[src];sort=title>TITLE</A></td><td><A href='?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
+			var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+			query.Execute()
+
+			while(query.NextRow())
+				var/id = query.item[1]
+				var/author = query.item[2]
+				var/title = query.item[3]
+				var/category = query.item[4]
+				dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];delid=[id]'>\[Del\]</A>"
+				dat += "</td></tr>"
+			dat += "</table>"
+		dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
+
+		user << browse(dat, "window=library")
+		onclose(user, "library")
+//VOREStation Addition End
+
 /obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
 	if (src.density && !src.emagged)
 		src.emagged = 1
@@ -460,6 +497,7 @@
 		else
 			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[sqlid]")
 			query.Execute()
+			log_admin("[usr.key] has deleted the book [sqlid]")	//VOREStation Addition
 
 	if(href_list["orderbyid"])
 		var/orderid = tgui_input_number(usr, "Enter your order:")
