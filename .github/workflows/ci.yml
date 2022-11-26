@@ -10,7 +10,7 @@ env:
 jobs:
   file_tests:
     name: Run Linters
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Ensure +x on CI directory
@@ -36,7 +36,7 @@ jobs:
 
   dreamchecker:
     name: DreamChecker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
 
@@ -69,7 +69,7 @@ jobs:
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
     # needs: ['file_tests', 'dreamchecker']
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Ensure +x on CI directory
@@ -120,7 +120,7 @@ jobs:
   tests_successful:
     name: Integration Tests
     needs: ['file_tests', 'dreamchecker', 'unit_tests']
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Report Success
         run: |
