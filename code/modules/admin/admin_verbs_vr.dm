@@ -73,3 +73,50 @@
 
 	else
 		tgui_alert_async(usr, "The ticket list is empty.","Empty")
+
+/client/proc/delbook()
+	set name = "Delete Book"
+	set desc = "Permamently deletes a book from the database."
+	set category = "Admin"
+	if(!src.holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/obj/machinery/librarycomp/our_comp
+	for(var/obj/machinery/librarycomp/l in world)
+		if(istype(l, /obj/machinery/librarycomp))
+			our_comp = l
+			break
+
+	if(!our_comp)
+		to_chat(usr, "<span class = 'warning'>Unable to locate a library computer to use for book deleting.</span>")
+		return
+
+	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n"
+	dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
+	establish_old_db_connection()
+
+	if(!dbcon_old.IsConnected())
+		dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+	else
+		dat += {"<A href='?our_comp=\ref[our_comp];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
+		<table>
+		<tr><td><A href='?our_comp=\ref[our_comp];sort=author>AUTHOR</A></td><td><A href='?our_comp=\ref[our_comp];sort=title>TITLE</A></td><td><A href='?our_comp=\ref[our_comp];sort=category>CATEGORY</A></td><td></td></tr>"}
+		var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [our_comp.sortby]")
+		query.Execute()
+
+		var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
+
+		while(query.NextRow())
+			var/id = query.item[1]
+			var/author = query.item[2]
+			var/title = query.item[3]
+			var/category = query.item[4]
+			dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>"
+			if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
+				dat += "<A href='?our_comp=\ref[our_comp];delid=[id]'>\[Del\]</A>"
+			dat += "</td></tr>"
+		dat += "</table>"
+
+	usr << browse(dat, "window=library")
+	onclose(usr, "library")
