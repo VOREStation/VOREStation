@@ -29,6 +29,7 @@
 			list(/obj/item/clothing/under/chameleon, 5) = 3,
 			list(/obj/item/weapon/melee/classic_baton, 6) = 3,
 			list(/obj/item/weapon/rig/industrial, 6) = 3,
+			list(/obj/item/device/multitool/hacktool, 5) = 3,
 			list(/obj/item/toy/katana, 1) = 2,
 			list(/obj/item/clothing/head/kitty, 1) = 2,
 			list(pick(subtypesof(/obj/item/weapon/soap)), 1) = 2,
@@ -54,6 +55,7 @@
 			list(/obj/item/weapon/pickaxe/plasmacutter, 5) = 2,
 			list(/obj/item/device/soulstone, 5) = 2,
 			list(/obj/item/weapon/material/sword/katana, 5) = 2,
+			list(/obj/item/weapon/storage/belt/utility/chief/full, 8) = 2,
 			list(/obj/item/device/personal_shield_generator/belt/mining/loaded, 6) = 2,
 			list(pick(subtypesof(/obj/item/weapon/melee/energy/sword) - /obj/item/weapon/melee/energy/sword/charge), 6) = 2,
 			list(pick(/obj/item/weapon/dnainjector/xraymut, /obj/item/weapon/dnainjector/nobreath, /obj/item/weapon/dnainjector/insulation), 6) = 2,
@@ -86,7 +88,16 @@
 			list(/obj/item/weapon/storage/backpack/luchador/loaded, 3) = 1,
 			list(/obj/item/weapon/storage/backpack/clown/loaded, 5) = 1,
 			list(/obj/item/weapon/storage/backpack/mime/loaded, 5) = 1,
+			list(pick(/obj/item/device/multitool/alien,
+				/obj/item/stack/cable_coil/alien,
+				/obj/item/weapon/tool/crowbar/alien,
+				/obj/item/weapon/tool/screwdriver/alien,
+				/obj/item/weapon/weldingtool/alien,
+				/obj/item/weapon/tool/wirecutters/alien,
+				/obj/item/weapon/tool/wrench/alien), 7) = 1,
 			list(pick(/obj/item/weapon/melee/energy/axe, /obj/item/weapon/melee/energy/spear), 11) = 1,
+			list(/obj/item/weapon/card/emag/used, 7) = 1,
+			list(/obj/item/weapon/card/emag, 11) = 1,
 			list(/obj/item/weapon/storage/backpack/sport/hyd/catchemall, 11) = 1
 			))
 		var/path = choice[1]
@@ -151,7 +162,6 @@
 		/obj/item/clothing/head/soft/red,
 		/obj/item/clothing/suit/varsity/blue,
 		/obj/item/clothing/under/pants/youngfolksjeans,
-		/obj/item/device/cataloguer,
 		/obj/item/capture_crystal
 	)
 
