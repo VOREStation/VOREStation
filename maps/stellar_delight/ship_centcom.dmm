@@ -4539,6 +4539,7 @@
 /area/shuttle/ccboat)
 "qB" = (
 /obj/structure/table/reinforced,
+/obj/machinery/librarycomp,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "qE" = (

@@ -1,11 +1,17 @@
 /obj/item/device/multitool/hacktool
 	var/is_hacking = 0
 	var/max_known_targets
+	var/hackspeed = 1
+	var/full_override = FALSE	//can we override door bolts too? defaults to false for event/safety reasons
 
 	var/in_hack_mode = 0
 	var/list/known_targets
 	var/list/supported_types
 	var/datum/tgui_state/default/must_hack/hack_state
+	
+/obj/item/device/multitool/hacktool/override
+	hackspeed = 0.75
+	full_override = TRUE
 
 /obj/item/device/multitool/hacktool/New()
 	..()
@@ -39,7 +45,23 @@
 		return 0
 
 	// Note, if you ever want to expand supported_types, you must manually add the custom state argument to their tgui_interact
-	A.tgui_interact(user, custom_state = hack_state)
+	// DISABLED: too fancy, too high-effort // A.tgui_interact(user, custom_state = hack_state)
+	// Just brute-force it
+	if(istype(A, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/D = A
+		if(!D.arePowerSystemsOn())
+			to_chat(user, "<span class='warning'>No response from remote, check door power.</span>")
+		else if(D.locked == TRUE && full_override == FALSE)
+			to_chat(user, "<span class='warning'>Unable to override door bolts!</span>")
+		else if(D.locked == TRUE && full_override == TRUE && D.arePowerSystemsOn())
+			to_chat(user, "<span class='notice'>Door bolts overridden.</span>")
+			D.unlock()
+		else if(D.density == TRUE && D.locked == FALSE)
+			to_chat(user, "<span class='notice'>Overriding access. Door opening.</span>")
+			D.open()
+		else if(D.density == FALSE && D.locked == FALSE)
+			to_chat(user, "<span class='notice'>Overriding access. Door closing.</span>")
+			D.close()
 	return 1
 
 /obj/item/device/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
@@ -56,8 +78,9 @@
 
 	to_chat(user, "<span class='notice'>You begin hacking \the [target]...</span>")
 	is_hacking = 1
-	// On average hackin takes ~30 seconds. Fairly small random span to avoid people simply aborting and trying again
-	var/hack_result = do_after(user, (20 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS)))
+	// On average hackin takes ~15 seconds. Fairly small random span to avoid people simply aborting and trying again
+	// Reduced hack duration to compensate for the reduced functionality 
+	var/hack_result = do_after(user, ((10 SECONDS + rand(0, 10 SECONDS))*hackspeed))
 	is_hacking = 0
 
 	if(hack_result && in_hack_mode)

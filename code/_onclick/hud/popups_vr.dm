@@ -68,4 +68,4 @@
 
 /obj/screen/popup/default/New()
 	..()
-	icon_state = "popup[rand(1,4)]"
+	icon_state = "popup[rand(1,10)]"

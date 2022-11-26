@@ -861,3 +861,15 @@
 	trash = /obj/item/trash/ratpackcheese
 	nutriment_amt = 2
 	nutriment_desc = list("gourmand cheese" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey
+	name = "Compact Holiday Special Bird"
+	desc = "A great gift for holidays for assorted species. This contains a full freshly cooked turkey. Open and enjoy. Courtesy of altevian packaging"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_turkey"
+	package_open_state = "altevian_pack_turkey-open"
+	package_opening_state = "altevian_pack_turkey-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpackturkey
+	nutriment_amt = 18
+	nutriment_desc = list("high-quality poultry" = 4)

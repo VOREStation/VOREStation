@@ -7050,6 +7050,7 @@
 /area/centcom/medical)
 "DJ" = (
 /obj/structure/table/reinforced,
+/obj/machinery/librarycomp,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "DK" = (

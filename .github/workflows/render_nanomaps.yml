@@ -19,7 +19,7 @@ jobs:
       pull-requests: write # to create pull requests (repo-sync/pull-request)
 
     name: 'Generate NanoMaps'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Clone
       uses: actions/checkout@v3
