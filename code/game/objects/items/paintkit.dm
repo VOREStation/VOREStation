@@ -57,6 +57,17 @@
 
 	..()
 
+/// General clothing items, that need to set item_state..
+/obj/item/kit/clothing
+	name = "clothing modification kit"
+	desc = "A kit for modifying clothing."
+
+/obj/item/kit/clothing/customize(var/obj/item/clothing/I, var/mob/user)
+	if(istype(I) && can_customize(I))
+		I.sprite_sheets[SPECIES_TESHARI] = new_icon_override_file  /// Will look the same on teshari and other species.
+		I.item_state = new_icon
+		return ..()
+
 // Root hardsuit kit defines.
 // Icons for modified hardsuits need to be in the proper .dmis because suit cyclers may cock them up.
 /obj/item/device/kit/suit
