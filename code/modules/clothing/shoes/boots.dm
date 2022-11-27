@@ -96,7 +96,7 @@
 	species_restricted = null
 
 /obj/item/clothing/shoes/boots/workboots
-	name = "workboots"
+	name = "tan workboots"
 	desc = "A pair of steel-toed work boots designed for use in industrial settings. Safety first."
 	icon_state = "workboots"
 	armor = list(melee = 40, bullet = 0, laser = 0, energy = 15, bomb = 20, bio = 0, rad = 20)
@@ -105,12 +105,31 @@
 	pickup_sound = 'sound/items/pickup/boots.ogg'
 
 /obj/item/clothing/shoes/boots/workboots/toeless
-	name = "toe-less workboots"
+	name = "toe-less tan workboots"
 	desc = "A pair of toeless work boots designed for use in industrial settings. Modified for species whose toes have claws."
 	icon_state = "workbootstoeless"
 	item_state_slots = list(slot_r_hand_str = "workboots", slot_l_hand_str = "workboots")
 	species_restricted = null
 
+<<<<<<< HEAD
+=======
+/obj/item/clothing/shoes/boots/workboots/dark
+	name = "black workboots"
+	icon_state = "workboots_dark"
+
+/obj/item/clothing/shoes/boots/workboots/grey
+	name = "grey workboots"
+	icon_state = "workboots_grey"
+
+/obj/item/clothing/shoes/boots/workboots/toeless/dark
+	name = "toe-less black workboots"
+	icon_state = "workboots_dark_toeless"
+
+/obj/item/clothing/shoes/boots/workboots/toeless/grey
+	name = "toe-less grey workboots"
+	icon_state = "workboots_grey_toeless"
+
+>>>>>>> 060466073ba... Merge pull request #8842 from Cerebulon/workbootsloadout
 /obj/item/clothing/shoes/boots/winter
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."
