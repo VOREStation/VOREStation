@@ -18,6 +18,8 @@
 
 	generate_loot()
 
+/* Vorestation edit - see abandonedcrates_vr.dm for virgo version. Keeping legacy proc in comments for reference.
+
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
 	var/loot = rand(1, 100)
 	switch(loot)
@@ -142,6 +144,9 @@
 			new/obj/item/clothing/mask/luchador(src)
 		if(100)
 			new/obj/item/device/personal_shield_generator/belt/mining/loaded(src)
+
+vorestation edit end */
+
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
 	if(!locked)
