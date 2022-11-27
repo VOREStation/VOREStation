@@ -97,6 +97,8 @@
 				/obj/item/weapon/tool/wrench/alien), 7) = 1,
 			list(pick(/obj/item/weapon/melee/energy/axe, /obj/item/weapon/melee/energy/spear), 11) = 1,
 			list(/obj/item/weapon/card/emag/used, 7) = 1,
+			list(pick(/obj/item/weapon/grenade/spawnergrenade/spesscarp, /obj/item/weapon/grenade/spawnergrenade/spider, /obj/item/weapon/grenade/explosive/frag), 7) = 1,
+			list(/obj/item/weapon/grenade/flashbang/clusterbang, 7) = 1,
 			list(/obj/item/weapon/card/emag, 11) = 1,
 			list(/obj/item/weapon/storage/backpack/sport/hyd/catchemall, 11) = 1
 			))
