@@ -2,6 +2,7 @@
 	var/is_hacking = 0
 	var/max_known_targets
 	var/hackspeed = 1
+	var/max_level = 4		//what's the max door security_level we can handle?
 	var/full_override = FALSE	//can we override door bolts too? defaults to false for event/safety reasons
 
 	var/in_hack_mode = 0
@@ -11,6 +12,7 @@
 	
 /obj/item/device/multitool/hacktool/override
 	hackspeed = 0.75
+	max_level = 5
 	full_override = TRUE
 
 /obj/item/device/multitool/hacktool/New()
@@ -69,18 +71,23 @@
 		to_chat(user, "<span class='warning'>You are already hacking!</span>")
 		return 0
 	if(!is_type_in_list(target, supported_types))
-		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Unable to hack this target!</span>")
+		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Unable to hack this target, invalid target type.</span>")
 		return 0
-	var/found = known_targets.Find(target)
+
+	var/obj/machinery/door/airlock/D = target
+	if(D.security_level > max_level)
+		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Target's electronic security is too complex.</span>")
+		return 0
+		
+	var/found = known_targets.Find(D)
 	if(found)
 		known_targets.Swap(1, found)	// Move the last hacked item first
 		return 1
-
-	to_chat(user, "<span class='notice'>You begin hacking \the [target]...</span>")
+	to_chat(user, "<span class='notice'>You begin hacking \the [D]...</span>")
 	is_hacking = 1
 	// On average hackin takes ~15 seconds. Fairly small random span to avoid people simply aborting and trying again
-	// Reduced hack duration to compensate for the reduced functionality 
-	var/hack_result = do_after(user, ((10 SECONDS + rand(0, 10 SECONDS))*hackspeed))
+	// Reduced hack duration to compensate for the reduced functionality, multiplied by door sec level
+	var/hack_result = do_after(user, (((10 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS))*hackspeed)*D.security_level))
 	is_hacking = 0
 
 	if(hack_result && in_hack_mode)
@@ -90,8 +97,8 @@
 		to_chat(user, "<span class='warning'>Your hacking attempt failed!</span>")
 		return 0
 
-	known_targets.Insert(1, target)	// Insert the newly hacked target first,
-	target.register(OBSERVER_EVENT_DESTROY, src, /obj/item/device/multitool/hacktool/proc/on_target_destroy)
+	known_targets.Insert(1, D)	// Insert the newly hacked target first,
+	D.register(OBSERVER_EVENT_DESTROY, src, /obj/item/device/multitool/hacktool/proc/on_target_destroy)
 	return 1
 
 /obj/item/device/multitool/hacktool/proc/sanity_check()
