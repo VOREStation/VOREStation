@@ -100,6 +100,7 @@
 		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/reagent_containers/blood,
 		/obj/item/stack/material/phoron,
+		/obj/item/weapon/tank/anesthetic,
 		/obj/item/weapon/disk/body_record //Vorestation Edit: this lets you get an empty sleeve or help someone else
 		)
 
