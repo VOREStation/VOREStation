@@ -18,6 +18,7 @@
 	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
 
 	num_alternate_languages = 3
+	species_language = null
 	secondary_langs = list("Sol Common")
 	//color_mult = 1 //It seemed to work fine in testing, but I've been informed it's unneeded.
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
@@ -332,6 +333,7 @@
 	burn_mod =  1.15	//15% burn damage increase. They're spiders. Aerosol can+lighter = dead spiders.
 
 	num_alternate_languages = 3
+	species_language = LANGUAGE_VESPINAE
 	secondary_langs = list(LANGUAGE_VESPINAE)
 	color_mult = 1
 	tail = "tail" //Spider tail.
@@ -416,6 +418,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_CANILUNZT)
 	name_language = LANGUAGE_CANILUNZT
+	species_language = LANGUAGE_CANILUNZT
 	primitive_form = "Wolpin"
 	color_mult = 1
 	icon_height = 64
