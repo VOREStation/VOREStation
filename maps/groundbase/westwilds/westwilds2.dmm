@@ -25,9 +25,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "ad" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/filingcabinet/chestdrawer{
 	name = "SCAN RECORDS"
@@ -102,6 +99,10 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"aS" = (
+/obj/machinery/vending/wallmed1,
+/turf/simulated/wall,
+/area/groundbase/science/outpost/anomaly_lab)
 "bc" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -18205,7 +18206,7 @@ Lg
 HH
 If
 HC
-uG
+aS
 Wl
 Wl
 XS

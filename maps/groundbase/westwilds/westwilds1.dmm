@@ -2034,9 +2034,6 @@
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/submap/groundbase/wilderness/west)
 "zs" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/filingcabinet/chestdrawer{
 	name = "SCAN RECORDS"
@@ -3503,6 +3500,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Pj" = (
+/obj/machinery/vending/wallmed1,
+/turf/simulated/wall,
+/area/groundbase/science/outpost/anomaly_lab)
 "Pl" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 4
@@ -20618,7 +20619,7 @@ sS
 Jx
 XR
 GC
-OK
+Pj
 iL
 iL
 rQ
