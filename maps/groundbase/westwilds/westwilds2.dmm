@@ -15,6 +15,9 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "ab" = (
 /obj/machinery/artifact_scanpad,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "ac" = (
@@ -22,12 +25,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "ad" = (
-/obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/filingcabinet/chestdrawer{
+	name = "SCAN RECORDS"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "am" = (
@@ -98,6 +99,10 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"aS" = (
+/obj/machinery/vending/wallmed1,
+/turf/simulated/wall,
+/area/groundbase/science/outpost/anomaly_lab)
 "bc" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -532,12 +537,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_hallway)
 "gZ" = (
-/obj/structure/table/standard,
-/obj/item/stack/nanopaste,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
@@ -549,6 +548,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/network/research_outpost,
+/obj/machinery/alarm,
 /turf/simulated/floor/tiled/monotile,
 /area/groundbase/science/outpost/anomaly_lab)
 "hb" = (
@@ -1817,7 +1817,6 @@
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/science/outpost/toxins_mixing)
 "uA" = (
-/obj/machinery/radiocarbon_spectrometer,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
@@ -1828,7 +1827,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
 	},
-/obj/machinery/alarm,
+/obj/structure/table/standard,
+/obj/item/stack/nanopaste{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/weapon/reagent_containers/glass/bucket{
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/groundbase/science/outpost/anomaly_lab)
 "uG" = (
@@ -3446,6 +3452,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/groundbase/science/outpost/anomaly_lab)
 "Ly" = (
@@ -3535,6 +3544,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
+/obj/structure/closet/crate/science,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_storage)
 "MY" = (
@@ -18196,7 +18206,7 @@ Lg
 HH
 If
 HC
-uG
+aS
 Wl
 Wl
 XS
