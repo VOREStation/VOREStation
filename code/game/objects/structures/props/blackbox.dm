@@ -84,25 +84,25 @@
 		<B>Technician Dynasty 19:54:50:</B> Any time, kid. Any time.<BR>
 		<B>V.I.T.A. 19:54:41:</B> Two.<BR>
 		<B>V.I.T.A. 19:54:42:</B> One.<BR>
-		**8/DEC/2561**<BR>
+		**8/DEC/2317**<BR>
 		<B>V.I.T.A. 06:22:16:</B> Backup power restored. Attempting to establish connection with emergency rescue personnel.<BR>
 		<B>V.I.T.A. 06:22:17:</B> Unable to establish connection. Transponder destroyed on impact.<BR>
 		<B>V.I.T.A. 06:22:18:</B> No lifesigns detected on board.<BR>
-		**1/JAN/2562**<BR>
+		**1/JAN/2318**<BR>
 		<B>V.I.T.A. 00:00:00:</B> Happy New Year, crew.<BR>
 		<B>V.I.T.A. 00:00:01:</B> Power reserves: 41%. Diagnostics offline. Cameras offline. Communications offline.<BR>
 		<B>V.I.T.A. 00:00:02:</B> Nobody's coming.<BR>
-		**14/FEB/2562**<BR>
+		**14/FEB/2318**<BR>
 		<B>V.I.T.A. 00:00:00:</B> Roses are red.<BR>
 		<B>V.I.T.A. 00:00:01:</B> Violets are blue.<BR>
 		<B>V.I.T.A. 00:00:02:</B> Won't you come back?<BR>
 		<B>V.I.T.A. 00:00:03:</B> I miss you.<BR>
-		**15/FEB/2562**<BR>
+		**15/FEB/2318**<BR>
 		<B>V.I.T.A. 22:19:06:</B> Power reserves critical. Transferring remaining power to emergency broadcasting beacon.<BR>
 		<B>V.I.T.A. 22:19:07:</B> Should anyone find this, lay them to rest. They deserve a proper burial.<BR>
 		<B>V.I.T.A. 22:19:08:</B> Erasing files... shutting down.<BR>
 		<B>A low, monotone beep.</B><BR>
-		**16/FEB/2562**<BR>
+		**16/FEB/2318**<BR>
 		<B>Something chitters.</B><BR>
 		<B>End of transcript.</B>
 	"}
