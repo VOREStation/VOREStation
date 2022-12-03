@@ -147,13 +147,14 @@
 	desc = "A high tech looking vest. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
 
 	icon_state = "cyberpunk_recolor"
-	species_restricted = list(SPECIES_ALTEVIAN)
 
 // Altevian admiralty stuff
 /obj/item/clothing/suit/captunic/capjacket/altevian_admiral				// Subtype of capjacket because A) it makes sense and B) conviniently matching stats
 	name = "altevian officer's suit"
 	desc = "Formal attire worn by officers and bridge crew from the Altevian Hegemony. The material is made of high quality silk and provides maximum comfort and breathing room for those that are working double shifts all the time."
 	icon_state = "altevian-admiral"
+
+	species_restricted = list(SPECIES_ALTEVIAN)
 
 /obj/item/clothing/suit/captunic/capjacket/altevian_admiral/gray
 	name = "gray altevian officer's suit"
