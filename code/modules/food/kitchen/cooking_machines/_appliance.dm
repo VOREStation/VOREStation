@@ -489,6 +489,10 @@
 	var/list/cooktypes = list()
 	var/datum/reagents/buffer = new /datum/reagents(1000)
 	var/totalcolour
+	var/reagents_determine_color
+
+	if(!LAZYLEN(CI.container.contents))	// It's possible to make something, such as a cake in the oven, with only reagents. This stops them from being grey and sad.
+		reagents_determine_color = TRUE
 
 	for (var/obj/item/I in CI.container)
 		var/obj/item/weapon/reagent_containers/food/snacks/S
@@ -526,6 +530,13 @@
 	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(CI.container)
 	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
 																 //just call trans_to_holder instead
+
+	// Reagent-only foods.
+	if(reagents_determine_color)
+		totalcolour = result.reagents.get_color()
+
+		for(var/datum/reagent/reag in result.reagents.reagent_list)
+			words |= text2list(reag.name, " ")
 
 	//Filling overlay
 	var/image/I = image(result.icon, "[result.icon_state]_filling")
