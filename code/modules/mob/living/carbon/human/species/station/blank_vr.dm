@@ -6,7 +6,7 @@
 /datum/species/custom
 	name = SPECIES_CUSTOM
 	name_plural = "Custom"
-	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
+	selects_bodytype = TRUE
 	base_species = SPECIES_HUMAN
 
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)

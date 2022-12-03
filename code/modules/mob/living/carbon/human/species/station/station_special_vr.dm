@@ -15,7 +15,7 @@
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
 	base_species = "Xenochimera"
-	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
+	selects_bodytype = TRUE
 
 	num_alternate_languages = 3
 	secondary_langs = list("Sol Common")

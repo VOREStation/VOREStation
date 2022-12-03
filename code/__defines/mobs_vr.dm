@@ -43,9 +43,3 @@
 //custom species base sprites
 #define SPECIES_FENNEC				"Fennec"
 #define SPECIES_XENOHYBRID			"Xenohybrid"
-
-//for custom bodytypes
-
-#define SELECTS_BODYTYPE_FALSE			0
-#define SELECTS_BODYTYPE_CUSTOM			1
-#define SELECTS_BODYTYPE_SHAPESHIFTER	2

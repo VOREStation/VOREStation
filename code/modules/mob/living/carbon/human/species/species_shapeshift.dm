@@ -13,7 +13,7 @@ var/list/wrapped_species_by_ref = list()
 
 	var/list/valid_transform_species = list()
 	var/monochromatic
-	//var/default_form = SPECIES_HUMAN //VOREStation edit
+	var/default_form = SPECIES_HUMAN
 
 /datum/species/shapeshifter/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
 	return valid_transform_species
@@ -63,7 +63,7 @@ var/list/wrapped_species_by_ref = list()
 
 /datum/species/shapeshifter/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()
-	wrapped_species_by_ref["\ref[H]"] = base_species //VOREStation edit
+	wrapped_species_by_ref["\ref[H]"] = default_form
 	if(monochromatic)
 		H.r_hair =   H.r_skin
 		H.g_hair =   H.g_skin
@@ -159,7 +159,6 @@ var/list/wrapped_species_by_ref = list()
 		return
 	shapeshifter_change_shape(new_species)
 
-/* VOREStation edit - moved to species_shapeshift_vr.dm
 /mob/living/carbon/human/proc/shapeshifter_change_shape(var/new_species = null)
 	if(!new_species)
 		return
@@ -167,7 +166,6 @@ var/list/wrapped_species_by_ref = list()
 	wrapped_species_by_ref["\ref[src]"] = new_species
 	visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
 	regenerate_icons()
-*/
 
 /mob/living/carbon/human/proc/shapeshifter_select_colour()
 
@@ -320,11 +318,11 @@ var/list/wrapped_species_by_ref = list()
 	var/new_eyes = input(usr, "Pick a new color for your eyes.","Eye Color", current_color) as null|color
 	if(!new_eyes)
 		return
-
+	
 	shapeshifter_set_eye_color(new_eyes)
 
 /mob/living/carbon/human/proc/shapeshifter_set_eye_color(var/new_eyes)
-
+	
 	var/list/new_color_rgb_list = hex2rgb(new_eyes)
 	// First, update mob vars.
 	r_eyes = new_color_rgb_list[1]

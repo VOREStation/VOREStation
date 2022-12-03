@@ -14,7 +14,7 @@
 	max_age = 250
 	health_hud_intensity = 1.5
 	base_species = SPECIES_ALRAUNE
-	selects_bodytype = SELECTS_BODYTYPE_CUSTOM //VOREStation edit
+	selects_bodytype = TRUE
 
 	body_temperature = T20C
 	breath_type = "oxygen"
