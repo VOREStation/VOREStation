@@ -12,25 +12,21 @@
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/Initialize()
-=======
-/obj/item/reagent_containers/food/verb/change_name()
+/obj/item/weapon/reagent_containers/food/verb/change_name()
 	set name = "Rename Food"
 	set category = "Object"
 	set src in view(0)
 
 	handle_name_change(usr)
 
-/obj/item/reagent_containers/food/proc/handle_name_change(var/mob/living/user)
+/obj/item/weapon/reagent_containers/food/proc/handle_name_change(var/mob/living/user)
 	var/n_name = sanitizeSafe(input(user, "What would you like to name \the [src]? Leave blank to reset.", "Food Naming", null) as text, MAX_NAME_LEN)
 	if(!n_name)
 		n_name = initial(name)
 
 	name = n_name
 
-/obj/item/reagent_containers/food/Initialize()
->>>>>>> c970f844451... Naming Food & Blood Cakes (#8817)
+/obj/item/weapon/reagent_containers/food/Initialize()
 	. = ..()
 	if (center_of_mass.len && !pixel_x && !pixel_y)
 		src.pixel_x = rand(-6.0, 6) //Randomizes postion
