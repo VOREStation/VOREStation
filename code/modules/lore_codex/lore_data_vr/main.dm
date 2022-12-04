@@ -30,4 +30,7 @@
 	in this text does not reflect the opinions of the publisher, and are instead the author's.\
 	<br><br>\
 	Eshi Tache has also written other <i>The Traveler's Guide</i> books, including <i>Sol Edition</i>, <i>Tau Ceti Edition</i>, <i>Alpha Centauri Edition</i>, <i>Vir Edition</i>, and more, \
-	which you can find in your local book store, library, or e-reader device."
+	which you can find in your local book store, library, or e-reader device. \
+	<br><br> \
+	((Please note - this is an IC book. Lore inside may exhibit biases differing from reality. Furthermore, it may be outdated in parts. Please consult the VOREStation Wiki \
+	for up to date and objective information under the Backstory button.))"
