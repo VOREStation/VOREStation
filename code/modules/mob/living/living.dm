@@ -630,12 +630,18 @@
 	SetStunned(0)
 	SetWeakened(0)
 
+	// undo various death related conveniences
+	sight = initial(sight)
+	see_in_dark = initial(see_in_dark)
+	see_invisible = initial(see_invisible)
+
 	// shut down ongoing problems
 	radiation = 0
 	nutrition = 400
 	bodytemperature = T20C
 	sdisabilities = 0
 	disabilities = 0
+	resting = FALSE
 
 	// fix blindness and deafness
 	blinded = 0

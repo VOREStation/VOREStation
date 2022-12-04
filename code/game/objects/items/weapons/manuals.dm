@@ -387,11 +387,11 @@
 
 
 /obj/item/weapon/book/manual/medical_cloning
-	name = "Cloning Techniques of the 26th Century"
+	name = "Cloning Techniques of the 24th Century"
 	icon_state ="bookCloning"
 	item_state = "book9"
 	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Cloning Techniques of the 26th Century"
+	title = "Cloning Techniques of the 24th Century"
 
 	dat = {"<html>
 				<head>

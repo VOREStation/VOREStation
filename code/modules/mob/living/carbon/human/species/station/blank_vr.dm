@@ -6,7 +6,7 @@
 /datum/species/custom
 	name = SPECIES_CUSTOM
 	name_plural = "Custom"
-	selects_bodytype = TRUE
+	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
 	base_species = SPECIES_HUMAN
 
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
@@ -21,6 +21,7 @@
 	max_age = 200
 	health_hud_intensity = 2
 	num_alternate_languages = 3
+	species_language = null
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
 
