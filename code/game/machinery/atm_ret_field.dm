@@ -14,11 +14,11 @@
 	var/isactive = FALSE
 	var/wasactive = FALSE		//controls automatic reboot after power-loss
 	var/alwaysactive = FALSE	//for a special subtype
-	
+
 	//how long it takes us to reboot if we're shut down by an EMP
 	var/reboot_delay_min = 50
 	var/reboot_delay_max = 75
-	
+
 	var/hatch_open = FALSE
 	var/wires_intact = TRUE
 	var/list/areas_added
@@ -99,12 +99,12 @@
 	var/oldstat
 	..()
 	if(!(stat & NOPOWER))
-		ispowered = 1
+		ispowered = TRUE
 		update_icon()
 		if(alwaysactive || wasactive)	//reboot our field if we were on or are supposed to be always-on
 			generate_field()
 	if(stat != oldstat && isactive && (stat & NOPOWER))
-		ispowered = 0
+		ispowered = FALSE
 		disable_field()
 		update_icon()
 
@@ -118,6 +118,7 @@
 /obj/machinery/atmospheric_field_generator/ex_act(severity)
 	switch(severity)
 		if(1)
+			stat |= BROKEN //ensures that always on generators are set as broken prior to being deleted, thus, off.
 			disable_field()
 			qdel(src)
 			return
@@ -134,23 +135,26 @@
 	if(!ispowered || hatch_open || !wires_intact || isactive) //if it's not powered, the hatch is open, the wires are busted, or it's already on, don't do anything
 		return
 	else
-		isactive = 1
+		isactive = TRUE
 		icon_state = "arfg_on"
 		new field_type (src.loc)
 		src.visible_message("<span class='warning'>The ARF-G crackles to life!</span>","<span class='warning'>You hear an ARF-G coming online!</span>")
 		update_use_power(USE_POWER_ACTIVE)
 	return
-	
+
 /obj/machinery/atmospheric_field_generator/proc/disable_field()
 	if(isactive)
-		icon_state = "arfg_off"
-		for(var/obj/structure/atmospheric_retention_field/F in loc)
-			qdel(F)
-		src.visible_message("The ARF-G shuts down with a low hum.","You hear an ARF-G powering down.")
-		update_use_power(USE_POWER_IDLE)
-		isactive = 0
+		if(!(stat & NOPOWER) && (alwaysactive == TRUE)) //If we're not damaged or unpowered, don't turn off if we're always on.
+			return
+		else
+			icon_state = "arfg_off"
+			for(var/obj/structure/atmospheric_retention_field/F in loc)
+				qdel(F)
+			src.visible_message("The ARF-G shuts down with a low hum.","You hear an ARF-G powering down.")
+			update_use_power(USE_POWER_IDLE)
+			isactive = FALSE
 	return
-	
+
 /obj/machinery/atmospheric_field_generator/Initialize()
 	. = ..()
 	//Delete ourselves if we find extra mapped in arfgs
@@ -158,7 +162,7 @@
 		if(F != src)
 			log_debug("Duplicate ARFGS at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
-	
+
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -202,11 +206,11 @@
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
 		add_overlay(I)
-	
+
 	return
 
 /obj/structure/atmospheric_retention_field/Initialize()
-	. = ..()	
+	. = ..()
 	update_nearby_tiles() //Force ZAS update
 	update_connections(1)
 	update_icon()
