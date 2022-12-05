@@ -24,10 +24,20 @@
 		return
 
 	var/list/possible = list()
-
 	for(var/mob/living/silicon/robot/R as anything in GLOB.available_ai_shells)
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) )  && !(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)) )	//VOREStation Edit: shell restrictions
-			possible += R
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) )	//VOREStation Edit: shell restrictions
+			if(istype(R.loc, /obj/machinery/recharge_station))	//Check Rechargers
+				var/obj/machinery/recharge_station/RS = R.loc
+				if(!(using_map.ai_shell_restricted && !(RS.z in using_map.ai_shell_allowed_levels)))	//Allow station borgs to be redeployed from Chargers.
+					possible += R
+
+			if(isbelly(R.loc))	//check belly space
+				var/obj/belly/B = R.loc
+				if(!(using_map.ai_shell_restricted && !(B.owner.z in using_map.ai_shell_allowed_levels)))	//No smuggling in borgs
+					possible += R
+
+			if(!(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)))
+				possible += R
 
 	if(!LAZYLEN(possible))
 		to_chat(src, span("warning", "No usable AI shell beacons detected."))
