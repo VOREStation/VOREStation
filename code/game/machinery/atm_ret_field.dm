@@ -98,22 +98,25 @@
 /obj/machinery/atmospheric_field_generator/power_change()
 	var/oldstat
 	..()
-	if(!(stat & NOPOWER))
+	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		ispowered = TRUE
 		update_icon()
 		if(alwaysactive || wasactive)	//reboot our field if we were on or are supposed to be always-on
 			generate_field()
-	if(stat != oldstat && isactive && (stat & NOPOWER))
+	if(stat != oldstat && isactive && (stat & (BROKEN|NOPOWER|EMPED)))
 		ispowered = FALSE
 		disable_field()
 		update_icon()
 
 /obj/machinery/atmospheric_field_generator/emp_act()
-	. = ..()
-	disable_field() //shutting dowwwwwwn
-	if(alwaysactive || wasactive) //reboot after a short delay if we were online before
+	if(!(stat & EMPED))
+		stat |= EMPED
+		disable_field() //shutting dowwwwwwn
 		spawn(rand(reboot_delay_min,reboot_delay_max))
-			generate_field()
+			stat &= ~EMPED
+			if(alwaysactive || wasactive) //reboot after a short delay if we were online before
+				generate_field()
+	..()
 
 /obj/machinery/atmospheric_field_generator/ex_act(severity)
 	switch(severity)
@@ -144,7 +147,7 @@
 
 /obj/machinery/atmospheric_field_generator/proc/disable_field()
 	if(isactive)
-		if(!(stat & NOPOWER) && (alwaysactive == TRUE)) //If we're not damaged or unpowered, don't turn off if we're always on.
+		if(alwaysactive == TRUE && !(stat & (BROKEN|NOPOWER|EMPED))) //If we're not damaged, don't turn off if we're always on.
 			return
 		else
 			icon_state = "arfg_off"
