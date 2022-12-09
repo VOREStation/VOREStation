@@ -272,7 +272,7 @@
 	allowed_roles = list("Internal Affairs Agent")
 
 /datum/gear/uniform/suit/bartenderskirt
-	display_name = "suit, bartender skirt (Bartender)"
+	display_name = "suit, bartender skirt"
 	path = /obj/item/clothing/under/rank/bartender/skirt
 
 /datum/gear/uniform/scrub
