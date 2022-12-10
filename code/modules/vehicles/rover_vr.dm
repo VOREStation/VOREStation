@@ -100,8 +100,9 @@
 
 //cargo trains are open topped, so there is a chance the projectile will hit the mob ridding the train instead
 /obj/vehicle/train/rover/bullet_act(var/obj/item/projectile/Proj)
-	if(buckled_mob && prob(70))
-		buckled_mob.bullet_act(Proj)
+	if(has_buckled_mobs() && prob(70))
+		var/mob/living/L = pick(buckled_mobs)
+		L.bullet_act(Proj)
 		return
 	..()
 
@@ -299,7 +300,7 @@
 	return ..()
 
 /obj/vehicle/train/rover/engine/unload(var/mob/user, var/direction)
-	var/mob/living/carbon/human/C = load	
+	var/mob/living/carbon/human/C = load
 
 
 	if(ismob(load))
