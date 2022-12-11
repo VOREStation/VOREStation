@@ -78,6 +78,7 @@
 #include "code\__defines\plants.dm"
 #include "code\__defines\preferences.dm"
 #include "code\__defines\process_scheduler.dm"
+#include "code\__defines\procpath.dm"
 #include "code\__defines\qdel.dm"
 #include "code\__defines\research.dm"
 #include "code\__defines\roguemining_vr.dm"

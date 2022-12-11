@@ -1,9 +1,28 @@
+/datum/admins/proc/CheckAdminHref(href, href_list)
+	var/auth = href_list["admin_token"]
+	. = auth && (auth == href_token || auth == GLOB.href_token)
+	if(.)
+		return
+	var/msg = !auth ? "no" : "a bad"
+	message_admins("[key_name_admin(usr)] clicked an href with [msg] authorization key!")
+
+	var/debug_admin_hrefs = TRUE // Remove once everything is converted over
+	if(debug_admin_hrefs)
+		message_admins("Debug mode enabled, call not blocked. Please ask your coders to review this round's logs.")
+		log_world("UAH: [href]")
+		return TRUE
+
+	log_admin("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
+
 /datum/admins/Topic(href, href_list)
 	..()
 
 	if(usr.client != src.owner || !check_rights(0))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
 		message_admins("[usr.key] has attempted to override the admin panel!")
+		return
+
+	if(!CheckAdminHref(href, href_list))
 		return
 
 	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))

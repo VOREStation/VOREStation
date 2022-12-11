@@ -43,12 +43,12 @@ var/global/floorIsLava = 0
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+		body += "\[<A href='?src=\ref[src];[HrefToken(TRUE)];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
 
 	if(istype(M, /mob/new_player))
 		body += " <B>Hasn't Entered Game</B> "
 	else
-		body += " \[<A href='?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
+		body += " \[<A href='?src=\ref[src];[HrefToken(TRUE)];revive=\ref[M]'>Heal</A>\] "
 
 	if(M.client)
 		body += "<br><b>First connection:</b> [M.client.player_age] days ago"
@@ -57,41 +57,41 @@ var/global/floorIsLava = 0
 
 	body += {"
 		<br><br>\[
-		<a href='?_src_=vars;Vars=\ref[M]'>VV</a> -
-		<a href='?src=\ref[src];traitor=\ref[M]'>TP</a> -
-		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
-		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
+		<a href='?_src_=vars;[HrefToken(TRUE)];Vars=\ref[M]'>VV</a> -
+		<a href='?src=\ref[src];[HrefToken(TRUE)];traitor=\ref[M]'>TP</a> -
+		<a href='?src=\ref[usr];[HrefToken(TRUE)];priv_msg=\ref[M]'>PM</a> -
+		<a href='?src=\ref[src];[HrefToken(TRUE)];subtlemessage=\ref[M]'>SM</a> -
 		[admin_jump_link(M, src)]\] <br>
 		<b>Mob type:</b> [M.type]<br>
 		<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
-		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
-		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
-		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
-		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
-		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];boot2=\ref[M]'>Kick</A> |
+		<A href='?_src_=holder;[HrefToken(TRUE)];warn=[M.ckey]'>Warn</A> |
+		<A href='?src=\ref[src];[HrefToken(TRUE)];newban=\ref[M]'>Ban</A> |
+		<A href='?src=\ref[src];[HrefToken(TRUE)];jobban2=\ref[M]'>Jobban</A> |
+		<A href='?src=\ref[src];[HrefToken(TRUE)];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
-		body += "\ <A HREF='?src=\ref[src];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
+		body += "| <A HREF='?src=\ref[src];[HrefToken(TRUE)];sendtoprison=\ref[M]'>Prison</A> | "
+		body += "\ <A HREF='?src=\ref[src];[HrefToken(TRUE)];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
-			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			(<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+			\[<A href='?src=\ref[src];[HrefToken(TRUE)];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
+			(<A href='?src=\ref[src];[HrefToken(TRUE)];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
 		"}
 
 	body += {"<br><br>
-		<A href='?src=\ref[src];jumpto=\ref[M]'><b>Jump to</b></A> |
-		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
-		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];jumpto=\ref[M]'><b>Jump to</b></A> |
+		<A href='?src=\ref[src];[HrefToken(TRUE)];getmob=\ref[M]'>Get</A> |
+		<A href='?src=\ref[src];[HrefToken(TRUE)];sendmob=\ref[M]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
-		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
-		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
+		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='?src=\ref[src];[HrefToken(TRUE)];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
+		<A href='?src=\ref[src];[HrefToken(TRUE)];narrateto=\ref[M]'>Narrate to</A> |
+		<A href='?src=\ref[src];[HrefToken(TRUE)];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
 
 	if (M.client)
@@ -104,30 +104,30 @@ var/global/floorIsLava = 0
 			if(issmall(M))
 				body += "<B>Monkeyized</B> | "
 			else
-				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
+				body += "<A href='?src=\ref[src];[HrefToken(TRUE)];monkeyone=\ref[M]'>Monkeyize</A> | "
 
 			//Corgi
 			if(iscorgi(M))
 				body += "<B>Corgized</B> | "
 			else
-				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
+				body += "<A href='?src=\ref[src];[HrefToken(TRUE)];corgione=\ref[M]'>Corgize</A> | "
 
 			//AI / Cyborg
 			if(isAI(M))
 				body += "<B>Is an AI</B> "
 			else if(ishuman(M))
-				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
-					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A>
+				body += {"<A href='?src=\ref[src];[HrefToken(TRUE)];makeai=\ref[M]'>Make AI</A> |
+					<A href='?src=\ref[src];[HrefToken(TRUE)];makerobot=\ref[M]'>Make Robot</A> |
+					<A href='?src=\ref[src];[HrefToken(TRUE)];makealien=\ref[M]'>Make Alien</A>
 				"}
 
 			//Simple Animals
 			if(isanimal(M))
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
+				body += "<A href='?src=\ref[src];[HrefToken(TRUE)];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='?src=\ref[src];[HrefToken(TRUE)];makeanimal=\ref[M]'>Animalize</A> | "
 
-			body += "<A href='?src=\ref[src];respawn=\ref[M.client]'>Respawn</A> | "
+			body += "<A href='?src=\ref[src];[HrefToken(TRUE)];respawn=\ref[M.client]'>Respawn</A> | "
 
 			// DNA2 - Admin Hax
 			if(M.dna && iscarbon(M))
@@ -142,7 +142,7 @@ var/global/floorIsLava = 0
 					if(bname)
 						var/bstate=M.dna.GetSEState(block)
 						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						body += "<A href='?src=\ref[src];togmutate=\ref[M];block=[block]' style='color:[bcolor];'>[bname]</A><sub>[block]</sub>"
+						body += "<A href='?src=\ref[src];[HrefToken(TRUE)];togmutate=\ref[M];block=[block]' style='color:[bcolor];'>[bname]</A><sub>[block]</sub>"
 					else
 						body += "[block]"
 					body+="</td>"
@@ -150,45 +150,45 @@ var/global/floorIsLava = 0
 
 			body += {"<br><br>
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
-				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> |
-				\[ Xenos: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
-				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
-				<A href='?src=\ref[src];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A>
-				<A href='?src=\ref[src];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A>
-				<A href='?src=\ref[src];simplemake=human;species=Skrell;mob=\ref[M]'>Skrell</A> \] | \[
-				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
-				<A href='?src=\ref[src];simplemake=human;species='Diona';mob=\ref[M]'>Diona</A> \] |
-				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
-				<A href='?src=\ref[src];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
-				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
-				<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
-				<A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
-				<A href='?src=\ref[src];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
-				<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
-				<A href='?src=\ref[src];simplemake=ian;mob=\ref[M]'>Ian</A> |
-				<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> |
-				<A href='?src=\ref[src];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
-				\[ Construct: <A href='?src=\ref[src];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
-				<A href='?src=\ref[src];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
-				<A href='?src=\ref[src];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
-				<A href='?src=\ref[src];simplemake=shade;mob=\ref[M]'>Shade</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=observer;mob=\ref[M]'>Observer</A> |
+				\[ Xenos: <A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=larva;mob=\ref[M]'>Larva</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
+				\[ Crew: <A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;mob=\ref[M]'>Human</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species=Skrell;mob=\ref[M]'>Skrell</A> \] | \[
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=nymph;mob=\ref[M]'>Nymph</A>
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=human;species='Diona';mob=\ref[M]'>Diona</A> \] |
+				\[ slime: <A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=slime;mob=\ref[M]'>Baby</A>,
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=cat;mob=\ref[M]'>Cat</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=ian;mob=\ref[M]'>Ian</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=crab;mob=\ref[M]'>Crab</A> |
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
+				\[ Construct: <A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
+				<A href='?src=\ref[src];[HrefToken(TRUE)];simplemake=shade;mob=\ref[M]'>Shade</A>
 				<br>
 			"}
 	body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
-			<A href='?src=\ref[src];forcespeech=\ref[M]'>Forcesay</A>
+			<A href='?src=\ref[src];[HrefToken(TRUE)];forcespeech=\ref[M]'>Forcesay</A>
 			"}
 	if (M.client)
 		body += {" |
-			<A href='?src=\ref[src];tdome1=\ref[M]'>Thunderdome 1</A> |
-			<A href='?src=\ref[src];tdome2=\ref[M]'>Thunderdome 2</A> |
-			<A href='?src=\ref[src];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
-			<A href='?src=\ref[src];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];tdome1=\ref[M]'>Thunderdome 1</A> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];tdome2=\ref[M]'>Thunderdome 2</A> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
+			<A href='?src=\ref[src];[HrefToken(TRUE)];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
 		"}
 	// language toggles
 	body += "<br><br><b>Languages:</b><br>"
@@ -199,9 +199,9 @@ var/global/floorIsLava = 0
 			if(!f) body += " | "
 			else f = 0
 			if(L in M.languages)
-				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
+				body += "<a href='?src=\ref[src];[HrefToken(TRUE)];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
 			else
-				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
+				body += "<a href='?src=\ref[src];[HrefToken(TRUE)];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
 
 	body += {"<br>
 		</body></html>
@@ -527,7 +527,7 @@ var/global/floorIsLava = 0
 		var/r = t
 		if( findtext(r,"##") )
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
-		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
+		dat += text("<tr><td>[t] (<A href='?src=\ref[src];[HrefToken(TRUE)];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")
 
@@ -536,20 +536,20 @@ var/global/floorIsLava = 0
 
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];c_mode=1'>Change Game Mode</A><br>
 		"}
 	if(master_mode == "secret")
-		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
+		dat += "<A href='?src=\ref[src];[HrefToken(TRUE)];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
 		<BR>
-		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
-		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
-		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<br><A href='?src=\ref[src];vsc=airflow'>Edit Airflow Settings</A><br>
-		<A href='?src=\ref[src];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='?src=\ref[src];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];create_object=1'>Create Object</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];quick_create_object=1'>Quick Create Object</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];create_turf=1'>Create Turf</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];create_mob=1'>Create Mob</A><br>
+		<br><A href='?src=\ref[src];[HrefToken(TRUE)];vsc=airflow'>Edit Airflow Settings</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];vsc=phoron'>Edit Phoron Settings</A><br>
+		<A href='?src=\ref[src];[HrefToken(TRUE)];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")
@@ -563,7 +563,7 @@ var/global/floorIsLava = 0
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
 		if(!category.can_view(usr))
 			continue
-		dat += "<A href='?src=\ref[src];admin_secrets_panel=\ref[category]'>[category.name]</A> "
+		dat += "<A href='?src=\ref[src];[HrefToken(TRUE)];admin_secrets_panel=\ref[category]'>[category.name]</A> "
 	dat += "<HR>"
 
 	// If a category is selected, print its description and then options
@@ -574,7 +574,7 @@ var/global/floorIsLava = 0
 		for(var/datum/admin_secret_item/item in active_category.items)
 			if(!item.can_view(usr))
 				continue
-			dat += "<A href='?src=\ref[src];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
+			dat += "<A href='?src=\ref[src];[HrefToken(TRUE)];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
 		dat += "<BR>"
 
 	var/datum/browser/popup = new(usr, "secrets", "Secrets", 500, 500)
@@ -1166,34 +1166,34 @@ var/datum/announcement/minor/admin_min_announcer = new
 	out += "<hr>"
 
 	if(ticker.mode.ert_disabled)
-		out += "<b>Emergency Response Teams:</b> <a href='?src=\ref[ticker.mode];toggle=ert'>disabled</a>"
+		out += "<b>Emergency Response Teams:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=ert'>disabled</a>"
 	else
-		out += "<b>Emergency Response Teams:</b> <a href='?src=\ref[ticker.mode];toggle=ert'>enabled</a>"
+		out += "<b>Emergency Response Teams:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=ert'>enabled</a>"
 	out += "<br/>"
 
 	if(ticker.mode.deny_respawn)
-		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>disallowed</a>"
+		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=respawn'>disallowed</a>"
 	else
-		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>allowed</a>"
+		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=respawn'>allowed</a>"
 	out += "<br/>"
 
-	out += "<b>Shuttle delay multiplier:</b> <a href='?src=\ref[ticker.mode];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
+	out += "<b>Shuttle delay multiplier:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
 
 	if(ticker.mode.auto_recall_shuttle)
-		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>enabled</a>"
+		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=shuttle_recall'>enabled</a>"
 	else
-		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>disabled</a>"
+		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=shuttle_recall'>disabled</a>"
 	out += "<br/><br/>"
 
 	if(ticker.mode.event_delay_mod_moderate)
-		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
+		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
 	else
-		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>unset</a><br/>"
+		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];set=event_modifier_moderate'>unset</a><br/>"
 
 	if(ticker.mode.event_delay_mod_major)
-		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
+		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
 	else
-		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>unset</a><br/>"
+		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];set=event_modifier_severe'>unset</a><br/>"
 
 	out += "<hr>"
 
@@ -1210,7 +1210,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"
 		out += "<br/>"
 	else
-		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>disabled</a></b>.<br/>"
+		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];toggle=autotraitor'>disabled</a></b>.<br/>"
 
 	out += "<b>All antag ids:</b>"
 	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
@@ -1218,10 +1218,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 			antag.update_current_antag_max()
 			out += " <a href='?src=\ref[ticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
 			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='?src=\ref[ticker.mode];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
+			out += " <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
 	else
 		out += " None."
-	out += " <a href='?src=\ref[ticker.mode];add_antag_type=1'>\[+\]</a><br/>"
+	out += " <a href='?src=\ref[ticker.mode];[HrefToken(TRUE)];add_antag_type=1'>\[+\]</a><br/>"
 
 	usr << browse(out, "window=edit_mode[src]")
 	feedback_add_details("admin_verb","SGM")
@@ -1557,12 +1557,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
-					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
+					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
 		else
 			log_admin("[key_name(src.owner)] has sent a fax message to [destination.department]")
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
-					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
+					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
 
 		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
 		var/fax_text = paper_html_to_plaintext(P.info)
