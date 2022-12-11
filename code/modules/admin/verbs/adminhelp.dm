@@ -71,6 +71,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //Tickets statpanel
 /datum/admin_help_tickets/proc/stat_entry()
 	var/num_disconnected = 0
+	stat("== Admin Tickets ==")
 	stat("Active Tickets:", astatclick.update("[active_tickets.len]"))
 	for(var/datum/admin_help/AH as anything in active_tickets)
 		if(AH.initiator)
