@@ -62,6 +62,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 //Tickets statpanel
 /datum/mentor_help_tickets/proc/stat_entry()
 	var/num_disconnected = 0
+	stat("== Mentor Tickets ==")
 	stat("Active Tickets:", astatclick.update("[active_tickets.len]"))
 	for(var/datum/mentor_help/MH as anything in active_tickets)
 		if(MH.initiator)
@@ -259,6 +260,9 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 //Show the ticket panel
 /datum/mentor_help/proc/TicketPanel()
+	tgui_interact(usr.client.mob)
+
+/datum/mentor_help/proc/TicketPanelLegacy()
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
 	var/ref_src = "\ref[src]"
 	dat += "<h4>Mentor Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
@@ -286,6 +290,63 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 		dat += "[I]<br>"
 
 	usr << browse(dat.Join(), "window=mhelp[id];size=620x480")
+
+/datum/mentor_help/tgui_fallback(payload)
+	if(..())
+		return
+
+	TicketPanelLegacy()
+
+/datum/mentor_help/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MentorTicketPanel", "Ticket #[id] - [LinkedReplyName("\ref[src]")]")
+		ui.open()
+
+/datum/mentor_help/tgui_state(mob/user)
+	return GLOB.tgui_admin_state
+
+/datum/mentor_help/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["id"] = id
+
+	var/ref_src = "\ref[src]"
+	data["title"] = name
+	data["name"] = LinkedReplyName(ref_src)
+
+	switch(state)
+		if(AHELP_ACTIVE)
+			data["state"] = "open"
+		if(AHELP_RESOLVED)
+			data["state"] = "resolved"
+		else
+			data["state"] = "unknown"
+
+	data["opened_at"] = (world.time - opened_at)
+	data["closed_at"] = (world.time - closed_at)
+	data["opened_at_date"] = gameTimestamp(wtime = opened_at)
+	data["closed_at_date"] = gameTimestamp(wtime = closed_at)
+
+	data["actions"] = Context(ref_src)
+
+	data["log"] = _interactions
+
+	return data
+
+/datum/mentor_help/tgui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("escalate")
+			Escalate()
+			. = TRUE
+		if("reopen")
+			Reopen()
+			. = TRUE
+		if("legacy")
+			TicketPanelLegacy()
+			. = TRUE
 
 //Kick ticket to admins
 /datum/mentor_help/proc/Escalate()

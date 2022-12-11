@@ -686,6 +686,7 @@
 
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
+				GLOB.mhelp_tickets.stat_entry()
 
 
 			if(length(GLOB.sdql2_queries))
