@@ -304,7 +304,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 		ui.open()
 
 /datum/mentor_help/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return GLOB.tgui_mentor_state
 
 /datum/mentor_help/tgui_data(mob/user)
 	var/list/data = list()

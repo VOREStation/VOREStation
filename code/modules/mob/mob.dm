@@ -686,7 +686,6 @@
 
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
-				GLOB.mhelp_tickets.stat_entry()
 
 
 			if(length(GLOB.sdql2_queries))
@@ -694,6 +693,10 @@
 					stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
 					for(var/datum/SDQL2_query/Q as anything in GLOB.sdql2_queries)
 						Q.generate_stat()
+
+		if(has_mentor_powers(client))
+			if(statpanel("Tickets"))
+				GLOB.mhelp_tickets.stat_entry()
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
