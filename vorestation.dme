@@ -2565,6 +2565,7 @@
 #include "code\modules\lore_codex\codex.dm"
 #include "code\modules\lore_codex\codex_tree.dm"
 #include "code\modules\lore_codex\pages.dm"
+#include "code\modules\lore_codex\lore_data_vr\history.dm"
 #include "code\modules\lore_codex\lore_data_vr\important_locations.dm"
 #include "code\modules\lore_codex\lore_data_vr\main.dm"
 #include "code\modules\lore_codex\lore_data_vr\orgs.dm"
