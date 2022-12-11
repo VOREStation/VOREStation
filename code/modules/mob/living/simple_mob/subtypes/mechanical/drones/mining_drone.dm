@@ -106,9 +106,49 @@
 		return has_tool
 
 /mob/living/simple_mob/mechanical/mining_drone/handle_special()
-	if(my_storage && (get_AI_stance() in list(STANCE_APPROACH, STANCE_IDLE, STANCE_FOLLOW)) && !is_AI_busy() && isturf(loc) && (world.time > last_search + search_cooldown) && (my_storage.contents.len < my_storage.max_storage_space))
-		last_search = world.time
+	if (!isturf(loc))
+		return
+	if (!my_storage)
+		return
+	if (ai_holder?.busy)
+		return
+	if (world.time < last_search + search_cooldown)
+		return
+	switch (get_AI_stance())
+		if (STANCE_APPROACH, STANCE_IDLE, STANCE_FOLLOW)
+			. = . //noop
+		else
+			return
+	var/max_space = my_storage.max_storage_space
+	var/obj/structure/ore_box/box = locate() in view(3, src)
+	if (istype(box))
+		if (length(my_storage.contents))
+			Beam(box, icon_state = "holo_beam", time = 1 SECONDS)
+			box.contents += my_storage.contents
+			my_storage.stored_ore_dirty = TRUE
+			box.stored_ore_dirty = TRUE
+	else if (length(my_storage.contents) >= max_space)
+		audible_message(SPAN_NOTICE("\The [src] emits a shrill beep; it's full!"))
+		return
+	for (var/turf/simulated/floor/floor in view(4, src))
+		if (length(my_storage.contents) >= max_space)
+			audible_message(SPAN_NOTICE("\The [src] emits a shrill beep; it's full!"))
+			return
+		if (prob(50))
+			continue
+		if (!(locate(/obj/item/ore) in floor))
+			continue
+		Beam(floor, icon_state = "holo_beam", time = 0.5 SECONDS)
+		if (box)
+			for (var/obj/item/ore/ore in floor)
+				box.contents += ore
+			box.stored_ore_dirty = TRUE
+			Beam(box, icon_state = "holo_beam", time = 0.5 SECONDS)
+		else
+			my_storage.gather_all(floor, src)
+			my_storage.stored_ore_dirty = TRUE
 
+<<<<<<< HEAD
 		for(var/turf/T in view(world.view,src))
 			if(my_storage.contents.len >= my_storage.max_storage_space)
 				break
@@ -126,6 +166,8 @@
 			src.Beam(OB, icon_state = "rped_upgrade", time = 1 SECONDS)
 			for(var/obj/item/I in my_storage)
 				my_storage.remove_from_storage(I, OB)
+=======
+>>>>>>> 6ae04e1d641... Merge pull request #8840 from Spookerton/spkrtn/cng/rock-and-stone
 
 /decl/mob_organ_names/miningdrone
 	hit_zones = list("chassis", "comms array", "sensor suite", "left excavator module", "right excavator module", "maneuvering thruster")

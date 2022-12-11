@@ -82,6 +82,7 @@
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
 // -----------------------------
+<<<<<<< HEAD
 //        Mining Satchel
 // -----------------------------
 /*
@@ -251,6 +252,8 @@
 			stored_ore[O.name] = 1
 */
 // -----------------------------
+=======
+>>>>>>> 6ae04e1d641... Merge pull request #8840 from Spookerton/spkrtn/cng/rock-and-stone
 //          Plant bag
 // -----------------------------
 
