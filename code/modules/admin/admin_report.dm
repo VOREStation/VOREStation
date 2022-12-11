@@ -107,9 +107,9 @@ world/New()
 			output += "<b>Offense:</b>[N.body]<br>"
 			output += "<small>Occured at [time2text(N.date,"MM/DD hh:mm:ss")]</small><br>"
 			output += "<small>authored by <i>[N.author]</i></small><br>"
-			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
+			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];[HrefToken(TRUE)];action=remove;ID=[N.ID]'>Flag as Handled</a>"
 			if(src.key == N.author)
-				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
+				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];[HrefToken(TRUE)];action=edit;ID=[N.ID]'>Edit</a>"
 			output += "<br>"
 			output += "<br>"
 	else
@@ -149,7 +149,7 @@ world/New()
 	for(var/datum/admin_report/N in reports)
 		if(N.ID == ID)
 			found = N
-	if(!found) 
+	if(!found)
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
 	found.done = 1
@@ -171,7 +171,7 @@ world/New()
 	for(var/datum/admin_report/N in reports)
 		if(N.ID == ID)
 			found = N
-	if(!found) 
+	if(!found)
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
 	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE, prevent_enter = TRUE)

@@ -694,6 +694,10 @@
 					for(var/datum/SDQL2_query/Q as anything in GLOB.sdql2_queries)
 						Q.generate_stat()
 
+		if(has_mentor_powers(client))
+			if(statpanel("Tickets"))
+				GLOB.mhelp_tickets.stat_entry()
+
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null

@@ -1,6 +1,6 @@
 /datum/lore/codex/category/species
 	name = "Species"
-	data = "There are many different types of lifeforms (both alive and artificial) in the galaxy, which you may find inside Vir."
+	data = "There are many different types of lifeforms (both alive and artificial) in the galaxy, which you may find inside the Virgo-Erigone system."
 	children = list(
 		/datum/lore/codex/page/human,
 		/datum/lore/codex/page/akula,
@@ -182,9 +182,9 @@
 	name = "Positronics"
 	keywords += list("Positronic", "Posi", "Posibrain", "Posibrains")
 	data = "A Positronic being, is an individual with a positronic brain, manufactured \
-	and fostered amongst organic life. Positronic brains enjoy the same legal status as a human in [quick_link("SolGov")] space, although discrimination is \
+	and fostered amongst organic life. Positronic brains enjoy the same legal status as a human in Sol-Procyon Commonwealth space, although discrimination is \
 	still prevalent, and are considered sapient on all accounts. They can be considered a \"synthetic species\". Half-developed and \
-	half-discovered in the 2280’s by a human black lab studying alien artifacts, the first positronic brain was an inch-wide cube \
+	half-discovered in the 2280's by a human black lab studying alien artifacts, the first positronic brain was an inch-wide cube \
 	of an palladium-iridium alloy, nano-etched with billions upon billions of conduits and connections. Upon activation, \
 	hard-booted with an emitter laser, the brain issued a single sentence before the neural pathways collapsed and \
 	it became an inert lump of platinum: \"What is my purpose?\"."
@@ -228,7 +228,7 @@
 
 
 /datum/lore/codex/page/cyborg/add_content()
-	name = "cyborgs"
+	name = "Cyborgs"
 	keywords += list("MMI", "Cyborg")
 	data = "A somewhat outdated form of synthetic life, powered by the brain of a sapient within a man-machine interface. \
 	Originally made in an effort to alleviate the drawbacks of drone intelligences - that is - their reprogrammability, \
