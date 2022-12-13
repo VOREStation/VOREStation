@@ -135,8 +135,74 @@
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
 		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
 		return
+<<<<<<< HEAD
 	
 	return ..()
+=======
+		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
+		var/obj/item/ammo_magazine/speedloader = O
+		if(speedloader.stored_ammo)
+			to_chat(user, "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!")
+			return
+		else
+			speedloader.matter = list(MAT_STEEL = 75) // It's just a hunk of scrap metal now.
+	if(istype(O,/obj/item/ammo_magazine)) // This was just for immersion consistency with above.
+		var/obj/item/ammo_magazine/mag = O
+		if(mag.stored_ammo)
+			to_chat(user, "\The [mag] is too hazardous to put back into the autolathe while there's ammunition inside of it!")
+			return*/
+
+	//Resources are being loaded.
+	var/obj/item/eating = O
+	if(!eating.matter)
+		to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+		return
+
+	var/filltype = 0       // Used to determine message.
+	var/total_used = 0     // Amount of material used.
+	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
+	var/list/matter_inputs
+	if(istype(eating, /obj/item/stack/material))
+		var/obj/item/stack/material/matstack = eating
+		matter_inputs = list(matstack.material.name = 2000)
+	else
+		matter_inputs = eating.matter
+
+	for(var/material in matter_inputs)
+		if(isnull(stored_material[material]) || isnull(storage_capacity[material]))
+			continue
+		if(stored_material[material] >= storage_capacity[material])
+			continue
+		var/total_material = matter_inputs[material]
+		//If it's a stack, we eat multiple sheets.
+		if(istype(eating,/obj/item/stack))
+			var/obj/item/stack/stack = eating
+			total_material *= stack.get_amount()
+		if(stored_material[material] + total_material > storage_capacity[material])
+			total_material = storage_capacity[material] - stored_material[material]
+			filltype = 1
+		else
+			filltype = 2
+		stored_material[material] += total_material
+		total_used += total_material
+		mass_per_sheet += matter_inputs[material]
+	if(!filltype)
+		to_chat(user, "<span class='notice'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
+		return
+	else if(filltype == 1)
+		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
+	else
+		to_chat(user, "You fill \the [src] with \the [eating].")
+	flick("autolathe_loading", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+	if(istype(eating,/obj/item/stack))
+		var/obj/item/stack/stack = eating
+		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
+	else
+		user.remove_from_mob(O)
+		qdel(O)
+	updateUsrDialog()
+
+>>>>>>> d956a62a4f0... Merge pull request #8858 from Twitchcog/Twitchcog/fix/what-does-a-name-matter
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
 	user.set_machine(src)
