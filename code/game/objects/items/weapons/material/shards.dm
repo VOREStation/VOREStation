@@ -55,7 +55,9 @@
 			return
 	return ..()
 
-/obj/item/weapon/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob)
+/obj/item/weapon/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob, proximity)
+	if(!proximity)
+		return
 	var/active_hand //hand the shard is in
 	var/will_break = FALSE
 	var/protected_hands = FALSE //this is a fucking mess
