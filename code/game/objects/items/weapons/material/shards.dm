@@ -55,13 +55,9 @@
 			return
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob)
-=======
-/obj/item/material/shard/afterattack(atom/target, mob/living/carbon/human/user, proximity)
+/obj/item/weapon/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob, proximity)
 	if(!proximity)
 		return
->>>>>>> cd9166a70ae... Merge pull request #8853 from Verkister/patch-101
 	var/active_hand //hand the shard is in
 	var/will_break = FALSE
 	var/protected_hands = FALSE //this is a fucking mess
