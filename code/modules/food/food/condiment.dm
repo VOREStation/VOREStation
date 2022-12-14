@@ -213,10 +213,10 @@
 	. = ..()
 	reagents.add_reagent("yeast", 50)
 
-/obj/item/weapon/reagent_containers/food/condiment/sprinkles
+/obj/item/reagent_containers/food/condiment/sprinkles
 	name = "Sprinkles"
 
-/obj/item/weapon/reagent_containers/food/condiment/sprinkles/Initialize()
+/obj/item/reagent_containers/food/condiment/sprinkles/Initialize()
 	. = ..()
 	reagents.add_reagent("sprinkles", 50)
 
