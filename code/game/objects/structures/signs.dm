@@ -948,12 +948,15 @@
 	desc = "Flashy and pretty."
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "xmaslights"
+	layer = 4.9
+	plane = PLANE_LIGHTING_ABOVE
 
 /obj/structure/sign/christmas/wreath
 	name = "wreath"
 	desc = "Prickly and festive."
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "doorwreath"
+	layer = 5
 
 /obj/structure/sign/hostilefauna
 	icon = 'icons/obj/decals_vr.dmi'
