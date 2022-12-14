@@ -494,7 +494,7 @@
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		for(var/mob/living/simple_mob/SA in range(10))
 			LAZYSET(SA.prey_excludes, src, world.time)
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		if(!ishuman(B.owner))
 			B.owner.update_icons()
@@ -508,14 +508,14 @@
 		if(confirm != "Okay" || loc != belly)
 			return
 		//Actual escaping
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 
 	//You're in an AI hologram!
 	else if(istype(loc, /obj/effect/overlay/aiholo))
 		var/obj/effect/overlay/aiholo/holo = loc
 		holo.drop_prey() //Easiest way
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
 
 	//You're in a capture crystal! ((It's not vore but close enough!))
 	else if(iscapturecrystal(loc))

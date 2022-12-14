@@ -53,9 +53,9 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	if(!l2b)
 		return
 	var/list/dat = list("<html><head><title>[title]</title></head>")
-	dat += "<A HREF='?_src_=mentorholder;[HrefToken(TRUE)];mhelp_tickets=[state]'>Refresh</A><br><br>"
+	dat += "<A HREF='?_src_=mentorholder;[HrefToken()];mhelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/datum/mentor_help/MH as anything in l2b)
-		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[MH.id]</span>: <A HREF='?_src_=mentorholder;mhelp=\ref[MH];[HrefToken(TRUE)];mhelp_action=ticket'>[MH.initiator_ckey]: [MH.name]</A></span><br>"
+		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[MH.id]</span>: <A HREF='?_src_=mentorholder;mhelp=\ref[MH];[HrefToken()];mhelp_action=ticket'>[MH.initiator_ckey]: [MH.name]</A></span><br>"
 
 	usr << browse(dat.Join(), "window=mhelp_list[state];size=600x480")
 
@@ -174,24 +174,24 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 /datum/mentor_help/proc/ClosureLinks(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	. = " (<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken(TRUE)];mhelp_action=resolve'>RSLVE</A>)"
+	. = " (<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=resolve'>RSLVE</A>)"
 
 //private
 /datum/mentor_help/proc/LinkedReplyName(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	return "<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken(TRUE)];mhelp_action=reply'>[initiator_ckey]</A>"
+	return "<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=reply'>[initiator_ckey]</A>"
 
 //private
 /datum/mentor_help/proc/TicketHref(msg, ref_src, action = "ticket")
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	return "<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken(TRUE)];mhelp_action=[action]'>[msg]</A>"
+	return "<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=[action]'>[msg]</A>"
 
 //message from the initiator without a target, all people with mentor powers will see this
 /datum/mentor_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
-	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken(TRUE)];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
+	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	for (var/client/C in GLOB.mentors)
 		if (C.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
@@ -370,7 +370,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	if(state == AHELP_ACTIVE)
 		. += ClosureLinks(ref_src)
 	if(state != AHELP_RESOLVED)
-		. += " (<A HREF='?_src_=mentorholder;mhelp=[ref_src];mhelp_action=escalate'>ESCALATE</A>)"
+		. += " (<A HREF='?_src_=mentorholder;[HrefToken()];mhelp=[ref_src];mhelp_action=escalate'>ESCALATE</A>)"
 
 //Forwarded action from admin/Topic OR mentor/Topic depending on which rank the caller has
 /datum/mentor_help/proc/Action(action)

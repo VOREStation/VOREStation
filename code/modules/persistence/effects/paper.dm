@@ -39,7 +39,7 @@
 /datum/persistent/paper/GetAdminDataStringFor(var/thing, var/can_modify, var/mob/user)
 	var/obj/item/weapon/paper/paper = thing
 	if(can_modify)
-		. = "<td style='background-color:[paper.color]'>[paper.info]</td><td>[paper.name]</td><td>[paper.last_modified_ckey]</td><td><a href='byond://?src=\ref[src];caller=\ref[user];remove_entry=\ref[thing]'>Destroy</a></td>"
+		. = "<td style='background-color:[paper.color]'>[paper.info]</td><td>[paper.name]</td><td>[paper.last_modified_ckey]</td><td><a href='byond://?src=\ref[src];[HrefToken()];caller=\ref[user];remove_entry=\ref[thing]'>Destroy</a></td>"
 	else
 		. = "<td colspan = 2;style='background-color:[paper.color]'>[paper.info]</td><td>[paper.name]</td><td>[paper.last_modified_ckey]</td>"
 

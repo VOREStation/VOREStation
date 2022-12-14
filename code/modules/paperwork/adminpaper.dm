@@ -27,13 +27,13 @@
 
 	//Snapshot is crazy and likes putting each topic hyperlink on a seperate line from any other tags so it's nice and clean.
 	interactions += "<HR><center><font size= \"1\">The fax will transmit everything above this line</font><br>"
-	interactions += "<A href='?src=\ref[src];confirm=1'>Send fax</A> "
-	interactions += "<A href='?src=\ref[src];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "
-	interactions += "<A href='?src=\ref[src];cancel=1'>Cancel fax</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];confirm=1'>Send fax</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];cancel=1'>Cancel fax</A> "
 	interactions += "<BR>"
-	interactions += "<A href='?src=\ref[src];toggleheader=1'>Toggle Header</A> "
-	interactions += "<A href='?src=\ref[src];togglefooter=1'>Toggle Footer</A> "
-	interactions += "<A href='?src=\ref[src];clear=1'>Clear page</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];toggleheader=1'>Toggle Header</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];togglefooter=1'>Toggle Footer</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];clear=1'>Clear page</A> "
 	interactions += "</center>"
 
 /obj/item/weapon/paper/admin/proc/generateHeader()

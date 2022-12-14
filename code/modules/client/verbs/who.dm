@@ -44,7 +44,7 @@
 			var/seconds = C.last_activity_seconds()
 			entry += " (AFK - [round(seconds / 60)] minutes, [seconds % 60] seconds)"
 
-		entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+		entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
 		Lines += entry
 
 	for(var/line in sortList(Lines))
