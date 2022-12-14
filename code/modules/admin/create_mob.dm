@@ -6,4 +6,4 @@
 		create_mob_html = file2text('html/create_object.html')
 		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
 
-	user << browse(replacetext(create_mob_html, "/* ref src */", "\ref[src];[HrefToken()]"), "window=create_mob;size=680x600")
+	user << browse(create_panel_helper(create_mob_html), "window=create_mob;size=680x600")
