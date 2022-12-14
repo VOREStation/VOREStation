@@ -240,6 +240,12 @@ var/list/flooring_types
 		'sound/effects/footstep/snow4.ogg',
 		'sound/effects/footstep/snow5.ogg'))
 
+/decl/flooring/snow/fake
+		desc = "A coating of fake snow, looks surprisingly realistic, though not as cold as the real thing."
+		icon = 'icons/turf/flooring/fakesnow.dmi'
+		icon_base = "snow"
+		flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_SHOVEL
+
 /decl/flooring/snow/snow2
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."

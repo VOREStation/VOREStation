@@ -26,17 +26,7 @@
 					T.update_icon()
 
 /datum/random_map/noise/sif/get_appropriate_path(var/value)
-	switch(value)
-		if(0)
-			return /turf/simulated/floor/outdoors/mud/sif/planetuse
-		if(1 to 2)
-			return /turf/simulated/floor/outdoors/dirt/sif/planetuse
-		if(3 to 5)
-			return /turf/simulated/floor/outdoors/grass/sif/planetuse
-		if(6 to 8)
-			return /turf/simulated/floor/outdoors/grass/sif/forest/planetuse
-		if(9)
-			return /turf/simulated/floor/outdoors/snow/sif/planetuse
+	return /turf/simulated/floor/outdoors/snow/sif/planetuse
 
 /datum/random_map/noise/sif/get_additional_spawns(var/value, var/turf/T)
 	if(prob(45) || T.check_density())
@@ -77,13 +67,7 @@
 	descriptor = "Sif forest (roundstart)"
 
 /datum/random_map/noise/sif/forest/get_appropriate_path(var/value)
-	switch(value)
-		if(0 to 3)
-			return /turf/simulated/floor/outdoors/grass/sif/planetuse
-		if(4 to 6)
-			return /turf/simulated/floor/outdoors/grass/sif/forest/planetuse
-		if(7 to 9)
-			return /turf/simulated/floor/outdoors/snow/sif/planetuse
+	return /turf/simulated/floor/outdoors/snow/sif/planetuse
 
 /datum/random_map/noise/sif/forest/get_additional_spawns(var/value, var/turf/T)
 	if(prob(25) || T.check_density())
