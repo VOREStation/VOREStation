@@ -7,7 +7,7 @@
 		create_object_html = file2text('html/create_object.html')
 		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-	user << browse(replacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=680x600")
+	user << browse(replacetext(create_object_html, "/* ref src */", "\ref[src];[HrefToken()]"), "window=create_object;size=680x600")
 
 
 /datum/admins/proc/quick_create_object(var/mob/user)
@@ -28,7 +28,7 @@
 	"/obj/mecha",
 	"/obj/item/mecha_parts",
 	"/obj/item/mecha_parts/mecha_equipment")
-	
+
 	pathtext = tgui_input_list(usr, "Select the path of the object you wish to create.", "Path", choices, "/obj")
 
 	if(!pathtext)
@@ -41,4 +41,4 @@
 		quick_create_object_html = file2text('html/create_object.html')
 		quick_create_object_html = replacetext(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=680x600")
+	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src];[HrefToken()]"), "window=quick_create_object;size=680x600")
