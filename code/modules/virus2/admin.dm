@@ -75,9 +75,9 @@
 	for(var/i = 1 to 4)
 		var/datum/disease2/effect/Eff = s[i]
 		H += {"
-				<a href='?src=\ref[src];what=effect;stage=[i];effect=1'>[initial(Eff.name)]</a>
-				Chance: <a href='?src=\ref[src];what=effect;stage=[i];chance=1'>[s_chance[i]]</a>
-				Multiplier: <a href='?src=\ref[src];what=effect;stage=[i];multiplier=1'>[s_multiplier[i]]</a>
+				<a href='?src=\ref[src];[HrefToken()];what=effect;stage=[i];effect=1'>[initial(Eff.name)]</a>
+				Chance: <a href='?src=\ref[src];[HrefToken()];what=effect;stage=[i];chance=1'>[s_chance[i]]</a>
+				Multiplier: <a href='?src=\ref[src];[HrefToken()];what=effect;stage=[i];multiplier=1'>[s_multiplier[i]]</a>
 				<br />
 			"}
 	H += {"
@@ -91,27 +91,27 @@
 			continue
 		if(!f) H += " | "
 		else f = 0
-		H += "<a href='?src=\ref[src];what=species;toggle=[k]' style='color:[(k in species) ? "#006600" : "#ff0000"]'>[k]</a>"
+		H += "<a href='?src=\ref[src];[HrefToken()];what=species;toggle=[k]' style='color:[(k in species) ? "#006600" : "#ff0000"]'>[k]</a>"
 	H += {"
-	<a href="?src=\ref[src];what=species;reset=1" style="color:#0000aa">Reset</a>
+	<a href="?src=\ref[src];[HrefToken()];what=species;reset=1" style="color:#0000aa">Reset</a>
 	<br />
-	<b>Infection Chance:</b> <a href="?src=\ref[src];what=ichance">[infectionchance]</a><br />
-	<b>Spread Type:</b> <a href="?src=\ref[src];what=stype">[spreadtype]</a><br />
-	<b>Speed:</b> <a href="?src=\ref[src];what=speed">[speed]</a><br />
-	<b>Resistance:</b> <a href="?src=\ref[src];what=resistance">[resistance]</a><br />
+	<b>Infection Chance:</b> <a href="?src=\ref[src];[HrefToken()];what=ichance">[infectionchance]</a><br />
+	<b>Spread Type:</b> <a href="?src=\ref[src];[HrefToken()];what=stype">[spreadtype]</a><br />
+	<b>Speed:</b> <a href="?src=\ref[src];[HrefToken()];what=speed">[speed]</a><br />
+	<b>Resistance:</b> <a href="?src=\ref[src];[HrefToken()];what=resistance">[resistance]</a><br />
 	<br />
 	"}
 	f = 1
 	for(var/k in ALL_ANTIGENS)
 		if(!f) H += " | "
 		else f = 0
-		H += "<a href='?src=\ref[src];what=antigen;toggle=[k]' style='color:[(k in antigens) ? "#006600" : "#ff0000"]'>[k]</a>"
+		H += "<a href='?src=\ref[src];[HrefToken()];what=antigen;toggle=[k]' style='color:[(k in antigens) ? "#006600" : "#ff0000"]'>[k]</a>"
 	H += {"
-	<a href="?src=\ref[src];what=antigen;reset=1" style="color:#0000aa">Reset</a>
+	<a href="?src=\ref[src];[HrefToken()];what=antigen;reset=1" style="color:#0000aa">Reset</a>
 	<br />
 	<hr />
-	<b>Initial infectee:</b> <a href="?src=\ref[src];what=infectee">[infectee ? infectee : "(choose)"]</a>
-	<a href="?src=\ref[src];what=go" style="color:#ff0000">RELEASE</a>
+	<b>Initial infectee:</b> <a href="?src=\ref[src];[HrefToken()];what=infectee">[infectee ? infectee : "(choose)"]</a>
+	<a href="?src=\ref[src];[HrefToken()];what=go" style="color:#ff0000">RELEASE</a>
 	"}
 
 	user << browse(H, "window=virus2edit")
@@ -215,7 +215,7 @@
 
 			spawned_viruses += D
 
-			message_admins("<span class='danger'>[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];info=1'>Info</a>)</span>")
+			message_admins("<span class='danger'>[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];[HrefToken()];info=1'>Info</a>)</span>")
 			log_admin("[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus!")
 			infect_virus2(infectee, D, forced=1)
 

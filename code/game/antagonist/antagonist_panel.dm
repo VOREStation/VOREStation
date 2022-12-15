@@ -3,13 +3,13 @@
 	var/dat = "<tr><td><b>[role_text]:</b>"
 	var/extra = get_extra_panel_options(player)
 	if(is_antagonist(player))
-		dat += "<a href='?src=\ref[player];remove_antagonist=[id]'>\[-\]</a>"
-		dat += "<a href='?src=\ref[player];equip_antagonist=[id]'>\[equip\]</a>"
+		dat += "<a href='?src=\ref[player];[HrefToken()];remove_antagonist=[id]'>\[-\]</a>"
+		dat += "<a href='?src=\ref[player];[HrefToken()];equip_antagonist=[id]'>\[equip\]</a>"
 		if(starting_locations && starting_locations.len)
-			dat += "<a href='?src=\ref[player];move_antag_to_spawn=[id]'>\[move to spawn\]</a>"
+			dat += "<a href='?src=\ref[player];[HrefToken()];move_antag_to_spawn=[id]'>\[move to spawn\]</a>"
 		if(extra) dat += "[extra]"
 	else
-		dat += "<a href='?src=\ref[player];add_antagonist=[id]'>\[+\]</a>"
+		dat += "<a href='?src=\ref[player];[HrefToken()];add_antagonist=[id]'>\[+\]</a>"
 	dat += "</td></tr>"
 
 	return dat
@@ -27,11 +27,11 @@
 		var/mob/M = player.current
 		dat += "<tr>"
 		if(M)
-			dat += "<td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]/([player.key])</a>"
+			dat += "<td><a href='?src=\ref[src];[HrefToken()];adminplayeropts=\ref[M]'>[M.real_name]/([player.key])</a>"
 			if(!M.client)      dat += " <i>(logged out)</i>"
 			if(M.stat == DEAD) dat += " <b><font color=red>(DEAD)</font></b>"
 			dat += "</td>"
-			dat += "<td>\[<A HREF='?src=\ref[caller];adminplayeropts=\ref[M]'>PP</A>]\[<A href='?src=\ref[caller];priv_msg=\ref[M]'>PM</A>\]\[<A href='?src=\ref[caller];traitor=\ref[M]'>TP</A>\]</td>"
+			dat += "<td>\[<A HREF='?src=\ref[caller];[HrefToken()];adminplayeropts=\ref[M]'>PP</A>]\[<A href='?src=\ref[caller];[HrefToken()];priv_msg=\ref[M]'>PM</A>\]\[<A href='?src=\ref[caller];[HrefToken()];traitor=\ref[M]'>TP</A>\]</td>"
 		else
 			dat += "<td>[player.key] <i>Mob not found!</i></td>"
 		dat += "</tr>"
@@ -45,7 +45,7 @@
 			while(!istype(disk_loc, /turf))
 				if(istype(disk_loc, /mob))
 					var/mob/M = disk_loc
-					dat += "carried by <a href='?src=\ref[caller];adminplayeropts=\ref[M]'>[M.real_name]</a> "
+					dat += "carried by <a href='?src=\ref[caller];[HrefToken()];adminplayeropts=\ref[M]'>[M.real_name]</a> "
 				if(istype(disk_loc, /obj))
 					var/obj/O = disk_loc
 					dat += "in \a [O.name] "

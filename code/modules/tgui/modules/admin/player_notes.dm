@@ -195,7 +195,7 @@
 	PlayerNotesPageLegacy(1, filter)
 
 /datum/admins/proc/PlayerNotesPageLegacy(page, filter)
-	var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];notes_legacy=filter'>Apply Filter</a><HR>"
+	var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];[HrefToken()];notes_legacy=filter'>Apply Filter</a><HR>"
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -228,7 +228,7 @@
 			upper_bound = min(upper_bound, note_keys.len)
 			for(var/index = lower_bound, index <= upper_bound, index++)
 				var/t = note_keys[index]
-				dat += "<tr><td><a href='?src=\ref[src];notes_legacy=show;ckey=[t]'>[t]</a></td></tr>"
+				dat += "<tr><td><a href='?src=\ref[src];[HrefToken()];notes_legacy=show;ckey=[t]'>[t]</a></td></tr>"
 
 		dat += "</table><hr>"
 
@@ -236,7 +236,7 @@
 		for(var/index = 1, index <= number_pages, index++)
 			if(index == page)
 				dat += "<b>"
-			dat += "<a href='?src=\ref[src];notes_legacy=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
+			dat += "<a href='?src=\ref[src];[HrefToken()];notes_legacy=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
 			if(index == page)
 				dat += "</b>"
 
@@ -283,12 +283,12 @@
 				update_file = 1
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
 			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
-				dat += "<A href='?src=\ref[src];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
+				dat += "<A href='?src=\ref[src];[HrefToken()];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
 			dat += "<br><br>"
 		if(update_file) info << infos
 
 	dat += "<br>"
-	dat += "<A href='?src=\ref[src];add_player_info_legacy=[key]'>Add Comment</A><br>"
+	dat += "<A href='?src=\ref[src];[HrefToken()];add_player_info_legacy=[key]'>Add Comment</A><br>"
 
 	dat += "</body></html>"
 	usr << browse(dat, "window=adminplayerinfo;size=480x480")
