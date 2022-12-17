@@ -46,7 +46,7 @@
 
 // Returns to the last visited page, based on the history list.
 /datum/codex_tree/proc/go_back()
-	if(history.len - 1)
+	if((history.len - 1) > 0)
 		if(history[history.len] == current_page)
 			history.len-- // This gets rid of the current page in the history.
 		go_to_page(pop(history), dont_record_history = TRUE) // Where as this will get us the previous page that we want to go to.
