@@ -351,12 +351,12 @@
 		if(valid_turf)
 			valid_turfs.Add(potential_turf)
 
-	var/turf/T = get_turf(src)
-	var/turf/target_turf = pick(valid_turfs)
-
-	if(!target_turf)
+	if(!(valid_turfs.len))
 		to_chat(src, span("warning", "There wasn't an unoccupied spot to teleport to."))
 		return FALSE
+
+	var/turf/target_turf = pick(valid_turfs)
+	var/turf/T = get_turf(src)
 
 	var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread
 	s1.set_up(5, 1, T)
