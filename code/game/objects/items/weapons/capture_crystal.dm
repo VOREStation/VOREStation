@@ -81,7 +81,7 @@
 	else
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is unresponsive.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-	
+
 //Lets the owner get AI controlled bound mobs to follow them, or tells player controlled mobs to follow them.
 /obj/item/capture_crystal/verb/follow_owner()
 	set name = "Toggle Follow"
@@ -208,7 +208,7 @@
 	else return TRUE
 
 /obj/item/capture_crystal/attack(mob/living/M, mob/living/user)
-	if(bound_mob)	
+	if(bound_mob)
 		if(!bound_mob.devourable)	//Don't eat if prefs are bad
 			return
 		if(user.zone_sel.selecting == "mouth")	//Click while targetting the mouth and you eat/feed the stored mob to whoever you clicked on
@@ -268,7 +268,7 @@
 		bound_mob.capture_caught = TRUE
 		persist_storable = FALSE
 	desc = "A glowing crystal in what appears to be some kind of steel housing."
-	
+
 //Determines the capture chance! So you can't capture AI mobs if they're perfectly healthy and all that
 /obj/item/capture_crystal/proc/capture_chance(mob/living/M, user)
 	if(capture_chance_modifier >= 100)		//Master crystal always work
@@ -435,7 +435,7 @@
 /obj/item/capture_crystal/proc/recall(mob/living/user)
 	if(bound_mob in view(user))		//We can only recall it if we can see it
 		var/turf/turfmemory = get_turf(bound_mob)
-		if(isanimal(bound_mob))
+		if(isanimal(bound_mob) && bound_mob.ai_holder)
 			var/mob/living/simple_mob/M = bound_mob
 			M.ai_holder.go_sleep()	//AI doesn't need to think when it's in the crystal
 		bound_mob.forceMove(src)
