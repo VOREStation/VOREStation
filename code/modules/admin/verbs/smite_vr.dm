@@ -130,7 +130,7 @@
 
 		if(SMITE_AD_SPAM)
 			if(target.client)
-				create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
+				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
 
 		else
 			return //Injection? Don't print any messages.
