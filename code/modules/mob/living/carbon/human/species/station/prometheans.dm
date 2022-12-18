@@ -30,6 +30,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
+	language = LANGUAGE_PROMETHEAN
 	species_language = LANGUAGE_PROMETHEAN
 	secondary_langs = list(LANGUAGE_PROMETHEAN, LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
@@ -57,7 +58,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	oxy_mod =		0
 	flash_mod =		0.5 //No centralized, lensed eyes.
 	item_slowdown_mod = 1.33
-	
+
 	chem_strength_alcohol = 2
 
 	cloning_modifier = /datum/modifier/cloning_sickness/promethean
@@ -153,10 +154,10 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 /datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 	var/static/list/parent_handles = list("head", "r_hand", "l_hand", "mouth")
-	
+
 	if(H.zone_sel.selecting in parent_handles)
 		return ..()
-	
+
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
