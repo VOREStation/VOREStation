@@ -33,4 +33,6 @@ var/list/_robot_default_emotes = list(
 )
 
 /mob/living/silicon/robot/get_available_emotes()
-	return global._robot_default_emotes.Copy()
+	var/list/fulllist = global._robot_default_emotes.Copy()
+	fulllist |= _human_default_emotes
+	return fulllist
