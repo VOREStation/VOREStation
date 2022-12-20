@@ -69,10 +69,8 @@
 		to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
 		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
-		if(!(loc == user))
-			to_chat(user, "<span class='warning'>You cannot rename \the [src] without holding it.</span>")
-		var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
-		if(loc == usr && usr.stat == 0)
+		var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		if(in_range(user, src) && user.stat == 0)
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
 
@@ -87,7 +85,7 @@
 		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	return
 
 /obj/item/weapon/folder/Topic(href, href_list)
