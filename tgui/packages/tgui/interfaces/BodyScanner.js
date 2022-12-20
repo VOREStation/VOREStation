@@ -11,6 +11,7 @@ const stats = [
 ];
 
 const abnormalities = [
+<<<<<<< HEAD
   [
     'hasBorer',
     'bad',
@@ -43,6 +44,15 @@ const abnormalities = [
     },
   ],
   /* VOREStation Add End */
+=======
+  ['hasBorer', 'bad', occupant => 'Large growth detected in frontal lobe,'
+    + ' possibly cancerous. Surgical removal is recommended.'],
+  ['hasVirus', 'bad', occupant => 'Viral pathogen detected in blood stream.'],
+  ['blind', 'average', occupant => 'Cataracts detected.'],
+  ['colourblind', 'average', occupant =>
+    'Photoreceptor abnormalities detected.'],
+  ['nearsighted', 'average', occupant => 'Retinal misalignment detected.'],
+>>>>>>> 9e28caf95c2... Merge pull request #8862 from Ilysen/no-more-running
 ];
 
 const damages = [
@@ -183,11 +193,14 @@ const BodyScannerMainOccupant = (props, context) => {
           <AnimatedNumber value={round(occupant.blood.percent, 0)} />
           %)
         </LabeledList.Item>
+<<<<<<< HEAD
         {/* VOREStation Add */}
         <LabeledList.Item label="Weight">
           {round(data.occupant.weight) + 'lbs, ' + round(data.occupant.weight / 2.20463) + 'kgs'}
         </LabeledList.Item>
         {/* VOREStation Add End */}
+=======
+>>>>>>> 9e28caf95c2... Merge pull request #8862 from Ilysen/no-more-running
       </LabeledList>
     </Section>
   );
@@ -248,10 +261,13 @@ const BodyScannerMainAbnormalities = (props) => {
   let hasAbnormalities =
     occupant.hasBorer || occupant.blind || occupant.colourblind || occupant.nearsighted || occupant.hasVirus;
 
+<<<<<<< HEAD
   /* VOREStation Add */
   hasAbnormalities = hasAbnormalities || occupant.humanPrey || occupant.livingPrey || occupant.objectPrey;
   /* VOREStation Add End */
 
+=======
+>>>>>>> 9e28caf95c2... Merge pull request #8862 from Ilysen/no-more-running
   if (!hasAbnormalities) {
     return (
       <Section title="Abnormalities">

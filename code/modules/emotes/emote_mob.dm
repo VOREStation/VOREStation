@@ -97,9 +97,12 @@
 
 	next_emote = world.time + use_emote.emote_delay
 	use_emote.do_emote(src, message)
+<<<<<<< HEAD
 	for (var/obj/item/weapon/implant/I in src)
 		if (I.implanted)
 			I.trigger(act, src)
+=======
+>>>>>>> 9e28caf95c2... Merge pull request #8862 from Ilysen/no-more-running
 
 #undef EMOTE_REFRESH_SPAM_COOLDOWN
 
@@ -227,6 +230,13 @@
 
 
 // Specific mob type exceptions below.
+/mob/living/carbon/human/emote(act, m_type, message)
+	. = ..()
+	for (var/obj/item/organ/external/organ in src.organs)
+		for (var/obj/item/implant/I in organ.implants)
+			if (I.implanted)
+				I.trigger(act, src)
+
 /mob/living/silicon/ai/emote(var/act, var/type, var/message)
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src]) //Is the AI using a holopad?
