@@ -3,6 +3,7 @@
 	desc = "It prints security citations!"
 	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "sec_ticket_printer"
+	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	var/print_cooldown = 1 MINUTE
 	var/last_print
 
