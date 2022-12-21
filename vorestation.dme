@@ -2849,6 +2849,7 @@
 #include "code\modules\mob\living\carbon\human\unarmed_attack.dm"
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
 #include "code\modules\mob\living\carbon\human\ai_controlled\ai_controlled.dm"
+#include "code\modules\mob\living\carbon\human\ai_controlled\ai_controlled_vr.dm"
 #include "code\modules\mob\living\carbon\human\descriptors\_descriptors.dm"
 #include "code\modules\mob\living\carbon\human\descriptors\descriptors_generic.dm"
 #include "code\modules\mob\living\carbon\human\descriptors\descriptors_skrell.dm"
