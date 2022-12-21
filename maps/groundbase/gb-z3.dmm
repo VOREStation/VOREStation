@@ -3,9 +3,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/exploration/shuttlepad)
 "ab" = (
 /turf/simulated/open/virgo3c,
@@ -262,6 +260,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
+"fc" = (
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/shuttle/groundbase/exploration)
 "fn" = (
 /obj/structure/table/steel,
 /obj/random/paicard,
@@ -430,8 +435,8 @@
 	dir = 4
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "bridge blast";
-	name = "Bridge Blastdoors";
+	id = "rp_ship_a_front_bd";
+	name = "Forward Blastdoors";
 	pixel_y = 25;
 	req_one_access = list(67)
 	},
@@ -1088,9 +1093,7 @@
 	pixel_y = 19;
 	req_one_access = list(19,43,67)
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/exploration/shuttlepad)
 "sa" = (
 /obj/structure/railing{
@@ -1150,6 +1153,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
+"ta" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "to" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
@@ -1178,9 +1187,7 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level3/escapepad)
 "tU" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/exploration/shuttlepad)
 "tY" = (
 /obj/structure/bed/chair/shuttle{
@@ -1655,6 +1662,15 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
+"Cc" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "Ck" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -1803,6 +1819,7 @@
 "Es" = (
 /mob/living/simple_mob/vore/alienanimals/catslug{
 	color = "#2b2b2b";
+	desc = "A black-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one exudes an aura of coolness.";
 	ghostjoin = 1;
 	name = "Navigator Purrverick"
 	},
@@ -2253,6 +2270,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/structure/closet/walllocker_double/east,
+/obj/item/weapon/tank/phoron,
+/obj/item/weapon/tank/phoron,
+/obj/item/weapon/tool/crowbar/red,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "Mc" = (
@@ -2264,6 +2285,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient3)
+"Ml" = (
+/obj/machinery/light/floortube{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/shuttle/groundbase/exploration)
 "Ms" = (
 /obj/structure/railing{
 	dir = 8
@@ -2453,6 +2480,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "Ph" = (
@@ -2469,6 +2497,15 @@
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/groundbase/exploration/shuttlepad)
+"Pn" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "Pq" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/lino,
@@ -3045,7 +3082,7 @@
 	},
 /area/groundbase/civilian/kitchen)
 "YJ" = (
-/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "YK" = (
@@ -7570,7 +7607,7 @@ qO
 dE
 PH
 PH
-pd
+Pn
 pd
 vV
 PH
@@ -7856,7 +7893,7 @@ dR
 uG
 uG
 DE
-Jh
+Ml
 Zx
 Hm
 tY
@@ -8140,7 +8177,7 @@ ei
 uG
 uG
 DE
-Jh
+fc
 zF
 Hm
 tY
@@ -8422,7 +8459,7 @@ qO
 dE
 PH
 PH
-jX
+Cc
 jX
 vV
 PH
@@ -8569,7 +8606,7 @@ rh
 XT
 PH
 XT
-XT
+ta
 vV
 PH
 tv
