@@ -179,7 +179,7 @@
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Away Team equipment"
-	access = access_eva
+	access = list(access_eva, access_awayteam)
 
 /datum/supply_pack/pilotgear
 	name= "Pilot gear"

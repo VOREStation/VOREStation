@@ -8990,6 +8990,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/westspur)
+"uA" = (
+/obj/item/weapon/paper_bin{
+	pixel_y = 7
+	},
+/obj/structure/table/steel,
+/obj/item/weapon/pen,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/gateway)
 "uB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -11371,6 +11382,42 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
+"An" = (
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = -4;
+	pixel_y = -6
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = -4;
+	pixel_y = -6
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/gateway)
 "Ao" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/gunbox{
@@ -12357,6 +12404,13 @@
 	outdoors = 0
 	},
 /area/groundbase/level1/northspur)
+"CN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/mineral/equipment_vendor/survey,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/gateway)
 "CO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 9
@@ -12540,12 +12594,16 @@
 	layer = 2.9
 	},
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/medical,
-/obj/item/clothing/head/helmet/space/void/medical,
 /obj/machinery/door/window/brigdoor{
 	req_access = list(5)
 	},
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/medical,
+/obj/item/clothing/suit/space/void/medical,
+/obj/item/clothing/head/helmet/space/void/medical,
+/obj/item/clothing/head/helmet/space/void/medical,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/gateway)
 "Dq" = (
@@ -16989,6 +17047,25 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
+"Oi" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/void/exploration,
+/obj/item/clothing/suit/space/void/exploration,
+/obj/item/clothing/head/helmet/space/void/exploration,
+/obj/item/clothing/head/helmet/space/void/exploration,
+/obj/item/device/bluespaceradio/groundbase_prelinked,
+/obj/machinery/door/window/brigdoor/eastright{
+	req_access = list(43)
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/gateway)
 "Oj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -17370,6 +17447,34 @@
 "Pp" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level1/southeastspur)
+"Pq" = (
+/obj/structure/table/rack/shelf,
+/obj/item/stack/marker_beacon/thirty{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/stack/marker_beacon/thirty{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/device/gps{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/device/gps{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/device/gps{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/device/gps{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/gateway)
 "Pr" = (
 /obj/structure/bed/chair/sofa/bench{
 	dir = 1
@@ -19275,8 +19380,8 @@
 	},
 /obj/effect/floor_decal/corner/pink/full,
 /obj/machinery/vending/wallmed1/public{
-	pixel_y = -28;
-	dir = 1
+	dir = 1;
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
@@ -20450,10 +20555,14 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/medical,
-/obj/item/clothing/head/helmet/space/void/medical,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/void/expedition_medical,
+/obj/item/clothing/suit/space/void/expedition_medical,
+/obj/item/clothing/head/helmet/space/void/expedition_medical,
+/obj/item/clothing/head/helmet/space/void/expedition_medical,
 /obj/machinery/door/window/brigdoor/eastright{
 	req_access = list(5)
 	},
@@ -29680,7 +29789,7 @@ lE
 Dp
 WY
 jW
-XS
+Oi
 hB
 AZ
 AZ
@@ -30524,10 +30633,10 @@ MO
 MO
 lE
 wI
-nR
-XS
-XS
-XS
+CN
+An
+Pq
+uA
 WN
 FN
 nR

@@ -58,8 +58,8 @@ var/list/department_radio_keys = list(
 	":г" = "Supply",        ".г" = "Supply",
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
-	":н" = "Away Team",    ".н" = "Away Team",
-	":ф" = "Talon",        ".ф" = "Talon", //VOREStation Add
+	":ф" = "Away Team",    ".ф" = "Away Team",
+	":н" = "Talon",        ".н" = "Talon", //VOREStation Add
 	":п" = "Casino",	".п" = "Casino",
 )
 

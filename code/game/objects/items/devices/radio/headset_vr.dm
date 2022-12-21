@@ -91,7 +91,7 @@
 	icon_state = "pilot_headset_alt"
 
 /obj/item/device/radio/headset/explorer
-	name = "away team's headset"
+	name = "away team member's headset"
 	desc = "Headset used by the away team for exploring. Access to the away team channel."
 	icon_state = "exp_headset"
 	adhoc_fallback = TRUE
