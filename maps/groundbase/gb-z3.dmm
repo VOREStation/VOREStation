@@ -855,7 +855,6 @@
 /area/groundbase/civilian/kitchen)
 "nN" = (
 /obj/machinery/light,
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "nR" = (
@@ -1323,7 +1322,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "vs" = (
@@ -1595,7 +1593,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "zG" = (
-/obj/machinery/suit_cycler/exploration,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
@@ -3141,7 +3138,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "WF" = (

@@ -14,7 +14,7 @@
 	network = "tcommsat"
 	autolinkers = list("hub",
 		"sd_relay", "c_relay", "m_relay", "r_relay",
-		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "explorer", "unused",
+		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "Away Team", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
 	)
 
@@ -30,7 +30,7 @@
 
 /obj/machinery/telecomms/server/presets/service/sd
 	freq_listening = list(SRV_FREQ, EXP_FREQ)
-	autolinkers = list("service", "explorer")
+	autolinkers = list("service", "Away Team")
 
 // Telecommunications Satellite
 /area/sd/surfacebase/tcomms
@@ -79,7 +79,7 @@
 		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
 		num2text(SUP_FREQ) = list(access_cargo),
 		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics),
-		num2text(EXP_FREQ) = list(access_explorer)
+		num2text(EXP_FREQ) = list(access_awayteam)
 	)
 
 /obj/item/device/multitool/sd_buffered

@@ -27863,7 +27863,6 @@
 /turf/simulated/floor/plating,
 /area/tether/station/dock_two)
 "mYJ" = (
-/obj/machinery/suit_cycler/exploration,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},

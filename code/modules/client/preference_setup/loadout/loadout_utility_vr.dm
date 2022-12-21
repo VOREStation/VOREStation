@@ -57,9 +57,8 @@
 	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist")
 
 /datum/gear/utility/dufflebag/explorer
-	display_name = "explorer dufflebag"
+	display_name = "away team dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
-	allowed_roles = list("Pathfinder","Explorer")
 
 /datum/gear/utility/dufflebag/talon
 	display_name = "Talon dufflebag"

@@ -26,7 +26,6 @@
 	containername = "eva hardsuit crate"
 	access = list(access_mining,
 				  access_eva,
-				  access_explorer,
 				  access_pilot)
 	one_access = TRUE
 
@@ -132,12 +131,11 @@
 	access = list(access_mining,
 				  access_xenoarch,
 				  access_eva,
-				  access_explorer,
 				  access_pilot)
 	one_access = TRUE
 
 /datum/supply_pack/randomised/misc/explorer_shield
-	name = "Explorer shield"
+	name = "Away Team shield"
 	num_contained = 2
 	contains = list(
 			/obj/item/weapon/shield/riot/explorer,
@@ -146,8 +144,7 @@
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "exploration shield crate"
-	access = list(access_explorer,
-				  access_eva,
+	access = list(access_eva,
 				  access_pilot)
 	one_access = TRUE
 
@@ -178,7 +175,7 @@
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "exploration radio headsets crate"
 	access = list(
-		access_explorer,
+		access_awayteam,
 		access_eva,
 		access_pilot
 	)

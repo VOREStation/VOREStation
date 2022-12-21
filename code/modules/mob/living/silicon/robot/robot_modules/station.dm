@@ -171,7 +171,7 @@ var/global/list/robot_modules = list(
 			"Supply" = 1,
 			"Science" = 1,
 			"Command" = 1,
-			"Explorer" = 1
+			"Away Team" = 1
 			)
 
 // Cyborgs (non-drones), default loadout. This will be given to every module.

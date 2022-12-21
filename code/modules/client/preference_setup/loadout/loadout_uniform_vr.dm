@@ -130,7 +130,7 @@
 	allowed_roles = list("Head of Security","Site Manager","Head of Personnel","Chief Engineer","Research Director",
 						"Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist",
 						"Scientist","Roboticist","Xenobiologist","Xenobotanist","Atmospheric Technician",
-						"Engineer","Warden","Detective","Security Officer", "Pathfinder", "Explorer", "Field Medic")
+						"Engineer","Warden","Detective","Security Officer", "Pathfinder", "Field Medic")
 
 
 /datum/gear/uniform/job_trek/cmd/ds9

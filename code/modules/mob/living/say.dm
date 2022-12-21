@@ -16,8 +16,8 @@ var/list/department_radio_keys = list(
 	":u" = "Supply",		".u" = "Supply",
 	":v" = "Service",		".v" = "Service",
 	":p" = "AI Private",	".p" = "AI Private",
-	":y" = "Explorer",	".y" = "Explorer",
-	":a" = "Talon",		".a" = "Talon", //VOREStation Add,
+	":a" = "Away Team",	".a" = "Away Team",	//VOREStation Edit
+	":y" = "Talon",		".y" = "Talon", //VOREStation Add,
 	":g" = "Casino",	".g" = "Casino",
 
 	":R" = "right ear",	".R" = "right ear",
@@ -36,8 +36,8 @@ var/list/department_radio_keys = list(
 	":U" = "Supply",		".U" = "Supply",
 	":V" = "Service",		".V" = "Service",
 	":P" = "AI Private",	".P" = "AI Private",
-	":Y" = "Explorer",	".Y" = "Explorer",
-	":A" = "Talon",		".A" = "Talon", //VOREStation Add,
+	":A" = "Away Team",	".A" = "Away Team",
+	":Y" = "Talon",		".Y" = "Talon", //VOREStation Add,
 	":G" = "Casino",	".G" = "Casino",
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
@@ -58,7 +58,7 @@ var/list/department_radio_keys = list(
 	":г" = "Supply",        ".г" = "Supply",
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
-	":н" = "Explorer",    ".н" = "Explorer",
+	":н" = "Away Team",    ".н" = "Away Team",
 	":ф" = "Talon",        ".ф" = "Talon", //VOREStation Add
 	":п" = "Casino",	".п" = "Casino",
 )

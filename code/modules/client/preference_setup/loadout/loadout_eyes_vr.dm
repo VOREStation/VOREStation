@@ -2,8 +2,8 @@
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
 
 /datum/gear/eyes/meson
-	display_name = "Optical Meson Scanners (Eng, Sci, Explo)"
-	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Explorer", "Pathfinder")
+	display_name = "Optical Meson Scanners (Eng, Sci)"
+	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Pathfinder")
 
 /datum/gear/eyes/arglasses
 	display_name = "AR glasses"

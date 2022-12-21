@@ -46,8 +46,10 @@
 	name = "Shaft Miner"
 /obj/effect/landmark/start/pf
 	name = "Pathfinder"
+/* //VOREStation Removal
 /obj/effect/landmark/start/explorer
 	name = "Explorer"
+*/
 /obj/effect/landmark/start/fieldmedic
 	name = "Field Medic"
 /obj/effect/landmark/start/bartender

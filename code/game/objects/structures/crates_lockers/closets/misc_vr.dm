@@ -24,7 +24,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/rifle
 	name = "rifle cabinet"
-	req_one_access = list(access_explorer,access_brig)
+	req_one_access = list(access_brig)
 
 	starts_with = list(
 		/obj/item/ammo_magazine/clip/c762/hunter = 9,
@@ -38,8 +38,8 @@
 	return ..()
 
 /obj/structure/closet/secure_closet/guncabinet/phase
-	name = "explorer weapon cabinet"
-	req_one_access = list(access_explorer,access_brig)
+	name = "away team weapon cabinet"
+	req_one_access = list(access_brig)
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/phasegun = 2,
@@ -51,8 +51,8 @@
  * Explorer
  */
 /obj/structure/closet/secure_closet/explorer
-	name = "explorer locker"
-	req_access = list(access_explorer)
+	name = "away team locker"
+	req_access = list(access_awayteam)
 	closet_appearance = /decl/closet_appearance/secure_closet/expedition/explorer
 
 	starts_with = list(
@@ -93,7 +93,7 @@
  */
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
-	req_access = list(access_pathfinder)
+	req_access = list(access_heads)
 	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
 
 	starts_with = list(

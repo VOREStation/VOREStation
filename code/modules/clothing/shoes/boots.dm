@@ -169,7 +169,7 @@
 	icon_state = "winterboots_hydro"
 
 /obj/item/clothing/shoes/boots/winter/explorer
-	name = "explorer winter boots"
+	name = "away team winter boots"
 	desc = "Steel-toed winter boots for mining or exploration in hazardous environments. Very good at keeping toes warm and uncrushed."
 	icon_state = "explorer"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)

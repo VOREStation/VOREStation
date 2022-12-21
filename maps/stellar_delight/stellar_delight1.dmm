@@ -2069,7 +2069,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "en" = (
@@ -4957,7 +4956,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "kh" = (
@@ -7557,7 +7555,6 @@
 /turf/simulated/wall/bay/purple,
 /area/stellardelight/deck1/researchequip)
 "pG" = (
-/obj/machinery/suit_cycler/exploration,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "pH" = (
@@ -9250,7 +9247,6 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck1/portcent)
 "te" = (
-/obj/machinery/suit_cycler/exploration,
 /obj/machinery/firealarm/angled,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
@@ -19219,7 +19215,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "OC" = (
@@ -19637,7 +19632,6 @@
 /obj/structure/bed/chair/backed_red{
 	dir = 8
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "PD" = (
@@ -21528,7 +21522,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "Ts" = (
@@ -21597,7 +21590,6 @@
 /area/stellardelight/deck1/mining)
 "TC" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "TD" = (
@@ -22523,7 +22515,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "Vp" = (
@@ -23245,7 +23236,6 @@
 /obj/structure/bed/chair/backed_red{
 	dir = 4
 	},
-/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "WJ" = (
