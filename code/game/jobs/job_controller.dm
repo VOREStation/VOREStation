@@ -428,7 +428,7 @@ var/global/datum/controller/occupations/job_master
 				if(G.slot && !(G.slot in custom_equip_slots))
 					var/metadata = H.client.prefs.gear[G.display_name]
 					//if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
-					//	custom_equip_leftovers += thing\
+					//	custom_equip_leftovers += thing
 					//else
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
