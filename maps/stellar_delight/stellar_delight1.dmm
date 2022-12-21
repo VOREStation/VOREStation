@@ -367,7 +367,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "aK" = (
@@ -7290,7 +7289,6 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = -64
 	},
-/obj/effect/landmark/start/pf,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/pathfinder)
 "pe" = (
@@ -8401,7 +8399,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "rw" = (
@@ -9106,7 +9103,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "sP" = (
@@ -12571,7 +12567,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "Ao" = (
@@ -13763,7 +13758,6 @@
 /area/prison/cell_block/C)
 "CN" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "CO" = (
@@ -24760,7 +24754,6 @@
 /area/security/warden)
 "ZQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "ZR" = (

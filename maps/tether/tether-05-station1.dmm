@@ -5503,9 +5503,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "alk" = (
@@ -23553,9 +23550,6 @@
 /area/quartermaster/belterdock/refinery)
 "jtH" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "jtT" = (
@@ -25615,9 +25609,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -27523,9 +27514,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "mIs" = (
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "mIv" = (

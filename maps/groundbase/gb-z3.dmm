@@ -1315,7 +1315,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "uU" = (
-/obj/effect/landmark/start/pf,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "vp" = (
@@ -2162,7 +2161,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "HI" = (
@@ -3221,7 +3219,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "YK" = (
