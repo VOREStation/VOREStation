@@ -3291,9 +3291,6 @@
 	pixel_y = 28
 	},
 /obj/structure/table/steel,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_engineering)
 "yP" = (
@@ -3662,6 +3659,17 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"Bs" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Bw" = (
 /obj/machinery/camera/network/research_outpost,
 /turf/simulated/floor/tiled,
@@ -3838,6 +3846,15 @@
 	icon_state = "riveted"
 	},
 /area/submap/groundbase/wilderness/west)
+"CN" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "CO" = (
 /obj/structure/window/reinforced/tinted,
 /obj/structure/toilet{
@@ -5903,7 +5920,6 @@
 /obj/item/stack/material/tritium{
 	amount = 25
 	},
-/obj/machinery/light,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
@@ -21390,14 +21406,14 @@ zm
 IE
 VX
 yC
-lR
+CN
 ba
 yF
 sq
 Vi
 yF
 uV
-De
+Bs
 yC
 VX
 IE

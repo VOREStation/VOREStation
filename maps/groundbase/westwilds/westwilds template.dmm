@@ -1098,7 +1098,6 @@
 /obj/item/stack/material/tritium{
 	amount = 25
 	},
-/obj/machinery/light,
 /obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_engineering)
@@ -1465,6 +1464,17 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"mS" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "mT" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -1846,9 +1856,6 @@
 	pixel_y = 28
 	},
 /obj/structure/table/steel,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_engineering)
 "qb" = (
@@ -3641,6 +3648,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Fm" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Fp" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /obj/machinery/door/blast/regular{
@@ -14748,14 +14764,14 @@ LP
 LP
 eo
 Wz
-JU
+Fm
 Jh
 KN
 Yv
 zL
 KN
 Jh
-kX
+mS
 Wz
 eo
 LP
