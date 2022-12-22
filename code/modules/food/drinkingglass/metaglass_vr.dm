@@ -234,3 +234,8 @@
 
 /datum/reagent/ethanol/angelskiss
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
+/datum/reagent/ethanol/burnout
+	glass_icon_state = "burnout"
+	glass_center_of_mass = list("x"=16, "y"=8)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
