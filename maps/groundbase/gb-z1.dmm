@@ -585,6 +585,7 @@
 /obj/structure/closet/toolcloset,
 /obj/item/weapon/pickaxe,
 /obj/item/weapon/chainsaw,
+/obj/item/weapon/shovel,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "bx" = (
@@ -19275,8 +19276,8 @@
 	},
 /obj/effect/floor_decal/corner/pink/full,
 /obj/machinery/vending/wallmed1/public{
-	pixel_y = -28;
-	dir = 1
+	dir = 1;
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
