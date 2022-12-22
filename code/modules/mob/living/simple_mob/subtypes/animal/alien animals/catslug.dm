@@ -841,6 +841,42 @@
 	mob_radio.recalculateChannels(1)
 	mobcard.access |= get_all_station_access()
 
+//Pilot Catslug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug
+	name = "Navigator Purrverick"
+	desc = "A black-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one exudes an aura of coolness, they're so cool that their pilot's liscense was suspended."
+	tt_desc = "Mollusca Felis Mischefterous"
+	color = "#2b2b2b"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/pilotslug)
+	say_list_type = /datum/say_list/catslug/custom/pilotslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/pilotslug
+	name = "Alien Wildlife - Catslug - Navigator Purrverick"
+	desc = "A resident at NSB Rascal's Pass, Navigator Purrverick \
+	is a catslug who is known to dream big and seek the sky.\
+	Purrverick has proved to be quite capable of utilizing shuttle\
+	controls with excellent grace and skill. Purrverick can however\
+	be rather self assured, which has on more than one occasion\
+	lead to unfortunate mistakes and incidents.\
+	Purrverick's provisionary piloting liscense is marked as suspended.\
+	There are however still more records of the catslug's piloting escapades\
+	dated afer their suspension.\
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/pilotslug
+	speak = list("In the pipe, five my five.","Kick the tires and light the fires!","Bogeys on my tail!","GOOSE!","I'm really good at the stick.","I'm not doing nothing.","Heh.","Can you keep up?","Can't keep the sky from me.")
+
 //=============================
 //Admin-spawn only catslugs end
 //=============================

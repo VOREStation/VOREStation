@@ -6,8 +6,13 @@
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/exploration/shuttlepad)
 "ab" = (
-/turf/simulated/open/virgo3c,
-/area/groundbase/unexplored/outdoors)
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level3/nw/open)
 "ac" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -144,6 +149,15 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/patient4)
+"dx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/groundbase/civilian/pilot)
 "dE" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -179,7 +193,9 @@
 /area/groundbase/medical/patient2)
 "dQ" = (
 /obj/structure/hull_corner,
-/turf/simulated/shuttle/plating/carry,
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/shuttle/groundbase/exploration)
 "dR" = (
 /obj/machinery/door/firedoor,
@@ -336,6 +352,10 @@
 	pixel_x = 27;
 	specialfunctions = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/groundbase/civilian/pilot)
 "gl" = (
@@ -346,11 +366,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
+"gs" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level3/nw/open)
 "gu" = (
 /obj/structure/hull_corner{
 	dir = 8
 	},
-/turf/simulated/shuttle/plating/carry,
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/shuttle/groundbase/exploration)
 "gx" = (
 /obj/machinery/door/airlock/science{
@@ -534,12 +564,6 @@
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/carpet/retro,
 /area/groundbase/dorms/bathroom)
-"jQ" = (
-/obj/structure/hull_corner{
-	dir = 1
-	},
-/turf/simulated/shuttle/plating/carry,
-/area/groundbase/exploration/shuttlepad)
 "jX" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -962,6 +986,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "pY" = (
@@ -1026,6 +1052,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "rb" = (
@@ -1093,7 +1121,9 @@
 	pixel_y = 19;
 	req_one_access = list(19,43,67)
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+	outdoors = 0
+	},
 /area/groundbase/exploration/shuttlepad)
 "sa" = (
 /obj/structure/railing{
@@ -1124,7 +1154,9 @@
 /obj/structure/hull_corner{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating/carry,
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/shuttle/groundbase/exploration)
 "sP" = (
 /turf/simulated/floor/virgo3c{
@@ -1180,9 +1212,6 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level3/nw)
-"tv" = (
-/turf/simulated/wall/rshull,
-/area/groundbase/exploration/shuttlepad)
 "tM" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level3/escapepad)
@@ -1422,7 +1451,8 @@
 /area/groundbase/medical/uhallway)
 "xH" = (
 /obj/machinery/power/apc/hyper{
-	dir = 8
+	dir = 8;
+	req_access = list(11,67)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -1692,6 +1722,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
+"CJ" = (
+/obj/structure/closet/secure_closet/pilot,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/groundbase/civilian/pilot)
+"CP" = (
+/obj/structure/handrail,
+/obj/machinery/portable_atmospherics/canister,
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "CS" = (
 /obj/item/device/radio/intercom{
 	pixel_y = -24
@@ -1726,6 +1771,10 @@
 	pixel_x = -27;
 	specialfunctions = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/groundbase/civilian/pilot)
 "Dm" = (
@@ -1736,6 +1785,8 @@
 	id_tag = "pilotA";
 	name = "A"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/civilian/pilot)
 "Dw" = (
@@ -1817,12 +1868,7 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/kitchen)
 "Es" = (
-/mob/living/simple_mob/vore/alienanimals/catslug{
-	color = "#2b2b2b";
-	desc = "A black-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one exudes an aura of coolness.";
-	ghostjoin = 1;
-	name = "Navigator Purrverick"
-	},
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "Ev" = (
@@ -1939,6 +1985,14 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level3/nw)
+"FD" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level3/nw/open)
 "FO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -2142,6 +2196,8 @@
 	id_tag = "pilotB";
 	name = "B"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/civilian/pilot)
 "Jy" = (
@@ -2222,12 +2278,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/kitchen)
-"KO" = (
-/obj/structure/hull_corner{
-	dir = 4
-	},
-/turf/simulated/shuttle/plating/carry,
-/area/groundbase/exploration/shuttlepad)
 "KZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -2333,7 +2383,9 @@
 /obj/structure/hull_corner{
 	dir = 4
 	},
-/turf/simulated/shuttle/plating/carry,
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/shuttle/groundbase/exploration)
 "MU" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -2361,10 +2413,13 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "Nf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/groundbase/civilian/pilot)
 "No" = (
 /obj/structure/closet/secure_closet/paramedic,
@@ -2399,16 +2454,14 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
 "NX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/monotile,
 /area/groundbase/civilian/pilot)
 "Oc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2425,6 +2478,9 @@
 "Og" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
@@ -2449,6 +2505,12 @@
 /area/groundbase/medical/paramedic)
 "Os" = (
 /obj/structure/closet/secure_closet/pilot,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/groundbase/civilian/pilot)
 "OD" = (
@@ -2491,12 +2553,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
-"Pk" = (
-/obj/machinery/ion_engine{
-	dir = 1
-	},
-/turf/simulated/shuttle/plating/airless,
-/area/groundbase/exploration/shuttlepad)
 "Pn" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -2622,6 +2678,14 @@
 /obj/machinery/status_display,
 /turf/simulated/wall,
 /area/groundbase/level3/escapepad)
+"Qo" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level3/nw/open)
 "Qq" = (
 /obj/structure/railing{
 	dir = 8
@@ -3056,6 +3120,12 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
+"XL" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level3/nw/open)
 "XT" = (
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
@@ -3082,8 +3152,9 @@
 	},
 /area/groundbase/civilian/kitchen)
 "YJ" = (
-/obj/machinery/portable_atmospherics/canister,
-/turf/simulated/floor/tiled,
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/yellow,
+/turf/simulated/floor/virgo3c,
 /area/shuttle/groundbase/exploration)
 "YK" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -3138,6 +3209,9 @@
 "Zp" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/brown,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/groundbase/civilian/pilot)
 "Zv" = (
@@ -5766,7 +5840,7 @@ qO
 fz
 vp
 Es
-Nf
+dx
 lT
 fz
 fz
@@ -6053,7 +6127,7 @@ FV
 Oc
 Dm
 fz
-Os
+CJ
 bm
 fz
 qO
@@ -7185,7 +7259,7 @@ dQ
 PH
 dX
 PH
-Ef
+CP
 Og
 YJ
 PH
@@ -8467,7 +8541,7 @@ Ka
 PH
 PH
 PH
-KO
+MP
 XC
 ZH
 xM
@@ -8609,7 +8683,7 @@ XT
 ta
 vV
 PH
-tv
+PH
 XC
 cY
 Kr
@@ -8751,7 +8825,7 @@ Ef
 XT
 vV
 PH
-Pk
+JI
 XC
 Kr
 Kr
@@ -8893,7 +8967,7 @@ Ea
 Nb
 vV
 PH
-tv
+PH
 XC
 Kr
 Kr
@@ -9035,7 +9109,7 @@ PH
 oi
 PH
 PH
-jQ
+sL
 XC
 Kr
 Kr
@@ -10162,21 +10236,21 @@ Zo
 Zo
 Zo
 Zo
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+FD
 Kr
 Kr
 Kr
@@ -10318,7 +10392,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -10460,7 +10534,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -10602,7 +10676,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -10744,7 +10818,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -10886,7 +10960,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -11028,7 +11102,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -11170,7 +11244,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -11312,7 +11386,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -11434,10 +11508,10 @@ Zo
 Zo
 Zo
 Zo
-ab
 Kr
 Kr
 Kr
+Kr
 QD
 QD
 QD
@@ -11454,7 +11528,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -11596,7 +11670,7 @@ QD
 QD
 QD
 QD
-QD
+XL
 Kr
 Kr
 Kr
@@ -11724,21 +11798,21 @@ Kr
 Kr
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+gs
+Qo
 Kr
 Kr
 Kr

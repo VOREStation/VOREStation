@@ -78,7 +78,7 @@
 	)
 
 /obj/item/device/multitool/groundbase_buffered
-	name = "pre-linked multitool (groundbase hub)"
+	name = "pre-linked multitool (Rascal's Pass hub)"
 	desc = "This multitool has already been linked to the groundbase telecomms hub and can be used to configure one (1) relay."
 
 /obj/item/device/multitool/groundbase_buffered/Initialize()
@@ -86,7 +86,7 @@
 	buffer = locate(/obj/machinery/telecomms/hub/preset/groundbase)
 
 /obj/item/device/bluespaceradio/groundbase_prelinked
-	name = "bluespace radio (Groundbase)"
+	name = "bluespace radio (Rascal's Pass)"
 	handset = /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked
 
 /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked

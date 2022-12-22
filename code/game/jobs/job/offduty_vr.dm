@@ -98,7 +98,6 @@
 	pto_type = PTO_SECURITY
 	economic_modifier = 4
 
-/*
 /datum/job/offduty_exploration
 	title = "Off-duty Explorer"
 	latejoin_only = TRUE
@@ -114,4 +113,3 @@
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_EXPLORATION
 	economic_modifier = 5
-*/
