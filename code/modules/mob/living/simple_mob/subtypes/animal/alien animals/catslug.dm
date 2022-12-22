@@ -851,6 +851,16 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/pilotslug)
 	say_list_type = /datum/say_list/catslug/custom/pilotslug
 
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug/Initialize()
+	. = ..()
+	if(prob(25))
+		var/list/possible_targets = list()
+		for(var/obj/machinery/computer/ship/helm/h in world)
+			if(h.z in using_map.player_levels)
+				possible_targets |= h
+		var/final = pick(possible_targets)
+		forceMove(get_turf(final))
+
 /datum/category_item/catalogue/fauna/catslug/custom/pilotslug
 	name = "Alien Wildlife - Catslug - Navigator Purrverick"
 	desc = "A resident at NSB Rascal's Pass, Navigator Purrverick \
