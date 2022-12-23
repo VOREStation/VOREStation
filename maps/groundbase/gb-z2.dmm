@@ -3066,6 +3066,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"iH" = (
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/westspur)
 "iI" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/civilian/hydroponics/out)
@@ -26578,7 +26583,7 @@ Yt
 In
 bY
 bY
-eN
+iH
 eN
 eN
 eN
@@ -26861,8 +26866,8 @@ In
 Wl
 Wl
 bY
-eN
-eN
+OI
+OI
 eN
 eN
 eN
@@ -27003,8 +27008,8 @@ bY
 bY
 bY
 bY
-eN
-eN
+OI
+OI
 eN
 eN
 eN
@@ -27143,10 +27148,10 @@ bY
 bY
 bY
 bY
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN

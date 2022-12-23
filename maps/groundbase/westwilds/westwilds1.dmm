@@ -2782,7 +2782,7 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
