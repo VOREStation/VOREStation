@@ -3573,11 +3573,6 @@
 	dir = 8;
 	pixel_x = -32
 	},
-/obj/structure/sign/directions/science/exploration{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = -6
-	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/nw)
 "kb" = (
@@ -16613,11 +16608,6 @@
 	dir = 8;
 	pixel_x = -32;
 	pixel_y = -32
-	},
-/obj/structure/sign/directions/science/exploration{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = -38
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level2/nw)
