@@ -1137,7 +1137,7 @@
 			for(var/mob/living/L in T)
 				if(L == src) //no eating yourself. 1984.
 					continue
-				if(L.devourable)
+				if(L.devourable && L.can_be_drop_prey)
 					targets += L
 
 	if(!(targets.len))
