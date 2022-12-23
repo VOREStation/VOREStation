@@ -7,6 +7,7 @@
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
+	slot_flags = SLOT_BELT | SLOT_HOLSTER
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."
