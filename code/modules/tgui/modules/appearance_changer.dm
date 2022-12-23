@@ -26,6 +26,7 @@
 	var/list/valid_earstyles = list()
 	var/list/valid_tailstyles = list()
 	var/list/valid_wingstyles = list()
+	var/list/markings = null
 
 /datum/tgui_module/appearance_changer/New(
 		var/host,
@@ -174,7 +175,7 @@
 						update_dna()
 						changed_hook(APPEARANCECHANGER_CHANGED_EYES)
 						return 1
-		// VOREStation Add - Ears/Tails/Wings
+		// VOREStation Add - Ears/Tails/Wings/Markings
 		if("ear")
 			if(can_change(APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/ears/instance = locate(params["ref"])
@@ -277,6 +278,40 @@
 					owner.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("marking")
+			if(can_change(APPEARANCE_ALL_HAIR))
+				var/todo = params["todo"]
+				var/name_marking = params["name"]
+				switch (todo)
+					if (0) //delete
+						if (name_marking)
+							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							if (target.remove_marking(mark_datum))
+								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
+								return TRUE
+					if (1) //add
+						var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
+						var/new_marking = tgui_input_list(usr, "Choose a body marking:", "New Body Marking", usable_markings)
+						if(new_marking && can_still_topic(usr, state))
+							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[new_marking]
+							if (target.add_marking(mark_datum))
+								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
+								return TRUE
+					if (2) //move up
+						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						if (target.change_priority_of_marking(mark_datum, FALSE))
+							return TRUE
+					if (3) //move down
+						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						if (target.change_priority_of_marking(mark_datum, TRUE))
+							return TRUE
+					if (4) //color
+						var/current = markings[name_marking] ? markings[name_marking] : "#000000"
+						var/marking_color = input(usr, "Please select marking color", "Marking color", current) as color|null
+						if(marking_color && can_still_topic(usr, state))
+							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							if (target.change_marking_color(mark_datum, marking_color))
+								return TRUE
 		// VOREStation Add End
 	return FALSE
 
@@ -370,6 +405,11 @@
 		data["ear_style"] = target.ear_style
 		data["tail_style"] = target.tail_style
 		data["wing_style"] = target.wing_style
+		var/list/markings_data[0]
+		markings = target.get_prioritised_markings()
+		for (var/marking in markings)
+			markings_data[++markings_data.len] = list("marking_name" = marking, "marking_color" = markings[marking])
+		data["markings"] = markings_data
 		// VOREStation Add End
 
 	data["change_facial_hair"] = can_change(APPEARANCE_FACIAL_HAIR)
