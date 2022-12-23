@@ -225,7 +225,9 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
-	pixel_y = -24
+	pixel_y = -24;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
 	d2 = 4;
@@ -1031,7 +1033,9 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
-	pixel_x = 24
+	pixel_x = 24;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable,
 /obj/machinery/light,
@@ -1297,7 +1301,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
-	pixel_x = -28
+	pixel_x = -28;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -2262,7 +2268,9 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
-	pixel_x = 24
+	pixel_x = 24;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/handrail{
 	dir = 8
@@ -2473,7 +2481,9 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
 	d2 = 4;
@@ -3908,7 +3918,9 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
-	pixel_y = -24
+	pixel_y = -24;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
 	d2 = 4;
@@ -5567,7 +5579,9 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
 	d2 = 4;
