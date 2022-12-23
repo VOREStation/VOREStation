@@ -860,6 +860,7 @@
 				possible_targets |= h
 		var/final = pick(possible_targets)
 		forceMove(get_turf(final))
+		ghostjoin = TRUE
 
 /datum/category_item/catalogue/fauna/catslug/custom/pilotslug
 	name = "Alien Wildlife - Catslug - Navigator Purrverick"

@@ -46,7 +46,7 @@
 /area/space)
 "aj" = (
 /obj/effect/floor_decal/corner/lightgrey/diagonal,
-/mob/living/simple_mob/humanoid/merc/ranged,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
 "ak" = (
@@ -210,15 +210,6 @@
 	},
 /turf/space,
 /area/space)
-"aJ" = (
-/obj/item/weapon/paper{
-	info = "meat grinder requires sacri"
-	},
-/turf/simulated/floor/cult{
-	nitrogen = 0;
-	oxygen = 0
-	},
-/area/awaymission/wwvault)
 "aK" = (
 /obj/machinery/gateway{
 	dir = 8
@@ -269,15 +260,6 @@
 "bk" = (
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
-"bn" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/paper{
-	info = " The miners in the town have become sick and almost all production has stopped. They, in a fit of delusion, tossed all of their mining equipment into the furnaces.  They all claimed the same thing. A voice beckoning them to lay down their arms. Stupid miners.";
-	name = "Planer Saul's Journal: Page 4"
-	},
-/obj/effect/floor_decal/corner/lightgrey/diagonal,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/wwmines)
 "bo" = (
 /obj/structure/table/woodentable,
 /obj/effect/floor_decal/corner/lightgrey/diagonal,
@@ -315,13 +297,6 @@
 /obj/machinery/gateway,
 /turf/simulated/floor/redgrid/off,
 /area/awaymission/wwvault)
-"bR" = (
-/obj/item/weapon/paper{
-	info = "We've discovered something floating in space. We can't really tell how old it is, but it is scraped and bent to hell. There object is the size of about a room with double doors that we have yet to break into.   It is a lot sturdier than we could have imagined.  We have decided to call it 'The Vault' ";
-	name = "Planer Saul's Journal: Page 1"
-	},
-/turf/simulated/floor/carpet,
-/area/awaymission/wwgov)
 "bS" = (
 /obj/machinery/gateway{
 	dir = 6
@@ -514,19 +489,8 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
-"dM" = (
-/obj/item/weapon/stool{
-	dir = 1
-	},
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"dN" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor/outdoors/ironsand,
-/area/awaymission/wwmines)
 "dO" = (
-/mob/living/simple_mob/humanoid/merc/melee,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/outdoors/ironsand,
 /area/awaymission/wwmines)
 "dQ" = (
@@ -567,7 +531,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwmines)
 "eh" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/plating,
 /area/awaymission/wwrefine)
 "ei" = (
@@ -654,10 +618,6 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
-"eX" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/wwmines)
 "eY" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/book/manual/barman_recipes,
@@ -743,10 +703,6 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/diagonal,
 /turf/simulated/floor/tiled/white,
-/area/awaymission/wwmines)
-"fu" = (
-/mob/living/simple_mob/humanoid/merc/melee,
-/turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "fy" = (
 /obj/machinery/door/window{
@@ -967,7 +923,7 @@
 /area/awaymission/wwgov)
 "gH" = (
 /obj/effect/decal/remains/human,
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/plating,
 /area/awaymission/wwrefine)
 "gM" = (
@@ -978,7 +934,7 @@
 /turf/simulated/floor/outdoors/ironsand,
 /area/awaymission/wwmines)
 "gP" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "gQ" = (
@@ -1223,13 +1179,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
-"pW" = (
-/obj/item/weapon/paper{
-	info = "The syndicate have invaded.  Their ships appeared out of nowhere and now they likely intend to kill us all and take everything.  On the off-chance that the Vault may grant us sanctuary, many of us have decided to force our way inside and bolt the door, taking as many provisions with us as we can carry.  In case you find this, send for help immediately and open the Vault. Find us inside.";
-	name = "Planer Saul's Journal: Page 8"
-	},
-/turf/simulated/floor/outdoors/ironsand,
-/area/awaymission/wwmines)
 "qQ" = (
 /obj/effect/decal/mecha_wreckage/ripley/deathripley{
 	anchored = 1
@@ -1319,7 +1268,7 @@
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
 "tA" = (
-/mob/living/simple_mob/humanoid/merc/melee,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwmines)
 "tO" = (
@@ -1386,7 +1335,7 @@
 /obj/item/weapon/stool{
 	dir = 1
 	},
-/mob/living/simple_mob/humanoid/merc/melee,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "wj" = (
@@ -1559,15 +1508,8 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "CN" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/carpet,
-/area/awaymission/wwmines)
-"CO" = (
-/obj/item/weapon/paper{
-	info = "The Vault...it just keeps growing and growing.  I went on my daily walk through the garden and now its just right outside the mansion... a few days ago it was only barely visible. But whatever is inside...its calling to me.";
-	name = "Planer Sauls' Journal: Page 7"
-	},
-/turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwmines)
 "CU" = (
 /obj/structure/largecrate,
@@ -1790,7 +1732,7 @@
 /turf/simulated/floor/outdoors/ironsand,
 /area/awaymission/wwmines)
 "Kj" = (
-/mob/living/simple_mob/humanoid/merc/melee,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwrefine)
 "KI" = (
@@ -2032,7 +1974,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/melee,
+/obj/random/mob/semirandom_mob_spawner/wildwest,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "Tk" = (
@@ -4692,7 +4634,7 @@ bY
 bY
 bY
 bY
-bR
+bY
 bY
 jq
 cn
@@ -8502,7 +8444,7 @@ aF
 aF
 aF
 dl
-aJ
+pv
 dn
 pv
 pv
@@ -11102,7 +11044,7 @@ gN
 gN
 gN
 gN
-dN
+dO
 gN
 gN
 gN
@@ -11501,7 +11443,7 @@ gN
 gN
 gN
 gN
-dN
+dO
 gN
 gN
 gN
@@ -11550,7 +11492,7 @@ aL
 gN
 gN
 gN
-pW
+gN
 aL
 aL
 aN
@@ -12780,7 +12722,7 @@ fS
 Ft
 bo
 bo
-bn
+bo
 Ft
 fS
 bj
@@ -13620,7 +13562,7 @@ gN
 gN
 gN
 gN
-dN
+dO
 gN
 gN
 cA
@@ -14090,7 +14032,7 @@ gN
 fS
 bj
 bj
-fu
+gP
 bj
 bj
 bj
@@ -14907,7 +14849,7 @@ cA
 cA
 cA
 cA
-eX
+tA
 cA
 cA
 cA
@@ -16334,7 +16276,7 @@ bk
 bk
 bk
 eM
-dM
+we
 bj
 bV
 kZ
@@ -17029,7 +16971,7 @@ gN
 lE
 gN
 gN
-dN
+dO
 gN
 cA
 cA
@@ -17353,7 +17295,7 @@ cA
 cA
 cA
 cA
-CO
+cA
 cA
 tA
 cA
@@ -20438,7 +20380,7 @@ gN
 gN
 gN
 gN
-dN
+dO
 gN
 gN
 gN
@@ -20483,7 +20425,7 @@ fS
 fS
 fS
 Ht
-fu
+gP
 fS
 aL
 aN
@@ -20734,7 +20676,7 @@ gN
 gN
 gN
 gN
-dN
+dO
 gN
 gN
 cJ

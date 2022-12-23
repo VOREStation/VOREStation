@@ -13904,8 +13904,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "bdy" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/chemical_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
 "bdF" = (
@@ -14278,13 +14277,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/gravity_lobby)
 "bhK" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "PubPrepFront";
-	name = "Gateway Shutter";
-	pixel_x = -26;
-	req_access = list(62)
-	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -14334,6 +14326,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer/compact,
+/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "bkU" = (
@@ -21349,12 +21345,6 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/button/remote/blast_door{
-	id = "PubPrepFront";
-	name = "Public Access Shutter";
-	pixel_y = 26;
-	req_access = list(62)
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -27602,9 +27592,6 @@
 "oeE" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
-	},
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug{
-	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)

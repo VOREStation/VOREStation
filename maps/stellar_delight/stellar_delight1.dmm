@@ -13436,7 +13436,7 @@
 /obj/machinery/camera/network/command{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "Cm" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -13704,6 +13704,10 @@
 	pixel_y = 32
 	},
 /obj/structure/table/standard,
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer/compact,
+/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "CU" = (
