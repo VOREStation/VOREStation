@@ -534,7 +534,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/oregrub = 5,
 			/mob/living/simple_mob/vore/oregrub/lava = 1
 			) = 15,
-		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 15,
 		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish) = 5,
 		list(/mob/living/simple_mob/vore/alienanimals/space_ghost) = 5,
 		list(

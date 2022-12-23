@@ -8437,6 +8437,7 @@
 	pixel_x = -24;
 	pixel_y = 25
 	},
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug,
 /turf/simulated/floor/tiled,
 /area/centcom/holding)
 "HK" = (

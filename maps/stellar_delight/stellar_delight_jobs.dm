@@ -1,5 +1,6 @@
 //The pathfinder doesn't have a OM shuttle that they are in charge of, and so, doesn't need pilot access.
 //Mostly to prevent explo from just commandeering the Starstuff as the explo shuttle without involving a pilot every round.
+/*
 /datum/job/pathfinder
 	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_explorer, access_gateway, access_pathfinder)
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_explorer, access_gateway, access_pathfinder)
@@ -8,7 +9,7 @@
 /datum/job/sar
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_eva, access_maint_tunnels, access_external_airlocks)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue)
-
+*/
 /datum/job/hop
 	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager,
 						"Facility Steward" = /datum/alt_title/facility_steward, "First Mate" = /datum/alt_title/first_mate)

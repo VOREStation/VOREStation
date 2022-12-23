@@ -134,5 +134,7 @@
 		carrier = loc
 
 /obj/item/hose_connector/output/active/process()
-	if(carrier)
+	if(carrier && my_hose)
 		carrier.reagents.trans_to_holder(reagents, reagents.maximum_volume)
+	else if(reagents.total_volume && carrier && !my_hose)
+		reagents.trans_to_obj(carrier, reagents.maximum_volume)

@@ -1642,14 +1642,6 @@
 	temperature = 243.15
 	},
 /area/awaymission/snowfield/restricted)
-"Bw" = (
-/obj/effect/overmap/visitable/sector/common_gateway/snowfield,
-/turf/simulated/floor/outdoors/snow{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
-/area/awaymission/snowfield/restricted)
 
 (1,1,1) = {"
 aa
@@ -1932,7 +1924,7 @@ ab
 ab
 ab
 ab
-Bw
+ab
 aa
 "}
 (3,1,1) = {"

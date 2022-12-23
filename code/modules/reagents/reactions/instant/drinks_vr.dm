@@ -14,6 +14,13 @@
 	required_reagents = list("antifreeze" = 1, "gargleblaster" = 1, "syndicatebomb" =1)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/drinks/burnout
+	name = "Burnout"
+	id = "burnout"
+	result = "burnout"
+	required_reagents = list("antifreeze" = 1, "deathbell" = 1, "lovemaker" =1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/drinks/monstertamer
 	name = "Monster Tamer"
 	id = "monstertamer"

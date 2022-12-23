@@ -615,8 +615,8 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to Exploration.";
-	name = "\improper Exploration Department";
+	desc = "A direction sign, pointing out the way to the shuttle bay.";
+	name = "\improper Shuttle Bay";
 	pixel_x = 32;
 	pixel_y = -6
 	},
@@ -685,8 +685,8 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to Exploration.";
-	name = "\improper Exploration Department";
+	desc = "A direction sign, pointing out the way to the shuttle bay.";
+	name = "\improper Shuttle Bay";
 	pixel_x = -32;
 	pixel_y = -6
 	},
@@ -2639,6 +2639,25 @@
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/stellardelight/deck2/triage)
+"fy" = (
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/crate/medical{
+	desc = "A crate full of emergency supplies to help with response and rescue operations. A logo of NanoTrasen with a checkmark is stamped on the crate.";
+	name = "NanoTrasen Emergency Supply Crate"
+	},
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/bridge)
 "fz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -5509,9 +5528,9 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to Exploration.";
+	desc = "A direction sign, pointing out the way to the shuttle bay.";
 	dir = 1;
-	name = "\improper Exploration Department";
+	name = "\improper Shuttle Bay";
 	pixel_x = 32;
 	pixel_y = -12
 	},
@@ -14200,7 +14219,7 @@
 	input_tag = "cooling_in";
 	name = "Engine Cooling Control";
 	output_tag = "cooling_out";
-	sensors = list("burn_chamber"="Burn Chamber");
+	sensors = list("burn_chamber" = "Burn Chamber");
 	throwpass = 1
 	},
 /turf/simulated/floor,
@@ -14754,7 +14773,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
 	},
 /obj/machinery/power/apc/angled{
 	dir = 1
@@ -18538,7 +18557,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
@@ -20036,25 +20055,6 @@
 	},
 /turf/simulated/wall/bay/r_wall/steel,
 /area/engineering/engine_room)
-"RZ" = (
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/structure/closet/crate/medical{
-	desc = "A crate full of emergency supplies to help with response and rescue operations. A logo of NanoTrasen with a checkmark is stamped on the crate.";
-	name = "NanoTrasen Emergency Supply Crate"
-	},
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid,
-/obj/item/bodybag/cryobag,
-/obj/item/bodybag/cryobag,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/bridge)
 "Sb" = (
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
@@ -33763,7 +33763,7 @@ jU
 TP
 Ld
 Uj
-RZ
+fy
 Zj
 rN
 ry

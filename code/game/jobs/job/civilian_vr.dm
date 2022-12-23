@@ -213,8 +213,8 @@
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Head of Personnel"
 	selection_color = "#515151"
 	economic_modifier = 5

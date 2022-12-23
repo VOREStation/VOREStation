@@ -372,14 +372,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/obj/item/organ/external/O = character.organs_by_name[N]
 		O.markings.Cut()
 
+	var/priority = 0
 	for(var/M in pref.body_markings)
+		priority += 1
 		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
 		var/mark_color = "[pref.body_markings[M]]"
 
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
-				O.markings[M] = list("color" = mark_color, "datum" = mark_datum)
+				O.markings[M] = list("color" = mark_color, "datum" = mark_datum, "priority" = priority)
+	character.markings_len = priority
 
 	var/list/last_descriptors = list()
 	if(islist(pref.body_descriptors))

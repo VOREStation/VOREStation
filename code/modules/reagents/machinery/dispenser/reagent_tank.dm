@@ -8,6 +8,8 @@
 	anchored = FALSE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 
+	var/has_sockets = TRUE
+
 	var/obj/item/hose_connector/input/active/InputSocket
 	var/obj/item/hose_connector/output/active/OutputSocket
 
@@ -15,7 +17,7 @@
 	var/possible_transfer_amounts = list(10,25,50,100)
 
 /obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
-		return
+	return
 
 /obj/structure/reagent_dispensers/Destroy()
 	QDEL_NULL(InputSocket)
@@ -30,10 +32,11 @@
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 
-	InputSocket = new(src)
-	InputSocket.carrier = src
-	OutputSocket = new(src)
-	OutputSocket.carrier = src
+	if(has_sockets)
+		InputSocket = new(src)
+		InputSocket.carrier = src
+		OutputSocket = new(src)
+		OutputSocket.carrier = src
 
 	. = ..()
 
@@ -319,6 +322,7 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = TRUE
+	has_sockets = FALSE
 	var/bottle = 0
 	var/cups = 0
 	var/cupholder = 0

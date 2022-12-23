@@ -20,7 +20,7 @@
 /datum/gear/uniform/job_turtle/medical
 	display_name = "turtleneck, medical"
 	path = /obj/item/clothing/under/rank/medical/turtleneck
-	allowed_roles = list("Chief Medical Officer", "Paramedic", "Medical Doctor", "Psychiatrist", "Field Medic", "Chemist")
+	allowed_roles = list("Chief Medical Officer", "Paramedic", "Medical Doctor", "Psychiatrist", "Chemist")
 
 //KHI Uniforms
 /datum/gear/uniform/job_khi/cmd
@@ -36,7 +36,7 @@
 /datum/gear/uniform/job_khi/med
 	display_name = "khi uniform, med"
 	path = /obj/item/clothing/under/rank/khi/med
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic","Psychiatrist")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Psychiatrist")
 
 /datum/gear/uniform/job_khi/eng
 	display_name = "khi uniform, eng"
@@ -66,7 +66,7 @@
 /datum/gear/suit/job_fed/medsci
 	display_name = "fed uniform, med/sci"
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/fedblue
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist","Xenobotanist","Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist","Xenobotanist")
 
 /datum/gear/suit/job_fed/eng
 	display_name = "fed uniform, eng"
@@ -83,7 +83,7 @@
 /datum/gear/uniform/job_trek/medsci/tos
 	display_name = "TOS uniform, med/sci"
 	path = /obj/item/clothing/under/rank/trek/medsci
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
 
 /datum/gear/uniform/job_trek/eng/tos
 	display_name = "TOS uniform, eng/sec"
@@ -99,7 +99,7 @@
 /datum/gear/uniform/job_trek/medsci/tng
 	display_name = "TNG uniform, med/sci"
 	path = /obj/item/clothing/under/rank/trek/medsci/next
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
 
 /datum/gear/uniform/job_trek/eng/tng
 	display_name = "TNG uniform, eng/sec"
@@ -115,7 +115,7 @@
 /datum/gear/uniform/job_trek/medsci/voy
 	display_name = "VOY uniform, med/sci"
 	path = /obj/item/clothing/under/rank/trek/medsci/voy
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
 
 /datum/gear/uniform/job_trek/eng/voy
 	display_name = "VOY uniform, eng/sec"
@@ -130,7 +130,7 @@
 	allowed_roles = list("Head of Security","Site Manager","Head of Personnel","Chief Engineer","Research Director",
 						"Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist",
 						"Scientist","Roboticist","Xenobiologist","Xenobotanist","Atmospheric Technician",
-						"Engineer","Warden","Detective","Security Officer", "Pathfinder", "Explorer", "Field Medic")
+						"Engineer","Warden","Detective","Security Officer")
 
 
 /datum/gear/uniform/job_trek/cmd/ds9
@@ -141,7 +141,7 @@
 /datum/gear/uniform/job_trek/medsci/ds9
 	display_name = "DS9 uniform, med/sci"
 	path = /obj/item/clothing/under/rank/trek/medsci/ds9
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
 
 /datum/gear/uniform/job_trek/eng/ds9
 	display_name = "DS9 uniform, eng/sec"
@@ -158,7 +158,7 @@
 /datum/gear/uniform/job_trek/medsci/ent
 	display_name = "ENT uniform, med/sci"
 	path = /obj/item/clothing/under/rank/trek/medsci/ent
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
 
 /datum/gear/uniform/job_trek/eng/ent
 	display_name = "ENT uniform, eng/sec"

@@ -18,6 +18,7 @@ export const AppearanceChanger = (props, context) => {
     ear_style,
     tail_style,
     wing_style,
+    markings,
     change_race,
     change_gender,
     change_eye_color,
@@ -128,6 +129,9 @@ export const AppearanceChanger = (props, context) => {
               <Tabs.Tab selected={tabIndex === 7} onClick={() => setTabIndex(7)}>
                 Wing
               </Tabs.Tab>
+              <Tabs.Tab selected={tabIndex === 8} onClick={() => setTabIndex(8)}>
+                Markings
+              </Tabs.Tab>
             </Fragment>
           ) : null}
           {change_facial_hair ? (
@@ -145,6 +149,7 @@ export const AppearanceChanger = (props, context) => {
           {change_hair && tabIndex === 5 ? <AppearanceChangerEars /> : null}
           {change_hair && tabIndex === 6 ? <AppearanceChangerTails /> : null}
           {change_hair && tabIndex === 7 ? <AppearanceChangerWings /> : null}
+          {change_hair && tabIndex === 8 ? <AppearanceChangerMarkings /> : null}
         </Box>
       </Window.Content>
     </Window>
@@ -380,6 +385,31 @@ const AppearanceChangerWings = (props, context) => {
           content={wing.name}
         />
       ))}
+    </Section>
+  );
+};
+
+const AppearanceChangerMarkings = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const { markings } = data;
+
+  return (
+    <Section title="Markings" fill scrollable>
+      <Box>
+        <Button content="Add Marking" onClick={() => act('marking', { todo: 1, name: 'na' })} />
+      </Box>
+      <LabeledList>
+        {markings.map((m) => (
+          <LabeledList.Item key={m.marking_name} label={m.marking_name}>
+            <ColorBox color={m.marking_color} mr={1} />
+            <Button content="Change Color" onClick={() => act('marking', { todo: 4, name: m.marking_name })} />
+            <Button content="-" onClick={() => act('marking', { todo: 0, name: m.marking_name })} />
+            <Button content="Move down" onClick={() => act('marking', { todo: 3, name: m.marking_name })} />
+            <Button content="Move up" onClick={() => act('marking', { todo: 2, name: m.marking_name })} />
+          </LabeledList.Item>
+        ))}
+      </LabeledList>
     </Section>
   );
 };

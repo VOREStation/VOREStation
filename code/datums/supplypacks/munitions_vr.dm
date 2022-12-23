@@ -7,7 +7,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure
 	containername = "frontier phaser crate"
-	access = access_explorer
+	access = access_security
 
 /datum/supply_pack/munitions/expeditionbows
 	name = "Frontier bows (station-locked) crate"
@@ -17,7 +17,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "phaser handbow crate"
-	access = access_explorer
+	access = access_security
 
 /datum/supply_pack/munitions/ofd_charge_emp
 	name = "OFD Charge - EMP"

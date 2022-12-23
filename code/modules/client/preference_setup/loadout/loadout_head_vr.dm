@@ -1,7 +1,7 @@
 /datum/gear/head/cap/med
 	display_name = "cap, medical (Medical)"
 	path = /obj/item/clothing/head/soft/med
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 
 /*/datum/gear/head/cap/sol
 	display_name = "cap, sol"
@@ -67,4 +67,3 @@ Talon hats
 /datum/gear/head/beret/talon
 	display_name = "beret, Talon"
 	path = /obj/item/clothing/head/beret
-

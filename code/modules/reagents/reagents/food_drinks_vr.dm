@@ -53,6 +53,40 @@
 	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
 		M.slurring = max(M.slurring, 30)
 
+/datum/reagent/ethanol/burnout
+	name = "Burnout"
+	id = "burnout"
+	description = "A bubbling orange alcoholic fluid that radiates a large amount of heat."
+	taste_description = "powerful alcoholic inferno"
+	color = "#cc5500"
+	taste_mult = 5
+	strength = 10
+	adj_temp = 10
+	targ_temp = 380
+
+	glass_name = "Burnout"
+	glass_desc = "A swirling brew of fluids that leaves even the glass itself hot to the touch."
+
+/datum/reagent/ethanol/burnout/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	// Deathbell effects.
+	if(dose * strength >= strength)
+		M.make_dizzy(24)
+	if(dose * strength >= strength * 2.5)
+		M.slurring = max(M.slurring, 30)
+	// Simulating heat effects of spice. Without spice.
+	if(alien == IS_DIONA || alien == IS_ALRAUNE)
+		return
+	else if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.can_feel_pain())
+			return
+		else
+			if((dose < 5) && (dose == metabolism || prob(5)))
+				to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
+			if(dose >= 5 && prob(5))
+				M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
+
 /datum/reagent/ethanol/monstertamer
 	name = "Monster Tamer"
 	id = "monstertamer"
