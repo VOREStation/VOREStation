@@ -796,7 +796,6 @@
 #include "code\game\jobs\job\department_vr.dm"
 #include "code\game\jobs\job\engineering.dm"
 #include "code\game\jobs\job\engineering_vr.dm"
-#include "code\game\jobs\job\exploration_vr.dm"
 #include "code\game\jobs\job\job.dm"
 #include "code\game\jobs\job\job_vr.dm"
 #include "code\game\jobs\job\medical.dm"

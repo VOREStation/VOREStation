@@ -12,7 +12,7 @@ var/global/list/radio_channels_by_freq = list(
 	num2text(SCI_FREQ) = "Science",
 	num2text(SUP_FREQ) = "Supply",
 	num2text(SRV_FREQ) = "Service",
-	num2text(EXP_FREQ) = "Explorer"
+	num2text(EXP_FREQ) = "Away Team"
 	)
 
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)

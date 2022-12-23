@@ -663,14 +663,12 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		/datum/suit_cycler_choice/department/emag
 	)
 	can_repair = 1
-
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/exp
 	)
-
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"

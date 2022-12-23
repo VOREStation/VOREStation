@@ -1,5 +1,5 @@
 /datum/gear/suit/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -74,7 +74,7 @@
 /datum/gear/suit/roles/medical/ems_jacket
 	display_name = "first responder jacket"
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor","Field Medic")
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
 
 //imo-superior 'martian' style jacket with the star-of-life design
 /datum/gear/suit/roles/medical/ems_jacket/alt
@@ -85,7 +85,7 @@
 /datum/gear/suit/roles/medical/paramedic_vest
 	display_name = "paramedic vest"
 	path = /obj/item/clothing/suit/storage/toggle/paramedic
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor","Field Medic")
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
 
 //greek thing
 /datum/gear/suit/chiton
@@ -113,7 +113,7 @@ Talon winter coat
 /datum/gear/suit/armor/combat/crusader_explo
 	display_name = "knight, explo"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
-	allowed_roles = list("Explorer","Field Medic","Pathfinder")
+	allowed_roles = list("Explorer","Pathfinder")
 
 /datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
