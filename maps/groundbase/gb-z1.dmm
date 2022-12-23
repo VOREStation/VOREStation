@@ -589,6 +589,7 @@
 /obj/structure/closet/toolcloset,
 /obj/item/weapon/pickaxe,
 /obj/item/weapon/chainsaw,
+/obj/item/weapon/shovel,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "bx" = (
