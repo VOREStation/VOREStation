@@ -2324,7 +2324,7 @@
 /obj/item/weapon/tank/phoron,
 /obj/item/weapon/tank/phoron,
 /obj/item/weapon/tool/crowbar/red,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor,
 /area/shuttle/groundbase/exploration)
 "Mc" = (
 /obj/structure/bed/chair/office/light{
@@ -2543,7 +2543,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/light,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor,
 /area/shuttle/groundbase/exploration)
 "Ph" = (
 /obj/structure/cable/yellow{
@@ -3154,7 +3154,7 @@
 "YJ" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/yellow,
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor,
 /area/shuttle/groundbase/exploration)
 "YK" = (
 /obj/effect/floor_decal/industrial/warning{
