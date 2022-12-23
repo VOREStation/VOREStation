@@ -898,7 +898,8 @@
 "gT" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
+	pixel_y = 26;
+	req_one_access = list(24,11,67)
 	},
 /obj/machinery/light{
 	dir = 1
@@ -934,7 +935,8 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -26;
+	req_one_access = list(24,11,67)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -976,7 +978,8 @@
 /obj/item/weapon/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 26;
+	req_one_access = list(24,11,67)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_q2)
@@ -2668,6 +2671,9 @@
 	amount = 25
 	},
 /obj/item/weapon/tool/wrench,
+/obj/item/stack/material/tritium{
+	amount = 25
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_engineering)
 "wr" = (
@@ -2709,10 +2715,7 @@
 /area/shuttle/axolotl_galley)
 "wI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/sleep_console{
-	dir = 4
-	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl)
 "wL" = (
@@ -2816,9 +2819,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_engineering)
 "xj" = (
-/obj/structure/fitness/weightlifter,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/sleeper{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_q1)
@@ -3121,7 +3126,8 @@
 /obj/machinery/microwave/advanced,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 26;
+	req_one_access = list(24,11,67)
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
@@ -3351,6 +3357,7 @@
 /area/groundbase/science/outpost/atmos)
 "BK" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/sleep_console,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_q1)
 "BM" = (
@@ -3474,7 +3481,8 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
+	pixel_y = 26;
+	req_one_access = list(24,11,67)
 	},
 /obj/machinery/light_switch{
 	dir = 4;
@@ -4066,13 +4074,6 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
-"Hz" = (
-/obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/axolotl)
 "HD" = (
 /obj/structure/table/steel,
 /obj/machinery/light_switch{
@@ -4692,7 +4693,8 @@
 "Lj" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -26;
+	req_one_access = list(24,11,67)
 	},
 /obj/machinery/light{
 	dir = 8
@@ -5151,10 +5153,6 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
 "PC" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	req_one_access = null
-	},
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
@@ -5165,6 +5163,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	name = "Bridge";
+	req_one_access = list(19,67)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/axolotl_cockpit)
@@ -5487,7 +5490,8 @@
 /obj/item/weapon/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 26;
+	req_one_access = list(24,11,67)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_q1)
@@ -5755,16 +5759,16 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	name = "Salamander Engineering Bay";
-	req_one_access = null
-	},
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	name = "Axolotl Engineering Bay";
+	req_one_access = list(11,19,67)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/axolotl_engineering)
@@ -20009,7 +20013,7 @@ Uf
 Ro
 Uf
 SH
-Hz
+uF
 Ze
 WZ
 uF
