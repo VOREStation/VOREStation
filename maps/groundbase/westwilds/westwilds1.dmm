@@ -3808,6 +3808,10 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
+"Fr" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "Fs" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -19309,7 +19313,7 @@ bs
 xg
 or
 iE
-Ga
+Fr
 Uf
 Uf
 qV
