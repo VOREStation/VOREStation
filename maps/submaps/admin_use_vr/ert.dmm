@@ -349,9 +349,15 @@
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/storage/belt/utility/holding,
-/obj/item/weapon/storage/belt/utility/holding,
-/obj/item/weapon/storage/belt/utility/holding,
+/obj/item/weapon/storage/belt/explorer/pathfinder{
+	name = "ERT belt"
+	},
+/obj/item/weapon/storage/belt/explorer/pathfinder{
+	name = "ERT belt"
+	},
+/obj/item/weapon/storage/belt/explorer/pathfinder{
+	name = "ERT belt"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "aC" = (
@@ -467,9 +473,15 @@
 	},
 /obj/structure/table/rack/steel,
 /obj/effect/floor_decal/industrial/outline/grey,
-/obj/item/weapon/storage/belt/medical/holding,
-/obj/item/weapon/storage/belt/medical/holding,
-/obj/item/weapon/storage/belt/medical/holding,
+/obj/item/weapon/storage/belt/explorer/pathfinder{
+	name = "ERT belt"
+	},
+/obj/item/weapon/storage/belt/explorer/pathfinder{
+	name = "ERT belt"
+	},
+/obj/item/weapon/storage/belt/explorer/pathfinder{
+	name = "ERT belt"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "aI" = (
@@ -492,7 +504,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
 "aJ" = (
-/obj/item/device/multitool/tether_buffered,
+/obj/item/device/multitool/station_buffered,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
 "aK" = (
@@ -7227,7 +7239,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
 /obj/item/weapon/storage/belt/explorer/pathfinder{
-	name = "ERT Commander's belt"
+	name = "ERT belt"
 	},
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)

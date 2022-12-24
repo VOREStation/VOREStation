@@ -1567,7 +1567,7 @@
 	pixel_x = -32
 	},
 /obj/item/weapon/storage/box/nifsofts_pilot,
-/obj/item/device/multitool/groundbase_buffered,
+/obj/item/device/multitool/station_buffered,
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
