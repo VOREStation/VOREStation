@@ -892,12 +892,21 @@
 	drop_get_turf = FALSE
 
 /obj/random/mre/dessert/item_to_spawn()
+<<<<<<< HEAD
 	return pick(/obj/item/weapon/reagent_containers/food/snacks/candy,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
 				/obj/item/weapon/reagent_containers/food/snacks/donut/plain,
 				/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly,
 				/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
 				/obj/item/weapon/reagent_containers/food/snacks/cookie)
+=======
+	return pick(/obj/item/reagent_containers/food/snacks/candy,
+				/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+				/obj/item/reagent_containers/food/snacks/donut/plain,
+				/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
+				/obj/item/reagent_containers/food/snacks/chocolatebar,
+				/obj/item/reagent_containers/food/snacks/cookie)
+>>>>>>> d502d1883b8... Merge pull request #8863 from Cerebulon/cookiemonster
 
 /obj/random/mre/dessert/vegan
 	name = "random vegan MRE dessert"

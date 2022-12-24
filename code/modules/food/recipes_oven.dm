@@ -287,7 +287,11 @@
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar
 	)
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/cookie
+=======
+	result = /obj/item/reagent_containers/food/snacks/cookie
+>>>>>>> d502d1883b8... Merge pull request #8863 from Cerebulon/cookiemonster
 	result_quantity = 4
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
@@ -692,5 +696,40 @@
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that water outta here
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/veggiemomo
 	result_quantity = 2
+=======
+	result = /obj/item/reagent_containers/food/snacks/veggiemomo
+
+/datum/recipe/lobster
+	appliance = OVEN
+	fruit = list("lemon" = 1, "lettuce" = 1)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/lobster
+	)
+	result = /obj/item/reagent_containers/food/snacks/lobstercooked
+
+/datum/recipe/cuttlefish
+	appliance = OVEN
+	items = list(
+		/obj/item/reagent_containers/food/snacks/cuttlefish
+	)
+	result = /obj/item/reagent_containers/food/snacks/cuttlefishcooked
+
+/datum/recipe/monkfish
+	appliance = OVEN
+	fruit = list("chili" = 1, "onion" = 1)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/monkfishfillet
+	)
+	result = /obj/item/reagent_containers/food/snacks/monkfishcooked
+
+/datum/recipe/sharksteak
+	appliance = OVEN
+	reagents = list("blackpepper"= 1, "sodiumchloride" = 1)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	)
+	result = /obj/item/reagent_containers/food/snacks/sharkmeatcooked
+>>>>>>> d502d1883b8... Merge pull request #8863 from Cerebulon/cookiemonster

@@ -6049,7 +6049,20 @@
 	. = ..()
 	reagents.add_reagent("sugar", 5)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/cookiesnack
+=======
+/obj/item/reagent_containers/food/snacks/cookie
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "COOKIE!!!"
+	filling_color = "#DBC94F"
+	center_of_mass = list("x"=17, "y"=18)
+	nutriment_amt = 5
+	nutriment_desc = list("sweetness" = 3, "cookie" = 2)
+	bitesize = 1
+/obj/item/reagent_containers/food/snacks/cookiesnack
+>>>>>>> d502d1883b8... Merge pull request #8863 from Cerebulon/cookiemonster
 	name = "Carps Ahoy! miniature cookies"
 	desc = "Now 100% carpotoxin free!"
 	description_fluff = "Carps Ahoy! cookies are required to sell under the 'Cap'n Choco' name in certain markets, out of concerns that children will become desensitized to the very real dangers of Space Carp."
