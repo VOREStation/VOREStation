@@ -92,7 +92,6 @@
 
 //Orange emergency space suit
 /obj/item/clothing/head/helmet/space/emergency
-<<<<<<< HEAD
 	name = "emergency soft helmet"
 	icon_state = "syndicate-helm-orange"
 	desc = "A simple helmet with a built in light, smells like mothballs."
