@@ -638,7 +638,7 @@
 /area/talon_v2/engineering/atmospherics)
 "bj" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/taser,
+/obj/item/weapon/gun/energy/gun,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "bn" = (
