@@ -1,7 +1,7 @@
 //Moved from southern_cross_jobs.vr to fix a runtime
-var/const/access_awayteam = 43
-/datum/access/awayteam
-	id = access_awayteam
+var/const/access_explorer = 43
+/datum/access/explorer
+	id = access_explorer
 	desc = "Away Team"
 	region = ACCESS_REGION_GENERAL
 /*

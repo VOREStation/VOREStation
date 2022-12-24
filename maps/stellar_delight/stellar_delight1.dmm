@@ -246,7 +246,7 @@
 "ay" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/standard,
-/obj/item/device/multitool/sd_buffered{
+/obj/item/device/multitool/station_buffered{
 	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/milspec,

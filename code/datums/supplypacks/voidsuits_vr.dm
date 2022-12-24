@@ -10,7 +10,7 @@
 	cost = 45
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Away Team voidsuit crate"
-	access = list(access_eva, access_awayteam)
+	access = list(access_eva, access_explorer)
 
 /datum/supply_pack/voidsuits/explorer_medic
 	name = "Away Team Medic voidsuits"
@@ -105,7 +105,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth exploration voidsuit crate"
-	access = list(access_eva, access_awayteam)
+	access = list(access_eva, access_explorer)
 
 /datum/supply_pack/voidsuits/com_engineer
 	name = "Commonwealth engineering voidsuit"

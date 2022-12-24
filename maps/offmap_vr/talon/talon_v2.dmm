@@ -2,6 +2,14 @@
 "aa" = (
 /turf/space,
 /area/space)
+"ab" = (
+/obj/structure/dogbed,
+/mob/living/simple_mob/animal/passive/dog/corgi/puppy{
+	desc = "That's Hendrickson, warden of the Talon's brig. No schemes can escape the watchful gleam of this corgi's deep, dark eyes.";
+	name = "Hendrickson"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/brig)
 "ac" = (
 /obj/machinery/computer/ship/helm{
 	req_one_access = list(301)
@@ -59,6 +67,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
+"ai" = (
+/obj/structure/table/rack/steel,
+/obj/item/clothing/under/syndicate/combat,
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "aj" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable/green{
@@ -372,6 +385,14 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/star_store)
+"aM" = (
+/obj/structure/table/rack/steel,
+/obj/item/clothing/shoes/magboots,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "aN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -476,6 +497,24 @@
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
+"aX" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/weapon/cell/device/weapon,
+/obj/item/clothing/accessory/holster/waist,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
+"aY" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/gun/energy/netgun,
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "aZ" = (
 /obj/machinery/shipsensors{
 	dir = 1
@@ -495,6 +534,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/maintenance/wing_port)
+"bb" = (
+/obj/machinery/alarm/talon{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/structure/table/rack/steel,
+/obj/item/device/spaceflare,
+/obj/machinery/camera/network/talon{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "bc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -522,6 +573,20 @@
 	},
 /turf/simulated/wall/shull,
 /area/talon_v2/ofd_ops)
+"be" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/weapon/cell/device/weapon,
+/obj/item/clothing/accessory/holster/waist,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "bf" = (
 /obj/structure/railing/grey,
 /obj/machinery/light{
@@ -571,6 +636,11 @@
 /obj/structure/closet/walllocker_double/hydrant/south,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
+"bj" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/gun/energy/gun,
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "bn" = (
 /obj/structure/hull_corner{
 	dir = 4
@@ -5833,21 +5903,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
-"sv" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/cell/device/weapon{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/weapon/cell/device/weapon{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/clothing/accessory/holster/waist,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "sw" = (
 /obj/machinery/light_switch{
 	dir = 8;
@@ -7649,16 +7704,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering)
-"yq" = (
-/obj/structure/table/rack/steel,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/syndicate/black,
-/obj/item/clothing/head/helmet/space/syndicate/black,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "yr" = (
 /obj/effect/overmap/visitable/ship/talon,
 /turf/space,
@@ -8077,11 +8122,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/port)
-"zL" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "zM" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -9191,21 +9231,6 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/starboard)
-"Ef" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/gun/burst,
-/obj/item/weapon/cell/device/weapon{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/clothing/accessory/holster/waist,
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "Ei" = (
 /obj/machinery/door/airlock/mining{
 	id_tag = "talon_minerdoor";
@@ -9488,15 +9513,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/bridge)
-"EV" = (
-/obj/structure/table/rack/steel,
-/obj/item/clothing/shoes/leg_guard/combat,
-/obj/item/clothing/gloves/arm_guard/combat,
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/suit/armor/combat,
-/obj/item/clothing/head/helmet/combat,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "EX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -10560,22 +10576,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/star)
-"HV" = (
-/obj/machinery/alarm/talon{
-	dir = 1;
-	pixel_y = -25
-	},
-/obj/structure/table/rack/steel,
-/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/item/device/spaceflare,
-/obj/machinery/camera/network/talon{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "HW" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -12705,20 +12705,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/refining)
-"Oi" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/cell/device/weapon{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/clothing/accessory/holster/waist,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "Oj" = (
 /turf/simulated/wall/shull,
 /area/talon_v2/armory)
@@ -13926,11 +13912,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/meditation)
-"Sa" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/gun,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "Sb" = (
 /obj/structure/bed/chair/wood,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -14999,12 +14980,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/space)
-"Vv" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/accessory/holster/machete,
-/obj/item/weapon/material/knife/machete,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "Vw" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -15983,14 +15958,6 @@
 "Yu" = (
 /turf/simulated/wall/rshull,
 /area/talon_v2/maintenance/wing_port)
-"Yv" = (
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy{
-	desc = "That's Hendrickson, warden of the Talon's brig. No schemes can escape the watchful gleam of this corgi's deep, dark eyes.";
-	name = "Hendrickson"
-	},
-/obj/structure/dogbed,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/brig)
 "Yw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -24284,7 +24251,7 @@ Si
 Oj
 PC
 OP
-Vv
+Qu
 OP
 Qu
 Zc
@@ -24692,7 +24659,7 @@ XQ
 Xm
 db
 qm
-Yv
+ab
 rq
 tA
 uF
@@ -24708,11 +24675,11 @@ NW
 Rp
 Si
 Nh
-EV
+ai
 OP
-yq
+aM
 OP
-HV
+bb
 Zc
 ZB
 Jv
@@ -24992,11 +24959,11 @@ NW
 Rp
 Si
 Nh
-sv
+Qu
 OP
-Oi
+aX
 OP
-Ef
+be
 Zc
 BI
 Ds
@@ -25134,11 +25101,11 @@ Dd
 Ew
 eS
 Oj
-zL
+Qu
 SN
-zL
+aY
 XW
-Sa
+bj
 Zc
 WY
 Ds

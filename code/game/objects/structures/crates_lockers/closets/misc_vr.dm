@@ -52,7 +52,7 @@
  */
 /obj/structure/closet/secure_closet/explorer
 	name = "away team locker"
-	req_access = list(access_awayteam)
+	req_access = list(access_explorer)
 	closet_appearance = /decl/closet_appearance/secure_closet/expedition/explorer
 
 	starts_with = list(
@@ -93,7 +93,7 @@
  */
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
-	req_access = list(access_heads)
+	req_access = list(access_explorer)
 	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
 
 	starts_with = list(
