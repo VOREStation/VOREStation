@@ -14,7 +14,7 @@ var/global/list/default_internal_channels = list(
 	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology),
 	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
 	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
-	num2text(EXP_FREQ) = list(access_awayteam)	//VOREStation Edit
+	num2text(EXP_FREQ) = list(access_explorer)	//VOREStation Edit
 )
 
 var/global/list/default_medbay_channels = list(

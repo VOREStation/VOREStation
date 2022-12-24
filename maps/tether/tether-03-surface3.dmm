@@ -27413,6 +27413,14 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/lower/third_south)
+"aUq" = (
+/obj/effect/landmark{
+	name = "Observer-Start"
+	},
+/obj/machinery/hologram/holopad,
+/obj/structure/flora/tree/pine/xmas/presents,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "aUr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -34068,13 +34076,6 @@
 /obj/structure/sign/botany,
 /turf/simulated/floor/plating,
 /area/hydroponics)
-"bgd" = (
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/wood,
-/area/crew_quarters/bar)
 "bge" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -60225,7 +60226,7 @@ asX
 aLd
 aHl
 aIi
-bgd
+aUq
 aLd
 baC
 bcm
