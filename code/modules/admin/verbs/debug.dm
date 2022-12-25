@@ -652,6 +652,21 @@
 			message_admins(log)
 			log_admin(log)
 
+/datum/admins/proc/toggle_firework_override()
+	set category = "Fun"
+	set name = "Toggle Weather Firework Override"
+	set desc = "Toggles ability for weather fireworks to affect weather on planet of choice."
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to toggle firework effects on?", "Change Weather", SSplanets.planets)
+	if(istype(planet) && planet.weather_holder)
+		planet.weather_holder.firework_override = !(planet.weather_holder.firework_override)
+		var/log = "[key_name(src)] toggled [planet.name]'s firework override to [planet.weather_holder.firework_override ? "on" : "off"]."
+		message_admins(log)
+		log_admin(log)
+
 /datum/admins/proc/change_time()
 	set category = "Debug"
 	set name = "Change Planet Time"
