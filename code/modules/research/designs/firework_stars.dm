@@ -18,7 +18,7 @@
 	id = "fireworkaestheticconfig"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2)
 	materials = list(MAT_PLASTIC = 1000, MAT_GLASS = 1000)
-	build_path = /obj/item/weapon/firework_star/aesthetic
+	build_path = /obj/item/weapon/firework_star/aesthetic/configurable
 	sort_string = "IFAAB"
 
 /datum/design/item/firework_star/weather_clear
