@@ -208,6 +208,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
+"aw" = (
+/obj/machinery/firework_launcher,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/hall)
 "ax" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/weapon/towel/random,
@@ -2268,7 +2272,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -23498,7 +23502,7 @@ aB
 PR
 lw
 Vr
-Vr
+aw
 Bl
 ag
 ag

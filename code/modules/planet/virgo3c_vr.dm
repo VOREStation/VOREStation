@@ -131,7 +131,9 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		WEATHER_EMBERFALL		= new /datum/weather/virgo3c/emberfall(),
 		WEATHER_ASH_STORM		= new /datum/weather/virgo3c/ash_storm(),
 		WEATHER_ASH_STORM_SAFE	= new /datum/weather/virgo3c/ash_storm_safe(),
-		WEATHER_FALLOUT			= new /datum/weather/virgo3c/fallout()
+		WEATHER_FALLOUT			= new /datum/weather/virgo3c/fallout(),
+		WEATHER_FALLOUT_TEMP	= new /datum/weather/virgo3c/fallout/temp(),
+		WEATHER_CONFETTI		= new /datum/weather/virgo3c/confetti()
 		)
 	roundstart_weather_chances = list(
 		WEATHER_CLEAR		= 50,
@@ -547,6 +549,30 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		return
 	if(T.is_outdoors())
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+
+/datum/weather/virgo3c/fallout/temp
+	name = "short-term fallout"
+	transition_chances = list(
+		WEATHER_FALLOUT = 10,
+		WEATHER_RAIN = 50,
+		WEATHER_STORM = 20,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/virgo3c/confetti
+	name = "confetti"
+	icon = 'icons/effects/weather_vr.dmi'
+	icon_state = "confetti"
+
+	transition_chances = list(
+		WEATHER_CLEAR = 50,
+		WEATHER_OVERCAST = 20,
+		WEATHER_CONFETTI = 5
+		)
+	observed_message = "Confetti is raining from the sky."
+	transition_messages = list(
+		"Suddenly, colorful confetti starts raining from the sky."
+	)
 
 /turf/unsimulated/wall/planetary/virgo3c
 	name = "impassable rock"
