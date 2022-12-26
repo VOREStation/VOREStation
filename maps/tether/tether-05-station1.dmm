@@ -8415,7 +8415,8 @@
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
 	name = "Gateway/EVA Prep Room";
-	req_access = list(18,19,43,67)
+	req_access = null;
+	req_one_access = list(18,19,43,67)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/prep_room)
