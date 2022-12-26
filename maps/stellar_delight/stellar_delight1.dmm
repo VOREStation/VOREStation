@@ -9634,6 +9634,8 @@
 	req_access = list(43)
 	},
 /obj/item/device/bluespaceradio/sd_prelinked,
+/obj/item/device/cataloguer/compact,
+/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "ue" = (
@@ -13704,10 +13706,6 @@
 	pixel_y = 32
 	},
 /obj/structure/table/standard,
-/obj/item/device/cataloguer,
-/obj/item/device/cataloguer,
-/obj/item/device/cataloguer/compact,
-/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "CU" = (
@@ -16954,6 +16952,8 @@
 	req_access = list(43)
 	},
 /obj/item/device/mapping_unit,
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "Kf" = (
