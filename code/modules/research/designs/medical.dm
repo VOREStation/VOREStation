@@ -91,7 +91,7 @@
 /datum/design/item/medical/advanced_analyzer
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
-	id = "improved_analyzer"
+	id = "advanced_analyzer"
 	req_tech = list(TECH_MAGNET = 7, TECH_BIO = 7, TECH_DATA = 5)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 1250)
 	build_path = /obj/item/device/healthanalyzer/advanced
