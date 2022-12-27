@@ -104,10 +104,6 @@
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
-		if(signaler.deadman && prob(80))
-			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message("<font color='red'>[src] triggers their deadman's switch!</font>")
-			signaler.signal()
 
 	if(ai_holder && P.firer)
 		ai_holder.react_to_attack(P.firer)
