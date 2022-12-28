@@ -10,6 +10,7 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 	var/announce_prob = 35
+	var/randomize = FALSE
 	var/list/possible_mobs = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
 								  "Red Panda" = /mob/living/simple_mob/vore/redpanda,
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
@@ -48,8 +49,11 @@
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
 	..()
 	var/choice
-	var/randomize
 	var/finalized = "No"
+
+	if(randomize)
+		choice = pick(possible_mobs)
+		finalized = "Yes"
 
 	while(finalized == "No" && M.client)
 		if(jobban_isbanned(M, "GhostRoles"))
@@ -57,14 +61,21 @@
 			return
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)
-			randomize = TRUE
-			break
+			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
+			active_ghost_pods |= src
+			used = FALSE
+			busy = FALSE
+			return
 
 		if(choice)
 			finalized = tgui_alert(M, "Are you sure you want to play as [choice]?","Confirmation",list("No","Yes"))
 
-	if(randomize)
-		choice = pick(possible_mobs)
+	if(!choice)
+		to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
+		active_ghost_pods |= src
+		used = FALSE
+		busy = FALSE
+		return
 
 	var/mobtype = possible_mobs[choice]
 	var/mob/living/simple_mob/newPred = new mobtype(get_turf(src))
