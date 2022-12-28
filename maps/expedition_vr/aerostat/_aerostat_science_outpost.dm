@@ -48,6 +48,7 @@
 /obj/machinery/computer/shuttle_control/aerostat_shuttle
 	name = "aerostat ferry control console"
 	shuttle_tag = "Aerostat Ferry"
+	ai_control = TRUE
 
 /obj/tether_away_spawner/aerostat_inside
 	name = "Aerostat Indoors Spawner"

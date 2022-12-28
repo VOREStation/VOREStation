@@ -15,7 +15,6 @@
 	var/airlock_wire = null
 	var/datum/wires/connected = null
 	var/datum/radio_frequency/radio_connection
-	var/deadman = FALSE
 
 /obj/item/device/assembly/signaler/Initialize()
 	. = ..()
@@ -130,27 +129,6 @@
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
-
-/obj/item/device/assembly/signaler/process()
-	if(!deadman)
-		STOP_PROCESSING(SSobj, src)
-	var/mob/M = src.loc
-	if(!M || !ismob(M))
-		if(prob(5))
-			signal()
-		deadman = FALSE
-		STOP_PROCESSING(SSobj, src)
-	else if(prob(5))
-		M.visible_message("[M]'s finger twitches a bit over [src]'s signal button!")
-
-/obj/item/device/assembly/signaler/verb/deadman_it()
-	set src in usr
-	set name = "Threaten to push the button!"
-	set desc = "BOOOOM!"
-	deadman = TRUE
-	START_PROCESSING(SSobj, src)
-	log_and_message_admins("is threatening to trigger a signaler deadman's switch")
-	usr.visible_message("<font color='red'>[usr] moves their finger over [src]'s signal button...</font>")
 
 /obj/item/device/assembly/signaler/Destroy()
 	if(radio_controller)
