@@ -22721,14 +22721,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/shuttle_pad)
-"aLb" = (
-/obj/effect/floor_decal/corner/grey/diagonal,
-/obj/machinery/smartfridge{
-	req_access = list(28)
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
 "aLc" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/effect/landmark/start{
@@ -61357,7 +61349,7 @@ bpC
 bge
 bgA
 bgA
-aLb
+aru
 bfX
 bgz
 bgz
