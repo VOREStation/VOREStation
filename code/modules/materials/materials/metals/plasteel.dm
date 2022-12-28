@@ -12,7 +12,6 @@
 	protectiveness = 20 // 50%
 	conductivity = 13 // For the purposes of balance.
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
 	supply_conversion_value = 6
 
 /datum/material/plasteel/generate_recipes()
@@ -38,3 +37,4 @@
 	stack_type = /obj/item/stack/material/plasteel/rebar
 	sheet_singular_name = "rod"
 	sheet_plural_name = "rods"
+	composite_material = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT)

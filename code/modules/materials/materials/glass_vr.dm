@@ -13,7 +13,6 @@
 	created_fulltile_window = /obj/structure/window/titanium/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/titanium
-	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT, MAT_GLASS = SHEET_MATERIAL_AMOUNT)
 
 /datum/material/glass/plastaniumglass
 	name = MAT_PLASTITANIUMGLASS
@@ -30,4 +29,3 @@
 	created_fulltile_window = /obj/structure/window/plastitanium/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plastitanium
-	composite_material = list(MAT_PLASTITANIUM = SHEET_MATERIAL_AMOUNT, MAT_GLASS = SHEET_MATERIAL_AMOUNT)

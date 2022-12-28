@@ -140,12 +140,7 @@
 		return
 
 	// Cache this since S may go away after use()
-	var/list/sheet_matter
-	if(istype(S, /obj/item/stack/material))
-		var/obj/item/stack/material/MS = S
-		sheet_matter = list(MS.material.name = 2000)
-	else
-		sheet_matter = S.matter
+	var/list/sheet_matter = S.matter
 
 	// Calculate total amount of material for one sheet
 	var/matter_per_sheet = 0
