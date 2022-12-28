@@ -51,7 +51,7 @@
 	var/choice
 	var/finalized = "No"
 
-	if(randomize)
+	if(randomize)	//if we're randomizing, let's do it before the choice
 		choice = pick(possible_mobs)
 		finalized = "Yes"
 
@@ -60,7 +60,7 @@
 			to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 			return
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
-		if(!choice)
+		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
 			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
 			active_ghost_pods |= src
 			used = FALSE
@@ -70,7 +70,7 @@
 		if(choice)
 			finalized = tgui_alert(M, "Are you sure you want to play as [choice]?","Confirmation",list("No","Yes"))
 
-	if(!choice)
+	if(!choice)	//If somehow we got down here and we still don't have a choice, let's put the ghost pod back in the list and return
 		to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
 		active_ghost_pods |= src
 		used = FALSE
