@@ -10,7 +10,6 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 	var/announce_prob = 35
-	var/randomize = FALSE
 	var/list/possible_mobs = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
 								  "Red Panda" = /mob/living/simple_mob/vore/redpanda,
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
@@ -51,14 +50,14 @@
 	var/choice
 	var/finalized = "No"
 
-	if(randomize)	//if we're randomizing, let's do it before the choice
-		choice = pick(possible_mobs)
-		finalized = "Yes"
+	if(jobban_isbanned(M, "GhostRoles"))
+		to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		active_ghost_pods |= src
+		used = FALSE
+		busy = FALSE
+		return
 
 	while(finalized == "No" && M.client)
-		if(jobban_isbanned(M, "GhostRoles"))
-			to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
-			return
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
 			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
@@ -69,13 +68,6 @@
 
 		if(choice)
 			finalized = tgui_alert(M, "Are you sure you want to play as [choice]?","Confirmation",list("No","Yes"))
-
-	if(!choice)	//If somehow we got down here and we still don't have a choice, let's put the ghost pod back in the list and return
-		to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
-		active_ghost_pods |= src
-		used = FALSE
-		busy = FALSE
-		return
 
 	var/mobtype = possible_mobs[choice]
 	var/mob/living/simple_mob/newPred = new mobtype(get_turf(src))
