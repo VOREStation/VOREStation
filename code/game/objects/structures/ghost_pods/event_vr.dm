@@ -1,3 +1,8 @@
+/obj/structure/ghost_pod/proc/reset_ghostpod()	//Makes the ghost pod usable again and re-adds it to the active ghost pod list if it is not on it.
+	active_ghost_pods |= src
+	used = FALSE
+	busy = FALSE
+
 /obj/structure/ghost_pod/ghost_activated/maintpred
 	name = "maintenance hole"
 	desc = "Looks like some creature dug its way into station's maintenance..."
@@ -52,18 +57,14 @@
 
 	if(jobban_isbanned(M, "GhostRoles"))
 		to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
-		active_ghost_pods |= src
-		used = FALSE
-		busy = FALSE
+		reset_ghostpod()
 		return
 
 	while(finalized == "No" && M.client)
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
 			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
-			active_ghost_pods |= src
-			used = FALSE
-			busy = FALSE
+			reset_ghostpod()
 			return
 
 		if(choice)
