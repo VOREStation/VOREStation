@@ -397,15 +397,8 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "aaI" = (
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
-/obj/machinery/atmospherics/portables_connector,
-/obj/item/weapon/tool/wrench,
-/obj/machinery/door/window/brigdoor/southright{
-	req_access = list();
-	req_one_access = list(5)
-	},
-/obj/machinery/alarm{
-	pixel_y = 25
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 10
 	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 9
@@ -413,6 +406,7 @@
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
+/obj/machinery/camera/network/medbay,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "aaJ" = (
@@ -964,19 +958,26 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "abx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 10
+/obj/machinery/status_display{
+	layer = 4;
+	pixel_y = 32
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
+/obj/machinery/atmospherics/portables_connector,
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
-/obj/machinery/camera/network/medbay,
+/obj/machinery/door/window/brigdoor/southright{
+	req_access = list();
+	req_one_access = list(5,24)
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "aby" = (
@@ -4056,24 +4057,24 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "afX" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
+/obj/machinery/atmospherics/portables_connector,
+/obj/item/weapon/tool/wrench,
+/obj/machinery/door/window/brigdoor/southright{
+	req_access = list();
+	req_one_access = list(5)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/alarm{
+	pixel_y = 25
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
@@ -22721,6 +22722,24 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/shuttle_pad)
+"aLb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/triage)
 "aLc" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/effect/landmark/start{
@@ -26309,7 +26328,7 @@
 /obj/machinery/door/airlock/medical{
 	name = "Medical Admin Access"
 	},
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aSn" = (
@@ -36069,25 +36088,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/admin)
-"bjO" = (
-/obj/machinery/status_display{
-	layer = 4;
-	pixel_y = 32
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
-/obj/machinery/atmospherics/portables_connector,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/machinery/door/window/brigdoor/southright{
-	req_access = list();
-	req_one_access = list(5,24)
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/triage)
 "bjT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -58033,7 +58033,7 @@ aag
 aaM
 acN
 afD
-abx
+aaI
 blp
 blB
 blS
@@ -58175,7 +58175,7 @@ aag
 abq
 aee
 aah
-bjO
+abx
 blp
 blC
 blV
@@ -58317,7 +58317,7 @@ aag
 abq
 iOL
 aah
-aaI
+afX
 agj
 agq
 blK
@@ -58459,7 +58459,7 @@ aag
 abq
 abq
 acb
-afX
+aLb
 agn
 agN
 aWa
