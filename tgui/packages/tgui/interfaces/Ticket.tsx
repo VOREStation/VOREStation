@@ -3,6 +3,22 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+const Level = {
+  0: 'Adminhelp',
+  1: 'Mentorhelp',
+  2: 'GM Request',
+};
+
+const LevelColor = {
+  0: 'red',
+  1: 'green',
+  2: 'pink',
+};
+
+const Tag = {
+  'example': 'Example',
+};
+
 const State = {
   'open': 'Open',
   'resolved': 'Resolved',
@@ -15,6 +31,8 @@ type Data = {
   title: string;
   name: string;
   state: string;
+  level: number;
+  handler: string;
   opened_at: number;
   closed_at: number;
   opened_at_date: string;
@@ -23,13 +41,15 @@ type Data = {
   log: string[];
 };
 
-export const AdminTicketPanel = (props, context) => {
+export const Ticket = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const {
     id,
     title,
     name,
     state,
+    level,
+    handler,
     opened_at,
     closed_at,
     opened_at_date,
@@ -49,14 +69,17 @@ export const AdminTicketPanel = (props, context) => {
                 content="Rename Ticket"
                 onClick={() => act('retitle')}
               />{' '}
-              <Button content="Legacy UI" onClick={() => act('legacy')} />
+              <Button content="Legacy UI" onClick={() => act('legacy')} />{' '}
+              <Button content={Level[level]} color={LevelColor[level]} />
             </Box>
           }>
           <LabeledList>
-            <LabeledList.Item label="Admin Help Ticket">
+            <LabeledList.Item label="Ticket ID">
               #{id}: <div dangerouslySetInnerHTML={{ __html: name }} />
             </LabeledList.Item>
+            <LabeledList.Item label="Type">{Level[level]}</LabeledList.Item>
             <LabeledList.Item label="State">{State[state]}</LabeledList.Item>
+            <LabeledList.Item label="Assignee">{handler}</LabeledList.Item>
             {State[state] === State.open ? (
               <LabeledList.Item label="Opened At">
                 {opened_at_date} ({Math.round((opened_at / 600) * 10) / 10}{' '}
