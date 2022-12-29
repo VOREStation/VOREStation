@@ -25,7 +25,7 @@
 	dept_time_required = 60
 
 	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager,
-						"Facility Steward" = /datum/alt_title/facility_steward)
+						"Facility Steward" = /datum/alt_title/facility_steward, "First Mate" = /datum/alt_title/first_mate)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
 			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
@@ -48,6 +48,9 @@
 
 /datum/alt_title/facility_steward
 	title = "Facility Steward"
+
+/datum/alt_title/first_mate
+	title = "First Mate"
 
 /datum/job/hop/get_request_reasons()
 	return list("ID modification", "Training crew")
