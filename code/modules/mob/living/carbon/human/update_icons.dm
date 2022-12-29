@@ -971,6 +971,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	apply_layer(L_HAND_LAYER)
 
 /mob/living/carbon/human/proc/get_tail_layer()
+	if(tail_alt)
+		return TAIL_UPPER_LAYER_ALT
 	var/list/lower_layer_dirs = list(SOUTH)
 	if(tail_style)
 		lower_layer_dirs = tail_style.lower_layer_dirs.Copy()
