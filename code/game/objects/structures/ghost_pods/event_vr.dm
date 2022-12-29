@@ -70,6 +70,10 @@
 		if(choice)
 			finalized = tgui_alert(M, "Are you sure you want to play as [choice]?","Confirmation",list("No","Yes"))
 
+	if(!choice)	//If somehow we ended up here and we don't have a choice, let's just reset things!
+		reset_ghostpod()
+		return
+
 	var/mobtype = possible_mobs[choice]
 	var/mob/living/simple_mob/newPred = new mobtype(get_turf(src))
 	qdel(newPred.ai_holder)
