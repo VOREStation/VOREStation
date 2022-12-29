@@ -1071,12 +1071,6 @@ var/list/gamemode_cache = list()
 				sqladdress = value
 			if ("port")
 				sqlport = value
-			if ("database")
-				sqldb = value
-			if ("login")
-				sqllogin = value
-			if ("password")
-				sqlpass = value
 			if ("feedback_database")
 				sqlfdbkdb = value
 			if ("feedback_login")

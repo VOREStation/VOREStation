@@ -10,30 +10,30 @@
 		return FALSE
 
 	log_admin("Attempting to fix database connection")
-	if(dbcon.IsConnected())
-		dbcon.Disconnect()
+	if(SSdbcore.IsConnected())
+		SSdbcore.Disconnect()
 	else
 		log_admin("Database already disconnected")
-	
+
 	establish_db_connection()
-	var/errno = dbcon.ErrorMsg()
+	var/errno = SSdbcore.ErrorMsg()
 	if(errno)
 		log_admin("Database connection returned error message `[errno]`. Aborting.")
 		return FALSE
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.IsConnected())
 		log_admin("Database could not be reconnected! Aborting.")
 		return FALSE
-	log_admin("Database reconnected. Fixing player ages...")	
+	log_admin("Database reconnected. Fixing player ages...")
 
 	var/num = 0
 	for(var/client/C in GLOB.clients)
 		C.log_client_to_db()
-		errno = dbcon.ErrorMsg()
+		errno = SSdbcore.ErrorMsg()
 		if(errno)
 			log_admin("Database connection returned error message `[errno]` after adjusting player ages for [num] players. [C] was being updated when the error struck. Aborting.")
 			return FALSE
 		if(C.player_age)
 			num++
-	
+
 	log_admin("Successfully updated non-0 player age for [num] clients.")
 	return FALSE

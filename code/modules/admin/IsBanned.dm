@@ -52,7 +52,7 @@
 			failedcid = 0
 			cidquery = " OR computerid = '[computer_id]' "
 
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
+		var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
 		query.Execute()
 
@@ -81,4 +81,3 @@
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
 #endif
-

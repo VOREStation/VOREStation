@@ -77,7 +77,7 @@ DEBUG
 			return
 
 		//Job permabans
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
+		var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
 		query.Execute()
 
 		while(query.NextRow())
@@ -87,7 +87,7 @@ DEBUG
 			jobban_keylist.Add("[ckey] - [job]")
 
 		//Job tempbans
-		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		var/datum/DBQuery/query1 = SSdbcore.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 		query1.Execute()
 
 		while(query1.NextRow())

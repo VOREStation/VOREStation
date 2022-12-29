@@ -9,6 +9,7 @@
 	diary = start_log("[log_path].log")
 	href_logfile = start_log("[log_path]-hrefs.htm")
 	error_log = start_log("[log_path]-error.log")
+	sql_error_log = start_log("[log_path]-sql-error.log")
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 
@@ -573,8 +574,8 @@ var/failed_old_db_connections = 0
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon)
-		dbcon = new()
+	if(!SSdbcore)
+		SSdbcore = new()
 
 	var/user = sqlfdbklogin
 	var/pass = sqlfdbkpass
@@ -582,68 +583,23 @@ var/failed_old_db_connections = 0
 	var/address = sqladdress
 	var/port = sqlport
 
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon.IsConnected()
+	SSdbcore.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = SSdbcore.IsConnected()
 	if ( . )
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
-		to_world_log(dbcon.ErrorMsg())
+		to_world_log(SSdbcore.ErrorMsg())
 
 	return .
 
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
+//This proc ensures that the connection to the feedback database (global variable SSdbcore) is established
 /proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!dbcon || !dbcon.IsConnected())
+	if(!SSdbcore || !SSdbcore.IsConnected())
 		return setup_database_connection()
-	else
-		return 1
-
-
-/hook/startup/proc/connectOldDB()
-	if(!config.sql_enabled)
-		to_world_log("SQL connection disabled in config.")
-	else if(!setup_old_database_connection())
-		to_world_log("Your server failed to establish a connection with the SQL database.")
-	else
-		to_world_log("SQL database connection established.")
-	return 1
-
-//These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-/proc/setup_old_database_connection()
-
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!dbcon_old)
-		dbcon_old = new()
-
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon_old.IsConnected()
-	if ( . )
-		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		to_world_log(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-/proc/establish_old_db_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon_old || !dbcon_old.IsConnected())
-		return setup_old_database_connection()
 	else
 		return 1
 
@@ -652,14 +608,11 @@ var/failed_old_db_connections = 0
 	var/list/results = list("-- Resetting DB connections --")
 	failed_db_connections = 0
 
-	if(dbcon?.IsConnected())
-		dbcon.Disconnect()
-		results += "dbcon was connected and asked to disconnect"
+	if(SSdbcore?.IsConnected())
+		SSdbcore.Disconnect()
+		results += "SSdbcore was connected and asked to disconnect"
 	else
-		results += "dbcon was not connected"
-
-	if(dbcon_old?.IsConnected())
-		results += "WARNING: dbcon_old is connected, not touching it, but is this intentional?"
+		results += "SSdbcore was not connected"
 
 	if(!config.sql_enabled)
 		results += "stopping because config.sql_enabled = false"

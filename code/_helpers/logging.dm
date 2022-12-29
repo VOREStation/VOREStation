@@ -30,6 +30,11 @@
 	if (config.log_admin)
 		WRITE_LOG(diary, "ADMIN: [text]")
 
+/proc/log_admin_private(text)
+	admin_log.Add(text)
+	if (config.log_admin)
+		WRITE_LOG(diary, "ADMINPRIVATE: [text]")
+
 /proc/log_adminpm(text, client/source, client/dest)
 	admin_log.Add(text)
 	if (config.log_admin)
@@ -153,6 +158,9 @@
 
 /proc/log_misc(text)
 	WRITE_LOG(diary, "MISC: [text]")
+
+/proc/log_sql(text)
+	WRITE_LOG(sql_error_log, "SQL: [text]")
 
 /proc/log_topic(text)
 	if(Debug2)

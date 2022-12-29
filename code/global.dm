@@ -23,6 +23,7 @@ var/list/hit_appends	= list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 var/log_path			= "data/logs/" //See world.dm for the full calculated path
 var/diary				= null
 var/error_log			= null
+var/sql_error_log		= null
 var/debug_log			= null
 var/href_logfile		= null
 // var/station_name		= "Northern Star"
@@ -125,11 +126,6 @@ var/forum_authenticated_group = "10"
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 var/fileaccess_timer = 0
 var/custom_event_msg = null
-
-// Database connections. A connection is established on world creation.
-// Ideally, the connection dies when the server restarts (After feedback logging.).
-var/DBConnection/dbcon     = new() // Feedback    database (New database)
-var/DBConnection/dbcon_old = new() // /tg/station database (Old database) -- see the files in the SQL folder for information on what goes where.
 
 // Added for Xenoarchaeology, might be useful for other stuff.
 var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
