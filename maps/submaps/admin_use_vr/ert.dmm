@@ -1773,12 +1773,12 @@
 /turf/simulated/wall/shull,
 /area/ship/ert/dock_port)
 "iC" = (
-/obj/item/device/healthanalyzer/advanced{
+/obj/item/device/healthanalyzer/phasic{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced{
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic{
 	pixel_x = -2;
 	pixel_y = -2
 	},
@@ -3787,12 +3787,12 @@
 /turf/simulated/wall/rshull,
 /area/ship/ert/engine)
 "ug" = (
-/obj/item/device/healthanalyzer/advanced{
+/obj/item/device/healthanalyzer/phasic{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced{
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic{
 	pixel_x = -2;
 	pixel_y = -2
 	},

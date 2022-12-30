@@ -150,7 +150,7 @@
 /obj/item/weapon/robot_module/robot/syndicate/combat_medic/New(var/mob/living/silicon/robot/R)
 	..()
 	src.modules += new /obj/item/borg/sight/hud/med(src)
-	src.modules += new /obj/item/device/healthanalyzer/advanced(src)
+	src.modules += new /obj/item/device/healthanalyzer/phasic(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)
 
 	// Surgery things.
