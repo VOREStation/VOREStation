@@ -6,8 +6,8 @@
 	base_icon = "modern_chair"
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/modern_chair/Initialize()
-	. = ..()
+/obj/structure/bed/chair/modern_chair/New(var/newloc, var/new_material, var/new_padding_material)
+	..()
 	var/image/I = image(icon, "[base_icon]_over")
 	I.layer = ABOVE_MOB_LAYER
 	I.plane = MOB_PLANE
