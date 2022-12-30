@@ -8415,7 +8415,8 @@
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
 	name = "Gateway/EVA Prep Room";
-	req_access = list(18,19,43,67)
+	req_access = null;
+	req_one_access = list(18,19,43,67)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/prep_room)
@@ -14326,10 +14327,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/device/cataloguer,
-/obj/item/device/cataloguer,
-/obj/item/device/cataloguer/compact,
-/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "bkU" = (
@@ -18669,8 +18666,6 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "frS" = (
-/obj/structure/closet/secure_closet/guncabinet/excursion,
-/obj/item/weapon/pickaxe,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -21718,6 +21713,8 @@
 /obj/machinery/door/window/brigdoor{
 	req_access = list(43)
 	},
+/obj/item/device/cataloguer/compact,
+/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "ifp" = (
@@ -22194,6 +22191,8 @@
 /obj/machinery/door/window/brigdoor/eastright{
 	req_access = list(43)
 	},
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "iIf" = (

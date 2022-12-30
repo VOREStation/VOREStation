@@ -388,7 +388,7 @@
 	req_one_access = null
 	},
 /obj/machinery/door/firedoor/glass/talon,
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -532,6 +532,9 @@
 "jo" = (
 /obj/machinery/computer/ship/engines{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/groundbase/exploration)
@@ -841,6 +844,9 @@
 	req_one_access = null
 	},
 /obj/effect/map_helper/airlock/door/simple,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/groundbase/exploration)
 "ok" = (
@@ -1189,6 +1195,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "to" = (
@@ -1454,7 +1463,7 @@
 	dir = 8;
 	req_access = list(11,67)
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
@@ -1582,6 +1591,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
+"zS" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/shuttle/groundbase/exploration)
 "zW" = (
 /obj/structure/bed/chair/backed_red{
 	dir = 4
@@ -1746,11 +1764,14 @@
 	},
 /area/groundbase/level3/escapepad)
 "CU" = (
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /obj/structure/handrail{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
@@ -1868,7 +1889,9 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/kitchen)
 "Es" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "Ev" = (
@@ -2073,7 +2096,7 @@
 	},
 /area/groundbase/medical/patio)
 "HE" = (
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "2-4"
 	},
 /obj/machinery/alarm{
@@ -2136,6 +2159,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "ID" = (
@@ -2160,6 +2186,12 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
+"IP" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "IS" = (
 /turf/simulated/open/virgo3c,
 /area/groundbase/level3/ne/open)
@@ -2180,7 +2212,7 @@
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/shuttle/groundbase/exploration)
 "Jk" = (
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
@@ -2317,7 +2349,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
 "Ma" = (
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
 /obj/structure/closet/walllocker_double/east,
@@ -2410,6 +2442,9 @@
 	name = "Excursion Shuttlepad"
 	},
 /obj/effect/overmap/visitable/ship/landable/gbexplo,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "Nf" = (
@@ -2539,7 +2574,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 500000
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
 /obj/machinery/light,
@@ -2995,6 +3030,9 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/shuttle/groundbase/exploration)
 "Vh" = (
@@ -3020,6 +3058,9 @@
 "Vz" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/shuttle/groundbase/exploration)
@@ -3069,6 +3110,12 @@
 /obj/structure/railing,
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/kitchen)
+"Wl" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/groundbase/exploration)
 "Wr" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -7686,7 +7733,7 @@ pd
 vV
 PH
 gx
-PH
+Wl
 PH
 PH
 sL
@@ -7970,7 +8017,7 @@ DE
 Ml
 Zx
 Hm
-tY
+zS
 PH
 PH
 rb
@@ -8254,7 +8301,7 @@ DE
 fc
 zF
 Hm
-tY
+zS
 PH
 PH
 rb
@@ -8538,7 +8585,7 @@ jX
 vV
 PH
 Ka
-PH
+Wl
 PH
 PH
 MP
@@ -8822,7 +8869,7 @@ PH
 Bo
 PH
 Ef
-XT
+IP
 vV
 PH
 JI
@@ -11509,9 +11556,9 @@ Zo
 Zo
 Zo
 Kr
-Kr
-Kr
-Kr
+QD
+QD
+QD
 QD
 QD
 QD
@@ -11651,9 +11698,9 @@ vs
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
+QD
+QD
+QD
 QD
 QD
 QD
@@ -11793,9 +11840,9 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
+QD
+QD
+QD
 QD
 QD
 gs

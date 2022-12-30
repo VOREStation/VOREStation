@@ -217,14 +217,14 @@
 				amount = params["amount"]
 			else
 				amount = tgui_input_number(usr, "How many items?", "How many items would you like to take out?", 1)
-			
+
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src))
 				return FALSE
-			
+
 			var/index = text2num(params["index"])
 			if(index < 1 || index > LAZYLEN(item_records))
 				return TRUE
-			
+
 			vend(item_records[index], amount)
 			return TRUE
 	return FALSE
@@ -257,7 +257,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return TRUE
 	if(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
-		if(!allowed(usr) && !emagged && locked != -1 && action == "Release")
+		if((!allowed(usr) && scan_id) && !emagged && locked != -1 && action == "Release")
 			to_chat(usr, "<span class='warning'>Access denied.</span>")
 			return TRUE
 	return ..()

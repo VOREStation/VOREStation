@@ -8995,6 +8995,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"aoR" = (
+/obj/machinery/light/small,
+/obj/machinery/firework_launcher,
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "aoS" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/simulated/floor/grass,
@@ -32895,10 +32900,6 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
-"fna" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
 "fpU" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/hidden/green,
@@ -47177,7 +47178,7 @@ abn
 abn
 acx
 afg
-fna
+aoR
 abm
 aCm
 akg

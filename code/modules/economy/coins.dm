@@ -86,7 +86,7 @@
 			..()
 			return
 
-		var/obj/item/stack/cable_coil/CC = new (user.loc)
+		var/obj/item/stack/cable_coil/CC = new (user.loc, 1)
 		CC.update_icon()
 		cut_overlays()
 		string_attached = null
