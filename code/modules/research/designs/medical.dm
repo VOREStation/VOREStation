@@ -88,6 +88,15 @@
 	build_path = /obj/item/device/healthanalyzer/improved
 	sort_string = "KBAAB"
 
+/datum/design/item/medical/advanced_analyzer
+	name = "advanced health analyzer"
+	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
+	id = "advanced_analyzer"
+	req_tech = list(TECH_MAGNET = 7, TECH_BIO = 7, TECH_DATA = 5)
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 1250)
+	build_path = /obj/item/device/healthanalyzer/advanced
+	sort_string = "KBAAC"
+
 /datum/design/item/medical/advanced_roller
 	name = "advanced roller bed"
 	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."

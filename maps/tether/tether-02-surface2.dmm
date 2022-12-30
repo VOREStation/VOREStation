@@ -59,12 +59,6 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 10
-	},
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -22
@@ -151,10 +145,10 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 8
+	dir = 10
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 8
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
@@ -3964,9 +3958,6 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "afX" = (
@@ -4559,14 +4550,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "agX" = (
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/white,
+/obj/machinery/door/airlock/maintenance/medical,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/breakroom)
 "agY" = (
 /obj/effect/floor_decal/borderfloor/corner,
@@ -6682,13 +6668,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
-"akp" = (
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/breakroom)
 "akq" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/bathroom)
@@ -32803,10 +32782,6 @@
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/medical/bathroom)
-"bpK" = (
-/obj/machinery/door/airlock/maintenance/medical,
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/medical/breakroom)
 "bpO" = (
 /obj/structure/railing{
 	dir = 4
@@ -47630,8 +47605,8 @@ aoJ
 xbt
 uKv
 axu
-akp
-bpK
+amL
+agX
 anC
 asT
 anC
@@ -47767,7 +47742,7 @@ aaL
 aes
 aha
 abj
-agX
+cJE
 cJE
 unM
 nPO

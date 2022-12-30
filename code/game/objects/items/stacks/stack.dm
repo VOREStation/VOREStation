@@ -240,7 +240,7 @@
 //Return 1 if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
 /obj/item/stack/proc/can_use(var/used)
-	if(used < 0 || used % 1)
+	if(used < 0 || (used != round(used)))
 		stack_trace("Tried to use a bad stack amount: [used]")
 		return 0
 	if(get_amount() < used)
@@ -265,7 +265,7 @@
 		return 1
 
 /obj/item/stack/proc/add(var/extra)
-	if(extra < 0 || extra % 1)
+	if(extra < 0 || (extra != round(extra)))
 		stack_trace("Tried to add a bad stack amount: [extra]")
 		return 0
 	if(!uses_charge)
@@ -283,7 +283,7 @@
 			S.add_charge(charge_costs[i] * extra)
 
 /obj/item/stack/proc/set_amount(var/new_amount, var/no_limits = FALSE)
-	if(new_amount < 0 || new_amount % 1)
+	if(new_amount < 0 || (new_amount != round(new_amount)))
 		stack_trace("Tried to set a bad stack amount: [new_amount]")
 		return 0
 
@@ -321,7 +321,7 @@
 	if (isnull(tamount))
 		tamount = src.get_amount()
 
-	if(tamount < 0 || tamount % 1)
+	if(tamount < 0 || (tamount != round(tamount)))
 		stack_trace("Tried to transfer a bad stack amount: [tamount]")
 		return 0
 
@@ -347,7 +347,7 @@
 	if(uses_charge)
 		return null
 
-	if(tamount < 0 || tamount % 1)
+	if(tamount < 0 || (tamount != round(tamount)))
 		stack_trace("Tried to split a bad stack amount: [tamount]")
 		return null
 
@@ -403,6 +403,9 @@
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
 		var/N = tgui_input_number(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1, amount, 1)
+		if(N != round(N))
+			to_chat(user, "<span class='warning'>You cannot separate a non-whole number of stacks!</span>")
+			return
 		if(N)
 			var/obj/item/stack/F = src.split(N)
 			if (F)

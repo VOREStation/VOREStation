@@ -205,6 +205,10 @@ var/list/event_last_fired = list()
 					active_with_role["Medical"]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/research))
 					active_with_role["Scientist"]++
+				else if(istype(R.module, /obj/item/weapon/robot_module/robot/janitor))
+					active_with_role["Janitor"]++
+				else if(istype(R.module, /obj/item/weapon/robot_module/robot/clerical/butler))
+					active_with_role["Botanist"]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 			active_with_role["Engineer"]++

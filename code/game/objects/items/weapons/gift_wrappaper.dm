@@ -56,10 +56,7 @@
 	to_chat(user, "<span class='notice'>You cut open the present.</span>")
 
 	for(var/mob/M in src) //Should only be one but whatever.
-		M.loc = src.loc
-		if (M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+		M.forceMove(src.loc)
 
 	qdel(src)
 
@@ -180,11 +177,7 @@
 			var/obj/effect/spresent/present = new /obj/effect/spresent (H.loc)
 			src.amount -= 2
 
-			if (H.client)
-				H.client.perspective = EYE_PERSPECTIVE
-				H.client.eye = present
-
-			H.loc = present
+			H.forceMove(present)
 
 			add_attack_logs(user,H,"Wrapped with [src]")
 		else

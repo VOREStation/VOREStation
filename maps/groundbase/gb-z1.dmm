@@ -11431,8 +11431,6 @@
 /obj/structure/table/rack/shelf,
 /obj/item/device/cataloguer,
 /obj/item/device/cataloguer,
-/obj/item/device/cataloguer/compact,
-/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
 "Ao" = (
@@ -17121,6 +17119,10 @@
 	req_access = list(43)
 	},
 /obj/item/device/mapping_unit,
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer,
+/obj/item/device/cataloguer/compact,
+/obj/item/device/cataloguer/compact,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/gateway)
 "Oj" = (
