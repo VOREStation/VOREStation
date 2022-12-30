@@ -162,7 +162,8 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	temp_low = 	263.15 // -10c
 	light_modifier = 0.7
 	transition_chances = list(
-		WEATHER_LIGHT_SNOW = 100
+		WEATHER_LIGHT_SNOW = 15,
+		WEATHER_OVERCAST = 80
 		)
 	observed_message = "It is snowing lightly."
 	transition_messages = list(
@@ -180,7 +181,8 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	light_modifier = 0.5
 	flight_failure_modifier = 5
 	transition_chances = list(
-		WEATHER_LIGHT_SNOW = 100
+		WEATHER_SNOW = 10,
+		WEATHER_LIGHT_SNOW = 80
 		)
 	observed_message = "It is snowing."
 	transition_messages = list(
@@ -212,7 +214,8 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	light_modifier = 0.3
 	flight_failure_modifier = 10
 	transition_chances = list(
-		WEATHER_BLIZZARD = 100
+		WEATHER_BLIZZARD = 5,
+		WEATHER_SNOW = 80
 		)
 	observed_message = "A blizzard blows snow everywhere."
 	transition_messages = list(
@@ -296,7 +299,8 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 
 	transition_chances = list(
-		WEATHER_STORM = 100
+		WEATHER_STORM = 10,
+		WEATHER_RAIN = 80
 		)
 
 /datum/weather/virgo4/storm/process_effects()
@@ -343,7 +347,9 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_message = "<span class='warning'>The hail smacks into you!</span>"
 
 	transition_chances = list(
-		WEATHER_HAIL = 100
+		WEATHER_HAIL = 10,
+		WEATHER_SNOW = 40,
+		WEATHER_RAIN = 40
 		)
 	observed_message = "Ice is falling from the sky."
 	transition_messages = list(
