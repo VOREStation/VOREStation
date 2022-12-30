@@ -2237,6 +2237,7 @@
 #include "code\modules\events\meteors.dm"
 #include "code\modules\events\money_hacker.dm"
 #include "code\modules\events\money_lotto.dm"
+#include "code\modules\events\money_spam.dm"
 #include "code\modules\events\morph_spawn_vr.dm"
 #include "code\modules\events\prison_break.dm"
 #include "code\modules\events\radiation_storm.dm"

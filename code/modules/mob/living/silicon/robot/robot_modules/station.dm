@@ -2,14 +2,14 @@ var/global/list/robot_modules = list(
 	"Standard"		= /obj/item/weapon/robot_module/robot/standard,
 	"Service" 		= /obj/item/weapon/robot_module/robot/clerical/butler,
 	"Clerical" 		= /obj/item/weapon/robot_module/robot/clerical/general,
-	"Research" 		= /obj/item/weapon/robot_module/robot/research,
-	"Miner" 		= /obj/item/weapon/robot_module/robot/miner,
+	"Research" 		= /obj/item/weapon/robot_module/robot/research/general,
+	"Miner" 		= /obj/item/weapon/robot_module/robot/miner/general,
 	"Crisis" 		= /obj/item/weapon/robot_module/robot/medical/crisis,
 	"Surgeon" 		= /obj/item/weapon/robot_module/robot/medical/surgeon,
 	"Security" 		= /obj/item/weapon/robot_module/robot/security/general,
 	"Combat" 		= /obj/item/weapon/robot_module/robot/security/combat,
 	"Engineering"	= /obj/item/weapon/robot_module/robot/engineering/general,
-	"Janitor" 		= /obj/item/weapon/robot_module/robot/janitor,
+	"Janitor" 		= /obj/item/weapon/robot_module/robot/janitor/general,
 	"Gravekeeper"	= /obj/item/weapon/robot_module/robot/gravekeeper,
 	"Lost"			= /obj/item/weapon/robot_module/robot/lost,
 	"Protector" 	= /obj/item/weapon/robot_module/robot/syndicate/protector,
@@ -575,7 +575,7 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Janitor"
 					)
 
-/obj/item/weapon/robot_module/robot/janitor/New()
+/obj/item/weapon/robot_module/robot/janitor/general/New()
 	..()
 	src.modules += new /obj/item/weapon/soap/nanotrasen(src)
 	src.modules += new /obj/item/weapon/storage/bag/trash(src)
@@ -585,7 +585,7 @@ var/global/list/robot_modules = list(
 	src.emag.reagents.add_reagent("lube", 250)
 	src.emag.name = "Lube spray"
 
-/obj/item/weapon/robot_module/robot/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/weapon/robot_module/robot/janitor/general/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	if(src.emag)
@@ -615,6 +615,9 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/butler
+	channels = list("Service" = 1)
+
+/obj/item/weapon/robot_module/robot/clerical/butler/general
 	sprites = list(
 					"M-USE NanoTrasen" = "robotServ",
 					"Cabeiri" = "eyebot-standard",
@@ -639,7 +642,7 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Service"
 				  	)
 
-/obj/item/weapon/robot_module/robot/clerical/butler/New()
+/obj/item/weapon/robot_module/robot/clerical/butler/general/New()
 	..()
 	src.modules += new /obj/item/weapon/gripper/service(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
@@ -739,7 +742,7 @@ var/global/list/robot_modules = list(
 				)
 	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
 
-/obj/item/weapon/robot_module/robot/miner/New()
+/obj/item/weapon/robot_module/robot/miner/general/New()
 	..()
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
@@ -777,7 +780,7 @@ var/global/list/robot_modules = list(
 					)
 	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
-/obj/item/weapon/robot_module/robot/research/New()
+/obj/item/weapon/robot_module/robot/research/general/New()
 	..()
 	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
 	src.modules += new /obj/item/weapon/gripper/research(src)
@@ -821,7 +824,7 @@ var/global/list/robot_modules = list(
 	C.synths = list(wire)
 	src.modules += C
 
-/obj/item/weapon/robot_module/robot/research/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/weapon/robot_module/robot/research/general/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
 	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
