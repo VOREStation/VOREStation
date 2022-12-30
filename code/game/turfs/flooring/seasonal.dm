@@ -1,19 +1,19 @@
-var/season
+var/world_time_season
 
-/proc/do_season()
+/proc/setup_season()
 	var/month = text2num(time2text(world.timeofday, "MM")) 	// get the current month
 
 	switch(month)
 		if(1 to 2)
-			season = "winter"
+			world_time_season = "winter"
 		if(3 to 5)
-			season = "spring"
+			world_time_season = "spring"
 		if(6 to 8)
-			season = "summer"
+			world_time_season = "summer"
 		if(9 to 11)
-			season = "autumn"
+			world_time_season = "autumn"
 		if(12)
-			season = "winter"
+			world_time_season = "winter"
 
 /turf/simulated/floor/outdoors/grass/seasonal
 	name = "grass"
@@ -35,9 +35,7 @@ var/season
 
 /turf/simulated/floor/outdoors/grass/seasonal/Initialize()
 
-	if(!season)
-		do_season()
-	switch(season)
+	switch(world_time_season)
 		if("spring")
 			tree_types = list(
 				/obj/structure/flora/tree/bigtree,
@@ -164,7 +162,7 @@ var/season
 
 /turf/simulated/floor/outdoors/grass/seasonal/proc/update_desc()
 
-	switch(season)
+	switch(world_time_season)
 		if("spring")
 			desc = "Lush green grass, flourishing! Little flowers peek out from between the blades here and there!"
 		if("summer")
@@ -178,10 +176,10 @@ var/season
 /turf/simulated/floor/outdoors/grass/seasonal/update_icon(update_neighbors)
 	. = ..()
 	update_desc()
-	switch(season)
+	switch(world_time_season)
 		if("spring")
 			if(prob(50))
-				var/cache_key = "[season]-overlay[rand(1,19)]"
+				var/cache_key = "[world_time_season]-overlay[rand(1,19)]"
 				if(!overlays_cache[cache_key])
 					var/image/I = image(icon = src.icon, icon_state = cache_key, layer = ABOVE_TURF_LAYER) // Icon should be abstracted out
 					I.plane = TURF_PLANE
@@ -191,7 +189,7 @@ var/season
 			return
 		if("autumn")
 			if(prob(33))
-				var/cache_key = "[season]-overlay[rand(1,6)]"
+				var/cache_key = "[world_time_season]-overlay[rand(1,6)]"
 				if(!overlays_cache[cache_key])
 					var/image/I = image(icon = src.icon, icon_state = cache_key, layer = ABOVE_TURF_LAYER) // Icon should be abstracted out
 					I.plane = TURF_PLANE

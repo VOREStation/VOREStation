@@ -115,7 +115,7 @@ var/list/flooring_types
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
-	var/do_season = FALSE	//VOREStation Addition
+	var/check_season = FALSE	//VOREStation Addition
 
 /decl/flooring/proc/get_plating_type(var/turf/T)
 	return plating_type
@@ -621,5 +621,5 @@ var/list/flooring_types
 /decl/flooring/grass/seasonal_grass
 	desc = "It's grass!"
 	icon = 'icons/seasonal/turf.dmi'
-	do_season = TRUE
+	check_season = TRUE
 	has_base_range = 11
