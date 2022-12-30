@@ -27,12 +27,11 @@ var/season
 
 	grass_types = list()
 	var/static/list/overlays_cache = list()
-
-	var/tree_chance = 5
-
 	var/animal_chance = 0.5
 	var/animal_types = list()
-
+	var/tree_chance = 5
+	var/tree_types = list()
+	var/snow_chance = 10
 
 /turf/simulated/floor/outdoors/grass/seasonal/Initialize()
 
@@ -40,6 +39,11 @@ var/season
 		do_season()
 	switch(season)
 		if("spring")
+			tree_types = list(
+				/obj/structure/flora/tree/bigtree,
+				/obj/structure/flora/tree/jungle_small,
+				/obj/structure/flora/tree/jungle
+			)
 			animal_types = list(
 				/mob/living/simple_mob/vore/alienanimals/teppi = 10,
 				/mob/living/simple_mob/vore/alienanimals/teppi/mutant = 1,
@@ -69,6 +73,11 @@ var/season
 
 			grass_chance = 30
 		if("summer")
+			tree_types = list(
+				/obj/structure/flora/tree/bigtree,
+				/obj/structure/flora/tree/jungle_small,
+				/obj/structure/flora/tree/jungle
+			)
 			animal_types = list(
 				/mob/living/simple_mob/vore/alienanimals/teppi = 10,
 				/mob/living/simple_mob/vore/alienanimals/teppi/mutant = 1,
@@ -89,6 +98,10 @@ var/season
 			)
 
 		if("autumn")
+			tree_types = list(
+				/obj/structure/flora/tree/bigtree
+			)
+
 			animal_types = list(
 				/mob/living/simple_mob/vore/alienanimals/teppi = 10,
 				/mob/living/simple_mob/vore/alienanimals/teppi/mutant = 1,
@@ -111,13 +124,18 @@ var/season
 			animal_chance = 0.25
 		if("winter")
 			grass_chance = 0
+			tree_types = list(
+				/obj/structure/flora/tree/dead,
+				/obj/structure/flora/tree/pine
+			)
+
 			animal_types = list(
 				/mob/living/simple_mob/vore/rabbit/white = 40,
 				/mob/living/simple_mob/vore/alienanimals/teppi = 10,
 				/mob/living/simple_mob/vore/alienanimals/teppi/mutant = 1,
 				/mob/living/simple_mob/vore/redpanda = 10
 			)
-			if(prob(10))
+			if(prob(snow_chance))
 				chill()
 				return
 
@@ -132,8 +150,10 @@ var/season
 			animal_chance = 0.1
 
 
-//	if(tree_chance && prob(tree_chance) && !check_density())
-//		new /obj/structure/flora/tree/bigtree(src)
+	if(tree_chance && prob(tree_chance) && !check_density())
+		var/tree_type = pickweight(tree_types)
+		new tree_type(src)
+
 
 	if(animal_chance && prob(animal_chance) && !check_density())
 		var/animal_type = pickweight(animal_types)
@@ -188,3 +208,9 @@ var/season
 /turf/simulated/floor/outdoors/grass/seasonal/no_trees_or_mobs
 	tree_chance = 0
 	animal_chance = 0
+/turf/simulated/floor/outdoors/grass/seasonal/no_trees_or_mobs_or_snow
+	tree_chance = 0
+	animal_chance = 0
+	snow_chance = 0
+/turf/simulated/floor/outdoors/grass/seasonal/low_snow
+	snow_chance = 1
