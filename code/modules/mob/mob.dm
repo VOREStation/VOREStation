@@ -647,7 +647,8 @@
 			stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 			if(ticker && ticker.current_state != GAME_STATE_PREGAME)
 				stat("Station Time", stationtime2text())
-				stat("Station Date", stationdate2text())
+				var/date = "[stationdate2text()], [capitalize(world_time_season)]"
+				stat("Station Date", date)
 				stat("Round Duration", roundduration2text())
 
 		if(client.holder)
