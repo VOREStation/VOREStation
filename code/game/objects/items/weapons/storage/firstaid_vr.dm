@@ -66,7 +66,7 @@
 		/obj/item/weapon/storage/pill_bottle/corophizine,
 		/obj/item/weapon/storage/pill_bottle/combat,
 		/obj/item/stack/medical/splint,
-		/obj/item/device/healthanalyzer/advanced
+		/obj/item/device/healthanalyzer/phasic
 	)
 
 /obj/item/weapon/storage/firstaid/surgery
