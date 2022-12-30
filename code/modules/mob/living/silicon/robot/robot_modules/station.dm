@@ -1,6 +1,6 @@
 var/global/list/robot_modules = list(
 	"Standard"		= /obj/item/weapon/robot_module/robot/standard,
-	"Service" 		= /obj/item/weapon/robot_module/robot/clerical/butler,
+	"Service" 		= /obj/item/weapon/robot_module/robot/clerical/butler/general,
 	"Clerical" 		= /obj/item/weapon/robot_module/robot/clerical/general,
 	"Research" 		= /obj/item/weapon/robot_module/robot/research/general,
 	"Miner" 		= /obj/item/weapon/robot_module/robot/miner/general,
