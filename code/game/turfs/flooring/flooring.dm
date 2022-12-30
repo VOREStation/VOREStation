@@ -619,6 +619,7 @@ var/list/flooring_types
 
 ///// Season Time! ///// VOREStation Addition Start
 /decl/flooring/grass/seasonal_grass
+	desc = "It's grass!"
 	icon = 'icons/seasonal/turf.dmi'
 	do_season = TRUE
-	has_base_range = 3
+	has_base_range = 11
