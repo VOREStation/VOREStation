@@ -157,7 +157,7 @@ var/season
 
 /turf/simulated/floor/outdoors/grass/seasonal/update_icon(update_neighbors)
 	. = ..()
-
+	update_desc()
 	switch(season)
 		if("spring")
 			if(prob(50))
@@ -168,6 +168,7 @@ var/season
 					overlays_cache[cache_key] = I
 				add_overlay(overlays_cache[cache_key])
 		if("summer")
+			return
 		if("autumn")
 			if(prob(33))
 				var/cache_key = "[season]-overlay[rand(1,6)]"
@@ -178,7 +179,7 @@ var/season
 				add_overlay(overlays_cache[cache_key])
 
 		if("winter")
-	update_desc()
+			return
 
 /turf/simulated/floor/outdoors/grass/seasonal/no_trees
 	tree_chance = 0
