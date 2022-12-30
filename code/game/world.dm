@@ -10,6 +10,7 @@
 	href_logfile = start_log("[log_path]-hrefs.htm")
 	error_log = start_log("[log_path]-error.log")
 	sql_error_log = start_log("[log_path]-sql-error.log")
+	query_debug_log = start_log("[log_path]-query-debug.log")
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 

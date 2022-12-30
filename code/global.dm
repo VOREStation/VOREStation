@@ -24,6 +24,7 @@ var/log_path			= "data/logs/" //See world.dm for the full calculated path
 var/diary				= null
 var/error_log			= null
 var/sql_error_log		= null
+var/query_debug_log		= null
 var/debug_log			= null
 var/href_logfile		= null
 // var/station_name		= "Northern Star"

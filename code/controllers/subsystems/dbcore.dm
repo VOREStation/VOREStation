@@ -1,6 +1,7 @@
 SUBSYSTEM_DEF(dbcore)
 	name = "Database"
 	flags = SS_NO_INIT|SS_NO_FIRE
+	init_order = INIT_ORDER_DBCORE
 
 	var/const/FAILED_DB_CONNECTION_CUTOFF = 5
 
@@ -23,7 +24,8 @@ SUBSYSTEM_DEF(dbcore)
 	var/failed_connections = 0
 
 /datum/controller/subsystem/dbcore/PreInit()
-	_db_con = _dm_db_new_con()
+	if(!_db_con)
+		_db_con = _dm_db_new_con()
 
 /datum/controller/subsystem/dbcore/Recover()
 	_db_con = SSdbcore._db_con
@@ -57,16 +59,11 @@ SUBSYSTEM_DEF(dbcore)
 	var/address = global.sqladdress
 	var/port = global.sqlport
 
-	doConnect("dbi:mysql:[db]:[address]:[port]", user, pass)
+	_dm_db_connect(_db_con, "dbi:mysql:[db]:[address]:[port]", user, pass, Default_Cursor, null)
 	. = IsConnected()
 	if (!.)
 		log_sql("Connect() failed | [ErrorMsg()]")
 		++failed_connections
-
-/datum/controller/subsystem/dbcore/proc/doConnect(dbi_handler, user_handler, password_handler)
-	if(!config.sql_enabled)
-		return FALSE
-	return _dm_db_connect(_db_con, dbi_handler, user_handler, password_handler, Default_Cursor, null)
 
 /datum/controller/subsystem/dbcore/proc/Disconnect()
 	failed_connections = 0
@@ -81,6 +78,8 @@ SUBSYSTEM_DEF(dbcore)
 	return _dm_db_quote(_db_con, str)
 
 /datum/controller/subsystem/dbcore/proc/ErrorMsg()
+	if(!config.sql_enabled)
+		return "Database disabled by configuration"
 	return _dm_db_error_msg(_db_con)
 
 /datum/controller/subsystem/dbcore/proc/NewQuery(sql_query, cursor_handler = Default_Cursor)
@@ -88,6 +87,71 @@ SUBSYSTEM_DEF(dbcore)
 		log_admin_private("WARNING: Advanced admin proc call DB query created!: [sql_query]")
 	return new /datum/DBQuery(sql_query, src, cursor_handler)
 
+/*
+Takes a list of rows (each row being an associated list of column => value) and inserts them via a single mass query.
+Rows missing columns present in other rows will resolve to SQL NULL
+You are expected to do your own escaping of the data, and expected to provide your own quotes for strings.
+The duplicate_key arg can be true to automatically generate this part of the query
+	or set to a string that is appended to the end of the query
+Ignore_errors instructes mysql to continue inserting rows if some of them have errors.
+	 the erroneous row(s) aren't inserted and there isn't really any way to know why or why errored
+Delayed insert mode was removed in mysql 7 and only works with MyISAM type tables,
+	It was included because it is still supported in mariadb.
+	It does not work with duplicate_key and the mysql server ignores it in those cases
+*/
+/datum/controller/subsystem/dbcore/proc/MassInsert(table, list/rows, duplicate_key = FALSE, ignore_errors = FALSE, delayed = FALSE, warn = FALSE)
+	if (!table || !rows || !istype(rows))
+		return
+	var/list/columns = list()
+	var/list/sorted_rows = list()
+
+	for (var/list/row in rows)
+		var/list/sorted_row = list()
+		sorted_row.len = columns.len
+		for (var/column in row)
+			var/idx = columns[column]
+			if (!idx)
+				idx = columns.len + 1
+				columns[column] = idx
+				sorted_row.len = columns.len
+
+			sorted_row[idx] = row[column]
+		sorted_rows[++sorted_rows.len] = sorted_row
+
+	if (duplicate_key == TRUE)
+		var/list/column_list = list()
+		for (var/column in columns)
+			column_list += "[column] = VALUES([column])"
+		duplicate_key = "ON DUPLICATE KEY UPDATE [column_list.Join(", ")]\n"
+	else if (duplicate_key == FALSE)
+		duplicate_key = null
+
+	if (ignore_errors)
+		ignore_errors = " IGNORE"
+	else
+		ignore_errors = null
+
+	if (delayed)
+		delayed = " DELAYED"
+	else
+		delayed = null
+
+	var/list/sqlrowlist = list()
+	var/len = columns.len
+	for (var/list/row in sorted_rows)
+		if (length(row) != len)
+			row.len = len
+		for (var/value in row)
+			if (value == null)
+				value = "NULL"
+		sqlrowlist += "([row.Join(", ")])"
+
+	sqlrowlist = "	[sqlrowlist.Join(",\n	")]"
+	var/datum/DBQuery/Query = NewQuery("INSERT[delayed][ignore_errors] INTO [table]\n([columns.Join(", ")])\nVALUES\n[sqlrowlist]\n[duplicate_key]")
+	if (warn)
+		return Query.warn_execute()
+	else
+		return Query.Execute()
 
 /datum/DBQuery
 	var/sql // The sql query being executed.
@@ -109,13 +173,13 @@ SUBSYSTEM_DEF(dbcore)
 	item = list()
 	_db_query = _dm_db_new_query()
 
-/datum/DBQuery/proc/Connect(datum/controller/subsystem/dbcore/connection_handler)
-	db_connection = connection_handler
+/datum/DBQuery/CanProcCall(proc_name)
+	return FALSE
 
 /datum/DBQuery/proc/warn_execute()
 	. = Execute()
 	if(!.)
-		to_chat(usr, "<span class='danger'>A SQL error occured during this operation, check the server logs.</span>")
+		to_chat(usr, "<span class='danger'>A SQL error occurred during this operation, check the server logs.</span>")
 
 /datum/DBQuery/proc/Execute(sql_query = sql, cursor_handler = default_cursor, log_error = TRUE)
 	Close()
@@ -164,7 +228,7 @@ SUBSYSTEM_DEF(dbcore)
 	if(istext(column))
 		column = columns.Find(column)
 	if(!conversions)
-		conversions = list(column)
+		conversions = new /list(column)
 	else if(conversions.len < column)
 		conversions.len = column
 	conversions[column] = conversion

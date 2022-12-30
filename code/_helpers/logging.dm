@@ -162,6 +162,9 @@
 /proc/log_sql(text)
 	WRITE_LOG(sql_error_log, "SQL: [text]")
 
+/proc/log_query_debug(text)
+	WRITE_LOG(query_debug_log, "SQL: [text]")
+
 /proc/log_topic(text)
 	if(Debug2)
 		WRITE_LOG(diary, "TOPIC: [text]")
