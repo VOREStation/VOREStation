@@ -82,7 +82,7 @@
 /turf/simulated/floor/wmarble,
 /area/submap/groundbase/poi/wildvillage/square/square10)
 "B" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/square/square10)
 "G" = (
 /turf/simulated/floor/wood,

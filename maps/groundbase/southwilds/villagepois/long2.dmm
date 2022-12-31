@@ -35,7 +35,7 @@
 /area/submap/groundbase/poi/wildvillage/long/long2)
 "o" = (
 /obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/long/long2)
 "p" = (
 /obj/structure/table/rack,
@@ -66,7 +66,7 @@
 	},
 /area/submap/groundbase/poi/wildvillage/long/long2)
 "u" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/long/long2)
 "x" = (
 /obj/machinery/light{
