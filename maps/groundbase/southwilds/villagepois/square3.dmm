@@ -14,7 +14,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square3)
 "j" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "k" = (
 /obj/structure/bed/chair/sofa/brown{
@@ -23,7 +23,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square3)
 "n" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage)
 "q" = (
 /obj/structure/bed/chair/sofa/left/brown{
@@ -51,7 +51,7 @@
 /turf/template_noop,
 /area/submap/groundbase/poi/wildvillage)
 "x" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "B" = (
 /obj/structure/bed/chair/sofa/right/brown{
@@ -94,7 +94,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square3)
 "H" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "J" = (
 /obj/structure/table/standard,

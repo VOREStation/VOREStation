@@ -13,7 +13,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square2)
 "e" = (
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/submap/groundbase/poi/wildvillage)
 "f" = (
 /obj/machinery/door/airlock/silver{
@@ -130,7 +130,7 @@
 /turf/simulated/floor,
 /area/submap/groundbase/poi/wildvillage/square/square2)
 "D" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "F" = (
 /obj/structure/grille,
@@ -179,7 +179,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square2)
 "M" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage)
 "N" = (
 /obj/structure/table/standard,
@@ -217,7 +217,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "W" = (
 /turf/simulated/floor/wood,

@@ -40,7 +40,7 @@
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
 "p" = (
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/submap/groundbase/poi/wildvillage)
 "q" = (
 /obj/machinery/light{
@@ -91,7 +91,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "G" = (
 /obj/structure/grille,
@@ -105,7 +105,7 @@
 /turf/simulated/floor/bmarble,
 /area/submap/groundbase/poi/wildvillage/square/square8)
 "R" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "W" = (
 /obj/machinery/light{

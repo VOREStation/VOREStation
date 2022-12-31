@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "m" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/outdoor)
 "G" = (
 /turf/simulated/floor/wood,

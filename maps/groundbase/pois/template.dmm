@@ -11,7 +11,7 @@
 "am" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/healthanalyzer,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -22,7 +22,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -39,7 +39,7 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -50,14 +50,14 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "ch" = (
 /obj/structure/bed/chair/sofa/left/brown,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -72,21 +72,21 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin3)
 "cu" = (
 /obj/random/trash_pile,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "cG" = (
 /mob/living/simple_mob/vore/alienanimals/teppi/mutant,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "cS" = (
 /obj/random/soap,
@@ -96,7 +96,7 @@
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -113,7 +113,7 @@
 "eq" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -126,12 +126,12 @@
 /turf/template_noop,
 /area/template_noop)
 "fh" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/template_noop)
 "fj" = (
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -142,13 +142,13 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin3)
 "fq" = (
-/turf/simulated/floor/reinforced/virgo3c,
+/turf/simulated/floor/reinforced,
 /area/maintenance/groundbase/poi/caves)
 "fu" = (
 /obj/random/cargopod,
@@ -156,13 +156,13 @@
 /area/template_noop)
 "fY" = (
 /obj/structure/fence/door,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "gq" = (
 /obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -172,7 +172,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -181,7 +181,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "hm" = (
 /obj/random/maintenance/cargo,
@@ -194,14 +194,14 @@
 "hI" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin5)
 "hY" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "in" = (
 /obj/random/maintenance/engineering,
@@ -215,7 +215,7 @@
 /obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -239,11 +239,11 @@
 /obj/structure/fence/corner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "kP" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "lk" = (
 /obj/random/pottedplant,
@@ -251,13 +251,13 @@
 /area/template_noop)
 "lI" = (
 /obj/structure/bed/chair/sofa/left/brown,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin5)
 "lK" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "lO" = (
 /obj/structure/table/rack,
@@ -265,17 +265,17 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/reinforced/virgo3c,
+/turf/simulated/floor/reinforced,
 /area/maintenance/groundbase/poi/caves)
 "lZ" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin1)
 "md" = (
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -290,21 +290,21 @@
 /area/template_noop)
 "mw" = (
 /obj/structure/bed/chair/sofa/right,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "ng" = (
 /obj/machinery/optable,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "no" = (
 /obj/structure/table/glass,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -312,21 +312,21 @@
 "nr" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "nJ" = (
 /obj/structure/bed/chair/sofa/left,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "oK" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -340,7 +340,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -355,13 +355,13 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin1)
 "pM" = (
-/turf/simulated/floor/outdoors/grass/virgo3c{
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs{
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/roofed)
@@ -369,15 +369,15 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "qc" = (
 /obj/structure/prop/rock/crystal,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/template_noop)
 "qh" = (
 /obj/structure/flora/tree/bigtree,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "qx" = (
 /obj/random/thermalponcho,
@@ -391,13 +391,13 @@
 /obj/structure/bed/chair/sofa/right/brown{
 	dir = 8
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin5)
 "rJ" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo3c,
+/turf/simulated/mineral/floor/ignore_mapgen,
 /area/template_noop)
 "sa" = (
 /turf/simulated/wall/wood,
@@ -411,7 +411,7 @@
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tool,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -421,7 +421,7 @@
 /turf/template_noop,
 /area/template_noop)
 "tA" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/template_noop)
 "tI" = (
 /obj/item/stack/cable_coil/random,
@@ -433,13 +433,13 @@
 /area/template_noop)
 "uM" = (
 /obj/structure/bed/chair/sofa/black,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "vF" = (
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -449,7 +449,7 @@
 /turf/template_noop,
 /area/template_noop)
 "vQ" = (
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -461,14 +461,14 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "wc" = (
 /obj/structure/fence/corner,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "wq" = (
 /obj/random/trash_pile,
@@ -478,7 +478,7 @@
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -489,7 +489,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -500,13 +500,13 @@
 /area/template_noop)
 "xO" = (
 /obj/structure/bed/chair/sofa/left,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin1)
 "xR" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -517,14 +517,14 @@
 /obj/random/tool,
 /obj/random/tool,
 /obj/item/weapon/storage/firstaid/surgery,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "zD" = (
 /obj/structure/flora/tree/bigtree,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/template_noop)
 "zM" = (
 /obj/structure/table/rack,
@@ -536,13 +536,13 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "AH" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -553,13 +553,13 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "CL" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -569,7 +569,7 @@
 /area/submap/groundbase/poi/outdoor/roofed)
 "CX" = (
 /obj/structure/bed/double,
-/turf/simulated/floor/reinforced/virgo3c,
+/turf/simulated/floor/reinforced,
 /area/maintenance/groundbase/poi/caves)
 "Dn" = (
 /obj/random/snack,
@@ -583,11 +583,11 @@
 /obj/structure/prop/rock/flat{
 	density = 0
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/template_noop)
 "DB" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -598,7 +598,7 @@
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -613,7 +613,7 @@
 "DP" = (
 /obj/structure/table/glass,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -624,7 +624,7 @@
 /area/maintenance/groundbase/poi/caves)
 "Ef" = (
 /obj/structure/bed/chair/sofa/right/brown,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -634,26 +634,26 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "EQ" = (
 /obj/random/mob/semirandom_mob_spawner/animal,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "Fb" = (
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/structure/table/rack/steel,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin4)
 "FF" = (
 /obj/structure/bed/chair/sofa/black,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -664,7 +664,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -679,7 +679,7 @@
 /area/template_noop)
 "Gt" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -691,21 +691,21 @@
 "Hj" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "Hk" = (
 /obj/structure/table/standard,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin2)
 "HE" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -736,7 +736,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -748,14 +748,14 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "Ky" = (
 /obj/structure/bed/double/padded,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -764,7 +764,7 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -775,7 +775,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -785,7 +785,7 @@
 /area/template_noop)
 "Nh" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/template_noop)
 "Nt" = (
 /obj/random/junk,
@@ -802,7 +802,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -812,16 +812,16 @@
 /turf/template_noop,
 /area/template_noop)
 "OB" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/template_noop)
 "OR" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo3c,
+/turf/simulated/mineral/floor/ignore_mapgen,
 /area/maintenance/groundbase/poi/caves)
 "Pj" = (
 /obj/structure/fence/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/template_noop)
 "PK" = (
 /obj/structure/table/standard,
@@ -830,7 +830,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -838,7 +838,7 @@
 "QT" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -847,13 +847,13 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin3)
 "Rw" = (
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -871,7 +871,7 @@
 /obj/structure/bed/chair/sofa/corner/brown{
 	dir = 8
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -880,7 +880,7 @@
 /obj/structure/bed/chair/sofa/corner/brown{
 	dir = 4
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -889,7 +889,7 @@
 /obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -898,34 +898,34 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin1)
 "SA" = (
 /obj/structure/bed/chair/sofa/right/brown,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin4)
 "SM" = (
 /obj/structure/bed/chair,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "SV" = (
 /obj/structure/table/glass,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/cabin4)
 "TF" = (
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -936,7 +936,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -947,7 +947,7 @@
 /area/template_noop)
 "UI" = (
 /obj/structure/bed/double/padded,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -955,7 +955,7 @@
 "VN" = (
 /obj/structure/table/glass,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -967,11 +967,11 @@
 /area/submap/groundbase/poi/outdoor/cabin3)
 "Wr" = (
 /obj/structure/table/bench/sifwooden,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/template_noop)
 "WG" = (
 /obj/structure/bed/chair/sofa/brown,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -984,7 +984,7 @@
 /obj/structure/bed/chair/sofa/brown{
 	dir = 1
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -999,7 +999,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -1012,7 +1012,7 @@
 /turf/template_noop,
 /area/template_noop)
 "Yz" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
@@ -1027,7 +1027,7 @@
 "ZP" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/wood/virgo3c{
+/turf/simulated/floor/wood{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

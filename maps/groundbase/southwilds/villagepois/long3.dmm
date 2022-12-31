@@ -4,16 +4,16 @@
 /turf/template_noop,
 /area/submap/groundbase/poi/wildvillage)
 "w" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/long/long3)
 "F" = (
-/turf/simulated/floor/water/virgo3c,
+/turf/simulated/floor/water,
 /area/submap/groundbase/poi/wildvillage/long/long3)
 "Q" = (
 /turf/template_noop,
 /area/submap/groundbase/poi/wildvillage)
 "Z" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/poi/wildvillage/long/long3)
 
 (1,1,1) = {"

@@ -14,19 +14,19 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo3c,
+/turf/simulated/mineral/floor/ignore_mapgen,
 /area/maintenance/groundbase/poi/caves)
 "x" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "G" = (
 /obj/random/maintenance/misc,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo3c,
+/turf/simulated/mineral/floor/ignore_mapgen,
 /area/maintenance/groundbase/poi/caves)
 "K" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo3c,
+/turf/simulated/mineral/floor/ignore_mapgen,
 /area/maintenance/groundbase/poi/caves)
 
 (1,1,1) = {"
