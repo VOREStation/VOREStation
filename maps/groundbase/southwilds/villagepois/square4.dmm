@@ -162,7 +162,7 @@
 /turf/simulated/floor/bmarble,
 /area/submap/groundbase/poi/wildvillage/square/square4)
 "F" = (
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/submap/groundbase/poi/wildvillage)
 "G" = (
 /obj/structure/grille,
@@ -204,13 +204,13 @@
 /turf/simulated/floor/carpet,
 /area/submap/groundbase/poi/wildvillage/square/square4)
 "M" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "N" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "O" = (
 /obj/structure/table/bench/glass,

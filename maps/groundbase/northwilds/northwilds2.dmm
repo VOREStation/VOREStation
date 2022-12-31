@@ -1,58 +1,62 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/submap/groundbase/wilderness/north)
 "d" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north)
 "g" = (
 /obj/effect/map_effect/portal/line/side_a,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north)
 "k" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/north)
 "l" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/north)
 "m" = (
-/turf/simulated/mineral/ignore_cavegen/virgo3c,
+/turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/north)
 "o" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/north/cave)
 "p" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/north_south,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north)
 "C" = (
 /obj/item/clothing/under/rank/psych/turtleneck/sweater,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north/unexplored)
 "J" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north)
 "K" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/north/unexplored)
 "N" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/north{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north)
 "W" = (
 /obj/effect/map_effect/portal/line/side_a,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/north)
 "X" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/north/unexplored)
 
 (1,1,1) = {"

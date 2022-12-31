@@ -7,42 +7,42 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "n" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "o" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "q" = (
 /obj/structure/fence/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "v" = (
 /obj/structure/fence/corner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "w" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "z" = (
 /obj/random/mob/semirandom_mob_spawner/animal,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "A" = (
 /obj/item/weapon/material/minihoe,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "E" = (
 /obj/structure/sink/puddle,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "G" = (
 /turf/template_noop,
@@ -51,19 +51,19 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "S" = (
 /obj/structure/fence/door,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "Y" = (
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "Z" = (
 /obj/structure/fence/corner,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 
 (1,1,1) = {"

@@ -36,7 +36,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square9)
 "n" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "o" = (
 /obj/structure/grille,
@@ -153,13 +153,13 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/submap/groundbase/poi/wildvillage/square/square9)
 "J" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "K" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "M" = (
 /obj/structure/bed/chair/sofa/left/brown,

@@ -205,7 +205,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square12)
 "M" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "P" = (
 /obj/structure/table/standard,
@@ -226,7 +226,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "S" = (
 /turf/simulated/floor/carpet/purcarpet,
@@ -256,7 +256,7 @@
 /turf/simulated/floor,
 /area/submap/groundbase/poi/wildvillage/square/square12)
 "W" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "X" = (
 /obj/structure/table/glass,

@@ -21,7 +21,7 @@
 /turf/simulated/floor/wmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "e" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "f" = (
 /turf/simulated/floor/bmarble,
@@ -89,7 +89,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "u" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "v" = (
 /obj/machinery/light/small{
@@ -159,7 +159,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "J" = (
 /obj/structure/table/steel,
@@ -180,7 +180,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -190,7 +190,7 @@
 /turf/simulated/floor/wmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "N" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -227,7 +227,7 @@
 /turf/simulated/floor/bmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "U" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "W" = (
 /obj/machinery/light/small{
@@ -239,7 +239,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

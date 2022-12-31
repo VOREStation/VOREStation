@@ -3,13 +3,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/exploration/shuttlepad)
 "ab" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -17,7 +17,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -63,7 +63,7 @@
 "bk" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/structure/closet/crate,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/office)
 "bm" = (
 /obj/structure/table/steel,
@@ -98,20 +98,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level3/nw)
 "cj" = (
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/se/open)
 "cB" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/groundbase/level3/escapepad;
-	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
+	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab;
 	docking_controller = null;
 	landmark_tag = "escape_station";
 	name = "Ship Arrivals"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "cD" = (
 /obj/structure/railing{
@@ -129,7 +129,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "dq" = (
 /obj/machinery/door/firedoor,
@@ -162,7 +162,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -170,7 +170,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -193,7 +193,7 @@
 /area/groundbase/medical/patient2)
 "dQ" = (
 /obj/structure/hull_corner,
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/shuttle/groundbase/exploration)
@@ -215,7 +215,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/landmark/start/chemist,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "dX" = (
 /obj/structure/grille,
@@ -230,7 +230,7 @@
 /turf/simulated/floor,
 /area/shuttle/groundbase/exploration)
 "ed" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw)
@@ -266,7 +266,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -291,14 +291,14 @@
 "fu" = (
 /obj/structure/table/bench/marble,
 /obj/effect/landmark/start/chemist,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "fy" = (
 /obj/structure/bed/chair/backed_red{
 	dir = 4
 	},
 /obj/machinery/camera/network/civilian,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -338,11 +338,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "gc" = (
 /obj/machinery/light/floortube,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/office)
 "gi" = (
 /obj/effect/landmark/start/pilot,
@@ -364,13 +364,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "gs" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -378,7 +378,7 @@
 /obj/structure/hull_corner{
 	dir = 8
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/shuttle/groundbase/exploration)
@@ -415,7 +415,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -453,11 +453,15 @@
 "hN" = (
 /obj/structure/table/bench/marble,
 /obj/effect/landmark/start/medical,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "hO" = (
 /obj/effect/landmark/map_data/groundbase,
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/sw)
 "hQ" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -511,7 +515,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
 "iT" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/cargo/office)
@@ -539,10 +543,10 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/groundbase/exploration)
 "jp" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/exploration/shuttlepad)
 "jv" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/groundbase/level3/nw)
 "jF" = (
 /obj/machinery/door/airlock/command{
@@ -590,10 +594,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "kB" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/level3/ne)
 "kE" = (
 /obj/structure/table/glass,
@@ -614,18 +618,22 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "kU" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/sw/open)
 "lk" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/ne)
 "ly" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/nw/open)
 "lz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -686,10 +694,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "mr" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/nw)
 "mv" = (
 /obj/machinery/light_switch{
@@ -728,7 +740,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "mY" = (
 /obj/machinery/light{
@@ -813,13 +825,13 @@
 /area/groundbase/civilian/kitchen)
 "nR" = (
 /obj/effect/mouse_hole_spawner,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/level3/nw)
 "nU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "nX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -851,7 +863,7 @@
 /area/shuttle/groundbase/exploration)
 "ok" = (
 /obj/random/mob/bird,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/groundbase/unexplored/outdoors)
 "om" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -872,13 +884,17 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
 "ow" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
 "oF" = (
-/obj/effect/overmap/visitable/sector/virgo3c,
-/turf/unsimulated/wall/planetary/virgo3c,
+/obj/effect/overmap/visitable/sector,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/sw)
 "oI" = (
 /obj/machinery/light{
@@ -947,10 +963,10 @@
 /obj/machinery/light/floortube{
 	pixel_y = 1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "pf" = (
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/sw/open)
 "pq" = (
 /obj/machinery/button/remote/airlock{
@@ -980,7 +996,7 @@
 	dir = 1;
 	pixel_y = -1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "pP" = (
 /obj/machinery/light{
@@ -1021,7 +1037,7 @@
 /area/groundbase/medical/cmo)
 "qA" = (
 /obj/effect/landmark/start/cargo,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/office)
 "qC" = (
 /obj/machinery/station_map{
@@ -1046,13 +1062,13 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
 "qO" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/level3/nw)
 "qT" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "qW" = (
 /obj/structure/cable/yellow{
@@ -1063,7 +1079,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "rb" = (
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -1071,7 +1087,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -1112,7 +1128,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "rV" = (
 /obj/machinery/power/apc{
@@ -1127,7 +1143,7 @@
 	pixel_y = 19;
 	req_one_access = list(19,43,67)
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -1160,12 +1176,12 @@
 /obj/structure/hull_corner{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/shuttle/groundbase/exploration)
 "sP" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/ne)
@@ -1219,13 +1235,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "tM" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/level3/escapepad)
 "tU" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/exploration/shuttlepad)
 "tY" = (
 /obj/structure/bed/chair/shuttle{
@@ -1234,7 +1250,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/groundbase/exploration)
 "tZ" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/groundbase/level3/se)
 "ud" = (
 /obj/structure/bed/chair/backed_red{
@@ -1284,7 +1300,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "vs" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/unexplored/outdoors)
@@ -1293,7 +1309,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -1301,13 +1317,13 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "vA" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -1348,7 +1364,7 @@
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
 "wm" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/level3/nw)
 "wn" = (
 /obj/machinery/firealarm,
@@ -1363,7 +1379,7 @@
 	dir = 8;
 	pixel_x = 1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "wu" = (
 /obj/structure/table/rack/shelf,
@@ -1390,7 +1406,7 @@
 /obj/effect/landmark{
 	name = "Observer-Start"
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/sw/open)
 "wU" = (
 /obj/structure/table/glass,
@@ -1415,7 +1431,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level3/nw)
 "xp" = (
 /obj/structure/cable/yellow{
@@ -1427,7 +1443,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "xs" = (
 /obj/structure/railing/grey,
@@ -1473,16 +1489,16 @@
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "xM" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "xO" = (
 /obj/effect/mouse_hole_spawner{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/level3/nw)
 "xX" = (
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "ym" = (
 /obj/structure/cable/yellow{
@@ -1509,7 +1525,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "yA" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/se/open)
@@ -1518,14 +1534,14 @@
 /area/groundbase/medical/uhallway)
 "yU" = (
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/office)
 "yZ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
 /obj/random/vendorall,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "zb" = (
 /obj/structure/cable/yellow{
@@ -1541,7 +1557,11 @@
 /area/groundbase/medical/paramedic)
 "zh" = (
 /obj/effect/overmap/visitable/sector/virgo3b,
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/sw)
 "zF" = (
 /obj/machinery/computer/ship/sensors{
@@ -1556,7 +1576,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -1567,7 +1587,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "zK" = (
 /obj/structure/closet/walllocker_double{
@@ -1608,7 +1628,7 @@
 	dir = 1;
 	pixel_y = -28
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -1651,7 +1671,11 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/kitchen)
 "Bg" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/sw)
 "Bo" = (
 /obj/machinery/recharge_station,
@@ -1675,7 +1699,7 @@
 /area/groundbase/medical/paramedic)
 "By" = (
 /obj/structure/catwalk,
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/nw/open)
 "BB" = (
 /turf/simulated/wall,
@@ -1695,18 +1719,18 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/cmo,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "BE" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "BH" = (
 /turf/simulated/wall,
 /area/groundbase/medical/patient3)
 "BM" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -1759,7 +1783,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -1821,7 +1845,7 @@
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/shuttle/groundbase/exploration)
 "DB" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "DE" = (
 /turf/simulated/floor/tiled/monotile,
@@ -1896,7 +1920,7 @@
 /area/groundbase/civilian/pilot)
 "Ev" = (
 /obj/machinery/camera/network/cargo,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/office)
 "EA" = (
 /obj/machinery/button/remote/airlock{
@@ -1957,7 +1981,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "Fb" = (
 /obj/structure/table/glass,
@@ -2006,13 +2030,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level3/nw)
 "FD" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -2044,7 +2068,7 @@
 /area/groundbase/medical/uhallway)
 "Gf" = (
 /obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/level3/escapepad)
 "Gk" = (
 /obj/structure/railing{
@@ -2058,7 +2082,7 @@
 	dir = 1
 	},
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Gx" = (
 /obj/machinery/photocopier,
@@ -2072,10 +2096,10 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/civilian/pilot)
 "GW" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level3/escapepad)
 "Ha" = (
 /turf/simulated/wall,
@@ -2087,11 +2111,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Hx" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/medical/patio)
@@ -2108,7 +2132,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "HP" = (
 /turf/simulated/wall,
@@ -2126,7 +2150,7 @@
 /area/groundbase/medical/uhallway)
 "HV" = (
 /obj/random/mob/bird,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/unexplored/outdoors)
 "Ih" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2141,7 +2165,7 @@
 /obj/structure/bed/chair/backed_red{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -2182,7 +2206,7 @@
 /area/groundbase/medical/patient1)
 "IH" = (
 /obj/effect/shuttle_landmark/premade/groundbase,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -2193,7 +2217,7 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "IS" = (
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/ne/open)
 "IW" = (
 /obj/structure/railing{
@@ -2206,7 +2230,7 @@
 /area/groundbase/civilian/kitchen)
 "Jf" = (
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Jh" = (
 /turf/simulated/floor/tiled/eris/dark/panels,
@@ -2221,7 +2245,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "Jw" = (
 /obj/machinery/door/airlock{
@@ -2255,7 +2279,11 @@
 /turf/simulated/shuttle/plating/airless,
 /area/shuttle/groundbase/exploration)
 "JL" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/groundbase/level3/se)
 "JU" = (
 /obj/machinery/door/airlock{
@@ -2292,13 +2320,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level3/nw)
 "Kl" = (
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "Kr" = (
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/nw/open)
 "KG" = (
 /obj/structure/fuel_port{
@@ -2323,10 +2351,10 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "Lf" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/office)
 "Lt" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/groundbase/level3/sw)
 "Lw" = (
 /obj/structure/table/glass,
@@ -2383,7 +2411,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/nw/open)
 "MF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2395,13 +2423,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level3/nw)
 "ML" = (
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "MM" = (
 /obj/structure/closet/secure_closet/personal/patient,
@@ -2415,7 +2443,7 @@
 /obj/structure/hull_corner{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/shuttle/groundbase/exploration)
@@ -2436,7 +2464,7 @@
 "Nb" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/groundbase/exploration/shuttlepad;
-	base_turf = /turf/simulated/floor/reinforced/virgo3c;
+	base_turf = /turf/simulated/floor/reinforced;
 	docking_controller = "expshuttle_dock";
 	landmark_tag = "gb_excursion_pad";
 	name = "Excursion Shuttlepad"
@@ -2558,17 +2586,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "OT" = (
 /obj/structure/lattice,
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/dorms/bathroom)
 "Pd" = (
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Pf" = (
 /obj/machinery/power/smes/buildable{
@@ -2662,7 +2690,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "PV" = (
 /obj/structure/cable/yellow{
@@ -2676,10 +2704,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Qa" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/groundbase/level3/nw)
 "Qb" = (
 /obj/structure/railing{
@@ -2717,7 +2745,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -2725,11 +2753,11 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/nw/open)
 "Qr" = (
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -2755,13 +2783,13 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/uhallway)
 "QD" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
 "QO" = (
 /obj/structure/railing,
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/level3/nw/open)
 "Rg" = (
 /obj/machinery/firealarm{
@@ -2772,7 +2800,7 @@
 /area/groundbase/medical/cmo)
 "Rh" = (
 /obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Ri" = (
 /obj/item/modular_computer/console/preset/command,
@@ -2792,7 +2820,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -2859,10 +2887,10 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "Ss" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/groundbase/level3/ne)
 "SB" = (
 /obj/machinery/power/apc{
@@ -2886,7 +2914,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -2894,7 +2922,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level3/nw)
 "SJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -2933,7 +2961,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/civilian/pilot)
 "Tv" = (
 /obj/structure/table/glass,
@@ -2962,7 +2990,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "TT" = (
 /obj/machinery/atmospheric_field_generator/perma/underdoors,
@@ -2991,7 +3019,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+/turf/simulated/floor/outdoors/sidewalk/slab{
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
@@ -2999,7 +3027,7 @@
 /obj/effect/landmark{
 	name = "droppod_landing"
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/groundbase/unexplored/outdoors)
 "Uf" = (
 /obj/structure/cable/yellow{
@@ -3011,7 +3039,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level3/nw)
 "Uk" = (
 /obj/structure/table/glass,
@@ -3086,7 +3114,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "VU" = (
 /obj/structure/bed/chair/office/light{
@@ -3120,7 +3148,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -3132,7 +3160,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/escapepad)
 "Xl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3144,7 +3172,7 @@
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "Xv" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/groundbase/unexplored/outdoors)
 "Xz" = (
 /obj/structure/railing,
@@ -3163,13 +3191,13 @@
 /area/groundbase/medical/patient2)
 "XC" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
 "XL" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/nw/open)
@@ -3194,7 +3222,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
 "YG" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/civilian/kitchen)
@@ -3207,7 +3235,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/virgo3c{
+/turf/simulated/floor/reinforced{
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
@@ -3241,7 +3269,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/paramedic,
-/turf/simulated/floor/tiled/virgo3c,
+/turf/simulated/floor/tiled,
 /area/groundbase/medical/patio)
 "Zn" = (
 /obj/machinery/firealarm{
@@ -3251,7 +3279,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "Zo" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/unexplored/outdoors)
 "Zp" = (
 /obj/structure/bed/padded,
@@ -3287,7 +3315,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level3/nw)
 "ZO" = (
 /obj/structure/grille,

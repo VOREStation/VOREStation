@@ -65,7 +65,7 @@
 /turf/simulated/floor/lino,
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "u" = (
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/submap/groundbase/poi/wildvillage)
 "v" = (
 /turf/simulated/wall,
@@ -80,7 +80,7 @@
 /obj/machinery/light/floortube{
 	dir = 1
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -96,7 +96,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "B" = (
 /obj/structure/table/standard,
@@ -174,13 +174,13 @@
 	id = "villagekitchn";
 	layer = 3.3
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "S" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "U" = (
 /obj/machinery/light{

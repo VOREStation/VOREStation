@@ -630,3 +630,7 @@ var/list/flooring_types
 	icon = 'icons/seasonal/turf.dmi'
 	check_season = TRUE
 	has_base_range = 11
+
+/decl/flooring/grass/seasonal_grass/dark
+	name = "grass"
+	icon_base = "darkgrass"

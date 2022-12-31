@@ -1,97 +1,101 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/submap/groundbase/wilderness/south)
 "b" = (
 /obj/effect/landmark/poi_loader/gb_square,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/plot/square)
 "c" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/south/cave)
 "d" = (
 /obj/effect/landmark/poi_loader/gb_wide,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/plot/wide)
 "e" = (
 /obj/effect/landmark/poi_loader/gb_long,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/plot/long)
 "f" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/poi/wildvillage/plot/square)
 "j" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/poi/wildvillage/plot/wide)
 "l" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/south)
 "n" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/plot/long)
 "t" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/south)
 "v" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/poi/wildvillage)
 "w" = (
 /obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage)
 "z" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/poi/wildvillage/plot/long)
 "A" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage)
 "B" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/north_south{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/south)
 "C" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/south)
 "E" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/plot/wide)
 "F" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/plot/square)
 "H" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/south/unexplored)
 "K" = (
 /obj/effect/map_effect/portal/line/side_b,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/south)
 "L" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/south)
 "O" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/poi/wildvillage)
 "P" = (
 /obj/effect/map_effect/portal/line/side_b,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/south)
 "Q" = (
-/turf/simulated/mineral/ignore_cavegen/virgo3c,
+/turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/south)
 "S" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/south,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/south)
 "Y" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/south/unexplored)
 
 (1,1,1) = {"
