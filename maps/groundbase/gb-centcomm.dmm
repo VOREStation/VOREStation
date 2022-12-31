@@ -2554,7 +2554,7 @@
 "iY" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
-	base_turf = /turf/simulated/floor/reinforced/virgo3c;
+	base_turf = /turf/simulated/floor/reinforced;
 	landmark_tag = "supply_cc";
 	name = "Centcom Supply Depot"
 	},

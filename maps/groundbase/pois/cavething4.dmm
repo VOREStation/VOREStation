@@ -6,7 +6,7 @@
 /turf/simulated/wall,
 /area/maintenance/groundbase/poi/caves)
 "H" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -17,7 +17,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

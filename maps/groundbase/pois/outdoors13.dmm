@@ -3,7 +3,7 @@
 /turf/simulated/wall,
 /area/submap/groundbase/poi/outdoor/roofed)
 "t" = (
-/turf/simulated/floor/outdoors/grass/virgo3c{
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs{
 	outdoors = 0
 	},
 /area/submap/groundbase/poi/outdoor/roofed)

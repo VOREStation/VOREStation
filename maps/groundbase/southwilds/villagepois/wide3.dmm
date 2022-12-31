@@ -9,7 +9,7 @@
 /turf/simulated/floor/bmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "c" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "d" = (
 /obj/structure/grille,
@@ -33,13 +33,13 @@
 /turf/simulated/floor/carpet/tealcarpet,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "g" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "h" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "i" = (
 /obj/machinery/light/small{
@@ -171,7 +171,7 @@
 /turf/simulated/wall,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "C" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "D" = (
 /obj/structure/bed/chair/sofa/right/beige{
@@ -218,7 +218,7 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "J" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "K" = (
 /obj/structure/bed/chair/sofa/corner/beige,
@@ -245,19 +245,19 @@
 /turf/simulated/floor/carpet/tealcarpet,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "O" = (
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "P" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "Q" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "R" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "S" = (
 /obj/structure/grille,

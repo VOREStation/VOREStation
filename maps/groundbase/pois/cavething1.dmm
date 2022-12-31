@@ -8,20 +8,20 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "r" = (
 /obj/random/trash_pile,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "R" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

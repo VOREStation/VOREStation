@@ -17,7 +17,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "d" = (
 /obj/structure/table/standard,
@@ -25,7 +25,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square1)
 "e" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "f" = (
 /obj/structure/bed/double/padded,
@@ -68,7 +68,7 @@
 /turf/simulated/floor/bmarble,
 /area/submap/groundbase/poi/wildvillage/square/square1)
 "s" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "v" = (
 /turf/simulated/wall,

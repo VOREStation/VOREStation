@@ -6,7 +6,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/outdoor/cabin3)
 "e" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/outdoor)
 "j" = (
 /obj/random/crate,

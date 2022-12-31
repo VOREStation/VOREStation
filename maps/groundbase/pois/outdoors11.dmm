@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "h" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/outdoor)
 "i" = (
 /obj/random/crate,
@@ -25,7 +25,7 @@
 /turf/simulated/wall,
 /area/submap/groundbase/poi/outdoor/roofed)
 "G" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/outdoor)
 "T" = (
 /turf/simulated/floor,

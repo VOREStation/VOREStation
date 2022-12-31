@@ -5,19 +5,19 @@
 /area/submap/groundbase/poi/wildvillage)
 "j" = (
 /obj/item/weapon/beach_ball/dodgeball,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage/long/long4)
 "s" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "x" = (
 /turf/template_noop,
 /area/submap/groundbase/poi/wildvillage)
 "H" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/long/long4)
 "J" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage/long/long4)
 
 (1,1,1) = {"

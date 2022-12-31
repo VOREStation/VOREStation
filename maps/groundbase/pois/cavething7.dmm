@@ -9,7 +9,7 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -19,20 +19,20 @@
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tool,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "B" = (
 /obj/machinery/optable,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "C" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -43,7 +43,7 @@
 /obj/random/tool,
 /obj/random/tool,
 /obj/item/weapon/storage/firstaid/surgery,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
@@ -51,7 +51,7 @@
 "Y" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/healthanalyzer,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

@@ -64,7 +64,7 @@
 /turf/simulated/floor/wmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "p" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "r" = (
 /obj/machinery/light_switch{
@@ -127,7 +127,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "A" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "B" = (
 /turf/simulated/wall,
@@ -139,10 +139,10 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "F" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "I" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "J" = (
 /obj/machinery/light/small{
@@ -183,10 +183,10 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "O" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "P" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "Q" = (
 /obj/machinery/button/windowtint{
@@ -240,7 +240,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "Z" = (
 /obj/structure/table/sifwoodentable,

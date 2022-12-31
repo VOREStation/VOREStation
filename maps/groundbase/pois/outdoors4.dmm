@@ -41,7 +41,7 @@
 /turf/simulated/floor,
 /area/submap/groundbase/poi/outdoor/cabin1)
 "u" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/outdoor)
 "B" = (
 /obj/structure/table/standard,
@@ -64,7 +64,7 @@
 /area/submap/groundbase/poi/outdoor/cabin1)
 "U" = (
 /obj/structure/flora/tree/bigtree,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/poi/outdoor)
 "V" = (
 /obj/structure/grille,

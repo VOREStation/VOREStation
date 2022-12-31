@@ -47,7 +47,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "ao" = (
 /turf/simulated/floor/plating,
@@ -59,8 +59,9 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "as" = (
-/turf/simulated/floor/beach/sand/virgo3c{
-	edge_blending_priority = -1
+/turf/simulated/floor/beach/sand{
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/submap/groundbase/wilderness/west/unexplored)
 "at" = (
@@ -131,7 +132,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -470,7 +471,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "dO" = (
 /obj/machinery/power/apc{
@@ -482,7 +483,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "dT" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "dW" = (
 /obj/machinery/atmospherics/unary/vent_pump{
@@ -543,7 +544,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "es" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red,
@@ -686,12 +687,12 @@
 	dir = 1
 	},
 /obj/structure/railing,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
 "fM" = (
-/turf/simulated/mineral/ignore_cavegen/virgo3c,
+/turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/west)
 "fN" = (
 /obj/structure/catwalk,
@@ -914,7 +915,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "hB" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -929,7 +930,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -964,13 +965,13 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "hY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/wilderness/west)
 "if" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -1050,7 +1051,7 @@
 /turf/simulated/floor/plating,
 /area/shuttle/axolotl)
 "iI" = (
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -1091,7 +1092,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/west)
 "jb" = (
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -1107,7 +1108,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1167,13 +1168,13 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
 "jA" = (
 /obj/structure/railing,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "jB" = (
 /obj/structure/cable/green{
@@ -1283,7 +1284,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -1344,7 +1345,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "kr" = (
 /obj/machinery/light/small{
@@ -1406,7 +1407,7 @@
 /turf/simulated/wall/r_wall,
 /area/groundbase/science/outpost/anomaly_testing)
 "kQ" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/west)
 "kR" = (
 /obj/structure/table/steel,
@@ -1486,13 +1487,13 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "lJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "lM" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -1501,7 +1502,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
 "lO" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/submap/groundbase/wilderness/west)
 "lR" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -1545,7 +1550,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "mg" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue,
@@ -1582,7 +1587,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "mC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -1600,7 +1605,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -1671,7 +1676,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "ng" = (
 /obj/structure/cable{
@@ -1680,7 +1685,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1695,7 +1700,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_galley)
 "nr" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west/unexplored)
 "nv" = (
 /turf/simulated/floor/tiled/dark,
@@ -1705,7 +1710,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "nG" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -1855,7 +1860,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1946,7 +1951,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "pN" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -2008,7 +2013,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "qe" = (
 /obj/structure/window/reinforced{
@@ -2036,7 +2041,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2109,7 +2114,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_storage)
 "qz" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/engineering/solarfield)
 "qD" = (
 /obj/structure/grille,
@@ -2168,7 +2173,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "rb" = (
 /turf/simulated/wall/shull,
@@ -2296,7 +2301,7 @@
 /area/shuttle/axolotl_engineering)
 "rY" = (
 /obj/item/stack/cable_coil/random,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/engineering/solarfield)
 "sb" = (
 /obj/structure/cable/green{
@@ -2311,7 +2316,7 @@
 /area/groundbase/science/outpost/anomaly_lab)
 "sc" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/groundbase/science/outpost)
 "sd" = (
 /obj/machinery/space_heater,
@@ -2355,7 +2360,7 @@
 /obj/machinery/power/solar{
 	SOLAR_MAX_DIST = 140
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2363,7 +2368,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -2378,7 +2383,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "sJ" = (
 /obj/machinery/door/firedoor/glass,
@@ -2405,7 +2410,7 @@
 	icon_state = "1-8"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2416,7 +2421,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2427,7 +2432,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2515,7 +2520,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2569,7 +2574,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/west)
 "ui" = (
 /obj/machinery/door/firedoor/glass,
@@ -2623,7 +2628,7 @@
 	name = "Powernet Sensor - Solar Farm Input";
 	name_tag = "Solar Farm Input"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -2647,7 +2652,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -2670,7 +2675,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "uA" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9,
@@ -2780,7 +2785,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2812,7 +2817,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/west)
 "vx" = (
 /obj/machinery/door/firedoor/glass,
@@ -2946,7 +2951,7 @@
 	dir = 1
 	},
 /obj/structure/railing,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -3002,7 +3007,7 @@
 	icon_state = "2-8"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3085,7 +3090,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east_west{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/west)
 "xv" = (
 /obj/machinery/suspension_gen,
@@ -3096,7 +3101,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "xE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3119,7 +3124,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3131,7 +3136,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "xP" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -3208,7 +3213,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3266,7 +3271,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3359,7 +3364,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "zx" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
@@ -3445,7 +3450,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -3587,7 +3592,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3605,7 +3610,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "AV" = (
 /obj/structure/cable{
@@ -3617,7 +3622,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/science/outpost)
 "Bc" = (
 /obj/machinery/firealarm{
@@ -3672,7 +3677,7 @@
 	name = "Powernet Sensor - Solar Farm Output";
 	name_tag = "Solar Farm Output"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -3758,7 +3763,7 @@
 	dir = 1;
 	target_pressure = 200
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "BU" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -3826,7 +3831,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3861,12 +3866,10 @@
 /area/shuttle/axolotl_engineering)
 "Cw" = (
 /obj/structure/anomaly_container,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "CL" = (
-/turf/unsimulated/wall/planetary/virgo3c{
-	icon_state = "riveted"
-	},
+/turf/unsimulated/wall/planetary/normal,
 /area/submap/groundbase/wilderness/west)
 "CN" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -3908,7 +3911,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -3945,13 +3948,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_q1)
 "DA" = (
-/turf/simulated/floor/water/virgo3c,
+/turf/simulated/floor/water,
 /area/submap/groundbase/wilderness/west/unexplored)
 "DB" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "DF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4124,7 +4127,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "EW" = (
 /obj/machinery/door/blast/regular{
@@ -4199,7 +4202,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/submap/groundbase/wilderness/west)
 "Fz" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -4338,7 +4341,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "GH" = (
 /obj/machinery/power/terminal{
@@ -4357,7 +4360,7 @@
 /obj/machinery/power/solar{
 	SOLAR_MAX_DIST = 140
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -4422,7 +4425,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "Hr" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -4507,7 +4510,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -4648,7 +4651,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
 "IE" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "II" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -4667,7 +4670,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "IO" = (
 /obj/structure/window/reinforced{
@@ -4709,7 +4712,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -4745,7 +4748,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "JE" = (
 /obj/structure/dispenser,
@@ -4762,7 +4765,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -4816,7 +4819,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "Kw" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
@@ -4855,7 +4858,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "KI" = (
 /obj/structure/table/standard,
@@ -5145,7 +5148,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -5459,7 +5462,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "Qk" = (
 /obj/machinery/door/firedoor/glass,
@@ -5719,7 +5722,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "Sx" = (
 /obj/structure/cable/heavyduty{
@@ -5737,7 +5740,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -5858,7 +5861,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "UN" = (
 /turf/simulated/floor/tiled/white,
@@ -5887,7 +5890,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
@@ -5958,7 +5961,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "VG" = (
 /obj/structure/cable/green{
@@ -6030,7 +6033,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/axolotl)
 "Wl" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/submap/groundbase/wilderness/west)
 "Wm" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -6064,7 +6067,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "WB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber{
@@ -6074,7 +6077,7 @@
 /area/groundbase/science/outpost/anomaly_testing)
 "WD" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/submap/groundbase/wilderness/west)
 "WE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6096,7 +6099,7 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "WR" = (
 /obj/machinery/atmospherics/pipe/vent/high_volume,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "WS" = (
 /turf/simulated/floor/tiled,
@@ -6166,10 +6169,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "XS" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "XW" = (
 /obj/structure/cable{
@@ -6179,7 +6182,7 @@
 	icon_state = "1-8"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -6299,7 +6302,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/substation)
 "YK" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/submap/groundbase/wilderness/west/unexplored)
 "YL" = (
 /obj/structure/closet/excavation,
@@ -6368,7 +6371,7 @@
 /turf/simulated/floor/greengrid,
 /area/groundbase/science/outpost/toxins_lab)
 "Zm" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/west/cave)
 "Zw" = (
 /obj/structure/grille,
@@ -6413,7 +6416,7 @@
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 4
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/science/outpost/atmos)

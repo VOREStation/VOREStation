@@ -18,7 +18,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide1)
 "d" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "f" = (
 /obj/machinery/door/airlock/silver{
@@ -40,7 +40,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage)
 "k" = (
 /obj/structure/bonfire,
@@ -206,7 +206,7 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/submap/groundbase/poi/wildvillage/wide/wide1)
 "O" = (
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/submap/groundbase/poi/wildvillage)
 "P" = (
 /obj/structure/table/rack/steel,

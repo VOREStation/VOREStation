@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "n" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

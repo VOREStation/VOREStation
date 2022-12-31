@@ -2,7 +2,6 @@ var/world_time_season
 
 /proc/setup_season()
 	var/month = text2num(time2text(world.timeofday, "MM")) 	// get the current month
-
 	switch(month)
 		if(1 to 2)
 			world_time_season = "winter"
@@ -23,13 +22,12 @@ var/world_time_season
 	icon_edge = 'icons/seasonal/turf_edge.dmi'
 
 	initial_flooring = /decl/flooring/grass/seasonal_grass
-//	initial_flooring = null
 
 	grass_types = list()
 	var/static/list/overlays_cache = list()
 	var/animal_chance = 0.5
 	var/animal_types = list()
-	var/tree_chance = 5
+	var/tree_chance = 1
 	var/tree_types = list()
 	var/snow_chance = 10
 
@@ -183,6 +181,8 @@ var/world_time_season
 				if(!overlays_cache[cache_key])
 					var/image/I = image(icon = src.icon, icon_state = cache_key, layer = ABOVE_TURF_LAYER) // Icon should be abstracted out
 					I.plane = TURF_PLANE
+					I.color = null
+					I.appearance_flags = RESET_COLOR|KEEP_APART|PIXEL_SCALE
 					overlays_cache[cache_key] = I
 				add_overlay(overlays_cache[cache_key])
 		if("summer")
@@ -193,22 +193,43 @@ var/world_time_season
 				if(!overlays_cache[cache_key])
 					var/image/I = image(icon = src.icon, icon_state = cache_key, layer = ABOVE_TURF_LAYER) // Icon should be abstracted out
 					I.plane = TURF_PLANE
+					I.color = null
+					I.appearance_flags = RESET_COLOR|KEEP_APART|PIXEL_SCALE
 					overlays_cache[cache_key] = I
 				add_overlay(overlays_cache[cache_key])
 
 		if("winter")
 			return
 
-/turf/simulated/floor/outdoors/grass/seasonal/no_trees
+/turf/simulated/floor/outdoors/grass/seasonal/notrees
 	tree_chance = 0
-/turf/simulated/floor/outdoors/grass/seasonal/no_mobs
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs
 	animal_chance = 0
-/turf/simulated/floor/outdoors/grass/seasonal/no_trees_or_mobs
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs
 	tree_chance = 0
 	animal_chance = 0
-/turf/simulated/floor/outdoors/grass/seasonal/no_trees_or_mobs_or_snow
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow
 	tree_chance = 0
 	animal_chance = 0
 	snow_chance = 0
-/turf/simulated/floor/outdoors/grass/seasonal/low_snow
+/turf/simulated/floor/outdoors/grass/seasonal/lowsnow
+	snow_chance = 1
+
+/turf/simulated/floor/outdoors/grass/seasonal/dark
+	icon_state = "ds-grass"
+	edge_blending_priority = 4.01
+	initial_flooring = /decl/flooring/grass/seasonal_grass/dark
+	tree_chance = 5
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees
+	tree_chance = 0
+/turf/simulated/floor/outdoors/grass/seasonal/dark/nomobs
+	animal_chance = 0
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs
+	tree_chance = 0
+	animal_chance = 0
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_nosnow
+	tree_chance = 0
+	animal_chance = 0
+	snow_chance = 0
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow
 	snow_chance = 1
