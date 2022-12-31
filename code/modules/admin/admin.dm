@@ -741,7 +741,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 /datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Globally Toggles OOC"
-	set name="Toggle OOC"
+	set name="Toggle Player OOC"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -757,7 +757,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 /datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc="Globally Toggles LOOC"
-	set name="Toggle LOOC"
+	set name="Toggle Player LOOC"
 
 	if(!check_rights(R_ADMIN))
 		return
