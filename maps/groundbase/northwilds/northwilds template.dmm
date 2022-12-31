@@ -6,33 +6,33 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "g" = (
 /obj/effect/map_effect/portal/line/side_a,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "m" = (
 /turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/north/cave)
 "o" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
 "p" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/north_south,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "K" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "N" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/north{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "X" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 
 (1,1,1) = {"

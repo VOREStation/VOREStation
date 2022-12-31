@@ -7,7 +7,7 @@
 /turf/simulated/floor,
 /area/submap/groundbase/poi/outdoor/cabin2)
 "c" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/outdoor)
 "g" = (
 /obj/structure/table/standard,

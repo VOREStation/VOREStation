@@ -110,7 +110,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "aE" = (
 /turf/simulated/wall,
@@ -122,7 +122,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "aQ" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "aW" = (
 /obj/machinery/door/firedoor/glass,
@@ -985,7 +985,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "jb" = (
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -1395,7 +1395,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
 "mt" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "mC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -1531,7 +1531,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
 "nr" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "nv" = (
 /turf/simulated/floor/tiled/dark,
@@ -2017,7 +2017,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "rc" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -2110,7 +2110,7 @@
 /area/groundbase/science/outpost/anomaly_lab)
 "sc" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/outpost)
 "sd" = (
 /obj/machinery/space_heater,
@@ -2180,7 +2180,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "tc" = (
 /obj/structure/cable{
@@ -2311,7 +2311,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "uj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -2349,7 +2349,7 @@
 /area/shuttle/axolotl)
 "ur" = (
 /obj/structure/railing,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "ut" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -2490,7 +2490,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "vy" = (
 /obj/machinery/light{
@@ -2758,7 +2758,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east_west{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "xv" = (
 /obj/machinery/suspension_gen,
@@ -3368,7 +3368,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "Cq" = (
 /obj/structure/cable{
@@ -3387,7 +3387,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "Cw" = (
 /obj/structure/anomaly_container,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "CE" = (
 /obj/machinery/door/firedoor/glass,
@@ -4276,7 +4276,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "JD" = (
 /obj/machinery/door/firedoor/glass,
@@ -4696,7 +4696,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "Nz" = (
 /obj/item/stack/cable_coil/random,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "NC" = (
 /obj/structure/cable/green{
@@ -5158,7 +5158,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "Rn" = (
 /obj/machinery/power/apc{
@@ -5737,7 +5737,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "WV" = (
 /turf/simulated/wall,
@@ -5962,7 +5962,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "YH" = (
 /obj/structure/hull_corner{
@@ -5984,7 +5984,7 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
 "YK" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west/unexplored)
 "YL" = (
 /obj/structure/closet/excavation,

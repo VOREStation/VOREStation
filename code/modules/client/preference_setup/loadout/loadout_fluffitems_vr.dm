@@ -1075,7 +1075,7 @@
 /datum/gear/fluff/sidona_robes
 	path = /obj/item/clothing/under/fluff/gildedrobe_perrin
 	display_name = "Sidona's Robes"
-	ckeywhitelist = list("siennaathens ")
+	ckeywhitelist = list("siennaathens")
 	character_name = list("Sidona Kaal")
 
 /datum/gear/fluff/sidona_shoes
