@@ -89,7 +89,7 @@
 		for(var/datum/reagent/re in Bait.reagents.reagent_list)
 			if(re.id == "nutriment" || re.id == "protein" || re.id == "glucose" || re.id == "fishbait")
 				foodvolume += re.volume
-
+		foodvolume = Bait.reagents.maximum_volume == 80 ? (min(foodvolume,50) * (Bait.reagents.maximum_volume / 50)) : Bait.reagents.maximum_volume // VOREStation edit: because of changes to max reagents in snacks, readjusts the foodvolume to have the same values as polaris again, but only when it has the same max volume as the changed amount in snacks (assuming the snacks reagent size stays the same...)
 		toolspeed = initial(toolspeed) * min(0.75, (0.5 / max(0.5, (foodvolume / Bait.reagents.maximum_volume))))
 
 	else
