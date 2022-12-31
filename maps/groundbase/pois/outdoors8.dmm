@@ -3,11 +3,11 @@
 /turf/template_noop,
 /area/template_noop)
 "A" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/outdoor)
 "P" = (
 /obj/structure/prop/rock/crystal,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/outdoor)
 "R" = (
 /turf/simulated/floor/outdoors/newdirt,

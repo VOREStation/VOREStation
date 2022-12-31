@@ -6,7 +6,7 @@
 /turf/simulated/wall/wood,
 /area/submap/groundbase/poi/outdoor/cabin4)
 "d" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/outdoor)
 "l" = (
 /obj/structure/bed/chair/sofa/left/brown,

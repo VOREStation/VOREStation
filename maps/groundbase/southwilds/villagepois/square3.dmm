@@ -23,7 +23,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/square/square3)
 "n" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage)
 "q" = (
 /obj/structure/bed/chair/sofa/left/brown{

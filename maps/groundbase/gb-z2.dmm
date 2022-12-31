@@ -66,7 +66,7 @@
 /turf/simulated/open,
 /area/groundbase/medical/triage)
 "ag" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/picnic)
 "ah" = (
 /obj/structure/bed/chair/office/light{
@@ -449,7 +449,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "ba" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/circuits)
 "bb" = (
 /obj/machinery/door/blast/regular{
@@ -574,7 +574,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -773,7 +773,7 @@
 /area/groundbase/medical/Chemistry)
 "bT" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics)
 "bU" = (
 /obj/effect/landmark/start/chaplain,
@@ -794,7 +794,7 @@
 /turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level2/nw)
 "bY" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "bZ" = (
 /obj/machinery/button/remote/blast_door{
@@ -999,7 +999,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "cD" = (
 /obj/structure/cable/yellow{
@@ -1038,7 +1038,7 @@
 	},
 /area/groundbase/dorms/room2)
 "cK" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/unexplored/outdoors)
 "cM" = (
 /obj/structure/cable/yellow{
@@ -1365,7 +1365,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/command/hop)
 "dL" = (
 /obj/structure/table/woodentable,
@@ -1454,7 +1454,7 @@
 /area/groundbase/civilian/chapel)
 "dY" = (
 /obj/structure/fence/door,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "ea" = (
 /obj/structure/stairs/spawner/west,
@@ -1582,7 +1582,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "eu" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -2031,7 +2031,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "fK" = (
 /obj/structure/cable/yellow{
@@ -2988,7 +2988,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
 "iw" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "ix" = (
 /obj/structure/railing/grey,
@@ -3080,7 +3080,7 @@
 	},
 /area/groundbase/level2/westspur)
 "iI" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "iJ" = (
 /obj/machinery/photocopier,
@@ -3247,7 +3247,7 @@
 /area/groundbase/dorms/room8)
 "jd" = (
 /obj/effect/mouse_hole_spawner,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "je" = (
 /turf/unsimulated/wall/planetary/normal{
@@ -3421,7 +3421,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "jG" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/sw)
 "jH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3754,7 +3754,7 @@
 /area/groundbase/command/bridge)
 "kG" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "kH" = (
 /turf/simulated/wall/r_wall,
@@ -3835,7 +3835,7 @@
 /area/groundbase/level2/se)
 "kR" = (
 /obj/random/mob/bird,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "kT" = (
 /obj/structure/table/glass,
@@ -4112,7 +4112,7 @@
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/command/hop)
 "lH" = (
 /obj/structure/bed/chair/office/dark{
@@ -4176,7 +4176,7 @@
 /area/groundbase/medical/Chemistry)
 "lM" = (
 /obj/machinery/light/small/fairylights,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "lN" = (
 /obj/structure/cable/yellow{
@@ -5082,7 +5082,7 @@
 /obj/machinery/light/small/fairylights{
 	pixel_y = -1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "oH" = (
 /turf/simulated/open,
@@ -6156,11 +6156,11 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "rF" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/hall)
 "rG" = (
 /obj/structure/cable/yellow{
@@ -6719,16 +6719,16 @@
 	dir = 1;
 	pixel_x = -32
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "to" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "tq" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/sw)
 "tr" = (
 /turf/simulated/floor/outdoors/newdirt,
@@ -7012,7 +7012,7 @@
 /area/groundbase/civilian/kitchen)
 "uj" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/kitchen)
 "uk" = (
 /obj/structure/bed/chair/sofa/corp/right{
@@ -7248,7 +7248,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "uP" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/unexplored/outdoors)
 "uQ" = (
 /obj/machinery/bookbinder,
@@ -7297,7 +7297,7 @@
 /area/groundbase/civilian/kitchen)
 "uX" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "uY" = (
 /obj/machinery/light,
@@ -7305,7 +7305,7 @@
 /area/rnd/xenobiology)
 "vb" = (
 /obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "vc" = (
 /obj/structure/sign/department/chem,
@@ -7331,7 +7331,7 @@
 /area/groundbase/command/meeting)
 "vk" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
 "vm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -7805,7 +7805,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "wB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -7818,7 +7818,7 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "wE" = (
 /obj/structure/table/woodentable,
@@ -8359,7 +8359,7 @@
 	pixel_x = -32;
 	pixel_y = -6
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "yk" = (
 /obj/machinery/door/firedoor,
@@ -8599,7 +8599,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "yT" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -8727,7 +8727,7 @@
 /area/groundbase/civilian/chapel)
 "zt" = (
 /obj/structure/fence/corner,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -8905,7 +8905,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/janitor)
 "zS" = (
 /obj/machinery/light{
@@ -9060,7 +9060,7 @@
 /obj/structure/sign/directions/security{
 	pixel_x = 32
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "As" = (
 /obj/structure/table/hardwoodtable,
@@ -9302,7 +9302,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
 "AT" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/xenobot)
 "AU" = (
 /obj/structure/disposalpipe/segment{
@@ -9368,7 +9368,7 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
 "Bf" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/command/hop)
 "Bg" = (
 /obj/structure/closet/wardrobe/virology_white,
@@ -9432,7 +9432,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Bo" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "Bq" = (
 /obj/machinery/camera/network/civilian{
@@ -9497,7 +9497,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Bz" = (
 /turf/simulated/floor/lino{
@@ -9738,7 +9738,7 @@
 /obj/structure/sign/directions/engineering{
 	pixel_y = 26
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Ck" = (
 /obj/structure/closet/secure_closet/hop2,
@@ -9756,7 +9756,7 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "Cq" = (
 /obj/structure/cable/yellow{
@@ -10672,7 +10672,7 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "EQ" = (
 /obj/structure/filingcabinet,
@@ -10804,7 +10804,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenohall)
 "Fl" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/level2/sw)
 "Fm" = (
 /turf/simulated/floor/tiled,
@@ -10874,7 +10874,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/picnic)
 "Fv" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/science/picnic)
 "Fw" = (
 /turf/simulated/floor/outdoors/newdirt{
@@ -10948,7 +10948,7 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
 "FJ" = (
 /obj/structure/table/standard,
@@ -10967,7 +10967,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/xenobot)
 "FM" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -11056,7 +11056,7 @@
 /area/groundbase/civilian/kitchen)
 "Gd" = (
 /mob/living/simple_mob/animal/passive/chicken,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Ge" = (
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
@@ -11391,7 +11391,7 @@
 /turf/simulated/open,
 /area/groundbase/civilian/bar/upper)
 "GT" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/kitchen)
 "GU" = (
 /obj/machinery/door/firedoor,
@@ -11430,7 +11430,7 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "GZ" = (
 /obj/structure/disposalpipe/segment{
@@ -11503,7 +11503,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/circuits)
 "Hi" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Hj" = (
 /turf/simulated/floor/tiled{
@@ -11604,7 +11604,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Hx" = (
 /obj/machinery/door/firedoor,
@@ -11692,7 +11692,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
 "HH" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics)
 "HI" = (
 /obj/structure/cable/yellow{
@@ -11730,7 +11730,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/sw)
 "HR" = (
 /obj/structure/table/reinforced,
@@ -12215,7 +12215,7 @@
 /turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level2/nw)
 "Jc" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Je" = (
 /obj/effect/floor_decal/chapel,
@@ -12496,7 +12496,7 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "JT" = (
 /obj/structure/cable/yellow{
@@ -13237,7 +13237,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "LU" = (
 /obj/structure/table/glass,
@@ -13405,7 +13405,7 @@
 /area/groundbase/dorms)
 "Mn" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "Mo" = (
 /obj/machinery/vending/hydronutrients,
@@ -13549,7 +13549,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
 "MJ" = (
 /obj/structure/cable/yellow{
@@ -13743,7 +13743,7 @@
 /area/groundbase/civilian/chapel)
 "Nk" = (
 /obj/random/mob/bird,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/unexplored/outdoors)
 "Nl" = (
 /obj/structure/cable/yellow{
@@ -13814,7 +13814,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "Ny" = (
 /turf/simulated/floor/tiled/dark,
@@ -14052,7 +14052,7 @@
 /area/groundbase/civilian/hydroponics)
 "Of" = (
 /obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/medical/virology)
 "Oh" = (
 /obj/structure/bed/chair/sofa/left/black{
@@ -14163,7 +14163,7 @@
 	pixel_x = 32;
 	pixel_y = -32
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "Ov" = (
 /obj/structure/closet/wardrobe/robotics_black,
@@ -14288,7 +14288,7 @@
 /area/groundbase/science/xenobot)
 "OM" = (
 /obj/effect/mouse_hole_spawner,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "ON" = (
 /turf/unsimulated/wall/planetary/normal{
@@ -14622,7 +14622,7 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/hydroponics)
 "PN" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/robotics)
 "PO" = (
 /obj/structure/bookcase{
@@ -14741,7 +14741,7 @@
 /area/groundbase/science/server)
 "Qc" = (
 /obj/random/mob/bird,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "Qe" = (
 /obj/structure/sign/painting/library_private{
@@ -14852,7 +14852,7 @@
 /obj/effect/landmark{
 	name = "droppod_landing"
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/unexplored/outdoors)
 "Qv" = (
 /obj/machinery/vending/wardrobe/cargodrobe,
@@ -15060,7 +15060,7 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "QV" = (
 /obj/structure/bed/chair/office/dark{
@@ -15216,7 +15216,7 @@
 /area/groundbase/cargo/office)
 "Rp" = (
 /mob/living/simple_mob/animal/passive/cow,
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Rq" = (
 /obj/machinery/door/firedoor/glass,
@@ -15324,7 +15324,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/rnd)
 "RF" = (
 /turf/simulated/open,
@@ -15604,7 +15604,7 @@
 /obj/structure/fence/corner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Su" = (
 /obj/machinery/door/firedoor/glass,
@@ -16068,7 +16068,7 @@
 /obj/structure/fence/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
 "TJ" = (
 /obj/structure/table/woodentable,
@@ -16155,7 +16155,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Ub" = (
 /obj/structure/cable/yellow{
@@ -16334,7 +16334,7 @@
 	},
 /area/groundbase/unexplored/outdoors)
 "UE" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "UF" = (
 /obj/structure/sign/directions/bar{
@@ -16353,7 +16353,7 @@
 	dir = 4;
 	pixel_y = 26
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "UG" = (
 /obj/machinery/alarm{
@@ -16575,7 +16575,7 @@
 /area/groundbase/civilian/kitchen)
 "Vm" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "Vo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -16629,7 +16629,7 @@
 	pixel_x = -32;
 	pixel_y = -32
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Vw" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -17051,11 +17051,11 @@
 /area/groundbase/science/rnd)
 "WC" = (
 /obj/effect/mouse_hole_spawner,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/sw)
 "WD" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/medical/virology)
 "WE" = (
 /obj/structure/cable/yellow{
@@ -17363,7 +17363,7 @@
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/cargo/bay)
 "XH" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/rnd)
 "XI" = (
 /obj/machinery/door/blast/angled_shutter/open{
@@ -17770,7 +17770,7 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "YX" = (
 /obj/structure/table/steel,
@@ -17841,11 +17841,11 @@
 /obj/effect/mouse_hole_spawner{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/se)
 "Zg" = (
 /obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/nw)
 "Zh" = (
 /obj/structure/disposalpipe/segment{

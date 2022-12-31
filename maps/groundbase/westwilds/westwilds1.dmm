@@ -565,7 +565,7 @@
 /area/groundbase/science/outpost/atmos)
 "ew" = (
 /obj/structure/railing,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "ex" = (
 /obj/machinery/atmospherics/unary/vent_pump{
@@ -674,7 +674,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "fn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -790,7 +790,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east_west{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "gm" = (
 /turf/simulated/mineral/cave,
@@ -910,7 +910,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "hf" = (
 /obj/structure/cable{
@@ -985,7 +985,7 @@
 /area/shuttle/axolotl_q2)
 "hx" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/outpost)
 "hE" = (
 /obj/structure/handrail,
@@ -1040,7 +1040,7 @@
 /turf/simulated/floor/plating,
 /area/shuttle/axolotl)
 "ia" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west/unexplored)
 "ie" = (
 /obj/machinery/door/firedoor/glass,
@@ -1166,7 +1166,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
 "iL" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "iM" = (
 /obj/structure/cable/green{
@@ -1306,7 +1306,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "kc" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west/unexplored)
 "kh" = (
 /turf/simulated/wall/r_wall,
@@ -1637,7 +1637,7 @@
 /area/shuttle/axolotl_engineering)
 "np" = (
 /obj/item/stack/cable_coil/random,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "nq" = (
 /obj/structure/closet/excavation,
@@ -2141,7 +2141,7 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
 "st" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "su" = (
 /obj/machinery/door/blast/regular{
@@ -2581,7 +2581,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "vL" = (
 /obj/machinery/atmospherics/unary/vent_pump{
@@ -2873,7 +2873,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "xX" = (
 /obj/structure/cable/green{
@@ -2924,7 +2924,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
 "yy" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "yI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3541,7 +3541,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "Ds" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -4378,7 +4378,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "JI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -4661,7 +4661,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "Lf" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
@@ -4739,7 +4739,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "LA" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -4769,7 +4769,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "LM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -4960,7 +4960,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "NM" = (
 /obj/machinery/firealarm{
@@ -4972,7 +4972,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "NS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -6275,7 +6275,7 @@
 /area/groundbase/science/outpost/toxins_lab)
 "Yv" = (
 /obj/structure/anomaly_container,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "Yw" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
