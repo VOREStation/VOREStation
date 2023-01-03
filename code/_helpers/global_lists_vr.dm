@@ -720,7 +720,6 @@ var/global/list/xenobio_gold_mobs_bosses = list(
 
 var/global/list/xenobio_gold_mobs_safe = list(
 										/mob/living/simple_mob/vore/alienanimals/dustjumper,
-										/mob/living/simple_mob/vore/alienanimals/teppi,
 										/mob/living/simple_mob/animal/passive/chicken,
 										/mob/living/simple_mob/animal/passive/cow,
 										/mob/living/simple_mob/animal/goat,
@@ -897,8 +896,7 @@ var/global/list/event_wildlife_roaming = list(
 												list(/mob/living/simple_mob/vore/sheep = 3,
 													 /mob/living/simple_mob/animal/goat = 1),
 												list(/mob/living/simple_mob/vore/hippo = 1),
-												list(/mob/living/simple_mob/vore/alienanimals/dustjumper = 1),
-												list(/mob/living/simple_mob/vore/alienanimals/teppi = 1)
+												list(/mob/living/simple_mob/vore/alienanimals/dustjumper = 1)
 											),
 										list(
 												list(/mob/living/simple_mob/vore/aggressive/frog = 1),

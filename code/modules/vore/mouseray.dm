@@ -402,7 +402,6 @@
 		"red otie" = /mob/living/simple_mob/otie/red,
 		"defanged xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
 		"catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
-		"teppi" = /mob/living/simple_mob/vore/alienanimals/teppi,
 		"monkey" = /mob/living/carbon/human/monkey,
 		"wolpin" = /mob/living/carbon/human/wolpin,
 		"sparra" = /mob/living/carbon/human/sparram,
@@ -513,7 +512,6 @@
 				prob(5);/obj/item/weapon/gun/energy/mouseray/giantrat,
 				prob(50);/obj/item/weapon/gun/energy/mouseray/redpanda,
 				prob(5);/obj/item/weapon/gun/energy/mouseray/catslug,
-				prob(5);/obj/item/weapon/gun/energy/mouseray/teppi,
 				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis,
 				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
 				)

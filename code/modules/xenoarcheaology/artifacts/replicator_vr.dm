@@ -22,7 +22,6 @@
 	/mob/living/simple_mob/animal/wolf/direwolf,
 	/mob/living/simple_mob/otie/friendly,
 	/mob/living/simple_mob/vore/alienanimals/catslug,
-	/mob/living/simple_mob/vore/alienanimals/teppi,
 	/mob/living/simple_mob/vore/fennec,
 	/mob/living/simple_mob/vore/xeno_defanged,
 	/mob/living/simple_mob/vore/redpanda/fae,
