@@ -2932,11 +2932,185 @@ shaved
 
 	//Tesh stuff.
 
+/datum/sprite_accessory/marking/teshi_feathers
+	name = "Teshari limb feathers"
+	icon_state = "teshi_feathers"
+	body_parts = list(BP_R_HAND, BP_L_HAND, BP_R_FOOT, BP_L_FOOT)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_feathers/r_hand
+	name = "Teshari limb feathers (Right hand)"
+	body_parts = list(BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_feathers/l_hand
+	name = "Teshari limb feathers (Left hand)"
+	body_parts = list(BP_L_HAND)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_feathers/r_foot
+	name = "Teshari limb feathers (Right foot)"
+	body_parts = list(BP_R_FOOT)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_feathers/l_foot
+	name = "Teshari limb feathers (Left foot)"
+	body_parts = list(BP_L_FOOT)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_small_feathers
+	name = "Teshari small limb feathers"
+	icon_state = "teshi_sf"
+	body_parts = list(BP_R_HAND, BP_L_HAND, BP_R_FOOT, BP_L_FOOT)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_small_feathers/r_hand
+	name = "Teshari small limb feathers (Right hand)"
+	body_parts = list(BP_R_HAND)
+
+/datum/sprite_accessory/marking/teshi_small_feathers/l_hand
+	name = "Teshari small limb feathers (Left hand)"
+	body_parts = list(BP_L_HAND)
+
+/datum/sprite_accessory/marking/teshi_small_feathers/r_foot
+	name = "Teshari small limb feathers (Right foot)"
+	body_parts = list(BP_R_FOOT)
+
+/datum/sprite_accessory/marking/teshi_small_feathers/l_foot
+	name = "Teshari small limb feathers (Left foot)"
+	body_parts = list(BP_L_FOOT)
+
 /datum/sprite_accessory/marking/teshi_fluff
-	name = "Underfluff (Teshari)"
+	name = "Underfluff (Teshari) (Head, torso, groin and legs)"
 	icon_state = "teshi_fluff"
 	body_parts = list(BP_HEAD, BP_TORSO, BP_GROIN, BP_R_LEG, BP_L_LEG)
 	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_fluff/head
+	name = "Underfluff (Teshari) (Head)"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_fluff/torso
+	name = "Underfluff (Teshari) (Torso)"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/teshi_fluff/groin
+	name = "Underfluff (Teshari) (Groin)"
+	body_parts = list(BP_GROIN)
+
+/datum/sprite_accessory/marking/teshi_fluff/r_leg
+	name = "Underfluff (Teshari) (Right leg)"
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/teshi_fluff/l_leg
+	name = "Underfluff (Teshari) (Left leg)"
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/teshi_coat
+	name = "Coat (Teshari) (Head, torso, limbs)"
+	icon_state = "teshi_coat"
+	body_parts = list(BP_HEAD, BP_TORSO, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_coat/head
+	name = "Coat (Teshari) (Head)"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_coat/torso
+	name = "Coat (Teshari) (Torso)"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/teshi_coat/r_arm
+	name = "Coat (Teshari) (Right arm)"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/teshi_coat/l_arm
+	name = "Coat (Teshari) (Left arm)"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/teshi_coat/r_leg
+	name = "Coat (Teshari) (Right leg)"
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/teshi_coat/l_leg
+	name = "Coat (Teshari) (Left leg)"
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/teshi_pattern_1
+	name = "Feather pattern 1 (Teshari)"
+	icon_state = "teshi_pattern_1"
+	body_parts = list(BP_HEAD, BP_TORSO, BP_GROIN, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/head
+	name = "Feather pattern 1 (Teshari) (Head)"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/torso
+	name = "Feather pattern 1 (Teshari) (Torso)"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/groin
+	name = "Feather pattern 1 (Teshari) (Groin)"
+	body_parts = list(BP_GROIN)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/l_leg
+	name = "Feather pattern 1 (Teshari) (Left leg)"
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/r_leg
+	name = "Feather pattern 1 (Teshari) (Right leg)"
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/l_hand
+	name = "Feather pattern 1 (Teshari) (Left hand)"
+	body_parts = list(BP_L_HAND)
+
+/datum/sprite_accessory/marking/teshi_pattern_1/r_hand
+	name = "Feather pattern 1 (Teshari) (Right hand)"
+	body_parts = list(BP_R_HAND)
+
+/datum/sprite_accessory/marking/teshi_pattern_2
+	name = "Feather pattern 2 (Teshari)"
+	icon_state = "teshi_pattern_2"
+	body_parts = list(BP_HEAD, BP_TORSO, BP_GROIN, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/head
+	name = "Feather pattern 2 (Teshari) (Head)"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/torso
+	name = "Feather pattern 2 (Teshari) (Torso)"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/groin
+	name = "Feather pattern 2 (Teshari) (Groin)"
+	body_parts = list(BP_GROIN)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/l_leg
+	name = "Feather pattern 2 (Teshari) (Left leg)"
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/r_leg
+	name = "Feather pattern 2 (Teshari) (Right leg)"
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/l_arm
+	name = "Feather pattern 2 (Teshari) (Left arm)"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/r_arm
+	name = "Feather pattern 2 (Teshari) (Right arm)"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/l_hand
+	name = "Feather pattern 2 (Teshari) (Left hand)"
+	body_parts = list(BP_L_HAND)
+
+/datum/sprite_accessory/marking/teshi_pattern_2/r_hand
+	name = "Feather pattern 2 (Teshari) (Right hand)"
+	body_parts = list(BP_R_HAND)
 
 /datum/sprite_accessory/marking/teshi_heterochromia
 	name = "Heterochromia (Teshari) (right eye)"
