@@ -24,6 +24,14 @@
 "f" = (
 /turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/plot/square)
+"g" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/south/unexplored)
+"h" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/south/unexplored)
 "j" = (
 /turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/plot/wide)
@@ -3286,7 +3294,7 @@ H
 H
 Y
 Y
-Y
+h
 H
 H
 c
@@ -3443,7 +3451,7 @@ c
 H
 H
 H
-H
+g
 H
 H
 H
@@ -4190,7 +4198,7 @@ H
 H
 H
 Y
-Y
+h
 Y
 H
 H
@@ -4244,7 +4252,7 @@ H
 H
 H
 Y
-Y
+h
 Y
 H
 c
@@ -5705,7 +5713,7 @@ c
 H
 H
 Y
-Y
+h
 H
 H
 H
@@ -6665,7 +6673,7 @@ c
 c
 H
 Y
-Y
+h
 H
 H
 c
@@ -6736,7 +6744,7 @@ Y
 Y
 Y
 Y
-Y
+h
 Y
 Y
 H
@@ -6784,7 +6792,7 @@ c
 c
 c
 H
-H
+g
 H
 c
 c
@@ -9012,7 +9020,7 @@ H
 H
 H
 H
-Y
+h
 Y
 Y
 Y
@@ -10305,7 +10313,7 @@ Y
 Y
 H
 Y
-Y
+h
 H
 H
 H
@@ -12186,7 +12194,7 @@ c
 H
 Y
 Y
-Y
+h
 Y
 Y
 H
@@ -15177,7 +15185,7 @@ Y
 Y
 Y
 H
-H
+g
 H
 H
 c
@@ -15368,7 +15376,7 @@ c
 H
 H
 H
-H
+g
 H
 H
 H
@@ -15965,7 +15973,7 @@ H
 H
 H
 H
-H
+g
 H
 H
 c
