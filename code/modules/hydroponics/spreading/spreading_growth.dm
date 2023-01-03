@@ -132,15 +132,9 @@
 			return
 
 		//move out to the destination
-<<<<<<< HEAD
 		child.anchored = FALSE
-		step_to(child, target_turf)
-		child.anchored = TRUE
-=======
-		child.anchored = 0
 		child.Move(target_turf)	// Do a normal move, so we can cross and uncross things we need to. Stairs, Open space "falling", etc.
-		child.anchored = 1
->>>>>>> 29f3be1872a... Maintenance on Hydro code, specifically vines and bees. (#8851)
+		child.anchored = TRUE
 		child.update_icon()
 
 		//see if anything is there
