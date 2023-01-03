@@ -350,6 +350,5 @@
 	prob_spawn = 75
 	prob_fall = 50
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/passive/gaslamp = 300,
-		/mob/living/simple_mob/vore/alienanimals/teppi = 4
+		/mob/living/simple_mob/animal/passive/gaslamp = 300
 		)
