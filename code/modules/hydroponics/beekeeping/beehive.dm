@@ -163,11 +163,7 @@
 /obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
-<<<<<<< HEAD
-	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
-=======
 	icon = 'icons/obj/beekeeping.dmi'
->>>>>>> 29f3be1872a... Maintenance on Hydro code, specifically vines and bees. (#8851)
 	icon_state = "centrifuge"
 
 	density = TRUE
