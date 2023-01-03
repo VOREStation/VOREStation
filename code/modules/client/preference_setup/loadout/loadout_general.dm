@@ -1,4 +1,5 @@
 /datum/gear/cane
+<<<<<<< HEAD
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
@@ -13,6 +14,21 @@
 /datum/gear/crutch
 	display_name = "crutch"
 	path = /obj/item/weapon/cane/crutch
+=======
+	display_name = "cane selection"
+	path = /obj/item/cane
+
+/datum/gear/cane/New()
+	..()
+	var/canetype = list()
+	canetype["walking cane"] = /obj/item/cane
+	canetype["telescopic walking cane"] = /obj/item/cane/telescopic
+	canetype["white cane"] = /obj/item/cane/white
+	canetype["telescopic white cane"] = /obj/item/cane/white/collapsible
+	canetype["folding white cane"] = /obj/item/cane/white/collapsible/folding
+	canetype["crutch"] = /obj/item/cane/crutch
+	gear_tweaks += new/datum/gear_tweak/path(canetype)
+>>>>>>> 2903c367bdb... Alternative communicator and cane sprites (#8864)
 
 /datum/gear/dice
 	display_name = "dice pack"

@@ -20,6 +20,7 @@
 
 /datum/gear/utility/communicator/New()
 	..()
+<<<<<<< HEAD
 	var/list/communicators = list()
 	for(var/obj/item/device/communicator_type as anything in typesof(/obj/item/device/communicator) - list(/obj/item/device/communicator/integrated,/obj/item/device/communicator/commlink)) //VOREStation Edit - Remove Commlink
 		communicators[initial(communicator_type.name)] = communicator_type
@@ -28,6 +29,15 @@
 /datum/gear/utility/camera
 	display_name = "camera"
 	path = /obj/item/device/camera
+=======
+	var/commtype = list()
+	commtype["communicator"] = /obj/item/communicator
+	commtype["communicator, watch"] = /obj/item/communicator/watch
+	commtype["communicator, sleek"] = /obj/item/communicator/sleek
+	commtype["communicator, flip"] = /obj/item/communicator/flip
+	commtype["communicator, rugged"] = /obj/item/communicator/rugged
+	gear_tweaks += new/datum/gear_tweak/path(commtype)
+>>>>>>> 2903c367bdb... Alternative communicator and cane sprites (#8864)
 
 /datum/gear/utility/codex
 	display_name = "the traveler's guide to vir"
