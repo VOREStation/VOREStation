@@ -237,10 +237,6 @@
 	desc = "A frame for the beehive that the bees have filled with honeycombs."
 	honey = 20
 
-/obj/item/honey_frame/filled/New()
-	..()
-	add_overlay("honeycomb")
-
 /obj/item/beehive_assembly
 	name = "beehive assembly"
 	desc = "Contains everything you need to build a beehive."
