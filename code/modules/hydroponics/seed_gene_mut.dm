@@ -94,11 +94,7 @@
 	if(prob(50))
 		S.set_trait(TRAIT_BIOLUM,         !S.get_trait(TRAIT_BIOLUM))
 		if(S.get_trait(TRAIT_BIOLUM))
-<<<<<<< HEAD
-			T.visible_message("<b>\The [S.display_name]</b> begins to glow!")
-=======
 			T.visible_message(SPAN_NOTICE("\The [S.display_name] begins to glow!"))
->>>>>>> 29f3be1872a... Maintenance on Hydro code, specifically vines and bees. (#8851)
 			if(prob(50))
 				S.set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
 				T.visible_message("<span class='notice'>\The [S.display_name]'s glow </span><font color='[S.get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
