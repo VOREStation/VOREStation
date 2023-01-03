@@ -95,13 +95,8 @@
 			B.fill()
 		update_icon()
 		return
-<<<<<<< HEAD
 	else if(istype(I, /obj/item/device/analyzer/plant_analyzer))
 		to_chat(user, "<span class='notice'>Scan result of \the [src]...</span>")
-=======
-	else if(istype(I, /obj/item/analyzer/plant_analyzer))
-		to_chat(user, SPAN_NOTICE("Scan result of \the [src]..."))
->>>>>>> 29f3be1872a... Maintenance on Hydro code, specifically vines and bees. (#8851)
 		to_chat(user, "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]")
 		if(length(frames))
 			to_chat(user, "[length(frames)] frames installed, [round(honeycombs / 100)] filled.")
@@ -198,13 +193,8 @@
 			new /obj/item/stack/material/wax(loc)
 			honey += processing
 			processing = 0
-<<<<<<< HEAD
-			icon_state = "centrifuge"
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
-=======
 			icon_state = "[initial(icon_state)]"
-	else if(istype(I, /obj/item/reagent_containers/glass))
->>>>>>> 29f3be1872a... Maintenance on Hydro code, specifically vines and bees. (#8851)
+	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!honey)
 			to_chat(user, SPAN_NOTICE("There is no honey in \the [src]."))
 			return
@@ -247,13 +237,10 @@
 	desc = "A frame for the beehive that the bees have filled with honeycombs."
 	honey = 20
 
-<<<<<<< HEAD
 /obj/item/honey_frame/filled/New()
 	..()
 	add_overlay("honeycomb")
 
-=======
->>>>>>> 29f3be1872a... Maintenance on Hydro code, specifically vines and bees. (#8851)
 /obj/item/beehive_assembly
 	name = "beehive assembly"
 	desc = "Contains everything you need to build a beehive."
