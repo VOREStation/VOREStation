@@ -28,7 +28,7 @@
 	var/radial_state = null	// Icon state for the augment's radial icon.
 
 	var/aug_cooldown = 30 SECONDS
-	var/last_activate = null
+	var/cooldown = null
 
 /obj/item/organ/internal/augment/Initialize()
 	. = ..()
@@ -59,8 +59,8 @@
 		return
 
 	if(aug_cooldown)
-		if(last_activate <= world.time + aug_cooldown)
-			last_activate = world.time
+		if(cooldown <= world.time)
+			cooldown = world.time + aug_cooldown
 		else
 			return
 
