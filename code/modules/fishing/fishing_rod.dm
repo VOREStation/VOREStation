@@ -90,7 +90,7 @@
 			if(re.id == "nutriment" || re.id == "protein" || re.id == "glucose" || re.id == "fishbait")
 				foodvolume += re.volume
 
-		toolspeed = initial(toolspeed) * min(0.75, (0.5 / max(0.5, (foodvolume / Bait.reagents.maximum_volume))))
+		toolspeed = initial(toolspeed) * 10*(0.01/(0.2*(foodvolume/Bait.reagents.maximum_volume + 0.5))) //VOREStation edit: gives fishing a universal formula because Polaris' doesn't work here. Min value of 1, max value of 1/3, 0.5 at 1/2 filled with bait reagents.
 
 	else
 		toolspeed = initial(toolspeed)
