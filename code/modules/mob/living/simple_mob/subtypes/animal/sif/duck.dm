@@ -17,7 +17,7 @@
 	name = "crystal-feather duck"
 	desc = "A glittering flightless bird."
 	tt_desc = "S Anatidae vitriae"
-	catalogue_data = list(/datum/category_item/catalogue/fauna/crystalduck)
+	//catalogue_data = list(/datum/category_item/catalogue/fauna/crystalduck)		TODO: Write non-sif lore
 
 	faction = "duck"
 

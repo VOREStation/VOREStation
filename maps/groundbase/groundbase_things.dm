@@ -102,3 +102,13 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 /datum/map_template/shelter/New()
 	..()
 	banned_areas += list(/area/groundbase/level3/escapepad)
+
+// Landmarks for wildlife events
+
+/obj/effect/landmark/wildlife/water
+	name = "aquatic wildlife"
+	wildlife_type = 1
+
+/obj/effect/landmark/wildlife/forest
+	name = "roaming wildlife"
+	wildlife_type = 2
