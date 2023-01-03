@@ -212,6 +212,14 @@
 	icon_state = "liquidfirefly-eyestalks"
 	//ckeys_allowed = list("liquidfirefly","seiga") //At request.
 
+/datum/sprite_accessory/wing/liquidfirefly_gazer_gray //Original sprite is from liquidfirefly, greyscale version is *not*
+	name = "gazer eyestalks, colorable"
+	desc = ""
+	icon_state = "eyestalkc"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "eyestalkc_eyes"
+
 /datum/sprite_accessory/wing/moth_full
 	name = "moth antenna and wings"
 	desc = ""
