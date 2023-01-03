@@ -640,8 +640,6 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 
 	var/animal_chance = 0.5
 	var/animal_types = list(
-		/mob/living/simple_mob/vore/alienanimals/teppi = 10,
-		/mob/living/simple_mob/vore/alienanimals/teppi/mutant = 1,
 		/mob/living/simple_mob/vore/redpanda = 40,
 		/mob/living/simple_mob/vore/redpanda/fae = 2,
 		/mob/living/simple_mob/vore/sheep = 20,

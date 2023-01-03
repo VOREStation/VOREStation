@@ -881,6 +881,9 @@
 "bJ" = (
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/lights/mixed,
+/obj/machinery/alarm/angled{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "bK" = (
@@ -6204,9 +6207,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/firealarm/angled,
 /obj/structure/bed/chair/backed_red{
 	dir = 4
+	},
+/obj/machinery/firealarm/angled{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)

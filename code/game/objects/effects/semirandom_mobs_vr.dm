@@ -426,7 +426,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			) = 5,
 		list(/mob/living/simple_mob/animal/sif/siffet) = 5,
 		list(/mob/living/simple_mob/animal/sif/tymisian) = 5,
-		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 10,
 		list(/mob/living/simple_mob/vore/alienanimals/dustjumper) = 5,
 		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish) = 5,
 		list(/mob/living/simple_mob/vore/alienanimals/space_ghost) = 5,
@@ -788,8 +787,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/sect_queen = 1
 			) = 50,
 		list(/mob/living/simple_mob/vore/solargrub) = 100,
-		list(/mob/living/simple_mob/vore/woof) = 1,
-		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 25
+		list(/mob/living/simple_mob/vore/woof) = 1
 		)
 
 /obj/random/mob/semirandom_mob_spawner/sus

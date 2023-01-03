@@ -18,6 +18,22 @@
 	},
 /turf/simulated/floor/water,
 /area/submap/groundbase/wilderness/east)
+"e" = (
+/obj/effect/landmark/wildlife/water,
+/turf/simulated/floor/water/deep,
+/area/submap/groundbase/wilderness/east)
+"f" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/east/unexplored)
+"g" = (
+/obj/effect/landmark/wildlife/water,
+/turf/simulated/floor/water,
+/area/submap/groundbase/wilderness/east)
+"h" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/east/unexplored)
 "l" = (
 /turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/east/cave)
@@ -41,12 +57,6 @@
 	},
 /turf/simulated/floor/water/deep,
 /area/submap/groundbase/wilderness/east)
-"B" = (
-/obj/effect/landmark{
-	name = "carpspawn"
-	},
-/turf/simulated/floor/water/deep,
-/area/submap/groundbase/wilderness/east)
 "F" = (
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east/unexplored)
@@ -55,12 +65,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
-/area/submap/groundbase/wilderness/east)
-"I" = (
-/obj/effect/landmark{
-	name = "carpspawn"
-	},
-/turf/simulated/floor/water,
 /area/submap/groundbase/wilderness/east)
 "V" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east{
@@ -965,7 +969,7 @@ Z
 Z
 Z
 t
-B
+t
 t
 t
 Z
@@ -3098,7 +3102,7 @@ l
 l
 Z
 Z
-I
+Z
 t
 t
 t
@@ -3384,7 +3388,7 @@ Z
 Z
 Z
 t
-t
+e
 t
 Z
 Z
@@ -5087,7 +5091,7 @@ Z
 Z
 Z
 Z
-I
+Z
 n
 n
 F
@@ -5430,7 +5434,7 @@ b
 b
 b
 b
-b
+f
 F
 F
 F
@@ -5693,7 +5697,7 @@ F
 F
 F
 F
-b
+f
 b
 b
 b
@@ -5933,7 +5937,7 @@ F
 n
 Z
 Z
-I
+Z
 Z
 Z
 Z
@@ -5949,7 +5953,7 @@ b
 b
 b
 b
-b
+f
 b
 b
 b
@@ -6928,7 +6932,7 @@ t
 t
 t
 t
-I
+Z
 Z
 Z
 Z
@@ -7126,7 +7130,7 @@ b
 b
 b
 b
-b
+f
 b
 b
 b
@@ -7241,7 +7245,7 @@ Z
 t
 t
 t
-B
+e
 t
 t
 t
@@ -7531,7 +7535,7 @@ t
 t
 Z
 Z
-I
+Z
 Z
 n
 n
@@ -7778,7 +7782,7 @@ Z
 t
 t
 t
-t
+e
 t
 t
 Z
@@ -8060,7 +8064,7 @@ Z
 Z
 Z
 Z
-B
+t
 t
 t
 t
@@ -8144,7 +8148,7 @@ n
 n
 Z
 Z
-I
+Z
 Z
 Z
 Z
@@ -8357,7 +8361,7 @@ t
 t
 t
 t
-I
+Z
 Z
 Z
 Z
@@ -8711,7 +8715,7 @@ Z
 Z
 t
 t
-B
+t
 t
 t
 t
@@ -8920,7 +8924,7 @@ t
 t
 Z
 Z
-I
+Z
 Z
 Z
 Z
@@ -8991,8 +8995,8 @@ Z
 Z
 Z
 Z
+g
 Z
-Z
 t
 t
 t
@@ -9008,7 +9012,7 @@ t
 t
 t
 t
-B
+t
 Z
 Z
 Z
@@ -9083,7 +9087,7 @@ n
 n
 Z
 Z
-I
+Z
 t
 Z
 Z
@@ -9151,7 +9155,7 @@ t
 t
 t
 Z
-Z
+g
 Z
 Z
 Z
@@ -9428,7 +9432,7 @@ t
 t
 t
 t
-B
+t
 t
 t
 t
@@ -9444,7 +9448,7 @@ n
 F
 F
 F
-F
+h
 F
 F
 l
@@ -9705,7 +9709,7 @@ n
 Z
 Z
 Z
-I
+Z
 t
 t
 t
@@ -9809,7 +9813,7 @@ b
 b
 b
 b
-b
+f
 b
 b
 b
@@ -10119,7 +10123,7 @@ b
 b
 b
 b
-b
+f
 b
 b
 b
@@ -10348,7 +10352,7 @@ b
 b
 b
 b
-b
+f
 b
 b
 b
@@ -10704,7 +10708,7 @@ Z
 t
 t
 t
-B
+t
 t
 t
 t
@@ -11352,7 +11356,7 @@ n
 n
 n
 Z
-I
+Z
 Z
 n
 n
@@ -11529,18 +11533,18 @@ t
 t
 t
 t
-B
 t
 t
 t
 t
 t
 t
+t
 Z
 Z
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -11548,7 +11552,7 @@ Z
 Z
 t
 t
-B
+t
 t
 t
 t
@@ -12537,7 +12541,7 @@ t
 t
 t
 t
-B
+t
 t
 t
 t
@@ -12803,7 +12807,7 @@ t
 t
 t
 t
-B
+t
 t
 t
 t
@@ -12903,7 +12907,7 @@ Z
 Z
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -13547,7 +13551,7 @@ t
 t
 t
 t
-B
+t
 t
 Z
 Z
@@ -13911,7 +13915,7 @@ b
 b
 b
 b
-b
+f
 b
 b
 b
@@ -13969,7 +13973,7 @@ t
 t
 t
 t
-B
+t
 t
 t
 t
@@ -14215,7 +14219,7 @@ Z
 Z
 Z
 Z
-Z
+g
 t
 t
 t
@@ -14244,7 +14248,7 @@ t
 t
 t
 t
-t
+e
 t
 t
 t
@@ -14319,7 +14323,7 @@ Z
 Z
 Z
 Z
-I
+Z
 Z
 Z
 Z
@@ -14636,31 +14640,30 @@ n
 n
 Z
 Z
-I
-Z
-Z
-Z
-Z
-n
-n
-n
-n
-n
-n
-n
-n
-n
-n
-n
-n
 Z
 Z
 Z
 Z
 Z
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+Z
+Z
+Z
+Z
+Z
 Z
 t
-B
 t
 t
 t
@@ -14672,7 +14675,8 @@ t
 t
 t
 t
-B
+t
+t
 t
 t
 t
@@ -15645,7 +15649,7 @@ F
 F
 F
 b
-b
+f
 b
 b
 F
@@ -16043,9 +16047,9 @@ Z
 Z
 Z
 Z
-I
 Z
 Z
+g
 Z
 Z
 Z
@@ -16097,7 +16101,6 @@ t
 t
 t
 t
-B
 t
 t
 t
@@ -16107,7 +16110,8 @@ t
 t
 t
 t
-B
+t
+t
 t
 t
 t
@@ -16368,7 +16372,6 @@ Z
 Z
 t
 t
-B
 t
 t
 t
@@ -16395,7 +16398,8 @@ t
 t
 t
 t
-Z
+t
+g
 Z
 Z
 n
@@ -16953,7 +16957,7 @@ t
 t
 t
 t
-B
+t
 t
 t
 t
@@ -17101,7 +17105,7 @@ t
 t
 t
 t
-B
+t
 Z
 Z
 Z
@@ -17300,7 +17304,7 @@ F
 F
 F
 b
-b
+f
 b
 b
 F
@@ -18470,7 +18474,7 @@ l
 l
 F
 F
-F
+h
 b
 b
 F

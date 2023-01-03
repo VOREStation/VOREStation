@@ -6,6 +6,14 @@
 	name = "impassable rock"
 	},
 /area/submap/groundbase/wilderness/north)
+"b" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/north/unexplored)
+"c" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/north/unexplored)
 "d" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
@@ -1408,7 +1416,7 @@ K
 K
 K
 X
-X
+b
 X
 K
 K
@@ -1775,7 +1783,7 @@ K
 K
 X
 X
-X
+b
 X
 X
 K
@@ -2010,7 +2018,7 @@ K
 K
 K
 K
-K
+c
 K
 K
 K
@@ -3265,7 +3273,7 @@ X
 X
 K
 K
-X
+b
 X
 X
 X
@@ -3876,7 +3884,7 @@ X
 X
 X
 X
-X
+b
 X
 X
 X
@@ -3943,7 +3951,7 @@ o
 K
 X
 X
-X
+b
 X
 K
 K
@@ -6037,7 +6045,7 @@ o
 o
 K
 K
-X
+b
 K
 o
 o
@@ -6424,7 +6432,7 @@ X
 X
 X
 X
-X
+b
 X
 K
 K
@@ -6725,7 +6733,7 @@ o
 o
 K
 X
-K
+c
 o
 o
 m
@@ -6969,7 +6977,7 @@ X
 X
 K
 K
-X
+b
 X
 X
 X
@@ -7079,7 +7087,7 @@ o
 o
 K
 K
-K
+c
 K
 o
 o
@@ -7189,7 +7197,7 @@ o
 o
 K
 X
-X
+b
 K
 K
 o
@@ -10437,7 +10445,7 @@ K
 X
 X
 X
-X
+b
 X
 K
 K
@@ -10668,7 +10676,7 @@ o
 K
 K
 X
-X
+b
 X
 K
 K
@@ -10738,7 +10746,7 @@ o
 K
 K
 X
-X
+b
 K
 K
 o
@@ -11115,7 +11123,7 @@ o
 o
 K
 X
-X
+b
 K
 o
 o
@@ -11350,7 +11358,7 @@ X
 X
 X
 K
-K
+c
 K
 K
 K
@@ -11617,7 +11625,7 @@ o
 o
 X
 X
-X
+b
 K
 K
 o
@@ -12885,7 +12893,7 @@ X
 X
 X
 X
-X
+b
 X
 X
 X
@@ -14743,7 +14751,7 @@ K
 K
 X
 X
-X
+b
 X
 K
 K
@@ -15141,7 +15149,7 @@ K
 K
 X
 X
-X
+b
 X
 X
 X
@@ -15551,7 +15559,7 @@ X
 X
 K
 K
-K
+c
 X
 X
 X
@@ -17339,7 +17347,7 @@ K
 K
 X
 X
-X
+b
 X
 X
 K
@@ -17729,7 +17737,7 @@ X
 X
 X
 X
-X
+b
 X
 X
 K

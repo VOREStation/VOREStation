@@ -75,7 +75,6 @@
 				prob(5);/obj/item/weapon/gun/energy/mouseray/giantrat,
 				prob(50);/obj/item/weapon/gun/energy/mouseray/redpanda,
 				prob(5);/obj/item/weapon/gun/energy/mouseray/catslug,
-				prob(5);/obj/item/weapon/gun/energy/mouseray/teppi,
 				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis,
 				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
 				), 8) = 2,

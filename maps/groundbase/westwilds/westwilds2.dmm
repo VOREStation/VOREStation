@@ -31,6 +31,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
+"ae" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/west/unexplored)
+"af" = (
+/obj/effect/landmark/wildlife/water,
+/turf/simulated/floor/water,
+/area/submap/groundbase/wilderness/west/unexplored)
+"ag" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/west/unexplored)
 "am" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 9
@@ -7248,7 +7260,7 @@ YK
 YK
 nr
 nr
-nr
+ae
 nr
 nr
 nr
@@ -9076,7 +9088,7 @@ nr
 YK
 YK
 YK
-YK
+ag
 YK
 YK
 YK
@@ -9547,7 +9559,7 @@ YK
 YK
 YK
 YK
-YK
+ag
 YK
 YK
 nr
@@ -12181,7 +12193,7 @@ nr
 nr
 nr
 nr
-nr
+ae
 YK
 YK
 YK
@@ -12687,7 +12699,7 @@ YK
 YK
 YK
 YK
-YK
+ag
 YK
 YK
 YK
@@ -13764,7 +13776,7 @@ YK
 YK
 YK
 YK
-YK
+ag
 nr
 nr
 nr
@@ -14089,7 +14101,7 @@ YK
 YK
 YK
 YK
-YK
+ag
 YK
 YK
 YK
@@ -15817,7 +15829,7 @@ YK
 YK
 YK
 YK
-nr
+ae
 nr
 nr
 Zm
@@ -16201,7 +16213,7 @@ nr
 YK
 YK
 YK
-YK
+ag
 YK
 YK
 YK
@@ -16299,7 +16311,7 @@ DA
 DA
 DA
 DA
-DA
+af
 DA
 DA
 DA
@@ -19566,7 +19578,7 @@ nr
 nr
 YK
 YK
-YK
+ag
 YK
 YK
 YK
@@ -22212,7 +22224,7 @@ Wl
 nr
 YK
 YK
-YK
+ag
 nr
 nr
 nr

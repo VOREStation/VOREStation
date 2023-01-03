@@ -2243,6 +2243,7 @@
 #include "code\modules\events\prison_break.dm"
 #include "code\modules\events\radiation_storm.dm"
 #include "code\modules\events\random_antagonist.dm"
+#include "code\modules\events\roaming_wildlife.dm"
 #include "code\modules\events\rogue_drones.dm"
 #include "code\modules\events\shipping_error.dm"
 #include "code\modules\events\solar_storm.dm"
