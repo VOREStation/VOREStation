@@ -41,11 +41,21 @@
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.opened)
-		if (istype(W, /obj/item/weapon/grab))
+		if(istype(W, /obj/item/weapon/storage/laundry_basket))
+			return ..(W,user)
+		if(istype(W, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = W
-			src.MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
+			if(large)
+				MouseDrop_T(G.affecting, user)	//act like they were dragged onto the closet
+			else
+				to_chat(user, "<span class='notice'>The locker is too small to stuff [G.affecting] into!</span>")
+		if(isrobot(user))
+			return
+		if(W.loc != user) // This should stop mounted modules ending up outside the module.
+			return
 		user.drop_item()
-		if (W) W.forceMove(src.loc)
+		if(W)
+			W.forceMove(loc)
 	else if(W.GetID())
 		var/obj/item/weapon/card/id/I = W.GetID()
 
