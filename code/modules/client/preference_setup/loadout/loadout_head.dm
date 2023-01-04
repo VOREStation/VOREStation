@@ -131,6 +131,7 @@
 	path = /obj/item/clothing/head/halo
 
 /datum/gear/head/halo/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/cap/mbill
