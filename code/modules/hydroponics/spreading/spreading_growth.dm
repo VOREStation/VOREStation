@@ -91,22 +91,27 @@
 		if(prob(chance))
 			sampled = 0
 
-	if(is_mature() && !has_buckled_mobs())
-		for(var/turf/neighbor in neighbors)
-			for(var/mob/living/M in neighbor)
-				if(seed.get_trait(TRAIT_SPREAD) >= 2 && (M.lying || prob(round(seed.get_trait(TRAIT_POTENCY)))))
-					entangle(M)
+	if(is_mature())
+		if(!has_buckled_mobs())
+			for(var/turf/neighbor in neighbors)
+				for(var/mob/living/M in neighbor)
+					if(seed.get_trait(TRAIT_SPREAD) >= 2 && (M.lying || prob(round(seed.get_trait(TRAIT_POTENCY)))))
+						entangle(M)
 
-	if(is_mature() && neighbors.len && prob(spread_chance))
-		//spread to 1-3 adjacent turfs depending on yield trait.
-		var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
+		if(seed.get_trait(TRAIT_SPORING) && prob(1))
+			visible_message(SPAN_WARNING("\The [src] hisses, releasing a cloud of spores!"), SPAN_WARNING("Something nearby hisses loudly!"))
+			seed.create_spores(get_turf(src))
 
-		for(var/i in 1 to max_spread)
-			if(prob(spread_chance))
-				sleep(rand(3,5))
-				if(!neighbors.len)
-					break
-				spread_to(pick(neighbors))
+		if(length(neighbors) && prob(spread_chance))
+			//spread to 1-3 adjacent turfs depending on yield trait.
+			var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
+
+			for(var/i in 1 to max_spread)
+				if(prob(spread_chance))
+					sleep(rand(3,5))
+					if(!length(neighbors))
+						break
+					spread_to(pick(neighbors))
 
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health()
@@ -128,7 +133,7 @@
 
 		//move out to the destination
 		child.anchored = FALSE
-		step_to(child, target_turf)
+		child.Move(target_turf)	// Do a normal move, so we can cross and uncross things we need to. Stairs, Open space "falling", etc.
 		child.anchored = TRUE
 		child.update_icon()
 
