@@ -137,6 +137,7 @@ Talon winter coat
 	path = /obj/item/clothing/suit/storage/hooded/hoodie
 
 /datum/gear/suit/hoodie_vr/New()
+	..()
 	var/list/hoodies = list()
 	for(var/hoodie_style in typesof(/obj/item/clothing/suit/storage/hooded/hoodie))
 		var/obj/item/clothing/suit/storage/toggle/hoodie/hoodie = hoodie_style
