@@ -145,6 +145,7 @@ trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
 umbrenos - Black-Eyed Shadekin
+varonis - Protean
 varonis - Xenochimera
 verkister - Xenochimera
 verysoft - Black-Eyed Shadekin
