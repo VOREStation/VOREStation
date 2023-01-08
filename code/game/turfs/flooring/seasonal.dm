@@ -233,3 +233,17 @@ var/world_time_season
 	snow_chance = 1
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow
 	snow_chance = 1
+
+/turf/simulated/floor/water/seasonal/Initialize()
+	. = ..()
+	switch(world_time_season)
+		if("winter")
+			if(prob(99))
+				ChangeTurf(/turf/simulated/floor/outdoors/ice)
+
+/turf/simulated/floor/water/deep/seasonal/Initialize()
+	. = ..()
+	switch(world_time_season)
+		if("winter")
+			if(prob(75))
+				ChangeTurf(/turf/simulated/floor/outdoors/ice)

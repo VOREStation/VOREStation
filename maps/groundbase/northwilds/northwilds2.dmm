@@ -8,22 +8,12 @@
 /area/submap/groundbase/wilderness/north)
 "b" = (
 /obj/effect/landmark/wildlife/forest,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
 "c" = (
 /obj/effect/landmark/wildlife/forest,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
-"d" = (
-/obj/effect/map_effect/portal/line/side_b{
-	dir = 1
-	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
-/area/submap/groundbase/wilderness/north)
-"g" = (
-/obj/effect/map_effect/portal/line/side_a,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
-/area/submap/groundbase/wilderness/north)
 "k" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
@@ -41,14 +31,14 @@
 /area/submap/groundbase/wilderness/north/cave)
 "p" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/north_south,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "C" = (
 /obj/item/clothing/under/rank/psych/turtleneck/sweater,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
 "J" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/north)
 "K" = (
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -57,14 +47,14 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/north{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "W" = (
 /obj/effect/map_effect/portal/line/side_a,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "X" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
 
 (1,1,1) = {"
@@ -9435,8 +9425,8 @@ o
 o
 X
 l
-J
-J
+l
+l
 N
 "}
 (67,1,1) = {"
@@ -9582,9 +9572,9 @@ l
 k
 "}
 (68,1,1) = {"
-g
-J
-J
+W
+l
+l
 l
 K
 K
@@ -10003,9 +9993,9 @@ o
 o
 o
 J
-J
-J
-d
+l
+l
+k
 "}
 (71,1,1) = {"
 W
@@ -10151,7 +10141,7 @@ a
 "}
 (72,1,1) = {"
 p
-J
+l
 l
 l
 K

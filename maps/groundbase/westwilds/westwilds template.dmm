@@ -122,7 +122,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "aQ" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "aW" = (
 /obj/machinery/door/firedoor/glass,
@@ -985,7 +985,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "jb" = (
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -2311,7 +2311,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "uj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -2490,7 +2490,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "vy" = (
 /obj/machinery/light{
@@ -2758,7 +2758,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east_west{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "xv" = (
 /obj/machinery/suspension_gen,
@@ -5984,7 +5984,7 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
 "YK" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west/unexplored)
 "YL" = (
 /obj/structure/closet/excavation,
