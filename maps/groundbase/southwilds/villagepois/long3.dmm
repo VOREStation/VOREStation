@@ -13,7 +13,7 @@
 /turf/template_noop,
 /area/submap/groundbase/poi/wildvillage)
 "Z" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/poi/wildvillage/long/long3)
 
 (1,1,1) = {"

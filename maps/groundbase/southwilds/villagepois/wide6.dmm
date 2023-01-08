@@ -183,7 +183,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "O" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "P" = (
 /turf/simulated/floor/outdoors/sidewalk,

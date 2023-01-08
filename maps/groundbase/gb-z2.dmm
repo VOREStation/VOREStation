@@ -509,7 +509,8 @@
 /area/groundbase/science/rnd)
 "bh" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "bi" = (
@@ -574,7 +575,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1038,7 +1039,7 @@
 	},
 /area/groundbase/dorms/room2)
 "cK" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
 "cM" = (
 /obj/structure/cable/yellow{
@@ -1309,7 +1310,8 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/rnd)
 "dz" = (
@@ -1400,7 +1402,8 @@
 	name = "Privacy Shutters"
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/rnd)
 "dS" = (
@@ -1454,7 +1457,7 @@
 /area/groundbase/civilian/chapel)
 "dY" = (
 /obj/structure/fence/door,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "ea" = (
 /obj/structure/stairs/spawner/west,
@@ -1912,7 +1915,8 @@
 /area/groundbase/dorms)
 "fp" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/ne)
 "fq" = (
@@ -1982,7 +1986,8 @@
 /area/groundbase/civilian/kitchen)
 "fD" = (
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/nw)
 "fE" = (
@@ -2759,7 +2764,8 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "hQ" = (
@@ -2880,7 +2886,8 @@
 /area/rnd/xenobiology)
 "if" = (
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/command/hop)
 "ih" = (
@@ -2988,7 +2995,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
 "iw" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/level2/ne)
 "ix" = (
 /obj/structure/railing/grey,
@@ -3076,11 +3083,12 @@
 /area/medical/virology)
 "iH" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/westspur)
 "iI" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "iJ" = (
 /obj/machinery/photocopier,
@@ -3523,7 +3531,8 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "jS" = (
@@ -3609,7 +3618,8 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "kf" = (
@@ -3849,7 +3859,8 @@
 /area/groundbase/science/rd)
 "kU" = (
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "kV" = (
@@ -3887,7 +3898,8 @@
 	req_access = list(7)
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/circuits)
 "la" = (
@@ -4516,7 +4528,8 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "mL" = (
@@ -4603,7 +4616,8 @@
 	req_access = list(7)
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/circuits)
 "nd" = (
@@ -6844,7 +6858,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/glass/reinforced,
+/turf/simulated/floor/glass/reinforced{
+	outdoors = 1
+	},
 /area/groundbase/level2/eastspur)
 "tL" = (
 /obj/structure/cable/yellow{
@@ -6870,7 +6886,8 @@
 /area/groundbase/level2/se)
 "tO" = (
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/nw)
 "tP" = (
@@ -7297,7 +7314,7 @@
 /area/groundbase/civilian/kitchen)
 "uX" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "uY" = (
 /obj/machinery/light,
@@ -7794,7 +7811,8 @@
 	req_access = list(77)
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/xenobot)
 "wy" = (
@@ -8398,7 +8416,8 @@
 "yo" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/command/bridge)
 "yp" = (
@@ -8739,7 +8758,9 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "zx" = (
-/turf/simulated/floor/glass/reinforced,
+/turf/simulated/floor/glass/reinforced{
+	outdoors = 1
+	},
 /area/groundbase/level2/eastspur)
 "zz" = (
 /obj/machinery/vending/wardrobe/janidrobe,
@@ -8872,7 +8893,8 @@
 	name = "Privacy Shutters"
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/rnd)
 "zL" = (
@@ -9027,7 +9049,8 @@
 "Am" = (
 /obj/structure/railing/grey,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/ne)
 "An" = (
@@ -9856,7 +9879,8 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/xenobot)
 "CG" = (
@@ -9884,7 +9908,8 @@
 /area/medical/virology)
 "CK" = (
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/command/bridge)
 "CL" = (
@@ -10223,7 +10248,8 @@
 	name = "Privacy Shutters"
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/robotics)
 "DF" = (
@@ -10804,7 +10830,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenohall)
 "Fl" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/level2/sw)
 "Fm" = (
 /turf/simulated/floor/tiled,
@@ -10874,7 +10900,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/picnic)
 "Fv" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/science/picnic)
 "Fw" = (
 /turf/simulated/floor/outdoors/newdirt{
@@ -11056,7 +11082,7 @@
 /area/groundbase/civilian/kitchen)
 "Gd" = (
 /mob/living/simple_mob/animal/passive/chicken,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Ge" = (
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
@@ -11507,7 +11533,8 @@
 /area/groundbase/civilian/hydroponics/out)
 "Hj" = (
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/ne)
 "Hk" = (
@@ -12215,7 +12242,7 @@
 /turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level2/nw)
 "Jc" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/level2/nw)
 "Je" = (
 /obj/effect/floor_decal/chapel,
@@ -12313,7 +12340,8 @@
 /area/groundbase/science/picnic)
 "Jr" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/sw)
 "Js" = (
@@ -12321,7 +12349,8 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "Jt" = (
@@ -12345,7 +12374,8 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/ne)
 "Jy" = (
@@ -12827,7 +12857,8 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/command/bridge)
 "KL" = (
@@ -13618,7 +13649,8 @@
 /area/groundbase/science/rnd)
 "MS" = (
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/ne)
 "MU" = (
@@ -13626,7 +13658,8 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "MV" = (
@@ -13723,7 +13756,8 @@
 /area/groundbase/command/hop)
 "Nf" = (
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/westspur)
 "Ni" = (
@@ -13793,7 +13827,8 @@
 /area/groundbase/medical/triage)
 "Nq" = (
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "Ns" = (
@@ -13922,7 +13957,8 @@
 "NO" = (
 /obj/structure/railing/grey,
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/se)
 "NP" = (
@@ -14262,7 +14298,8 @@
 /area/medical/virology)
 "OI" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/nw)
 "OJ" = (
@@ -14852,7 +14889,7 @@
 /obj/effect/landmark{
 	name = "droppod_landing"
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
 "Qv" = (
 /obj/machinery/vending/wardrobe/cargodrobe,
@@ -14917,7 +14954,8 @@
 /area/groundbase/science/xenobot/storage)
 "QD" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/eastspur)
 "QE" = (
@@ -15216,7 +15254,7 @@
 /area/groundbase/cargo/office)
 "Rp" = (
 /mob/living/simple_mob/animal/passive/cow,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Rq" = (
 /obj/machinery/door/firedoor/glass,
@@ -15261,7 +15299,8 @@
 /area/groundbase/civilian/chapel)
 "Ru" = (
 /turf/simulated/floor/reinforced{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/sw)
 "Rv" = (
@@ -15604,7 +15643,7 @@
 /obj/structure/fence/corner{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "Su" = (
 /obj/machinery/door/firedoor/glass,
@@ -16330,11 +16369,12 @@
 /area/groundbase/civilian/hydroponics)
 "UD" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/unexplored/outdoors)
 "UE" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/level2/se)
 "UF" = (
 /obj/structure/sign/directions/bar{
@@ -16657,7 +16697,9 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "VA" = (
-/turf/simulated/floor/glass/reinforced,
+/turf/simulated/floor/glass/reinforced{
+	outdoors = 1
+	},
 /area/groundbase/level2/westspur)
 "VB" = (
 /obj/machinery/door/window/brigdoor/westleft{
@@ -16674,7 +16716,8 @@
 	name = "Privacy Shutters"
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/robotics)
 "VC" = (
@@ -17377,7 +17420,8 @@
 	dir = 8
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/xenobot)
 "XJ" = (
@@ -17557,7 +17601,8 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/command/bridge)
 "Yj" = (
@@ -17595,7 +17640,8 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/xenobot)
 "Yp" = (
@@ -17713,7 +17759,8 @@
 /area/groundbase/science/xenobot/storage)
 "YM" = (
 /turf/simulated/floor/tiled{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level2/sw)
 "YN" = (
@@ -17770,7 +17817,7 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
 "YX" = (
 /obj/structure/table/steel,
@@ -18068,7 +18115,8 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/science/xenobot)
 "ZO" = (

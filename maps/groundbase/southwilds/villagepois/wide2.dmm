@@ -251,7 +251,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide2)
 "W" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/poi/wildvillage/wide/wide2)
 "X" = (
 /turf/simulated/wall,
