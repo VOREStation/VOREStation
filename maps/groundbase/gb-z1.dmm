@@ -538,7 +538,7 @@
 	},
 /turf/simulated/floor/tiled/dark{
 	edge_blending_priority = -1;
-	outdoors = 0
+	outdoors = 1
 	},
 /area/groundbase/security/lobby)
 "bq" = (
@@ -6635,7 +6635,7 @@
 	},
 /turf/simulated/floor/tiled/dark{
 	edge_blending_priority = -1;
-	outdoors = 0
+	outdoors = 1
 	},
 /area/groundbase/security/lobby)
 "oI" = (
@@ -13148,6 +13148,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or2)
+"EG" = (
+/turf/simulated/floor/tiled/dark{
+	edge_blending_priority = -1;
+	outdoors = 1
+	},
+/area/groundbase/security/lobby)
 "EH" = (
 /obj/structure/bed/chair/sofa/bench{
 	dir = 4
@@ -16038,6 +16044,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
+"LF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/dark{
+	edge_blending_priority = -1;
+	outdoors = 1
+	},
+/area/groundbase/security/lobby)
 "LG" = (
 /obj/machinery/computer/power_monitor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -27340,7 +27355,7 @@ cB
 sR
 uy
 EJ
-Qv
+LF
 Qv
 fe
 CU
@@ -27482,7 +27497,7 @@ cB
 Yf
 YM
 os
-fm
+EG
 fm
 qk
 nx
@@ -27624,7 +27639,7 @@ OL
 Yf
 OL
 yc
-fm
+EG
 fm
 wl
 nx
@@ -27766,7 +27781,7 @@ sO
 tI
 sO
 vQ
-fm
+EG
 Ch
 wl
 wl
@@ -27908,7 +27923,7 @@ OL
 Yf
 OL
 yc
-fm
+EG
 fm
 wl
 CW
@@ -28050,7 +28065,7 @@ cB
 Yf
 cB
 ij
-fm
+EG
 fm
 ZE
 Aj
@@ -28192,7 +28207,7 @@ cB
 Yf
 cB
 ij
-fm
+EG
 fm
 PE
 wi
@@ -28334,7 +28349,7 @@ cB
 Yf
 cB
 ij
-fm
+EG
 fm
 ZE
 hQ
@@ -28476,7 +28491,7 @@ cB
 Yf
 cB
 ij
-fm
+EG
 fm
 wl
 xr
@@ -28618,7 +28633,7 @@ cB
 Yf
 cB
 ij
-fm
+EG
 fm
 ZE
 gm
@@ -28760,7 +28775,7 @@ cB
 Yf
 cB
 ij
-fm
+EG
 fm
 VB
 XO
