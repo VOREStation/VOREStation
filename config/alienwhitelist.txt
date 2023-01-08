@@ -88,6 +88,7 @@ mullins111 - Black-Eyed Shadekin
 natje - Xenochimera
 nerdass - Protean
 newyorks - Protean
+obengrad - Diona
 omegamech - Black-Eyed Shadekin
 oneofmanynames385 - Protean
 ontejbjoav - Black-Eyed Shadekin
@@ -144,6 +145,7 @@ trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
 umbrenos - Black-Eyed Shadekin
+varonis - Protean
 varonis - Xenochimera
 verkister - Xenochimera
 verysoft - Black-Eyed Shadekin
@@ -152,6 +154,7 @@ vitoras - Protean
 voidalynx - Black-Eyed Shadekin
 voidalynx - Protean
 wickedtemp - Shadekin Empathy
+wolfmeme - Protean
 xioen - Diona
 xioen - Protean
 xioen - Xenochimera

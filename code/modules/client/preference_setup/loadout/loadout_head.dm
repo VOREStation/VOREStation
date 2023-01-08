@@ -126,6 +126,14 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/head/halo
+	display_name = "halo (colorable)"
+	path = /obj/item/clothing/head/halo
+
+/datum/gear/head/halo/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/head/cap/mbill
 	display_name = "cap, major bill's"
 	path = /obj/item/clothing/head/soft/mbill

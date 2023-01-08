@@ -10,6 +10,11 @@
 	desc = "A formal hat for SolGov Customs Officers."
 	icon_state = "customshat"
 
+/obj/item/clothing/head/halo
+	name = "halo"
+	desc = "a small metal ring, floating above it's wearer."
+	icon_state = "halo"
+	
 /obj/item/clothing/head/pin
 	icon_state = "pin"
 	addblends = "pin_a"

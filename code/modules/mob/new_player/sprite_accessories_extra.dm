@@ -587,7 +587,7 @@ shadekin_snoot
 	name = "Wrist Fluff"
 	icon_state = "fluffy_cuffs"
 	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_ARM,BP_R_ARM)
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
 
 /datum/sprite_accessory/marking/vr/chubby_belly
 	name = "Chubby Belly"
