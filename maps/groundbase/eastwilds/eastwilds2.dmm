@@ -7,28 +7,28 @@
 	},
 /area/submap/groundbase/wilderness/east)
 "b" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/east/unexplored)
 "c" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/east)
 "d" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east)
 "e" = (
 /obj/effect/landmark/wildlife/water,
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/seasonal,
 /area/submap/groundbase/wilderness/east)
 "f" = (
 /obj/effect/landmark/wildlife/forest,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/east/unexplored)
 "g" = (
 /obj/effect/landmark/wildlife/water,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east)
 "h" = (
 /obj/effect/landmark/wildlife/forest,
@@ -42,20 +42,21 @@
 /area/submap/groundbase/wilderness/east)
 "n" = (
 /turf/simulated/floor/beach/sand{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/submap/groundbase/wilderness/east)
 "r" = (
 /turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/east)
 "t" = (
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/seasonal,
 /area/submap/groundbase/wilderness/east)
 "y" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/seasonal,
 /area/submap/groundbase/wilderness/east)
 "F" = (
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -64,13 +65,13 @@
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/east_west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east)
 "V" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east{
 	dir = 4
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east)
 "W" = (
 /obj/effect/map_effect/portal/line/side_a{
@@ -78,14 +79,8 @@
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east)
-"Y" = (
-/obj/effect/map_effect/portal/line/side_a{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
-/area/submap/groundbase/wilderness/east)
 "Z" = (
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east)
 
 (1,1,1) = {"
@@ -19611,11 +19606,11 @@ r
 r
 r
 c
-c
 m
 m
 m
-c
+m
+m
 c
 r
 r
@@ -19753,11 +19748,11 @@ r
 r
 r
 c
-c
 m
 m
 m
-c
+m
+m
 c
 r
 r
@@ -19899,7 +19894,7 @@ G
 W
 W
 W
-Y
+W
 a
 a
 a

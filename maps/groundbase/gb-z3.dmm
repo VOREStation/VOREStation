@@ -10,7 +10,8 @@
 	dir = 8
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "ac" = (
@@ -215,7 +216,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/landmark/start/chemist,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "dX" = (
 /obj/structure/grille,
@@ -231,7 +234,8 @@
 /area/shuttle/groundbase/exploration)
 "ed" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw)
 "ei" = (
@@ -291,7 +295,9 @@
 "fu" = (
 /obj/structure/table/bench/marble,
 /obj/effect/landmark/start/chemist,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "fy" = (
 /obj/structure/bed/chair/backed_red{
@@ -338,7 +344,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "gc" = (
 /obj/machinery/light/floortube,
@@ -364,14 +372,17 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "gs" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "gu" = (
@@ -453,7 +464,9 @@
 "hN" = (
 /obj/structure/table/bench/marble,
 /obj/effect/landmark/start/medical,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "hO" = (
 /obj/effect/landmark/map_data/groundbase,
@@ -594,7 +607,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "kB" = (
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -619,7 +634,8 @@
 /area/groundbase/medical/paramedic)
 "kU" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/sw/open)
 "lk" = (
@@ -694,7 +710,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "mr" = (
 /turf/unsimulated/wall/planetary/normal{
@@ -863,7 +881,7 @@
 /area/shuttle/groundbase/exploration)
 "ok" = (
 /obj/random/mob/bird,
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
 "om" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1068,7 +1086,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "qW" = (
 /obj/structure/cable/yellow{
@@ -1182,7 +1202,8 @@
 /area/shuttle/groundbase/exploration)
 "sP" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/ne)
 "sQ" = (
@@ -1301,7 +1322,8 @@
 /area/groundbase/civilian/pilot)
 "vs" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/unexplored/outdoors)
 "vu" = (
@@ -1443,7 +1465,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "xs" = (
 /obj/structure/railing/grey,
@@ -1498,7 +1522,9 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level3/nw)
 "xX" = (
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "ym" = (
 /obj/structure/cable/yellow{
@@ -1526,7 +1552,8 @@
 /area/groundbase/medical/paramedic)
 "yA" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/se/open)
 "yQ" = (
@@ -1541,7 +1568,9 @@
 	dir = 1
 	},
 /obj/random/vendorall,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "zb" = (
 /obj/structure/cable/yellow{
@@ -1587,7 +1616,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "zK" = (
 /obj/structure/closet/walllocker_double{
@@ -1719,7 +1750,9 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/cmo,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "BE" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -1731,7 +1764,8 @@
 "BM" = (
 /obj/structure/catwalk,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "Cc" = (
@@ -2037,7 +2071,8 @@
 	dir = 10
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "FO" = (
@@ -2082,7 +2117,9 @@
 	dir = 1
 	},
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Gx" = (
 /obj/machinery/photocopier,
@@ -2111,12 +2148,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Hx" = (
 /obj/structure/railing/grey,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/medical/patio)
 "HE" = (
@@ -2132,7 +2172,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "HP" = (
 /turf/simulated/wall,
@@ -2207,7 +2249,8 @@
 "IH" = (
 /obj/effect/shuttle_landmark/premade/groundbase,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "IP" = (
@@ -2230,7 +2273,9 @@
 /area/groundbase/civilian/kitchen)
 "Jf" = (
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Jh" = (
 /turf/simulated/floor/tiled/eris/dark/panels,
@@ -2429,7 +2474,9 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "MM" = (
 /obj/structure/closet/secure_closet/personal/patient,
@@ -2586,7 +2633,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "OT" = (
 /obj/structure/lattice,
@@ -2596,7 +2645,9 @@
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Pf" = (
 /obj/machinery/power/smes/buildable{
@@ -2690,7 +2741,9 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "PV" = (
 /obj/structure/cable/yellow{
@@ -2704,10 +2757,12 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Qa" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/level3/nw)
 "Qb" = (
 /obj/structure/railing{
@@ -2746,7 +2801,8 @@
 	dir = 6
 	},
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "Qq" = (
@@ -2784,7 +2840,8 @@
 /area/groundbase/medical/uhallway)
 "QD" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "QO" = (
@@ -2800,7 +2857,9 @@
 /area/groundbase/medical/cmo)
 "Rh" = (
 /obj/structure/table/reinforced,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Ri" = (
 /obj/item/modular_computer/console/preset/command,
@@ -3027,7 +3086,7 @@
 /obj/effect/landmark{
 	name = "droppod_landing"
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
 "Uf" = (
 /obj/structure/cable/yellow{
@@ -3172,7 +3231,7 @@
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "Xv" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_lowsnow,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
 "Xz" = (
 /obj/structure/railing,
@@ -3198,7 +3257,8 @@
 "XL" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/level3/nw/open)
 "XT" = (
@@ -3223,7 +3283,8 @@
 /area/groundbase/dorms/bathroom)
 "YG" = (
 /turf/simulated/floor{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/groundbase/civilian/kitchen)
 "YJ" = (
@@ -3269,7 +3330,9 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/paramedic,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled{
+	outdoors = 1
+	},
 /area/groundbase/medical/patio)
 "Zn" = (
 /obj/machinery/firealarm{
