@@ -87,6 +87,10 @@
 		return
 	return feed_grabbed_to_self(src,T)
 
+/mob/living/silicon/robot/lay_down()
+	 . = ..()
+	 updateicon()
+
 /mob/living/silicon/robot/proc/rest_style()
 	set name = "Switch Rest Style"
 	set category = "IC"

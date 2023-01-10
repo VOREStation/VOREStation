@@ -14,7 +14,7 @@
 	var/cleaning = 0
 	var/patient_laststat = null
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane", "anti_toxin", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
-	var/eject_port = "ingestion"
+	var/eject_port = "disposal"
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
 	var/compactor = FALSE
@@ -51,7 +51,7 @@
 	med_analyzer = new /obj/item/device/healthanalyzer
 
 /obj/item/device/dogborg/sleeper/Destroy()
-	go_out()
+	go_out(forced=TRUE)
 	..()
 
 /obj/item/device/dogborg/sleeper/Exit(atom/movable/O)
@@ -164,8 +164,45 @@
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 
-/obj/item/device/dogborg/sleeper/proc/go_out(var/target)
+/obj/item/device/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
+	if (!ingesting || ingesting == hound)
+		return
+	var/obj/belly/belly = hound.vore_selected
+	if (!istype(hound) || !istype(belly) || !(belly in hound.vore_organs))
+		return
+	if (isliving(ingesting))
+		ingest_living(ingesting, belly)
+	else if (istype(ingesting, /obj/item))
+		var/obj/item/to_eat = ingesting
+		if (is_type_in_list(to_eat, item_vore_blacklist))
+			return
+		if (istype(to_eat, /obj/item/weapon/holder))
+			var/obj/item/weapon/holder/micro = ingesting
+			var/delete_holder = TRUE
+			for (var/mob/living/M in micro.contents)
+				if (!ingest_living(M, belly) || M.loc == micro)
+					delete_holder = FALSE
+			if (delete_holder)
+				micro.held_mob = null
+				qdel(micro)
+			return
+		to_eat.forceMove(belly)
+		log_admin("VORE: [hound] used their [src] to swallow [to_eat].")
+
+/obj/item/device/dogborg/sleeper/proc/ingest_living(var/mob/living/victim, var/obj/belly/belly)
+	if (victim.devourable && is_vore_predator(hound))
+		belly.nom_mob(victim, hound)
+		add_attack_logs(hound, victim, "Eaten via [belly.name]")
+		return TRUE
+	return FALSE
+
+/obj/item/device/dogborg/sleeper/proc/go_out(var/forced=FALSE)
 	hound = src.loc
+	if (forced == TRUE)
+		eject_port = "disposal"
+	if (eject_port == "ingestion" && (!istype(hound) || !hound.vore_selected))
+		to_chat(hound, "<span class='warning'>You don't have a belly selected for the ingestion port to empty into!</span>")
+		return
 	items_preserved.Cut()
 	cleaning = 0
 	for(var/list/dlist in deliverylists)
@@ -173,6 +210,9 @@
 	if(length(contents) > 0)
 		hound.visible_message("<span class='warning'>[hound.name] empties out their contents via their [eject_port] port.</span>", "<span class='notice'>You empty your contents via your [eject_port] port.</span>")
 		for(var/C in contents)
+			if (eject_port == "ingestion" && (isliving(C) || isitem(C)))
+				ingest_atom(C)
+				continue
 			if(ishuman(C))
 				var/mob/living/carbon/human/person = C
 				person.forceMove(get_turf(src))
@@ -180,10 +220,11 @@
 			else
 				var/obj/T = C
 				T.loc = hound.loc
-		playsound(src, 'sound/effects/splat.ogg', 50, 1)
-		update_patient()
-	else //You clicked eject with nothing in you, let's just reset stuff to be sure.
-		update_patient()
+		if (eject_port == "ingestion")
+			hound.updateVRPanel() //already checked that it's a hound and not something else
+		else
+			playsound(src, 'sound/effects/splat.ogg', 50, 1)
+	update_patient()
 
 /obj/item/device/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
