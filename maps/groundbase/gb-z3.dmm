@@ -907,7 +907,6 @@
 	},
 /area/groundbase/level3/escapepad)
 "oF" = (
-/obj/effect/overmap/visitable/sector,
 /turf/unsimulated/wall/planetary/normal{
 	desc = "It's quite impassable";
 	icon_state = "rock-dark";
@@ -1585,7 +1584,7 @@
 /turf/simulated/wall,
 /area/groundbase/medical/paramedic)
 "zh" = (
-/obj/effect/overmap/visitable/sector/virgo3b,
+/obj/effect/overmap/visitable/sector/virgo3c,
 /turf/unsimulated/wall/planetary/normal{
 	desc = "It's quite impassable";
 	icon_state = "rock-dark";

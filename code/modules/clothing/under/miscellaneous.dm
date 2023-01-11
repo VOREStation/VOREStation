@@ -873,18 +873,6 @@
 	desc = "It is a dark blue cheongsam dress."
 	icon_state = "cheongsam-darkblue"
 
-/obj/item/clothing/under/qipao_colorable
-	name = "qipao"
-	desc = "A traditional Chinese women's garment, typically made from silk."
-	icon_state = "qipao"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/qipao2_colorable
-	name = "slim qipao"
-	desc = "A traditional Chinese women's garment, typically made from silk. This one is fairly slim."
-	icon_state = "qipao2"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
 /obj/item/clothing/under/blazer
 	name = "blue blazer"
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
