@@ -26,6 +26,17 @@
 	siemens_coefficient = 0.9
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/security/modern
+	name = "modernized security officer's jumpsuit"
+	desc = "A recent redesign of the classic Security jumpsuit, featuring sturdy materials, joint padding, one giant zipper, and tight-fitting synthleather."
+	icon_state = "securitymodern"
+	item_state = "securitymodern"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
+	rolled_sleeves = -1
+	worn_state = "securitymodern"
+	icon = 'icons/inventory/uniform/item.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+
 /obj/item/clothing/under/rank/security/turtleneck
 	name = "security turtleneck"
 	desc = "It's a stylish turtleneck made of a robust nanoweave. Nobody said the Law couldn't be fashionable."
