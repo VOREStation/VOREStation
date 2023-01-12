@@ -50,7 +50,7 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	blood_color = "#ff6a00"
 	unavailable_to_build = 1
 	includes_tail = 1
-	whitelisted_to = list("silencedmp5a5")
+	whitelisted_to = list("silencedmp5a5", "cgr")
 
 /obj/item/weapon/disk/limb/white_kryten
 	company = "White Kryten Cybernetics"
