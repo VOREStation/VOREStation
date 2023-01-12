@@ -208,7 +208,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	// blend the individual damage states with our icons
 	for(var/obj/item/organ/external/O in organs)
-		if(isnull(O) || O.is_stump() || O.is_hidden_by_tail())
+		if(isnull(O) || O.is_stump() || O.is_hidden_by_sprite_accessory())
 			continue
 
 		O.update_icon()
@@ -273,7 +273,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			icon_key += "[head.eye_icon]"
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
-		if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
+		if(isnull(part) || part.is_stump() || part.is_hidden_by_sprite_accessory()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 			icon_key += "0"
 			continue
 		if(part)
@@ -338,7 +338,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
 		for(var/obj/item/organ/external/part in organs)
-			if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
+			if(isnull(part) || part.is_stump() || part.is_hidden_by_sprite_accessory()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
 			var/icon/temp = part.get_icon(skeleton)
 
@@ -761,7 +761,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
 		var/obj/item/organ/external/foot/foot = get_organ(f)
-		if(istype(foot) && foot.is_hidden_by_tail()) //If either foot is hidden by the tail, don't render footwear.
+		if(istype(foot) && foot.is_hidden_by_sprite_accessory(clothing_only = TRUE)) //If either foot is hidden by the tail, don't render footwear.
 			return
 
 	//Allow for shoe layer toggle nonsense
