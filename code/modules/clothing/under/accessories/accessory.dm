@@ -524,6 +524,26 @@
 	name = "green neck gaiter"
 	icon_state = "gaiter_green"
 
+/obj/item/clothing/accessory/gaiter/blue
+	name = "blue neck gaiter"
+	icon_state = "gaiter_blue"
+
+/obj/item/clothing/accessory/gaiter/purple
+	name = "purple neck gaiter"
+	icon_state = "gaiter_purple"
+
+/obj/item/clothing/accessory/gaiter/orange
+	name = "orange neck gaiter"
+	icon_state = "gaiter_orange"
+
+/obj/item/clothing/accessory/gaiter/charcoal
+	name = "charcoal neck gaiter"
+	icon_state = "gaiter_charcoal"
+
+/obj/item/clothing/accessory/gaiter/snow
+	name = "white neck gaiter"
+	icon_state = "gaiter_snow"
+
 /*
  * Pride Pins
  */
