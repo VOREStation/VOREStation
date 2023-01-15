@@ -14,7 +14,7 @@
 	var/cleaning = 0
 	var/patient_laststat = null
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane", "anti_toxin", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
-	var/eject_port = "disposal"
+	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
 	var/compactor = FALSE
@@ -51,7 +51,7 @@
 	med_analyzer = new /obj/item/device/healthanalyzer
 
 /obj/item/device/dogborg/sleeper/Destroy()
-	go_out(forced=TRUE)
+	go_out()
 	..()
 
 /obj/item/device/dogborg/sleeper/Exit(atom/movable/O)
@@ -176,7 +176,7 @@
 		var/obj/item/to_eat = ingesting
 		if (is_type_in_list(to_eat, item_vore_blacklist))
 			return
-		if (istype(to_eat, /obj/item/weapon/holder))
+		if (istype(to_eat, /obj/item/weapon/holder)) //just in case
 			var/obj/item/weapon/holder/micro = ingesting
 			var/delete_holder = TRUE
 			for (var/mob/living/M in micro.contents)
@@ -196,13 +196,8 @@
 		return TRUE
 	return FALSE
 
-/obj/item/device/dogborg/sleeper/proc/go_out(var/forced=FALSE)
+/obj/item/device/dogborg/sleeper/proc/go_out()
 	hound = src.loc
-	if (forced == TRUE)
-		eject_port = "disposal"
-	if (eject_port == "ingestion" && (!istype(hound) || !hound.vore_selected))
-		to_chat(hound, "<span class='warning'>You don't have a belly selected for the ingestion port to empty into!</span>")
-		return
 	items_preserved.Cut()
 	cleaning = 0
 	for(var/list/dlist in deliverylists)
@@ -210,9 +205,6 @@
 	if(length(contents) > 0)
 		hound.visible_message("<span class='warning'>[hound.name] empties out their contents via their [eject_port] port.</span>", "<span class='notice'>You empty your contents via your [eject_port] port.</span>")
 		for(var/C in contents)
-			if (eject_port == "ingestion" && (isliving(C) || isitem(C)))
-				ingest_atom(C)
-				continue
 			if(ishuman(C))
 				var/mob/living/carbon/human/person = C
 				person.forceMove(get_turf(src))
@@ -220,10 +212,20 @@
 			else
 				var/obj/T = C
 				T.loc = hound.loc
-		if (eject_port == "ingestion")
-			hound.updateVRPanel() //already checked that it's a hound and not something else
-		else
-			playsound(src, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
+	update_patient()
+
+/obj/item/device/dogborg/sleeper/proc/vore_ingest_all()
+	hound = src.loc
+	if (!istype(hound) || length(contents) <= 0)
+		return
+	if (!hound.vore_selected)
+		to_chat(hound, "<span class='warning'>You don't have a belly selected to empty the contents into!</span>")
+		return
+	for (var/C in contents)
+		if (isliving(C) || isitem(C))
+			ingest_atom(C)
+	hound.updateVRPanel()
 	update_patient()
 
 /obj/item/device/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
@@ -254,21 +256,23 @@
 					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
 
 	dat += "<h3>[name] Status</h3>"
+	dat += "<div style='display: flex; flex-wrap: wrap; flex-direction: row;'>"
 	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
 	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
+	dat += "<A href='?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
 	if(!cleaning)
 		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
-	if(medsensor)
-		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	else
 		dat += "<span class='linkOff'>Self-Clean</span>"
+	if(medsensor)
+		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	if(delivery)
 		dat += "<BR><h3>Cargo Compartment</h3><BR>"
 		dat += "<A href='?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
 		if(islist(deliverylists[delivery_tag]))
 			dat += "<A href='?src=\ref[src];slot_eject=1'>Eject Slot</A>"
-
+	dat += "</div>"
 	dat += "<div class='statusDisplay'>"
 
 	if(!delivery && compactor && length(contents))//garbage counter for trashpup
@@ -342,7 +346,7 @@
 				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"
 	dat += "</div>"
 
-	var/datum/browser/popup = new(user, "sleeper_b", "[name] Console", 400, 500, src)
+	var/datum/browser/popup = new(user, "sleeper_b", "[name] Console", 450, 500, src)
 	popup.set_content(dat)
 	popup.open()
 	UI_open = TRUE
@@ -389,6 +393,10 @@
 				eject_port = "disposal"
 			if("disposal")
 				eject_port = "ingestion"
+		sleeperUI(usr)
+		return
+	if (href_list["ingest"])
+		vore_ingest_all()
 		sleeperUI(usr)
 		return
 	if(href_list["deliveryslot"])
