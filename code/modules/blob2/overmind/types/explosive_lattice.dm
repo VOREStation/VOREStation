@@ -48,6 +48,7 @@
 			M << 'sound/effects/explosionfar.ogg'
 
 	exploding = FALSE
+<<<<<<< HEAD
 
 /datum/blob_type/explosive_lattice/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	var/turf/T = get_turf(B)
@@ -56,3 +57,5 @@
 
 	for(var/mob/living/L in view(1, T))
 		L.add_modifier(/datum/modifier/blastshield, 30 SECONDS)
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

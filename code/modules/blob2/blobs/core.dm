@@ -107,9 +107,12 @@ var/list/blob_cores = list()
 	point_rate = new_rate
 
 /obj/structure/blob/core/Destroy()
+<<<<<<< HEAD
 	var/turf/T = get_turf(src)
 	new /obj/item/weapon/blobcore_chunk(T, overmind.blob_type)
 
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)
 	blob_cores -= src
 	if(overmind)
 		overmind.blob_core = null

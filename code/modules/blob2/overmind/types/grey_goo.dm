@@ -18,6 +18,7 @@
 
 /datum/blob_type/grey_goo/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(20 / severity))
+<<<<<<< HEAD
 
 /datum/blob_type/grey_goo/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	var/turf/T = get_turf(B)
@@ -26,3 +27,5 @@
 			L.adjustBruteLoss(-1)
 			L.adjustFireLoss(-1)
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

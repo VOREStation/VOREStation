@@ -34,7 +34,10 @@
 	if(istype(B, /obj/structure/blob/normal) || (istype(B, /obj/structure/blob/shield) && prob(25)))
 		new_B.forceMove(get_turf(B))
 		B.forceMove(T)
+<<<<<<< HEAD
 
 /datum/blob_type/shifting_fragments/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
 	user.add_modifier(/datum/modifier/sprinting, 2 MINUTES)
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

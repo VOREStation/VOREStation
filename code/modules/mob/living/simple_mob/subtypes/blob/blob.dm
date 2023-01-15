@@ -72,6 +72,7 @@
 		return TRUE
 	return ..()
 
+<<<<<<< HEAD
 /mob/living/simple_mob/blob/IIsAlly(mob/living/L)
 	var/ally = ..(L)
 	if(!ally)
@@ -85,5 +86,7 @@
 
 	return ally
 
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)
 /decl/mob_organ_names/blob
 	hit_zones = list("mass")

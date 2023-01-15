@@ -10,6 +10,7 @@
 	can_build_nodes = FALSE
 	spread_modifier = 1.0
 	ai_aggressiveness = 0
+<<<<<<< HEAD
 
 /datum/blob_type/classic/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
 	var/turf/T = get_turf(B)
@@ -35,3 +36,5 @@
 			blood.update_icon()
 
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

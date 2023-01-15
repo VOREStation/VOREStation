@@ -46,6 +46,7 @@
 			T.wet_floor()
 		for(var/atom/movable/AM in T)
 			AM.water_act(2)
+<<<<<<< HEAD
 
 /datum/blob_type/pressurized_slime/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	wet_surroundings(B, 10)
@@ -54,3 +55,5 @@
 	if(user)
 		user.ExtinguishMob()
 		user.fire_stacks = CLAMP(user.fire_stacks - 1, -25, 25)
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

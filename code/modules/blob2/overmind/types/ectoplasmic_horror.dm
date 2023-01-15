@@ -67,6 +67,7 @@
 			animate(B,alpha = 10, alpha = initial_alpha, time = 10)
 		return 0
 	return ..()
+<<<<<<< HEAD
 
 /datum/blob_type/ectoplasmic_horror/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	var/mob/living/carrier = B.get_carrier()
@@ -126,3 +127,5 @@
 							carrier.add_modifier(/datum/modifier/berserk_exhaustion, total_heal SECONDS)
 							if(!QDELETED(drain_beam))
 								qdel(drain_beam)
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

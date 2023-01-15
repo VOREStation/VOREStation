@@ -31,6 +31,7 @@
 				new/obj/structure/blob/shield(get_turf(B), B.overmind)
 				qdel(B)
 	return ..()
+<<<<<<< HEAD
 
 /datum/blob_type/fabrication_swarm/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(30 / severity))
@@ -42,3 +43,5 @@
 			L.adjustBruteLoss(-1)
 			L.adjustFireLoss(-1)
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

@@ -30,6 +30,7 @@
 		B.blob_attack_animation(attacker, B.overmind)
 		attacker.blob_act(B)
 	return ..()
+<<<<<<< HEAD
 
 // We're expecting 1 to be a target, 2 to be an old move loc, and 3 to be a new move loc.
 /datum/blob_type/reactive_spines/chunk_unique(obj/item/weapon/blobcore_chunk/B, var/list/extra_data = null)
@@ -57,3 +58,5 @@
 /datum/blob_type/reactive_spines/chunk_setup(obj/item/weapon/blobcore_chunk/B)
 	GLOB.moved_event.register_global(B, /obj/item/weapon/blobcore_chunk/proc/call_chunk_unique)
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

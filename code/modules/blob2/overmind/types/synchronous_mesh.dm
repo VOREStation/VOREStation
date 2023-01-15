@@ -41,6 +41,7 @@
 		C.adjust_integrity(-(damage / blobs_to_hurt.len))
 
 	return damage / max(blobs_to_hurt.len, 1) // To hurt the blob that got hit.
+<<<<<<< HEAD
 
 /datum/blob_type/synchronous_mesh/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	var/mob/living/carrier = B.get_carrier()
@@ -70,3 +71,5 @@
 			if(need_beam)
 				carrier.visible_message("<span class='alien'>\icon [B] \The [B] sends noxious spores toward \the [victim]!</span>")
 				carrier.Beam(victim, icon_state = "lichbeam", time = 2 SECONDS)
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

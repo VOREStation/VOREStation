@@ -41,6 +41,7 @@
 		else
 			S.faction = faction
 		S.update_icons()
+<<<<<<< HEAD
 
 /datum/blob_type/fulminant_organism/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
 	for(var/I = 1 to rand(3,4))
@@ -50,3 +51,5 @@
 		S.update_icons()
 		S.ai_holder.forget_everything()
 		S.add_modifier(/datum/modifier/doomed, 2 MINUTES)
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

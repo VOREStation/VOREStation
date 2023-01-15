@@ -37,6 +37,7 @@
 		B.visible_message("<span class='danger'>The dying mass is rapidly consumed by the nearby [other]!</span>")
 		if(other.overmind)
 			other.overmind.add_points(rand(1,4))
+<<<<<<< HEAD
 
 /datum/blob_type/ravenous_macrophage/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	var/mob/living/L = locate() in range(world.view, B)
@@ -48,3 +49,5 @@
 		BS.set_up(3, 0, T)
 		playsound(T, 'sound/effects/smoke.ogg', 50, 1, -3)
 		BS.start()
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

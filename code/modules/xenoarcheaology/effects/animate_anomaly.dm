@@ -18,6 +18,7 @@
 /datum/artifact_effect/animate_anomaly/proc/find_target()
 	var/atom/masterholder = get_master_holder()
 
+<<<<<<< HEAD
 	if(!target || target.z != masterholder.z || get_dist(target, masterholder) > effectrange)
 		var/mob/living/ClosestMob = null
 		for(var/mob/living/L in range(effectrange, get_turf(masterholder)))
@@ -29,6 +30,11 @@
 			if(!L.stat)
 				if(get_dist(masterholder, L) < get_dist(masterholder, ClosestMob))
 					ClosestMob = L
+=======
+/datum/artifact_effect/common/animate_anomaly/ToggleActivate(reveal_toggle = TRUE)
+	. = ..()
+	find_target()
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)
 
 		target = ClosestMob
 

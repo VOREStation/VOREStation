@@ -22,6 +22,7 @@
 	attack_verb = "lashes"
 	spore_projectile = /obj/item/projectile/arc/spore
 	factory_type = /obj/structure/blob/factory/turret
+<<<<<<< HEAD
 
 /datum/blob_type/roiling_mold/proc/find_target(var/obj/structure/blob/B, var/tries = 0, var/list/previous_targets = null)
 	if(tries > 3)
@@ -62,3 +63,5 @@
 		P.launch_projectile(L, BP_TORSO, user)
 
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

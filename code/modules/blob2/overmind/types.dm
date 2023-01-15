@@ -95,6 +95,7 @@
 // Spore handle_special call.
 /datum/blob_type/proc/on_spore_lifetick(mob/living/simple_mob/blob/spore/S)
 	return
+<<<<<<< HEAD
 
 // Blob core chunk process.
 /datum/blob_type/proc/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
@@ -111,3 +112,5 @@
 // Set up the blob type for the chunk.
 /datum/blob_type/proc/chunk_setup(obj/item/weapon/blobcore_chunk/B)
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

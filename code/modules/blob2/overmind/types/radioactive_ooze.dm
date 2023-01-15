@@ -22,6 +22,9 @@
 
 /datum/blob_type/radioactive_ooze/on_pulse(var/obj/structure/blob/B)
 	SSradiation.radiate(B, 200)
+<<<<<<< HEAD
 
 /datum/blob_type/radioactive_ooze/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	SSradiation.radiate(B, rand(25,100))
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

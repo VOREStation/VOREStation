@@ -12,9 +12,15 @@
 
 /datum/artifact_effect/forcefield/ToggleActivate()
 	var/atom/holder = get_master_holder()
+<<<<<<< HEAD
 	..()
 	if(created_field.len)
 		for(var/obj/effect/energy_field/F in created_field)
+=======
+	. = ..()
+	if (created_field.len)
+		for (var/obj/effect/energy_field/F in created_field)
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)
 			created_field.Remove(F)
 			qdel(F)
 	else if(holder)
@@ -28,7 +34,6 @@
 			E.invisibility = 0
 		spawn(10)
 			UpdateMove()
-	return 1
 
 /datum/artifact_effect/forcefield/process()
 	..()

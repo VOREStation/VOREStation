@@ -23,6 +23,7 @@
 /datum/blob_type/energized_jelly/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
 	victim.electrocute_act(10, src, 1, def_zone)
 	victim.stun_effect_act(0, 40, BP_TORSO, src)
+<<<<<<< HEAD
 
 /datum/blob_type/energized_jelly/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
 	for(var/mob/living/L in oview(world.view, get_turf(B)))
@@ -37,3 +38,5 @@
 		P.launch_projectile(L, BP_TORSO, carrier)
 
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

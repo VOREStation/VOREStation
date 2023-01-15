@@ -19,9 +19,20 @@
 		if(env)
 			env.temperature = max(env.temperature - rand(5,50), 0)
 
+<<<<<<< HEAD
 /datum/artifact_effect/cold/DoEffectAura()
+=======
+	var/turf/simulated/T = get_turf(holder)
+	if(istype(T))
+		T.freeze_floor()
+
+/datum/artifact_effect/common/cold/DoEffectAura()
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/datum/gas_mixture/env = holder.loc.return_air()
 		if(env && env.temperature > target_temp)
 			env.temperature -= pick(0, 0, 1)
+	var/turf/simulated/T = get_turf(holder)
+	if(istype(T))
+		T.freeze_floor()

@@ -23,6 +23,7 @@
 /datum/blob_type/blazing_oil/on_water(obj/structure/blob/B, amount)
 	spawn(1)
 		B.adjust_integrity(-(amount * 5))
+<<<<<<< HEAD
 
 /datum/blob_type/blazing_oil/on_pulse(var/obj/structure/blob/B)
 	var/turf/T = get_turf(B)
@@ -45,3 +46,5 @@
 /datum/blob_type/blazing_oil/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
 	user.add_modifier(/datum/modifier/exothermic, 5 MINUTES)
 	return
+=======
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)

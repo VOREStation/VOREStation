@@ -27,7 +27,12 @@
 		/mob/living/simple_mob/animal/space/bear,
 		/mob/living/simple_mob/creature,
 		/mob/living/simple_mob/slime/xenobio,
+<<<<<<< HEAD
 		/mob/living/simple_mob/animal/space/carp)// Vorestation edit
+=======
+		/mob/living/simple_mob/blob/spore/weak,
+		/mob/living/simple_mob/blob/spore/infesting)
+>>>>>>> f473ed9717a... Moves blob chunk effects to artifact effects. (#8783)
 	else
 		spawn_type = pick(\
 		/mob/living/simple_mob/animal/passive/cat,
