@@ -365,7 +365,7 @@
 	icon_state = "cowl"
 	body_parts_covered = 0
 
-/obj/item/clothing/head/cowl
+/obj/item/clothing/head/cowl/white
 	name = "white cowl"
 	desc = "A gold-lined white cowl. It gives off uncomfortable cult vibes, but fancy."
 	icon_state = "whitecowl"
@@ -378,6 +378,25 @@
 	flags_inv = HIDEEYES
 	body_parts_covered = HEAD|EYES
 
+<<<<<<< HEAD
+=======
+/obj/item/clothing/head/nonla
+	name = "non la"
+	desc = "A conical straw hat, used by those in tropical climates to protect the head from sweltering suns and heavy rains."
+	icon_state = "nonla"
+	item_state = "nonla"
+
+/obj/item/clothing/head/buckethat
+	name = "bucket hat"
+	desc = "A hat with an all-around visor. Only slightly better than wearing an actual bucket."
+	icon_state = "buckethat"
+	icon_state = "buckethat"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi'
+		)
+
+>>>>>>> 83eaaa0a4f8... Teshari sprites additions and adjustments (#8869)
 //Corporate Berets
 
 /obj/item/clothing/head/beret/corp/saare

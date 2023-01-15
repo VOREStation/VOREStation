@@ -48,6 +48,15 @@
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0.2* ONE_ATMOSPHERE
 	max_pressure_protection = 20 * ONE_ATMOSPHERE
+<<<<<<< HEAD
+=======
+	icon_state = "atmos_fire"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi'
+		)
+>>>>>>> 83eaaa0a4f8... Teshari sprites additions and adjustments (#8869)
 
 /obj/item/clothing/head/hardhat/firefighter
 	name = "firefighter helmet"
@@ -64,8 +73,14 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MODERATE
 	sprite_sheets = list(
+<<<<<<< HEAD
 		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi',
 		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi'
+=======
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi'
+>>>>>>> 83eaaa0a4f8... Teshari sprites additions and adjustments (#8869)
 		)
 
 /obj/item/clothing/head/hardhat/firefighter/atmos

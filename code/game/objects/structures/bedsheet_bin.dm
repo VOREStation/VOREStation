@@ -18,6 +18,8 @@ LINEN BINS
 	w_class = ITEMSIZE_SMALL
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi')
 
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()

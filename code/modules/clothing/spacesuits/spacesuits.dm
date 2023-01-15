@@ -23,6 +23,7 @@
 	preserve_item = 1
 	flash_protection = FLASH_PROTECTION_MAJOR
 	valid_accessory_slots = null
+	allow_hair_toggle = FALSE
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
