@@ -3,7 +3,7 @@
 /datum/lore/codex/category/main_corp_regs // The top-level categories for SOP/Regs/Law/etc
 	name = "Index"
 	data = "This book is meant to act as a reference for both NanoTrasen regulations, Standard Operating Procedure, and important laws of both \
-	the Sif Governmental Authority and the Solar Confederate Government. The legal interactions between Nanotrasen corporate policy and VGA/SolGov \
+	the Vir Governmental Authority and the Solar Confederate Government. The legal interactions between Nanotrasen corporate policy and VGA/SolGov \
 	law can make for some confusing legalese.  This book was written by the Vir division of NanoTrasen in order for employees, visitors, and residents \
 	at NanoTrasen installations such as the Northen Star and the Southen Cross to know what isn't allowed, without needing to be a lawyer to read it.\
 	<br><br>\

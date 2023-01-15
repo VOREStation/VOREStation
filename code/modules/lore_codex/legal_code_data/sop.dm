@@ -116,7 +116,7 @@
 	Internal Affairs Agents are to work with the Command crew when possible.  An agent is to not go above the authority of the Command crew unless said Command crew \
 	member is involved, or otherwise unable to assist in the matter.  Any member of the crew can be subject to an Internal Affairs investigation.  This includes \
 	the Command crew and other Internal Affairs agents.  If the Internal Affairs investigation reveals wrongdoing, including SOP breach, the investigated party is to \
-	be punished according to Corporate Regulations or Sif Law, whichever is applicable, or from orders from Central Command."
+	be punished according to Corporate Regulations or Vir Law, whichever is applicable, or from orders from Central Command."
 
 /datum/lore/codex/page/engineering_sop
 	name = "Engineering SOP"

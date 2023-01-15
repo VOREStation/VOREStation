@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
 var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply") // Vorestation Edit
 var/list/alldepartments = list()
+=======
+var/global/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
+var/global/list/admin_departments = list("[using_map.boss_name]", "Vir Governmental Authority", "Supply")
+var/global/list/alldepartments = list()
+>>>>>>> d212ca1a926... Merge pull request #8881 from Cerebulon/no-sga
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
@@ -216,8 +222,13 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	// Sadly, we can't use a switch statement here due to not using a constant value for the current map's centcom name.
 	if(destination == using_map.boss_name)
 		message_admins(sender, "[uppertext(using_map.boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
+<<<<<<< HEAD
 	else if(destination == "Virgo-Prime Governmental Authority") // Vorestation Edit
 		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0") // Vorestation Edit
+=======
+	else if(destination == "Vir Governmental Authority")
+		message_admins(sender, "VIR GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
+>>>>>>> d212ca1a926... Merge pull request #8881 from Cerebulon/no-sga
 	else if(destination == "Supply")
 		message_admins(sender, "[uppertext(using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else
@@ -253,11 +264,14 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			to_chat(C,msg)
 			C << 'sound/machines/printer.ogg'
 
+<<<<<<< HEAD
 	// VoreStation Edit Start
 	var/faxid = export_fax(sent)
 	message_chat_admins(sender, faxname, sent, faxid, font_colour)
 	// VoreStation Edit End
 
+=======
+>>>>>>> d212ca1a926... Merge pull request #8881 from Cerebulon/no-sga
 	// Webhooks don't parse the HTML on the paper, so we gotta strip them out so it's still readable.
 	var/summary = make_summary(sent)
 	summary = paper_html_to_plaintext(summary)

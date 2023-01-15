@@ -1,6 +1,6 @@
 /datum/lore/codex/category/sif_law
-	name = "Sif Law"
-	data = "This section contains the abbreviated Sif Govermental Authority legal code's potential charges for crimes that are relevant to \
+	name = "Vir Law"
+	data = "This section contains the abbreviated Vir Govermental Authority legal code's potential charges for crimes that are relevant to \
 	the reader."
 	children = list(
 		/datum/lore/codex/page/legal_punishments,
@@ -10,16 +10,16 @@
 
 /datum/lore/codex/page/legal_punishments
 	name = "Punishments (Law)"
-	data = "A violation of Sif Law is considered far more serious then a violation of corporate regulations. \
+	data = "A violation of Vir Law is considered far more serious than a violation of corporate regulations. \
 	As a result, its expected that a member of Internal Affairs be present to observe and assist security with the paperwork if they are able. \
-	Unlike Corporate Regulations, all violations of Sif Law will require a fax detailing the events to be sent to the \
-	Sif Governmental Authority within a certain amount of time based on whether or not it was a minor or major violation. \
+	Unlike Corporate Regulations, all violations of Vir Law will require a fax detailing the events to be sent to the \
+	Vir Governmental Authority within a certain amount of time based on whether or not it was a minor or major violation. \
 	Punishments will usually include brig time with fines still remaining an option for the far less serious crimes. \
 	It should be noted that a majority of major violations carry a 'Hold till Transfer' order."
 
 /datum/lore/codex/category/law_minor_violations
 	name = "Minor Violations (Law)"
-	data = "Here is a list of the less severe violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
+	data = "Here is a list of the less severe violations of local Vir Law that might occur on your facility.  A fax to the Vir Governmental Authority \
 	is required to be sent within 24 hours of a violation being comitted, for minor violations listed here."
 	children = list(
 		/datum/lore/codex/page/law/theft,
@@ -106,7 +106,7 @@
 
 /datum/lore/codex/category/law_major_violations
 	name = "Major Violations (Law)"
-	data = "Here is a list of the serious violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
+	data = "Here is a list of the serious violations of local Vir Law that might occur on your facility.  A fax to the Vir Governmental Authority \
 	is required to be sent within one hour, or when it is safe to do so, for major crimes listed here."
 	children = list(
 		/datum/lore/codex/page/law/aggravated_battery,
