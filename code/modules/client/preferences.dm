@@ -325,11 +325,11 @@ var/list/preferences_datums = list()
 
 	if(!istype(user, /mob/new_player))	return
 
-	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
-			user << link(config.forumurl)
+	if(href_list["preference"] == "open_whitelist_discord")
+		if(config.discordurl)
+			user << link(config.discordurl)
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			to_chat(user, "<span class='danger'>The Discord server invite is not set in the server configuration.</span>")
 			return
 	ShowChoices(usr)
 	return 1
