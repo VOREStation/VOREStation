@@ -13,7 +13,7 @@
 	var/group_multiplier = 1
 
 	//List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
-	var/list/graphic
+	var/list/graphic = list()
 
 	var/list/tile_overlay_cache
 
