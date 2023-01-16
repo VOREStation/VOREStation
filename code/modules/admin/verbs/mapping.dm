@@ -199,7 +199,7 @@ var/list/debug_verbs = list (
 	var/icon/yellow = new('icons/misc/debug_group.dmi', "yellow")
 
 	for(var/turf/T in Z.contents)
-		images += image(yellow, T, "zasdebug", TURF_LAYER)
+		images += image(yellow, T, "zasdebug", PLANE_ADMIN2)
 		testZAScolors_turfs += T
 	for(var/connection_edge/zone/edge in Z.edges)
 		var/zone/connected = edge.get_connected_zone(Z)
@@ -235,7 +235,7 @@ var/list/debug_verbs = list (
 
 	testZAScolors_zones += location.zone
 	for(var/turf/T in location.zone.contents)
-		images += image(green, T,"zasdebug", TURF_LAYER)
+		images += image(green, T,"zasdebug", PLANE_ADMIN2)
 		testZAScolors_turfs += T
 	for(var/connection_edge/zone/edge in location.zone.edges)
 		var/zone/Z = edge.get_connected_zone(location.zone)
@@ -254,7 +254,7 @@ var/list/debug_verbs = list (
 			continue
 		if(T in testZAScolors_turfs)
 			continue
-		images += image(red, T, "zasdebug", TURF_LAYER)
+		images += image(red, T, "zasdebug", PLANE_ADMIN2)
 		testZAScolors_turfs += T
 
 /client/proc/testZAScolors_remove()

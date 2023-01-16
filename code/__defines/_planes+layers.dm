@@ -71,6 +71,7 @@ What is the naming convention for planes or layers?
 	#define UNDERWATER_LAYER	2.5 // Anything on this layer will render under the water layer.
 	#define WATER_LAYER			3.0 // Layer for water overlays.
 	#define ABOVE_TURF_LAYER	3.1	// Snow and wallmounted/floormounted equipment
+	#define GASFIRE_LAYER		5.05 // Any gas fires that occur use this layer.
 #define DECAL_PLANE				-44 // Permanent decals
 	#define DECAL_LAYER			10
 #define DIRTY_PLANE				-43 // Nonpermanent decals
