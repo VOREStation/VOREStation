@@ -4176,7 +4176,6 @@
 #include "maps\expedition_vr\beach\submaps\mountains.dm"
 #include "maps\expedition_vr\beach\submaps\mountains_areas.dm"
 #include "maps\gateway_archive_vr\blackmarketpackers.dm"
-#include "maps\groundbase\groundbase.dm"
 #include "maps\offmap_vr\om_ships\abductor.dm"
 #include "maps\offmap_vr\om_ships\lunaship.dm"
 #include "maps\southern_cross\items\clothing\sc_accessory.dm"
@@ -4194,5 +4193,6 @@
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
+#include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
