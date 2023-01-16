@@ -71,3 +71,9 @@
 /datum/category_item/underwear/top/straplessbinder
 	name = "Binder Strapless"
 	icon_state = "straplessbinder_s"
+
+/datum/category_item/underwear/top/onesleeve
+	name = "One Sleeve"
+	icon_state = "onesleeve"
+	has_color = TRUE
+
