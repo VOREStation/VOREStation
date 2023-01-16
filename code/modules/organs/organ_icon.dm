@@ -95,8 +95,6 @@ var/global/list/limb_icon_cache = list()
 			icon = mob_icon
 			return mob_icon
 
-	to_world("override fail")
-
 	var/gender = "m"
 	if(owner && owner.gender == FEMALE)
 		gender = "f"
