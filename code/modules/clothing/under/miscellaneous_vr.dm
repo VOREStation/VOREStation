@@ -468,3 +468,23 @@
 	name = "yellow-green feminine jumpsuit"
 	icon_state = "yellowgreen"
 	worn_state = "yellowgreenf"
+
+/obj/item/clothing/under/qipao_colorable
+	name = "qipao"
+	desc = "A traditional Chinese women's garment, typically made from silk."
+	icon = 'icons/inventory/uniform/item.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "qipao3"
+	item_state = "qipao3"
+	worn_state = "qipao3"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/qipao2_colorable
+	name = "slim qipao"
+	desc = "A traditional Chinese women's garment, typically made from silk. This one is fairly slim."
+	icon = 'icons/inventory/uniform/item.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "qipao2"
+	item_state = "qipao2"
+	worn_state = "qipao2"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO

@@ -42,6 +42,8 @@
 	/// Should this sprite block emissives?
 	var/em_block = FALSE
 
+	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
+
 /*
 ////////////////////////////
 /  =--------------------=  /

@@ -469,7 +469,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(location)
 		if("Right Here") //Spawn them on your turf
 			spawnloc = get_turf(src.mob)
-			showy = tgui_alert(src,"Showy entrance?", "Showy", list("No", "Telesparks", "Drop Pod", "Cancel"))
+			showy = tgui_input_list(src,"Showy entrance?", "Showy", list("No", "Telesparks", "Drop Pod", "Fall", "Cancel"))
 			if(showy == "Cancel")
 				return
 			if(showy == "Drop Pod")
@@ -559,7 +559,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	// Drop pods
+	// Drop pods and fall
 	if(showy == "Polite")
 		var/turf/T = get_turf(new_character)
 		new /obj/structure/drop_pod/polite(T, new_character)
@@ -568,7 +568,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/turf/T = get_turf(new_character)
 		new /obj/structure/drop_pod(T, new_character)
 		to_chat(new_character, "Please wait for your arrival.")
-	else
+	else if(showy == "Fall")
+		spawn(1)
+			var/initial_x = new_character.pixel_x
+			var/initial_y = new_character.pixel_y
+			new_character.plane = 1
+			new_character.pixel_x = rand(-150, 150)
+			new_character.pixel_y = 500 // When you think that pixel_z is height but you are wrong
+			new_character.density = FALSE
+			new_character.opacity = FALSE
+			animate(new_character, pixel_y = initial_y, pixel_x = initial_x , time = 7)
+			spawn(7)
+				new_character.end_fall()
 		to_chat(new_character, "You have been fully spawned. Enjoy the game.")
 
 	return new_character

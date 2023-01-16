@@ -306,3 +306,9 @@ Talon jumpsuit
 		var/obj/item/clothing/under/color/fjumpsuit/jumpsuit = jumpsuit_style
 		jumpsuits[initial(jumpsuit.name)] = jumpsuit
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpsuits))
+
+//Modernized Sec Jumpsuit
+/datum/gear/uniform/modernsec
+    display_name = "undersuit, security, modernized (Security)"
+    allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+    path = /obj/item/clothing/under/rank/security/modern
