@@ -38,11 +38,17 @@
 	icon_state = "dirt"
 	mouse_opacity = 0
 
-/obj/effect/decal/cleanable/Initialize(var/mapload, var/_age, var/dirt)
+/obj/effect/decal/cleanable/dirt/Initialize(var/mapload, var/_age, var/dirt)
 	.=..()
 	var/turf/simulated/our_turf = src.loc
-	if(dirt && our_turf && istype(our_turf) && our_turf.can_dirty)
-		our_turf.dirt = dirt
+	if(our_turf && istype(our_turf) && our_turf.can_dirty)
+		our_turf.dirt = clamp(max(age ? (dirt ? dirt : 101) : our_turf.dirt, our_turf.dirt), 0, 101)
+		var/calcalpha = our_turf.dirt > 50 ? min((our_turf.dirt - 50) * 5, 255) : 0
+		var/obj/effect/decal/cleanable/dirt/alreadythere = locate(/obj/effect/decal/cleanable/dirt, our_turf)
+		if (alreadythere)
+			alreadythere.alpha = calcalpha
+			return INITIALIZE_HINT_QDEL
+		alpha = calcalpha
 
 /obj/effect/decal/cleanable/flour
 	name = "flour"
