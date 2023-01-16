@@ -338,7 +338,6 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
-	var/list/cur_graphic = graphic // Cache for sanic speed
 	for(var/g in gas_data.overlay_limit)
 		//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 		if(gas[g] > gas_data.overlay_limit[g])
