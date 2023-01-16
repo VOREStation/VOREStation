@@ -561,6 +561,13 @@
 	ckeywhitelist = list("jemli")
 	character_name = list("Jemli")
 
+/datum/gear/fluff/fen_crown
+	path = /obj/item/clothing/head/crown
+	display_name = "Princess Crown"
+	slot = slot_head
+	ckeywhitelist = list("jemli")
+	character_name = list("Princess Afenia")
+
 /datum/gear/fluff/jeremiah_holster
 	path = /obj/item/clothing/accessory/holster/armpit
 	display_name = "Ace's Holster"
