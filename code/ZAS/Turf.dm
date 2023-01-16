@@ -70,14 +70,9 @@
 	if(!zone)
 		return TRUE
 
-	var/check_dirs = get_zone_neighbours(src)
+	var/check_dirs
+	GET_ZONE_NEIGHBOURS(src, check_dirs)
 	var/unconnected_dirs = check_dirs
-
-	#ifdef MULTIZAS
-	var/to_check = cornerdirsz
-	#else
-	var/to_check = cornerdirs
-	#endif
 
 	//src is only connected to the zone by a single direction, this is a safe removal.
 	if (!(. & (. - 1)))
@@ -97,21 +92,8 @@
 			if(connected_dirs && (dir & GLOB.reverse_dir[connected_dirs]) == dir)
 				. &= ~dir //they are, so unflag the cardinals in question
 
+	//it is safe to remove src from the zone if all cardinals are connected by corner turfs
 	return !.
-
-//helper for can_safely_remove_from_zone()
-/turf/simulated/proc/get_zone_neighbours(turf/simulated/T)
-	. = 0
-	if(istype(T) && T.zone)
-		#ifdef MULTIZAS
-		var/to_check = cardinalz
-		#else
-		var/to_check = cardinal
-		#endif
-		for(var/dir in to_check)
-			var/turf/simulated/other = get_step(T, dir)
-			if(istype(other) && other.zone == T.zone && !(other.c_airblock(T) & AIR_BLOCKED) && get_dist(src, other) <= 1)
-				. |= dir
 
 /turf/simulated/update_air_properties()
 
