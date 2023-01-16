@@ -38,11 +38,11 @@
 	icon_state = "dirt"
 	mouse_opacity = 0
 
-/obj/effect/decal/cleanable/Initialize(var/mapload, var/_age)
+/obj/effect/decal/cleanable/dirt/Initialize(var/mapload, var/_age, var/dirt)
 	.=..()
 	var/turf/simulated/our_turf = src.loc
-	if(our_turf && istype(our_turf) && our_turf.can_dirty && _age)
-		our_turf.dirt = 101
+	if(dirt && our_turf && istype(our_turf) && our_turf.can_dirty)
+		our_turf.dirt = dirt
 
 /obj/effect/decal/cleanable/flour
 	name = "flour"
