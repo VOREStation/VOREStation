@@ -84,7 +84,6 @@ var/global/list/limb_icon_cache = list()
 	for(var/M in markings)
 		var/datum/sprite_accessory/marking/mark = markings[M]["datum"]
 		if(mark.organ_override)
-			to_world("override success")
 			var/icon/mark_s = new/icon("icon" = mark.icon, "icon_state" = "[mark.icon_state]-[organ_tag]")
 			mob_icon = new /icon("icon" = mark.icon, "icon_state" = "blank")
 			mark_s.Blend(markings[M]["color"], mark.color_blend_mode) // VOREStation edit
@@ -94,8 +93,6 @@ var/global/list/limb_icon_cache = list()
 			dir = EAST
 			icon = mob_icon
 			return mob_icon
-
-	to_world("override fail")
 
 	var/gender = "m"
 	if(owner && owner.gender == FEMALE)
