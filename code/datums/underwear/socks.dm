@@ -187,5 +187,5 @@
 	icon_state = "trans_thigh"
 
 /datum/category_item/underwear/socks/rippedpantyhose
-	name = "Ripped Pantyhose"
+	name = "Pantyhose, Ripped"
 	icon_state = "rippedpantyhose"
