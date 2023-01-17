@@ -44,9 +44,16 @@
 	if(our_turf && istype(our_turf) && our_turf.can_dirty)
 		our_turf.dirt = clamp(max(age ? (dirt ? dirt : 101) : our_turf.dirt, our_turf.dirt), 0, 101)
 		var/calcalpha = our_turf.dirt > 50 ? min((our_turf.dirt - 50) * 5, 255) : 0
-		var/obj/effect/decal/cleanable/dirt/alreadythere = locate(/obj/effect/decal/cleanable/dirt, our_turf)
-		if (alreadythere && alreadythere != src)
-			alreadythere.alpha = calcalpha
+		var/alreadyfound = FALSE
+		for (var/obj/effect/decal/cleanable/dirt/alreadythere in our_turf) //in case of multiple
+			if (alreadythere == src)
+				continue
+			else if (alreadyfound)
+				qdel(alreadythere)
+				continue
+			alreadyfound = TRUE
+			alreadythere.alpha = calcalpha //don't need to constantly recalc for all of them in it because it'll just max if a non-persistent dirt overlay gets added, and then the new dirt overlay will be deleted
+		if (alreadyfound)
 			return INITIALIZE_HINT_QDEL
 		alpha = calcalpha
 
