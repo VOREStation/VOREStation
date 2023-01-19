@@ -254,7 +254,7 @@
 	default_worn_icon = 'icons/inventory/head/mob_vr_altevian.dmi'
 	icon_state = "rig0-heartbreaker"
 
-	armor = list(melee = 70, bullet = 60, laser = 60, energy = 30, bomb = 80, bio = 100, rad = 40)
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 30, bomb = 80, bio = 100, rad = 40)
 
 	species_restricted = list(SPECIES_ALTEVIAN)
 	no_cycle = TRUE
