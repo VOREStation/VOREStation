@@ -79,4 +79,3 @@
 	icon_state = "ice"
 	desc = "Looks slippery."
 	movement_cost = 4
-	edge_blending_priority = 0
