@@ -3456,6 +3456,7 @@
 #include "code\modules\persistence\serialize.dm"
 #include "code\modules\persistence\datum\persistence_datum.dm"
 #include "code\modules\persistence\effects\filth.dm"
+#include "code\modules\persistence\effects\filth_vr.dm"
 #include "code\modules\persistence\effects\graffiti.dm"
 #include "code\modules\persistence\effects\paper.dm"
 #include "code\modules\persistence\effects\paper_sticky.dm"
