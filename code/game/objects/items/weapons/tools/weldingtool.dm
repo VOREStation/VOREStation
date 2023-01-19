@@ -91,13 +91,9 @@
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
 			remove_fuel(1, user)
-<<<<<<< HEAD
-			return 1
+			return TRUE
 		else
-			return 1 //Stops you from accidentally harming someone while on help intent.
-=======
-		return TRUE
->>>>>>> 02c3aebf2a3... Repairing light robotic damage messaging fix (#8870)
+			return TRUE //Stops you from accidentally harming someone while on help intent.
 
 	return ..()
 
