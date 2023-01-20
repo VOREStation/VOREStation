@@ -97,7 +97,8 @@
 	result = rand(1, sides)
 	if(loaded)
 		if(cheater)
-			result = loaded
+			if(prob(90))
+				result = loaded
 		else if(prob(75)) //makeshift weighted dice don't always work
 			result = loaded
 	icon_state = "[name][result]"
@@ -201,5 +202,3 @@
 	..()
 	for(var/i = 1 to 5)
 		new /obj/item/weapon/dice( src )
-
-//Loaded d6
