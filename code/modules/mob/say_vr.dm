@@ -346,7 +346,6 @@
 	var/list/m_viewers = in_range["mobs"]
 
 	for(var/mob/M as anything in m_viewers)
-		spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 		if(M)
 			if(isobserver(M))
 				message = "[message] ([ghost_follow_link(src, M)])"
