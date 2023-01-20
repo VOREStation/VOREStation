@@ -4,7 +4,6 @@
 	b_skin = 179
 
 	var/vantag_pref = VANTAG_NONE //What's my status?
-	var/impersonate_bodytype //For impersonating a bodytype
 	var/ability_flags = 0	//Shadekin abilities/potentially other species-based?
 	var/sensorpref = 5		//Suit sensor loadout pref
 	var/wings_hidden = FALSE
