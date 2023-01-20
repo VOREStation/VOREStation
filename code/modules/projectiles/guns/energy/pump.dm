@@ -185,6 +185,7 @@
 	phase_power = 150 //efficient crank charger
 	fire_sound = null
 	charge_cost = 600
+	fire_delay = 35
 
 	projectile_type = /obj/item/projectile/beam/sniper
 	modifystate = "phrifledmr"
