@@ -27482,7 +27482,6 @@
 	name = "Observer-Start"
 	},
 /obj/machinery/hologram/holopad,
-/obj/structure/flora/tree/pine/xmas/presents,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aUr" = (
