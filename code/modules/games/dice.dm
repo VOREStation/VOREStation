@@ -6,10 +6,47 @@
 	w_class = ITEMSIZE_TINY
 	var/sides = 6
 	var/result = 6
+	var/loaded = null //Set to an integer when the die is loaded
+	var/cheater = FALSE //TRUE if the die is able to be weighted by hand
+	var/tamper_proof = FALSE //Set to TRUE if the die needs to be unable to be weighted, such as for events
 	attack_verb = list("diced")
 
 /obj/item/weapon/dice/New()
 	icon_state = "[name][rand(1,sides)]"
+
+/obj/item/weapon/dice/attackby(obj/item/weapon/W, mob/user)
+	..()
+	if(istype(W, /obj/item/weapon/weldingtool) || istype(W, /obj/item/weapon/flame/lighter))
+		if(cheater)
+			to_chat(user, "<span class='warning'>Wait, this [name] is already weighted!</span>")
+		else if(tamper_proof)
+			to_chat(user, "<span class='warning'>This [name] is proofed against tampering!</span>")
+		else
+			var/to_weight = input("What should the [name] be weighted towards? You can't undo this later, only change the number!","Set the desired result") as null|num
+			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides)) //You must input a number higher than 0 and no greater than the number of sides
+				return 0
+			else
+				to_chat(user, "You partially melt the [name], weighting it towards [to_weight]...")
+				desc = "[initial(desc)] It looks a little misshapen, somehow..."
+				loaded = to_weight
+
+/obj/item/weapon/dice/AltClick(mob/user)
+	..()
+	if(cheater)
+		if(!loaded)
+			var/to_weight = input("What should the [name] be weighted towards?","Set the desired result") as null|num
+			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides) ) //You must input a number higher than 0 and no greater than the number of sides
+				return 0
+			else
+				to_chat(user, "You sneakily set the [name] to land on [to_weight]...")
+				loaded = to_weight
+		else
+			to_chat(user, "You set the [name] to roll randomly again.")
+			loaded = null
+
+/obj/item/weapon/dice/loaded
+	description_info = "This is a loaded die! To change the number it's weighted to, alt-click it. To put it back to normal, alt-click it again."
+	cheater = TRUE
 
 /obj/item/weapon/dice/d4
 	name = "d4"
@@ -58,6 +95,11 @@
 
 /obj/item/weapon/dice/proc/rollDice(mob/user as mob, var/silent = 0)
 	result = rand(1, sides)
+	if(loaded)
+		if(cheater)
+			result = loaded
+		else if(prob(75)) //makeshift weighted dice don't always work
+			result = loaded
 	icon_state = "[name][result]"
 
 	if(!silent)
@@ -159,3 +201,5 @@
 	..()
 	for(var/i = 1 to 5)
 		new /obj/item/weapon/dice( src )
+
+//Loaded d6
