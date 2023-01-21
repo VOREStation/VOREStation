@@ -1,5 +1,5 @@
 /**
- * Stuff having to do with inter-round persistence. 
+ * Stuff having to do with inter-round persistence.
  */
 
 // Minds represent IC characters.
@@ -175,26 +175,7 @@
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(!istype(character)) return
-	var/list/new_body_markings = list()
-	for(var/N in character.organs_by_name)
-		var/obj/item/organ/external/O = character.organs_by_name[N]
-		if(!O) continue // Skip missing limbs!
-
-		for(var/name in O.markings)
-			// Expected to be list("color" = mark_color, "datum" = mark_datum). Sanity checks to ensure it.
-			var/list/ML = O.markings[name]
-			var/datum/sprite_accessory/marking/mark_datum = ML["datum"]
-			var/mark_color = ML["color"]
-			if(!istype(mark_datum) || !mark_color)
-				log_debug("[character]'s organ [O] ([O.type]) has marking [list2params(ML)] with invalid/missing color/datum!")
-				continue;
-			if(!(mark_datum.name in body_marking_styles_list))
-				log_debug("[character]'s organ [O] ([O.type]) has marking [mark_datum] which is not in body_marking_styles_list!")
-				continue;
-			// Note: Since datums can cover multiple organs, we may encounter it multiple times, but this is okay
-			// because you're only allowed to have each marking type once! If this assumption changes, obviously update this. ~Leshana
-			new_body_markings[mark_datum.name] = mark_color
-	prefs.body_markings = new_body_markings // Overwrite with new list!
+	prefs.body_markings = character.get_prioritised_markings() // Overwrite with new list!
 
 /**
 * Resolve any surplus/deficit in nutrition's effet on weight all at once.
