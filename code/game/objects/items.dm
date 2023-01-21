@@ -644,8 +644,9 @@ var/list/global/slot_flags_enumeration = list(
 		generate_blood_overlay()
 
 	//Make the blood_overlay have the proper color then apply it.
-	blood_overlay.color = blood_color
-	add_overlay(blood_overlay)
+	if(blood_overlay)
+		blood_overlay.color = blood_color
+		add_overlay(blood_overlay)
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))

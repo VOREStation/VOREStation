@@ -470,8 +470,6 @@
 #define COMSIG_TOOL_START_USE "tool_start_use"
 ///from [/obj/item/proc/disableEmbedding]:
 #define COMSIG_ITEM_DISABLE_EMBED "item_disable_embed"
-///from [/obj/effect/mine/proc/triggermine]:
-#define COMSIG_MINE_TRIGGERED "minegoboom"
 
 // /obj/item signals for economy
 ///called when an item is sold by the exports subsystem

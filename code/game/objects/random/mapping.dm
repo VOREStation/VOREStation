@@ -135,18 +135,23 @@
 /obj/random/landmine
 	name = "Random Land Mine"
 	desc = "This is a random land mine."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "uglymine"
+	icon = 'icons/obj/mine.dmi'
+	icon_state = "mine"
 	spawn_nothing_percentage = 25
 
 /obj/random/landmine/item_to_spawn()
-	return pick(prob(30);/obj/effect/mine,
-				prob(25);/obj/effect/mine/frag,
-				prob(25);/obj/effect/mine/emp,
-				prob(15);/obj/effect/mine/camo,
-				prob(15);/obj/effect/mine/emp/camo,
-				prob(10);/obj/effect/mine/stun,
-				prob(10);/obj/effect/mine/incendiary,)
+	return pick(
+		prob(60);/obj/item/mine,
+		prob(50);/obj/item/mine/emp,
+		prob(25);/obj/item/mine/frag,
+		prob(10);/obj/item/mine/stun,
+		prob(10);/obj/item/mine/incendiary
+	)
+
+/obj/random/landmine/spawn_item()
+	var/obj/item/mine/mine = ..()
+	if(istype(mine))
+		mine.prime()
 
 /obj/random/humanoidremains
 	name = "Random Humanoid Remains"
