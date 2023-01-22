@@ -29,28 +29,52 @@ export const CharacterDirectory = (props, context) => {
 
   const [overlay, setOverlay] = useLocalState(context, 'overlay', null);
 
+  const [overwritePrefs, setOverwritePrefs] = useLocalState(context, 'overwritePrefs', false);
+
   return (
     <Window width={640} height={480} resizeable>
       <Window.Content scrollable>
         {(overlay && <ViewCharacter />) || (
           <Fragment>
-            <Section title="Controls">
+            <Section
+              title="Controls"
+              buttons={
+                <Fragment>
+                  <Box color="label" inline>
+                    Save to current preferences slot:&nbsp;
+                  </Box>
+                  <Button
+                    icon={overwritePrefs ? 'toggle-on' : 'toggle-off'}
+                    selected={overwritePrefs}
+                    content={overwritePrefs ? 'On' : 'Off'}
+                    onClick={() => setOverwritePrefs(!overwritePrefs)}
+                  />
+                </Fragment>
+              }>
               <LabeledList>
                 <LabeledList.Item label="Visibility">
                   <Button
                     fluid
                     content={personalVisibility ? 'Shown' : 'Not Shown'}
-                    onClick={() => act('setVisible')}
+                    onClick={() => act('setVisible', { overwrite_prefs: overwritePrefs })}
                   />
                 </LabeledList.Item>
                 <LabeledList.Item label="Vore Tag">
-                  <Button fluid content={personalTag} onClick={() => act('setTag')} />
+                  <Button
+                    fluid
+                    content={personalTag}
+                    onClick={() => act('setTag', { overwrite_prefs: overwritePrefs })}
+                  />
                 </LabeledList.Item>
                 <LabeledList.Item label="ERP Tag">
-                  <Button fluid content={personalErpTag} onClick={() => act('setErpTag')} />
+                  <Button
+                    fluid
+                    content={personalErpTag}
+                    onClick={() => act('setErpTag', { overwrite_prefs: overwritePrefs })}
+                  />
                 </LabeledList.Item>
                 <LabeledList.Item label="Advertisement">
-                  <Button fluid content="Edit Ad" onClick={() => act('editAd')} />
+                  <Button fluid content="Edit Ad" onClick={() => act('editAd', { overwrite_prefs: overwritePrefs })} />
                 </LabeledList.Item>
               </LabeledList>
             </Section>
