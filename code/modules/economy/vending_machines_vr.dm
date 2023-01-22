@@ -1165,7 +1165,8 @@
 					/obj/item/weapon/deck/schnapsen = 100,
 					/obj/item/weapon/deck/egy = 100)
 	premium = list(/obj/item/toy/bosunwhistle = 1)
-	contraband = list(/obj/item/toy/katana = 1)
+	contraband = list(/obj/item/toy/katana = 1,
+					/obj/item/weapon/dice/loaded = 5)
 
 /obj/machinery/vending/loadout/overwear
 	name = "Big D's Best"
