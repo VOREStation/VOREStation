@@ -797,15 +797,8 @@
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return 0
 
-<<<<<<< HEAD
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in internal_organs)
-		return 0
-	return ..()
-=======
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	return !(W in internal_organs) && ..()
->>>>>>> 4071bd7a6c6... Merge pull request #8892 from MistakeNot4892/drakes2
 
 /mob/living/touch_map_edge()
 
