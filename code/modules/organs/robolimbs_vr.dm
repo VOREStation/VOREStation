@@ -82,3 +82,19 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 
 /obj/item/weapon/disk/limb/cyber_beast
 	company = "Cyber Tech"
+
+/datum/robolimb/zenghu_glacier
+	company = "Zeng-Hu Glacier"
+	desc = "This limb has a rubbery white covering with visible seams."
+	icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_glacier_main.dmi'
+	species_alternates = list(SPECIES_TAJ = "Zeng-Hu - Tajaran")
+	unavailable_to_build = 1
+	skin_tone = 1
+	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC
+
+/datum/robolimb/zenghu_taj_glacier
+	company = "Zeng-Hu Glacier - Tajaran"
+	desc = "This limb has a rubbery white covering with visible seams."
+	icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_glacier_taj.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)

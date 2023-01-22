@@ -240,7 +240,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr_altevian.dmi'
 	icon_state = "rig-heartbreaker"
 
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 80)
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 30, bomb = 80, bio = 100, rad = 40)
 
 	species_restricted = list(SPECIES_ALTEVIAN)
 	no_cycle = TRUE
@@ -254,7 +254,7 @@
 	default_worn_icon = 'icons/inventory/head/mob_vr_altevian.dmi'
 	icon_state = "rig0-heartbreaker"
 
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 80)
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 30, bomb = 80, bio = 100, rad = 40)
 
 	species_restricted = list(SPECIES_ALTEVIAN)
 	no_cycle = TRUE

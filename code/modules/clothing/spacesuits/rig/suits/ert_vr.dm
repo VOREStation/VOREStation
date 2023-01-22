@@ -10,4 +10,4 @@
 		)
 
 /obj/item/weapon/rig/ert/assetprotection
-	armor = list(melee = 80, bullet = 65, laser = 50, energy = 15, bomb = 80, bio = 100, rad = 60)
+	armor = list(melee = 80, bullet = 70, laser = 60, energy = 15, bomb = 80, bio = 100, rad = 60)

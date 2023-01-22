@@ -2905,3 +2905,15 @@
 				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert("mech damage")
+
+/obj/mecha/blob_act(var/obj/structure/blob/B)
+	var/datum/blob_type/blob = B?.overmind?.blob_type
+	if(!istype(blob))
+		return FALSE
+
+	var/damage = rand(blob.damage_lower, blob.damage_upper)
+	src.take_damage(damage, blob.damage_type)
+	visible_message("<span class='danger'>\The [B] [blob.attack_verb] \the [src]!</span>", "<span class='danger'>[blob.attack_message_synth]!</span>")
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
+
+	return ..()
