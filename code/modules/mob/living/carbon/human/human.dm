@@ -1488,15 +1488,8 @@
 		to_chat(S, "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>")
 	current_limb.relocate()
 
-<<<<<<< HEAD
-/mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in organs)
-		return 0
-	return ..()
-=======
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	return !(W in organs) && ..()
->>>>>>> 4071bd7a6c6... Merge pull request #8892 from MistakeNot4892/drakes2
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
