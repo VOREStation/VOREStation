@@ -83,7 +83,7 @@
 
 	switch(action)
 		if("timing")
-			timing = !timing
+			set_state(!timing)
 			update_icon()
 			return TRUE
 		if("set_time")
