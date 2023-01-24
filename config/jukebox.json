@@ -3536,8 +3536,7 @@
 "artist": "Wesley Willis Fiasco",
 "secret": true,
 "lobby": false,
-"jukebox": true,
-"genre": "Rock"
+"jukebox": true
 },
 {
 "url" : "https://cdn.discordapp.com/attachments/404660884531707906/676726491806957568/Cassette.mp3",
@@ -4683,6 +4682,65 @@
 "duration": 2710,
 "artist": "Julia Ecklar & Leslie Fish",
 "genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/2t5tjk.mp3",
+"title": "Waiting For The Sun",
+"duration": 1910,
+"artist": "Alistair Lindsay",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/8r5d7q.mp3",
+"title": "Take me to Snurch (Snail Church)",
+"duration": 2370,
+"artist": "fairyeiry",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/fjjcdw.mp3",
+"title": "Bearded Dragon",
+"duration": 2370,
+"artist": "Beat Fatigue",
+"genre": "Electronic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/2dzinb.mp3",
+"title": "A Good Song Never Dies",
+"duration": 2010,
+"artist": "Saint Motel",
+"genre": "Pop",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/73nan0.mp3",
+"title": "Ya Soldat",
+"duration": 1880,
+"artist": "5'nizza",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/p1lwg8.mp3",
+"title": "Space Ghost Coast to Coast",
+"duration": 1880,
+"artist": "Glass Animals",
+"genre": "Pop",
 "secret": false,
 "lobby": false,
 "jukebox": true

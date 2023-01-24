@@ -43,6 +43,18 @@
 /obj/effect/landmark/wildlife/forest,
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west/unexplored)
+"ah" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/obj/machinery/computer/ship/engines{
+	dir = 4;
+	req_one_access = null
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "am" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 9
@@ -2095,18 +2107,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
-"qr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/structure/catwalk,
-/obj/structure/railing/grey,
-/obj/machinery/computer/ship/engines{
-	dir = 4;
-	req_one_access = list(160)
-	},
-/turf/simulated/floor/plating,
-/area/shuttle/axolotl_engineering)
 "qw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -21295,7 +21295,7 @@ lR
 hG
 nG
 fl
-qr
+ah
 dq
 pq
 De

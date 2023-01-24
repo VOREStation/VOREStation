@@ -239,8 +239,8 @@
 		var/list/choices
 		var/datum/species/spec = GLOB.all_species[pref.species]
 		if (spec.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER && istype(spec, /datum/species/shapeshifter))
-			var/datum/species/shapeshifter/spec_shifter = spec
-			choices = spec_shifter.valid_transform_species
+			var/datum/species/spec_shifter = spec
+			choices = spec_shifter.get_valid_shapeshifter_forms()
 		else
 			choices = GLOB.custom_species_bases
 			if(pref.species != SPECIES_CUSTOM)

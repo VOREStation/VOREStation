@@ -1785,6 +1785,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or1)
+"dS" = (
+/obj/machinery/hologram/holopad,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "dT" = (
 /obj/machinery/telecomms/bus/preset_two/groundbase,
 /turf/simulated/floor/tiled/dark{
@@ -6061,20 +6074,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
-"np" = (
-/obj/machinery/hologram/holopad,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/structure/flora/tree/pine/xmas/presents,
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/civilian/bar)
 "nq" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -26741,7 +26740,7 @@ oe
 gF
 FB
 JX
-np
+dS
 Cy
 cN
 Bo

@@ -185,3 +185,7 @@
 /datum/category_item/underwear/socks/trans_thigh
 	name = "Trans Pride Thigh Socks"
 	icon_state = "trans_thigh"
+
+/datum/category_item/underwear/socks/rippedpantyhose
+	name = "Pantyhose, Ripped"
+	icon_state = "rippedpantyhose"

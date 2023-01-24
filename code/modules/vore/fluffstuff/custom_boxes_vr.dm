@@ -138,6 +138,7 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "duffle_med"
 	slowdown = 0
+	can_tilt = 0
 
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu/New()
 	..()

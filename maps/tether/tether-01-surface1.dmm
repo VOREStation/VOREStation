@@ -331,10 +331,6 @@
 /obj/item/clothing/suit/space/void/medical/emt,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/medical/emt,
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
@@ -653,9 +649,6 @@
 "abd" = (
 /obj/structure/table/rack,
 /obj/item/weapon/rig/medical/equipped,
-/obj/structure/fireaxecabinet{
-	pixel_x = -32
-	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
@@ -671,6 +664,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/paramed)
@@ -15876,6 +15873,23 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
+"azJ" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/table/standard,
+/obj/item/device/pipe_painter{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/device/pipe_painter,
+/obj/machinery/newscaster{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "azK" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor,
@@ -16959,6 +16973,18 @@
 	},
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/surfacebase/outside/outside1)
+"aBv" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/table/standard,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/glass,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "aBw" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -21997,38 +22023,6 @@
 	name = "Atmospherics Lockdown";
 	req_one_access = list(10,24)
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aKn" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/fireaxecabinet{
-	pixel_y = 32
-	},
-/obj/structure/table/standard,
-/obj/item/device/pipe_painter{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/device/pipe_painter,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aKo" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/newscaster{
-	pixel_y = 30
-	},
-/obj/structure/table/standard,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/glass,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aKp" = (
@@ -49757,7 +49751,7 @@ aHv
 aHv
 aHv
 aIh
-aKn
+azJ
 aKV
 aLC
 aJI
@@ -49899,7 +49893,7 @@ aHv
 aCj
 aIL
 aIh
-aKo
+aBv
 aJI
 aLC
 aJI
