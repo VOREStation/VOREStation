@@ -1,7 +1,7 @@
-mob
+/mob
 	var/hive_lang_range = 0
 
-mob/proc/shadekin_empathy_range()
+/mob/proc/shadekin_empathy_range()
 	set name = "Adjust Empathy Range"
 	set desc = "Changes the range you will transmit your empathy to!"
 	set category = "IC"
