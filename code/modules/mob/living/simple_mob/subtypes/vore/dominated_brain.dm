@@ -154,6 +154,9 @@
 					langlist |= L.languages
 	if(langlist.len)
 		langlist -= languages
+		for(var/datum/language/L in langlist)
+			if(L.flags & HIVEMIND)
+				verbs |= /mob/proc/adjust_hive_range
 		temp_languages |= langlist
 		languages |= langlist
 

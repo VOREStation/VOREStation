@@ -454,6 +454,8 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	rarity_value = 5	//INTERDIMENSIONAL FLUFFERS
 
+	inherent_verbs = list(/mob/proc/adjust_hive_range)
+
 	siemens_coefficient = 0
 	darksight = 10
 
