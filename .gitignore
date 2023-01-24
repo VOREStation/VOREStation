@@ -22,7 +22,12 @@ cfg/
 !/.vscode/settings.json
 !/.vscode/tasks.json
 
+code/game/gamemodes/technomancer/spells/projectile/overload.dm
+code/game/gamemodes/technomancer/spells/projectile/overload.dm
+code/modules/client/preference_setup/loadout/loadout_xeno.dm
 temp.dmi
-
-node_modules/
-package-lock.json
+config/alienwhitelist.txt
+config/custom_items.txt
+config/custom_sprites.txt
+config/example/admins.txt
+config/jukebox.json

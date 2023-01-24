@@ -46,15 +46,13 @@
 		return
 
 	if(istype(O, /obj/item/weapon/firework_star))
-		if(loaded_star)
-			to_chat(user, SPAN_NOTICE("\The [src] already has \a [loaded_star] inside, unload it first!"))
-			return
-		if(user.unEquip(O, 0, src))
-			loaded_star = O
-			to_chat(user, "<span class='notice'>You insert the firework star into the launcher.</span>")
-			add_fingerprint(user)
-			update_icon()
-			return
+		loaded_star = O
+		user.drop_item()
+		O.forceMove(src)
+		to_chat(user, "<span class='notice'>You insert the firework star into the launcher.</span>")
+		add_fingerprint(user)
+		update_icon()
+		return
 
 	return ..()
 

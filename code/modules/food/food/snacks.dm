@@ -1271,7 +1271,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pie
 	name = "Banana Cream Pie"
 	desc = "Just like back home, on clown planet! HONK!"
-	description_fluff = "One of the more esoteric terms of the Nanotrasen-Centauri Noncompetition Agreement of 2545 was a requirement that Nanotrasen stock these pies on all their stations. They're calibrated for comedic value, not taste."
+	description_fluff = "One of the more esoteric terms of the Nanotrasen-Centauri Noncompetition Agreement of 2305 was a requirement that Nanotrasen stock these pies on all their stations. They're calibrated for comedic value, not taste."
 	icon_state = "pie"
 	trash = /obj/item/trash/plate
 	filling_color = "#FBFFB8"
@@ -6099,7 +6099,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/cb02
 	name = "\improper Hundred-Thousand Thaler Bar"
 	desc = "An ironically cheap puffed rice caramel milk chocolate bar."
-	description_fluff = "The Hundred-Thousand Thaler bar has been the focal point of dozens of exonet and radio giveaway pranks over its long history. In 2500 the company got in on the action, offering a prize of one-hundred thousand one-hundred thousand thaler bars to one lucky entrant, who reportedly turned down the prize in favour of a 250 Thaler cash prize."
+	description_fluff = "The Hundred-Thousand Thaler bar has been the focal point of dozens of exonet and radio giveaway pranks over its long history. In 2260 the company got in on the action, offering a prize of one-hundred thousand one-hundred thousand thaler bars to one lucky entrant, who reportedly turned down the prize in favour of a 250 Thaler cash prize."
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb02"
@@ -6180,7 +6180,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/cb07
 	name = "\improper TaroMilk Bar"
 	desc = "A light milk chocolate shell with a Taro paste filling. Chewy!"
-	description_fluff = "The best-selling Kishari snack finally made its way to the galactic stage in 2562. Whether it is here to stay remains to be seen, though it has found some popularity with the Skrell.."
+	description_fluff = "The best-selling Kishari snack finally made its way to the galactic stage in 2318. Whether it is here to stay remains to be seen, though it has found some popularity with the Skrell.."
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb07"
@@ -6263,7 +6263,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/chips/bbq
 	name = "\improper Legendary BBQ Chips"
 	desc = "You know I can't grab your ghost chips!"
-	description_fluff = "A local brand, Legendary Chips have proudly sponsored Vir's anti-drink-piloting campaign since 2558."
+	description_fluff = "A local brand, Legendary Chips have proudly sponsored Virgo-Erigone's anti-drink-piloting campaign since 2310."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "chips_bbq"
 	trash = /obj/item/trash/chips/bbq
@@ -6445,7 +6445,7 @@
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "4no_raisins"
 	desc = "Best raisins in the universe. Not sure why."
-	description_fluff = "Originally Raisin Blend no. 4, 4noraisins obtained their current name in the Skadi Positronic Exclusion Crisis of 2442, where they were rebranded as part of the protests. The exclusion crisis, so the story goes, involved positronic immigration being banned for no raisin."
+	description_fluff = "Originally Raisin Blend no. 4, 4noraisins obtained their current name in the Skadi Positronic Exclusion Crisis of 2202, where they were rebranded as part of the protests. The exclusion crisis, so the story goes, involved positronic immigration being banned for no raisin."
 	trash = /obj/item/trash/raisins
 	filling_color = "#343834"
 	center_of_mass = list("x"=15, "y"=4)
@@ -6484,7 +6484,7 @@
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "syndi_cakes"
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
-	description_fluff = "Spacer Snack Cakes' meaner, tastier cousin. The Syndi-Cakes brand was at risk of dissolution in 2429 when it was revealed that the entire production chain was a Nos Amis joint. The brand was quickly aquired by Centauri Provisions and some mild hallucinogenic 'add-ins' were axed from the recipe."
+	description_fluff = "Spacer Snack Cakes' meaner, tastier cousin. The Syndi-Cakes brand was at risk of dissolution in 2275 when it was revealed that the entire production chain was a Nos Amis joint. The brand was quickly aquired by Centauri Provisions and some mild hallucinogenic 'add-ins' were axed from the recipe."
 	trash = /obj/item/trash/syndi_cakes
 	filling_color = "#FF5D05"
 	center_of_mass = list("x"=16, "y"=10)
