@@ -116,6 +116,12 @@
 	qdel_null(cell)
 	return ..()
 
+/obj/machinery/mining/drill/dismantle()
+	if(cell)
+		cell.forceMove(loc)
+		cell = null
+	return ..()
+
 /obj/machinery/mining/drill/get_cell()
 	return cell
 
