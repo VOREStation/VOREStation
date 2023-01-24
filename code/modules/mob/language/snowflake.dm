@@ -1,12 +1,12 @@
 /mob
 	var/hive_lang_range = 0
 
-/mob/proc/shadekin_empathy_range()
-	set name = "Adjust Empathy Range"
-	set desc = "Changes the range you will transmit your empathy to!"
+/mob/proc/adjust_hive_range()
+	set name = "Adjust Language Range"
+	set desc = "Changes the range you will transmit your hive language to!"
 	set category = "IC"
 
-	var/option = tgui_alert(src, "What range?", "Adjust empathy range", list("Global","This Z level","Local", "Subtle"))
+	var/option = tgui_alert(src, "What range?", "Adjust language range", list("Global","This Z level","Local", "Subtle"))
 
 	switch(option)
 		if("Global")
@@ -21,7 +21,7 @@
 /datum/language/shadekin/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
-	speaker.verbs |= /mob/proc/shadekin_empathy_range
+	speaker.verbs |= /mob/proc/adjust_hive_range
 
 	if(!speaker_mask) speaker_mask = speaker.name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""

@@ -21,7 +21,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin)
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
 
-	inherent_verbs = list(/mob/proc/shadekin_empathy_range)
+	inherent_verbs = list(/mob/proc/adjust_hive_range)
 
 	siemens_coefficient = 1
 	darksight = 10

@@ -131,7 +131,7 @@
 
 	update_icon()
 
-	verbs |= /mob/proc/shadekin_empathy_range
+	verbs |= /mob/proc/adjust_hive_range
 
 	return ..()
 

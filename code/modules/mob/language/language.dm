@@ -187,6 +187,11 @@
 		return 0
 
 	languages.Add(new_language)
+	//VOREStation Addition Start
+	if(new_language.flags & HIVEMIND)
+		verbs |= /mob/proc/adjust_hive_range
+	//VOREStation Addition End
+
 	return 1
 
 /mob/proc/remove_language(var/rem_language)
