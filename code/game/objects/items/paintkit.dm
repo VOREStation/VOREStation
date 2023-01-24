@@ -256,7 +256,7 @@
 /obj/item/device/kit/paint/ripley
 	name = "\"Classic\" APLU customisation kit"
 	new_name = "APLU \"Classic\""
-	new_desc = "A very retro APLU unit; didn't they retire these back in 2543?"
+	new_desc = "A very retro APLU unit; didn't they retire these back in 2303?"
 	new_icon = "ripley-old"
 	allowed_types = list("ripley")
 	var/showpilot = TRUE
@@ -324,7 +324,7 @@
 /obj/item/device/kit/paint/gygax/darkgygax
 	name = "\"Silhouette\" Gygax customisation kit"
 	new_name = "Gygax \"Silhouette\""
-	new_desc = "An ominous Gygax exosuit modelled after the fictional corporate 'death squads' that were popular in pulp action-thrillers back in 2554."
+	new_desc = "An ominous Gygax exosuit modelled after the fictional corporate 'death squads' that were popular in pulp action-thrillers back in 2314."
 	new_icon = "darkgygax"
 
 /obj/item/device/kit/paint/gygax/recitence

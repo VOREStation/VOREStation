@@ -45,7 +45,7 @@
 /decl/poster/bay_8
 	icon_state="bsposter8"
 	name = "Pinup Girl Cindy"
-	desc = "This is a vintage 2450s pin-up of NanoTrasen's PR girl, Cindy, in a particularly feminine pose."
+	desc = "This is a vintage 2250's pin-up of NanoTrasen's PR girl, Cindy, in a particularly feminine pose."
 	listing_name = "Pin-up - Cindi"
 
 /decl/poster/bay_9
@@ -346,4 +346,3 @@
 	name = "space carp information poster"
 	desc = "This poster showcases an old spacer saying on the dangers of migrant space carp."
 	listing_name = "Safety - Carp Information"
-
