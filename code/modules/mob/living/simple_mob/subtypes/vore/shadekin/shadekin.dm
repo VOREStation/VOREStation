@@ -131,6 +131,8 @@
 
 	update_icon()
 
+	verbs |= /mob/proc/shadekin_empathy_range
+
 	return ..()
 
 /mob/living/simple_mob/shadekin/Destroy()

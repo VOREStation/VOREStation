@@ -2748,6 +2748,7 @@
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\language.dm"
 #include "code\modules\mob\language\outsider.dm"
+#include "code\modules\mob\language\snowflake.dm"
 #include "code\modules\mob\language\station.dm"
 #include "code\modules\mob\language\station_vr.dm"
 #include "code\modules\mob\language\synthetic.dm"
