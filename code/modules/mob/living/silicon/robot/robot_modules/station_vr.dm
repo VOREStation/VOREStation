@@ -208,7 +208,7 @@
 					"Borgi" = "borgi-sec",
 					"Otieborg" = "oties",
 					"Drake" = "drakesec",
-					"SecRaptor model V-4" = "secraptor"
+					"Raptor V-4" = "secraptor"
 					)
 
 /obj/item/weapon/robot_module/robot/security/knine/New(var/mob/living/silicon/robot/R)
@@ -279,7 +279,7 @@
 					"Mediborg model V-2" = "vale",
 					"Borgi" = "borgi-medi",
 					"Drake" = "drakemed",
-					"MediRaptor model V-4" = "medraptor"
+					"Raptor V-4" = "medraptor"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/medihound/New(var/mob/living/silicon/robot/R)
@@ -565,7 +565,7 @@
 					"SciHound" = "scihound",
 					"SciHoundDark" = "scihounddark",
 					"Drake" = "drakesci",
-					"SciRaptor model V-4" = "sciraptor"
+					"Raptor V-4" = "sciraptor"
 					)
 	can_be_pushed = 0
 
