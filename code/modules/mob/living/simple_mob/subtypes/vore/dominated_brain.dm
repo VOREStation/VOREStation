@@ -155,8 +155,8 @@
 	if(langlist.len)
 		langlist -= languages
 		for(var/datum/language/L in langlist)
-			if(L.name == LANGUAGE_SHADEKIN)
-				verbs |= /mob/proc/shadekin_empathy_range
+			if(L.flags & HIVEMIND)
+				verbs |= /mob/proc/adjust_hive_range
 		temp_languages |= langlist
 		languages |= langlist
 

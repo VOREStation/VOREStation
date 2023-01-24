@@ -130,11 +130,27 @@
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
+	speaker.verbs |= /mob/proc/adjust_hive_range	//VOREStation Add - If you don't have the verb you should.
+
 	if(!speaker_mask) speaker_mask = speaker.name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""
-
-	for(var/mob/player in player_list)
-		player.hear_broadcast(src, speaker, speaker_mask, message)
+	//VOREStation Edit Start
+	if(speaker.hive_lang_range == -1)
+		var/turf/t = get_turf(speaker)
+		for(var/mob/player in player_list)
+			var/turf/b = get_turf(player)
+			if (t.z == b.z)
+				player.hear_broadcast(src, speaker, speaker_mask, message)
+	else if(speaker.hive_lang_range)
+		var/turf/t = get_turf(speaker)
+		for(var/mob/player in player_list)
+			var/turf/b = get_turf(player)
+			if(get_dist(t,b) <= speaker.hive_lang_range)
+				player.hear_broadcast(src, speaker, speaker_mask, message)
+	else
+		for(var/mob/player in player_list)
+			player.hear_broadcast(src, speaker, speaker_mask, message)
+	//VOREStation Edit End
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if((language in languages) && language.check_special_condition(src))
