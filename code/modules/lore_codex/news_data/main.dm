@@ -4,6 +4,9 @@
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article117,
+		/datum/lore/codex/page/article116,
+		/datum/lore/codex/page/article115,
 		/datum/lore/codex/page/article114,
 		/datum/lore/codex/page/article113,
 		/datum/lore/codex/page/outage,
@@ -1283,3 +1286,27 @@
 	The protesters chanted with signs regarding NanoTrasen's exclusive rights in studying the Sif Anomalous Region, demanding that studies into the anomalous properties be public knowledge. The march appears to be headed by the Skathari conspiracy group 'Emerald Skies', known in recent months for many other smaller protests regarding the government response to the Incursion, and beliefs that Skathari are more intelligent than the public has been informed.\
 	<br><br>\
 	The disruption was eventually cleared out by mall security forces before the crowd could grow out of control. It is reported that Vinterlykke will reopen on Monday with additional security measures in place."
+
+/datum/lore/codex/page/article115
+	name = "12/27/74 - Weather Agency Warns of Storms Ahead"
+	data = "The Sif Planetary Weather Agency has issued storm advisories for the Stockholmskargard Islands and much of the Londuneyja continent for the Solar New Year weekend, with severe blizzard conditions and temperatures expected to remain significantly below freezing for the duration of the 30th December through 1st January.\
+	<br><br>\
+	Residents are advised to limit travel and remain indoors wherever possible, and prepare for local power grid outages. Exposure to outdoor temperatures will cause frostbite to develop on any exposed skin within minutes. High winds and heavy snowfalls are expected to cause some property damage, and any unsecured items may be blown away. Planned atmospheric exit should be completed by 5am SST on the 30th. Individuals trapped in structures or vehicles by heavy snowfall or equipment malfunction are advised to contact the PWA immediately, but should not expect rescue services until after the storm subsides.\
+	<br><br>\
+	Special notice has been given to the Sif Anomalous Region, where storm conditions may result in unpredictable interactions with anomalous phenomena. A spokesperson for NanoTrasen has stated that no changes to work schedules are planned, and that employees scheduled to work at the company's regional facilities during the advisory period should 'make every effort to attend work as normal, as continued operation of monitoring equipment at our frontier outposts is essential to our understanding of the SAR and the safety of those in its vicinity. Standard cold-weather gear will be available as normal.' and that company automated shuttle services will operate 'for as long as possible' to effected work sites."
+
+/datum/lore/codex/page/article116
+	name = "01/14/75 - Solar Fleet In Worst State Since Unathi War"
+	data = "An independent analysis of the Solar Confederate Government Fleet has concluded that the battle preparedness of the military's commissioned warship roster is at a low not experienced since the height of the SolGov-Hegemony War sixty years ago, and has called for urgent action from the Colonial Assembly to remedy the situation.\
+	<br><br>\
+	The report, funded by the Citizen's Institute for Defense Research looked at a range of criteria, including fleet composition, number of active-duty vessels, maintenance records, crew performance assessments, and adoption of latest technologies, all of which were rated 'D or poorer'. Armando Kozak, co-founder of CIDR and former chairperson of Hephaestus Industries, has urged Assembly legislators to approve immediate funding for the expansion of the Fleet in order to combat ongoing threats from Skathari and growing criminal elements in deep interstellar space.\
+	<br><br>\
+	The shocking condition of the SCG Fleet has been attributed to a decade of conflict, with the devastating Skathari Incursion following immediately from the costly Almach War, and a spate of defections and territorial concessions. Critics have noted that the report 'brushes over' local Defense Force vessel contributions that were re-assigned to regional militaries and is 'deliberately vague' as to how such ships were accounted for. In 2571, CIDR issued a similar damning report to the Five Arrows, spurring a multi-trillion thaler economy-transforming shipbuilding campaign within the newly independent nation."
+
+/datum/lore/codex/page/article117
+	name = "01/18/75 - Key NanoTrasen Facilities to Recieve Dedicated Union Office"
+	data = "Several major NanoTrasen corporate facilities throughout the Golden Crescent region are to introduce dedicated union representative positions later this year, according to company spokesperson Valeria Lawless. The scheme is intended to 'better represent the unique needs of individual locations', and builds upon the earlier NanoTrasen Employee Representation Committee pilot scheme that was scrapped following facility closures during the Skathari Incursion.\
+	<br><br>\
+	Elaborating on the program, Valeria Lawless explained that 'Our new union structure improves upon positive results we observed in South America, Earth during the NERC scheme, where we found that smaller test groups reported more positive results. By reducing the scope of each union representative's supervision to a single facility, we hope we can better understand the individual needs of individual employees, and clear the muddied waters that arise when representatives with totally different needs are unable to come to an agreement. Under this new program, employees will be granted greater freedom to determine policy and regulation on a per-location basis without the need to consult with other representatives. After all, expecting the needs of employees from say, a mineral processing plant to align with those from a state-of-the-art medical facility, is simply unrealistic and often simply sets unproductive expectations for all involved.'\
+	<br><br>\
+	The new Site Union Representative role will be elected for each proposed location by local employees on a quarterly basis, and will advocate for policy amendment and dispute resolution on a per-location basis. Campaigning for union positions is expected to begin on the 29th of January, with elections taking place over the company network after a two week period."
