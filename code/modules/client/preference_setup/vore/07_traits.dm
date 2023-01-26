@@ -25,6 +25,19 @@
 	var/dirty_synth = 0		//Are you a synth
 	var/gross_meatbag = 0		//Where'd I leave my Voight-Kampff test kit?
 
+/datum/preferences/proc/get_custom_bases_for_species(var/new_species)
+	if (!new_species)
+		new_species = species
+	var/list/choices
+	var/datum/species/spec = GLOB.all_species[new_species]
+	if (spec.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
+		choices = spec.get_valid_shapeshifter_forms()
+	else if (spec.selects_bodytype == SELECTS_BODYTYPE_CUSTOM)
+		choices = GLOB.custom_species_bases
+		if(new_species != SPECIES_CUSTOM)
+			choices = (choices | new_species)
+	return choices
+
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/traits
 	name = "Traits"
@@ -122,7 +135,9 @@
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
-		// Allowed!
+		if (!(pref.custom_base in pref.get_custom_bases_for_species()))
+			pref.custom_base = SPECIES_HUMAN
+		//otherwise, allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
@@ -130,6 +145,7 @@
 	pref.custom_whisper = lowertext(trim(pref.custom_whisper))
 	pref.custom_ask = lowertext(trim(pref.custom_ask))
 	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
+
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
@@ -236,15 +252,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["custom_base"])
-		var/list/choices
-		var/datum/species/spec = GLOB.all_species[pref.species]
-		if (spec.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER && istype(spec, /datum/species/shapeshifter))
-			var/datum/species/spec_shifter = spec
-			choices = spec_shifter.get_valid_shapeshifter_forms()
-		else
-			choices = GLOB.custom_species_bases
-			if(pref.species != SPECIES_CUSTOM)
-				choices = (choices | pref.species)
+		var/list/choices = pref.get_custom_bases_for_species()
 		var/text_choice = tgui_input_list(usr, "Pick an icon set for your species:","Icon Base", choices)
 		if(text_choice in choices)
 			pref.custom_base = text_choice
