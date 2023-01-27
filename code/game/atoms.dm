@@ -211,16 +211,12 @@
 			found += A.search_contents_for(path,filter_path)
 	return found
 
-<<<<<<< HEAD
-//All atoms
-/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
-=======
 /atom/proc/get_examine_desc()
 	return desc
 
-/atom/proc/examine(mob/user, infix = "", suffix = "")
->>>>>>> 5ce4801b708... Merge pull request #8894 from MistakeNot4892/flavour
+//All atoms
+/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
+	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
@@ -231,34 +227,14 @@
 			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
 			f_name += "oil-stained [name][infix]."
-<<<<<<< HEAD
 
-	var/list/output = list("\icon[src.examine_icon()][bicon(src)] That's [f_name] [suffix]", desc)
+	var/list/output = list("\icon[src.examine_icon()][bicon(src)] That's [f_name] [suffix]", get_examine_desc())
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine" // Switch to stat panel
-
-=======
-	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", get_examine_desc())
-	if (user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
-		user.client.statpanel = "Examine"
-	else if (user.client)
-		var/list/extras = list()
-		if (user.client.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
-			if (description_info)
-				output += description_info
-		else if (description_info)
-			extras += SPAN_NOTICE("usage")
-		if (description_fluff)
-			extras += SPAN_GOOD("lore")
-		if (description_antag && (isobserver(user) || player_is_antag(user.mind)))
-			extras += SPAN_WARNING("antag")
-		if (length(extras))
-			output += "Extra [english_list(extras)] information is available: [CreateAtomTopic(@"[Show Examine]", user, ATOM_TOPIC_EXAMINE)]"
->>>>>>> 5ce4801b708... Merge pull request #8894 from MistakeNot4892/flavour
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
