@@ -337,13 +337,14 @@
 
 	else if(href_list["custom_heat"])
 		tgui_alert(user, "You are setting custom heat messages. These will overwrite your species' defaults. To return to defaults, click reset.")
-		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",pref.custom_cold.Join("\n\n"), multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+		var/old_message = pref.custom_heat.Join("\n\n")
+		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
 		if(length(new_message) > 0)
 			var/list/raw_list = splittext(new_message,"\n\n")
 			if(raw_list.len > 10)
 				raw_list.Cut(11)
 			for(var/i = 1, i <= raw_list.len, i++)
-				if(raw_list.len < 3 || raw_list.len > 160)
+				if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
 					raw_list.Cut(i,i)
 				else
 					raw_list[i] = readd_quotes(raw_list[i])
@@ -353,13 +354,14 @@
 
 	else if(href_list["custom_cold"])
 		tgui_alert(user, "You are setting custom cold messages. These will overwrite your species' defaults. To return to defaults, click reset.")
-		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",pref.custom_cold.Join("\n\n"), multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+		var/old_message = pref.custom_heat.Join("\n\n")
+		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
 		if(length(new_message) > 0)
 			var/list/raw_list = splittext(new_message,"\n\n")
 			if(raw_list.len > 10)
 				raw_list.Cut(11)
 			for(var/i = 1, i <= raw_list.len, i++)
-				if(raw_list.len < 3 || raw_list.len > 160)
+				if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
 					raw_list.Cut(i,i)
 				else
 					raw_list[i] = readd_quotes(raw_list[i])
