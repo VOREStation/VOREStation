@@ -336,59 +336,35 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["custom_heat"])
-		var/numMessages = pref.custom_heat.len
-		if(numMessages > 0)
-			var/alert = tgui_alert(user, "Edit current messages or add a new one?","Selection",list("Edit","Add", "Cancel"))
-			switch(alert)
-				if("Edit")
-					var/list/indices = list()
-					var/i
-					for(i=1, i<= numMessages, i++)
-						indices.Add(i)
-					var/index = tgui_input_list(user,"Select a message to edit:","Select Message", indices)
-					var/new_message = sanitize(tgui_input_text(usr, "Currently editing : [pref.custom_heat[index]]","Heat Discomfort", null, 300), 300)
-					if(new_message)
-						pref.custom_heat[index] = new_message
-				if("Add")
-					if(numMessages >= 10)
-						tgui_alert_async(usr, "Can't add more messages!", "Error")
-						return TOPIC_REFRESH
-					else
-						var/new_message = sanitize(tgui_input_text(usr, "Adding a new heat discomfort message", "Heat Discomfort", null, 300), 300)
-						if(new_message)
-							pref.custom_heat.Add(new_message)
-		else
-			var/new_message = sanitize(tgui_input_text(usr, "Adding a custom heat discomfort message !!!Overrides defaults!!!", "Heat Discomfort", null, 300), 300)
-			if(new_message)
-				pref.custom_heat.Add(new_message)
+		tgui_alert(user, "You are setting custom heat messages. These will overwrite your species' defaults. To return to defaults, click reset.")
+		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",pref.custom_cold.Join("\n\n"), multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+		if(length(new_message) > 0)
+			var/list/raw_list = splittext(new_message,"\n\n")
+			if(raw_list.len > 10)
+				raw_list.Cut(11)
+			for(var/i = 1, i <= raw_list.len, i++)
+				if(raw_list.len < 3 || raw_list.len > 160)
+					raw_list.Cut(i,i)
+				else
+					raw_list[i] = readd_quotes(raw_list[i])
+			ASSERT(raw_list.len <= 10)
+			pref.custom_heat = raw_list
 		return TOPIC_REFRESH
 
 	else if(href_list["custom_cold"])
-		var/numMessages = pref.custom_cold.len
-		if(numMessages > 0)
-			var/alert = tgui_alert(user, "Edit current messages or add a new one?","Selection",list("Edit","Add", "Cancel"))
-			switch(alert)
-				if("Edit")
-					var/list/indices = list()
-					var/i
-					for(i=1, i<= numMessages, i++)
-						indices.Add(i)
-					var/index = tgui_input_list(user,"Select a message to edit:","Select Message", indices)
-					var/new_message = sanitize(tgui_input_text(usr, "Currently editing : [pref.custom_cold[index]]", "Custom Cold Discomfort", null, 300), 300)
-					if(new_message)
-						pref.custom_cold[index] = new_message
-				if("Add")
-					if(numMessages >= 10)
-						tgui_alert_async(usr, "Can't add more messages!", "Error")
-						return TOPIC_REFRESH
-					else
-						var/new_message = sanitize(tgui_input_text(usr, "Adding a new cold discomfort message", "Cold Discomfort", null, 300), 300)
-						if(new_message)
-							pref.custom_cold.Add(new_message)
-		else
-			var/new_message = sanitize(tgui_input_text(usr, "Adding a custom cold discomfort message !!!Overrides Defaults!!!","Cold Discomfort", null, 300), 300)
-			if(new_message)
-				pref.custom_cold.Add(new_message)
+		tgui_alert(user, "You are setting custom cold messages. These will overwrite your species' defaults. To return to defaults, click reset.")
+		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",pref.custom_cold.Join("\n\n"), multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+		if(length(new_message) > 0)
+			var/list/raw_list = splittext(new_message,"\n\n")
+			if(raw_list.len > 10)
+				raw_list.Cut(11)
+			for(var/i = 1, i <= raw_list.len, i++)
+				if(raw_list.len < 3 || raw_list.len > 160)
+					raw_list.Cut(i,i)
+				else
+					raw_list[i] = readd_quotes(raw_list[i])
+			ASSERT(raw_list.len <= 10)
+			pref.custom_cold = raw_list
 		return TOPIC_REFRESH
 
 
