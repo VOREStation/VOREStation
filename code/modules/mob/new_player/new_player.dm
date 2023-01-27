@@ -480,10 +480,19 @@
 
 	ticker.mode.latespawn(character)
 
+	var/do_announce = join_props["announce"] && join_message && announce_channel
 	if(J.mob_type & JOB_SILICON)
+<<<<<<< HEAD
 		AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
 	else
 		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
+=======
+		if(do_announce)
+			AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
+	else
+		if(do_announce)
+			AnnounceArrival(character, J?.substitute_announce_title || rank, join_message, announce_channel, character.z)
+>>>>>>> 35643b46d2a... Merge pull request #8895 from MistakeNot4892/joinmsg
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 

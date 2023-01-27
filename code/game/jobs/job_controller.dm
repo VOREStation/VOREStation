@@ -671,8 +671,8 @@ var/global/datum/controller/occupations/job_master
 		else
 			spawnpos = spawntypes[C.prefs.spawnpoint]
 
-	//We will return a list key'd by "turf" and "msg"
-	. = list("turf","msg")
+	//We will return a list of various properties useful to the caller.
+	. = list("announce" = !J || J.announce_arrival_and_despawn)
 	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
 		if(spawnpos.check_job_spawning(rank))
 			.["turf"] = spawnpos.get_spawn_position()
