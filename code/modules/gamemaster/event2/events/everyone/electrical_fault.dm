@@ -34,12 +34,15 @@
 	to cause voltage spikes and other electrical issues very soon. Please secure sensitive electrical equipment until the situation passes.", "[location_name()] Sensor Array")
 
 /datum/event2/event/electrical_fault/set_up()
-	valid_z_levels = get_location_z_levels()
-	valid_z_levels -= using_map.sealed_levels // Space levels only please!
 
 	valid_apcs = list()
+<<<<<<< HEAD
 	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(A.z in valid_z_levels)
+=======
+	for(var/obj/machinery/power/apc/A in machines)
+		if(A.z in using_map.station_levels)
+>>>>>>> f7003a8c6ff... Merge pull request #8899 from Cerebulon/event-firing-bugs
 			valid_apcs += A
 
 /datum/event2/event/electrical_fault/start()
@@ -96,4 +99,3 @@
 //		log_debug("ELECTRICAL EVENT: Emagged \the [A].")
 		playsound(A, 'sound/machines/chime.ogg', 50, 1)
 		apcs_emagged++
-

@@ -7,9 +7,6 @@
 /datum/event2/meta/wallrot/get_weight()
 	return (10 + metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10) / (times_ran + 1)
 
-
-
-
 /datum/event2/event/wallrot
 	var/turf/simulated/wall/origin = null
 
@@ -41,6 +38,3 @@
 					rot_count++
 			if(rot_count >= target_rot)
 				break
-
-
-
