@@ -1223,6 +1223,15 @@
 "cB" = (
 /turf/simulated/wall,
 /area/surface/station/construction/bmt/construction1)
+"cC" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/engineering/north)
 "cE" = (
 /turf/simulated/wall,
 /area/surface/station/maintenance/medical/south)
@@ -3775,6 +3784,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/south)
+"iu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/medical/west)
 "iv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4750,6 +4771,10 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/hallway/primary/bmt/north)
+"kn" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/security)
 "ko" = (
 /obj/machinery/status_display,
 /turf/simulated/wall,
@@ -5019,6 +5044,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/catwalk_plated/dark,
+/obj/random/mob/mouse,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/bar)
 "kU" = (
@@ -7723,6 +7749,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/eaststairwell)
+"qJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/incineratormaint)
 "qK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -11463,6 +11500,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/south)
+"yJ" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/eaststairwell)
 "yK" = (
 /obj/structure/table/steel,
 /obj/item/weapon/anobattery{
@@ -15757,6 +15798,10 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/hallway/primary/bmt/west)
+"Ik" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/bar)
 "Il" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -15919,6 +15964,18 @@
 "IE" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/mining_main)
+"IF" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/research/east)
 "IG" = (
 /obj/structure/sign/warning/secure_area,
 /turf/simulated/wall/r_wall,
@@ -16022,6 +16079,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/hallway/primary/bmt/west/elevator)
+"IU" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/surface/station/maintenance/medical/south)
 "IV" = (
 /turf/simulated/wall/r_wall,
 /area/surface/cave/explored/normal)
@@ -16456,6 +16523,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/rnd/toxins_launch)
+<<<<<<< HEAD
+=======
+"JP" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/mining)
+"JQ" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/hallway/primary/bmt/west)
+>>>>>>> a0c0b4b7d9f... Merge pull request #8896 from Cerebulon/rathaus
 "JR" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -16791,6 +16875,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/random/mob/mouse,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/research/south)
 "KE" = (
@@ -21400,6 +21485,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
+"Uh" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/security)
 "Ui" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -22858,6 +22952,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/random/mob/mouse,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/south)
 "Xm" = (
@@ -22948,6 +23043,18 @@
 "Xv" = (
 /turf/simulated/floor/plating,
 /area/surface/station/construction/basement)
+"Xw" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/outpost/research/xenoarcheology/smes)
 "Xx" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -45632,7 +45739,7 @@ LV
 bI
 LY
 Ti
-Ti
+qJ
 HY
 vO
 nb
@@ -50438,7 +50545,7 @@ st
 st
 RC
 Mf
-LH
+Xw
 Oy
 aW
 HE
@@ -51039,7 +51146,7 @@ PC
 uX
 cb
 cb
-cb
+JP
 cb
 Lk
 AD
@@ -54089,7 +54196,7 @@ HE
 HE
 eY
 eY
-QR
+IF
 fG
 MM
 HN
@@ -55356,6 +55463,7 @@ HE
 HE
 jw
 yS
+<<<<<<< HEAD
 GN
 Us
 Us
@@ -55370,6 +55478,23 @@ pj
 Mu
 Mu
 Ug
+=======
+iu
+id
+id
+id
+id
+id
+id
+DD
+DD
+DD
+DD
+va
+UE
+bu
+ev
+>>>>>>> a0c0b4b7d9f... Merge pull request #8896 from Cerebulon/rathaus
 cE
 HE
 HE
@@ -55408,7 +55533,7 @@ HE
 HE
 BA
 Pn
-zM
+Ik
 BA
 HE
 HE
@@ -59482,6 +59607,7 @@ SJ
 Bg
 Hl
 zH
+<<<<<<< HEAD
 cE
 cE
 cE
@@ -59496,6 +59622,22 @@ LF
 LF
 LF
 py
+=======
+Ed
+Vo
+Vo
+Xd
+Vo
+oI
+IU
+Vo
+Vo
+yP
+yU
+yU
+lU
+Hd
+>>>>>>> a0c0b4b7d9f... Merge pull request #8896 from Cerebulon/rathaus
 LF
 fr
 aH
@@ -61294,7 +61436,7 @@ HE
 HE
 LF
 LF
-py
+yJ
 ks
 bw
 DH
@@ -63850,7 +63992,7 @@ HE
 HE
 HE
 tR
-Ll
+Uh
 tR
 HE
 HE
@@ -67963,7 +68105,7 @@ HE
 HE
 HE
 tR
-Jv
+kn
 Ne
 tR
 HE
@@ -68754,7 +68896,7 @@ nD
 mC
 QY
 QY
-QY
+cC
 kQ
 XU
 HE

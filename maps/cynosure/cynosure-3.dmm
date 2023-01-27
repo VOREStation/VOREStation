@@ -8616,6 +8616,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/random/mob/mouse,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/east/snd)
 "fIl" = (

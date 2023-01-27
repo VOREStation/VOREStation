@@ -10953,6 +10953,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/medical/emt_bay)
+"eXz" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/surgery)
 "eXA" = (
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/plains/plateau)
@@ -15116,6 +15120,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
+/obj/random/mob/mouse,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/east/gnd)
 "gRW" = (
@@ -27242,6 +27247,16 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai/upload)
+<<<<<<< HEAD
+=======
+"mwS" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/east/gnd)
+"mxb" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/security/interrogation)
+>>>>>>> a0c0b4b7d9f... Merge pull request #8896 from Cerebulon/rathaus
 "mxf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -34615,6 +34630,10 @@
 "pzZ" = (
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/kitchen)
+"pAw" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/atmos)
 "pAP" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -42955,6 +42974,7 @@
 	pixel_x = -24;
 	pixel_y = 12
 	},
+/obj/random/mob/mouse,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/kitchen)
 "tqN" = (
@@ -52679,6 +52699,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/exploration/cargo)
+"xSi" = (
+/obj/random/mob/mouse,
+/turf/simulated/floor/plating,
+/area/surface/station/maintenance/north/gnd)
 "xSr" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -85567,7 +85591,7 @@ nCe
 lJF
 lJF
 rIV
-jXZ
+eXz
 xWI
 bXN
 uPB
@@ -90215,7 +90239,7 @@ nLM
 eav
 uVS
 nLw
-nLw
+xSi
 uNv
 hBW
 qhE
@@ -91535,7 +91559,7 @@ nTG
 iTu
 czN
 vox
-lEt
+pAw
 xzZ
 sGm
 sGm
@@ -98455,7 +98479,7 @@ rYh
 qqo
 uTg
 nRZ
-qrd
+mwS
 vgU
 rYh
 xtH
