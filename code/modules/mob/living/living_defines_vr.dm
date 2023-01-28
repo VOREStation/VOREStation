@@ -11,3 +11,6 @@
 	var/custom_ask = null
 	var/custom_exclaim = null
 	var/custom_whisper = null
+//custom temperature discomfort vars
+	var/list/custom_heat = list()
+	var/list/custom_cold = list()
