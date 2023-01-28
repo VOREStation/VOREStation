@@ -16,10 +16,27 @@
 		message = "<font size=3>[message]</font>"
 
 	// Anti message spam checks
-	if(force || (message != last_pain_message) || (world.time >= next_pain_time))
+	if(src.is_preference_enabled(/datum/client_preference/pain_frequency))
+		switch(power)
+			if(0 to 5)
+				force = 0
+			if(6 to 20)
+				force = prob(1)
+		if(force || (message != last_pain_message) || (world.time >= next_pain_time))
+			switch(power)
+				if(0 to 5)
+					next_pain_time = world.time + 300 SECONDS
+				if(6 to 20)
+					next_pain_time = world.time + clamp((30 - power) SECONDS, 10 SECONDS, 30 SECONDS)
+				if(21 to INFINITY)
+					next_pain_time = world.time + (100 - power)
+			last_pain_message = message
+			to_chat(src,message)
+
+	else if(force || (message != last_pain_message) || (world.time >= next_pain_time))
 		last_pain_message = message
 		to_chat(src,message)
-	next_pain_time = world.time + clamp((120 - power) SECONDS, 3 SECONDS, 120 SECONDS)
+		next_pain_time = world.time + (100 - power)
 
 /mob/living/carbon/human/proc/handle_pain()
 	if(stat)
@@ -28,8 +45,6 @@
 	if(!can_feel_pain() && !synth_cosmetic_pain)
 		return
 
-	if(world.time < next_pain_time)
-		return
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null
 	for(var/obj/item/organ/external/E in organs)
@@ -59,7 +74,7 @@
 			if(91 to 10000)
 				flash_pain()
 				msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
-		custom_pain(msg, maxdam, prob(clamp(maxdam/10,0,100)))
+		custom_pain(msg, maxdam, prob(10))
 
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/I in internal_organs)

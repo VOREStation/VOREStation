@@ -120,3 +120,14 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb", "TSoundMentorhelps")
+
+/client/verb/toggle_pain_frequency()
+	set name = "Toggle Pain Frequency"
+	set category = "Preferences"
+	set desc = "Toggles frequency of per-limb pain messages between default and extende"
+
+	var/pref_path = /datum/client_preference/pain_frequency
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "The frequency of pain messages is now [ (is_preference_enabled(pref_path)) ? "extended" : "default"].")
