@@ -30,6 +30,8 @@
 					next_pain_time = world.time + clamp((30 - power) SECONDS, 10 SECONDS, 30 SECONDS)
 				if(21 to INFINITY)
 					next_pain_time = world.time + (100 - power)
+			if((message != last_pain_message) && prob(30))
+				return //since our cooldowns can be much higher than the 10 seconds, using 30% probability to avoid being MORE spammy than default
 			last_pain_message = message
 			to_chat(src,message)
 
@@ -45,6 +47,8 @@
 	if(!can_feel_pain() && !synth_cosmetic_pain)
 		return
 
+	if(!src.is_preference_enabled(/datum/client_preference/pain_frequency) && (world.time < next_pain_time))
+		return
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null
 	for(var/obj/item/organ/external/E in organs)
