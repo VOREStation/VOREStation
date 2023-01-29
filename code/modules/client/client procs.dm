@@ -70,7 +70,7 @@
 
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>")
+			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you</span>")
 			return
 		if(mute_irc)
 			to_chat(usr, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
@@ -566,6 +566,7 @@
 	else
 		ip_reputation = score
 		return TRUE
+<<<<<<< HEAD
 
 /client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
 	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
@@ -617,3 +618,5 @@
 	else
 		winset(usr, "input", "is-visible=false")
 */
+=======
+>>>>>>> e2553d4fb15... Merge pull request #8907 from Cerebulon/grammargrabbag
