@@ -32,9 +32,14 @@
 			testing("LANGSANI: Failed sani on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their species ([pref.species]) isn't in the global list")
 			return
 
+<<<<<<< HEAD
 		if(pref.alternate_languages.len > (S.num_alternate_languages + pref.extra_languages))
 			testing("LANGSANI: Truncated [pref.client]'s character [pref.real_name || "-name not yet loaded-"] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
 			pref.alternate_languages.len = (S.num_alternate_languages + pref.extra_languages) // Truncate to allowed length
+=======
+		if(pref.alternate_languages.len > S.num_alternate_languages)
+			pref.alternate_languages.len = S.num_alternate_languages // Truncate to allowed length
+>>>>>>> 009e1d1aa03... Merge pull request #8825 from MistakeNot4892/drakes
 
 		// Sanitize illegal languages
 		for(var/language in pref.alternate_languages)

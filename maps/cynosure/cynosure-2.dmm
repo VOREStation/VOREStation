@@ -11786,14 +11786,10 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/security/lockerroom)
 "fpa" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 4
+/obj/structure/dogbed,
+/obj/effect/landmark/start{
+	name = "Trained Drake"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals6,
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 4
-	},
-/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
 "fpB" = (
@@ -14007,6 +14003,18 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/south)
+<<<<<<< HEAD
+=======
+"gvb" = (
+/obj/effect/landmark/start{
+	name = "Survivalist"
+	},
+/obj/effect/landmark/start{
+	name = "Trained Drake"
+	},
+/turf/simulated/floor/outdoors/mask,
+/area/surface/outside/plains/normal)
+>>>>>>> 009e1d1aa03... Merge pull request #8825 from MistakeNot4892/drakes
 "gve" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 10
@@ -19293,6 +19301,12 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/rnd/hallway/stairwell)
+"jaH" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/surface/station/garage)
 "jaW" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
@@ -35705,8 +35719,10 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station)
 "qew" = (
-/obj/structure/table/steel_reinforced,
-/turf/simulated/floor/tiled,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
 "qeP" = (
 /obj/machinery/atmospherics/tvalve/mirrored/bypass,
@@ -36992,6 +37008,14 @@
 	},
 /turf/simulated/floor/carpet,
 /area/surface/station/library)
+"qCU" = (
+/obj/structure/dogbed,
+/obj/effect/landmark/start{
+	name = "Trained Drake"
+	},
+/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
+/turf/simulated/floor/tiled/techmaint,
+/area/surface/station/garage)
 "qCW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -40252,6 +40276,18 @@
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
 /area/surface/outside/plains/station)
+<<<<<<< HEAD
+=======
+"sby" = (
+/obj/effect/landmark/start{
+	name = "Survivalist"
+	},
+/obj/effect/landmark/start{
+	name = "Trained Drake"
+	},
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/surface/outpost/checkpoint)
+>>>>>>> 009e1d1aa03... Merge pull request #8825 from MistakeNot4892/drakes
 "scm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/spline/plain{
@@ -42137,18 +42173,6 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/east)
 "sXq" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/green/bordercorner{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
 "sXx" = (
@@ -51674,9 +51698,10 @@
 /turf/simulated/floor/plating,
 /area/surface/station/ai/upload)
 "xwh" = (
-/obj/machinery/mech_recharger,
-/obj/effect/landmark/robot_platform/explorer,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/table/steel_reinforced,
+/obj/item/reagent_containers/syringe/bicaridine,
+/obj/item/book/manual/drake_handling,
+/turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
 "xxc" = (
 /obj/effect/floor_decal/corner/white/diagonal,
@@ -81976,7 +82001,7 @@ nCe
 sSy
 ufW
 fpa
-sXq
+fDL
 kYh
 mLL
 aOC
@@ -82233,9 +82258,9 @@ nCe
 alv
 ufW
 xwh
-kqo
-vFY
-vFY
+sXq
+sXq
+sXq
 lze
 aOr
 syY
@@ -82489,10 +82514,10 @@ nCe
 nCe
 cPd
 seC
-esv
-kqo
-qBQ
-vQG
+qCU
+sXq
+jaH
+jaH
 qZC
 kPd
 piz
@@ -82747,9 +82772,9 @@ twu
 fIk
 xUd
 qew
-kqo
-vFY
-vFY
+sXq
+qBQ
+vQG
 mbv
 kPd
 kPd
@@ -83005,8 +83030,8 @@ jmX
 seC
 uFA
 kqo
-qBQ
-iaO
+vFY
+vFY
 fDL
 dzm
 huS
@@ -83262,8 +83287,8 @@ fIk
 ufW
 tdK
 kqo
-vFY
-vFY
+qBQ
+iaO
 mjO
 uBH
 mtC

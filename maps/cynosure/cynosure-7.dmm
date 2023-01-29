@@ -253,6 +253,18 @@
 "KZ" = (
 /turf/simulated/floor/wood/sif,
 /area/surface/outside/path/wilderness)
+<<<<<<< HEAD
+=======
+"LN" = (
+/obj/effect/landmark/start{
+	name = "Survivalist"
+	},
+/obj/effect/landmark/start{
+	name = "Trained Drake"
+	},
+/turf/simulated/floor/wood/sif,
+/area/surface/wilderness/shack)
+>>>>>>> 009e1d1aa03... Merge pull request #8825 from MistakeNot4892/drakes
 "Mf" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 6

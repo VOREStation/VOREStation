@@ -354,7 +354,21 @@
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/syringe/antiviral
+=======
+/obj/item/reagent_containers/syringe/bicaridine
+	name = "Syringe (bicaridine)"
+	desc = "Contains bicaridine."
+
+/obj/item/reagent_containers/syringe/bicaridine/Initialize()
+	. = ..()
+	reagents.add_reagent("bicaridine", 15)
+	mode = SYRINGE_INJECT
+	update_icon()
+
+/obj/item/reagent_containers/syringe/antiviral
+>>>>>>> 009e1d1aa03... Merge pull request #8825 from MistakeNot4892/drakes
 	name = "Syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
 

@@ -29,6 +29,7 @@
 /mob/living/simple_mob/animal/get_examine_desc()
 	return flavor_text || desc
 
+
 /mob/living/simple_mob/animal/verb/set_flavour_text()
 	set name = "Set Flavour Text"
 	set category = "IC"
