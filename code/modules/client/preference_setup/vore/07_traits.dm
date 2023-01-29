@@ -15,6 +15,9 @@
 	var/custom_ask = null
 	var/custom_exclaim = null
 
+	var/list/custom_heat = list()
+	var/list/custom_cold = list()
+
 	var/list/pos_traits	= list()	// What traits they've selected for their custom species
 	var/list/neu_traits = list()
 	var/list/neg_traits = list()
@@ -47,6 +50,9 @@
 	S["custom_ask"]		>> pref.custom_ask
 	S["custom_exclaim"]	>> pref.custom_exclaim
 
+	S["custom_heat"]	>> pref.custom_heat
+	S["custom_cold"]	>> pref.custom_cold
+
 /datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
 	S["custom_species"]	<< pref.custom_species
 	S["custom_base"]	<< pref.custom_base
@@ -63,6 +69,9 @@
 	S["custom_whisper"]	<< pref.custom_whisper
 	S["custom_ask"]		<< pref.custom_ask
 	S["custom_exclaim"]	<< pref.custom_exclaim
+
+	S["custom_heat"]	<< pref.custom_heat
+	S["custom_cold"]	<< pref.custom_cold
 
 /datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
@@ -137,6 +146,9 @@
 	character.custom_ask		= lowertext(trim(pref.custom_ask))
 	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
 	character.custom_exclaim	= lowertext(trim(pref.custom_exclaim))
+	character.custom_heat = pref.custom_heat
+	character.custom_cold = pref.custom_cold
+
 
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
@@ -158,6 +170,8 @@
 		//Statistics for this would be nice
 		var/english_traits = english_list(new_S.traits, and_text = ";", comma_text = ";")
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
+
+
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += "<b>Custom Species Name:</b> "
@@ -222,6 +236,14 @@
 	. += "<b>Custom Exclaim: </b>"
 	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
+	. += "<br>"
+	. += "<b>Custom heat Discomfort: </b>"
+	. += "<a href='?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
+	. += "(<a href='?src=\ref[src];reset_heat=1'>Reset</A>)"
+	. += "<br>"
+	. += "<b>Custom Cold Discomfort: </b>"
+	. += "<a href='?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
+	. += "(<a href='?src=\ref[src];reset_cold=1'>Reset</A>)"
 	. += "<br>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -313,6 +335,41 @@
 			pref.custom_exclaim = exclaim_choice
 		return TOPIC_REFRESH
 
+	else if(href_list["custom_heat"])
+		tgui_alert(user, "You are setting custom heat messages. These will overwrite your species' defaults. To return to defaults, click reset.")
+		var/old_message = pref.custom_heat.Join("\n\n")
+		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+		if(length(new_message) > 0)
+			var/list/raw_list = splittext(new_message,"\n\n")
+			if(raw_list.len > 10)
+				raw_list.Cut(11)
+			for(var/i = 1, i <= raw_list.len, i++)
+				if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
+					raw_list.Cut(i,i)
+				else
+					raw_list[i] = readd_quotes(raw_list[i])
+			ASSERT(raw_list.len <= 10)
+			pref.custom_heat = raw_list
+		return TOPIC_REFRESH
+
+	else if(href_list["custom_cold"])
+		tgui_alert(user, "You are setting custom cold messages. These will overwrite your species' defaults. To return to defaults, click reset.")
+		var/old_message = pref.custom_heat.Join("\n\n")
+		var/new_message = sanitize(tgui_input_text(usr,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+		if(length(new_message) > 0)
+			var/list/raw_list = splittext(new_message,"\n\n")
+			if(raw_list.len > 10)
+				raw_list.Cut(11)
+			for(var/i = 1, i <= raw_list.len, i++)
+				if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
+					raw_list.Cut(i,i)
+				else
+					raw_list[i] = readd_quotes(raw_list[i])
+			ASSERT(raw_list.len <= 10)
+			pref.custom_cold = raw_list
+		return TOPIC_REFRESH
+
+
 	else if(href_list["reset_say"])
 		var/say_choice = tgui_alert(usr, "Reset your Custom Say Verb?","Reset Verb",list("Yes","No"))
 		if(say_choice == "Yes")
@@ -335,6 +392,18 @@
 		var/exclaim_choice = tgui_alert(usr, "Reset your Custom Exclaim Verb?","Reset Verb",list("Yes","No"))
 		if(exclaim_choice == "Yes")
 			pref.custom_exclaim = null
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_cold"])
+		var/cold_choice = tgui_alert(usr, "Reset your Custom Cold Discomfort messages?", "Reset Discomfort",list("Yes","No"))
+		if(cold_choice == "Yes")
+			pref.custom_cold = list()
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_heat"])
+		var/heat_choice = tgui_alert(usr, "Reset your Custom Heat Discomfort messages?", "Reset Discomfort",list("Yes","No"))
+		if(heat_choice == "Yes")
+			pref.custom_heat = list()
 		return TOPIC_REFRESH
 
 	else if(href_list["add_trait"])

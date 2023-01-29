@@ -90,10 +90,18 @@
 	*/
 
 	var/discomfort_message
+	var/list/custom_cold = H.custom_cold
+	var/list/custom_heat = H.custom_heat
 	if(msg_type == ENVIRONMENT_COMFORT_MARKER_COLD && length(cold_discomfort_strings) /*&& !covered*/)
-		discomfort_message = pick(cold_discomfort_strings)
+		if(custom_cold.len > 0)
+			discomfort_message = pick(custom_cold)
+		else
+			discomfort_message = pick(cold_discomfort_strings)
 	else if(msg_type == ENVIRONMENT_COMFORT_MARKER_HOT && length(heat_discomfort_strings) /*&& covered*/)
-		discomfort_message = pick(heat_discomfort_strings)
+		if(custom_heat.len > 0)
+			discomfort_message = pick(custom_heat)
+		else
+			discomfort_message = pick(heat_discomfort_strings)
 
 	if(discomfort_message && prob(5))
 		to_chat(H, SPAN_DANGER(discomfort_message))
