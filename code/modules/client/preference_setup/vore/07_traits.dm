@@ -31,9 +31,9 @@
 	var/list/choices
 	var/datum/species/spec = GLOB.all_species[new_species]
 	if (spec.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
-		choices = spec.get_valid_shapeshifter_forms()
+		choices = spec.get_valid_shapeshifter_forms().Copy()
 	else if (spec.selects_bodytype == SELECTS_BODYTYPE_CUSTOM)
-		choices = GLOB.custom_species_bases
+		choices = GLOB.custom_species_bases.Copy()
 		if(new_species != SPECIES_CUSTOM)
 			choices = (choices | new_species)
 	return choices
