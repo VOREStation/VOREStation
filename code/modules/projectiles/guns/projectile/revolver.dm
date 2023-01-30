@@ -216,7 +216,7 @@
 /*
  * Mako
  */
-/obj/item/gun/projectile/revolver/lemat
+/obj/item/weapon/gun/projectile/revolver/lemat
 	name = "Mako revolver"
 	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
 	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
