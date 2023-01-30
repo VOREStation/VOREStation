@@ -6,6 +6,11 @@
 /obj/random/junk,
 /turf/simulated/floor/tiled/monotile,
 /area/template_noop)
+"c" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "d" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
@@ -464,7 +469,7 @@ a
 "}
 (4,1,1) = {"
 j
-t
+c
 M
 p
 R

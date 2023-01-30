@@ -10,7 +10,7 @@
 "b" = (
 /obj/structure/table/standard,
 /obj/random/toy,
-/obj/item/toy/colorballoon{
+/obj/item/toy/balloon{
 	color = "#FF00BB"
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -29,7 +29,7 @@
 "f" = (
 /obj/structure/table/standard,
 /obj/item/wrapping_paper,
-/obj/item/toy/colorballoon{
+/obj/item/toy/balloon{
 	color = "#FFCC00"
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -65,7 +65,7 @@
 	pixel_x = -9;
 	pixel_y = -6
 	},
-/obj/item/toy/colorballoon{
+/obj/item/toy/balloon{
 	color = "#00BBFF"
 	},
 /turf/simulated/floor/carpet/purcarpet,

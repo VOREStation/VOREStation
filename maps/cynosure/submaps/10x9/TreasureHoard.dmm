@@ -119,6 +119,11 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
+"r" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "s" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -451,7 +456,7 @@ a
 "}
 (4,1,1) = {"
 j
-t
+r
 u
 M
 R

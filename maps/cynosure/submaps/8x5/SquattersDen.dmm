@@ -22,6 +22,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/template_noop)
+"h" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "l" = (
 /obj/structure/barricade,
 /turf/simulated/floor/plating,
@@ -134,7 +139,7 @@ m
 c
 "}
 (6,1,1) = {"
-c
+h
 G
 G
 Y

@@ -27,6 +27,11 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
+"e" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "f" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -328,7 +333,9 @@
 /obj/machinery/atmospherics/pipe/cap/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/wall/concrete,
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
 /area/template_noop)
 "M" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -471,7 +478,7 @@ a
 "}
 (4,1,1) = {"
 j
-t
+e
 S
 J
 Y

@@ -21,6 +21,11 @@
 /obj/item/seeds/ambrosiavulgarisseed,
 /turf/simulated/floor/plating,
 /area/template_noop)
+"h" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "l" = (
 /obj/random/mouseremains,
 /turf/simulated/floor/plating,
@@ -132,7 +137,7 @@ m
 c
 "}
 (6,1,1) = {"
-c
+h
 l
 G
 x

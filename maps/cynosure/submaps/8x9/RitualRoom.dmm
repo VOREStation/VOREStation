@@ -136,6 +136,11 @@
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
+"P" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "S" = (
 /obj/effect/floor_decal/chapel,
 /turf/simulated/floor/tiled/dark,
@@ -225,7 +230,7 @@ L
 W
 L
 g
-a
+P
 "}
 (5,1,1) = {"
 a

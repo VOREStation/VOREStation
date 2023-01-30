@@ -123,6 +123,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/template_noop)
+"r" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "s" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -378,7 +383,9 @@
 /obj/machinery/atmospherics/pipe/cap/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/wall/concrete,
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
 /area/template_noop)
 "S" = (
 /turf/simulated/floor/tiled,
@@ -448,7 +455,7 @@ a
 "}
 (4,1,1) = {"
 j
-t
+r
 p
 F
 Y

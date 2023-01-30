@@ -17,6 +17,11 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
+"d" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "e" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 5
@@ -289,7 +294,7 @@
 g
 g
 g
-g
+d
 g
 g
 g

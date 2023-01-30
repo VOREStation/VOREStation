@@ -301,6 +301,11 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/template_noop)
+"T" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "W" = (
 /obj/random/trash,
 /obj/effect/spider/stickyweb,
@@ -320,7 +325,7 @@
 o
 o
 o
-o
+T
 o
 o
 a

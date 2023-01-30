@@ -64,9 +64,6 @@
 /obj/random/obstruction,
 /turf/simulated/floor/tiled/steel_grid,
 /area/template_noop)
-"y" = (
-/turf/simulated/wall/r_wall,
-/area/template_noop)
 "z" = (
 /obj/structure/bed/chair/sofa/blue/left{
 	dir = 1
@@ -151,7 +148,7 @@ q
 a
 "}
 (3,1,1) = {"
-y
+P
 E
 u
 O

@@ -219,6 +219,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/template_noop)
+"C" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
 "D" = (
 /obj/structure/closet/crate/centauri,
 /obj/random/mre,
@@ -352,7 +357,9 @@
 /obj/machinery/atmospherics/pipe/cap/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/wall/concrete,
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
 /area/template_noop)
 "T" = (
 /turf/simulated/floor/tiled/monotile,
@@ -435,7 +442,7 @@ a
 "}
 (4,1,1) = {"
 j
-t
+C
 B
 r
 T
