@@ -26,6 +26,38 @@
 	else
 		usr.emote_vr(message)
 
+/mob/proc/get_all_in_bellies()
+	var/list/mobs_in_belly = list()
+	for (var/obj/belly/belly in contents) //dogborg sleeper, etc
+		for (var/mob/M in belly.contents)
+			mobs_in_belly |= M.get_all_in_bellies()
+			mobs_in_belly |= M
+	return mobs_in_belly
+
+/atom/proc/get_ultimate_mob()
+	var/mob/ultimate_mob
+	var/atom/to_check = loc
+	var/n = 0
+	while (to_check && !isturf(to_check) && n < 6)
+		if (ismob(to_check))
+			ultimate_mob = to_check
+			to_check = to_check.loc
+			n = 0
+		n++
+	return ultimate_mob
+
+/atom/proc/get_ultimate_belly()
+	var/obj/belly/ultimate_belly
+	var/atom/to_check = loc
+	var/n = 0
+	while (to_check && !isturf(to_check) && n < 6)
+		if (isbelly(to_check))
+			ultimate_belly = to_check
+			to_check = to_check.loc
+			n = 0
+		n++
+	return ultimate_belly
+
 /mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
@@ -56,11 +88,100 @@
 		var/undisplayed_message = "<span class='emote'><B>[src]</B> <I>does something too subtle for you to see.</I></span>"
 		message = encode_html_emphasis(message)
 
+		var/obj/belly/u_belly = get_ultimate_belly()
+		var/mob/living/u_pred = u_belly?.owner || src
+
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
 		var/list/vis_mobs = vis["mobs"]
 		var/list/vis_objs = vis["objs"]
 
-		for(var/mob/M as anything in vis_mobs)
+		var/valid_targets = list("One tile radius" = "otr", "Single tile" = "st", "All in belly and preds" = "aibap")
+		for (var/mob/M as anything in vis_mobs)
+			if (M == src)
+				continue
+			if (istype(M, /mob/living) && isturf(M.loc) && !u_belly)
+				valid_targets["[M]"] = "\ref[M]"
+				continue
+			if (get_turf(M) == get_turf(src)) //so we aren't going through everything, it's a safe bet the belly is in the mob it's supposed to be in
+				var/obj/belly/belly = M.get_ultimate_belly()
+				if (belly?.owner == u_pred || u_pred == M)
+					valid_targets["[M]"] = "\ref[M]"
+		for (var/obj/item/i in vis_objs)
+			if (LAZYLEN(i.possessed_voice) && i.get_ultimate_mob() == src)
+				valid_targets["[i]"] = "\ref[i]"
+		valid_targets += list("Cancel" = "c")
+		valid_targets += list("Cancel and print to chat" = "captc")
+		var/selected = input(src, "Choose the target to send it to.", "Subtle Distance", "Cancel and print to chat") as anything in valid_targets //default to cancel and print to chat
+		var/target = valid_targets[selected]
+		if (target == "c" || isnull(target))
+			return
+		if (target == "captc")
+			to_chat(src, "<span class='notice'>Cancelled message (pressed cancel): [message]</span>")
+			return
+
+		vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //in case it changed
+		vis_mobs = vis["mobs"]
+		vis_objs = vis["objs"]
+
+		var/all_targets_mobs = list()
+		var/all_targets_objs = list()
+
+		var/cancelled
+
+		switch(target)
+			if ("otr", null)
+				for (var/mob/M as anything in vis_mobs)
+					if (get_dist(get_turf(src), get_turf(M)) < 2)
+						all_targets_mobs |= M
+				for (var/obj/M as anything in vis_objs)
+					if (get_dist(get_turf(src), get_turf(M)) < 2)
+						all_targets_objs |= M
+			if ("st")
+				for (var/mob/M as anything in vis_mobs)
+					if (get_dist(get_turf(src), get_turf(M)) < 1)
+						all_targets_mobs |= M
+				for (var/obj/M as anything in vis_objs)
+					if (get_dist(get_turf(src), get_turf(M)) < 1)
+						all_targets_objs |= M
+			if ("aibap")
+				var/obj/belly/belly = get_ultimate_belly() //in case it's changed
+				var/mob/pred = belly?.owner || src
+				if (pred)
+					all_targets_mobs |= pred.get_all_in_bellies()
+					for (var/mob/living/M in vis_mobs)
+						if (get_dist(get_turf(src), get_turf(M)) > 1)
+							continue
+						if (!isturf(M.loc) && !(M in all_targets_mobs)) //possessed items, mobs in bags, etc
+							if (M.get_ultimate_belly() in pred.contents)
+								all_targets_mobs |= M
+						if (istype(M, /mob/living/dominated_brain) && M.get_ultimate_mob() == pred)
+							all_targets_mobs |= M
+					for (var/obj/item/i in vis_objs)
+						if (LAZYLEN(i.possessed_voice) && (i.get_ultimate_belly() in pred.contents))
+							all_targets_objs |= i
+							all_targets_mobs |= i.possessed_voice
+					all_targets_mobs |= pred
+				else
+					cancelled = "no belly owner"
+			else
+				var/target_reffed = locate(target)
+				if (!target_reffed || (ismob(target_reffed) && !(target_reffed in vis_mobs)) || (isitem(target_reffed) && !(target_reffed in vis_objs)))
+					cancelled = "mob not available"
+				else
+					if (ismob(target_reffed))
+						all_targets_mobs |= target_reffed
+					if (isitem(target_reffed))
+						var/obj/item/i = target_reffed
+						all_targets_objs |= target_reffed
+						all_targets_mobs |= i.possessed_voice
+
+		all_targets_mobs |= src
+
+		if (cancelled)
+			to_chat(src, "<span class='notice'>Cancelled message ([cancelled]): [message]</span>")
+			return
+
+		for(var/mob/M as anything in all_targets_mobs)
 			if(isnewplayer(M))
 				continue
 			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
@@ -72,7 +193,7 @@
 					if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
 						M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
-		for(var/obj/O as anything in vis_objs)
+		for(var/obj/O as anything in all_targets_objs)
 			spawn(0)
 				O.see_emote(src, message, 2)
 
