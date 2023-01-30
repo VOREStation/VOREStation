@@ -2154,8 +2154,6 @@ shaved
 	icon_state = "tat_tiger"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
 
-//New tats
-
 /datum/sprite_accessory/marking/tat_belly
 	name = "Tattoo (Belly)"
 	icon_state = "tat_belly"
@@ -2251,16 +2249,212 @@ shaved
 	icon_state = "tat_wingsback"
 	body_parts = list(BP_TORSO)
 
-/datum/sprite_accessory/marking/tilaka
-	name = "Tilaka"
-	icon_state = "tilaka"
-	body_parts = list(BP_HEAD)
+/datum/sprite_accessory/marking/tat_wings_big
+	name = "Tattoo (Wings, Full Back)"
+	icon_state = "tat_wingsbig"
+	body_parts = list(BP_TORSO)
 
+/datum/sprite_accessory/marking/tat_armband_r
+	name = "Tattoo (Forearm Band, R. Arm)"
+	icon_state = "tat_armband_r"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/tat_armband_l
+	name = "Tattoo (Forearm Band, L. Arm)"
+	icon_state = "tat_armband_l"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/tat_knuckle_l
+	name = "Tattoo (Knuckle Tats, L. Hand)"
+	icon_state = "tat_knuckle_l"
+	body_parts = list(BP_L_HAND)
+
+/datum/sprite_accessory/marking/tat_knuckle_r
+	name = "Tattoo (Knuckle Tats, R. Hand)"
+	icon_state = "tat_knuckle_r"
+	body_parts = list(BP_R_HAND)
+
+/datum/sprite_accessory/marking/tat_collarbone
+	name = "Tattoo (Collarbone, Chest)"
+	icon_state = "tat_laurel"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_pecs
+	name = "Tattoo (Pectoral Lines, Chest)"
+	icon_state = "tat_pecs"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_barcodeleg_r
+	name = "Tattoo (Barcode, R. Leg)"
+	icon_state = "tat_legcode_r"
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/tat_barcodeleg_l
+	name = "Tattoo (Barcode, L. Leg)"
+	icon_state = "tat_legcode_l"
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/tat_barcodeneck
+	name = "Tattoo (Barcode, Neck)"
+	icon_state = "tat_neckcode"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_moonleft
+	name = "Tattoo (Moon, Left Chest)"
+	icon_state = "tat_moonleft"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_moonright
+	name = "Tattoo (Moon, Right Chest)"
+	icon_state = "tat_moonright"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_gang1
+	name = "Tattoo (Gang Mark, Upper Back)"
+	icon_state = "tat_gang1"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_gang2
+	name = "Tattoo (Gang Mark, Middle Back)"
+	icon_state = "tat_gang2"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_gang3
+	name = "Tattoo (Gang Mark, Right Back)"
+	icon_state = "tat_gang3"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_snake_r
+	name = "Tattoo (Snake Green, R. Arm)"
+	icon_state = "tat_snake_r"
+	body_parts = list(BP_R_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_snake_l
+	name = "Tattoo (Snake Green, L. Arm)"
+	icon_state = "tat_snake_l"
+	body_parts = list(BP_L_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_snake_col_r
+	name = "Tattoo (Snake Colorable, R. Arm)"
+	icon_state = "tat_snake_col_r"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/tat_snake_col_l
+	name = "Tattoo (Snake Colorable, L. Arm)"
+	icon_state = "tat_snake_col_l"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/tat_serpent
+	name = "Tattoo (Red Serpent, Torso)"
+	icon_state = "tat_serpent"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_lleg
+	name = "Tattoo (Roses, L. Leg)"
+	icon_state = "tat_rose_lleg"
+	body_parts = list(BP_L_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_rleg
+	name = "Tattoo (Roses, R. Leg)"
+	icon_state = "tat_rose_rleg"
+	body_parts = list(BP_R_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_larm
+	name = "Tattoo (Roses, L. Arm)"
+	icon_state = "tat_rose_larm"
+	body_parts = list(BP_L_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_rarm
+	name = "Tattoo (Roses, R. Arm)"
+	icon_state = "tat_rose_rarm"
+	body_parts = list(BP_R_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_nanotrasen
+	name = "Tattoo (NanoTrasen, Chest)"
+	icon_state = "tat_nt"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_heartbreak
+	name = "Tattoo (Heart and Sword, Back)"
+	icon_state = "tat_heartbreaker"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_heartthorn
+	name = "Tattoo (Heart and Thorns, Back)"
+	icon_state = "tat_thornheart"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_torso
+	name = "Tattoo (Koi, Full Torso)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_torso/backonly
+	name = "Tattoo (Koi, Back)"
+	icon_state = "tat_koi_back"
+
+/datum/sprite_accessory/marking/tat_koi_lleg
+	name = "Tattoo (Koi, L. Leg)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_L_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_rleg
+	name = "Tattoo (Koi, R. Leg)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_R_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_larm
+	name = "Tattoo (Koi, L. Arm)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_L_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_rarm
+	name = "Tattoo (Koi, R. Arm)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_R_ARM)
+	do_colouration = 0
 
 /datum/sprite_accessory/marking/bands
 	name = "Color Bands"
 	icon_state = "bands"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/tiger_stripes
+	name = "Tiger Stripes"
+	icon_state = "tiger"
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
+	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
+
+/datum/sprite_accessory/marking/backstripe
+	name = "Back Stripe"
+	icon_state = "backstripe"
+	body_parts = list(BP_TORSO)
+
+//Facial Tattoos
+/datum/sprite_accessory/marking/tigerhead
+	name = "Tiger Stripes (Head, Minor)"
+	icon_state = "tigerhead"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/tigerface
+	name = "Tiger Stripes (Head, Major)"
+	icon_state = "tigerface"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
 
 /datum/sprite_accessory/marking/bandsface
 	name = "Color Bands (Face)"
@@ -2274,28 +2468,24 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)
 
-/datum/sprite_accessory/marking/tiger_stripes
-	name = "Tiger Stripes"
-	icon_state = "tiger"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
-	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
-
-/datum/sprite_accessory/marking/tigerhead
-	name = "Tiger Stripes (Head, Minor)"
-	icon_state = "tigerhead"
+/datum/sprite_accessory/marking/tat_face_ridge
+	name = "Tattoo (Nose Ridge, Face)"
+	icon_state = "tat_face_ridge"
 	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)
 
-/datum/sprite_accessory/marking/tigerface
-	name = "Tiger Stripes (Head, Major)"
-	icon_state = "tigerface"
+/datum/sprite_accessory/marking/tat_face_hunter
+	name = "Tattoo (Hunter Marks, Face)"
+	icon_state = "tat_face_hunter"
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
+	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)
 
-/datum/sprite_accessory/marking/backstripe
-	name = "Back Stripe"
-	icon_state = "backstripe"
-	body_parts = list(BP_TORSO)
+//Other Facial Marks
 
+/datum/sprite_accessory/marking/tilaka
+	name = "Tilaka"
+	icon_state = "tilaka"
+	body_parts = list(BP_HEAD)
 /datum/sprite_accessory/marking/bindi
 	name = "Bindi"
 	icon_state = "bindi"
@@ -2422,16 +2612,7 @@ shaved
 	icon_state = "nosestripe_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/nosetape
-	name = "Nose Tape"
-	icon_state = "nosetape"
-	body_parts = list(BP_HEAD)
-	genetic = FALSE
-
-/datum/sprite_accessory/marking/nosetape/tesh
-	name = "Nose Tape (Teshari)"
-	icon_state = "nosetape_tesh"
-	species_allowed = list(SPECIES_TESHARI)
+//Scars
 
 /datum/sprite_accessory/marking/scar_abdomen_left
 	name = "Scar, Abdomen Left"
@@ -2857,8 +3038,8 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TAJ)
 
+//Taj specific stuff
 
-	//Taj specific stuff
 /datum/sprite_accessory/marking/taj_belly
 	name = "Belly Fur (Taj)"
 	icon_state = "taj_belly"
@@ -2913,7 +3094,7 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TAJ)
 
-	//Una specific stuff
+//Unathi specific stuff
 /datum/sprite_accessory/marking/una_face
 	name = "Face Color (Una)"
 	icon_state = "una_face"
@@ -2932,7 +3113,7 @@ shaved
 	body_parts = list(BP_TORSO)
 	species_allowed = list(SPECIES_UNATHI)
 
-	//Tesh stuff.
+//Tesh specific stuff.
 
 /datum/sprite_accessory/marking/teshi_fluff
 	name = "Underfluff (Teshari)"
@@ -2946,7 +3127,7 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 
-	//Diona stuff.
+//Diona stuff.
 
 /datum/sprite_accessory/marking/diona_leaves
 	name = "Leaves (Diona)"
@@ -3178,6 +3359,17 @@ shaved
 	species_allowed = list(SPECIES_TESHARI)
 
 //bandages
+
+/datum/sprite_accessory/marking/nosetape
+	name = "Nose Tape"
+	icon_state = "nosetape"
+	body_parts = list(BP_HEAD)
+	genetic = FALSE
+
+/datum/sprite_accessory/marking/nosetape/tesh
+	name = "Nose Tape (Teshari)"
+	icon_state = "nosetape_tesh"
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/bandage
 	name = "Bandage, Head 1"
