@@ -566,7 +566,6 @@
 	else
 		ip_reputation = score
 		return TRUE
-<<<<<<< HEAD
 
 /client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
 	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
@@ -618,5 +617,3 @@
 	else
 		winset(usr, "input", "is-visible=false")
 */
-=======
->>>>>>> e2553d4fb15... Merge pull request #8907 from Cerebulon/grammargrabbag
