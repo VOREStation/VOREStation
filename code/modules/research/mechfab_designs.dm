@@ -499,6 +499,7 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/frag/mini
 	materials = list(MAT_STEEL = 10000, MAT_GOLD = 2500, MAT_URANIUM = 3000, MAT_OSMIUM = 3000, MAT_PLASTIC = 3000)
 
+/* Removing these weapons from the fab until such a time that fire is not a I win button
 /datum/design/item/mecha/weapon/flamer
 	name = "CR-3 Mark 8 Flamethrower"
 	desc = "A weapon that violates the CCWC at two hundred gallons per minute."
@@ -522,6 +523,7 @@
 	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_PHORON = 2, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_URANIUM = 1500, MAT_PHORON = 4000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/incendiary
+*/
 
 // *** Nonweapon modules
 /datum/design/item/mecha/wormhole_gen
