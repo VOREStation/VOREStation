@@ -213,22 +213,9 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.
 
-<<<<<<< HEAD
 /*
  * Mako
  */
-/obj/item/weapon/gun/projectile/revolver/lemat
-	name = "\improper \"Mako\" Revolver"
-	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. \
-	For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
-	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first \
-	extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies \
-	that would go on to become today’s TSCs. Focused on sleek ‘futurist’ designs which have largely fallen out of \
-	fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
-	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely \
-	unremarkable one way or another as weapons and used very standard firing mechanisms - the Mako was a notable \
-	exception, and original examples are much sought after."
-=======
 /obj/item/gun/projectile/revolver/lemat
 	name = "Mako revolver"
 	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
@@ -236,7 +223,6 @@
 	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
 	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons, and used very standard firing mechanisms - \
 	the Mako was a notable exception, so original examples are much sought after."
->>>>>>> e2553d4fb15... Merge pull request #8907 from Cerebulon/grammargrabbag
 	icon_state = "combatrevolver"
 	item_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
