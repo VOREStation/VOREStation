@@ -124,10 +124,10 @@
 /client/verb/toggle_pain_frequency()
 	set name = "Toggle Pain Frequency"
 	set category = "Preferences"
-	set desc = "When toggled on, increases the cooldown of pain messages sent to chat for minor, single-limb injuries."
+	set desc = "When toggled on, increases the cooldown of pain messages sent to chat for minor injuries"
 
 	var/pref_path = /datum/client_preference/pain_frequency
 
 	toggle_preference(pref_path)
 
-	to_chat(src, "The cooldown between pain messages for minor (under 20/5 single limb injury) is now [ (is_preference_enabled(pref_path)) ? "extended" : "default"].")
+	to_chat(src, "The cooldown between pain messages for minor (under 20/5 injury. Multi-limb injuries are still faster) is now [ (is_preference_enabled(pref_path)) ? "extended" : "default"].")

@@ -4,6 +4,8 @@
 /mob/var/list/pain_stored = list()
 /mob/var/last_pain_message = ""
 /mob/var/next_pain_time = 0
+/mob/var/multilimb_pain_time = 0 // Global pain cooldown exists to prevent spam for multi-limb damage
+
 
 // message is the custom message to be displayed
 // power decides how much painkillers will stop the message
@@ -16,6 +18,7 @@
 		message = "<font size=3>[message]</font>"
 
 	// Anti message spam checks
+	// If multiple limbs are injured, cooldown is ignored to print all injuries until all limbs are iterated over
 	if(src.is_preference_enabled(/datum/client_preference/pain_frequency))
 		switch(power)
 			if(0 to 5)
@@ -26,12 +29,13 @@
 			switch(power)
 				if(0 to 5)
 					next_pain_time = world.time + 300 SECONDS
+					multilimb_pain_time = world.time + 45 SECONDS
 				if(6 to 20)
 					next_pain_time = world.time + clamp((30 - power) SECONDS, 10 SECONDS, 30 SECONDS)
+					multilimb_pain_time = world.time + clamp((30 - power) SECONDS, 10 SECONDS, 30 SECONDS)
 				if(21 to INFINITY)
 					next_pain_time = world.time + (100 - power)
-			if((message != last_pain_message) && prob(30))
-				return //since our cooldowns can be much higher than the 10 seconds, using 30% probability to avoid being MORE spammy than default
+					multilimb_pain_time = world.time + (100 - power)
 			last_pain_message = message
 			to_chat(src,message)
 
@@ -39,6 +43,7 @@
 		last_pain_message = message
 		to_chat(src,message)
 		next_pain_time = world.time + (100 - power)
+		multilimb_pain_time = world.time + (100 - power)
 
 /mob/living/carbon/human/proc/handle_pain()
 	if(stat)
@@ -47,7 +52,7 @@
 	if(!can_feel_pain() && !synth_cosmetic_pain)
 		return
 
-	if(!src.is_preference_enabled(/datum/client_preference/pain_frequency) && (world.time < next_pain_time))
+	if(world.time < multilimb_pain_time) //prevents spam in case of multi-limb injuries.
 		return
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null
