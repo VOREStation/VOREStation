@@ -111,7 +111,7 @@
 				valid_targets["[i]"] = "\ref[i]"
 		valid_targets += list("Cancel" = "c")
 		valid_targets += list("Cancel and print to chat" = "captc")
-		var/selected = input(src, "Choose the target to send it to.", "Subtle Distance", "Cancel and print to chat") as anything in valid_targets //default to cancel and print to chat
+		var/selected = input(src, "Choose the target to send it to.", "Subtle Distance", "One tile radius") as anything in valid_targets //default to one tile radius
 		var/target = valid_targets[selected]
 		if (target == "c" || isnull(target))
 			return
