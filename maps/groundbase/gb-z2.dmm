@@ -5318,6 +5318,7 @@
 /area/groundbase/medical/triage)
 "pp" = (
 /obj/machinery/light,
+/obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "pq" = (
