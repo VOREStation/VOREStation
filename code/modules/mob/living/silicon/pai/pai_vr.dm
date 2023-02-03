@@ -504,8 +504,9 @@
 		if (istype(G, /mob/new_player))
 			continue
 		else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-			if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
-				to_chat(G, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			var/admin_heard_anyway = !is_preference_enabled(/datum/client_preference/whisubtle_vis) && (G.client.holder && G.client.is_preference_enabled(/datum/client_preference/holder/show_subtles))
+			if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || (G.client.holder && G.client.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
+				to_chat(G, "<span class='cult'>[admin_heard_anyway ? "<b>(H)</b> " : ""][src.name]'s screen prints, \"[message]\"</span>")
 
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows
 	if(stat != CONSCIOUS)								//so we can access our software without having to open up the software interface TGUI window

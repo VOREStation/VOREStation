@@ -420,7 +420,13 @@ var/list/_client_preferences_by_type
 	key = "CHAT_RLOOC"
 	enabled_description = "Show"
 	disabled_description = "Hide"
-
+//VOREStation edit
+/datum/client_preference/holder/show_subtles
+	description ="Admin ghost privacy override"
+	key = "CHAT_HSUBTLES"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+//VOREStation edit end
 /datum/client_preference/holder/show_staff_dsay
 	description ="Staff Deadchat"
 	key = "CHAT_ADSAY"

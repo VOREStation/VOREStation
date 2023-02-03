@@ -46,15 +46,10 @@
 	else
 		input = message
 
-	if(input)
-		log_subtle(message,src)
-		message = "<span class='emote_subtle'><B>[src]</B> <I>[input]</I></span>"
-	else
-		return
-
-	if (message)
+	if (input)
+		log_subtle(input,src)
 		var/undisplayed_message = "<span class='emote'><B>[src]</B> <I>does something too subtle for you to see.</I></span>"
-		message = encode_html_emphasis(message)
+		message = encode_html_emphasis(input)
 
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
 		var/list/vis_mobs = vis["mobs"]
@@ -63,18 +58,19 @@
 		for(var/mob/M as anything in vis_mobs)
 			if(isnewplayer(M))
 				continue
-			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+			var/admin_heard_anyway = isobserver(M) && (is_preference_enabled(/datum/client_preference/whisubtle_vis) ? FALSE : (M.client?.holder && M.client?.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
+			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !(M.client?.holder && M.client?.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
 			else
 				spawn(0)
-					M.show_message(message, 2)
+					M.show_message("<span class='emote_subtle'><B>[admin_heard_anyway ? "(H) " : ""][src]</B> <I>[message]</I></span>", 2)
 					if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
 						M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
 		for(var/obj/O as anything in vis_objs)
 			spawn(0)
-				O.see_emote(src, message, 2)
+				O.see_emote(src, "<span class='emote_subtle'><B>[src]</B> <I>[message]</I></span>", 2)
 
 /mob/proc/emote_vr(var/act, var/type, var/message) //This would normally go in say.dm
 	if(act == "me")
@@ -132,6 +128,7 @@
 	if (!message)
 		return
 	message = capitalize(message)
+	message = encode_html_emphasis(message)
 	if (stat == DEAD)
 		return say_dead(message)
 	if(!isliving(src))
@@ -205,8 +202,9 @@
 			if (istype(G, /mob/new_player))
 				continue
 			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
-					to_chat(G, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")
+				var/admin_heard_anyway = !is_preference_enabled(/datum/client_preference/whisubtle_vis) && (G.client.holder && G.client.is_preference_enabled(/datum/client_preference/holder/show_subtles))
+				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || (G.client.holder && G.client.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
+					to_chat(G, "<span class='changeling'>[admin_heard_anyway ? "<b>(H)</b> " : ""]\The [M] thinks, \"[message]\"</span>")
 		log_say(message,M)
 	else		//There wasn't anyone to send the message to, pred or prey, so let's just say it instead and correct our psay just in case.
 		M.forced_psay = FALSE
@@ -302,8 +300,9 @@
 			if (istype(G, /mob/new_player))
 				continue
 			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
-					to_chat(G, "<span class='changeling'>\The [M] [message]</span>")
+				var/admin_heard_anyway = !is_preference_enabled(/datum/client_preference/whisubtle_vis) && (G.client.holder && G.client.is_preference_enabled(/datum/client_preference/holder/show_subtles))
+				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || (G.client.holder && G.client.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
+					to_chat(G, "<span class='changeling'>[admin_heard_anyway ? "<b>(H)</b> " : ""]\The [M] [message]</span>")
 		log_say(message,M)
 	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
 		M.forced_psay = FALSE

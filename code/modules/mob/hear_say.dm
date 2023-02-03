@@ -62,7 +62,7 @@
 	else
 		return stars(SP.message)
 
-/mob/proc/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol, var/admin_heard_anyway) //VOREStation edit: admin ghost privacy override toggle
 	if(!client && !teleop)
 		return FALSE
 
@@ -118,7 +118,7 @@
 			to_chat(src, "<span class='filter_say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] makes a noise, possibly speech, but you cannot hear them.</span>")
 	else
 		var/message_to_send = null
-		message_to_send = "<span class='game say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]</span>"
+		message_to_send = "<span class='game say'>[admin_heard_anyway ? "<b>(H)</b> " : ""]<span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]</span>" //VOREStation edit: admin ghost privacy override toggle
 		if(check_mentioned(multilingual_to_message(message_pieces)) && is_preference_enabled(/datum/client_preference/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 

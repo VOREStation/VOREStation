@@ -359,7 +359,8 @@ var/list/channel_to_radio_key = new
 
 			if(M && src) //If we still exist, when the spawn processes
 				//VOREStation Add - Ghosts don't hear whispers
-				if(whispering && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && isobserver(M) && !M.client?.holder)
+				var/admin_heard_anyway = isobserver(M) && ((!whispering || is_preference_enabled(/datum/client_preference/whisubtle_vis)) ? FALSE : (M.client?.holder && M.client?.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
+				if(whispering && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && isobserver(M) && !(M.client?.holder && M.client?.is_preference_enabled(/datum/client_preference/holder/show_subtles)))
 					M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
 					return
 				//VOREStation Add End
@@ -368,7 +369,7 @@ var/list/channel_to_radio_key = new
 				var/runechat_enabled = M.client?.is_preference_enabled(/datum/client_preference/runechat_mob)
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
-					if(M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol))
+					if(M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol, admin_heard_anyway)) //VOREStation edit: admins overriding ghost privacy toggle
 						if(M.client && !runechat_enabled)
 							var/image/I1 = listening[M] || speech_bubble
 							images_to_clients[I1] |= M.client

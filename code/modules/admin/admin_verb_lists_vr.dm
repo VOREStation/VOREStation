@@ -19,7 +19,8 @@ var/list/admin_verbs_default = list(
 //	/client/proc/deadchat				//toggles deadchat on/off,
 //	/client/proc/toggle_ahelp_sound,
 	/client/proc/toggle_admin_global_looc,
-	/client/proc/toggle_admin_deadchat
+	/client/proc/toggle_admin_deadchat,
+	/client/proc/toggle_admin_ghost_privacy
 	)
 
 var/list/admin_verbs_admin = list(
