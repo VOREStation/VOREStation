@@ -138,6 +138,16 @@
 	..(S,H)
 	H.verbs |= /mob/living/carbon/human/proc/slime_feed
 
+/datum/trait/neutral/stuffing_feeder
+	name = "Food Stuffer"
+	desc = "Allows you to feed food to other people whole, rather than bite by bite."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/stuffing_feeder/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/toggle_stuffing_mode
+
 /datum/trait/neutral/hard_vore
 	name = "Brutal Predation"
 	desc = "Allows you to tear off limbs & tear out internal organs."
@@ -424,7 +434,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("chem_strength_alcohol" = 1.5)
-	
+
 /datum/trait/neutral/alcohol_tolerance_reset
 	name = "Liver of Unremarkableness"
 	desc = "This trait exists to reset alcohol (in)tolerance for non-custom species to baseline normal. It can only be taken by Skrell, Tajara, Unathi, Diona, and Prometheans, as it would have no effect on other species."
