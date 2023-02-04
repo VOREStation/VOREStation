@@ -4,7 +4,7 @@
 	emote_message_3p = "spins!"
 	emote_delay = 2 SECONDS
 
-/decl/emote/visible/spin/do_extra(mob/user)
+/decl/emote/visible/spin/do_extra(mob/user, atom/target)
 	if(istype(user))
 		user.spin(20, 1)
 
@@ -14,7 +14,7 @@
 	emote_message_3p = "steps rhythmically and moves side to side."
 	//emote_delay = 1.2 SECONDS //VOREStation Edit - Delay moved to parent
 
-/decl/emote/visible/sidestep/do_extra(mob/user)
+/decl/emote/visible/sidestep/do_extra(mob/user, atom/target)
 	if(istype(user))
 		animate(user, pixel_x = 5, time = 5)
 		sleep(3)
@@ -28,7 +28,7 @@
 	emote_sound = 'sound/effects/bodyfall4.ogg'
 	//emote_delay = 1.2 SECONDS //VOREStation Edit - Delay moved to parent
 
-/decl/emote/visible/flip/do_extra(mob/user)
+/decl/emote/visible/flip/do_extra(mob/user, atom/target)
 	. = ..()
 	// VOREStation Add - Fancy flips
 	if(ishuman(user))
@@ -78,7 +78,7 @@
 	if(!QDELETED(user))
 		user.SpinAnimation(10,1)
 
-/decl/emote/visible/floorspin/do_extra(mob/user)
+/decl/emote/visible/floorspin/do_extra(mob/user, atom/target)
 	. = ..()
 	if(istype(user))
 		spin_dir(user)

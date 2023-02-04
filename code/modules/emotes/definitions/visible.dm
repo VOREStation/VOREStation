@@ -53,7 +53,7 @@
 	key = "collapse"
 	emote_message_3p = "collapses!"
 
-/decl/emote/visible/collapse/do_extra(var/mob/user)
+/decl/emote/visible/collapse/do_extra(mob/user, atom/target)
 	..()
 	if(istype(user))
 		user.Paralyse(2)
@@ -114,7 +114,7 @@
 	key = "faint"
 	emote_message_3p = "faints."
 
-/decl/emote/visible/faint/do_extra(var/mob/user)
+/decl/emote/visible/faint/do_extra(mob/user, atom/target)
 	. = ..()
 	if(istype(user) && !user.sleeping)
 		user.Sleeping(10)

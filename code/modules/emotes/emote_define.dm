@@ -1,7 +1,7 @@
 // Note about emote messages:
 // - USER / TARGET will be replaced with the relevant name, in bold.
-// - USER_THEM / TARGET_THEM / USER_THEIR / TARGET_THEIR will be replaced with a
-//   gender-appropriate version of the same.
+// - USER_THEM / TARGET_THEM / USER_THEIR / TARGET_THEIR / USER_THEY / TARGET_THEY
+//   will be replaced with a gender-appropriate version of the same.
 // - Impaired messages do not do any substitutions.
 
 var/global/list/emotes_by_key
@@ -81,6 +81,19 @@ var/global/list/emotes_by_key
 			"vol" =   emote_volume
 		)
 
+<<<<<<< HEAD
+=======
+	if(synth && broadcast_sound_synthetic)
+		LAZYINITLIST(.)
+		.["broadcast"] = broadcast_sound_synthetic
+	else if(broadcast_sound)
+		LAZYINITLIST(.)
+		.["broadcast"] = broadcast_sound
+
+/decl/emote/proc/finalize_target(var/atom/target)
+	return TRUE
+
+>>>>>>> 19d999bf63a... Merge pull request #8922 from MistakeNot4892/drakeemotes
 /decl/emote/proc/do_emote(var/atom/user, var/extra_params)
 	if(ismob(user) && check_restraints)
 		var/mob/M = user
@@ -105,7 +118,7 @@ var/global/list/emotes_by_key
 				target_dist = new_target_dist
 				target = thing
 
-		if(!target)
+		if(!finalize_target(user, target))
 			to_chat(user, SPAN_WARNING("You cannot see a '[extra_params]' within range."))
 			return
 
@@ -153,8 +166,10 @@ var/global/list/emotes_by_key
 	if(istype(target))
 		var/datum/gender/target_gender = gender_datums[target.get_visible_gender()]
 		. = replacetext(., "TARGET_THEM",  target_gender.him)
+		. = replacetext(., "TARGET_THEY",  target_gender.he)
 		. = replacetext(., "TARGET_THEIR", target_gender.his)
 		. = replacetext(., "TARGET_SELF",  target_gender.himself)
+		. = replacetext(., "TARGET_S",     target_gender.s)
 		. = replacetext(., "TARGET",       "<b>\the [target]</b>")
 
 /decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
@@ -162,8 +177,10 @@ var/global/list/emotes_by_key
 	if(istype(user))
 		var/datum/gender/user_gender = gender_datums[user.get_visible_gender()]
 		. = replacetext(., "USER_THEM",  user_gender.him)
+		. = replacetext(., "USER_THEY",  user_gender.he)
 		. = replacetext(., "USER_THEIR", user_gender.his)
 		. = replacetext(., "USER_SELF",  user_gender.himself)
+		. = replacetext(., "USER_S",     user_gender.s)
 		. = replacetext(., "USER",       "<b>\the [user]</b>")
 
 /decl/emote/proc/get_radio_message(var/atom/user)
@@ -171,7 +188,7 @@ var/global/list/emotes_by_key
 		return emote_message_radio_synthetic
 	return emote_message_radio
 
-/decl/emote/proc/do_extra(var/atom/user, var/atom/target)
+/decl/emote/proc/do_extra(mob/user, atom/target)
 	return
 
 /decl/emote/proc/do_sound(var/atom/user)
@@ -181,6 +198,7 @@ var/global/list/emotes_by_key
 	var/sound_to_play = use_sound["sound"]
 	if(!sound_to_play)
 		return
+<<<<<<< HEAD
 	if(islist(sound_to_play))
 		if(sound_to_play[user.gender])
 			sound_to_play = sound_to_play[user.gender]
@@ -188,6 +206,45 @@ var/global/list/emotes_by_key
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
 		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
+=======
+
+	// We can't always use GetConnectedZlevels() here because it includes horizontally connected z-levels, which don't work well with our distance checking.
+	var/list/affected_levels
+	if(isnull(broadcast_distance))
+		affected_levels = GetConnectedZlevels(user_turf.z)
+	else
+		affected_levels = list(user_turf.z)
+		// Climb to the top of the stack.
+		var/turf/checking = user_turf
+		while(checking && HasAbove(checking.z))
+			checking = GetAbove(checking)
+			affected_levels += checking.z
+		// Fall to the bottom of the stack.
+		checking = user_turf
+		while(checking && HasBelow(checking.z))
+			checking = GetBelow(checking)
+			affected_levels += checking.z
+
+	var/list/close_listeners = hearers(world.view, user_turf)
+	for(var/listener in player_list)
+		var/turf/T = get_turf(listener)
+		if(!istype(T) || !(T.z in affected_levels) || (listener in close_listeners))
+			continue
+		var/turf/reference_point = locate(T.x, T.y, user_turf.z)
+		if(!reference_point)
+			continue
+		var/direction = get_dir(reference_point, user_turf)
+		if(!direction)
+			continue
+		if(!isnull(broadcast_distance) && get_dist(reference_point, user_turf) > broadcast_distance)
+			continue
+		broadcast_emote_to(sound_to_broadcast, listener, user_turf.z, direction)
+
+/decl/emote/proc/broadcast_emote_to(var/send_sound, var/mob/target, var/origin_z, var/direction)
+	var/turf/sound_origin = get_turf(target)
+	target.playsound_local(get_step(sound_origin, direction) || sound_origin, send_sound, broadcast_volume)
+	return TRUE
+>>>>>>> 19d999bf63a... Merge pull request #8922 from MistakeNot4892/drakeemotes
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

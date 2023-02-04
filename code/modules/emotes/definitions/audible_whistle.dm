@@ -34,3 +34,21 @@
 	emote_message_synthetic_1p = "You whistle a robotic tune."
 	emote_message_synthetic_3p = "whistles a robotic tune."
 	emote_sound_synthetic = 'sound/voice/summon_whistle_robot.ogg'
+<<<<<<< HEAD
+=======
+	broadcast_sound = 'sound/voice/summon_whistle.ogg'
+	broadcast_sound_synthetic = 'sound/voice/summon_whistle_robot.ogg'
+	emote_cooldown = 20 SECONDS
+	broadcast_distance = 65
+
+/decl/emote/audible/whistle/summon/broadcast_emote_to(var/send_sound, var/mob/target, var/origin_z, var/direction)
+	. = ..()
+	if (.)
+		var/turf/T = get_turf(target)
+		if(!T || T.z == origin_z)
+			to_chat(target, SPAN_NOTICE("You hear a piercing whistle from somewhere to the [dir2text(direction)]."))
+		else if(T.z < origin_z)
+			to_chat(target, SPAN_NOTICE("You hear a piercing whistle from somewhere above you, to the [dir2text(direction)]."))
+		else
+			to_chat(target, SPAN_NOTICE("You hear a piercing whistle from somewhere below you, to the [dir2text(direction)]."))
+>>>>>>> 19d999bf63a... Merge pull request #8922 from MistakeNot4892/drakeemotes

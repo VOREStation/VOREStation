@@ -15,7 +15,7 @@
 	emote_message_3p_target = SPAN_DANGER(emote_message_3p_target)
 	emote_message_3p =        SPAN_DANGER(emote_message_3p)
 
-/decl/emote/audible/slap/do_extra(var/atom/user, var/atom/target)
+/decl/emote/audible/slap/do_extra(mob/user, atom/target)
 	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
