@@ -167,7 +167,10 @@ var/list/_human_default_emotes = list(
 	/decl/emote/visible/bounce,
 	/decl/emote/visible/jiggle,
 	/decl/emote/visible/lightup,
-	/decl/emote/visible/vibrate
+	/decl/emote/visible/vibrate,
+	/decl/emote/audible/croon,
+	/decl/emote/audible/lwarble,
+	/decl/emote/audible/croak_skrell
 
 	//VOREStation Add End
 )
