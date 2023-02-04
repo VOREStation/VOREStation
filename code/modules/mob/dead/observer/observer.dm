@@ -68,7 +68,7 @@
 		"Koi" = "koi-swim",
 		"Carp" = "carp",
 		"Red Robes" = "robe_red",
-		"Faithless" = "faithless",
+		"Miasmic Entity" = "faithless",
 		"Shadowform" = "forgotten",
 		"Dark Ethereal" = "bloodguardian",
 		"Holy Ethereal" = "lightguardian",

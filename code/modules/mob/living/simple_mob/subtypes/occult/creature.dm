@@ -1,6 +1,6 @@
 /mob/living/simple_mob/creature
 	name = "creature"
-	desc = "A sanity-destroying otherthing."
+	desc = "An unrecognisable biological otherthing."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "otherthing"
 	icon_living = "otherthing"

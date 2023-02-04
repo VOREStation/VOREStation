@@ -1,6 +1,6 @@
 /mob/living/simple_mob/faithless
-	name = "Faithless"
-	desc = "The Wish Granter's faith in humanity, incarnate"
+	name = "miasmic entity"
+	desc = "Malignant energy given physical form by phenomena unknown."
 	icon_state = "faithless"
 	icon_living = "faithless"
 	icon_dead = "faithless_dead"

@@ -303,7 +303,7 @@
 	health = 250;
 	melee_damage_lower = 20;
 	melee_damage_upper = 30;
-	name = "Recursive faithless"
+	name = "Recursive entity"
 	},
 /turf/simulated/floor/cult,
 /area/submap/DemonPool)

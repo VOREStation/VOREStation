@@ -6,7 +6,7 @@
 	name = "Juggernaut"
 	real_name = "Juggernaut"
 	construct_type = "juggernaut"
-	desc = "A possessed suit of armour driven by the will of the restless dead"
+	desc = "A possessed suit of armour driven by the will of the restless dead."
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "behemoth"
 	icon_living = "behemoth"

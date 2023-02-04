@@ -1,6 +1,6 @@
 /obj/item/weapon/melee/cultblade
 	name = "cult blade"
-	desc = "An arcane weapon wielded by the followers of Nar-Sie."
+	desc = "An arcane weapon wielded by the followers of an unknown god."
 	icon_state = "cultblade"
 	origin_tech = list(TECH_COMBAT = 1, TECH_ARCANE = 1)
 	w_class = ITEMSIZE_LARGE
@@ -51,7 +51,7 @@
 /obj/item/clothing/head/culthood
 	name = "cult hood"
 	icon_state = "culthood"
-	desc = "A hood worn by the followers of Nar-Sie."
+	desc = "A hood worn by the followers of an unknown god."
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	flags_inv = HIDEFACE
 	body_parts_covered = HEAD
@@ -66,7 +66,7 @@
 /obj/item/clothing/head/culthood/magus
 	name = "magus helm"
 	icon_state = "magus"
-	desc = "A helm worn by the followers of Nar-Sie."
+	desc = "A helm worn by the followers of an unknown god."
 	flags_inv = HIDEFACE | BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 
@@ -75,7 +75,7 @@
 
 /obj/item/clothing/suit/cultrobes
 	name = "cult robes"
-	desc = "A set of armored robes worn by the followers of Nar-Sie."
+	desc = "A set of armored robes worn by the followers of an unknown god."
 	icon_state = "cultrobes"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -92,14 +92,14 @@
 
 /obj/item/clothing/suit/cultrobes/magusred
 	name = "magus robes"
-	desc = "A set of armored robes worn by the followers of Nar-Sie."
+	desc = "A set of armored robes worn by the followers of an unknown god."
 	icon_state = "magusred"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/head/helmet/space/cult
 	name = "cult helmet"
-	desc = "A space worthy helmet used by the followers of Nar-Sie."
+	desc = "A space worthy helmet used by the followers of an unknown god."
 	icon_state = "cult_helmet"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 80, bomb = 30, bio = 30, rad = 30)
