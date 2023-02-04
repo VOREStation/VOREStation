@@ -17,7 +17,6 @@
 
 	organ_names = /decl/mob_organ_names/mecha
 
-	// Very close to the base 'damage_absorption' var on the base mecha class.
 	armor = list(
 				"melee"		= 20,
 				"bullet"	= 10,
