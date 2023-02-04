@@ -845,10 +845,22 @@
 	center_of_mass = list("x"=16, "y"=16)
 	bitesize = 3
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/organ/Initialize()
+=======
+/obj/item/reagent_containers/food/snacks/organ/Initialize(var/ml, var/obj/item/organ/donor)
+>>>>>>> c00526172d1... Merge pull request #8919 from MistakeNot4892/meats
 	. = ..()
 	reagents.add_reagent("protein", rand(3,5))
 	reagents.add_reagent("toxin", rand(1,3))
+	if(donor)
+		appearance = donor
+		if(donor.reagents?.total_volume)
+			donor.reagents.trans_to(src, donor.reagents.total_volume)
+		fingerprints =       donor.fingerprints?.Copy()
+		fingerprintshidden = donor.fingerprintshidden?.Copy()
+		fingerprintslast =   donor.fingerprintslast
+		qdel(donor)
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu
 	name = "Tofu"

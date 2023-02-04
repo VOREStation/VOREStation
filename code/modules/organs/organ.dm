@@ -449,6 +449,7 @@ var/list/organ_cache = list()
 	blood_splatter(src,B,1)
 
 	user.drop_from_inventory(src)
+<<<<<<< HEAD
 	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon = icon
@@ -463,6 +464,9 @@ var/list/organ_cache = list()
 
 	user.put_in_active_hand(O)
 	qdel(src)
+=======
+	user.put_in_active_hand(new /obj/item/reagent_containers/food/snacks/organ(get_turf(src), src))
+>>>>>>> c00526172d1... Merge pull request #8919 from MistakeNot4892/meats
 
 /obj/item/organ/attack_self(mob/user as mob)
 
