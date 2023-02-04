@@ -28,7 +28,9 @@
 /obj/effect/overmap/visitable/ship/abductor
 	name = "strange spacecraft"
 	desc = "Spacefaring vessel."
-	icon_state = "unkn_r"
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "abductor"
+	color = "#134956"
 	scanner_desc = @{"[i]Registration[/i]: Unknown
 [i]Class[/i]: Corvette
 [i]Transponder[/i]: No transponder detected."
