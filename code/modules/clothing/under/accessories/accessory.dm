@@ -171,6 +171,16 @@
 	name = "white bow tie"
 	icon_state = "whitebowtie"
 
+/obj/item/clothing/accessory/maid_neck
+	name = "maid neck cover"
+	desc = "A neckpiece for a maid costume, it smells faintly of disappointment."
+	icon_state = "maid_neck"
+
+/obj/item/clothing/accessory/maidcorset
+	name = "maid corset"
+	desc = "The final touch that holds it all together."
+	icon_state = "maidcorset"
+
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
