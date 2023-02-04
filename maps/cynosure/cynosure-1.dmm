@@ -470,6 +470,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "bc" = (
@@ -1464,6 +1465,9 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "dk" = (
@@ -2113,6 +2117,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "eG" = (
@@ -2744,6 +2751,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "gh" = (
@@ -2970,7 +2978,12 @@
 /obj/random/maintenance/clean,
 /obj/random/tool,
 /obj/random/tool,
+<<<<<<< HEAD
 /obj/item/weapon/storage/briefcase/inflatable,
+=======
+/obj/item/storage/briefcase/inflatable,
+/obj/structure/disposalpipe/segment,
+>>>>>>> 9232d775a7e... Merge pull request #8908 from Cerebulon/xenotrash
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "gI" = (
@@ -3580,6 +3593,9 @@
 	icon_state = "4-8"
 	},
 /obj/structure/anomaly_container,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "hX" = (
@@ -5438,6 +5454,9 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "lR" = (
@@ -5641,6 +5660,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "mh" = (
@@ -5826,6 +5849,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "mA" = (
@@ -5931,6 +5955,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/catwalk_plated/white,
+/obj/machinery/disposal{
+	name = "non-hazardous waste disposal unit"
+	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology)
 "mM" = (
@@ -8281,6 +8309,19 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/hallway/primary/bmt/north)
+"rT" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/milspec/box,
+/obj/structure/closet/crate/trashcart{
+	opened = 1
+	},
+/turf/simulated/floor/plating/sif/planetuse{
+	outdoors = 0
+	},
+/area/surface/outpost/research/xenoarcheology/smes)
 "rU" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /obj/structure/cable/cyan{
@@ -9291,6 +9332,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "tX" = (
@@ -10299,6 +10341,9 @@
 	name = "Xenoarchelogy Maintenance";
 	req_one_access = list(11,24,47)
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "wm" = (
@@ -10387,6 +10432,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/meter,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "wt" = (
@@ -10683,6 +10729,20 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
+"xd" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust/part_rusted3{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/sif/planetuse{
+	icon_state = "steel_dirty";
+	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	outdoors = 0
+	},
+/area/surface/outpost/research/xenoarcheology/smes)
 "xe" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -11363,6 +11423,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
@@ -12050,6 +12114,7 @@
 	dir = 5
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central5,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology)
 "Ad" = (
@@ -12302,6 +12367,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "AC" = (
@@ -12481,6 +12549,7 @@
 	dir = 10
 	},
 /obj/machinery/hologram/holopad,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "AS" = (
@@ -12599,6 +12668,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
@@ -12817,6 +12889,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/catwalk_plated/white,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology)
 "Bw" = (
@@ -12905,6 +12978,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -13464,6 +13540,10 @@
 /obj/random/powercell,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "CT" = (
@@ -15299,6 +15379,10 @@
 /obj/machinery/cell_charger,
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/auxiliary_engineering)
+"Hh" = (
+/obj/structure/grille,
+/turf/simulated/mineral/floor/ignore_mapgen/sif,
+/area/surface/outpost/research/xenoarcheology/smes)
 "Hi" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
@@ -17018,6 +17102,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology)
 "Lb" = (
@@ -17262,6 +17347,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "LD" = (
@@ -17291,6 +17377,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
@@ -17767,6 +17856,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "MH" = (
@@ -17905,6 +17997,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "MW" = (
@@ -18018,6 +18111,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
 "Nh" = (
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "Ni" = (
@@ -18669,6 +18763,21 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
+"Ox" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/sign/warning/moving_parts{
+	pixel_y = 32
+	},
+/obj/machinery/door/window/eastleft{
+	name = "Garbage Outlet";
+	req_one_access = list(65, 26)
+	},
+/turf/simulated/floor/tiled/steel/sif/planetuse{
+	icon_state = "steel_dirty";
+	initial_flooring = /decl/flooring/tiling/steel_dirty;
+	outdoors = 0
+	},
+/area/surface/outpost/research/xenoarcheology/smes)
 "Oy" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -18882,6 +18991,10 @@
 	icon_state = "1-8"
 	},
 /obj/effect/catwalk_plated/white,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "OQ" = (
@@ -19632,6 +19745,10 @@
 /obj/machinery/ai_status_display,
 /turf/simulated/wall/r_wall,
 /area/surface/outpost/research/xenoarcheology/analysis)
+"Qm" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall/r_wall,
+/area/surface/outpost/research/xenoarcheology/smes)
 "Qo" = (
 /obj/structure/sign/warning/fire,
 /turf/simulated/wall/r_wall,
@@ -20312,6 +20429,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "RF" = (
@@ -20536,6 +20654,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "Sc" = (
@@ -20995,6 +21114,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/smes)
 "Tf" = (
@@ -22948,6 +23068,24 @@
 "Xv" = (
 /turf/simulated/floor/plating,
 /area/surface/station/construction/basement)
+<<<<<<< HEAD
+=======
+"Xw" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/random/mob/mouse,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/surface/outpost/research/xenoarcheology/smes)
+>>>>>>> 9232d775a7e... Merge pull request #8908 from Cerebulon/xenotrash
 "Xx" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -23094,6 +23232,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -50955,8 +51096,8 @@ Iw
 Bd
 fU
 aW
-HE
-HE
+Hh
+Hh
 HE
 HE
 HE
@@ -51211,9 +51352,9 @@ tK
 Rr
 mg
 Nh
-aW
-HE
-HE
+Qm
+rT
+Hh
 HE
 HE
 HE
@@ -51469,8 +51610,8 @@ Yj
 PH
 ys
 aW
-HE
-HE
+Ox
+Hh
 HE
 HE
 HE
@@ -51726,7 +51867,7 @@ gt
 aW
 bl
 aW
-HE
+xd
 HE
 HE
 HE
