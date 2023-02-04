@@ -145,6 +145,11 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(wheelchairs)
 
+/datum/gear/utility/lantern
+	display_name = "lantern"
+	path = /obj/item/device/flashlight/lantern
+	cost = 2
+
 /****************
 modular computers
 ****************/

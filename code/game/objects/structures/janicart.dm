@@ -38,7 +38,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		to_chat(user, "<span class='warning'>There's no room in [src] for [I].</span>")
 		return FALSE
 
-	if(!user.unEquip(I, 0, src))
+	if(!user.canUnEquip(I))
 		to_chat(user, "<span class='warning'>[I] is stuck to your hand.</span>")
 		return FALSE
 
@@ -83,6 +83,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		to_chat(user, "<span class='warning'>There's no room in [src] for [I].</span>")
 		return FALSE
 
+	user.drop_from_inventory(I, src)
 	update_icon()
 	to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 	return TRUE
