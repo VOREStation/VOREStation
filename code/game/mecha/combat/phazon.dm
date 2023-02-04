@@ -9,7 +9,6 @@
 	health = 200		//God this is low
 	maxhealth = 200		//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 30
-	damage_absorption = list("brute"=0.7,"fire"=0.7,"bullet"=0.7,"laser"=0.7,"energy"=0.7,"bomb"=0.7)
 	max_temperature = 25000
 	infra_luminosity = 3
 	wreckage = /obj/effect/decal/mecha_wreckage/phazon
@@ -38,6 +37,7 @@
 	cloak_possible = TRUE
 	phasing_possible = TRUE
 	switch_dmg_type_possible = TRUE
+	var/list/inherent_damage_absorption = list("brute"=0.7,"fire"=0.7,"bullet"=0.7,"laser"=0.7,"energy"=0.7,"bomb"=0.7)
 
 /obj/mecha/combat/phazon/equipped/Initialize()
 	. = ..()
@@ -92,7 +92,7 @@
 	health = 350
 	maxhealth = 350
 	deflect_chance = 30
-	damage_absorption = list("brute"=0.6,"fire"=0.7,"bullet"=0.7,"laser"=0.9,"energy"=0.7,"bomb"=0.5)
+	inherent_damage_absorption = list("brute"=0.6,"fire"=0.7,"bullet"=0.7,"laser"=0.9,"energy"=0.7,"bomb"=0.5)
 	max_temperature = 10000
 	infra_luminosity = 3
 	wreckage = /obj/effect/decal/mecha_wreckage/janus
@@ -125,7 +125,7 @@
 		src.visible_message("<span class='alien'>The [src.name] absorbs the incoming projectile's force, negating it!</span>")
 		src.log_append_to_last("Armor negated.")
 		return
-	else if((Proj.damage && !Proj.nodamage) && istype(Proj, /obj/item/projectile/beam) && prob(max(1, (50 - round((Proj.damage / 2) * damage_absorption["laser"])) * (1 - (Proj.armor_penetration / 100)))))	// Base 50% chance to deflect a beam,lowered by half the beam's damage scaled to laser absorption, then multiplied by the remaining percent of non-penetrated armor, with a minimum chance of 1%.
+	else if((Proj.damage && !Proj.nodamage) && istype(Proj, /obj/item/projectile/beam) && prob(max(1, (50 - round((Proj.damage / 2) * inherent_damage_absorption["laser"])) * (1 - (Proj.armor_penetration / 100)))))	// Base 50% chance to deflect a beam,lowered by half the beam's damage scaled to laser absorption, then multiplied by the remaining percent of non-penetrated armor, with a minimum chance of 1%.
 		src.occupant_message("<span class='alien'>The armor reflects the incoming beam, negating it!</span>")
 		src.visible_message("<span class='alien'>The [src.name] reflects the incoming beam, negating it!</span>")
 		src.log_append_to_last("Armor reflected.")
@@ -133,8 +133,13 @@
 
 	..()
 
+<<<<<<< HEAD
 /obj/mecha/combat/phazon/janus/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(prob(max(1, (50 - round((W.force / 2) * damage_absorption["brute"])) * (1 - (W.armor_penetration / 100)))))
+=======
+/obj/mecha/combat/phazon/janus/dynattackby(obj/item/W as obj, mob/user as mob)
+	if(prob(max(1, (50 - round((W.force / 2) * inherent_damage_absorption["brute"])) * (1 - (W.armor_penetration / 100)))))
+>>>>>>> d29c9fe35a8... Merge pull request #8905 from MistakeNot4892/mechabad
 		src.occupant_message("<span class='alien'>The armor absorbs the incoming attack's force, negating it!</span>")
 		src.visible_message("<span class='alien'>The [src.name] absorbs the incoming attack's force, negating it!</span>")
 		src.log_append_to_last("Armor absorbed.")
