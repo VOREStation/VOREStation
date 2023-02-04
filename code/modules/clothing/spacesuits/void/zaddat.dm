@@ -38,7 +38,11 @@
 		to_chat(M, "This Shroud has already been customized!")
 		return 0
 
+<<<<<<< HEAD
 	suit_style = tgui_input_list(M, "Which suit style would you like?", "Suit Style", list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft"))
+=======
+	suit_style = input(M, "Which suit style would you like?") in list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft", "Ancient", "Healer", "Clockwork", "Retro", "Retro - Pink")
+>>>>>>> 4d84d44921a... Merge pull request #8924 from elgeonmb/fashion-update
 	switch(suit_style)
 		if("Engineer")
 			name = "\improper Engineer's Guild Shroud"
@@ -117,6 +121,65 @@
 				helmet.desc = "Not as solid as a proper helmet, but works nonetheless."
 				helmet.icon_state = "zaddat_soft"
 				helmet.item_state = "zaddat_soft"
+<<<<<<< HEAD
+=======
+		if("Ancient")
+			name = "ancient Shroud"
+			base_name = "ancient Shroud"
+			desc = "Often seen among the guildless or dishonored, this is an extremely old design of Shroud and has clearly seen its years."
+			icon_state = "zaddat_ancient"
+			item_state = "zaddat_ancient"
+			if(helmet)
+				helmet.name = "ancient Shroud helmet"
+				helmet.desc = "A crack in the visor allows some light through, though it maintains its seal."
+				helmet.icon_state = "zaddat_ancient"
+				helmet.item_state = "zaddat_ancient"
+		if("Healer")
+			name = "healer Shroud"
+			base_name = "healer Shroud"
+			desc = "A shroud designed for those working within medicine, a common pursuit for Zaddat. it is clearly marked with the standard cross and colors."
+			icon_state = "zaddat_healer"
+			item_state = "zaddat_healer"
+			if(helmet)
+				helmet.name = "healer Shroud helmet"
+				helmet.desc = "A helmet designed to signal the wearer as a healer."
+				helmet.icon_state = "zaddat_healer"
+				helmet.item_state = "zaddat_healer"
+		if("Clockwork")
+			name = "clockwork Shroud"
+			base_name = "clockwork Shroud"
+			desc = "Inspired by clockwork designs seen in some ancient human technologies and subcultures, this suit was popularized through osmosis with those subcultures."
+			icon_state = "zaddat_clockwork"
+			item_state = "zaddat_clockwork"
+			if(helmet)
+				helmet.name = "clockwork Shroud helmet"
+				helmet.desc = "Plated in brass."
+				helmet.icon_state = "zaddat_clockwork"
+				helmet.item_state = "zaddat_clockwork"
+		if("Retro")
+			name = "retro Shroud"
+			base_name = "retro Shroud"
+			desc = "This suit is derivative of some seen in ancient human media, long before voidsuits were commonplace. Such media has found a resurgence in popularity among some Zaddat."
+			icon_state = "zaddat_retro"
+			item_state = "zaddat_retro"
+			if(helmet)
+				helmet.name = "retro Shroud helmet"
+				helmet.desc = "A classic design for the modern age."
+				helmet.icon_state = "zaddat_retro"
+				helmet.item_state = "zaddat_retro"
+		if("Retro - Pink")
+			name = "pink retro Shroud"
+			base_name = "pink retro Shroud"
+			desc = "In 2572, the Dzaz Fashion House released this hasty recolor of one of their Shroud designs shamelessly appropriated from human media to universal acclaim."
+			icon_state = "zaddat_retro_pink"
+			item_state = "zaddat_retro_pink"
+			if(helmet)
+				helmet.name = "pink retro Shroud helmet"
+				helmet.desc = "A classic design for the modern age. Now at least fifteen percent more feminine."
+				helmet.icon_state = "zaddat_retro_pink"
+				helmet.item_state = "zaddat_retro_pink"
+
+>>>>>>> 4d84d44921a... Merge pull request #8924 from elgeonmb/fashion-update
 
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
