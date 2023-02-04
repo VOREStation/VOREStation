@@ -200,10 +200,10 @@
 	emote_message_3p = "lets out a low, throaty warble!"
 	emote_sound = 'sound/voice/lwarble.ogg'
 
-/decl/emote/audible/croak
-	key = "croak"
+/decl/emote/audible/croak_skrell
+	key = "scroak"
 	emote_message_3p = "croaks!"
-	emote_sound = 'sound/voice/croak.ogg'
+	emote_sound = 'sound/voice/croak_skrell.ogg'
 
 /decl/emote/audible/vox_shriek
 	key = "shriek"
