@@ -161,6 +161,21 @@
 			return F
 	return null
 
+// Tries to find the file by unique ID. Returns null on failure
+/obj/item/weapon/computer_hardware/hard_drive/proc/find_file_by_uid(var/uid)
+	if(!check_functionality())
+		return null
+
+	if(!uid)
+		return null
+
+	if(!stored_files)
+		return null
+
+	for(var/datum/computer_file/F in stored_files)
+		if(F.uid == uid)
+			return F
+
 /obj/item/weapon/computer_hardware/hard_drive/Destroy()
 	if(holder2 && (holder2.hard_drive == src))
 		holder2.hard_drive = null
