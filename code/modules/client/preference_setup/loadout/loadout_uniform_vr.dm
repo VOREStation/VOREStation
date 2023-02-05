@@ -295,7 +295,7 @@ Talon jumpsuit
 
 
 //Feminine Colored Jumpsuits.
-/datum/gear/suit/f_jumpsuit_alt
+/datum/gear/uniform/f_jumpsuit_alt
 	display_name = "Colored Feminine Jumpsuit"
 	path = /obj/item/clothing/under/color/fjumpsuit
 
