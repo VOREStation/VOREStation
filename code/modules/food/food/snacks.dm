@@ -1134,8 +1134,9 @@
 	has_been_heated = 1
 	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up. Now just to wait for it to be ready.")
 	spawn(200)
-		if(src && src.loc == user)
-			to_chat(user, "You think \the [src] is ready to eat about now.")
+		if(src)
+			if(src.loc == user)
+				to_chat(user, "You think \the [src] is ready to eat about now.")
 			heat()
 
 /obj/item/weapon/reagent_containers/food/snacks/brainburger
