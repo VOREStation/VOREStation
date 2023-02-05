@@ -123,7 +123,7 @@
 	our_planet.needs_work |= PLANET_PROCESS_TEMP
 
 /datum/weather_holder/proc/update_wind()
-	var/new_wind_speed = rand(current_weather.wind_low, current_weather.wind_high)
+	var/new_wind_speed = round(rand() * (current_weather.wind_high - current_weather.wind_low) + current_weather.wind_low, 0.5)
 	if(!new_wind_speed)
 		wind_speed = 0
 		wind_dir = 0

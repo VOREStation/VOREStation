@@ -184,7 +184,7 @@
 			if(WH && WH.wind_speed) // Is there any wind?
 				// With the wind.
 				if(direct & WH.wind_dir)
-					. = max(. - WH.wind_speed, -1) // Wind speedup is capped to prevent supersonic speeds from a storm.
+					. = max(. - WH.wind_speed, -0.5) // Wind speedup is capped to prevent supersonic speeds from a storm.
 				// Against it.
 				else if(direct & reverse_dir[WH.wind_dir])
 					. += WH.wind_speed

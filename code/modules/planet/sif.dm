@@ -269,8 +269,13 @@ var/datum/planet/sif/planet_sif = null
 /datum/weather/sif/rain
 	name = "rain"
 	icon_state = "rain"
+<<<<<<< HEAD
 	wind_high = 2
 	wind_low = 1
+=======
+	wind_high = 1
+	wind_low = 0
+>>>>>>> ed56dc9ba8d... Merge pull request #8930 from Atermonera/nerf_wind
 	light_modifier = 0.5
 	effect_message = "<span class='warning'>Rain falls on you.</span>"
 
