@@ -181,6 +181,19 @@
 	desc = "The final touch that holds it all together."
 	icon_state = "maidcorset"
 
+/obj/item/clothing/accessory/maid_arms
+	name = "maid arm covers"
+	desc = "Cylindrical looking tubes that go over your arms, weird. Tightened enough to attach to uniforms."
+	description_info = "Can be adjusted with alt-click to be worn as gloves."
+	icon_state = "maid_arms"
+
+/obj/item/clothing/accessory/maid_arms/AltClick(mob/user)
+	if(Adjacent(user))
+		to_chat(user, SPAN_NOTICE("You adjust [src]."))
+		var/obj/item/clothing/gloves/maid_arms/new_gloves = new /obj/item/clothing/gloves/maid_arms(get_turf(user))
+		user.put_in_any_hand_if_possible(new_gloves)
+		qdel(src)
+
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."

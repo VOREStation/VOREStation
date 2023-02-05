@@ -152,3 +152,7 @@ Talon winter coat
 
 /datum/gear/suit/cyberpunk_recolorable/New()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/shrine_maiden
+	display_name = "shrine maiden costume"
+	path = /obj/item/clothing/suit/shrine_maiden

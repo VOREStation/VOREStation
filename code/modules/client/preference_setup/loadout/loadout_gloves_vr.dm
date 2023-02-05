@@ -26,3 +26,7 @@
 /datum/gear/gloves/siren
 	display_name = "gloves, Siren"
 	path = /obj/item/clothing/gloves/fluff/siren
+
+/datum/gear/gloves/maid_arms
+	display_name = "maid arm covers"
+	path = /obj/item/clothing/gloves/maid_arms
