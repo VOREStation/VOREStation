@@ -70,25 +70,18 @@ export const NtosFileManager = (props, context) => {
             </Section>
           </Fragment>
         )}
-      {error && (
-        <Flex wrap="wrap" position="fixed" bottom="5px">
-          <Flex.Item>
-          <Section>
-            <Button
-              bottom="0"
-              left="0"
-              icon="ban"
-              onClick={() => act("PRG_clearerror")}
-              />
-          </Section>
-          </Flex.Item>
-          <Section>
-          <Flex.Item grow>
-            {error}
-          </Flex.Item>
-          </Section>
-        </Flex>
-      )}
+        {error && (
+          <Flex wrap="wrap" position="fixed" bottom="5px">
+            <Flex.Item>
+              <Section>
+                <Button bottom="0" left="0" icon="ban" onClick={() => act('PRG_clearerror')} />
+              </Section>
+            </Flex.Item>
+            <Section>
+              <Flex.Item grow>{error}</Flex.Item>
+            </Section>
+          </Flex>
+        )}
       </NtosWindow.Content>
     </NtosWindow>
   );
