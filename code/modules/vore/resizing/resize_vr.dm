@@ -242,19 +242,6 @@
 		return TRUE
 	return FALSE
 
-/mob/living/proc/can_pass_into(turf/n, var/prey = null)
-	for (var/atom/movable/M in n)
-		if (prey == M)
-			continue
-		if (istype(M, /mob/living))
-			var/mob/living/L = M
-			if (!(M.CanPass(src, n) || get_effective_size(FALSE) - L.get_effective_size(TRUE) >= 0.75))
-				return FALSE
-			continue
-		if (!M.CanPass(src, n))
-			return FALSE
-	return TRUE
-
 /**
  * Handle bumping into someone without mutual help intent.
  * Called from /mob/living/Bump()
@@ -284,7 +271,19 @@
 		return FALSE
 
 	var/mob/living/carbon/human/prey = tmob
-	if(!istype(prey) || !(isturf(prey.loc) && can_pass_into(prey.loc, prey)))
+	var/can_pass = TRUE
+	if (isturf(prey.loc))
+		for (var/atom/movable/M in prey.loc)
+			if (prey == M)
+				continue
+			if (istype(M, /mob/living))
+				var/mob/living/L = M
+				if (!(M.CanPass(src, prey.loc) || get_effective_size(FALSE) - L.get_effective_size(TRUE) >= 0.75))
+					can_pass = FALSE
+				continue
+			if (!M.CanPass(src, prey.loc))
+				can_pass = FALSE
+	if(!istype(prey) || !can_pass)
 		//If they're not human, steppy shouldn't happen
 		return FALSE
 
