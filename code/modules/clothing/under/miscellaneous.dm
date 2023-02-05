@@ -940,6 +940,16 @@
 	desc = "Jean shorts and a black halter top. Perfect for casual Fridays!"
 	icon_state = "haltertop"
 
+<<<<<<< HEAD
+=======
+/obj/item/clothing/under/wednesday
+	name = "cropped sweater skirt"
+	desc = "A cropped green sweater and matching miniskirt."
+	icon_state = "wednesday"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	index = 1
+
+>>>>>>> 3a38b8f1024... Merge pull request #8928 from Cerebulon/splitside
 /obj/item/clothing/under/rippedpunk
 	name = "ripped punk jeans"
 	desc = "Black ripped jeans and a fishnet top. How punk."
@@ -949,11 +959,28 @@
 	name = "green asymmetrical jumpsuit"
 	desc = "A green futuristic uniform with asymmetrical pants. Trendy!"
 	icon_state = "greenasym"
+<<<<<<< HEAD
+=======
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	index = 1
+>>>>>>> 3a38b8f1024... Merge pull request #8928 from Cerebulon/splitside
 
 /obj/item/clothing/under/cyberpunkharness
 	name = "cyberpunk strapped harness"
 	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
 	icon_state = "cyberhell"
+<<<<<<< HEAD
+=======
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	index = 1
+
+/obj/item/clothing/under/cyberpunkpants
+	name = "cyberpunk split-side ensemble"
+	desc = "Cyberpunk styled split-side pants and matching top. Just in time for the dystopian future."
+	icon_state = "hart_jumpsuit"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	index = 1
+>>>>>>> 3a38b8f1024... Merge pull request #8928 from Cerebulon/splitside
 
 /obj/item/clothing/under/blackngold
 	name = "black and gold gown"
