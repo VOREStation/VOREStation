@@ -692,5 +692,108 @@
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that water outta here
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/veggiemomo
 	result_quantity = 2
+=======
+	result = /obj/item/reagent_containers/food/snacks/veggiemomo
+
+/datum/recipe/lobster
+	appliance = OVEN
+	fruit = list("lemon" = 1, "lettuce" = 1)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/lobster
+	)
+	result = /obj/item/reagent_containers/food/snacks/lobstercooked
+
+/datum/recipe/cuttlefish
+	appliance = OVEN
+	items = list(
+		/obj/item/reagent_containers/food/snacks/cuttlefish
+	)
+	result = /obj/item/reagent_containers/food/snacks/cuttlefishcooked
+
+/datum/recipe/monkfish
+	appliance = OVEN
+	fruit = list("chili" = 1, "onion" = 1)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/monkfishfillet
+	)
+	result = /obj/item/reagent_containers/food/snacks/monkfishcooked
+
+/datum/recipe/sharksteak
+	appliance = OVEN
+	reagents = list("blackpepper"= 1, "sodiumchloride" = 1)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	)
+	result = /obj/item/reagent_containers/food/snacks/sharkmeatcooked
+
+/datum/recipe/neaeracandy
+	appliance = OVEN
+	reagents = list("cream" = 5)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/dough,
+		/obj/item/organ/internal/eyes/neaera
+	)
+	result = /obj/item/reagent_containers/food/snacks/neaeracandy
+	result_quantity = 6
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/neaerakabob
+	appliance = OVEN
+	items = list(
+		/obj/item/stack/rods,
+		/obj/item/reagent_containers/food/snacks/meat/neaera,
+		/obj/item/organ/internal/kidneys/neaera
+	)
+	reagent_mix = RECIPE_REAGENT_REPLACE
+	result = /obj/item/reagent_containers/food/snacks/neaerakabob
+
+/datum/recipe/lortl
+	appliance = OVEN
+	fruit = list("qlort" = 1)
+	reagents = list("sodiumchloride" = 1)
+	result_quantity = 3
+	result = /obj/item/reagent_containers/food/snacks/lortl
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/qazal_bread
+	appliance = OVEN
+	items = list(
+		/obj/item/reagent_containers/food/snacks/qazal_dough,
+		/obj/item/reagent_containers/food/snacks/qazal_dough,
+		/obj/item/reagent_containers/food/snacks/qazal_dough,
+		/obj/item/reagent_containers/food/snacks/qazal_dough)
+	result = /obj/item/reagent_containers/food/snacks/sliceable/qazal_bread
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/baked_gauli
+	appliance = OVEN
+	fruit = list("gauli" = 1)
+	result = /obj/item/reagent_containers/food/snacks/baked_gauli
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/baked_kirani
+	appliance = OVEN
+	fruit = list("kirani" = 1)
+	result = /obj/item/reagent_containers/food/snacks/baked_kirani
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/stuffed_gauli
+	appliance = OVEN
+	fruit = list("gauli" = 1, "kirani" = 1)
+	items = list(/obj/item/reagent_containers/food/snacks/meat/neaera)
+	result = /obj/item/reagent_containers/food/snacks/stuffed_gauli
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/kirani_jellypuff
+	appliance = OVEN
+	items = list(
+		/obj/item/reagent_containers/food/snacks/qazal_dough,
+		/obj/item/reagent_containers/food/snacks/qazal_dough
+	)
+	reagents = list("kirani_jelly" = 5, "qazal_flour" = 5)
+	reagent_mix = RECIPE_REAGENT_REPLACE
+	result = /obj/item/reagent_containers/food/snacks/kirani_jellypuff
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

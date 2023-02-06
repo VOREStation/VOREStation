@@ -93,6 +93,20 @@
 	blood_color = "#1D2CBF"
 	reagent_tag = IS_SKRELL
 	tail = null
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/neaera
+
+	has_organ = list(
+		O_HEART = /obj/item/organ/internal/heart/neaera,
+		O_LUNGS = /obj/item/organ/internal/lungs/neaera,
+		O_VOICE = /obj/item/organ/internal/voicebox,
+		O_LIVER = /obj/item/organ/internal/liver/neaera,
+		O_KIDNEYS = /obj/item/organ/internal/kidneys/neaera,
+		O_BRAIN = /obj/item/organ/internal/brain/neaera,
+		O_EYES = /obj/item/organ/internal/eyes/neaera,
+		O_STOMACH = /obj/item/organ/internal/stomach/neaera,
+		O_INTESTINE = /obj/item/organ/internal/intestine/neaera,
+		O_APPENDIX = /obj/item/organ/internal/appendix/neaera
+		)
 
 /datum/species/monkey/unathi
 	name = SPECIES_MONKEY_UNATHI

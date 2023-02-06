@@ -675,3 +675,15 @@ Drinks Data
 
 /datum/reagent/ethanol/mojito
 	glass_icon_state = "mojito"
+<<<<<<< HEAD
+=======
+
+/datum/reagent/drink/juice/dyn
+	glass_icon_state = "dynjuice"
+
+/datum/reagent/drink/tea/dyn
+	glass_icon_state = "dynhot"
+
+/datum/reagent/drink/tea/icetea/dyn
+	glass_icon_state = "dyncold"
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

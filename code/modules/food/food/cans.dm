@@ -351,6 +351,7 @@
 	. = ..()
 	reagents.add_reagent("porksoda", 30)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/cans/bepis
 	name = "\improper Bepis"
 	desc = "It has a smell of 'off-brand' whenever you open it..."
@@ -424,6 +425,17 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/cranberry/Initialize()
 	. = ..()
 	reagents.add_reagent("sprited_cranberry", 30)
+=======
+/obj/item/reagent_containers/food/drinks/cans/dyn
+	name = "\improper Cooling Breeze"
+	desc = "The most refreshing thing you can find on the market, based on a Qerr'balakian medicinal plant. Contains no salt or sugar."
+	description_fluff = "A drink imported from Qerr'balak, now available in human space!"
+	icon_state = "dyncan"
+
+/obj/item/reagent_containers/food/drinks/cans/dyn/Initialize()
+	. = ..()
+	reagents.add_reagent("dyncold", 30)
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)
 
 /////////////////////////CANNED BOOZE DRINKS/////////////////////////
 

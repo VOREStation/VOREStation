@@ -15,8 +15,15 @@
 		/obj/item/weapon/paper,
 		/obj/item/clothing/head/wizard,
 		/obj/item/clothing/head/cakehat,
+<<<<<<< HEAD
 		/obj/item/clothing/mask/gas/clown_hat,
 		/obj/item/clothing/head/beret
+=======
+		/obj/item/clothing/mask/gas/costume,
+		/obj/item/clothing/head/beret,
+		/obj/item/stack/rods,
+		/obj/item/organ/internal
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)
 	)
 
 /obj/item/weapon/reagent_containers/cooking_container/Initialize()

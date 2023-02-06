@@ -741,4 +741,20 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/dr_gibb/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	reagents.add_reagent("dr_gibb", 50)
+=======
+	reagents.add_reagent("dr_gibb", 50)
+
+/obj/item/reagent_containers/food/drinks/bottle/dynjuice
+	name = "Undiluted Dyn Juice"
+	desc = "Juice from a Qerr'balakian herb. It's supposed to be diluted."
+	icon_state = "dyncarton"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=7)
+	isGlass = 0
+
+/obj/item/reagent_containers/food/drinks/bottle/dynjuice/Initialize()
+	. = ..()
+	reagents.add_reagent("dynjuice", 100)
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

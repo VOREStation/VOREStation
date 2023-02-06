@@ -201,5 +201,26 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
+<<<<<<< HEAD
 	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
 //VOREStation Add End
+=======
+	result = /obj/item/storage/box/wings //This is kinda like the donut box.
+
+/datum/recipe/locust
+	items = list(
+		/obj/item/reagent_containers/food/snacks/locust
+	)
+	coating = /datum/reagent/nutriment/coating/batter
+	result = /obj/item/reagent_containers/food/snacks/locust_cooked
+
+/datum/recipe/garani
+	appliance = FRYER
+	items = list(
+		/obj/item/reagent_containers/food/snacks/qalozynboiled,
+		/obj/item/reagent_containers/food/snacks/qalozynboiled,
+		/obj/item/organ/internal/liver/neaera
+	)
+	result = /obj/item/reagent_containers/food/snacks/garani
+	reagent_mix = RECIPE_REAGENT_REPLACE
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

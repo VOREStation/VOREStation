@@ -416,6 +416,7 @@
 	name = "burrito packaging"
 	icon_state = "smolburrito"
 
+<<<<<<< HEAD
 /obj/item/trash/brainzsnax
 	name = "\improper BrainzSnax can"
 	icon_state = "brainzsnax"
@@ -427,3 +428,8 @@
 	icon_state = "brainzsnaxred"
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
+=======
+/obj/item/trash/candybowl
+	name = "candy bowl"
+	icon_state = "candy_bowl"
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

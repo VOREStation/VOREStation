@@ -144,7 +144,15 @@
 		/obj/item/seeds/watermelonseed = 3,
 		/obj/item/seeds/wheatseed = 3,
 		/obj/item/seeds/whitebeetseed = 3,
-		/obj/item/seeds/wurmwoad = 3
+		/obj/item/seeds/wurmwoad = 3,
+		/obj/item/seeds/dynseed = 3,
+		/obj/item/seeds/ekiseed = 3,
+		/obj/item/seeds/guamiseed = 3,
+		/obj/item/seeds/qlortseed = 3,
+		/obj/item/seeds/qalozynseed = 3,
+		/obj/item/seeds/qazal = 3,
+		/obj/item/seeds/gauli = 3,
+		/obj/item/seeds/kirani = 3
 		)
 
 /obj/machinery/seed_storage/xenobotany
@@ -202,7 +210,15 @@
 		/obj/item/seeds/watermelonseed = 3,
 		/obj/item/seeds/wheatseed = 3,
 		/obj/item/seeds/whitebeetseed = 3,
-		/obj/item/seeds/wurmwoad = 3
+		/obj/item/seeds/wurmwoad = 3,
+		/obj/item/seeds/dynseed = 3,
+		/obj/item/seeds/ekiseed = 3,
+		/obj/item/seeds/guamiseed = 3,
+		/obj/item/seeds/qlortseed = 3,
+		/obj/item/seeds/qalozynseed = 3,
+		/obj/item/seeds/qazal = 3,
+		/obj/item/seeds/gauli = 3,
+		/obj/item/seeds/kirani = 3
 		)
 
 /obj/machinery/seed_storage/attack_hand(mob/user as mob)

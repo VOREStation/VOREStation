@@ -53,6 +53,7 @@
 	cooked_icon = "chickensteak"
 	filling_color = "#BBBBAA"
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/meat/chicken/Initialize()
 	. = ..()
 	reagents.remove_reagent("triglyceride", INFINITY)
@@ -188,3 +189,20 @@
 		to_chat(user, "<span class='alien'>You cut the tissue holding the chunks together.</span>")
 
 	..()
+=======
+/obj/item/reagent_containers/food/snacks/meat/chicken/Initialize()
+		. = ..()
+		reagents.remove_reagent("triglyceride", INFINITY)
+		//Chicken is low fat. Less total calories than other meats
+
+/obj/item/reagent_containers/food/snacks/meat/neaera
+	name = "neaera meat"
+	desc = "A slab of.. blue meat?"
+	icon_state = "neaera_meat"
+
+/obj/item/reagent_containers/food/snacks/meat/neaera/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("seafood", 3)
+	reagents.add_reagent("triglyceride", 2)
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

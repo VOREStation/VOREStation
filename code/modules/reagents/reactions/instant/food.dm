@@ -206,5 +206,23 @@
 /decl/chemical_reaction/instant/food/butter/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
+<<<<<<< HEAD
 		new /obj/item/weapon/reagent_containers/food/snacks/spreads/butter(location)
 	return
+=======
+		new /obj/item/reagent_containers/food/snacks/spreads/butter(location)
+	return
+
+/decl/chemical_reaction/instant/food/qazal_dough
+	name = "Qa'zal dough"
+	id = "qazal_dough"
+	result = null
+	required_reagents = list("qazal_flour" = 10, "gauli_juice" = 5)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/food/qazal_dough/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/qazal_dough(location)
+	return
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)

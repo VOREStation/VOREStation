@@ -4539,3 +4539,59 @@
 	nutriment_factor = 2
 	glass_name = "kvass"
 	glass_desc = "A hearty glass of Slavic brew."
+
+//Querbalak stuff
+/datum/reagent/drink/juice/dyn
+	name = "Dyn juice"
+	id = "dynjuice"
+	description = "Juice from a Qerr'balakian herb. Good for you, but usually diluted for potability."
+	taste_description = "astringent menthol"
+	color = "#00e0e0"
+	glass_name = "dyn juice"
+	glass_desc = "Juice from a Qerr'balakian herb. Good for you, but usually diluted for potability."
+	sugary = FALSE
+
+/datum/reagent/drink/tea/dyn
+	name = "Dyn tea"
+	id = "dynhot"
+	description = "A traditional skrellian drink with documented medicinal properties."
+	color = "#00e0e0"
+	taste_description = "peppermint water"
+	allergen_type = null //no caffine here
+	glass_name = "dyn tea"
+	glass_desc = "An old-fashioned, but traditional skrellian drink with documented medicinal properties."
+	cup_name = "cup of dyn tea"
+	cup_desc = "An old-fashioned, but traditional skrellian drink with documented medicinal properties."
+
+/datum/reagent/drink/tea/icetea/dyn
+	name = "Dyn iced tea"
+	id = "dyncold"
+	description = "A modern spin on an old formula. Good for you!"
+	color = "#00e0e0"
+	taste_description = "fizzy mint tea"
+	allergen_type = null
+	glass_name = "dyn iced tea"
+	glass_desc = "A modern spin on an old formula. Good for you!"
+
+/datum/reagent/nutriment/qazal_flour
+	name = "Qa'zal flour"
+	id = "qazal_flour"
+	description = "Harvested from ground qa'zal, this is one of the main ingredients in qa'zal bread."
+	taste_description = "chalky, sweet dryness"
+	reagent_state = SOLID
+	nutriment_factor = 1
+	color = "#c499bc"
+
+/datum/reagent/nutriment/kirani_jelly
+	name = "Kirani jelly"
+	id = "kirani_jelly"
+	description = "Sticky, sweet jelly from ground kiriani fruits."
+	taste_description = "ultra-sweet jelly"
+	color = "#993c5c"
+
+/datum/reagent/drink/gauli_juice
+	name = "Ga'uli juice"
+	id = "gauli_juice"
+	description = "Juice from a ga'uli pod, used in skrellian and teshari cooking."
+	color = "#6f83a6"
+	taste_description = "mintyness"

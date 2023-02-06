@@ -325,4 +325,13 @@
 		/obj/item/weapon/reagent_containers/food/snacks/chickenkatsu,
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/chickenfillet
+=======
+	result = /obj/item/reagent_containers/food/snacks/chickenfillet
+
+/datum/recipe/qazalflatbread
+		appliance = GRILL
+		items = list(/obj/item/reagent_containers/food/snacks/sliceable/qazal_flatdough)
+		result = /obj/item/reagent_containers/food/snacks/grilled_qazal_flatbread
+>>>>>>> d6083cd2626... Teshari/Skrell food expansion (#8888)
