@@ -64,6 +64,7 @@
 			L.visible_message("<span class='warning'>\The [L] [response_harm] \the [src]!</span>")
 			L.do_attack_animation(src)
 
+<<<<<<< HEAD
 	return
 
 
@@ -81,6 +82,17 @@
 			var/datum/gender/T = gender_datums[src.get_visible_gender()]
 			to_chat(user, "<span class='notice'>\The [src] is dead, medical items won't bring [T.him] back to life.</span>") // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
+=======
+// When somoene clicks us with an item in hand.
+/mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
+
+	// Attempt to apply healing items, nanopaste, etc.
+	if(attempt_healing(user, O))
+		return TRUE
+
+	//if the animal can be butchered, do so and return. It's likely to be gibbed.
+	if(can_butcher(user, O))
+>>>>>>> 781fe82a78a... Merge pull request #8841 from MistakeNot4892/aminals
 		harvest(user, O)
 		return
 

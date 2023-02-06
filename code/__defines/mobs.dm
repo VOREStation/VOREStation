@@ -362,6 +362,11 @@
 
 #define MOB_CLASS_ALL (~MOB_CLASS_NONE)
 
+// Shorthands for simple mob healing with items; adjust lists as additional healing behavior is added.
+#define MOB_CLASSES_HEALABLE (MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SYNTHETIC)
+#define MOB_CLASSES_UNHEALABLE (MOB_CLASS_SLIME|MOB_CLASS_ABERRATION|MOB_CLASS_DEMONIC|MOB_CLASS_ILLUSION|MOB_CLASS_PHOTONIC)
+
+
 // For slime commanding.  Higher numbers allow for more actions.
 #define SLIME_COMMAND_OBEY		1 // When disciplined.
 #define SLIME_COMMAND_FACTION	2 // When in the same 'faction'.
