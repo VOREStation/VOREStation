@@ -4,6 +4,7 @@
 	name = "power sink"
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
+	icon = 'icons/obj/device.dmi'
 	w_class = ITEMSIZE_LARGE
 	throwforce = 5
 	throw_speed = 1
