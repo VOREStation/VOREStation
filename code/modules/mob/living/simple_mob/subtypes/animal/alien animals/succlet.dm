@@ -1,16 +1,10 @@
 /datum/category_item/catalogue/fauna/succlet
 	name = "Alien Wildlife - Succlet"
-	desc = "The Catslug is an omnivorous terrestrial creature.\
-	Exhibiting properties of both a cat and a slug (hence its name)\
-	it moves somewhat awkwardly. However, the unique qualities of\
-	its body make it exceedingly flexible and smooth, allowing it to\
-	wiggle into and move effectively in even extremely tight spaces.\
-	Additionally, it has surprisingly capable hands, and moves quite\
-	well on two legs or four. Caution is advised when interacting\
-	with these creatures, they are quite intelligent, and proficient\
-	tool users."
-	value = CATALOGUER_REWARD_MEDIUM
-
+	desc = "Succlet is a friend to fungus. It finds pleasure in absorbing the nutrients of treats, and decomposing other organisms.\
+	It is unclear how it manages to move, but succlet can be found seemingly randomly about any environment it has been invited to.\
+	Succlets are known to attempt to convince people to obtain additional succlets, and should not be listened to, as once one invites a succlet into their home\
+	it will never leave, and will eat their treats forever. It should be noted that despite being a worthless treat stealing creature succlet has not been to prison."
+	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/alienanimals/succlet
 	name = "succlet"
@@ -25,8 +19,6 @@
 	maxHealth = 10
 	health = 10
 	movement_cooldown = 1000
-	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	response_help = "hugs"
 	response_disarm = "rudely paps"
@@ -42,7 +34,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/succlet)
 	ai_holder_type = null
 	say_list_type = /datum/say_list/succlet
-	player_msg = "You are a succlet."
+	player_msg = "You can move with ALT+click. You can only move when no one will see you, unless you are targetting someone. If no one else will see you move, and you can eat the target, then you will be able to move to them. Use your power to responsibly, and move confusingly right to left as if to distract them."
 	has_langs = list(LANGUAGE_ANIMAL)
 
 	min_oxy = 0
@@ -59,21 +51,22 @@
 
 	vore_active = 1
 	vore_capacity = 1
-	vore_bump_chance = 1
-	vore_ignores_undigestable = 0
+	vore_bump_chance = 0
 	vore_default_mode = DM_SELECT
 	vore_icons = SA_ICON_LIVING
 	vore_stomach_name = "stummy"
 	vore_default_item_mode = IM_DIGEST
 
-	var/succlet_move_chance = 1
+	var/succlet_move_chance = 2
+	var/succlet_weaken_rate = 5
+	var/succlet_last_health = 10
 
 /datum/say_list/succlet
-	speak = list()
-	emote_hear = list()
-	emote_see = list()
-	say_maybe_target = list()
-	say_got_target = list()
+	speak = list("...")
+	emote_hear = list("...")
+	emote_see = list("...")
+	say_maybe_target = list("...")
+	say_got_target = list("...")
 
 /mob/living/simple_mob/vore/alienanimals/succlet/init_vore()
 	..()
@@ -90,10 +83,8 @@
 	B.escapechance = 10
 	B.selective_preference = DM_ABSORB
 
-/mob/living/simple_mob/vore/alienanimals/succlet/Move(atom/newloc, direct, movetime)
-	if(pulledby)
-		. = ..()
-	else return
+/mob/living/simple_mob/vore/alienanimals/succlet/checkMoveCooldown()
+	return FALSE
 
 /mob/living/simple_mob/vore/alienanimals/succlet/AltClickOn(atom/A)
 	if(get_dist(get_turf(src),get_turf(A)) > 1)
@@ -107,9 +98,9 @@
 		return
 	if(client)
 		return
-	if(prob(succlet_move_chance))
-		var/list/mylist = list()
-		for(var/mob/M in view(world.view, get_turf(src)))
+	if(prob(succlet_move_chance) || health < succlet_last_health)	//This chance can be adjusted, but moving is probably pretty resource expensive on the server, so the chance should stay low
+		var/list/mylist = list()	//Look I'm just saying, you can make it higher if you want but don't cry to me if the server lags, I made this as a joke
+		for(var/mob/M in view(world.view, get_turf(src)))	//Is there anyone nearby to target?
 			if(istype(M, /mob/living/simple_mob/vore/alienanimals/succlet))
 				continue
 			if(isobserver(M))
@@ -119,11 +110,16 @@
 		if(mylist.len > 0)
 			succlet_move(pick(mylist))
 		else
-			for(var/turf/T in view(world.view, get_turf(src)))
+			for(var/turf/T in view(world.view, get_turf(src)))	//No, so let's pick a turf to travel to
 				if(isturf(T))
 					mylist |= T
 			succlet_move(pick(mylist))
+	succlet_last_health = health	//The succlet will try to move if it has taken damage
 
+/mob/living/simple_mob/vore/alienanimals/succlet/death()
+	. = ..()
+	spawn(10)
+	qdel(src)
 
 /mob/living/simple_mob/vore/alienanimals/succlet/proc/succlet_move(var/target)
 	if(!target)
@@ -157,7 +153,7 @@
 
 	var/my_turf = get_turf(src)
 	for(var/atom/M in view(world.view, my_turf))	//Is anyone who is not us or our target around where we are?
-		if(isliving(M) && M != src && M != target && !istype(M, /mob/observer) && !M.invisibility)
+		if(isliving(M) && M != src && M != target && !istype(M, /mob/observer) && !M.invisibility && !istype(M,/mob/living/simple_mob/vore/alienanimals/succlet))
 			var/mob/living/check = M
 			if(check.stat)
 				to_chat(src, "<span class='warning'>You can't move, [check] is watching...</span>")
@@ -166,7 +162,7 @@
 				to_chat(src, "<span class='warning'>You can't move, [check] is watching...</span>")
 				return
 	for(var/atom/T in view(world.view, target_turf))	//Is anyone at our target?
-		if(isliving(T) && T != src && T != target && !istype(T, /mob/observer) && !T.invisibility)
+		if(isliving(T) && T != src && T != target && !istype(T, /mob/observer) && !T.invisibility && !istype(T,/mob/living/simple_mob/vore/alienanimals/succlet))
 			var/mob/living/check = T
 			if(check.stat)
 				to_chat(src, "<span class='warning'>You can't move, [check] is watching...</span>")
@@ -176,7 +172,7 @@
 				return
 	forceMove(target_turf)
 	if(l)
-		l.Weaken(5)
+		l.Weaken(succlet_weaken_rate)
 		animal_nom(l)
 		l.stop_pulling()
 
@@ -186,12 +182,39 @@
 	icon_living = "big_succlet"
 	icon_dead = "big_succlet"
 	icon_rest = "big_succlet"
+	succlet_weaken_rate = 60	//Big
 
 /mob/living/simple_mob/vore/alienanimals/succlet/dark
-	color = "#333333"
+	icon_state = "dark_succlet"
+	icon_living = "dark_succlet"
+	icon_dead = "dark_succlet"
+	icon_rest = "dark_succlet"
 
 /mob/living/simple_mob/vore/alienanimals/succlet/poison
-	color = "#573b75"
+	icon_state = "poison_succlet"
+	icon_living = "poison_succlet"
+	icon_dead = "poison_succlet"
+	icon_rest = "poison_succlet"
+
+/mob/living/simple_mob/vore/alienanimals/succlet/poison/attack_hand(mob/user)
+	. = ..()
+	if(user.a_intent != I_HELP)
+		if(isliving(user))
+			var/mob/living/l = user
+			to_chat(l, "<span class='warning'>You feel \the [src]'s sting!!!</span>")
+			l.hallucination += 25
+			l.adjustHalLoss(200)
+			l.adjustToxLoss(10)
 
 /mob/living/simple_mob/vore/alienanimals/succlet/moss
-	color = "#1a6b27"
+	icon_state = "moss_succlet"
+	icon_living = "moss_succlet"
+	icon_dead = "moss_succlet"
+	icon_rest = "moss_succlet"
+
+/mob/living/simple_mob/vore/alienanimals/succlet/king
+	icon_state = "king_succlet"
+	icon_living = "king_succlet"
+	icon_dead = "king_succlet"
+	icon_rest = "king_succlet"
+	succlet_weaken_rate = 120	//The weight of authority is heavy!
