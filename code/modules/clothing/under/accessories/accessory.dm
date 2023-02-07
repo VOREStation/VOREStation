@@ -184,7 +184,7 @@
 /obj/item/clothing/accessory/maid_arms
 	name = "maid arm covers"
 	desc = "Cylindrical looking tubes that go over your arms, weird."
-	slot_flags = SLOT_GLOVES | SLOT_TIE
+	slot_flags = SLOT_OCLOTHING | SLOT_GLOVES | SLOT_TIE
 	body_parts_covered = ARMS
 	description_info = "Wearable as gloves, or attachable to uniforms. May visually conflict with actual gloves when attached to uniforms. Caveat emptor."
 	icon_state = "maid_arms"
