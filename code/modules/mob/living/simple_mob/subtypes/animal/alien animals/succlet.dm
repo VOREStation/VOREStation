@@ -57,6 +57,9 @@
 	vore_stomach_name = "stummy"
 	vore_default_item_mode = IM_DIGEST
 
+	vore_taste = "some kind of snack from a distant unseen universe"
+	vore_smell = "some kind of snack from a distant unseen universe"
+
 	var/succlet_move_chance = 2
 	var/succlet_weaken_rate = 5
 	var/succlet_last_health = 10
@@ -178,11 +181,12 @@
 
 
 /mob/living/simple_mob/vore/alienanimals/succlet/big
+	desc = "A big soft, fuzzy, innocent looking star shaped creature."
 	icon_state = "big_succlet"
 	icon_living = "big_succlet"
 	icon_dead = "big_succlet"
 	icon_rest = "big_succlet"
-	succlet_weaken_rate = 60	//Big
+	succlet_weaken_rate = 30	//Big
 
 /mob/living/simple_mob/vore/alienanimals/succlet/dark
 	icon_state = "dark_succlet"
@@ -191,6 +195,7 @@
 	icon_rest = "dark_succlet"
 
 /mob/living/simple_mob/vore/alienanimals/succlet/poison
+	desc = "A soft, fuzzy, innocent looking star shaped creature. It looks like it could be poisonous."
 	icon_state = "poison_succlet"
 	icon_living = "poison_succlet"
 	icon_dead = "poison_succlet"
@@ -211,10 +216,15 @@
 	icon_living = "moss_succlet"
 	icon_dead = "moss_succlet"
 	icon_rest = "moss_succlet"
+	vore_taste = "moss"
+	vore_smell = "moss"
 
 /mob/living/simple_mob/vore/alienanimals/succlet/king
+	desc = "A big soft, fuzzy, innocent looking star shaped creature. It looks regal with its crown!"
 	icon_state = "king_succlet"
 	icon_living = "king_succlet"
 	icon_dead = "king_succlet"
 	icon_rest = "king_succlet"
-	succlet_weaken_rate = 120	//The weight of authority is heavy!
+	succlet_weaken_rate = 60	//The weight of authority is heavy!
+	vore_taste = "the king of snacks from a distant unseen universe"
+	vore_smell = "the king of snacks from a distant unseen universe"
