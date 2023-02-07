@@ -123,7 +123,7 @@
 /decl/emote/audible/croak
     key = "croak"
     emote_message_3p = "rumbles their throat, puffs their cheeks and croaks."
-    emote_sound = 'sound/voice/croak.ogg'
+    emote_sound = 'sound/voice/croak_frog.ogg'
 /decl/emote/audible/gao
     key = "gao"
     emote_message_3p = "lets out a gao."
