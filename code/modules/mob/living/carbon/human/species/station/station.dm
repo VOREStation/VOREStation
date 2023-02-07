@@ -373,6 +373,13 @@
 		O_INTESTINE =	/obj/item/organ/internal/intestine/skrell
 		)
 
+	default_emotes = list(
+		/decl/emote/audible/warble,
+		/decl/emote/audible/lwarble,
+		/decl/emote/audible/croon,
+		/decl/emote/audible/croak
+	)
+
 /datum/species/skrell/can_breathe_water()
 	return TRUE
 

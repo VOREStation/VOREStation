@@ -190,6 +190,21 @@
 	emote_sound = 'sound/effects/warble.ogg' // Copyright CC BY 3.0 alienistcog (freesound.org) for the sound.
 	emote_message_3p = "warbles."
 
+/decl/emote/audible/croon
+	key = "croon"
+	emote_message_3p = "croons..."
+	emote_sound = list('sound/voice/croon1.ogg', 'sound/voice/croon2.ogg')
+
+/decl/emote/audible/lwarble
+	key = "lwarble"
+	emote_message_3p = "lets out a low, throaty warble!"
+	emote_sound = 'sound/voice/lwarble.ogg'
+
+/decl/emote/audible/croak_skrell
+	key = "scroak"
+	emote_message_3p = "croaks!"
+	emote_sound = 'sound/voice/croak_skrell.ogg'
+
 /decl/emote/audible/vox_shriek
 	key = "shriek"
 	emote_message_3p = "SHRIEKS!"

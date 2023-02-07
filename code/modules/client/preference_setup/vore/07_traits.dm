@@ -156,6 +156,17 @@
 	pref.custom_ask = lowertext(trim(pref.custom_ask))
 	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
 
+	if (islist(pref.custom_heat)) //don't bother checking these for actual singular message length, they should already have been checked and it'd take too long every time it's sanitized
+		if (length(pref.custom_heat) > 10)
+			pref.custom_heat.Cut(11)
+	else
+		pref.custom_heat = list()
+	if (islist(pref.custom_cold))
+		if (length(pref.custom_cold) > 10)
+			pref.custom_cold.Cut(11)
+	else
+		pref.custom_cold = list()
+
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
