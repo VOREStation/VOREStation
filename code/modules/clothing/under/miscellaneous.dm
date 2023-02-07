@@ -361,7 +361,7 @@
 	icon_state = "sexymaid"
 
 /obj/item/clothing/under/dress/maid/under_maid
-	name = "cute maid uniform"
+	name = "modern maid costume"
 	desc = "You're going to use this for housekeeping, right?"
 	icon_state = "under_maid"
 

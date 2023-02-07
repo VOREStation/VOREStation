@@ -29,4 +29,4 @@
 
 /datum/gear/gloves/maid_arms
 	display_name = "maid arm covers"
-	path = /obj/item/clothing/gloves/maid_arms
+	path = /obj/item/clothing/accessory/maid_arms

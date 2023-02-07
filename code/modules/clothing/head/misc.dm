@@ -16,7 +16,7 @@
 	icon_state = "halo"
 
 /obj/item/clothing/head/headband/maid/modern
-	name = "maid headband"
+	name = "modern maid headband"
 	desc = "Just like from my Japanese cartoons!"
 	icon_state = "maid_headband"
 

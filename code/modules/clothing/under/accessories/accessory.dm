@@ -183,16 +183,11 @@
 
 /obj/item/clothing/accessory/maid_arms
 	name = "maid arm covers"
-	desc = "Cylindrical looking tubes that go over your arms, weird. Tightened enough to attach to uniforms."
-	description_info = "Can be adjusted with alt-click to be worn as gloves."
+	desc = "Cylindrical looking tubes that go over your arms, weird."
+	slot_flags = SLOT_GLOVES | SLOT_TIE
+	body_parts_covered = ARMS
+	description_info = "Wearable as gloves, or attachable to uniforms. May visually conflict with actual gloves when attached to uniforms. Caveat emptor."
 	icon_state = "maid_arms"
-
-/obj/item/clothing/accessory/maid_arms/AltClick(mob/user)
-	if(Adjacent(user))
-		to_chat(user, SPAN_NOTICE("You adjust [src]."))
-		var/obj/item/clothing/gloves/maid_arms/new_gloves = new /obj/item/clothing/gloves/maid_arms(get_turf(user))
-		user.put_in_any_hand_if_possible(new_gloves)
-		qdel(src)
 
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"

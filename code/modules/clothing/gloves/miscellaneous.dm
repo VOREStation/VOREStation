@@ -136,19 +136,6 @@
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
-/obj/item/clothing/gloves/maid_arms
-	name = "maid arm covers"
-	desc = "Cylindrical looking tubes that go over your arms, weird."
-	description_info = "Can be adjusted with alt-click to be worn as a uniform accessory."
-	icon_state = "maid_arms"
-
-/obj/item/clothing/gloves/maid_arms/AltClick(mob/user)
-	if(Adjacent(user))
-		to_chat(user, SPAN_NOTICE("You adjust [src]."))
-		var/obj/item/clothing/accessory/maid_arms/new_accessory = new /obj/item/clothing/accessory/maid_arms(get_turf(user))
-		user.put_in_any_hand_if_possible(new_accessory)
-		qdel(src)
-
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"
 	name = "ranger gloves"
