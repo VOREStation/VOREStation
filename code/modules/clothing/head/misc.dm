@@ -15,8 +15,8 @@
 	desc = "a small metal ring, floating above it's wearer."
 	icon_state = "halo"
 
-/obj/item/clothing/head/maid_headband
-	name = "maid headband"
+/obj/item/clothing/head/headband/maid/modern
+	name = "modern maid headband"
 	desc = "Just like from my Japanese cartoons!"
 	icon_state = "maid_headband"
 

@@ -136,11 +136,6 @@
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
-/obj/item/clothing/gloves/maid_arms
-	name = "maid arm covers"
-	desc = "Cylindrical looking tubes that go over your arm, weird."
-	icon_state = "maid_arms"
-
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"
 	name = "ranger gloves"
@@ -177,5 +172,3 @@
 	name = "water wings"
 	desc = "Swim aids designed to help a wearer float in water and learn to swim."
 	icon_state = "waterwings"
-
-
