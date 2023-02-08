@@ -2,9 +2,8 @@
 //Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
 
 /datum/sprite_accessory/marking //Override for base markings
-	var/organ_override = FALSE
 	color_blend_mode = ICON_ADD
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
+	species_allowed = list() //This lets all races use
 
 /datum/sprite_accessory/marking/vr_vulp_belly
 	name = "belly fur (Vulp)"
@@ -82,7 +81,7 @@
 	icon_state = "sergal_full"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//species_allowed = list("Sergal")			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr_sergal_full_female
 	name = "Sergal Markings (Female)"
@@ -90,7 +89,7 @@
 	icon_state = "sergal_full_female"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//("Sergal")
 
 /datum/sprite_accessory/marking/vr_monoeye
 	name = "Monoeye"
@@ -402,6 +401,7 @@
 	icon_state = "tesh-feathers"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI, SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_harpy_feathers
 	name = "Rapala leg Feather"
@@ -489,7 +489,7 @@
 	icon = 'icons/mob/human_races/markings_vr.dmi'
 	icon_state = "eyes_panda"
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr_catwomantorso
 	name = "Catwoman chest stripes"
@@ -525,6 +525,7 @@
 	icon_state = "teshi_sf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)
+	species_allowed = list(SPECIES_TESHARI, SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_spirit_lights
 	name = "Ward - Spirit FBP Lights"
@@ -681,19 +682,6 @@
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 
 	//CitRP stuff
-/datum/sprite_accessory/marking/vr_vox_alt
-	name = "Vox Alternate"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "bay_vox"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_VOX)
-
-/datum/sprite_accessory/marking/vr_vox_alt_eyes
-	name = "Alternate Vox Eyes"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "bay_vox_eyes"
-	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_VOX)
 
 /datum/sprite_accessory/marking/vr_c_beast_body
 	name = "Cyber Body"
@@ -743,7 +731,7 @@
 	icon_state = "teshlarge_eyes"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI)
+	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_teshari_coat
 	name = "Teshari coat"
@@ -751,7 +739,7 @@
 	icon_state = "tesh_coat"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI)
+	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_teshari_pattern_male
 	name = "Teshari male pattern"
@@ -759,7 +747,7 @@
 	icon_state = "tesh-pattern-male"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI)
+	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_teshari_pattern_female
 	name = "Teshari female pattern"
@@ -767,28 +755,7 @@
 	icon_state = "tesh-pattern-fem"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI)
-
-/datum/sprite_accessory/marking/vr_voxscales
-	name = "Vox Scales"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_HEAD)
-
-/datum/sprite_accessory/marking/vr_voxclaws
-	name = "Vox Claws"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxclaws"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-
-/datum/sprite_accessory/marking/vr_voxbeak
-	name = "Vox Beak"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_unathihood
 	name = "Cobra Hood"
@@ -901,6 +868,7 @@
 	icon_state = "tesh-beak"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_tesh_beak_alt
 	name = "Teshari beak, rounded"
@@ -908,6 +876,7 @@
 	icon_state = "tesh-beak-alt"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
 
 /datum/sprite_accessory/marking/vr_generic_hooves
 	name = "Generic Hooves"
@@ -917,4 +886,3 @@
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT)
 	organ_override = TRUE
-
