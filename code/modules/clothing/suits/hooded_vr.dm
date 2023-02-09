@@ -145,3 +145,6 @@
 	name = "yellow-trimmed hoodie"
 	desc = "A warm jacket, now featuring a hood and an eye-catching yellow trim!"
 	icon_state = "hoodie_yellowtrim"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/suit/mob_vr_teshari.dmi')

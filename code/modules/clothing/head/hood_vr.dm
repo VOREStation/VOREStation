@@ -53,3 +53,6 @@
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "turnip_hood"
 	flags_inv = HIDEEARS|BLOCKHAIR
+
+/obj/item/clothing/head/hood/winter
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi')
