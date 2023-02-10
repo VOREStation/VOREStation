@@ -159,6 +159,11 @@
   emote_message_3p = "laughs"
   emote_sound = 'sound/voice/moth/moth_laugh.ogg'
 
+/decl/emote/audible/goosehonk
+  key = "goosehonk"
+  emote_message_3p = "honks!"
+  emote_sound = 'sound/voice/goosehonk.ogg'
+
 
 /decl/emote/audible/gyoh
     key = "gyoh"
