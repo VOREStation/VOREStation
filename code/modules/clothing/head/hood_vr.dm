@@ -32,8 +32,27 @@
 /obj/item/clothing/head/hood/winter/talon
 	name = "Talon winter hood"
 	desc = "A cozy winter hood attached to a heavy winter jacket."
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "winterhood_talon"
+
+// Centcom Winter Hood
+/obj/item/clothing/head/hood/winter/centcom
+	name = "centcom winter hood"
+	desc = "A cozy winter hood attached to a heavy winter jacket."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "winterhood_centcom"
+	armor = list(melee = 40, bullet = 45, laser = 45, energy = 35, bomb = 40, bio = 25, rad = 25, fire = 35, acid = 50)
+
+// SAR Winter Hood
+/obj/item/clothing/head/hood/winter/medical/sar
+	name = "search and rescue winter hood"
+	desc = "A cozy winter hood attached to a heavy winter jacket."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "winterhood_sar"
+	armor = list(melee = 15, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 5)
 
 //Food costumes
 // Hotdog suit hood
@@ -55,4 +74,5 @@
 	flags_inv = HIDEEARS|BLOCKHAIR
 
 /obj/item/clothing/head/hood/winter
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi')
+	sprite_sheets = list(	SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi',
+							SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi')

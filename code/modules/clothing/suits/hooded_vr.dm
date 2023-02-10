@@ -74,7 +74,7 @@
 	name = "Talon winter coat"
 	desc = "A cozy winter coat, covered in thick fur and baring the colors of ITV Talon."
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "taloncoat"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	hoodtype = /obj/item/clothing/head/hood/winter/talon
@@ -146,5 +146,16 @@
 	desc = "A warm jacket, now featuring a hood and an eye-catching yellow trim!"
 	icon_state = "hoodie_yellowtrim"
 
+// CC Winter Coat
+/obj/item/clothing/suit/storage/hooded/wintercoat/centcom
+	name = "centcom winter coat"
+	desc = "A cozy winter coat, covered in green fur and the colors of CentCom. Armored for extra protection."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "coatcentcom"
+	armor = list(melee = 40, bullet = 45, laser = 45, energy = 35, bomb = 40, bio = 25, rad = 25, fire = 35, acid = 50) //there is no cc armor here to base it off so, here's the values from the original cc coat
+	hoodtype = /obj/item/clothing/head/hood/winter/centcom
+
 /obj/item/clothing/suit/storage/hooded/wintercoat
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/suit/mob_vr_teshari.dmi')
+	sprite_sheets = list(	SPECIES_TESHARI = 'icons/inventory/suit/mob_vr_teshari.dmi',
+							SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi')
