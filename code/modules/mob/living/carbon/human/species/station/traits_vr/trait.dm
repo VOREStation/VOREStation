@@ -42,8 +42,6 @@
 			P.vars[V] = var_changes_pref[V]
 	return
 
-/datum/trait/proc/
-
 //Similar to the above, but for removing. Probably won't be called often/ever.
 /datum/trait/proc/remove(var/datum/species/S)
 	ASSERT(S)
