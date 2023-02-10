@@ -549,7 +549,7 @@
 	item_state = "hopmantle"
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
-	name = "site director mantle"
-	desc = "A shoulder mantle bearing the colors usually found on a Site Director, a commanding blue with regal gold inlay."
+	name = "site manager mantle"
+	desc = "A shoulder mantle bearing the colors usually found on a Site Manager, a commanding blue with regal gold inlay."
 	icon_state = "capmantle"
 	item_state = "capmantle"
