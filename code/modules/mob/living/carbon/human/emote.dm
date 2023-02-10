@@ -170,7 +170,8 @@ var/list/_human_default_emotes = list(
 	/decl/emote/visible/vibrate,
 	/decl/emote/audible/croon,
 	/decl/emote/audible/lwarble,
-	/decl/emote/audible/croak_skrell
+	/decl/emote/audible/croak_skrell,
+	/decl/emote/audible/goosehonk
 
 	//VOREStation Add End
 )
@@ -313,6 +314,10 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/audible/vox_shriek,
 	/decl/emote/audible/purr,
 	/decl/emote/audible/purrlong
+	/decl/emote/audible/croon,
+	/decl/emote/audible/lwarble,
+	/decl/emote/audible/croak_skrell,
+	/decl/emote/audible/goosehonk
 
 	)
 	//VOREStation Add End
