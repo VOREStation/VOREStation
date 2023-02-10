@@ -368,6 +368,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Hear"
 	disabled_description = "Silent"
 
+/datum/client_preference/player_tips
+	description = "Receive Tips Periodically"
+	key = "RECEIVE_TIPS"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+
 /********************
 * Staff Preferences *
 ********************/

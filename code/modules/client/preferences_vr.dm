@@ -120,3 +120,14 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb", "TSoundMentorhelps")
+
+/client/verb/toggle_player_tips()
+	set name = "Toggle Receiving Player Tips"
+	set category = "Preferences"
+	set desc = "When toggled on, you receive tips periodically on roleplay and gameplay."
+
+	var/pref_path = /datum/client_preference/player_tips
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "You are [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] periodically receiving advice on gameplay and roleplay.")
