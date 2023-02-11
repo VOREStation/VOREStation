@@ -92,6 +92,11 @@
 	name = "pizza delivery visor"
 	desc = "A fancy visor showing alignment to pizza delivery service. Extremely risky career choice."
 	icon_state = "pizzadelivery"
+
+/obj/item/clothing/head/wedding
+	name = "wedding veil"
+	desc = "A lace veil worn over the face, typically by a bride during their wedding."
+	icon_state = "weddingveil"
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 

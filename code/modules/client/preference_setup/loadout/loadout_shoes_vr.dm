@@ -28,3 +28,7 @@
 /datum/gear/shoes/singer_yellow
 	display_name = "yellow performer's boots"
 	path = /obj/item/clothing/shoes/boots/singer/yellow
+
+/datum/gear/shoes/antediluvian
+	display_name = "antediluvian legwraps"
+	path = /obj/item/clothing/shoes/antediluvian
