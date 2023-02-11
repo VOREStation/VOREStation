@@ -401,7 +401,7 @@
 	icon_state = "tesh-feathers"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-	species_allowed = list(SPECIES_TESHARI, SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_harpy_feathers
 	name = "Rapala leg Feather"
@@ -525,7 +525,7 @@
 	icon_state = "teshi_sf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)
-	species_allowed = list(SPECIES_TESHARI, SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_spirit_lights
 	name = "Ward - Spirit FBP Lights"
@@ -731,7 +731,7 @@
 	icon_state = "teshlarge_eyes"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_teshari_coat
 	name = "Teshari coat"
@@ -739,7 +739,7 @@
 	icon_state = "tesh_coat"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_teshari_pattern_male
 	name = "Teshari male pattern"
@@ -747,7 +747,7 @@
 	icon_state = "tesh-pattern-male"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_teshari_pattern_female
 	name = "Teshari female pattern"
@@ -755,7 +755,7 @@
 	icon_state = "tesh-pattern-fem"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_unathihood
 	name = "Cobra Hood"
@@ -868,7 +868,7 @@
 	icon_state = "tesh-beak"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_tesh_beak_alt
 	name = "Teshari beak, rounded"
@@ -876,7 +876,7 @@
 	icon_state = "tesh-beak-alt"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_TESHARI,SPECIES_CUSTOM)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_generic_hooves
 	name = "Generic Hooves"
