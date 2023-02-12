@@ -4302,7 +4302,7 @@
 	icon_state = "bakedbeans"
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/beans/Initialize()
 	. = ..()
 	reagents.add_reagent("bean_protein", 6)
 
