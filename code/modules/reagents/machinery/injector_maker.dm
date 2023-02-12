@@ -25,7 +25,7 @@
 	. = ..()
 	default_apply_parts()
 
-obj/machinery/injector_maker/update_icon()
+/obj/machinery/injector_maker/update_icon()
 	if(!plastic_amount && !beaker)
 		icon_state = "injector"
 	else if(!plastic_amount && beaker != null)
@@ -34,6 +34,7 @@ obj/machinery/injector_maker/update_icon()
 		icon_state = "injector_p"
 	else if(beaker != null && plastic_amount > 0)
 		icon_state = "injector_pb"
+	return
 
 
 /obj/machinery/injector_maker/attackby(var/obj/item/O as obj, var/mob/user as mob)
