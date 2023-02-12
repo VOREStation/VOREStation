@@ -91,7 +91,7 @@ obj/machinery/injector_maker/update_icon()
 		if(beaker)
 			. += "<span class='notice'>- \A [beaker].</span>"
 
-	. += "<span class ='notice'>\The [src] contains [plastic_amount] units of plastic.\n It can hold up to [max_plastic] units! 1 sheet gives [stack_value] units."
+	. += "<span class ='notice'>\The [src] contains [plastic_amount] units of plastic.\n It can hold up to [max_plastic] units! 1 sheet gives [stack_value] units.</span>"
 
 	if(!(stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>The status display reads:</span>\n"
