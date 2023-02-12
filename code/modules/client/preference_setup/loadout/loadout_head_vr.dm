@@ -11,13 +11,20 @@
 	display_name = "basic headband"
 	path = /obj/item/clothing/head/fluff/headbando
 
-/datum/gear/head/maid
-	display_name = "maid headband"
-	path = /obj/item/clothing/head/headband/maid
-
 /datum/gear/head/headbando/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/head/maid
+	display_name = "maid headband selection"
+	path = /obj/item/clothing/head/headband/maid
+
+/datum/gear/head/maid/New()
+	..()
+	var/list/headbands_list = list()
+	for(var/obj/item/clothing/head/bands as anything in typesof(/obj/item/clothing/head/headband/maid))
+		headbands_list[initial(bands.name)] = bands
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(headbands_list))
 
 //Detective alternative
 /datum/gear/head/detective_alt
@@ -54,6 +61,14 @@
 	path = /obj/item/clothing/head/wizard/fake/realistic/colorable
 
 /datum/gear/head/magic_hat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/head/wedding
+	display_name = "wedding veil"
+	path = /obj/item/clothing/head/wedding
+
+/datum/gear/head/wedding/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 

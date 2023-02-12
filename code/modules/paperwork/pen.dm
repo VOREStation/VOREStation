@@ -27,6 +27,7 @@
 	throw_speed = 7
 	throw_range = 15
 	matter = list(MAT_STEEL = 10)
+	attack_verb = list("stabbed")
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/accessory.ogg'
@@ -225,6 +226,7 @@
 	w_class = initial(w_class)
 	damtype = BRUTE
 	catchable = TRUE
+	attack_verb = initial(attack_verb)
 
 /obj/item/weapon/pen/blade/blue
 	desc = "It's a normal blue ink pen."

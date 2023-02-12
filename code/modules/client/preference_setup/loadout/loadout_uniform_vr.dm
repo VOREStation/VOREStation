@@ -212,6 +212,14 @@ Qipao
 	display_name = "qipao, white"
 	path = /obj/item/clothing/under/qipao/white
 
+/datum/gear/uniform/qipao_colorable_alt
+	display_name = "qipao, colorable alt"
+	path = /obj/item/clothing/under/qipao/white/colorable
+
+/datum/gear/uniform/qipao_colorable_alt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /*
 Bluespace jumpsuit
 */
@@ -312,3 +320,20 @@ Talon jumpsuit
     display_name = "undersuit, security, modernized (Security)"
     allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
     path = /obj/item/clothing/under/rank/security/modern
+
+/datum/gear/uniform/singer_blue
+	display_name = "blue singer dress"
+	path = /obj/item/clothing/under/dress/singer
+
+/datum/gear/uniform/singer_yellow
+	display_name = "yellow singer dress"
+	path = /obj/item/clothing/under/dress/singer/yellow
+
+//Antediluvian corsets from CitRP
+/datum/gear/uniform/antediluvian
+	display_name = "corset, antediluvian"
+	path = /obj/item/clothing/under/dress/antediluvian
+
+/datum/gear/uniform/antediluvianalt
+	display_name = "corset, antediluvian alt"
+	path = /obj/item/clothing/under/dress/antediluvian/sheerless

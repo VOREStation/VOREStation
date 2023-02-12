@@ -152,3 +152,77 @@ Talon winter coat
 
 /datum/gear/suit/cyberpunk_recolorable/New()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/shrine_maiden
+	display_name = "shrine maiden costume"
+	path = /obj/item/clothing/suit/shrine_maiden
+
+//Antediluvian cloak
+/datum/gear/suit/cloak_ante
+	display_name = "cloak, antediluvian"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/antediluvian
+	cost = 1
+
+//Chaplain cloaks
+/datum/gear/suit/cloak_chaplain
+	display_name = "cloak, chaplain"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/chapel
+	cost = 1
+
+/datum/gear/suit/cloak_chaplain/alt
+	display_name = "cloak, chaplain, alt"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/chapel/alt
+	cost = 1
+
+//Half cloak
+/datum/gear/suit/cloak_half
+	display_name = "cloak, half, colorable"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/half
+	cost = 1
+
+/datum/gear/suit/cloak_half/New()
+	gear_tweaks += gear_tweak_free_color_choice
+
+//Shoulder cloak
+/datum/gear/suit/cloak_shoulder
+	display_name = "cloak, shoulder"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/shoulder
+	cost = 1
+
+/datum/gear/suit/cloak_shoulder/New()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/cloak_shoulder_right
+	display_name = "cloak, shoulder right"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/shoulder/right
+	cost = 1
+
+/datum/gear/suit/cloak_shoulder_right/New()
+	gear_tweaks += gear_tweak_free_color_choice
+
+//Mantles, mostly for heads of staff
+/datum/gear/suit/roles/mantle
+	display_name = "mantle, colorable"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/mantle
+	cost = 1
+
+/datum/gear/suit/roles/mantle/New()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/roles/mantles
+	display_name = "mantle selection"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/mantle/cargo
+	cost = 1
+
+/datum/gear/suit/roles/mantles/New()
+	..()
+	var/list/mantles = list(
+		"orange mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/cargo,
+		"black mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/security,
+		"white mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/engineering,
+		"purple mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/research,
+		"cyan mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/medical,
+		"blue mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/hop,
+		"gold mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
+	)
+	gear_tweaks += new/datum/gear_tweak/path(mantles)

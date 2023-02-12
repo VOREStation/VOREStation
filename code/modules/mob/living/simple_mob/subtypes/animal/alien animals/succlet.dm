@@ -101,12 +101,16 @@
 		return
 	if(client)
 		return
+	if(isbelly(loc))	//No teleporting out of bellies
+		return
 	if(prob(succlet_move_chance) || health < succlet_last_health)	//This chance can be adjusted, but moving is probably pretty resource expensive on the server, so the chance should stay low
 		var/list/mylist = list()	//Look I'm just saying, you can make it higher if you want but don't cry to me if the server lags, I made this as a joke
 		for(var/mob/M in view(world.view, get_turf(src)))	//Is there anyone nearby to target?
 			if(istype(M, /mob/living/simple_mob/vore/alienanimals/succlet))
 				continue
 			if(isobserver(M))
+				continue
+			if(M.stat)
 				continue
 			if(ismob(M))
 				mylist |= M
@@ -124,10 +128,18 @@
 	spawn(10)
 	qdel(src)
 
+/mob/living/simple_mob/vore/alienanimals/succlet/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/weapon/newspaper) && !ckey && isturf(user.loc))
+		user.visible_message("<span class='info'>[user] swats [src] with [O]!</span>")
+		release_vore_contents()
+	else
+		..()
+
 /mob/living/simple_mob/vore/alienanimals/succlet/proc/succlet_move(var/target)
 	if(!target)
 		return
-
+	if(isbelly(loc))	//No teleporting out of bellies
+		return
 	var/turf/target_turf
 	var/mob/living/l
 

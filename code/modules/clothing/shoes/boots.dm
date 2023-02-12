@@ -242,12 +242,12 @@
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/shoes/boots/bsing
+/obj/item/clothing/shoes/boots/singer
     name = "blue performer's boots"
     desc = "These boots were made for dancing."
     icon_state = "bsing"
 
-/obj/item/clothing/shoes/boots/ysing
+/obj/item/clothing/shoes/boots/singer/yellow
 	name = "yellow performer's boots"
 	desc = "These boots were made for dancing."
 	icon_state = "ysing"

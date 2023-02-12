@@ -338,8 +338,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.set_gender(pref.biological_gender)
 
 	// Destroy/cyborgize organs and limbs.
-	character.synthetic = null //Clear the existing var.
 	//VOREStation Edit
+	character.synthetic = pref.species == "Protean" ? all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
 	var/list/organs_to_edit = list()
 	for (var/name in list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 		var/obj/item/organ/external/O = character.organs_by_name[name]

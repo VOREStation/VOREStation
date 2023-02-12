@@ -205,6 +205,10 @@
 	icon_state = "qipao_white"
 	item_state = "qipao_white"
 
+/obj/item/clothing/under/qipao/white/colorable
+	name = "qipao"
+	starting_accessories = list(/obj/item/clothing/accessory/qipaogold)
+
 /obj/item/clothing/under/qipao/red
 	name = "red qipao"
 	icon_state = "qipao_red"
@@ -488,3 +492,17 @@
 	item_state = "qipao2"
 	worn_state = "qipao2"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/dress/antediluvian
+	name = "antediluvian corset"
+	desc = "A regal black and gold tight corset with silky sleeves. A sheer bodystocking accompanies it."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "antediluvian"
+	item_state = "antediluvian"
+	worn_state = "antediluvian"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/dress/antediluvian/sheerless
+	desc = "A regal black and gold tight corset with silky sleeves. This one is just the corset and sleeves, sans lace stockings and gloves."
+	worn_state = "antediluvian_c"
