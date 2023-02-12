@@ -35,7 +35,7 @@
 
 /datum/category_item/player_setup_item/vore/nif/copy_to_mob(var/mob/living/carbon/human/character)
 	//If you had a NIF...
-	if((character.type == /mob/living/carbon/human && !(character.mind.assigned_role == "Cyborg" || character.mind.assigned_role == "AI")) && ispath(pref.nif_path) && pref.nif_durability)
+	if((character.type == /mob/living/carbon/human) && ispath(pref.nif_path) && pref.nif_durability)
 		new pref.nif_path(character,pref.nif_durability,pref.nif_savedata)
 
 		/*
