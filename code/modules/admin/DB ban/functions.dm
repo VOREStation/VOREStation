@@ -279,7 +279,8 @@
 
 	output += "<td width='65%' align='center' bgcolor='#f9f9f9'>"
 
-	output += "<form method='GET' action='?src=\ref[src]'><b>Add custom ban:</b> (ONLY use this if you can't ban through any other method)"
+	output += "<form method='GET' action='?src=\ref[src]'>[HrefTokenFormField()]"
+	output += "<b>Add custom ban:</b> (ONLY use this if you can't ban through any other method)"
 	output += "<input type='hidden' name='src' value='\ref[src]'>"
 	output += "<table width='100%'><tr>"
 	output += "<td width='50%' align='right'><b>Ban type:</b><select name='dbbanaddtype'>"
@@ -314,7 +315,8 @@
 	output += "</tr>"
 	output += "</table>"
 
-	output += "<form method='GET' action='?src=\ref[src]'><table width='60%'><tr><td colspan='2' align='left'><b>Search:</b>"
+	output += "<form method='GET' action='?src=\ref[src]'>[HrefTokenFormField()]"
+	output += "<table width='60%'><tr><td colspan='2' align='left'><b>Search:</b>"
 	output += "<input type='hidden' name='src' value='\ref[src]'></td></tr>"
 	output += "<tr><td width='50%' align='right'><b>Ckey:</b> <input type='text' name='dbsearchckey' value='[playerckey]'></td>"
 	output += "<td width='50%' align='right'><b>Admin ckey:</b> <input type='text' name='dbsearchadmin' value='[adminckey]'></td></tr>"
