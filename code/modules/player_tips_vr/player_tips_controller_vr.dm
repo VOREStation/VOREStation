@@ -30,6 +30,7 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 				to_chat(M, SPAN_NOTICE("[tip]"))
 
 		last_tip = tip
+		last_tip_time = world.time
 		tip_delay = rand(min_tip_delay, max_tip_delay)
 
 
