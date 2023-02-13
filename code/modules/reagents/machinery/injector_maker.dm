@@ -1,7 +1,7 @@
 /obj/machinery/injector_maker
 	name = "Ready-to-Use Medicine 3000"
-	desc = "Molds plastic into autoinjectors and fills them with chemicals. \n Add a beaker or a bottle filled with chemicals and a sheet of plastic to use!"
-	icon = 'icons/obj/chemical_vr.dmi' //placeholder for testing
+	desc = "Fills plastic autoinjectors with chemicals!  \n Add a beaker or a bottle filled with chemicals and an autoinjector of appropriate size to use!"
+	icon = 'icons/obj/chemical_vr.dmi'
 	icon_state = "injector"
 	use_power = USE_POWER_IDLE
 	anchored = FALSE
@@ -12,12 +12,10 @@
 	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/injector_maker
 	var/obj/item/weapon/reagent_containers/beaker = null
-	var/plastic_amount = 0
-	var/max_plastic = 10000
-	var/stack_value = 2000
-	var/material_per_sheet = 2000
-	var/plastic_cost_small = 10
-	var/plastic_cost_large = 500
+	var/count_large_injector = 0
+	var/count_small_injector = 0
+	var/capacity_large_injector = 10
+	var/capacity_small_injector = 30
 	var/list/beaker_reagents_list = list()
 
 
@@ -26,14 +24,14 @@
 	default_apply_parts()
 
 /obj/machinery/injector_maker/update_icon()
-	if(!plastic_amount && !beaker)
+	if(!count_large_injector && !count_small_injector && !beaker)
 		icon_state = "injector"
-	else if(!plastic_amount && beaker != null)
+	else if(!count_large_injector && !count_small_injector && beaker != null)
 		icon_state = "injector_b"
-	else if(!beaker && plastic_amount > 0)
-		icon_state = "injector_p"
-	else if(beaker != null && plastic_amount > 0)
-		icon_state = "injector_pb"
+	else if(!beaker && (count_large_injector > 0 || count_small_injector > 0))
+		icon_state = "injector_i"
+	else if(beaker != null && count_large_injector > 0 && count_small_injector > 0)
+		icon_state = "injector_ib"
 	return
 
 
@@ -56,20 +54,32 @@
 			src.updateUsrDialog()
 			return 0
 
-	if(istype(O,/obj/item/stack/material))
-		if(O.get_material_name() == MAT_PLASTIC)
-			var/obj/item/stack/S = O
-			var/input_amount = tgui_input_number(user, "How many sheets would you like to add?", "Add plastic", 0, S.get_amount(), 0, 0, TRUE)
-			if(input_amount == 0)
-				return
-			var/plastic_input = input_amount * stack_value
-			var/free_space = max_plastic - src.plastic_amount
-			if(plastic_input > free_space)
-				to_chat(user, SPAN_WARNING("Storage is full! There is only [free_space] units worth of space left!"))
-			else
-				S.use(input_amount)
-				src.plastic_amount = plastic_input
-				update_icon()
+
+
+	if(istype(O,/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty))
+		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty/E = O
+		if(src.count_small_injector >= src.capacity_small_injector)
+			to_chat(user, SPAN_WARNING("Storage is full! It can only hold [capacity_small_injector]"))
+			return
+		if(E.reagents.total_volume > 0)
+			to_chat(user, SPAN_WARNING("You cannot put a filled injector into the machine!"))
+			return
+		src.count_small_injector = src.count_small_injector + 1
+		qdel(E)
+		update_icon()
+
+	if(istype(O,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty))
+		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty/E = O
+		if(src.count_large_injector >= src.capacity_large_injector)
+			to_chat(user, SPAN_WARNING("Storage is full! It can only hold [capacity_large_injector]"))
+			return
+		if(E.reagents.total_volume > 0)
+			to_chat(user, SPAN_WARNING("You cannot put a filled injector into the machine!"))
+			return
+		src.count_large_injector = src.count_large_injector + 1
+		qdel(E)
+		update_icon()
+
 
 /obj/machinery/injector_maker/AltClick(mob/user)
 	. = ..()
@@ -92,7 +102,8 @@
 		if(beaker)
 			. += "<span class='notice'>- \A [beaker].</span>"
 
-	. += "<span class ='notice'>\The [src] contains [plastic_amount] units of plastic.\n It can hold up to [max_plastic] units! 1 sheet gives [stack_value] units.</span>"
+	. += "<span class ='notice'>\The [src] contains [count_small_injector] small injectors and [count_large_injector] large injectors.\n </span>"
+	. += "<span_class ='notice'> It can hold [capacity_small_injector] small and [capacity_large_injector] large injectors respectively.\n </span>"
 
 	if(!(stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>The status display reads:</span>\n"
@@ -107,12 +118,12 @@
 	if(user.incapacitated() || !beaker)
 		return
 
-	var/choice = tgui_input_list(user, "There is [plastic_amount] units of plastic left", "Choose what to do", list("large injector", "small injector", "eject", "cancel"))
+	var/choice = tgui_input_list(user, "There are [src.count_small_injector] small and [src.count_large_injector]  large injectors left.", "Choose what to do", list("large injector", "small injector", "eject beaker", "cancel"))
 
 	switch(choice)
 		if("cancel")
 			return
-		if("eject")
+		if("eject beaker")
 			if(!user.incapacitated() && Adjacent(user))
 				user.put_in_hands(beaker)
 			else
@@ -123,14 +134,14 @@
 			if(!beaker.reagents.total_volume)
 				to_chat(user, SPAN_WARNING("Chemical storage is empty!"))
 				return
-			if(!plastic_amount)
-				to_chat(user, SPAN_WARNING("No plastic in storage! Add at least 1 sheet of plastic."))
+			if(!src.capacity_small_injector)
+				to_chat(user, SPAN_WARNING("Small injector rack is empty!!"))
 				return
 			var/injector_amount = tgui_input_number(user, "How many injectors would you like?", "Make small injectors", 0, 100, 0, 0, TRUE)
 			if(injector_amount > 0)
-				var/plastic_needed = injector_amount * plastic_cost_small
-				if(src.plastic_amount < plastic_needed )
-					to_chat(user, SPAN_WARNING("Not enough plastic! You only have enough plastic for [src.plastic_amount / plastic_cost_small] small injectors!"))
+
+				if(src.count_small_injector < injector_amount )
+					to_chat(user, SPAN_WARNING("Not enough autoinjectors! You only have [src.count_small_injector]"))
 					return
 				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),MAX_MESSAGE_LEN,0,0,0)
 				make_injector("large injector", injector_amount, name)
@@ -139,14 +150,13 @@
 			if(!beaker.reagents.total_volume)
 				to_chat(user, SPAN_WARNING("Chemical storage is empty!"))
 				return
-			if(!plastic_amount)
-				to_chat(user, SPAN_WARNING("No plastic in storage! Add at least 1 sheet of plastic."))
+			if(!src.capacity_large_injector)
+				to_chat(user, SPAN_WARNING("Large injector rack is empty!"))
 				return
 			var/injector_amount = tgui_input_number(user, "How many injectors would you like?", "Make small injectors", 0, 100, 0, 0, TRUE)
 			if(injector_amount > 0)
-				var/plastic_needed = injector_amount * plastic_cost_small
-				if(src.plastic_amount < plastic_needed)
-					to_chat(user, SPAN_WARNING("Not enough plastic! You only have enough plastic for [src.plastic_amount / plastic_cost_large] large injectors!"))
+				if(src.count_large_injector < injector_amount)
+					to_chat(user, SPAN_WARNING("Not enough autoinjectors! You only have [src.count_large_injector]"))
 					return
 				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),MAX_MESSAGE_LEN,0,0,0)
 				make_injector("large injector", injector_amount, name)
@@ -155,28 +165,26 @@
 /obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name)
 	if(!beaker)
 		return
-	for(var/i, i <= amount, i++)
+	for(var/i, i < amount, i++)
 		switch(size)
 			if("small injector")
-				to_world("Making [size], checking if we got enough.")
 				var/amount_per_injector = CLAMP(beaker.reagents.total_volume / amount, 0, 15)
-				if(!amount_per_injector || (plastic_cost_small > src.plastic_amount))
+				if(!amount_per_injector || src.count_small_injector < 1)
 					return
-				to_world("Enough")
 				var/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty/P = new(loc)
 				beaker.reagents.trans_to_obj(P, amount_per_injector)
 				P.update_icon()
 				if(new_name)
 					P.name = new_name
-				src.plastic_amount = src.plastic_amount - plastic_cost_small
+				src.count_small_injector = src.count_small_injector - 1
 
 			if("large injector")
 				var/amount_per_injector = CLAMP(beaker.reagents.total_volume / amount, 0, 15)
-				if(!amount_per_injector || (plastic_cost_large > src.plastic_amount))
+				if(!amount_per_injector || src.count_large_injector < 1)
 					return
 				var/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty/P = new(loc)
 				beaker.reagents.trans_to_obj(P, amount_per_injector)
 				P.update_icon()
 				if(new_name)
 					P.name = new_name
-				src.plastic_amount = src.plastic_amount - plastic_cost_large
+				src.count_large_injector = src.count_large_injector - 1
