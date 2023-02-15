@@ -2102,45 +2102,6 @@ shaved
 	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
 	//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
 
-//Vox Exclusives
-/datum/sprite_accessory/marking/vox
-	icon = 'icons/mob/human_races/markings_vox.dmi'
-	species_allowed = list(SPECIES_VOX)
-
-/datum/sprite_accessory/marking/vox/voxbeak
-	name = "Vox Beak (Normal)"
-	icon_state = "vox_beak"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
-/datum/sprite_accessory/marking/vox/voxtalons
-	name = "Vox scales"
-	icon_state = "vox_talons"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
-
-/datum/sprite_accessory/marking/vox/voxclaws
-	name = "Vox Claws"
-	icon_state = "Voxclaws"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-
-/datum/sprite_accessory/marking/vox/vox_alt
-	name = "Vox Alternate"
-	icon_state = "bay_vox"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-
-/datum/sprite_accessory/marking/vox/vox_alt_eyes
-	name = "Alternate Vox Eyes"
-	icon_state = "bay_vox_eyes"
-	body_parts = list(BP_HEAD)
-
-/datum/sprite_accessory/marking/vox/voxscales
-	name = "Alternate Vox scales"
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
-
 //Tattoos
 
 /datum/sprite_accessory/marking/tat_rheart
@@ -3554,3 +3515,40 @@ shaved
 	icon_state = "default"
 	icon = 'icons/mob/human_races/r_skrell.dmi'
 	//species_allowed = list(SPECIES_SKRELL)			//Removing Polaris whitelits
+
+//Vox Exclusives
+/datum/sprite_accessory/marking/vox
+	name = "Vox Beak"
+	icon = 'icons/mob/human_races/markings_vox.dmi'
+	icon_state = "vox_beak"
+	species_allowed = list(SPECIES_VOX)
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vox/voxtalons
+	name = "Vox scales"
+	icon_state = "vox_talons"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/vox/voxclaws
+	name = "Vox Claws"
+	icon_state = "Voxclaws"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+
+/datum/sprite_accessory/marking/vox/vox_alt
+	name = "Vox Alternate"
+	icon_state = "bay_vox"
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
+
+/datum/sprite_accessory/marking/vox/vox_alt_eyes
+	name = "Alternate Vox Eyes"
+	icon_state = "bay_vox_eyes"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vox/voxscales
+	name = "Alternate Vox scales"
+	icon_state = "Voxscales"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
