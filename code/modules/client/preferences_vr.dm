@@ -131,3 +131,7 @@
 	toggle_preference(pref_path)
 
 	to_chat(src, "You are [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] periodically receiving advice on gameplay and roleplay.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb", "TReceivePlayerTips")
