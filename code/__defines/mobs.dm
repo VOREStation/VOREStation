@@ -112,11 +112,35 @@
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
 //default item on-mob icons
+<<<<<<< HEAD
 #define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
 #define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
 #define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
 #define INV_HCUFF_DEF_ICON 'icons/mob/mob.dmi'
 #define INV_LCUFF_DEF_ICON 'icons/mob/mob.dmi'
+=======
+#define INV_W_UNIFORM_DEF_STRING "icons/mob/uniform"
+#define INV_SUIT_DEF_STRING      "icons/mob/suit"
+
+#define INV_HEAD_DEF_ICON        'icons/mob/head.dmi'
+#define INV_BACK_DEF_ICON        'icons/mob/back.dmi'
+#define INV_L_HAND_DEF_ICON      'icons/mob/items/lefthand.dmi'
+#define INV_R_HAND_DEF_ICON      'icons/mob/items/righthand.dmi'
+#define INV_W_UNIFORM_DEF_ICON   'icons/mob/uniform.dmi'
+#define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
+#define INV_TIE_DEF_ICON         'icons/mob/ties.dmi'
+#define INV_SUIT_DEF_ICON        'icons/mob/suit.dmi'
+#define INV_SPACESUIT_DEF_ICON   'icons/mob/spacesuit.dmi'
+#define INV_WEAR_ID_DEF_ICON     'icons/mob/mob.dmi'
+#define INV_GLOVES_DEF_ICON      'icons/mob/hands.dmi'
+#define INV_EYES_DEF_ICON        'icons/mob/eyes.dmi'
+#define INV_EARS_DEF_ICON        'icons/mob/ears.dmi'
+#define INV_FEET_DEF_ICON        'icons/mob/feet.dmi'
+#define INV_BELT_DEF_ICON        'icons/mob/belt.dmi'
+#define INV_MASK_DEF_ICON        'icons/mob/mask.dmi'
+#define INV_HCUFF_DEF_ICON       'icons/mob/mob.dmi'
+#define INV_LCUFF_DEF_ICON       'icons/mob/mob.dmi'
+>>>>>>> 9a846673232... Reworks on-mob overlay icon generation. (#8920)
 
 #define INV_HEAD_DEF_ICON 'icons/inventory/head/mob.dmi'
 #define INV_BACK_DEF_ICON 'icons/inventory/back/mob.dmi'

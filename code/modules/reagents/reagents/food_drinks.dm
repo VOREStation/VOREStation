@@ -215,8 +215,8 @@
 //Calculates a scaling factor for scalding damage, based on the temperature of the oil and creature's heat resistance
 /datum/reagent/nutriment/triglyceride/oil/proc/heatdamage(var/mob/living/carbon/M)
 	var/threshold = 360//Human heatdamage threshold
-	var/datum/species/S = M.get_species(1)
-	if (S && istype(S))
+	var/datum/species/S = M.get_species()
+	if (istype(S))
 		threshold = S.heat_level_1
 
 	//If temperature is too low to burn, return a factor of 0. no damage
@@ -225,7 +225,7 @@
 
 	//Step = degrees above heat level 1 for 1.0 multiplier
 	var/step = 60
-	if (S && istype(S))
+	if (istype(S))
 		step = (S.heat_level_2 - S.heat_level_1)*1.5
 
 	. = data["temperature"] - threshold

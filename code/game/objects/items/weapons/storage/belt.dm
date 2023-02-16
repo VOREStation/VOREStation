@@ -26,7 +26,11 @@
 	update_icon()
 
 //Some belts have sprites to show icons
+<<<<<<< HEAD
 /obj/item/weapon/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
+=======
+/obj/item/storage/belt/get_worn_overlay(var/mob/living/wearer, var/body_type, var/slot_name, var/inhands, var/default_icon, var/default_layer, var/icon/clip_mask)
+>>>>>>> 9a846673232... Reworks on-mob overlay icon generation. (#8920)
 	var/image/standing = ..()
 	if(!inhands && contents.len)
 		for(var/obj/item/i in contents)

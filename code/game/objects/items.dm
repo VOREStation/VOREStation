@@ -800,11 +800,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	drop_sound = 'sound/items/drop/device.ogg'
 
 //Worn icon generation for on-mob sprites
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
+/obj/item/proc/get_worn_overlay(var/mob/living/wearer, var/body_type, var/slot_name, var/inhands, var/default_icon, var/default_layer, var/icon/clip_mask)
+
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/datum/species/species = wearer.get_species()
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
+	var/icon2use =  get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands, check_state = state2use)
 	var/layer2use = get_worn_layer(default_layer = default_layer)
+	var/using_spritesheet = !inhands && (icon2use == LAZYACCESS(sprite_sheets, body_type))
+
+	if(istext(icon2use))
+		icon2use = resolve_text_icon(icon2use)
 
 	//Snowflakey inhand icons in a specific slot
 	if(inhands && icon2use == icon_override)
@@ -814,63 +820,74 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(slot_l_hand_str)
 				state2use += "_l"
 
-	// testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	var/image/standing
+	if(!using_spritesheet && species)
+		standing = species.get_offset_overlay_image(icon2use, state2use, color, slot_name, layer2use)
+	if(!standing)
+		standing = overlay_image(icon2use, state2use, color, layer2use, RESET_COLOR)
 
-	//Generate the base onmob icon
-	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
+	if(alpha != 255)
+		standing.alpha = alpha
 
 	if(!inhands)
-		apply_custom(standing_icon)		//Pre-image overridable proc to customize the thing
-		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
-
-	var/image/standing = image(standing_icon)
-	standing.alpha = alpha
-	standing.color = color
-	standing.layer = layer2use
+		apply_custom_to_worn_overlay(standing)              // Overridable proc to customize the overlay.
+		apply_addblends_to_worn_overlay(standing, icon2use) // Some items add overlays/shaders.
 
 	if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
 		standing.filters += filter(type = "alpha", icon = clip_mask)
 
 	//Apply any special features
 	if(!inhands)
-		apply_blood(standing)			//Some items show blood when bloodied
-		apply_accessories(standing)		//Some items sport accessories like webbing
+		apply_blood_to_worn_overlay(standing)			//Some items show blood when bloodied
+		apply_accessories_to_worn_overlay(standing)		//Some items sport accessories like webbing
 
+<<<<<<< HEAD
 	//Apply overlays to our...overlay
 	apply_overlays(standing)
 
 	//Return our icon
+=======
+	//testing("[src] (\ref[src]) - Spritesheet: [using_spritesheet], Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use], Standing:[standing ? "\ref[standing]" : "null"] ([standing?.icon || "no icon"], [standing?.icon_state || "no state"])")
+
+	//Return our overlay
+>>>>>>> 9a846673232... Reworks on-mob overlay icon generation. (#8920)
 	return standing
 
 //Returns the icon object that should be used for the worn icon
-/obj/item/proc/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
+/obj/item/proc/get_worn_icon_file(var/body_type, var/slot_name, var/default_icon, var/inhands, var/check_state)
 
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
 
 	//2: species-specific sprite sheets (skipped for inhands)
+<<<<<<< HEAD
 	if(LAZYLEN(sprite_sheets) && !inhands)
 		var/sheet = sprite_sheets[body_type]
 		if(sheet)
 			return sheet
+=======
+	if(!inhands)
+		var/sheet = LAZYACCESS(sprite_sheets, body_type)
+		if(sheet)
+			if(!check_state)
+				return sheet
+			sheet = resolve_text_icon(sheet)
+			if(check_state_in_icon(check_state, sheet))
+				return sheet
+>>>>>>> 9a846673232... Reworks on-mob overlay icon generation. (#8920)
 
 	//3: slot-specific sprite sheets
-	if(LAZYLEN(item_icons))
-		var/sheet = item_icons[slot_name]
-		if(sheet)
-			return sheet
+	var/sheet = LAZYACCESS(item_icons, slot_name)
+	if(sheet)
+		return sheet
 
 	//4: item's default icon
 	if(default_worn_icon)
 		return default_worn_icon
 
 	//5: provided default_icon
-	if(default_icon)
-		return default_icon
-
-	//6: give up
-	return
+	return default_icon
 
 //Returns the state that should be used for the worn icon
 /obj/item/proc/get_worn_icon_state(var/slot_name)
@@ -900,23 +917,24 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return BODY_LAYER+default_layer
 
 //Apply the addblend blends onto the icon
-/obj/item/proc/apply_addblends(var/source_icon, var/icon/standing_icon)
-
+/obj/item/proc/apply_addblends_to_worn_overlay(var/image/standing, var/icon/source_icon)
 	//If we have addblends, blend them onto the provided icon
-	if(addblends && standing_icon && source_icon)
-		var/addblend_icon = icon("icon" = source_icon, "icon_state" = addblends)
-		standing_icon.Blend(addblend_icon, ICON_ADD)
-
-//STUB
-/obj/item/proc/apply_custom(var/icon/standing_icon)
-	return standing_icon
-
-//STUB
-/obj/item/proc/apply_blood(var/image/standing)
+	if(addblends && standing && source_icon)
+		var/image/I = image(source_icon, addblends)
+		I.blend_mode = BLEND_ADD
+		standing.overlays += I
 	return standing
 
 //STUB
-/obj/item/proc/apply_accessories(var/image/standing)
+/obj/item/proc/apply_custom_to_worn_overlay(var/image/standing)
+	return standing
+
+//STUB
+/obj/item/proc/apply_blood_to_worn_overlay(var/image/standing)
+	return standing
+
+//STUB
+/obj/item/proc/apply_accessories_to_worn_overlay(var/image/standing)
 	return standing
 
 /obj/item/proc/apply_overlays(var/image/standing)

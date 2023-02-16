@@ -182,10 +182,36 @@
 	var/mob/living/carbon/human/H = loc
 	if(istype(H) && H.wear_suit == src)
 		if(H.species.name == SPECIES_TESHARI)
+<<<<<<< HEAD
 			icon_override = 'icons/inventory/suit/mob_teshari.dmi'
 		else
 			icon_override = 'icons/inventory/accessory/mob.dmi'
 		update_clothing_icon()
+=======
+			icon_override = LAZYACCESS(sprite_sheets, SPECIES_TESHARI)
+		else if(icon_override_state)
+			icon_override = icon_override_state
+		else
+			icon_override = initial(icon_override)
+		H.update_inv_wear_suit()
+
+/obj/item/clothing/accessory/storage/poncho/dropped() // Reset override
+	if(icon_override_state)
+		icon_override = icon_override_state
+	else
+		icon_override = initial(icon_override)
+
+/obj/item/clothing/accessory/storage/poncho/on_attached(obj/item/clothing/S, mob/user) /// Otherwise gives teshari normal icon.
+	. = ..()
+	if(icon_override_state)
+		icon_override = icon_override_state
+	else if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.species.name == SPECIES_TESHARI)
+			icon_override = LAZYACCESS(sprite_sheets, SPECIES_TESHARI)
+	else
+		icon_override = initial(icon_override)
+>>>>>>> 9a846673232... Reworks on-mob overlay icon generation. (#8920)
 
 /obj/item/clothing/accessory/poncho/dropped() //Resets the override to prevent the wrong .dmi from being used because equipped only triggers when wearing ponchos as suits.
 	icon_override = null

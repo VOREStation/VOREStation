@@ -617,7 +617,7 @@
 /mob/proc/is_mechanical()
 	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
 		return 1
-	return istype(src, /mob/living/silicon) || get_species() == "Machine"
+	return istype(src, /mob/living/silicon) || get_species_name() == "Machine"
 
 /mob/proc/is_ready()
 	return client && !!mind
@@ -883,7 +883,11 @@
 	losebreath = CLAMP(amount, 0, 25)
 
 /mob/proc/get_species()
-	return ""
+	return
+
+/mob/proc/get_species_name()
+	var/datum/species/my_species = get_species()
+	return my_species?.name
 
 /mob/proc/flash_weak_pain()
 	flick("weak_pain",pain)

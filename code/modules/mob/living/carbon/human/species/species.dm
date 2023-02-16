@@ -11,8 +11,15 @@
 	var/list/catalogue_data = null							// A list of /datum/category_item/catalogue datums, for the cataloguer, or null.
 
 	// Icon/appearance vars.
+<<<<<<< HEAD
 	var/icobase = 'icons/mob/human_races/r_human.dmi'		// Normal icon set.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi'	// Mutated icon set.
+=======
+	var/icobase = 'icons/mob/human_races/r_human.dmi'		 // Normal icon set.
+	var/icon_template = 'icons/mob/human_races/template.dmi' // Used for mob icon generation.
+	var/deform = 'icons/mob/human_races/r_def_human.dmi'	 // Mutated icon set.
+	var/limb_blend = ICON_ADD								 // Specify a blending mode for limb colourisation.
+>>>>>>> 9a846673232... Reworks on-mob overlay icon generation. (#8920)
 
 	var/speech_bubble_appearance = "normal"					// Part of icon_state to use for speech bubbles when talking.	See talk.dmi for available icons.
 	var/fire_icon_state = "humanoid"						// The icon_state used inside OnFire.dmi for when on fire.
@@ -36,7 +43,6 @@
 	var/icon_scale_y = 1										// Makes the icon taller/shorter.
 
 	var/race_key = 0										// Used for mob icon cache string.
-	var/icon/icon_template									// Used for mob icon generation for non-32x32 species.
 	var/mob_size	= MOB_MEDIUM
 	var/show_ssd = "fast asleep"
 	var/virus_immune

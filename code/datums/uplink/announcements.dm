@@ -65,7 +65,7 @@
 		general.fields["name"] = user.real_name
 		general.fields["sex"] = capitalize(user.gender)
 
-	general.fields["species"] = user.get_species()
+	general.fields["species"] = user.get_species_name()
 	var/datum/data/record/medical = data_core.CreateMedicalRecord(general.fields["name"], general.fields["id"])
 	data_core.CreateSecurityRecord(general.fields["name"], general.fields["id"])
 
@@ -105,4 +105,3 @@
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	return 1
-

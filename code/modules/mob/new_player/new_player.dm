@@ -645,17 +645,11 @@
 	return check_rights(R_ADMIN, 0, src)
 
 /mob/new_player/get_species()
-	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
-
-	if(!chosen_species)
-		return SPECIES_HUMAN
-
-	if(is_alien_whitelisted(chosen_species))
-		return chosen_species.name
-
-	return SPECIES_HUMAN
+		var/datum/species/chosen_species = GLOB.all_species[client.prefs.species]
+		if(chosen_species && is_alien_whitelisted(src, chosen_species))
+			return chosen_species
+	return GLOB.all_species[SPECIES_HUMAN]
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()

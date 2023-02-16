@@ -159,6 +159,26 @@
 		/decl/emote/audible/teshtrill
 	)
 
+/*
+/datum/species/teshari/New()
+	equip_adjust = list(
+		slot_l_ear_str =     list("[NORTH]" = list("x" =  1, "y" = -5), "[EAST]" = list("x" =  -2, "y" = -5), "[SOUTH]" = list("x" = -1, "y" = -4), "[WEST]" = list("x" =  0, "y" = -5)),
+		slot_r_ear_str =     list("[NORTH]" = list("x" =  1, "y" = -4), "[EAST]" = list("x" =   0, "y" = -5), "[SOUTH]" = list("x" = -1, "y" = -5), "[WEST]" = list("x" =  2, "y" = -5)),
+		slot_l_hand_str =    list("[NORTH]" = list("x" =  3, "y" = -3), "[EAST]" = list("x" =   1, "y" = -3), "[SOUTH]" = list("x" = -3, "y" = -3), "[WEST]" = list("x" = -5, "y" = -3)),
+		slot_r_hand_str =    list("[NORTH]" = list("x" = -3, "y" = -3), "[EAST]" = list("x" =   5, "y" = -3), "[SOUTH]" = list("x" =  3, "y" = -3), "[WEST]" = list("x" = -1, "y" = -3)),
+		slot_head_str =      list("[NORTH]" = list("x" =  0, "y" = -5), "[EAST]" = list("x" =   1, "y" = -5), "[SOUTH]" = list("x" =  0, "y" = -5), "[WEST]" = list("x" = -1, "y" = -5)),
+		slot_wear_mask_str = list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =   2, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" = -2, "y" = -6)),
+		slot_glasses_str =   list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =   1, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" = -1, "y" = -6)),
+		slot_back_str =      list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =   3, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" = -3, "y" = -6)),
+		slot_w_uniform_str = list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =  -1, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" =  1, "y" = -6)),
+		slot_tie_str       = list("[NORTH]" = list("x" =  0, "y" = -5), "[EAST]" = list("x" =   0, "y" = -5), "[SOUTH]" = list("x" =  0, "y" = -5), "[WEST]" = list("x" =  0, "y" = -5)),
+		slot_wear_id_str =   list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =  -1, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" =  1, "y" = -6)),
+		slot_wear_suit_str = list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =  -1, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" =  1, "y" = -6)),
+		slot_belt_str =      list("[NORTH]" = list("x" =  0, "y" = -6), "[EAST]" = list("x" =  -1, "y" = -6), "[SOUTH]" = list("x" =  0, "y" = -6), "[WEST]" = list("x" =  1, "y" = -6))
+	)
+	. = ..()
+*/
+
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
