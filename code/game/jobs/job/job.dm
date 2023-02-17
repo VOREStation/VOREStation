@@ -65,11 +65,14 @@
 	var/income = 1
 	if(H.client)
 		switch(H.client.prefs.economic_status)
+			if(CLASS_VERYHIGH)	income = 1.60
 			if(CLASS_UPPER)		income = 1.30
 			if(CLASS_UPMID)		income = 1.15
 			if(CLASS_MIDDLE)	income = 1
 			if(CLASS_LOWMID)	income = 0.75
 			if(CLASS_LOWER)		income = 0.50
+			if(CLASS_VERYLOW)	income = 0.20
+			if(CLASS_EXTREMELYLOW)	income = 0.05
 
 	//give them an account in the station database
 	var/money_amount = (rand(15,40) + rand(15,40)) * income * economic_modifier * ECO_MODIFIER //VOREStation Edit - Smoothed peaks, ECO_MODIFIER rather than per-species ones.

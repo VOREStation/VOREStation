@@ -131,13 +131,16 @@
 #define INV_MASK_DEF_ICON 'icons/inventory/face/mob.dmi'
 
 // Character's economic class
+#define CLASS_VERYHIGH		"Very Wealthy"
 #define CLASS_UPPER 		"Wealthy"
 #define CLASS_UPMID			"Well-off"
 #define CLASS_MIDDLE 		"Average"
 #define CLASS_LOWMID		"Underpaid"
 #define CLASS_LOWER			"Poor"
+#define CLASS_VERYLOW		"Very Poor"
+#define CLASS_EXTREMELYLOW	"Extremely Poor"
 
-#define ECONOMIC_CLASS		list(CLASS_UPPER,CLASS_UPMID,CLASS_MIDDLE,CLASS_LOWMID,CLASS_LOWER)
+#define ECONOMIC_CLASS		list(CLASS_VERYHIGH,CLASS_UPPER,CLASS_UPMID,CLASS_MIDDLE,CLASS_LOWMID,CLASS_LOWER,CLASS_VERYLOW,CLASS_EXTREMELYLOW)
 
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
