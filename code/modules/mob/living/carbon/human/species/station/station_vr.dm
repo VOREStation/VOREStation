@@ -383,7 +383,11 @@
 	min_age = 18
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //Get ya quills done did
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
+	tail = "voxtail"
+	tail_animation = 'icons/mob/species/vox/tail.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
+	color_mult = 1
+	
 	descriptors = list(
 		/datum/mob_descriptor/vox_markings = 0
 		)
