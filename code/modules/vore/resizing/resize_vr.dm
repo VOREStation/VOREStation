@@ -272,7 +272,7 @@
 
 	var/mob/living/carbon/human/prey = tmob
 	var/can_pass = TRUE
-	var/size_ratio_needed = (a_intent == I_DISARM || a_intent == I_HURT) ? 0.5 : (a_intent == I_GRAB ? 0.25 : 0) //the person trying to block us can be 25% bigger than the person we're trying to step on
+	var/size_ratio_needed = (a_intent == I_DISARM || a_intent == I_HURT) ? 0.75 : (a_intent == I_GRAB ? 0.5 : 0)
 	if (isturf(prey.loc))
 		for (var/atom/movable/M in prey.loc)
 			if (prey == M || pred == M)
