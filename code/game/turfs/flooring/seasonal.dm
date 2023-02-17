@@ -41,8 +41,7 @@ var/world_time_season
 				/obj/structure/flora/tree/jungle
 			)
 			animal_types = list(
-				/mob/living/simple_mob/vore/redpanda = 40,
-				/mob/living/simple_mob/vore/redpanda/fae = 2,
+				/mob/living/simple_mob/vore/redpanda = 5,
 				/mob/living/simple_mob/vore/sheep = 20,
 				/mob/living/simple_mob/vore/rabbit/black = 20,
 				/mob/living/simple_mob/vore/rabbit/white = 20,
@@ -50,7 +49,12 @@ var/world_time_season
 				/mob/living/simple_mob/vore/leopardmander = 2,
 				/mob/living/simple_mob/vore/horse/big = 10,
 				/mob/living/simple_mob/vore/bigdragon/friendly = 1,
-				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20
+				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20,
+				/mob/living/simple_mob/vore/bee = 20,
+				/mob/living/simple_mob/vore/horse/big = 5,
+				/mob/living/simple_mob/animal/wolf = 5,
+				/mob/living/simple_mob/animal/wolf/direwolf = 1,
+				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1
 			)
 			grass_types = list(
 				/obj/structure/flora/ausbushes/sparsegrass,
@@ -73,8 +77,7 @@ var/world_time_season
 				/obj/structure/flora/tree/jungle
 			)
 			animal_types = list(
-				/mob/living/simple_mob/vore/redpanda = 40,
-				/mob/living/simple_mob/vore/redpanda/fae = 2,
+				/mob/living/simple_mob/vore/redpanda = 1,
 				/mob/living/simple_mob/vore/sheep = 20,
 				/mob/living/simple_mob/vore/rabbit/black = 20,
 				/mob/living/simple_mob/vore/rabbit/white = 20,
@@ -82,7 +85,13 @@ var/world_time_season
 				/mob/living/simple_mob/vore/leopardmander = 2,
 				/mob/living/simple_mob/vore/horse/big = 10,
 				/mob/living/simple_mob/vore/bigdragon/friendly = 1,
-				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20
+				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20,
+				/mob/living/simple_mob/vore/bee = 5,
+				/mob/living/simple_mob/vore/horse/big = 5,
+				/mob/living/simple_mob/vore/pakkun = 2,
+				/mob/living/simple_mob/vore/fennix = 1,
+				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1,
+				/mob/living/simple_mob/animal/passive/bird/parrot = 1
 			)
 			grass_types = list(
 				/obj/structure/flora/ausbushes/sparsegrass,
@@ -102,7 +111,11 @@ var/world_time_season
 				/mob/living/simple_mob/vore/rabbit/white = 20,
 				/mob/living/simple_mob/vore/rabbit/brown = 20,
 				/mob/living/simple_mob/vore/horse/big = 10,
-				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20
+				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20,
+				/mob/living/simple_mob/vore/horse/big = 1,
+				/mob/living/simple_mob/animal/wolf = 1,
+				/mob/living/simple_mob/animal/wolf/direwolf = 1,
+				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1
 			)
 			grass_types = list(
 				/obj/structure/flora/ausbushes/sparsegrass,
@@ -121,7 +134,14 @@ var/world_time_season
 
 			animal_types = list(
 				/mob/living/simple_mob/vore/rabbit/white = 40,
-				/mob/living/simple_mob/vore/redpanda = 10
+				/mob/living/simple_mob/vore/redpanda = 10,
+				/mob/living/simple_mob/animal/wolf = 10,
+				/mob/living/simple_mob/animal/wolf/direwolf = 1,
+				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1,
+				/mob/living/simple_mob/otie/friendly = 2,
+				/mob/living/simple_mob/otie/friendly/chubby = 1,
+				/mob/living/simple_mob/otie/red/friendly = 1,
+				/mob/living/simple_mob/otie/red/chubby = 1
 			)
 			if(prob(snow_chance))
 				chill()
