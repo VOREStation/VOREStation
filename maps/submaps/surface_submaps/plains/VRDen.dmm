@@ -12,6 +12,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 28
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "e" = (
@@ -21,30 +22,48 @@
 	operating = 0;
 	pixel_y = 24
 	},
+=======
+/mob/living/simple_mob/mechanical/hivebot/tank/armored{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	desc = "A robot clad in heavy armor. This one has 'FREDDY' written in white, bold later on its chestplate."
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/VRDen)
+"e" = (
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
+=======
+/obj/machinery/power/apc{
+	cell_type = /obj/item/cell/hyper;
+	dir = 1;
+	environ = 1;
+	equipment = 1;
+	lighting = 1;
+	locked = 0;
+	name = "Simulation Arcade APC";
+	operating = 1;
+	pixel_x = 0;
+	pixel_z = 0
+	},
+/turf/simulated/floor,
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 /area/submap/VRDen)
 "f" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "g" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
 	},
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
@@ -58,11 +77,18 @@
 	name = "plastic table frame"
 	},
 /obj/item/integrated_circuit/memory,
+<<<<<<< HEAD
 /obj/item/weapon/paper{
 	info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone.";
 	name = "note"
 	},
 /turf/simulated/floor/tiled/virgo3b,
+=======
+/turf/simulated/floor/tiled/steel,
+/area/submap/VRDen)
+"j" = (
+/turf/simulated/floor/concrete,
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 /area/submap/VRDen)
 "k" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -78,22 +104,23 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
+/obj/machinery/power/terminal{
+	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 1;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "m" = (
-/obj/machinery/power/smes/buildable/point_of_interest,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/paper{
+	info = "PROBLEM: people keep stealing my stuff while i'm away for business. SOLUTION: installed a robot bouncer. it should keep people at bay . i call him Freddy.";
+	name = "messy note"
 	},
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
@@ -123,14 +150,24 @@
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "r" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster{
+	pixel_y = 32;
+	poster_decl = /decl/poster/vore_16
 	},
+<<<<<<< HEAD
 /obj/item/weapon/paper{
 	info = "your maps suck";
 	name = "dissatisfied letter"
 	},
 /turf/simulated/floor/tiled/virgo3b,
+=======
+/obj/item/paper{
+	info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone.";
+	name = "note"
+	},
+/turf/simulated/floor/tiled/steel,
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 /area/submap/VRDen)
 "s" = (
 /obj/effect/decal/cleanable/dirt,
@@ -207,6 +244,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/VRDen)
 "K" = (
+<<<<<<< HEAD
 /obj/effect/decal/remains/posi,
 /obj/item/weapon/paper{
 	info = "pain sim on your hardware is top-notch, 10/10, would be burned alive again";
@@ -214,6 +252,14 @@
 	},
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/virgo3b,
+=======
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/smes/buildable/point_of_interest,
+/turf/simulated/floor/tiled/steel_dirty,
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 /area/submap/VRDen)
 "L" = (
 /obj/structure/closet/toolcloset,
@@ -269,6 +315,26 @@
 	},
 /turf/template_noop,
 /area/submap/VRDen)
+<<<<<<< HEAD
+=======
+"X" = (
+/obj/effect/decal/remains/posi,
+/obj/machinery/light/small,
+/turf/simulated/floor,
+/area/submap/VRDen)
+"Y" = (
+/obj/random/tech_supply/anom,
+/turf/simulated/floor/tiled/steel,
+/area/submap/VRDen)
+"Z" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster{
+	pixel_x = -32;
+	poster_decl = /decl/poster/vore_19
+	},
+/turf/simulated/floor/concrete,
+/area/submap/VRDen)
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 
 (1,1,1) = {"
 a
@@ -393,7 +459,7 @@ C
 C
 u
 I
-K
+X
 c
 R
 b
@@ -409,7 +475,7 @@ b
 c
 c
 i
-r
+m
 y
 C
 u
@@ -496,9 +562,14 @@ b
 b
 c
 g
+<<<<<<< HEAD
 m
 O
 u
+=======
+K
+v
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 u
 E
 H
@@ -520,8 +591,13 @@ c
 c
 c
 c
+<<<<<<< HEAD
 z
 t
+=======
+r
+Y
+>>>>>>> 424dd0a4183... Fixes Power in VR Den PoI + minor adjustements (#8906)
 c
 c
 c
