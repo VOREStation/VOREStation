@@ -173,6 +173,9 @@
 	if(Process_Spacemove())
 		return TRUE
 
+	if(has_hands)
+		return TRUE
+
 /mob/living/carbon/human/can_ztravel()
 	if(incapacitated())
 		return FALSE

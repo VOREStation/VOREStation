@@ -14,7 +14,7 @@
 	var/oreAmount = 7
 	var/knock_sound = 'sound/machines/door/knock_glass.ogg'
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
-	
+
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
 
@@ -171,7 +171,7 @@
 	return
 
 /obj/structure/simple_door/bullet_act(var/obj/item/projectile/Proj)
-	hardness -= Proj.force/10
+	take_damage(Proj.damage/10)
 	CheckHardness()
 
 /obj/structure/simple_door/take_damage(var/damage)
