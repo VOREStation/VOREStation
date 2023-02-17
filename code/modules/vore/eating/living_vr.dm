@@ -596,6 +596,10 @@
 		to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
 		log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
 		return FALSE
+	if(prey.absorbed || pred.absorbed)
+		to_chat(user, "<span class='warning'>They aren't aren't in a state to be devoured.</span>")
+		return FALSE
+
 	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
 	if(prey.is_slipping)

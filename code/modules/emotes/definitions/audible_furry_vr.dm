@@ -198,6 +198,10 @@
             emote_sound = pick(smolsound)
         else
             emote_sound = pick(bigsound)
+    else if(istype(user, /mob/living/silicon/pai))
+        var/mob/living/silicon/pai/me = user
+        if(me.chassis == "teppi")
+            emote_sound = pick(bigsound)
     else if(user.size_multiplier >= 1.5)
         emote_sound = pick(bigsound)
     else

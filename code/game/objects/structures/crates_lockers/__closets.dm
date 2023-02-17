@@ -397,6 +397,13 @@
 	if(ishuman(usr) || isrobot(usr))
 		add_fingerprint(usr)
 		toggle(usr)
+	else if(isanimal(usr))	//VOREStation Addition Start
+		var/mob/living/simple_mob/s = usr
+		if(s.has_hands)
+			add_fingerprint(usr)
+			toggle(usr)
+		else
+			to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")		//VOREStation Addition End
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
