@@ -3683,6 +3683,7 @@
 #include "code\modules\reagents\machinery\chemalyzer.dm"
 #include "code\modules\reagents\machinery\distillery.dm"
 #include "code\modules\reagents\machinery\grinder.dm"
+#include "code\modules\reagents\machinery\injector_maker.dm"
 #include "code\modules\reagents\machinery\pump.dm"
 #include "code\modules\reagents\machinery\dispenser\_defines.dm"
 #include "code\modules\reagents\machinery\dispenser\cartridge.dm"
