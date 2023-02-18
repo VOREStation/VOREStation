@@ -337,3 +337,26 @@ Talon jumpsuit
 /datum/gear/uniform/antediluvianalt
 	display_name = "corset, antediluvian alt"
 	path = /obj/item/clothing/under/dress/antediluvian/sheerless
+
+//Colorable skirts
+/datum/gear/uniform/coloredskirts
+	display_name = "skirt selection, colorable"
+	path = /obj/item/clothing/under/skirt/colorable
+
+/datum/gear/uniform/coloredskirts/New()
+	..()
+	var/list/skirts = list(
+	"casual skirt"=/obj/item/clothing/under/skirt/colorable,
+	"puffy skirt"=/obj/item/clothing/under/skirt/colorable/puffy,
+	"skater skirt"=/obj/item/clothing/under/skirt/colorable/skater,
+	"pleated skirt"=/obj/item/clothing/under/skirt/colorable/pleated,
+	"pencil skirt"=/obj/item/clothing/under/skirt/colorable/pencil,
+	"plaid skirt"=/obj/item/clothing/under/skirt/colorable/plaid,
+	"tube skirt"=/obj/item/clothing/under/skirt/colorable/tube,
+	"long skirt"=/obj/item/clothing/under/skirt/colorable/long,
+	"high skirt"=/obj/item/clothing/under/skirt/colorable/high,
+	"swept skirt"=/obj/item/clothing/under/skirt/colorable/swept,
+	"jumper skirt"=/obj/item/clothing/under/skirt/colorable/jumper,
+	"jumper dress"=/obj/item/clothing/under/skirt/colorable/jumperdress
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(skirts), gear_tweak_free_color_choice)

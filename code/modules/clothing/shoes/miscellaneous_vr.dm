@@ -99,3 +99,10 @@
 	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	icon_state = "antediluvian"
 	item_state = "antediluvian"
+
+//Alternative flats
+/obj/item/clothing/shoes/flats/white/color/alt
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
+	icon_state = "flatsalt"
+	item_state = "flatsalt"

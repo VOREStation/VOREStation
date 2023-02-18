@@ -32,8 +32,8 @@
 	..()
 
 /obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
-	icon_state = toggleicon
 	hood_up = FALSE
+	update_icon()
 	hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
@@ -55,15 +55,19 @@
 				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
 				return
 			else
+				if(color != hood.color)
+					hood.color = color
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
 				hood_up = TRUE
 				hood.canremove = FALSE
-				icon_state = "[toggleicon]_t"
+				update_icon()
 				H.update_inv_wear_suit()
-				if(color != hood.color)
-					hood.color = color
 	else
 		RemoveHood()
+
+/obj/item/clothing/suit/storage/hooded/update_icon()
+	. = ..()
+	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
 
 /obj/item/clothing/suit/storage/hooded/costume
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
