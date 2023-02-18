@@ -91,3 +91,8 @@
 	name = "Sarashi"
 	icon_state = "bandages"
 	has_color = TRUE
+
+/datum/category_item/underwear/top/swimtop
+	name = "Swimming Top"
+	icon_state = "swimtop"
+	has_color = TRUE

@@ -226,3 +226,90 @@ Talon winter coat
 		"gold mantle"=/obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
 	)
 	gear_tweaks += new/datum/gear_tweak/path(mantles)
+
+//Boat cloaks
+/datum/gear/suit/roles/boatcloak
+	display_name = "boat cloak, colorable"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat
+
+/datum/gear/suit/roles/boatcloak/New()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/roles/capboatcloak
+	display_name = "boat cloak, site manager"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/cap
+	allowed_roles = list("Site Manager")
+
+/datum/gear/suit/roles/hopboatcloak
+	display_name = "boat cloak, head of personnel"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/hop
+	allowed_roles = list("Head of Personnel")
+
+/datum/gear/suit/roles/boatcloaks
+	display_name = "boat cloak selection"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/security
+
+/datum/gear/suit/roles/boatcloaks/New()
+	..()
+	var/list/boatcloaks = list(
+		"security boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/security,
+		"engineering boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/engineering,
+		"atmospherics boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/atmos,
+		"medical boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/medical,
+		"service boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/service,
+		"cargo boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/cargo,
+		"mining boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/mining,
+		"research boat cloak"=/obj/item/clothing/accessory/poncho/roles/cloak/boat/science
+	)
+	gear_tweaks += new/datum/gear_tweak/path(boatcloaks)
+
+//Shrouds
+/datum/gear/suit/roles/shroud
+	display_name = "shroud, colorable"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud
+
+/datum/gear/suit/roles/shroud/New()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/roles/capshroud
+	display_name = "shroud, site manager"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/cap
+	allowed_roles = list("Site Manager")
+
+/datum/gear/suit/roles/hopshroud
+	display_name = "shroud, head of personnel"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/hop
+	allowed_roles = list("Head of Personnel")
+
+/datum/gear/suit/roles/shrouds
+	display_name = "shroud selection"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/security
+
+/datum/gear/suit/roles/shrouds/New()
+	..()
+	var/list/shrouds = list(
+		"security shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/security,
+		"engineering shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/engineering,
+		"atmospherics shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/atmos,
+		"medical shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/medical,
+		"service shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/service,
+		"cargo shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/cargo,
+		"mining shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/mining,
+		"research shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/science
+	)
+	gear_tweaks += new/datum/gear_tweak/path(shrouds)
+
+//Actually colorable hoodies
+/datum/gear/suit/roles/choodies
+	display_name = "hoodie selection, colorable"
+	path = /obj/item/clothing/suit/storage/hooded/toggle/colorable
+
+/datum/gear/suit/roles/choodies/New()
+	..()
+	var/list/choodies = list(
+		"normal hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable,
+		"sleeveless hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/sleeveless,
+		"cropped hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/cropped
+	)
+	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += new/datum/gear_tweak/path(choodies)

@@ -76,3 +76,20 @@
 /obj/item/clothing/head/hood/winter
 	sprite_sheets = list(	SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi',
 							SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi')
+
+//Better hoodies hood
+/obj/item/clothing/head/hood/toggleable
+	name = "super special hood"
+	desc = "This hood is so special that you weren't even supposed to lay eyes on it! Tell a developer!"
+	var/open = FALSE
+
+/obj/item/clothing/head/hood/toggleable/colorable
+	name = "hoodie hood"
+	desc = "It's the hood part of a hoodie. What kind of hoodie would it be without one? A poser, obviously."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "choodie"
+
+/obj/item/clothing/head/hood/toggleable/colorable/update_icon()
+	. = ..()
+	icon_state = "[initial(icon_state)][open ? "_open" : ""]"

@@ -159,3 +159,23 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat
 	sprite_sheets = list(	SPECIES_TESHARI = 'icons/inventory/suit/mob_vr_teshari.dmi',
 							SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi')
+
+//Hoodies worth their weight in gold (as in you can unbutton them and toggle the hood independently)
+/obj/item/clothing/suit/storage/hooded/toggle/colorable
+	name = "hoodie"
+	desc = "A rather plain hoodie. If you can't find it in your closet, chances are your significant other is borrowing it."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "choodie"
+	hoodtype = /obj/item/clothing/head/hood/toggleable/colorable
+	open = FALSE
+
+/obj/item/clothing/suit/storage/hooded/toggle/colorable/sleeveless
+	name = "sleeveless hoodie"
+	desc = "Either your arms were too hot or the sleeves vaporized when you gave someone a 'gunshow' with your muscles. Either way, the sleeves are missing."
+	icon_state = "choodie_sleeveless"
+
+/obj/item/clothing/suit/storage/hooded/toggle/colorable/cropped
+	name = "cropped hoodie"
+	desc = "It's not that this is a size too small, you just like showing off your tum. I guess."
+	icon_state = "choodie_crop"
