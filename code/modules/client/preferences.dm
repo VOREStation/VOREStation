@@ -410,6 +410,7 @@ var/list/preferences_datums = list()
 	var/name
 	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
+	var/default //VOREStation edit
 	for(var/i=1, i<= config.character_slots, i++)
 		S.cd = "/character[i]"
 		S["real_name"] >> name
@@ -420,10 +421,12 @@ var/list/preferences_datums = list()
 			name = "►[i] - [name]"
 		else
 			name = "[i] - [name]"
+		if (i == default_slot) //VOREStation edit
+			default = "[name][nickname ? " ([nickname])" : ""]"
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	selecting_slots = TRUE
-	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist)
+	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist, default)
 	selecting_slots = FALSE
 	if(!choice)
 		return
