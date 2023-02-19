@@ -89,7 +89,11 @@
 		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connecting to [candidate].</span>")
 	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Attempting to call [src].</span>")
 	sleep(10)
+<<<<<<< HEAD
 	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Dialing to [station_name()], Kara Subsystem, [system_name()].</span>")
+=======
+	to_chat(new_voice, "<span class='notice'>[bicon(src)] Dialing to [station_name()], Londuneyja, Sif, [system_name()].</span>")
+>>>>>>> 2da4411ab3a... Merge pull request #8938 from elgeonmb/karan't
 	sleep(20)
 	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connecting to [station_name()] telecommunications array.</span>")
 	sleep(40)
