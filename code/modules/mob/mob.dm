@@ -561,11 +561,6 @@
 				to_chat(src, "<span class='warning'>Somebody has a grip on them!</span>")
 				return
 
-		if(!iscarbon(src))
-			M.LAssailant = null
-		else
-			M.LAssailant = usr
-
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)

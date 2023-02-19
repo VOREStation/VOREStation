@@ -597,7 +597,7 @@
 	)
 
 /datum/species/diona/can_understand(var/mob/other)
-	if(istype(other, /mob/living/carbon/alien/diona))
+	if(istype(other, /mob/living/carbon/diona))
 		return TRUE
 	return FALSE
 
@@ -613,7 +613,7 @@
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
 
-	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
+	var/mob/living/carbon/diona/S = new(get_turf(H))
 
 	if(H.mind)
 		H.mind.transfer_to(S)
@@ -632,7 +632,7 @@
 
 		return
 
-	for(var/mob/living/carbon/alien/diona/D in H.contents)
+	for(var/mob/living/carbon/diona/D in H.contents)
 		if(D.client)
 			D.forceMove(get_turf(H))
 		else

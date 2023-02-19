@@ -38,7 +38,6 @@
 
 			G.synch()
 			G.affecting = src
-			LAssailant = L
 
 			L.visible_message("<span class='warning'>\The [L] has grabbed [src] passively!</span>")
 			L.do_attack_animation(src)

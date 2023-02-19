@@ -166,8 +166,6 @@ default behaviour is:
 			now_pushing = 0
 			return
 
-		tmob.LAssailant = src
-
 	now_pushing = 0
 	. = ..()
 	if (!istype(AM, /atom/movable) || AM.anchored)

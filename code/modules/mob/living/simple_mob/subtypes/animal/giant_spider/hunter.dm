@@ -108,7 +108,6 @@
 
 //		G.synch()
 //		G.affecting = victim
-//		victim.LAssailant = src
 
 //		visible_message("<span class='warning'>\The [src] seizes \the [victim] aggressively!</span>")
 //		do_attack_animation(victim)

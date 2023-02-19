@@ -5,7 +5,7 @@
 	display_name = "replicant pods"
 	can_self_harvest = 1
 	apply_color_to_mob = FALSE
-	has_mob_product = /mob/living/carbon/alien/diona
+	has_mob_product = /mob/living/carbon/diona
 
 /datum/seed/diona/New()
 	..()

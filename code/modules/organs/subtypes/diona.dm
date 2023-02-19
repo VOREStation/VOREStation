@@ -8,7 +8,7 @@
 		return 0
 
 	spawn(1) // So it has time to be thrown about by the gib() proc.
-		var/mob/living/carbon/alien/diona/D = new(target)
+		var/mob/living/carbon/diona/D = new(target)
 		var/datum/ghosttrap/plant/P = get_ghost_trap("living plant")
 		P.request_player(D, "A diona nymph has split off from its gestalt. ")
 		spawn(60)

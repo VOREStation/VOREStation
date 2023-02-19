@@ -150,7 +150,7 @@
 /mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
 	var/turf/T = get_turf(src)
 
-	var/mob/living/carbon/alien/diona/S = new(T)
+	var/mob/living/carbon/diona/S = new(T)
 	S.set_dir(dir)
 	transfer_languages(src, S)
 
@@ -162,7 +162,7 @@
 
 	var/nymphs = 1
 
-	for(var/mob/living/carbon/alien/diona/D in src)
+	for(var/mob/living/carbon/diona/D in src)
 		nymphs++
 		D.forceMove(T)
 		transfer_languages(src, D, WHITELISTED|RESTRICTED)
@@ -170,7 +170,7 @@
 
 	if(nymphs < number_of_resulting_nymphs)
 		for(var/i in nymphs to (number_of_resulting_nymphs - 1))
-			var/mob/M = new /mob/living/carbon/alien/diona(T)
+			var/mob/M = new /mob/living/carbon/diona(T)
 			transfer_languages(src, M, WHITELISTED|RESTRICTED)
 			M.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 

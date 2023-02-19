@@ -1,6 +1,5 @@
 //Verbs after this point.
-/mob/living/carbon/alien/diona/proc/merge()
-
+/mob/living/carbon/diona/proc/merge()
 	set category = "Abilities"
 	set name = "Merge with gestalt"
 	set desc = "Merge with another diona."
@@ -9,7 +8,7 @@
 		return
 
 	if(istype(src.loc,/mob/living/carbon))
-		src.verbs -= /mob/living/carbon/alien/diona/proc/merge
+		src.verbs -= /mob/living/carbon/diona/proc/merge
 		return
 
 	var/list/choices = list()
@@ -29,18 +28,19 @@
 	else if(!do_merge(M))
 		to_chat(src, "You fail to merge with \the [M]...")
 
-/mob/living/carbon/alien/diona/proc/do_merge(var/mob/living/carbon/human/H)
+
+/mob/living/carbon/diona/proc/do_merge(var/mob/living/carbon/human/H)
 	if(!istype(H) || !src || !(src.Adjacent(H)))
 		return 0
 	to_chat(H, "You feel your being twine with that of \the [src] as it merges with your biomass.")
 	to_chat(src, "You feel your being twine with that of \the [H] as you merge with its biomass.")
 	loc = H
-	verbs += /mob/living/carbon/alien/diona/proc/split
-	verbs -= /mob/living/carbon/alien/diona/proc/merge
-	return 1
+	verbs += /mob/living/carbon/diona/proc/split
+	verbs -= /mob/living/carbon/diona/proc/merge
+	return TRUE
 
-/mob/living/carbon/alien/diona/proc/split()
 
+/mob/living/carbon/diona/proc/split()
 	set category = "Abilities"
 	set name = "Split from gestalt"
 	set desc = "Split away from your gestalt as a lone nymph."
@@ -49,7 +49,7 @@
 		return
 
 	if(!(istype(src.loc,/mob/living/carbon)))
-		src.verbs -= /mob/living/carbon/alien/diona/proc/split
+		src.verbs -= /mob/living/carbon/diona/proc/split
 		return
 
 	to_chat(src.loc, "You feel a pang of loss as [src] splits away from your biomass.")
@@ -58,8 +58,8 @@
 	var/mob/living/M = src.loc
 
 	src.loc = get_turf(src)
-	src.verbs -= /mob/living/carbon/alien/diona/proc/split
-	src.verbs += /mob/living/carbon/alien/diona/proc/merge
+	src.verbs -= /mob/living/carbon/diona/proc/split
+	src.verbs += /mob/living/carbon/diona/proc/merge
 
 	if(istype(M))
 		for(var/atom/A in M.contents)

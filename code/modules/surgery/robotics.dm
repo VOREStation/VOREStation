@@ -577,7 +577,7 @@
 	var/obj/item/weapon/holder/diona/N = tool
 	var/obj/item/organ/internal/brain/cephalon/cephalon = new(target, 1)
 	target.internal_organs_by_name["brain"] = cephalon
-	var/mob/living/carbon/alien/diona/D = N.held_mob
+	var/mob/living/carbon/diona/D = N.held_mob
 	user.drop_from_inventory(tool)
 
 	if(D && D.mind)
