@@ -410,6 +410,10 @@
 	display_name = "maang tikka"
 	path = /obj/item/clothing/head/maangtikka
 
+/datum/gear/head/maid_headband
+	display_name = "maid headband"
+	path = /obj/item/clothing/head/headband/maid
+
 /datum/gear/head/jingasa
 	display_name = "jingasa"
 	path = /obj/item/clothing/head/jingasa
