@@ -12,6 +12,10 @@
 	name = "optical sensor"
 	verbs |= /obj/item/organ/internal/eyes/proc/change_eye_color
 
+/obj/item/organ/internal/eyes/derobotize()
+	. = ..()
+	verbs -= /obj/item/organ/internal/eyes/proc/change_eye_color
+
 /obj/item/organ/internal/eyes/robot
 	name = "optical sensor"
 

@@ -52,6 +52,12 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/robotize()
 	replace_self_with(/obj/item/organ/internal/mmi_holder/posibrain)
 
+/obj/item/organ/internal/brain/derobotize()
+	if (ispath(owner?.species?.has_organ?[O_BRAIN], /obj/item/organ/internal/brain))
+		replace_self_with(owner.species.has_organ[O_BRAIN])
+	else
+		replace_self_with(/obj/item/organ/internal/brain)
+
 /obj/item/organ/internal/brain/mechassist()
 	replace_self_with(/obj/item/organ/internal/mmi_holder)
 

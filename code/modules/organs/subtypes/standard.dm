@@ -40,6 +40,13 @@
 		owner.synthetic = R
 	return FALSE
 
+<<<<<<< HEAD
+=======
+/obj/item/organ/external/chest/derobotize()
+	. = ..()
+	if (!.) return
+	owner?.synthetic = null
+>>>>>>> 4bb5562d97d... fixes a memory leak with mannequins and the issue that then comes with fixing it (#8942)
 
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
@@ -295,6 +302,12 @@
 		else
 			LAZYREMOVE(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
 		handle_organ_mod_special()
+
+/obj/item/organ/external/head/derobotize()
+	. = ..()
+	if (!.) return
+	LAZYREMOVE(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
+	handle_organ_mod_special()
 
 /obj/item/organ/external/head/removed()
 	if(owner)

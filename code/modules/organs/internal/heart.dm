@@ -24,6 +24,11 @@
 	..()
 	standard_pulse_level = PULSE_NONE
 
+/obj/item/organ/internal/heart/derobotize()
+	. = ..()
+	if (!.) return
+	standard_pulse_level = initial(standard_pulse_level)
+
 /obj/item/organ/internal/heart/grey
 	icon_state = "heart_grey-on"
 	dead_icon = "heart_grey-off"

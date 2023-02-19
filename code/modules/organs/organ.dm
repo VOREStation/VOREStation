@@ -292,7 +292,9 @@ var/list/organ_cache = list()
 		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
-		if(status == "assisted")
+		if(status == null)
+			derobotize()
+		else if(status == "assisted")
 			mechassist()
 		else if(status == "mechanical")
 			robotize()
@@ -356,6 +358,15 @@ var/list/organ_cache = list()
 	src.status &= ~ORGAN_BROKEN
 	src.status &= ~ORGAN_BLEEDING
 	src.status &= ~ORGAN_CUT_AWAY
+
+/obj/item/organ/proc/derobotize()
+	if (robotic < ORGAN_ROBOT)
+		return FALSE//already flesh
+	robotic = ORGAN_FLESH
+	min_bruised_damage = initial(min_bruised_damage)
+	min_broken_damage = initial(min_broken_damage)
+	butcherable = initial(butcherable)
+	return TRUE
 
 /obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
 	robotize()

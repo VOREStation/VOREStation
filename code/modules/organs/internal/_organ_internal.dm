@@ -40,6 +40,13 @@
 	if(dead_icon)
 		dead_icon = "[initial(dead_icon)]_prosthetic"
 
+/obj/item/organ/internal/derobotize()
+	. = ..()
+	if (!.) return
+	name = initial(name)
+	icon_state = initial(icon_state)
+	dead_icon = initial(dead_icon)
+
 /obj/item/organ/internal/mechassist()
 	..()
 	name = "assisted [initial(name)]"

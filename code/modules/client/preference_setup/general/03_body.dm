@@ -353,7 +353,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/status = pref.organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(O)
-			if(status == "amputated")
+			if(status == null)
+				O.derobotize()
+			else if(status == "amputated")
 				O.remove_rejuv()
 			else if(status == "cyborg")
 				if(pref.rlimb_data[name])
@@ -363,15 +365,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	for(var/name in list(O_HEART,O_EYES,O_VOICE,O_LUNGS,O_LIVER,O_KIDNEYS,O_SPLEEN,O_STOMACH,O_INTESTINE,O_BRAIN))
 		var/status = pref.organ_data[name]
-		if(!status)
-			continue
 		var/obj/item/organ/I = character.internal_organs_by_name[name]
 		if(istype(I, /obj/item/organ/internal/brain))
 			var/obj/item/organ/external/E = character.get_organ(I.parent_organ)
 			if(E.robotic < ORGAN_ASSISTED)
 				continue
 		if(I)
-			if(status == "assisted")
+			if(status == null)
+				I.derobotize()
+			else if(status == "assisted")
 				I.mechassist()
 			else if(status == "mechanical")
 				I.robotize()

@@ -22,8 +22,11 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
 
+<<<<<<< HEAD
 var/list/mannequins_
 
+=======
+>>>>>>> 4bb5562d97d... fixes a memory leak with mannequins and the issue that then comes with fixing it (#8942)
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
@@ -110,9 +113,12 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.mannequins[ckey] = new /mob/living/carbon/human/dummy/mannequin(null)
 		M = GLOB.mannequins[ckey]
 	return M
+<<<<<<< HEAD
 
 /proc/del_mannequin(var/ckey = "NULL")
 	GLOB.mannequins-= ckey
+=======
+>>>>>>> 4bb5562d97d... fixes a memory leak with mannequins and the issue that then comes with fixing it (#8942)
 
 //////////////////////////
 /////Initial Building/////
