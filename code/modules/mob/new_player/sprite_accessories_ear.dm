@@ -110,6 +110,7 @@
 	name = "synth antennae, colorable"
 	desc = ""
 	icon_state = "dual_robot_antennae"
+<<<<<<< HEAD
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -119,13 +120,25 @@
 	icon_state = "right_robot_antennae"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+=======
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/ears/right_robot
+	name = "right synth"
+	icon_state = "right_robot_antennae"
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+>>>>>>> 25cab9fcffc... Merge pull request #8943 from tiramisuapimancer/rogor
 
 /datum/sprite_accessory/ears/left_robot
 	name = "left synth, colorable"
 	desc = ""
 	icon_state = "left_robot_antennae"
+<<<<<<< HEAD
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+=======
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+>>>>>>> 25cab9fcffc... Merge pull request #8943 from tiramisuapimancer/rogor
 
 /datum/sprite_accessory/ears/oni_h1
 	name = "oni horns"
