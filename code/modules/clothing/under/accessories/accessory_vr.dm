@@ -553,3 +553,117 @@
 	desc = "A shoulder mantle bearing the colors usually found on a Site Manager, a commanding blue with regal gold inlay."
 	icon_state = "capmantle"
 	item_state = "capmantle"
+
+//Boat cloaks
+/obj/item/clothing/accessory/poncho/roles/cloak/boat
+	name = "boat cloak"
+	desc = "A cloak that might've been worn on boats once or twice. It's just a flappy cape otherwise."
+	icon_state = "boatcloak"
+	item_state = "boatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/cap
+	name = "site manager boat cloak"
+	icon_state = "capboatcloak"
+	item_state = "capboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/hop
+	name = "head of personnel boat cloak"
+	icon_state = "hopboatcloak"
+	item_state = "hopboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/security
+	name = "security boat cloak"
+	icon_state = "secboatcloak"
+	item_state = "secboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/engineering
+	name = "engineering boat cloak"
+	icon_state = "engboatcloak"
+	item_state = "engboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/atmos
+	name = "atmospherics boat cloak"
+	icon_state = "atmosboatcloak"
+	item_state = "atmosboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/medical
+	name = "medical boat cloak"
+	icon_state = "medboatcloak"
+	item_state = "medboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/service
+	name = "service boat cloak"
+	icon_state = "botboatcloak"
+	item_state = "botboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/cargo
+	name = "cargo boat cloak"
+	icon_state = "supboatcloak"
+	item_state = "supboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/mining
+	name = "mining boat cloak"
+	icon_state = "minboatcloak"
+	item_state = "minboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/science
+	name = "research boat cloak"
+	icon_state = "sciboatcloak"
+	item_state = "sciboatcloak"
+
+//Shrouds
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud
+	name = "shroud cape"
+	desc = "A sharp looking cape that covers more of one side than the other. Just a bit edgy."
+	icon_state = "shroud"
+	item_state = "shroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/cap
+	name = "site manager shroud"
+	icon_state = "capshroud"
+	item_state = "capshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/hop
+	name = "head of personnel shroud"
+	icon_state = "hopshroud"
+	item_state = "hopshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/security
+	name = "security shroud"
+	icon_state = "secshroud"
+	item_state = "secshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/engineering
+	name = "engineering shroud"
+	icon_state = "engshroud"
+	item_state = "engshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/atmos
+	name = "atmospherics shroud"
+	icon_state = "atmosshroud"
+	item_state = "atmosshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/medical
+	name = "medical shroud"
+	icon_state = "medshroud"
+	item_state = "medshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/service
+	name = "service shroud"
+	icon_state = "botshroud"
+	item_state = "botshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/cargo
+	name = "cargo shroud"
+	icon_state = "supshroud"
+	item_state = "supshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/mining
+	name = "mining shroud"
+	icon_state = "minshroud"
+	item_state = "minshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/science
+	name = "research shroud"
+	icon_state = "scishroud"
+	item_state = "scishroud"

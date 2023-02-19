@@ -72,6 +72,22 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/head/halo/alt
+	display_name = "halo, alt"
+	path = /obj/item/clothing/head/halo/alt
+
+/datum/gear/head/buckethat
+	display_name = "hat, bucket"
+	path = /obj/item/clothing/head/buckethat
+
+/datum/gear/head/buckethat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/head/nonla
+	display_name = "hat, non la"
+	path = /obj/item/clothing/head/nonla
+
 /*
 Talon hats
 */
