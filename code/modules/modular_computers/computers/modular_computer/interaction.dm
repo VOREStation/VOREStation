@@ -120,9 +120,17 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/id)) // ID Card, try to insert it.
 		var/obj/item/weapon/card/id/I = W
+=======
+/obj/item/modular_computer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/card/id/union))
+		return
+	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
+		var/obj/item/card/id/I = W
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)
 		if(!card_slot)
 			to_chat(user, "You try to insert \the [I] into \the [src], but it does not have an ID card slot installed.")
 			return

@@ -473,3 +473,9 @@
 	id = access_alien
 	desc = "#%_^&*@!"
 	access_type = ACCESS_TYPE_PRIVATE
+
+var/global/const/access_union = 120
+/datum/access/union
+	id = access_union
+	desc = "Union Representative"
+	region = ACCESS_REGION_COMMAND

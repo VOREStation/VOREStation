@@ -58,7 +58,8 @@
 /obj/machinery/computer/card/attackby(obj/item/weapon/card/id/id_card, mob/user)
 	if(!istype(id_card))
 		return ..()
-
+	if(istype(id_card, /obj/item/card/id/union))
+		return
 	if(!scan && (access_change_ids in id_card.access) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
 		user.drop_item()
 		id_card.forceMove(src)

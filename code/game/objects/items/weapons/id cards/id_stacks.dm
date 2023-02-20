@@ -119,8 +119,13 @@
 /obj/item/weapon/card/id/civilian/bartender
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-dark")
 
+<<<<<<< HEAD
 /obj/item/weapon/card/id/civilian/chef
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-white")		
+=======
+/obj/item/card/id/civilian/chef
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-white")
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)
 
 /obj/item/weapon/card/id/civilian/janitor
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-purple")
@@ -143,6 +148,14 @@
 /obj/item/weapon/card/id/syndicate
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
 
+<<<<<<< HEAD
 /obj/item/weapon/card/id/syndicate/officer
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
 */
+=======
+/obj/item/card/id/syndicate/officer
+	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
+
+/obj/item/card/id/union
+	initial_sprite_stack = list("base-stamp-gold", "top-dark", "stamp-n", "pips-gold", "stripe-black")
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)

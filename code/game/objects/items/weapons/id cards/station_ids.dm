@@ -33,11 +33,18 @@
 /obj/item/weapon/card/id/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
-		tgui_interact(user) //Not chat related
+		show_tgui(user)
 	else
 		. += "<span class='warning'>It is too far away to read.</span>"
 
+<<<<<<< HEAD
 /obj/item/weapon/card/id/proc/prevent_tracking()
+=======
+/obj/item/card/id/proc/show_tgui(var/mob/user)
+	tgui_interact(user) //Not chat related
+
+/obj/item/card/id/proc/prevent_tracking()
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)
 	return 0
 
 /obj/item/weapon/card/id/tgui_state(mob/user)
@@ -106,10 +113,20 @@
 	set category = "Object"
 	set src in usr
 
+<<<<<<< HEAD
 	to_chat(usr, "\icon[src][bicon(src)] [src.name]: The current assignment on the card is [src.assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
+=======
+	to_chat(usr, "[bicon(src)] [src.name]: The current assignment on the card is [src.assignment].")
+	show_additional_info_to(usr)
+
+/obj/item/card/id/proc/show_additional_info_to(var/mob/user)
+	to_chat(user, "The blood type on the card is [blood_type].")
+	to_chat(user, "The DNA hash on the card is [dna_hash].")
+	to_chat(user, "The fingerprint hash on the card is [fingerprint_hash].")
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)
 	return
 
 /obj/item/weapon/card/id/get_worn_icon_state(var/slot_name)
@@ -303,3 +320,15 @@
 	icon_state = "generic"
 	primary_color = rgb(142,94,0)
 	secondary_color = rgb(191,159,95)
+
+/obj/item/card/id/union
+	name = "union representative ID"
+	desc = "An access card issued to the elected NanoTrasen Union Representative of Cynosure."
+	assignment = "Union Representative"
+	access = list(access_union)
+
+/obj/item/card/id/union/show_additional_info_to(var/mob/user)
+	return
+
+/obj/item/card/id/union/show_tgui(var/mob/user)
+	return

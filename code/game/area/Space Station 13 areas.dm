@@ -1292,6 +1292,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Internal Affairs"
 	icon_state = "law"
 
+/area/unionoffice
+	name = "\improper Union Office"
+	icon_state = "union"
+
 /area/holodeck_control
 	name = "\improper Holodeck Control"
 	icon_state = "holodeck_control"

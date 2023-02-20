@@ -327,7 +327,7 @@
 	pixel_x = 21
 	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "akZ" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/computer/med_data/laptop,
@@ -2550,7 +2550,7 @@
 /area/surface/station/quartermaster/restroom)
 "bKf" = (
 /turf/simulated/wall,
-/area/surface/station/command/internalaffairs)
+/area/unionoffice)
 "bKi" = (
 /obj/machinery/computer/teleporter,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -3769,7 +3769,7 @@
 	pixel_y = -1
 	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "cwu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -4671,7 +4671,7 @@
 	id = "comoffice_tint"
 	},
 /turf/simulated/floor/plating,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "dcv" = (
 /obj/machinery/papershredder,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -7282,6 +7282,15 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/security/prison)
+<<<<<<< HEAD
+=======
+"eQv" = (
+/obj/structure/sign/clock{
+	pixel_x = -32
+	},
+/turf/simulated/floor/wood,
+/area/unionoffice)
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)
 "eQB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
@@ -9618,7 +9627,7 @@
 	},
 /obj/item/weapon/storage/secure/briefcase,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "gpz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11572,7 +11581,7 @@
 "htw" = (
 /obj/machinery/status_display,
 /turf/simulated/wall,
-/area/surface/station/command/internalaffairs)
+/area/unionoffice)
 "hua" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -11615,15 +11624,15 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/research)
 "hwX" = (
-/obj/structure/bed/chair/office/light{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
 /obj/effect/zone_divider,
+/obj/structure/bed/chair/comfy/rounded/brown{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "hxj" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green,
@@ -11873,7 +11882,7 @@
 	id = "comoffice_tint"
 	},
 /turf/simulated/floor/plating,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "hEQ" = (
 /obj/structure/table/standard,
 /obj/structure/cable/green{
@@ -13815,7 +13824,7 @@
 "iOg" = (
 /obj/effect/zone_divider,
 /turf/simulated/wall/r_wall,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "iOC" = (
 /obj/machinery/r_n_d/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
@@ -14470,6 +14479,11 @@
 	},
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 4
+	},
+/obj/structure/sign/goldenplaque{
+	desc = "Cynosure's Elected Site Union Representative. Chosen by you, for you.";
+	name = "NanoTrasen Union Office";
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/command)
@@ -15847,7 +15861,7 @@
 /area/surface/station/command/internalaffairs)
 "jKV" = (
 /turf/simulated/wall/r_wall,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "jLj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -16165,7 +16179,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "jVB" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -17085,7 +17099,7 @@
 "kGh" = (
 /obj/machinery/ai_status_display,
 /turf/simulated/wall,
-/area/surface/station/command/internalaffairs)
+/area/unionoffice)
 "kGU" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -17671,7 +17685,7 @@
 	},
 /obj/machinery/disposal,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "ljE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -18032,7 +18046,7 @@
 	id = "comoffice_tint"
 	},
 /turf/simulated/floor/plating,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "lwJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -18452,11 +18466,11 @@
 /area/surface/station/command/operations)
 "lPK" = (
 /obj/machinery/camera/network/command{
-	c_tag = "COM - Liaison Office";
+	c_tag = "COM - Union Office";
 	dir = 6
 	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "lPP" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -18834,11 +18848,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/command{
-	name = "Liaison Office";
-	req_one_access = list(38)
+	name = "Union Office";
+	req_one_access = list(38,120)
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "mfs" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/engineering/hallway/eva_hallway)
@@ -21875,7 +21889,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "olA" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -23663,7 +23677,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "prL" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27334,7 +27348,7 @@
 /area/surface/station/maintenance/weststairwell/snd)
 "rXY" = (
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "rYR" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -28363,7 +28377,7 @@
 	},
 /obj/effect/zone_divider,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "sDD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29216,14 +29230,15 @@
 "tcI" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/photocopier/faxmachine{
-	department = "Liaison Office"
+	department = "Union Office";
+	req_one_access = list(38,19,3,41,120)
 	},
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
 	},
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "tdB" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass{
@@ -29510,7 +29525,7 @@
 "tlr" = (
 /obj/structure/filingcabinet,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "tlG" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -31321,9 +31336,16 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+<<<<<<< HEAD
 /obj/item/weapon/clipboard,
+=======
+/obj/item/toy/desk/dippingbird{
+	pixel_x = -11;
+	pixel_y = 9
+	},
+>>>>>>> 14a10960b71... Union Rep Office and ID (#8964)
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "usA" = (
 /obj/structure/railing{
 	dir = 1
@@ -31588,7 +31610,7 @@
 "uAI" = (
 /obj/effect/zone_divider,
 /turf/simulated/wall,
-/area/surface/station/command/internalaffairs)
+/area/unionoffice)
 "uBB" = (
 /obj/structure/cable/green{
 	d1 = 32;
@@ -32706,7 +32728,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/hallway/primary/secondfloor/east)
 "vmu" = (
-/obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -32716,8 +32737,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/structure/bed/chair,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "vne" = (
 /obj/structure/undies_wardrobe,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -33572,7 +33594,7 @@
 	},
 /obj/item/weapon/pen/blue,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "vPY" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/structure/window/reinforced{
@@ -33920,7 +33942,7 @@
 	},
 /obj/effect/zone_divider,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "wiC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -34343,7 +34365,7 @@
 "wvP" = (
 /obj/effect/zone_divider,
 /turf/simulated/floor/wood,
-/area/surface/station/command/liaison)
+/area/unionoffice)
 "wvW" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -68485,7 +68507,7 @@ bKf
 bKf
 uAI
 kGh
-kny
+jKV
 tnX
 sBb
 sBb
