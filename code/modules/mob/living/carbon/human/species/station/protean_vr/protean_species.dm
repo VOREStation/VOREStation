@@ -27,6 +27,8 @@
 	assisted_langs = list(LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	color_mult = TRUE
 
+	speech_bubble_appearance = "synthetic"
+
 	breath_type = null
 	poison_type = null
 
