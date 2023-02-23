@@ -896,3 +896,8 @@
 	icon_state = "curly_bug_tesh"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/syrishroom
+	name = "Orange Mushroom Cap"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "syrishroom"
