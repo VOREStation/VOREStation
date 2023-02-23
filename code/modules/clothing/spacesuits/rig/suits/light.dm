@@ -68,6 +68,11 @@
 		/obj/item/rig_module/vision,
 		)
 
+/obj/item/rig/light/hacker/poi/Initialize()
+	. = ..()
+	if(!QDELETED(src))
+		emag_act()
+
 //The cybersuit is not space-proof. It does however, have good siemens_coefficient values
 /obj/item/clothing/head/helmet/space/rig/light/hacker
 	name = "headgear"
@@ -138,3 +143,8 @@
 		/obj/item/rig_module/stealth_field,
 		/obj/item/rig_module/vision
 		)
+
+/obj/item/rig/light/stealth/poi/Initialize()
+	. = ..()
+	if(!QDELETED(src))
+		emag_act()

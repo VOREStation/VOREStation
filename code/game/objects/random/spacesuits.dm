@@ -257,6 +257,7 @@
 	icon_state = "generic"
 
 /obj/random/rigsuit/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(4);/obj/item/weapon/rig/light/hacker,
 				prob(5);/obj/item/weapon/rig/industrial,
 				prob(5);/obj/item/weapon/rig/eva,
@@ -267,3 +268,11 @@
 /obj/random/rigsuit/chancetofail
 	spawn_nothing_percentage = 50
 //VOREStation Add End
+=======
+	return pick(prob(4);/obj/item/rig/light/hacker/poi,
+				prob(5);/obj/item/rig/industrial,
+				prob(5);/obj/item/rig/eva,
+				prob(4);/obj/item/rig/light/stealth/poi,
+				prob(3);/obj/item/rig/hazard,
+				prob(1);/obj/item/rig/merc/empty/poi)
+>>>>>>> e92376537b9... Merge pull request #8966 from Mechoid/PoIRigFreedom

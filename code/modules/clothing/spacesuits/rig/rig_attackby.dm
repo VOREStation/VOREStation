@@ -194,5 +194,6 @@
 		LAZYCLEARLIST(req_one_access)
 		locked = 0
 		subverted = 1
-		to_chat(user, "<span class='danger'>You short out the access protocol for the suit.</span>")
+		if(user)
+			to_chat(user, "<span class='danger'>You short out the access protocol for the suit.</span>")
 		return 1

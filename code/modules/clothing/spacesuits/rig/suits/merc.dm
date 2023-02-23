@@ -44,3 +44,8 @@
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/electrowarfare_suite, //might as well
 		)
+
+/obj/item/rig/merc/empty/poi/Initialize()
+	. = ..()
+	if(!QDELETED(src))
+		emag_act()
