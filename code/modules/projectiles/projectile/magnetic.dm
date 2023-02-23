@@ -173,7 +173,8 @@
 /obj/item/projectile/bullet/magnetic/bore
 	name = "phorogenic blast"
 	icon_state = "purpleemitter"
-	damage = 20
+	damage = 15
+	damage_type = SEARING
 	incendiary = 1
 	armor_penetration = 20
 	penetrating = 0

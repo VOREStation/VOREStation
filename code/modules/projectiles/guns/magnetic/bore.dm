@@ -82,6 +82,10 @@
 		return "<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>"
 	else
 		return "<span class='warning'>It\'s out of [ammo_material]!</span>"
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1b13d520e1... Merge pull request #8968 from Mechoid/PhoronBoreAdjustment219
 
 
 /obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
@@ -96,6 +100,7 @@
 			user.visible_message("<b>\The [user]</b> levers \the [manipulator] from \the [src].")
 			playsound(src, thing.usesound, 50, 1)
 			mat_cost = initial(mat_cost)
+			power_cost = initial(power_cost)
 			manipulator = null
 			update_icon()
 			update_rating_mod()
@@ -109,7 +114,12 @@
 			user.drop_from_inventory(manipulator, src)
 			playsound(src, 'sound/machines/click.ogg', 10,1)
 			mat_cost = initial(mat_cost) / (2*manipulator.rating)
+<<<<<<< HEAD
 			user.visible_message("<b>\The [user]</b> slots \the [manipulator] into \the [src].")
+=======
+			power_cost = initial(power_cost) + 50 * manipulator.get_rating()
+			user.visible_message("<span class='notice'>\The [user] slots \the [manipulator] into \the [src].</span>")
+>>>>>>> b1b13d520e1... Merge pull request #8968 from Mechoid/PhoronBoreAdjustment219
 			update_icon()
 			update_rating_mod()
 			return
