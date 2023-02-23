@@ -4,7 +4,7 @@
 
 /datum/persistent/filth/CreateEntryInstance(var/turf/creating, var/list/token)
 	var/_path = token["path"]
-	if (isspace(creating) || iswall(creating))
+	if (isspace(creating) || iswall(creating) ||isopenspace(creating))
 		return
 	if (saves_dirt)
 		new _path(creating, token["age"]+1, token["dirt"])
