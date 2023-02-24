@@ -23,10 +23,6 @@
 /obj/effect/decal/cleanable/filth,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "aM" = (
@@ -35,6 +31,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "aS" = (
@@ -53,11 +50,20 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/plating,
 /area/submap/debrisfield/ship_tourist_overrun)
-"bE" = (
-/obj/structure/cable/pink,
-/obj/structure/cable/pink{
-	dir = 4
+"bF" = (
+/obj/effect/catwalk_plated,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -27;
+	pixel_y = 32;
+	req_one_access = list(13)
 	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"bG" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "bP" = (
@@ -88,24 +94,17 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "cv" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/machinery/atmospherics/portables_connector/aux{
-	dir = 1
+/obj/machinery/atmospherics/pipe/tank/air/full{
+	dir = 1;
+	start_pressure = 4000
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
-"cD" = (
-/turf/simulated/wall/thull,
-/area/submap/debrisfield/cryopods_tourist_overrun)
 "cH" = (
 /obj/structure/bed/chair/bay/comfy/blue{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/ash,
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
 "df" = (
@@ -121,15 +120,6 @@
 /obj/item/weapon/material/knife,
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
-"dM" = (
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/turf/simulated/wall/thull,
-/area/submap/debrisfield/cryopods_tourist_overrun)
 "ea" = (
 /obj/structure/table/rack/gun_rack,
 /turf/simulated/floor/tiled/milspec,
@@ -149,6 +139,19 @@
 	dir = 4
 	},
 /turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"es" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
 /area/submap/debrisfield/ship_tourist_overrun)
 "eC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
@@ -171,7 +174,7 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "fE" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/space)
 "fH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
@@ -193,56 +196,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 30;
+	pixel_y = 32;
+	req_one_access = list(13)
+	},
 /turf/simulated/floor/tiled/yellow,
-/area/submap/debrisfield/ship_tourist_overrun)
-"gg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/pink{
-	dir = 8
-	},
-/obj/structure/cable/pink{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/submap/debrisfield/ship_tourist_overrun)
-"gl" = (
-/turf/space,
-/area/space)
-"gK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/pink,
-/obj/structure/cable/pink,
-/obj/structure/cable/pink{
-	dir = 1
-	},
-/obj/structure/cable/pink{
-	dir = 8
-	},
-/obj/item/royal_spider_egg,
-/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "gP" = (
 /obj/machinery/power/port_gen/pacman/super,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/obj/structure/cable/pink{
-	dir = 1
-	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
-"gX" = (
-/obj/effect/catwalk_plated,
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	pixel_x = -24;
-	req_one_access = list()
-	},
-/turf/space,
-/area/space)
 "gY" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 1
@@ -258,6 +227,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "hu" = (
@@ -269,10 +241,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/structure/cable/pink{
-	dir = 4
-	},
-/obj/structure/cable/pink,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "ih" = (
@@ -300,25 +268,12 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "jT" = (
 /obj/item/weapon/material/shard,
 /obj/machinery/door/window,
 /turf/simulated/floor/wood/airless,
-/area/submap/debrisfield/ship_tourist_overrun)
-"kd" = (
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/turf/simulated/wall/thull,
 /area/submap/debrisfield/ship_tourist_overrun)
 "kV" = (
 /obj/structure/window/reinforced{
@@ -345,7 +300,7 @@
 /obj/machinery/door/airlock/hatch{
 	health = 125
 	},
-/obj/effect/spider/stickyweb/dark,
+/obj/effect/spider/stickyweb,
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
 "lm" = (
@@ -379,20 +334,20 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "lY" = (
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/engineer/rig{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Poisoned Engineer"
+	},
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "mg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/cryopods_tourist_overrun)
-"mu" = (
-/obj/structure/cable/pink{
-	dir = 8
-	},
-/turf/simulated/floor/airless,
-/area/submap/debrisfield/ship_tourist_overrun)
 "mK" = (
 /mob/living/simple_mob/animal/giant_spider/hunter/space,
 /obj/effect/decal/cleanable/blood,
@@ -401,12 +356,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
-	},
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/obj/structure/cable/orange{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
@@ -463,19 +412,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "oX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "pd" = (
 /mob/living/simple_mob/animal/giant_spider/space,
@@ -488,16 +431,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "pn" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/obj/structure/cable/orange,
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield/ship_tourist_overrun)
 "py" = (
@@ -549,9 +488,7 @@
 /turf/simulated/floor/wood,
 /area/submap/debrisfield/ship_tourist_overrun)
 "qh" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/space,
+/turf/simulated/shuttle/wall/hard_corner,
 /area/submap/debrisfield/ship_tourist_overrun)
 "qj" = (
 /obj/machinery/light{
@@ -565,7 +502,6 @@
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/cryopods_tourist_overrun)
 "rc" = (
-/obj/machinery/atmospherics/unary/vent_scrubber,
 /obj/structure/sign/painting/public{
 	pixel_y = 23
 	},
@@ -580,13 +516,14 @@
 /turf/simulated/floor/lino,
 /area/submap/debrisfield/ship_tourist_overrun)
 "rD" = (
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "rG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 10
-	},
-/turf/simulated/wall/thull,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux,
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/plating,
 /area/submap/debrisfield/ship_tourist_overrun)
 "rZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -598,6 +535,10 @@
 "sh" = (
 /obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
 /turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sz" = (
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "sA" = (
 /obj/machinery/computer/shuttle{
@@ -619,15 +560,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "sZ" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/spider/stickyweb/dark,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/door/int_door,
+/obj/effect/spider/stickyweb,
 /turf/simulated/floor/tiled/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "tw" = (
@@ -658,19 +599,15 @@
 "uM" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spider/stickyweb/dark,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/obj/structure/cable/orange,
-/turf/simulated/floor/tiled/airless,
+/obj/effect/spider/stickyweb,
+/turf/simulated/floor/tiled,
 /area/submap/debrisfield/ship_tourist_overrun)
 "vc" = (
-/obj/effect/catwalk_plated,
+/obj/structure/shuttle/window,
 /turf/space,
-/area/space)
+/area/submap/debrisfield/ship_tourist_overrun)
 "vl" = (
 /obj/machinery/door/window,
 /obj/effect/decal/cleanable/blood,
@@ -681,6 +618,7 @@
 	dir = 8;
 	pixel_x = -12
 	},
+/obj/machinery/power/smes/buildable/point_of_interest,
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield/ship_tourist_overrun)
 "vI" = (
@@ -690,6 +628,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "wp" = (
@@ -700,8 +639,8 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "wq" = (
 /obj/machinery/door/airlock/hatch,
-/obj/effect/spider/stickyweb/dark,
-/turf/space,
+/obj/effect/spider/stickyweb,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "wv" = (
 /obj/effect/decal/cleanable/bug_remains,
@@ -718,7 +657,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
 	dir = 1
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "wz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
@@ -736,33 +675,14 @@
 	},
 /turf/simulated/floor/lino,
 /area/submap/debrisfield/ship_tourist_overrun)
-"xC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/yellow,
-/area/submap/debrisfield/ship_tourist_overrun)
 "xW" = (
 /obj/machinery/door/airlock/hatch{
 	health = 35
 	},
-/obj/effect/spider/stickyweb/dark,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/obj/structure/cable/orange,
-/turf/simulated/floor/tiled/airless,
+/obj/effect/spider/stickyweb,
+/turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
 "yl" = (
 /obj/effect/decal/cleanable/blood,
@@ -791,12 +711,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
 "yL" = (
@@ -806,17 +720,18 @@
 	},
 /turf/simulated/floor/carpet/green,
 /area/submap/debrisfield/ship_tourist_overrun)
+"yX" = (
+/obj/effect/map_effect/perma_light,
+/turf/template_noop,
+/area/space)
 "zd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "zh" = (
 /obj/machinery/power/port_gen/pacman/super,
-/obj/structure/cable/pink{
-	dir = 1
-	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "zr" = (
@@ -828,17 +743,8 @@
 /mob/living/simple_mob/animal/giant_spider/hunter/space,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange{
-	dir = 1
-	},
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield/ship_tourist_overrun)
-"zJ" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
-	},
-/turf/space,
-/area/space)
 "zQ" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -850,7 +756,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/cryopods_tourist_overrun)
 "Ag" = (
 /obj/machinery/power/apc/alarms_hidden{
@@ -859,9 +765,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
-	},
-/obj/structure/cable/orange{
-	dir = 4
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
@@ -878,10 +781,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/obj/structure/cable/orange,
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Br" = (
@@ -898,37 +797,25 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/airless,
+/turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/cryopods_tourist_overrun)
 "BA" = (
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 1
 	},
-/turf/space,
+/turf/template_noop,
 /area/space)
-"BC" = (
-/obj/structure/ghost_pod/manual/survivor/spidership{
-	dir = 8
-	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/submap/debrisfield/cryopods_tourist_overrun)
 "BT" = (
 /turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"CB" = (
+/obj/structure/inflatable,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "CJ" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "CR" = (
@@ -942,7 +829,7 @@
 /obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/turf/space,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Dg" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -999,16 +886,6 @@
 /obj/item/weapon/deck/cards/casino,
 /turf/simulated/floor/carpet/green,
 /area/submap/debrisfield/ship_tourist_overrun)
-"Fd" = (
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/obj/structure/cable/orange,
-/turf/simulated/wall/thull,
-/area/submap/debrisfield/cryopods_tourist_overrun)
 "Fm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -1016,18 +893,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 8
-	},
+/mob/living/simple_mob/animal/giant_spider/webslinger,
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Fo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/pink,
-/obj/structure/cable/pink{
-	dir = 4
-	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Fs" = (
@@ -1080,12 +950,12 @@
 "Hr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange,
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
+"Il" = (
+/obj/machinery/light_switch,
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/cryopods_tourist_overrun)
 "ID" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -1111,7 +981,7 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "JL" = (
 /obj/machinery/status_display,
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "JO" = (
 /obj/structure/table/hardwoodtable,
@@ -1119,6 +989,11 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "JP" = (
 /turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"JS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light/small,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Kg" = (
 /obj/machinery/light{
@@ -1131,6 +1006,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"KP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Lw" = (
 /obj/item/weapon/material/shard,
@@ -1154,12 +1035,12 @@
 "Mh" = (
 /obj/structure/lattice,
 /obj/item/royal_spider_egg,
-/turf/space,
+/turf/template_noop,
 /area/space)
 "Mq" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/ext_door,
-/turf/space,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "MX" = (
 /obj/item/weapon/material/shard,
@@ -1167,7 +1048,7 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "MY" = (
 /obj/machinery/atmospherics/pipe/vent,
-/turf/space,
+/turf/template_noop,
 /area/space)
 "Ne" = (
 /obj/effect/decal/cleanable/vomit,
@@ -1177,17 +1058,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "NI" = (
 /obj/machinery/door/airlock/hatch,
-/turf/space,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "NP" = (
 /obj/structure/table/reinforced,
@@ -1202,7 +1077,6 @@
 	dir = 1;
 	pixel_y = 26
 	},
-/obj/structure/cable/orange,
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
 "NR" = (
@@ -1223,13 +1097,6 @@
 	dir = 4
 	},
 /obj/item/royal_spider_egg,
-/obj/structure/cable/pink,
-/obj/structure/cable/pink{
-	dir = 4
-	},
-/obj/structure/cable/pink{
-	dir = 8
-	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "OP" = (
@@ -1262,35 +1129,25 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb2,
-/obj/effect/map_helper/airlock/sensor/int_sensor,
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	pixel_x = 28;
-	req_one_access = list()
-	},
 /turf/simulated/floor/tiled/yellow,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Qq" = (
 /obj/effect/decal/cleanable/ash,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Rd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 8
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Rl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Rm" = (
 /obj/item/weapon/material/shard{
@@ -1326,13 +1183,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/cable/pink,
-/obj/structure/cable/pink{
-	dir = 4
-	},
-/obj/structure/cable/pink{
-	dir = 8
-	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "TV" = (
@@ -1345,8 +1195,8 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
-/turf/space,
-/area/submap/debrisfield/ship_tourist_overrun)
+/turf/template_noop,
+/area/space)
 "UB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 5
@@ -1371,7 +1221,7 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "Vq" = (
 /obj/item/pipe,
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Vt" = (
 /obj/structure/window/reinforced{
@@ -1386,15 +1236,6 @@
 	},
 /turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
-"VE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/yellow,
-/area/submap/debrisfield/ship_tourist_overrun)
 "VR" = (
 /obj/effect/landmark/corpse/security{
 	corpseid = 0;
@@ -1406,7 +1247,7 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "Wb" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/airless,
+/turf/simulated/floor/tiled,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Wt" = (
 /obj/structure/grille,
@@ -1419,7 +1260,7 @@
 /obj/item/weapon/material/shard{
 	pixel_x = -21
 	},
-/turf/space,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Xq" = (
 /obj/structure/window/reinforced/tinted/frosted,
@@ -1428,9 +1269,9 @@
 /turf/simulated/floor/wood/broken,
 /area/submap/debrisfield/ship_tourist_overrun)
 "Xr" = (
-/obj/machinery/power/smes/buildable/hybrid,
-/obj/structure/cable/orange{
-	dir = 4
+/obj/machinery/power/smes/buildable/point_of_interest{
+	charge = 500000;
+	name = "Yacht SMES"
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
@@ -1440,13 +1281,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/ship_tourist_overrun)
 "XW" = (
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
-	},
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/cryopods_tourist_overrun)
 "Ye" = (
 /obj/structure/window/reinforced{
@@ -1470,7 +1305,7 @@
 /area/submap/debrisfield/ship_tourist_overrun)
 "Yz" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/wall/thull,
+/turf/simulated/shuttle/wall,
 /area/submap/debrisfield/ship_tourist_overrun)
 "YR" = (
 /obj/structure/window/reinforced/tinted/frosted,
@@ -1488,12 +1323,6 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
-	},
-/obj/structure/cable/orange{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/cryopods_tourist_overrun)
@@ -1545,18 +1374,18 @@ FB
 FB
 "}
 (2,1,1) = {"
-FB
+yX
 XK
 sA
 XK
 FB
 FB
 rD
-qh
-qh
+XK
+XK
 Wt
-qh
-qh
+XK
+XK
 rD
 FB
 FB
@@ -1572,13 +1401,13 @@ Si
 nR
 XK
 FB
-rD
+bG
 aS
 df
-JP
+CB
 JO
 ww
-qh
+XK
 FB
 FB
 FB
@@ -1593,28 +1422,28 @@ pT
 ce
 XK
 FB
-rD
+bG
 Vy
 Vo
 lY
 lo
 ww
-qh
+XK
 FB
 FB
 FB
-FB
+yX
 FB
 FB
 "}
 (5,1,1) = {"
-rD
-rD
+qh
+qh
 ll
-rD
-rD
+qh
+qh
 FB
-rD
+bG
 ih
 wp
 JP
@@ -1635,7 +1464,7 @@ Ze
 ny
 rD
 FB
-rD
+bG
 Eq
 dk
 MX
@@ -1664,9 +1493,9 @@ Vt
 Aj
 rD
 rD
+vc
 rD
-rD
-rD
+vc
 rD
 rD
 "}
@@ -1692,7 +1521,7 @@ eM
 rD
 "}
 (9,1,1) = {"
-rD
+vc
 CR
 mK
 Qq
@@ -1700,7 +1529,7 @@ xW
 CJ
 jP
 aE
-VE
+UL
 Fm
 Hd
 TV
@@ -1741,9 +1570,9 @@ rD
 rD
 rD
 rD
-rD
+qh
 fS
-xC
+RU
 Hd
 zr
 sh
@@ -1773,7 +1602,7 @@ IT
 py
 bS
 ed
-rD
+vc
 "}
 (13,1,1) = {"
 rD
@@ -1794,17 +1623,17 @@ up
 LI
 Fa
 GF
-rD
+vc
 "}
 (14,1,1) = {"
-cD
-cD
-cD
-cD
+XW
+XW
+XW
+XW
 Br
 XW
-cD
-cD
+XW
+Il
 Hd
 RU
 Hd
@@ -1818,7 +1647,7 @@ lm
 rD
 "}
 (15,1,1) = {"
-cD
+XW
 Gw
 Gw
 qj
@@ -1836,15 +1665,15 @@ Dj
 KI
 rZ
 ID
-rD
+vc
 "}
 (16,1,1) = {"
-cD
+XW
 Vg
 nu
 Vg
 yl
-BC
+Vg
 Rm
 Ab
 rc
@@ -1860,13 +1689,13 @@ sh
 rD
 "}
 (17,1,1) = {"
-cD
-cD
-cD
-cD
-dM
-Fd
-cD
+XW
+XW
+XW
+XW
+XW
+XW
+XW
 Ab
 Qf
 gf
@@ -1881,18 +1710,18 @@ fg
 rD
 "}
 (18,1,1) = {"
+yX
 FB
 FB
-FB
-FB
-kd
+rD
+rD
 Xr
-mu
+BT
 Rl
 rD
 sZ
 rD
-rD
+qh
 GI
 wJ
 pd
@@ -1903,16 +1732,16 @@ rD
 "}
 (19,1,1) = {"
 FB
-gl
-gl
+FB
+rD
 rD
 Ag
-gg
 Fo
+JS
 zd
 aD
 YW
-gY
+es
 rD
 wz
 Ov
@@ -1924,11 +1753,11 @@ rD
 "}
 (20,1,1) = {"
 FB
-gl
+FB
 rD
 zh
-gK
-bE
+Ox
+BT
 ch
 rD
 bh
@@ -1940,19 +1769,19 @@ sO
 Yz
 pi
 Rl
-rD
+vc
 rD
 "}
 (21,1,1) = {"
 FB
-gl
+FB
 rD
 zh
 Tm
 BT
 cg
 rD
-aD
+rG
 YW
 gY
 rD
@@ -1961,28 +1790,28 @@ uu
 uu
 uu
 Rl
-gl
+FB
 FB
 "}
 (22,1,1) = {"
 FB
-gl
+FB
 rD
 zh
 Ox
 BT
 rD
-rD
+qh
 rD
 Mq
 rD
-rD
+qh
 wy
 cv
 BT
 uF
 zd
-gl
+FB
 FB
 "}
 (23,1,1) = {"
@@ -1994,11 +1823,11 @@ id
 BT
 rD
 Mh
-vc
-vc
-gX
+sz
+bF
+sz
 fE
-rG
+KP
 cv
 BT
 aM
@@ -2007,7 +1836,7 @@ BA
 FB
 "}
 (24,1,1) = {"
-FB
+yX
 MY
 Vq
 sB
@@ -2016,7 +1845,7 @@ BT
 wq
 Mh
 fE
-vc
+sz
 fE
 fE
 NI
@@ -2025,7 +1854,7 @@ qd
 lU
 Vq
 BA
-FB
+yX
 "}
 (25,1,1) = {"
 FB
@@ -2035,11 +1864,11 @@ hg
 BT
 ZX
 rD
-gl
-gl
-vc
-gl
-gl
+FB
+fE
+sz
+fE
+FB
 rD
 BT
 BT
@@ -2050,64 +1879,64 @@ FB
 "}
 (26,1,1) = {"
 FB
-gl
+FB
 rD
 ee
 ee
 ee
 rD
-gl
-gl
-gl
-gl
-gl
+FB
+FB
+sz
+FB
+FB
 rD
 ee
 ee
 ee
 rD
-gl
+FB
 FB
 "}
 (27,1,1) = {"
 FB
-gl
+FB
 rD
 oX
 oX
 oX
 rD
-gl
-gl
-gl
-gl
-gl
+FB
+FB
+FB
+FB
+FB
 rD
 oX
 oX
 oX
 rD
-gl
+FB
 FB
 "}
 (28,1,1) = {"
 FB
-gl
-gl
+FB
+FB
 Ux
 Ux
 Ux
-gl
-gl
-gl
-gl
-gl
-gl
-gl
-zJ
-zJ
-zJ
-gl
-gl
+FB
+FB
+FB
+yX
+FB
+FB
+FB
+Ux
+Ux
+Ux
+FB
+FB
 FB
 "}

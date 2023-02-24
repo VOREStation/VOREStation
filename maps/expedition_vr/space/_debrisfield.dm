@@ -96,10 +96,11 @@
 
 /area/submap/debrisfield/ship_tourist_overrun
 	name = "POI - Overrun Private Yacht"
+	requires_power = 0
 
 /area/submap/debrisfield/cryopods_tourist_overrun
 	name = "POI - Overrun Private Yacht cryopods" //Separated out based on comments on Pull Request
-	requires_power = 0 //Idea is to reinforce that this place SHOULD have its air retained. Allowing it to work without power.
+	requires_power = 0 //Idea is to reinforce that this place SHOULD have its air retained.
 
 /area/submap/debrisfield/old_sat
 	name = "POI - Old Satellite"
