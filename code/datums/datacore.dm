@@ -365,6 +365,7 @@ var/global/list/PDA_Manifest = list()
 
 		//Medical Record
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id, hidden)
+		M.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]" //VOREStation Edit
 		M.fields["b_type"]		= H.b_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
 		M.fields["id_gender"]	= gender2text(H.identifying_gender)
@@ -377,6 +378,7 @@ var/global/list/PDA_Manifest = list()
 
 		//Security Record
 		var/datum/data/record/S = CreateSecurityRecord(H.real_name, id, hidden)
+		S.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]" //VOREStation Edit
 		if(H.get_FBP_type())
 			S.fields["brain_type"] = H.get_FBP_type()
 		else
@@ -468,6 +470,7 @@ var/global/list/PDA_Manifest = list()
 	var/datum/data/record/R = new /datum/data/record()
 	R.name = "Security Record #[id]"
 	R.fields["name"] = name
+	R.fields["species"] = SPECIES_HUMAN
 	R.fields["id"] = id
 	R.fields["brain_type"] = "Unknown"
 	R.fields["criminal"]	= "None"
@@ -490,6 +493,7 @@ var/global/list/PDA_Manifest = list()
 	M.name = "Medical Record #[id]"
 	M.fields["id"]			= id
 	M.fields["name"]		= name
+	M.fields["species"]		= SPECIES_HUMAN
 	M.fields["b_type"]		= "AB+"
 	M.fields["b_dna"]		= md5(name)
 	M.fields["id_gender"]	= "Unknown"
