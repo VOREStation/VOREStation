@@ -1,0 +1,2113 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/device/radio/intercom/private{
+	pixel_y = -21
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"an" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"aD" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux,
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/ship_tourist_overrun)
+"aE" = (
+/obj/effect/decal/cleanable/filth,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"aM" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"aS" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza/filled,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"bh" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux,
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/airlock_sensor{
+	pixel_y = 28;
+	req_one_access = list(301)
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/ship_tourist_overrun)
+"bE" = (
+/obj/structure/cable/pink,
+/obj/structure/cable/pink{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"bP" = (
+/obj/machinery/alarm/alarms_hidden{
+	pixel_x = -1;
+	pixel_y = 27
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"bS" = (
+/obj/structure/table/gamblingtable,
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ce" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"cg" = (
+/obj/random/crate,
+/obj/fiftyspawner/plasteel,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ch" = (
+/obj/random/crate,
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/plastic,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"cv" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/portables_connector/aux{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"cD" = (
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"cH" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"df" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"dk" = (
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/mob/living/simple_mob/animal/giant_spider/space,
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"dM" = (
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"ea" = (
+/obj/structure/table/rack/gun_rack,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ed" = (
+/obj/item/trash/stick,
+/obj/item/stack/material/wood{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/stack/material/wood/hard,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ee" = (
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"eC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"eM" = (
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"fg" = (
+/obj/machinery/door/window,
+/obj/machinery/light,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"fw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave/advanced,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"fE" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"fH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"fI" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"fS" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"gf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"gg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink{
+	dir = 8
+	},
+/obj/structure/cable/pink{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"gl" = (
+/turf/space,
+/area/space)
+"gK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink,
+/obj/structure/cable/pink,
+/obj/structure/cable/pink{
+	dir = 1
+	},
+/obj/structure/cable/pink{
+	dir = 8
+	},
+/obj/item/royal_spider_egg,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"gP" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/pink{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"gX" = (
+/obj/effect/catwalk_plated,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = -24;
+	req_one_access = list()
+	},
+/turf/space,
+/area/space)
+"gY" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/ship_tourist_overrun)
+"hg" = (
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"hu" = (
+/obj/structure/table/marble,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"id" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/pink{
+	dir = 4
+	},
+/obj/structure/cable/pink,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ih" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"iE" = (
+/obj/structure/table/marble,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"iX" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"jP" = (
+/obj/effect/decal/cleanable/bug_remains,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"jT" = (
+/obj/item/weapon/material/shard,
+/obj/machinery/door/window,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"kd" = (
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"kV" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/foodcart,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"kW" = (
+/obj/machinery/door/window,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lb" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lf" = (
+/obj/machinery/shower,
+/obj/structure/curtain/open/shower,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ll" = (
+/obj/machinery/door/airlock/hatch{
+	health = 125
+	},
+/obj/effect/spider/stickyweb/dark,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lm" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/sign/painting/library_private{
+	pixel_y = -29
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lo" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_mob/animal/giant_spider/tunneler/space,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lU" = (
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"lY" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"mg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"mu" = (
+/obj/structure/cable/pink{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"mK" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"nr" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/gun/energy/locked/frontier/holdout{
+	pixel_y = -9
+	},
+/obj/item/weapon/gun/energy/locked/frontier/holdout,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"nt" = (
+/obj/structure/closet/cabinet,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"nu" = (
+/obj/item/weapon/material/shard{
+	pixel_x = 7;
+	pixel_y = -9
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = 8;
+	pixel_y = 13
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = -9;
+	pixel_y = -12
+	},
+/obj/item/stack/rods,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"ny" = (
+/obj/effect/decal/cleanable/ash,
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"nR" = (
+/obj/machinery/computer/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ot" = (
+/obj/effect/decal/cleanable/bug_remains,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"oX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"pd" = (
+/mob/living/simple_mob/animal/giant_spider/space,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"pi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"pn" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"py" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"pL" = (
+/obj/effect/decal/cleanable/blood,
+/mob/living/simple_mob/animal/giant_spider/space,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"pQ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/device/taperecorder/tourist,
+/obj/effect/landmark/corpse/bridgeofficer{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Mutiliated Captain"
+	},
+/obj/item/weapon/gun/energy/gun/rifle,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"pT" = (
+/obj/effect/spider/cocoon,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"qd" = (
+/obj/effect/landmark/corpse/engineer/rig{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Poisoned Engineer"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"qg" = (
+/obj/structure/bed/double/padded,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"qh" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"qj" = (
+/obj/machinery/light{
+	brightness_color = "#FF0000";
+	brightness_color_ns = "#FF0000";
+	dir = 8;
+	light_color = "#FF0000"
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"rc" = (
+/obj/machinery/atmospherics/unary/vent_scrubber,
+/obj/structure/sign/painting/public{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"re" = (
+/obj/structure/table/marble,
+/obj/machinery/chemical_dispenser/bar_alc/full,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"rD" = (
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"rG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 10
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"rZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sh" = (
+/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sA" = (
+/obj/machinery/computer/shuttle{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sB" = (
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sN" = (
+/obj/item/weapon/material/shard,
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"sZ" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/spider/stickyweb/dark,
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"tw" = (
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"up" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"uu" = (
+/obj/machinery/atmospherics/pipe/tank/air/full{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"uF" = (
+/obj/random/crate,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"uM" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/spider/stickyweb/dark,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/simulated/floor/tiled/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"vc" = (
+/obj/effect/catwalk_plated,
+/turf/space,
+/area/space)
+"vl" = (
+/obj/machinery/door/window,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"vq" = (
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"vI" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/random/crate,
+/obj/fiftyspawner/gold,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"wp" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/atmospherics/unary/vent_scrubber,
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza/filled,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"wq" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/spider/stickyweb/dark,
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"wv" = (
+/obj/effect/decal/cleanable/bug_remains,
+/obj/structure/sign/painting/public{
+	pixel_x = 27
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ww" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"wy" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
+	dir = 1
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"wz" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"wJ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/chef{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Destroyed Staff"
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"xC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"xW" = (
+/obj/machinery/door/airlock/hatch{
+	health = 35
+	},
+/obj/effect/spider/stickyweb/dark,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/simulated/floor/tiled/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"yl" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood{
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/blood{
+	pixel_x = 10
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = -9
+	},
+/obj/item/stack/rods,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"yq" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"yr" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"yL" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/ship_tourist_overrun)
+"zd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"zh" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/structure/cable/pink{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"zr" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"zw" = (
+/obj/effect/decal/cleanable/blood,
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"zJ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/space,
+/area/space)
+"zQ" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Ab" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"Ag" = (
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Aj" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/sign/painting/library_private{
+	pixel_y = -29
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"AN" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/obj/structure/cable/orange,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Br" = (
+/obj/machinery/door/airlock{
+	health = 20
+	},
+/obj/machinery/door/firedoor{
+	autoclose = 1;
+	close_door_at = 3
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/airless,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"BA" = (
+/obj/machinery/atmospherics/pipe/vent{
+	dir = 1
+	},
+/turf/space,
+/area/space)
+"BC" = (
+/obj/structure/ghost_pod/manual/survivor/spidership{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"BT" = (
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"CJ" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"CR" = (
+/obj/structure/bed/double/padded,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"CZ" = (
+/obj/structure/grille,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Dg" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"Dh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Dj" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"DP" = (
+/obj/effect/decal/cleanable/filth,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Ec" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	id_tag = tourist_airlock;
+	pixel_y = -30
+	},
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Eq" = (
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Fa" = (
+/obj/structure/table/gamblingtable,
+/obj/item/weapon/deck/cards/casino,
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Fd" = (
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/obj/structure/cable/orange,
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"Fm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Fo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink,
+/obj/structure/cable/pink{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Fs" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"FB" = (
+/turf/template_noop,
+/area/space)
+"FT" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/smartfridge/drinks,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Gv" = (
+/obj/structure/bed/double/padded,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Gw" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"GF" = (
+/mob/living/simple_mob/animal/giant_spider/space,
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/ship_tourist_overrun)
+"GI" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Hd" = (
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Hh" = (
+/obj/machinery/computer/shuttle,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Hr" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ID" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"IT" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"IZ" = (
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Jj" = (
+/mob/living/simple_mob/animal/giant_spider/space,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"JJ" = (
+/obj/structure/toilet,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"JL" = (
+/obj/machinery/status_display,
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"JO" = (
+/obj/structure/table/hardwoodtable,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"JP" = (
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Kg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"KI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Lw" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"LC" = (
+/obj/structure/closet/cabinet,
+/obj/item/weapon/storage/secure/briefcase/money,
+/obj/item/weapon/storage/secure/briefcase/money,
+/obj/item/clothing/head/beret/centcom/captain,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"LI" = (
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/ship_tourist_overrun)
+"LY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Mh" = (
+/obj/structure/lattice,
+/obj/item/royal_spider_egg,
+/turf/space,
+/area/space)
+"Mq" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"MX" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"MY" = (
+/obj/machinery/atmospherics/pipe/vent,
+/turf/space,
+/area/space)
+"Ne" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"NI" = (
+/obj/machinery/door/airlock/hatch,
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"NP" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/folder/blue_captain,
+/obj/item/weapon/coin/phoron,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"NQ" = (
+/obj/structure/table/reinforced,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	pixel_y = 26
+	},
+/obj/structure/cable/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"NR" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Or" = (
+/obj/machinery/light,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Ov" = (
+/obj/structure/table/marble,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Ox" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/item/royal_spider_egg,
+/obj/structure/cable/pink,
+/obj/structure/cable/pink{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"OP" = (
+/mob/living/simple_mob/animal/giant_spider/tunneler/space,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Pa" = (
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/ship_tourist_overrun)
+"PD" = (
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"PV" = (
+/obj/structure/table/marble,
+/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Qf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 28;
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Qq" = (
+/obj/effect/decal/cleanable/ash,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Rd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 8
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Rl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Rm" = (
+/obj/item/weapon/material/shard{
+	pixel_x = 10;
+	pixel_y = -9
+	},
+/obj/item/weapon/material/shard,
+/obj/item/stack/rods,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"RU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Si" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Te" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Tm" = (
+/mob/living/simple_mob/animal/giant_spider/nurse/space,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink,
+/obj/structure/cable/pink{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"TV" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Ux" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"UB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 5
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"UL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Vg" = (
+/obj/structure/ghost_pod/manual/survivor/spidership{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"Vo" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Vq" = (
+/obj/item/pipe,
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Vt" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Vy" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"VE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"VR" = (
+/obj/effect/landmark/corpse/security{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Torn-Apart Bodyguard"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Wb" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Wt" = (
+/obj/structure/grille,
+/obj/item/weapon/material/shard{
+	pixel_y = 4
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = 12
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = -21
+	},
+/turf/space,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Xq" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/door/window,
+/mob/living/simple_mob/animal/giant_spider/space,
+/turf/simulated/floor/wood/broken,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Xr" = (
+/obj/machinery/power/smes/buildable/hybrid,
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"XK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+"XW" = (
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"Ye" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Yw" = (
+/obj/effect/decal/cleanable/ash,
+/obj/structure/panic_button{
+	icon_state = "panicbutton_launched";
+	launched = 1;
+	pixel_x = 26
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Yz" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/ship_tourist_overrun)
+"YR" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/weapon/storage/secure/briefcase/money,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/ship_tourist_overrun)
+"YT" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/light{
+	brightness_color = "#FF0000";
+	brightness_color_ns = "#FF0000";
+	dir = 8;
+	light_color = "#FF0000"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/cryopods_tourist_overrun)
+"YW" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/aux,
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Ze" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/ship_tourist_overrun)
+"Zv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/ship_tourist_overrun)
+"ZX" = (
+/obj/structure/closet/crate,
+/obj/fiftyspawner/tritium,
+/obj/fiftyspawner/tritium,
+/obj/fiftyspawner/titanium,
+/obj/fiftyspawner/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/ship_tourist_overrun)
+
+(1,1,1) = {"
+FB
+FB
+XK
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(2,1,1) = {"
+FB
+XK
+sA
+XK
+FB
+FB
+rD
+qh
+qh
+Wt
+qh
+qh
+rD
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(3,1,1) = {"
+XK
+Hh
+Si
+nR
+XK
+FB
+rD
+aS
+df
+JP
+JO
+ww
+qh
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(4,1,1) = {"
+XK
+lI
+pT
+ce
+XK
+FB
+rD
+Vy
+Vo
+lY
+lo
+ww
+qh
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(5,1,1) = {"
+rD
+rD
+ll
+rD
+rD
+FB
+rD
+ih
+wp
+JP
+JO
+ww
+CZ
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(6,1,1) = {"
+rD
+NP
+Ze
+ny
+rD
+FB
+rD
+Eq
+dk
+MX
+pL
+JP
+CZ
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(7,1,1) = {"
+rD
+NQ
+cH
+ai
+rD
+rD
+rD
+kV
+zQ
+jT
+Vt
+Aj
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+"}
+(8,1,1) = {"
+rD
+ea
+yr
+VR
+JL
+fI
+Hd
+Hd
+DP
+Lw
+Hd
+TV
+PD
+lb
+qg
+YR
+IZ
+eM
+rD
+"}
+(9,1,1) = {"
+rD
+CR
+mK
+Qq
+xW
+CJ
+jP
+aE
+VE
+Fm
+Hd
+TV
+PD
+lb
+Fs
+Xq
+Fs
+kW
+rD
+"}
+(10,1,1) = {"
+rD
+LC
+Yw
+nr
+rD
+Te
+wv
+NR
+Hd
+ot
+Hd
+TV
+PD
+up
+up
+up
+PD
+Or
+rD
+"}
+(11,1,1) = {"
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+fS
+xC
+Hd
+zr
+sh
+PD
+PD
+LI
+py
+tw
+rD
+"}
+(12,1,1) = {"
+rD
+lf
+Kg
+rD
+vq
+fw
+an
+JL
+OP
+Ne
+OP
+zr
+PD
+PD
+IT
+py
+bS
+ed
+rD
+"}
+(13,1,1) = {"
+rD
+JJ
+Pa
+Wb
+pQ
+zw
+pn
+uM
+AN
+Hr
+Hd
+PD
+PD
+PD
+up
+LI
+Fa
+GF
+rD
+"}
+(14,1,1) = {"
+cD
+cD
+cD
+cD
+Br
+XW
+cD
+cD
+Hd
+RU
+Hd
+TV
+PD
+yq
+PD
+LI
+yL
+lm
+rD
+"}
+(15,1,1) = {"
+cD
+Gw
+Gw
+qj
+Dg
+YT
+Gw
+mg
+bP
+Zv
+UL
+Ye
+LY
+LY
+Dj
+KI
+rZ
+ID
+rD
+"}
+(16,1,1) = {"
+cD
+Vg
+nu
+Vg
+yl
+BC
+Rm
+Ab
+rc
+eC
+fH
+sN
+UB
+sh
+Dh
+PD
+PD
+sh
+rD
+"}
+(17,1,1) = {"
+cD
+cD
+cD
+cD
+dM
+Fd
+cD
+Ab
+Qf
+gf
+Hd
+zr
+vl
+iE
+PV
+hu
+iX
+fg
+rD
+"}
+(18,1,1) = {"
+FB
+FB
+FB
+FB
+kd
+Xr
+mu
+Rl
+rD
+sZ
+rD
+rD
+GI
+wJ
+pd
+lb
+nt
+eM
+rD
+"}
+(19,1,1) = {"
+FB
+gl
+gl
+rD
+Ag
+gg
+Fo
+zd
+aD
+YW
+gY
+rD
+wz
+Ov
+re
+FT
+Gv
+Jj
+rD
+"}
+(20,1,1) = {"
+FB
+gl
+rD
+zh
+gK
+bE
+ch
+rD
+bh
+YW
+Ec
+rD
+Rd
+sO
+Yz
+pi
+Rl
+rD
+rD
+"}
+(21,1,1) = {"
+FB
+gl
+rD
+zh
+Tm
+BT
+cg
+rD
+aD
+YW
+gY
+rD
+Rd
+uu
+uu
+uu
+Rl
+gl
+FB
+"}
+(22,1,1) = {"
+FB
+gl
+rD
+zh
+Ox
+BT
+rD
+rD
+rD
+Mq
+rD
+rD
+wy
+cv
+BT
+uF
+zd
+gl
+FB
+"}
+(23,1,1) = {"
+FB
+MY
+Vq
+gP
+id
+BT
+rD
+Mh
+vc
+vc
+gX
+fE
+rG
+cv
+BT
+aM
+Vq
+BA
+FB
+"}
+(24,1,1) = {"
+FB
+MY
+Vq
+sB
+BT
+BT
+wq
+Mh
+fE
+vc
+fE
+fE
+NI
+BT
+qd
+lU
+Vq
+BA
+FB
+"}
+(25,1,1) = {"
+FB
+MY
+Vq
+hg
+BT
+ZX
+rD
+gl
+gl
+vc
+gl
+gl
+rD
+BT
+BT
+vI
+Vq
+BA
+FB
+"}
+(26,1,1) = {"
+FB
+gl
+rD
+ee
+ee
+ee
+rD
+gl
+gl
+gl
+gl
+gl
+rD
+ee
+ee
+ee
+rD
+gl
+FB
+"}
+(27,1,1) = {"
+FB
+gl
+rD
+oX
+oX
+oX
+rD
+gl
+gl
+gl
+gl
+gl
+rD
+oX
+oX
+oX
+rD
+gl
+FB
+"}
+(28,1,1) = {"
+FB
+gl
+gl
+Ux
+Ux
+Ux
+gl
+gl
+gl
+gl
+gl
+gl
+gl
+zJ
+zJ
+zJ
+gl
+gl
+FB
+"}

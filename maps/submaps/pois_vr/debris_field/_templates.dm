@@ -212,6 +212,12 @@
 	cost = 35
 	allow_duplicates = FALSE
 
+/datum/map_template/debrisfield/ship_tourist_overrun
+	name = "Overrun private yacht"
+	mappath = 'ship_tourist_overrun.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+
 /datum/map_template/debrisfield/oldshuttle
 	name = "Old Expedition Shuttle"
 	mappath = 'oldshuttle.dmm'

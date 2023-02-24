@@ -118,6 +118,11 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
+/turf/simulated/floor/wood/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
 /turf/simulated/floor/wood/broken
 	icon_state = "wood-broken0" // This gets changed when spawned.
 

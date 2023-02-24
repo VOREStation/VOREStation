@@ -54,6 +54,95 @@
 /mob/living/simple_mob/tomato/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
+//Begin tourist ship stuff
+/mob/living/simple_mob/animal/giant_spider/space
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+
+/mob/living/simple_mob/animal/giant_spider/space/Process_Spacemove(var/check_drift = 0)
+	return TRUE
+
+/mob/living/simple_mob/animal/giant_spider/nurse/space
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+
+/mob/living/simple_mob/animal/giant_spider/nurse/space/Process_Spacemove(var/check_drift = 0)
+	return TRUE
+
+/mob/living/simple_mob/animal/giant_spider/hunter/space
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+
+/mob/living/simple_mob/animal/giant_spider/hunter/space/Process_Spacemove(var/check_drift = 0)
+	return TRUE
+
+/mob/living/simple_mob/animal/giant_spider/tunneler/space
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+
+/mob/living/simple_mob/animal/giant_spider/tunneler/space/Process_Spacemove(var/check_drift = 0)
+	return TRUE
+
+/obj/structure/ghost_pod/manual/survivor/spidership
+	name = "Damaged Emergency Cryopod"
+	desc = "A damaged cryopod smeared with blood. An badly injured body seems frozen in time within."
+	occupant_type = "survivor aboard a spider infested ship"
+
+	start_injured = TRUE
+	suffer_brute = TRUE //default damage of 3d20 brute where each dice is rolled for a separate limb is good
+	suffer_burn = TRUE
+	burn_severity = 15 //Rapid cooling will give frostbite
+	burn_instances = 1 //Burning them once for up to 15 burn. Done to increase risk of infection
+	suffer_toxloss = TRUE
+	tox_severity = 5
+	//Damage is minimum 3 brute, 1 burn, 1 toxloss, maximum 60 brute, 15 burn, 5 toxloss - near crit, but still able to walk.
+
+
+
+/obj/item/device/taperecorder/tourist
+	name = "Body-Microphone"
+	desc = "A sort of liability device worn by security on luxury yachts. Records everything they say. Strange that the captain was wearing it."
+	mytape = /obj/item/device/tape/touristguard
+
+/obj/item/device/tape/touristguard/New()
+	storedinfo += "01:37  *sounds of metal creaking"
+	storedinfo += "01:55  *sounds of distant screaming!"
+	storedinfo += "01:37  *Sounds of hissing, both airlocks and spiders alike. Screaming continues."
+	storedinfo += "06:03	a mechanical voice - perhaps the PA? 'All visitors are to report to the head and follow emergency orders. This is not a drill."
+	storedinfo += "07:19	a voice, muffled by an enclosed helmet, 'Get into the cryopods already!! We don't have time! They should keep you safe! Hurry! Hurry!'"
+	storedinfo += "09:13	*gruesome sounds of machines exploding, wet splatter and ominous hissing"
+	used_capacity = 1755 //almost full
+
+// End of Tourist ship stuff
+
 /obj/random/slimecore
 	name = "random slime core"
 	desc = "Random slime core."
