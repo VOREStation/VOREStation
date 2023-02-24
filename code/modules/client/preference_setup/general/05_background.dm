@@ -43,7 +43,7 @@
 /datum/category_item/player_setup_item/general/background/content(var/mob/user)
 	. += "<b>Background Information</b><br>"
 	. += "Economic Status: <a href='?src=\ref[src];econ_status=1'>[pref.economic_status]</a><br/>"
-	. += "Home System: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
+	. += "Home: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
 	. += "Citizenship: <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
 	. += "Faction: <a href='?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
 	. += "Religion: <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
@@ -67,7 +67,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["home_system"])
-		var/choice = tgui_input_list(user, "Please choose a home system.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
+		var/choice = tgui_input_list(user, "Please choose your home planet and/or system. This may either be your place of birth or your current primary residence.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -79,7 +79,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["citizenship"])
-		var/choice = tgui_input_list(user, "Please choose your current citizenship.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
+		var/choice = tgui_input_list(user, "Please select the faction or political entity with which you currently hold citizenship.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -91,7 +91,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["faction"])
-		var/choice = tgui_input_list(user, "Please choose a faction to work for.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
+		var/choice = tgui_input_list(user, "Please choose the faction you primarily work for.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
