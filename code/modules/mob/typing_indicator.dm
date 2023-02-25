@@ -12,6 +12,9 @@
 	return I
 
 /mob/proc/init_typing_indicator(var/set_state = "typing")
+	if(typing_indicator)
+		qdel(typing_indicator)
+		typing_indicator = null
 	typing_indicator = new
 	typing_indicator.appearance = generate_speech_bubble(null, set_state)
 	typing_indicator.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)			//VOREStation Edit
@@ -23,8 +26,11 @@
 			cut_overlay(typing_indicator, TRUE)
 		return
 
-	if(!typing_indicator)
-		init_typing_indicator("[speech_bubble_appearance()]_typing")
+	var/cur_bubble_appearance = custom_speech_bubble
+	if(!cur_bubble_appearance || cur_bubble_appearance == "default")
+		cur_bubble_appearance = speech_bubble_appearance()
+	if(!typing_indicator || cur_typing_indicator != cur_bubble_appearance)
+		init_typing_indicator("[cur_bubble_appearance]_typing")
 
 	if(state && !typing)
 		add_overlay(typing_indicator, TRUE)
