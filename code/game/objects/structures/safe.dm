@@ -22,22 +22,17 @@ FLOOR SAFES
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
 
-/obj/structure/safe/New()
+/obj/structure/safe/Initialize()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
 
 	tumbler_2_pos = rand(0, 72)
 	tumbler_2_open = rand(0, 72)
 
-<<<<<<< HEAD
-
-/obj/structure/safe/Initialize()
-=======
 	if(. != INITIALIZE_HINT_QDEL)
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/safe/LateInitialize()
->>>>>>> ef923eb75d4... Merge pull request #8981 from Mechoid/SafesAreSafer
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
