@@ -313,3 +313,8 @@ Talon winter coat
 	)
 	gear_tweaks += gear_tweak_free_color_choice
 	gear_tweaks += new/datum/gear_tweak/path(choodies)
+
+//ABOUT TIME SOMEONE ADDED THIS TO A LOADOUT
+/datum/gear/suit/bladerunnercoat
+	display_name = "leather coat, massive"
+	path = /obj/item/clothing/suit/storage/bladerunner
