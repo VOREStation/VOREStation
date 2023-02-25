@@ -593,6 +593,7 @@
 								to_chat(usr, "<b>Citizenship:</b> [R.fields["citizenship"]]")
 								to_chat(usr, "<b>Primary Employer:</b> [R.fields["personal_faction"]]")
 								to_chat(usr, "<b>Religious Beliefs:</b> [R.fields["religion"]]")
+								to_chat(usr, "<b>Known Languages:</b> [R.fields["languages"]]")
 								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
 								to_chat(usr, "<a href='?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>")
 								read = 1

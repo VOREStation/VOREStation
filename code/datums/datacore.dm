@@ -347,6 +347,7 @@ var/global/list/PDA_Manifest = list()
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
+		G.fields["languages"] = list2text(H.languages,", ")
 		if(H.get_FBP_type())
 			G.fields["brain_type"] = H.get_FBP_type()
 		else
@@ -393,6 +394,7 @@ var/global/list/PDA_Manifest = list()
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
+		L.fields["languages"] = list2text(H.languages,", ")
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= gender2text(H.gender)
 		L.fields["id_gender"]	= gender2text(H.identifying_gender)
@@ -446,6 +448,7 @@ var/global/list/PDA_Manifest = list()
 	G.fields["real_rank"] = "Unassigned"
 	G.fields["sex"] = "Unknown"
 	G.fields["age"] = "Unknown"
+	G.fields["languages"] = "Unknown"
 	G.fields["brain_type"] = "Unknown"
 	G.fields["fingerprint"] = "Unknown"
 	G.fields["p_stat"] = "Active"
