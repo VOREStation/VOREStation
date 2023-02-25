@@ -1178,6 +1178,50 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.refresh_modular_limb_verbs()
 	return 1
 
+<<<<<<< HEAD
+=======
+/obj/item/organ/external/derobotize(var/restore_organs = TRUE)
+	. = ..()
+	if (!.) return
+	var/obj/item/organ/external/parent = owner?.organs_by_name[parent_organ]
+	if (parent && parent.robotic) return FALSE
+	var/datum/robolimb/R = all_robolimbs[model]
+	if (R)
+		brute_mod /= R.robo_brute_mod
+		burn_mod /= R.robo_burn_mod
+	else
+		brute_mod = initial(brute_mod)
+		burn_mod = initial(burn_mod)
+	model = null
+	force_icon = initial(force_icon)
+	name = initial(name)
+	desc = initial(desc)
+	dislocated = initial(dislocated)
+	cannot_break = initial(cannot_break)
+	drop_sound = initial(drop_sound)
+	pickup_sound = initial(pickup_sound)
+	if (restore_organs && LAZYLEN(owner?.species?.has_organ))
+		for(var/obj/item/organ/thing in internal_organs)
+			if(istype(thing))
+				if (!(thing.organ_tag in owner.species.has_organ) && !istype(thing, /obj/item/organ/internal/brain))
+					internal_organs -= thing
+					owner.internal_organs_by_name[thing.organ_tag] = null
+					owner.internal_organs_by_name -= thing.organ_tag
+					owner.internal_organs.Remove(thing)
+					qdel(thing)
+				else
+					thing.derobotize()
+		for (var/organ_area in owner.species.has_organ)
+			if (owner.internal_organs_by_name[organ_area])
+				continue
+			var/obj/item/organ/internal/organtype = owner.species.has_organ[organ_area]
+			if (initial(organtype.parent_organ) == organ_tag)
+				owner.internal_organs_by_name[organ_area] = new organtype(owner, TRUE)
+		while(null in owner.internal_organs)
+			owner.internal_organs -= null
+		owner.refresh_modular_limb_verbs()
+
+>>>>>>> e3ed9560de7... Merge pull request #8972 from Seris02/derobotizefix
 /obj/item/organ/external/proc/mutate()
 	if(src.robotic >= ORGAN_ROBOT)
 		return
