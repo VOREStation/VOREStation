@@ -36,6 +36,7 @@
 		"name" = "Please input new name:",
 		"id" = "Please input new ID:",
 		"sex" = "Please select new sex:",
+		"species" = "Please input new species:",
 		"age" = "Please input new age:",
 		"fingerprint" = "Please input new fingerprint hash:",
 	)
@@ -109,6 +110,7 @@
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], "name")
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], "id")
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
+					fields[++fields.len] = FIELD("Species", active1.fields["species"], "species")
 					fields[++fields.len] = FIELD("Age", active1.fields["age"], "age")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], null)

@@ -253,6 +253,12 @@
 				ore_chunk.stored_ore[ore] = 0
 			qdel(ore_chunk)
 
+	for(var/obj/item/weapon/ore/O in input.loc)
+		if(!isnull(ores_stored[O.material]))
+			ores_stored[O.material]++
+			points += (ore_values[O.material]*points_mult)
+		qdel(O)
+
 	if(!active)
 		return
 
