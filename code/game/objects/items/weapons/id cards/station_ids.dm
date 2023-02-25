@@ -13,6 +13,7 @@
 	slot_flags = SLOT_ID | SLOT_EARS
 
 	var/age = "\[UNSET\]"
+	var/species = "\[UNSET\]"
 	var/blood_type = "\[UNSET\]"
 	var/dna_hash = "\[UNSET\]"
 	var/fingerprint_hash = "\[UNSET\]"
@@ -61,6 +62,7 @@
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
+	id_card.species				= SPECIES_HUMAN
 	id_card.set_id_photo(src)
 
 	if(dna)
@@ -72,6 +74,7 @@
 /mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
 	..()
 	id_card.age = age
+	id_card.species = "[custom_species ? "[custom_species] ([species.name])" : species.name]"
 	id_card.sex = capitalize(name_gender())
 
 /obj/item/weapon/card/id/tgui_data(mob/user)
@@ -79,6 +82,7 @@
 
 	data["registered_name"] = registered_name
 	data["sex"] = sex
+	data["species"] = species
 	data["age"] = age
 	data["assignment"] = assignment
 	data["fingerprint_hash"] = fingerprint_hash
