@@ -139,6 +139,7 @@
 				data["exploit"]["species"] =  html_encode(L.fields["species"])
 				data["exploit"]["rank"] =  html_encode(L.fields["rank"])
 				data["exploit"]["home_system"] =  html_encode(L.fields["home_system"])
+				data["exploit"]["birthplace"] =  html_encode(L.fields["birthplace"])
 				data["exploit"]["citizenship"] =  html_encode(L.fields["citizenship"])
 				data["exploit"]["faction"] =  html_encode(L.fields["faction"])
 				data["exploit"]["religion"] =  html_encode(L.fields["religion"])

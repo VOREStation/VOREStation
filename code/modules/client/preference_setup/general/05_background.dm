@@ -7,6 +7,7 @@
 	S["sec_record"]				>> pref.sec_record
 	S["gen_record"]				>> pref.gen_record
 	S["home_system"]			>> pref.home_system
+	S["birthplace"]				>> pref.birthplace
 	S["citizenship"]			>> pref.citizenship
 	S["faction"]				>> pref.faction
 	S["religion"]				>> pref.religion
@@ -17,6 +18,7 @@
 	S["sec_record"]				<< pref.sec_record
 	S["gen_record"]				<< pref.gen_record
 	S["home_system"]			<< pref.home_system
+	S["birthplace"]				<< pref.birthplace
 	S["citizenship"]			<< pref.citizenship
 	S["faction"]				<< pref.faction
 	S["religion"]				<< pref.religion
@@ -24,6 +26,7 @@
 
 /datum/category_item/player_setup_item/general/background/sanitize_character()
 	if(!pref.home_system) pref.home_system = "Unset"
+	if(!pref.birthplace)  pref.birthplace =  "Unset"
 	if(!pref.citizenship) pref.citizenship = "None"
 	if(!pref.faction)     pref.faction =     "None"
 	if(!pref.religion)    pref.religion =    "None"
@@ -36,6 +39,7 @@
 	character.sec_record		= pref.sec_record
 	character.gen_record		= pref.gen_record
 	character.home_system		= pref.home_system
+	character.birthplace		= pref.birthplace
 	character.citizenship		= pref.citizenship
 	character.personal_faction	= pref.faction
 	character.religion			= pref.religion
@@ -44,6 +48,7 @@
 	. += "<b>Background Information</b><br>"
 	. += "Economic Status: <a href='?src=\ref[src];econ_status=1'>[pref.economic_status]</a><br/>"
 	. += "Home: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
+	. += "Birthplace: <a href='?src=\ref[src];birthplace=1'>[pref.birthplace]</a><br/>"
 	. += "Citizenship: <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
 	. += "Faction: <a href='?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
 	. += "Religion: <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
@@ -67,7 +72,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["home_system"])
-		var/choice = tgui_input_list(user, "Please choose your home planet and/or system. This may either be your place of birth or your current primary residence.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
+		var/choice = tgui_input_list(user, "Please choose your home planet and/or system. This should be your current primary residence. Select \"Other\" to specify manually.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -78,8 +83,20 @@
 			pref.home_system = choice
 		return TOPIC_REFRESH
 
+	else if(href_list["birthplace"])
+		var/choice = tgui_input_list(user, "Please choose the planet and/or system or other appropriate location that you were born/created. Select \"Other\" to specify manually.", "Character Preference", home_system_choices + list("Unset","Other"), pref.birthplace)
+		if(!choice || !CanUseTopic(user))
+			return TOPIC_NOACTION
+		if(choice == "Other")
+			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a birthplace.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+			if(raw_choice && CanUseTopic(user))
+				pref.birthplace = raw_choice
+		else
+			pref.birthplace = choice
+		return TOPIC_REFRESH
+
 	else if(href_list["citizenship"])
-		var/choice = tgui_input_list(user, "Please select the faction or political entity with which you currently hold citizenship.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
+		var/choice = tgui_input_list(user, "Please select the faction or political entity with which you currently hold citizenship. Select \"Other\" to specify manually.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -91,7 +108,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["faction"])
-		var/choice = tgui_input_list(user, "Please choose the faction you primarily work for.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
+		var/choice = tgui_input_list(user, "Please choose the faction you primarily work for, if you are not under the direct employ of NanoTrasen. Select \"Other\" to specify manually.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -103,7 +120,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["religion"])
-		var/choice = tgui_input_list(user, "Please choose a religion.", "Character Preference", religion_choices + list("None","Other"), pref.religion)
+		var/choice = tgui_input_list(user, "Please choose a religion. Select \"Other\" to specify manually.", "Character Preference", religion_choices + list("None","Other"), pref.religion)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")

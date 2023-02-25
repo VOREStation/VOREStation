@@ -76,8 +76,9 @@ var/list/preferences_datums = list()
 	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
 
 		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
+	var/home_system = "Unset"           //Current home or residence.
+	var/birthplace = "Unset"           //Location of birth.
+	var/citizenship = "None"            //Government or similar entity with which you hold citizenship.
 	var/faction = "None"                //General associated faction.
 	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.

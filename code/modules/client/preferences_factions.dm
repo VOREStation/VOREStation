@@ -18,7 +18,7 @@ var/global/list/citizenship_choices = list(
 	"Greater Human Diaspora",
 	"Commonwealth of Sol-Procyon",
 	"Skrell Consensus",
-	"Unathi Hegemony",
+	"Moghes Hegemony",
 	"Tajaran Diaspora",
 	"Unitary Alliance of Salthan Fyrds",
 	"Elysian Colonies",
@@ -26,7 +26,7 @@ var/global/list/citizenship_choices = list(
 	"Teshari Expeditionary Fleet",
 	"Altevian Hegemony",
 	"Kitsuhana Heavy Industries",
-	"Nomad"
+	"Kosaky Fleets"
 	)
 
 var/global/list/home_system_choices = list(
@@ -63,7 +63,8 @@ var/global/list/home_system_choices = list(
 	"Infernum, Sanctum",
 	"Abundance in All Things Serene, Beta-Carnelium Ventrum",
 	"Jorhul, Barkalis",
-	"Shelf Flotilla"
+	"Shelf Flotilla",
+	"Ue-Orsi Flotilla"
 	)
 
 var/global/list/faction_choices = list(
@@ -77,6 +78,7 @@ var/global/list/faction_choices = list(
 	"Xion Manufacturing Group",
 	"Free Trade Union",
 	"Major Bill's Transportation",
+	"Ironcrest Transport Group",
 	"Grayson Manufactories Ltd.",
 	"Aether Atmospherics",
 	"Focal Point Energistics",
@@ -96,7 +98,7 @@ var/global/list/faction_choices = list(
 	"United Solar Defense Force",
 	"Proxima Centauri Risk Control",
 	"HIVE Security",
-	"Stealth Assault Enterprises",
+	"Stealth Assault Enterprises"
 	)
 // VOREStation Edits Stop
 
