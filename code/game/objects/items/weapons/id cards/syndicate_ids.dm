@@ -87,10 +87,18 @@
 /datum/card_state/dd_SortValue()
 	return name
 
+<<<<<<< HEAD
 /obj/item/weapon/card/id/syndicate_command
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Commander"
+=======
+/obj/item/card/id/syndicate_command
+	name = "operative ID card"
+	desc = "An ID straight from a mercenary organisation."
+	registered_name = "Operative"
+	assignment = "Operative Commander"
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	icon_state = "syndicate-id"
 	access = list(access_syndicate, access_external_airlocks)

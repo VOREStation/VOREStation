@@ -3,8 +3,13 @@
  */
 /obj/item/weapon/storage/toolbox
 	name = "toolbox"
+<<<<<<< HEAD
 	desc = "Danger. Very robust."
 	icon = 'icons/obj/storage_vr.dmi'
+=======
+	desc = "A metal toolbox with remarkably robust construction."
+	icon = 'icons/obj/storage.dmi'
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
 	center_of_mass = list("x" = 16,"y" = 11)

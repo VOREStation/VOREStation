@@ -82,7 +82,7 @@
 /datum/lore/codex/page/multinational_movement/add_content()
 	name = "Multinational Movement"
 	keywords += list("Multinational")
-	data = "The barely-unified voice of [quick_link("SolGov", "SolGov's")] various independence movements, encompassing Terran governments wishing for a lighter touch \
+	data = "The barely-unified voice of [quick_link("SolGov", "SolGov's")] various independence movements, encompassing Earth governments wishing for a lighter touch \
 	from SolGov, fringe colonies who balk at the call of distant masters, anarchist movements who want the freedom to live without government oversight, and the rare \
 	Trans-Stellar who no longer see a benefit in working with SolGov. Full colonial independence is still a political impossibility so long as the \
 	[quick_link("Icarus Front")] holds any sway, and so the Movement is focused primarily on securing more autonomy in governance, although a growing revolutionary sub-group \

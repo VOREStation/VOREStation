@@ -9,7 +9,7 @@
 #define TECH_COMBAT "combat"
 #define TECH_MAGNET "magnets"
 #define TECH_DATA "programming"
-#define TECH_ILLEGAL "syndicate"
+#define TECH_ILLEGAL "transgressive"
 #define TECH_ARCANE "arcane"
 #define TECH_PRECURSOR "precursor"
 

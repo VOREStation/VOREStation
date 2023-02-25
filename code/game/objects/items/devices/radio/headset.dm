@@ -212,37 +212,37 @@
 
 /obj/item/device/radio/headset/heads/rd
 	name = "research director's headset"
-	desc = "Headset of the researching God."
+	desc = "Headset of the eccentric-in-chief."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/rd
 
 /obj/item/device/radio/headset/heads/rd/alt
 	name = "research director's bowman headset"
-	desc = "Headset of the researching God."
+	desc = "Headset of the eccentric-in-chief."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/rd
 
 /obj/item/device/radio/headset/heads/hos
 	name = "head of security's headset"
-	desc = "The headset of the man who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lifes."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/hos/alt
 	name = "head of security's bowman headset"
-	desc = "The headset of the man who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lifes."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/ce
 	name = "chief engineer's headset"
-	desc = "The headset of the guy who is in charge of morons"
+	desc = "The headset of the clown who is in charge of the circus."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/ce
 
 /obj/item/device/radio/headset/heads/ce/alt
 	name = "chief engineer's bowman headset"
-	desc = "The headset of the guy who is in charge of morons"
+	desc = "The headset of the clown who is in charge of the circus."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/ce
 
@@ -260,13 +260,13 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be Site Manager."
+	desc = "The headset of the poor fool who will one day be Site Manager."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
 /obj/item/device/radio/headset/heads/hop/alt
 	name = "head of personnel's bowman headset"
-	desc = "The headset of the guy who will one day be Site Manager."
+	desc = "The headset of the poor fool who will one day be Site Manager."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
@@ -279,13 +279,13 @@
 
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
-	desc = "A headset used by the QM and his slaves."
+	desc = "A headset used by the QM and their cronies."
 	icon_state = "cargo_headset"
 	ks2type = /obj/item/device/encryptionkey/headset_cargo
 
 /obj/item/device/radio/headset/headset_cargo/alt
 	name = "supply bowman headset"
-	desc = "A bowman headset used by the QM and his slaves."
+	desc = "A bowman headset used by the QM and their cronies."
 	icon_state = "cargo_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/headset_cargo
 

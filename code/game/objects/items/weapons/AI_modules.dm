@@ -429,9 +429,15 @@ AI MODULES
 
 /******************** Syndicate Directives ********************/
 
+<<<<<<< HEAD
 /obj/item/weapon/aiModule/syndicate_override
 	name = "\improper 'Syndicate Directives' core AI module"
 	desc = "A 'Syndicate Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
+=======
+/obj/item/aiModule/syndicate_override
+	name = "\improper 'Mercenary Directives' core AI module"
+	desc = "A 'Mercenary Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	origin_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 4)
 	laws = new/datum/ai_laws/syndicate_override()
 

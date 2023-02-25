@@ -147,7 +147,7 @@
 
 /obj/item/weapon/card/id/gold/captain/spare
 	name = "\improper Site Manager's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	desc = "The emergency spare ID for the station's very own Big Cheese."
 	icon_state = "gold-id-alternate"
 	registered_name = "Site Manager"
 

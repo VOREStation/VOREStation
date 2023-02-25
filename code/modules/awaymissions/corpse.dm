@@ -111,7 +111,7 @@
 	corpseidaccess = "Syndicate"
 
 /obj/effect/landmark/corpse/syndicatecommando
-	name = "Syndicate Commando"
+	name = "Mercenary Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/space/void/merc
 	corpseshoes = /obj/item/clothing/shoes/boots/swat

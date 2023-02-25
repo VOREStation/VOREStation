@@ -1,6 +1,13 @@
 /obj/item/device/flash
 	name = "flash"
+<<<<<<< HEAD
 	desc = "Used for blinding and being an asshole."
+=======
+	desc = "Used to blind and disorient."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5

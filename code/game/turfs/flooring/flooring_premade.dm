@@ -271,6 +271,7 @@
 
 /turf/simulated/floor/tiled/kafel_full
 	name = "floor"
+	desc = "Ceramic tile flooring."
 	icon_state = "kafel_full"
 	initial_flooring = /decl/flooring/tiling/new_tile/kafel
 /turf/simulated/floor/tiled/kafel_full/white

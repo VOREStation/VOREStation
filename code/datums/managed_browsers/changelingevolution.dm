@@ -12,7 +12,7 @@
 	if(!new_client.mob || !new_client.mob.mind || !new_client.mob.mind.changeling)
 		message_admins("[new_client] tried to access changeling evolutions while not changeling.")
 		qdel(src)
-	
+
 	..()
 
 /datum/managed_browser/changelingevolution/Destroy()
@@ -24,7 +24,7 @@
 	var/list/dat = list("<html><body>")
 	var/geneticpoints_current = my_client.mob.mind.changeling.geneticpoints
 	var/geneticpoints_max = my_client.mob.mind.changeling.max_geneticpoints
-	
+
 	dat += "<center>Genetic Points Available: [geneticpoints_current] / [geneticpoints_max] <br>"
 	dat += "Obtain more by feeding on your own kind. <br> <hr>"
 	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];tutorial=1'>What am I?</a><br><hr>"
@@ -49,28 +49,28 @@
 
 	if(href_list["close"])
 		return
-	
+
 	if(href_list["inherent"])
 		generate_abilitylist(CHANGELING_POWER_INHERENT)
-	
+
 	if(href_list["armor"])
 		generate_abilitylist(CHANGELING_POWER_ARMOR)
-	
+
 	if(href_list["weapons"])
 		generate_abilitylist(CHANGELING_POWER_WEAPONS)
-	
+
 	if(href_list["stings"])
 		generate_abilitylist(CHANGELING_POWER_STINGS)
-	
+
 	if(href_list["shrieks"])
 		generate_abilitylist(CHANGELING_POWER_SHRIEKS)
 
 	if(href_list["health"])
 		generate_abilitylist(CHANGELING_POWER_HEALTH)
-	
+
 	if(href_list["enhancements"])
 		generate_abilitylist(CHANGELING_POWER_ENHANCEMENTS)
-	
+
 	if(href_list["evolve"])
 		var/datum/mind/M = my_client.mob.mind
 		var/datum/changeling/C = my_client.mob.mind.changeling
@@ -83,7 +83,7 @@
 
 		if(!istype(M))
 			return
-		
+
 		if(Thepower == null)
 			to_chat(M.current, "Purchase failed. Inform a dev of this error.")
 			return
@@ -95,13 +95,13 @@
 		if(C.geneticpoints < Thepower.genomecost)
 			to_chat(M.current, "We cannot evolve this... yet.  We must acquire more DNA.")
 			return
-		
+
 		C.purchased_powers += Thepower /// Set it to purchased
 		C.geneticpoints -= Thepower.genomecost
 		generate_abilitylist(Thepower.power_category) /// Refresh the UI
 
 		my_client.mob.mind.changeling.purchasePower(M, Thepower)
-	
+
 	if(href_list["tutorial"])
 		textbody = "<tr><th><font color='#c72121'><center>What am I?</center></font><br></th></tr>"
 		textbody += "<tr><td>"
@@ -157,7 +157,7 @@
 		textbody += "<font color='#F7F7ED'>[initial(powerdata.desc)]</font><br><br>"
 		textbody += "<font color='#F7F7ED'><i>[powerdata.helptext]</i></font><br>"
 		if(powerdata.enhancedtext != "")
-			textbody += "<font color='#F7F7ED'><b>WHEN EHANCED: </b><i>[powerdata.enhancedtext]</i></font><br>"
+			textbody += "<font color='#F7F7ED'><b>WHEN ENHANCED: </b><i>[powerdata.enhancedtext]</i></font><br>"
 		if(powerdata in my_client.mob.mind.changeling.purchased_powers)
 			textbody += "<center><font color='#F7F7ED'><i><b>This ability is already evolved!</b></i></font></center>"
 		else if(cat != "Inherent")

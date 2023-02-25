@@ -136,7 +136,7 @@
 
 /mob/living/carbon/proc/spread_disease_to(var/mob/living/carbon/victim, var/vector = "Airborne")
 	if (src == victim)
-		return "retardation"
+		return "Neurodegeneration"
 
 //	log_debug("Spreading [vector] diseases from [src] to [victim]")
 	if (virus2.len > 0)

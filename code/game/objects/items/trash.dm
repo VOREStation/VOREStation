@@ -249,12 +249,15 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+<<<<<<< HEAD
 /obj/item/trash/tomato
 	name = "empty tomato soup can"
 	icon_state = "tomato"
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+=======
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 /obj/item/trash/spinach
 	name = "empty spinach can"
 	icon_state = "spinach"
@@ -350,7 +353,11 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+<<<<<<< HEAD
 /obj/item/trash/spacercake_wrap
+=======
+/obj/item/trash/spacer_cake_wrap
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	name = "snack cake wrapper"
 	icon_state = "spacercake_wrap"
 
@@ -416,6 +423,7 @@
 	name = "burrito packaging"
 	icon_state = "smolburrito"
 
+<<<<<<< HEAD
 /obj/item/trash/brainzsnax
 	name = "\improper BrainzSnax can"
 	icon_state = "brainzsnax"
@@ -427,3 +435,8 @@
 	icon_state = "brainzsnaxred"
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
+=======
+/obj/item/trash/candybowl
+	name = "candy bowl"
+	icon_state = "candy_bowl"
+>>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
