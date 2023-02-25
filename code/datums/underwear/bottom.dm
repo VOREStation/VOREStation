@@ -73,3 +73,18 @@
 	name = "Panties, Thin"
 	icon_state = "thinpanties"
 	has_color = TRUE
+
+/datum/category_item/underwear/bottom/neko
+	name = "Panties, Neko"
+	icon_state = "panties_neko"
+	has_color = TRUE
+
+/datum/category_item/underwear/bottom/swimbottom
+	name = "Swimming Bottoms"
+	icon_state = "swimbottom"
+	has_color = TRUE
+
+/datum/category_item/underwear/bottom/onepiece
+	name = "Swimming One Piece"
+	icon_state = "onepiece"
+	has_color = TRUE

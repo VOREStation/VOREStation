@@ -59,6 +59,8 @@
 		return TOPIC_REFRESH
 	else if(href_list["directory_ad"])
 		var/msg = sanitize(tgui_input_text(user,"Write your advertisement here!", "Flavor Text", html_decode(pref.directory_ad), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+		if(!msg)
+			return
 		pref.directory_ad = msg
 		return TOPIC_REFRESH
 	else if(href_list["toggle_sensor_setting"])

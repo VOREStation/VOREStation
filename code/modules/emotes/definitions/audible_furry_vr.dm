@@ -123,7 +123,7 @@
 /decl/emote/audible/croak
     key = "croak"
     emote_message_3p = "rumbles their throat, puffs their cheeks and croaks."
-    emote_sound = 'sound/voice/Croak.ogg'
+    emote_sound = 'sound/voice/croak_frog.ogg'
 /decl/emote/audible/gao
     key = "gao"
     emote_message_3p = "lets out a gao."
@@ -197,6 +197,10 @@
         if(istype(user, /mob/living/simple_mob/vore/alienanimals/teppi/baby))
             emote_sound = pick(smolsound)
         else
+            emote_sound = pick(bigsound)
+    else if(istype(user, /mob/living/silicon/pai))
+        var/mob/living/silicon/pai/me = user
+        if(me.chassis == "teppi")
             emote_sound = pick(bigsound)
     else if(user.size_multiplier >= 1.5)
         emote_sound = pick(bigsound)

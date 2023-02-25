@@ -1395,10 +1395,11 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 9
 	},
-/obj/machinery/firealarm{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
 "de" = (
@@ -7828,6 +7829,10 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
+"rG" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/apparel)
 "rH" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -12823,9 +12828,6 @@
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 5
 	},
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/landmark{
 	name = "JoinLateCryo"
@@ -14849,6 +14851,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
 "IP" = (
@@ -17616,10 +17621,11 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 5
 	},
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/station_map{
+	dir = 8;
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
 "PA" = (
@@ -18031,6 +18037,9 @@
 	},
 /obj/machinery/camera/network/civilian{
 	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
@@ -21175,6 +21184,9 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/groundbase/civilian/arrivals)
 "Ym" = (
@@ -22897,9 +22909,9 @@ FF
 FF
 FF
 FF
-MO
-MO
-MO
+ce
+ce
+ce
 FF
 FF
 FF
@@ -23038,11 +23050,11 @@ nC
 nC
 NC
 ce
-Bk
+FF
 ce
 ce
 ce
-Bk
+FF
 FF
 FF
 MO
@@ -23184,7 +23196,7 @@ ce
 ce
 ce
 ce
-Bk
+FF
 FF
 FF
 FF
@@ -23321,7 +23333,7 @@ MO
 MO
 MO
 Fi
-Bk
+FF
 ce
 ce
 ce
@@ -23698,7 +23710,7 @@ ce
 ce
 ce
 Bk
-ce
+Bk
 ce
 ce
 ce
@@ -31001,7 +31013,7 @@ PM
 PM
 jY
 jC
-jY
+hq
 PM
 PM
 hq
@@ -33000,7 +33012,7 @@ hr
 hr
 bL
 Pb
-BS
+rG
 BS
 zj
 dk
@@ -37924,7 +37936,7 @@ Bk
 Bk
 ce
 Bk
-ce
+Bk
 ce
 Bk
 ce
@@ -38058,7 +38070,7 @@ Bk
 Bk
 Bk
 Bk
-ce
+Bk
 ce
 Bk
 Bk
@@ -38825,8 +38837,8 @@ ce
 ce
 ce
 ce
-ce
-ce
+Bk
+Bk
 Bk
 Cw
 vu
@@ -40382,7 +40394,7 @@ qE
 qE
 qE
 ce
-ce
+Bk
 ce
 ce
 ce
@@ -40524,8 +40536,8 @@ Lb
 qE
 qE
 ce
-ce
-ce
+Bk
+Bk
 Bk
 ce
 ce
@@ -40709,9 +40721,9 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
+Bk
+Bk
+Bk
 Bk
 Bk
 ce

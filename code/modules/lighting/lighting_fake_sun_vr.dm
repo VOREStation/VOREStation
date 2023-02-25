@@ -102,7 +102,7 @@
 	for(var/turf/T as anything in all_turfs)
 		if(T.is_outdoors())
 			turfs_to_use += T
-	
+
 	if(!turfs_to_use.len)
 		warning("Fake sun placed on a level where it can't find any outdoor turfs to color at [x],[y],[z].")
 		return
@@ -131,23 +131,14 @@
 			"color" = "#F4EA55"
 		),
 		list(
-			"brightness" = 1.0,
+			"brightness" = 4.0,
 			"color" = "#F07AD8"
 		),
 		list(
-			"brightness" = 1.0,
-			"color" = "#b4361f"
-		),
-
-		list(
-			"brightness" = 0.7,
+			"brightness" = 4.0,
 			"color" = "#f3932d"
-		),
-
-		list(
-			"brightness" = 0.1,
-			"color" = "#B92B00"
 		)
+
 	)
 
 /obj/effect/fake_sun/cool

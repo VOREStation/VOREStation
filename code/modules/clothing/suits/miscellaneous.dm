@@ -277,6 +277,12 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "red_labcoat", slot_l_hand_str = "red_labcoat")
 
+/obj/item/clothing/suit/shrine_maiden
+	name = "shrine maiden costume"
+	desc = "Makes you want to exterminate some troublesome youkai."
+	icon_state = "shrine_maiden"
+	body_parts_covered = LOWER_TORSO|UPPER_TORSO|LEGS|ARMS
+
 /*
  * Misc
  */

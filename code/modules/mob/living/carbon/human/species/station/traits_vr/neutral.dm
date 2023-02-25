@@ -138,6 +138,16 @@
 	..(S,H)
 	H.verbs |= /mob/living/carbon/human/proc/slime_feed
 
+/datum/trait/neutral/stuffing_feeder
+	name = "Food Stuffer"
+	desc = "Allows you to feed food to other people whole, rather than bite by bite."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/stuffing_feeder/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/toggle_stuffing_mode
+
 /datum/trait/neutral/hard_vore
 	name = "Brutal Predation"
 	desc = "Allows you to tear off limbs & tear out internal organs."
@@ -185,6 +195,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("has_glowing_eyes" = 1)
+	has_preferences = list("has_glowing_eyes" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glowing on spawn", TRAIT_VAREDIT_TARGET_SPECIES))
 
 /datum/trait/neutral/glowing_eyes/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -195,12 +206,13 @@
 	desc = "Your body glows about as much as a PDA light! Settable color and toggle in Abilities tab ingame."
 	cost = 0
 	custom_only = FALSE
+	has_preferences = list("glow_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glowing on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE), \
+							"glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_VAREDIT_TARGET_MOB))
 
-/datum/trait/neutral/glowing_body/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/neutral/glowing_body/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs = null)
 	..(S,H)
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
-
 
 //Allergen traits! Not available to any species with a base allergens var.
 /datum/trait/neutral/allergy
@@ -424,7 +436,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("chem_strength_alcohol" = 1.5)
-	
+
 /datum/trait/neutral/alcohol_tolerance_reset
 	name = "Liver of Unremarkableness"
 	desc = "This trait exists to reset alcohol (in)tolerance for non-custom species to baseline normal. It can only be taken by Skrell, Tajara, Unathi, Diona, and Prometheans, as it would have no effect on other species."
@@ -703,8 +715,8 @@
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
+	has_preferences = list("pain" = list(TRAIT_PREF_TYPE_BOOLEAN, "Enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
-
-/datum/trait/neutral/synth_cosmetic_pain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/neutral/synth_cosmetic_pain/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/trait_prefs = null)
 	..(S,H)
 	H.verbs |= /mob/living/carbon/human/proc/toggle_pain_module

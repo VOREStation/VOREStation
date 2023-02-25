@@ -122,6 +122,7 @@
 	item_state = "tajblind"
 	prescription = 1
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/hud/health/tajblind
 	name = "lightweight veil"
@@ -131,6 +132,7 @@
 	icon_state = "tajblind_med"
 	item_state = "tajblind_med"
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/sunglasses/sechud/tajblind
 	name = "sleek veil"
@@ -141,6 +143,7 @@
 	item_state = "tajblind_sec"
 	prescription = 1
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/meson/prescription/tajblind
 	name = "industrial veil"
@@ -151,6 +154,7 @@
 	item_state = "tajblind_meson"
 	off_state = "tajblind"
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/material/prescription/tajblind
 	name = "mining veil"
@@ -161,6 +165,7 @@
 	item_state = "tajblind_meson"
 	off_state = "tajblind"
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses
 	sprite_sheets = list(

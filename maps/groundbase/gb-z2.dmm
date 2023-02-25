@@ -2739,6 +2739,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/injector_maker{
+	pixel_x = -29
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "hK" = (
@@ -5318,6 +5321,7 @@
 /area/groundbase/medical/triage)
 "pp" = (
 /obj/machinery/light,
+/obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "pq" = (
@@ -14965,6 +14969,10 @@
 "QF" = (
 /obj/machinery/camera/network/medbay{
 	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/machinery/injector_maker{
+	pixel_y = -31
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)

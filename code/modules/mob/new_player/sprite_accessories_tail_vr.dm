@@ -22,6 +22,15 @@
 
 // Everyone tails
 
+/datum/sprite_accessory/tail/alien_slug
+	name = "Alien slug tail"
+	desc = ""
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "alien_slug"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "alien_slug_markings"
+
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
 	icon = null

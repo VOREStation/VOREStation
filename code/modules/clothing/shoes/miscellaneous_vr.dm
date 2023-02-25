@@ -39,14 +39,14 @@
 	playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
 	user.visible_message("<span class='warning'>[user] dashes forward into the air!</span>")
 	user.throw_at(target, jumpdistance, jumpspeed)
-	recharging_time = world.time + recharging_rate	
+	recharging_time = world.time + recharging_rate
 
 /obj/item/clothing/shoes/magboots/adv
 	name = "advanced magboots"
 	desc = "Advanced magnetic boots for a trained user. They have a lower magnetic force, allowing the user to move more quickly."
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	icon_override = 'icons/inventory/feet/mob_vr.dmi'
-	
+
 	icon_state = "advmag0"
 	item_flags = PHORONGUARD
 	item_state_slots = list(slot_r_hand_str = "magboots", slot_l_hand_str = "magboots")
@@ -69,13 +69,13 @@
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	icon_override = 'icons/inventory/feet/item_vr.dmi'
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
-	
+
 /obj/item/clothing/shoes/knight/black
 	name = "knight boots"
 	desc = "A pair of olde knight boots."
 	icon_state = "knight_boots2"
 	item_state = "knight_boots2"
-	
+
 // Costume Versions Here
 /obj/item/clothing/shoes/knight_costume
 	name = "knight boots"
@@ -84,9 +84,25 @@
 	item_state = "knight_boots1"
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	icon_override = 'icons/inventory/feet/item_vr.dmi'
-	
+
 /obj/item/clothing/shoes/knight_costume/black
 	name = "knight boots"
 	desc = "A pair of olde knight boots."
 	icon_state = "knight_boots2"
 	item_state = "knight_boots2"
+
+//Antediluvian legwraps
+/obj/item/clothing/shoes/antediluvian
+	name = "antediluvian legwraps"
+	desc = "A pair of wraps with gold inlay that cut off around the ankle."
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
+	icon_state = "antediluvian"
+	item_state = "antediluvian"
+
+//Alternative flats
+/obj/item/clothing/shoes/flats/white/color/alt
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
+	icon_state = "flatsalt"
+	item_state = "flatsalt"

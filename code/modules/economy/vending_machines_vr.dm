@@ -1434,7 +1434,17 @@
 					/obj/item/clothing/shoes/knight_costume = 3,
 					/obj/item/clothing/shoes/knight_costume/black = 3,
 					/obj/item/clothing/suit/storage/hooded/foodcostume/hotdog = 3,
-					/obj/item/clothing/suit/storage/hooded/foodcostume/turnip = 3)
+					/obj/item/clothing/suit/storage/hooded/foodcostume/turnip = 3,
+					/obj/item/clothing/under/dress/singer = 3,
+					/obj/item/clothing/shoes/boots/singer = 3,
+					/obj/item/clothing/under/dress/singer/yellow = 3,
+					/obj/item/clothing/shoes/boots/singer/yellow = 3,
+					/obj/item/clothing/under/dress/maid/under_maid = 3,
+					/obj/item/clothing/accessory/maid_neck = 3,
+					/obj/item/clothing/accessory/maid_arms = 3,
+					/obj/item/clothing/head/headband/maid/modern = 3,
+					/obj/item/clothing/accessory/maidcorset = 3,
+					/obj/item/clothing/suit/shrine_maiden = 3)
 	prices = list(/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/chickensuit = 200,
@@ -1501,7 +1511,17 @@
 					/obj/item/clothing/shoes/knight_costume = 200,
 					/obj/item/clothing/shoes/knight_costume/black = 200,
 					/obj/item/clothing/suit/storage/hooded/foodcostume/hotdog = 200,
-					/obj/item/clothing/suit/storage/hooded/foodcostume/turnip = 200)
+					/obj/item/clothing/suit/storage/hooded/foodcostume/turnip = 200,
+					/obj/item/clothing/under/dress/singer = 200,
+					/obj/item/clothing/shoes/boots/singer = 50,
+					/obj/item/clothing/under/dress/singer/yellow = 200,
+					/obj/item/clothing/shoes/boots/singer/yellow = 50,
+					/obj/item/clothing/under/dress/maid/under_maid = 200,
+					/obj/item/clothing/accessory/maid_neck = 25,
+					/obj/item/clothing/accessory/maid_arms = 25,
+					/obj/item/clothing/head/headband/maid/modern = 25,
+					/obj/item/clothing/accessory/maidcorset = 25,
+					/obj/item/clothing/suit/shrine_maiden = 200)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/suit/barding/agatha = 2,
 					/obj/item/clothing/suit/barding/alt_agatha = 2,
@@ -1660,7 +1680,17 @@
 					/obj/item/clothing/gloves/combat/knight_costume = 3,
 					/obj/item/clothing/gloves/combat/knight_costume/brown = 3,
 					/obj/item/clothing/shoes/knight_costume = 3,
-					/obj/item/clothing/shoes/knight_costume/black = 3)
+					/obj/item/clothing/shoes/knight_costume/black = 3,
+					/obj/item/clothing/under/dress/singer = 3,
+					/obj/item/clothing/shoes/boots/singer = 3,
+					/obj/item/clothing/under/dress/singer/yellow = 3,
+					/obj/item/clothing/shoes/boots/singer/yellow = 3,
+					/obj/item/clothing/under/dress/maid/under_maid = 3,
+					/obj/item/clothing/accessory/maid_neck = 3,
+					/obj/item/clothing/accessory/maid_arms = 3,
+					/obj/item/clothing/head/headband/maid/modern = 3,
+					/obj/item/clothing/accessory/maidcorset = 3,
+					/obj/item/clothing/suit/shrine_maiden = 3)
 
 // Event Loadout Vending Machines Start
 
@@ -2443,7 +2473,17 @@
 					/obj/item/clothing/suit/barding/mason = 2,
 					/obj/item/clothing/suit/drake_cloak = 2,
 					/obj/item/clothing/head/syndicatefake = 1,
-					/obj/item/clothing/suit/syndicatefake = 1
+					/obj/item/clothing/suit/syndicatefake = 1,
+					/obj/item/clothing/under/dress/singer = 3,
+					/obj/item/clothing/shoes/boots/singer = 3,
+					/obj/item/clothing/under/dress/singer/yellow = 3,
+					/obj/item/clothing/shoes/boots/singer/yellow = 3,
+					/obj/item/clothing/under/dress/maid/under_maid = 3,
+					/obj/item/clothing/accessory/maid_neck = 3,
+					/obj/item/clothing/accessory/maid_arms = 3,
+					/obj/item/clothing/head/headband/maid/modern = 3,
+					/obj/item/clothing/accessory/maidcorset = 3,
+					/obj/item/clothing/suit/shrine_maiden = 3
 					)
 
 // Event Loadout Vending Machines End

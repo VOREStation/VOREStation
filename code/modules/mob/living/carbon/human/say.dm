@@ -129,7 +129,7 @@
 			message_data[2] = pick(M.say_verbs)
 			. = 1
 
-	if(CE_SPEEDBOOST in chem_effects || is_jittery) // motor mouth
+	else if(CE_SPEEDBOOST in chem_effects || is_jittery) // motor mouth
 		// Despite trying to url/html decode these, byond is just being bad and I dunno.
 		var/static/regex/speedboost_initial = new (@"&[a-z]{2,5};|&#\d{2};","g")
 		// Not herestring because bad vs code syntax highlight panics at apostrophe
@@ -137,6 +137,7 @@
 		for(var/datum/multilingual_say_piece/S in message_data[1])
 			S.message = speedboost_initial.Replace(S.message, "")
 			S.message = speedboost_main.Replace(S.message, "")
+		. = 1
 	else
 		. = ..(message_data)
 

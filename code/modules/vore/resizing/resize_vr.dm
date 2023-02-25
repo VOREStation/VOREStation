@@ -271,7 +271,20 @@
 		return FALSE
 
 	var/mob/living/carbon/human/prey = tmob
-	if(!istype(prey))
+	var/can_pass = TRUE
+	var/size_ratio_needed = (a_intent == I_DISARM || a_intent == I_HURT) ? 0.75 : (a_intent == I_GRAB ? 0.5 : 0)
+	if (isturf(prey.loc))
+		for (var/atom/movable/M in prey.loc)
+			if (prey == M || pred == M)
+				continue
+			if (istype(M, /mob/living))
+				var/mob/living/L = M
+				if (!M.CanPass(src, prey.loc) && !(get_effective_size(FALSE) - L.get_effective_size(TRUE) >= size_ratio_needed || L.lying))
+					can_pass = FALSE
+				continue
+			if (!M.CanPass(src, prey.loc))
+				can_pass = FALSE
+	if(!istype(prey) || !can_pass)
 		//If they're not human, steppy shouldn't happen
 		return FALSE
 

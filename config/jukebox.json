@@ -4744,5 +4744,25 @@
 "secret": false,
 "lobby": false,
 "jukebox": true
+},
+{
+"url": "https://files.catbox.moe/n10l5v.mp3",
+"title": "Sucklet's Song",
+"duration": 1840,
+"artist": "emamouse",
+"genre": "Folk and Indie",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/6m88w6.mp3",
+"title": "King Sucklet",
+"duration": 1370,
+"artist": "emamouse",
+"genre": "Folk and Indie",
+"secret": true,
+"lobby": false,
+"jukebox": true
 }
 ]
