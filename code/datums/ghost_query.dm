@@ -198,3 +198,12 @@
 	Would you like to play as the soul imprisoned within?"
 	be_special_flag = BE_CURSEDSWORD
 	cutoff_number = 1
+
+/datum/ghost_query/shipwreck_survivor
+	role_name = "Shipwreck survivor"
+	question = "A person suspended in cryosleep has been discovered by a crewmember \
+	aboard a wrecked spaceship \
+	and they are attempting to open the cryopod.\n \
+	Would you like to play as the occupant? \n \
+	You MUST NOT use your station character!!!"
+	cutoff_number = 1
