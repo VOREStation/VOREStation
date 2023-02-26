@@ -65,7 +65,18 @@ var/list/name_to_material
 	. = list()
 	for(var/mat in matter)
 		var/datum/material/M = GET_MATERIAL_REF(mat)
-		.[M] = matter[mat]
+		if(M.composite_material && M.composite_material.len)
+			for(var/submat in M.composite_material)
+				var/datum/material/SM = GET_MATERIAL_REF(submat)
+				if(SM in .)
+					.[SM] += matter[mat]*(M.composite_material[submat]/SHEET_MATERIAL_AMOUNT)
+				else
+					.[SM] = matter[mat]*(M.composite_material[submat]/SHEET_MATERIAL_AMOUNT)
+		else
+			if(M in .)
+				.[M] += matter[mat]
+			else
+				.[M] = matter[mat]
 
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)
