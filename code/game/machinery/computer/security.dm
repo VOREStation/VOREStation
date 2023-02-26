@@ -426,6 +426,7 @@
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
+		<br>\nSpecies: [active1.fields["species"]]
 		<br>\nAge: [active1.fields["age"]]
 		<br>\nFingerprint: [active1.fields["fingerprint"]]
 		<br>\nPhysical Status: [active1.fields["p_stat"]]

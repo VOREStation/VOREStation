@@ -39,6 +39,12 @@
 		"species" = "Please input new species:",
 		"age" = "Please input new age:",
 		"fingerprint" = "Please input new fingerprint hash:",
+		"home_system" = "Please input new home:",
+		"birthplace" = "Please input new birthplace:",
+		"citizenship" = "Please input new citizenship:",
+		"languages" = "Please input known languages:",
+		"faction" = "Please input new employer:",
+		"religion" = "Please input new religion:",
 	)
 	field_edit_choices = list(
 		// General
@@ -113,6 +119,12 @@
 					fields[++fields.len] = FIELD("Species", active1.fields["species"], "species")
 					fields[++fields.len] = FIELD("Age", active1.fields["age"], "age")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
+					fields[++fields.len] = FIELD("Home", active1.fields["home_system"], "home_system")
+					fields[++fields.len] = FIELD("Birthplace", active1.fields["birthplace"], "birthplace")
+					fields[++fields.len] = FIELD("Citizenship", active1.fields["citizenship"], "citizenship")
+					fields[++fields.len] = FIELD("Faction", active1.fields["faction"], "faction")
+					fields[++fields.len] = FIELD("Religion", active1.fields["religion"], "religion")
+					fields[++fields.len] = FIELD("Known Languages", active1.fields["languages"], "languages")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], null)
 					fields[++fields.len] = FIELD("Mental Status", active1.fields["m_stat"], null)
 					var/list/photos = list()
@@ -309,8 +321,15 @@
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
+		<br>\nSpecies: [active1.fields["species"]]
 		<br>\nAge: [active1.fields["age"]]
 		<br>\nFingerprint: [active1.fields["fingerprint"]]
+		<br>\nHome: [active1.fields["home_system"]]
+		<br>\nBirthplace: [active1.fields["birthplace"]]
+		<br>\nCitizenship: [active1.fields["citizenship"]]
+		<br>\nFaction: [active1.fields["faction"]]
+		<br>\nReligion: [active1.fields["religion"]]
+		<br>\nKnown Languages: [active1.fields["languages"]]
 		<br>\nPhysical Status: [active1.fields["p_stat"]]
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>
 		<br>\nEmployment/Skills Summary: [active1.fields["notes"]]

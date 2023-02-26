@@ -589,9 +589,11 @@
 								to_chat(usr, "<b>Species:</b> [R.fields["species"]]")
 								to_chat(usr, "<b>Assignment:</b> [R.fields["real_rank"]] ([R.fields["rank"]])")
 								to_chat(usr, "<b>Home System:</b> [R.fields["home_system"]]")
+								to_chat(usr, "<b>Birthplace:</b> [R.fields["birthplace"]]")
 								to_chat(usr, "<b>Citizenship:</b> [R.fields["citizenship"]]")
 								to_chat(usr, "<b>Primary Employer:</b> [R.fields["personal_faction"]]")
 								to_chat(usr, "<b>Religious Beliefs:</b> [R.fields["religion"]]")
+								to_chat(usr, "<b>Known Languages:</b> [R.fields["languages"]]")
 								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
 								to_chat(usr, "<a href='?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>")
 								read = 1
