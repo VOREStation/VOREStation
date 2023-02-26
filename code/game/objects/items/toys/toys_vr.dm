@@ -94,15 +94,47 @@
 	name = "janihound plushie"
 	icon_state = "scrubpuppy"
 
-/obj/item/toy/plushie/borgplushie/drakiesec
-	name = "security drake plushie"
+/obj/item/toy/plushie/borgplushie/drake
 	icon = 'icons/obj/drakietoy_vr.dmi'
+	var/lights_glowing = FALSE
+
+/obj/item/toy/plushie/borgplushie/drake/AltClick(mob/living/user)
+	. = ..()
+	lights_glowing = !lights_glowing
+	update_icon()
+
+/obj/item/toy/plushie/borgplushie/drake/update_icon()
+	cut_overlays()
+	if (lights_glowing)
+		add_overlay(emissive_appearance(icon, "[icon_state]-lights"))
+
+/obj/item/toy/plushie/borgplushie/drake/sec
+	name = "security drake plushie"
 	icon_state = "secdrake"
 
-/obj/item/toy/plushie/borgplushie/drakiemed
+/obj/item/toy/plushie/borgplushie/drake/med
 	name = "medical drake plushie"
-	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "meddrake"
+
+/obj/item/toy/plushie/borgplushie/drake/sci
+	name = "science drake plushie"
+	icon_state = "scidrake"
+
+/obj/item/toy/plushie/borgplushie/drake/jani
+	name = "janitor drake plushie"
+	icon_state = "janidrake"
+
+/obj/item/toy/plushie/borgplushie/drake/eng
+	name = "engineering drake plushie"
+	icon_state = "engdrake"
+
+/obj/item/toy/plushie/borgplushie/drake/mine
+	name = "mining drake plushie"
+	icon_state = "minedrake"
+
+/obj/item/toy/plushie/borgplushie/drake/trauma
+	name = "trauma drake plushie"
+	icon_state = "traumadrake"
 
 /obj/item/toy/plushie/foxbear
 	name = "toy fox"
