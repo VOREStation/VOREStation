@@ -22,15 +22,17 @@ FLOOR SAFES
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
 
-/obj/structure/safe/New()
+/obj/structure/safe/Initialize()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
 
 	tumbler_2_pos = rand(0, 72)
 	tumbler_2_open = rand(0, 72)
 
+	if(. != INITIALIZE_HINT_QDEL)
+		return INITIALIZE_HINT_LATELOAD
 
-/obj/structure/safe/Initialize()
+/obj/structure/safe/LateInitialize()
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
@@ -115,7 +117,7 @@ FLOOR SAFES
 				if(canhear)
 					to_chat(user, "<span class='notice'>You hear a [pick("click", "chink", "clink")] from \the [src].</span>")
 					playsound(src, 'sound/machines/click.ogg', 20, 1)
-			check_unlocked(user, canhear)		
+			check_unlocked(user, canhear)
 
 		updateUsrDialog()
 		return
