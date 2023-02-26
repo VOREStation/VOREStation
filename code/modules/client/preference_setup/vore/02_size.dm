@@ -102,6 +102,7 @@
 	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
 	. += "<b>Voice Frequency:</b> <a href='?src=\ref[src];voice_freq=1'>[pref.voice_freq]</a><br>"
 	. += "<b>Voice Sounds:</b> <a href='?src=\ref[src];voice_sounds_list=1'>[pref.voice_sound]</a><br>"
+	. += "<a href='?src=\ref[src];voice_test=1'><b>Test Selected Voice</b></a><br>"
 	. += "<b>Custom Speech Bubble:</b> <a href='?src=\ref[src];customize_speech_bubble=1'>[pref.custom_speech_bubble]</a><br>"
 	. += "<br>"
 	. += "<b>Relative Weight:</b>  <a href='?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
@@ -203,5 +204,40 @@
 		else
 			pref.custom_speech_bubble = choice
 		return TOPIC_REFRESH
+
+	else if(href_list["voice_test"])
+		var/sound/S = pick(pref.voice_sound)
+		switch(pref.voice_sound)
+			if("beep-boop")
+				S = sound(pick(talk_sound))
+			if("goon speak 1")
+				S = sound(pick(goon_speak_one_sound))
+			if("goon speak 2")
+				S = sound(pick(goon_speak_two_sound))
+			if("goon speak 3")
+				S = sound(pick(goon_speak_three_sound))
+			if("goon speak 4")
+				S = sound(pick(goon_speak_four_sound))
+			if("goon speak blub")
+				S = sound(pick(goon_speak_blub_sound))
+			if("goon speak bottalk")
+				S = sound(pick(goon_speak_bottalk_sound))
+			if("goon speak buwoo")
+				S = sound(pick(goon_speak_buwoo_sound))
+			if("goon speak cow")
+				S = sound(pick(goon_speak_cow_sound))
+			if("goon speak lizard")
+				S = sound(pick(goon_speak_lizard_sound))
+			if("goon speak pug")
+				S = sound(pick(goon_speak_pug_sound))
+			if("goon speak pugg")
+				S = sound(pick(goon_speak_pugg_sound))
+			if("goon speak roach")
+				S = sound(pick(goon_speak_roach_sound))
+			if("goon speak skelly")
+				S = sound(pick(goon_speak_skelly_sound))
+		S.frequency = pick(pref.voice_freq)
+		S.volume = 50
+		SEND_SOUND(user, S)
 
 	return ..();
