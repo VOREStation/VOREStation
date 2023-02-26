@@ -917,6 +917,26 @@ var/global/list/event_wildlife_roaming = list(
 										)
 
 
+var/global/list/selectable_speech_bubbles = list(
+	"default",
+	"normal",
+	"slime",
+	"comm",
+	"machine",
+	"synthetic",
+	"synthetic_evil",
+	"cyber",
+	"ghost",
+	"slime_green",
+	"dark",
+	"plant",
+	"clown",
+	"fox",
+	"maus",
+	"heart",
+	"textbox",
+	"posessed")
+
 
 
 // AREA GENERATION AND BLUEPRINT STUFF BELOW HERE

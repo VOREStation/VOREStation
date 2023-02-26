@@ -16,6 +16,7 @@
 	var/fuzzy = 0			// Preference toggle for sharp/fuzzy icon. Default sharp.
 	var/voice_freq = 0
 	var/voice_sound = "beep-boop"
+	var/custom_speech_bubble = "default"
 
 // Definition of the stuff for Sizing
 /datum/category_item/player_setup_item/vore/size
@@ -30,6 +31,7 @@
 	S["fuzzy"]				>> pref.fuzzy
 	S["voice_freq"]			>> pref.voice_freq
 	S["voice_sound"]		>> pref.voice_sound
+	S["custom_speech_bubble"]		>> pref.custom_speech_bubble
 
 /datum/category_item/player_setup_item/vore/size/save_character(var/savefile/S)
 	S["size_multiplier"]	<< pref.size_multiplier
@@ -39,6 +41,7 @@
 	S["fuzzy"]				<< pref.fuzzy
 	S["voice_freq"]			<< pref.voice_freq
 	S["voice_sound"]		<< pref.voice_sound
+	S["custom_speech_bubble"]		<< pref.custom_speech_bubble
 
 /datum/category_item/player_setup_item/vore/size/sanitize_character()
 	pref.weight_vr			= sanitize_integer(pref.weight_vr, WEIGHT_MIN, WEIGHT_MAX, initial(pref.weight_vr))
@@ -49,6 +52,8 @@
 		pref.voice_freq			= sanitize_integer(pref.voice_freq, MIN_VOICE_FREQ, MAX_VOICE_FREQ, initial(pref.fuzzy))
 	if(pref.size_multiplier == null || pref.size_multiplier < RESIZE_TINY || pref.size_multiplier > RESIZE_HUGE)
 		pref.size_multiplier = initial(pref.size_multiplier)
+	if(!(pref.custom_speech_bubble in selectable_speech_bubbles))
+		pref.custom_speech_bubble = "default"
 
 /datum/category_item/player_setup_item/vore/size/copy_to_mob(var/mob/living/carbon/human/character)
 	character.weight			= pref.weight_vr
@@ -89,6 +94,7 @@
 				character.voice_sounds_list = goon_speak_roach_sound
 			if("goon speak skelly")
 				character.voice_sounds_list = goon_speak_skelly_sound
+	character.custom_speech_bubble = pref.custom_speech_bubble
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"
@@ -96,6 +102,8 @@
 	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
 	. += "<b>Voice Frequency:</b> <a href='?src=\ref[src];voice_freq=1'>[pref.voice_freq]</a><br>"
 	. += "<b>Voice Sounds:</b> <a href='?src=\ref[src];voice_sounds_list=1'>[pref.voice_sound]</a><br>"
+	. += "<a href='?src=\ref[src];voice_test=1'><b>Test Selected Voice</b></a><br>"
+	. += "<b>Custom Speech Bubble:</b> <a href='?src=\ref[src];customize_speech_bubble=1'>[pref.custom_speech_bubble]</a><br>"
 	. += "<br>"
 	. += "<b>Relative Weight:</b>  <a href='?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
 	. += "<b>Weight Gain Rate:</b> <a href='?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
@@ -188,5 +196,48 @@
 			pref.voice_sound = "beep-boop"
 		else
 			pref.voice_sound = choice
+		return TOPIC_REFRESH
+	else if(href_list["customize_speech_bubble"])
+		var/choice = tgui_input_list(usr, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", selectable_speech_bubbles)
+		if(!choice)
+			pref.custom_speech_bubble = "default"
+		else
+			pref.custom_speech_bubble = choice
+		return TOPIC_REFRESH
+
+	else if(href_list["voice_test"])
+		var/sound/S = pick(pref.voice_sound)
+		switch(pref.voice_sound)
+			if("beep-boop")
+				S = sound(pick(talk_sound))
+			if("goon speak 1")
+				S = sound(pick(goon_speak_one_sound))
+			if("goon speak 2")
+				S = sound(pick(goon_speak_two_sound))
+			if("goon speak 3")
+				S = sound(pick(goon_speak_three_sound))
+			if("goon speak 4")
+				S = sound(pick(goon_speak_four_sound))
+			if("goon speak blub")
+				S = sound(pick(goon_speak_blub_sound))
+			if("goon speak bottalk")
+				S = sound(pick(goon_speak_bottalk_sound))
+			if("goon speak buwoo")
+				S = sound(pick(goon_speak_buwoo_sound))
+			if("goon speak cow")
+				S = sound(pick(goon_speak_cow_sound))
+			if("goon speak lizard")
+				S = sound(pick(goon_speak_lizard_sound))
+			if("goon speak pug")
+				S = sound(pick(goon_speak_pug_sound))
+			if("goon speak pugg")
+				S = sound(pick(goon_speak_pugg_sound))
+			if("goon speak roach")
+				S = sound(pick(goon_speak_roach_sound))
+			if("goon speak skelly")
+				S = sound(pick(goon_speak_skelly_sound))
+		S.frequency = pick(pref.voice_freq)
+		S.volume = 50
+		SEND_SOUND(user, S)
 
 	return ..();

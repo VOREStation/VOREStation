@@ -26,6 +26,7 @@
 	..()
 	var/choice = pickweight(list(
 		"virgo3C" = 200,
+		"rp2" = 200,
 		"logo1" = 20,
 		"logo2" = 20,
 		"gateway" = 5

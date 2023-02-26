@@ -1,0 +1,2300 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/device/radio/intercom/private{
+	pixel_y = -21
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"an" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"aD" = (
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"aE" = (
+/obj/effect/decal/cleanable/filth,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"aM" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"aS" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza/filled,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"bh" = (
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/airlock_sensor{
+	pixel_y = 28;
+	req_one_access = list(301)
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/luxury_boat/engine)
+"bB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"bF" = (
+/obj/effect/catwalk_plated,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -27;
+	pixel_y = 32;
+	req_one_access = null
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"bG" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"bP" = (
+/obj/machinery/alarm/alarms_hidden{
+	pixel_x = -1;
+	pixel_y = 27
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"bS" = (
+/obj/structure/table/gamblingtable{
+	gender = "female"
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/luxury_boat/crew)
+"ce" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"cg" = (
+/obj/random/crate,
+/obj/fiftyspawner/plasteel,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"ch" = (
+/obj/random/crate,
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/plastic,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"cv" = (
+/obj/machinery/atmospherics/pipe/tank/air/full{
+	start_pressure = 4000
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"cy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"cH" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"df" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"dk" = (
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/mob/living/simple_mob/animal/giant_spider/space,
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"ds" = (
+/obj/structure/shuttle/window,
+/turf/simulated/wall/fancy_shuttle/window,
+/area/submap/debrisfield/luxury_boat/crew)
+"ea" = (
+/obj/structure/table/rack/gun_rack,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"ed" = (
+/obj/item/trash/stick,
+/obj/item/stack/material/wood{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/stack/material/wood/hard,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/luxury_boat/crew)
+"ee" = (
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"es" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"eC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"eL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/item/royal_spider_egg,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"eM" = (
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"fg" = (
+/obj/machinery/door/window,
+/obj/machinery/light,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"fw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave/advanced,
+/obj/machinery/firealarm/alarms_hidden{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"fE" = (
+/obj/structure/lattice,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/submap/debrisfield/luxury_boat/engine)
+"fH" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"fI" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"fS" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	pixel_y = 26
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"gf" = (
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 30;
+	pixel_y = 32;
+	req_one_access = null
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"gP" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"gY" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"hg" = (
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/fuel_port/empty_tank{
+	pixel_x = -28;
+	pixel_y = 28
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"ho" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"hu" = (
+/obj/structure/table/marble,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"id" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"ih" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"iE" = (
+/obj/structure/table/marble,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"iX" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"jJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"jP" = (
+/obj/effect/decal/cleanable/bug_remains,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"jT" = (
+/obj/item/weapon/material/shard,
+/obj/machinery/door/window,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"kt" = (
+/obj/machinery/atmospherics/binary/pump/fuel/on{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"kV" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/foodcart,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"kW" = (
+/obj/machinery/door/window,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"lb" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"lf" = (
+/obj/machinery/shower,
+/obj/structure/curtain/open/shower,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"ll" = (
+/obj/machinery/door/airlock/hatch{
+	health = 125;
+	req_one_access = null
+	},
+/obj/effect/spider/stickyweb,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"lm" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/sign/painting/library_private{
+	pixel_y = -29
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/luxury_boat/crew)
+"lo" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"lv" = (
+/obj/machinery/atmospherics/pipe/vent{
+	dir = 1
+	},
+/obj/effect/map_effect/perma_light,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"lI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle_control/explore/luxury_boat,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"lU" = (
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"lY" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/engineer/rig{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Poisoned Engineer"
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"mg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/cryo)
+"mK" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"mT" = (
+/obj/machinery/shipsensors{
+	dir = 8;
+	use_power = 0
+	},
+/obj/effect/floor_decal/industrial/warning/cee{
+	dir = 8
+	},
+/turf/simulated/floor/greengrid/airless,
+/area/submap/debrisfield/luxury_boat/bridge)
+"nr" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/gun/energy/locked/frontier/holdout{
+	pixel_y = -9
+	},
+/obj/item/weapon/gun/energy/locked/frontier/holdout,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"nt" = (
+/obj/structure/closet/cabinet,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"nu" = (
+/obj/item/weapon/material/shard{
+	pixel_x = 7;
+	pixel_y = -9
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = 8;
+	pixel_y = 13
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = -9;
+	pixel_y = -12
+	},
+/obj/item/stack/rods,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"ny" = (
+/obj/effect/decal/cleanable/ash,
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/obj/machinery/firealarm/alarms_hidden{
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"nR" = (
+/obj/machinery/computer/ship/engines{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"ot" = (
+/obj/effect/decal/cleanable/bug_remains,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"oX" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"pd" = (
+/mob/living/simple_mob/animal/giant_spider/space,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"pi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"pn" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"py" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/luxury_boat/crew)
+"pL" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"pQ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/device/taperecorder/tourist,
+/obj/effect/landmark/corpse/bridgeofficer{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Mutiliated Captain"
+	},
+/obj/item/weapon/gun/energy/gun/rifle,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"pT" = (
+/obj/effect/spider/cocoon,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"qd" = (
+/obj/effect/landmark/corpse/engineer/rig{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Poisoned Engineer"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"qg" = (
+/obj/structure/bed/double/padded,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"qh" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/luxury_boat/bridge)
+"qj" = (
+/obj/machinery/light{
+	brightness_color = "#FF0000";
+	brightness_color_ns = "#FF0000";
+	dir = 8;
+	light_color = "#FF0000"
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"rc" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"re" = (
+/obj/structure/table/marble,
+/obj/machinery/chemical_dispenser/bar_alc/full,
+/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"rq" = (
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/crew)
+"rD" = (
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/bridge)
+"rG" = (
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/decal/cleanable/cobweb2,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"rW" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 8
+	},
+/turf/space,
+/area/submap/debrisfield/luxury_boat/engine)
+"rZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/luxury_boat/crew)
+"sh" = (
+/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"sz" = (
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"sA" = (
+/obj/machinery/computer/ship/helm{
+	dir = 4;
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"sB" = (
+/obj/effect/landmark/loot_spawn,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"sN" = (
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"sO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"sZ" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/effect/spider/stickyweb,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"tw" = (
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/luxury_boat/crew)
+"tI" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"up" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"uu" = (
+/obj/machinery/atmospherics/pipe/tank/air/full{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"uF" = (
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/closet/crate,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"uM" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/spider/stickyweb,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"uP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"vc" = (
+/obj/structure/shuttle/window,
+/turf/simulated/wall/fancy_shuttle/window,
+/area/submap/debrisfield/luxury_boat/bridge)
+"vl" = (
+/obj/machinery/door/window,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"vq" = (
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"vI" = (
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/fiftyspawner/gold,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/light/small,
+/obj/structure/closet/crate,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"wp" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/atmospherics/unary/vent_scrubber,
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza/filled,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"wq" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/spider/stickyweb,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"wv" = (
+/obj/effect/decal/cleanable/bug_remains,
+/obj/structure/sign/painting/public{
+	pixel_x = 27
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"ww" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"wy" = (
+/obj/structure/lattice,
+/obj/item/royal_spider_egg,
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/submap/debrisfield/luxury_boat/engine)
+"wz" = (
+/obj/effect/catwalk_plated,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"wJ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/chef{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Destroyed Staff"
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"wK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"xD" = (
+/obj/machinery/atmospherics/pipe/tank/phoron{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"xT" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/submap/debrisfield/luxury_boat/engine)
+"xW" = (
+/obj/machinery/door/airlock/hatch{
+	health = 35;
+	req_one_access = null
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/spider/stickyweb,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"yl" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood{
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/blood{
+	pixel_x = 10
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = -9
+	},
+/obj/item/stack/rods,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"yq" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"yr" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"yu" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"yL" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/luxury_boat/crew)
+"yX" = (
+/obj/machinery/atmospherics/pipe/vent,
+/obj/effect/map_effect/perma_light,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"zd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"zh" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"zr" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"zw" = (
+/obj/effect/decal/cleanable/blood,
+/mob/living/simple_mob/animal/giant_spider/hunter/space,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"zQ" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"Ab" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/cryo)
+"Ad" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 5
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Ag" = (
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Aj" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/sign/painting/library_private{
+	pixel_y = -29
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"AN" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Bc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Br" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	dir = 4;
+	door_color = "#323d80";
+	name = "Bridge";
+	req_access = null;
+	req_one_access = null;
+	stripe_color = "#f7d35c"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"BA" = (
+/obj/machinery/atmospherics/pipe/vent{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"BT" = (
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"CB" = (
+/obj/structure/inflatable,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"CJ" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"CL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"CR" = (
+/obj/structure/bed/double/padded,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"CZ" = (
+/obj/structure/grille,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"Dg" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"Dh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Dj" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"DP" = (
+/obj/effect/decal/cleanable/filth,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Eb" = (
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Ec" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	id_tag = tourist_airlock;
+	pixel_y = -30
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Eq" = (
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"Fa" = (
+/obj/structure/table/gamblingtable,
+/obj/item/weapon/deck/cards/casino,
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/luxury_boat/crew)
+"Fm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Fo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Fs" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"Fu" = (
+/obj/structure/ghost_pod/manual/survivor/spidership{
+	dir = 8
+	},
+/obj/machinery/firealarm/alarms_hidden{
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"FB" = (
+/turf/space,
+/area/space)
+"FT" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/smartfridge/drinks,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"FY" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Gv" = (
+/obj/structure/bed/double/padded,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"Gw" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"GF" = (
+/mob/living/simple_mob/animal/giant_spider/space,
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/turf/simulated/floor/carpet/green,
+/area/submap/debrisfield/luxury_boat/crew)
+"GI" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Hd" = (
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Hh" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"Hr" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Il" = (
+/obj/machinery/light_switch,
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/luxury_boat/cryo)
+"ID" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/luxury_boat/crew)
+"IT" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"IZ" = (
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"Jj" = (
+/mob/living/simple_mob/animal/giant_spider/space,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"JJ" = (
+/obj/structure/toilet,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"JL" = (
+/obj/machinery/status_display,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/bridge)
+"JO" = (
+/obj/structure/table/hardwoodtable,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"JP" = (
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"JS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light/small,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"JV" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Kg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"KI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/luxury_boat/crew)
+"KP" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Ll" = (
+/obj/machinery/status_display,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/crew)
+"Lw" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"LC" = (
+/obj/structure/closet/cabinet,
+/obj/item/weapon/storage/secure/briefcase/money,
+/obj/item/weapon/storage/secure/briefcase/money,
+/obj/item/clothing/head/beret/centcom/captain,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"LI" = (
+/turf/simulated/floor/carpet/purple,
+/area/submap/debrisfield/luxury_boat/crew)
+"LY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Mh" = (
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/structure/lattice,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/submap/debrisfield/luxury_boat/engine)
+"Mq" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"MX" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"MY" = (
+/obj/machinery/atmospherics/pipe/vent,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Ne" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"NI" = (
+/obj/machinery/door/airlock/hatch,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"NP" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/folder/blue_captain,
+/obj/item/weapon/coin/phoron,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"NQ" = (
+/obj/structure/table/reinforced,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	pixel_y = 26
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"NR" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Or" = (
+/obj/machinery/light,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Ov" = (
+/obj/structure/table/marble,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Ox" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/item/royal_spider_egg,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"OP" = (
+/mob/living/simple_mob/animal/giant_spider/tunneler/space,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Pa" = (
+/obj/effect/landmark/corpse/random_civ{
+	name = "Mangled Tourist"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"PD" = (
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"PV" = (
+/obj/structure/table/marble,
+/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Qe" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/luxury_boat/crew)
+"Qf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Qq" = (
+/obj/effect/decal/cleanable/ash,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"Rd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Rl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Rm" = (
+/obj/item/weapon/material/shard{
+	pixel_x = 10;
+	pixel_y = -9
+	},
+/obj/item/weapon/material/shard,
+/obj/item/stack/rods,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"RU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/luxury_boat,
+/obj/effect/overmap/visitable/ship/landable/luxury_boat,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Si" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"Te" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Tm" = (
+/mob/living/simple_mob/animal/giant_spider/nurse/space,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Ts" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"TV" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Ux" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/submap/debrisfield/luxury_boat/engine)
+"UB" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"UL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"Vg" = (
+/obj/structure/ghost_pod/manual/survivor/spidership{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"Vo" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth,
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"Vq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Vt" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"Vy" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"VG" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/luxury_boat/engine)
+"VR" = (
+/obj/effect/landmark/corpse/security{
+	corpseid = 0;
+	corpseidaccess = null;
+	corpseidjob = null;
+	name = "Torn-Apart Bodyguard"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"Wb" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled,
+/area/submap/debrisfield/luxury_boat/crew)
+"We" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"Wt" = (
+/obj/structure/grille,
+/obj/item/weapon/material/shard{
+	pixel_y = 4
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = 12
+	},
+/obj/item/weapon/material/shard{
+	pixel_x = -21
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/crew)
+"Xq" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/door/window,
+/turf/simulated/floor/wood/broken,
+/area/submap/debrisfield/luxury_boat/crew)
+"Xr" = (
+/obj/machinery/power/smes/buildable{
+	charge = 500000
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"XK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/bridge)
+"XW" = (
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/cryo)
+"Ye" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/lino,
+/area/submap/debrisfield/luxury_boat/crew)
+"Yp" = (
+/obj/machinery/atmospherics/portables_connector/fuel,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Yw" = (
+/obj/effect/decal/cleanable/ash,
+/obj/structure/panic_button{
+	icon_state = "panicbutton_launched";
+	launched = 1;
+	pixel_x = 26
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"Yz" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/luxury_boat/engine)
+"YR" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/weapon/storage/secure/briefcase/money,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/luxury_boat/crew)
+"YT" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/light{
+	brightness_color = "#FF0000";
+	brightness_color_ns = "#FF0000";
+	dir = 8;
+	light_color = "#FF0000"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/cryo)
+"YW" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+"Ze" = (
+/turf/simulated/floor/tiled/milspec,
+/area/submap/debrisfield/luxury_boat/bridge)
+"Zv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/yellow,
+/area/submap/debrisfield/luxury_boat/crew)
+"ZX" = (
+/obj/structure/closet/crate,
+/obj/fiftyspawner/tritium,
+/obj/fiftyspawner/tritium,
+/obj/fiftyspawner/titanium,
+/obj/fiftyspawner/phoron,
+/obj/machinery/atmospherics/binary/pump/fuel/on,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/luxury_boat/engine)
+
+(1,1,1) = {"
+FB
+FB
+XK
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(2,1,1) = {"
+FB
+XK
+sA
+XK
+FB
+FB
+rq
+tI
+tI
+Wt
+tI
+tI
+rq
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(3,1,1) = {"
+XK
+Hh
+Si
+nR
+XK
+FB
+bG
+aS
+df
+CB
+JO
+ww
+tI
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(4,1,1) = {"
+XK
+lI
+pT
+ce
+XK
+FB
+bG
+Vy
+Vo
+lY
+lo
+ww
+tI
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(5,1,1) = {"
+qh
+qh
+ll
+qh
+qh
+FB
+bG
+ih
+wp
+JP
+JO
+ww
+CZ
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(6,1,1) = {"
+rD
+NP
+Ze
+ny
+rD
+mT
+bG
+Eq
+dk
+MX
+pL
+JP
+CZ
+FB
+FB
+FB
+FB
+FB
+FB
+"}
+(7,1,1) = {"
+rD
+NQ
+cH
+ai
+rD
+rq
+rq
+kV
+zQ
+jT
+Vt
+Aj
+rq
+rq
+ds
+rq
+ds
+rq
+rq
+"}
+(8,1,1) = {"
+rD
+ea
+yr
+VR
+JL
+fI
+Hd
+Hd
+DP
+Lw
+Hd
+TV
+PD
+lb
+qg
+YR
+IZ
+eM
+rq
+"}
+(9,1,1) = {"
+vc
+CR
+mK
+Qq
+xW
+CJ
+jP
+aE
+uP
+Fm
+Hd
+TV
+PD
+lb
+Fs
+Xq
+Fs
+kW
+rq
+"}
+(10,1,1) = {"
+rD
+LC
+Yw
+nr
+rD
+Te
+wv
+NR
+Hd
+ot
+Hd
+TV
+PD
+up
+up
+up
+PD
+Or
+rq
+"}
+(11,1,1) = {"
+rq
+rq
+rq
+rq
+rq
+rq
+rq
+Qe
+fS
+bB
+Hd
+zr
+sh
+PD
+PD
+LI
+py
+tw
+rq
+"}
+(12,1,1) = {"
+rq
+lf
+Kg
+rq
+vq
+fw
+an
+Ll
+OP
+Ne
+Hd
+zr
+PD
+PD
+IT
+py
+bS
+ed
+ds
+"}
+(13,1,1) = {"
+rq
+JJ
+Pa
+Wb
+pQ
+zw
+pn
+uM
+AN
+Hr
+Hd
+PD
+PD
+PD
+up
+LI
+Fa
+GF
+ds
+"}
+(14,1,1) = {"
+XW
+XW
+XW
+XW
+Br
+XW
+XW
+Il
+Hd
+RU
+Hd
+TV
+PD
+yq
+PD
+LI
+yL
+lm
+rq
+"}
+(15,1,1) = {"
+XW
+Gw
+Gw
+qj
+Dg
+YT
+Gw
+mg
+bP
+Zv
+UL
+Ye
+LY
+LY
+Dj
+KI
+rZ
+ID
+ds
+"}
+(16,1,1) = {"
+XW
+Vg
+nu
+Vg
+yl
+Fu
+Rm
+Ab
+rc
+eC
+Hd
+zr
+PD
+sh
+Dh
+PD
+PD
+sh
+rq
+"}
+(17,1,1) = {"
+XW
+XW
+XW
+XW
+XW
+XW
+XW
+Ab
+Qf
+gf
+Hd
+zr
+vl
+iE
+PV
+hu
+iX
+fg
+rq
+"}
+(18,1,1) = {"
+FB
+FB
+FB
+Eb
+BT
+Xr
+JV
+Rl
+Eb
+sZ
+Eb
+VG
+up
+wJ
+pd
+UB
+nt
+eM
+rq
+"}
+(19,1,1) = {"
+FB
+FB
+Eb
+Eb
+Ag
+Fo
+JS
+zd
+aD
+YW
+es
+Eb
+PD
+Ov
+re
+FT
+Gv
+Jj
+rq
+"}
+(20,1,1) = {"
+FB
+FB
+Eb
+zh
+Ox
+Ts
+ch
+Eb
+bh
+xT
+Ec
+Eb
+Eb
+sO
+Yz
+pi
+We
+ds
+rq
+"}
+(21,1,1) = {"
+FB
+FB
+Eb
+zh
+Tm
+fH
+cg
+Eb
+rG
+GI
+gY
+Eb
+Eb
+uu
+uu
+uu
+We
+FB
+FB
+"}
+(22,1,1) = {"
+FB
+FB
+Eb
+zh
+eL
+fH
+Eb
+VG
+Eb
+Mq
+Eb
+VG
+Eb
+cv
+KP
+uF
+jJ
+FB
+FB
+"}
+(23,1,1) = {"
+FB
+MY
+Vq
+gP
+id
+fH
+Eb
+Mh
+wz
+bF
+sz
+fE
+Eb
+cv
+Rd
+aM
+Vq
+BA
+FB
+"}
+(24,1,1) = {"
+FB
+yX
+Vq
+sB
+BT
+sN
+wq
+wy
+fE
+sz
+fE
+fE
+NI
+BT
+qd
+lU
+Vq
+lv
+FB
+"}
+(25,1,1) = {"
+FB
+MY
+Vq
+hg
+Yp
+ZX
+Ad
+FB
+fE
+sz
+fE
+FB
+cy
+kt
+ho
+vI
+Vq
+BA
+FB
+"}
+(26,1,1) = {"
+FB
+FB
+Eb
+xD
+ee
+xD
+wK
+FB
+FB
+sz
+FB
+FB
+wK
+ee
+xD
+xD
+Eb
+FB
+FB
+"}
+(27,1,1) = {"
+FB
+FB
+Eb
+oX
+yu
+yu
+CL
+FB
+FB
+FB
+FB
+FB
+Bc
+yu
+yu
+FY
+Eb
+FB
+FB
+"}
+(28,1,1) = {"
+FB
+FB
+FB
+Ux
+Ux
+rW
+FB
+FB
+FB
+FB
+FB
+FB
+FB
+Ux
+Ux
+Ux
+FB
+FB
+FB
+"}

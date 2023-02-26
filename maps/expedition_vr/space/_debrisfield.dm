@@ -94,6 +94,84 @@
 	name = "POI - Overrun Science Ship"
 	requires_power = 0
 
+/area/submap/debrisfield/luxury_boat
+	secret_name = 0
+
+/area/submap/debrisfield/luxury_boat/bridge
+	name = "Captain's Quarters"
+
+/area/submap/debrisfield/luxury_boat/crew
+	name = "Passenger Compartment"
+
+/area/submap/debrisfield/luxury_boat/engine
+	name = "Engineering"
+
+/area/submap/debrisfield/luxury_boat/cryo
+	name = "Emergency Cryopods" //Separated out based on comments on Pull Request
+	requires_power = 0 //Idea is to reinforce that this place SHOULD have its air retained.
+
+/datum/shuttle/autodock/overmap/luxury_boat
+	name = "Luxury Yacht"
+	warmup_time = 0
+	current_location = "debris_field_yacht_start"
+	docking_controller_tag = "debris_yacht_docker"
+	shuttle_area = list(/area/submap/debrisfield/luxury_boat/engine, /area/submap/debrisfield/luxury_boat/cryo, /area/submap/debrisfield/luxury_boat/crew, /area/submap/debrisfield/luxury_boat/bridge)
+	fuel_consumption = 6 //wasteful decadent thing
+	defer_initialisation = TRUE
+	move_direction = WEST
+
+/obj/effect/shuttle_landmark/shuttle_initializer/luxury_boat
+	name = "Debris Field"
+	base_area = /area/space
+	base_turf = /turf/space
+	landmark_tag = "debris_field_yacht_start"
+	shuttle_type = /datum/shuttle/autodock/overmap/luxury_boat
+
+/obj/effect/shuttle_landmark/shuttle_initializer/luxury_boat/Initialize()
+	var/obj/effect/overmap/visitable/O = get_overmap_sector(get_z(src)) //make this into general system some other time
+	LAZYINITLIST(O.initial_restricted_waypoints)
+	O.initial_restricted_waypoints["Luxury Yacht"] = list(landmark_tag)
+	. = ..()
+
+/obj/effect/overmap/visitable/ship/landable/luxury_boat
+	name = "TBD"
+	scanner_desc = "TBD"
+	vessel_mass = 20000 //10 000 is too low. It's incredibly speedy that way. This is supposed to be a crappy luxury yacht, not a racer!
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Luxury Yacht"
+
+/obj/effect/overmap/visitable/ship/landable/luxury_boat/Initialize()
+	. = ..()
+	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/gov/elysia]
+	var/newname = "ECS-T [pick(O.ship_names)]"
+	name = newname
+	scanner_desc = {"\[i\]Registration\[/i\]: [newname]
+\[i\]Class\[/i\]: Private Pleasure Yacht
+\[i\]Transponder\[/i\]: Transmitting (CIV), Weak Signal
+\[b\]Notice\[/b\]: Reported missing."}
+	rename_areas(newname)
+
+/obj/effect/overmap/visitable/ship/landable/luxury_boat/proc/rename_areas(newname)
+	if(!SSshuttles.subsystem_initialized)
+		spawn(300)
+			rename_areas(newname)
+		return
+	var/datum/shuttle/S = SSshuttles.shuttles[shuttle]
+	for(var/area/A in S.shuttle_area)
+		A.name = "[newname] [initial(A.name)]"
+		if(A.apc)
+			A.apc.name = "[A.name] APC"
+		A.air_vent_names = list()
+		A.air_scrub_names = list()
+		A.air_vent_info = list()
+		A.air_scrub_info = list()
+		for(var/obj/machinery/alarm/AA in A)
+			AA.name = "[A.name] Air Alarm"
+
+/obj/machinery/computer/shuttle_control/explore/luxury_boat
+	shuttle_tag = "Luxury Yacht"
+	req_one_access = list()
+
 /area/submap/debrisfield/old_sat
 	name = "POI - Old Satellite"
 

@@ -1,5 +1,8 @@
 Drakeborg & drakeplushies are created by deviantart.com/mizartz
 
+Drakeplushies science, engineering, mining, trauma and janitorial are Adaptations of the drakeplushies above, created by github.com/Seris02.
+Drakeborg (science) in this codebase is an Adaptation of the science drakeborg (lights have been altered), altered by github.com/Seris02.
+
 https://creativecommons.org/licenses/by-nc-sa/3.0/
 Attribution-NonCommercial-ShareAlike 3.0 Unported
 

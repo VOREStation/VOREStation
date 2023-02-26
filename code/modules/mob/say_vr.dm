@@ -355,3 +355,11 @@
 				continue
 			to_chat(M, message)
 	log_emote(message, src)
+
+/mob/verb/select_speech_bubble()
+	set name = "Select Speech Bubble"
+	set category = "OOC"
+
+	var/new_speech_bubble = tgui_input_list(src, "Pick new voice (default for automatic selection)", "Character Preference", selectable_speech_bubbles)
+	if(new_speech_bubble)
+		custom_speech_bubble = new_speech_bubble

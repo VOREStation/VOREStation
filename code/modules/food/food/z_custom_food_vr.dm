@@ -55,7 +55,7 @@ var/global/ingredientLimit = 20
 
 		if(src.addTop)
 			cut_overlay(topping)
-		if(!fullyCustom && !stackIngredients && our_overlays.len)
+		if(!fullyCustom && !stackIngredients && LAZYLEN(our_overlays))
 			cut_overlay(filling) //we can't directly modify the overlay, so we have to remove it and then add it again
 			var/newcolor = S.filling_color != "#FFFFFF" ? S.filling_color : AverageColor(getFlatIcon(S, S.dir, 0), 1, 1)
 			filling.color = BlendRGB(filling.color, newcolor, 1/ingredients.len)

@@ -373,6 +373,14 @@ var/list/_client_preferences_by_type
 	key = "RECEIVE_TIPS"
 	enabled_description = "Enabled"
 	disabled_description = "Disabled"
+ 
+/datum/client_preference/pain_frequency
+	description = "Pain Messages Cooldown"
+	key = "PAIN_FREQUENCY"
+	enabled_by_default = FALSE
+	enabled_description = "Extended"
+	disabled_description = "Default"
+
 
 /********************
 * Staff Preferences *
