@@ -100,13 +100,20 @@
 
 /obj/item/toy/plushie/borgplushie/drake/AltClick(mob/living/user)
 	. = ..()
+	var/turf/T = get_turf(src)
+	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
+		return FALSE
 	lights_glowing = !lights_glowing
+	to_chat(user, "<span class='notice'>You turn the [src]'s glow-fabric [lights_glowing ? "on" : "off"].</span>")
 	update_icon()
 
 /obj/item/toy/plushie/borgplushie/drake/update_icon()
 	cut_overlays()
 	if (lights_glowing)
 		add_overlay(emissive_appearance(icon, "[icon_state]-lights"))
+
+/obj/item/toy/plushie/borgplushie/drake/get_description_info()
+	return "The lights on the plushie can be toggled [lights_glowing ? "off" : "on"] by alt-clicking on it."
 
 /obj/item/toy/plushie/borgplushie/drake/sec
 	name = "security drake plushie"
