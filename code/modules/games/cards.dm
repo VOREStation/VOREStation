@@ -1,5 +1,6 @@
 /datum/playingcard
 	var/name = "playing card"
+	var/desc
 	var/card_icon = "card_back"
 	var/back_icon = "card_back"
 
@@ -8,11 +9,16 @@
 	icon = 'icons/obj/playing_cards.dmi'
 	var/list/cards = list()
 	var/cooldown = 0 // to prevent spam shuffle
+<<<<<<< HEAD
 
 /obj/item/weapon/deck/holder
 	name = "card box"
 	desc = "A small leather case to show how classy you are compared to everyone else."
 	icon_state = "card_holder"
+=======
+	var/decklimit = null // For giving a deck a max card count.
+	var/decktype
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 /obj/item/weapon/deck/cards
 	name = "deck of cards"
@@ -20,6 +26,7 @@
 	icon_state = "deck"
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
+	decktype = /datum/playingcard
 
 /obj/item/weapon/deck/cards/New()
 	..()
@@ -52,11 +59,28 @@
 		P.card_icon = "joker"
 		cards += P
 
+<<<<<<< HEAD
 /obj/item/weapon/deck/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O,/obj/item/weapon/hand))
 		var/obj/item/weapon/hand/H = O
 		if(H.parentdeck == src)
+=======
+/obj/item/deck/attackby(obj/O as obj, mob/user as mob)
+	if(istype(O,/obj/item/cardhand))
+		var/obj/item/cardhand/H = O
+		if(decklimit && (decklimit <= cards.len))
+			to_chat(user,"<span class='warning'>This deck is full!</span>")
+			return
+		if(ispath(H.cardtype, decktype))
+			var/i = 0
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 			for(var/datum/playingcard/P in H.cards)
+				if(decklimit && (decklimit <= cards.len)) /// Stop placing the cards
+					to_chat(user,"<span class='notice'>You place [i] cards on the bottom of \the [src]</span>.")
+					H.update_icon()
+					return
+				i++
+				H.cards -= P
 				cards += P
 			qdel(H)
 			to_chat(user,"<span class='notice'>You place your cards on the bottom of \the [src]</span>.")
@@ -95,8 +119,13 @@
 		to_chat(user,"<span class='notice'>There are no cards in the deck.</span>")
 		return
 
+<<<<<<< HEAD
 	var/obj/item/weapon/hand/H = user.get_type_in_hands(/obj/item/weapon/hand)
 	if(H && !(H.parentdeck == src))
+=======
+	var/obj/item/cardhand/H = user.get_active_hand(/obj/item/cardhand)
+	if(H && !ispath(H.cardtype, decktype))
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 		to_chat(user,"<span class='warning'>You can't mix cards from different decks!</span>")
 		return
 
@@ -109,12 +138,57 @@
 	var/datum/playingcard/P = cards[1]
 	H.cards += P
 	cards -= P
-	H.parentdeck = src
+	H.cardtype = src.decktype
 	H.update_icon()
 	user.visible_message("<b>\The [user]</b> draws a card.")
 	to_chat(user,"<span class='notice'>It's the [P].</span>")
 
+<<<<<<< HEAD
 /obj/item/weapon/deck/verb/deal_card()
+=======
+/obj/item/deck/verb/find_card()
+	set category = "Object"
+	set name = "Find Card"
+	set desc = "Find a specific card from a deck."
+	set src in view(1)
+
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/user = usr
+	if(user.incapacitated() || !Adjacent(user))
+		return
+
+	if(user.hands_are_full())
+		to_chat(user,"<span class='notice'>Your hands are full!</span>")
+		return
+
+	if(!cards.len)
+		to_chat(user,"<span class='notice'>There are no cards in the deck.</span>")
+		return
+
+	var/list/pickablecards = list()
+	for(var/datum/playingcard/P in cards)
+		if(!islist(pickablecards[P.name]))
+			pickablecards[P.name] = list()
+		pickablecards[P.name] += P
+	sortTim(pickablecards, /proc/cmp_text_asc)
+	var/pickedcard = input("Which card do you want to remove from the deck?")	as null|anything in pickablecards
+	if(!pickedcard || !LAZYLEN(pickablecards[pickedcard]) || !usr || !src)
+		return
+
+	var/datum/playingcard/card = pick(pickablecards[pickedcard])
+	user.visible_message("<span class = 'notice'>\The [user] searches the [src] for a card.</span>") /// To help catch any cheaters.
+	var/obj/item/cardhand/H = new(get_turf(src))
+	if(!istype(H, /obj/item/cardhand))
+		return
+	user.put_in_hands(H)
+	H.cards += card
+	cards -= card
+	H.cardtype = src.decktype
+	H.update_icon()
+
+/obj/item/deck/verb/deal_card()
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 	set category = "Object"
 	set name = "Deal"
@@ -165,13 +239,18 @@
 
 	deal_at(usr, M, dcard)
 
+<<<<<<< HEAD
 /obj/item/weapon/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
 	var/obj/item/weapon/hand/H = new(get_step(user, user.dir))
+=======
+/obj/item/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
+	var/obj/item/cardhand/H = new(get_step(user, user.dir))
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	var/i
 	for(i = 0, i < dcard, i++)
 		H.cards += cards[1]
 		cards -= cards[1]
-		H.parentdeck = src
+		H.cardtype = src.decktype
 		H.concealed = 1
 		H.update_icon()
 	if(user==target)
@@ -182,8 +261,36 @@
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/attackby(obj/O as obj, mob/user as mob)
 	if(cards.len == 1 && istype(O, /obj/item/weapon/pen))
+=======
+/obj/item/deck/verb/cheater_deal() /// Takes from the bottom of the deck, chance to expose your cheat.
+	set category = "Object"
+	set name = "Deal From Bottom"
+	set desc = "Deal a card from the bottom of a deck, like a cheater."
+	set src in view(1)
+
+	if(!cards.len)
+		to_chat(usr,"<span class='notice'>There are no cards in the deck.</span>")
+		return
+
+	var/list/players = list()
+	for(var/mob/living/player in viewers(3))
+		if(!player.stat)
+			players += player
+	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
+	if(!usr || !src || !M) return
+
+	if(prob(30))
+		usr.visible_message("<span class = 'warning'>\The [usr] dealt from the bottom of the deck!</span>")
+
+	moveElement(cards, cards.len, 1) /// Deal_at moves the first card in the list.
+	deal_at(usr, M, 1)
+
+/obj/item/cardhand/attackby(obj/O as obj, mob/user as mob)
+	if(cards.len == 1 && istype(O, /obj/item/pen))
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 		var/datum/playingcard/P = cards[1]
 		if(P.name != "Blank Card")
 			to_chat(user,"<span class = 'notice'>You cannot write on that card.</span>")
@@ -195,9 +302,15 @@
 		// SNOWFLAKE FOR CAG, REMOVE IF OTHER CARDS ARE ADDED THAT USE THIS.
 		P.card_icon = "cag_white_card"
 		update_icon()
+<<<<<<< HEAD
 	else if(istype(O,/obj/item/weapon/hand))
 		var/obj/item/weapon/hand/H = O
 		if(H.parentdeck == src.parentdeck) // Prevent cardmixing
+=======
+	else if(istype(O,/obj/item/cardhand))
+		var/obj/item/cardhand/H = O
+		if(H.cardtype == src.cardtype) // Prevent cardmixing
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 			for(var/datum/playingcard/P in cards)
 				H.cards += P
 			H.concealed = src.concealed
@@ -282,17 +395,21 @@
 	icon = 'icons/obj/playing_cards.dmi'
 	w_class = ITEMSIZE_TINY
 	var/list/cards = list()
-	var/parentdeck = null // This variable is added here so that card pack dependent card can be mixed together by defining a "parentdeck" for them
+	var/decktype = null // For defining their decktype.
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 
 /obj/item/weapon/pack/attack_self(var/mob/user as mob)
 	user.visible_message("<span class ='danger'>[user] rips open \the [src]!</span>")
+<<<<<<< HEAD
 	var/obj/item/weapon/hand/H = new()
+=======
+	var/obj/item/cardhand/H = new()
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 	H.cards += cards
-	H.parentdeck = src.parentdeck
+	H.cardtype = decktype
 	cards.Cut();
 	user.drop_item()
 	qdel(src)
@@ -300,7 +417,11 @@
 	H.update_icon()
 	user.put_in_active_hand(H)
 
+<<<<<<< HEAD
 /obj/item/weapon/hand
+=======
+/obj/item/cardhand
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	name = "hand of cards"
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
@@ -311,9 +432,13 @@
 
 	var/concealed = 0
 	var/list/cards = list()
-	var/parentdeck = null
+	var/cardtype
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/verb/discard()
+=======
+/obj/item/cardhand/verb/discard()
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 	set category = "Object"
 	set name = "Discard"
@@ -335,13 +460,17 @@
 		var/datum/playingcard/card = to_discard[discarding]
 		to_discard.Cut()
 
+<<<<<<< HEAD
 		var/obj/item/weapon/hand/H = new(src.loc)
+=======
+		var/obj/item/cardhand/H = new(src.loc)
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 		H.cards += card
 		cards -= card
 		H.concealed = 0
-		H.parentdeck = src.parentdeck
+		H.cardtype = src.cardtype
 		H.update_icon()
-		src.update_icon()
+		src.update_icon() /// Calls for qdel if no cards
 		usr.visible_message("<span class = 'notice'>\The [usr] plays \the [discarding].</span>")
 		H.loc = get_turf(usr)
 		H.Move(get_step(usr,usr.dir))
@@ -349,19 +478,34 @@
 	if(!cards.len)
 		qdel(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/attack_self(var/mob/user as mob)
+=======
+/obj/item/cardhand/attack_self(var/mob/user as mob)
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	concealed = !concealed
 	update_icon()
 	user.visible_message("<span class = 'notice'>\The [user] [concealed ? "conceals" : "reveals"] their hand.</span>")
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/examine(mob/user)
+=======
+/obj/item/cardhand/examine(mob/user)
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	. = ..()
 	if((!concealed) && cards.len)
 		. += "It contains: "
 		for(var/datum/playingcard/P in cards)
-			. += "\The [P.name]."
+			if(!P.desc)
+				. += "\The [P.name]."
+			else
+				. += "[P.name]: [P.desc]"
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/verb/Removecard()
+=======
+/obj/item/cardhand/verb/Removecard()
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 	set category = "Object"
 	set name = "Remove card"
@@ -376,20 +520,27 @@
 		to_chat(usr,"<span class='danger'>Your hands are full!</span>")
 		return
 
-	var/pickablecards = list()
+	var/list/pickablecards = list() /// Make it so duplicates don't cause runtimes
 	for(var/datum/playingcard/P in cards)
+		if(!islist(pickablecards[P.name]))
+			pickablecards[P.name] += list()
 		pickablecards[P.name] += P
 	var/pickedcard = tgui_input_list(usr, "Which card do you want to remove from the hand?", "Card Selection", pickablecards)
 
-	if(!pickedcard || !pickablecards[pickedcard] || !usr || !src) return
+	if(!pickedcard || !LAZYLEN(pickablecards[pickedcard]) || !usr || !src)
+		return
 
-	var/datum/playingcard/card = pickablecards[pickedcard]
+	var/datum/playingcard/card = pick(pickablecards[pickedcard])
 
+<<<<<<< HEAD
 	var/obj/item/weapon/hand/H = new(get_turf(src))
+=======
+	var/obj/item/cardhand/H = new(get_turf(src))
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	user.put_in_hands(H)
 	H.cards += card
 	cards -= card
-	H.parentdeck = src.parentdeck
+	H.cardtype = src.cardtype
 	H.concealed = src.concealed
 	H.update_icon()
 	src.update_icon()
@@ -398,7 +549,11 @@
 		qdel(src)
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/update_icon(var/direction = 0)
+=======
+/obj/item/cardhand/update_icon(var/direction = 0)
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 	var/cardNumber = cards.len
 
@@ -409,7 +564,7 @@
 		name = "hand of cards ([cardNumber])"
 		desc = "Some playing cards."
 	else
-		name = "a playing card"
+		name = "playing card"
 		desc = "A playing card."
 
 	cut_overlays()
@@ -423,7 +578,11 @@
 		add_overlay(I)
 		return
 
+<<<<<<< HEAD
 	var/offset = FLOOR(20/cardNumber, 1)
+=======
+	var/offset = max(FLOOR(20/cards.len, 1), 1) /// Keeps +20 cards from shifting back into one.
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 
 	var/matrix/M = matrix()
 	if(direction)
@@ -442,6 +601,8 @@
 	for(var/datum/playingcard/P in cards)
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		//I.pixel_x = origin+(offset*i)
+		if(i>20)
+			return
 		switch(direction)
 			if(SOUTH)
 				I.pixel_x = 8-(offset*i)
@@ -455,13 +616,19 @@
 		add_overlay(I)
 		i++
 
+<<<<<<< HEAD
 
 /obj/item/weapon/hand/dropped(mob/user as mob)
+=======
+/obj/item/cardhand/dropped(mob/user as mob)
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)
-	else
-		update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/hand/pickup(mob/user as mob)
+=======
+/obj/item/cardhand/pickup(mob/user as mob)
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 	..()
 	src.update_icon()

@@ -5,11 +5,14 @@
 	name = "deck of tarot cards"
 	desc = "For all your occult needs!"
 	icon_state = "deck_tarot"
+	decktype = /datum/playingcard/tarot
+
+/datum/playingcard/tarot/
 
 /obj/item/weapon/deck/tarot/New()
 	..()
 
-	var/datum/playingcard/P
+	var/datum/playingcard/tarot/P
 	for(var/name in list("Fool","Magician","High Priestess","Empress","Emperor","Hierophant","Lovers","Chariot","Strength","Hermit","Wheel of Fortune","Justice","Hanged Man","Death","Temperance","Devil","Tower","Star","Moon","Sun","Judgement","World"))
 		P = new()
 		P.name = "[name]"
@@ -29,7 +32,7 @@
 	if (cooldown < world.time - 10)
 		var/list/newcards = list()
 		while(cards.len)
-			var/datum/playingcard/P = pick(cards)
+			var/datum/playingcard/tarot/P = pick(cards)
 			P.name = replacetext(P.name," reversed","")
 			if(prob(50))
 				P.name += " reversed"

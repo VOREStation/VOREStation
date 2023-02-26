@@ -137,3 +137,15 @@
 			/obj/machinery/porta_turret/lasertag/blue,
 			/obj/machinery/porta_turret/lasertag/red
 			)
+
+/datum/supply_pack/recreation/card_packs
+	contains = list(
+			/obj/item/pack/cardemon = 4,
+			/obj/item/pack/spaceball = 4,
+			/obj/item/deck/cardemon = 2,
+			/obj/item/deck/spaceball = 2
+			)
+	name = "Trading Card Crate"
+	cost = 15
+	containertype = /obj/structure/closet/crate/oculum
+	containername = "cards crate"

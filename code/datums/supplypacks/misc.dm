@@ -10,6 +10,7 @@
 /datum/supply_pack/randomised/misc
 	group = "Miscellaneous"
 
+<<<<<<< HEAD
 
 /datum/supply_pack/randomised/misc/card_packs
 	num_contained = 5
@@ -23,6 +24,8 @@
 	containertype = /obj/structure/closet/crate/oculum
 	containername = "cards crate"
 
+=======
+>>>>>>> 589122cd24f... Card fixes and QOL (#8996)
 /datum/supply_pack/randomised/misc/dnd
 	num_contained = 4
 	contains = list(
