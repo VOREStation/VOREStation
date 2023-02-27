@@ -40,7 +40,10 @@
 		owner.synthetic = R
 	return FALSE
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7fc43807c57... Merge pull request #8971 from PolarisSS13/revert-8942-fixrobonotclearing
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
