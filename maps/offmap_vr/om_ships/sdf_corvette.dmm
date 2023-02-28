@@ -124,6 +124,7 @@
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
 "hy" = (
@@ -357,6 +358,7 @@
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/effect/shuttle_landmark/shuttle_initializer/sdf_corvette,
 /obj/effect/overmap/visitable/ship/landable/sdf_corvette,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
 "uw" = (
@@ -379,6 +381,16 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/sdf_corvette)
+"wl" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
@@ -464,6 +476,7 @@
 /obj/structure/sign/warning/airlock{
 	pixel_y = -32
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
 "zX" = (
@@ -474,6 +487,7 @@
 	dir = 1;
 	pixel_y = -28
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
 "Cg" = (
@@ -698,6 +712,9 @@
 	icon_state = "2-8"
 	},
 /obj/structure/closet/walllocker/emerglocker/north,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
 "PO" = (
@@ -915,7 +932,7 @@ mT
 pu
 cS
 UB
-lI
+wl
 lI
 Ms
 RW

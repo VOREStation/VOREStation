@@ -22,6 +22,7 @@
 	dir = 4;
 	pixel_x = -30
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
 "dy" = (
@@ -94,6 +95,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/sdf_cutter)
@@ -178,6 +182,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
 "mZ" = (
@@ -234,6 +241,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/sdf_cutter)
 "pD" = (
@@ -274,6 +282,7 @@
 /turf/template_noop,
 /area/shuttle/sdf_cutter)
 "rK" = (
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
 "tH" = (
@@ -381,6 +390,9 @@
 /area/shuttle/sdf_cutter)
 "Ae" = (
 /obj/structure/handrail,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
 "Ak" = (
@@ -444,6 +456,9 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
@@ -717,6 +732,9 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
 "RL" = (
@@ -741,6 +759,7 @@
 /area/shuttle/sdf_cutter)
 "TP" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_cutter)
 "Uh" = (
@@ -755,6 +774,9 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	id_tag = "sdf_cutter_docking";
 	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/sdf_cutter)

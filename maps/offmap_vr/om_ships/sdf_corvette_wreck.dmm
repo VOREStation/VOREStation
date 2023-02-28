@@ -150,6 +150,7 @@
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light_construct,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -211,6 +212,9 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/item/weapon/material/shard,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -440,6 +444,7 @@
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/effect/shuttle_landmark/shuttle_initializer/sdf_corvette_wreck,
 /obj/effect/overmap/visitable/ship/landable/sdf_corvette_wreck,
+/obj/machinery/light_construct,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -572,6 +577,7 @@
 	pixel_y = -32
 	},
 /obj/effect/landmark/corpse/vintage/marine,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -588,6 +594,7 @@
 /obj/item/device/gps/on{
 	gps_tag = "SDF Beacon"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -858,6 +865,9 @@
 	},
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/item/weapon/material/shard/shrapnel,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
