@@ -154,7 +154,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "ds" = (
 /obj/structure/shuttle/window,
-/turf/simulated/wall/fancy_shuttle/window,
+/turf/simulated/shuttle/floor/glass,
 /area/submap/debrisfield/luxury_boat/crew)
 "ea" = (
 /obj/structure/table/rack/gun_rack,
@@ -763,7 +763,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "vc" = (
 /obj/structure/shuttle/window,
-/turf/simulated/wall/fancy_shuttle/window,
+/turf/simulated/shuttle/floor/glass,
 /area/submap/debrisfield/luxury_boat/bridge)
 "vl" = (
 /obj/machinery/door/window,
