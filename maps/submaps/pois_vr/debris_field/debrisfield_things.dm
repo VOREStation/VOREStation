@@ -141,6 +141,29 @@
 	storedinfo += "09:13	*gruesome sounds of machines exploding, wet splatter and ominous hissing"
 	used_capacity = 1755 //almost full
 
+/obj/item/royal_spider_egg/tourist
+	name = "damaged royal spider egg"
+	desc = "This one is yet to be imprinted! It's a cointoss if the creature inside still lives..."
+	var/egg_health = 10 //probability of the egg containing a healthy spiderling.
+
+/obj/item/royal_spider_egg/tourist/attack_self(mob/user as mob)
+	var/response = tgui_alert(user, "Are you sure you want to try releasing the royal spiderling right now? \
+	It appears ready to imprint the moment its born.", "Royal Spider Egg", list("Yes", "No"))
+
+	if(response == "Yes")
+		var/turf/drop_loc = user.loc
+		if(!istype(drop_loc))
+			to_chat(user, "You need more space to release the egg!")
+		else if(prob(egg_health))
+			var/obj/effect/spider/spiderling/princess/royalty = new(drop_loc)
+			royalty.faction = user.faction //this can cause immense chaos, but it's low probability and admins said it's within limits.
+			qdel(src)
+		else
+			to_chat(user, SPAN_WARNING("The egg cracks open, splattering disgusting goop at your feet...\n \
+			Whatever life laid within shall never awaken, if it was even alive."))
+			new /obj/effect/decal/cleanable/spiderling_remains(drop_loc)
+			qdel(src)
+
 // End of Tourist ship stuff
 
 /obj/random/slimecore

@@ -202,13 +202,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/royal_spider_egg,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/item/royal_spider_egg/tourist,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/luxury_boat/engine)
 "eM" = (
@@ -814,10 +814,10 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "wy" = (
 /obj/structure/lattice,
-/obj/item/royal_spider_egg,
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
+/obj/item/royal_spider_egg/tourist,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/luxury_boat/engine)
 "wz" = (
@@ -1389,13 +1389,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/royal_spider_egg,
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/item/royal_spider_egg/tourist,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/luxury_boat/engine)
 "OP" = (
