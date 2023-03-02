@@ -43,7 +43,7 @@
 				charged_cells = TRUE
 			if(charged_cells)
 				if(world.time - last_message > 200)
-					to_chat(M, "<span class='notice'>SYSTEM ALERT: Energy boost detected!</span>")
+					to_chat(robot, "<span class='notice'>SYSTEM ALERT: Energy boost detected!</span>")
 				charged_robots = TRUE
 	if(charged_robots)
 		last_message = world.time
