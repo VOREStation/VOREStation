@@ -1,3 +1,13 @@
+/proc/get_vendors_on_station()
+	. = list()
+	for(var/obj/machinery/vending/V in machines)
+		if(isNotStationLevel(V.z))
+			continue
+		var/area/A = get_area(V)
+		if(!(A?.area_flags & AREA_FLAG_IS_STATION_AREA))
+			continue
+		. += V
+
 /datum/event/brand_intelligence
 	announceWhen	= 21
 	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
@@ -21,12 +31,15 @@
 	command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
 	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert")
 
-
 /datum/event/brand_intelligence/start()
+<<<<<<< HEAD
 	for(var/obj/machinery/vending/V in machines)
 		if(isNotStationLevel(V.z))	continue
 		vendingMachines.Add(V)
 
+=======
+	vendingMachines = get_vendors_on_station()
+>>>>>>> 00b0f4056ff... Merge pull request #8998 from MistakeNot4892/events
 	if(!vendingMachines.len)
 		kill()
 		return

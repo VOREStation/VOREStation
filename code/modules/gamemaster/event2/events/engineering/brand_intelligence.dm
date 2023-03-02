@@ -19,16 +19,11 @@
 	var/last_malware_spread_time = null
 
 /datum/event2/event/brand_intelligence/set_up()
-	for(var/obj/machinery/vending/V in machines)
-		if(!(V.z in using_map.station_levels))
-			continue
-		vending_machines += V
-
+	vending_machines = get_vendors_on_station()
 	if(!vending_machines.len)
 		log_debug("Could not find any vending machines on station Z levels. Aborting.")
 		abort()
 		return
-
 	vender_zero = pick(vending_machines)
 
 /datum/event2/event/brand_intelligence/announce()
