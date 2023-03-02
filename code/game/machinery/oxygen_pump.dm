@@ -14,6 +14,7 @@
 	var/mask_type = /obj/item/clothing/mask/breath/emergency
 	var/icon_state_open = "oxygen_tank_open"
 	var/icon_state_closed = "oxygen_tank"
+	var/icon_state_active
 
 	power_channel = ENVIRON
 	idle_power_usage = 10
@@ -74,6 +75,8 @@
 			breather.internals.icon_state = "internal0"
 		breather = null
 		update_use_power(USE_POWER_IDLE)
+		if(icon_state_active)
+			icon_state = initial(icon_state)
 
 /obj/machinery/oxygen_pump/attack_ai(mob/user as mob)
 	tgui_interact(user)
@@ -91,6 +94,8 @@
 			if(breather.internals)
 				breather.internals.icon_state = "internal1"
 		update_use_power(USE_POWER_ACTIVE)
+		if(icon_state_active)
+			icon_state = icon_state_active
 
 /obj/machinery/oxygen_pump/proc/can_apply_to_target(var/mob/living/carbon/human/target, mob/user as mob)
 	if(!user)
@@ -163,6 +168,8 @@
 			src.visible_message("<span class='notice'>\The [contained] rapidly retracts back into \the [src]!</span>")
 			breather = null
 			update_use_power(USE_POWER_IDLE)
+			if(icon_state_active)
+				icon_state = initial(icon_state)
 		else if(!breather.internal && tank)
 			breather.internal = tank
 			if(breather.internals)
@@ -244,6 +251,7 @@
 	icon_state = "medpump"
 	icon_state_open = "medpump_open"
 	icon_state_closed = "medpump"
+	icon_state_active = "medpump_active"
 
 	anchored = FALSE
 	density = TRUE
@@ -271,11 +279,16 @@
 	icon_state = "medpump_n2o"
 	icon_state_closed = "medpump_n2o"
 	icon_state_open = "medpump_n2o_open"
+	icon_state_active = "medpump_n2o_active"
 	mask_type = /obj/item/clothing/mask/breath/anesthetic
 
 /obj/machinery/oxygen_pump/mobile/stabilizer
 	name = "portable patient stabilizer"
 	desc = "A portable oxygen pump with a retractable mask used for stabilizing patients in the field."
+	icon_state = "patient_stabilizer"
+	icon_state_closed = "patient_stabilizer"
+	icon_state_open = "patient_stabilizer_open"
+	icon_state_active = "patient_stabilizer_active"
 
 /obj/machinery/oxygen_pump/mobile/stabilizer/process()
 	if(breather)
@@ -287,6 +300,8 @@
 			src.visible_message("<span class='notice'>\The [contained] rapidly retracts back into \the [src]!</span>")
 			breather = null
 			update_use_power(USE_POWER_IDLE)
+			if(icon_state_active)
+				icon_state = initial(icon_state)
 		else if(!breather.internal && tank)
 			breather.internal = tank
 			if(breather.internals)
