@@ -463,11 +463,15 @@
 		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
+<<<<<<< HEAD
 			"nutriment",
 			"macrocillin",
 			"microcillin",
 			"normalcillin",
 			"magicdust"
+=======
+			"nutriment"
+>>>>>>> 84ecc4139c4... Merge pull request #8991 from Atermonera/gNOme
 			)
 		// VOREStation Edit End: Modified exclusion list
 

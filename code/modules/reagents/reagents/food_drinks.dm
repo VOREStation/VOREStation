@@ -4505,6 +4505,7 @@
 	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
 		M.slurring = max(M.slurring, 30)
 
+<<<<<<< HEAD
 /datum/reagent/nutriment/magicdust
 	name = "Magic Dust"
 	id = "magicdust"
@@ -4517,6 +4518,8 @@
 
 //ADDITIONS BELOW THIS LINE MADE ON 04/03/2021
 
+=======
+>>>>>>> 84ecc4139c4... Merge pull request #8991 from Atermonera/gNOme
 /datum/reagent/drink/soda/kompot
 	name = "Kompot"
 	id = "kompot"
