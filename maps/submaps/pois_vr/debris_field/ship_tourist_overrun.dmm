@@ -1102,7 +1102,7 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	id_tag = tourist_airlock;
+	id_tag = "tourist_airlock";
 	pixel_y = -30
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
