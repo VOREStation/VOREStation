@@ -208,7 +208,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/royal_spider_egg/tourist,
+/obj/item/space_spider_egg,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/luxury_boat/engine)
 "eM" = (
@@ -817,7 +817,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/obj/item/royal_spider_egg/tourist,
+/obj/item/space_spider_egg,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/luxury_boat/engine)
 "wz" = (
@@ -1395,7 +1395,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/item/royal_spider_egg/tourist,
+/obj/item/space_spider_egg,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/luxury_boat/engine)
 "OP" = (
