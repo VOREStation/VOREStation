@@ -78,7 +78,7 @@
 
 	if(src.sleeping)
 		Paralyse(3)
-		AdjustSleeping(-1)
+		handle_sleeping()
 
 	//if(src.resting) // VOREStation edit. Our borgos would rather not.
 	//	Weaken(5)

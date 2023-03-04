@@ -6,6 +6,7 @@
 	if(stat >= DEAD)
 		return FALSE
 
+	handle_sleeping()
 	handle_stunned()
 	handle_weakened()
 	handle_paralysed()

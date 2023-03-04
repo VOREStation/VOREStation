@@ -129,6 +129,14 @@
 	handle_slurring()
 	handle_confused()
 
+/mob/living/proc/handle_sleeping()
+	if(sleeping)
+		AdjustSleeping(-1)
+		throw_alert("asleep", /obj/screen/alert/asleep)
+	else
+		clear_alert("asleep")
+	return sleeping
+
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)

@@ -1256,9 +1256,14 @@
 				if (mind)
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
+<<<<<<< HEAD
 						AdjustSleeping(-1)
 						throw_alert("asleep", /obj/screen/alert/asleep)
 				if( prob(2) && health && !hal_crit && client )
+=======
+						handle_sleeping()
+				if( prob(2) && health && client )
+>>>>>>> 27b8035e836... Merge pull request #8986 from MistakeNot4892/sleepy
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
