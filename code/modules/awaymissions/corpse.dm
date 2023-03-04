@@ -25,6 +25,7 @@
 	var/corpseidicon = null //For setting it to be a gold, silver, CentCom etc ID
 	var/species = SPECIES_HUMAN	//defaults to generic-ass humans
 	var/random_species = FALSE	//flip to TRUE to randomize species from the list below
+	var/corpse_outfit /// Set to an outfit to equip on spawn.
 	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_UNATHI,SPECIES_SKRELL)	//preset list that can be overriden downstream. only includes common humanoids for voidsuit compatibility's sake.
 //	var/random_appearance = FALSE	//TODO: make this work
 //	var/cause_of_death = null //TODO: set up a cause-of-death system. needs to support both damage types and actual wound types, so a body can have been bitten/stabbed/clawed/shot/burned/lasered/etc. to death
@@ -92,6 +93,9 @@
 	if(src.corpsesuit)
 		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
 
+	if(corpse_outfit)
+		var/decl/hierarchy/outfit/outfit = GET_DECL(corpse_outfit)
+		outfit.equip(M)
 
 
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.

@@ -18,8 +18,11 @@
 	dealing with their traders and merchants; those that do rarely enjoy the experience."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/vox)
 
+<<<<<<< HEAD
 //	taste_sensitivity = TASTE_DULL
 
+=======
+>>>>>>> 186dc1cdba1... Vox event icons, turfs and props. (#9020)
 	slowdown = -0.5
 
 	speech_sounds = list('sound/voice/shriek1.ogg')
@@ -106,8 +109,53 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/tank/vox(H), slot_back)
 		H.internal = H.back
 	else
+<<<<<<< HEAD
 		H.equip_to_slot_or_del(new /obj/item/weapon/tank/vox(H), slot_r_hand)
 		H.internal = H.r_hand
 	H.internal = locate(/obj/item/weapon/tank) in H.contents
 	if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
 		H.internals.icon_state = "internal1"
+=======
+		visible_message(
+			SPAN_NOTICE("\The [src]'s scaling bristles roughly."),
+			self_message = SPAN_NOTICE("You bristle your scaling and deflate your internal bladders, restoring mobility but leaving yourself vulnerable to low pressure.")
+		)
+
+/datum/species/vox/apply_default_colours(var/mob/living/carbon/human/H)
+	if(!H.h_style)
+		H.h_style = "Short Vox Quills"
+	var/hair_color = "#594219"
+	H.r_hair = hex2num(copytext(hair_color,2,4))
+	H.g_hair = hex2num(copytext(hair_color,4,6))
+	H.b_hair = hex2num(copytext(hair_color,6,8))
+	var/skin_color = "#526D29"
+	H.r_skin = hex2num(copytext(skin_color,2,4))
+	H.g_skin = hex2num(copytext(skin_color,4,6))
+	H.b_skin = hex2num(copytext(skin_color,6,8))
+	var/scutes_color = "#BC7D3E"
+	var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
+	head.markings = list(
+		"Vox Beak" = list(
+			"color" = scutes_color,
+			"datum" = body_marking_styles_list["Vox Beak"]
+		)
+	)
+	for(var/bp in list(BP_L_ARM, BP_L_HAND, BP_R_ARM, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
+		var/obj/item/organ/external/limb = H.get_organ(bp)
+		if(limb)
+			LAZYINITLIST(limb.markings)
+			limb.markings["Vox Scutes"] = list(
+				"color" = scutes_color,
+				"datum" = body_marking_styles_list["Vox Scutes"]
+			)
+	var/claw_color = "#A0A654"
+	for(var/bp in list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_TORSO))
+		var/obj/item/organ/external/limb = H.get_organ(bp)
+		if(limb)
+			LAZYINITLIST(limb.markings)
+			limb.markings["Vox Claws"] = list(
+				"color" = claw_color,
+				"datum" = body_marking_styles_list["Vox Claws"]
+			)
+	return TRUE
+>>>>>>> 186dc1cdba1... Vox event icons, turfs and props. (#9020)

@@ -563,6 +563,17 @@
 
 	return FALSE
 
+<<<<<<< HEAD
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
 	return
 
+=======
+/datum/species/proc/apply_default_colours(var/mob/living/carbon/human/H)
+	if(base_color)
+		//Apply colour.
+		H.r_skin = hex2num(copytext(base_color,2,4))
+		H.g_skin = hex2num(copytext(base_color,4,6))
+		H.b_skin = hex2num(copytext(base_color,6,8))
+		return TRUE
+	return FALSE
+>>>>>>> 186dc1cdba1... Vox event icons, turfs and props. (#9020)

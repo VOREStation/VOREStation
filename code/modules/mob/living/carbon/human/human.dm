@@ -1203,6 +1203,7 @@
 	if(species.icon_scale_x != 1 || species.icon_scale_y != 1)
 		update_transform()
 
+<<<<<<< HEAD
 	if(example)						//VOREStation Edit begin
 		if(!(example == src))
 			r_skin = example.r_skin
@@ -1214,6 +1215,9 @@
 		g_skin = hex2num(copytext(species.base_color,4,6))
 		b_skin = hex2num(copytext(species.base_color,6,8))
 	else
+=======
+	if(!default_colour || !species.apply_default_colours(src))
+>>>>>>> 186dc1cdba1... Vox event icons, turfs and props. (#9020)
 		r_skin = 0
 		g_skin = 0
 		b_skin = 0

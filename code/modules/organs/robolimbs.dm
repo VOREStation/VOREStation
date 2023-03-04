@@ -494,8 +494,32 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	species_alternates = list(SPECIES_HUMAN = "Morgan Trading Co")
 	suggested_species = SPECIES_TESHARI
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/limb/New(var/newloc)
 	..()
+=======
+
+/datum/robolimb/vox
+	company = "Arkmade"
+	icon = 'icons/mob/human_races/cyberlimbs/vox/primalis.dmi'
+	unavailable_to_build = TRUE
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_TAJ, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
+	suggested_species = SPECIES_VOX
+
+/datum/robolimb/vox/crap
+	company = "Improvised"
+	icon = 'icons/mob/human_races/cyberlimbs/vox/improvised.dmi'
+
+/obj/item/disk/limb
+	name = "Limb Blueprints"
+	desc = "A disk containing the blueprints for prosthetics."
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "datadisk2"
+	var/company = ""
+
+/obj/item/disk/limb/Initialize()
+	. = ..()
+>>>>>>> 186dc1cdba1... Vox event icons, turfs and props. (#9020)
 	if(company)
 		name = "[company] [initial(name)]"
 
