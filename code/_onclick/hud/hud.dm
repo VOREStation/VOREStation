@@ -205,7 +205,11 @@ var/list/global_huds = list(
 
 /datum/hud/Destroy()
 	. = ..()
+<<<<<<< HEAD
 	qdel_null(minihuds)
+=======
+	QDEL_NULL_LIST(minihuds)
+>>>>>>> 33c4085e602... Merge pull request #8975 from Seris02/gunqdelfix
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null
@@ -224,7 +228,9 @@ var/list/global_huds = list(
 	other_important = null
 	hotkeybuttons = null
 //	item_action_list = null // ?
-	QDEL_LIST(ammo_hud_list)
+	for (var/x in ammo_hud_list)
+		remove_ammo_hud(mymob, x)
+	ammo_hud_list = null
 	mymob = null
 
 /datum/hud/proc/hidden_inventory_update()
