@@ -1,13 +1,13 @@
 /mob/living/simple_mob/animal/space/bear
-	name = "space bear"
-	desc = "A product of Space Russia?"
-	tt_desc = "U Ursinae aetherius" //...bearspace? Maybe.
+	name = "shimmer bear"
+	desc = "Its fur glimmers in even the slightest light."
+	tt_desc = "N Ursinae fulgeo" //bear glisten...
 	icon_state = "bear"
 	icon_living = "bear"
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
 
-	faction = "russian"
+	faction = "bear"
 
 	maxHealth = 125
 	health = 125
