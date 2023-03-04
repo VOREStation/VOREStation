@@ -55,6 +55,11 @@
 
 #define isbot(A)		istype(A, /mob/living/bot)
 
+#define ismecha(A)		istype(A, /obj/mecha)
+#define isvehicle(A)	istype(A, /obj/vehicle)
+
+#define isprojectile(A)	istype(A, /obj/item/projectile)
+
 #define isvoice(A)		istype(A, /mob/living/voice)
 
 //---------------

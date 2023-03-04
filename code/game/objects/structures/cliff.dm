@@ -157,6 +157,14 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			return TRUE
 		return ..()
 
+	else if(!isprojectile(mover) && !mover.throwing)	// 'sliding' objects can fall / bump into cliffs.
+		return ..()
+
+	else if(ismecha(mover))
+		var/obj/mecha/Me = mover
+		if(Me.flying)
+			return TRUE
+
 	// Projectiles and objects flying 'upward' have a chance to hit the cliff instead, wasting the shot.
 	else if(istype(mover, /obj))
 		var/obj/O = mover
@@ -165,26 +173,38 @@ two tiles on initialization, and which way a cliff is facing may change during m
 				return FALSE
 		return TRUE
 
-/obj/structure/cliff/Bumped(atom/A)
-	if(isliving(A))
-		var/mob/living/L = A
-		if(should_fall(L))
-			fall_off_cliff(L)
+/obj/structure/cliff/Bumped(atom/movable/A)
+	if(!isprojectile(A) && !A.throwing)
+		if(should_fall(A))
+			fall_off_cliff(A)
 			return
 	..()
 
+<<<<<<< HEAD
 /obj/structure/cliff/proc/should_fall(mob/living/L)
 	if(L.hovering || L.flying)
 		return FALSE
+=======
+/obj/structure/cliff/proc/should_fall(atom/movable/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(L.hovering)
+			return FALSE
+>>>>>>> 7b018e32811... Upkeep on Mech & Cliff code. (#8946)
 
-	var/turf/T = get_turf(L)
+	var/turf/T = get_turf(A)
 	if(T && get_dir(T, loc) & reverse_dir[dir]) // dir points 'up' the cliff, e.g. cliff pointing NORTH will cause someone to fall if moving SOUTH into it.
 		return TRUE
 	return FALSE
 
-/obj/structure/cliff/proc/fall_off_cliff(mob/living/L)
-	if(!istype(L))
-		return FALSE
+
+
+/obj/structure/cliff/proc/fall_off_cliff(atom/movable/A)
+	. = FALSE
+
+	var/mob/living/L
+	if(isliving(A))
+		L = A
 	var/turf/T = get_step(src, reverse_dir[dir])
 	var/displaced = FALSE
 
@@ -196,47 +216,111 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			T = new_T
 			displaced = TRUE
 
-	if(istype(T))
+	if(!istype(T))
+		return
 
-		var/safe_fall = FALSE
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			safe_fall = H.species.handle_falling(H, T, silent = TRUE, planetary = FALSE)
+	var/safe_fall = FALSE
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		safe_fall = H.species.handle_falling(H, T, silent = TRUE, planetary = FALSE)
 
-		if(safe_fall)
-			visible_message(span("notice", "\The [L] glides down from \the [src]."))
-		else
-			visible_message(span("danger", "\The [L] falls off \the [src]!"))
-		L.forceMove(T)
+	if(istype(A, /obj/vehicle/bike))
+		var/obj/vehicle/bike/Bi = A
+		if(Bi.on)
+			safe_fall = TRUE
 
-		var/harm = !is_double_cliff ? 1 : 0.5
-		if(!safe_fall)
-			// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
-			if(istype(L.buckled, /obj/vehicle)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
-				var/obj/vehicle/vehicle = L.buckled
-				vehicle.adjust_health(40 * harm)
-				to_chat(L, span("warning", "\The [vehicle] absorbs some of the impact, damaging it."))
-				harm /= 2
+	if(!isvehicle(A) && !ismecha(A) && !L)	// Buckled people can't react to save themselves, if they're not on a vehicle.
+		if(length(A.buckled_mobs))
+			L = A.buckled_mobs[1]
 
-			playsound(L, 'sound/effects/break_stone.ogg', 70, 1)
+	if(ismecha(A))
+		var/obj/mecha/Me = A
+
+		if(Me.occupant)
+			L = Me.occupant
+
+		if(!Me.can_fall())
+			safe_fall = TRUE
+
+	if(safe_fall)
+		visible_message(span("notice", "\The [A] glides down from \the [src]."))
+	else
+		visible_message(span("danger", "\The [A] falls off \the [src]!"))
+	A.forceMove(T)
+
+	var/harm = !is_double_cliff ? 1 : 0.5
+	if(!safe_fall)
+		// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
+		if(L)
 			L.Weaken(5 * harm)
 
-		var/fall_time = 3
-		if(displaced) // Make the fall look more natural when falling sideways.
-			L.pixel_z = 32 * 2
-			animate(L, pixel_z = 0, time = fall_time)
-		sleep(fall_time) // A brief delay inbetween the two sounds helps sell the 'ouch' effect.
+		if(isvehicle(A))
+			var/obj/vehicle/vehicle = A
+			vehicle.adjust_health(40 * harm)
+			vehicle.visible_message(SPAN_WARNING("\The [vehicle] absorbs some of the impact, damaging it."))
+			harm /= 2
 
-		if(safe_fall)
-			visible_message(span("notice", "\The [L] lands on \the [T]."))
-			playsound(L, "rustle", 25, 1)
-			return
+			if(length(vehicle.buckled_mobs))
+				for(var/mob/living/rider in vehicle.buckled_mobs)
+					var/damage = between(20, rider.getMaxHealth() * 0.4, 100)
+					var/target_zone = ran_zone()
+					var/blocked = rider.run_armor_check(target_zone, "melee") * harm
+					var/soaked = rider.get_armor_soak(target_zone, "melee") * harm
 
-		playsound(L, "punch", 70, 1)
-		shake_camera(L, 1, 1)
+					rider.apply_damage(damage * harm, BRUTE, target_zone, blocked, soaked, used_weapon=src)
+					shake_camera(rider, 1, 1)
 
-		visible_message(span("danger", "\The [L] hits \the [T]!"))
+		if(ismecha(A))
+			var/obj/mecha/Mech = A
+			harm /= 2
 
+			var/list/passengers = list()
+
+			if(L)
+				passengers |= L
+
+			for(var/obj/item/mecha_parts/MP in Mech)
+				var/mob/living/passenger = locate() in MP
+
+				if(!passenger)
+					continue
+
+				passengers |= passenger
+				var/damage = between(10, L.getMaxHealth() * 0.4, 50)
+				var/target_zone = ran_zone()
+				var/blocked = passenger.run_armor_check(target_zone, "melee") * harm
+				var/soaked = passenger.get_armor_soak(target_zone, "melee") * harm
+
+				passenger.apply_damage(damage * harm, BRUTE, target_zone, blocked, soaked, used_weapon=src)
+				shake_camera(passenger, 1, 1)
+				to_chat(passenger, SPAN_WARNING("\The [MP] shakes, bouncing you violently!"))
+
+			Mech.take_damage(between(50, Mech.maxhealth * 0.4 * harm, 300))
+
+			if(QDELETED(Mech) && length(passengers))	// Damage caused the mech to explode, or otherwise vanish.
+				for(var/mob/living/victim in passengers)
+					to_chat(victim, SPAN_DANGER("The exosuit shears apart around you, throwing you from the debris!"))
+					victim.throw_at_random(FALSE,2,1, 32)
+
+
+		playsound(A, 'sound/effects/break_stone.ogg', 70, 1)
+
+	var/fall_time = 3
+	if(displaced) // Make the fall look more natural when falling sideways.
+		A.pixel_z = 32 * 2
+		animate(A, pixel_z = 0, time = fall_time)
+	sleep(fall_time) // A brief delay inbetween the two sounds helps sell the 'ouch' effect.
+
+	if(safe_fall)
+		visible_message(span("notice", "\The [A] lands on \the [T]."))
+		playsound(A, "rustle", 25, 1)
+		return
+
+	playsound(A, "punch", 70, 1)
+
+	visible_message(span("danger", "\The [A] hits \the [T]!"))
+
+	if(L)
 		// The bigger they are, the harder they fall.
 		// They will take at least 20 damage at the minimum, and tries to scale up to 40% of their max health.
 		// This scaling is capped at 100 total damage, which occurs if the thing that fell has more than 250 health.
@@ -246,13 +330,15 @@ two tiles on initialization, and which way a cliff is facing may change during m
 		var/soaked = L.get_armor_soak(target_zone, "melee") * harm
 
 		L.apply_damage(damage * harm, BRUTE, target_zone, blocked, soaked, used_weapon=src)
+		shake_camera(L, 1, 1)
 
-		// Now fall off more cliffs below this one if they exist.
-		var/obj/structure/cliff/bottom_cliff = locate() in T
-		if(bottom_cliff)
-			visible_message(span("danger", "\The [L] rolls down towards \the [bottom_cliff]!"))
+	// Now fall off more cliffs below this one if they exist.
+	var/obj/structure/cliff/bottom_cliff = locate() in T
+	if(bottom_cliff)
+		if(!QDELETED(A))	// Exosuits are deleted when destroyed. This is to prevent phantom exosuits.
+			visible_message(span("danger", "\The [A] rolls down towards \the [bottom_cliff]!"))
 			sleep(5)
-			bottom_cliff.fall_off_cliff(L)
+			bottom_cliff.fall_off_cliff(A)
 
 /obj/structure/cliff/can_climb(mob/living/user, post_climb_check = FALSE)
 	// Cliff climbing requires climbing gear.

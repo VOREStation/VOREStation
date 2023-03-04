@@ -9,3 +9,12 @@
 		return BP_TORSO
 
 	return occupant.zone_sel.selecting
+
+/obj/mecha/proc/in_flight()
+	if(flying)
+		return TRUE
+
+	for(var/obj/item/mecha_parts/mecha_equipment/Mequip in equipment)
+		if(Mequip.check_hover())
+			return TRUE
+	return FALSE

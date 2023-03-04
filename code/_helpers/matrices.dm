@@ -3,7 +3,7 @@
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
 
-/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3)
+/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, pixel_x_offset = 0, pixel_y_offset = 0, pixel_z_offset = 0)
 	if(!segments)
 		return
 	//VOREStation Addition Start
@@ -26,7 +26,7 @@
 
 	speed /= segments
 
-	animate(src, transform = matrices[1], time = speed, loops)
+	animate(src, transform = matrices[1], time = speed, loops, pixel_x = pixel_x_offset, pixel_y = pixel_y_offset, pixel_z = pixel_z_offset,)
 	for(var/i in 2 to segments) //2 because 1 is covered above
 		animate(transform = matrices[i], time = speed)
 		//doesn't have an object argument because this is "Stacking" with the animate call above

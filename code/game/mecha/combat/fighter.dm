@@ -192,6 +192,8 @@
 		var/half_period = period / 2
 		var/quarter_period = period / 4
 
+		flying = TRUE
+
 		animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING | EASE_OUT, loop = -1)		//up
 		animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
 		animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
@@ -199,6 +201,7 @@
 /obj/mecha/combat/fighter/proc/stop_hover()
 	if(ion_trail.on)
 		ion_trail.stop()
+		flying = FALSE
 		animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 
 /obj/mecha/combat/fighter/check_for_support()

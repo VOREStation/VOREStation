@@ -285,3 +285,9 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/get_step_delay() // Equipment returns its slowdown or speedboost.
 	return step_delay
+
+/obj/item/mecha_parts/mecha_equipment/proc/check_ztravel()
+	return FALSE
+
+/obj/item/mecha_parts/mecha_equipment/proc/check_hover()
+	return FALSE

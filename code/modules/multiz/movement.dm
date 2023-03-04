@@ -300,9 +300,11 @@
 /atom/movable/lighting_overlay/can_fall()
 	return FALSE
 
-// Mechas are anchored, so we need to override.
 /obj/mecha/can_fall()
-	return TRUE
+	for(var/obj/item/mecha_parts/mecha_equipment/equip in equipment)
+		if(equip.check_hover())
+			return FALSE
+	return !flying
 
 /obj/item/pipe/can_fall()
 	. = ..()

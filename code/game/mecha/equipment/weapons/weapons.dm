@@ -77,7 +77,7 @@
 		P.launch_projectile_from_turf(target, chassis.get_pilot_zone_sel(), chassis.occupant, params)
 	else if(istype(A, /atom/movable))
 		var/atom/movable/AM = A
-		AM.throw_at(target, 7, 1, chassis)
+		AM.throw_at(target, 7, 1, chassis, 16)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/process_accuracy(obj/projectile, mob/living/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -92,9 +92,12 @@
 			P.accuracy += M.accuracy
 		if(!isnull(M.accuracy_dispersion))
 			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
+<<<<<<< HEAD
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species)
 			P.accuracy += H.species.gun_accuracy_mod
 			P.dispersion = max(P.dispersion + H.species.gun_accuracy_dispersion_mod, 0)
+=======
+>>>>>>> 7b018e32811... Upkeep on Mech & Cliff code. (#8946)

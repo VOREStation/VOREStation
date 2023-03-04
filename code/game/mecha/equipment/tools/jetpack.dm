@@ -128,3 +128,6 @@
 	sleep(equip_cooldown)
 	wait = 0
 	return 1
+
+/obj/item/mecha_parts/mecha_equipment/tool/jetpack/check_ztravel()
+	return equip_ready

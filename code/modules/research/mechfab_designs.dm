@@ -619,6 +619,14 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/jetpack
 	materials = list(MAT_STEEL = 7500, MAT_SILVER = 300, MAT_GLASS = 600)
 
+/datum/design/item/mecha/jumpjet
+	name = "Jumpjet"
+	desc = "A jumpjet harness typically used for exosuit mobility in urban environments to limit structural damage from climbing."
+	id = "mech_jumpjet"
+	req_tech = list(TECH_ENGINEERING = 5, TECH_PHORON = 4, TECH_MAGNET = 4, TECH_POWER = 4)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/jumpjet
+	materials = list(MAT_STEEL = 7500, MAT_PHORON = 6000, MAT_URANIUM = 3000, MAT_PHORON = 2500)
+
 /datum/design/item/mecha/phoron_generator
 	desc = "Phoron Reactor"
 	id = "mech_phoron_generator"

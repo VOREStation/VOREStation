@@ -141,6 +141,8 @@
 	var/datum/mini_hud/mech/minihud //VOREStation Edit
 	var/strafing = 0 				//Are we strafing or not?
 
+	var/flying = 0					//Are we flying, or no?
+
 	var/defence_mode_possible = 0 	//Can we even use defence mode? This is used to assign it to mechs and check for verbs.
 	var/defence_mode = 0 			//Are we in defence mode
 	var/defence_deflect = 35		//How much it deflect
@@ -728,9 +730,12 @@
 	return domove(direction)
 
 /obj/mecha/proc/can_ztravel()
-	for(var/obj/item/mecha_parts/mecha_equipment/tool/jetpack/jp in equipment)
-		return jp.equip_ready
-	return FALSE
+	. = FALSE
+	for(var/obj/item/mecha_parts/mecha_equipment/equip in equipment)
+		. = equip.check_ztravel()
+		if(.)
+			break
+	return
 
 /obj/mecha/proc/domove(direction)
 
@@ -765,6 +770,7 @@
 
 	if(strafing)
 		tally = round(tally * actuator.strafing_multiplier)
+		tally += 0.2 SECONDS
 
 	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 		if(istype(ME, /obj/item/mecha_parts/mecha_equipment/speedboost))
@@ -777,6 +783,10 @@
 
 	if(overload)	// At the end, because this would normally just make the mech *slower* since tally wasn't starting at 0.
 		tally = min(1, round(tally/2))
+
+	var/turf/T = get_turf(src)	// At the end of the end, because no matter how fast a mech is, if a turf is rough terrain, you're going to have trouble.
+	if(T.movement_cost)
+		tally += T.movement_cost
 
 	return max(1, round(tally, 0.1))	// Round the total to the nearest 10th. Can't go lower than 1 tick. Even humans have a delay longer than that.
 
@@ -2899,3 +2909,33 @@
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	return ..()
+
+/obj/mecha/throw_impact(var/atom/hit_atom, var/speed)
+	. = ..(hit_atom, speed)
+
+	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		if(istype(ME, /obj/item/mecha_parts/mecha_equipment/tool/jumpjet))
+			flying = FALSE
+
+/obj/mecha/hit_check(var/speed)
+	if(src.throwing)
+		for(var/atom/A in get_turf(src))
+			if(A == src) continue
+			if(isliving(A))
+				if(A:lying) continue
+				src.throw_impact(A,speed)
+			if(isobj(A))
+				if(!A.density || A.throwpass)
+					continue
+				// Special handling of windows, which are dense but block only from some directions
+				if(istype(A, /obj/structure/window))
+					var/obj/structure/window/W = A
+					if (!W.is_fulltile() && !(turn(src.last_move, 180) & A.dir))
+						continue
+				// Same thing for (closed) windoors, which have the same problem
+				else if(istype(A, /obj/machinery/door/window) && !(turn(src.last_move, 180) & A.dir))
+					continue
+
+				if(flying && A.CanPass(src))
+					continue
+				src.throw_impact(A,speed)

@@ -427,6 +427,7 @@
 					continue
 				src.throw_impact(A,speed)
 
+<<<<<<< HEAD
 /atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback) //If this returns FALSE then callback will not be called.
 	. = TRUE
 	if (!target || speed <= 0 || QDELETED(src) || (target.z != src.z))
@@ -437,6 +438,106 @@
 
 	var/datum/thrownthing/TT = new(src, target, range, speed, thrower, callback)
 	throwing = TT
+=======
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower, arc = 0)
+	set waitfor = FALSE
+	if(!target || !src)
+		return 0
+	if(target.z != src.z)
+		return 0
+	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+	src.throwing = 1
+	src.thrower = thrower
+	src.throw_source = get_turf(src)	//store the origin turf
+	src.pixel_z = 0
+	if(usr)
+		if(HULK in usr.mutations)
+			src.throwing = 2 // really strong throw!
+
+	var/dist_travelled = 0
+	var/total_distance = get_dist(target, throw_source)
+	var/dist_since_sleep = 0
+	var/area/a = get_area(src.loc)
+
+	var/dist_x = abs(target.x - src.x)
+	var/dist_y = abs(target.y - src.y)
+
+	var/dx
+	if (target.x > src.x)
+		dx = EAST
+	else
+		dx = WEST
+
+	var/dy
+	if (target.y > src.y)
+		dy = NORTH
+	else
+		dy = SOUTH
+
+	var/error
+	var/major_dir
+	var/major_dist
+	var/minor_dir
+	var/minor_dist
+	if(dist_x > dist_y)
+		error = dist_x/2 - dist_y
+		major_dir = dx
+		major_dist = dist_x
+		minor_dir = dy
+		minor_dist = dist_y
+	else
+		error = dist_y/2 - dist_x
+		major_dir = dy
+		major_dist = dist_y
+		minor_dir = dx
+		minor_dist = dist_x
+
+	range = min(dist_x + dist_y, range)
+
+	while(src && target && src.throwing && istype(src.loc, /turf) \
+		  && ((abs(target.x - src.x)+abs(target.y - src.y) > 0 && dist_travelled < range) \
+		  	   || (a && a.has_gravity == 0) \
+			   || istype(src.loc, /turf/space)))
+		// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
+		var/atom/step
+		if(error >= 0)
+			step = get_step(src, major_dir)
+			error -= minor_dist
+		else
+			step = get_step(src, minor_dir)
+			error += major_dist
+		if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+			break
+		src.Move(step)
+		hit_check(speed)
+		dist_travelled++
+		dist_since_sleep++
+		if(dist_since_sleep >= speed)
+			dist_since_sleep = 0
+			sleep(1)
+		a = get_area(src.loc)
+		// and yet it moves
+
+		var/arc_progress = between(0, dist_travelled/total_distance, 1)
+		var/sine_position = arc_progress * 180
+		var/pixel_z_position = arc * sin(sine_position)
+
+		if(src.does_spin)
+			src.SpinAnimation(speed = 4, loops = 1, pixel_z_offset = pixel_z_position)
+
+		else
+			animate(src, pixel_z = pixel_z_position, time = 1, flags = ANIMATION_END_NOW)
+
+	if(!isnull(arc))
+		pixel_z = initial(pixel_z)	// reset pixel_z after the arc animation
+
+	//done throwing, either because it hit something or it finished moving
+	if(isobj(src)) src.throw_impact(get_turf(src),speed)
+	src.throwing = 0
+	src.thrower = null
+	src.throw_source = null
+	fall()
+>>>>>>> 7b018e32811... Upkeep on Mech & Cliff code. (#8946)
 
 	pixel_z = 0
 	if(spin && does_spin)
