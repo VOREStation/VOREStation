@@ -156,10 +156,10 @@
 		list("Snow Field"),
 		list("Listening Post"),
 		list(list("Honleth Highlands A", "Honleth Highlands B")),
-		list("Arynthi Lake Underground A","Arynthi Lake A"),
-		list("Arynthi Lake Underground B","Arynthi Lake B"),
+//		list("Arynthi Lake Underground A","Arynthi Lake A"),	//Gateway hard :c
+//		list("Arynthi Lake Underground B","Arynthi Lake B"),	//Gateway hard :c
 		list("Eggnog Town Underground","Eggnog Town"),
-		list("Wild West")
+//		list("Wild West")	//Gateway hard :c
 		)
 
 	lateload_overmap = list(
