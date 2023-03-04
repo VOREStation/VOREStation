@@ -42,6 +42,10 @@
 	// Same speed if turf type doesn't change
 	if(istype(loc, prev_loc.type) || istype(prev_loc, loc.type))
 		return
+	var/is_snowy
+	if (istype(loc, /turf/simulated/floor))
+		var/turf/simulated/floor/F = loc
+		is_snowy = F.has_snow()
 	if(istype(loc, /turf/simulated/floor/water))
 		speed_mod = outdoors_speed_mod * 6 //Well that was a stupid idea wasn't it?
 	else if(istype(loc, /turf/simulated/floor/outdoors/rocks))
@@ -50,7 +54,7 @@
 		speed_mod = outdoors_speed_mod //Dirt and grass aren't strictly what this is designed for but its a baseline.
 	else if(istype(loc, /turf/simulated/floor/outdoors/mud))
 		speed_mod = outdoors_speed_mod * 1.4 //Workable, not great though.
-	else if(istype(loc, /turf/simulated/floor/outdoors/snow) || istype(loc, /turf/simulated/floor/outdoors/ice))
+	else if(is_snowy || istype(loc, /turf/simulated/floor/outdoors/ice))
 		speed_mod = outdoors_speed_mod * 0.8 //Now we're talking!
 	else
 		speed_mod = initial(speed_mod)

@@ -151,8 +151,13 @@
 	if(!T)
 		return 0
 
-	if(T.movement_cost)
-		var/turf_move_cost = T.movement_cost
+	var/movecost = T.get_movement_cost()
+	var/snow_layers = SNOW_NONE
+	if (istype(T, /turf/simulated/floor)) // isfloor() doesn't work here, since snow is specifically on simulated floors only
+		var/turf/simulated/floor/F = T
+		snow_layers = max(SNOW_NONE, F.snow_layers)
+	if(movecost)
+		var/turf_move_cost = movecost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.water_movement, HUMAN_LOWEST_SLOWDOWN, 15)
@@ -161,7 +166,7 @@
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
-		else if(istype(T, /turf/simulated/floor/outdoors/snow))
+		else if(snow_layers)
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(shoes)

@@ -243,6 +243,7 @@
 
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
+<<<<<<< HEAD
 	if(T && T.movement_cost && (!hovering || !flying)) // Flying mobs ignore turf-based slowdown. Aquatic mobs ignore water slowdown, and can gain bonus speed in it.
 		if(istype(T,/turf/simulated/floor/water) && aquatic_movement)
 			. -= aquatic_movement - 1
@@ -250,6 +251,13 @@
 			. += T.movement_cost
 		if(flying)
 			adjust_nutrition(-0.5)
+=======
+	if(T && T.get_movement_cost() && !hovering) // Flying mobs ignore turf-based slowdown. Aquatic mobs ignore water slowdown, and can gain bonus speed in it.
+		if(istype(T,/turf/simulated/floor/water) && aquatic_movement)
+			. -= aquatic_movement - 1
+		else
+			. += T.get_movement_cost()
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 
 	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
 		if(. <= 0)

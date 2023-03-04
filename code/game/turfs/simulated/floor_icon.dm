@@ -13,69 +13,80 @@ var/image/no_ceiling_image = null
 /turf/simulated/floor/update_icon(var/update_neighbors)
 	cut_overlays()
 
-	if(flooring)
+	// Snowify before anything - if we're covered in snow layers, then use data for the snow turf and adjust edge blending
+	// This is pretty damn snowflakey (pun not intended) but it should suffice unless further generalization is desired that turf layers can't handle,
+	// like the ground being covered in something other than snow (sand, dust, etc)
+	var/decl/flooring/effective_flooring = has_snow() ? GET_DECL(/decl/flooring/snow) : flooring
+	if(effective_flooring)
 		// Set initial icon and strings.
-		name = flooring.name
-		desc = flooring.desc
-		icon = flooring.icon
+		name = effective_flooring.name
+		desc = effective_flooring.desc
+		icon = effective_flooring.icon
 
-		if(flooring_override)
+		if(flooring_override && !has_snow())
 			icon_state = flooring_override
 		else
+<<<<<<< HEAD
 			icon_state = flooring.icon_base
 									//VOREStation Addition Start
 			if(flooring.check_season)
 				icon_state = "[icon_state]-[world_time_season]"	//VOREStation Addition End
 			if(flooring.has_base_range)
 				icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
+=======
+			icon_state = effective_flooring.icon_base
+			if(effective_flooring.has_base_range)
+				icon_state = "[icon_state][rand(0,effective_flooring.has_base_range)]"
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 				flooring_override = icon_state
 
 		// Apply edges, corners, and inner corners.
 		var/has_border = 0
-		if(flooring.flags & TURF_HAS_EDGES)
+		if(effective_flooring.flags & TURF_HAS_EDGES)
 			for(var/step_dir in cardinal)
 				var/turf/simulated/floor/T = get_step(src, step_dir)
-				if(!flooring.test_link(src, T))
+				if(!effective_flooring.test_link(src, T))
 					has_border |= step_dir
-					add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir))
+					add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-edge-[step_dir]", "[effective_flooring.icon_base]_edges", step_dir))
 
 			//Note: Doesn't actually check northeast, this is bitmath to check if we're edge'd (aka not smoothed) to NORTH and EAST
 			//North = 0001, East = 0100, Northeast = 0101, so (North|East) == Northeast, therefore (North|East)&Northeast == Northeast
 			if((has_border & NORTHEAST) == NORTHEAST)
-				add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[NORTHEAST]", "[flooring.icon_base]_edges", NORTHEAST))
+				add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-edge-[NORTHEAST]", "[effective_flooring.icon_base]_edges", NORTHEAST))
 			if((has_border & NORTHWEST) == NORTHWEST)
-				add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[NORTHWEST]", "[flooring.icon_base]_edges", NORTHWEST))
+				add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-edge-[NORTHWEST]", "[effective_flooring.icon_base]_edges", NORTHWEST))
 			if((has_border & SOUTHEAST) == SOUTHEAST)
-				add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHEAST]", "[flooring.icon_base]_edges", SOUTHEAST))
+				add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-edge-[SOUTHEAST]", "[effective_flooring.icon_base]_edges", SOUTHEAST))
 			if((has_border & SOUTHWEST) == SOUTHWEST)
-				add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHWEST]", "[flooring.icon_base]_edges", SOUTHWEST))
+				add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-edge-[SOUTHWEST]", "[effective_flooring.icon_base]_edges", SOUTHWEST))
 
-			if(flooring.flags & TURF_HAS_CORNERS)
+			if(effective_flooring.flags & TURF_HAS_CORNERS)
 				//Like above but checking for NO similar bits rather than both similar bits.
 				if((has_border & NORTHEAST) == 0) //Are connected NORTH and EAST
 					var/turf/simulated/floor/T = get_step(src, NORTHEAST)
-					if(!flooring.test_link(src, T)) //But not NORTHEAST
-						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST))
+					if(!effective_flooring.test_link(src, T)) //But not NORTHEAST
+						add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-corner-[NORTHEAST]", "[effective_flooring.icon_base]_corners", NORTHEAST))
 				if((has_border & NORTHWEST) == 0)
 					var/turf/simulated/floor/T = get_step(src, NORTHWEST)
-					if(!flooring.test_link(src, T))
-						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST))
+					if(!effective_flooring.test_link(src, T))
+						add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-corner-[NORTHWEST]", "[effective_flooring.icon_base]_corners", NORTHWEST))
 				if((has_border & SOUTHEAST) == 0)
 					var/turf/simulated/floor/T = get_step(src, SOUTHEAST)
-					if(!flooring.test_link(src, T))
-						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST))
+					if(!effective_flooring.test_link(src, T))
+						add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-corner-[SOUTHEAST]", "[effective_flooring.icon_base]_corners", SOUTHEAST))
 				if((has_border & SOUTHWEST) == 0)
 					var/turf/simulated/floor/T = get_step(src, SOUTHWEST)
-					if(!flooring.test_link(src, T))
-						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST))
+					if(!effective_flooring.test_link(src, T))
+						add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-corner-[SOUTHWEST]", "[effective_flooring.icon_base]_corners", SOUTHWEST))
 
-	// Re-apply floor decals
-	if(LAZYLEN(decals))
+	// Re-apply floor decals (except if they're covered up by snow)
+	if(LAZYLEN(decals) && !has_snow())
 		add_overlay(decals)
 
 	if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
 		icon = 'icons/turf/flooring/plating.dmi'
 		icon_state = "dmg[rand(1,4)]"
+<<<<<<< HEAD
 	else if(flooring)
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
 			if(istype(src, /turf/simulated/floor/wood))
@@ -84,6 +95,19 @@ var/image/no_ceiling_image = null
 				add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]"))
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]"))
+=======
+	else if(effective_flooring)
+		if(!isnull(broken) && (effective_flooring.flags & TURF_CAN_BREAK))
+			add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-broken-[broken]","broken[broken]"))
+		if(!isnull(burnt) && (effective_flooring.flags & TURF_CAN_BURN))
+			add_overlay(effective_flooring.get_flooring_overlay("[effective_flooring.icon_base]-burned-[burnt]","burned[burnt]"))
+
+	if (has_snow())
+		for(var/F in snow_footprints)
+			add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = snow_footprints[F], dir = text2num(F)))
+	else
+		LAZYCLEARLIST(snow_footprints)
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))

@@ -41,7 +41,7 @@
 	},
 /area/surface/outside/plains/mountains)
 "al" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/outpost)
 "am" = (
 /obj/structure/cable/heavyduty{
@@ -186,7 +186,7 @@
 /area/surface/outside/ocean)
 "aF" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/outpost)
 "aG" = (
 /turf/simulated/floor/water/shoreline{
@@ -201,8 +201,13 @@
 	},
 /area/surface/outside/ocean)
 "aI" = (
+<<<<<<< HEAD
 /obj/item/weapon/banner/nt,
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/obj/item/banner/nt,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/outpost)
 "aJ" = (
 /turf/simulated/floor/water/shoreline{
@@ -957,7 +962,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/main/first_aid)
 "ct" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/ninja_dojo/planet)
 "cu" = (
 /obj/structure/ore_box,
@@ -9567,7 +9572,7 @@
 /turf/simulated/floor/water/deep,
 /area/surface/outside/ocean)
 "tN" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/normal)
 "tO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -13930,7 +13935,7 @@
 /area/surface/outside/river/indalsalven)
 "Dm" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/normal)
 "Dn" = (
 /turf/simulated/floor/outdoors/dirt/sif/planetuse,
@@ -14142,7 +14147,7 @@
 	landmark_tag = "ninja_planet";
 	name = "Sif Surface North"
 	},
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/ninja_dojo/planet)
 "Ed" = (
 /obj/effect/shuttle_landmark{

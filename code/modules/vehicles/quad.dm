@@ -63,6 +63,10 @@
 	// Same speed if turf type doesn't change
 	if(istype(loc, prev_loc.type) || istype(prev_loc, loc.type))
 		return
+	var/is_snowy
+	if (istype(loc, /turf/simulated/floor))
+		var/turf/simulated/floor/F = loc
+		is_snowy = F.has_snow()
 	if(istype(loc, /turf/simulated/floor/water))
 		speed_mod = outdoors_speed_mod * 4 //It kind of floats due to its tires, but it is slow.
 	else if(istype(loc, /turf/simulated/floor/outdoors/rocks))
@@ -71,7 +75,7 @@
 		speed_mod = outdoors_speed_mod //Dirt and grass are the outdoors bench mark.
 	else if(istype(loc, /turf/simulated/floor/outdoors/mud))
 		speed_mod = outdoors_speed_mod * 1.5 //Gets us roughly 1. Mud may be fun, but it's not the best.
-	else if(istype(loc, /turf/simulated/floor/outdoors/snow))
+	else if(is_snowy)
 		speed_mod = outdoors_speed_mod * 1.7 //Roughly a 1.25. Snow is coarse and wet and gets everywhere, especially your electric motors.
 	else
 		speed_mod = initial(speed_mod)

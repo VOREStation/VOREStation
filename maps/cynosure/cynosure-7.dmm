@@ -235,7 +235,7 @@
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/wilderness/mountains)
 "GK" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/wilderness/mountains)
 "Hb" = (
 /turf/simulated/floor/outdoors/dirt/sif,
@@ -300,7 +300,7 @@
 /area/surface/outside/wilderness/normal)
 "SZ" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/wilderness/mountains)
 "TP" = (
 /obj/structure/railing{

@@ -401,6 +401,7 @@
 		return TRUE
 	return FALSE
 
+<<<<<<< HEAD
 
 // We're about to be the A-side in a turf translation
 /turf/proc/pre_translate_A(var/turf/B)
@@ -414,3 +415,7 @@
 // We were the the B-side in a turf translation
 /turf/proc/post_translate_B(var/turf/A)
 	return
+=======
+/turf/proc/get_movement_cost()
+	return movement_cost
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)

@@ -1,9 +1,9 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
-"c" = (/turf/simulated/floor/outdoors/snow,/area/submap)
-"d" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
-"e" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
-"f" = (/obj/item/seeds/random,/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
+"b" = (/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/submap/Small1)
+"c" = (/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/submap)
+"d" = (/obj/structure/flora/tree/pine,/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/submap/Small1)
+"e" = (/obj/structure/flora/tree/dead,/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/submap/Small1)
+"f" = (/obj/item/seeds/random,/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/submap/Small1)
 
 (1,1,1) = {"
 aaaaaaaaaa

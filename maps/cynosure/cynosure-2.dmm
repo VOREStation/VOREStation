@@ -471,7 +471,7 @@
 /turf/simulated/floor/lino,
 /area/surface/station/security/detectives_office)
 "aqn" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/station)
 "aqK" = (
 /obj/structure/cable/yellow{
@@ -5306,7 +5306,7 @@
 /obj/structure/cliff/automatic{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/plateau)
 "cDl" = (
 /obj/structure/cable/green{
@@ -6853,7 +6853,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/janitor)
 "dgP" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/space)
 "diu" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -10747,7 +10747,7 @@
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/xenobiology)
 "eSN" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse{
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed{
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -13658,7 +13658,7 @@
 /area/surface/station/medical/etc)
 "gmr" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/station)
 "gmu" = (
 /obj/structure/table/marble,
@@ -15228,11 +15228,15 @@
 /obj/structure/sign/bigname/seg_7{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "gUf" = (
 /obj/machinery/conveyor{
@@ -16116,7 +16120,7 @@
 /obj/structure/cliff/automatic{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/plateau)
 "htd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -17131,11 +17135,15 @@
 /obj/structure/sign/bigname/seg_4{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "hSO" = (
 /obj/structure/cable{
@@ -17521,7 +17529,7 @@
 /area/surface/outside/plains/station)
 "idr" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/snow/sif/planetuse{
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed{
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
@@ -18564,11 +18572,15 @@
 /obj/structure/sign/bigname/seg_3{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "iHY" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -22825,11 +22837,15 @@
 /obj/structure/sign/bigname{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "kBn" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -33156,11 +33172,15 @@
 /obj/structure/sign/bigname/seg_6{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "oYh" = (
 /obj/structure/bed/chair/shuttle{
@@ -36284,7 +36304,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/research/gnd)
 "qpk" = (
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/plateau)
 "qpm" = (
 /obj/item/wheelchair,
@@ -38603,7 +38623,7 @@
 /area/surface/station/rnd/xenobiology)
 "rne" = (
 /obj/effect/zone_divider,
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/plateau)
 "rng" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -38959,7 +38979,7 @@
 /area/surface/station/hallway/secondary/groundfloor/civilian)
 "rwW" = (
 /obj/structure/cliff/automatic,
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
 /area/surface/outside/plains/plateau)
 "rxt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -40246,11 +40266,15 @@
 /obj/structure/sign/bigname/seg_5{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "scm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -49325,11 +49349,15 @@
 /obj/structure/sign/bigname/seg_2{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/structure/sign/christmas/lights{
 	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
+=======
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed,
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /area/surface/outside/plains/station)
 "wqH" = (
 /obj/effect/floor_decal/industrial/outline/blue,

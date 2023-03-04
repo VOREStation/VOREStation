@@ -29,6 +29,7 @@
 #define OUTDOORS_AREA		-1	// If a turf has this, it will defer to the area's settings on init.
 								// Note that after init, it will be either YES or NO.
 
+<<<<<<< HEAD
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 ///Returns a list of turf in a square
 
@@ -37,3 +38,10 @@
 	locate(max(CENTER.x-(H_RADIUS),1),          max(CENTER.y-(V_RADIUS),1),          CENTER.z), \
 	locate(min(CENTER.x+(H_RADIUS),world.maxx), min(CENTER.y+(V_RADIUS),world.maxy), CENTER.z) \
 	)
+=======
+// Used to represent how much snow a turf has.
+#define NEVER_HAS_SNOW -1 // If a floor's `snow_layers` is set to this, it can never accrue snow.
+#define SNOW_NONE 0
+#define SNOW_LIGHT 1
+#define SNOW_HEAVY 2
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)

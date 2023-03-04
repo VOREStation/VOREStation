@@ -16,7 +16,11 @@
 	can_be_plated = FALSE
 	can_dirty = FALSE
 	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+<<<<<<< HEAD
 	flags = TURF_ACID_IMMUNE
+=======
+	snow_layers = NEVER_HAS_SNOW // Should be fairly obvious why this is here, hopefully
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 
 /turf/simulated/floor/lava/outdoors
 	outdoors = OUTDOORS_YES

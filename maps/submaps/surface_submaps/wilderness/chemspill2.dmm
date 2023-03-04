@@ -1,6 +1,6 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
-"c" = (/turf/simulated/floor/snow,/area/submap/ChemSpill2)
+"c" = (/obj/effect/landmark/snowy_turf,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
 "d" = (/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
 "e" = (/turf/simulated/floor/outdoors/ice,/area/submap/ChemSpill2)
 "f" = (/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)

@@ -38,11 +38,6 @@
 	temperature	= TEMPERATURE_SIF
 	outdoors = OUTDOORS_YES
 
-/turf/simulated/floor/outdoors/snow/sif/planetuse
-	oxygen		= MOLES_O2SIF
-	nitrogen	= MOLES_N2SIF
-	temperature	= TEMPERATURE_SIF
-
 /turf/simulated/floor/outdoors/grass/sif/planetuse
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
@@ -57,6 +52,9 @@
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/floor/outdoors/dirt/sif/planetuse/presnowed
+	snow_layers = SNOW_HEAVY
 
 /turf/simulated/mineral/sif
 	oxygen		= MOLES_O2SIF

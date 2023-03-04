@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/snow
 	name = "snow"
 	icon_state = "snow"
@@ -48,6 +49,8 @@
 		visible_message("[user] scoops up a pile of snow.", "You scoop up a pile of snow.")
 	return
 
+=======
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 /turf/simulated/floor/outdoors/ice
 	name = "ice"
 	icon_state = "ice"

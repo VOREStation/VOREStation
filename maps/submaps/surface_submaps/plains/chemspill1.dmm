@@ -1,6 +1,6 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/snow/sif,/area/template_noop)
-"e" = (/turf/simulated/floor/outdoors/snow/sif,/area/submap/ChemSpill1)
+"b" = (/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/template_noop)
+"e" = (/obj/effect/landmark/snowy_turf,/turf/template_noop,/area/submap/ChemSpill1)
 "f" = (/obj/effect/decal/remains/deer,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
 "g" = (/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
 "h" = (/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill1)

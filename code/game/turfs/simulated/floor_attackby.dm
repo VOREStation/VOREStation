@@ -8,8 +8,28 @@
 		if(L.a_intent != I_HELP)
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
+<<<<<<< HEAD
 /*
 //By god, no I do NOT want to engrave when trying to cut wires, can't get this working with non-help intent either else you just swipe the tools over the floors.
+=======
+
+	if (has_snow()) // Snowy turfs have to be cleared out before anything else can be done with them
+		if (istype(C, /obj/item/shovel))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] starts clearing \the [src] with \the [C.name]..."),
+				SPAN_NOTICE("You start clearing \the [src] with your [C.name]..."))
+			if(do_after(user, 4 SECONDS * C.toolspeed))
+				user.visible_message(
+					SPAN_NOTICE("\The [user] finishes clearing \the [src]."),
+					SPAN_NOTICE("You clear out \the [src] and leave it in a pile nearby."))
+				var/obj/item/stack/material/snow/S = new(src)
+				S.amount = 5 * snow_layers
+				set_snow(0)
+		else
+			to_chat(user, SPAN_WARNING("Remove the snow with a shovel first!"))
+		return TRUE
+
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 	if(!(C.has_tool_quality(TOOL_SCREWDRIVER) && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)))
 		if(isliving(user))
 			var/mob/living/L = user
@@ -151,6 +171,7 @@
 					if(!can_remove_plating(user))
 						return
 
+<<<<<<< HEAD
 					user.visible_message("<span class='warning'>[user] begins cutting through [src].</span>", "<span class='warning'>You begin cutting through [src].</span>")
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
@@ -160,6 +181,17 @@
 						do_remove_plating(C, user, base_type)
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
+=======
+/turf/simulated/floor/attack_hand(mob/user)
+	if (has_snow())
+		visible_message(SPAN_NOTICE("[user] starts scooping up some snow..."), SPAN_NOTICE("You start scooping up some snow..."))
+		if(do_after(user, 1 SECOND))
+			var/obj/S = new /obj/item/stack/material/snow(user.loc)
+			user.put_in_hands(S)
+			visible_message(SPAN_NOTICE("[user] scoops up a pile of snow."), SPAN_NOTICE("You scoop up a pile of snow."))
+
+/turf/simulated/floor/proc/try_deconstruct_tile(obj/item/W as obj, mob/user as mob)
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
 	if(W.is_crowbar())
 		if(broken || burnt)
 			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
@@ -204,6 +236,7 @@
 	if(flooring)
 		return
 	attackby(T, user)
+<<<<<<< HEAD
 
 /turf/simulated/floor/proc/can_remove_plating(mob/user)
 	if(!is_plating())
@@ -232,3 +265,5 @@
 	)
 	if(is_type_in_list(src, floors_that_need_lattice))
 		new /obj/structure/lattice(src)
+=======
+>>>>>>> a513128466a... Prototype - floor-generalized snow layers, instead of snow turfs (#8970)
