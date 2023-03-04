@@ -239,6 +239,7 @@
 // update the icon depending on the position
 
 /obj/machinery/conveyor_switch/proc/update()
+	playsound(src, 'sound/machines/lever.ogg', 20, 1)
 	if(position<0)
 		icon_state = "switch-rev"
 	else if(position>0)

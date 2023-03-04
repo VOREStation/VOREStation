@@ -18,6 +18,7 @@
 	var/disabled = 0
 	var/shocked = 0
 	var/busy = 0
+	var/datum/looping_sound/fabricator/soundloop
 
 	var/mat_efficiency = 1
 	var/build_time = 50
@@ -36,12 +37,24 @@
 		autolathe_recipes = new()
 	wires = new(src)
 
+<<<<<<< HEAD
+=======
+	for(var/Name in name_to_material)
+		if(Name in stored_material)
+			continue
+
+		stored_material[Name] = 0
+		storage_capacity[Name] = 0
+
+	soundloop = new(list(src), FALSE)
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 	default_apply_parts()
 	RefreshParts()
 
 /obj/machinery/autolathe/Destroy()
 	qdel(wires)
 	wires = null
+	QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/autolathe/tgui_interact(mob/user, datum/tgui/ui)
@@ -183,9 +196,15 @@
 			//Check if we still have the materials.
 			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
 
+<<<<<<< HEAD
 			for(var/datum/material/used_material as anything in making.resources)
 				var/amount_needed = making.resources[used_material] * coeff * multiplier
 				materials_used[used_material] = amount_needed
+=======
+		busy = 1
+		soundloop.start()
+		update_use_power(USE_POWER_ACTIVE)
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 
 			if(LAZYLEN(materials_used))
 				if(!materials.has_materials(materials_used))
@@ -198,7 +217,14 @@
 
 			update_icon() // So lid closes
 
+<<<<<<< HEAD
 			sleep(build_time)
+=======
+		busy = 0
+		soundloop.stop()
+		update_use_power(USE_POWER_IDLE)
+		update_icon() // So lid opens
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 
 			busy = 0
 			update_use_power(USE_POWER_IDLE)

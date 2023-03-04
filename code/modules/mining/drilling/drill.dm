@@ -16,6 +16,7 @@
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
+<<<<<<< HEAD
 	var/obj/item/device/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
@@ -42,6 +43,10 @@
 		"mhydrogen" = 0,
 		"verdantium" = 0,
 		"rutile" = 0)
+=======
+	var/obj/item/radio/intercom/faultreporter = new /obj/item/radio/intercom{channels=list("Supply")}(null)
+	var/datum/looping_sound/mining_drill/mining_drill_loop
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 
 	var/list/ore_types = list(
 		"hematite" = /obj/item/weapon/ore/iron,
@@ -109,6 +114,7 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
+<<<<<<< HEAD
 	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
 
 /obj/machinery/mining/drill/Destroy()
@@ -120,6 +126,13 @@
 	if(cell)
 		cell.forceMove(loc)
 		cell = null
+=======
+	cell = default_use_hicell()
+	mining_drill_loop = new(list(src), FALSE)
+
+/obj/machinery/mining/drill/Destroy()
+	QDEL_NULL(mining_drill_loop)
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 	return ..()
 
 /obj/machinery/mining/drill/get_cell()
@@ -273,12 +286,24 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
+<<<<<<< HEAD
 				visible_message("<b>\The [src]</b> lurches downwards, grinding noisily.")
+=======
+				if(mining_drill_loop)
+					mining_drill_loop.start(src)
+				visible_message("<span class='notice'>\The [src] lurches downwards, grinding noisily.</span>")
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 				need_update_field = 1
 				harvest_speed *= total_brace_tier
 				charge_use *= total_brace_tier
 			else
+<<<<<<< HEAD
 				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
+=======
+				if(mining_drill_loop)
+					mining_drill_loop.stop(src)
+				visible_message("<span class='notice'>\The [src] shudders to a grinding halt.</span>")
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 		else
 			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
 	else
@@ -360,6 +385,8 @@
 		faultreporter.autosay(error, src.name, "Supply", using_map.get_map_levels(z))
 	need_player_check = 1
 	active = 0
+	if(mining_drill_loop)
+		mining_drill_loop.stop(src)
 	update_icon()
 
 /obj/machinery/mining/drill/proc/get_resource_field()
@@ -406,6 +433,7 @@
 				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				current_capacity = 0				// Set the amount of ore in the drill to 0.
 		to_chat(usr, "<span class='notice'>You unload the drill's storage cache into the ore box.</span>")
+		playsound(src, 'sound/machines/clunk.ogg', 30, 1)
 	else
 		to_chat(usr, "<span class='notice'>You must move an ore box up to the drill before you can unload it.</span>")
 

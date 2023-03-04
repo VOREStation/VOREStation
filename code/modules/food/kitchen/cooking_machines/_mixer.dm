@@ -25,12 +25,12 @@ fundamental differences
 	cooking_objs += new /datum/cooking_item(new /obj/item/weapon/reagent_containers/cooking_container(src))
 	cooking = FALSE
 	selected_option = pick(output_options)
-	
+
 	mixer_loop = new(list(src), FALSE)
-	
+
 /obj/machinery/appliance/mixer/Destroy()
 	. = ..()
-	
+
 	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
@@ -120,7 +120,7 @@ fundamental differences
 		use_power = 0
 		if(usr)
 			usr.visible_message("[usr] turns the [src] off", "You turn off \the [src].")
-	playsound(src, 'sound/machines/click.ogg', 40, 1)
+	playsound(src, "button", 40, 1)
 	update_icon()
 
 /obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)
@@ -133,7 +133,7 @@ fundamental differences
 /obj/machinery/appliance/mixer/finish_cooking(var/datum/cooking_item/CI)
 	..()
 	stat |= POWEROFF
-	playsound(src, 'sound/machines/click.ogg', 40, 1)
+	playsound(src, "button", 40, 1)
 	use_power = 0
 	CI.reset()
 	update_icon()

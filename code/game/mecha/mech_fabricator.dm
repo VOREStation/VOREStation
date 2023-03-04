@@ -55,6 +55,7 @@
 	var/res_max_amount = 200000
 
 	var/datum/research/files
+<<<<<<< HEAD
 	var/valid_buildtype = MECHFAB
 	/// A list of categories that valid MECHFAB design datums will broadly categorise themselves under.
 	var/list/part_sets = list(
@@ -80,6 +81,16 @@
 								"Other",
 								"Misc",
 								)
+=======
+	var/list/datum/design/queue = list()
+	var/progress = 0
+	var/busy = 0
+	var/datum/looping_sound/fabricator/soundloop
+
+	var/list/categories = list()
+	var/category = null
+	var/sync_message = ""
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 
 /obj/machinery/mecha_part_fabricator/Initialize()
 	. = ..()
@@ -93,6 +104,36 @@
 
 	default_apply_parts()
 	files = new /datum/research(src) //Setup the research data holder.
+<<<<<<< HEAD
+=======
+	update_categories()
+	soundloop = new(list(src), FALSE)
+
+/obj/machinery/mecha_part_fabricator/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
+
+/obj/machinery/mecha_part_fabricator/process()
+	..()
+	if(stat)
+		return
+	if(busy)
+		update_use_power(USE_POWER_ACTIVE)
+		progress += speed
+		check_build()
+	else
+		update_use_power(USE_POWER_IDLE)
+	update_icon()
+
+/obj/machinery/mecha_part_fabricator/update_icon()
+	cut_overlays()
+	if(panel_open)
+		icon_state = "mechfab-o"
+	else
+		icon_state = "mechfab-idle"
+	if(busy)
+		add_overlay("mechfab-active")
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 
 /obj/machinery/mecha_part_fabricator/dismantle()
 	for(var/f in materials)
@@ -668,12 +709,51 @@
 		if(1)
 			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
 
+<<<<<<< HEAD
 /obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? TRUE : FALSE
 	var/matstring = lowertext(material)
 
 	// 0 or null, nothing to eject
 	if(!materials[matstring])
+=======
+/obj/machinery/mecha_part_fabricator/proc/update_busy()
+	if(queue.len)
+		if(can_build(queue[1]))
+			busy = 1
+			soundloop.start()
+		else
+			busy = 0
+			soundloop.stop()
+	else
+		busy = 0
+		soundloop.stop()
+
+/obj/machinery/mecha_part_fabricator/proc/add_to_queue(var/index)
+	var/datum/design/D = files.known_designs[index]
+	queue += D
+	update_busy()
+
+/obj/machinery/mecha_part_fabricator/proc/remove_from_queue(var/index)
+	if(index == 1)
+		progress = 0
+	queue.Cut(index, index + 1)
+	update_busy()
+
+/obj/machinery/mecha_part_fabricator/proc/can_build(var/datum/design/D)
+	for(var/M in D.materials)
+		if(materials[M] < (D.materials[M] * mat_efficiency))
+			return 0
+	return 1
+
+/obj/machinery/mecha_part_fabricator/proc/check_build()
+	if(!queue.len)
+		progress = 0
+		return
+	var/datum/design/D = queue[1]
+	if(!can_build(D))
+		progress = 0
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 		return
 	// Problem, fix problem and abort
 	if(materials[matstring] < 0)

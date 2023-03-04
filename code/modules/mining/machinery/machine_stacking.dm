@@ -53,10 +53,21 @@
 	if(..())
 		return TRUE
 
+<<<<<<< HEAD
 	switch(action)
 		if("change_stack")
 			machine.stack_amt = clamp(text2num(params["amt"]), 1, 50)
 			. = TRUE
+=======
+	if(href_list["release_stack"])
+		if(machine.stack_storage[href_list["release_stack"]] > 0)
+			var/stacktype = machine.stack_paths[href_list["release_stack"]]
+			var/obj/item/stack/material/S = new stacktype (get_turf(machine.output))
+			S.amount = machine.stack_storage[href_list["release_stack"]]
+			machine.stack_storage[href_list["release_stack"]] = 0
+			S.update_icon()
+			playsound(src, 'sound/machines/clunk.ogg', 50, 1)
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 
 		if("release_stack")
 			var/stack = params["stack"]
@@ -136,8 +147,13 @@
 			var/stacktype = stack_paths[sheet]
 			new stacktype (get_turf(output), stack_amt)
 			stack_storage[sheet] -= stack_amt
+<<<<<<< HEAD
 	
+=======
+			S.update_icon()
+			playsound(src, 'sound/machines/clunk.ogg', 50, 1)
+
+>>>>>>> ab7f5a8c3d7... Merge pull request #8958 from Cerebulon/mining_sounds
 	if(console)
 		console.updateUsrDialog()
 	return
-

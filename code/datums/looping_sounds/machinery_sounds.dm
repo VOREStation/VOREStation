@@ -115,3 +115,20 @@
 	mid_length = 6
 	end_sound = 'sound/machines/vehicle/engine_end.ogg'
 	volume = 20
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/mining_drill
+	start_sound = 'sound/machines/drill/drill_start.ogg'
+	start_length = 19
+	mid_sounds = list('sound/machines/drill/drill_mid.ogg'=1)
+	mid_length = 19
+	end_sound = 'sound/machines/drill/drill_end.ogg'
+	volume = 50
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/fabricator
+	mid_sounds = list('sound/machines/fabricator/fabricator1.ogg'=1, 'sound/machines/fabricator/fabricator2.ogg'=1)
+	mid_length = 60
+	volume = 25
