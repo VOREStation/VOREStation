@@ -4,6 +4,7 @@
 	effect_color = "#ffee06"
 	var/last_message
 
+<<<<<<< HEAD
 
 /datum/artifact_effect/cellcharge/DoEffectTouch(var/mob/living/user)
 	if(user)
@@ -15,12 +16,16 @@
 
 
 /datum/artifact_effect/cellcharge/DoEffectAura()
+=======
+/datum/artifact_effect/uncommon/cellcharge/proc/charge_cells(var/amount = 25)
+>>>>>>> 318bc4daa5b... Fix various anomaly bugs and oversights.  (#8941)
 	var/atom/holder = get_master_holder()
 	if(!holder)
 		return
 	var/turf/turf = get_turf(holder)
 	if(!turf)
 		return
+<<<<<<< HEAD
 	for (var/obj/machinery/power/apc/apc as anything in GLOB.apcs)
 		if(get_dist(turf, apc) <= 200)
 			for (var/obj/item/weapon/cell/cell in apc.contents)
@@ -39,9 +44,38 @@
 				to_chat(robot, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
 				charged_robots = TRUE
 	if(charged_robots)
+=======
+
+	var/messaged_robots
+	for(var/atom/movable/AM in range(effectrange, turf))
+		if(isliving(AM))
+			var/mob/living/L = AM
+			var/obj/item/cell/C = L.get_cell()
+
+			if(C)
+				if(issilicon(L) && ((last_message + (1 MINUTE)) < world.time))
+					messaged_robots = TRUE
+					to_chat(L, SPAN_NOTICE("SYSTEM ALERT: Energy boost detected!"))
+				C.charge = min(C.maxcharge, C.charge + amount)
+			continue
+
+		var/obj/item/cell/C = AM.get_cell()
+		if(C)
+			C.charge = min(C.maxcharge, C.charge + amount)
+
+	if(messaged_robots)
+>>>>>>> 318bc4daa5b... Fix various anomaly bugs and oversights.  (#8941)
 		last_message = world.time
 
+/datum/artifact_effect/uncommon/cellcharge/DoEffectTouch(mob/living/user)
+	if(!user)
+		return
+	charge_cells(100)
 
+/datum/artifact_effect/uncommon/cellcharge/DoEffectAura()
+	charge_cells()
+
+<<<<<<< HEAD
 /datum/artifact_effect/cellcharge/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
@@ -57,3 +91,7 @@
 				if(world.time - last_message > 200)
 					to_chat(M, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
 					last_message = world.time
+=======
+/datum/artifact_effect/uncommon/cellcharge/DoEffectPulse()
+	charge_cells(50)
+>>>>>>> 318bc4daa5b... Fix various anomaly bugs and oversights.  (#8941)
