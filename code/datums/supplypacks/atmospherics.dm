@@ -86,7 +86,11 @@
 	name = "Internals crate"
 	contains = list(
 			/obj/item/clothing/mask/gas = 3,
+<<<<<<< HEAD
 			/obj/item/weapon/tank/air = 3
+=======
+			/obj/item/tank/oxygen = 3
+>>>>>>> 99bd1a5891e... Merge pull request #8978 from Doctress/oxygenisgreaterthanair
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/aether

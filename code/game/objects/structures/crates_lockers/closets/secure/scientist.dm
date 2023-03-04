@@ -7,8 +7,13 @@
 		/obj/item/clothing/under/rank/scientist,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
 		/obj/item/clothing/shoes/white,
+<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_sci,
 		/obj/item/weapon/tank/air,
+=======
+		/obj/item/radio/headset/headset_sci,
+		/obj/item/tank/oxygen,
+>>>>>>> 99bd1a5891e... Merge pull request #8978 from Doctress/oxygenisgreaterthanair
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/shoes/boots/winter/science)
@@ -39,9 +44,15 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/shoes/laceup/brown,
 		/obj/item/clothing/gloves/sterile/latex,
+<<<<<<< HEAD
 		/obj/item/device/radio/headset/heads/rd,
 		/obj/item/device/radio/headset/heads/rd/alt,
 		/obj/item/weapon/tank/air,
+=======
+		/obj/item/radio/headset/heads/rd,
+		/obj/item/radio/headset/heads/rd/alt,
+		/obj/item/tank/oxygen,
+>>>>>>> 99bd1a5891e... Merge pull request #8978 from Doctress/oxygenisgreaterthanair
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flash,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
