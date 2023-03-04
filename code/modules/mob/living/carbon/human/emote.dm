@@ -320,7 +320,7 @@ var/list/_simple_mob_default_emotes = list(
 /mob/living/carbon/human/get_available_emotes()
 	. = global._human_default_emotes.Copy()
 	if(length(species?.default_emotes))
-		. |= species.default_emotes
+		return . | species.default_emotes
 
 /mob/living/simple_mob/get_available_emotes()
 	. = global._simple_mob_default_emotes.Copy()
