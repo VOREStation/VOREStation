@@ -121,8 +121,17 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	hologram.anchored = TRUE//So space wind cannot drag it.
 	hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
-	hologram.set_light(2)	//hologram lighting
-	hologram.color = color //painted holopad gives coloured holograms
+
+	if(!isnull(color))
+		hologram.color = color
+	else
+		hologram.color = A.holo_color
+
+	if(hologram.color)	//hologram lighting
+		hologram.set_light(2,1,hologram.color)
+	else
+		hologram.set_light(2)
+
 	masters[A] = hologram
 	set_light(2)			//pad lighting
 	icon_state = "holopad1"
