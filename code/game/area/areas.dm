@@ -389,7 +389,11 @@ var/list/mob/living/forced_ambiance_list = new
 	if(!L.lastarea)
 		L.lastarea = src
 	var/area/oldarea = L.lastarea
+<<<<<<< HEAD
 	if((oldarea.has_gravity == 0) && (has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+=======
+	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && IS_RUNNING(L)) // Being ready when you change areas gives you a chance to avoid falling all together.
+>>>>>>> 20cdc4b6761... Converts move intents to /decl/move_intent (#8993)
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
@@ -454,7 +458,7 @@ var/list/mob/living/forced_ambiance_list = new
 		if(H.species.can_zero_g_move || H.species.can_space_freemove)
 			return
 
-		if(H.m_intent == "run")
+		if(IS_RUNNING(H))
 			H.AdjustStunned(6)
 			H.AdjustWeakened(6)
 		else

@@ -12,7 +12,7 @@
 	using.name = "mov_intent"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
-	using.icon_state = (m_intent == "run" ? "running" : "walking")
+	using.icon_state = move_intent.hud_icon_state
 	using.screen_loc = ui_acti
 	using.layer = HUD_LAYER
 	HUD.adding += using

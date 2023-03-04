@@ -256,7 +256,7 @@
 			. = 1
 		. *= purge
 
-	if(m_intent == "walk")
+	if(IS_WALKING(src))
 		. *= 1.5
 
 	 . += config.animal_delay

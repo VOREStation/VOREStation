@@ -12,13 +12,9 @@
 		. += 5
 
 	// Movespeed delay based on movement mode
-	switch(m_intent)
-		if("run")
-			if(drowsyness > 0)
-				. += 6
-			. += config.run_speed
-		if("walk")
-			. += config.walk_speed
+	if(IS_RUNNING(src) && drowsyness > 0)
+		. += 6
+	. += move_intent.move_delay
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -263,13 +259,10 @@
 					return // No hands to drive your chair? Tough luck!
 			//drunk wheelchair driving
 			else if(my_mob.confused)
-				switch(my_mob.m_intent)
-					if("run")
-						if(prob(50))
-							direct = turn(direct, pick(90, -90))
-					if("walk")
-						if(prob(25))
-							direct = turn(direct, pick(90, -90))
+				if(IS_RUNNING(my_mob) && prob(50))
+					direct = turn(direct, pick(90, -90))
+				else if(IS_WALKING(my_mob) && prob(25))
+					direct = turn(direct, pick(90, -90))
 			total_delay += 3
 
 	// We are now going to move
@@ -278,15 +271,12 @@
 
 	// Confused direction randomization
 	if(my_mob.confused)
-		switch(my_mob.m_intent)
-			if("run")
-				if(prob(75))
-					direct = turn(direct, pick(90, -90))
-					n = get_step(my_mob, direct)
-			if("walk")
-				if(prob(25))
-					direct = turn(direct, pick(90, -90))
-					n = get_step(my_mob, direct)
+		if(IS_RUNNING(my_mob) && prob(75))
+			direct = turn(direct, pick(90, -90))
+			n = get_step(my_mob, direct)
+		else if(IS_WALKING(my_mob) && prob(25))
+			direct = turn(direct, pick(90, -90))
+			n = get_step(my_mob, direct)
 
 	total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
 	my_mob.setMoveCooldown(total_delay)

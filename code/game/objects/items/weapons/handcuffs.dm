@@ -274,19 +274,22 @@ var/last_chew = 0
 	lcuffs.loc = target
 	target.legcuffed = lcuffs
 	target.update_inv_legcuffed()
+<<<<<<< HEAD
 	if(target.m_intent != "walk")
 		target.m_intent = "walk"
 		if(target.hud_used && user.hud_used.move_intent)
 			target.hud_used.move_intent.icon_state = "walking"
+=======
+	if(!IS_WALKING(target))
+		target.set_move_intent(/decl/move_intent/walk)
+>>>>>>> 20cdc4b6761... Converts move intents to /decl/move_intent (#8993)
 	return 1
 
 /obj/item/weapon/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
 	. = ..()
 	if(slot == slot_legcuffed)
-		if(user.m_intent != "walk")
-			user.m_intent = "walk"
-			if(user.hud_used && user.hud_used.move_intent)
-				user.hud_used.move_intent.icon_state = "walking"
+		if(!IS_WALKING(user))
+			user.set_move_intent(/decl/move_intent/walk)
 
 
 /obj/item/weapon/handcuffs/legcuffs/bola
@@ -325,10 +328,15 @@ var/last_chew = 0
 	lcuffs.loc = target
 	target.legcuffed = lcuffs
 	target.update_inv_legcuffed()
+<<<<<<< HEAD
 	if(target.m_intent != "walk")
 		target.m_intent = "walk"
 		if(target.hud_used && user.hud_used.move_intent)
 			target.hud_used.move_intent.icon_state = "walking"
+=======
+	if(!IS_WALKING(target))
+		target.set_move_intent(/decl/move_intent/walk)
+>>>>>>> 20cdc4b6761... Converts move intents to /decl/move_intent (#8993)
 	return 1
 
 /obj/item/weapon/handcuffs/cable/plantfiber

@@ -67,7 +67,7 @@
 	..()
 	if(statpanel("Status"))
 		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[m_intent]")
+		stat("Move Mode:", "[move_intent.name]")
 		if(emergency_shuttle)
 			var/eta_status = emergency_shuttle.get_status_panel_eta()
 			if(eta_status)

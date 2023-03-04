@@ -100,6 +100,7 @@
 			var/bloodcolor=""
 			if(H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
+<<<<<<< HEAD
 				if(istype(S))
 					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
 					if(S.track_blood && S.blood_DNA)
@@ -115,6 +116,21 @@
 			if (bloodDNA)
 				src.AddTracks(H.species.get_move_trail(H),bloodDNA,H.dir,0,bloodcolor) // Coming
 				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
+=======
+				S.handle_movement(src, IS_RUNNING(H))
+				if(S.track_blood && S.blood_DNA)
+					bloodDNA = S.blood_DNA
+					bloodcolor=S.blood_color
+					S.track_blood--
+			else if(M.track_blood && M.feet_blood_DNA)
+				bloodDNA = M.feet_blood_DNA
+				bloodcolor = M.feet_blood_color
+				M.track_blood--
+
+			if(bloodDNA)
+				src.AddTracks(track_type, bloodDNA , M.dir, 0, bloodcolor) // Coming
+				var/turf/simulated/from = get_step(M, reverse_direction(M.dir))
+>>>>>>> 20cdc4b6761... Converts move intents to /decl/move_intent (#8993)
 				if(istype(from) && from)
 					from.AddTracks(H.species.get_move_trail(H),bloodDNA,0,H.dir,bloodcolor) // Going
 
@@ -122,7 +138,7 @@
 
 		if(src.wet)
 
-			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
+			if(M.buckled || (src.wet == 1 && IS_WALKING(M)))
 				return
 
 			var/slip_dist = 1

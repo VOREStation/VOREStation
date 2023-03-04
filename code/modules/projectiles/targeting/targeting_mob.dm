@@ -57,10 +57,14 @@
 	if(aimed.len)
 		trigger_aiming(TARGET_CAN_MOVE)
 
-/mob/living/proc/set_m_intent(var/intent)
-	if (intent != "walk" && intent != "run")
-		return 0
-	m_intent = intent
-	if(hud_used)
-		if (hud_used.move_intent)
-			hud_used.move_intent.icon_state = intent == "walk" ? "walking" : "running"
+/mob/living/proc/set_move_intent(decl/move_intent/intent)
+	if(move_intent.type == intent)
+		return
+
+	var/new_intent = GET_DECL(intent)
+	if(isnull(new_intent))
+		return
+
+	move_intent = new_intent
+	if(hud_used?.move_intent)
+		hud_used.move_intent.icon_state = move_intent.hud_icon_state

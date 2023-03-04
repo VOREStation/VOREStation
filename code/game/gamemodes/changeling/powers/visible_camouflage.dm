@@ -41,13 +41,13 @@
 			to_chat(src, "<span class='notice'>We may move at our normal speed while hidden.</span>")
 
 		if(must_walk)
-			H.set_m_intent("walk")
+			H.set_move_intent(/decl/move_intent/walk)
 
 		var/remain_cloaked = TRUE
 		while(remain_cloaked) //This loop will keep going until the player uncloaks.
 			sleep(1 SECOND) // Sleep at the start so that if something invalidates a cloak, it will drop immediately after the check and not in one second.
 
-			if(H.m_intent != "walk" && must_walk) // Moving too fast uncloaks you.
+			if(!IS_WALKING(H) && must_walk) // Moving too fast uncloaks you.
 				remain_cloaked = 0
 			if(!H.mind.changeling.cloaked)
 				remain_cloaked = 0
@@ -65,7 +65,7 @@
 		H.invisibility = initial(invisibility)
 		visible_message("<span class='warning'>[src] suddenly fades in, seemingly from nowhere!</span>",
 		"<span class='notice'>We revert our camouflage, revealing ourselves.</span>")
-		H.set_m_intent("run")
+		H.set_move_intent(/decl/move_intent/run)
 		H.mind.changeling.cloaked = 0
 		H.mind.changeling.chem_recharge_rate = old_regen_rate
 

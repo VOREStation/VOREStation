@@ -124,7 +124,7 @@
 		return
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
-		if(L.m_intent == "run")
+		if(IS_RUNNING(L))
 			L.visible_message(
 				"<span class='danger'>[L] steps on \the [src].</span>",
 				"<span class='danger'>You step on \the [src]!</span>",
@@ -271,7 +271,7 @@
 		return
 	if(anchored && isliving(AM))
 		var/mob/living/L = AM
-		if(L.m_intent == "run")
+		if(IS_RUNNING(L))
 			L.visible_message(
 				"<span class='danger'>[L] steps in \the [src].</span>",
 				"<span class='danger'>You step in \the [src]!</span>",

@@ -103,7 +103,7 @@
 
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
-		if(M.m_intent != "walk")
+		if(!IS_WALKING(M))
 			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -115,7 +115,7 @@
 			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
 			cut_overlays()
 			unsense_proximity(callback = /atom/proc/HasProximity)
-			
+
 		else if(anchored)
 			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
 			add_overlay("[base_state]-s")
