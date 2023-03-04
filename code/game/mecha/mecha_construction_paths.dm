@@ -589,7 +589,7 @@
 
 
 /datum/construction/reversible/mecha/serenity
-	result = "/obj/mecha/combat/gygax/serenity"
+	result = "/obj/mecha/medical/serenity"
 	steps = list(
 					//1
 					list("key"=/obj/item/weapon/weldingtool,

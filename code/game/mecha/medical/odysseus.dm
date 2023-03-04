@@ -15,11 +15,11 @@
 	internal_damage_threshold = 35
 	deflect_chance = 15
 	step_energy_drain = 6
-	var/obj/item/clothing/glasses/hud/health/mech/hud
 
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
+<<<<<<< HEAD
 /obj/mecha/medical/odysseus/New()
 	..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
@@ -44,6 +44,8 @@
 			H.recalculate_vis()
 	..()
 	return
+=======
+>>>>>>> 6064f4057c2... [Requested] Serenity changed to proper medical exosuit. (#8951)
 /*
 	verb/set_perspective()
 		set name = "Set client perspective."

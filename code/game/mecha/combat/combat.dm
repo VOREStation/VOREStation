@@ -1,7 +1,9 @@
 /obj/mecha/combat
 	force = 30
-	var/melee_cooldown = 10
-	var/melee_can_hit = 1
+	melee_cooldown = 10
+	melee_can_hit = 1
+	melee_sound = 'sound/weapons/heavysmash.ogg'
+
 	//var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/simulated/wall, /obj/structure/girder)
 	internal_damage_threshold = 50
 	maint_access = 0
@@ -34,99 +36,6 @@
 		selected_weapon.fire(target)
 	return
 */
-
-/obj/mecha/combat/melee_action(atom/T)
-	if(internal_damage&MECHA_INT_CONTROL_LOST)
-		T = safepick(oview(1,src))
-	if(!melee_can_hit)
-		return
-	if(istype(T, /mob/living))
-		var/mob/living/M = T
-		if(src.occupant.a_intent == I_HURT || istype(src.occupant, /mob/living/carbon/brain)) //Brains cannot change intents; Exo-piloting brains lack any form of physical feedback for control, limiting the ability to 'play nice'.
-			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-			if(damtype == "brute")
-				step_away(M,src,15)
-			/*
-			if(M.stat>1)
-				M.gib()
-				melee_can_hit = 0
-				if(do_after(melee_cooldown))
-					melee_can_hit = 1
-				return
-			*/
-			if(ishuman(T))
-				var/mob/living/carbon/human/H = T
-	//			if (M.health <= 0) return
-
-				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
-				if(temp)
-					var/update = 0
-					switch(damtype)
-						if("brute")
-							H.Paralyse(1)
-							update |= temp.take_damage(rand(force/2, force), 0)
-						if("fire")
-							update |= temp.take_damage(0, rand(force/2, force))
-						if("tox")
-							if(H.reagents)
-								if(H.reagents.get_reagent_amount("carpotoxin") + force < force*2)
-									H.reagents.add_reagent("carpotoxin", force)
-								if(H.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
-									H.reagents.add_reagent("cryptobiolin", force)
-						if("halloss")
-							H.stun_effect_act(1, force / 2, BP_TORSO, src)
-						else
-							return
-					if(update)	H.UpdateDamageIcon()
-				H.updatehealth()
-
-			else
-				switch(damtype)
-					if("brute")
-						M.Paralyse(1)
-						M.take_overall_damage(rand(force/2, force))
-					if("fire")
-						M.take_overall_damage(0, rand(force/2, force))
-					if("tox")
-						if(M.reagents)
-							if(M.reagents.get_reagent_amount("carpotoxin") + force < force*2)
-								M.reagents.add_reagent("carpotoxin", force)
-							if(M.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
-								M.reagents.add_reagent("cryptobiolin", force)
-					else
-						return
-				M.updatehealth()
-			src.occupant_message("You hit [T].")
-			src.visible_message("<font color='red'><b>[src.name] hits [T].</b></font>")
-		else
-			step_away(M,src)
-			src.occupant_message("You push [T] out of the way.")
-			src.visible_message("[src] pushes [T] out of the way.")
-
-		melee_can_hit = 0
-		if(do_after(melee_cooldown))
-			melee_can_hit = 1
-		return
-
-	else
-		if(istype(T, /obj/machinery/disposal)) // Stops mechs from climbing into disposals
-			return
-		if(src.occupant.a_intent == I_HURT || istype(src.occupant, /mob/living/carbon/brain)) // Don't smash unless we mean it
-			if(damtype == "brute")
-				src.occupant_message("You hit [T].")
-				src.visible_message("<font color='red'><b>[src.name] hits [T]</b></font>")
-				playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-
-				if(istype(T, /obj/structure/girder))
-					T:take_damage(force * 3) //Girders have 200 health by default. Steel, non-reinforced walls take four punches, girders take (with this value-mod) two, girders took five without.
-				else
-					T:take_damage(force)
-
-				melee_can_hit = 0
-
-				if(do_after(melee_cooldown))
-					melee_can_hit = 1
-	return
 
 /obj/mecha/combat/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())

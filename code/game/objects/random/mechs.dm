@@ -7,7 +7,7 @@
 //This list includes the phazon, gorilla and mauler. You might want to use something else if balance is a concern.
 /obj/random/mech/item_to_spawn()
 	return pick(/obj/mecha/combat/gygax,
-				/obj/mecha/combat/gygax/serenity,
+				/obj/mecha/medical/serenity,
 				/obj/mecha/combat/gygax/dark,
 				/obj/mecha/combat/marauder,
 				/obj/mecha/combat/marauder/seraph,
@@ -28,7 +28,7 @@
 
 /obj/random/mech/weaker/item_to_spawn()
 	return pick(/obj/mecha/combat/gygax,
-				/obj/mecha/combat/gygax/serenity,
+				/obj/mecha/medical/serenity,
 				/obj/mecha/medical/odysseus,
 				/obj/mecha/combat/durand,
 				/obj/mecha/working/ripley,

@@ -81,6 +81,7 @@
 		return
 	cell = new /obj/item/weapon/cell/hyper(src)
 
+<<<<<<< HEAD
 /obj/mecha/combat/gygax/serenity
 	desc = "A lightweight exosuit made from a modified Gygax chassis combined with proprietary VeyMed medical tech. It's faster and sturdier than most medical mechs, but much of the armor plating has been stripped out, leaving it more vulnerable than a regular Gygax."
 	name = "Serenity"
@@ -137,6 +138,8 @@
 	..()
 	return
 
+=======
+>>>>>>> 6064f4057c2... [Requested] Serenity changed to proper medical exosuit. (#8951)
 //Meant for random spawns.
 /obj/mecha/combat/gygax/old
 	desc = "A lightweight, security exosuit. Popular among private and corporate security. This one is particularly worn looking and likely isn't as sturdy."
