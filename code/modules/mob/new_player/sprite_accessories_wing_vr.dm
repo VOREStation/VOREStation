@@ -296,3 +296,11 @@
 	desc = ""
 	icon = 'icons/mob/vore/wings_vr.dmi'
 	icon_state = "dragonfly_tesh"
+
+/datum/sprite_accessory/wing/snail_shell
+	name = "snail shell, colorable"
+	desc = ""
+	icon_state = "snail_shell"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "snail_shell_markings"
