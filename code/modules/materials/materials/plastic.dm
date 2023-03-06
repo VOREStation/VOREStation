@@ -24,6 +24,29 @@
 		new /datum/stack_recipe("reagent dispenser cartridge (small)", /obj/item/weapon/reagent_containers/chem_disp_cartridge/small,  1, on_floor=0, pass_stack_color = TRUE, recycle_material = "[name]"), // 100u
 		new /datum/stack_recipe("white floor tile", /obj/item/stack/tile/floor/white, 1, 4, 20, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("freezer floor tile", /obj/item/stack/tile/floor/freezer, 1, 4, 20, pass_stack_color = TRUE, recycle_material = "[name]"),
+
+			//Eris Floor tiles- white
+		new /datum/stack_recipe_list("eris floors-white", list(
+			new /datum/stack_recipe("white floor tile", /obj/item/stack/tile/floor/eris/white, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white panel tile", /obj/item/stack/tile/floor/eris/white/panels, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white techfloor tile", /obj/item/stack/tile/floor/eris/white/techfloor, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white techfloor tile with vents", /obj/item/stack/tile/floor/eris/white/techfloor_grid, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white brown perforated tile", /obj/item/stack/tile/floor/eris/white/brown_perforated, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white gray perforated tile", /obj/item/stack/tile/floor/eris/white/gray_perforated, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white cargo tile", /obj/item/stack/tile/floor/eris/white/cargo, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white brown platform tile", /obj/item/stack/tile/floor/eris/white/brown_platform, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white gray platform tile", /obj/item/stack/tile/floor/eris/white/gray_platform, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white danger tile", /obj/item/stack/tile/floor/eris/white/danger, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white golden tile", /obj/item/stack/tile/floor/eris/white/golden, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("white monofloor tile", /obj/item/stack/tile/floor/eris/white/monofloor, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe_list("white corner tiles", list(
+				new /datum/stack_recipe("white blue corner tile", /obj/item/stack/tile/floor/eris/white/bluecorner, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("white orange corner tile", /obj/item/stack/tile/floor/eris/white/orangecorner, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("white cyan corner tile", /obj/item/stack/tile/floor/eris/white/cyancorner, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("white violet corner tile", /obj/item/stack/tile/floor/eris/white/violetcorener, 1, 4, 20, recycle_material = "[name]"),
+			)),
+		)),
+
 		new /datum/stack_recipe("shower curtain", /obj/structure/curtain, 4, time = 15, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 4, time = 25, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("water-cooler", /obj/structure/reagent_dispensers/water_cooler, 4, time = 10, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE, recycle_material = "[name]"),
