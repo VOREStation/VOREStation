@@ -7,6 +7,7 @@
 
 /obj/effect/landmark/overmap_renamer/debris_field/Initialize()
 	..()
-	for(var/obj/effect/overmap/visitable/sector/debrisfield/D in visitable_overmap_object_instances)
-		if(D.possible_descriptors && islist(D.possible_descriptors))
-			D.possible_descriptors |= list(descriptors)
+	for(var/obj/effect/overmap/visitable/D in visitable_overmap_object_instances)
+		if(D.unique_identifier == "Debris Field")
+			if(D.possible_descriptors && islist(D.possible_descriptors))
+				D.possible_descriptors |= list(descriptors)

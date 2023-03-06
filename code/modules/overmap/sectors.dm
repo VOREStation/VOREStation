@@ -42,6 +42,8 @@
 	var/list/possible_descriptors = list() //While only affects sectors for now, initialized here for proc definition convenience.
 	var/visitable_renamed = FALSE //changed if non-default name is assigned.
 
+	var/unique_identifier //Define this for objs that we want to be able to rename. Needed to avoid compiler errors if not included.
+
 /obj/effect/overmap/visitable/Initialize()
 	. = ..()
 	if(. == INITIALIZE_HINT_QDEL)

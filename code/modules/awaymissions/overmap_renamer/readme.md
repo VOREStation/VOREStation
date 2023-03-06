@@ -25,19 +25,20 @@ How to use - for mappers:
         Did you want to make an abandoned mining facility overmap adventure? Now this system will let you turn the DF into one (if the dice permits)
 
     Adding a new POI to a brand new lateloaded Z level (you can check which Z levels are handled by the renamer in code\controllers\subsystems\overmap_renamer_vr.dm)
+        First, go to your /obj/effect/overmap/visitable, and define unique_identifier as something unique. Like, "Debris Field" - basically, this is a way to check if the map loaded without causing compiler errors.
+
         Your task will become a bit more difficult now. Create a new .dm file following convention already estabilished with debrisfield_renamer.dm
 
             Within this file, define your /obj/effect/landmark/overmap_renamer/newname here
             Within this file, create a new /obj/effect/landmark/overmap_renamer/newname/Initialize()
                 Within this proc, copy what's done in code\modules\awaymissions\overmap_renamer\debrisfield_renamer.dm
-                except, replace var/obj/effect/overmap/visitable/sector/debrisfield/D with var/obj/effect/overmap/visitable/my/sector/S,
-                naturally replacing D with whatever you decided to name this var.
+                except, replace if(D == "Debris Field") with whatever your unique identifier was defined for your specific overmap object
 
         Now go to code\controllers\subsystems\overmap_renamer_vr.dm
             copy the if("Debris Field - Z1 Space" in visitable_Z_levels_name_list) and everything belonging to this if statement
             paste it below this if statement and change things as described:
                 change the if("map_template.name goes here" in visitable_z_levels_name_list) (you can get the proper name by going to wherever your /datum/map_template/ for your map is. For Debris field, it's maps\offmap_vr\common_offmaps.dm. Yours is probably there too!)
-                change the for(var/obj/effect/overmap/visitable/sector/debrisfield/D in visitable_overmap_object_instances) section in your new if statement just like you did for the landmark!
+                change the if(D == "Debris Field") section in your new if statement just like you did for the landmark!
 
         And you're done! Refer to the "How to add a landmark" section on the top from now on.
         
@@ -52,6 +53,7 @@ code\_helpers\global_lists_vr.dm
 
 code\modules\overmap\sectors.dm
     var/list/possible_descriptors - contains a list of list("name","desc","scanner_desc")
+    var/unique_identifier - A way to check if the object in question loaded without causing a compiler error. Name them sth easy to recognize, like "Debris field" for... debris field.
     var/real_name - Used to handle known = FALSE overmap objects properly
 	var/real_desc - same as real_name
     /obj/effect/overmap/visitable/Initialize() - adds the object's instance with reference to visitable_overmap_object_instances

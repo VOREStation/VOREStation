@@ -11,6 +11,7 @@
 	initial_generic_waypoints = list("debrisfield_se", "debrisfield_nw")
 	icon_state = "spacehulk_g"
 	possible_descriptors = list("default")
+	unique_identifier = "Debris Field"
 
 // -- Objs -- //
 

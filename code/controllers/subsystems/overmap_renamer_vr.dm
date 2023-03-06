@@ -23,8 +23,8 @@ if we end up with multiple renamable lateload overmap objects.*/
 	if(!visitable_Z_levels_name_list || !islist(visitable_Z_levels_name_list) || !length(visitable_Z_levels_name_list))
 		return
 	if("Debris Field - Z1 Space" in visitable_Z_levels_name_list)
-		for(var/obj/effect/overmap/visitable/sector/debrisfield/D in visitable_overmap_object_instances)
-			if(D && istype(D))
+		for(var/obj/effect/overmap/visitable/D in visitable_overmap_object_instances)
+			if(D.unique_identifier == "Debris Field")
 				D.modify_descriptors()
 				if(D.visitable_renamed) //could just if(D.modify_descriptors()), but having a var recording renaming is useful for debugging and stuff!
 					if(D.known)
