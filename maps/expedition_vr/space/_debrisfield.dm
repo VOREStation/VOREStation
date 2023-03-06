@@ -10,6 +10,7 @@
 	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
 	initial_generic_waypoints = list("debrisfield_se", "debrisfield_nw")
 	icon_state = "spacehulk_g"
+	possible_descriptors = list("default")
 
 // -- Objs -- //
 

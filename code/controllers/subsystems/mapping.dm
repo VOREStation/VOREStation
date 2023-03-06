@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(mapping)
 	if(config.generate_map)
 		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
 		using_map.perform_map_generation()
-	
+
 	loadEngine()
 	preloadShelterTemplates() // VOREStation EDIT: Re-enable Shelter Capsules
 	// Mining generation probably should be here too
@@ -90,6 +90,7 @@ SUBSYSTEM_DEF(mapping)
 				error("Lateload Z level \"[mapname]\" is not a valid map!")
 				continue
 			MT.load_new_z(centered = FALSE)
+			visitable_Z_levels_name_list |= MT.name //Exists here purely for sake of Debris field at the moment.
 			CHECK_TICK
 
 	if(LAZYLEN(maybe_load))
@@ -112,7 +113,7 @@ SUBSYSTEM_DEF(mapping)
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
 				MT.load_new_z(centered = FALSE)
-	
+
 	if(LAZYLEN(also_load)) //Just copied from gateway picking, this is so we can have a kind of OM map version of the same concept.
 		var/picklist = pick(also_load)
 
@@ -133,6 +134,7 @@ SUBSYSTEM_DEF(mapping)
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
 				MT.load_new_z(centered = FALSE)
+				visitable_Z_levels_name_list |= MT.name
 
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
