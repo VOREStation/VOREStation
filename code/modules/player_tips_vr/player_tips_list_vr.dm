@@ -59,7 +59,7 @@ When editing the list, please try and keep similar probabilities near each other
 			var/info = "The following is a roleplay-focused tip to playing on VOREStation \n"
 			return pick(
 				prob(45); "[info] Our server has a strong 'Bystander Consent' policy, meaning that scenes are expected to be mindful of the preferences of those around them in public, not just their partners. When in doubt, keep it subtle, and communicate via looc!",
-				prob(40); "[info] Sometimes, players may possess creatures that look like monsters or wild animals (e.g: defanged xenomorphs). These are called "maint preds" and if you encounter them - you should avoid drawing attention to their existence over the radio! They're here to create unique vore scenarios, not to be treated as antags.",
+				prob(40); "[info] Sometimes, players may possess creatures that look like monsters or wild animals (e.g: defanged xenomorphs). These are called 'maint preds' and if you encounter them - you should avoid drawing attention to their existence over the radio! They're here to create unique vore scenarios, not to be treated as antags.",
 				prob(40); "[info] Please avoid a character that knows everything. Having only a small set of jobs you are capable of doing can help flesh out your character! It's OK for things to break and fail if nobody is around to fix it - you do not need to do others' jobs.",
 				prob(40); "[info] Just because you see something doesn't mean your character has to. A courtesy 'missing' of contraband or scene details can go a long way towards preserving everyone's fun!",
 				prob(40); "[info] Embrace the limits of your character's skillsets! Seeking out other players to help you with a more challenging task might build friendships, or even lead to a scene!",
