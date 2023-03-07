@@ -16,7 +16,6 @@ var/global/list/active_ghost_pods = list()
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
 var/global/list/visitable_overmap_object_instances = list()
-var/global/list/visitable_Z_levels_name_list = list() //Collects map_tempate.name of deffo_load and also_load lateloaded maps from mapping subsystem
 
 var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")
 

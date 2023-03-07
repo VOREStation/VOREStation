@@ -90,7 +90,6 @@ SUBSYSTEM_DEF(mapping)
 				error("Lateload Z level \"[mapname]\" is not a valid map!")
 				continue
 			MT.load_new_z(centered = FALSE)
-			visitable_Z_levels_name_list |= MT.name //Exists here purely for sake of Debris field at the moment.
 			CHECK_TICK
 
 	if(LAZYLEN(maybe_load))
@@ -134,7 +133,6 @@ SUBSYSTEM_DEF(mapping)
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
 				MT.load_new_z(centered = FALSE)
-				visitable_Z_levels_name_list |= MT.name
 
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()

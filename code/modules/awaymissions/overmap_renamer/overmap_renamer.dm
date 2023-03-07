@@ -12,12 +12,14 @@ possible_descriptors are populated by subtypes of /obj/effect/landmark/overmap_r
 
 	var/list/chosen_descriptor = pick(possible_descriptors)
 	if(chosen_descriptor == "default")
+		testing("Defaulting to default!")
 		return   //Not an error, won't generate an error message
 	var/breakWhile = 0
 	while(LAZYLEN(chosen_descriptor) != 3)
 		LAZYREMOVE(chosen_descriptor, possible_descriptors)
 		chosen_descriptor = pick(possible_descriptors)
 		if(chosen_descriptor == "default")
+//			testing("Defaulting to default!") //Uncomment when adding a new landmark to confirm it works OK, but recomment before commiting
 			return
 		if(breakWhile > 10 || length(possible_descriptors) < 1)
 			error("No valid descriptors could be found for [name]!") //Checking default separately for sake of error messages
@@ -41,6 +43,7 @@ possible_descriptors are populated by subtypes of /obj/effect/landmark/overmap_r
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 	var/list/descriptors = list() //Elements: A = name, B = desc C = scanner desc. Each element must be a string
+//	var/static/reference //exists to avoid having to iterate over the overmap objs list more than once. Commented out here. Add this to subtype
 
 /obj/effect/landmark/overmap_renamer/Initialize()
 //	testing("Loading renamer landmark: [name]") //Uncomment when adding a new POI/Landmark for testing aid.

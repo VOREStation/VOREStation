@@ -7,11 +7,11 @@ How to use - for mappers:
         There, create a new object as given in the following example:
 
         /obj/effect/landmark/overmap_renamer/debris_field/examplelandmark
-	        name = "Debris field example landmark!"
+	        name = "Debris field example landmark that hints at which POI it came from!!!"
 	        descriptors = list("This element appears when you hover over the obj in the nav console", "if someone manages to examine it", "This is what the printed paper says")
 
         Make sure you use exactly 3 elements, no more and no less and make sure each element is enclosed in a "".
-        If you want to only change one element, fill in the other ones with the appropriate  /obj/effect/overmap/visitable/ subtype your Z level corresponds to (you can find its path in the Initialize() proc for easier finding)
+        If you want to only change one element, fill in the other ones with the appropriate  /obj/effect/overmap/visitable/ subtype's name, desc or scanner_desc your Z level corresponds to.
 
         Once done, just load up strongDMM and place your landmark within the map.
         Please use the _renamer.dm files to define landmarks, don't do it within the game.
@@ -30,6 +30,9 @@ How to use - for mappers:
         Your task will become a bit more difficult now. Create a new .dm file following convention already estabilished with debrisfield_renamer.dm
 
             Within this file, define your /obj/effect/landmark/overmap_renamer/newname here
+                add the following line: 
+                    var/static/reference //leave thus null. The initialization will change this to contain reference to your overmap object instance. Saves us from excess looping
+                    name = "obvious reference to the lateloaded Z in question here"
             Within this file, create a new /obj/effect/landmark/overmap_renamer/newname/Initialize()
                 Within this proc, copy what's done in code\modules\awaymissions\overmap_renamer\debrisfield_renamer.dm
                 except, replace if(D == "Debris Field") with whatever your unique identifier was defined for your specific overmap object
@@ -47,32 +50,29 @@ How to use - for mappers:
 
 Important procs, vars etc. contained within the following files:
 
-code\_helpers\global_lists_vr.dm
-    var/list/visitable_overmap_object_instances - Collects instances with reference for things like the Debris Field, Space Whale, Talon etc. We need it to call the proc on the instance
-    var/list/visitable_Z_levels_name_list - Collects names as defined under the appropriate map_template of the lateloaded Z level. We need this to check if the Z level loaded in within the subsystem
+    code\_helpers\global_lists_vr.dm
+        var/list/visitable_overmap_object_instances - Collects instances with reference for things like the Debris Field, Space Whale, Talon etc. We need it to call the proc on the instance
 
-code\modules\overmap\sectors.dm
-    var/list/possible_descriptors - contains a list of list("name","desc","scanner_desc")
-    var/unique_identifier - A way to check if the object in question loaded without causing a compiler error. Name them sth easy to recognize, like "Debris field" for... debris field.
-    var/real_name - Used to handle known = FALSE overmap objects properly
-	var/real_desc - same as real_name
-    /obj/effect/overmap/visitable/Initialize() - adds the object's instance with reference to visitable_overmap_object_instances
+    code\modules\overmap\sectors.dm
+        var/list/possible_descriptors - contains a list of list("name","desc","scanner_desc")
+        var/unique_identifier - A way to check if the object in question loaded without causing a compiler error. Name them sth easy to recognize, like "Debris field" for... debris field.
+        var/real_name - Used to handle known = FALSE overmap objects properly
+        var/real_desc - same as real_name
+        /obj/effect/overmap/visitable/Initialize() - adds the object's instance with reference to visitable_overmap_object_instances
 
-code\controllers\subsystems\mapping.dm
-    /datum/controller/subsystem/mapping/proc/loadLateMaps() - Adds the name of the loaded map_template to visitable_Z_levels_name_list
+    code\modules\awaymissions\overmap_renamer\overmap_renamer.dm
+        /obj/effect/overmap/visitable/proc/modify_descriptors() - Takes possible_descriptors from src, picks a valid one after sanitization. Gives warnings if input is invalid.
+        /obj/effect/landmark/overmap_renamer - generic landmark, don't touch.
 
-code\modules\awaymissions\overmap_renamer\overmap_renamer.dm
-    /obj/effect/overmap/visitable/proc/modify_descriptors() - Takes possible_descriptors from src, picks a valid one after sanitization. Gives warnings if input is invalid.
-    /obj/effect/landmark/overmap_renamer - generic landmark, don't touch.
+    code\modules\awaymissions\overmap_renamer\debrisfield_renamer.dm - Mappers, copy contents, changing the /overmap_renamer/debris_field to /overmap_renamer/yourthingy
+        var/static/reference - I couldn't find a way to declare this higher up in the path. Make sure to delcare it when making landmarks for a new area. Static so all landmarks have it. This gets defined on runtime after the first landmark subtype initializes.
+        /obj/effect/landmark/overmap_renamer/debris_field/Initialize() - Copy the entire thing, and change the "Debris Field" to your obj's var/unique_identifier
 
-code\modules\awaymissions\overmap_renamer\debrisfield_renamer.dm - Mappers, copy contents, changing the debris_field to your Z level's name wherever applicable
-    /obj/effect/landmark/overmap_renamer/debris_field/Initialize() - Change var/obj/effect/overmap/visitable/sector/debrisfield/D to whatever your location's visitable object is when copying.
-
-code\controllers\subsystems\overmap_renamer_vr.dm
-    /datum/controller/subsystem/overmap_renamer/proc/update_names() - Checks which Z levels are loaded, modifies them 
-        To add new Z levels to the renamer, simply copy the if statement and its contents for debris field,
-        taking care to change the "Debris Field - Z1 Space" to the name var defined in your lateloaded Z level's map_template datum
-        example: maps\offmap_vr\common_offmaps.dm and then the /datum/map_template/common_lateload/away_debrisfield
+    code\controllers\subsystems\overmap_renamer_vr.dm
+        /datum/controller/subsystem/overmap_renamer/proc/update_names() - Checks which Z levels are loaded, modifies them 
+            To add new Z levels to the renamer, simply copy the if statement and its contents for debris field,
+            taking care to change the "Debris Field - Z1 Space" to the name var defined in your lateloaded Z level's map_template datum
+            example: maps\offmap_vr\common_offmaps.dm and then the /datum/map_template/common_lateload/away_debrisfield
 
 
 */
