@@ -4,6 +4,7 @@
 	var/directory_tag
 	var/directory_erptag
 	var/directory_ad
+	var/vore_prey_eaten = 0
 
 /mob/living/mind_initialize()
 	. = ..()
