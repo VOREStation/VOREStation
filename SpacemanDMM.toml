@@ -1,3 +1,5 @@
+environment = "vorestation.dme"
+
 [langserver]
 dreamchecker = true
 
