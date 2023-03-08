@@ -218,6 +218,7 @@
 
 	var/typing
 	var/obj/effect/decal/typing_indicator
+	var/obj/effect/decal/typing_indicator_active
 	var/cur_typing_indicator
 	var/custom_speech_bubble = "default"
 

@@ -35,9 +35,13 @@
 	if(state && !typing)
 		add_overlay(typing_indicator, TRUE)
 		typing = TRUE
+		typing_indicator_active = typing_indicator
 	else if(typing)
-		cut_overlay(typing_indicator, TRUE)
+		cut_overlay(typing_indicator_active, TRUE)
 		typing = FALSE
+		if(typing_indicator_active != typing_indicator)
+			qdel(typing_indicator_active)
+		typing_indicator_active = null
 
 	return state
 
