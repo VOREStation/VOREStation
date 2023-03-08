@@ -286,6 +286,7 @@
 #include "code\controllers\subsystems\overmap_renamer_vr.dm"
 #include "code\controllers\subsystems\persist_vr.dm"
 #include "code\controllers\subsystems\persistence.dm"
+#include "code\controllers\subsystems\ping.dm"
 #include "code\controllers\subsystems\planets.dm"
 #include "code\controllers\subsystems\plants.dm"
 #include "code\controllers\subsystems\player_tips.dm"
