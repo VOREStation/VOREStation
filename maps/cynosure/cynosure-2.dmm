@@ -12527,7 +12527,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/obj/machinery/power/emitter,
+/obj/machinery/power/emitter{
+	desc = "It is a heavy duty industrial laser. This one seems a little more ominous than the rest, somehow..."
+	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -51875,6 +51877,24 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/crew_quarters/cafeteria)
+<<<<<<< HEAD
+=======
+"xAC" = (
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/item/bodybag/cryobag,
+/obj/structure/closet/medical_wall{
+	pixel_x = 32
+	},
+/obj/item/storage/pill_bottle/spaceacillin,
+/obj/item/roller,
+/obj/item/storage/firstaid/regular,
+/obj/machinery/camera/network/civilian{
+	c_tag = "CIV - Pool East";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/surface/station/crew_quarters/pool)
+>>>>>>> 011484540b1... Merge pull request #8995 from Varlaisvea/voidsuits
 "xAM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
