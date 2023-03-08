@@ -441,11 +441,12 @@ var/global/datum/controller/subsystem/ticker/ticker
 				//equip_custom_items(player)	//VOREStation Removal
 				//player.apply_traits() //VOREStation Removal
 		//VOREStation Addition Start
-		if(player.client.prefs.auto_backup_implant)
-			var/obj/item/weapon/implant/backup/imp = new(src)
+		if(player.client)
+			if(player.client.prefs.auto_backup_implant)
+				var/obj/item/weapon/implant/backup/imp = new(src)
 
-			if(imp.handle_implant(player,player.zone_sel.selecting))
-				imp.post_implant(player)
+				if(imp.handle_implant(player,player.zone_sel.selecting))
+					imp.post_implant(player)
 		//VOREStation Addition End
 	if(captainless)
 		for(var/mob/M in player_list)

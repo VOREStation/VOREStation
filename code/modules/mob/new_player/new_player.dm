@@ -486,12 +486,12 @@
 		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+	if(ishuman(character))
+		if(character.client.prefs.auto_backup_implant)
+			var/obj/item/weapon/implant/backup/imp = new(src)
 
-	if(character.client.prefs.auto_backup_implant)
-		var/obj/item/weapon/implant/backup/imp = new(src)
-
-		if(imp.handle_implant(character,character.zone_sel.selecting))
-			imp.post_implant(character)
+			if(imp.handle_implant(character,character.zone_sel.selecting))
+				imp.post_implant(character)
 
 	qdel(src) // Delete new_player mob
 
