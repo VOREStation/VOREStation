@@ -66,11 +66,15 @@
 		init_typing_indicator("[cur_bubble_appearance]_typing")
 
 	if(state && !typing)
-		loc.add_overlay(typing_indicator, TRUE)
+		add_overlay(typing_indicator, TRUE)
 		typing = TRUE
+		typing_indicator_active = typing_indicator
 	else if(typing)
-		loc.cut_overlay(typing_indicator, TRUE)
+		cut_overlay(typing_indicator_active, TRUE)
 		typing = FALSE
+		if(typing_indicator_active != typing_indicator)
+			qdel(typing_indicator_active)
+		typing_indicator_active = null
 
 	return state
 
