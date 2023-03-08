@@ -33,7 +33,6 @@
 	GLOB.timezoneOffset = get_timezone_offset()
 
 	callHook("startup")
-	init_vchat()
 	//Emergency Fix
 	load_mods()
 	//end-emergency fix

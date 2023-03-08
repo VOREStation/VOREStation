@@ -345,8 +345,8 @@
 	if(!text_tag_cache[tagname])
 		var/icon/tag = icon(text_tag_icons, tagname)
 		text_tag_cache[tagname] = bicon(tag, TRUE, "text_tag")
-	if(C.chatOutput.broken)
-		return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
+	//if(C.chatOutput.broken) TODO: Find out the equivalent for actual tgchat (if not already implemented in other code)
+		//return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 	return text_tag_cache[tagname]
 
 /proc/create_text_tag_old(var/tagname, var/tagdesc = tagname, var/client/C = null)

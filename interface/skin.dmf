@@ -1269,16 +1269,17 @@ window "outputwindow"
 		text-color = #ffffff
 		background-color = #222222
 		saved-params = ""
-		text = "Chat is loading.\nIf nothing happens after 20s,\nuse OOC > \"Reload VChat\"."
-	elem "htmloutput"
+		text = "Chat is loading.\nIf nothing happens after 20s,\nuse OOC > \"Fix chat\"."
+	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		is-visible = false
+		is-disable = true
 		saved-params = ""
-	elem "oldoutput"
+	elem "output"
 		type = OUTPUT
 		pos = 0,0
 		size = 640x480
