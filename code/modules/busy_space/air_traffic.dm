@@ -3,8 +3,8 @@
 var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller
-	var/delay_max = 25 MINUTES			//How long between ATC traffic, max.  Default is 25 mins.
-	var/delay_min = 40 MINUTES			//How long between ATC traffic, min.  Default is 40 mins.
+	var/delay_min = 25 MINUTES			//How long between ATC traffic, min.  Default is 25 mins.
+	var/delay_max = 40 MINUTES			//How long between ATC traffic, max.  Default is 40 mins.
 	var/backoff_delay = 5 MINUTES		//How long to back off if we can't talk and want to.  Default is 5 mins.
 	var/next_message					//When the next message should happen in world.time
 	var/force_chatter_type				//Force a specific type of messages
@@ -48,23 +48,24 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	msg("Automated Tram, cleared to complete routine transfer from [using_map.station_name] to [using_map.dock_name].") //VOREStation Edit - Tram, tho.
 
 /datum/lore/atc_controller/proc/random_convo()
-	var/one = pick(loremaster.organizations) //These will pick an index, not an instance
-	var/two = pick(loremaster.organizations)
+	var/datum/lore/organization/source = loremaster.organizations[pick(loremaster.organizations)]
 
-	var/datum/lore/organization/source = loremaster.organizations[one] //Resolve to the instances
-	var/datum/lore/organization/dest = loremaster.organizations[two]
+	//get the relevant mission string from our org.
+	//will also give us a new ship name
+	var/mission_text = source.generate_mission()
 
 	//Let's get some mission parameters
-	var/owner = source.short_name					//Use the short name
-	var/prefix = pick(source.ship_prefixes)			//Pick a random prefix
-	var/mission = source.ship_prefixes[prefix]		//The value of the prefix is the mission type that prefix does
-	var/shipname = pick(source.ship_names)			//Pick a random ship name to go with it
-	var/destname = pick(dest.destination_names)			//Pick a random holding from the destination
 
+<<<<<<< HEAD
 	var/combined_name = "[owner] [prefix] [shipname]"
 	var/alt_atc_names = list("[using_map.station_short] TraCon","[using_map.station_short] Control","[using_map.station_short] STC","[using_map.station_short] Airspace")
 	var/wrong_atc_names = list("Sol Command","New Reykjavik StarCon", "[using_map.dock_name]")
 	var/mission_noun = list("flight","mission","route")
+=======
+	var/combined_name = "[source.short_name] [source.current_ship]"
+	var/alt_atc_names = list("[using_map.station_short] TraCon","[using_map.station_short] Control","[using_map.station_short] ATC","[using_map.station_short] Airspace")
+	var/wrong_atc_names = list("Sol Command","New Reykjavik StarCon", "NLS Southern Cross TraCon", "[using_map.dock_name]")
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 	var/request_verb = list("requesting","calling for","asking for")
 
 	//First response is 'yes', second is 'no'
@@ -90,7 +91,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	else
 		chatter_type = pick(2;"emerg",5;"wrong_freq","normal") //Be nice to have wrong_lang...
 
-	var/yes = prob(90) //Chance for them to say yes vs no
+	var/yes = prob(source.legit) //Chance for them to say yes vs no
 
 	var/request = pick(requests)
 	var/callname = pick(alt_atc_names)
@@ -103,27 +104,33 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	switch(chatter_type)
 		if("wrong_freq")
 			callname = pick(wrong_atc_names)
-			full_request = "[callname], this is [combined_name] on a [mission] [pick(mission_noun)] to [destname], [pick(request_verb)] [request]."
+			full_request = "[callname], this is [source.short_name] [mission_text], [pick(request_verb)] [request]."
 			full_response = "[combined_name], this is [using_map.station_short] TraCon, wrong frequency. Switch to [rand(700,999)].[rand(1,9)]."
 			full_closure = "[using_map.station_short] TraCon, understood, apologies."
 		if("wrong_lang")
 			//Can't implement this until autosay has language support
 		if("emerg")
+<<<<<<< HEAD
 			var/problem = pick("hull breaches on multiple decks","unknown life forms on board","a drive about to go critical","asteroids impacting the hull","a total loss of engine power","people trying to board the ship")
+=======
+			var/problem = pick("hull breaches on multiple decks","unknown life forms on board","a drive about to go critical","lost attitude control","asteroids impacting the hull","an engine on fire","a total loss of engine power","a malfunctioning bluespace drive","people trying to board the ship","instrument failure and zero visibility", "Skathari on board", "a malfunctioning core intelligence")
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 			full_request = "This is [combined_name] declaring an emergency! We have [problem]!"
 			full_response = "[combined_name], this is [using_map.station_short] TraCon, copy. Switch to emergency responder channel [rand(700,999)].[rand(1,9)]."
-			full_closure = "[using_map.station_short] TraCon, okay, switching now."
+			full_closure = pick("[using_map.station_short] TraCon, okay, switching now!", "Roger, [using_map.station_short] TraCon!", "Switching!", "...")
 		else
-			full_request = "[callname], this is [combined_name] on a [mission] [pick(mission_noun)] to [destname], [pick(request_verb)] [request]."
+			full_request = "[callname], this is [source.short_name] [mission_text], [pick(request_verb)] [request]."
 			full_response = "[combined_name], this is [using_map.station_short] TraCon, [response]." //Station TraCon always calls themselves TraCon
 			full_closure = "[using_map.station_short] TraCon, [yes ? "thank you" : "understood"], good day." //They always copy what TraCon called themselves in the end when they realize they said it wrong
+			if(source.motto && prob(source.annoying) && yes)
+				full_closure += " " + source.motto
 
 	//Ship sends request to ATC
-	msg(full_request,"[prefix] [shipname]")
+	msg(full_request,"[source.current_ship]")
 	sleep(5 SECONDS)
 	//ATC sends response to ship
 	msg(full_response)
 	sleep(5 SECONDS)
 	//Ship sends response to ATC
-	msg(full_closure,"[prefix] [shipname]")
+	msg(full_closure,"[source.current_ship]")
 	return

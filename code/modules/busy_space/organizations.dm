@@ -1,15 +1,22 @@
 //Datums for different companies that can be used by busy_space
 /datum/lore/organization
-	var/name = ""				// Organization's name
-	var/short_name = ""			// Organization's shortname (NanoTrasen for "NanoTrasen Incorporated")
-	var/acronym = ""			// Organization's acronym, e.g. 'NT' for NanoTrasen'.
-	var/desc = ""				// One or two paragraph description of the organization, but only current stuff.  Currently unused.
-	var/history = ""			// Historical discription of the organization's origins  Currently unused.
-	var/work = ""				// Short description of their work, eg "an arms manufacturer"
-	var/headquarters = ""		// Location of the organization's HQ.  Currently unused.
-	var/motto = ""				// A motto/jingle/whatever, if they have one.  Currently unused.
+	var/name = ""															// Organization's name
+	var/short_name = ""														// Organization's shortname (NanoTrasen for "NanoTrasen Incorporated")
+	var/acronym = ""														// Organization's acronym, e.g. 'NT' for NanoTrasen'.
+	var/desc = ""															// One or two paragraph description of the organization, but only current stuff.  Currently unused.
+	var/history = ""														// Historical discription of the organization's origins  Currently unused.
+	var/work = ""															// Short description of their work, eg "an arms manufacturer"
+	var/headquarters = ""													// Location of the organization's HQ.  Currently unused.
+	var/motto = ""															// A motto/jingle/whatever, if they have one.
+	var/legit = 90															// The odds of them being approved a flight route. mostly a function of their reputation though unfamiliarity with local traffic rules is also a factor
+	var/annoying = 10														// The odds they'll say their motto at the end of a successfully negotiatiated route.
+	var/serviced = list(/datum/lore/system/sol = 1)							// systems they work in, weighted
+	var/missions = list()		// mission types they run
+	var/special_locations = list()											// individual locations they might run missions to outside of their serviced systems
+	var/mission_noun = list("mission","flight", "trip")						//
+	var/current_ship = ""												// the most recent ship from this org to have talked on the tracon
+//todo, implement per-org special locations
 
-	var/list/ship_prefixes = list()	//Some might have more than one! Like NanoTrasen. Value is the mission they perform, e.g. ("ABC" = "mission desc")
 	var/list/ship_names = list(		//Names of spaceships.  This is a mostly generic list that all the other organizations inherit from if they don't have anything better.
 		"Kestrel",
 		"Beacon",
@@ -25,6 +32,7 @@
 		"Explorer",
 		"Swift",
 		"Dragonfly",
+		"Hollyhock",
 		"Ascendant",
 		"Tenacious",
 		"Pioneer",
@@ -41,6 +49,7 @@
 		"Sword of Destiny",
 		"Ishtar's Grace"
 		)
+<<<<<<< HEAD
 	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
 	var/autogenerate_destination_names = TRUE
 
@@ -56,6 +65,59 @@
 		while(i)
 			destination_names.Add("a [pick(destination_types)] in [pick(star_names)]")
 			i--
+=======
+
+/datum/lore/organization/proc/generate_mission()
+	// pick what system we're going to run in
+	var/datum/lore/system/destination_system = pickweight(serviced)
+	if(destination_system)
+		destination_system = new destination_system
+
+	//shuffle
+	missions = shuffle(missions)
+	destination_system.locations = shuffle(destination_system.locations)
+
+	//init other variables
+	var/destination_mission_types = list()
+	var/possible_mission_types = list()
+
+	//find what missions we can run
+	for(var/datum/lore/mission/x in missions)
+		possible_mission_types |= x.mission_type
+
+	//populate destination_missions with all the mission types in that system
+	for(var/datum/lore/location/x in destination_system.locations)
+		destination_mission_types |= x.mission_types
+
+	// only find missions in the system we can run
+	possible_mission_types &= destination_mission_types
+
+	//sanity checking
+	if(!possible_mission_types) //an org was given a system that contains no missions they run. let's fail gracefully about it
+		current_ship = "vessel [pick("SOL", "VIR", "STC", "ACE")]-575-[rand(0,999999)]" //unnamed ship
+		return "[current_ship], traveling to local registrar" //instantly identifiable as an error but still immersive
+
+	//select a mission we can run
+	var/datum/lore/mission/selected_mission
+	for(var/datum/lore/mission/x in missions)
+		if(x.mission_type in possible_mission_types)
+			selected_mission = x
+			break
+
+	//select a place to do it at
+	var/datum/lore/location/selected_location
+	for(var/datum/lore/location/x in destination_system.locations)
+		if(selected_mission.mission_type in x.mission_types)
+			selected_location = x
+			break
+
+	//set our ship name for consistancy on the tracon
+	current_ship = "[selected_mission.prefix] [pick(ship_names)]"
+
+	//finally return our answer
+	return "[current_ship] on a [pick(selected_mission.mission_strings)] [pick(mission_noun)] to [selected_location.desc]"
+
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +127,7 @@
 	short_name = "NanoTrasen"
 	acronym = "NT"
 	desc = "NanoTrasen is one of the foremost research and development companies in SolGov space. \
-	Originally focused on consumer products, their swift move into the field of Phoron has lead to \
+	Originally focused on consumer products, their swift move into the field of phoron has lead to \
 	them being the foremost experts on the substance and its uses. In the modern day, NanoTrasen prides \
 	itself on being an early adopter to as many new technologies as possible, often offering the newest \
 	products to their employees. In an effort to combat complaints about being 'guinea pigs', Nanotrasen \
@@ -79,8 +141,53 @@
 	work = "research giant"
 	headquarters = "Luna, Sol"
 	motto = ""
+	legit = 95 //they own the local airspace
 
-	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response", "NDV" = "asset protection")
+	missions = list( // they get almost every mission type because they're, you know, NT
+		new /datum/lore/mission/prebuilt/medical("NMV"),
+		new /datum/lore/mission/prebuilt/transport("NTV"),
+		new /datum/lore/mission/prebuilt/defense("NDV"),
+		new /datum/lore/mission/prebuilt/freight("NFV"),
+		new /datum/lore/mission/prebuilt/industrial("NIV"),
+		new /datum/lore/mission/prebuilt/scientific("NSV"),
+		new /datum/lore/mission/prebuilt/salvage("NIV"),
+		new /datum/lore/mission/prebuilt/medical_response("NRV"),
+		new /datum/lore/mission/prebuilt/defense_response("NRV")
+		)
+
+	serviced = list( //again, protagonists, so this is something close to a map by trade distance of human+tajaran space
+		/datum/lore/system/vir = 20,
+		/datum/lore/system/sol = 15,
+		/datum/lore/system/gavel = 15,
+		/datum/lore/system/oasis = 15,
+		/datum/lore/system/saint_columbia = 10,
+		/datum/lore/system/kess_gendar = 10,
+		/datum/lore/system/tau_ceti = 10,
+		/datum/lore/system/alpha_centauri = 10,
+		/datum/lore/system/new_ohio = 10,
+		/datum/lore/system/new_seoul = 10,
+		/datum/lore/system/el = 10, //specific high NT investment
+		/datum/lore/system/nyx = 10,
+		/datum/lore/system/zhu_que = 5,
+		/datum/lore/system/love = 5,
+		/datum/lore/system/kauqxum = 5,
+		/datum/lore/system/sidhe = 5,
+		/datum/lore/system/mahimahi = 5,
+		/datum/lore/system/relan = 5,
+		/datum/lore/system/exalts_light = 5,
+		/datum/lore/system/rarkajar = 5,
+		/datum/lore/system/raphael = 5, //they own one of the raphaelite colonies
+		/datum/lore/system/mesomori = 2,
+		/datum/lore/system/arrathiir = 2,
+		/datum/lore/system/jahans_post = 2,
+		/datum/lore/system/abels_rest = 2,
+		/datum/lore/system/terminus = 2,
+		/datum/lore/system/eutopia = 2,
+		/datum/lore/system/altair = 2,
+		/datum/lore/system/neon_light = 1
+		)
+
+
 	//Scientist naming scheme
 	ship_names = list(
 		"Bardeen",
@@ -114,6 +221,7 @@
 		"Robineau",
 		"Glass"
 		)
+<<<<<<< HEAD
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
@@ -134,6 +242,8 @@
 		if(string_to_test in destination_names)
 			destination_names.Remove(string_to_test)
 
+=======
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 
 /datum/lore/organization/tsc/hephaestus
@@ -150,7 +260,37 @@
 	headquarters = "Luna, Sol"
 	motto = ""
 
-	ship_prefixes = list("HTV" = "freight", "HLV" = "munitions resupply", "HDV" = "asset protection", "HDV" = "preemptive deployment")
+	missions = list(
+		new/datum/lore/mission/prebuilt/defense("HDV"),
+		new/datum/lore/mission/prebuilt/industrial("HLV"),//to avoid unfortunate prefixes
+		new/datum/lore/mission/prebuilt/freight("HFV"),
+		new/datum/lore/mission/prebuilt/transport("HTV"),
+		new/datum/lore/mission("HSV", list("weapons testing", "materials testing", "data exchange"), ATC_SCI) //might produce slightly weird results vis a vis location
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 10, //local space (local operations significantly reduced)
+		/datum/lore/system/sol = 20,
+		/datum/lore/system/oasis = 15, //local + on the border
+		/datum/lore/system/saint_columbia = 15, //SCG military outposts
+		/datum/lore/system/jahans_post = 15,
+		/datum/lore/system/tau_ceti = 15, //specifically named local operations
+		/datum/lore/system/kess_gendar = 15,
+		/datum/lore/system/alpha_centauri = 10,
+		/datum/lore/system/abels_rest = 10,
+		/datum/lore/system/new_ohio = 10, //is very obviously a big border thing
+		/datum/lore/system/gavel = 10, //local
+		/datum/lore/system/sidhe = 5, //other systems w/ piracy problems and governments addressing them
+		/datum/lore/system/love = 5,
+		/datum/lore/system/zhu_que = 5,
+		/datum/lore/system/raphael = 5,
+		/datum/lore/system/new_seoul = 5,//national capitals that are vaguely scg friendly
+		/datum/lore/system/rarkajar = 5,
+		/datum/lore/system/terminus = 2,
+		/datum/lore/system/whythe = 1, //very good national contractors are allowed to poke at the fucked up hell ruins
+		/datum/lore/system/isavaus_gamble = 1,
+		)
+
 	//War God/Soldier Theme
 	ship_names = list(
 		"Ares",
@@ -185,11 +325,14 @@
 		"Qamaits",
 		"'Oro",
 		)
+<<<<<<< HEAD
 	destination_names = list(
 		"a SolGov dockyard on Luna",
 		"a Fleet outpost in the Almach Rim",
 		"a Fleet outpost on the Moghes border"
 		)
+=======
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 /datum/lore/organization/tsc/vey_med
 	name = "Vey-Medical" //The Wiki displays them as Vey-Medical.
@@ -206,9 +349,37 @@
 	work = "medical equipment supplier"
 	headquarters = "Toledo, New Ohio"
 	motto = ""
+	legit = 80 //major NT competitor + dirty aliens etc
 
-	ship_prefixes = list("VTV" = "transportation", "VMV" = "medical resupply", "VSV" = "research mission", "VRV" = "emergency medical support")
-	// Diona names
+	missions = list(
+		new/datum/lore/mission/prebuilt/medical("VMV"),
+		new/datum/lore/mission/prebuilt/medical_response("VRV"),
+		new/datum/lore/mission/prebuilt/scientific("VSV"),
+		new/datum/lore/mission/prebuilt/transport("VTV")
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 15,
+		/datum/lore/system/new_ohio = 15, //their HQ
+		/datum/lore/system/gavel = 10,
+		/datum/lore/system/oasis = 10,
+		/datum/lore/system/sol = 10,
+		/datum/lore/system/kauqxum = 10, //activity mostly in the heights
+		/datum/lore/system/new_seoul = 10,
+		/datum/lore/system/mahimahi = 10, //im guessing wildly about mahi-mahi i know nothing
+		/datum/lore/system/sidhe = 5,
+		/datum/lore/system/qerrvalis = 5, //one of very few organizations that will actually operate out that far
+		/datum/lore/system/tau_ceti = 5,
+		/datum/lore/system/alpha_centauri = 5,
+		/datum/lore/system/kess_gendar = 5,
+		/datum/lore/system/exalts_light = 5, //delicious almachi medicine
+		/datum/lore/system/relan = 5,
+		/datum/lore/system/vounna = 5,
+		/datum/lore/system/el = 2,
+		/datum/lore/system/eutopia = 2
+		)
+
+	// Mostly Diona names
 	ship_names = list(
 		"Wind That Stirs The Waves",
 		"Sustained Note Of Metal",
@@ -230,17 +401,12 @@
 		"Memory of Kel'xi",
 		"Xi'Kroo's Herald"
 		)
-	destination_names = list(
-		"a research facility in Samsara",
-		"a SDTF near Ue-Orsi",
-		"a sapientarian mission in the Almach Rim"
-		)
 
 /datum/lore/organization/tsc/zeng_hu
 	name = "Zeng-Hu Pharmaceuticals"
 	short_name = "Zeng-Hu"
 	acronym = "ZH"
-	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
+	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of phoron, Zeng-Hu maintained a stranglehold \
 	on the market for medications, and many household names are patentted by Zeng-Hu-- Bicaridyne, Dylovene, Tricordrizine, \
 	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Hu's fortunes have been in decline as Nanotrasen's near monopoly \
 	on phoron research cuts into their R&D and Vey-Med's superior medical equipment effectively decimated their own equipment \
@@ -249,10 +415,32 @@
 	history = ""
 	work = "pharmaceuticals company"
 	headquarters = "Earth, Sol"
-	motto = ""
+	motto = "When your life is on the line, trust Zeng-Hu." //from the wiki
+	legit = 85 // major NT competitor
 
-	ship_prefixes = list("ZTV" = "transportation", "ZMV" = "medical resupply")
-	destination_names = list()
+	missions = list(
+		new /datum/lore/mission/prebuilt/medical("ZMV"), //they dont really like. do emergency medical shit. they just kind of sell drugs.
+		new /datum/lore/mission/prebuilt/transport("ZTV"),
+		new /datum/lore/mission/prebuilt/scientific("ZSV")
+		)
+
+	serviced = list( //some of this list is veering perilously close to just making shit up tbh
+		/datum/lore/system/vir = 10,
+		/datum/lore/system/sol = 15,
+		/datum/lore/system/alpha_centauri = 10,
+		/datum/lore/system/tau_ceti = 10,
+		/datum/lore/system/kess_gendar = 10,
+		/datum/lore/system/new_ohio = 5,
+		/datum/lore/system/new_seoul = 5,
+		/datum/lore/system/mahimahi = 5,
+		/datum/lore/system/saint_columbia = 5, //i imagine they have decent SCG hospital contracts compared to vey-med (foreign) and nanotrasen (super shifty)
+		/datum/lore/system/jahans_post = 5,
+		/datum/lore/system/abels_rest = 5,
+		/datum/lore/system/love = 2,
+		/datum/lore/system/zhu_que = 2,
+		/datum/lore/system/sidhe = 2,
+		/datum/lore/system/vounna = 2 //i imagine theyre mostly being squeezed out of the almachi investment rush given kalediscope and their poor positioning in general
+		)
 
 /datum/lore/organization/tsc/ward_takahashi
 	name = "Ward-Takahashi General Manufacturing Conglomerate"
@@ -262,14 +450,54 @@
 	and even mid-class automobiles a fixture of many households. Less famously, Ward-Takahashi also supplies most \
 	of the AI cores on which vital control systems are mounted, and it is this branch of their industry that has \
 	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashi's economies \
-	of scale frequently steal market share from Nanotrasen's high-price products, leading to a bitter rivalry in the \
+	of scale frequently steal market share from NanoTrasen's high-price products, leading to a bitter rivalry in the \
 	consumer electronics market."
 	history = ""
 	work = "electronics manufacturer"
 	headquarters = ""
 	motto = ""
+	legit = 85 //major NT competitor
 
-	ship_prefixes = list("WFV" = "freight", "WTV" = "transport", "WDV" = "asset protection")
+	missions = list(
+		new /datum/lore/mission/prebuilt/freight("WFV"),
+		new /datum/lore/mission/prebuilt/transport("WTV"),
+		new /datum/lore/mission/prebuilt/industrial("WIV"),
+		new /datum/lore/mission/prebuilt/scientific("WSV"),
+		new /datum/lore/mission/prebuilt/defense("WDV")
+		)
+
+	serviced = list( //pretty similar to the NT map-- they're NT's biggest competitor on like, half their things
+		/datum/lore/system/vir = 10, //squeezed out by big NT
+		/datum/lore/system/sol = 15,
+		/datum/lore/system/gavel = 10,
+		/datum/lore/system/oasis = 10,
+		/datum/lore/system/kess_gendar = 10,
+		/datum/lore/system/tau_ceti = 10,
+		/datum/lore/system/alpha_centauri = 10,
+		/datum/lore/system/new_ohio = 10,
+		/datum/lore/system/new_seoul = 10,
+		/datum/lore/system/saint_columbia = 5,
+		/datum/lore/system/el = 5,
+		/datum/lore/system/zhu_que = 5,
+		/datum/lore/system/love = 5,
+		/datum/lore/system/kauqxum = 5,
+		/datum/lore/system/sidhe = 5,
+		/datum/lore/system/mahimahi = 5,
+		/datum/lore/system/relan = 5,
+		/datum/lore/system/exalts_light = 5,
+		/datum/lore/system/rarkajar = 5,
+		/datum/lore/system/terminus = 5,
+		/datum/lore/system/eutopia = 5, //computer manufacturers love unfree labor
+		/datum/lore/system/altair = 5,
+		/datum/lore/system/phact = 5, //historic ties. the name also helps
+		/datum/lore/system/mesomori = 2,
+		/datum/lore/system/arrathiir = 2,
+		/datum/lore/system/jahans_post = 2,
+		/datum/lore/system/abels_rest = 2,
+		/datum/lore/system/raphael = 2,
+		/datum/lore/system/neon_light = 1
+		)
+
 	ship_names = list(
 		"Comet",
 		"Aurora",
@@ -292,7 +520,10 @@
 		"Rift",
 		"Curtain"
 		)
+<<<<<<< HEAD
 	destination_names = list()
+=======
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 /datum/lore/organization/tsc/bishop
 	name = "Bishop Cybernetics"
@@ -309,27 +540,77 @@
 	headquarters = ""
 	motto = ""
 
+<<<<<<< HEAD
 	ship_prefixes = list("ITV" = "transportation", "ISV" = "research exchange") //Bishop can't afford / doesn't care enough to afford its own prefixes
 	destination_names = list(
 	"A medical facility in Angessa's Pearl"
 	)
+=======
+	missions = list(
+		new /datum/lore/mission/prebuilt/transport("ITV"), //Bishop can't afford / doesn't care enough to afford its own prefixes
+		new /datum/lore/mission("ISV", list("data exchange", "data collection", "prototype demonstration"), ATC_SCI), //bishop doesn't really, like, stellaris scan anomalies.
+		)
+
+	serviced = list( //wealthy, nearby-ish systems-- theyre not a huge operation and theyre not really going to put up a big boutique in saint columbia
+		/datum/lore/system/vir = 15,
+		/datum/lore/system/sol = 10,
+		/datum/lore/system/oasis = 10,
+		/datum/lore/system/gavel = 10,
+		/datum/lore/system/alpha_centauri = 5,
+		/datum/lore/system/tau_ceti = 5,
+		/datum/lore/system/new_seoul = 5,
+		/datum/lore/system/exalts_light = 5, //recklessly extrapolating from the old version of the lore page that they probably have some significant presence here
+		/datum/lore/system/new_ohio = 2,
+		/datum/lore/system/altair = 2, //they dont /sell/ here but they produce here
+		/datum/lore/system/eutopia = 2,
+		/datum/lore/system/relan = 2,
+		/datum/lore/system/neon_light = 1
+		)
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 /datum/lore/organization/tsc/morpheus
-	name = "Morpheus Cyberkinetics"
-	short_name = "Morpheus"
-	acronym = "MC"
+	name = "Morpheus Cyberkinetics - Sol Branch"
+	short_name = "Morpheus Sol"
+	acronym = "MC-S"
 	desc = "The only large corporation run by positronic intelligences, Morpheus caters almost exclusively to their sensibilities \
-	and needs. A product of the synthetic colony of Shelf, Morpheus eschews traditional advertising to keep their prices low and \
+	and needs. Originally product of the synthetic colony of Shelf, Morpheus eschews traditional advertising to keep their prices low and \
 	relied on word of mouth among positronics to reach their current economic dominance. Morpheus in exchange lobbies heavily for \
 	positronic rights, sponsors positronics through their Jans-Fhriede test, and tends to other positronic concerns to earn them \
-	the good-will of the positronics, and the ire of those who wish to exploit them."
+	the good-will of the positronics, and the ire of those who wish to exploit them. Morpheus Sol is legally distinct from its \
+	Shelfican counterpart, though both are notionally headed by the same board of directors."
 	history = ""
 	work = "cybernetics manufacturer"
-	headquarters = "Shelf"
+	headquarters = "Sophia, El" //ancient discord lore but also just a really reasonable extrapolation from everything
 	motto = ""
+	legit = 75 // hey remember that time they blew up a star. and then everything sucked for everyone.
 
-	ship_prefixes = list("MTV" = "freight")
-	// Culture names, because Anewbe told me so.
+	missions = list(
+		new /datum/lore/mission/prebuilt/freight("MFV"),
+		new /datum/lore/mission/prebuilt/transport("MTV"),
+		new /datum/lore/mission/prebuilt/scientific("MSV"), // this is the MSV We Didn't Do It! on a data collection flight to an anomaly in whythe
+		new /datum/lore/mission/prebuilt/defense("MDV") //ive been giving defense fleets to every "major" TSC but morph's narrow focus and Obvious Sleeziness means they might not even want one?
+		)
+
+	serviced = list( //pretty flat weighting structure -- a lot of posi-majority systems are on the other end of Sol so it kinda works out that way
+		/datum/lore/system/vir = 15,
+		/datum/lore/system/el = 15,
+		/datum/lore/system/sol = 10,
+		/datum/lore/system/gavel = 10,
+		/datum/lore/system/oasis = 10, //somehow i imagine they do not really operate openly in Saint Columbia anymore
+		/datum/lore/system/kess_gendar = 5,
+		/datum/lore/system/tau_ceti = 5,
+		/datum/lore/system/terminus = 10,
+		/datum/lore/system/raphael = 10,
+		/datum/lore/system/relan = 10,
+		/datum/lore/system/exalts_light = 5,
+		/datum/lore/system/new_ohio = 5,
+		/datum/lore/system/new_seoul = 5,
+		/datum/lore/system/zhu_que = 5, //apparently they have a voter farm??
+		/datum/lore/system/love = 2,
+		/datum/lore/system/neon_light = 2,
+		/datum/lore/system/alpha_centauri = 2,
+		/datum/lore/system/whythe = 1 //oh god
+		)
 	ship_names = list(
 		"Nervous Energy",
 		"Prosthetic Conscience",
@@ -429,10 +710,14 @@
 		"Define Offensive",
 		"Tiffany",
 		"My Other Ship is A Gestalt",
+<<<<<<< HEAD
 		"NTV HTV WTV ITV ZTV"
 		)
 	destination_names = list(
 		"a trade outpost in Shelf"
+=======
+		"NTV HTV WTV ITV ZTV",
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 		)
 
 /datum/lore/organization/tsc/xion
@@ -447,8 +732,40 @@
 	headquarters = ""
 	motto = ""
 
-	ship_prefixes = list("XTV" = "hauling", "XFV" = "bulk transport", "XIV" = "resupply")
-	destination_names = list()
+	missions = list(
+		new /datum/lore/mission/prebuilt/freight("XFV"),
+		new /datum/lore/mission/prebuilt/transport("XTV"),
+		new /datum/lore/mission/prebuilt/industrial("XIV"),
+		new /datum/lore/mission/prebuilt/salvage("XIV"),
+		new /datum/lore/mission/prebuilt/defense("XDV"),
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 10,
+		/datum/lore/system/sol = 15,
+		/datum/lore/system/alpha_centauri = 20, // they own a fucking moon
+		/datum/lore/system/tau_ceti = 15,
+		/datum/lore/system/gavel = 15, //vaguely remember there being obscure lore that said gavel does mining?
+		/datum/lore/system/new_seoul = 10,
+		/datum/lore/system/love = 10,
+		/datum/lore/system/zhu_que = 10,
+		/datum/lore/system/saint_columbia = 10,
+		/datum/lore/system/new_ohio = 5,
+		/datum/lore/system/oasis = 5,
+		/datum/lore/system/sidhe = 5,
+		/datum/lore/system/mahimahi = 5,
+		/datum/lore/system/jahans_post = 5,
+		/datum/lore/system/abels_rest = 5,
+		/datum/lore/system/raphael = 5, // they own a celestial body here too
+		/datum/lore/system/rarkajar = 5, // i love building extractive capital in developing nations
+		/datum/lore/system/exalts_light = 5,
+		/datum/lore/system/relan = 2, //i think relan mostly nationalized a bunch of their industries but like. they are not really in a bargaining position rn
+		/datum/lore/system/eutopia = 2,
+		/datum/lore/system/vounna = 2,
+		/datum/lore/system/mesomori = 2,
+		/datum/lore/system/arrathiir = 2,
+		/datum/lore/system/isavaus_gamble = 1 //they used to run salvage ops here and might as well keep doing it
+		)
 
 /datum/lore/organization/tsc/mbt
 	name = "Major Bill's Transportation"
@@ -461,9 +778,47 @@
 	work = "courier and passenger transit"
 	headquarters = "Mars, Sol"
 	motto = "With Major Bill's, you won't pay major bills!"
+	annoying = 100 //oh god
 
-	ship_prefixes = list("TTV" = "transport", "TTV" = "luxury transit")
-	destination_names = list()
+	missions = list(
+		new /datum/lore/mission/prebuilt/transport("TTV"),
+		new /datum/lore/mission/prebuilt/freight("TFV"),
+		new /datum/lore/mission/prebuilt/luxury("TTV")
+		)
+
+	serviced = list( // and THIS is basically just a population map of known space, slightly adjusted for distance
+		/datum/lore/system/vir = 5, //ppl mostly do not use major bills for in-system stuff, is my sense of it
+		/datum/lore/system/sol = 25,
+		/datum/lore/system/alpha_centauri = 20,
+		/datum/lore/system/tau_ceti = 20,
+		/datum/lore/system/kess_gendar = 15,
+		/datum/lore/system/new_seoul = 15,
+		/datum/lore/system/oasis = 15,//tourism pull
+		/datum/lore/system/kauqxum = 15,
+		/datum/lore/system/gavel = 10,
+		/datum/lore/system/saint_columbia = 10,
+		/datum/lore/system/mahimahi = 10,
+		/datum/lore/system/zhu_que = 10,
+		/datum/lore/system/love = 10,
+		/datum/lore/system/el = 10,
+		/datum/lore/system/abels_rest = 10,
+		/datum/lore/system/rarkajar = 5,
+		/datum/lore/system/eutopia = 5, //tourism pull
+		/datum/lore/system/raphael = 5,
+		/datum/lore/system/jahans_post = 5,
+		/datum/lore/system/relan = 5,
+		/datum/lore/system/exalts_light = 5,
+		/datum/lore/system/terminus = 3,
+		/datum/lore/system/phact = 3, //people really want to see the dumb castle
+		/datum/lore/system/qerrvalis = 3,
+		/datum/lore/system/nyx = 3,
+		/datum/lore/system/mesomori = 2,
+		/datum/lore/system/vounna = 2,
+		/datum/lore/system/arrathiir = 2,
+		/datum/lore/system/neon_light = 2
+		)
+
+//TODO: add in other tscs-- kaleidoscope, SAARE, and PCRC for sure but maybe also gilthari,grayson, aether
 
 /datum/lore/organization/tsc/independent
 	name = "Free Traders"
@@ -472,11 +827,109 @@
 	history = ""
 	work = "trade and transit"
 	headquarters = "N/A"
-	motto = "N/A"
+	motto = ""
+	legit = 85 //kinda amateurish
 
-	ship_prefixes = list("IEV" = "prospecting", "IEC" = "prospecting", "IFV" = "bulk freight", "ITV" = "passenger transport", "ITC" = "just-in-time delivery")
-	destination_names = list()
+	missions = list( //my sense is theres not really free trader medical or defense craft worth mentioning -- or, i guess more accurately, an "independent defense vessel" is probably just a pirate
+		new /datum/lore/mission/prebuilt/transport("ITV"),
+		new /datum/lore/mission/prebuilt/freight("IFV"),
+		new /datum/lore/mission/prebuilt/industrial("IIV"),
+		new /datum/lore/mission/prebuilt/salvage("IIV")
+		)
 
+	serviced = list( // basically an adjusted version of the Major Bills chart but a little more evenly weighted, with some more bias towards otherwise underserved systems and with some more off-the-grid locations about it
+		/datum/lore/system/vir = 20,
+		/datum/lore/system/sol = 15,
+		/datum/lore/system/alpha_centauri = 15,
+		/datum/lore/system/tau_ceti = 15,
+		/datum/lore/system/zhu_que = 15,
+		/datum/lore/system/love = 15,
+		/datum/lore/system/kess_gendar = 10,
+		/datum/lore/system/new_seoul = 10,
+		/datum/lore/system/kauqxum = 10,
+		/datum/lore/system/gavel = 10,
+		/datum/lore/system/oasis = 10,
+		/datum/lore/system/el = 10,
+		/datum/lore/system/abels_rest = 5,
+		/datum/lore/system/mahimahi = 5,
+		/datum/lore/system/saint_columbia = 5,
+		/datum/lore/system/rarkajar = 5,
+		/datum/lore/system/eutopia = 5,
+		/datum/lore/system/raphael = 5,
+		/datum/lore/system/jahans_post = 5,
+		/datum/lore/system/relan = 5,
+		/datum/lore/system/exalts_light = 5,
+		/datum/lore/system/natuna = 5,
+		/datum/lore/system/casinis_reach = 5, //i laborously enscribed special snowflake code for an authentically immersive communard experience and then have them trading with exactly one org
+		/datum/lore/system/nyx = 5,
+		/datum/lore/system/neon_light = 3,
+		/datum/lore/system/terminus = 3,
+		/datum/lore/system/phact = 2,
+		/datum/lore/system/mesomori = 2,
+		/datum/lore/system/vounna = 2,
+		/datum/lore/system/arrathiir = 2,
+		/datum/lore/system/isavaus_gamble = 2 //literally dont even worry officer i super have a permit for this
+		)
+
+<<<<<<< HEAD
+=======
+/datum/lore/organization/local_traffic
+	name = "independent traffic"
+	short_name = "local traffic"
+	desc = "Private civilian crafts make up a small portion of Vir's space traffic. While most people use corporate shuttles to get around, luxury transports and local haulers still play an important role in daily life."
+	history = ""
+	work = "trade and transit"
+	headquarters = "N/A"
+	motto = ""
+	legit = 80 //extremely amateurish
+
+	missions = list(
+		new /datum/lore/mission("ITC", list("local shuttle service", "private transport"), ATC_TRANS),
+		new /datum/lore/mission("IFC", list("courier", "local delivery", "just-in-time delivery"), ATC_FREIGHT),
+		new /datum/lore/mission("IIC", list("local maintence", "repair", "in-situ manufacturing"), ATC_INDU),
+		new /datum/lore/mission("ISC", list("test flight", "local university research", "data collection"), ATC_SCI),
+		new /datum/lore/mission/prebuilt/luxury("ITC"),
+		new /datum/lore/mission/prebuilt/medical_response("IMC"),
+		new /datum/lore/mission/prebuilt/defense_response("IDC"),
+		new /datum/lore/mission/prebuilt/salvage("IIC")
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 1 // the one thing that's uncomplicated about the new system
+	)
+
+	ship_names = list(
+		"Ambition",
+		"Blue Moon",
+		"Calypso",
+		"Draco",
+		"Eclipse",
+		"Fantasy",
+		"Golden Sun",
+		"Happy Hour",
+		"Ice Queen",
+		"Jolly Roger",
+		"Kinky Boots",
+		"License to Chill",
+		"Mojito",
+		"No Regrets",
+		"Orion",
+		"Plus One",
+		"Quality Time",
+		"Rockhopper",
+		"Sivian Sunrise",
+		"Turbo Extreme",
+		"Up To No Good",
+		"Vertigo",
+		"Wanderlust",
+		"Xenophile",
+		"Yesteryear",
+		"Zen",
+		"Sky Siffet",
+		"Savik"
+		)
+
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 // Governments
 
 /datum/lore/organization/gov/virgov
@@ -486,7 +939,7 @@
 	out of New Reykjavik on Sif. It is a representative democratic government, and a fully recognised member of the \
 	Confederation.\
 	<br><br>\
-	Corporate entities such as Nanotrasen which operate on Sif, in Vir space, or on other bodies in the Vir system must \
+	Corporate entities such as NanoTrasen which operate on Sif, in Vir space, or on other bodies in the Vir system must \
 	all comply with legislation as determined by the VGA and SolGov. As a result, any serious criminal offences, \
 	industrial accidents, or concerning events should be forwarded to the VGA in the event that assistance or \
 	communication is required from the Vir Police, Vir Defence Force, Vir Interior Ministry, or other important groups."
@@ -494,8 +947,22 @@
 	work = "governing body of Vir"
 	headquarters = "New Reykjavik, Sif, Vir"
 	motto = ""
-	autogenerate_destination_names = FALSE
+	legit = 95 //government
 
+	missions = list( //most transport and freight is privatized. sifguard is its own org for whatever reason
+		new /datum/lore/mission("VGA", list("energy relay", "emergency resupply", "restricted material transport"), ATC_FREIGHT),
+		new /datum/lore/mission("VGA", list("refugee transport", "prison transport"), ATC_TRANS),
+		new /datum/lore/mission/prebuilt/diplomatic("VGA"), //local zaddat colonies
+		new /datum/lore/mission/prebuilt/scientific("VGA")
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 10, //unsurprisingly, mostly stays in vir
+		/datum/lore/system/gavel = 1, //sometimes does some limited local cooperative diplomacy or emergency response
+		/datum/lore/system/oasis = 1
+		)
+
+<<<<<<< HEAD
 	ship_prefixes = list("VGA" = "hauling", "VGA" = "energy relay")
 	destination_names = list(
 						"New Reykjavik on Sif",
@@ -504,6 +971,35 @@
 						"a telecommunications satellite",
 						"Vir Interstellar Spaceport"
 						)
+=======
+	ship_names = list(
+		"Alfred Nobel",
+		"Anders Celcius",
+		"Leif Erikson",
+		"Carl Linnaeus",
+		"Norge",
+		"Sverige",
+		"Danmark",
+		"Island",
+		"Suomi",
+		"Helsinki",
+		"Oslo",
+		"Stockholm",
+		"Larsson",
+		"Grieg",
+		"Agnetha",
+		"Anni-Frid",
+		"Bjorn",
+		"Benny",
+		"Bluetooth",
+		"Gustav",
+		"Lamarr",
+		"Vasa",
+		"Kronan",
+		"Gullfoss",
+		"Thingvellir"
+		)
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 /datum/lore/organization/gov/solgov
 	name = "Solar Confederate Government"
@@ -525,8 +1021,38 @@
 	work = "governing polity of humanity's Confederation"
 	headquarters = "Luna, Sol"
 	motto = "Nil Mortalibus Ardui Est" // Latin, because latin.  Says 'Nothing is too steep for mortals'.
-	autogenerate_destination_names = TRUE
+	legit = 95 //government
 
+	missions = list(
+		new /datum/lore/mission("SCG-T", list("transport", "passenger transport", "prisoner transport", "refugee resettlement", "classified"), ATC_TRANS),
+		new /datum/lore/mission("SCG-F", list("emergency resupply", "hazardous material transport", "strategic resupply", "classified"), ATC_FREIGHT),
+		new /datum/lore/mission("SCG-E", list("damage assesment", "data recovery", "classified"), ATC_SALVAGE),
+		new /datum/lore/mission("SCG-D", list("defense", "patrol", "military response", "joint exercise", "classified"), ATC_DEF),
+		new /datum/lore/mission/prebuilt/scientific("SCG-S"),
+		new /datum/lore/mission/prebuilt/diplomatic("SCG-D"), //local zaddat colonies, independent earth nations, internal diplomatic missions to embassies in Sol, abels rest. actual foreign diplomacy happens elsewhere
+		new /datum/lore/mission/prebuilt/medical_response("SCG-M"),
+		new /datum/lore/mission/prebuilt/defense_response("SCG-D")
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 10,
+		/datum/lore/system/sol = 25,
+		/datum/lore/system/alpha_centauri = 20,
+		/datum/lore/system/tau_ceti = 20,
+		/datum/lore/system/kess_gendar = 20,
+		/datum/lore/system/saint_columbia = 20,
+		/datum/lore/system/jahans_post = 15,
+		/datum/lore/system/abels_rest = 15,
+		/datum/lore/system/el = 10,
+		/datum/lore/system/raphael = 10,
+		/datum/lore/system/altair = 10,
+		/datum/lore/system/zhu_que = 10,
+		/datum/lore/system/love = 5,
+		/datum/lore/system/isavaus_gamble = 3,
+		/datum/lore/system/whythe = 2 //not in scg space but im sure they can still get at it
+		)
+
+<<<<<<< HEAD
 	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight")
 	destination_names = list(
 						"Venus",
@@ -535,6 +1061,33 @@
 						"Mars",
 						"Titan"
 						)// autogen will add a lot of other places as well.
+=======
+//kind of experimental
+//lets SCG do diplomacy but not eg military action in foreign systems
+//in the future, similar splits could allow corps to have 'core' defense assets they dont send on idiotic military actions to Vounna
+//could also be expanded with fluff ala VGA/Sifguard
+/datum/lore/organization/gov/solgov/diplo_corps
+	missions = list(
+		new /datum/lore/mission/prebuilt/diplomatic("SCG-D")
+		)
+	serviced = list(
+		/datum/lore/system/qerrvalis = 15, //capital systems of major interstellar powers
+		/datum/lore/system/rarkajar = 15,
+		/datum/lore/system/new_seoul = 15,
+		/datum/lore/system/relan = 15,
+		/datum/lore/system/casinis_reach = 10, //independent single systems
+		/datum/lore/system/eutopia = 10,
+		/datum/lore/system/phact = 10,
+		/datum/lore/system/natuna = 10,
+		/datum/lore/system/neon_light = 5, // neon light (neon light)
+		/datum/lore/system/exalts_light = 5, //noncapital systems of major interstellar powers
+		/datum/lore/system/vounna = 5,
+		/datum/lore/system/sidhe = 5,
+		/datum/lore/system/new_cairo = 3, //funny bugs
+		)
+//TODO add 5 Arrows, Protectorate, Pearlshield
+//maybe some other flavorful government agencies like the EIO or the GSA or SOFI
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
 
 /*
 // To be expanded upon later, once the military lore gets sorted out.
@@ -549,8 +1102,20 @@
 	work = "Sif Governmental Authority's military"
 	headquarters = "New Reykjavik, Sif"
 	motto = ""
-	autogenerate_destination_names = FALSE // Kinda weird if SifGuard goes to Nyx.
+	legit = 95 // government
 
+	missions = list(
+		new /datum/lore/mission("VGA-PV", list("defense", "patrol", "military response", "joint exercise"), ATC_DEF),
+		new /datum/lore/mission/prebuilt/defense_response("VGA-PC")
+		)
+
+	serviced = list(
+		/datum/lore/system/vir = 10,
+		/datum/lore/system/gavel = 1,
+		/datum/lore/system/oasis = 1
+		)
+
+<<<<<<< HEAD
 	ship_prefixes = list("SGSC" = "military", "SGSC" = "patrol", "SGSC" = "rescue", "SGSC" = "emergency response") // Todo: Replace prefix with better one.
 	destination_names = list(
 						"a classified location in SolGov territory",
@@ -564,3 +1129,33 @@
 						"a military outpost",
 						)
 */
+=======
+	ship_names = list(
+			"Halfdane",
+			"Hardrada",
+			"Ironside",
+			"Erik the Red",
+			"Freydis",
+			"Ragnar",
+			"Ivar the Boneless",
+			"Bloodaxe",
+			"Sigurd Snake-in-Eye",
+			"Son of Ragnar",
+			"Thor",
+			"Odin",
+			"Freya",
+			"Valhalla",
+			"Loki",
+			"Hel",
+			"Fenrir",
+			"Mjolnir",
+			"Gungnir",
+			"Gram",
+			"Bergen",
+			"Berserker",
+			"Skold",
+			"Draken",
+			"Gladan",
+			"Falken"
+			)
+>>>>>>> 4bf1424695f... Merge pull request #8974 from elgeonmb/newtracon
