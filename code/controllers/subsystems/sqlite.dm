@@ -80,9 +80,9 @@ SUBSYSTEM_DEF(sqlite)
 		CRASH("One or more parameters was invalid.")
 
 	// Sanitize everything to avoid sneaky stuff.
-	var/sqlite_author = sql_sanitize_text(ckey(lowertext(author)))
-	var/sqlite_content = sql_sanitize_text(content)
-	var/sqlite_topic = sql_sanitize_text(topic)
+	var/sqlite_author = sanitizeSQL(ckey(lowertext(author)))
+	var/sqlite_content = sanitizeSQL(content)
+	var/sqlite_topic = sanitizeSQL(topic)
 
 	var/database/query/query = new(
 	"INSERT INTO [SQLITE_TABLE_FEEDBACK] (\
@@ -121,8 +121,8 @@ SUBSYSTEM_DEF(sqlite)
 
 // Returns how many days someone has to wait, to submit more feedback, or 0 if they can do so right now.
 /datum/controller/subsystem/sqlite/proc/get_feedback_cooldown(player_ckey, cooldown, database/sqlite_object)
-	player_ckey = sql_sanitize_text(ckey(lowertext(player_ckey)))
-	var/potential_hashed_ckey = sql_sanitize_text(md5(player_ckey + SSsqlite.get_feedback_pepper()))
+	player_ckey = sanitizeSQL(ckey(lowertext(player_ckey)))
+	var/potential_hashed_ckey = sanitizeSQL(md5(player_ckey + SSsqlite.get_feedback_pepper()))
 
 	// First query is to get the most recent time the player has submitted feedback.
 	var/database/query/query = new({"

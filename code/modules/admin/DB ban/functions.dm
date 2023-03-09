@@ -78,7 +78,7 @@
 		else
 			adminwho += ", [C]"
 
-	reason = sql_sanitize_text(reason)
+	reason = sanitizeSQL(reason)
 
 	var/sql = "INSERT INTO erro_ban (`id`,`bantime`,`serverip`,`bantype`,`reason`,`job`,`duration`,`rounds`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`,`edits`,`unbanned`,`unbanned_datetime`,`unbanned_ckey`,`unbanned_computerid`,`unbanned_ip`) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
@@ -176,14 +176,14 @@
 		to_chat(usr, "<span class='filter_adminlog'>Invalid ban id. Contact the database admin</span>")
 		return
 
-	reason = sql_sanitize_text(reason)
+	reason = sanitizeSQL(reason)
 	var/value
 
 	switch(param)
 		if("reason")
 			if(!value)
 				value = sanitize(tgui_input_text(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null))
-				value = sql_sanitize_text(value)
+				value = sanitizeSQL(value)
 				if(!value)
 					to_chat(usr, "Cancelled")
 					return
@@ -339,8 +339,8 @@
 
 		adminckey = ckey(adminckey)
 		playerckey = ckey(playerckey)
-		playerip = sql_sanitize_text(playerip)
-		playercid = sql_sanitize_text(playercid)
+		playerip = sanitizeSQL(playerip)
+		playercid = sanitizeSQL(playercid)
 
 		if(adminckey || playerckey || playerip || playercid || dbbantype)
 

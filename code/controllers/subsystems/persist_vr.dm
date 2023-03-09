@@ -81,8 +81,8 @@ SUBSYSTEM_DEF(persist)
 		dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
 
 		// Okay we figured it out, lets update database!
-		var/sql_ckey = sql_sanitize_text(C.ckey)
-		var/sql_dpt = sql_sanitize_text(department_earning)
+		var/sql_ckey = sanitizeSQL(C.ckey)
+		var/sql_dpt = sanitizeSQL(department_earning)
 		var/sql_bal = text2num("[C.department_hours[department_earning]]")
 		var/sql_total = text2num("[C.play_hours[department_earning]]")
 		var/DBQuery/query = dbcon.NewQuery("INSERT INTO vr_player_hours (ckey, department, hours, total_hours) VALUES ('[sql_ckey]', '[sql_dpt]', [sql_bal], [sql_total]) ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
