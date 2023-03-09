@@ -559,20 +559,23 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	//The eyes store the color themselves, funny enough.
-	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES]
+	//var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES] VOREStation Edit - unneeded
 	if(!head_organ.eye_icon)
 		return
 
+	/* VOREStation Edit - better glowy eyes - why bother doing another coloring of the glowy eyes when the head does it for you
 	var/icon/eyes_icon = new/icon(head_organ.eye_icon_location, head_organ.eye_icon)		//VOREStation Edit
 	if(eyes)
 		eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 	else
 		eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
 
-	// Convert to emissive at some point
+	// Convert to emissive at some point - did it
 	var/image/eyes_image = image(eyes_icon)
 	eyes_image.plane = PLANE_LIGHTING_ABOVE
 	eyes_image.appearance_flags = appearance_flags
+	*/
+	var/mutable_appearance/eyes_image = emissive_appearance(head_organ.eye_icon_location, head_organ.eye_icon, BODY_LAYER+EYES_LAYER, appearance_flags=appearance_flags) //CHOMPEdit - better glowy eyes
 
 	overlays_standing[EYES_LAYER] = eyes_image
 	apply_layer(EYES_LAYER)
