@@ -20,8 +20,13 @@
 	id = "basic_cell"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
+<<<<<<< HEAD
 	build_path = /obj/item/weapon/cell
 	category = list("Misc")
+=======
+	build_path = /obj/item/cell
+	category = "Misc"
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)
 	sort_string = "BAAAA"
 
 /datum/design/item/powercell/high
@@ -29,8 +34,13 @@
 	id = "high_cell"
 	req_tech = list(TECH_POWER = 2)
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 60)
+<<<<<<< HEAD
 	build_path = /obj/item/weapon/cell/high
 	category = list("Misc")
+=======
+	build_path = /obj/item/cell/high
+	category = "Misc"
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)
 	sort_string = "BAAAB"
 
 /datum/design/item/powercell/super
@@ -38,17 +48,28 @@
 	id = "super_cell"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 70)
+<<<<<<< HEAD
 	build_path = /obj/item/weapon/cell/super
 	category = list("Misc")
+=======
+	build_path = /obj/item/cell/super
+	category = "Misc"
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)
 	sort_string = "BAAAC"
 
 /datum/design/item/powercell/hyper
 	name = "hyper-capacity"
 	id = "hyper_cell"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 400, MAT_GOLD = 150, MAT_SILVER = 150, MAT_GLASS = 70)
 	build_path = /obj/item/weapon/cell/hyper
 	category = list("Misc")
+=======
+	materials = list(MAT_STEEL = 400, "gold" = 150, "silver" = 150, MAT_GLASS = 70)
+	build_path = /obj/item/cell/hyper
+	category = "Misc"
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)
 	sort_string = "BAAAD"
 
 /datum/design/item/powercell/device
@@ -56,8 +77,13 @@
 	build_type = PROTOLATHE
 	id = "device"
 	materials = list(MAT_STEEL = 350, MAT_GLASS = 25)
+<<<<<<< HEAD
 	build_path = /obj/item/weapon/cell/device
 	category = list("Misc")
+=======
+	build_path = /obj/item/cell/device
+	category = "Misc"
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)
 	sort_string = "BAABA"
 
 /datum/design/item/powercell/weapon
@@ -65,6 +91,7 @@
 	build_type = PROTOLATHE
 	id = "weapon"
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
+<<<<<<< HEAD
 	build_path = /obj/item/weapon/cell/device/weapon
 	category = list("Misc")
 	sort_string = "BAABB"
@@ -86,3 +113,8 @@
 	build_path = /obj/item/weapon/cell/mech/super
 	category = list("Misc")
 	sort_string = "BAACB"
+=======
+	build_path = /obj/item/cell/device/weapon
+	category = "Misc"
+	sort_string = "BAABB"
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)

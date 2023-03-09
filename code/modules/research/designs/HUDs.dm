@@ -41,7 +41,12 @@
 /datum/design/item/hud/graviton_visor
 	name = "graviton visor"
 	id = "graviton_goggles"
+<<<<<<< HEAD
 	req_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3, TECH_PHORON = 3, TECH_ARCANE = 1)
 	materials = list(MAT_PLASTEEL = 2000, MAT_GLASS = 3000, MAT_PHORON = 1500, MAT_DIAMOND = 500)
+=======
+	req_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3, TECH_PHORON = 3)
+	materials = list(MAT_PLASTEEL = 2000, MAT_GLASS = 3000, MAT_PHORON = 1500)
+>>>>>>> 2d277d957fe... R&D Design Updates (#8992)
 	build_path = /obj/item/clothing/glasses/graviton
 	sort_string = "EAAAE"

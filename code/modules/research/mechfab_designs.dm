@@ -1001,6 +1001,14 @@
 	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
 	build_path = /obj/item/rig_module/vision/material
 
+/datum/design/item/mechfab/rigsuit/mining
+	name = "hardsuit mining visor"
+	desc = "A compact mining visor for a hardsuit."
+	id = "rig_component_miningvision"
+	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 6, TECH_MAGNET = 5, TECH_POWER = 5)
+	materials = list(MAT_PLASTEEL = 3500, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_ALUMINIUM = 1000)
+	build_path = /obj/item/rig_module/vision/mining
+
 /datum/design/item/mechfab/rigsuit/nvg
 	name = "hardsuit night-vision visor"
 	desc = "A compact night-vision visor for a hardsuit."
