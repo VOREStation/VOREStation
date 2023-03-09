@@ -11,7 +11,7 @@
 			var/mob/living/silicon/robot/R = user
 			for (var/obj/item/weapon/cell/D in R.contents)
 				D.charge += rand() * 100 + 50
-				to_chat(R, "<font color='blue'>SYSTEM ALERT: Large energy boost detected!</font>")
+				to_chat(R, "<span class='notice'>SYSTEM ALERT: Large energy boost detected!</span>")
 
 
 /datum/artifact_effect/cellcharge/DoEffectAura()
@@ -22,21 +22,28 @@
 	if(!turf)
 		return
 	for (var/obj/machinery/power/apc/apc as anything in GLOB.apcs)
+		if (apc.z != turf.z)
+			continue
 		if(get_dist(turf, apc) <= 200)
 			for (var/obj/item/weapon/cell/cell in apc.contents)
 				cell.charge += 25
 	for (var/obj/machinery/power/smes/smes as anything in GLOB.smeses)
+		if (smes.z != turf.z)
+			continue
 		if(get_dist(turf, smes) <= effectrange)
 			smes.charge += 25
 	var/charged_robots
 	for (var/mob/living/silicon/robot/robot as anything in global.silicon_mob_list)
+		if(turf.z != robot.z)
+			continue
 		if(get_dist(turf, robot) < 50)
 			var/charged_cells
 			for (var/obj/item/weapon/cell/cell in robot.contents)
 				cell.charge += 25
 				charged_cells = TRUE
 			if(charged_cells)
-				to_chat(robot, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
+				if(world.time - last_message > 200)
+					to_chat(robot, "<span class='notice'>SYSTEM ALERT: Energy boost detected!</span>")
 				charged_robots = TRUE
 	if(charged_robots)
 		last_message = world.time
@@ -55,5 +62,5 @@
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge += rand() * 100
 				if(world.time - last_message > 200)
-					to_chat(M, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
+					to_chat(M, "<span class='notice'>SYSTEM ALERT: Energy boost detected!</span>")
 					last_message = world.time
