@@ -120,7 +120,7 @@
 		if(!(lying || resting) && !isbelly(loc)) //VOREStation Edit
 			if(limb_pain)
 				emote("scream")
-			custom_emote(1, "collapses!")
+			custom_emote(VISIBLE_MESSAGE, "collapses!")
 		Weaken(5) //can't emote while weakened, apparently.
 
 /mob/living/carbon/human/proc/handle_grasp()
@@ -203,7 +203,7 @@
 /mob/living/carbon/human/proc/set_gender(var/g)
 	if(g != gender)
 		gender = g
-	
+
 	if(dna.GetUIState(DNA_UI_GENDER) ^ gender == FEMALE) // XOR will catch both cases where they do not match
 		dna.SetUIState(DNA_UI_GENDER, gender == FEMALE)
 		sync_organ_dna(dna)

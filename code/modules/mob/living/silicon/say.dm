@@ -101,12 +101,9 @@
 				if(M)
 					M.show_message(rendered, 2)
 
-		for(var/obj/O in o_viewers)
-			if(O == T)
-				continue
-			spawn(0)
-				if(O)
-					O.see_emote(src, message)
+		for(var/obj/O as anything in o_viewers)
+			if(O != T)
+				O.see_emote(src, message)
 
 		log_emote("(HPAD) [message]", src)
 

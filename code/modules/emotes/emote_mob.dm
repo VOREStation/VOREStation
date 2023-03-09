@@ -53,10 +53,13 @@
 			return custom_emote(m_type, message)
 
 		if(act == "custom")
+<<<<<<< HEAD
 			if(!message)
 				message = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src) //VOREStation Edit - Reflect too long messages, within reason
 			if(!message)
 				return
+=======
+>>>>>>> 642348983f6... Fixing positional custom emotes. (#9011)
 			if (!m_type)
 				if(tgui_alert(src, "Is this an audible emote?", "Emote", list("Yes", "No")) == "No")
 					m_type = VISIBLE_MESSAGE
@@ -117,7 +120,7 @@
 	message = html_decode(message)
 
 	name_anchor = findtext(message, "*")
-	if(name_anchor > 0) // User supplied emote with visible_emote token (default ^)
+	if(name_anchor > 0) // User supplied emote with visible_emote token
 		pretext = copytext(message, 1, name_anchor)
 		subtext = copytext(message, name_anchor + 1, length(message) + 1)
 	else
@@ -160,12 +163,18 @@
 
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view)
 
+<<<<<<< HEAD
 	if((usr && stat) || (!use_me && usr == src))
+=======
+	set waitfor = FALSE // Due to input() below and this being used in Life() procs.
+
+	if(stat != CONSCIOUS || (!use_me && usr == src))
+>>>>>>> 642348983f6... Fixing positional custom emotes. (#9011)
 		to_chat(src, "You are unable to emote.")
 		return
 
-	var/input
 	if(!message)
+<<<<<<< HEAD
 		input = sanitize(tgui_input_text(src,"Choose an emote to display."))
 	else
 		input = message
@@ -181,14 +190,23 @@
 		// This is just personal preference (but I'm objectively right) that custom emotes shouldn't have periods at the end in runechat
 		runemessage = replacetext(runemessage,".","",length(runemessage),length(runemessage)+1)
 	else
+=======
+		message = input(usr, "Please enter an emote to display. You can use \"*\" to reposition your character name within the emote.") as text|null
+		// Recheck due to input()
+		if(stat != CONSCIOUS || (!use_me && usr == src))
+			to_chat(src, "You are unable to emote.")
+			return
+
+	message = sanitize(message, encode = FALSE) // This is getting double-encoded somewhere along the line.
+	if(!message)
+>>>>>>> 642348983f6... Fixing positional custom emotes. (#9011)
 		return
 
-	if(input)
-		log_emote(message,src) //Log before we add junk
-		message = "<span class='emote'><B>[src]</B> [input]</span>"
-	else
+	var/turf/T = get_turf(src)
+	if(!T)
 		return
 
+<<<<<<< HEAD
 	if(message)
 		message = encode_html_emphasis(message)
 
@@ -224,7 +242,38 @@
 				if(O)
 					O.see_emote(src, message, m_type)
 
+=======
+	var/list/formatted
+	var/runemessage
+>>>>>>> 642348983f6... Fixing positional custom emotes. (#9011)
 
+	formatted = format_emote(src, message)
+	var/pretext =  formatted["pretext"]
+	var/nametext = formatted["nametext"]
+	var/subtext =  formatted["subtext"]
+	if(pretext) // If we have a split emote we need to show the pretext and name.
+		runemessage = "[pretext][nametext][subtext]"
+	else
+		runemessage = subtext
+	// This is just personal preference (but I'm objectively right) that custom emotes shouldn't have periods at the end in runechat
+	runemessage = replacetext(runemessage,".","",length(runemessage),length(runemessage)+1)
+
+	log_emote("[pretext][nametext][subtext]", src) //Log before we add junk
+	message = encode_html_emphasis("<span class='emote'>[pretext]<b>[nametext]</b>[subtext]</span>")
+
+	var/list/in_range = get_mobs_and_objs_in_view_fast(T,range,2,remote_ghosts = client ? TRUE : FALSE)
+	var/list/m_viewers = in_range["mobs"]
+	var/list/o_viewers = in_range["objs"]
+
+	for(var/mob/M as anything in m_viewers)
+		if(isobserver(M))
+			M.show_message("<span class='emote'>[pretext]<b>[ghost_follow_link(src, M, nametext)]</b>[subtext]</span>", m_type)
+		else
+			M.show_message(message, m_type)
+		M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
+
+	for(var/obj/O as anything in o_viewers)
+		O.see_emote(src, message, m_type)
 
 // Specific mob type exceptions below.
 /mob/living/silicon/ai/emote(var/act, var/type, var/message)

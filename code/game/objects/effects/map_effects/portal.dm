@@ -234,16 +234,20 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 // Allows portals to transfer emotes.
 // Only portal masters do this to avoid flooding the other side with duplicate messages.
 /obj/effect/map_effect/portal/master/see_emote(mob/M, text)
-	if(!counterpart)
+	var/turf/T = counterpart?.get_focused_turf()
+	if(!T)
 		return
-	var/turf/T = counterpart.get_focused_turf()
 	var/list/in_range = get_mobs_and_objs_in_view_fast(T, world.view, 0)
 	var/list/mobs_to_relay = in_range["mobs"]
+<<<<<<< HEAD
 
 	for(var/mob/mob as anything in mobs_to_relay)
 		var/rendered = "<span class='message'>[text]</span>"
+=======
+	var/rendered = "<span class='message'>[text]</span>"
+	for(var/mob/mob as anything in mobs_to_relay)
+>>>>>>> 642348983f6... Fixing positional custom emotes. (#9011)
 		mob.show_message(rendered)
-
 	..()
 
 // Allows portals to transfer visible messages.

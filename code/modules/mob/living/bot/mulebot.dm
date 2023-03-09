@@ -188,13 +188,13 @@
 	update_icons()
 
 /mob/living/bot/mulebot/handleFrustrated(has_target)
-	custom_emote(2, "makes a sighing buzz.")
+	custom_emote(AUDIBLE_MESSAGE, "makes a sighing buzz.")
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	..()
 
 /mob/living/bot/mulebot/handleAdjacentTarget()
 	if(target == src.loc)
-		custom_emote(2, "makes a chiming sound.")
+		custom_emote(AUDIBLE_MESSAGE, "makes a chiming sound.")
 		playsound(src, 'sound/machines/chime.ogg', 50, 0)
 		UnarmedAttack(target)
 		resetTarget()
@@ -283,7 +283,7 @@
 			return
 
 	if(crates_only && !istype(C,/obj/structure/closet/crate))
-		custom_emote(2, "makes a sighing buzz.")
+		custom_emote(AUDIBLE_MESSAGE, "makes a sighing buzz.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return
 

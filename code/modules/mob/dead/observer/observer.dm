@@ -922,9 +922,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind && mind.current)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[mind.current]'>body</a>"
 
-/proc/ghost_follow_link(var/atom/target, var/atom/ghost)
-	if((!target) || (!ghost)) return
-	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>follow</a>"
+/proc/ghost_follow_link(var/atom/target, var/atom/ghost, var/link_text = "follow")
+	if(!target || !ghost)
+		return
+	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>[link_text]</a>"
 	. += target.extra_ghost_link(ghost)
 
 //Culted Ghosts
