@@ -48,7 +48,7 @@
 				to_chat(user, "<span class='notice'>Your net is already holding something!</span>")
 				accept = FALSE
 		if(!accept)
-			to_chat(user, "[A] can't be trapped in \the [src].")
+			to_chat(user, "<span class='filter_notice'>[A] can't be trapped in \the [src].</span>")
 			return
 		var/mob/L = A
 		user.visible_message("<span class='notice'>[user] snatches [L] with \the [src].</span>", "<span class='notice'>You snatch [L] with \the [src].</span>")

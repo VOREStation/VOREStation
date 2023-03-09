@@ -81,7 +81,25 @@
 			if(activated)
 				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
 			else
+<<<<<<< HEAD
 				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
+=======
+				target.underlays.Remove(active_effect)
+		var/atom/toplevelholder = target
+		while (!istype(toplevelholder.loc, /turf))
+			toplevelholder = toplevelholder.loc
+		toplevelholder.visible_message("<span class='filter_notice'><font color='red'>[bicon(toplevelholder)] [toplevelholder] [display_msg]</font></span>")
+	return TRUE
+
+
+/datum/artifact_effect/proc/DoEffectTouch(mob/living/user)
+	return
+
+
+/datum/artifact_effect/proc/DoEffectAura()
+	return
+
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 			if(active_effect)
 				if(activated)

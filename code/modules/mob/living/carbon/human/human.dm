@@ -369,7 +369,7 @@
 												U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["secrecord"])
 		if(hasHUD(usr,"security"))
@@ -386,6 +386,7 @@
 					for (var/datum/data/record/R in data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
+<<<<<<< HEAD
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
 								to_chat(usr, "<b>Species:</b> [R.fields["species"]]")
 								to_chat(usr, "<b>Minor Crimes:</b> [R.fields["mi_crim"]]")
@@ -394,10 +395,21 @@
 								to_chat(usr, "<b>Details:</b> [R.fields["ma_crim_d"]]")
 								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
 								to_chat(usr, "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
+=======
+								var/list/security_hud_text = list()
+								security_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
+								security_hud_text += "<b>Minor Crimes:</b> [R.fields["mi_crim"]]"
+								security_hud_text += "<b>Details:</b> [R.fields["mi_crim_d"]]"
+								security_hud_text += "<b>Major Crimes:</b> [R.fields["ma_crim"]]"
+								security_hud_text += "<b>Details:</b> [R.fields["ma_crim_d"]]"
+								security_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
+								security_hud_text += "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
+								to_chat(usr, "<span class='filter_notice'>[jointext(security_hud_text, "<br>")]</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["secrecordComment"])
 		if(hasHUD(usr,"security"))
@@ -420,11 +432,11 @@
 									to_chat(usr, "[R.fields[text("com_[]", counter)]]")
 									counter++
 								if (counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
+									to_chat(usr, "<span class='filter_notice'>No comment found.</span>")
+								to_chat(usr, "<span class='filter_notice'><a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a></span>")
 
 			if(!read)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["secrecordadd"])
 		if(hasHUD(usr,"security"))
@@ -486,7 +498,7 @@
 											U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["medrecord"])
 		if(hasHUD(usr,"medical"))
@@ -503,6 +515,7 @@
 					for (var/datum/data/record/R in data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
+<<<<<<< HEAD
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
 								to_chat(usr, "<b>Species:</b> [R.fields["species"]]")
 								to_chat(usr, "<b>DNA:</b> [R.fields["b_dna"]]")
@@ -512,10 +525,22 @@
 								to_chat(usr, "<b>Details:</b> [R.fields["ma_dis_d"]]")
 								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
 								to_chat(usr, "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
+=======
+								var/list/medical_hud_text = list()
+								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]"
+								medical_hud_text += "<b>DNA:</b> [R.fields["b_dna"]]"
+								medical_hud_text += "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
+								medical_hud_text += "<b>Details:</b> [R.fields["mi_dis_d"]]"
+								medical_hud_text += "<b>Major Disabilities:</b> [R.fields["ma_dis"]]"
+								medical_hud_text += "<b>Details:</b> [R.fields["ma_dis_d"]]"
+								medical_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
+								medical_hud_text += "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
+								to_chat(usr, "<span class='filter_notice'>[jointext(medical_hud_text, "<br>")]</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["medrecordComment"])
 		if(hasHUD(usr,"medical"))
@@ -538,11 +563,11 @@
 									to_chat(usr, "[R.fields[text("com_[]", counter)]]")
 									counter++
 								if (counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
+									to_chat(usr, "<span class='filter_notice'>No comment found.</span>")
+								to_chat(usr, "<span class='filter_notice'><a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a></span>")
 
 			if(!read)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["medrecordadd"])
 		if(hasHUD(usr,"medical"))
@@ -787,7 +812,7 @@
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
 		var/datum/gender/T = gender_datums[get_visible_gender()]
-		visible_message("<font color='red'>\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.</font>","<font color='blue'>You begin to play a spooky refrain on your ribcage.</font>","<font color='red'>You hear a spooky xylophone melody.</font>")
+		visible_message("<span class='filter_notice'><font color='red'>\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.</font></span>","<span class='notice'>You begin to play a spooky refrain on your ribcage.</span>","<span class='filter_notice'><font color='red'>You hear a spooky xylophone melody.</font></span>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(src, song, 50, 1, -1)
 		xylophone = 1
@@ -878,7 +903,7 @@
 	regenerate_icons()
 	check_dna()
 	var/datum/gender/T = gender_datums[get_visible_gender()]
-	visible_message("<font color='blue'>\The [src] morphs and changes [T.his] appearance!</font>", "<font color='blue'>You change your appearance!</font>", "<font color='red'>Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</font>")
+	visible_message("<span class='notice'>\The [src] morphs and changes [T.his] appearance!</span>", "<span class='notice'>You change your appearance!</span>", "<span class='filter_notice'><font color='red'>Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</font></span>")
 
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
@@ -895,19 +920,27 @@
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in mob_list)
 		creatures += h
+<<<<<<< HEAD
 	var/mob/target = tgui_input_list(usr, "Who do you want to project your mind to?", "Project Mind", creatures)
 	if (isnull(target))
 		return
 
 	var/say = sanitize(tgui_input_text(usr, "What do you wish to say"))
+=======
+	var/mob/target = input("Who do you want to project your mind to?") as null|anything in creatures
+	if (isnull(target))
+		return
+
+	var/say = sanitize(input("What do you wish to say?"))
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	if(mRemotetalk in target.mutations)
-		target.show_message("<font color='blue'> You hear [src.real_name]'s voice: [say]</font>")
+		target.show_message("<span class='filter_say'><font color='blue'>You hear [src.real_name]'s voice: [say]</font></span>")
 	else
-		target.show_message("<font color='blue'> You hear a voice that seems to echo around the room: [say]</font>")
-	usr.show_message("<font color='blue'> You project your mind into [target.real_name]: [say]</font>")
+		target.show_message("<span class='filter_say'><font color='blue'>You hear a voice that seems to echo around the room: [say]</font></span>")
+	usr.show_message("<span class='filter_say'><font color='blue'>You project your mind into [target.real_name]: [say]</font></span>")
 	log_say("(TPATH to [key_name(target)]) [say]",src)
 	for(var/mob/observer/dead/G in mob_list)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
+		G.show_message("<span class='filter_say'><i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i></span>")
 
 /mob/living/carbon/human/proc/remoteobserve()
 	set name = "Remote View"
@@ -937,7 +970,7 @@
 			continue
 		creatures += h
 
-	var/mob/target = input ("Who do you want to project your mind to ?") as mob in creatures
+	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
 
 	if (target)
 		remoteview_target = target
@@ -1144,10 +1177,10 @@
 		self = 1
 	if(!self)
 		usr.visible_message("<span class='notice'>[usr] kneels down, puts [TU.his] hand on [src]'s wrist and begins counting [T.his] pulse.</span>",\
-		"You begin counting [src]'s pulse")
+		"<span class='filter_notice'>You begin counting [src]'s pulse.</span>")
 	else
 		usr.visible_message("<span class='notice'>[usr] begins counting [T.his] pulse.</span>",\
-		"You begin counting your pulse.")
+		"<span class='filter_notice'>You begin counting your pulse.</span>")
 
 	if(src.pulse)
 		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
@@ -1155,7 +1188,7 @@
 		to_chat(usr, "<span class='danger'>[src] has no pulse!</span>")	//it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
-	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
+	to_chat(usr, "<span class='filter_notice'>You must[self ? "" : " both"] remain still until counting is finished.</span>")
 	if(do_mob(usr, src, 60))
 		var/message = "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>"
 		to_chat(usr,message)
@@ -1453,11 +1486,11 @@
 	usr.setClickCooldown(20)
 
 	if(usr.stat > 0)
-		to_chat(usr, "You are unconcious and cannot do that!")
+		to_chat(usr, "<span class='filter_notice'>You are unconcious and cannot do that!</span>")
 		return
 
 	if(usr.restrained())
-		to_chat(usr, "You are restrained and cannot do that!")
+		to_chat(usr, "<span class='filter_notice'>You are restrained and cannot do that!</span>")
 		return
 
 	var/mob/S = src

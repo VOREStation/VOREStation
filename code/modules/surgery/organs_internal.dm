@@ -56,8 +56,8 @@
 	for(var/obj/item/organ/I in affected.internal_organs)
 		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
 			if(!(I.robotic >= ORGAN_ROBOT))
-				user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
-				"You start treating damage to [target]'s [I.name] with [tool_name]." )
+				user.visible_message("<span class='filter_notice'>[user] starts treating damage to [target]'s [I.name] with [tool_name].</span>", \
+				"<span class='filter_notice'>You start treating damage to [target]'s [I.name] with [tool_name].</span>" )
 
 	target.custom_pain("The pain in your [affected.name] is living hell!", 100)
 	..()
@@ -228,8 +228,8 @@
 /datum/surgery_step/internal/detatch_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("[user] starts to separate [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start to separate [target]'s [target.op_stage.current_organ] with \the [tool]." )
+	user.visible_message("<span class='filter_notice'>[user] starts to separate [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to separate [target]'s [target.op_stage.current_organ] with \the [tool].</span>" )
 	target.custom_pain("The pain in your [affected.name] is living hell!", 100)
 	..()
 
@@ -283,6 +283,7 @@
 	return ..()
 
 /datum/surgery_step/internal/remove_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+<<<<<<< HEAD
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/list/removable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
@@ -300,6 +301,10 @@
 
 	user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
 	"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
+=======
+	user.visible_message("<span class='filter_notice'>[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+	"<span class='filter_notice'>You start removing [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
 	..()
 
@@ -382,8 +387,8 @@
 
 /datum/surgery_step/internal/replace_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.name].", \
-	"You start transplanting \the [tool] into [target]'s [affected.name].")
+	user.visible_message("<span class='filter_notice'>[user] starts transplanting \the [tool] into [target]'s [affected.name].</span>", \
+	"<span class='filter_notice'>You start transplanting \the [tool] into [target]'s [affected.name].</span>")
 	target.custom_pain("Someone's rooting around in your [affected.name]!", 100)
 	..()
 
@@ -439,8 +444,8 @@
 	return ..()
 
 /datum/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+	"<span class='filter_notice'>You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 	target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!", 100)
 	..()
 
@@ -457,3 +462,68 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>")
 	affected.createwound(BRUISE, 20)
+<<<<<<< HEAD
+=======
+
+///////////////////////////////////////////////////////////////
+// Organ Ripping Surgery
+///////////////////////////////////////////////////////////////
+
+/datum/surgery_step/internal/rip_organ
+
+	allowed_tools = list(
+	/obj/item/surgical/scalpel/ripper = 100
+	)
+
+	priority = 3
+
+	blood_level = 3
+
+	min_duration = 60
+	max_duration = 80
+
+/datum/surgery_step/internal/rip_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!..())
+		return 0
+
+	if(!istype(tool))
+		return FALSE
+
+	target.op_stage.current_organ = null
+
+	var/list/removable_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
+		if(istype(I) && I.parent_organ == target_zone)
+			removable_organs |= organ
+
+	var/organ_to_remove = input(user, "Which organ do you want to remove?") as null|anything in removable_organs
+	if(!organ_to_remove)
+		return 0
+
+	target.op_stage.current_organ = organ_to_remove
+	return ..()
+
+/datum/surgery_step/internal/rip_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("<span class='filter_notice'>[user] starts ripping [target]'s [target.op_stage.current_organ] out with \the [tool].</span>", \
+	"<span class='filter_notice'>You start ripping [target]'s [target.op_stage.current_organ] out with \the [tool].</span>")
+	target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
+	..()
+
+/datum/surgery_step/internal/rip_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("<span class='notice'>[user] has ripped [target]'s [target.op_stage.current_organ] out with \the [tool].</span>", \
+	"<span class='notice'>You have ripped [target]'s [target.op_stage.current_organ] out with \the [tool].</span>")
+
+	// Extract the organ!
+	if(target.op_stage.current_organ)
+		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
+		if(O && istype(O))
+			O.removed(user)
+		target.op_stage.current_organ = null
+
+/datum/surgery_step/internal/rip_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message("<span class='warning'>[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!</span>", \
+	"<span class='warning'>Your hand slips, damaging [target]'s [affected.name] with \the [tool]!</span>")
+	affected.createwound(BRUISE, 20)
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)

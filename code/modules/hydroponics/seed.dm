@@ -792,7 +792,7 @@
 			to_chat(user, "<span class='danger'>You fail to harvest anything useful.</span>")
 	else
 		if(istype(user))
-			to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
+			to_chat(user, "<span class='filter_notice'>You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].</span>")
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in SSplants.seeds))

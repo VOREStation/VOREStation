@@ -42,7 +42,7 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			to_chat(H, "<font color='red'>You can't use your hand.</font>")
+			to_chat(H, "<span class='warning'>You can't use your hand.</span>")
 			return
 	if(H.lying)
 		return
@@ -57,7 +57,7 @@
 			if(!hit_zone)
 				H.do_attack_animation(src)
 				playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("<font color='red'><B>[H] reaches for [src], but misses!</B></font>")
+				visible_message("<span class='filter_combat'><font color='red'><B>[H] reaches for [src], but misses!</B></font></span>")
 				return FALSE
 
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
@@ -333,7 +333,7 @@
 						return
 
 			playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("<font color='red'> <B>[M] attempted to disarm [src]!</B></font>")
+			visible_message("<span class='filter_combat'><font color='red'> <B>[M] attempted to disarm [src]!</B></font></span>")
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -426,9 +426,9 @@
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 
 	if(user == src)
-		user.visible_message("\The [user] starts applying pressure to [TU.his] [organ.name]!", "You start applying pressure to your [organ.name]!")
+		user.visible_message("<span class='filter_notice'>\The [user] starts applying pressure to [TU.his] [organ.name]!</span>", "<span class='filter_notice'>You start applying pressure to your [organ.name]!</span>")
 	else
-		user.visible_message("\The [user] starts applying pressure to [src]'s [organ.name]!", "You start applying pressure to [src]'s [organ.name]!")
+		user.visible_message("<span class='filter_notice'>\The [user] starts applying pressure to [src]'s [organ.name]!</span>", "<span class='filter_notice'>You start applying pressure to [src]'s [organ.name]!</span>")
 	spawn(0)
 		organ.applied_pressure = user
 
@@ -438,9 +438,9 @@
 		organ.applied_pressure = null
 
 		if(user == src)
-			user.visible_message("\The [user] stops applying pressure to [TU.his] [organ.name]!", "You stop applying pressure to your [organ]!")
+			user.visible_message("\<span class='filter_notice'>The [user] stops applying pressure to [TU.his] [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to your [organ]!</span>")
 		else
-			user.visible_message("\The [user] stops applying pressure to [src]'s [organ.name]!", "You stop applying pressure to [src]'s [organ.name]!")
+			user.visible_message("<span class='filter_notice'>\The [user] stops applying pressure to [src]'s [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to [src]'s [organ.name]!</span>")
 
 	return TRUE
 

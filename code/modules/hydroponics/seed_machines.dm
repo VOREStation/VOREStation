@@ -17,7 +17,7 @@
 	if(genes.len)
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
-			to_chat(user, "You wipe the disk data.")
+			to_chat(user, "<span class='filter_notice'>You wipe the disk data.</span>")
 			name = initial(name)
 			desc = initial(name)
 			genes = list()
@@ -68,30 +68,40 @@
 	active = 0
 	if(failed_task)
 		failed_task = 0
+<<<<<<< HEAD
 		visible_message("\icon[src][bicon(src)] [src] pings unhappily, flashing a red warning light.")
 	else
 		visible_message("\icon[src][bicon(src)] [src] pings happily.")
+=======
+		visible_message("<span class='filter_notice'>[bicon(src)] [src] pings unhappily, flashing a red warning light.</span>")
+	else
+		visible_message("<span class='filter_notice'>[bicon(src)] [src] pings happily.</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.loc = get_turf(src)
+<<<<<<< HEAD
 			visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
+=======
+			visible_message("<span class='filter_notice'>[bicon(src)] [src] beeps and spits out [loaded_disk].</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 			loaded_disk = null
 
 /obj/machinery/botany/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/seeds))
 		if(seed)
-			to_chat(user, "There is already a seed loaded.")
+			to_chat(user, "<span class='filter_notice'>There is already a seed loaded.</span>")
 			return
 		var/obj/item/seeds/S =W
 		if(S.seed && S.seed.get_trait(TRAIT_IMMUTABLE) > 0)
-			to_chat(user, "That seed is not compatible with our genetics technology.")
+			to_chat(user, "<span class='filter_notice'>That seed is not compatible with our genetics technology.</span>")
 		else
 			user.drop_from_inventory(W)
 			W.loc = src
 			seed = W
-			to_chat(user, "You load [W] into [src].")
+			to_chat(user, "<span class='filter_notice'>You load [W] into [src].</span>")
 		return
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -105,24 +115,24 @@
 //		return
 	if(istype(W,/obj/item/weapon/disk/botany))
 		if(loaded_disk)
-			to_chat(user, "There is already a data disk loaded.")
+			to_chat(user, "<span class='filter_notice'>There is already a data disk loaded.</span>")
 			return
 		else
 			var/obj/item/weapon/disk/botany/B = W
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
-					to_chat(user, "That disk already has gene data loaded.")
+					to_chat(user, "<span class='filter_notice'>That disk already has gene data loaded.</span>")
 					return
 			else
 				if(disk_needs_genes)
-					to_chat(user, "That disk does not have any gene data loaded.")
+					to_chat(user, "<span class='filter_notice'>That disk does not have any gene data loaded.</span>")
 					return
 
 			user.drop_from_inventory(W)
 			W.loc = src
 			loaded_disk = W
-			to_chat(user, "You load [W] into [src].")
+			to_chat(user, "<span class='filter_notice'>You load [W] into [src].</span>")
 
 		return
 	..()
@@ -169,7 +179,46 @@
 		data["hasGenetics"] = 0
 		data["sourceName"] = 0
 
+<<<<<<< HEAD
 	return data
+=======
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "botany_isolator.tmpl", "Lysis-isolation Centrifuge UI", 470, 450)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/botany/Topic(href, href_list)
+
+	if(..())
+		return 1
+
+	if(href_list["eject_packet"])
+		if(!seed) return
+		seed.loc = get_turf(src)
+
+		if(seed.seed.name == "new line" || isnull(plant_controller.seeds[seed.seed.name]))
+			seed.seed.uid = plant_controller.seeds.len + 1
+			seed.seed.name = "[seed.seed.uid]"
+			plant_controller.seeds[seed.seed.name] = seed.seed
+
+		seed.update_seed()
+		visible_message("<span class='filter_notice'>[bicon(src)] [src] beeps and spits out [seed].</span>")
+
+		seed = null
+
+	if(href_list["eject_disk"])
+		if(!loaded_disk) return
+		loaded_disk.loc = get_turf(src)
+		visible_message("<span class='filter_notice'>[bicon(src)] [src] beeps and spits out [loaded_disk].</span>")
+		loaded_disk = null
+
+	usr.set_machine(src)
+	src.add_fingerprint(usr)
+
+/obj/machinery/botany/extractor/Topic(href, href_list)
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 /obj/machinery/botany/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())

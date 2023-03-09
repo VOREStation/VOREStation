@@ -51,6 +51,7 @@
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
 	to_chat(src,msg)
 
 /client/verb/staffwho()
@@ -121,6 +122,7 @@
 	if(config.show_event_managers)
 		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg
 
+<<<<<<< HEAD
 	var/num_mentors_online = 0
 	var/mmsg = ""
 
@@ -146,3 +148,6 @@
 	msg += "\n<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.</span>"
 
 	to_chat(src, msg)
+=======
+	to_chat(src,"<span class='filter_notice'>[jointext(msg, "<br>")]</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)

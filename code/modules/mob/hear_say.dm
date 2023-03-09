@@ -118,7 +118,7 @@
 			to_chat(src, "<span class='filter_say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] makes a noise, possibly speech, but you cannot hear them.</span>")
 	else
 		var/message_to_send = null
-		message_to_send = "<span class='game say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]</span>"
+		message_to_send = "<span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]"
 		if(check_mentioned(multilingual_to_message(message_pieces)) && is_preference_enabled(/datum/client_preference/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
@@ -138,15 +138,23 @@
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 
 /mob/proc/on_hear_say(var/message)
-	to_chat(src, message)
+	to_chat(src, "<span class='game say'>[message]</span>")
 	if(teleop)
+<<<<<<< HEAD
 		to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[message]")
+=======
+		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
-	to_chat(src, "[time] [message]")
+	to_chat(src, "<span class='game say'>[time] [message]</span>")
 	if(teleop)
+<<<<<<< HEAD
 		to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[time] [message]")
+=======
+		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][time] [message]</span>")
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
@@ -177,7 +185,7 @@
 
     return tagged_message
 
-/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
+/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/part_d, var/part_e, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
 	if(!client)
 		return
 
@@ -190,45 +198,75 @@
 	var/speaker_name = handle_speaker_name(speaker, vname, hard_to_hear)
 	var/track = handle_track(message, verb, speaker, speaker_name, hard_to_hear)
 
-	message = "[encode_html_emphasis(message)][part_c]"
+	message = "[encode_html_emphasis(message)][part_d]"
 
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))
 			to_chat(src, "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>")
 	else
+<<<<<<< HEAD
 		on_hear_radio(part_a, speaker_name, track, part_b, message, part_c)
+=======
+		on_hear_radio(part_a, part_b, speaker_name, track, part_c, message, part_d, part_e)
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
+<<<<<<< HEAD
 /mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
 	var/final_message = "[part_a][speaker_name][part_b][formatted][part_c]"
+=======
+/mob/proc/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "<font size='3'><b>[final_message]</b></font>"
+		final_message = "[part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
+	else
+		final_message = "[part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
+<<<<<<< HEAD
 /mob/observer/dead/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
 	var/final_message = "[part_a][track][part_b][formatted][part_c]"
+=======
+/mob/observer/dead/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/final_message = "[part_b][track][part_c][formatted][part_d]"
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "<font size='3'><b>[final_message]</b></font>"
+		final_message = "[part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
+	else
+		final_message = "[part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
+<<<<<<< HEAD
 /mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
 	var/time = say_timestamp()
 	var/final_message = "[part_a][speaker_name][part_b][formatted][part_c]"
+=======
+/mob/living/silicon/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/time = say_timestamp()
+	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+		final_message = "[part_a][time]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[time][final_message]"
+		final_message = "[part_a][time][final_message][part_e]"
 	to_chat(src, final_message)
 
+<<<<<<< HEAD
 /mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
 	var/time = say_timestamp()
 	var/final_message = "[part_a][track][part_b][formatted][part_c]"
+=======
+/mob/living/silicon/ai/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/time = say_timestamp()
+	var/final_message = "[part_b][track][part_c][formatted][part_d]"
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+		final_message = "[part_a][time]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[time][final_message]"
+		final_message = "[part_a][time][final_message][part_e]"
 	to_chat(src, final_message)
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/verb_understood = "gestures", var/datum/language/language, var/mob/speaker = null, var/speech_type = 1)
@@ -236,8 +274,13 @@
 		return
 
 	if(say_understands(speaker, language))
+<<<<<<< HEAD
 		message = "<B>[speaker]</B> [verb_understood], \"[message]\""
 	else if(!(language.ignore_adverb))
+=======
+		message = "<span class='game say'><B>[speaker]</B> [verb], \"[message]\"</span>"
+	else
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 		var/adverb
 		var/length = length(message) * pick(0.8, 0.9, 1.0, 1.1, 1.2)	//Adds a little bit of fuzziness
 		switch(length)
@@ -246,9 +289,13 @@
 			if(30 to 48)	adverb = " a message"
 			if(48 to 90)	adverb = " a lengthy message"
 			else			adverb = " a very lengthy message"
+<<<<<<< HEAD
 		message = "<B>[speaker]</B> [verb][adverb]."
 	else
 		message = "<B>[speaker]</B> [verb]."
+=======
+		message = "<span class='game say'><B>[speaker]</B> [verb][adverb].</span>"
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 	show_message(message, type = speech_type) // Type 1 is visual message
 

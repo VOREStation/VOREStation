@@ -96,7 +96,7 @@
 	if(!..())
 		return 0
 
-	usr.visible_message("<b>[src]</b> points to [A]")
+	usr.visible_message("<span class='filter_notice'><b>[src]</b> points to [A].</span>")
 	return 1
 
 /mob/living/verb/succumb()
@@ -773,7 +773,7 @@
 	set category = "IC"
 
 	resting = !resting
-	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 	update_canmove()
 
 //called when the mob receives a bright flash
@@ -1125,7 +1125,23 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
+<<<<<<< HEAD
 			item.throwing = 1 //Small edit so thrown interactions actually work!
+=======
+
+			return TRUE
+		return FALSE
+
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item))
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(item))
+				H.put_in_hands(item) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+				visible_message("<span class='filter_notice'><b>[src]</b> hands \the [H] \a [item].</span>", SPAN_NOTICE("You give \the [target] \a [item]."))
+			else
+				to_chat(src, SPAN_NOTICE("You offer \the [item] to \the [target]."))
+				do_give(H)
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 			return TRUE
 		else
 			return FALSE

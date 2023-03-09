@@ -83,7 +83,7 @@ fundamental differences
 		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			if (CI.container)
 				if (!CI.container.check_contents())
-					to_chat(user, "There's nothing in [src] you can remove!")
+					to_chat(user, "<span class='filter_notice'>There's nothing in [src] you can remove!</span>")
 					return
 
 				for (var/obj/item/I in CI.container)
@@ -106,21 +106,26 @@ fundamental differences
 
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if(!CI.container.check_contents())
-		to_chat("There's nothing in it! Add ingredients before turning [src] on!")
+		to_chat("<span class='filter_notice'>There's nothing in it! Add ingredients before turning [src] on!</span>")
 		return
 
 	if(stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		if(usr)
-			usr.visible_message("[usr] turns the [src] on", "You turn on \the [src].")
+			usr.visible_message("<span class='filter_notice'>[usr] turns the [src] on.</span>", "<span class='filter_notice'>You turn on \the [src].</span>")
 			get_cooking_work(CI)
 			use_power = 2
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
 		if(usr)
+<<<<<<< HEAD
 			usr.visible_message("[usr] turns the [src] off", "You turn off \the [src].")
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
+=======
+			usr.visible_message("<span class='filter_notice'>[usr] turns the [src] off.</span>", "<span class='filter_notice'>You turn off \the [src].</span>")
+	playsound(src, "button", 40, 1)
+>>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	update_icon()
 
 /obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)

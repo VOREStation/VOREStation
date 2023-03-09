@@ -38,8 +38,8 @@
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 0
 
 /datum/surgery_step/brainstem/mend_vessels/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to mend the blood vessels on [target]'s brainstem with \the [tool].", \
-	"You start to mend the blood vessels on [target]'s brainstem with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to mend the blood vessels on [target]'s brainstem with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to mend the blood vessels on [target]'s brainstem with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brainstem/mend_vessels/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -76,8 +76,8 @@
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 1
 
 /datum/surgery_step/brainstem/drill_vertebrae/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to drill around [target]'s brainstem with \the [tool].", \
-	"You start to drill around [target]'s brainstem with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to drill around [target]'s brainstem with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to drill around [target]'s brainstem with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brainstem/drill_vertebrae/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -118,8 +118,8 @@
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 2
 
 /datum/surgery_step/brainstem/clean_chips/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to pick around [target]'s brainstem for bone chips with \the [tool].", \
-	"You start to pick around [target]'s brainstem for bone chips with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to pick around [target]'s brainstem for bone chips with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to pick around [target]'s brainstem for bone chips with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brainstem/clean_chips/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -158,8 +158,8 @@
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 3
 
 /datum/surgery_step/brainstem/mend_cord/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to fuse [target]'s spinal cord with \the [tool].", \
-	"You start to fuse [target]'s spinal cord with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to fuse [target]'s spinal cord with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to fuse [target]'s spinal cord with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brainstem/mend_cord/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -198,8 +198,8 @@
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 4
 
 /datum/surgery_step/brainstem/mend_vertebrae/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to mend [target]'s opened vertebrae with \the [tool].", \
-	"You start to mend [target]'s opened vertebrae with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to mend [target]'s opened vertebrae with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to mend [target]'s opened vertebrae with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brainstem/mend_vertebrae/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -238,8 +238,8 @@
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 5
 
 /datum/surgery_step/brainstem/realign_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to realign the tissues in [target]'s skull with \the [tool].", \
-	"You start to realign the tissues in [target]'s skull with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to realign the tissues in [target]'s skull with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to realign the tissues in [target]'s skull with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brainstem/realign_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

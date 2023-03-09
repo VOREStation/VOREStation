@@ -39,7 +39,7 @@
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		to_chat(usr, "There's \a [occupied] in the way.")
+		to_chat(usr, "<span class='filter_notice'>There's \a [occupied] in the way.</span>")
 		return 0
 
 	var/list/L = list()
