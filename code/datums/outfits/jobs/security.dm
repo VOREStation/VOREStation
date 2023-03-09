@@ -41,10 +41,22 @@
 //VOREStation Edit - More cyberpunky
 /decl/hierarchy/outfit/job/security/detective/forensic
 	name = OUTFIT_JOB_NAME("Forensic technician")
+<<<<<<< HEAD
 	head = null
 	suit = /obj/item/clothing/suit/storage/det_trench/alt2
 	uniform = /obj/item/clothing/under/det
 //VOREStation Edit End
+=======
+	uniform = /obj/item/clothing/under/rank/security/forensics
+	suit = /obj/item/clothing/suit/storage/forensics/blue
+	shoes = /obj/item/clothing/shoes/laceup
+	r_hand = /obj/item/storage/briefcase/crimekit
+	id_type = /obj/item/card/id/security/detective
+	pda_type = /obj/item/pda/detective
+	backpack = /obj/item/storage/backpack
+	satchel_one = /obj/item/storage/backpack/satchel/norm
+	backpack_contents = list(/obj/item/storage/box/evidence = 1)
+>>>>>>> e11404d1033... Bugfixes (#8967)
 
 /decl/hierarchy/outfit/job/security/officer
 	name = OUTFIT_JOB_NAME("Security Officer")

@@ -124,10 +124,11 @@
 		return
 
 	if(panel_open)
-		//Don't eat multitools or wirecutters used on an open lathe.
+		//Don't eat things when the lathe is open. No more accidentally lathing your jaws of life.
 		if(O.is_multitool() || O.is_wirecutter())
 			wires.Interact(user)
-			return
+			return TRUE
+		return FALSE
 
 	if(is_robot_module(O))
 		return 0
@@ -269,6 +270,7 @@
 	update_tgui_static_data(usr)
 
 /obj/machinery/autolathe/dismantle()
+<<<<<<< HEAD
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 	return ..()
@@ -283,3 +285,18 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[mat_efficiency*100]%</b>.</span>"
+=======
+	if(LAZYLEN(stored_material))
+		for(var/mat in stored_material)
+			var/datum/material/M = get_material_by_name(mat)
+			if(!istype(M))
+				continue
+			if(stored_material[mat] == 0) //Maybe don't try and make null mats...
+				continue
+			var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
+			if(stored_material[mat] >= S.perunit)
+				S.amount = round(stored_material[mat] / S.perunit)
+			else
+				qdel(S) //Prevents stacks smaller than 1
+	return ..()
+>>>>>>> e11404d1033... Bugfixes (#8967)

@@ -111,8 +111,8 @@
 		if(istype(w_uniform,/obj/item/clothing/under) && !(skip_gear & EXAMINE_SKIPTIE))
 			var/obj/item/clothing/under/U = w_uniform
 			if(LAZYLEN(U.accessories))
-				tie_msg += ". Attached to it is"
-				tie_msg_warn += "! Attached to it is"
+				tie_msg += " Attached to it is"
+				tie_msg_warn += " Attached to it is"
 				var/list/accessory_descs = list()
 				if(skip_gear & EXAMINE_SKIPHOLSTER)
 					for(var/obj/item/clothing/accessory/A in U.accessories)
@@ -143,8 +143,8 @@
 		if(istype(wear_suit,/obj/item/clothing/suit))
 			var/obj/item/clothing/suit/U = wear_suit
 			if(LAZYLEN(U.accessories))
-				tie_msg += ". Attached to it is"
-				tie_msg_warn += "! Attached to it is"
+				tie_msg += " Attached to it is"
+				tie_msg_warn += " Attached to it is"
 				var/list/accessory_descs = list()
 				for(var/accessory in U.accessories)
 					accessory_descs += "<a href='?src=\ref[src];lookitem_desc_only=\ref[accessory]'>\a [accessory]</a>"

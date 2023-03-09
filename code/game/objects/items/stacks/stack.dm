@@ -73,7 +73,14 @@
 	. = ..()
 
 	if(Adjacent(user))
+<<<<<<< HEAD
 		. += get_examine_string()
+=======
+		if(!uses_charge)
+			. += "There [src.amount == 1? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
+		else
+			. += "There is enough charge for [get_amount()]."
+>>>>>>> e11404d1033... Bugfixes (#8967)
 
 /obj/item/stack/attack_self(mob/user)
 	tgui_interact(user)

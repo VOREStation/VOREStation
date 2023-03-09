@@ -22,6 +22,7 @@
 	var/max_cooling = 15				// in degrees per second - probably don't need to mess with heat capacity here
 	var/charge_consumption = 3			// charge per second at max_cooling
 	var/thermostat = T20C
+	var/starts_with_cell = TRUE
 
 	//TODO: make it heat up the surroundings when not in space
 
@@ -30,8 +31,13 @@
 
 /obj/item/device/suit_cooling_unit/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	if(ispath(cell))
 		cell = new cell(src)
+=======
+	if(starts_with_cell)
+		cell = new/obj/item/cell/high(src)	//comes not with the crappy default power cell - because this is dedicated EVA equipment
+>>>>>>> e11404d1033... Bugfixes (#8967)
 
 /obj/item/device/suit_cooling_unit/Destroy()
 	qdel_null(cell)
@@ -203,6 +209,7 @@
 		else
 			. += "It doesn't have a power cell installed."
 
+<<<<<<< HEAD
 /obj/item/device/suit_cooling_unit/emergency
 	icon_state = "esuitcooler"
 	cell = /obj/item/weapon/cell
@@ -222,3 +229,7 @@
 		return
 
 	return ..()
+=======
+/obj/item/suit_cooling_unit/empty //No duplicating cells with autolathes any more.
+	starts_with_cell = FALSE
+>>>>>>> e11404d1033... Bugfixes (#8967)

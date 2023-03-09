@@ -33,12 +33,24 @@
 	var/cell_type = /obj/item/weapon/cell/device
 	var/power_usage = 1
 	var/power_use = 1
+	var/starts_with_cell = TRUE //should it start with a cell?
 
 /obj/item/device/flashlight/Initialize()
 	. = ..()
 
 	if(power_use && cell_type)
+<<<<<<< HEAD
 		cell = new cell_type(src)
+=======
+		if(starts_with_cell)
+			cell = new cell_type(src)
+		brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
+		power_usage = brightness_levels[brightness_level]
+	else
+		verbs -= /obj/item/flashlight/verb/toggle
+
+	update_icon()
+>>>>>>> e11404d1033... Bugfixes (#8967)
 
 	update_brightness()
 
@@ -227,6 +239,7 @@
 	else
 		..()
 
+<<<<<<< HEAD
 /obj/item/device/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!on)
@@ -239,6 +252,12 @@
 		OL.place_directional_light(T)
 
 /obj/item/device/flashlight/pen
+=======
+/obj/item/flashlight/empty //For autolathes so you can't duplicate infinite cells
+	starts_with_cell = FALSE
+
+/obj/item/flashlight/pen
+>>>>>>> e11404d1033... Bugfixes (#8967)
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"

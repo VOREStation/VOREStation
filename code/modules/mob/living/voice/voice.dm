@@ -10,10 +10,16 @@
 /mob/living/voice/Initialize(loc)
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
-
-	if(istype(loc, /obj/item/device/communicator))
-		comm = loc
 	. = ..()
+	check_comm()
+
+<<<<<<< HEAD
+	if(istype(loc, /obj/item/device/communicator))
+=======
+/mob/living/voice/proc/check_comm() //We have to call this after initialize or it won't register. Still runtimes as of 2023-02-20, mind, but that's an unrelated bug.
+	if(istype(loc, /obj/item/communicator))
+>>>>>>> e11404d1033... Bugfixes (#8967)
+		comm = loc
 
 // Proc: transfer_identity()
 // Parameters: 1 (speaker - the mob (usually an observer) to copy information from)

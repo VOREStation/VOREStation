@@ -51,7 +51,11 @@
 
 /datum/category_item/autolathe/general/flashlight
 	name = "flashlight"
+<<<<<<< HEAD
 	path =/obj/item/device/flashlight
+=======
+	path =/obj/item/flashlight/empty
+>>>>>>> e11404d1033... Bugfixes (#8967)
 
 /datum/category_item/autolathe/general/floor_light
 	name = "floor light"
@@ -79,7 +83,11 @@
 
 /datum/category_item/autolathe/general/suit_cooler
 	name = "suit cooling unit"
+<<<<<<< HEAD
 	path =/obj/item/device/suit_cooling_unit
+=======
+	path =/obj/item/suit_cooling_unit/empty
+>>>>>>> e11404d1033... Bugfixes (#8967)
 
 /datum/category_item/autolathe/general/weldermask
 	name = "welding mask"
