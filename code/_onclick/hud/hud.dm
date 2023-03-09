@@ -205,11 +205,7 @@ var/list/global_huds = list(
 
 /datum/hud/Destroy()
 	. = ..()
-<<<<<<< HEAD
-	qdel_null(minihuds)
-=======
 	QDEL_NULL_LIST(minihuds)
->>>>>>> 33c4085e602... Merge pull request #8975 from Seris02/gunqdelfix
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null
