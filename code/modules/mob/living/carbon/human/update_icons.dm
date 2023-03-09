@@ -575,7 +575,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	eyes_image.plane = PLANE_LIGHTING_ABOVE
 	eyes_image.appearance_flags = appearance_flags
 	*/
-	var/mutable_appearance/eyes_image = emissive_appearance(head_organ.eye_icon_location, head_organ.eye_icon, BODY_LAYER+EYES_LAYER, appearance_flags=appearance_flags) //CHOMPEdit - better glowy eyes
+	var/mutable_appearance/eyes_image = emissive_appearance(head_organ.eye_icon_location, head_organ.eye_icon, BODY_LAYER+EYES_LAYER, appearance_flags=appearance_flags) //VOREStation Edit - better glowy eyes
 
 	overlays_standing[EYES_LAYER] = eyes_image
 	apply_layer(EYES_LAYER)
