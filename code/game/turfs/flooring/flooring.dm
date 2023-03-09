@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var/list/flooring_types
 
 /proc/populate_flooring_types()
@@ -12,6 +13,8 @@ var/list/flooring_types
 		flooring_types["[flooring_path]"] = new flooring_path
 	return flooring_types["[flooring_path]"]
 
+=======
+>>>>>>> 8edc31867e3... Merge pull request #8989 from MistakeNot4892/flooring
 // State values:
 // [icon_base]: initial base icon_state without edges or corners.
 // if has_base_range is set, append 0-has_base_range ie.

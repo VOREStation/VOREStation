@@ -106,6 +106,7 @@
 				return
 			var/obj/item/stack/S = C
 			var/decl/flooring/use_flooring
+			var/list/flooring_types = decls_repository.get_decls_of_type(/decl/flooring)
 			for(var/flooring_type in flooring_types)
 				var/decl/flooring/F = flooring_types[flooring_type]
 				if(!F.build_type)

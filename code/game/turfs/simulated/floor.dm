@@ -40,7 +40,12 @@
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
+<<<<<<< HEAD
 		set_flooring(get_flooring_data(floortype), TRUE)
+=======
+		set_flooring(GET_DECL(floortype), TRUE)
+		refresh_snow(FALSE)
+>>>>>>> 8edc31867e3... Merge pull request #8989 from MistakeNot4892/flooring
 		. = INITIALIZE_HINT_LATELOAD // We'll update our icons after everyone is ready
 	else
 		footstep_sounds = base_footstep_sounds
@@ -88,7 +93,7 @@
 			new flooring.build_type(src)
 		var/newtype = flooring.get_plating_type()
 		if(newtype) // Has a custom plating type to become
-			set_flooring(get_flooring_data(newtype))
+			set_flooring(GET_DECL(newtype))
 		else
 			flooring = null
 

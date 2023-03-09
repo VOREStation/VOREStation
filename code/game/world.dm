@@ -54,9 +54,6 @@
 	// Create frame types.
 	populate_frame_types()
 
-	// Create floor types.
-	populate_flooring_types()
-
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 

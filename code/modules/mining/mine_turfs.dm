@@ -205,7 +205,7 @@ var/list/mining_overlay_cache = list()
 	if(random_icon)
 		dir = pick(alldirs)
 		. = INITIALIZE_HINT_LATELOAD
-	var/decl/flooring/F = get_flooring_data(/decl/flooring/sand)
+	var/decl/flooring/F = GET_DECL(/decl/flooring/sand)
 	footstep_sounds = F?.footstep_sounds
 
 /turf/simulated/mineral/LateInitialize()

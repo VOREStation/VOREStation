@@ -258,7 +258,7 @@
 			visible_message("<b>\The [src]</b> begins to improve the floor.")
 			if(do_after(src, 50))
 				if(!F.flooring)
-					F.set_flooring(get_flooring_data(floor_build_type))
+					F.set_flooring(GET_DECL(floor_build_type))
 					addTiles(-1)
 			target = null
 			busy = 0
