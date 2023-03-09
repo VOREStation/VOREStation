@@ -36,18 +36,30 @@
  * Backpack Types
  */
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/backpack/holding
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
+=======
+/obj/item/storage/backpack/holding
+	name = "bluespace backpack"
+	desc = "A back-mounted canister that utilizes bluespace technology to absolutely maximize efficient use of space."
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
 	max_w_class = ITEMSIZE_LARGE
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14 // 56
 	storage_cost = INVENTORY_STANDARD_SPACE + 1
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/backpack/holding/duffle
 	name = "dufflebag of holding"
 	var/tilted = 0
+=======
+/obj/item/storage/backpack/holding/duffle
+	name = "bluespace dufflebag"
+	desc = "Bluespace technology integrated with the ergonomic stylings of a dufflebag. It's not actually bigger on the inside, but you'd be forgiven for believing it was."
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 	icon_state = "holdingduffle"
 	
 /obj/item/weapon/storage/backpack/holding/duffle/Initialize()
@@ -81,15 +93,21 @@
 		return
 	. = ..()
 
+<<<<<<< HEAD
 //Please don't clutter the parent storage item with stupid hacks.
 /obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
 		return FALSE
+=======
+/obj/item/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	if(istype(W, /obj/item/storage/backpack/holding))
+		return 1
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 	return ..()
 
 /obj/item/weapon/storage/backpack/santabag
 	name = "\improper Santa's gift bag"
-	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
+	desc = "Santa uses this to deliver toys to all the nice children in the galaxy at Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state_slots = list(slot_r_hand_str = "giftbag", slot_l_hand_str = "giftbag")
 	w_class = ITEMSIZE_LARGE
@@ -167,8 +185,13 @@
  * Duffle Types
  */
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/backpack/dufflebag
 	name = "dufflebag"
+=======
+/obj/item/storage/backpack/dufflebag
+	name = "grey dufflebag"
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 	desc = "A large dufflebag for holding extra things."
 	icon_state = "duffle"
 	slowdown = 0.5
@@ -249,7 +272,21 @@
 	desc = "A large dufflebag for holding circuits and beakers."
 	icon_state = "duffle_science"
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/backpack/dufflebag/drone
+=======
+/obj/item/storage/backpack/dufflebag/hydro
+	name = "hydroponics dufflebag"
+	desc = "A large dufflebag for holding plants and gardening tools."
+	icon_state = "duffle_hydro"
+
+/obj/item/storage/backpack/dufflebag/chem
+	name = "chemistry dufflebag"
+	desc = "A large dufflebag for holding chemical samples."
+	icon_state = "duffle_chem"
+
+/obj/item/storage/backpack/dufflebag/drone
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 	name = "drone dufflebag"
 	desc = "A large dufflebag for holding small robots? Or maybe it's one used by robots!"
 	icon_state = "duffle_drone"
@@ -258,6 +295,22 @@
 	name = "cursed dufflebag"
 	desc = "That probably shouldn't be moving..."
 	icon_state = "duffle_curse"
+
+/obj/item/storage/backpack/dufflebag/brown
+	name = "brown dufflebag"
+	icon_state = "duffle_brown"
+	item_state_slots = list(slot_r_hand_str = "duffle", slot_l_hand_str = "duffle")
+
+/obj/item/storage/backpack/dufflebag/white
+	name = "white dufflebag"
+	icon_state = "duffle_white"
+	item_state_slots = list(slot_r_hand_str = "duffle", slot_l_hand_str = "duffle")
+
+/obj/item/storage/backpack/dufflebag/solgov
+	name = "Fleet dufflebag"
+	desc = "A large dufflebag in Solar Confederate Government colours, for holding bullets and diplomacy."
+	icon_state = "duffle_gov"
+	item_state_slots = list(slot_r_hand_str = "duffle", slot_l_hand_str = "duffle")
 
 /*
  * Satchel Types

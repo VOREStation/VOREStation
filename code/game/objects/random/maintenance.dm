@@ -41,6 +41,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/clothing/mask/gas,
 				prob(2);/obj/item/clothing/mask/gas/half,
 				prob(4);/obj/item/clothing/mask/breath,
+<<<<<<< HEAD
 				prob(2);/obj/item/weapon/reagent_containers/glass/rag,
 				prob(4);/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 				prob(2);/obj/item/weapon/storage/secure/briefcase,
@@ -57,6 +58,24 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/weapon/storage/box/mousetraps,
 				prob(3);/obj/item/weapon/storage/wallet,
 				prob(1);/obj/item/device/paicard,
+=======
+				prob(2);/obj/item/reagent_containers/glass/rag,
+				prob(4);/obj/item/reagent_containers/food/snacks/liquidfood,
+				prob(2);/obj/item/storage/secure/briefcase,
+				prob(4);/obj/item/storage/briefcase,
+				prob(5);/obj/item/storage/backpack,
+				prob(5);/obj/item/storage/backpack/satchel/norm,
+				prob(4);/obj/item/storage/backpack/satchel,
+				prob(3);/obj/random/dufflebag,
+				prob(1);/obj/item/storage/backpack/dufflebag/syndie,
+				prob(5);/obj/item/storage/box,
+				prob(3);/obj/item/storage/box/donkpockets,
+				prob(2);/obj/item/storage/box/sinpockets,
+				prob(1);/obj/item/storage/box/cups,
+				prob(3);/obj/item/storage/box/mousetraps,
+				prob(3);/obj/item/storage/wallet,
+				prob(1);/obj/item/paicard,
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 				prob(2);/obj/item/clothing/shoes/galoshes,
 				prob(1);/obj/item/clothing/shoes/syndigaloshes,
 				prob(4);/obj/item/clothing/shoes/black,
@@ -285,6 +304,7 @@ something, make sure it's not in one of the other lists.*/
 
 /obj/random/maintenance/cargo/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
+<<<<<<< HEAD
 				prob(3);/obj/item/device/flashlight/lantern,
 				prob(4);/obj/item/weapon/pickaxe,
 				prob(3);/obj/item/weapon/pickaxe/drill,
@@ -297,6 +317,19 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/weapon/storage/belt/utility,
 				prob(4);/obj/item/device/toner,
 				prob(1);/obj/item/device/destTagger,
+=======
+				prob(3);/obj/item/flashlight/lantern,
+				prob(4);/obj/item/pickaxe,
+				prob(5);/obj/item/storage/backpack/industrial,
+				prob(5);/obj/item/storage/backpack/satchel/norm,
+				prob(3);/obj/random/dufflebag,
+				prob(1);/obj/item/storage/backpack/dufflebag/syndie/ammo,
+				prob(1);/obj/item/storage/toolbox/syndicate,
+				prob(1);/obj/item/storage/belt/utility/full,
+				prob(2);/obj/item/storage/belt/utility,
+				prob(4);/obj/item/toner,
+				prob(1);/obj/item/destTagger,
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 				prob(3);/obj/item/clothing/glasses/material,
 				prob(3);/obj/item/clothing/head/soft/yellow,
 				prob(4);/obj/item/clothing/suit/storage/hazardvest,

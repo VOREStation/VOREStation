@@ -14,8 +14,8 @@
 	sort_string = "QAAAA"
 
 /datum/design/item/boh/bag_holding
-	name = "Bag of Holding"
-	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighting nothing. It's a shame the bag itself is pretty heavy."
+	name = "bluespace backpack"
+	desc = "Using localized bluespace portals this bag prototype offers incredible storage capacity with the contents weighting nothing. It's a shame the bag itself is pretty heavy."
 	id = "bag_holding"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250)
@@ -23,10 +23,11 @@
 	sort_string = "QAAAA"
 
 /datum/design/item/boh/dufflebag_holding
-	name = "DuffleBag of Holding"
-	desc = "A minaturized prototype of the popular Bag of Holding, the Dufflebag of Holding is, functionally, identical to the bag of holding, but comes in a more stylish and compact form."
+	name = "bluespace dufflebag"
+	desc = "A minaturized prototype of the popular bluespace backpack, the bluespace is, functionally, identical to the backpack version, but in a more stylish and compact form."
 	id = "dufflebag_holding"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
+<<<<<<< HEAD
 	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250)
 	build_path = /obj/item/weapon/storage/backpack/holding/duffle
 	sort_string = "QAAAB"
@@ -68,3 +69,8 @@
 	build_path = /obj/item/weapon/storage/belt/utility/holding
 	sort_string = "QAAAF"
 	
+=======
+	materials = list("gold" = 3000, "diamond" = 1500, "uranium" = 250)
+	build_path = /obj/item/storage/backpack/holding/duffle
+	sort_string = "QAAAB"
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288

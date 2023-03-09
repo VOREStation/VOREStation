@@ -144,6 +144,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/mask/gas/half,
 		/obj/item/clothing/mask/breath,
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/glass/rag,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/storage/secure/briefcase,
@@ -154,6 +155,18 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/storage/backpack/dufflebag,
 		/obj/item/weapon/storage/box,
 		/obj/item/weapon/storage/wallet,
+=======
+		/obj/item/reagent_containers/glass/rag,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/storage/secure/briefcase,
+		/obj/item/storage/briefcase,
+		/obj/item/storage/backpack,
+		/obj/item/storage/backpack/satchel/norm,
+		/obj/item/storage/backpack/satchel,
+		/obj/random/dufflebag,
+		/obj/item/storage/box,
+		/obj/item/storage/wallet,
+>>>>>>> 71637d1ffac... Merge pull request #9016 from Cerebulon/bagger288
 		/obj/item/clothing/shoes/galoshes,
 		/obj/item/clothing/shoes/black,
 		/obj/item/clothing/shoes/laceup,
