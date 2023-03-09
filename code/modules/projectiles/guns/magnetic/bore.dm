@@ -175,6 +175,8 @@
 
 	action_button_name = "Toggle internal generator"
 
+	var/winding = FALSE	// Are we winding up to fire?
+
 	var/generator_state = GEN_OFF
 	var/datum/looping_sound/small_motor/soundloop
 	var/time_started //to keep the soundloop from being "stopped" too soon and playing indefinitely
@@ -267,6 +269,21 @@
 		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
 		generator_state = GEN_OFF
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded
 	cell = /obj/item/weapon/cell/apc
 	capacitor = /obj/item/weapon/stock_parts/capacitor
+=======
+/obj/item/gun/magnetic/matfed/phoronbore/special_check(mob/user)
+	if(!winding)
+		winding = TRUE
+		if(do_after(user, 1 SECOND, src) && ..())	// Super after do_after, due to clumsy check force-firing.
+			winding = FALSE
+			return TRUE
+		winding = FALSE
+	return FALSE
+
+/obj/item/gun/magnetic/matfed/phoronbore/loaded
+	cell = /obj/item/cell/apc
+	capacitor = /obj/item/stock_parts/capacitor
+>>>>>>> 2b4deb22825... Phoron Bore Adjustment Take 2 (#9015)

@@ -179,7 +179,7 @@
 	penetrating = 0
 	check_armour = "melee"
 	irradiate = 20
-	range = 6
+	range = 3
 	hud_state = "plasma_rifle_blast"
 
 /obj/item/projectile/bullet/magnetic/bore/Initialize(loc, range_mod) // i'm gonna be real honest i dunno how this works but it does
