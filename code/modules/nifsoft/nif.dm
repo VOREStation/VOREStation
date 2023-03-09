@@ -203,6 +203,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		persist_nif_data(human)
 
 	if(durability <= 0)
+		durability = 0	//failsafe us to a minimum of 0% so we don't just wash into massively negative durability from repeated EMPs
 		stat = NIF_TEMPFAIL
 		update_icon()
 
