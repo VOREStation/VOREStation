@@ -270,7 +270,7 @@
 	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
 	newlaws = sanitize(newlaws,2048)
 	if(newlaws)
-		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
+		to_chat(user,"<span class='filter_notice'>You set the laws to: <br><span class='notice'>[newlaws]</span></span>")
 		laws = newlaws
 
 /obj/item/weapon/disk/nifsoft/compliance/extra_params()

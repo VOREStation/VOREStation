@@ -223,7 +223,6 @@
 			var/synth = (L in speech_synthesizer_langs)
 			. += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
 
-<<<<<<< HEAD
 /mob/living/silicon/proc/toggle_sensor_mode() //VOREStation Add to make borgs use omni starts here - Tank, clueless bird
 	if(sensor_type)
 		if(plane_holder)
@@ -254,54 +253,6 @@
 //hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
 //I made it work like omnis with records by adding stuff to examine.dm
 //VOREStation Add ends here
-=======
-/mob/living/silicon/proc/toggle_sensor_mode()
-	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security","Medical","Disable")
-	switch(sensor_type)
-		if ("Security")
-			if(plane_holder)
-				//Enable Security planes
-				plane_holder.set_vis(VIS_CH_ID,TRUE)
-				plane_holder.set_vis(VIS_CH_WANTED,TRUE)
-				plane_holder.set_vis(VIS_CH_IMPLOYAL,TRUE)
-				plane_holder.set_vis(VIS_CH_IMPTRACK,TRUE)
-				plane_holder.set_vis(VIS_CH_IMPCHEM,TRUE)
-
-				//Disable Medical planes
-				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
-				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
-
-			to_chat(src, "<span class='notice'>Security records overlay enabled.</span>")
-		if ("Medical")
-			if(plane_holder)
-				//Disable Security planes
-				plane_holder.set_vis(VIS_CH_ID,FALSE)
-				plane_holder.set_vis(VIS_CH_WANTED,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPLOYAL,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPTRACK,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPCHEM,FALSE)
-
-				//Enable Medical planes
-				plane_holder.set_vis(VIS_CH_STATUS,TRUE)
-				plane_holder.set_vis(VIS_CH_HEALTH,TRUE)
-
-			to_chat(src, "<span class='notice'>Life signs monitor overlay enabled.</span>")
-		if ("Disable")
-			if(plane_holder)
-				//Disable Security planes
-				plane_holder.set_vis(VIS_CH_ID,FALSE)
-				plane_holder.set_vis(VIS_CH_WANTED,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPLOYAL,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPTRACK,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPCHEM,FALSE)
-
-				//Disable Medical planes
-				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
-				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
-			to_chat(src, "<span class='filter_notice'>Sensor augmentations disabled.</span>")
-
-	hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"

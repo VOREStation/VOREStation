@@ -25,12 +25,12 @@ fundamental differences
 	cooking_objs += new /datum/cooking_item(new /obj/item/weapon/reagent_containers/cooking_container(src))
 	cooking = FALSE
 	selected_option = pick(output_options)
-	
+
 	mixer_loop = new(list(src), FALSE)
-	
+
 /obj/machinery/appliance/mixer/Destroy()
 	. = ..()
-	
+
 	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
@@ -119,13 +119,8 @@ fundamental differences
 		stat |= POWEROFF
 		use_power = 0
 		if(usr)
-<<<<<<< HEAD
-			usr.visible_message("[usr] turns the [src] off", "You turn off \the [src].")
-	playsound(src, 'sound/machines/click.ogg', 40, 1)
-=======
 			usr.visible_message("<span class='filter_notice'>[usr] turns the [src] off.</span>", "<span class='filter_notice'>You turn off \the [src].</span>")
-	playsound(src, "button", 40, 1)
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
 /obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)

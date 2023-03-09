@@ -164,9 +164,9 @@
 					amount = water.energy
 				water.use_charge(amount)
 				E.reagents.add_reagent("water", amount)
-				to_chat(src, "You refill the extinguisher using your water reserves.")
+				to_chat(src, "<span class='filter_notice'>You refill the extinguisher using your water reserves.</span>")
 			else
-				to_chat(src, "Insufficient water reserves.")
+				to_chat(src, "<span class='filter_notice'>Insufficient water reserves.</span>")
 
 //RIDING
 /datum/riding/dogborg

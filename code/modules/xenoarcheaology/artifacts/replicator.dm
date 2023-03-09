@@ -91,7 +91,6 @@
 		var/type = pick(viables)
 		viables.Remove(type)
 		construction[button_desc] = type
-<<<<<<< HEAD
 		tgui_construction.Add(list(list(
 			"key" = button_desc,
 			"background" = background,
@@ -99,11 +98,7 @@
 			"foreground" = colors[color],
 		)))
 
-	fail_message = "<font color='blue'>\icon[src][bicon(src)] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
-=======
-
-	fail_message = "<span class='notice'>[bicon(src)] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	fail_message = "<span class='notice'>\icon[src][bicon(src)] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
 		[pick("horn","beep","bing","bleep","blat","honk","hrumph","ding")] sounds and a \
 		[pick("yellow","purple","green","blue","red","orange","white")] \
 		[pick("light","dial","meter","window","protrusion","knob","antenna","swirly thing")] \
@@ -183,4 +178,4 @@
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<b>\The [user]</b> inserts \the [W] into \the [src].")
+	src.visible_message("<span class='notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")

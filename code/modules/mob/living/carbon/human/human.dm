@@ -386,18 +386,9 @@
 					for (var/datum/data/record/R in data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
-<<<<<<< HEAD
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
-								to_chat(usr, "<b>Species:</b> [R.fields["species"]]")
-								to_chat(usr, "<b>Minor Crimes:</b> [R.fields["mi_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_crim_d"]]")
-								to_chat(usr, "<b>Major Crimes:</b> [R.fields["ma_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_crim_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
-=======
 								var/list/security_hud_text = list()
 								security_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
+								security_hud_text += "<b>Species:</b> [R.fields["species"]]"
 								security_hud_text += "<b>Minor Crimes:</b> [R.fields["mi_crim"]]"
 								security_hud_text += "<b>Details:</b> [R.fields["mi_crim_d"]]"
 								security_hud_text += "<b>Major Crimes:</b> [R.fields["ma_crim"]]"
@@ -405,7 +396,6 @@
 								security_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
 								security_hud_text += "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, "<span class='filter_notice'>[jointext(security_hud_text, "<br>")]</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 								read = 1
 
 			if(!read)
@@ -515,19 +505,9 @@
 					for (var/datum/data/record/R in data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
-<<<<<<< HEAD
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
-								to_chat(usr, "<b>Species:</b> [R.fields["species"]]")
-								to_chat(usr, "<b>DNA:</b> [R.fields["b_dna"]]")
-								to_chat(usr, "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_dis_d"]]")
-								to_chat(usr, "<b>Major Disabilities:</b> [R.fields["ma_dis"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_dis_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
-=======
 								var/list/medical_hud_text = list()
 								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]"
+								medical_hud_text += "<b>Species:</b> [R.fields["species"]]"
 								medical_hud_text += "<b>DNA:</b> [R.fields["b_dna"]]"
 								medical_hud_text += "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
 								medical_hud_text += "<b>Details:</b> [R.fields["mi_dis_d"]]"
@@ -536,7 +516,6 @@
 								medical_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
 								medical_hud_text += "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, "<span class='filter_notice'>[jointext(medical_hud_text, "<br>")]</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 								read = 1
 
 			if(!read)
@@ -610,21 +589,23 @@
 					for (var/datum/data/record/R in data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]")
-								to_chat(usr, "<b>Species:</b> [R.fields["species"]]")
-								to_chat(usr, "<b>Assignment:</b> [R.fields["real_rank"]] ([R.fields["rank"]])")
-								to_chat(usr, "<b>Home System:</b> [R.fields["home_system"]]")
-								to_chat(usr, "<b>Birthplace:</b> [R.fields["birthplace"]]")
-								to_chat(usr, "<b>Citizenship:</b> [R.fields["citizenship"]]")
-								to_chat(usr, "<b>Primary Employer:</b> [R.fields["personal_faction"]]")
-								to_chat(usr, "<b>Religious Beliefs:</b> [R.fields["religion"]]")
-								to_chat(usr, "<b>Known Languages:</b> [R.fields["languages"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>")
+								var/list/emp_hud_text = list()
+								emp_hud_text += "<b>Name:</b> [R.fields["name"]]"
+								emp_hud_text += "<b>Species:</b> [R.fields["species"]]"
+								emp_hud_text += "<b>Assignment:</b> [R.fields["real_rank"]] ([R.fields["rank"]])"
+								emp_hud_text += "<b>Home System:</b> [R.fields["home_system"]]"
+								emp_hud_text += "<b>Birthplace:</b> [R.fields["birthplace"]]"
+								emp_hud_text += "<b>Citizenship:</b> [R.fields["citizenship"]]"
+								emp_hud_text += "<b>Primary Employer:</b> [R.fields["personal_faction"]]"
+								emp_hud_text += "<b>Religious Beliefs:</b> [R.fields["religion"]]"
+								emp_hud_text += "<b>Known Languages:</b> [R.fields["languages"]]"
+								emp_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
+								emp_hud_text += "<a href='?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>"
+								to_chat(usr, "<span class='filter_notice'>[jointext(emp_hud_text, "<br>")]</span>")
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["emprecordComment"])
 		if(hasHUD(usr,"best"))
@@ -647,11 +628,11 @@
 									to_chat(usr, "[R.fields[text("com_[]", counter)]]")
 									counter++
 								if (counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>")
+									to_chat(usr, "<span class='filter_notice'>No comment found.</span>")
+								to_chat(usr, "<span class='filter_notice'><a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a></span>")
 
 			if(!read)
-				to_chat(usr, "<font color='red'>Unable to locate a data core entry for this person.</font>")
+				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
 
 	if (href_list["emprecordadd"])
 		if(hasHUD(usr,"best"))
@@ -920,19 +901,11 @@
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in mob_list)
 		creatures += h
-<<<<<<< HEAD
 	var/mob/target = tgui_input_list(usr, "Who do you want to project your mind to?", "Project Mind", creatures)
 	if (isnull(target))
 		return
 
-	var/say = sanitize(tgui_input_text(usr, "What do you wish to say"))
-=======
-	var/mob/target = input("Who do you want to project your mind to?") as null|anything in creatures
-	if (isnull(target))
-		return
-
-	var/say = sanitize(input("What do you wish to say?"))
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	var/say = sanitize(tgui_input_text(usr, "What do you wish to say?"))
 	if(mRemotetalk in target.mutations)
 		target.show_message("<span class='filter_say'><font color='blue'>You hear [src.real_name]'s voice: [say]</font></span>")
 	else

@@ -295,14 +295,10 @@
 	canmove = TRUE
 
 	var/turf/T = get_turf(src)
-<<<<<<< HEAD
-	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
+	if(istype(T)) T.visible_message("<span class='filter_notice'><b>[src]</b> folds outwards, expanding into a mobile form.</span>")
 	verbs |= /mob/living/silicon/pai/proc/pai_nom
 	verbs |= /mob/living/proc/vertical_nom
 	update_icon()
-=======
-	if(istype(T)) T.visible_message("<span class='filter_notice'><b>[src]</b> folds outwards, expanding into a mobile form.</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
@@ -368,13 +364,9 @@
 		//update_transform()	I want this to make you ROTATE like normal HUMANS do! But! There's lots of problems and I don't know how to fix them!
 	else
 		resting = !resting
-<<<<<<< HEAD
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		update_icon() //VOREStation edit
-	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
-=======
-		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 
 	canmove = !resting
 
@@ -444,11 +436,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-<<<<<<< HEAD
-	if(istype(T) && !silent) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
-=======
-	if(istype(T)) T.visible_message("<span class='filter_notice'><b>[src]</b> neatly folds inwards, compacting down to a rectangular card.</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	if(istype(T) && !silent) T.visible_message("<span class='filter_notice'><b>[src]</b> neatly folds inwards, compacting down to a rectangular card.</span>")
 
 	if(client)
 		src.stop_pulling()

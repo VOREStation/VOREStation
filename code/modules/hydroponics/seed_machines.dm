@@ -68,25 +68,15 @@
 	active = 0
 	if(failed_task)
 		failed_task = 0
-<<<<<<< HEAD
-		visible_message("\icon[src][bicon(src)] [src] pings unhappily, flashing a red warning light.")
+		visible_message("<span class='filter_notice'>\icon[src][bicon(src)] [src] pings unhappily, flashing a red warning light.</span>")
 	else
-		visible_message("\icon[src][bicon(src)] [src] pings happily.")
-=======
-		visible_message("<span class='filter_notice'>[bicon(src)] [src] pings unhappily, flashing a red warning light.</span>")
-	else
-		visible_message("<span class='filter_notice'>[bicon(src)] [src] pings happily.</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+		visible_message("<span class='filter_notice'>\icon[src][bicon(src)] [src] pings happily.</span>")
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.loc = get_turf(src)
-<<<<<<< HEAD
-			visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
-=======
-			visible_message("<span class='filter_notice'>[bicon(src)] [src] beeps and spits out [loaded_disk].</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+			visible_message("<span class='filter_notice'>\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].</span>")
 			loaded_disk = null
 
 /obj/machinery/botany/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -179,46 +169,7 @@
 		data["hasGenetics"] = 0
 		data["sourceName"] = 0
 
-<<<<<<< HEAD
 	return data
-=======
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "botany_isolator.tmpl", "Lysis-isolation Centrifuge UI", 470, 450)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/botany/Topic(href, href_list)
-
-	if(..())
-		return 1
-
-	if(href_list["eject_packet"])
-		if(!seed) return
-		seed.loc = get_turf(src)
-
-		if(seed.seed.name == "new line" || isnull(plant_controller.seeds[seed.seed.name]))
-			seed.seed.uid = plant_controller.seeds.len + 1
-			seed.seed.name = "[seed.seed.uid]"
-			plant_controller.seeds[seed.seed.name] = seed.seed
-
-		seed.update_seed()
-		visible_message("<span class='filter_notice'>[bicon(src)] [src] beeps and spits out [seed].</span>")
-
-		seed = null
-
-	if(href_list["eject_disk"])
-		if(!loaded_disk) return
-		loaded_disk.loc = get_turf(src)
-		visible_message("<span class='filter_notice'>[bicon(src)] [src] beeps and spits out [loaded_disk].</span>")
-		loaded_disk = null
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-
-/obj/machinery/botany/extractor/Topic(href, href_list)
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 
 /obj/machinery/botany/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())

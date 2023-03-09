@@ -892,11 +892,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	lighting_alpha = darkness_levels[index]
 	updateghostsight()
-<<<<<<< HEAD
-	to_chat(src, "Your vision now has [darkness_names[index]].")
-=======
-	to_chat(src, "<span class='filter_notice'>You [seedarkness ? "now" : "no longer"] see darkness.</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	to_chat(src, "<span class='filter_notice'>Your vision now has [darkness_names[index]].</span>")
 
 /mob/observer/dead/proc/updateghostsight()
 	plane_holder.set_desired_alpha(VIS_LIGHTING, lighting_alpha)

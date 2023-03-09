@@ -697,13 +697,13 @@
 	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
 	if(config.allow_Metadata)
 		if(ooc_notes)
-			to_chat(usr, "[src]'s Metainfo:<br>[ooc_notes]")
+			to_chat(usr, "<span class='filter_notice'>[src]'s Metainfo:<br>[ooc_notes]</span>")
 		else if(client)
-			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
+			to_chat(usr, "<span class='filter_notice'>[src]'s Metainfo:<br>[client.prefs.metadata]</span>")
 		else
-			to_chat(usr, "[src] does not have any stored infomation!")
+			to_chat(usr, "<span class='filter_notice'>[src] does not have any stored infomation!</span>")
 	else
-		to_chat(usr, "OOC Metadata is not supported by this server!")
+		to_chat(usr, "<span class='filter_notice'>OOC Metadata is not supported by this server!</span>")
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 
 	return
@@ -1125,23 +1125,7 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
-<<<<<<< HEAD
 			item.throwing = 1 //Small edit so thrown interactions actually work!
-=======
-
-			return TRUE
-		return FALSE
-
-	if(a_intent == I_HELP && Adjacent(target) && isitem(item))
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(item))
-				H.put_in_hands(item) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
-				visible_message("<span class='filter_notice'><b>[src]</b> hands \the [H] \a [item].</span>", SPAN_NOTICE("You give \the [target] \a [item]."))
-			else
-				to_chat(src, SPAN_NOTICE("You offer \the [item] to \the [target]."))
-				do_give(H)
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 			return TRUE
 		else
 			return FALSE
@@ -1154,7 +1138,7 @@
 		var/mob/living/carbon/human/H = target
 		if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
 			H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
-			visible_message("<b>[src]</b> hands \the [H] \a [I].", SPAN_NOTICE("You give \the [target] \a [I]."))
+			visible_message("<span class='filter_notice'><b>[src]</b> hands \the [H] \a [I].</span>", SPAN_NOTICE("You give \the [target] \a [I]."))
 		else
 			to_chat(src, SPAN_NOTICE("You offer \the [I] to \the [target]."))
 			do_give(H)

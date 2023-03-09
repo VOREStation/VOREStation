@@ -336,7 +336,6 @@
 	return ..()
 
 /datum/surgery_step/robotics/detatch_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-<<<<<<< HEAD
 	var/list/attached_organs = list() //Which organs can we detach?
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/I = target.internal_organs_by_name[organ]
@@ -350,12 +349,8 @@
 		return
 	target.op_stage.current_organ = organ_to_remove
 
-	user.visible_message("[user] starts to decouple [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start to decouple [target]'s [target.op_stage.current_organ] with \the [tool]." )
-=======
 	user.visible_message("<span class='filter_notice'>[user] starts to decouple [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
 	"<span class='filter_notice'>You start to decouple [target]'s [target.op_stage.current_organ] with \the [tool].</span>" )
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	..()
 
 /datum/surgery_step/robotics/detatch_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -401,7 +396,6 @@
 	return ..()
 
 /datum/surgery_step/robotics/attach_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-<<<<<<< HEAD
 
 	var/list/attachable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
@@ -417,12 +411,8 @@
 
 	target.op_stage.current_organ = organ_to_replace
 
-	user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
-=======
 	user.visible_message("<span class='filter_notice'>[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
 	"<span class='filter_notice'>You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 	..()
 
 /datum/surgery_step/robotics/attach_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

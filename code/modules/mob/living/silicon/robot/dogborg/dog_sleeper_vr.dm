@@ -94,8 +94,10 @@
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(analyzer && istype(target,/obj/item))
 					var/obj/item/tech_item = target
+					var/list/tech_levels = list()
 					for(var/T in tech_item.origin_tech)
-						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
+						tech_levels += "\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)]."
+					to_chat(user, "<span class='notice'>[jointext(tech_levels, "<br>")]</span>")
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= target
@@ -627,7 +629,7 @@
 							for(var/atom/movable/thing in B)
 								thing.forceMove(src)
 								if(ismob(thing))
-									to_chat(thing, "As [T] melts away around you, you find yourself in [hound]'s [name]")
+									to_chat(thing, "<span class='filter_notice'>As [T] melts away around you, you find yourself in [hound]'s [name].</span>")
 					for(var/obj/item/I in T)
 						if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
 							var/obj/item/organ/internal/mmi_holder/MMI = I

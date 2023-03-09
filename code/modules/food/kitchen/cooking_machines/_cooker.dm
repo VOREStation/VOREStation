@@ -61,7 +61,7 @@
 			var/obj/item/I = usr.get_active_hand()
 			if(slot <= LAZYLEN(cooking_objs)) // Inserting
 				var/datum/cooking_item/CI = cooking_objs[slot]
-				
+
 				if(istype(I) && can_insert(I)) // Why do hard work when we can just make them smack us?
 					attackby(I, usr)
 				else if(istype(CI))
@@ -198,11 +198,6 @@
 
 /obj/machinery/appliance/cooker/add_content(var/obj/item/I, var/mob/user)
 	var/datum/cooking_item/CI = ..()
-<<<<<<< HEAD
 	if(istype(CI) && CI.combine_target)
-		to_chat(user, "\The [I] will be used to make a [selected_option]. Output selection is returned to default for future items.")
-=======
-	if (CI && CI.combine_target)
 		to_chat(user, "<span class='filter_notice'>\The [I] will be used to make a [selected_option]. Output selection is returned to default for future items.</span>")
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
 		selected_option = null

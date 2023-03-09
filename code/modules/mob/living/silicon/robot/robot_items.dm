@@ -340,15 +340,9 @@
 /obj/item/weapon/form_printer/attack_self(mob/user as mob)
 	deploy_paper(get_turf(src))
 
-<<<<<<< HEAD
 /obj/item/weapon/form_printer/proc/deploy_paper(var/turf/T)
-	T.visible_message("<font color='blue'>\The [src.loc] dispenses a sheet of crisp white paper.</font>")
-	new /obj/item/weapon/paper(T)
-=======
-/obj/item/form_printer/proc/deploy_paper(var/turf/T)
 	T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
-	new /obj/item/paper(T)
->>>>>>> 75577bd3ca9... cleans up so many to_chats so they use vchat filters, unsorted chat filter for everything else (#9006)
+	new /obj/item/weapon/paper(T)
 
 
 //Personal shielding for the combat module.
@@ -454,7 +448,7 @@
 	if(!user)
 		return
 	if(!user.Adjacent(A))
-		to_chat(user, "You can't reach!")
+		to_chat(user, "<span class='filter_notice'>You can't reach!</span>")
 		return
 	if(istype(A, /turf))
 		try_deploy_inflatable(A, user)
