@@ -151,6 +151,7 @@
 					if(!can_remove_plating(user))
 						return
 
+<<<<<<< HEAD
 					user.visible_message("<span class='warning'>[user] begins cutting through [src].</span>", "<span class='warning'>You begin cutting through [src].</span>")
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
@@ -158,6 +159,17 @@
 						if(!can_remove_plating(user))
 							return // Someone slapped down some flooring or cables or something
 						do_remove_plating(C, user, base_type)
+=======
+/turf/simulated/floor/attack_hand(mob/user)
+	if (!user.pulling && has_snow())
+		visible_message(SPAN_NOTICE("[user] starts scooping up some snow..."), SPAN_NOTICE("You start scooping up some snow..."))
+		if(do_after(user, 1 SECOND))
+			var/obj/S = new /obj/item/stack/material/snow(user.loc)
+			user.put_in_hands(S)
+			visible_message(SPAN_NOTICE("[user] scoops up a pile of snow."), SPAN_NOTICE("You scoop up a pile of snow."))
+		return
+	return ..()
+>>>>>>> 630f400af52... Hotfix for moving pulled objects (#9038)
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_crowbar())
