@@ -325,7 +325,7 @@
 		return
 	if(isnum(angle))
 		setAngle(angle)
-	var/turf/starting = get_turf(src)
+	starting = get_turf(src)
 	if(isnull(Angle))	//Try to resolve through offsets if there's no angle set.
 		if(isnull(xo) || isnull(yo))
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
