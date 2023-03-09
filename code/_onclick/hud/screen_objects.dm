@@ -274,6 +274,7 @@
 
 		if("mov_intent")
 			if(isliving(usr))
+<<<<<<< HEAD
 				if(iscarbon(usr))
 					var/mob/living/carbon/C = usr
 					if(C.legcuffed)
@@ -309,6 +310,18 @@
 		if("run")
 			usr.m_intent = "run"
 			usr.m_int = "13,14"
+=======
+				var/mob/living/L = usr
+				if(iscarbon(usr))
+					var/mob/living/carbon/C = L
+					if(C.legcuffed)
+						to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
+						C.set_move_intent(/decl/move_intent/walk) // Just incase.
+						return 1
+				var/next_move_intent = next_in_list(L.move_intent.type, L.move_intents)
+				L.set_move_intent(next_move_intent)
+
+>>>>>>> dce46484887... Merge pull request #9040 from Frenjo/drake-move-intents
 		if("Reset Machine")
 			usr.unset_machine()
 		if("internal")
