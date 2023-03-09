@@ -141,6 +141,20 @@
 	storedinfo += "09:13	*gruesome sounds of machines exploding, wet splatter and ominous hissing"
 	used_capacity = 1755 //almost full
 
+/obj/item/space_spider_egg
+	name = "ruptured giant spider egg"
+	desc = "An attempt by space-adapted giant spiders to reproduce! Unfortunately, their young cannot yet survive hard vacuum. Yet."
+	icon = 'icons/obj/egg_new_vr.dmi'	//VOREStation Edit
+	icon_state = "egg_slimeglob"
+	origin_tech = list(TECH_BIO = 10)
+
+/obj/item/space_spider_egg/attack_self(mob/user as mob)
+	var/turf/drop_loc = user.loc
+	to_chat(user, SPAN_WARNING("The egg cracks open, splattering disgusting goop at your feet...\n \
+	Whatever life laid within shall never awaken, if it was even alive."))
+	new /obj/effect/decal/cleanable/spiderling_remains(drop_loc)
+	qdel(src)
+
 // End of Tourist ship stuff
 
 /obj/random/slimecore

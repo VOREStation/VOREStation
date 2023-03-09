@@ -154,7 +154,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "ds" = (
 /obj/structure/shuttle/window,
-/turf/simulated/wall/fancy_shuttle/window,
+/turf/simulated/shuttle/floor/glass,
 /area/submap/debrisfield/luxury_boat/crew)
 "ea" = (
 /obj/structure/table/rack/gun_rack,
@@ -202,13 +202,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/royal_spider_egg,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/item/space_spider_egg,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/luxury_boat/engine)
 "eM" = (
@@ -763,7 +763,7 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "vc" = (
 /obj/structure/shuttle/window,
-/turf/simulated/wall/fancy_shuttle/window,
+/turf/simulated/shuttle/floor/glass,
 /area/submap/debrisfield/luxury_boat/bridge)
 "vl" = (
 /obj/machinery/door/window,
@@ -814,10 +814,10 @@
 /area/submap/debrisfield/luxury_boat/crew)
 "wy" = (
 /obj/structure/lattice,
-/obj/item/royal_spider_egg,
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
+/obj/item/space_spider_egg,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/luxury_boat/engine)
 "wz" = (
@@ -1102,7 +1102,7 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	id_tag = tourist_airlock;
+	id_tag = "tourist_airlock";
 	pixel_y = -30
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -1389,13 +1389,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/royal_spider_egg,
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/item/space_spider_egg,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/luxury_boat/engine)
 "OP" = (
