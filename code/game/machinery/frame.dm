@@ -202,11 +202,22 @@
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 3
 
+<<<<<<< HEAD
 /datum/frame/frame_types/injector_maker
 	name = "Ready-to-Use Medicine 3000"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/machinery/atmospheric_field_generator
 	frame_size = 3
+=======
+/datum/frame/frame_types/electrochromic_button
+	name = "Electrochromic Window Button"
+	frame_class = FRAME_CLASS_ALARM
+	frame_size = 1
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 24
+	y_offset = 24
+
+>>>>>>> 6b909477bca... the little construction pr (#9002)
 
 //////////////////////////////
 // Frame Object (Structure)

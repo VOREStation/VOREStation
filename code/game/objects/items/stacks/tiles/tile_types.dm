@@ -20,9 +20,50 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
+//crafting / welding vars
+	var/datum/material/material //*sigh* i guess this is how we're doing this.
+	var/craftable = FALSE //set to TRUE for tiles you can craft stuff from directly, like grass
+	var/can_weld = FALSE //set to TRUE for tiles you can reforge into their components via welding, like metal
+	var/welds_into = /obj/item/stack/material/steel //what you get from the welding. defaults to steel.
+	var/default_type = DEFAULT_WALL_MATERIAL
+
+
+
 /obj/item/stack/tile/Initialize()
 	. = ..()
 	randpixel_xy()
+	if(craftable)
+		material = get_material_by_name("[default_type]")
+		if(!material)
+			return INITIALIZE_HINT_QDEL
+		if(material) //sanity check
+			recipes = material.get_recipes()
+			stacktype = material.stack_type
+
+/obj/item/stack/tile/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
+
+		if(can_weld == FALSE)
+			to_chat("You can't reform these into their original components.")
+			return
+
+		if(get_amount() < 4)
+			to_chat(user, "<span class='warning'>You need at least four tiles to do this.</span>")
+			return
+
+		if(WT.remove_fuel(0,user))
+			new welds_into(usr.loc)
+			usr.update_icon()
+			visible_message("<span class='notice'>\The [src] is shaped by [user.name] with the welding tool.</span>","You hear welding.")
+			var/obj/item/stack/tile/T = src
+			src = null
+			var/replace = (user.get_inactive_hand()==T)
+			T.use(4)
+			if (!T && replace)
+				user.put_in_hands(welds_into)
+		return TRUE
+	return ..()
 
 /*
  * Grass
@@ -32,6 +73,7 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
+	default_type = "grass"
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 5
@@ -41,6 +83,7 @@
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
+	craftable = TRUE
 
 /*
  * Wood
@@ -187,6 +230,7 @@
 	throw_speed = 5
 	throw_range = 20
 	no_variants = FALSE
+	can_weld = TRUE
 
 /obj/item/stack/tile/floor/red
 	name = "red floor tile"
@@ -217,21 +261,36 @@
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
+<<<<<<< HEAD
 	matter = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
+=======
+	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/plasteel
+>>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
+<<<<<<< HEAD
 	matter = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
+=======
+	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/plasteel
+>>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/white
 	name = "white floor tile"
 	singular_name = "white floor tile"
 	icon_state = "tile_white"
+<<<<<<< HEAD
 	matter = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT / 4)
+=======
+	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/plastic
+>>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/yellow
@@ -245,14 +304,24 @@
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
 	icon_state = "tile_steel"
+<<<<<<< HEAD
 	matter = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
+=======
+	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/plasteel
+>>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/freezer
 	name = "freezer floor tile"
 	singular_name = "freezer floor tile"
 	icon_state = "tile_freezer"
+<<<<<<< HEAD
 	matter = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT / 4)
+=======
+	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
+	welds_into = /obj/item/stack/material/plastic
+>>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/cyborg
@@ -264,6 +333,7 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
+	can_weld = FALSE //we're not going there
 
 /obj/item/stack/tile/linoleum
 	name = "linoleum"
@@ -276,6 +346,7 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
+	can_weld = FALSE
 
 /obj/item/stack/tile/wmarble
 	name = "light marble tile"
@@ -288,6 +359,8 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
+	can_weld = TRUE
+	welds_into = /obj/item/stack/material/marble
 
 /obj/item/stack/tile/bmarble
 	name = "dark marble tile"
@@ -300,12 +373,15 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
+	can_weld = TRUE
+	welds_into = /obj/item/stack/material/marble
 
 /obj/item/stack/tile/roofing
 	name = "roofing"
 	singular_name = "roofing"
 	desc = "A section of roofing material. You can use it to repair the ceiling, or expand it."
 	icon_state = "techtile_grid"
+	can_weld = FALSE //roofing can also be made from wood, so let's not open that can of worms today
 
 /obj/item/stack/tile/roofing/cyborg
 	name = "roofing synthesizer"
@@ -313,4 +389,9 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/roofing
+<<<<<<< HEAD
 	build_type = /obj/item/stack/tile/roofing
+=======
+	build_type = /obj/item/stack/tile/roofing
+	can_weld = FALSE
+>>>>>>> 6b909477bca... the little construction pr (#9002)
