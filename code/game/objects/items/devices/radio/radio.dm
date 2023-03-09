@@ -1,6 +1,7 @@
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 //VOREStation Edit Start - Updating this for Virgo
 var/global/list/default_internal_channels = list(
+<<<<<<< HEAD
 	num2text(PUB_FREQ) = list(),
 	num2text(AI_FREQ)  = list(access_synth),
 	num2text(ENT_FREQ) = list(),
@@ -15,6 +16,21 @@ var/global/list/default_internal_channels = list(
 	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
 	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
 	num2text(EXP_FREQ) = list(access_explorer)	//VOREStation Edit
+=======
+	num2text(PUB_FREQ) =   list(),
+	num2text(AI_FREQ)  =   list(access_synth),
+	num2text(ENT_FREQ) =   list(),
+	num2text(ERT_FREQ) =   list(access_cent_specops),
+	num2text(COMM_FREQ) =  list(access_heads),
+	num2text(ENG_FREQ) =   list(access_engine_equip, access_atmospherics),
+	num2text(MED_FREQ) =   list(access_medical_equip),
+	num2text(MED_I_FREQ) = list(access_medical_equip),
+	num2text(SEC_FREQ) =   list(access_security),
+	num2text(SEC_I_FREQ) = list(access_security),
+	num2text(SCI_FREQ) =   list(access_tox,access_robotics,access_xenobiology,access_xenofauna),
+	num2text(SUP_FREQ) =   list(access_cargo),
+	num2text(SRV_FREQ) =   list(access_janitor, access_hydroponics)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 )
 
 var/global/list/default_medbay_channels = list(

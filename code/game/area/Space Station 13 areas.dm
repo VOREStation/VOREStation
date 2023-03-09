@@ -1994,6 +1994,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Xenoflora Lab"
 	icon_state = "xeno_f_lab"
 
+/area/rnd/xenobiology/xenofauna
+	name = "\improper Xenofauna Lab"
+	icon_state = "xeno_f_lab"
+
 /area/rnd/storage
 	name = "\improper Toxins Storage"
 	icon_state = "toxstorage"

@@ -155,7 +155,26 @@
 		/obj/item/weapon/autopsy_scanner
 		)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid/clotting
+=======
+/obj/item/storage/firstaid/surgery/simple
+	starts_with = list(
+		/obj/item/surgical/bonesetter,
+		/obj/item/surgical/cautery,
+		/obj/item/surgical/circular_saw,
+		/obj/item/surgical/hemostat,
+		/obj/item/surgical/retractor,
+		/obj/item/surgical/scalpel,
+		/obj/item/surgical/surgicaldrill,
+		/obj/item/surgical/bonegel,
+		/obj/item/surgical/FixOVein,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/autopsy_scanner
+	)
+
+/obj/item/storage/firstaid/clotting
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 	name = "clotting kit"
 	desc = "Contains chemicals to stop bleeding."
 	max_storage_space = ITEMSIZE_COST_SMALL * 7

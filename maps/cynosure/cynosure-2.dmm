@@ -122,6 +122,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
+"aef" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "aeh" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -1053,6 +1062,16 @@
 /obj/structure/cliff/automatic/corner,
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/plains/plateau)
+"aEQ" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "aFa" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 9
@@ -1661,6 +1680,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/briefing_room)
+"aQQ" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "aRo" = (
 /obj/structure/railing{
 	dir = 8
@@ -1987,6 +2012,13 @@
 "aWW" = (
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/surface/outside/plains/station)
+"aWY" = (
+/obj/effect/landmark/start{
+	name = "Trained Drake"
+	},
+/obj/structure/animal_den,
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/rnd/xenobiology/xenofauna)
 "aXC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2797,6 +2829,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
+"bok" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/glass_research{
+	name = "Xenofauna Lab";
+	req_one_access = list(67)
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/xenobiology/xenofauna)
 "bot" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -4236,6 +4280,22 @@
 /obj/structure/cliff/automatic,
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/plains/plateau)
+"bWB" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
+/obj/machinery/recharge_station,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/surface/station/garage)
 "bWC" = (
 /obj/structure/window/reinforced,
 /obj/structure/closet/emcloset,
@@ -5125,6 +5185,11 @@
 	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/shuttle/exploration/cockpit)
+"cvP" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/toy/plushie/spider,
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "cvZ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
@@ -5621,6 +5686,18 @@
 /obj/machinery/appliance/cooker/fryer,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
+"cJL" = (
+/obj/structure/bed/chair/comfy/purp{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "cJQ" = (
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -6406,6 +6483,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/engineering/reactor_airlock)
+"cXp" = (
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/steel/sif/planetuse{
+	icon_state = "asteroidfloor";
+	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	},
+/area/surface/outside/plains/station)
 "cXQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -7482,6 +7571,13 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/quartermaster/storage)
+"dwh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "dwo" = (
 /obj/structure/sign/directions/security/interrogation{
 	dir = 4;
@@ -7609,6 +7705,29 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/heads/hop)
+"dzA" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "dAm" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/power/generator{
@@ -7625,6 +7744,21 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
+"dAV" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/obj/structure/table/steel_reinforced,
+/obj/machinery/cell_charger,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/surface/station/garage)
 "dBs" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/engineering/workshop)
@@ -7881,6 +8015,11 @@
 	},
 /turf/simulated/floor/tiled/old_cargo/gray,
 /area/shuttle/exploration/general)
+"dFf" = (
+/obj/structure/dogbed,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "dFG" = (
 /turf/simulated/wall,
 /area/surface/station/engineering/atmos)
@@ -8467,6 +8606,9 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/industrial/danger,
 /obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -9631,6 +9773,24 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/storage/primarytool)
+<<<<<<< HEAD
+=======
+"ewo" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/maintenance/substation/engineering/gnd)
+"ewz" = (
+/obj/structure/bed/chair/comfy/purp{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 10
+	},
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 "ewC" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
 	dir = 1
@@ -10157,6 +10317,16 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/pool)
+"eHA" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/floor/tiled/steel/sif/planetuse{
+	icon_state = "asteroidfloor";
+	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	},
+/area/surface/outside/plains/station)
 "eHI" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable/green{
@@ -10351,6 +10521,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/security/briefing_room)
+"eLb" = (
+/obj/structure/table/sifwoodentable,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "eLc" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/effect/floor_decal/industrial/warning{
@@ -11046,6 +11220,18 @@
 	},
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
+"eYF" = (
+/obj/machinery/door/airlock/glass_research{
+	name = "Xenofauna Lab";
+	req_one_access = list(55)
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/xenobiology/xenofauna)
 "eYZ" = (
 /obj/structure/ladder,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -11786,6 +11972,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/security/lockerroom)
 "fpa" = (
+<<<<<<< HEAD
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
@@ -11796,6 +11983,19 @@
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
+=======
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/steel/sif/planetuse{
+	icon_state = "asteroidfloor";
+	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	},
+/area/surface/outside/plains/station)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 "fpB" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 9
@@ -12065,6 +12265,16 @@
 /obj/turbolift_map_holder/cynosure/sec,
 /turf/unsimulated/mask,
 /area/surface/station/security/hallway/gnd)
+"fxS" = (
+/obj/structure/table/bench/steel,
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "fyc" = (
 /turf/simulated/floor/outdoors/dirt/sif,
 /area/surface/outside/path/plains)
@@ -13336,6 +13546,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/janitor)
+"gcN" = (
+/obj/structure/table/bench/steel,
+/obj/effect/floor_decal/corner/purple/border,
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "gda" = (
 /obj/structure/table/marble,
 /obj/machinery/door/firedoor/border_only,
@@ -13374,6 +13592,12 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/medical/ward)
+"gdM" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "gdR" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/effect/zone_divider,
@@ -13563,6 +13787,15 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/large_escape_pod1/station)
+"giQ" = (
+/obj/structure/table/steel_reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/reagent_containers/syringe/bicaridine,
+/obj/item/storage/firstaid/surgery/simple,
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "giV" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/wood,
@@ -15028,6 +15261,32 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/library)
+"gOt" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 9
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -22
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/table/rack,
+/obj/item/gps/explorer,
+/obj/item/gps/explorer,
+/obj/item/gps/explorer,
+/obj/item/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "gPq" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/plating,
@@ -16680,6 +16939,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
+"hGi" = (
+/obj/structure/table/bench/steel,
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	dir = 1;
+	pixel_y = 21
+	},
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "hGr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -16775,6 +17051,12 @@
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/plating/sif/planetuse,
 /area/surface/station/maintenance/solars/northeast)
+"hIn" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "hIG" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -17307,9 +17589,28 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
+<<<<<<< HEAD
 "hXy" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/maintenance/substation/civilian)
+=======
+"hXw" = (
+/obj/structure/closet/emcloset,
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/nanotrasen,
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/nanotrasen,
+/obj/item/clothing/shoes/boots/winter,
+/obj/item/clothing/shoes/boots/winter,
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 6
+	},
+/obj/item/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
+"hXB" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 "hYa" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/industrial/danger,
@@ -17354,6 +17655,13 @@
 /obj/structure/fuel_port,
 /turf/simulated/floor/tiled/monotile,
 /area/shuttle/exploration/cargo)
+"iac" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "iak" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 6
@@ -17525,6 +17833,23 @@
 	outdoors = 0
 	},
 /area/surface/outside/plains/station)
+"idL" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = -18;
+	pixel_y = 4
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = -18;
+	pixel_y = -4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "idR" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -19013,6 +19338,24 @@
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/exploration/cargo)
+"iRX" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/floor_decal/corner/purple/border,
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass_research{
+	name = "Xenofauna Lab";
+	req_one_access = list(55)
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/xenobiology/xenofauna)
 "iSh" = (
 /turf/simulated/wall,
 /area/surface/station/hallway/primary/groundfloor/east)
@@ -19360,6 +19703,11 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/kitchen)
+"jbz" = (
+/obj/structure/table/sifwoodentable,
+/obj/effect/floor_decal/corner/purple/border,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "jbS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -19811,6 +20159,13 @@
 /obj/machinery/ai_status_display,
 /turf/simulated/floor/plating,
 /area/surface/station/rnd/xenobiology)
+"jmv" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "jmQ" = (
 /obj/structure/reagent_dispensers/watertank/high,
 /turf/simulated/floor/tiled/dark,
@@ -21319,6 +21674,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
+"jUn" = (
+/turf/simulated/wall/concrete,
+/area/rnd/xenobiology/xenofauna)
 "jUC" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
@@ -22616,6 +22974,23 @@
 	},
 /turf/simulated/floor/tiled/old_tile/white,
 /area/surface/station/rnd/research_restroom)
+"kwA" = (
+/obj/structure/bed/chair/comfy/purp{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 6
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = -12;
+	pixel_y = -24
+	},
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "kwE" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -23104,6 +23479,21 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/monotile,
 /area/surface/station/quartermaster/storage)
+"kGs" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "kGK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -23517,6 +23907,9 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/plating/sif/planetuse,
 /area/surface/outside/station/solar/westsolar)
+"kRE" = (
+/turf/simulated/floor/outdoors/mask,
+/area/rnd/xenobiology/xenofauna)
 "kRH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -24071,6 +24464,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/crew_quarters/locker)
+"lfX" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "lgu" = (
 /obj/effect/zone_divider,
 /turf/simulated/wall/r_wall,
@@ -24780,6 +25178,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/etc)
+"lwJ" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/book/manual/drake_handling,
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "lwM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -24801,6 +25207,31 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/ai/server_room)
+"lxd" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/item/radio/intercom{
+	dir = 1;
+	pixel_y = 21
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "lxf" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
@@ -25152,6 +25583,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/interrogation)
+"lFK" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "lFZ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 8
@@ -25642,6 +26080,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/processing)
+"lQt" = (
+/obj/structure/plasticflaps/mining,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "lQz" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
@@ -28709,6 +29158,13 @@
 	},
 /turf/simulated/floor/reinforced/supermatter_core,
 /area/surface/station/engineering/reactor_room)
+"nbK" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/xenofauna,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "nbV" = (
 /turf/simulated/floor/plating/sif/planetuse,
 /area/surface/outside/station/shuttle/pad4)
@@ -29706,6 +30162,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/rnd/exploration)
+"nDM" = (
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "nDO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/catwalk_plated,
@@ -30534,6 +30993,13 @@
 	},
 /turf/simulated/floor/tiled/old_cargo/gray,
 /area/shuttle/exploration/general)
+"nUs" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/guncabinet/tranq,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "nUv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -31092,6 +31558,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/chemistry)
+"ohu" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/xenofauna,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "ohK" = (
 /obj/structure/table/standard,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -32280,6 +32756,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
+"oFN" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/rnd/xenobiology/xenofauna)
 "oFQ" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -33592,6 +34074,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/atmos)
+"pfP" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/glass_research{
+	name = "Xenofauna Lab";
+	req_one_access = list(55)
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/xenobiology/xenofauna)
 "pgK" = (
 /turf/simulated/wall,
 /area/surface/station/janitor)
@@ -34718,6 +35208,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
+"pCD" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "pDw" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
@@ -35487,6 +35983,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
+"pYW" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "pZo" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -36729,6 +37231,20 @@
 	},
 /turf/simulated/floor/carpet,
 /area/surface/station/library)
+<<<<<<< HEAD
+=======
+"qwP" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
+"qwT" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/grass,
+/area/surface/station/park)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 "qxt" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -36992,6 +37508,14 @@
 	},
 /turf/simulated/floor/carpet,
 /area/surface/station/library)
+<<<<<<< HEAD
+=======
+"qCU" = (
+/obj/machinery/mech_recharger,
+/obj/effect/landmark/robot_platform/explorer,
+/turf/simulated/floor/tiled/dark,
+/area/surface/station/garage)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 "qCW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -37477,6 +38001,10 @@
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/atmos)
+"qMs" = (
+/obj/effect/floor_decal/corner/purple/border,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "qMT" = (
 /obj/effect/floor_decal/corner/pink{
 	dir = 5
@@ -37581,6 +38109,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/security/detectives_office/lab)
+"qPS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "qQd" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -38031,6 +38568,22 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/shuttle/exploration/general)
+"qYe" = (
+/obj/structure/ladder,
+/obj/structure/cable/green{
+	d1 = 32;
+	d2 = 8;
+	icon_state = "32-8"
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/supply{
+	dir = 8
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/rnd/xenobiology/xenofauna)
 "qYf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -38073,6 +38626,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
 "rav" = (
@@ -39840,6 +40394,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/security/detectives_office/lab)
+"rQF" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "rRt" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -40332,6 +40893,13 @@
 "sec" = (
 /turf/simulated/floor/tiled/old_cargo/gray,
 /area/shuttle/exploration/general)
+"sem" = (
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "seC" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -42040,6 +42608,19 @@
 /obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/arrivals/cynosure)
+"sUL" = (
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "sUN" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Atmos Substation Bypass"
@@ -45420,6 +46001,9 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_smes)
+"uAg" = (
+/turf/simulated/floor/water,
+/area/rnd/xenobiology/xenofauna)
 "uAp" = (
 /obj/machinery/computer/security/engineering{
 	dir = 4
@@ -46721,6 +47305,10 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/surface/station/ai/server_room)
+"vfE" = (
+/obj/machinery/door/window/brigdoor/northleft,
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "vfM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46737,6 +47325,9 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/pool)
+"vfV" = (
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/rnd/xenobiology/xenofauna)
 "vgi" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -47791,6 +48382,18 @@
 	has_fish = 0
 	},
 /area/surface/outside/station/reactorpond)
+"vBO" = (
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "vCf" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -48294,6 +48897,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
+"vNk" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/xenobiology/xenofauna)
 "vNt" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -48952,6 +49564,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/surgery2)
+"wfF" = (
+/obj/structure/fence,
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/rnd/xenobiology/xenofauna)
 "wga" = (
 /obj/structure/sign/directions/security/armory,
 /obj/structure/sign/directions/stairs_up{
@@ -50147,6 +50763,19 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/engineering/storage)
+"wMl" = (
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/sif/planetuse{
+	icon_state = "asteroidfloor";
+	initial_flooring = /decl/flooring/tiling/asteroidfloor
+	},
+/area/surface/outside/plains/station)
 "wMG" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -50317,6 +50946,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/interrogation)
+"wPB" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/glass_research{
+	name = "Xenofauna Lab";
+	req_one_access = list(55)
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/xenobiology/xenofauna)
 "wPJ" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -50991,6 +51632,12 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif,
 /area/surface/outside/plains/plateau)
+"xbF" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/mask,
+/area/rnd/xenobiology/xenofauna)
 "xcE" = (
 /obj/effect/zone_divider,
 /turf/simulated/floor/plating,
@@ -51137,6 +51784,18 @@
 "xgg" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/east)
+"xgj" = (
+/obj/structure/bed/chair/comfy/purp{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Xenofauna Technician"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/xenobiology/xenofauna)
 "xgC" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -51418,6 +52077,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/kitchen)
+"xoE" = (
+/obj/structure/fence,
+/turf/simulated/floor/outdoors/mask,
+/area/rnd/xenobiology/xenofauna)
 "xpd" = (
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/mask,
@@ -51674,10 +52337,16 @@
 /turf/simulated/floor/plating,
 /area/surface/station/ai/upload)
 "xwh" = (
+<<<<<<< HEAD
 /obj/machinery/mech_recharger,
 /obj/effect/landmark/robot_platform/explorer,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/garage)
+=======
+/obj/structure/fence/door,
+/turf/simulated/floor/outdoors/mask,
+/area/rnd/xenobiology/xenofauna)
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 "xxc" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/effect/floor_decal/steeldecal/steel_decals4,
@@ -80673,18 +81342,18 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+jUn
+xoE
+xoE
+jUn
+jUn
+jUn
+oFN
+oFN
+jUn
+jUn
+jUn
+jUn
 nCe
 nCe
 nCe
@@ -80930,18 +81599,18 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xbF
+uAg
+kRE
+jUn
+aWY
+jUn
+lwJ
+qwP
+giQ
+lfX
+cvP
+jUn
 nCe
 nCe
 nCe
@@ -81183,22 +81852,22 @@ vKC
 xSr
 nCe
 nCe
-sLu
+yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xwh
+kRE
+kRE
+kRE
+vfV
+eYF
+aef
+sem
+vfE
+nDM
+dFf
+jUn
 nCe
 nCe
 nCe
@@ -81444,18 +82113,18 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xbF
+kRE
+kRE
+kRE
+vfV
+oFN
+fxS
+qMs
+vNk
+gdM
+rQF
+jUn
 nCe
 nCe
 nCe
@@ -81701,18 +82370,18 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+jUn
+xoE
+xoE
+jUn
+jUn
+jUn
+hGi
+pCD
+aQQ
+xgj
+ewz
+oFN
 nCe
 nCe
 nCe
@@ -81958,24 +82627,28 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xbF
+uAg
+kRE
+kRE
+vfV
+oFN
+lFK
+hXB
+hXB
+eLb
+jbz
+oFN
 nCe
 nCe
 nCe
 sSy
 ufW
+<<<<<<< HEAD
 fpa
+=======
+qew
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 sXq
 kYh
 mLL
@@ -82215,27 +82888,34 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xwh
+kRE
+kRE
+kRE
+vfV
+bok
+aEQ
+sUL
+vBO
+cJL
+kwA
+jUn
 nCe
 nCe
 nCe
 alv
 ufW
+<<<<<<< HEAD
 xwh
 kqo
 vFY
 vFY
+=======
+dAV
+kqo
+sXq
+sXq
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 lze
 aOr
 syY
@@ -82472,27 +83152,34 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xbF
+kRE
+kRE
+jUn
+aWY
+jUn
+jUn
+iRX
+jUn
+oFN
+oFN
+jUn
+cXp
+twu
 nCe
 cPd
 seC
+<<<<<<< HEAD
 esv
 kqo
 qBQ
 vQG
+=======
+qCU
+kqo
+jaH
+jaH
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 qZC
 kPd
 piz
@@ -82729,27 +83416,34 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+jUn
+xoE
+xoE
+jUn
+jUn
+jUn
+gOt
+kGs
+idL
+aQQ
+jmv
+pfP
+eHA
+twu
 twu
 fIk
 xUd
+<<<<<<< HEAD
 qew
 kqo
 vFY
 vFY
+=======
+kaG
+kqo
+qBQ
+vQG
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 mbv
 kPd
 kPd
@@ -82986,20 +83680,20 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xbF
+uAg
+kRE
+jUn
+aWY
+jUn
+lxd
+qPS
+hIn
+hXB
+gcN
+oFN
+wMl
+twu
 twu
 jmX
 seC
@@ -83243,20 +83937,20 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xwh
+kRE
+kRE
+kRE
+vfV
+wPB
+dzA
+dwh
+pYW
+hXB
+iac
+lQt
+eHA
+twu
 twu
 fIk
 ufW
@@ -83500,24 +84194,24 @@ yel
 nCe
 nCe
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+xbF
+kRE
+kRE
+kRE
+vfV
+oFN
+qYe
+ohu
+nbK
+nUs
+hXw
+jUn
+fpa
 nCe
 twu
 sSy
 ufW
-kaG
+bWB
 nQi
 kSF
 kSF
@@ -83757,20 +84451,20 @@ sSy
 nCe
 nCe
 nCe
+jUn
+xoE
+xoE
+xoE
+wfF
+jUn
+oFN
+oFN
+oFN
+oFN
+oFN
+jUn
 nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
-nCe
+twu
 twu
 aqn
 ufW

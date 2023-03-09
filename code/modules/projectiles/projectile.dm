@@ -825,3 +825,9 @@
 		if(silenced)
 			volume = 5
 		playsound(A, hitsound_wall, volume, 1, -1)
+
+
+/obj/item/projectile/proc/apply_SA_vulnerability(var/mob/living/simple_mob/victim)
+	if(!nodamage && SA_bonus_damage && istype(victim) && (SA_vulnerability & victim.mob_class))
+		return SA_bonus_damage
+	return 0

@@ -170,7 +170,7 @@
 	assignment = "Synthetic"
 	access = list(
 		access_synth, access_mining, access_mining_station, access_mining_office, access_research,
-		access_xenoarch, access_xenobiology, access_external_airlocks, access_robotics, access_tox,
+		access_xenoarch, access_xenobiology, access_xenofauna, access_external_airlocks, access_robotics, access_tox,
 		access_tox_storage, access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot
 	)
 

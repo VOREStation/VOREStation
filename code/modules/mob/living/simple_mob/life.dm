@@ -22,6 +22,7 @@
 
 //Should we be dead?
 /mob/living/simple_mob/updatehealth()
+	var/lasthealth = health
 	health = getMaxHealth() - getFireLoss() - getBruteLoss() - getToxLoss() - getOxyLoss() - getCloneLoss()
 
 	//Alive, becoming dead
@@ -33,26 +34,30 @@
 		health = getMaxHealth()
 
 	//Update our hud if we have one
-	if(healths)
-		if(stat != DEAD)
-			var/heal_per = (health / getMaxHealth()) * 100
-			switch(heal_per)
-				if(100 to INFINITY)
-					healths.icon_state = "health0"
-				if(80 to 100)
-					healths.icon_state = "health1"
-				if(60 to 80)
-					healths.icon_state = "health2"
-				if(40 to 60)
-					healths.icon_state = "health3"
-				if(20 to 40)
-					healths.icon_state = "health4"
-				if(0 to 20)
-					healths.icon_state = "health5"
-				else
-					healths.icon_state = "health6"
-		else
-			healths.icon_state = "health7"
+	if(lasthealth != health)
+		if(lasthealth > health && sleeping) // Damage wakes us up.
+			tranq_countdown = 0
+			SetSleeping(0)
+		if(healths)
+			if(stat != DEAD)
+				var/heal_per = (health / getMaxHealth()) * 100
+				switch(heal_per)
+					if(100 to INFINITY)
+						healths.icon_state = "health0"
+					if(80 to 100)
+						healths.icon_state = "health1"
+					if(60 to 80)
+						healths.icon_state = "health2"
+					if(40 to 60)
+						healths.icon_state = "health3"
+					if(20 to 40)
+						healths.icon_state = "health4"
+					if(0 to 20)
+						healths.icon_state = "health5"
+					else
+						healths.icon_state = "health6"
+			else
+				healths.icon_state = "health7"
 
 	//Updates the nutrition while we're here
 	var/food_per = (nutrition / 500) * 100 //VOREStation Edit: Bandaid hardcode number to avoid misleading percentage based hunger alerts with our 6k cap.

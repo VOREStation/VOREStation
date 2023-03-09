@@ -318,7 +318,17 @@
 	desc = "Xenobiology Lab"
 	region = ACCESS_REGION_RESEARCH
 
+<<<<<<< HEAD
 /var/const/access_ce = 56
+=======
+var/global/const/access_xenofauna = 67
+/datum/access/xenofauna
+	id = access_xenofauna
+	desc = "Xenofauna Lab"
+	region = ACCESS_REGION_RESEARCH
+
+var/global/const/access_ce = 56
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 /datum/access/ce
 	id = access_ce
 	desc = "Chief Engineer"

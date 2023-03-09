@@ -17,11 +17,11 @@
 	economic_modifier = 15
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors,
-			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
+			            access_research, access_robotics, access_xenobiology, access_xenofauna, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
 	minimal_access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors,
-			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
+			            access_research, access_robotics, access_xenobiology, access_xenofauna, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
 
 	minimum_character_age = 25
@@ -57,7 +57,7 @@
 	supervisors = "the Research Director"
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenofauna, access_xenoarch)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 	banned_job_species = list("digital")
@@ -102,9 +102,15 @@
 	supervisors = "the Research Director"
 	selection_color = "#633D63"
 	economic_modifier = 7
+<<<<<<< HEAD
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
 	minimal_access = list(access_research, access_xenobiology, access_hydroponics, access_tox_storage)
 	banned_job_species = list("digital")
+=======
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenofauna, access_hydroponics)
+	minimal_access = list(access_research, access_xenobiology, access_xenofauna, access_hydroponics, access_tox_storage)
+	banned_job_species = list(SPECIES_VOX, "digital")
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 
 	minimal_player_age = 14
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
@@ -120,7 +126,15 @@
 	title = "Xenobotanist"
 	title_blurb = "A Xenobotanist grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					is both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
+<<<<<<< HEAD
 VR edit end*/
+=======
+
+/datum/alt_title/xenovet
+	title = "Xenofauna Technician"
+	title_blurb = "A Xenofauna Technician works with the alien fauna living in the territory around the station, heading out in the field to tag and assess the \
+					local animal populations. They are also responsible for training and tending to the station's small drake population."
+>>>>>>> 781166673f8... Merge pull request #9005 from MistakeNot4892/drakemap
 
 //////////////////////////////////
 //			Roboticist
