@@ -1,0 +1,1236 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/structure/closet/walllocker_double/emergency_engi/north,
+/obj/fiftyspawner/steel/hull,
+/obj/fiftyspawner/rglass,
+/obj/item/weapon/storage/toolbox/mechanical,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"bn" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/item/trash/material/circuit,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"cJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"cS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor/airlock_interior{
+	pixel_y = -24
+	},
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"dv" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"dG" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"dQ" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/item/weapon/storage/toolbox/electrical,
+/obj/structure/closet/walllocker_double/emergency_engi/north,
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "sdfc_airlock_w_wreck";
+	name = "Port Airlock Control";
+	pixel_x = -24;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"en" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"eD" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "sdfc_wreck_cockpitshutters";
+	name = "Blast Shield"
+	},
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"eT" = (
+/obj/machinery/atmospherics/pipe/tank/phoron,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/full,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"fX" = (
+/obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/door/airlock/voidcraft/vertical{
+	icon_state = "door_locked";
+	id_tag = "sdfc_airlock_w_wreck";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"hn" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light_construct,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"hy" = (
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"jK" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	id_tag = "sdfc_wreck_dock_con";
+	pixel_y = 24
+	},
+/obj/effect/landmark/corpse/vintage/marine,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"jS" = (
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"kI" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber,
+/obj/item/weapon/gun/energy/gun/compact,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"lI" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/item/weapon/material/shard,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"lJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"lN" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"lW" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/door/airlock/voidcraft,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"ms" = (
+/obj/machinery/computer/ship/sensors{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "sdfc_wreck_cockpitshutters";
+	name = "Blast Shields Control";
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"mT" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"nh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"nq" = (
+/obj/structure/handrail,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	id = "sdfc_wreck_compartment";
+	name = "Access Hatch Control";
+	pixel_y = 24;
+	specialfunctions = 4
+	},
+/obj/effect/landmark/corpse/vintage/marine,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"nr" = (
+/obj/machinery/pointdefense_control{
+	id_tag = "sdfc_wreck_pd"
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/item/weapon/material/shard/shrapnel,
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"pl" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber{
+	dir = 8
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"pu" = (
+/obj/machinery/sleep_console,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"pG" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"ri" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/door/blast/regular/open{
+	id = "sdfc_wreck_cockpitshutters";
+	name = "Blast Shield"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"rX" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -30
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"sG" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"tg" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"tt" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/effect/shuttle_landmark/shuttle_initializer/sdf_corvette_wreck,
+/obj/effect/overmap/visitable/ship/landable/sdf_corvette_wreck,
+/obj/machinery/light_construct,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"uw" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker/east,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"uD" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/corpse/vintage/marine,
+/obj/item/weapon/gun/energy/laser/old,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"wn" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"wQ" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/sdf_corvette_wreck)
+"xk" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"ye" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"yA" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"yN" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"zb" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/gun/energy/laser/old,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"zn" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/warning/airlock{
+	pixel_y = -32
+	},
+/obj/effect/landmark/corpse/vintage/marine,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"zX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/item/device/gps/on{
+	gps_tag = "SDF Beacon"
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Cg" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Cq" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/computer/ship/engines{
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "sdfc_wreck_cockpitshutters";
+	name = "Blast Shields Control";
+	pixel_y = 24
+	},
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Eg" = (
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/machinery/power/pointdefense{
+	id_tag = "sdfc_wreck_pd";
+	name = "\improper twin-linked laser turret"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"Eo" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/item/weapon/material/shard/shrapnel,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"EN" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	pixel_y = 21
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/item/weapon/gun/energy/gun/compact,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Fb" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"Fp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"Gc" = (
+/obj/item/weapon/material/shard,
+/turf/template_noop,
+/area/space)
+"Hb" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/machinery/shipsensors/weak{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"Hu" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"Ib" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/airlock_sensor/airlock_exterior{
+	dir = 1;
+	pixel_x = 6;
+	pixel_y = 25
+	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"IY" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/blast/regular/open{
+	id = "sdfc_wreck_cockpitshutters";
+	name = "Blast Shield"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"JX" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/item/weapon/gun/energy/laser/old,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Kj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"KJ" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/machinery/button/remote/airlock{
+	dir = 1;
+	id = "sdfc_airlock_s_wreck";
+	name = "Aft Airlock Control";
+	pixel_y = -24;
+	specialfunctions = 4
+	},
+/obj/effect/landmark/corpse/vintage/pilot,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"KM" = (
+/turf/template_noop,
+/area/space)
+"Lj" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/space)
+"Ly" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular/open{
+	id = "sdfc_wreck_cockpitshutters";
+	name = "Blast Shield"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"LM" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/medical/east,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/item/weapon/storage/firstaid{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/o2{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Ms" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/machinery/door/airlock/multi_tile/glass{
+	icon_state = "door_locked";
+	id_tag = "sdfc_airlock_s_wreck";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Oc" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/item/weapon/material/shard/shrapnel,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Oe" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"Pl" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"PO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "sdfc_wreck_compartment"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/sdf_corvette_wreck)
+"Qn" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/vintage/pilot,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"QG" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/machinery/power/pointdefense{
+	id_tag = "sdfc_wreck_pd";
+	name = "\improper twin-linked laser turret"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"Rb" = (
+/obj/machinery/computer/shuttle_control/explore/sdf_corvette_wreck,
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"RW" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Tf" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/item/weapon/material/shard/shrapnel,
+/obj/item/frame/apc,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"TK" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/closet/walllocker/emerglocker/south,
+/obj/item/weapon/gun/energy/laser/old,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"UB" = (
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"Vq" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"VI" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/sdf_corvette_wreck)
+"VN" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/full,
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"Wf" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/sdf_corvette_wreck)
+"Wy" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/power/pointdefense{
+	id_tag = "sdfc_wreck_pd";
+	name = "\improper twin-linked laser turret"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/sdf_corvette_wreck)
+"WA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/sdf_corvette_wreck)
+"WR" = (
+/obj/structure/fuel_port/heavy{
+	dir = 8;
+	pixel_x = -30
+	},
+/obj/structure/lattice,
+/obj/item/weapon/material/shard,
+/turf/template_noop,
+/area/shuttle/sdf_corvette_wreck)
+
+(1,1,1) = {"
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+"}
+(2,1,1) = {"
+Lj
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+QG
+UB
+UB
+Vq
+Vq
+fX
+nh
+Wf
+KM
+"}
+(3,1,1) = {"
+KM
+Hb
+Vq
+IY
+IY
+Vq
+UB
+Vq
+dv
+Vq
+VN
+Vq
+dQ
+hn
+Hu
+Wf
+KM
+"}
+(4,1,1) = {"
+KM
+UB
+Vq
+ms
+nr
+Vq
+hy
+rX
+tg
+dG
+TK
+lJ
+jK
+JX
+VI
+Wf
+KM
+"}
+(5,1,1) = {"
+KM
+eD
+jS
+Qn
+zX
+Vq
+Oc
+uD
+mT
+pu
+cS
+Vq
+lI
+Pl
+Ms
+RW
+KM
+"}
+(6,1,1) = {"
+KM
+eD
+Rb
+kI
+bn
+wQ
+zb
+lN
+xk
+en
+yA
+lW
+sG
+Cg
+WA
+pG
+KM
+"}
+(7,1,1) = {"
+KM
+Vq
+Vq
+Cq
+Tf
+Vq
+nq
+LM
+pl
+uw
+zn
+Vq
+EN
+KJ
+wn
+Wf
+KM
+"}
+(8,1,1) = {"
+KM
+Eg
+Fb
+ri
+Ly
+Vq
+PO
+Fp
+Oe
+Vq
+eT
+Kj
+bd
+tt
+ye
+Wf
+KM
+"}
+(9,1,1) = {"
+KM
+KM
+Gc
+KM
+KM
+WR
+Eo
+yN
+Wy
+Vq
+Vq
+Vq
+Vq
+Ib
+cJ
+Wf
+KM
+"}
+(10,1,1) = {"
+KM
+KM
+KM
+KM
+Lj
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+KM
+"}

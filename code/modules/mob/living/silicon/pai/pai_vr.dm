@@ -86,7 +86,7 @@
 	canmove = TRUE
 	card.setEmotion(15)
 	playsound(card, 'sound/effects/pai-restore.ogg', 50, FALSE)
-	card.visible_message("\The [card] chimes.", runemessage = "chime")
+	card.visible_message("<span class='filter_notice'>\The [card] chimes.</span>", runemessage = "chime")
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -206,7 +206,7 @@
 			hide_glow = FALSE
 		update_icon()
 	else
-		to_chat(src, "Your selected chassis cannot modify its eye glow!")
+		to_chat(src, "<span class='filter_notice'>Your selected chassis cannot modify its eye glow!</span>")
 		return
 
 
@@ -400,7 +400,7 @@
 	set category = "pAI Commands"
 	set name = "Save Configuration"
 	savefile_save(src)
-	to_chat(src, "[name] configuration saved to global pAI settings.")
+	to_chat(src, "<span class='filter_notice'>[name] configuration saved to global pAI settings.</span>")
 
 /mob/living/silicon/pai/a_intent_change(input as text)
 	. = ..()
@@ -474,28 +474,28 @@
 	card.screen_msg = message
 	var/logmsg = "(CARD SCREEN)[message]"
 	log_say(logmsg,src)
-	to_chat(src, "<span class='cult'>You print a message to your screen, \"[message]\"</span>")
+	to_chat(src, "<span class='filter_say cult'>You print a message to your screen, \"[message]\"</span>")
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc
 		if(L.client)
-			to_chat(L, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			to_chat(L, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 		else return
 	else if(isbelly(card.loc))
 		var/obj/belly/b = card.loc
 		if(b.owner.client)
-			to_chat(b.owner, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			to_chat(b.owner, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 		else return
 	else if(istype(card.loc, /obj/item/device/pda))
 		var/obj/item/device/pda/p = card.loc
 		if(isliving(p.loc))
 			var/mob/living/L = p.loc
 			if(L.client)
-				to_chat(L, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+				to_chat(L, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 			else return
 		else if(isbelly(p.loc))
 			var/obj/belly/b = card.loc
 			if(b.owner.client)
-				to_chat(b.owner, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+				to_chat(b.owner, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 			else return
 		else return
 	else return
@@ -505,11 +505,11 @@
 			continue
 		else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
 			if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
-				to_chat(G, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+				to_chat(G, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows
 	if(stat != CONSCIOUS)								//so we can access our software without having to open up the software interface TGUI window
-		to_chat(src, "<span class ='warning'>You can't do that right now.</span>")
+		to_chat(src, "<span class='warning'>You can't do that right now.</span>")
 		return
 	for(var/thing in software)
 		var/datum/pai_software/S = software[thing]

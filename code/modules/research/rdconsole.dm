@@ -119,7 +119,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	//Loading a disk into it.
 	if(istype(D, /obj/item/weapon/disk))
 		if(t_disk || d_disk)
-			to_chat(user, "A disk is already loaded into the machine.")
+			to_chat(user, "<span class='filter_notice'>A disk is already loaded into the machine.</span>")
 			return
 
 		if(istype(D, /obj/item/weapon/disk/tech_disk))

@@ -189,5 +189,5 @@
 	species.base_species = new_species
 	wrapped_species_by_ref["\ref[src]"] = new_species
 	if (visible)
-		visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
+		visible_message("<span class='filter_notice'><b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!</span>")
 		regenerate_icons()

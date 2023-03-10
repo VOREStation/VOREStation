@@ -168,9 +168,9 @@
 				materials[S.material.name] += amnt
 				S.use(1)
 				count++
-			to_chat(user, "You insert [count] [sname] into the fabricator.")
+			to_chat(user, "<span class='filter_notice'>You insert [count] [sname] into the fabricator.</span>")
 	else
-		to_chat(user, "The fabricator cannot hold more [sname].")
+		to_chat(user, "<span class='filter_notice'>The fabricator cannot hold more [sname].</span>")
 	busy = 0
 
 	var/stacktype = S.type

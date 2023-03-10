@@ -497,6 +497,8 @@
 #include "../offmap_vr/om_ships/curashuttle.dm"
 #include "../offmap_vr/om_ships/itglight.dm"
 #include "../offmap_vr/om_ships/abductor.dm"
+#include "../offmap_vr/om_ships/lunaship.dm"
+#include "../offmap_vr/om_ships/sdf_corvettes.dm"
 
 //////////////////////////////////////////////////////////////////////////////
 //Capsule deployed ships

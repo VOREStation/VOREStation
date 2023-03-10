@@ -30,7 +30,7 @@
 	var/new_metadata = sanitize(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently, only for this round.", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE), extra = 0)
 	if(new_metadata && CanUseTopic(usr))
 		ooc_notes = new_metadata
-		to_chat(usr, "OOC notes updated.")
+		to_chat(usr, "<span class='filter_notice'>OOC notes updated.</span>")
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 
 /mob/living/verb/set_voice_freq()

@@ -206,7 +206,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["voice_test"])
-		var/sound/S = pick(pref.voice_sound)
+		var/sound/S
 		switch(pref.voice_sound)
 			if("beep-boop")
 				S = sound(pick(talk_sound))
@@ -236,8 +236,9 @@
 				S = sound(pick(goon_speak_roach_sound))
 			if("goon speak skelly")
 				S = sound(pick(goon_speak_skelly_sound))
-		S.frequency = pick(pref.voice_freq)
-		S.volume = 50
-		SEND_SOUND(user, S)
+		if(S)
+			S.frequency = pick(pref.voice_freq)
+			S.volume = 50
+			SEND_SOUND(user, S)
 
 	return ..();

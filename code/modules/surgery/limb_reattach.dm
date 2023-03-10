@@ -52,8 +52,8 @@
 
 /datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = tool
-	user.visible_message("[user] starts attaching [E.name] to [target]'s [E.amputation_point].", \
-	"You start attaching [E.name] to [target]'s [E.amputation_point].")
+	user.visible_message("<span class='filter_notice'>[user] starts attaching [E.name] to [target]'s [E.amputation_point].</span>", \
+	"<span class='filter_notice'>You start attaching [E.name] to [target]'s [E.amputation_point].</span>")
 
 /datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = tool
@@ -100,8 +100,8 @@
 
 /datum/surgery_step/limb/connect/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
-	user.visible_message("[user] starts connecting tendons and muscles in [target]'s [E.amputation_point] with [tool].", \
-	"You start connecting tendons and muscle in [target]'s [E.amputation_point].")
+	user.visible_message("<span class='filter_notice'>[user] starts connecting tendons and muscles in [target]'s [E.amputation_point] with [tool].</span>", \
+	"<span class='filter_notice'>You start connecting tendons and muscle in [target]'s [E.amputation_point].</span>")
 
 /datum/surgery_step/limb/connect/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
@@ -138,8 +138,8 @@
 		return isnull(target.get_organ(target_zone))
 
 /datum/surgery_step/limb/mechanize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts attaching \the [tool] to [target].", \
-	"You start attaching \the [tool] to [target].")
+	user.visible_message("<span class='filter_notice'>[user] starts attaching \the [tool] to [target].</span>", \
+	"<span class='filter_notice'>You start attaching \the [tool] to [target].</span>")
 
 /datum/surgery_step/limb/mechanize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/robot_parts/L = tool

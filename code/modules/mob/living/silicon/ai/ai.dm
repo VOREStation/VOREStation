@@ -189,12 +189,12 @@ var/list/ai_verbs_default = list(
 	return
 
 /mob/living/silicon/ai/proc/on_mob_init()
-	to_chat(src, "<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>")
-	to_chat(src, "<B>To look at other parts of the station, click on yourself to get a camera menu.</B>")
-	to_chat(src, "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>")
-	to_chat(src, "To use something, simply click on it.")
-	to_chat(src, "Use <B>say #b</B> to speak to your cyborgs through binary. Use say :h to speak from an active holopad.")
-	to_chat(src, "For department channels, use the following say commands:")
+	var/init_text = list("<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>",
+							"<B>To look at other parts of the station, click on yourself to get a camera menu.</B>",
+							"<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>",
+							"To use something, simply click on it.",
+							"For department channels, use the following say commands:")
+	to_chat(src, "<span class='filter_notice'>[jointext(init_text, "<br>")]</span>")
 
 	var/radio_text = ""
 	for(var/i = 1 to common_radio.channels.len)
@@ -214,7 +214,7 @@ var/list/ai_verbs_default = list(
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
-		to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
+		to_chat(src, "<span class='filter_notice'><b>These laws may be changed by other players, or by you being the traitor.</b></span>")
 
 	job = "AI"
 	setup_icon()
@@ -360,7 +360,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if(message_cooldown)
-		to_chat(src, "Please allow one minute to pass between announcements.")
+		to_chat(src, "<span class='filter_notice'>Please allow one minute to pass between announcements.</span>")
 		return
 	var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "A.I. Announcement")
 	if(!input)
@@ -472,7 +472,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>")
+			to_chat(src, "<span class='filter_warning'><font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font></span>")
 		return
 
 	if(href_list["trackbot"])
@@ -572,7 +572,7 @@ var/list/ai_verbs_default = list(
 		if(network in C.network)
 			eyeobj.setLoc(get_turf(C))
 			break
-	to_chat(src, "<font color='blue'>Switched to [network] camera network.</font>")
+	to_chat(src, "<span class='notice'>Switched to [network] camera network.</span>")
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -707,7 +707,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	camera_light_on = !camera_light_on
-	to_chat(src, "Camera lights [camera_light_on ? "activated" : "deactivated"].")
+	to_chat(src, "<span class='filter_notice'>Camera lights [camera_light_on ? "activated" : "deactivated"].</span>")
 	if(!camera_light_on)
 		if(camera)
 			camera.set_light(0)
@@ -754,20 +754,20 @@ var/list/ai_verbs_default = list(
 			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
-			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")
+			user.visible_message("<span class='notice'>\The [user] starts to unbolt \the [src] from the plating...</span>")
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
+				user.visible_message("<span class='notice'>\The [user] decides not to unbolt \the [src].</span>")
 				return
-			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
+			user.visible_message("<span class='notice'>\The [user] finishes unfastening \the [src]!</span>")
 			anchored = FALSE
 			return
 		else
 			playsound(src, W.usesound, 50, 1)
-			user.visible_message("<font color='blue'>\The [user] starts to bolt \the [src] to the plating...</font>")
+			user.visible_message("<span class='notice'>\The [user] starts to bolt \the [src] to the plating...</span>")
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
+				user.visible_message("<span class='notice'>\The [user] decides not to bolt \the [src].</span>")
 				return
-			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")
+			user.visible_message("<span class='notice'>\The [user] finishes fastening down \the [src]!</span>")
 			anchored = TRUE
 			return
 	else
@@ -781,7 +781,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_RADIO))
 		return
 
-	to_chat(src, "Accessing Subspace Transceiver control...")
+	to_chat(src, "<span class='filter_notice'>Accessing Subspace Transceiver control...</span>")
 	if (src.aiRadio)
 		src.aiRadio.interact(src)
 
@@ -804,7 +804,7 @@ var/list/ai_verbs_default = list(
 		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 		walk(hologram, 0)
 	//VOREStation Add End
-	to_chat(usr, "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now.")
+	to_chat(usr, "<span class='filter_notice'>Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now.</span>")
 
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
@@ -965,7 +965,7 @@ var/list/ai_verbs_default = list(
 	var/message = combined["formatted"]
 	var/name_used = M.GetVoice()
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
-	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"
+	var/rendered = "<span class='game say'><i>Relayed Speech: <span class='name'>[name_used]</span> [message]</i></span>"
 	show_message(rendered, 2)
 
 /mob/living/silicon/ai/proc/toggle_multicam_verb()

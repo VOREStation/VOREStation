@@ -4190,8 +4190,6 @@
 #include "maps\expedition_vr\beach\submaps\mountains.dm"
 #include "maps\expedition_vr\beach\submaps\mountains_areas.dm"
 #include "maps\gateway_archive_vr\blackmarketpackers.dm"
-#include "maps\offmap_vr\om_ships\abductor.dm"
-#include "maps\offmap_vr\om_ships\lunaship.dm"
 #include "maps\southern_cross\items\clothing\sc_accessory.dm"
 #include "maps\southern_cross\items\clothing\sc_suit.dm"
 #include "maps\southern_cross\items\clothing\sc_under.dm"

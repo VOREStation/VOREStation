@@ -44,13 +44,14 @@
 			var/seconds = C.last_activity_seconds()
 			entry += " (AFK - [round(seconds / 60)] minutes, [seconds % 60] seconds)"
 
-		entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
+		entry += " [ADMIN_QUE(C.mob)]"
 		Lines += entry
 
 	for(var/line in sortList(Lines))
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
 	to_chat(src,msg)
 
 /client/verb/staffwho()
@@ -145,4 +146,4 @@
 
 	msg += "\n<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.</span>"
 
-	to_chat(src, msg)
+	to_chat(src,"<span class='filter_notice'>[jointext(msg, "<br>")]</span>")
