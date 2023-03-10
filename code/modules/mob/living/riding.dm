@@ -7,10 +7,10 @@
 		if(istype(riding_datum,/datum/riding))
 			if(riding_datum.keytype)
 				riding_datum.keytype = null
-				to_chat(src, "Rider control enabled.")
+				to_chat(src, "<span class='filter_notice'>Rider control enabled.</span>")
 				return
 			else
 				riding_datum.keytype = /obj/item/weapon/material/twohanded/riding_crop
-				to_chat(src, "Rider control restricted.")
+				to_chat(src, "<span class='filter_notice'>Rider control restricted.</span>")
 				return
 	return

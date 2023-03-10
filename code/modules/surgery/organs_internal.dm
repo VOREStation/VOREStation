@@ -56,8 +56,8 @@
 	for(var/obj/item/organ/I in affected.internal_organs)
 		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
 			if(!(I.robotic >= ORGAN_ROBOT))
-				user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
-				"You start treating damage to [target]'s [I.name] with [tool_name]." )
+				user.visible_message("<span class='filter_notice'>[user] starts treating damage to [target]'s [I.name] with [tool_name].</span>", \
+				"<span class='filter_notice'>You start treating damage to [target]'s [I.name] with [tool_name].</span>" )
 
 	target.custom_pain("The pain in your [affected.name] is living hell!", 100)
 	..()
@@ -228,8 +228,8 @@
 /datum/surgery_step/internal/detatch_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("[user] starts to separate [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start to separate [target]'s [target.op_stage.current_organ] with \the [tool]." )
+	user.visible_message("<span class='filter_notice'>[user] starts to separate [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to separate [target]'s [target.op_stage.current_organ] with \the [tool].</span>" )
 	target.custom_pain("The pain in your [affected.name] is living hell!", 100)
 	..()
 
@@ -293,13 +293,13 @@
 	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to remove?", "Organ Choice", removable_organs)
 	if(!organ_to_remove) //They chose cancel!
 		to_chat(user, "<span class='notice'>You decide against preparing any organs for removal.</span>")
-		user.visible_message("[user] starts pulling \the [tool] from [target]'s [affected]", \
-		"You start pulling \the [tool] from [target]'s [affected].")
+		user.visible_message("<span class='filter_notice'>[user] starts pulling \the [tool] from [target]'s [affected].</span>", \
+		"<span class='filter_notice'>You start pulling \the [tool] from [target]'s [affected].</span>")
 
 	target.op_stage.current_organ = organ_to_remove
 
-	user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+	"<span class='filter_notice'>You start removing [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 	target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
 	..()
 
@@ -382,8 +382,8 @@
 
 /datum/surgery_step/internal/replace_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.name].", \
-	"You start transplanting \the [tool] into [target]'s [affected.name].")
+	user.visible_message("<span class='filter_notice'>[user] starts transplanting \the [tool] into [target]'s [affected.name].</span>", \
+	"<span class='filter_notice'>You start transplanting \the [tool] into [target]'s [affected.name].</span>")
 	target.custom_pain("Someone's rooting around in your [affected.name]!", 100)
 	..()
 
@@ -439,8 +439,8 @@
 	return ..()
 
 /datum/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
-	"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+	"<span class='filter_notice'>You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 	target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!", 100)
 	..()
 

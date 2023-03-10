@@ -398,7 +398,7 @@
 
 /atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
 	if(isopenspace(oldloc))
-		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
+		oldloc.visible_message("<span class='notice'>\The [src] falls down through \the [oldloc]!</span>", "<span class='notice'>You hear something falling through the air.</span>")
 
 	// If the turf has density, we give it first dibs
 	if (landing.density && landing.CheckFall(src))

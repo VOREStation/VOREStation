@@ -68,7 +68,7 @@
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
 	if(db)
 		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
-		if(!(record.dead_state == MR_DEAD))	
+		if(!(record.dead_state == MR_DEAD))
 			if((world.time - timeofdeath ) > 5 MINUTES)	//Allows notify transcore to be used if you have an entry but for some reason weren't marked as dead
 				record.dead_state = MR_DEAD				//Such as if you got scanned but didn't take an implant. It's a little funky, but I mean, you got scanned
 				db.notify(record)						//So you probably will want to let someone know if you die.
@@ -115,7 +115,7 @@
 
 	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
 	if(!input)
-		to_chat(src, "No active ghost pods detected.")
+		to_chat(src, "<span class='filter_notice'>No active ghost pods detected.</span>")
 		return
 
 	var/target = observe_list_format(active_ghost_pods)[input]
@@ -129,7 +129,7 @@
 			forceMove(T)
 			stop_following()
 		else
-			to_chat(src, "This ghost pod is not located in the game world.")
+			to_chat(src, "<span class='filter_notice'>This ghost pod is not located in the game world.</span>")
 
 /mob/observer/dead/verb/findautoresleever()
 	set category = "Ghost"
@@ -156,5 +156,5 @@
 	if(!L)
 		to_chat(src, "<span class='warning'>There appears to be something wrong with this auto-resleever, try again.</span>")
 		return
-	
+
 	forceMove(L)

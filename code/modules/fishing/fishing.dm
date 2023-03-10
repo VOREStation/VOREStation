@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 					has_fish = FALSE
 			//List of possible outcomes.
 			if(!fish_type)
-				to_chat(user,"You caught... nothing. How sad.")
+				to_chat(user,"<span class='filter_notice'>You caught... nothing. How sad.</span>")
 			else
 				var/fished = new fish_type(get_turf(user))
 				if(isliving(fished))

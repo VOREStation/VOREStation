@@ -13,7 +13,7 @@
 	active_power_usage = 4 KILOWATTS
 	heating_power = 4000
 	idle_power_usage = 2 KILOWATTS
-	
+
 	optimal_power = 1.2 // Things on the grill cook .6 faster - this is now the fastest appliance to heat and to cook on. BURGERS GO SIZZLE.
 
 	stat = POWEROFF // Starts turned off.
@@ -22,18 +22,18 @@
 	optimal_temp = 120 + T0C
 	min_temp = 60 + T0C
 	resistance = 8 KILOWATTS // Very fast to heat up.
-	
+
 	max_contents = 3 // Arbitrary number, 3 grill 'racks'
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/grill
-	
+
 /obj/machinery/appliance/cooker/grill/Initialize()
 	. = ..()
 	grill_loop = new(list(src), FALSE)
-	
+
 /obj/machinery/appliance/cooker/grill/Destroy()
 	QDEL_NULL(grill_loop)
 	return ..()
-	
+
 /obj/machinery/appliance/cooker/grill/update_icon() // TODO: Cooking icon
 	if(!stat)
 		icon_state = on_icon

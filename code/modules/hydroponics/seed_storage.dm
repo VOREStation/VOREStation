@@ -389,7 +389,7 @@
 /obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/seeds) && !lockdown)
 		add(O)
-		user.visible_message("[user] puts \the [O.name] into \the [src].", "You put \the [O] into \the [src].")
+		user.visible_message("<span class ='filter_notice'>[user] puts \the [O.name] into \the [src].</span>", "<span class ='filter_notice'>You put \the [O] into \the [src].</span>")
 		return
 	else if (istype(O, /obj/item/weapon/storage/bag/plants) && !lockdown)
 		var/obj/item/weapon/storage/P = O
@@ -398,17 +398,17 @@
 			++loaded
 			add(G)
 		if (loaded)
-			user.visible_message("[user] puts the seeds from \the [O.name] into \the [src].", "You put the seeds from \the [O.name] into \the [src].")
+			user.visible_message("<span class ='filter_notice'>[user] puts the seeds from \the [O.name] into \the [src].</span>", "<span class ='filter_notice'>You put the seeds from \the [O.name] into \the [src].</span>")
 		else
 			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
 		return
 	else if(O.is_wrench())
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
-		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
+		to_chat(user, "<span class ='filter_notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 	else if(O.is_screwdriver())
 		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+		to_chat(user, "<span class ='filter_notice'>You [panel_open ? "open" : "close"] the maintenance panel.</span>")
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
