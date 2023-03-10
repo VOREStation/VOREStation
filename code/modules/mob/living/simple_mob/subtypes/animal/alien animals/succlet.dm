@@ -128,6 +128,7 @@
 	. = ..()
 	if(isbelly(loc))
 		return
+	playsound(src,'sound/voice/succlet_shriek.ogg', 100, 1)
 	spawn(25)
 	qdel(src)
 
