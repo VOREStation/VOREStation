@@ -15,15 +15,25 @@ SUBSYSTEM_DEF(mobs)
 	var/list/currentrun = list()
 	var/log_extensively = FALSE
 	var/list/timelog = list()
+<<<<<<< HEAD
 
 	var/slept_mobs = 0
 	var/list/process_z = list()
+=======
+	var/list/busy_z_levels = list()
+	var/list/slept = list()
+	var/skipped_mobs = 0
+>>>>>>> f490b9c1916... Merge pull request #9049 from MistakeNot4892/mobsleep
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P: [global.mob_list.len] | S: [slept_mobs]")
+	..("P: [global.mob_list.len] | S: [skipped_mobs]")
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	if (!resumed)
+<<<<<<< HEAD
+=======
+		skipped_mobs = 0
+>>>>>>> f490b9c1916... Merge pull request #9049 from MistakeNot4892/mobsleep
 		src.currentrun = mob_list.Copy()
 		process_z.len = GLOB.living_players_by_zlevel.len
 		slept_mobs = 0
@@ -39,12 +49,33 @@ SUBSYSTEM_DEF(mobs)
 
 		if(!M || QDELETED(M))
 			mob_list -= M
+<<<<<<< HEAD
 			continue
 		else if(M.low_priority && !(M.loc && get_z(M) && process_z[get_z(M)]))
 			slept_mobs++
 			continue
 
 		M.Life(times_fired)
+=======
+		else
+			// Right now mob.Life() is unstable enough I think we need to use a try catch.
+			// Obviously we should try and get rid of this for performance reasons when we can.
+			try
+				if(M.low_priority && !(M.z in busy_z_levels))
+					skipped_mobs++
+					if (MC_TICK_CHECK)
+						return
+					continue
+
+				var/time = world.time
+				M.Life(times_fired)
+				if(time != world.time && !slept[M.type])
+					slept[M.type] = TRUE
+					log_debug("SSmobs: Type '[M.type]' slept for [world.time - time]ds in Life(). Suppressing further warnings.")
+
+			catch(var/exception/e)
+				log_runtime(e, M, "Caught by [name] subsystem")
+>>>>>>> f490b9c1916... Merge pull request #9049 from MistakeNot4892/mobsleep
 
 		if (MC_TICK_CHECK)
 			return
