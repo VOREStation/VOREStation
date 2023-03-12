@@ -96,15 +96,17 @@
 /obj/item/weapon/gun/get_description_info()
 	var/is_loaded
 	var/non_lethal
-	var/non_lethal_list = list(/obj/item/weapon/gun/energy/medigun,/obj/item/weapon/gun/energy/mouseray,/obj/item/weapon/gun/energy/temperature,/obj/item/weapon/gun/energy/sizegun,/obj/item/weapon/gun/projectile/shotgun/pump/toy)
+	var/non_lethal_list = list(/obj/item/weapon/gun/energy/medigun,/obj/item/weapon/gun/energy/mouseray,/obj/item/weapon/gun/energy/temperature,/obj/item/weapon/gun/energy/sizegun,/obj/item/weapon/gun/projectile/shotgun/pump/toy,/obj/item/weapon/gun/projectile/revolver/toy,/obj/item/weapon/gun/projectile/pistol/toy,/obj/item/weapon/gun/projectile/automatic/toy)
+	var/less_lethal
+	var/less_lethal_list = list(/obj/item/weapon/gun/energy/taser,/obj/item/weapon/gun/energy/stunrevolver,/obj/item/weapon/gun/energy/plasmastun,/obj/item/weapon/gun/energy/bfgtaser)
 	var/weapon_stats = description_info + "\
 	<br>"
 	if(istype(src, /obj/item/weapon/gun/energy))
 		is_loaded = LAZYLEN(src.contents)
-	else if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
+	if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
 		var/obj/item/weapon/gun/projectile/shotgun/pump/shotgun = src
 		is_loaded = shotgun.chambered
-	else if(istype(src, /obj/item/weapon/gun/projectile))
+	if(istype(src, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/projectile_gun = src
 		var/ammo
 		if(projectile_gun.ammo_magazine)
@@ -112,15 +114,21 @@
 		else
 			ammo = projectile_gun.contents
 		is_loaded = LAZYLEN(ammo)
-	else for(var/path in non_lethal_list)
-		if(istype(src,path))
+	for(var/llweapontype in less_lethal_list)
+		if(istype(src,llweapontype))
+			is_loaded = null
+			less_lethal = TRUE
+	for(var/nlweapontype in non_lethal_list)
+		if(istype(src,nlweapontype))
 			is_loaded = null
 			non_lethal = TRUE
 
 	if(is_loaded)
 		weapon_stats += "\nIf fired, it would deal [describe_firepower()] damage, [describe_proj_penetration()], and has [describe_firerate()] between shots."
+	else if(less_lethal)
+		weapon_stats += "\nIf fired, it would deal stunning damage to incapacitate targets, and has [describe_firerate()] between shots."
 	else if(non_lethal)
-		weapon_stats += "\nThis is an entirely non-lethal weapon, such as a mouseray, toy, or sizegun!"
+		weapon_stats += "\nThis is an entirely non-lethal weapon, such as a mouseray, toy, or sizegun! Its effects cannot easily be quantified."
 	else
 		weapon_stats += "\nIt isn't loaded!"
 	if(force)
