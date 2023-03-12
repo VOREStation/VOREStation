@@ -55,7 +55,11 @@
 	gluttonous = 1
 	blood_volume = 400
 	hunger_factor = 0.2
+<<<<<<< HEAD
 	soft_landing = TRUE
+=======
+	hearboost = 1 //Big heckin chonker ultragigamega-ears.
+>>>>>>> 6ebe75ca2af... Taj & Tesh hearing tweaks (#8994)
 
 	ambiguous_genders = TRUE
 

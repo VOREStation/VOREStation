@@ -197,6 +197,7 @@
 	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 	chem_strength_alcohol = 1.25
+	hearboost = 1 //Sensitive ears.
 
 	min_age = 17
 	max_age = 80
