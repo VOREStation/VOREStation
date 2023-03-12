@@ -433,7 +433,13 @@ ESCAPE_POD(1)
 	desc = "The exploration team's shuttle."
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
+<<<<<<< HEAD
 	shuttle = "Exploration Shuttle"
+=======
+	shuttle = "NTC Calvera"
+	icon_state = "calvera"
+	moving_state = "calvera_moving"
+>>>>>>> 73d79c87920... Merge pull request #9022 from Greenjoe12345/overmap_icons
 
 /obj/machinery/computer/shuttle_control/explore/explorer_shuttle
 	name = "takeoff and landing console"

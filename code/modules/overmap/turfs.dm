@@ -9,8 +9,12 @@ var/global/list/map_sectors = list()
 
 /turf/unsimulated/map
 	icon = 'icons/turf/space.dmi'
+<<<<<<< HEAD
 	icon_state = "map"
 	alpha = 200
+=======
+	icon_state = "map0"
+>>>>>>> 73d79c87920... Merge pull request #9022 from Greenjoe12345/overmap_icons
 
 /turf/unsimulated/map/edge
 	opacity = 1
@@ -52,6 +56,7 @@ var/global/list/map_sectors = list()
 
 /turf/unsimulated/map/Initialize()
 	. = ..()
+	icon_state = "map[rand(0,6)]"
 	name = "[x]-[y]"
 	var/list/numbers = list()
 
