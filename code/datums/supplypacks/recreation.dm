@@ -136,4 +136,40 @@
 	contains = list(
 			/obj/machinery/porta_turret/lasertag/blue,
 			/obj/machinery/porta_turret/lasertag/red
+<<<<<<< HEAD
 			)
+=======
+			)
+
+/datum/supply_pack/recreation/card_packs
+	contains = list(
+			/obj/item/pack/cardemon = 4,
+			/obj/item/pack/spaceball = 4,
+			/obj/item/deck/cardemon = 2,
+			/obj/item/deck/spaceball = 2
+			)
+	name = "Trading Card Crate"
+	cost = 15
+	containertype = /obj/structure/closet/crate/oculum
+	containername = "cards crate"
+
+/datum/supply_pack/recreation/sas_builder
+	contains = list(
+			/obj/item/deck/saintsandsins = 2,
+			/obj/item/pack/saintsandsins = 2,
+			/obj/random/saintsandsins_packs = 2
+			)
+	name = "Saints and Sins Builder's Crate"
+	cost = 40
+	containertype = /obj/structure/closet/crate/oculum
+	containername = "\improper Saints and Sins builder's crate"
+
+/datum/supply_pack/recreation/sas_booster
+	contains = list(
+			/obj/random/saintsandsins_packs = 6
+			)
+	name = "Saints and Sins Booster Crate"
+	cost = 20
+	containertype = /obj/structure/closet/crate/oculum
+	containername = "\improper Saints and Sins booster crate"
+>>>>>>> 8918629df18... Adds MtG except in space (#9007)

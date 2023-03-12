@@ -655,6 +655,7 @@
 
 //VOREStation Add End
 
+<<<<<<< HEAD
 /obj/random/action_figure
 	name = "random action figure"
 	desc = "This is a random action figure."
@@ -805,6 +806,8 @@
 				/obj/item/toy/mecha/odysseus,
 				/obj/item/toy/mecha/phazon)
 
+=======
+>>>>>>> 8918629df18... Adds MtG except in space (#9007)
 /obj/random/mouseremains
 	name = "random mouseremains"
 	desc = "For use with mouse spawners."
