@@ -2410,6 +2410,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_left
 	name = "Scar, Abdomen Left"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomen_l"
 	body_parts = list(BP_GROIN)
 
@@ -2420,6 +2421,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_right
 	name = "Scar, Abdomen Right"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomen_r"
 	body_parts = list(BP_GROIN)
 
@@ -2430,6 +2432,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_small_left
 	name = "Scar, Abdomen Small Left"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomensmall_l"
 	body_parts = list(BP_GROIN)
 
@@ -2440,6 +2443,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_small_right
 	name = "Scar, Abdomen Small Right"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomensmall_r"
 	body_parts = list(BP_GROIN)
 
@@ -2450,6 +2454,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_back_large
 	name = "Scar, Back Large"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_large"
 	body_parts = list(BP_GROIN)
 
@@ -2460,6 +2465,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_back_small
 	name = "Scar, Back Small (Center)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small"
 	body_parts = list(BP_TORSO)
 
@@ -2471,26 +2477,31 @@ shaved
 
 /datum/sprite_accessory/marking/scar_back_small_upper_right
 	name = "Scar, Back Small (Upper Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_ur"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_back_small_upper_left
 	name = "Scar, Back Small (Upper Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_ul"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_back_small_lower_right
 	name = "Scar, Back Small (Lower Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_lr"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_back_small_lower_left
 	name = "Scar, Back Small (Lower Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_ll"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_chest_large_left
 	name = "Scar, Chest Large (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_large_l"
 	body_parts = list(BP_TORSO)
 
@@ -2502,6 +2513,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chest_large_right
 	name = "Scar, Chest Large (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_large_r"
 	body_parts = list(BP_TORSO)
 
@@ -2513,6 +2525,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chest_small_left
 	name = "Scar, Chest Small (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_small_l"
 	body_parts = list(BP_TORSO)
 
@@ -2523,6 +2536,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chest_small_right
 	name = "Scar, Chest Small (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_small_r"
 	body_parts = list(BP_TORSO)
 
@@ -2533,6 +2547,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_belly
 	name = "Scar, Belly"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_belly"
 	body_parts = list(BP_TORSO)
 
@@ -2544,16 +2559,19 @@ shaved
 
 /datum/sprite_accessory/marking/scar_cheek_left
 	name = "Scar, Cheek (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_cheek_l"
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_cheek_right
 	name = "Scar, Cheek (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_cheek_r"
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_forehead_left
 	name = "Scar, Forehead (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_forehead_l"
 	body_parts = list(BP_HEAD)
 
@@ -2564,6 +2582,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_forehead_right
 	name = "Scar, Forehead (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_forehead_r"
 	body_parts = list(BP_HEAD)
 
@@ -2574,17 +2593,20 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chin
 	name = "Scar, Chin"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chin"
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_muzzle_teshari
 	name = "Scar, Muzzle"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_muzzle_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_eye_left
 	name = "Scar, Over Eye (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_eye_l"
 	body_parts = list(BP_HEAD)
 
@@ -2595,6 +2617,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_eye_right
 	name = "Scar, Over Eye (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_eye_r"
 	body_parts = list(BP_HEAD)
 
@@ -2605,6 +2628,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_arm_upper
 	name = "Scar, Left Arm (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_left_u"
 	body_parts = list(BP_L_ARM)
 
@@ -2615,6 +2639,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_arm_lower
 	name = "Scar, Left Arm (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_left_l"
 	body_parts = list(BP_L_ARM)
 
@@ -2625,6 +2650,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_arm_rear
 	name = "Scar, Left Arm (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_left_rear"
 	body_parts = list(BP_L_ARM)
 
@@ -2635,6 +2661,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_hand
 	name = "Scar, Left Hand"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_hand_left"
 	body_parts = list(BP_L_HAND)
 
@@ -2645,6 +2672,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_arm_upper
 	name = "Scar, Right Arm (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_right_u"
 	body_parts = list(BP_R_ARM)
 
@@ -2655,6 +2683,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_arm_lower
 	name = "Scar, Right Arm (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_right_l"
 	body_parts = list(BP_R_ARM)
 
@@ -2665,6 +2694,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_arm_rear
 	name = "Scar, Right Arm (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_right_rear"
 	body_parts = list(BP_R_ARM)
 
@@ -2675,6 +2705,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_hand
 	name = "Scar, Right Hand"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_hand_right"
 	body_parts = list(BP_R_HAND)
 
@@ -2685,6 +2716,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_leg_upper
 	name = "Scar, Left Leg (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_leg_left_u"
 	body_parts = list(BP_L_LEG)
 
@@ -2695,6 +2727,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_leg_lower
 	name = "Scar, Left Leg (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_leg_left_l"
 	body_parts = list(BP_L_LEG)
 
@@ -2705,6 +2738,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_leg_rear
 	name = "Scar, Left Leg (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_leg_left_rear"
 	body_parts = list(BP_L_LEG)
 
@@ -2715,6 +2749,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_foot
 	name = "Scar, Left Foot"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_left_foot"
 	body_parts = list(BP_L_FOOT)
 
@@ -2725,6 +2760,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_leg_upper
 	name = "Scar, Right Leg (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_leg_u"
 	body_parts = list(BP_R_LEG)
 
@@ -2735,6 +2771,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_leg_lower
 	name = "Scar, Right Leg (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_leg_l"
 	body_parts = list(BP_R_LEG)
 
@@ -2745,6 +2782,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_leg_rear
 	name = "Scar, Right Leg (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_leg_rear"
 	body_parts = list(BP_R_LEG)
 
@@ -2755,6 +2793,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_foot
 	name = "Scar, Right Foot"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_foot"
 	body_parts = list(BP_R_FOOT)
 
@@ -2981,6 +3020,7 @@ shaved
 
 /datum/sprite_accessory/marking/aug
 	name = "Augment (Backports, Back)"
+	icon = 'icons/mob/human_races/sprite_accessories/augments.dmi'
 	icon_state = "aug_backports"
 	genetic = FALSE
 	body_parts = list(BP_TORSO)
@@ -3154,8 +3194,24 @@ shaved
 
 //bandages
 
+<<<<<<< HEAD
+=======
+/datum/sprite_accessory/marking/nosetape
+	name = "Nose Tape"
+	icon = 'icons/mob/human_races/sprite_accessories/bandages.dmi'
+	icon_state = "nosetape"
+	body_parts = list(BP_HEAD)
+	genetic = FALSE
+
+/datum/sprite_accessory/marking/nosetape/tesh
+	name = "Nose Tape (Teshari)"
+	icon_state = "nosetape_tesh"
+	species_allowed = list(SPECIES_TESHARI)
+
+>>>>>>> a81f3ff6465... Merge pull request #9024 from Mechoid/SpriteAccessoryPruning
 /datum/sprite_accessory/marking/bandage
 	name = "Bandage, Head 1"
+	icon = 'icons/mob/human_races/sprite_accessories/bandages.dmi'
 	icon_state = "bandage1"
 	body_parts = list(BP_HEAD)
 	genetic = FALSE
