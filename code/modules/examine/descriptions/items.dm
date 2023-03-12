@@ -1,5 +1,7 @@
 /obj/item/proc/describe_power()
 	switch(force)
+		if(0)
+			return "a negligable amount of"
 		if(1 to 2)
 			return "a very small amount of"
 		if(3 to 5)
@@ -7,11 +9,17 @@
 		if(6 to 10)
 			return "a modest amount of"
 		if(11 to 15)
-			return "a respectable amount of"
+			return "a moderate amount of"
 		if(16 to 20)
+			return "a respectable amount of"
+		if(21 to 35)
 			return "a serious amount of"
-		if(21 to 100)
-			return "a lot of"
+		if(36 to 50)
+			return "a very serious amount of"
+		if(51 to 100)
+			return "a very lethal amount of"
+		if(101 to 2000)
+			return "a truly ruinous amount of"
 
 /obj/item/proc/describe_throwpower()
 	switch(throwforce)
