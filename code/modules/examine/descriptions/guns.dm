@@ -16,6 +16,8 @@
 			ammo = projectile_gun.contents[1]
 		P = ammo.BB
 	switch(P.damage)
+		if(0)
+			return "no"
 		if(1 to 5)
 			return "a very small amount of"
 		if(6 to 15)
