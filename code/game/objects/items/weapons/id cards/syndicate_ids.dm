@@ -88,9 +88,9 @@
 	return name
 
 /obj/item/weapon/card/id/syndicate_command
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
-	registered_name = "Syndicate"
-	assignment = "Syndicate Commander"
+	name = "operative ID card"
+	desc = "An ID straight from a mercenary organisation."
+	registered_name = "Operative"
+	assignment = "Operative Commander"
 	icon_state = "syndicate-id"
 	access = list(access_syndicate, access_external_airlocks)
