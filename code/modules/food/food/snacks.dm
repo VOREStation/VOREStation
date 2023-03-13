@@ -7041,7 +7041,7 @@
 	description_fluff = "Despite Spacer advertisements consistently portraying their snack cakes as life-saving, \
 	tear-jerking survival food for spacers in all kinds of dramatic scenarios, the Spacer Snack Cake has been \
 	statistically proven to lower survival rates on all missions where it is present."
-	package_trash = /obj/item/trash/spacercake_wrap
+	package_trash = /obj/item/trash/spacer_cake_wrap
 	package_open_state = "spacercake_open"
 	filling_color = "#FFE591"
 	center_of_mass = list("x"=15, "y"=11)
