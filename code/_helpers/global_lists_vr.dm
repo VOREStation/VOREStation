@@ -935,7 +935,8 @@ var/global/list/selectable_speech_bubbles = list(
 	"maus",
 	"heart",
 	"textbox",
-	"posessed")
+	"posessed",
+	"square")
 
 
 
