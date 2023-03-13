@@ -372,7 +372,7 @@ AI MODULES
 		return 0
 	..()
 
-/obj/item/weapon/aiModule/icate // Slightly more dynamic freeform module -- TLE
+/obj/item/weapon/aiModule/syndicate // Slightly more dynamic freeform module -- TLE
 	name = "hacked AI module"
 	var/newFreeFormLaw = ""
 	desc = "A hacked AI law module: '<freeform>'"
