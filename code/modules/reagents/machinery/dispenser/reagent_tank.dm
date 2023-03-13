@@ -492,17 +492,3 @@
 	reagents.splash_area(get_turf(src), 3)
 	visible_message(span("danger", "The [src] bursts open, spreading oil all over the area."))
 	qdel(src)
-<<<<<<< HEAD
-=======
-
-/obj/structure/reagent_dispensers/he3
-	name = "fueltank"
-	desc = "A fueltank."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "weldtank"
-	amount_per_transfer_from_this = 10
-
-/obj/structure/reagent_dispensers/he3/Initialize()
-	. = ..()
-	reagents.add_reagent("helium3",1000)
->>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
