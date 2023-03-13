@@ -5,8 +5,11 @@
 		P = new energy_gun.projectile_type()
 	else if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
 		var/obj/item/weapon/gun/projectile/shotgun/pump/projectile_gun = src
-		var/obj/item/ammo_casing/ammo = projectile_gun.chambered
-		P = ammo.BB
+		if(isnull(projectile_gun.chambered) || isnull(projectile_gun.chambered.BB))
+			return "no"
+		else
+			var/obj/item/ammo_casing/ammo = projectile_gun.chambered
+			P = ammo.BB
 	else if(istype(src, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/projectile_gun = src
 		var/obj/item/ammo_casing/ammo
@@ -41,8 +44,11 @@
 		P = new energy_gun.projectile_type()
 	else if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
 		var/obj/item/weapon/gun/projectile/shotgun/pump/projectile_gun = src
-		var/obj/item/ammo_casing/ammo = projectile_gun.chambered
-		P = ammo.BB
+		if(isnull(projectile_gun.chambered) || isnull(projectile_gun.chambered.BB))
+			return "as it has no projectile loaded"
+		else
+			var/obj/item/ammo_casing/ammo = projectile_gun.chambered
+			P = ammo.BB
 	else if(istype(src, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/projectile_gun = src
 		var/obj/item/ammo_casing/ammo
@@ -107,7 +113,10 @@
 		is_loaded = LAZYLEN(src.contents)
 	if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
 		var/obj/item/weapon/gun/projectile/shotgun/pump/shotgun = src
-		is_loaded = shotgun.chambered
+		if(isnull(shotgun.chambered) || isnull(shotgun.chambered.BB))
+			is_loaded = null
+		else
+			is_loaded = shotgun.chambered
 	if(istype(src, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/projectile_gun = src
 		var/ammo
