@@ -372,7 +372,7 @@ AI MODULES
 		return 0
 	..()
 
-/obj/item/weapon/aiModule/syndicate // Slightly more dynamic freeform module -- TLE
+/obj/item/weapon/aiModule/icate // Slightly more dynamic freeform module -- TLE
 	name = "hacked AI module"
 	var/newFreeFormLaw = ""
 	desc = "A hacked AI law module: '<freeform>'"
@@ -427,17 +427,11 @@ AI MODULES
 	origin_tech = list(TECH_DATA = 3, TECH_ILLEGAL = 1)
 	laws = new/datum/ai_laws/nanotrasen_aggressive()
 
-/******************** Syndicate Directives ********************/
+/******************** Mercenary Directives ********************/
 
-<<<<<<< HEAD
 /obj/item/weapon/aiModule/syndicate_override
-	name = "\improper 'Syndicate Directives' core AI module"
-	desc = "A 'Syndicate Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
-=======
-/obj/item/aiModule/syndicate_override
 	name = "\improper 'Mercenary Directives' core AI module"
 	desc = "A 'Mercenary Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
->>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	origin_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 4)
 	laws = new/datum/ai_laws/syndicate_override()
 
