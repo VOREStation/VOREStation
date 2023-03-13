@@ -23,15 +23,15 @@
 	desc = "A pair of cowboy boots made from python skin."
 	icon_state = "cowboy_snakeskin"
 
-/obj/item/clothing/shoes/boots/cowboy/lizard
-	name = "lizard skin boots"
-	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
-	icon_state = "lizardboots_green"
+/obj/item/clothing/shoes/boots/cowboy/green
+	name = "green cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots made out of snappy green leather."
+	icon_state = "cowboy_green"
 
-/obj/item/clothing/shoes/boots/cowboy/lizard/masterwork
-	name = "\improper Hugs-The-Feet lizard skin boots"
-	desc = "A pair of masterfully crafted lizard skin boots. Finally a good application for the station's most bothersome inhabitants."
-	icon_state = "lizardboots_blue"
+/obj/item/clothing/shoes/boots/cowboy/blue
+	name = "blue cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots made out of extra fancy blue leather."
+	icon_state = "cowboy_blue"
 
 /obj/item/clothing/shoes/boots/cowboy/brown
 	name = "brown cowboy boots"
