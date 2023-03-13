@@ -159,12 +159,7 @@
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
 	icon_state = "syndicate"
-<<<<<<< HEAD
-	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-=======
-	default_worn_icon = 'icons/mob/spacesuit.dmi'
 	desc = "A plastic replica of a mercenary combat space suit, you'll look just like a real bloodthirsty mercenary in this! This is a toy, it is not made for use in space!"
->>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
 	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
