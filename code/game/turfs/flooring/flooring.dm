@@ -619,7 +619,6 @@ var/list/flooring_types
 	desc = "A flat area of poured concrete flooring."
 	icon = 'icons/turf/concrete.dmi'
 	icon_base = "concrete"
-<<<<<<< HEAD
 	is_plating = FALSE 	//VOREStation edit. It's a lot cooler if it's actual tile.
 	can_paint = 1		//VOREStation edit. Let's allow for some fun.
 	can_engrave = 1		//VOREStation edit. Fun.
@@ -635,7 +634,3 @@ var/list/flooring_types
 /decl/flooring/grass/seasonal_grass/dark
 	name = "grass"
 	icon_base = "darkgrass"
-=======
-	is_plating = TRUE
-	plating_type = /decl/flooring/concrete
->>>>>>> 69ba99b5e6e... /tg/ era language pass (#8962)
