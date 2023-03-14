@@ -96,6 +96,63 @@
 /atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
 	return -1
 
+/**
+ * Very flexible visible message analogue allowing for different messages to be shown to two different mobs as well as any nearby observers.
+ *
+ * All arguments except `other` and `message` are optional, but the proc is built around using at least a few of them!
+ * * `other` - The mob that's interacting with this one
+ * * `message` - Shown to all nearby observers, e.g. "X does something to Y!"
+ * * `self_message` - Shown to the source mob, e.g. "X does something to you!"
+ * * `other_message` - Shown to the other, e.g. "You do something to Y!"
+ * * `self_target_message` - Shown to nearby mobs if `src == other`, e.g. "X do something to themselves!"
+ * * `self_targeted_message` - As above, but to the source mob themselves, e.g. "You do something to yourself!"
+ * * `blind_message` - Shown to nearby blind mobs instead of `message`, e.g. "You hear something!"
+ * * `blind_self_message` - Shown to the source mob if they're blind, e.g. "You feel something done to you!"
+ */
+/mob/proc/interact_message(mob/other, message, self_message, other_message, self_target_message, self_targeted_message, blind_message, blind_self_message, range = world.view, list/exclude_objs = null, list/exclude_mobs = null)
+	var/turf/T = get_turf(src)
+	var/list/in_range = get_mobs_and_objs_in_view_fast(T, range, remote_ghosts = FALSE)
+	T = get_turf(other)
+	// We check for anything in range of either mob, not just one
+	in_range += get_mobs_and_objs_in_view_fast(T, range, remote_ghosts = FALSE)
+	var/list/mobs = uniquelist(in_range["mobs"])
+	var/list/objs = uniquelist(in_range["objs"])
+	mobs.Remove(exclude_mobs)
+	objs.Remove(exclude_objs)
+
+	for (var/V in objs)
+		var/obj/O = V
+		O.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+
+	for (var/V in mobs)
+		var/mob/M = V
+
+		if (self_targeted_message && other == src && M == src)
+			// Always shown even if blind/deaf, since the initiating mob will always know what they're doing to themselves
+			M.show_message(self_targeted_message)
+			continue
+
+		else if (self_message && M == src)
+			M.show_message(self_message, VISIBLE_MESSAGE, blind_self_message, AUDIBLE_MESSAGE)
+			continue
+
+		else if (M == other)
+			M.show_message(other_message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+			continue
+
+		else if (!M.is_blind() && M.see_invisible >= src.invisibility)
+			M.show_message(other == src && self_target_message ? self_target_message : message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+			continue
+
+		else if (blind_message)
+			M.show_message(blind_message, AUDIBLE_MESSAGE)
+			continue
+
+	if (shadow)
+		shadow.visible_message(message, self_message, blind_message, exclude_mobs, range)
+	else if (other.shadow)
+		other.shadow.visible_message(message, self_message, blind_message, exclude_mobs, range)
+
 // Show a message to all mobs and objects in earshot of this one
 // This would be for audible actions by the src mob
 // message is the message output to anyone who can hear.
