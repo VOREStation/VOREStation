@@ -51,12 +51,8 @@ var/list/ai_verbs_default = list(
 	var/obj/machinery/camera/camera = null
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
-<<<<<<< HEAD
 	var/icon/holo_icon				//Default is assigned when AI is created.
-=======
-	var/icon/holo_icon//Default is assigned when AI is created.
 	var/holo_color = null
->>>>>>> 2bec817db26... AI can change their hologram color. (#8955)
 	var/list/connected_robots = list()
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/communicator/aiCommunicator = null
