@@ -82,6 +82,14 @@
 	containername = "Disposal Dispenser Crate"
 	access = access_atmospherics
 
+/datum/supply_pack/atmos/rapid_pipe_dispenser
+	contains = list(/obj/item/weapon/pipe_dispenser)
+	name = "Rapid Pipe Dispenser"
+	cost = 100
+	containertype = /obj/structure/closet/crate/secure/aether
+	containername = "Rapid Pipe Dispenser Crate"
+	access = access_atmospherics
+
 /datum/supply_pack/atmos/internals
 	name = "Internals crate"
 	contains = list(
