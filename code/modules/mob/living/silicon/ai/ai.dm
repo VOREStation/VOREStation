@@ -662,7 +662,7 @@ var/list/ai_verbs_default = list(
 						"male skrell",
 						"female skrell"
 					)
-					input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list
+					input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list)
 
 
 
