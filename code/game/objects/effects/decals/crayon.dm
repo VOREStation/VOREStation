@@ -6,15 +6,10 @@
 	layer = DIRTY_LAYER
 	anchored = TRUE
 
-<<<<<<< HEAD
 /obj/effect/decal/cleanable/crayon/New(location,main = "#FFFFFF",shade = "#000000",var/type = "rune")
 	..()
 	loc = location
 
-=======
-/obj/effect/decal/cleanable/crayon/Initialize(var/ml, main = "#FFFFFF",shade = "#000000",var/type = "rune")
-	. = ..(ml, 0) // mapload, age
->>>>>>> a2c68d9a8df... Sheet storage has different caps per type. (#9029)
 	name = type
 	desc = "A [type] drawn in crayon."
 
