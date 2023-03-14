@@ -234,9 +234,15 @@ MRE Stuff
 /obj/item/weapon/storage/mrebag/attack_self(mob/user)
 	open(user)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/mrebag/open(mob/user)
 	if(!opened && !isobserver(user))
 		to_chat(usr, "<span class='notice'>The pouch heats up as you break the vaccum seal.</span>")
+=======
+/obj/item/storage/mrebag/open(mob/user)
+	if(!opened)
+		to_chat(usr, "<span class='notice'>The pouch heats up as you break the vacuum seal.</span>")
+>>>>>>> 01d7833f135... Merge pull request #9031 from Verkister/patch-102
 		opened = 1
 		update_icon()
 	. = ..()
