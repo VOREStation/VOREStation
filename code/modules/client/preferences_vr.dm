@@ -5,6 +5,7 @@
 	var/directory_ad = ""		//Advertisement stuff to show in character directory.
 	var/sensorpref = 5			//Set character's suit sensor level
 	var/capture_crystal = 1	//Whether or not someone is able to be caught with capture crystals
+	var/auto_backup_implant = FALSE //Whether someone starts with a backup implant or not.
 
 	var/job_talon_high = 0
 	var/job_talon_med = 0

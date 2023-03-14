@@ -886,3 +886,19 @@
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT)
 	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_unathi_blocky_head
+	name = "Unathi alt head (Blocky)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "unathi_blocky_head"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	hide_body_parts = list(BP_HEAD)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_unathi_blocky_head_eyes
+	name = "Unathi alt head eyes (Blocky)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "unathi_blocky_head_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)

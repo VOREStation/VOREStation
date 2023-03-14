@@ -203,6 +203,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		persist_nif_data(human)
 
 	if(durability <= 0)
+		durability = 0	//failsafe us to a minimum of 0% so we don't just wash into massively negative durability from repeated EMPs
 		stat = NIF_TEMPFAIL
 		update_icon()
 
@@ -229,6 +230,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		var/obj/item/stack/cable_coil/C = W
 		if(C.get_amount() < 3)
 			to_chat(user,"<span class='warning'>You need at least three coils of wire to add them to \the [src].</span>")
+			return
+		if(durability >= initial(durability))
+			to_chat(user,"<span class='notice'>There's no damaged wiring that needs replacing!</span>")
+			open = 3
+			update_icon()
 			return
 		if(do_after(user, 6 SECONDS, src) && open == 1 && C.use(3))
 			user.visible_message("[user] replaces some wiring in \the [src].","<span class='notice'>You replace any burned out wiring in \the [src].</span>")
@@ -377,7 +383,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	last_notification = message // TGUI Hook
 
-	to_chat(human,"<b>\[\icon[src.big_icon][bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
+	to_chat(human,"<span class='filter_nif'><b>\[\icon[src.big_icon][bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"</span>")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
 		human << bad_sound

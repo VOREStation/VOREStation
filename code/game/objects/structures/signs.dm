@@ -256,12 +256,12 @@
 
 /obj/structure/sign/redcross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "An interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "bluecross"
 
 /obj/structure/sign/greencross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "An interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "bluecross2"
 
 /obj/structure/sign/goldenplaque

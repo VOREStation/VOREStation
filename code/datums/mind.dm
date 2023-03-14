@@ -291,7 +291,7 @@
 				if (!steal.select_target())
 					return
 
-			if("download","capture","absorb")
+			if("download","capture","absorb", "vore")
 				var/def_num
 				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
@@ -310,6 +310,9 @@
 					if("absorb")
 						new_objective = new /datum/objective/absorb
 						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
+					if("vore")
+						new_objective = new /datum/objective/vore
+						new_objective.explanation_text = "Devour [target_number] [target_number == 1 ? "person" : "people"]. What happens to them after you do that is irrelevant."
 				new_objective.owner = src
 				new_objective.target_amount = target_number
 

@@ -12,7 +12,7 @@
 	log_adminsay(msg,src)
 
 	for(var/client/C in GLOB.admins)
-		if(check_rights(R_ADMIN))
+		if(check_rights(R_ADMIN, 0, C))
 			to_chat(C, "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " <span class='name'>[key_name(usr, 1)]</span>([admin_jump_link(mob, src)]): <span class='message'>[msg]</span></span>")
 
 	feedback_add_details("admin_verb","M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

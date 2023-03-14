@@ -498,6 +498,8 @@
 
 	if(prey.ckey)
 		GLOB.prey_eaten_roundstat++
+		if(owner.mind)
+			owner.mind.vore_prey_eaten++
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,

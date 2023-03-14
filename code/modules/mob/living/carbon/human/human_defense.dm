@@ -465,7 +465,7 @@ emp_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		src.visible_message("<font color='red'>[src] has been hit in the [hit_area] by [O].</font>")
+		src.visible_message("<span class='filter_warning'><font color='red'>[src] has been hit in the [hit_area] by [O].</font></span>")
 
 		if(ismob(O.thrower))
 			add_attack_logs(O.thrower,src,"Hit with thrown [O.name]")
@@ -473,7 +473,7 @@ emp_act
 		//If the armor absorbs all of the damage, skip the rest of the calculations
 		var/soaked = get_armor_soak(affecting, "melee", O.armor_penetration)
 		if(soaked >= throw_damage)
-			to_chat(src, "Your armor absorbs the force of [O.name]!")
+			to_chat(src, "<span class='warning'>Your armor absorbs the force of [O.name]!</span>")
 			return
 
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
@@ -511,7 +511,7 @@ emp_act
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
+			visible_message("<span class='filter_warning'><font color='red'>[src] staggers under the impact!</font></span>","<span class='filter_warning'><font color='red'>You stagger under the impact!</font></span>")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
