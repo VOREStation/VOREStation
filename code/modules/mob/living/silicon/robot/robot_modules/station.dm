@@ -418,7 +418,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/analyzer(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
-<<<<<<< HEAD
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
@@ -432,20 +431,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
-=======
-	src.modules += new /obj/item/gripper(src)
-	src.modules += new /obj/item/gripper/circuit(src)
-	src.modules += new /obj/item/lightreplacer(src)
-	src.modules += new /obj/item/pipe_painter(src)
-	src.modules += new /obj/item/floor_painter(src)
-	src.modules += new /obj/item/inflatable_dispenser/robot(src)
-	src.emag = new /obj/item/melee/baton/robot/arm(src)
-	src.modules += new /obj/item/geiger(src)
-	src.modules += new /obj/item/rcd/electric/mounted/borg(src)
-	src.modules += new /obj/item/pipe_dispenser(src)
-	src.modules += new /obj/item/pickaxe/plasmacutter(src)
-	src.modules += new /obj/item/gripper/no_use/loader(src)
->>>>>>> 7402020403d... Finally allows RPD to be used. (#9028)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
@@ -899,6 +884,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/pipe_dispenser(src)
 
 	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += robot.internals
@@ -960,13 +946,7 @@ var/global/list/robot_modules = list(
 	P.synths = list(plastic)
 	src.modules += P
 
-<<<<<<< HEAD
 /obj/item/weapon/robot_module/drone/construction
-=======
-	src.modules += new /obj/item/pipe_dispenser(src)	// At the end to go beside the construction's RCD.
-
-/obj/item/robot_module/drone/construction
->>>>>>> 7402020403d... Finally allows RPD to be used. (#9028)
 	name = "construction drone module"
 	hide_on_manifest = TRUE
 	channels = list("Engineering" = 1)
