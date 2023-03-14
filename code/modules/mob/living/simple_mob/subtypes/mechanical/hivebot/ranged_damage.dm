@@ -112,12 +112,8 @@
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege
 	name = "siege engine hivebot"
 	desc = "A large robot capable of delivering long range bombardment."
-<<<<<<< HEAD
-	projectiletype = /obj/item/projectile/arc/test
-=======
 	projectiletype = /obj/item/projectile/arc/fragmentation/mortar
 	projectilesound = 'sound/weapons/mech_mortar.ogg'
->>>>>>> 7b35dc7e9ea... Merge pull request #9039 from Mechoid/SiegeHivebot
 	icon_scale_x = 2
 	icon_scale_y = 2
 	icon_state = "red"
