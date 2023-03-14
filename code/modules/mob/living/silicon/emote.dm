@@ -1,11 +1,8 @@
 var/list/_silicon_default_emotes = list(
 	/decl/emote/audible/synth,
-<<<<<<< HEAD
 	/decl/emote/audible/synth/beep,
-=======
 	/decl/emote/audible/synth/ping,
 	/decl/emote/audible/synth/bing,
->>>>>>> ca0065ea05e... Merge pull request #9033 from Varlaisvea/goodbing
 	/decl/emote/audible/synth/buzz,
 	/decl/emote/audible/synth/confirm,
 	/decl/emote/audible/synth/deny,
