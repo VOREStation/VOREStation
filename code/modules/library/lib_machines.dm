@@ -177,10 +177,16 @@
 			dat += {"<A href='?src=\ref[src];switchscreen=1'>1. View General Inventory</A><BR>
 			<A href='?src=\ref[src];switchscreen=2'>2. View Checked Out Inventory</A><BR>
 			<A href='?src=\ref[src];switchscreen=3'>3. Check out a Book</A><BR>
+<<<<<<< HEAD
 			<A href='?src=\ref[src];switchscreen=4'>4. Connect to Internal Archive</A><BR>
 			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>
 			<A href='?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>
 			<A href='?src=\ref[src];switchscreen=8'>8. Access External Archive</A><BR>"} //VOREStation Edit end
+=======
+			<A href='?src=\ref[src];switchscreen=4'>4. Connect to NanoTrasen Literature Archive</A><BR>
+			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>
+			<A href='?src=\ref[src];switchscreen=6'>6. Print a Holy Book</A><BR>"}
+>>>>>>> 7a1ebc1c955... Merge pull request #9036 from Cerebulon/censoring_books
 			if(src.emagged)
 				dat += "<A href='?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
@@ -271,6 +277,7 @@
 			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes no responsibilities for loss of sanity resulting from this action.<p>
 			<A href='?src=\ref[src];arccheckout=1'>Yes.</A><BR>
 			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
+<<<<<<< HEAD
 		if(8)
 			dat += "<h3>External Archive</h3>" //VOREStation Edit
 			establish_old_db_connection()
@@ -300,6 +307,8 @@
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
+=======
+>>>>>>> 7a1ebc1c955... Merge pull request #9036 from Cerebulon/censoring_books
 	//dat += "<A HREF='?src=\ref[user];mach_close=library'>Close</A><br><br>"
 	user << browse(dat, "window=library")
 	onclose(user, "library")
@@ -385,12 +394,10 @@
 
 				else
 					for (var/mob/V in hearers(src))
-						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
+						V.show_message("<b>[src]</b>'s monitor flashes, \"Holy Book printer currently unavailable, please wait a moment.\"")
 
 			if("7")
 				screenstate = 7
-			if("8")
-				screenstate = 8
 	if(href_list["arccheckout"])
 		if(src.emagged)
 			src.arcanecheckout = 1
