@@ -2153,15 +2153,35 @@
 /area/surface/station/engineering/atmos/monitoring)
 "bzc" = (
 /obj/structure/table/glass,
+<<<<<<< HEAD
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/clipboard,
 /obj/item/weapon/folder/white,
 /obj/item/weapon/pen,
+=======
+/obj/item/paper_bin{
+	pixel_x = -14
+	},
+/obj/item/clipboard{
+	pixel_x = -14
+	},
+/obj/item/folder/white{
+	pixel_x = -14
+	},
+/obj/item/pen{
+	pixel_x = -12
+	},
+>>>>>>> fa3434f7cf0... Static communicators (#9032)
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 6
+	},
+/obj/item/communicator/desktop{
+	occupation = "research";
+	pixel_x = 3;
+	static_name = "research lobby communicator"
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/lab)
@@ -5956,6 +5976,12 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
+/obj/item/communicator/desktop{
+	occupation = "cargo";
+	pixel_x = -16;
+	pixel_y = 6;
+	static_name = "cargo lobby communicator"
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/office)
 "dUH" = (
@@ -6622,13 +6648,27 @@
 	dir = 8;
 	pixel_x = -21
 	},
+<<<<<<< HEAD
 /obj/item/weapon/material/ashtray/glass,
 /obj/item/device/flashlight/lamp/green,
+=======
+/obj/item/material/ashtray/glass,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 12;
+	pixel_y = 10
+	},
+>>>>>>> fa3434f7cf0... Static communicators (#9032)
 /obj/item/sticky_pad/random{
-	pixel_x = 8;
+	pixel_x = 16;
 	pixel_y = -1
 	},
 /obj/effect/zone_divider,
+/obj/item/communicator/desktop{
+	occupation = "internal affairs";
+	pixel_x = -3;
+	pixel_y = 4;
+	static_name = "internal affairs office communicator"
+	},
 /turf/simulated/floor/wood,
 /area/surface/station/command/internalaffairs)
 "esP" = (
@@ -26675,8 +26715,25 @@
 /area/surface/station/hallway/primary/secondfloor/west)
 "rwU" = (
 /obj/structure/table/wooden_reinforced,
+<<<<<<< HEAD
 /obj/item/weapon/melee/chainofcommand,
 /obj/item/weapon/hand_tele,
+=======
+/obj/item/melee/chainofcommand{
+	pixel_y = 9
+	},
+/obj/item/hand_tele{
+	pixel_y = 9
+	},
+/obj/structure/sign/calendar{
+	pixel_x = -32
+	},
+/obj/item/communicator/desktop{
+	occupation = "site manager";
+	pixel_y = -12;
+	static_name = "site manager's office communicator"
+	},
+>>>>>>> fa3434f7cf0... Static communicators (#9032)
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/captain)
 "rwZ" = (
@@ -27275,7 +27332,10 @@
 /area/surface/station/rnd/research)
 "rSN" = (
 /obj/structure/table/standard,
-/obj/item/sticky_pad/random,
+/obj/item/communicator/desktop{
+	occupation = "public";
+	static_name = "public communicator"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/hallway/secondary/secondfloor/dormhallway)
 "rSS" = (
@@ -31530,6 +31590,15 @@
 /obj/machinery/computer/skills{
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/obj/item/toy/desk/fan{
+	pixel_y = 18
+	},
+/obj/structure/sign/clock{
+	pixel_y = -32
+	},
+>>>>>>> fa3434f7cf0... Static communicators (#9032)
 /turf/simulated/floor/wood,
 /area/surface/station/command/internalaffairs)
 "uzg" = (
@@ -37606,6 +37675,10 @@
 "yjT" = (
 /obj/structure/table/standard,
 /obj/item/toy/plushie/corgi,
+/obj/item/sticky_pad/random{
+	pixel_x = 4;
+	pixel_y = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/hallway/secondary/secondfloor/dormhallway)
 "yka" = (
