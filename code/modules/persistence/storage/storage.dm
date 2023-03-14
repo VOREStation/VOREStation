@@ -2,7 +2,7 @@
 	name = "storage"
 	entries_expire_at = 1
 	has_admin_data = TRUE
-	
+
 	// Don't use these for storage persistence. If someone takes some sheets out and puts them back in mixed in with
 	// new sheets, how do you know the age of the stack? If you want sheets to 'decay', see go_missing_chance
 	entries_decay_at = 0
@@ -28,15 +28,21 @@
 	var/list/item_list = get_storage_list(entry)
 	var/list/storage_list = list()
 	for(var/item in item_list)
-		storage_list[item] = min(stored, storage_list[item] + item_list[item]) // Can't store more than max_storage
-		
-		// stored gets reduced by qty stored, if greater than stored,
-		// previous assignment will handle overage, and we set to 0
-		if(!store_per_type)
-			stored = max(stored - item_list[item], 0) 
-	
+		if(islist(max_storage))
+			if(!is_path_in_list(item, stored))
+				stored[item] = stored["default"]
+			storage_list[item] = min(stored[item], storage_list[item] + item_list[item]) // Can't store more than max_storage
+
+		else
+			storage_list[item] = min(stored, storage_list[item] + item_list[item]) // Can't store more than max_storage
+
+			// stored gets reduced by qty stored, if greater than stored,
+			// previous assignment will handle overage, and we set to 0
+			if(!store_per_type)
+				stored = max(stored - item_list[item], 0)
+
 	LAZYADDASSOC(., "items", storage_list)
-	
+
 // Usage: returns list with structure:
 //  list(
 //      [type1] = [stored_quantity],
