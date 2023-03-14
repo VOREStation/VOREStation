@@ -113,14 +113,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: register_to_holder()
 // Parameters: None
 // Description: Tries to register ourselves to the mob that we've presumably spawned in. Not the most amazing way of doing this.
-<<<<<<< HEAD
 /obj/item/device/communicator/proc/register_to_holder()
-=======
-/obj/item/communicator/proc/register_to_holder()
 	if(static_name)
 		register_device(static_name)
 		initialize_exonet(loc)
->>>>>>> fa3434f7cf0... Static communicators (#9032)
 	if(ismob(loc))
 		register_device(loc.name)
 		initialize_exonet(loc)
