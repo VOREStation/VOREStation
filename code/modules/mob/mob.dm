@@ -433,11 +433,14 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << link("https://wiki.vore-station.net/Changelog")
+
+	/*
 	if(prefs.lastchangelog != changelog_hash)
 		prefs.lastchangelog = changelog_hash
 		SScharacter_setup.queue_preferences_save(prefs)
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+	*/
 
 /mob/verb/observe()
 	set name = "Observe"
