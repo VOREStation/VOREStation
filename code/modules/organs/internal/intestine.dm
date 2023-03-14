@@ -16,8 +16,13 @@
 	if (. >= 2)
 		if(prob(1))
 			owner.custom_pain("Your abdomen feels like it's tearing itself apart!",1)
+<<<<<<< HEAD
 			owner.m_intent = "walk"
 			owner.hud_used.move_intent.icon_state = "walking"
+=======
+			if(!IS_WALKING(owner))
+				owner.set_move_intent(owner.get_movement_intent_with_flag(MOVEMENT_INTENT_WALKING))
+>>>>>>> fa1082881b7... Merge pull request #9050 from MistakeNot4892/drakemove
 
 /obj/item/organ/internal/intestine/xeno
 	color = "#555555"

@@ -34,6 +34,10 @@
 	zone_sel = null
 
 /mob/Initialize()
+<<<<<<< HEAD
+=======
+	move_intent = GET_DECL(move_intents[1]) // Sets the initial move_intent.
+>>>>>>> fa1082881b7... Merge pull request #9050 from MistakeNot4892/drakemove
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src

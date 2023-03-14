@@ -17,6 +17,11 @@
 
 	has_huds = TRUE // We do show AI status huds for buildmode players
 
+	move_intents = list(
+		/decl/move_intent/animal_run,
+		/decl/move_intent/animal_walk
+	)
+
 	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
@@ -230,17 +235,17 @@
 	return ..()
 */
 /mob/living/simple_mob/movement_delay()
-	. = movement_cooldown
 
 	if(force_max_speed)
 		return -3
-
+	. = 0
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.haste) && M.haste == TRUE)
 			return -3
 		if(!isnull(M.slowdown))
 			. += M.slowdown
 
+	. += ..() + movement_cooldown
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
 	if(T && T.movement_cost && (!hovering || !flying)) // Flying mobs ignore turf-based slowdown. Aquatic mobs ignore water slowdown, and can gain bonus speed in it.
@@ -258,8 +263,6 @@
 
 	if(m_intent == "walk")
 		. *= 1.5
-
-	. += config.animal_delay
 
 	. += ..()
 

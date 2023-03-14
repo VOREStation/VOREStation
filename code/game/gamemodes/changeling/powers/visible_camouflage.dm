@@ -41,7 +41,11 @@
 			to_chat(src, "<span class='notice'>We may move at our normal speed while hidden.</span>")
 
 		if(must_walk)
+<<<<<<< HEAD
 			H.set_m_intent("walk")
+=======
+			H.set_move_intent(H.get_movement_intent_with_flag(MOVEMENT_INTENT_WALKING))
+>>>>>>> fa1082881b7... Merge pull request #9050 from MistakeNot4892/drakemove
 
 		var/remain_cloaked = TRUE
 		while(remain_cloaked) //This loop will keep going until the player uncloaks.
@@ -65,7 +69,11 @@
 		H.invisibility = initial(invisibility)
 		visible_message("<span class='warning'>[src] suddenly fades in, seemingly from nowhere!</span>",
 		"<span class='notice'>We revert our camouflage, revealing ourselves.</span>")
+<<<<<<< HEAD
 		H.set_m_intent("run")
+=======
+		H.set_move_intent(H.get_movement_intent_with_flag(MOVEMENT_INTENT_RUNNING))
+>>>>>>> fa1082881b7... Merge pull request #9050 from MistakeNot4892/drakemove
 		H.mind.changeling.cloaked = 0
 		H.mind.changeling.chem_recharge_rate = old_regen_rate
 

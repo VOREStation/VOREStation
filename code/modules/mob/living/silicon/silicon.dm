@@ -1,13 +1,18 @@
 /mob/living/silicon
 	gender = NEUTER
 	voice_name = "synthesized voice"
+	has_huds = TRUE
+	move_intents = list(
+		/decl/move_intent/run/robot,
+		/decl/move_intent/walk/robot
+	)
+
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
 	var/list/stating_laws = list()// Channels laws are currently being stated on
 	var/obj/item/device/radio/common_radio
 
-	has_huds = TRUE
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
 
 	//Used in say.dm.

@@ -1,8 +1,13 @@
 /mob/observer
 	name = "observer"
 	desc = "This shouldn't appear"
+<<<<<<< HEAD
 	density = FALSE
 	vis_flags = NONE
+=======
+	density = 0
+	move_intents = list(/decl/move_intent/no_delay)
+>>>>>>> fa1082881b7... Merge pull request #9050 from MistakeNot4892/drakemove
 
 /mob/observer/dead
 	name = "ghost"

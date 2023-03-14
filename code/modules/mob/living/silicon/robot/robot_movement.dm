@@ -35,8 +35,6 @@
 	if(get_restraining_bolt())	// Borgs with Restraining Bolts move slower.
 		. += 1
 
-	. += config.robot_delay
-
 	. += ..()
 
 // NEW: Use power while moving.

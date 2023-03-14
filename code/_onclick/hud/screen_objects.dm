@@ -278,8 +278,12 @@
 					var/mob/living/carbon/C = usr
 					if(C.legcuffed)
 						to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
+<<<<<<< HEAD
 						C.m_intent = "walk"	//Just incase
 						C.hud_used.move_intent.icon_state = "walking"
+=======
+						C.set_move_intent(C.get_movement_intent_with_flag(MOVEMENT_INTENT_WALKING)) // Just incase.
+>>>>>>> fa1082881b7... Merge pull request #9050 from MistakeNot4892/drakemove
 						return 1
 				var/mob/living/L = usr
 				switch(L.m_intent)
