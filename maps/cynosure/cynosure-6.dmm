@@ -3244,6 +3244,19 @@
 /obj/item/toy/chess/rook_white,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
+<<<<<<< HEAD
+=======
+"dLe" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/arrivals/right,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "steel"
+	},
+/area/centcom/main_hall)
+>>>>>>> b67543e5db2... Merge pull request #9035 from Cerebulon/arri_vals
 "dLk" = (
 /obj/structure/table/standard,
 /obj/item/weapon/deck/cards,
@@ -12001,6 +12014,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner{
 	dir = 8
 	},
+/obj/effect/floor_decal/arrivals,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -15145,6 +15159,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner,
+/obj/effect/floor_decal/arrivals/right,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -20736,6 +20751,19 @@
 	icon_state = "white"
 	},
 /area/shuttle/trade)
+<<<<<<< HEAD
+=======
+"wMZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/arrivals,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "steel"
+	},
+/area/centcom/main_hall)
+>>>>>>> b67543e5db2... Merge pull request #9035 from Cerebulon/arri_vals
 "wNd" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/organ/internal/stack,
@@ -35006,7 +35034,7 @@ oqK
 wja
 rOS
 oqK
-wja
+dLe
 gBA
 hwF
 pAD
@@ -36034,7 +36062,7 @@ oqK
 wja
 rOS
 oqK
-wja
+wMZ
 gBA
 uOQ
 pAD
