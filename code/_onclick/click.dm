@@ -353,10 +353,7 @@
 		facedir(direction)
 
 /obj/screen/click_catcher
-<<<<<<< HEAD
 	name = "" // Empty string names don't show up in context menu clicks
-=======
->>>>>>> 36201e517c2... Merge pull request #9045 from Ilysen/click-catcher-by-sa
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "click_catcher"
 	plane = CLICKCATCHER_PLANE
