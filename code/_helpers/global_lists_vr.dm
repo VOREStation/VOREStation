@@ -13,6 +13,10 @@ var/global/list/traits_costs = list()		// Just path = cost list, saves time in c
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
 var/global/list/active_ghost_pods = list()
 
+//Global vars for making the overmap_renamer subsystem.
+//Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
+var/global/list/visitable_overmap_object_instances = list()
+
 var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")
 
 // Used by the ban panel to determine what departments are offmap departments. All these share an 'offmap roles' ban.
