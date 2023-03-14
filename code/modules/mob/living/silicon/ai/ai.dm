@@ -52,6 +52,7 @@ var/list/ai_verbs_default = list(
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon				//Default is assigned when AI is created.
+	var/holo_color = null
 	var/list/connected_robots = list()
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/communicator/aiCommunicator = null
@@ -595,108 +596,76 @@ var/list/ai_verbs_default = list(
 		return
 
 	var/input
-	var/choice = tgui_alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
+	var/choice
+
+	choice = alert("Would you like to modify your hologram's model, or color?",,"Model","Color","Cancel")
 
 	switch(choice)
-		if("Crew Member") //A seeable crew member (or a dog)
-			var/list/targets = trackable_mobs()
-			if(targets.len)
-				input = tgui_input_list(usr, "Select a crew member:", "Hologram Choice", targets) //The definition of "crew member" is a little loose...
-				//This is torture, I know. If someone knows a better way...
-				if(!input) return
-				var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
-				qdel(holo_icon)
-				holo_icon = new_holo
+		if("Color")
+			input = input("Choose a color:", "Hologram Color", holo_color) as color|null
 
-			else
-				tgui_alert_async(usr, "No suitable records found. Aborting.")
-
-		if("My Character") //Loaded character slot
-			if(!client || !client.prefs) return
-			var/mob/living/carbon/human/dummy/dummy = new ()
-			//This doesn't include custom_items because that's ... hard.
-			client.prefs.dress_preview_mob(dummy)
-			sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
-			dummy.regenerate_icons()
-
-			var/new_holo = getHologramIcon(getCompoundIcon(dummy))
-			qdel(holo_icon)
-			qdel(dummy)
-			holo_icon = new_holo
-
-		else //A premade from the dmi
-			var/icon_list[] = list(
-				"default",
-				"floating face",
-				"singularity",
-				"drone",
-				"carp",
-				"spider",
-				"bear",
-				"slime",
-				"ian",
-				"runtime",
-				"poly",
-				"pun pun",
-				"male human",
-				"female human",
-				"male unathi",
-				"female unathi",
-				"male tajaran",
-				"female tajaran",
-				"male tesharii",
-				"female tesharii",
-				"male skrell",
-				"female skrell"
-			)
-			input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list)
 			if(input)
-				qdel(holo_icon)
-				switch(input)
-					if("default")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
-					if("floating face")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
-					if("singularity")
-						holo_icon = getHologramIcon(icon('icons/obj/singularity.dmi',"singularity_s1"))
-					if("drone")
-						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"drone0"))
-					if("carp")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
-					if("spider")
-						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"nurse"))
-					if("bear")
-						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"brownbear"))
-					if("slime")
-						holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"cerulean adult slime"))
-					if("ian")
-						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
-					if("runtime")
-						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
-					if("poly")
-						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"parrot_fly"))
-					if("pun pun")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"punpun"))
-					if("male human")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumm"))
-					if("female human")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumf"))
-					if("male unathi")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
-					if("female unathi")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
-					if("male tajaran")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
-					if("female tajaran")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
-					if("male tesharii")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))
-					if("female tesharii")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesf"))
-					if("male skrell")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrm"))
-					if("female skrell")
-						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrf"))
+				holo_color = input
+
+		if("Model")
+			choice = tgui_alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
+
+			switch(choice)
+				if("Crew Member") //A seeable crew member (or a dog)
+					var/list/targets = trackable_mobs()
+					if(targets.len)
+						input = tgui_input_list(usr, "Select a crew member:", "Hologram Choice", targets) //The definition of "crew member" is a little loose...
+						//This is torture, I know. If someone knows a better way...
+						if(!input) return
+						var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
+						qdel(holo_icon)
+						holo_icon = new_holo
+
+					else
+						tgui_alert_async(usr, "No suitable records found. Aborting.")
+
+				if("My Character") //Loaded character slot
+					if(!client || !client.prefs) return
+					var/mob/living/carbon/human/dummy/dummy = new ()
+					//This doesn't include custom_items because that's ... hard.
+					client.prefs.dress_preview_mob(dummy)
+					sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
+					dummy.regenerate_icons()
+
+					var/new_holo = getHologramIcon(getCompoundIcon(dummy))
+					qdel(holo_icon)
+					qdel(dummy)
+					holo_icon = new_holo
+
+				else //A premade from the dmi
+					var/icon_list[] = list(
+						"default",
+						"floating face",
+						"singularity",
+						"drone",
+						"carp",
+						"spider",
+						"bear",
+						"slime",
+						"ian",
+						"runtime",
+						"poly",
+						"pun pun",
+						"male human",
+						"female human",
+						"male unathi",
+						"female unathi",
+						"male tajaran",
+						"female tajaran",
+						"male tesharii",
+						"female tesharii",
+						"male skrell",
+						"female skrell"
+					)
+					input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list)
+
+
+
 
 //Toggles the luminosity and applies it by re-entereing the camera.
 /mob/living/silicon/ai/proc/toggle_camera_light()
