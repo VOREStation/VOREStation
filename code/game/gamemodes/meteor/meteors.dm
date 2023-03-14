@@ -53,9 +53,22 @@
 
 	var/Me = pickweight(meteortypes)
 	var/obj/effect/meteor/M = new Me(pickedstart)
+<<<<<<< HEAD
 	M.dest = pickedgoal
 	spawn(0)
 		walk_towards(M, M.dest, 3) //VOREStation Edit - Slower Meteors
+=======
+
+	if(M.planetary && !pickedgoal.outdoors)
+		var/list/Targ = check_trajectory(pickedgoal, pickedstart, PASSTABLE|PASSTREE)
+		if(LAZYLEN(Targ))
+			var/turf/TargetTurf = get_step(get_turf(Targ[1]), get_dir(pickedgoal, pickedstart))
+			if(get_dist(pickedstart, Targ[1]) < get_dist(pickedstart, pickedgoal))
+				pickedgoal = TargetTurf
+
+	M.launch_to_turf(pickedgoal, 1)
+
+>>>>>>> 488f97fdeb6... Merge pull request #9025 from Mechoid/PlanetaryMeteors
 	return
 
 /proc/spaceDebrisStartLoc(startSide, Z)
@@ -167,6 +180,70 @@
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target)
 	return istype(mover, /obj/effect/meteor) ? TRUE : ..()
 
+<<<<<<< HEAD
+=======
+/obj/effect/meteor/proc/launch_to_turf(var/target, var/delay = 0)
+	dest = get_turf(target)
+	start = get_turf(src)
+	var/turf/Current = get_turf(src)
+	var/turf/Target = get_turf(target)
+	if(Current.outdoors)
+		startheight = rand(5,15)
+
+	if(planetary && !Target.outdoors)
+		startheight = rand(5, 20)	// Random "height" of falling meteors. Angle of attack, changes visibility.
+
+	move_toward(Target, delay, TRUE)	// Begin the movement loop.
+
+/obj/effect/meteor/proc/move_toward(var/target, var/delay = 0, var/allow_recursion = FALSE)
+	if(!target)
+		return
+
+	var/turf/StartTurf = get_turf(src)
+	var/turf/EndTurf = get_step(StartTurf, get_dir(StartTurf, target))
+
+	if(planetary)
+		if(!shadow)
+			shadow = new(get_turf(src))
+			shadow.pixel_y = -20
+
+		if(loc == dest)
+			die(TRUE)
+			return
+
+		var/dist_percent = calc_distance_percent()
+		if(!isnull(dist_percent))
+			curheight = startheight * dist_percent
+			src.pixel_y = (curheight * 32)
+
+	if(EndTurf)	// Have we somehow reached the edge of a map without a teleport boundary?
+		Move(EndTurf, delay)
+		if(get_turf(src) == StartTurf)	// If it doesn't move, IE, is blocked by something, take a hit.
+			get_hit()
+
+		if(allow_recursion)
+			if(!QDELETED(src))
+				addtimer(CALLBACK(src, .proc/move_toward, target, delay, allow_recursion), delay)
+
+	else if(!QDELETED(src))	// Then delete ourselves if we haven't been deleted already.
+		qdel(src)
+		return
+
+/obj/effect/meteor/proc/calc_distance_percent()
+	var/current_dest_distance
+	var/max_dest_distance
+
+	if(!start)
+		start = get_turf(src)
+
+	if(!dest)
+		return 0
+
+	current_dest_distance = get_dist(get_turf(src), dest)
+	max_dest_distance = get_dist(start, dest)
+	return current_dest_distance / max_dest_distance
+
+>>>>>>> 488f97fdeb6... Merge pull request #9025 from Mechoid/PlanetaryMeteors
 /obj/effect/meteor/proc/ram_turf(var/turf/T)
 	//first bust whatever is in the turf
 	for(var/atom/A in T)
