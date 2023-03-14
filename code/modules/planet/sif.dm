@@ -280,16 +280,11 @@ var/datum/planet/sif/planet_sif = null
 	effect_message = "<span class='warning'>Rain falls on you.</span>"
 
 	transition_chances = list(
-<<<<<<< HEAD
-		WEATHER_OVERCAST = 25,
-		WEATHER_LIGHT_SNOW = 10,
-=======
 		WEATHER_OVERCAST = 20,
 		WEATHER_LIGHT_SNOW = 5,
 		WEATHER_FOG = 20,
 		WEATHER_RAIN = 40,
 		WEATHER_STORM = 10,
->>>>>>> 9bae8da4d43... Merge pull request #8940 from Mechoid/DistantGulfDLC
 		WEATHER_HAIL = 5
 		)
 	observed_message = "It is raining."
