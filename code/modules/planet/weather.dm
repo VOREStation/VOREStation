@@ -161,7 +161,6 @@
 /datum/weather_holder/proc/get_weather_datum(desired_type)
 	return allowed_weather_types[desired_type]
 
-show_imminent_transition_message
 /datum/weather_holder/proc/show_transition_message()
 	if(!current_weather.transition_messages.len)
 		return
