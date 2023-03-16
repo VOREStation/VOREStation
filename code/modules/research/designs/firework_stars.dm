@@ -46,7 +46,7 @@
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000)
 	build_path = /obj/item/weapon/firework_star/weather/fog
-	sort_string = "IFABB"
+	sort_string = "IFABC"
 
 /datum/design/item/firework_star/weather_rain
 	name = "weather - RAIN"
@@ -55,7 +55,7 @@
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 4000)
 	build_path = /obj/item/weapon/firework_star/weather/rain
-	sort_string = "IFABC"
+	sort_string = "IFABD"
 
 /datum/design/item/firework_star/weather_storm
 	name = "weather - STORM"
@@ -64,7 +64,7 @@
 	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_GOLD = 1000)
 	build_path = /obj/item/weapon/firework_star/weather/storm
-	sort_string = "IFABD"
+	sort_string = "IFABE"
 
 /datum/design/item/firework_star/weather_light_snow
 	name = "weather - LIGHT SNOW"
@@ -73,7 +73,7 @@
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_LEAD = 2000)
 	build_path = /obj/item/weapon/firework_star/weather/light_snow
-	sort_string = "IFABE"
+	sort_string = "IFABF"
 
 /datum/design/item/firework_star/weather_snow
 	name = "weather - MODERATE SNOW"
@@ -82,7 +82,7 @@
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 2000)
 	build_path = /obj/item/weapon/firework_star/weather/snow
-	sort_string = "IFABF"
+	sort_string = "IFABG"
 
 /datum/design/item/firework_star/weather_blizzard
 	name = "weather - HEAVY SNOW"
@@ -91,7 +91,7 @@
 	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 3000)
 	build_path = /obj/item/weapon/firework_star/weather/blizzard
-	sort_string = "IFABG"
+	sort_string = "IFABH"
 
 /datum/design/item/firework_star/weather_hail
 	name = "weather - HAIL"
@@ -100,15 +100,6 @@
 	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_ILLEGAL = 2)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 3000, MAT_PLASTEEL = 4000)
 	build_path = /obj/item/weapon/firework_star/weather/hail
-	sort_string = "IFABH"
-
-/datum/design/item/firework_star/weather_fallout
-	name = "weather - NUCLEAR"
-	desc = "A firework star, designed for use with launcher. Modifies current planetary weather effects. This one creates a heavy cloud of nuclear fallout. DANGEROUS."
-	id = "fireworkfallout"
-	req_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 6, TECH_ILLEGAL = 7)
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_URANIUM = 12000)
-	build_path = /obj/item/weapon/firework_star/weather/fallout
 	sort_string = "IFABI"
 
 /datum/design/item/firework_star/weather_confetti
@@ -119,3 +110,12 @@
 	materials = list(MAT_PLASTIC = 10000, MAT_GLASS = 10000)
 	build_path = /obj/item/weapon/firework_star/weather/confetti
 	sort_string = "IFABJ"
+
+/datum/design/item/firework_star/weather_fallout
+	name = "weather - NUCLEAR"
+	desc = "A firework star, designed for use with launcher. Modifies current planetary weather effects. This one creates a heavy cloud of nuclear fallout. DANGEROUS."
+	id = "fireworkfallout"
+	req_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 6, TECH_ILLEGAL = 7)
+	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_URANIUM = 12000)
+	build_path = /obj/item/weapon/firework_star/weather/fallout
+	sort_string = "IFABK"
