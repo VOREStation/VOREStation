@@ -224,7 +224,7 @@
 	icon_state = "heart"
 	spawn_nothing_percentage = 10
 
-/obj/random/organ/item_to_spawn()
+/obj/random/internal_organ/item_to_spawn()
 	return pick(prob(5);/obj/item/organ/internal/appendix,
 				prob(5);/obj/item/organ/internal/eyes,
 				prob(5);/obj/item/organ/internal/heart,
