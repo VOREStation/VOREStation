@@ -817,6 +817,16 @@
 	desc = "A pictographic direction sign with a knife, plate, and fork, stating the level to find the nearest dining establishment on."
 	icon_state = "level_kitchen"
 
+/obj/structure/sign/directions/shuttle_bay
+	name = "\improper Shuttle Bay"
+	desc = "A direction sign, pointing out the way to the nearest shuttle bay."
+	icon_state = "direction_bay"
+
+/obj/structure/sign/levels/shuttle_bay
+	name = "\improper Shuttle Bay"
+	desc = "A direction sign, stating the level to find the nearest shuttle bay on."
+	icon_state = "level_bay"
+
 /obj/structure/sign/directions/tram
 	name = "\improper Public Transit Station"
 	desc = "A direction sign, pointing out the way to the nearest public transit station."
