@@ -39,6 +39,15 @@
 	build_path = /obj/item/weapon/firework_star/weather/overcast
 	sort_string = "IFABB"
 
+/datum/design/item/firework_star/weather_fog
+	name = "weather - FOG"
+	desc = "A firework star, designed for use with launcher. Modifies current planetary weather effects. This one creates fog."
+	id = "fireworkcloudy"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
+	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000)
+	build_path = /obj/item/weapon/firework_star/weather/fog
+	sort_string = "IFABB"
+
 /datum/design/item/firework_star/weather_rain
 	name = "weather - RAIN"
 	desc = "A firework star, designed for use with launcher. Modifies current planetary weather effects. This one creates rain."
