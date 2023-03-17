@@ -216,3 +216,22 @@
 				prob(5);/obj/item/instrument/glockenspiel,
 				prob(1);/obj/item/instrument/musicalmoth
 				)
+
+/obj/random/internal_organ
+	name = "random organ"
+	desc = "A random internal organ. Juicy fresh! Or... maybe not."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "heart"
+	spawn_nothing_percentage = 10
+
+/obj/random/internal_organ/item_to_spawn()
+	return pick(prob(5);/obj/item/organ/internal/appendix,
+				prob(5);/obj/item/organ/internal/eyes,
+				prob(5);/obj/item/organ/internal/heart,
+				prob(5);/obj/item/organ/internal/kidneys,
+				prob(5);/obj/item/organ/internal/liver,
+				prob(5);/obj/item/organ/internal/spleen,
+				prob(5);/obj/item/organ/internal/lungs,
+				prob(5);/obj/item/organ/internal/stomach,
+				prob(5);/obj/item/organ/internal/voicebox,
+				)
