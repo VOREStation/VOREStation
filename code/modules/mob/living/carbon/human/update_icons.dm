@@ -953,7 +953,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!r_hand)
 		return //No hand, no bother.
 
+<<<<<<< HEAD
 	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
+=======
+	overlays_standing[R_HAND_LAYER] = r_hand.get_worn_overlay(wearer = src, body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
+>>>>>>> bcc0ecb2a17... Merge pull request #9072 from MistakeNot4892/icons
 
 	apply_layer(R_HAND_LAYER)
 
