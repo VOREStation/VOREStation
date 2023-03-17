@@ -53,7 +53,7 @@
  	contraband = 1
  	containertype = /obj/structure/closet/crate/hedberg
  	containername = "Ballistic weapons crate"
-
+/*
 /datum/supply_pack/randomised/misc/telecrate //you get something awesome, a couple of decent things, and a few weak/filler things
 	name = "ERR_NULL_ENTRY" //null crate! also dream maker is hell,
 	num_contained = 1
@@ -105,3 +105,4 @@
 	contraband = 1
 	containertype = /obj/structure/closet/crate/large
 	containername = "Suspicious crate"
+*/

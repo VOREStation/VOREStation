@@ -22,7 +22,11 @@
 				return
 		*/
 		var/loot = pick(/obj/effect/landmark/costume,
+						/obj/item/clothing/mask/gas,
 						/obj/item/clothing/glasses/thermal,
+						/obj/item/clothing/glasses/thermal/syndi,
+						/obj/item/clothing/glasses/meson,
+						/obj/item/clothing/glasses/night,
 						/obj/item/clothing/gloves/combat,
 						/obj/item/clothing/head/bearpelt,
 						/obj/item/clothing/mask/balaclava,
@@ -31,6 +35,12 @@
 						/obj/item/clothing/suit/armor/heavy,
 						/obj/item/clothing/suit/armor/laserproof,
 						/obj/item/clothing/suit/armor/vest,
+						/obj/item/clothing/suit/storage/vest/heavy/merc,
+						/obj/item/weapon/storage/toolbox/syndicate/powertools
+						/obj/item/device/multitool/ai_detector,
+						/obj/item/weapon/storage/box/syndie_kit/chameleon,
+						/obj/item/clothing/mask/gas/voice,
+						/obj/item/weapon/makeover
 						/obj/item/device/chameleon,
 						/obj/item/device/pda/clown,
 						/obj/item/device/pda/mime,
@@ -61,7 +71,7 @@
 						/obj/item/weapon/aiModule/syndicate,
 						/obj/item/weapon/book/manual/engineering_hacking,
 						/obj/item/weapon/card/emag,
-						/obj/item/weapon/card/emag_broken,
+						/obj/item/weapon/card/emag/used,
 						/obj/item/weapon/card/id/syndicate,
 						/obj/item/poster,
 						/obj/item/weapon/disposable_teleporter,
@@ -77,6 +87,10 @@
 						/obj/item/weapon/reagent_containers/food/snacks/clownstears,
 						/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
 						/obj/item/weapon/reagent_containers/glass/beaker/neurotoxin,
+						/obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate,
+						/obj/item/weapon/reagent_containers/glass/bottle/cyanide,
+						/obj/item/weapon/reagent_containers/hypospray,
+						/obj/item/weapon/storage/firstaid/combat,
 						/obj/item/weapon/rig/combat,
 						/obj/item/weapon/shield/energy,
 						/obj/item/weapon/stamp/centcomm,
@@ -87,6 +101,7 @@
 						/obj/random/contraband,
 						/obj/random/contraband,
 						/obj/random/contraband,
+						/obj/random/weapon/guarenteed,
 						/obj/random/weapon/guarenteed)
 		new loot(usr.loc)
 		to_chat(user, "You unwrap the package.")
