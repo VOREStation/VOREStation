@@ -36,11 +36,11 @@
 						/obj/item/clothing/suit/armor/laserproof,
 						/obj/item/clothing/suit/armor/vest,
 						/obj/item/clothing/suit/storage/vest/heavy/merc,
-						/obj/item/weapon/storage/toolbox/syndicate/powertools
+						/obj/item/weapon/storage/toolbox/syndicate/powertools,
 						/obj/item/device/multitool/ai_detector,
 						/obj/item/weapon/storage/box/syndie_kit/chameleon,
 						/obj/item/clothing/mask/gas/voice,
-						/obj/item/weapon/makeover
+						/obj/item/weapon/makeover,
 						/obj/item/device/chameleon,
 						/obj/item/device/pda/clown,
 						/obj/item/device/pda/mime,
