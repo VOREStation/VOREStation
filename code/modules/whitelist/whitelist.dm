@@ -21,8 +21,13 @@
 			. += key
 
 
+<<<<<<< HEAD
 /proc/load_whitelist(var/key)
 	var/filename = "data/player_saves/[copytext(ckey(key),1,2)]/[ckey(key)]/whitelist.json"
+=======
+/proc/load_whitelist()
+	var/filename = "config/whitelists.json"
+>>>>>>> 3f0bddff31e... Load whitelist on server start (#9076)
 	try
 		// Check the player-specific whitelist file, if it exists.
 		if(fexists(filename))
