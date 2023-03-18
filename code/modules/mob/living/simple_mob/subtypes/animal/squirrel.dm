@@ -9,7 +9,6 @@
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/squirrel
-	low_priority = FALSE
 	name = "squirrel"
 	desc = "A furry creature with a long fluffy tail, dark eyes, and a cute pink nose."
 	tt_desc = "Sciuridae"
@@ -23,7 +22,7 @@
 	faction = "animal"
 	maxHealth = 40
 	health = 40
-	movement_cooldown = 2
+	movement_cooldown = -1
 	meat_amount = 1
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
@@ -45,6 +44,9 @@
 
 	has_langs = list(LANGUAGE_ANIMAL)
 	say_list_type = /datum/say_list/squirrel
+
+	mob_size = MOB_SMALL
+	softfall = TRUE
 
 	var/static/list/overlays_cache = list()
 	var/do_seasons = TRUE
@@ -188,7 +190,7 @@
 
 	maxHealth = 200
 	health = 200
-	movement_cooldown = 4
+	movement_cooldown = 1
 	meat_amount = 6
 	harm_intent_damage = 1
 
@@ -199,6 +201,7 @@
 	swallowTime = 1 SECOND
 	vore_capacity = 3
 	vore_bump_chance = 5
+	mob_size = MOB_LARGE
 	update_icon()
 
 /mob/living/simple_mob/vore/squirrel/verb/squirrel_color()
