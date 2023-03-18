@@ -23,7 +23,11 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		if (guest_jobbans(rank))
 			if(config.guest_jobban && IsGuestKey(M.key))
 				return "Guest Job-ban"
+<<<<<<< HEAD
 			if(config.usewhitelist && !check_whitelist(M))
+=======
+			if(config.usewhitelist && !M.client.is_whitelisted(rank))
+>>>>>>> 2cee4d6a577... Another take at a new whitelist system (#8887)
 				return "Whitelisted Job"
 
 		return ckey_is_jobbanned(M.ckey, rank)

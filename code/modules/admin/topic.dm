@@ -2063,6 +2063,15 @@
 				PlayerNotesFilter()
 		return
 
+<<<<<<< HEAD
+=======
+	if(href_list["modify_whitelist"])
+		var/client/C = locate(href_list["modify_whitelist"])
+		if(!istype(C))
+			return
+		usr.client.admin_modify_whitelist((href_list["set_value"] == "1"), ckey(C.ckey))
+
+>>>>>>> 2cee4d6a577... Another take at a new whitelist system (#8887)
 /mob/living/proc/can_centcom_reply()
 	return 0
 
