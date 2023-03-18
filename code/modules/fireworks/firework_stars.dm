@@ -24,9 +24,10 @@
 	if(w_holder.firework_override)		// Make sure weather-based events can't be interfered with
 		return
 	if(weather_type && (weather_type in w_holder.allowed_weather_types))
-		w_holder.message_all_outdoor_players("Something seems to flash in the sky, as weather suddenly shifts!")
-		w_holder.change_weather(weather_type)
-		w_holder.rebuild_forecast()
+		w_holder.message_all_outdoor_players("Something seems to flash in the sky, as weather starts to rapidly shift!")
+		w_holder.queue_imminent_weather(weather_type)
+		var/datum/weather/our_weather = w_holder.allowed_weather_types[weather_type]
+		w_holder.message_all_outdoor_players(our_weather.imminent_transition_message)
 
 /obj/item/weapon/firework_star/weather/clear
 	name = T_FIREWORK_WEATHER_STAR("CLEAR SKY")
@@ -36,6 +37,11 @@
 /obj/item/weapon/firework_star/weather/overcast
 	name = T_FIREWORK_WEATHER_STAR("CLOUDY")
 	weather_type = WEATHER_OVERCAST
+	icon_state = "cloudy"
+
+/obj/item/weapon/firework_star/weather/fog
+	name = T_FIREWORK_WEATHER_STAR("FOG")
+	weather_type = WEATHER_FOG
 	icon_state = "cloudy"
 
 /obj/item/weapon/firework_star/weather/rain
