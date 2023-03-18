@@ -1709,7 +1709,7 @@
 			//VOREStation Add Start
 			if(text2num(time2text(world.timeofday, "MM")) == 4)
 				if(text2num(time2text(world.timeofday, "DD")) == 1)
-					playsound_local(src,pick(scawwySownds),50, 1, -1)
+					playsound_local(src,pick(scawwySownds),50, 0)
 					return
 			//VOREStation Add End
 			playsound_local(src,pick(scarySounds),50, 1, -1)
