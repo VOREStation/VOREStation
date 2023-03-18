@@ -34,9 +34,8 @@
 
 	callHook("startup")
 	init_vchat()
-	//Emergency Fix
 	load_mods()
-	//end-emergency fix
+	load_whitelist()
 
 	src.update_status()
 	setup_season()	//VOREStation Addition
