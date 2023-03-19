@@ -1,4 +1,4 @@
-/obj/machinery/smartfridge/sheets //Is this used anywhere? It's not secure.
+/obj/machinery/smartfridge/sheets
 	name = "\improper Smart Sheet Storage"
 	desc = "A storage unit for metals."
 	icon_contents = "boxes"
@@ -27,6 +27,6 @@
 
 /obj/machinery/smartfridge/sheets/find_record(var/obj/item/O)
 	for(var/datum/stored_item/stack/I as anything in item_records)
-		if(istype(O, I.item_path)) // Typecheck should evaluate material-specific subtype
+		if(O.type == I.item_path) // Typecheck should evaluate material-specific subtype
 			return I
 	return null

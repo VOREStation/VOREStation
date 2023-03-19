@@ -259,14 +259,14 @@
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
-	pose =  sanitize(tgui_input_text(usr, "This is [src]. It is...", "Pose", null))
+	pose =  strip_html_simple(tgui_input_text(usr, "This is [src]. It is...", "Pose", null))
 
 /mob/living/silicon/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC"
 
-	flavor_text =  sanitize(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", null))
+	flavor_text = strip_html_simple(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", null))
 
 /mob/living/silicon/binarycheck()
 	return 1

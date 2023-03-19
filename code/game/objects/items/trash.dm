@@ -350,7 +350,7 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
-/obj/item/trash/spacercake_wrap
+/obj/item/trash/spacer_cake_wrap
 	name = "snack cake wrapper"
 	icon_state = "spacercake_wrap"
 
@@ -415,6 +415,10 @@
 /obj/item/trash/smolburrito
 	name = "burrito packaging"
 	icon_state = "smolburrito"
+
+/obj/item/trash/candybowl
+	name = "candy bowl"
+	icon_state = "candy_bowl"
 
 /obj/item/trash/brainzsnax
 	name = "\improper BrainzSnax can"

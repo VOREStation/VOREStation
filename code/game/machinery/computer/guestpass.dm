@@ -111,6 +111,9 @@
 		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
 		return
 	if(istype(I, /obj/item/weapon/card/id))
+		if(stat & NOPOWER) //checking for power in here so crowbar and screwdriver and stuff still works.
+			to_chat(user, SPAN_WARNING("The terminal refuses your I.D as it is unpowered!"))
+			return
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
 			giver = I
@@ -122,6 +125,26 @@
 
 /obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
+
+/obj/machinery/computer/guestpass/verb/eject_id()
+	set category = "Object"
+	set name = "Eject ID Card"
+	set src in oview(1)
+
+	if(!usr || usr.stat || usr.lying)	return
+
+	if(giver)
+		to_chat(usr, SPAN_NOTICE("You remove \the [giver] from \the [src]."))
+		giver.loc = get_turf(src)
+		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+			usr.put_in_hands(giver)
+		else
+			giver.loc = src.loc
+		giver = null
+		accesses.Cut()
+	else
+		to_chat(usr, SPAN_WARNING("There is nothing to remove from the console."))
+	return
 
 /obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
 	if(..())

@@ -28,6 +28,11 @@
 		if(WH.current_weather.observed_message)
 			to_chat(usr, WH.current_weather.observed_message)
 
+		// Describe the current weather.
+		if(WH.imminent_weather)
+			var/datum/weather/coming_weather = WH.allowed_weather_types[WH.imminent_weather]
+			to_chat(usr, coming_weather.imminent_transition_message)
+
 		// If we can see the sky, we'll see things like sun position, phase of the moon, etc.
 		if(!WH.current_weather.sky_visible)
 			to_chat(usr, "You can't see the sky clearly due to the [WH.current_weather.name].")

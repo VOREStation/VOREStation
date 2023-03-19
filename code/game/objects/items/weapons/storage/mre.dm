@@ -236,7 +236,7 @@ MRE Stuff
 
 /obj/item/weapon/storage/mrebag/open(mob/user)
 	if(!opened && !isobserver(user))
-		to_chat(usr, "<span class='notice'>The pouch heats up as you break the vaccum seal.</span>")
+		to_chat(usr, "<span class='notice'>The pouch heats up as you break the vacuum seal.</span>")
 		opened = 1
 		update_icon()
 	. = ..()

@@ -308,6 +308,14 @@
 	desc = "A freezer stamped with the logo of NanoTrasen."
 	closet_appearance = /decl/closet_appearance/crate/freezer/nanotrasen
 
+/obj/structure/closet/crate/freezer/veymed
+	desc = "A freezer stamped with the logo of Vey-Medical."
+	closet_appearance = /decl/closet_appearance/crate/freezer/veymed
+
+/obj/structure/closet/crate/freezer/zenghu
+	desc = "A freezer stamped with the logo of Zeng-Hu Pharmaceuticals."
+	closet_appearance = /decl/closet_appearance/crate/freezer/zenghu
+
 /obj/structure/closet/crate/freezer/return_air()
 	var/datum/gas_mixture/gas = (..())
 	if(!gas)	return null
