@@ -761,6 +761,7 @@ var/global/list/xenobio_gold_mobs_safe = list(
 										/mob/living/simple_mob/vore/rabbit,
 										/mob/living/simple_mob/vore/redpanda,
 										/mob/living/simple_mob/vore/sheep,
+										/mob/living/simple_mob/vore/squirrel,
 										/mob/living/simple_mob/vore/solargrub)
 
 var/global/list/xenobio_gold_mobs_birds = list(/mob/living/simple_mob/animal/passive/bird/black_bird,
