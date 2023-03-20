@@ -78,7 +78,7 @@
 	if(new_copy.traits)
 		for(var/trait in new_copy.traits)
 			var/datum/trait/T = all_traits[trait]
-			T.apply(new_copy, H)
+			T.apply(new_copy, H, new_copy.traits[trait])
 
 	//Set up a mob
 	H.species = new_copy
