@@ -17,7 +17,7 @@
 	maxHealth = 30
 	melee_damage_lower = 2
 	melee_damage_upper = 4
-	movement_cooldown = 0
+	movement_cooldown = -2
 	hovering = TRUE
 
 	attacktext = list("slammed into")

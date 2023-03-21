@@ -27,7 +27,7 @@
 	melee_damage_upper = 3
 	attacktext = list("nipped")
 
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 	say_list_type = /datum/say_list/rabbit
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
@@ -140,7 +140,7 @@
 	melee_damage_upper = 3
 	attacktext = list("nipped")
 
-	movement_cooldown = 0.5 // very fast bunbun.
+	movement_cooldown = -2 // very fast bunbun.
 
 	vore_bump_chance = 10
 	vore_pounce_chance = 100

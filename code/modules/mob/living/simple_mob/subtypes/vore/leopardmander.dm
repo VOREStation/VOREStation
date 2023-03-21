@@ -23,7 +23,7 @@
 	response_help = "pats"
 	response_disarm = "shoves"
 	response_harm = "bops"
-	movement_cooldown = 2
+	movement_cooldown = -1
 	maxHealth = 1500
 	attacktext = list("chomped")
 	see_in_dark = 8
@@ -68,7 +68,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 2
+	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/leopardmander/Initialize()
 	..()

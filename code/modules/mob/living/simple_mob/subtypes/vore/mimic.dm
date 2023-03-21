@@ -83,7 +83,7 @@
 
 	maxHealth = 125
 	health = 125
-	movement_cooldown = 7
+	movement_cooldown = 3
 
 	response_help = "touches"
 	response_disarm = "pushes"

@@ -29,7 +29,7 @@
 
 	maxHealth = 50
 	health = 50
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 	hovering = TRUE
 
 	base_attack_cooldown = 2.5 SECONDS

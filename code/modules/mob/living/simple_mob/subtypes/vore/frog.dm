@@ -28,7 +28,7 @@
 	icon_state = "frog"
 	icon = 'icons/mob/vore.dmi'
 
-	movement_cooldown = 4 //fast as fucc boie.
+	movement_cooldown = 0.5 //fast as fucc boie.
 	can_be_drop_pred = 1 //They can tongue vore.
 
 	meat_amount = 4

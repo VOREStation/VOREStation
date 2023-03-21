@@ -30,7 +30,7 @@
 	maxHealth = 50
 	health = 50
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	meat_amount = 4
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken

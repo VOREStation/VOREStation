@@ -47,7 +47,7 @@
 	var/has_langs = list(LANGUAGE_GALCOM)// Text name of their language if they speak something other than galcom. They speak the first one.
 
 	//Movement things.
-	var/movement_cooldown = 5			// Lower is faster.
+	var/movement_cooldown = 1			//VOREStation Edit - 1 is slower than normal human speed // Lower is faster.
 	var/movement_sound = null			// If set, will play this sound when it moves on its own will.
 	var/turn_sound = null				// If set, plays the sound when the mob's dir changes in most cases.
 	var/movement_shake_radius = 0		// If set, moving will shake the camera of all living mobs within this radius slightly.

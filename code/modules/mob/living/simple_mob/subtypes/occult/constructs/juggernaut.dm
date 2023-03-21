@@ -23,7 +23,7 @@
 	mob_size = MOB_HUGE
 
 
-	movement_cooldown = 6 //Not super fast, but it might catch up to someone in armor who got punched once or twice.
+	movement_cooldown = 2 //Not super fast, but it might catch up to someone in armor who got punched once or twice.
 
 //	environment_smash = 2	// Whatever this gets renamed to, Juggernauts need to break things
 

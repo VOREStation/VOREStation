@@ -47,7 +47,7 @@
 		"rad" = 0
 		)
 
-	movement_cooldown = 2
+	movement_cooldown = -1
 
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE

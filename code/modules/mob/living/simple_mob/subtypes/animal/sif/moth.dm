@@ -41,7 +41,7 @@
 
 	hovering = TRUE
 
-	movement_cooldown = 0.5
+	movement_cooldown = -1
 
 	melee_damage_lower = 5
 	melee_damage_upper = 10

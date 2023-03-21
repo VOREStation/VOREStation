@@ -5,7 +5,7 @@
 	icon_state = "fennec"
 	item_state = "fennec"
 
-	movement_cooldown = 0.5 SECONDS
+	movement_cooldown = -1
 
 	see_in_dark = 6
 	response_help  = "pets"

@@ -20,7 +20,7 @@
 	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the Hegemony War."
 	catalogue_data = list(/datum/category_item/catalogue/technology/durand)
 	icon_state = "durand"
-	movement_cooldown = 10
+	movement_cooldown = 3
 	wreckage = /obj/structure/loot_pile/mecha/durand
 
 	maxHealth = 400
