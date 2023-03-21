@@ -86,7 +86,7 @@
 	mob_bump_flag = HEAVY
 	grab_resist = 100
 	mob_class = MOB_CLASS_HUMANOID
-	movement_cooldown = 1
+	movement_cooldown = -1
 	melee_miss_chance = 10
 
 	old_x = -32

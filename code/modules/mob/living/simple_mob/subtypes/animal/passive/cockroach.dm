@@ -14,7 +14,7 @@
 	maxHealth = 1
 	health = 1
 
-	movement_cooldown = 2.5
+	movement_cooldown = -1
 
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE

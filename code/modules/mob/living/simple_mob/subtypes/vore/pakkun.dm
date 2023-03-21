@@ -25,7 +25,7 @@
 
 	faction = "pakkun"
 
-	movement_cooldown = 6
+	movement_cooldown = 2
 	can_be_drop_pred = 1 //They can tongue vore.
 
 	meat_amount = 5

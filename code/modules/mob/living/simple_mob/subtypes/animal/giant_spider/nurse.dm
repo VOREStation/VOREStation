@@ -33,7 +33,7 @@
 	maxHealth = 40
 	health = 40
 
-	movement_cooldown = 5	// A bit faster so that they can inject the eggs easier.
+	movement_cooldown = 1.5	// A bit faster so that they can inject the eggs easier.
 
 	melee_damage_lower = 5	// Doesn't do a lot of damage, since the goal is to make more spiders with egg attacks.
 	melee_damage_upper = 10

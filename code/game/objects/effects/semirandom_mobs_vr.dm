@@ -292,7 +292,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			),
 		list(/mob/living/simple_mob/vore/solargrub),
 		list(/mob/living/simple_mob/vore/woof),
-		list(/mob/living/simple_mob/vore/alienanimals/teppi),
 		list(/mob/living/simple_mob/vore/alienanimals/space_ghost),
 		list(/mob/living/simple_mob/vore/alienanimals/catslug),
 		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish),

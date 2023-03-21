@@ -4,7 +4,7 @@
 	name = "phazon"
 	desc = "An extremly enigmatic exosuit."
 	icon_state = "phazon"
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 	wreckage = /obj/structure/loot_pile/mecha/phazon
 
 	maxHealth = 200
@@ -19,4 +19,3 @@
 				"rad"		= 100
 				)
 	projectiletype = /obj/item/projectile/energy/declone
-
