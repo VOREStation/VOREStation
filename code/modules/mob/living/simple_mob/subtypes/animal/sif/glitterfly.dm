@@ -38,7 +38,7 @@
 	maxHealth = 10
 	health = 10
 
-	movement_cooldown = -1
+	movement_cooldown = -2
 	hovering = TRUE
 
 	melee_damage_lower = 1
@@ -80,7 +80,7 @@
 	maxHealth = 30
 	health = 30
 
-	movement_cooldown = -2
+	movement_cooldown = -3
 
 	melee_damage_upper = 5
 

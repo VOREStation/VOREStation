@@ -30,7 +30,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	faction = "virgo3b"
 	maxHealth = 100
 	health = 100
-	movement_cooldown = 12
+	movement_cooldown = 4
 
 	say_list_type = /datum/say_list/gaslamp
 	ai_holder_type = /datum/ai_holder/simple_mob/gaslamp

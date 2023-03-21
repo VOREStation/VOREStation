@@ -215,7 +215,7 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	movement_cooldown = 10
+	movement_cooldown = 4
 	movement_sound = 'sound/weapons/heavysmash.ogg'
 	movement_shake_radius = 5
 

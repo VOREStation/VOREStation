@@ -13,7 +13,7 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
-	movement_cooldown = 4
+	movement_cooldown = 0.5
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 12

@@ -18,7 +18,7 @@
 	faction = "dog"
 	maxHealth = 600
 	health = 600
-	movement_cooldown = 1
+	movement_cooldown = -1
 
 	response_help = "pets"
 	response_disarm = "rudely paps"
@@ -205,7 +205,7 @@
 
 /mob/living/simple_mob/vore/woof/hostile/melee
 
-	movement_cooldown = 0
+	movement_cooldown = -2
 
 	ai_holder_type = /datum/ai_holder/simple_mob/woof/hostile
 
@@ -302,12 +302,12 @@
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/melee
 
-	movement_cooldown = 0
+	movement_cooldown = -2
 
 	ai_holder_type = /datum/ai_holder/simple_mob/woof/hostile
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/ranged
-	movement_cooldown = 0
+	movement_cooldown = -2
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/woof
 

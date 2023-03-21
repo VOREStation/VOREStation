@@ -26,7 +26,7 @@
 	var_changes = list("total_health" = 125)
 
 /datum/trait/positive/endurance_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.setMaxHealth(S.total_health)
 
 /datum/trait/positive/nonconductive
@@ -110,7 +110,7 @@
 	has_preferences = list("flight_vore" = list(TRAIT_PREF_TYPE_BOOLEAN, "Flight Vore enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
 /datum/trait/positive/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/flying_toggle
 	H.verbs |= /mob/living/proc/flying_vore_toggle
 	H.verbs |= /mob/living/proc/start_wings_hovering
@@ -174,7 +174,7 @@
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
 
 /datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/water_stealth
 	H.verbs |= /mob/living/carbon/human/proc/underwater_devour
 
@@ -184,7 +184,7 @@
 	cost = 1
 
 /datum/trait/positive/cocoon_tf/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/enter_cocoon
 
 /datum/trait/positive/linguist

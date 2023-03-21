@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	health = 100
 	nutrition = 150
 	pass_flags = PASSTABLE
-	movement_cooldown = 3.25
+	movement_cooldown = 1
 
 	see_in_dark = 10
 
