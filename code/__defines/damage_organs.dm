@@ -9,6 +9,7 @@
 #define ELECTROCUTE "electrocute"
 #define BIOACID   "bioacid"
 #define SEARING   "searing"
+#define ELECTROMAG "electromag"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"

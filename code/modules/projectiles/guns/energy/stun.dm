@@ -64,7 +64,11 @@
 /obj/item/weapon/gun/energy/crossbow/largecrossbow
 	name = "energy crossbow"
 	desc = "A weapon favored by mercenary infiltration teams."
+<<<<<<< HEAD
 	icon_state = "crossbowlarge"
+=======
+	icon_state = "largecrossbow"
+>>>>>>> a9fe81de927... Energy Gun maint, Electromag damage type. (#9017)
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	matter = list(MAT_STEEL = 200000)
