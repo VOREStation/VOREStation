@@ -177,7 +177,7 @@
 "du" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/holofloor/wood,/area/awaymission/snowfield/outside)
 "dv" = (/obj/machinery/door/airlock/maintenance{locked = 1; name = "Storage Access"},/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/outside)
 "dw" = (/obj/structure/closet/l3closet/security,/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/outside)
-"dx" = (/obj/structure/closet/fireaxecabinet{pixel_y = 32},/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/outside)
+"dx" = (/obj/structure/fireaxecabinet{pixel_y = 32},/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/outside)
 "dy" = (/obj/machinery/space_heater,/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/outside)
 "dz" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/outside)
 "dA" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/outside)

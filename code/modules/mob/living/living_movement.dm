@@ -291,9 +291,10 @@ default behaviour is:
 				var/mob/living/M = pulling
 				M.dragged(src, oldloc)
 
-			pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
-			if(pulling && get_dist(src, pulling) > 1) // the pullee couldn't keep up
-				stop_pulling()
+			if(pulling)								// Check it AGAIN after previous steps just in case
+				pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
+				if(get_dist(src, pulling) > 1) // the pullee couldn't keep up
+					stop_pulling()
 
 	if(!isturf(loc))
 		return

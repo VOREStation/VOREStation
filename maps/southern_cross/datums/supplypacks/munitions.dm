@@ -12,7 +12,7 @@
  	cost = 50
  	containertype = /obj/structure/closet/crate/secure/hedberg
  	containername = "Hunting Rifle crate"
- 	access = access_explorer
+ 	access = access_brig
 
 /datum/supply_pack/munitions/phase_carbines_explorer
  	name = "Weapons - Surplus Phase Carbines"
@@ -22,7 +22,7 @@
  	cost = 25
  	containertype = /obj/structure/closet/crate/secure/ward
  	containername = "Phase Carbine crate"
- 	access = access_explorer
+ 	access = access_brig
 
 /datum/supply_pack/munitions/phase_rifles_explorer
  	name = "Weapons - Phase Rifles"
@@ -32,4 +32,4 @@
  	cost = 50
  	containertype = /obj/structure/closet/crate/secure/ward
  	containername = "Phase Rifle crate"
- 	access = access_explorer
+ 	access = access_brig

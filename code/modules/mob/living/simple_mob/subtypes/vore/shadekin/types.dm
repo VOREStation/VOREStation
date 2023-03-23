@@ -167,6 +167,8 @@
 	area is very taxing on you, but you gain energy extremely fast in any very dark area. You're weaker than other \
 	shadekin, but your fast energy generation in the dark allows you to phase shift more often."
 
+	nom_mob = TRUE
+
 /mob/living/simple_mob/shadekin/yellow
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
 

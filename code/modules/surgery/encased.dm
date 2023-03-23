@@ -3,6 +3,7 @@
 //				GENERIC	RIBCAGE SURGERY							//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased
+	surgery_name = "Open Encased"
 	priority = 2
 	can_infect = 1
 	blood_level = 1
@@ -21,6 +22,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/saw
+	surgery_name = "Cut Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw = 100, \
 		/obj/item/weapon/material/knife/machete/hatchet = 75
@@ -40,8 +42,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("[user] begins to cut through [target]'s [affected.encased] with \the [tool].", \
-	"You begin to cut through [target]'s [affected.encased] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] begins to cut through [target]'s [affected.encased] with \the [tool].</span>", \
+	"<span class='filter_notice'>You begin to cut through [target]'s [affected.encased] with \the [tool].</span>")
 	target.custom_pain("Something hurts horribly in your [affected.name]!", 60)
 	..()
 
@@ -66,10 +68,11 @@
 	affected.fracture()
 
 ///////////////////////////////////////////////////////////////
-// Rib Opening Surgery
+// Bone Opening Surgery
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/retract
+	surgery_name = "Retract Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100
 	)
@@ -90,8 +93,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "[user] starts to force open the [affected.encased] in [target]'s [affected.name] with \the [tool]."
-	var/self_msg = "You start to force open the [affected.encased] in [target]'s [affected.name] with \the [tool]."
+	var/msg = "<span class='filter_notice'>[user] starts to force open the [affected.encased] in [target]'s [affected.name] with \the [tool].</span>"
+	var/self_msg = "<span class='filter_notice'>You start to force open the [affected.encased] in [target]'s [affected.name] with \the [tool].</span>"
 	user.visible_message(msg, self_msg)
 	target.custom_pain("Something hurts horribly in your [affected.name]!", 40)
 	..()
@@ -119,10 +122,11 @@
 	affected.fracture()
 
 ///////////////////////////////////////////////////////////////
-// Rib Closing Surgery
+// Retracted Bone Closing Surgery
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/close
+	surgery_name = "Close Retracted Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 	)
@@ -143,8 +147,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "[user] starts bending [target]'s [affected.encased] back into place with \the [tool]."
-	var/self_msg = "You start bending [target]'s [affected.encased] back into place with \the [tool]."
+	var/msg = "<span class='filter_notice'>[user] starts bending [target]'s [affected.encased] back into place with \the [tool].</span>"
+	var/self_msg = "<span class='filter_notice'>You start bending [target]'s [affected.encased] back into place with \the [tool].</span>"
 	user.visible_message(msg, self_msg)
 	target.custom_pain("Something hurts horribly in your [affected.name]!", 100)
 	..()
@@ -177,10 +181,11 @@
 		target.rupture_lung()*/
 
 ///////////////////////////////////////////////////////////////
-// Rib Mending Surgery
+// Retracted Bone Mending Surgery
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/mend
+	surgery_name = "Mend Retracted Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100
 	)
@@ -201,8 +206,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "[user] starts applying \the [tool] to [target]'s [affected.encased]."
-	var/self_msg = "You start applying \the [tool] to [target]'s [affected.encased]."
+	var/msg = "<span class='filter_notice'>[user] starts applying \the [tool] to [target]'s [affected.encased].</span>"
+	var/self_msg = "<span class='filter_notice'>You start applying \the [tool] to [target]'s [affected.encased].</span>"
 	user.visible_message(msg, self_msg)
 	target.custom_pain("Something hurts horribly in your [affected.name]!", 100)
 	..()
@@ -222,6 +227,7 @@
 // Saw/Retractor/Gel Combi-open and close.
 ///////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased/advancedsaw_open
+	surgery_name = "Advanced Cut Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw/manager = 100
 	)
@@ -230,6 +236,7 @@
 
 	min_duration = 60
 	max_duration = 90
+	excludes_steps = list(/datum/surgery_step/open_encased/saw)
 
 /datum/surgery_step/open_encased/advancedsaw_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
@@ -242,8 +249,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("[user] begins to open [target]'s [affected.encased] with \the [tool].", \
-	"You begin to open [target]'s [affected.encased] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] begins to open [target]'s [affected.encased] with \the [tool].</span>", \
+	"<span class='filter_notice'>You begin to open [target]'s [affected.encased] with \the [tool].</span>")
 	target.custom_pain("Something hurts horribly in your [affected.name]!", 60)
 	..()
 
@@ -271,6 +278,7 @@
 
 
 /datum/surgery_step/open_encased/advancedsaw_mend
+	surgery_name = "Advanced Mend Retracted Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw/manager = 100
 	)
@@ -291,8 +299,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "[user] starts sealing \the [target]'s [affected.encased] with \the [tool]."
-	var/self_msg = "You start sealing \the [target]'s [affected.encased] with \the [tool]."
+	var/msg = "<span class='filter_notice'>[user] starts sealing \the [target]'s [affected.encased] with \the [tool].</span>"
+	var/self_msg = "<span class='filter_notice'>You start sealing \the [target]'s [affected.encased] with \the [tool].</span>"
 	user.visible_message(msg, self_msg)
 	target.custom_pain("Something hurts horribly in your [affected.name]!", 100)
 	..()

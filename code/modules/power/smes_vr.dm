@@ -32,3 +32,5 @@
 /obj/machinery/power/smes/buildable/hybrid/process()
 	charge += min(recharge_rate, capacity - charge)
 	..()
+
+//hey travis wake up

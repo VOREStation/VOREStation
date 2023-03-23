@@ -10,7 +10,7 @@
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/suit_cooling_unit/emergency, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/device/defib_kit, /obj/item/ammo_casing/microbattery)  //VOREStation Add - NSFW Batteries
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/suit_cooling_unit/emergency, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/device/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/device/paicard, /obj/item/device/personal_shield_generator)  //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -28,7 +28,8 @@
 		. += "[charging ? "[charging]" : "Nothing"] is in [src]."
 		if(charging)
 			var/obj/item/weapon/cell/C = charging.get_cell()
-			. += "Current charge: [C.charge] / [C.maxcharge]"
+			if(C)				// Sometimes we get things without cells in it.
+				. += "Current charge: [C.charge] / [C.maxcharge]"
 
 /obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	var/allowed = 0
@@ -68,9 +69,21 @@
 			if(EW.use_external_power)
 				to_chat(user, "<span class='notice'>\The [EW] has no recharge port.</span>")
 				return
-		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery))	//VOREStation Edit: NSFW charging
+		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery) && !istype(G, /obj/item/device/paicard))	//VOREStation Edit: NSFW charging
 			to_chat(user, "\The [G] does not have a battery installed.")
 			return
+		if(istype(G, /obj/item/device/paicard))
+			var/obj/item/device/paicard/ourcard = G
+			if(ourcard.panel_open)
+				to_chat(user, "<span class='warning'>\The [ourcard] won't fit in the recharger with its panel open.</span>")
+				return
+			if(ourcard.pai)
+				if(ourcard.pai.stat == CONSCIOUS)
+					to_chat(user, "<span class='warning'>\The [ourcard] boops... it doesn't need to be recharged!</span>")
+					return
+			else
+				to_chat(user, "<span class='warning'>\The [ourcard] doesn't have a personality!</span>")
+				return
 
 		user.drop_item()
 		G.loc = src
@@ -122,6 +135,25 @@
 	if(!charging)
 		update_use_power(USE_POWER_IDLE)
 		icon_state = icon_state_idle
+	//VOREStation Edit Start - pAI revival!
+	else if(istype(charging, /obj/item/device/paicard))
+		var/obj/item/device/paicard/pcard = charging
+		if(pcard.is_damage_critical())
+			pcard.forceMove(get_turf(src))
+			charging = null
+			pcard.damage_random_component()
+			update_icon()
+		else if(pcard.pai.bruteloss)
+			pcard.pai.adjustBruteLoss(-5)
+		else if(pcard.pai.fireloss)
+			pcard.pai.adjustFireLoss(-5)
+		else
+			charging = null
+			update_icon()
+			src.visible_message("<span class ='notice'>\The [src] ejects the [pcard]!</span>")
+			pcard.forceMove(get_turf(src))
+			pcard.pai.full_restore()
+	//VOREStation Edit End
 	else
 		var/obj/item/weapon/cell/C = charging.get_cell()
 		if(istype(C))

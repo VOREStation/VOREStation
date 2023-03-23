@@ -1,19 +1,11 @@
-import { useBackend } from "../backend";
-import { Box, Button, LabeledList, Section, NoticeBox } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, Section, NoticeBox } from '../components';
+import { Window } from '../layouts';
 
 export const BotanyIsolator = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    geneMasks,
-    activity,
-    degradation,
-    disk,
-    loaded,
-    hasGenetics,
-    sourceName,
-  } = data;
+  const { geneMasks, activity, degradation, disk, loaded, hasGenetics, sourceName } = data;
 
   if (activity) {
     return (
@@ -29,81 +21,66 @@ export const BotanyIsolator = (props, context) => {
     <Window width={470} height={500} resizable>
       <Window.Content scrollable>
         <Section title="Buffered Genetic Data">
-          {hasGenetics && (
+          {(hasGenetics && (
             <Box>
               <LabeledList>
-                <LabeledList.Item label="Source">
-                  {sourceName}
-                </LabeledList.Item>
-                <LabeledList.Item label="Gene decay">
-                  {degradation}%
-                </LabeledList.Item>
-                {disk && (geneMasks.length && geneMasks.map(mask => (
-                  <LabeledList.Item key={mask.mask} label={mask.mask}>
-                    <Button
-                      mb={-1}
-                      icon="download"
-                      onClick={() => act("get_gene", { get_gene: mask.tag })}>
-                      Extract
-                    </Button>
-                  </LabeledList.Item>
-                ))) || null}
+                <LabeledList.Item label="Source">{sourceName}</LabeledList.Item>
+                <LabeledList.Item label="Gene decay">{degradation}%</LabeledList.Item>
+                {(disk &&
+                  geneMasks.length &&
+                  geneMasks.map((mask) => (
+                    <LabeledList.Item key={mask.mask} label={mask.mask}>
+                      <Button mb={-1} icon="download" onClick={() => act('get_gene', { get_gene: mask.tag })}>
+                        Extract
+                      </Button>
+                    </LabeledList.Item>
+                  ))) ||
+                  null}
               </LabeledList>
-              {disk && (
+              {(disk && (
                 <Box mt={1}>
-                  <Button
-                    icon="eject"
-                    onClick={() => act("eject_disk")}>
+                  <Button icon="eject" onClick={() => act('eject_disk')}>
                     Eject Loaded Disk
                   </Button>
-                  <Button
-                    icon="trash"
-                    onClick={() => act("clear_buffer")}>
+                  <Button icon="trash" onClick={() => act('clear_buffer')}>
                     Clear Genetic Buffer
                   </Button>
                 </Box>
-              ) || (
-                <NoticeBox mt={1} warning>No disk inserted.</NoticeBox>
+              )) || (
+                <NoticeBox mt={1} warning>
+                  No disk inserted.
+                </NoticeBox>
               )}
             </Box>
-          ) || (
+          )) || (
             <Box>
               <NoticeBox warning>No Data Buffered.</NoticeBox>
-              {disk && (
-                <Button
-                  icon="eject"
-                  onClick={() => act("eject_disk")}>
+              {(disk && (
+                <Button icon="eject" onClick={() => act('eject_disk')}>
                   Eject Loaded Disk
                 </Button>
-              ) || (
-                <NoticeBox mt={1} warning>No disk inserted.</NoticeBox>
+              )) || (
+                <NoticeBox mt={1} warning>
+                  No disk inserted.
+                </NoticeBox>
               )}
             </Box>
           )}
         </Section>
         <Section title="Loaded Material">
-          {loaded && (
+          {(loaded && (
             <Box>
               <LabeledList>
-                <LabeledList.Item label="Packet Loaded">
-                  {loaded}
-                </LabeledList.Item>
+                <LabeledList.Item label="Packet Loaded">{loaded}</LabeledList.Item>
               </LabeledList>
-              <Button
-                mt={1}
-                icon="cog"
-                onClick={() => act("scan_genome")}>
+              <Button mt={1} icon="cog" onClick={() => act('scan_genome')}>
                 Process Genome
               </Button>
-              <Button
-                icon="eject"
-                onClick={() => act("eject_packet")}>
+              <Button icon="eject" onClick={() => act('eject_packet')}>
                 Eject Packet
               </Button>
             </Box>
-          ) || (
-            <NoticeBox warning>No packet loaded.</NoticeBox>
-          )}
+          )) || <NoticeBox warning>No packet loaded.</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>

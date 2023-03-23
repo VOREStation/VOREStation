@@ -15,7 +15,7 @@
 
 	if(valid_targets.len)
 		var/obj/obj_to_throw = pick(valid_targets)
-		obj_to_throw.visible_message("<span class='alien'>\The [obj_to_throw] levitates, befure hurtling toward [target]!</span>")
+		obj_to_throw.visible_message("<span class='alien'>\The [obj_to_throw] levitates, before hurtling toward [target]!</span>")
 		obj_to_throw.throw_at(target, world.view, min(40, damage * GetAnomalySusceptibility(target)))
 
 /datum/artifact_effect/poltergeist/DoEffectTouch(var/mob/user)

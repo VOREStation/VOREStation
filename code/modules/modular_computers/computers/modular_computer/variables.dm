@@ -54,3 +54,11 @@
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage
 	var/obj/item/weapon/computer_hardware/ai_slot/ai_slot							// AI slot, an intellicard housing that allows modifications of AIs.
 	var/obj/item/weapon/computer_hardware/tesla_link/tesla_link						// Tesla Link, Allows remote charging from nearest APC.
+
+	var/modifiable = TRUE	// can't be modified or damaged if false
+
+	var/stores_pen = FALSE
+	var/obj/item/weapon/pen/stored_pen
+
+	var/interact_sounds
+	var/interact_sound_volume = 40

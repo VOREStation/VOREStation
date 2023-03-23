@@ -499,6 +499,7 @@ var/list/possible_cable_coil_colours = list(
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_RED
+	gender = NEUTER
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
@@ -509,6 +510,7 @@ var/list/possible_cable_coil_colours = list(
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
+	singular_name = "length"
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	tool_qualities = list(TOOL_CABLE_COIL)
@@ -978,7 +980,7 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = input(usr, "How many units of wire do you want to take from [src]?  You can only take up to [amount] at a time.", "Split stacks", 1) as num|null
+		var/N = tgui_input_number(usr, "How many units of wire do you want to take from [src]?  You can only take up to [amount] at a time.", "Split stacks", 1)
 		if(N && N <= amount)
 			var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
 			CC.amount = N

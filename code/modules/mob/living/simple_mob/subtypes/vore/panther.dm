@@ -13,7 +13,7 @@
 	faction = "panther"
 	maxHealth = 200
 	health = 200
-	movement_cooldown = 4
+	movement_cooldown = 0.5
 	see_in_dark = 8
 
 	meat_amount = 8
@@ -55,7 +55,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/panther/MouseDrop_T(mob/living/M, mob/living/user)
 	return

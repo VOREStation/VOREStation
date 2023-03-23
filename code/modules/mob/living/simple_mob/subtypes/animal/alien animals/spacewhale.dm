@@ -21,7 +21,7 @@
 
 	maxHealth = 100000
 	health = 100000
-	movement_cooldown = 50
+	movement_cooldown = 10
 
 	see_in_dark = 10
 
@@ -137,7 +137,7 @@
 	if(post_restless_tired)
 		post_restless_tired--
 		return
-	if(!restless && prob(0.5))
+	if(prob(0.5))
 		handle_restless()
 
 /mob/living/simple_mob/vore/overmap/spacewhale/proc/handle_restless()
@@ -149,19 +149,26 @@
 		ai_holder.base_wander_delay = initial(ai_holder.base_wander_delay)
 		ai_holder.wander = FALSE
 		post_restless_tired = 250
-		if(child_om_marker.known == TRUE)
-			child_om_marker.icon_state = "space_whale"
-			visible_message("<span class='notice'>\The [child_om_marker.name] settles down.</span>")
+		update_icon()
 	else
 		restless = TRUE
 		hazard_pickup_chance *= 1.5
 		hazard_drop_chance *= 1.5
-		movement_cooldown = 1
+		movement_cooldown = -1
 		ai_holder.base_wander_delay = 2
 		ai_holder.wander_delay = 2
-		if(child_om_marker.known == TRUE)
+		ai_holder.wander = TRUE
+		update_icon()
+
+/mob/living/simple_mob/vore/overmap/spacewhale/update_icon()
+	. = ..()
+	if(child_om_marker.known == TRUE)
+		if(restless)
 			child_om_marker.icon_state = "space_whale_restless"
 			visible_message("<span class='notice'>\The [child_om_marker.name] ripples excitedly.</span>")
+		else
+			child_om_marker.icon_state = "space_whale"
+			visible_message("<span class='notice'>\The [child_om_marker.name] settles down.</span>")
 
 /datum/ai_holder/simple_mob/melee/spacewhale
 	hostile = TRUE
@@ -177,13 +184,11 @@
 	. = ..()
 	var/mob/living/simple_mob/vore/overmap/spacewhale/W = holder
 	if(stance == STANCE_FIGHT)
-		W.movement_cooldown = 0
+		W.movement_cooldown = -2
 		W.child_om_marker.glide_size = 0
 	if(stance == STANCE_IDLE)
 		W.hazard_pickup_chance = initial(W.hazard_pickup_chance)
 		W.hazard_drop_chance = initial(W.hazard_drop_chance)
-		W.movement_cooldown = 50
-		base_wander_delay = 50
 		W.restless = FALSE
 		W.handle_restless()
 		W.movement_cooldown = initial(W.movement_cooldown)

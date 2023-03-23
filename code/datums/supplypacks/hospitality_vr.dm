@@ -29,7 +29,7 @@
 			/obj/item/weapon/reagent_containers/food/snacks/berrymuffin,
 			/obj/item/weapon/reagent_containers/food/snacks/bunbun,
 			/obj/item/weapon/reagent_containers/food/snacks/cherrypie,
-			/obj/item/weapon/reagent_containers/food/snacks/cookiesnack,
+			/obj/item/weapon/reagent_containers/food/snacks/cookie,
 			/obj/item/weapon/reagent_containers/food/snacks/croissant,
 			/obj/item/weapon/reagent_containers/food/snacks/donut/normal,
 			/obj/item/weapon/reagent_containers/food/snacks/donut/jelly,

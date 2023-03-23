@@ -1,0 +1,234 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/sign/poster/custom{
+	dir = 1;
+	pixel_y = 32;
+	poster_decl = /decl/poster/bay_2
+	},
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/table/standard,
+/obj/random/toy,
+/obj/item/toy/colorballoon{
+	color = "#FF00BB"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"d" = (
+/turf/simulated/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/random/obstruction,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"f" = (
+/obj/structure/table/standard,
+/obj/item/wrapping_paper,
+/obj/item/toy/colorballoon{
+	color = "#FFCC00"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"j" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	operating = 0;
+	pixel_x = -24
+	},
+/obj/structure/cable,
+/obj/structure/sign/poster/custom{
+	pixel_y = -32;
+	poster_decl = /decl/poster/nanotrasen/nt_8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"o" = (
+/obj/item/stack/material/cardboard,
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"p" = (
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"v" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"C" = (
+/obj/structure/table/standard,
+/obj/item/trash/plate{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/item/toy/colorballoon{
+	color = "#00BBFF"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"E" = (
+/obj/item/pizzabox/old,
+/obj/item/trash/plate{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"F" = (
+/obj/structure/table/standard,
+/obj/item/trash/plate{
+	pixel_y = -6
+	},
+/obj/item/clothing/head/cakehat,
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"I" = (
+/obj/structure/bed/chair/comfy/lime{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"K" = (
+/obj/random/trash,
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"L" = (
+/turf/simulated/wall/r_concrete,
+/area/template_noop)
+"M" = (
+/obj/structure/bed/chair/comfy/red{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"N" = (
+/obj/structure/bed/chair/comfy/orange{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"Q" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"R" = (
+/obj/structure/bed/chair/comfy/purp{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"S" = (
+/obj/structure/bed/chair/comfy/green{
+	dir = 8
+	},
+/obj/structure/sign/poster/custom{
+	dir = 1;
+	pixel_y = 32;
+	poster_decl = /decl/poster/nt_5
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"V" = (
+/obj/structure/bed/chair/comfy/blue{
+	dir = 8
+	},
+/obj/item/trash/plate,
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"X" = (
+/obj/structure/bed/chair/comfy/teal{
+	dir = 4
+	},
+/obj/item/trash/plate{
+	pixel_y = 5
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+"Y" = (
+/turf/simulated/wall/concrete,
+/area/template_noop)
+"Z" = (
+/obj/structure/table/standard,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/storage/fancy/whitecandle_box,
+/obj/item/storage/box/matches{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/template_noop)
+
+(1,1,1) = {"
+Y
+Y
+Y
+e
+Y
+Y
+a
+"}
+(2,1,1) = {"
+L
+b
+p
+Q
+j
+Y
+Y
+"}
+(3,1,1) = {"
+L
+I
+M
+X
+K
+p
+Y
+"}
+(4,1,1) = {"
+L
+Z
+E
+F
+R
+v
+Y
+"}
+(5,1,1) = {"
+L
+S
+V
+N
+p
+o
+Y
+"}
+(6,1,1) = {"
+L
+C
+p
+p
+p
+f
+Y
+"}
+(7,1,1) = {"
+L
+Y
+Y
+d
+Y
+Y
+Y
+"}

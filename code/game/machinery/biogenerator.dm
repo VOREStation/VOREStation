@@ -101,8 +101,9 @@
 		BIOGEN_ITEM("Winter Coat", /obj/item/clothing/suit/storage/hooded/wintercoat, 1, 500),
 		//VOREStation Edit - Algae for oxygen generator
 		BIOGEN_ITEM("4 Algae Sheets", /obj/item/stack/material/algae, 4, 400),
+		BIOGEN_ITEM("50 Algae Sheets", /obj/item/stack/material/algae, 50, 5000),
 	)
-	
+
 /obj/machinery/biogenerator/tgui_static_data(mob/user)
 	var/list/static_data[0]
 
@@ -155,7 +156,7 @@
 
 			if(!(category in item_list) || !(name in item_list[category])) // Not trying something that's not in the list, are you?
 				return
-			
+
 			var/datum/data/biogenerator_item/bi = item_list[category][name]
 			if(!istype(bi))
 				var/datum/data/biogenerator_reagent/br = item_list[category][name]
@@ -175,7 +176,7 @@
 				beaker.reagents.add_reagent(br.reagent_id, amt_to_actually_dispense)
 				playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
 				return
-			
+
 			var/cost = round(bi.cost / build_eff)
 			if(cost > points)
 				to_chat(usr, "<span class='danger'>Insufficient biomass.</span>")

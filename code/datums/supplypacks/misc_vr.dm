@@ -26,7 +26,6 @@
 	containername = "eva hardsuit crate"
 	access = list(access_mining,
 				  access_eva,
-				  access_explorer,
 				  access_pilot)
 	one_access = TRUE
 
@@ -102,6 +101,16 @@
 	containername = "Commonwealth engineering hardsuit crate"
 	access = access_engine
 
+/datum/supply_pack/misc/breacher_rig
+	name = "unathi breacher hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/breacher = 1
+			)
+	cost = 250
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "unathi breacher hardsuit crate"
+	access = access_armory
+
 /datum/supply_pack/misc/zero_rig
 	name = "null hardsuit (jets)"
 	contains = list(
@@ -122,12 +131,11 @@
 	access = list(access_mining,
 				  access_xenoarch,
 				  access_eva,
-				  access_explorer,
 				  access_pilot)
 	one_access = TRUE
 
 /datum/supply_pack/randomised/misc/explorer_shield
-	name = "Explorer shield"
+	name = "Away Team shield"
 	num_contained = 2
 	contains = list(
 			/obj/item/weapon/shield/riot/explorer,
@@ -136,8 +144,7 @@
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "exploration shield crate"
-	access = list(access_explorer,
-				  access_eva,
+	access = list(access_eva,
 				  access_pilot)
 	one_access = TRUE
 
@@ -158,3 +165,18 @@
 	cost = 300
 	containertype = /obj/structure/closet/crate
 	containername = "cordless jukebox speakers crate"
+
+/datum/supply_pack/misc/explorer_headsets
+	name = "shortwave-capable headsets (x4)"
+	contains = list(
+		/obj/item/device/radio/headset/explorer = 4
+	)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "exploration radio headsets crate"
+	access = list(
+		access_explorer,
+		access_eva,
+		access_pilot
+	)
+	one_access = TRUE

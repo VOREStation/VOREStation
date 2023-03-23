@@ -76,6 +76,10 @@
 	if(amount > 0)
 		if(rabid)
 			return
+		if(my_slime.untamable)
+			holder.say("Grrr...")
+			holder.add_modifier(/datum/modifier/berserk, 30 SECONDS)
+			enrage()
 		var/justified = my_slime.is_justified_to_discipline() // This will also consider the AI-side of that proc.
 		remove_target() // Stop attacking.
 
@@ -95,15 +99,19 @@
 	discipline = between(0, discipline + amount, 10)
 	my_slime.update_mood()
 
-// This slime always enrages if disciplined.
-/datum/ai_holder/simple_mob/xenobio_slime/red/adjust_discipline(amount, silent)
-	if(amount > 0 && !rabid)
-		holder.say("Grrr...")
-		holder.add_modifier(/datum/modifier/berserk, 30 SECONDS)
-		enrage()
-
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_strategical()
 	discipline_decay()
+	evolve_and_reproduce()
+
+/datum/ai_holder/simple_mob/xenobio_slime/request_help()
+	if(target)
+		if(istype(target, /mob/living/simple_mob/slime/xenobio))	//Don't call reinforcements for internal disputes
+			return
+		if(istype(target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = target
+			if(istype(H.species, /datum/species/monkey))			//Or for food
+				return
+	..()
 
 // Handles decay of discipline.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/discipline_decay()
@@ -114,6 +122,12 @@
 
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_tactic()
 	evolve_and_reproduce()
+
+/datum/ai_holder/simple_mob/xenobio_slime/handle_stance_tactical()
+	if(!istype(holder) || QDELETED(holder))
+		qdel(src)
+		return
+	..()
 
 // Hit the correct verbs to keep the slime species going.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/evolve_and_reproduce()
@@ -134,6 +148,16 @@
 	rabid = TRUE
 	my_slime.update_mood()
 	my_slime.visible_message(span("danger", "\The [my_slime] enrages!"))
+
+// Called to relax from being rabid (when blue slime core was used).
+/datum/ai_holder/simple_mob/xenobio_slime/proc/relax()
+	var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+	if(my_slime.harmless)
+		return
+	if(rabid)
+		rabid = FALSE
+		my_slime.update_mood()
+		my_slime.visible_message(span("danger", "\The [my_slime] calms down."))
 
 // Called when using a pacification agent (or it's Kendrick being initalized).
 /datum/ai_holder/simple_mob/xenobio_slime/proc/pacify()

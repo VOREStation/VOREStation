@@ -134,8 +134,8 @@
 	force = 7.5
 
 /obj/item/weapon/surgical/scalpel/ripper
-	name = "organ pincers"
-	desc = "A horrifying bladed tool with a large metal spike in its center. The tool is used for rapidly removing organs from hopefully willing patients."
+	name = "jagged scalpel"
+	desc = "A horrifying bladed tool with a large metal spike in its center. The tool is used for rapidly removing organs or medical malpractice."
 	icon_state = "organ_ripper"
 	item_state = "bone_setter"
 	force = 15.0
@@ -242,6 +242,9 @@
 	toolspeed = 0.5
 
 /obj/item/weapon/surgical/bonesetter/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/bioregen/cyborg //VoreStation edit: let the borgs S U C C
 	toolspeed = 0.5
 
 

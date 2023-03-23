@@ -65,10 +65,11 @@
 	if(owner && owner.stat != DEAD)
 		owner.bodytemperature += round(owner.robobody_count * 0.25, 0.1)
 
+/*			//VOREStation Removal - normal chem processing
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 
 			if(H.ingested?.total_volume && H.bloodstr)
 				H.ingested.trans_to_holder(H.bloodstr, rand(2,5))
-
+*/
 	return

@@ -38,6 +38,12 @@
 		//alright, the below seems jank. it IS jank, but for whatever reason I can't reuse BB. big bad
 		BB = null
 		BB = new projectile_type
+		// TGMC Ammo HUD - Update the HUD every time we expend/fire, given the Curabitur's method of handling firing.
+		if(istype(loc, /obj/item/weapon/gun/projectile/multi_cannon))
+			var/obj/item/weapon/gun/projectile/multi_cannon = loc
+			var/mob/living/user = multi_cannon.loc
+			if(istype(user))
+				user?.hud_used.update_ammo_hud(user, multi_cannon)
 		return 
 	else
 		BB = null
@@ -52,6 +58,13 @@
 		STOP_PROCESSING(SSobj, src)
 	if(istype(loc,/obj/item/weapon/gun/projectile/multi_cannon))
 		loc.update_icon()	
+		
+	// TGMC Ammo HUD - Update the HUD every time we're called to recharge.
+	if(istype(loc, /obj/item/weapon/gun/projectile/multi_cannon))
+		var/obj/item/weapon/gun/projectile/multi_cannon = loc
+		var/mob/living/user = multi_cannon.loc
+		if(istype(user))
+			user?.hud_used.update_ammo_hud(user, multi_cannon)
 
 //variants here, there's not many of them.
 

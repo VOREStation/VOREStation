@@ -20,7 +20,7 @@
 
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 
 	universal_understand = TRUE
 	can_be_antagged = TRUE
@@ -30,7 +30,7 @@
 
 	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
 	var/mob/living/captive_brain/host_brain		// Used for swapping control of the body back and forth.
-	
+
 	var/roundstart = FALSE						// If true, spawning won't try to pull a ghost.
 	var/antag = TRUE							// If false, will avoid setting up objectives and events
 
@@ -39,7 +39,7 @@
 	var/true_name = null						// String used when speaking among other worms.
 	var/controlling = FALSE						// Used in human death ceck.
 	var/docile = FALSE							// Sugar can stop borers from acting.
-	
+
 	var/has_reproduced = FALSE
 	var/used_dominate							// world.time when the dominate power was last used.
 

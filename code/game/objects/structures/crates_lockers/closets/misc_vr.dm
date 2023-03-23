@@ -24,7 +24,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/rifle
 	name = "rifle cabinet"
-	req_one_access = list(access_explorer,access_brig)
+	req_one_access = list(access_brig)
 
 	starts_with = list(
 		/obj/item/ammo_magazine/clip/c762/hunter = 9,
@@ -38,8 +38,8 @@
 	return ..()
 
 /obj/structure/closet/secure_closet/guncabinet/phase
-	name = "explorer weapon cabinet"
-	req_one_access = list(access_explorer,access_brig)
+	name = "away team weapon cabinet"
+	req_one_access = list(access_brig)
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/phasegun = 2,
@@ -51,7 +51,7 @@
  * Explorer
  */
 /obj/structure/closet/secure_closet/explorer
-	name = "explorer locker"
+	name = "away team locker"
 	req_access = list(access_explorer)
 	closet_appearance = /decl/closet_appearance/secure_closet/expedition/explorer
 
@@ -93,7 +93,7 @@
  */
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
-	req_access = list(access_pathfinder)
+	req_access = list(access_explorer)
 	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
 
 	starts_with = list(
@@ -193,7 +193,6 @@
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/parachute,
 		/obj/item/weapon/material/knife/tacknife/survival,
-		/obj/item/weapon/gun/energy/locked/frontier/holdout,
 		/obj/item/clothing/head/pilot_vr,
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
@@ -211,7 +210,7 @@
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio,
 		/obj/item/device/gps/explorer,
-		/obj/item/device/cataloguer/compact)
+		/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked)
 
 /obj/structure/closet/secure_closet/pilot/Initialize()
 	if(prob(50))
@@ -243,6 +242,8 @@
 	desc = "It's wall-mounted storage unit for an AutoLok suit."
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
 	closet_appearance = /decl/closet_appearance/wall_double/autolok
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 	anchored = TRUE
 	density = FALSE
 	wall_mounted = 1
@@ -262,6 +263,8 @@
 	desc = "It's wall-mounted storage unit for an emergency suit."
 	icon = 'icons/obj/closets/bases/wall.dmi'
 	closet_appearance = /decl/closet_appearance/wall/emergency
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 	anchored = TRUE
 	density = FALSE
 	wall_mounted = 1

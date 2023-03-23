@@ -212,6 +212,12 @@
 	cost = 35
 	allow_duplicates = FALSE
 
+/datum/map_template/debrisfield/ship_tourist_overrun
+	name = "Overrun private yacht"
+	mappath = 'ship_tourist_overrun.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+
 /datum/map_template/debrisfield/oldshuttle
 	name = "Old Expedition Shuttle"
 	mappath = 'oldshuttle.dmm'
@@ -237,14 +243,14 @@
 	cost = 10
 	allow_duplicates = FALSE
 	discard_prob = 10
-	
+
 /datum/map_template/debrisfield/new_escape_pod_infested_xeno
 	name = "Xeno-Infested Escape Pod"
 	mappath = 'new_escapepod_xeno.dmm'
 	cost = 20
 	allow_duplicates = FALSE
 	discard_prob = 25
-	
+
 /datum/map_template/debrisfield/new_escape_pod_infested_carp
 	name = "Carp-Infested Escape Pod"
 	mappath = 'new_escapepod_carp.dmm'
@@ -266,7 +272,7 @@
 	allow_duplicates = FALSE
 	discard_prob = 25
 
-/datum/map_template/debrisfield/gutted_mackerel
+/datum/map_template/debrisfield/wrecked_salamander
 	name = "Wrecked Salamander"
 	mappath = 'maps/offmap_vr/om_ships/salamander_wreck.dmm'
 	cost = 35
@@ -279,3 +285,10 @@
 	cost = 45
 	allow_duplicates = FALSE
 	discard_prob = 50
+
+/datum/map_template/debrisfield/blasted_sdf
+	name = "Blasted SDF Corvette"
+	mappath = 'maps/offmap_vr/om_ships/sdf_corvette_wreck.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+	discard_prob = 25

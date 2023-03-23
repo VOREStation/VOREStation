@@ -44,17 +44,6 @@
 	var/health = 300 					//Health is health
 	var/maxhealth = 300 				//Maxhealth is maxhealth.
 	var/deflect_chance = 10 			//Chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
-	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list(
-									"brute"=0.8,
-									"fire"=1.2,
-									"bullet"=0.9,
-									"laser"=1,
-									"energy"=1,
-									"bomb"=1,
-									"bio"=1,
-									"rad"=1
-									)
 
 	var/damage_minimum = 10				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
 	var/minimum_penetration = 15		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
@@ -549,7 +538,7 @@
 	if(equipment?.len)
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			. += "[bicon(ME)] [ME]"
+			. += "\icon[ME][bicon(ME)] [ME]"
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
@@ -572,7 +561,6 @@
 
 /obj/mecha/proc/show_radial_occupant(var/mob/user)
 	var/list/choices = list(
-		"Eject" = radial_image_eject,
 		"Toggle Airtank" = radial_image_airtoggle,
 		"Toggle Light" = radial_image_lighttoggle,
 		"View Stats" = radial_image_statpanel
@@ -584,9 +572,6 @@
 	if(!choice)
 		return
 	switch(choice)
-		if("Eject")
-			go_out()
-			add_fingerprint(usr)
 		if("Toggle Airtank")
 			use_internal_tank = !use_internal_tank
 			occupant_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
@@ -1047,15 +1032,8 @@
 
 /obj/mecha/proc/get_damage_absorption()
 	var/obj/item/mecha_parts/component/armor/AC = internal_components[MECH_ARMOR]
-
-	if(!istype(AC))
-		return
-
-	else
-		if(AC.get_efficiency() > 0.25)
-			return AC.damage_absorption
-
-	return
+	if(istype(AC) && AC.get_efficiency() > 0.25)
+		return AC.damage_absorption
 
 /obj/mecha/proc/absorbDamage(damage,damage_type)
 	return call((proc_res["dynabsorbdamage"]||src), "dynabsorbdamage")(damage,damage_type)
@@ -2449,7 +2427,7 @@
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(src.occupant && src.occupant.client)
-			to_chat(src.occupant, "[bicon(src)] [message]")
+			to_chat(src.occupant, "\icon[src][bicon(src)] [message]")
 	return
 
 /obj/mecha/proc/log_message(message as text,red=null)
@@ -2551,7 +2529,7 @@
 		return
 	if (href_list["change_name"])
 		if(usr != src.occupant)	return
-		var/newname = sanitizeSafe(input(occupant,"Choose new exosuit name","Rename exosuit",initial(name)) as text, MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(occupant,"Choose new exosuit name","Rename exosuit",initial(name), MAX_NAME_LEN), MAX_NAME_LEN)
 		if(newname)
 			name = newname
 		else
@@ -2590,7 +2568,7 @@
 		if(!in_range(src, usr))	return
 		var/mob/user = top_filter.getMob("user")
 		if(user)
-			var/new_pressure = input(user,"Input new output pressure","Pressure setting",internal_tank_valve) as num
+			var/new_pressure = tgui_input_number(user,"Input new output pressure","Pressure setting",internal_tank_valve)
 			if(new_pressure)
 				internal_tank_valve = new_pressure
 				to_chat(user, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
@@ -2909,3 +2887,15 @@
 				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert("mech damage")
+
+/obj/mecha/blob_act(var/obj/structure/blob/B)
+	var/datum/blob_type/blob = B?.overmind?.blob_type
+	if(!istype(blob))
+		return FALSE
+
+	var/damage = rand(blob.damage_lower, blob.damage_upper)
+	src.take_damage(damage, blob.damage_type)
+	visible_message("<span class='danger'>\The [B] [blob.attack_verb] \the [src]!</span>", "<span class='danger'>[blob.attack_message_synth]!</span>")
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
+
+	return ..()

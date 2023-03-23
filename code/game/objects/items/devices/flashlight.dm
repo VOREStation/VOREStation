@@ -126,7 +126,11 @@
 			if(H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
+				user.visible_message("<b>\The [user]</b> directs [src] at [M]'s face.", \
+								 	 "<span class='notice'>You direct [src] at [M]'s face.</span>")
 				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>")
+				user.setClickCooldown(user.get_attack_speed(src))
+				return
 
 			user.visible_message("<b>\The [user]</b> directs [src] to [M]'s eyes.", \
 							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
@@ -144,7 +148,7 @@
 					to_chat(user, "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>")
 
 				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
-				var/list/dilating = list("space_drugs"=5,"mindbreaker"=1)
+				var/list/dilating = list("bliss"=5,"ambrosia_extract"=5,"mindbreaker"=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
 					to_chat(user, "<span class='notice'>\The [M]'s pupils are already pinpoint and cannot narrow any more.</span>")
 				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
@@ -227,11 +231,12 @@
 	. = ..()
 	if(!on)
 		return
-	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
-	if(!OL)
-		return
-	var/turf/T = get_turf(target)
-	OL.place_directional_light(T)
+	if(light_system == MOVABLE_LIGHT_DIRECTIONAL)
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		if(!OL)
+			return
+		var/turf/T = get_turf(target)
+		OL.place_directional_light(T)
 
 /obj/item/device/flashlight/pen
 	name = "penlight"
@@ -486,30 +491,3 @@
 	light_range = 8
 	light_power = 0.1
 	light_color = "#49F37C"
-
-/*
- * Slime Extract
- */
-
-/obj/item/device/flashlight/slime
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A slimy ball that appears to be glowing from bioluminesence."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
-	item_state = "slime"
-	light_color = "#FFF423"
-	w_class = ITEMSIZE_TINY
-	light_range = 6
-	on = 1 //Bio-luminesence has one setting, on.
-	power_use = 0
-
-/obj/item/device/flashlight/slime/New()
-	..()
-	set_light(light_range, light_power, light_color)
-
-/obj/item/device/flashlight/slime/update_brightness()
-	return
-
-/obj/item/device/flashlight/slime/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.

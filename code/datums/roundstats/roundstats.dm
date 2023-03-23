@@ -21,6 +21,12 @@ GLOBAL_VAR_INIT(items_sold_shift_roundstat, 0)
 GLOBAL_VAR_INIT(disposals_flush_shift_roundstat, 0)
 GLOBAL_VAR_INIT(rocks_drilled_roundstat, 0)
 GLOBAL_VAR_INIT(mech_destroyed_roundstat, 0)
+GLOBAL_VAR_INIT(prey_eaten_roundstat, 0)		//VOREStation Edit - Obviously
+GLOBAL_VAR_INIT(prey_absorbed_roundstat, 0)		//VOREStation Edit - Obviously
+GLOBAL_VAR_INIT(prey_digested_roundstat, 0)		//VOREStation Edit - Obviously
+GLOBAL_VAR_INIT(items_digested_roundstat, 0)	//VOREStation Edit - Obviously
+var/global/list/security_printer_tickets = list()	//VOREStation Edit
+
 
 /hook/roundend/proc/RoundTrivia()//bazinga
 	var/list/valid_stats_list = list() //This is to be populated with the good shit
@@ -49,6 +55,33 @@ GLOBAL_VAR_INIT(mech_destroyed_roundstat, 0)
 		valid_stats_list.Add("The elevator moved up [GLOB.turbo_lift_floors_moved_roundstat] floors today!")
 	else if(GLOB.disposals_flush_shift_roundstat > 40)
 		valid_stats_list.Add("The disposal system flushed a whole [GLOB.disposals_flush_shift_roundstat] times for this shift. We should really invest in waste treatement.")
+
+	//VOREStation add Start - Ticket time!
+	if(security_printer_tickets.len)
+		valid_stats_list.Add("<span class = 'danger'>[security_printer_tickets.len] unique security tickets were issued today!</span><br>Examples include:")
+		var/good_num = 5
+		var/ourticket
+		while(good_num > 0)
+			ourticket = null
+			if(security_printer_tickets.len)
+				ourticket = pick(security_printer_tickets)
+				security_printer_tickets -= ourticket
+				if(ourticket)
+					valid_stats_list.Add("<b>-</b>\"[ourticket]\"")
+				good_num--
+			else
+				good_num = 0
+
+	//VOREStation Add Start - Vore stats lets gooooo
+	if(GLOB.prey_eaten_roundstat > 0)
+		valid_stats_list.Add("A total of [GLOB.prey_eaten_roundstat] individuals were eaten today!")
+	if(GLOB.prey_digested_roundstat > 0)
+		valid_stats_list.Add("A total of [GLOB.prey_digested_roundstat] individuals were digested today!")
+	if(GLOB.prey_absorbed_roundstat > 0)
+		valid_stats_list.Add("A total of [GLOB.prey_absorbed_roundstat] individuals were absorbed today!")
+	if(GLOB.items_digested_roundstat > 0)
+		valid_stats_list.Add("A total of [GLOB.items_digested_roundstat] items were digested today!")
+	//VOREStation Add End
 
 	if(LAZYLEN(valid_stats_list))
 		to_world("<B>Shift trivia!</B>")

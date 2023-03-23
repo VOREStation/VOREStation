@@ -916,7 +916,7 @@
 /obj/structure/plasticflaps/mining,
 /obj/machinery/mineral/input,
 /turf/simulated/floor/plating,
-/area/space)
+/area/surface/station/mining_main/refinery)
 "bW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4

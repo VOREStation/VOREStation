@@ -48,6 +48,7 @@
 /obj/machinery/computer/shuttle_control/aerostat_shuttle
 	name = "aerostat ferry control console"
 	shuttle_tag = "Aerostat Ferry"
+	ai_control = TRUE
 
 /obj/tether_away_spawner/aerostat_inside
 	name = "Aerostat Indoors Spawner"
@@ -227,7 +228,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/surface/outpost
 	requires_power = TRUE
 	dynamic_lighting = TRUE
-	ambience = null
+	ambience = list()
 
 /area/offmap/aerostat/surface/outpost/backroom
 	name = "V2 Outpost - Research Area"
@@ -326,8 +327,8 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/inside/lobby
 	name = "Lobby"
 	icon_state = "orablacir"
-/area/offmap/aerostat/inside/misclab
-	name = "Miscellaneous Lab"
+/area/offmap/aerostat/inside/xenobiolab
+	name = "Xenobiology Lab"
 	icon_state = "orablacir"
 
 /area/offmap/aerostat/inside/airlock

@@ -1,10 +1,7 @@
 /obj/item/weapon/gun/energy/particle //base gun, similar stats to an egun
 	name = "Anti-particle projector pistol"
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "ppistol"
-	item_state = "ppistol_item"
-	icon_override = 'icons/obj/gun_vr.dmi'
-	item_icons = null
+	item_state = "ppistol"
 	desc = "A Kawashima Material Technology Model 7 anti-particle projector, housed in a rugged casing."
 	description_info = "An unconventional weapon, APP guns generate attogram-scale quantities of antimatter which \
 	are then launched using an electromagnetic field. They are only suitable for use in depressurised environments, \
@@ -28,7 +25,7 @@
 /obj/item/weapon/gun/energy/particle/advanced //particle equivalent of AEG
 	name = "Advanced anti-particle rifle"
 	icon_state = "particle"
-	item_state = "particle_item"
+	item_state = "particle"
 	desc = "An antiparticle projector gun with an enhanced power-generation unit."
 	slot_flags = SLOT_BELT
 	force = 8 //looks heavier than a pistol
@@ -45,7 +42,7 @@
 	name = "Anti-particle cannon"
 	desc = "A giant beast of an antimatter gun, packed with an internal reactor to allow for extreme longevity on remote mining expeditions."
 	icon_state = "heavyparticle"
-	item_state = "heavyparticle_item"
+	item_state = "heavyparticle"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)

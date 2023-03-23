@@ -72,8 +72,12 @@
 	path = /obj/item/weapon/folder/yellow
 
 /datum/gear/utility/paicard
-	display_name = "personal AI device"
+	display_name = "personal AI device (classic)"
 	path = /obj/item/device/paicard
+
+/datum/gear/utility/paicard_b
+	display_name = "personal AI device (new)"
+	path = /obj/item/device/paicard/typeb
 
 /datum/gear/utility/securecase
 	display_name = "secure briefcase"
@@ -140,6 +144,11 @@
 		"motorized wheelchair" = /obj/item/wheelchair/motor
 	)
 	gear_tweaks += new/datum/gear_tweak/path(wheelchairs)
+
+/datum/gear/utility/lantern
+	display_name = "lantern"
+	path = /obj/item/device/flashlight/lantern
+	cost = 2
 
 /****************
 modular computers

@@ -19,6 +19,12 @@
 	icon_state = "apron_white"
 	item_state_slots = list(slot_r_hand_str = "apronchef", slot_l_hand_str = "apronchef")
 
+/obj/item/clothing/suit/storage/apron/altevian
+	name = "Multi-purpose Crafters' Pride"
+	desc = "An apron designed by the space faring species that can hold an array of tools and other trinkets. It's made with a high-quality material."
+	icon_state = "apron_altevian"
+	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
+
 //Captain
 /obj/item/clothing/suit/captunic
 	name = "site manager's parade tunic"
@@ -35,7 +41,7 @@
 	flags_inv = HIDEHOLSTER
 
 //Command
-/obj/item/clothing/suit/storage/cmddressjacket
+/obj/item/clothing/suit/storage/toggle/cmddressjacket
 	name = "command dress jacket"
 	desc = "A fancy dress jacket made for command staff. Makes you feel in charge."
 	icon_state = "cmddressjacket"
@@ -173,7 +179,7 @@
 	blood_overlay_type = "armor"
 	allowed = list (/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
 	/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen,
-	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
+	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/taperoll/atmos, /obj/item/device/analyzer, /obj/item/weapon/extinguisher/mini) //VOREStation edit. Few more tools that can be put on vests
 	body_parts_covered = UPPER_TORSO
 
 /obj/item/clothing/suit/storage/hazardvest/blue

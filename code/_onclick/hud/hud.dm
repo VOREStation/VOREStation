@@ -1,3 +1,4 @@
+#define MAX_AMMO_HUD_POSSIBLE 4 // Cap the amount of HUDs at 4.
 /*
 	The global hud:
 	Uses the same visual objects for all players.
@@ -40,9 +41,9 @@ var/list/global_huds = list(
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
 	var/obj/screen/screen = new /obj/screen()
-	screen.alpha = 40 // Adjut this if you want goggle overlays to be thinner or thicker.
+	screen.alpha = 30 // Adjut this if you want goggle overlays to be thinner or thicker. //VOREStation Edit
 	screen.screen_loc = "SOUTHWEST to NORTHEAST" // Will tile up to the whole screen, scaling beyond 15x15 if needed.
-	screen.icon = 'icons/obj/hud_tiled.dmi'
+	screen.icon = 'icons/obj/hud_tiled_vr.dmi'	//VOREStation Edit
 	screen.icon_state = icon_state
 	screen.layer = SCREEN_LAYER
 	screen.plane = PLANE_FULLSCREEN
@@ -192,6 +193,9 @@ var/list/global_huds = list(
 	var/ui_color
 	var/ui_alpha
 
+	// TGMC Ammo HUD Port
+	var/list/obj/screen/ammo_hud_list = list()
+
 	var/list/minihuds = list()
 
 /datum/hud/New(mob/owner)
@@ -201,7 +205,7 @@ var/list/global_huds = list(
 
 /datum/hud/Destroy()
 	. = ..()
-	qdel_null(minihuds)
+	QDEL_NULL_LIST(minihuds)
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null
@@ -220,6 +224,9 @@ var/list/global_huds = list(
 	other_important = null
 	hotkeybuttons = null
 //	item_action_list = null // ?
+	for (var/x in ammo_hud_list)
+		remove_ammo_hud(mymob, x)
+	ammo_hud_list = null
 	mymob = null
 
 /datum/hud/proc/hidden_inventory_update()
@@ -363,6 +370,9 @@ var/list/global_huds = list(
 	toggle_hud_vis(full)
 
 /mob/proc/toggle_hud_vis(full)
+	if(!client)
+		return FALSE
+
 	if(hud_used.hud_shown)
 		hud_used.hud_shown = 0
 		if(hud_used.adding)
@@ -400,7 +410,8 @@ var/list/global_huds = list(
 	return TRUE
 
 /mob/living/carbon/human/toggle_hud_vis(full)
-	..()
+	if(!(. = ..()))
+		return FALSE
 
 	// Prevents humans from hiding a few hud elements
 	if(!hud_used.hud_shown) // transitioning to hidden
@@ -461,3 +472,36 @@ var/list/global_huds = list(
 
 /mob/new_player/add_click_catcher()
 	return
+
+/* TGMC Ammo HUD Port
+ * These procs call to screen_objects.dm's respective procs.
+ * All these do is manage the amount of huds on screen and set the HUD.
+*/
+///Add an ammo hud to the user informing of the ammo count of G
+/datum/hud/proc/add_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+	if(length(ammo_hud_list) >= MAX_AMMO_HUD_POSSIBLE)
+		return
+	var/obj/screen/ammo/ammo_hud = new
+	ammo_hud_list[G] = ammo_hud
+	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length(ammo_hud_list)]
+	ammo_hud.add_hud(user, G)
+	ammo_hud.update_hud(user, G)
+
+///Remove the ammo hud related to the gun G from the user
+/datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	if(isnull(ammo_hud))
+		return
+	ammo_hud.remove_hud(user, G)
+	qdel(ammo_hud)
+	ammo_hud_list -= G
+	var/i = 1
+	for(var/key in ammo_hud_list)
+		ammo_hud = ammo_hud_list[key]
+		ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[i]
+		i++
+
+///Update the ammo hud related to the gun G
+/datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	ammo_hud?.update_hud(user, G)

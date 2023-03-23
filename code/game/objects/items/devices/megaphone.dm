@@ -40,7 +40,7 @@
 		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[message]\"</FONT>", runemessage = message)
 
 /obj/item/device/megaphone/attack_self(var/mob/living/user)
-	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
+	var/message = sanitize(tgui_input_text(user, "Shout a message?", "Megaphone", null))
 	if(!message)
 		return
 	message = capitalize(message)

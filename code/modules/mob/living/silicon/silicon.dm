@@ -25,6 +25,8 @@
 	var/obj/item/weapon/card/id/idcard
 	var/idcard_type = /obj/item/weapon/card/id/synthetic
 
+	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
+
 	var/hudmode = null
 
 /mob/living/silicon/New()
@@ -221,66 +223,50 @@
 			var/synth = (L in speech_synthesizer_langs)
 			. += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
 
-/mob/living/silicon/proc/toggle_sensor_mode()
-	var/sensor_type = tgui_input_list(usr, "Please select sensor type.", "Sensor Integration", list("Security","Medical","Disable"))
-	switch(sensor_type)
-		if ("Security")
-			if(plane_holder)
-				//Enable Security planes
-				plane_holder.set_vis(VIS_CH_ID,TRUE)
-				plane_holder.set_vis(VIS_CH_WANTED,TRUE)
-				plane_holder.set_vis(VIS_CH_IMPLOYAL,TRUE)
-				plane_holder.set_vis(VIS_CH_IMPTRACK,TRUE)
-				plane_holder.set_vis(VIS_CH_IMPCHEM,TRUE)
+/mob/living/silicon/proc/toggle_sensor_mode() //VOREStation Add to make borgs use omni starts here - Tank, clueless bird
+	if(sensor_type)
+		if(plane_holder)
+			//Enable the planes, its basically just AR-Bs
+			plane_holder.set_vis(VIS_CH_ID,TRUE)
+			plane_holder.set_vis(VIS_CH_WANTED,TRUE)
+			plane_holder.set_vis(VIS_CH_IMPLOYAL,TRUE) //antag related so prob not useful but leaving them in
+			plane_holder.set_vis(VIS_CH_IMPTRACK,TRUE)
+			plane_holder.set_vis(VIS_CH_IMPCHEM,TRUE)
+			plane_holder.set_vis(VIS_CH_STATUS_R,TRUE)
+			plane_holder.set_vis(VIS_CH_HEALTH_VR,TRUE)
+			plane_holder.set_vis(VIS_CH_BACKUP,TRUE) //backup stuff from silicon_vr is here now
+			return TRUE
 
-				//Disable Medical planes
-				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
-				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
+	else
+		if(plane_holder)
+			//Disable the planes
+			plane_holder.set_vis(VIS_CH_ID,FALSE)
+			plane_holder.set_vis(VIS_CH_WANTED,FALSE)
+			plane_holder.set_vis(VIS_CH_IMPLOYAL,FALSE)
+			plane_holder.set_vis(VIS_CH_IMPTRACK,FALSE)
+			plane_holder.set_vis(VIS_CH_IMPCHEM,FALSE)
+			plane_holder.set_vis(VIS_CH_STATUS_R,FALSE)
+			plane_holder.set_vis(VIS_CH_HEALTH_VR,FALSE)
+			plane_holder.set_vis(VIS_CH_BACKUP,FALSE)
+			return FALSE
 
-			to_chat(src, "<span class='notice'>Security records overlay enabled.</span>")
-		if ("Medical")
-			if(plane_holder)
-				//Disable Security planes
-				plane_holder.set_vis(VIS_CH_ID,FALSE)
-				plane_holder.set_vis(VIS_CH_WANTED,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPLOYAL,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPTRACK,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPCHEM,FALSE)
-
-				//Enable Medical planes
-				plane_holder.set_vis(VIS_CH_STATUS,TRUE)
-				plane_holder.set_vis(VIS_CH_HEALTH,TRUE)
-
-			to_chat(src, "<span class='notice'>Life signs monitor overlay enabled.</span>")
-		if ("Disable")
-			if(plane_holder)
-				//Disable Security planes
-				plane_holder.set_vis(VIS_CH_ID,FALSE)
-				plane_holder.set_vis(VIS_CH_WANTED,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPLOYAL,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPTRACK,FALSE)
-				plane_holder.set_vis(VIS_CH_IMPCHEM,FALSE)
-
-				//Disable Medical planes
-				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
-				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
-			to_chat(src, "Sensor augmentations disabled.")
-
-	hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
+//hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
+//I made it work like omnis with records by adding stuff to examine.dm
+//VOREStation Add ends here
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
-	pose =  sanitize(input(usr, "This is [src]. It is...", "Pose", null)  as text)
+	pose =  strip_html_simple(tgui_input_text(usr, "This is [src]. It is...", "Pose", null))
 
 /mob/living/silicon/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC"
 
-	flavor_text =  sanitize(input(usr, "Please enter your new flavour text.", "Flavour text", null)  as text)
+	flavor_text = strip_html_simple(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", null))
 
 /mob/living/silicon/binarycheck()
 	return 1
@@ -362,20 +348,20 @@
 					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)
-			to_chat(src, "<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>")
+			to_chat(src, "<span class='filter_notice'><A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A></span>")
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
 			var/list/alarms = queued_alarms[AH]
 			alarms.Cut()
 
 /mob/living/silicon/proc/raised_alarm(var/datum/alarm/A)
-	to_chat(src, "[A.alarm_name()]!")
+	to_chat(src, "<span class='filter_warning'>[A.alarm_name()]!</span>")
 
 /mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
 		cameratext += "[(cameratext == "")? "" : "|"]<A HREF=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
-	to_chat(src, "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])")
+	to_chat(src, "<span class='filter_warning'>[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])</span>")
 
 
 /mob/living/silicon/proc/is_traitor()

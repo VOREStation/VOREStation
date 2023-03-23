@@ -80,7 +80,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/scientist
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_SCIENCE
-	economic_modifier = 5 
+	economic_modifier = 5
 
 /datum/job/offduty_security
 	title = "Off-duty Officer"

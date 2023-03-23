@@ -422,7 +422,7 @@
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PortableTurret", name, 500, 400)
+		ui = new(user, src, "PortableTurret", name, ui_x = 500, ui_y = 400)
 		ui.open()
 
 /obj/machinery/porta_turret/tgui_data(mob/user)
@@ -683,42 +683,35 @@
 		seenturfs += T
 
 	for(var/mob/M as anything in living_mob_list)
-		if(M.z != z) //Skip
+		if(M.z != z || !(get_turf(M) in seenturfs)) // Skip
 			continue
-		if(get_turf(M) in seenturfs)
-			assess_and_assign(M, targets, secondarytargets)
+		switch(assess_living(M))
+			if(TURRET_PRIORITY_TARGET)
+				targets += M
+			if(TURRET_SECONDARY_TARGET)
+				secondarytargets += M
 
-	/* This was dumb. Why do this and then check line of sight later?
-	for(var/mob/M in mobs_in_xray_view(world.view, src))
-		assess_and_assign(M, targets, secondarytargets)
-	*/
+	for(var/obj/mecha/M as anything in mechas_list)
+		if(M.z != z || !(get_turf(M) in seenturfs)) // Skip
+			continue
+		switch(assess_mecha(M))
+			if(TURRET_PRIORITY_TARGET)
+				targets += M
+			if(TURRET_SECONDARY_TARGET)
+				secondarytargets += M
 
-	if(!tryToShootAt(targets))
-		if(!tryToShootAt(secondarytargets)) // if no valid targets, go for secondary targets
-			timeout--
-			if(timeout <= 0)
-				spawn()
-					popDown() // no valid targets, close the cover
+	if(!tryToShootAt(targets) && !tryToShootAt(secondarytargets) && --timeout <= 0)
+		popDown() // no valid targets, close the cover
 
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
-
-/obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
-	switch(assess_living(L))
-		if(TURRET_PRIORITY_TARGET)
-			targets += L
-		if(TURRET_SECONDARY_TARGET)
-			secondarytargets += L
 
 /obj/machinery/porta_turret/proc/assess_living(var/mob/living/L)
 	if(!istype(L))
 		return TURRET_NOT_TARGET
 
 	if(L.invisibility >= INVISIBILITY_LEVEL_ONE) // Cannot see him. see_invisible is a mob-var
-		return TURRET_NOT_TARGET
-
-	if(!L)
 		return TURRET_NOT_TARGET
 
 	if(faction && L.faction == faction)
@@ -765,6 +758,15 @@
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
+/obj/machinery/porta_turret/proc/assess_mecha(var/obj/mecha/M)
+	if(!istype(M))
+		return TURRET_NOT_TARGET
+
+	if(!M.occupant)
+		return check_all ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
+
+	return assess_living(M.occupant)
+
 /obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
 	if(!H || !istype(H))
 		return 0
@@ -786,6 +788,7 @@
 
 
 /obj/machinery/porta_turret/proc/popUp()	//pops the turret up
+	set waitfor = FALSE
 	if(disabled)
 		return
 	if(raising || raised)
@@ -807,6 +810,7 @@
 	timeout = 10
 
 /obj/machinery/porta_turret/proc/popDown()	//pops the turret down
+	set waitfor = FALSE
 	last_target = null
 	if(disabled)
 		return
@@ -835,17 +839,16 @@
 
 /obj/machinery/porta_turret/proc/target(var/mob/living/target)
 	if(disabled)
-		return
+		return FALSE
 	if(target)
 		last_target = target
-		spawn()
-			popUp()				//pop the turret up if it's not already up.
+		popUp()				//pop the turret up if it's not already up.
 		set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
 		playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
 		spawn()
 			shootAt(target)
-		return 1
-	return
+		return TRUE
+	return FALSE
 
 /obj/machinery/porta_turret/proc/shootAt(var/mob/living/target)
 	//any emagged turrets will shoot extremely fast! This not only is deadly, but drains a lot power!
@@ -857,9 +860,7 @@
 			sleep(shot_delay)
 			last_fired = FALSE
 
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(target)
-	if(!istype(T) || !istype(U))
+	if(!isturf(get_turf(src)) || !isturf(get_turf(target)))
 		return
 
 	if(!raised) //the turret has to be raised in order to fire - makes sense, right?
@@ -874,9 +875,12 @@
 		A = new projectile(loc)
 		playsound(src, shot_sound, 75, 1)
 
-	// Lethal/emagged turrets use twice the power due to higher energy beams
-	// Emagged turrets again use twice as much power due to higher firing rates
-	use_power(reqpower * (2 * (emagged || lethal)) * (2 * emagged))
+	var/power_mult = 1
+	if(emagged)
+		power_mult = 4 // Lethal beams + higher rate of fire
+	else if(lethal)
+		power_mult = 2 // Lethal beams
+	use_power(reqpower * power_mult)
 
 	//Turrets aim for the center of mass by default.
 	//If the target is grabbing someone then the turret smartly aims for extremities
@@ -1092,7 +1096,7 @@
 				return
 
 	if(istype(I, /obj/item/weapon/pen))	//you can rename turrets like bots!
-		var/t = sanitizeSafe(input(user, "Enter new turret name", name, finish_name) as text, MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new turret name", name, finish_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && loc != usr)

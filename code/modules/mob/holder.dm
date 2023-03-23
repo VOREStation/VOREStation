@@ -29,11 +29,13 @@ var/list/holder_mob_icon_cache = list()
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
+	held.reset_view(src)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/holder/Entered(mob/held, atom/OldLoc)
 	if(held_mob)
 		held.forceMove(get_turf(src))
+		held.reset_view(null)
 		return
 	ASSERT(ismob(held))
 	. = ..()
@@ -48,6 +50,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/Exited(atom/movable/thing, atom/OldLoc)
 	if(thing == held_mob)
 		held_mob.transform = original_transform
+		held_mob.update_transform() //VOREStation edit
 		held_mob.vis_flags = original_vis_flags
 		held_mob = null
 	..()
@@ -68,10 +71,14 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/proc/dump_mob()
 	if(!held_mob)
 		return
-	held_mob.transform = original_transform
-	held_mob.vis_flags = original_vis_flags
-	held_mob.forceMove(get_turf(src))
-	held_mob = null
+	if (held_mob.loc == src || isnull(held_mob.loc)) //VOREStation edit
+		held_mob.transform = original_transform
+		held_mob.update_transform() //VOREStation edit
+		held_mob.vis_flags = original_vis_flags
+		held_mob.forceMove(get_turf(src))
+		held_mob.reset_view(null)
+		held_mob = null
+	invisibility = INVISIBILITY_ABSTRACT //VOREStation edit
 
 /obj/item/weapon/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)
@@ -103,9 +110,14 @@ var/list/holder_mob_icon_cache = list()
 			holster.clear_holster()
 		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
 		forceMove(get_turf(src))
+		held.reset_view(null)
 	else if(isitem(loc))
+		var/obj/item/I = loc
 		to_chat(held, "<span class='warning'>You struggle free of [loc].</span>")
 		forceMove(get_turf(src))
+		held.reset_view(null)
+		if(istype(I))
+			I.on_holder_escape(src)
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona
@@ -167,6 +179,12 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "cat"
 
 /obj/item/weapon/holder/cat/runtime
+
+/obj/item/weapon/holder/fennec
+	origin_tech = list(TECH_BIO = 2)
+
+/obj/item/weapon/holder/cat/runtime
+
 	origin_tech = list(TECH_BIO = 2, TECH_DATA = 4)
 
 /obj/item/weapon/holder/cat/cak

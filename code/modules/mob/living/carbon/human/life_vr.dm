@@ -78,3 +78,8 @@
 	// Moving around increases germ_level faster
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++
+
+
+/mob/living/carbon
+	var/synth_cosmetic_pain = FALSE
+

@@ -1,0 +1,219 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/concrete,
+/area/template_noop)
+"e" = (
+/obj/random/crate,
+/obj/random/tool/powermaint,
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/engineering,
+/obj/item/frame/light,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"l" = (
+/obj/item/stack/tile/wood/sif{
+	amount = 5
+	},
+/obj/machinery/light_construct/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"m" = (
+/obj/item/tape/engineering,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"r" = (
+/obj/item/stack/material/plastic{
+	amount = 20
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"s" = (
+/obj/machinery/door/airlock{
+	name = "Construction Area"
+	},
+/obj/item/tape/engineering,
+/turf/simulated/floor/tiled/steel_grid,
+/area/template_noop)
+"t" = (
+/obj/item/frame/apc,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"y" = (
+/turf/template_noop,
+/area/template_noop)
+"A" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"C" = (
+/obj/structure/closet,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/machinery/atmospherics/unary/heater{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/random/maintenance,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/item/stack/material/glass/reinforced{
+	amount = 10
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"J" = (
+/obj/item/stack/tile/wood/sif{
+	amount = 5
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"K" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"L" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"N" = (
+/obj/structure/table/bench,
+/obj/machinery/light_construct/small{
+	dir = 1
+	},
+/turf/simulated/floor/wood/sif,
+/area/template_noop)
+"O" = (
+/obj/structure/table/bench,
+/turf/simulated/floor/wood/sif,
+/area/template_noop)
+"R" = (
+/obj/structure/windoor_assembly,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"T" = (
+/turf/simulated/floor/wood/sif,
+/area/template_noop)
+"Z" = (
+/turf/simulated/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+N
+O
+O
+T
+K
+Z
+Z
+F
+a
+"}
+(3,1,1) = {"
+a
+O
+T
+T
+Z
+Z
+Z
+Z
+Z
+a
+"}
+(4,1,1) = {"
+a
+O
+T
+T
+Z
+Z
+r
+e
+Z
+a
+"}
+(5,1,1) = {"
+a
+O
+T
+T
+J
+I
+Z
+Z
+Z
+s
+"}
+(6,1,1) = {"
+a
+O
+Z
+Z
+A
+Z
+Z
+Z
+C
+a
+"}
+(7,1,1) = {"
+a
+l
+Z
+G
+R
+Z
+Z
+Z
+t
+a
+"}
+(8,1,1) = {"
+a
+L
+L
+a
+a
+m
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+y
+y
+y
+y
+y
+y
+"}

@@ -91,6 +91,29 @@
 
 	return
 
+/obj/item/weapon/reagent_containers/pill/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(is_sharp(W))
+		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
+		user.visible_message("<span class='warning'>[user] gently cuts up [src] with [W]!</span>")
+		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
+
+		if(reagents)
+			reagents.trans_to_obj(J, reagents.total_volume)
+		J.get_appearance()
+		qdel(src)
+
+	if(istype(W, /obj/item/weapon/card/id))
+		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
+		user.visible_message("<span class='warning'>[user] clumsily chops up [src] with [W]!</span>")
+		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
+
+		if(reagents)
+			reagents.trans_to_obj(J, reagents.total_volume)
+		J.get_appearance()
+		qdel(src)
+
+	return ..()
+
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END
 ////////////////////////////////////////////////////////////////////////////////
@@ -294,7 +317,7 @@
 
 /obj/item/weapon/reagent_containers/pill/happy/Initialize()
 	. = ..()
-	reagents.add_reagent("space_drugs", 15)
+	reagents.add_reagent("bliss", 15)
 	reagents.add_reagent("sugar", 15)
 	color = reagents.get_color()
 

@@ -167,10 +167,43 @@
 	storage_slots = 6
 	drop_sound = 'sound/items/drop/box.ogg'
 	use_sound = 'sound/items/storage/box.ogg'
+	var/open = 0
+	var/open_state
+	var/closed_state
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/New()
+	if(!open_state)
+		open_state = "[initial(icon_state)]0"
+	if(!closed_state)
+		closed_state = "[initial(icon_state)]"
+	..()
 
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/update_icon()
+	cut_overlays()
+	if(open)
+		icon_state = open_state
+		if(contents.len >= 1)
+			add_overlay("chew_nico[contents.len]")
+	else
+		icon_state = closed_state
+
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/open(mob/user as mob)
+	if(open)
+		return
+	open = TRUE
+	if(contents.len == 0)
+		icon_state = "[initial(icon_state)]_empty"
+	else
+		update_icon()
+	..()
+
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
+	open = FALSE
+	if(contents.len == 0)
+		icon_state = "[initial(icon_state)]_empty"
+	else
+		update_icon()
+	..()
 
 /obj/item/clothing/mask/chewable/candy
 	name = "wad"
@@ -234,7 +267,7 @@
 	color = reagents.get_color()
 	update_icon()
 
-/obj/item/weapon/storage/box/pocky //ADDITION 04/17/2021
+/obj/item/weapon/storage/box/pocky
 	name = "\improper Totemo yoi Pocky"
 	desc = "A bundle of chocolate-coated bisquit sticks."
 	icon = 'icons/obj/food_snacks.dmi'
@@ -249,18 +282,17 @@
 	foldable = null
 	trash = /obj/item/trash/pocky
 
-/obj/item/clothing/mask/chewable/candy/pocky //ADDITION 04/17/2021
+/obj/item/clothing/mask/chewable/candy/pocky
 	name = "chocolate pocky"
 	desc = "A chocolate-coated biscuit stick."
 	icon_state = "pockystick"
 	item_state = "pocky"
+	filling = list("sugar" = 2, "chocolate" = 5)
 	type_butt = null
 
 /obj/item/clothing/mask/chewable/candy/pocky/process()
 	chew()
 	if(chewtime < 1)
+		if(ismob(loc))
+			to_chat(loc, "<span class='notice'>There's no more of \the [name] left!</span>")
 		spitout(0)
-
-/obj/item/clothing/mask/chewable/candy/pocky/Initialize()
-	. = ..()
-	reagents.add_reagent("chocolate", 10)

@@ -31,7 +31,7 @@
 	var/time_coeff = 1
 	/// Coefficient for the efficiency of material usage in item building. Based on the installed parts.
 	var/component_coeff = 1
-	
+
 	var/loading_icon_state = "mechfab-idle"
 
 	var/list/materials = list(
@@ -148,6 +148,9 @@
 					sub_category += "Medical"
 				if(module_types & BORG_MODULE_ENGINEERING)
 					sub_category += "Engineering"
+				if(module_types & BORG_MODULE_SCIENCE)
+					sub_category += "Science"
+
 			else
 				sub_category += "All Cyborgs"
 		// Else check if this design builds a piece of exosuit equipment.
@@ -309,7 +312,7 @@
 		atom_say("Obstruction cleared. \The [stored_part] is complete.")
 		stored_part.forceMove(exit)
 		stored_part = null
-	
+
 	// If there's nothing being built, try to build something
 	if(!being_built)
 		// If we're not processing the queue anymore or there's nothing to build, end processing.
@@ -650,20 +653,20 @@
 	switch(emagged)
 		if(0)
 			emagged = 0.5
-			visible_message("[bicon(src)] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
+			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
 			sleep(10)
-			visible_message("[bicon(src)] <b>[src]</b> beeps: \"Attempting auto-repair\"")
+			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"Attempting auto-repair\"")
 			sleep(15)
-			visible_message("[bicon(src)] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
+			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
 			sleep(30)
-			visible_message("[bicon(src)] <b>[src]</b> beeps: \"User DB truncated. Please contact your [using_map.company_name] system operator for future assistance.\"")
+			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"User DB truncated. Please contact your [using_map.company_name] system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
 			return 1
 		if(0.5)
-			visible_message("[bicon(src)] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
+			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
 		if(1)
-			visible_message("[bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
+			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
 
 /obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? TRUE : FALSE
@@ -703,7 +706,7 @@
 
 	// Reduce our amount stored
 	materials[matstring] -= ejected * S.perunit
-	
+
 	// Recurse if we have enough left for more sheets
 	if(recursive && materials[matstring] >= S.perunit)
 		eject_materials(matstring, -1)

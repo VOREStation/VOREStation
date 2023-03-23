@@ -1,17 +1,23 @@
 /* Pens!
  * Contains:
  *		Pens
+ *		Coloured Pens
+ *		Fountain Pens
+ *		Multi Pen
+ *		Reagent Pens
+ *		Blade Pens
  *		Sleepy Pens
  *		Parapens
+ *		Chameleon Pen
+ *		Crayons
  */
-
 
 /*
  * Pens
  */
 /obj/item/weapon/pen
-	desc = "It's a normal black ink pen."
 	name = "pen"
+	desc = "It's a normal black ink pen."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
@@ -33,6 +39,9 @@
 	to_chat(user, "<span class='notice'>Click.</span>")
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 
+/*
+ * Coloured Pens
+ */
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
 	icon_state = "pen_blue"
@@ -43,6 +52,9 @@
 	icon_state = "pen_red"
 	colour = "red"
 
+/*
+ * Fountain Pens
+ */
 /obj/item/weapon/pen/fountain
 	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
@@ -56,9 +68,33 @@
 	icon_state = "pen_fountain"
 
 /obj/item/weapon/pen/fountain4
-	desc = "command fountain pen"
-	icon_state = "A well made and expensive fountain pen. The nib is quite sharp."
+	desc = "A well made and expensive fountain pen. This one has silver accents."
+	icon_state = "blues_fountain"
 
+/obj/item/weapon/pen/fountain5
+	desc = "A well made and expensive fountain pen. This one has gold accents."
+	icon_state = "blueg_fountain"
+
+/obj/item/weapon/pen/fountain6
+	desc = "A well made and expensive fountain pen. The nib is quite sharp."
+	icon_state = "command_fountain"
+
+/obj/item/weapon/pen/fountain7
+	desc = "A well made and expensive fountain pen made from gold."
+	icon_state = "gold_fountain"
+
+/obj/item/weapon/pen/fountain8
+	desc = "A well made and expensive fountain pen."
+	icon_state = "black_fountain"
+
+/obj/item/weapon/pen/fountain9
+	desc = "A well made and expensive fountain pen made for gesturing."
+	icon_state = "mime_fountain"
+
+
+/*
+ * Multi Pen
+ */
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1
@@ -88,7 +124,7 @@
 	colour = "white"
 
 /*
- * Reagent pens
+ * Reagent Pens
  */
 
 /obj/item/weapon/pen/reagent
@@ -114,9 +150,8 @@
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
 
 /*
- * Blade pens.
+ * Blade Pens
  */
-
 /obj/item/weapon/pen/blade
 	desc = "It's a normal black ink pen."
 	description_antag = "This pen can be transformed into a dangerous melee and thrown assassination weapon with an Alt-Click.\
@@ -230,7 +265,7 @@
 	reagents.add_reagent("cryptobiolin", 10)
 
 /*
- * Chameleon pen
+ * Chameleon Pen
  */
 /obj/item/weapon/pen/chameleon
 	var/signature = ""
@@ -247,7 +282,7 @@
 	if(new_signature)
 		signature = new_signature
 	*/
-	signature = sanitize(input(usr, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
+	signature = sanitize(tgui_input_text(usr, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
 
 /obj/item/weapon/pen/proc/get_signature(var/mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
@@ -288,7 +323,6 @@
 /*
  * Crayons
  */
-
 /obj/item/weapon/pen/crayon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."

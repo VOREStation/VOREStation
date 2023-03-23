@@ -30,8 +30,8 @@
 	icon = null
 	icon_state = ""
 	. = ..()
-	
-	dress_up()	
+
+	dress_up()
 	turntable()
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/proc/dress_up()
@@ -42,7 +42,7 @@
 			var/obj/item/clothing/C = I
 			C.species_restricted = null
 		equip_to_appropriate_slot(I)
-	
+
 	if(istype(back, /obj/item/weapon/rig))
 		var/obj/item/weapon/rig/rig = back
 		rig.toggle_seals(src)
@@ -130,6 +130,3 @@
 
 /mob/living/carbon/human/stok/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_UNATHI)
-
-/mob/living/carbon/human/event1/Initialize(var/new_loc)
-	return ..(new_loc, SPECIES_EVENT1)

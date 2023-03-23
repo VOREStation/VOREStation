@@ -27,7 +27,7 @@
 	name = "hooligan crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey. \
 	You probably shouldn't mess with it."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/hooligan_crab)
+	//catalogue_data = list(/datum/category_item/catalogue/fauna/hooligan_crab)			//TODO: write non-sif lore
 
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
@@ -39,7 +39,7 @@
 
 	maxHealth = 200
 	health = 200
-	movement_cooldown = 10
+	movement_cooldown = 4
 	movement_sound = 'sound/weapons/heavysmash.ogg'
 	movement_shake_radius = 5
 

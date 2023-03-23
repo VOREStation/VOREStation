@@ -31,8 +31,8 @@
 "ag" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/heavysniper,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
 "ah" = (
@@ -456,6 +456,20 @@
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall/r_wall,
 /area/centcom)
+"bn" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ccboat";
+	pixel_y = 29
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "bo" = (
 /obj/structure/sign/department/bar,
 /turf/simulated/wall/r_wall,
@@ -500,6 +514,25 @@
 /obj/structure/sign/warning/nosmoking_2,
 /turf/simulated/wall/r_wall,
 /area/centcom/terminal)
+"by" = (
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	frequency = 1380;
+	id_tag = null;
+	pixel_x = 24
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "bz" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
@@ -524,15 +557,76 @@
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
+"bC" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
+/obj/effect/overmap/visitable/ship/landable/ccboat,
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bD" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "bE" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
 /obj/structure/closet/walllocker/medical/east,
+/obj/item/stack/medical/crude_pack,
+/obj/item/stack/medical/crude_pack,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/splint,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
+"bF" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/angled/open{
+	id = "ccshuttleshutter"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bG" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "ccshuttleshutter"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bH" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bI" = (
+/turf/simulated/floor/reinforced,
+/area/shuttle/centcom/ccbay)
 "bJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -627,11 +721,11 @@
 "bZ" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /turf/simulated/floor/tiled{
 	icon_state = "dark"
 	},
@@ -826,7 +920,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/structure/closet/walllocker/medical/west,
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -876,10 +972,10 @@
 /area/centcom/medical)
 "cL" = (
 /obj/structure/table/reinforced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
 "cO" = (
@@ -1024,12 +1120,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"df" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "dh" = (
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
@@ -1124,8 +1214,8 @@
 /area/centcom/specops)
 "dv" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled/dark,
@@ -1461,6 +1551,9 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/centcom/terminal/shuttlefluff)
+"eM" = (
+/turf/simulated/shuttle/floor,
+/area/centcom/terminal)
 "eP" = (
 /obj/machinery/gibber,
 /turf/simulated/floor/tiled{
@@ -1569,12 +1662,12 @@
 /area/centcom/terminal)
 "fl" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/beanbags,
-/obj/item/weapon/storage/box/beanbags,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/simulated/floor/tiled{
 	icon_state = "dark"
 	},
@@ -1889,16 +1982,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/centcom/specops)
-"gh" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
-/obj/effect/overmap/visitable/ship/landable/ccboat,
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "gj" = (
 /obj/machinery/vending/cola{
 	name = "hacked Robust Softdrinks";
@@ -2082,25 +2165,6 @@
 /area/centcom/security{
 	name = "\improper CentCom Residential Security"
 	})
-"gN" = (
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	frequency = 1380;
-	id_tag = null;
-	pixel_x = 24
-	},
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "gP" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/green,
@@ -2255,8 +2319,8 @@
 /area/centcom/control)
 "hq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled{
@@ -3772,22 +3836,6 @@
 /obj/item/weapon/melee/energy/sword/red,
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
-"mS" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "ccshuttleshutter"
-	},
-/turf/simulated/floor,
-/area/shuttle/ccboat)
 "mT" = (
 /obj/machinery/camera/network/crescent,
 /obj/structure/table/reinforced,
@@ -4363,6 +4411,12 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/ccboat)
+"ps" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/black,
+/area/centcom/terminal)
 "pw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -4556,6 +4610,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"qG" = (
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	door_color = "#822a1e";
+	frequency = null;
+	id_tag = null;
+	locked = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/centcom/terminal)
 "qI" = (
 /obj/effect/floor_decal/rust/part_rusted3,
 /turf/simulated/floor/tiled,
@@ -4633,6 +4696,12 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
+"qV" = (
+/obj/machinery/ion_engine{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/centcom/terminal)
 "qW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -4719,6 +4788,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
+"rt" = (
+/obj/machinery/light/floortube{
+	pixel_y = -6
+	},
+/turf/simulated/shuttle/floor,
+/area/centcom/terminal)
 "ru" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -4966,9 +5041,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"sX" = (
-/turf/simulated/floor/reinforced/airless,
-/area/shuttle/centcom/ccbay)
 "sY" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ArmouryC4";
@@ -5262,6 +5334,13 @@
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
+"va" = (
+/obj/machinery/light/floortube{
+	dir = 1;
+	pixel_y = 6
+	},
+/turf/simulated/shuttle/floor,
+/area/centcom/terminal)
 "vb" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -5313,15 +5392,15 @@
 "vk" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "vm" = (
@@ -5435,19 +5514,6 @@
 	},
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
-"vY" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/blast/angled/open{
-	id = "ccshuttleshutter"
-	},
-/turf/simulated/floor,
-/area/shuttle/ccboat)
 "vZ" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorblack{
@@ -5573,14 +5639,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/control)
-"ww" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "wx" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
@@ -5691,10 +5749,10 @@
 "wY" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "xc" = (
@@ -5731,12 +5789,29 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
+"xj" = (
+/obj/machinery/computer{
+	dir = 8
+	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 6
+	},
+/turf/simulated/shuttle/floor,
+/area/centcom/terminal)
 "xk" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"xr" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/machinery/alarm,
+/turf/simulated/shuttle/floor/black,
+/area/centcom/terminal)
 "xt" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -5901,6 +5976,16 @@
 /area/centcom/security{
 	name = "\improper CentCom Security Arrivals"
 	})
+"ya" = (
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#822a1e";
+	frequency = null;
+	id_tag = null;
+	locked = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/centcom/terminal)
 "yb" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -5951,6 +6036,15 @@
 	icon_state = "floor_red"
 	},
 /area/centcom/terminal/shuttlefluff)
+"yz" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/machinery/status_display{
+	pixel_x = -31
+	},
+/turf/simulated/shuttle/floor/black,
+/area/centcom/terminal)
 "yB" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/fries,
@@ -6470,6 +6564,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/centcom/ccbay)
+"Bs" = (
+/turf/simulated/floor/reinforced,
+/area/centcom/terminal)
 "Bu" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Kitchen cold room";
@@ -6541,23 +6638,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/command)
+"Cg" = (
+/obj/structure/shuttle/window,
+/obj/structure/grille,
+/turf/simulated/floor,
+/area/centcom/terminal)
 "Cj" = (
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
-"Cl" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "ccboat";
-	pixel_y = 29
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "Cn" = (
 /turf/unsimulated/wall,
 /area/centcom/main_hall)
@@ -6962,6 +7050,7 @@
 /area/centcom/medical)
 "DJ" = (
 /obj/structure/table/reinforced,
+/obj/machinery/librarycomp,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "DK" = (
@@ -7194,14 +7283,14 @@
 /area/centcom/control)
 "Eq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
@@ -7702,6 +7791,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"Ga" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor,
+/area/centcom/terminal)
 "Gb" = (
 /obj/effect/landmark{
 	name = "tdome2"
@@ -8342,6 +8437,7 @@
 	pixel_x = -24;
 	pixel_y = 25
 	},
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug,
 /turf/simulated/floor/tiled,
 /area/centcom/holding)
 "HK" = (
@@ -8528,15 +8624,15 @@
 "Ih" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "Ij" = (
@@ -9135,6 +9231,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/security)
+"JK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full{
+	maxhealth = 1e+007
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/unsimulated/shuttle/plating,
+/area/centcom/terminal)
 "JL" = (
 /obj/machinery/door_timer/cell_3{
 	id = "CellC2";
@@ -10436,7 +10543,7 @@
 /area/centcom/medical)
 "MJ" = (
 /obj/structure/table/glass,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "MK" = (
@@ -11514,7 +11621,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "Pv" = (
@@ -12177,14 +12284,14 @@
 /area/centcom/security)
 "Ri" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
@@ -12706,6 +12813,15 @@
 /area/centcom/security{
 	name = "\improper CentCom Security Arrivals"
 	})
+"Sv" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full{
+	maxhealth = 1e+007
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/glass,
+/turf/unsimulated/shuttle/plating,
+/area/centcom/terminal)
 "Sw" = (
 /obj/structure/table/glass,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -12714,7 +12830,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "Sx" = (
@@ -14352,14 +14468,14 @@
 	})
 "Wq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
@@ -14871,6 +14987,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/security)
+"XL" = (
+/turf/simulated/shuttle/wall,
+/area/centcom/terminal)
 "XM" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -15628,15 +15747,6 @@
 /area/centcom/bar)
 "ZT" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
@@ -19842,27 +19952,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-Vq
-Vq
-Vq
-Vq
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+bw
+JK
+JK
+bw
+bw
 Vq
 Vq
 Vq
@@ -19984,27 +20094,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-Vq
-Vq
-Vq
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
 Vq
 Vq
 Vq
@@ -20126,27 +20236,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-Vq
-Vq
-Vq
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Sv
 Vq
 Vq
 Vq
@@ -20268,27 +20378,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-Vq
-Vq
-Vq
+bw
+Bs
+Bs
+Bs
+XL
+qV
+XL
+XL
+Cg
+Cg
+ya
+Cg
+Cg
+XL
+XL
+qV
+XL
+Bs
+Bs
+Bs
+Sv
 Vq
 Vq
 Vq
@@ -20410,27 +20520,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-Vq
-Vq
+bw
+Bs
+Bs
+XL
+XL
+XL
+XL
+ps
+ps
+ps
+ps
+ps
+ps
+ps
+XL
+XL
+XL
+XL
+Bs
+Bs
+Sv
 Vq
 Vq
 Vq
@@ -20552,27 +20662,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-Vq
-Vq
+bw
+Bs
+Bs
+Cg
+ps
+yz
+ps
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+ps
+yz
+ps
+Cg
+Bs
+Bs
+bw
 Vq
 Vq
 Vq
@@ -20694,27 +20804,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+XL
+ps
+ps
+ps
+rt
+ps
+ps
+ps
+ps
+ps
+va
+ps
+ps
+ps
+XL
+Bs
+Bs
+bw
 aH
 GA
 GA
@@ -20836,27 +20946,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+qG
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+qG
+Bs
+Bs
+bw
 Bf
 Bf
 Bf
@@ -20978,27 +21088,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+XL
+Ga
+Ga
+Ga
+eM
+ps
+ps
+ps
+ps
+ps
+eM
+ps
+ps
+ps
+XL
+Bs
+Bs
+bw
 Bf
 GL
 WG
@@ -21120,27 +21230,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+XL
+XL
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+XL
+XL
+Bs
+Bs
+bw
 Bf
 zZ
 Bf
@@ -21262,27 +21372,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+XL
+XL
+ps
+ps
+ps
+eM
+ps
+eM
+ps
+ps
+ps
+XL
+XL
+Bs
+Bs
+Bs
+bw
 Bf
 zZ
 Bf
@@ -21404,27 +21514,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+XL
+XL
+va
+eM
+eM
+eM
+eM
+eM
+rt
+XL
+XL
+Bs
+Bs
+Bs
+Bs
+bw
 Bf
 zZ
 Bf
@@ -21546,27 +21656,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+XL
+XL
+ps
+ps
+eM
+ps
+ps
+XL
+XL
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
 Bf
 zZ
 Bf
@@ -21688,27 +21798,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Cg
+ps
+ps
+eM
+ps
+ps
+Cg
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
 Bf
 zZ
 Bf
@@ -21830,27 +21940,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Cg
+ps
+ps
+eM
+ps
+ps
+Cg
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
 Bf
 zZ
 Bf
@@ -21972,27 +22082,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+XL
+xr
+ps
+xj
+ps
+ps
+XL
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
 Bf
 GM
 GW
@@ -22114,27 +22224,27 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+XL
+XL
+Cg
+Cg
+Cg
+XL
+XL
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
 Bf
 Bf
 Bf
@@ -22256,42 +22366,42 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
-aH
+bw
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+bw
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
 ah
 vu
 vu
@@ -22398,42 +22508,42 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
+ah
+ah
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
 ah
 dY
 vu
@@ -22541,42 +22651,42 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
 ah
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
 vu
 vu
 vu
@@ -22683,41 +22793,41 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
+ah
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
+vu
 ah
 vu
 vu
@@ -22825,42 +22935,42 @@ ZQ
 ZQ
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-ZQ
-aM
-aM
-aM
-aM
-aM
-aM
-aM
-aM
-aM
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
 dY
 vu
 vu
@@ -25638,21 +25748,21 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
-sX
-sX
-sX
+bI
+bI
+bI
+bI
+bI
+bI
 fE
 gn
 mY
 zN
 uf
-mS
+bG
 uf
-sX
-sX
+bI
+bI
 pR
 nJ
 ac
@@ -25780,16 +25890,16 @@ ZQ
 ac
 nJ
 px
-sX
-sX
+bI
+bI
 WO
 uf
 uf
-mS
-mS
+bG
+bG
 go
-Cl
-gh
+bn
+bC
 gn
 wr
 uf
@@ -25924,14 +26034,14 @@ nJ
 px
 uf
 uf
-mS
+bG
 uf
 vq
 bP
 Bn
 go
-gN
-ww
+by
+bD
 xJ
 wm
 HU
@@ -26064,7 +26174,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 Bc
 DW
 uf
@@ -26206,7 +26316,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 LB
 cX
 qL
@@ -26220,7 +26330,7 @@ uf
 vi
 YD
 cY
-df
+bH
 pR
 nJ
 ac
@@ -26348,7 +26458,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 Ti
 nA
 sp
@@ -26490,7 +26600,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 UE
 CK
 jK
@@ -26504,7 +26614,7 @@ uf
 fG
 YD
 cY
-df
+bH
 pR
 nJ
 ac
@@ -26632,7 +26742,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 VJ
 vG
 uf
@@ -26776,7 +26886,7 @@ nJ
 px
 uf
 uf
-mS
+bG
 uf
 vq
 bP
@@ -26916,13 +27026,13 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
+bI
+bI
+bI
 uf
 uf
-mS
-mS
+bG
+bG
 pw
 tT
 tT
@@ -27058,21 +27168,21 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
-sX
-sX
-sX
+bI
+bI
+bI
+bI
+bI
+bI
 fE
 UC
 uf
 uf
 uf
-mS
+bG
 uf
-sX
-sX
+bI
+bI
 pR
 nJ
 ic

@@ -85,6 +85,8 @@
 
 		handle_pain()
 
+		handle_allergens()
+
 		handle_medical_side_effects()
 
 		handle_heartbeat()
@@ -246,9 +248,28 @@
 				to_chat(src, "<span class='danger'>Your legs won't respond properly, you fall down!</span>")
 				Weaken(10)
 
+// RADIATION! Everyone's favorite thing in the world! So let's get some numbers down off the bat.
+// 50 rads = 1Bq. This means 1 rad = 0.02Bq.
+// However, unless I am a smoothbrained dumbo, absorbed rads are in Gy. Not Bq.
+// So let's just assume that 50 rads = 1Gy. Make life easier!
+
+// ACUTE RADIATION (The stuff that the 'radiation' variable takes care of. Remember, 50radiation=1Gy.):
+// Without care: 1-2Gy has a (0-5%) mortality chance. 2-6 (5-95%) 6-8 (95-100)% 8-30 (100%) >30 (100%)
+// With care: 1-2Gy (0-5%), 2-6 (5-50%), 6-8 (50-100%), 8-30 (99-100%) >30 (100%)
+// So let's make our thresholds based on this! 50-100, 100-300, 300-400, 400-1500, and anything above 1500!
+// In reality, however, nobody should ever go above 300 radiation, which is why the cutoff before the really bad effects start to happen being
+// 300 radiation is good. For reference: Breaking an artifact deals ~300 rads with no resistance. Getting shot with a lvl 3 PA deals 300 rads with no resistance.
+// Nobody outside of engineering should ever have to worry about being irradiated over 300 and start getting organ damage..
 
 
-/mob/living/carbon/human/handle_mutations_and_radiation()
+// CHRONIC RADIATION (The stuff that 'accumulated_rads' takes care of):
+// This is more or less for if someone was exposed for a long time to radiation or just finished being treated for extreme ARS.
+// These are meant to be annoying effects to nudge someone towards medical, but not lethal or deadly.
+// Things such as loss of taste, eye damage, dropping items in your hand, being temporaily weakened, etc. Stuff to annoy them and get them to fix their rads.
+
+// Additionally, RADIATION_SPEED_COEFFICIENT = 0.1
+
+/mob/living/carbon/human/handle_mutations_and_radiation() //Radiation rework! Now with 'accumulated_rads'
 	if(inStasisNow())
 		return
 
@@ -265,13 +286,18 @@
 			if(gene.is_active(src))
 				gene.OnMobLife(src)
 
-	radiation = CLAMP(radiation,0,250)
-
+	radiation = CLAMP(radiation,0,2500) //Max of 50Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
+	accumulated_rads = CLAMP(accumulated_rads,0,2500) //Max of 50Gy as well. You should never get higher than this. You will be dead before you can reach this.
+	var/obj/item/organ/internal/I = null //Used for further down below when an organ is picked.
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
+			glow_override = FALSE
 			set_light(0)
-	else
+		if(accumulated_rads)
+			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
+	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
 		if(species.appearance_flags & RADIATION_GLOWS)
+			glow_override = TRUE
 			set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
 
@@ -297,42 +323,139 @@
 			return
 		//VOREStation Addition end: shadekin
 
-		var/damage = 0
-		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-		if(radiation > 2.5 && prob(25)) // Safe for a little over 2m at the recommended maximum safe dosage of 0.05Bq
-			damage = 1
+		if(reagents.has_reagent("prussian_blue")) //Prussian Blue temporarily stops radiation effects.
+			return
 
-		if (radiation > 50)
+		var/damage = 0
+
+
+		if (radiation < 50) //Less than 1.0 Gy. No side effects.
+			radiation -= 10 * RADIATION_SPEED_COEFFICIENT
+			accumulated_rads += 10 * RADIATION_SPEED_COEFFICIENT //No escape from accumulated rads.
+
+		else if (radiation >= 50 && radiation < 100) //Equivalent of 1.0-2.0 Gy. Minimum stage you start seeing effects.
 			damage = 1
-			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
+			radiation -= 10 * RADIATION_SPEED_COEFFICIENT
+			accumulated_rads += 10 * RADIATION_SPEED_COEFFICIENT
 			if(!isSynthetic())
-				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-					radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-					to_chat(src, "<span class='warning'>You feel weak.</span>")
-					Weaken(3)
-					if(!lying)
-						emote("collapse")
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && !weakened)
+					to_chat(src, "<span class='warning'>You feel exhausted.</span>")
+					AdjustWeakened(3)
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
 					if((h_style != "Bald" || f_style != "Shaved" ))
 						to_chat(src, "<span class='warning'>Your hair falls out.</span>")
 						h_style = "Bald"
 						f_style = "Shaved"
 						update_hair()
+				if(prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //Rare chance of vomiting.
+					spawn vomit()
 
-		if (radiation > 75)
+		else if (radiation >= 100 && radiation < 300) //Equivalent of 2.0 to 6.0 Gy. Nobody should ever be above this without extreme negligence.
 			damage = 3
-			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
+			radiation -= 30 * RADIATION_SPEED_COEFFICIENT
+			accumulated_rads += 30 * RADIATION_SPEED_COEFFICIENT
 			if(!isSynthetic())
 				if(prob(5))
 					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 				if(prob(1))
-					to_chat(src, "<span class='warning'>You feel strange!</span>")
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+					spawn vomit()
+				if(prob(10) && !weakened)
+					to_chat(src, "<span class='warning'>You feel sick.</span>")
+					AdjustWeakened(3)
 
-		if (radiation > 150)
-			damage = 6
-			radiation -= 4 * RADIATION_SPEED_COEFFICIENT
+		else if (radiation >= 300 && radiation < 400) //Equivalent of 6.0 to 8.0 Gy.
+			damage = 5
+			radiation -= 50 * RADIATION_SPEED_COEFFICIENT
+			accumulated_rads += 50 * RADIATION_SPEED_COEFFICIENT
+			if(!isSynthetic())
+				if(prob(15))
+					take_overall_damage(0, 10 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
+				if(prob(2))
+					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
+					emote("gasp")
+				if(prob(10) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+					spawn vomit()
+				if(prob(15) && !weakened)
+					to_chat(src, "<span class='warning'>You feel horribly ill.</span>")
+					AdjustWeakened(3)
+				if(prob(5) && internal_organs.len)
+					I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
+					if(istype(I)) I.add_autopsy_data("Radiation Induced Cancerous Growth", damage)
+					I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+
+
+		else if (radiation >= 400 && radiation < 1500) //Equivalent of 8.0 to 30 Gy.
+			damage = 10
+			radiation -= 100 * RADIATION_SPEED_COEFFICIENT
+			accumulated_rads += 100 * RADIATION_SPEED_COEFFICIENT
+			if(!isSynthetic())
+				if(prob(25))
+					take_overall_damage(0, 15 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
+					if(prob(5))
+						I = internal_organs_by_name[O_EYES]
+						if(I)
+							if(istype(I)) I.add_autopsy_data("Radiation Burns", damage)
+							I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+							to_chat(src, "<span class='warning'>Your eyes burn!</span>")
+							eye_blurry += 10
+				if(prob(4))
+					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
+					emote("gasp")
+				if(prob(25) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+					spawn vomit()
+				if(prob(20) && !weakened)
+					to_chat(src, "<span class='critical'>You feel like your insides are burning!</span>")
+					AdjustWeakened(5)
+				if(prob(5))
+					to_chat(src, "<span class='critical'>Your entire body feels like it's on fire!</span>")
+					adjustHalLoss(5)
+				if(prob(10) && internal_organs.len)
+					I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
+					if(istype(I)) I.add_autopsy_data("Radiation Induced Cancerous Growth", damage)
+					I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+
+		else if (radiation >= 1500) //Above 30Gy. You had to get absolutely blasted with rads for this.
+			damage = 30
+			radiation -= 300 * RADIATION_SPEED_COEFFICIENT
+			accumulated_rads += 300 * RADIATION_SPEED_COEFFICIENT
+
+			if(!isSynthetic())
+				take_overall_damage(0, damage * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns") //3 burn damage a tick as your body melts.
+				adjustCloneLoss(15 * RADIATION_SPEED_COEFFICIENT) //1.5 cloneloss a tick as your cells mutate and break down.
+
+				I = internal_organs_by_name[O_EYES]
+				if(I)
+					I.add_autopsy_data("Radiation Burns", damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+					I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT) //3 eye damage a tick as your eyes melt down.
+					eye_blurry += 10
+
+				if(prob(50) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+					spawn vomit()
+				if(!paralysis && prob(30) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
+					to_chat(src, "<font color='Critical'>You have a seizure!</font>")
+					Paralyse(10)
+					make_jittery(1000)
+					if(!lying)
+						emote("collapse")
+				if(get_active_hand() && prob(15)) //CNS is shutting down.
+					to_chat(src, "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>")
+					drop_item()
+				if(internal_organs.len)
+					I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
+					if(istype(I)) I.add_autopsy_data("Radiation Induced Cancerous Growth", damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+					I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+
+/* 		//Not-so-sparkledog code. TODO: Make a pref for 'special game interactions' that allows interactions that align with prefs to occur.
+		if(radiation >= 250) //Special effect stuff that occurs at certain rad levels.
+			if(prob(1) && prob(radiation/2 * RADIATION_SPEED_COEFFICIENT) && allow_spontaneous_tf) //If you've got spontaneous TF...well...
+				scramble(1, src, 3) //I tried to base this on how many rads you took and it was...Hilarious. Sparkledogs everywhere.
+				//For the most part, 3 strength will simply change colors. If you get really unlucky, it can do more TF's.
+				//Math: 250 rads = 1/800 chance
+				//500 rads = 1/400 chance chance. Etc.
+*/
 
 		if(damage)
 			damage *= species.radiation_mod
@@ -341,6 +464,47 @@
 			if(!isSynthetic() && organs.len)
 				var/obj/item/organ/external/O = pick(organs)
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
+
+	// Begin long-term radiation effects
+	// Loss of taste occurs at 100 (2Gy) and is handled in taste.dm
+	// These are all done one after another, so duplication is not required. Someone at 400rads will have the 100&400 effects.
+	if(!radiation && accumulated_rads >= 100  && !reagents.has_reagent("prussian_blue")) //Let's not hit them with long term effects when they're actively being hit with rads.
+		if(!isSynthetic())
+			I = internal_organs_by_name[O_EYES]
+			if(I) //Eye stuff
+				if(prob(5) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
+					to_chat(src, "<span class='warning'>Your eyes water.</span>")
+					eye_blurry += 5
+				if(accumulated_rads > 300) // (6Gy)
+					if(prob(2) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
+						to_chat(src, "<span class='warning'>Your eyes burn.</span>")
+						I.add_autopsy_data("Radiation Burns", 1 * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
+						I.take_damage(1 * species.radiation_mod * RADIATION_SPEED_COEFFICIENT) //0.1 damage. Not a lot, but enough to tell you to get to medical.
+						eye_blurry += 10
+
+			if(accumulated_rads > 200) // (4Gy)
+				if(prob(5) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
+					to_chat(src, "<span class='warning'>Your feel nauseated.</span>")
+					spawn vomit()
+				if(!weakened && prob(2) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
+					to_chat(src, "<span class='warning'>Your feel exhausted.</span>")
+					AdjustWeakened(3)
+			if(accumulated_rads > 300) // (6Gy)
+				if(get_active_hand() && prob(15) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
+					to_chat(src, "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>")
+					drop_item()
+			if(accumulated_rads > 700) // (12Gy)
+				if(!paralysis && prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //1 in 1000 chance per tick.
+					to_chat(src, "<font color='Critical'>You have a seizure!</font>")
+					Paralyse(10)
+					make_jittery(1000)
+					if(!lying)
+						emote("collapse")
+
+		else //The synthetic effects!
+			return //Nothing for now.
+
+
 
 	/** breathing **/
 
@@ -584,7 +748,7 @@
 				to_chat(src, "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>")
 
 		if(breath.temperature >= species.heat_discomfort_level)
-		
+
 			if(breath.temperature >= species.breath_heat_level_3)
 				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
@@ -605,11 +769,11 @@
 				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
 			else if(breath.temperature <= species.breath_cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
-				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
-			else if(breath.temperature <= species.breath_cold_level_1)
 				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
+			else if(breath.temperature <= species.breath_cold_level_1)
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
 			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_COLD))
 				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
 			else
@@ -637,6 +801,35 @@
 
 	breath.update_values()
 	return 1
+
+/mob/living/carbon/human/proc/handle_allergens()
+	if(chem_effects[CE_ALLERGEN])
+		//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple seperate allergen typess simultaneously hurts more
+		var/damage_severity = species.allergen_damage_severity * chem_effects[CE_ALLERGEN]
+		var/disable_severity = species.allergen_disable_severity * chem_effects[CE_ALLERGEN]
+		if(species.allergen_reaction & AG_PHYS_DMG)
+			adjustBruteLoss(damage_severity)
+		if(species.allergen_reaction & AG_BURN_DMG)
+			adjustFireLoss(damage_severity)
+		if(species.allergen_reaction & AG_TOX_DMG)
+			adjustToxLoss(damage_severity)
+		if(species.allergen_reaction & AG_OXY_DMG)
+			adjustOxyLoss(damage_severity)
+			if(prob(disable_severity/2))
+				emote(pick("cough","gasp","choke"))
+		if(species.allergen_reaction & AG_EMOTE)
+			if(prob(disable_severity/2))
+				emote(pick("pale","shiver","twitch"))
+		if(species.allergen_reaction & AG_PAIN)
+			adjustHalLoss(disable_severity)
+		if(species.allergen_reaction & AG_WEAKEN)
+			Weaken(disable_severity)
+		if(species.allergen_reaction & AG_BLURRY)
+			eye_blurry = max(eye_blurry, disable_severity)
+		if(species.allergen_reaction & AG_SLEEPY)
+			drowsyness = max(drowsyness, disable_severity)
+		if(species.allergen_reaction & AG_CONFUSE)
+			Confuse(disable_severity/4)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -746,6 +939,8 @@
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
+		if(stat==DEAD)
+			pressure_damage = pressure_damage/2
 		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
 		throw_alert("pressure", /obj/screen/alert/highpressure, 2)
 	else if(adjusted_pressure >= species.warning_high_pressure)
@@ -757,7 +952,10 @@
 	else
 		if( !(COLD_RESISTANCE in mutations))
 			if(!isSynthetic() || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)) //VOREStation Edit - NIF pressure seals
-				take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+				var/pressure_damage = LOW_PRESSURE_DAMAGE
+				if(stat==DEAD)
+					pressure_damage = pressure_damage/2
+				take_overall_damage(brute=pressure_damage, used_weapon = "Low Pressure")
 			if(getOxyLoss() < 55) 		// 12 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
 				var/pressure_dam = 3	// 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
 										// (Extra 1 oxyloss from failed breath)
@@ -1328,7 +1526,9 @@
 		else
 			clear_alert("high")
 
-		if(!isbelly(loc)) clear_fullscreen("belly") //VOREStation Add - Belly fullscreens safety
+		if(!isbelly(loc)) //VOREStation Add - Belly fullscreens safety
+			clear_fullscreen("belly")
+			//clear_fullscreen("belly2") //For multilayered stomachs. Not currently implemented.
 
 		if(config.welder_vision)
 			var/found_welder
@@ -1408,12 +1608,10 @@
 		if(istype(rig) && rig.visor && !looking_elsewhere)
 			if(!rig.helmet || (head && rig.helmet == head))
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
-					glasses_processed = 1
-					process_glasses(rig.visor.vision.glasses)
+					glasses_processed = process_glasses(rig.visor.vision.glasses)
 
 		if(glasses && !glasses_processed && !looking_elsewhere)
-			glasses_processed = 1
-			process_glasses(glasses)
+			glasses_processed = process_glasses(glasses)
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
@@ -1422,6 +1620,15 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.vision_flags))
 				sight |= M.vision_flags
+
+		if(!glasses_processed && nif)
+			var/datum/nifsoft/vision_soft
+			for(var/datum/nifsoft/NS in nif.nifsofts)
+				if(NS.vision_exclusive && NS.active)
+					vision_soft = NS
+					break
+			if(vision_soft)
+				glasses_processed = process_nifsoft_vision(vision_soft)		//not really glasses but equitable
 
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
@@ -1451,26 +1658,41 @@
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
+	. = FALSE
 	if(G && G.active)
-		see_in_dark += G.darkness_view
+		if(G.darkness_view)
+			see_in_dark += G.darkness_view
+			. = TRUE
 		if(G.overlay && client)
 			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
+			. = TRUE
 		if(istype(G,/obj/item/clothing/glasses/night) && !seer)
 			see_invisible = SEE_INVISIBLE_MINIMUM
 
 		if(G.see_invisible >= 0)
 			see_invisible = G.see_invisible
+			. = TRUE
 		else if(!druggy && !seer)
 			see_invisible = see_invisible_default
+
+/mob/living/carbon/human/proc/process_nifsoft_vision(var/datum/nifsoft/NS)
+	. = FALSE
+	if(NS && NS.active)
+		if(NS.darkness_view)
+			see_in_dark += NS.darkness_view
+			. = TRUE
+		if(NS.vision_flags_mob)
+			sight |= NS.vision_flags_mob
+			. = TRUE
 
 /mob/living/carbon/human/handle_random_events()
 	if(inStasisNow())
 		return
 
 	// Puke if toxloss is too high
-	if(!stat)
+	if(!stat && !isbelly(loc))
 		if (getToxLoss() >= 30 && isSynthetic())
 			if(!confused)
 				if(prob(5))
@@ -1484,6 +1706,12 @@
 	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
+			//VOREStation Add Start
+			if(text2num(time2text(world.timeofday, "MM")) == 4)
+				if(text2num(time2text(world.timeofday, "DD")) == 1)
+					playsound_local(src,pick(scawwySownds),50, 0)
+					return
+			//VOREStation Add End
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()
@@ -1568,32 +1796,39 @@
 		return 0
 
 	if(shock_stage == 10)
-		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
+		if(traumatic_shock >= 80)
+			custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc)) //VOREStation Edit
 			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
 		eye_blurry = max(2, eye_blurry)
-		stuttering = max(stuttering, 5)
+		if(traumatic_shock >= 80)
+			stuttering = max(stuttering, 5)
+
 
 	if(shock_stage == 40)
-		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
+		if(traumatic_shock >= 80)
+			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
 			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
 		if (prob(2))
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
+			if(traumatic_shock >= 80)
+				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
+			if(traumatic_shock >= 80)
+				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
 
 	if(shock_stage >= 120)
 		if (prob(2))
-			to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You are about to lose consciousness")]!</span>")
+			if(traumatic_shock >= 80)
+				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You are about to lose consciousness")]!</span>")
 			Paralyse(5)
 
 	if(shock_stage == 150)
@@ -1866,8 +2101,10 @@
 		//   increase your body temperature beyond 250C, but it's possible something else (atmos) has heated us up beyond it,
 		//   so don't worry about the firestacks at that point. Really, we should be cooling the room down, because it has
 		//   to expend energy to heat our body up! But let's not worry about that.
-		if((bodytemperature + fire_temp_add) > HUMAN_COMBUSTION_TEMP)
-			return
+
+		// This whole section above is ABSOLUTELY STUPID and makes no sense and this would prevent too-high-heat from even being able to hurt someone. No. We will heat up for as long as needed.
+		//if((bodytemperature + fire_temp_add) > HUMAN_COMBUSTION_TEMP)
+		//	return
 
 		bodytemperature += fire_temp_add
 

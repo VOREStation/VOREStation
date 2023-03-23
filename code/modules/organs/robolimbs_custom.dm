@@ -171,7 +171,36 @@ VS Edit - anyone can select these. */
 	species_cannot_use = GLOB.all_species.Copy()
 	species_cannot_use -= SPECIES_TESHARI //VOREStation add - let 'em be selected.
 	species_cannot_use -= SPECIES_CUSTOM //VOREStation add - let 'em be selected.
+	species_cannot_use -= SPECIES_PROTEAN //VOREStation add - let 'em be selected.
 	..()
 
 /obj/item/weapon/disk/limb/dsi_teshari
 	company = "DSI - Teshari"
+
+/datum/robolimb/dsi_zorren
+	company = "DSI - Zorren"
+	desc = "This limb feels soft and fluffy, realistic design and squish. Seems a little mischievous. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSIZorren/dsi_zorren.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+	includes_tail = 1
+	skin_tone = 1
+	suggested_species = "Zorren"
+
+/obj/item/weapon/disk/limb/dsi_zorren
+	company = "DSI - Zorren"
+
+/datum/robolimb/dsi_fennec
+	company = "DSI - Fennec"
+	desc = "This limb feels soft and fluffy, realistic design and squish. Seems a little mischievous. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSIFennec/dsi_fennec.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+	includes_tail = 1
+	skin_tone = 1
+	suggested_species = "Fennec"
+
+/obj/item/weapon/disk/limb/dsi_fennec
+	company = "DSI - Fennec"

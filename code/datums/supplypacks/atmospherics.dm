@@ -82,6 +82,14 @@
 	containername = "Disposal Dispenser Crate"
 	access = access_atmospherics
 
+/datum/supply_pack/atmos/rapid_pipe_dispenser
+	contains = list(/obj/item/weapon/pipe_dispenser)
+	name = "Rapid Pipe Dispenser"
+	cost = 100
+	containertype = /obj/structure/closet/crate/secure/aether
+	containername = "Rapid Pipe Dispenser Crate"
+	access = access_atmospherics
+
 /datum/supply_pack/atmos/internals
 	name = "Internals crate"
 	contains = list(
@@ -106,3 +114,16 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Emergency crate"
+/*
+/datum/supply_pack/atmos/firefighting
+	name = "Firefighting equipment"
+	contains = list(
+		/obj/item/clothing/suit/fire/heavy = 2,
+		/obj/item/weapon/tank/oxygen/red = 2,
+		/obj/item/weapon/watertank/atmos = 2,
+		/obj/item/device/flashlight = 2,
+		/obj/item/clothing/head/hardhat/firefighter/atmos = 2
+			)
+	cost = 35
+	containertype = /obj/structure/closet/crate/aether
+	containername = "Firefighting crate"*/

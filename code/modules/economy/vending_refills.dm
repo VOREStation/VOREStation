@@ -49,12 +49,12 @@
 	icon_state = "rc_food"
 	refill_type = list(/obj/machinery/vending/snack,
 					   /obj/machinery/vending/fitness,
-					   /obj/machinery/vending/hotfood,
 					   /obj/machinery/vending/weeb,
 					   /obj/machinery/vending/sol,
 					   /obj/machinery/vending/snix,
 					   /obj/machinery/vending/snlvend,
-					   /obj/machinery/vending/sovietvend)
+					   /obj/machinery/vending/sovietvend,
+					   /obj/machinery/vending/altevian)
 
 /obj/item/weapon/refill_cartridge/multitype/drink
 	name = "drinks vendor refill cartridge"
@@ -103,9 +103,6 @@
 /obj/item/weapon/refill_cartridge/autoname/food/fitness
 	refill_type = /obj/machinery/vending/fitness
 
-/obj/item/weapon/refill_cartridge/autoname/food/hotfood
-	refill_type = /obj/machinery/vending/hotfood
-
 /obj/item/weapon/refill_cartridge/autoname/food/weeb
 	refill_type = /obj/machinery/vending/weeb
 
@@ -120,6 +117,9 @@
 
 /obj/item/weapon/refill_cartridge/autoname/food/sovietvend
 	refill_type = /obj/machinery/vending/sovietvend
+
+/obj/item/weapon/refill_cartridge/autoname/food/altevian
+	refill_type = /obj/machinery/vending/altevian
 
 /obj/item/weapon/refill_cartridge/autoname/drink
 	icon_state = "rc_drink"

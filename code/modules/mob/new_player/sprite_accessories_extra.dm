@@ -1,7 +1,7 @@
 /datum/sprite_accessory/marking/vr
 	icon = 'icons/mob/human_races/markings_alt.dmi'
 
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	species_allowed = list()
 
 /datum/sprite_accessory/marking/vr/vulp_belly
 	name = "belly fur (Vulp)"
@@ -68,14 +68,14 @@
 	icon_state = "sergal_full"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//species_allowed = list("Sergal")				//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr/sergal_full_female
 	name = "Sergal Markings (Female)"
 	icon_state = "sergal_full_female"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//species_allowed = list("Sergal")				//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr/monoeye
 	name = "Monoeye"
@@ -337,6 +337,7 @@
 	icon_state = "tesh-feathers"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr/harpy_feathers
 	name = "Rapala leg Feather"
@@ -406,13 +407,13 @@
 	name = "Anime Eyes Outer"
 	icon_state = "animeeyesouter"
 	body_parts = list(BP_HEAD)
-
+/*
 /datum/sprite_accessory/marking/vr/panda_eye_marks
 	name = "Panda Eye Markings"
 	icon_state = "eyes_panda"
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-
+*/
 /datum/sprite_accessory/marking/vr/catwomantorso
 	name = "Catwoman chest stripes"
 	icon_state = "catwomanchest"
@@ -442,6 +443,7 @@
 	icon_state = "teshi_sf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr/spirit_lights
 	name = "Ward - Spirit FBP Lights"
@@ -564,3 +566,64 @@ shadekin_snoot
 	icon_state = "dnose"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/vulp_skull
+	name = "Vulpkanin Skull Face"
+	icon_state = "vulp_skull"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/una_skull
+	name = "Unathi Skull Face"
+	icon_state = "una_skull"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/bellyspiral
+	name = "Belly Spiral"
+	icon_state = "bellyspiral"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/vr/fluffy_cuffs
+	name = "Wrist Fluff"
+	icon_state = "fluffy_cuffs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+/datum/sprite_accessory/marking/vr/chubby_belly
+	name = "Chubby Belly"
+	icon_state = "chubby_belly"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/vr/chubby_belly_s
+	name = "Smooth Chubby Belly"
+	icon_state = "chubby_belly_s"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/vr/r_belly_fluff
+	name = "Belly Fluff"
+	icon_state = "belly_fluff"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/vr/r_chest_fluff
+	name = "Chest Fluff"
+	icon_state = "chest_fluff"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/vr/tesh_skull
+	name = "Teshari Skull Face"
+	icon_state = "teshari_skull"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/vr/shoulder_fluff
+	name = "Shoulder Fluff"
+	icon_state = "shoulder_markings"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM)

@@ -25,4 +25,4 @@
 
 	C.name = name
 
-	qdel(src)
+	return INITIALIZE_HINT_QDEL

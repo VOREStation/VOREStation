@@ -93,7 +93,7 @@
 
 /obj/machinery/slime/extractor/proc/extract_cores()
 	if(!src.occupant)
-		src.visible_message("[bicon(src)] [src] pings unhappily.")
+		src.visible_message("\icon[src][bicon(src)] [src] pings unhappily.")
 	else if(inuse)
 		return
 

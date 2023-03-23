@@ -69,7 +69,13 @@
 	if(db)
 		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
 		if(!(record.dead_state == MR_DEAD))
-			to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
+			if((world.time - timeofdeath ) > 5 MINUTES)	//Allows notify transcore to be used if you have an entry but for some reason weren't marked as dead
+				record.dead_state = MR_DEAD				//Such as if you got scanned but didn't take an implant. It's a little funky, but I mean, you got scanned
+				db.notify(record)						//So you probably will want to let someone know if you die.
+				record.last_notification = world.time
+				to_chat(src, "<span class='notice'>New notification has been sent.</span>")
+			else
+				to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
 		else if((world.time - record.last_notification) < 5 MINUTES)
 			to_chat(src, "<span class='warning'>Too little time has passed since your last notification.</span>")
 		else
@@ -78,7 +84,7 @@
 			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
 	else
 		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
-
+/*
 /mob/observer/dead/verb/backup_delay()
 	set category = "Ghost"
 	set name = "Cancel Transcore Notification"
@@ -97,7 +103,7 @@
 			to_chat(src, "<span class='notice'>Overdue mind backup notification delayed successfully.</span>")
 	else
 		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
-
+*/
 /mob/observer/dead/verb/findghostpod() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Find Ghost Pod"
@@ -109,7 +115,7 @@
 
 	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
 	if(!input)
-		to_chat(src, "No active ghost pods detected.")
+		to_chat(src, "<span class='filter_notice'>No active ghost pods detected.</span>")
 		return
 
 	var/target = observe_list_format(active_ghost_pods)[input]
@@ -123,4 +129,32 @@
 			forceMove(T)
 			stop_following()
 		else
-			to_chat(src, "This ghost pod is not located in the game world.")
+			to_chat(src, "<span class='filter_notice'>This ghost pod is not located in the game world.</span>")
+
+/mob/observer/dead/verb/findautoresleever()
+	set category = "Ghost"
+	set name = "Find Auto Resleever"
+	set desc = "Find a Auto Resleever"
+	set popup_menu = FALSE
+
+	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
+		return
+
+	var/list/ar = list()
+	for(var/obj/machinery/transhuman/autoresleever/A in world)
+		if(A.spawntype)
+			continue
+		else
+			ar |= A
+
+	var/obj/machinery/transhuman/autoresleever/thisone = pick(ar)
+
+	if(!thisone)
+		to_chat(src, "<span class='warning'>There appears to be no auto-resleevers available.</span>")
+		return
+	var/L = get_turf(thisone)
+	if(!L)
+		to_chat(src, "<span class='warning'>There appears to be something wrong with this auto-resleever, try again.</span>")
+		return
+
+	forceMove(L)

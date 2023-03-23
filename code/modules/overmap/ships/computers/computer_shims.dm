@@ -50,6 +50,7 @@
 //
 /obj/machinery/computer/ship
 	var/core_skill = /datum/skill/devices //The skill used for skill checks for this machine (mostly so subtypes can use different skills).
+	var/ai_control = TRUE	//VOREStation Edit
 
 //
 // Topic
@@ -70,6 +71,11 @@
 	return TRUE
 
 /obj/machinery/computer/ship/attack_ai(mob/user)
+	//VOREStation Addition Start
+	if(!ai_control && issilicon(user))
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		return
+	//VOREStation Addition End
 	if(tgui_status(user, tgui_state()) > STATUS_CLOSE)
 		return interface_interact(user)
 
@@ -82,6 +88,11 @@
 /obj/machinery/computer/ship/attack_hand(mob/user)
 	if((. = ..()))
 		return
+	//VOREStation Addition Start
+	if(!ai_control && issilicon(user))
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		return TRUE
+	//VOREStation Addition End
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return TRUE

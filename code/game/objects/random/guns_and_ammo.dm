@@ -98,6 +98,7 @@
 				prob(2);/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 				prob(4);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
+				prob(2);/obj/item/weapon/gun/projectile/shotgun/semi,
 				prob(2);/obj/item/weapon/gun/projectile/silenced)
 
 /obj/random/projectile/sec
@@ -119,7 +120,8 @@
 	return pick(prob(4);/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,
-				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat)
+				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+				prob(1);/obj/item/weapon/gun/projectile/shotgun/semi)
 
 /obj/random/handgun
 	name = "Random Handgun"
@@ -154,10 +156,10 @@
 	icon_state = "ammo"
 
 /obj/random/ammo/item_to_spawn()
-	return pick(prob(6);/obj/item/weapon/storage/box/beanbags,
-				prob(2);/obj/item/weapon/storage/box/shotgunammo,
-				prob(4);/obj/item/weapon/storage/box/shotgunshells,
-				prob(1);/obj/item/weapon/storage/box/stunshells,
+	return pick(prob(6);/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+				prob(2);/obj/item/ammo_magazine/ammo_box/b12g,
+				prob(4);/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 				prob(2);/obj/item/ammo_magazine/m45,
 				prob(4);/obj/item/ammo_magazine/m45/rubber,
 				prob(4);/obj/item/ammo_magazine/m45/flash,
@@ -315,8 +317,8 @@
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762garand,
-				/obj/item/ammo_magazine/m762garand
+				/obj/item/ammo_magazine/m762enbloc,
+				/obj/item/ammo_magazine/m762enbloc
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/revolvingrifle,
@@ -379,8 +381,8 @@
 			),
 			prob(5);list(
 				/obj/item/weapon/gun/projectile/luger,
-				/obj/item/ammo_magazine/m9mm/compact,
-				/obj/item/ammo_magazine/m9mm/compact
+				/obj/item/ammo_magazine/m9mm/luger,
+				/obj/item/ammo_magazine/m9mm/luger
 			),
 			prob(4);list(
 				/obj/item/weapon/gun/projectile/luger/brown,
@@ -460,9 +462,9 @@
 				/obj/item/ammo_magazine/s44
 			),
 			prob(1);list(
-				/obj/item/weapon/gun/projectile/revolver/webley/auto,
-				/obj/item/ammo_magazine/s44,
-				/obj/item/ammo_magazine/s44
+				/obj/item/weapon/gun/projectile/revolver/consul,
+				/obj/item/ammo_magazine/s44/rubber,
+				/obj/item/ammo_magazine/s44/rubber
 			)
 		)
 
@@ -489,11 +491,15 @@
 			),
 			prob(3);list(
 				/obj/item/weapon/gun/projectile/shotgun/pump/slug,
-				/obj/item/weapon/storage/box/shotgunammo
+				/obj/item/ammo_magazine/ammo_box/b12g
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-				/obj/item/weapon/storage/box/shotgunammo
+				/obj/item/ammo_magazine/ammo_box/b12g
+			),
+			prob(1);list(
+				/obj/item/weapon/gun/projectile/shotgun/semi,
+				/obj/item/ammo_magazine/ammo_box/b12g
 			)
 		)
 
@@ -501,7 +507,6 @@
 /obj/random/projectile/scrapped_gun
 	name = "broken gun spawner"
 	desc = "Spawns a random broken gun, or rarely a fully functional one."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "gun_scrap"
 
 /obj/random/projectile/scrapped_gun/item_to_spawn()

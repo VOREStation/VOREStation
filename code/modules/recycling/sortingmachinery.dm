@@ -42,7 +42,7 @@
 	else if(istype(W, /obj/item/weapon/pen))
 		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
-				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, "<span class='warning'> Invalid text.</span>")
 					return
@@ -57,7 +57,7 @@
 				else
 					nameset = 1
 			if("Description")
-				var/str = sanitize(input(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, "<font color='red'>Invalid text.</font>")
 					return
@@ -153,7 +153,7 @@
 	else if(istype(W, /obj/item/weapon/pen))
 		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
-				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, "<span class='warning'> Invalid text.</span>")
 					return
@@ -169,7 +169,7 @@
 					nameset = 1
 
 			if("Description")
-				var/str = sanitize(input(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, "<font color='red'>Invalid text.</font>")
 					return

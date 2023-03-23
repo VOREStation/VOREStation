@@ -353,7 +353,7 @@
 
 	spawn(0)
 		var/newname
-		newname = sanitizeSafe(input(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
+		newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
 		if (newname)
 			custom_name = newname
 			sprite_name = newname
@@ -377,7 +377,7 @@
 	set name = "Toggle Lights"
 
 	lights_on = !lights_on
-	to_chat(usr, "You [lights_on ? "enable" : "disable"] your integrated light.")
+	to_chat(usr, "<span class='filter_notice'>You [lights_on ? "enable" : "disable"] your integrated light.</span>")
 	handle_light()
 	updateicon() //VOREStation Add - Since dogborgs have sprites for this
 
@@ -422,7 +422,7 @@
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
 	set category = "Robot Commands"
 	set name = "Emit Sparks"
-	to_chat(src, "You harmlessly spark.")
+	to_chat(src, "<span class='filter_notice'>You harmlessly spark.</span>")
 	spark_system.start()
 
 // this function displays jetpack pressure in the stat panel
@@ -489,7 +489,7 @@
 					C.brute_damage = WC.brute
 					C.electronics_damage = WC.burn
 
-				to_chat(usr, "<font color='blue'>You install the [W.name].</font>")
+				to_chat(usr, "<span class='notice'>You install the [W.name].</span>")
 
 				return
 
@@ -513,7 +513,7 @@
 			return
 
 		if(shell) // AI shells always have the laws of the AI
-			to_chat(user, span("warning", "\The [src] is controlled remotely! You cannot upload new laws this way!"))
+			to_chat(user, "<span class='warning'>\The [src] is controlled remotely! You cannot upload new laws this way!</span>")
 			return
 
 		var/obj/item/weapon/aiModule/M = W
@@ -526,7 +526,7 @@
 			return
 
 		if (!getBruteLoss())
-			to_chat(user, "Nothing to fix here!")
+			to_chat(user, "<span class='filter_notice'>Nothing to fix here!</span>")
 			return
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0))
@@ -535,14 +535,14 @@
 			updatehealth()
 			add_fingerprint(user)
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("<font color='red'>[user] has fixed some of the dents on [src]!</font>"), 1)
+				O.show_message("<span class='filter_notice'><font color='red'>[user] has fixed some of the dents on [src]!</font></span>", 1)
 		else
-			to_chat(user, "Need more welding fuel!")
+			to_chat(user, "<span class='filter_warning'>Need more welding fuel!</span>")
 			return
 
 	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
 		if (!getFireLoss())
-			to_chat(user, "Nothing to fix here!")
+			to_chat(user, "<span class='filter_notice'>Nothing to fix here!</span>")
 			return
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.use(1))
@@ -550,23 +550,23 @@
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("<font color='red'>[user] has fixed some of the burnt wires on [src]!</font>"), 1)
+				O.show_message("<span class='filter_notice'><font color='red'>[user] has fixed some of the burnt wires on [src]!</font></span>", 1)
 
 	else if (W.is_crowbar() && user.a_intent != I_HURT)	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
-				to_chat(user, "You close the cover.")
+				to_chat(user, "<span class='filter_notice'>You close the cover.</span>")
 				opened = 0
 				updateicon()
 			else if(wiresexposed && wires.is_all_cut())
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
-					to_chat(user, "\The [src] has no brain to remove.")
+					to_chat(user, "<span class='filter_notice'>\The [src] has no brain to remove.</span>")
 					return
 
-				to_chat(user, "You jam the crowbar into the robot and begin levering [mmi].")
+				to_chat(user, "<span class='filter_notice'>You jam the crowbar into the robot and begin levering [mmi].</span>")
 				sleep(30)
-				to_chat(user, "You damage some parts of the chassis, but eventually manage to rip out [mmi]!")
+				to_chat(user, "<span class='filter_notice'>You damage some parts of the chassis, but eventually manage to rip out [mmi]!</span>")
 				var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
 				C.l_leg = new/obj/item/robot_parts/l_leg(C)
 				C.r_leg = new/obj/item/robot_parts/r_leg(C)
@@ -589,7 +589,7 @@
 					return
 				var/datum/robot_component/C = components[remove]
 				var/obj/item/robot_parts/robot_component/I = C.wrapped
-				to_chat(user, "You remove \the [I].")
+				to_chat(user, "<span class='filter_notice'>You remove \the [I].</span>")
 				if(istype(I))
 					I.brute = C.brute_damage
 					I.burn = C.electronics_damage
@@ -602,25 +602,25 @@
 
 		else
 			if(locked)
-				to_chat(user, "The cover is locked and cannot be opened.")
+				to_chat(user, "<span class='filter_notice'>The cover is locked and cannot be opened.</span>")
 			else
-				to_chat(user, "You open the cover.")
+				to_chat(user, "<span class='filter_notice'>You open the cover.</span>")
 				opened = 1
 				updateicon()
 
 	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
-			to_chat(user, "Close the panel first.")
+			to_chat(user, "<span class='filter_notice'>Close the panel first.</span>")
 		else if(cell)
-			to_chat(user, "There is a power cell already installed.")
+			to_chat(user, "<span class='filter_notice'>There is a power cell already installed.</span>")
 		else if(W.w_class != ITEMSIZE_NORMAL)
-			to_chat(user, "\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here.")
+			to_chat(user, "<span class='filter_notice'>\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here.</span>")
 		else
 			user.drop_item()
 			W.loc = src
 			cell = W
-			to_chat(user, "You insert the power cell.")
+			to_chat(user, "<span class='filter_notice'>You insert the power cell.</span>")
 
 			C.installed = 1
 			C.wrapped = W
@@ -633,11 +633,11 @@
 		if (wiresexposed)
 			wires.Interact(user)
 		else
-			to_chat(user, "You can't reach the wiring.")
+			to_chat(user, "<span class='filter_notice'>You can't reach the wiring.</span>")
 
 	else if(W.is_screwdriver() && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
-		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
+		to_chat(user, "<span class='filter_notice'>The wires have been [wiresexposed ? "exposed" : "unexposed"]</span>")
 		playsound(src, W.usesound, 50, 1)
 		updateicon()
 
@@ -645,21 +645,21 @@
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
-			to_chat(user, "Unable to locate a radio.")
+			to_chat(user, "<span class='filter_notice'>Unable to locate a radio.</span>")
 		updateicon()
 
 	else if(W.is_wrench() && opened && !cell)
 		if(bolt)
-			to_chat(user,"You begin removing \the [bolt].")
+			to_chat(user,"<span class='filter_notice'>You begin removing \the [bolt].</span>")
 
 			if(do_after(user, 2 SECONDS, src))
 				bolt.forceMove(get_turf(src))
 				bolt = null
 
-				to_chat(user, "You remove \the [bolt].")
+				to_chat(user, "<span class='filter_notice'>You remove \the [bolt].</span>")
 
 		else
-			to_chat(user, "There is no restraining bolt installed.")
+			to_chat(user, "<span class='filter_notice'>There is no restraining bolt installed.</span>")
 
 		return
 
@@ -667,36 +667,36 @@
 		if(radio)//sanityyyyyy
 			radio.attackby(W,user)//GTFO, you have your own procs
 		else
-			to_chat(user, "Unable to locate a radio.")
+			to_chat(user, "<span class='filter_notice'>Unable to locate a radio.</span>")
 
 	else if (W.GetID())			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
-			to_chat(user, "The interface seems slightly damaged")
+			to_chat(user, "<span class='filter_notice'>The interface seems slightly damaged.</span>")
 		if(opened)
-			to_chat(user, "You must close the cover to swipe an ID card.")
+			to_chat(user, "<span class='filter_notice'>You must close the cover to swipe an ID card.</span>")
 		else
 			if(allowed(usr))
 				locked = !locked
-				to_chat(user, "You [ locked ? "lock" : "unlock"] [src]'s interface.")
+				to_chat(user, "<span class='filter_notice'>You [ locked ? "lock" : "unlock"] [src]'s interface.</span>")
 				updateicon()
 			else
-				to_chat(user, "<font color='red'>Access denied.</font>")
+				to_chat(user, "<span class='filter_notice'><font color='red'>Access denied.</font></span>")
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
 		if(!opened)
-			to_chat(usr, "You must access the borgs internals!")
+			to_chat(usr, "<span class='filter_notice'>You must access the borgs internals!</span>")
 		else if(!src.module && U.require_module)
-			to_chat(usr, "The borg must choose a module before it can be upgraded!")
+			to_chat(usr, "<span class='filter_notice'>The borg must choose a module before it can be upgraded!</span>")
 		else if(U.locked)
-			to_chat(usr, "The upgrade is locked and cannot be used yet!")
+			to_chat(usr, "<span class='filter_notice'>The upgrade is locked and cannot be used yet!</span>")
 		else
 			if(U.action(src))
-				to_chat(usr, "You apply the upgrade to [src]!")
+				to_chat(usr, "<span class='filter_notice'>You apply the upgrade to [src]!</span>")
 				usr.drop_item()
 				U.loc = src
 			else
-				to_chat(usr, "Upgrade error!")
+				to_chat(usr, "<span class='filter_notice'>Upgrade error!</span>")
 
 
 	else
@@ -751,7 +751,7 @@
 			cell.update_icon()
 			cell.add_fingerprint(user)
 			user.put_in_active_hand(cell)
-			to_chat(user, "You remove \the [cell].")
+			to_chat(user, "<span class='filter_notice'>You remove \the [cell].</span>")
 			cell = null
 			cell_component.wrapped = null
 			cell_component.installed = 0
@@ -759,7 +759,7 @@
 		else if(cell_component.installed == -1)
 			cell_component.installed = 0
 			var/obj/item/broken_device = cell_component.wrapped
-			to_chat(user, "You remove \the [broken_device].")
+			to_chat(user, "<span class='filter_notice'>You remove \the [broken_device].</span>")
 			user.put_in_active_hand(broken_device)
 
 	if(istype(user,/mob/living/carbon/human) && !opened)
@@ -783,6 +783,26 @@
 				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
 				visible_message("<span class='warning'>[H] taps [src].</span>")
 				return
+			if(I_GRAB)
+				if(is_vore_predator(H) && H.devourable && src.feeding && src.devourable)
+					var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Nevermind!", "Eat","Feed"))
+					switch(switchy)
+						if("Nevermind!")
+							return
+						if("Eat")
+							feed_grabbed_to_self(H, src)
+							return
+						if("Feed")
+							H.feed_self_to_grabbed(H, src)
+							return
+				if(is_vore_predator(H) && src.devourable)
+					if(tgui_alert(H, "Do you wish to eat [src]?", "Eat?",list("Nevermind!", "Yes!")) == "Yes!")
+						feed_grabbed_to_self(H, src)
+						return
+				if(H.devourable && src.feeding)
+					if(tgui_alert(H, "Do you wish to feed yourself to [src]?", "Feed?",list("Nevermind!", "Yes!")) == "Yes!")
+						H.feed_self_to_grabbed(H, src)
+						return
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
@@ -846,7 +866,7 @@
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
-		to_chat(src, "<font color='red'>Weapon lock active, unable to use modules! Count:[weaponlock_time]</font>")
+		to_chat(src, "<span class='filter_warning'><font color='red'>Weapon lock active, unable to use modules! Count:[weaponlock_time]</font></span>")
 		return
 
 	if(!module)
@@ -911,7 +931,7 @@
 			return 1
 
 		if(activated(O))
-			to_chat(src, "Already activated")
+			to_chat(src, "<span class='filter_notice'>Already activated.</span>")
 			return 1
 		if(!module_state_1)
 			module_state_1 = O
@@ -935,7 +955,7 @@
 			if(istype(module_state_3,/obj/item/borg/sight))
 				sight_mode |= module_state_3:sight_mode
 		else
-			to_chat(src, "You need to disable a module first!")
+			to_chat(src, "<span class='filter_notice'>You need to disable a module first!</span>")
 		installed_modules()
 		return 1
 
@@ -952,9 +972,9 @@
 				module_state_3 = null
 				contents -= O
 			else
-				to_chat(src, "Module isn't activated.")
+				to_chat(src, "<span class='filter_notice'>Module isn't activated.</span>")
 		else
-			to_chat(src, "Module isn't activated")
+			to_chat(src, "<span class='filter_notice'>Module isn't activated.</span>")
 		installed_modules()
 		return 1
 	return
@@ -987,7 +1007,7 @@
 
 	if(R)
 		R.UnlinkSelf()
-		to_chat(R, "Buffers flushed and reset. Camera system shutdown.  All systems operational.")
+		to_chat(R, "<span class='filter_notice'>Buffers flushed and reset. Camera system shutdown. All systems operational.</span>")
 		src.verbs -= /mob/living/silicon/robot/proc/ResetSecurityCodes
 
 /mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
@@ -1051,12 +1071,14 @@
 
 	icon_selected = 1
 	icon_selection_tries = 0
-	to_chat(src, "Your icon has been set. You now require a module reset to change it.")
+	to_chat(src, "<span class='filter_notice'>Your icon has been set. You now require a module reset to change it.</span>")
 
 /mob/living/silicon/robot/proc/sensor_mode() //Medical/Security HUD controller for borgs
-	set name = "Set Sensor Augmentation"
+	set name = "Toggle Sensor Augmentation" //VOREStation Add
 	set category = "Robot Commands"
 	set desc = "Augment visual feed with internal sensor overlays."
+	sensor_type = !sensor_type //VOREStation Add
+	to_chat(usr, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
 	toggle_sensor_mode()
 
 /mob/living/silicon/robot/proc/add_robot_verbs()
@@ -1101,16 +1123,16 @@
 		return // No point annoying the AI/s about renames and module resets for shells.
 	switch(notifytype)
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>")
+			to_chat(connected_ai, "<span class='filter_notice'><br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br></span>")
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - [braintype] module change detected: [name] has loaded the [first_arg].</span><br>")
+			to_chat(connected_ai, "<span class='filter_notice'><br><br><span class='notice'>NOTICE - [braintype] module change detected: [name] has loaded the [first_arg].</span><br></span>")
 		if(ROBOT_NOTIFICATION_MODULE_RESET)
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - [braintype] module reset detected: [name] has unloaded the [first_arg].</span><br>")
+			to_chat(connected_ai, "<span class='filter_notice'><br><br><span class='notice'>NOTICE - [braintype] module reset detected: [name] has unloaded the [first_arg].</span><br></span>")
 		if(ROBOT_NOTIFICATION_NEW_NAME) //New Name
 			if(first_arg != second_arg)
-				to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - [braintype] reclassification detected: [first_arg] is now designated as [second_arg].</span><br>")
+				to_chat(connected_ai, "<span class='filter_notice'><br><br><span class='notice'>NOTICE - [braintype] reclassification detected: [first_arg] is now designated as [second_arg].</span><br></span>")
 		if(ROBOT_NOTIFICATION_AI_SHELL) //New Shell
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - New AI shell detected: <a href='?src=[REF(connected_ai)];track2=[html_encode(name)]'>[name]</a></span><br>")
+			to_chat(connected_ai, "<span class='filter_notice'><br><br><span class='notice'>NOTICE - New AI shell detected: <a href='?src=[REF(connected_ai)];track2=[html_encode(name)]'>[name]</a></span><br></span>")
 
 /mob/living/silicon/robot/proc/disconnect_from_ai()
 	if(connected_ai)
@@ -1130,29 +1152,29 @@
 	if(!opened)//Cover is closed
 		if(locked)
 			if(prob(90))
-				to_chat(user, "You emag the cover lock.")
+				to_chat(user, "<span class='filter_notice'>You emag the cover lock.</span>")
 				locked = 0
 			else
-				to_chat(user, "You fail to emag the cover lock.")
-				to_chat(src, "Hack attempt detected.")
+				to_chat(user, "<span class='filter_warning'>You fail to emag the cover lock.</span>")
+				to_chat(src, "<span class='filter_warning'>Hack attempt detected.</span>")
 
 			if(shell) // A warning to Traitors who may not know that emagging AI shells does not slave them.
-				to_chat(user, span("warning", "[src] seems to be controlled remotely! Emagging the interface may not work as expected."))
+				to_chat(user, "<span class='warning'>[src] seems to be controlled remotely! Emagging the interface may not work as expected.</span>")
 			return 1
 		else
-			to_chat(user, "The cover is already unlocked.")
+			to_chat(user, "<span class='filter_notice'>The cover is already unlocked.</span>")
 		return
 
 	if(opened)//Cover is open
 		if(emagged)	return//Prevents the X has hit Y with Z message also you cant emag them twice
 		if(wiresexposed)
-			to_chat(user, "You must close the panel first")
+			to_chat(user, "<span class='filter_notice'>You must close the panel first.</span>")
 			return
 
 
 		// The block of code below is from TG. Feel free to replace with a better result if desired.
 		if(shell) // AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
-			to_chat(user, span("danger", "[src] is remotely controlled! Your emag attempt has triggered a system reset instead!"))
+			to_chat(user, "<span class='danger'>[src] is remotely controlled! Your emag attempt has triggered a system reset instead!</span>")
 			log_game("[key_name(user)] attempted to emag an AI shell belonging to [key_name(src) ? key_name(src) : connected_ai]. The shell has been reset as a result.")
 			module_reset()
 			return
@@ -1162,7 +1184,7 @@
 			emagged = 1
 			lawupdate = 0
 			disconnect_from_ai()
-			to_chat(user, "You emag [src]'s interface.")
+			to_chat(user, "<span class='filter_notice'>You emag [src]'s interface.</span>")
 			message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
 			log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
 			clear_supplied_laws()
@@ -1197,8 +1219,8 @@
 				to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>")
 				updateicon()
 		else
-			to_chat(user, "You fail to hack [src]'s interface.")
-			to_chat(src, "Hack attempt detected.")
+			to_chat(user, "<span class='filter_warning'>You fail to hack [src]'s interface.</span>")
+			to_chat(src, "<span class='filter_warning'>Hack attempt detected.</span>")
 		return 1
 	return
 

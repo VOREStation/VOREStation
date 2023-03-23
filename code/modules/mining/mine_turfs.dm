@@ -6,7 +6,7 @@ var/list/mining_overlay_cache = list()
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
 	density = TRUE
-	
+
 /turf/simulated/mineral //wall piece
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
@@ -23,6 +23,8 @@ var/list/mining_overlay_cache = list()
 	var/rock_side_icon_state = "rock_side"
 	var/sand_icon_state = "asteroid"
 	var/rock_icon_state = "rock"
+	var/sand_icon_path = 'icons/turf/flooring/asteroid.dmi' // Override this on a subtype turf if you want a custom icon
+	var/rock_icon_path = 'icons/turf/walls.dmi' // Override this on a subtype turf if you want a custom icon
 	var/random_icon = 0
 
 	var/ore/mineral
@@ -30,6 +32,7 @@ var/list/mining_overlay_cache = list()
 	var/mined_ore = 0
 	var/last_act = 0
 	var/overlay_detail
+	var/overlay_detail_icon_path = 'icons/turf/flooring/decals.dmi' // Override this on a subtype turf if you want a custom icon
 
 	var/datum/geosample/geologic_data
 	var/excavation_level = 0
@@ -50,7 +53,7 @@ var/list/mining_overlay_cache = list()
 		"phoron" = /obj/item/weapon/ore/phoron,
 		"osmium" = /obj/item/weapon/ore/osmium,
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,
-		"silicates" = /obj/item/weapon/ore/glass,
+		"sand" = /obj/item/weapon/ore/glass,
 		"carbon" = /obj/item/weapon/ore/coal,
 		"verdantium" = /obj/item/weapon/ore/verdantium,
 		"marble" = /obj/item/weapon/ore/marble,
@@ -220,7 +223,7 @@ var/list/mining_overlay_cache = list()
 		else
 			name = "rock"
 
-		icon = 'icons/turf/walls.dmi'
+		icon = rock_icon_path
 		icon_state = rock_icon_state
 
 		//Apply overlays if we should have borders
@@ -238,7 +241,7 @@ var/list/mining_overlay_cache = list()
 	//We are a sand floor
 	else
 		name = floor_name
-		icon = 'icons/turf/flooring/asteroid.dmi'
+		icon = sand_icon_path
 		icon_state = sand_icon_state
 
 		if(sand_dug)
@@ -253,10 +256,10 @@ var/list/mining_overlay_cache = list()
 			else
 				var/turf/T = get_step(src, direction)
 				if(istype(T) && T.density)
-					add_overlay(get_cached_border(rock_side_icon_state,direction,'icons/turf/walls.dmi',rock_side_icon_state))
+					add_overlay(get_cached_border(rock_side_icon_state,direction,rock_icon_path,rock_side_icon_state))
 
 		if(overlay_detail)
-			add_overlay('icons/turf/flooring/decals.dmi',overlay_detail)
+			add_overlay(overlay_detail_icon_path,overlay_detail)
 
 		if(update_neighbors)
 			for(var/direction in alldirs)
@@ -349,7 +352,7 @@ var/list/mining_overlay_cache = list()
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
@@ -400,30 +403,14 @@ var/list/mining_overlay_cache = list()
 					F.attackby(W,user)
 					return
 
-		else if(istype(W, /obj/item/stack/rods))
-			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-			if(L)
-				return
-			var/obj/item/stack/rods/R = W
-			if (R.use(1))
-				to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
-				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-				new /obj/structure/lattice(get_turf(src))
-
 		else if(istype(W, /obj/item/stack/tile/floor))
-			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-			if(L)
-				var/obj/item/stack/tile/floor/S = W
-				if (S.get_amount() < 1)
-					return
-				qdel(L)
-				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-				ChangeTurf(/turf/simulated/floor)
-				S.use(1)
+			var/obj/item/stack/tile/floor/S = W
+			if (S.get_amount() < 1)
 				return
-			else
-				to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
-				return
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			ChangeTurf(/turf/simulated/floor)
+			S.use(1)
+			return
 
 
 	else
@@ -666,7 +653,7 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
 	//cael's patented random limited drop componentized loot system!
-	//sky's patented not-fucking-retarded overhaul!
+	//sky's patented non-mischievious overhaul!
 
 	//Give a random amount of loot from 1 to 3 or 5, varying on severity.
 	for(var/j in 1 to rand(1, 3 + max(min(severity, 1), 0) * 2))

@@ -40,22 +40,22 @@
 	return ..()
 
 /datum/category_item/catalogue/information/objects/oldreactor
-	name = "Object - 24th Century Fission Reactor Rack"
-	desc = "Prior to the discovery of Phoron in 2380, and the development of the hydrophoron \
-	supermatter reactor, most spacecraft operated on nuclear fission reactors, using processed \
-	radioactive material as fuel. While the design had been near-perfected by the 24th century, \
-	with some models capable of holding hundreds of fuel rods at one time and operating almost \
-	unsupervised for weeks at a time.\
+	name = "Object - Zorren Fission Reactor Rack"
+	desc = "Prior to Humanity's arrival in the virgo-erigone space, introducing advanced phoron technologies, \
+	the native Zorren relied upon refurbished, reverse-engineered precursor technology. \
+	As much of precursor technology is powered by yet incomprehensible technologies, something reliable was needed. \
+	What better to power one's ships - but fission; a technology whose development was driven by war and economic need alike. \
+	Stable, requiring only the most minimal supervision - Fission technology soon became ubiqutious.\
 	<br><br>\
 	However, as accidents were not uncommon due to the inherent dangers of space travel and the \
 	nature of reactor racks such as this one fully containing the unstable fuel material, many \
 	fission vessels were built capable of jettisoning their entire engine sections as it was seen \
 	as preferable to evacuating a ship's crew and potentially losing the entire craft and its cargo. \
 	<br><br>\
-	VifGov records indicate that the colony ship ICV Kauai declared a major onboard emergency in Sif orbit \
-	on the 14th April 2353, citing major systems malfunction following a fire in the engine compartment. \
-	Due to the relatively sparse population of the planet, it was deemed safe to jettison both engine \
-	blocks, and the colonists were safely towed to port with no hands lost."
+	Exact details as to where or when this reactor rack hails from are difficult to determine. \
+	Based on fissile material ratios, its age can be put between fifty to over a hundred years old. \
+	Although not a piece of precursor technology, the various kingdoms of Virgo prime \
+	still welcome return of their lost resources and machinery."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /obj/structure/closet/crate/oldreactor
@@ -99,9 +99,11 @@
 	devastating damage to living tissue, ceasing all regenerative activity in an organism's cells. While immediate effects\
 	can be halted by recent medical innovations, exposure can severely shorten a sapient's life expectancy.\
 	<br><br>\
-	In early 2564, the NanoTrasen corporation was implicated in the accidental spillage of over a dozen full cargo containers\
-	of Growth Inhibitor 78-1 in the Ullran Expanse of Sif, and were charged by the Sif Environmental Agency with extreme \
-	environmental damage and neglect."
+	Although the Sol-Procyon Commonwealth nominally disapproves of the usage of Vatborn slaves, \
+	calling it barbaric and citing it as demonstration of the moral corruption distance from the \
+	Core can drive the likes of the Elysian Colonies - the Periphery remains a secluded region, \
+	a challenge when it comes to proper staffing. Oddly, despite its prowess otherwise, \
+	the cataloguer fails to identify the owner or manufacturer of this canister."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /obj/structure/prop/poicanister

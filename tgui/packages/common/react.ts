@@ -24,7 +24,7 @@ export const classes = (classNames: (string | BooleanLike)[]) => {
  */
 export const normalizeChildren = <T>(children: T | T[]) => {
   if (Array.isArray(children)) {
-    return children.flat().filter(value => value) as T[];
+    return children.flat().filter((value) => value) as T[];
   }
   if (typeof children === 'object') {
     return [children];
@@ -55,7 +55,7 @@ export const shallowDiffers = (a: object, b: object) => {
  * Default inferno hooks for pure components.
  */
 export const pureComponentHooks = {
-  onComponentShouldUpdate: (lastProps, nextProps) => {
+  onComponentShouldUpdate: (lastProps: object, nextProps: object) => {
     return shallowDiffers(lastProps, nextProps);
   },
 };
@@ -64,9 +64,7 @@ export const pureComponentHooks = {
  * A helper to determine whether the object is renderable by React.
  */
 export const canRender = (value: unknown) => {
-  return value !== undefined
-    && value !== null
-    && typeof value !== 'boolean';
+  return value !== undefined && value !== null && typeof value !== 'boolean';
 };
 
 /**

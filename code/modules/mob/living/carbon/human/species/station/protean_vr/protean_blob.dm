@@ -35,7 +35,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 900
-	movement_cooldown = 2
+	movement_cooldown = 1
 
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
@@ -91,7 +91,7 @@
 	return "synthetic"
 
 /mob/living/simple_mob/protean_blob/get_available_emotes()
-	return global._robot_default_emotes
+	return global._robot_default_emotes.Copy()
 
 /mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time
@@ -360,6 +360,8 @@ var/global/list/disallowed_protean_accessories = list(
 	things_to_drop -= internal_organs //Mah sqeedily spooch
 
 	for(var/obj/item/I in things_to_drop) //rip hoarders
+		if(I.protean_drop_whitelist)
+			continue
 		drop_from_inventory(I)
 
 	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
@@ -378,6 +380,7 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
+	blob.ooc_notes = ooc_notes
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -459,6 +462,7 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
+	ooc_notes = blob.ooc_notes // Lets give the protean any updated notes from blob form.
 	temporary_form = null
 
 	//Transfer vore organs
@@ -481,3 +485,20 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Return ourselves in case someone wants it
 	return src
+
+/mob/living/simple_mob/protean_blob/CanStumbleVore(mob/living/target)
+	if(target == humanform)
+		return FALSE
+	return ..()
+
+/mob/living/simple_mob/protean_blob/CanStumbleVore(mob/living/target)
+	if(target == humanform)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/CanStumbleVore(mob/living/target)
+	if(istype(target, /mob/living/simple_mob/protean_blob))
+		var/mob/living/simple_mob/protean_blob/PB = target
+		if(PB.humanform == src)
+			return FALSE
+	return ..()

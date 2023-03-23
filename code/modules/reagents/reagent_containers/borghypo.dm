@@ -133,13 +133,14 @@
 	volume = 60
 	possible_transfer_amounts = list(5, 10, 20, 30)
 	reagent_ids = list("ale",
-		"cider",
 		"beer",
 		"berryjuice",
 		"bitters",
+		"cider",
 		"coffee",
 		"cognac",
 		"cola",
+		"cream",
 		"dr_gibb",
 		"egg",
 		"gin",

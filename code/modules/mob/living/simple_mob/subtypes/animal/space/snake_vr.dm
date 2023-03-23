@@ -31,7 +31,7 @@
 	maxHealth = 15
 	health = 15
 
-	movement_cooldown = 8 // SLOW-ASS MUTHAFUCKA, I hope.
+	movement_cooldown = 3 // SLOW-ASS MUTHAFUCKA, I hope.
 
 	response_help  = "pets"
 	response_disarm = "shoos"

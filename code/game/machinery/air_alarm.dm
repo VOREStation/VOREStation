@@ -154,6 +154,12 @@
 
 	update_icon()
 
+/obj/machinery/alarm/proc/update_area()
+	alarm_area = get_area(src)
+	area_uid = "\ref[alarm_area]"
+	if(name == "alarm")
+		name = "[alarm_area.name] Air Alarm"
+
 /obj/machinery/alarm/Initialize()
 	. = ..()
 	set_frequency(frequency)
@@ -540,9 +546,9 @@
 
 	var/list/list/environment_data = list()
 	data["environment_data"] = environment_data
-	
+
 	DECLARE_TLV_VALUES
-	
+
 	var/pressure = environment.return_pressure()
 	LOAD_TLV_VALUES(TLV["pressure"], pressure)
 	environment_data.Add(list(list(
@@ -551,7 +557,7 @@
 		"unit" = "kPa",
 		"danger_level" = TEST_TLV_VALUES
 	)))
-	
+
 	var/temperature = environment.temperature
 	LOAD_TLV_VALUES(TLV["temperature"], temperature)
 	environment_data.Add(list(list(
@@ -573,7 +579,7 @@
 			"unit" = "%",
 			"danger_level" = TEST_TLV_VALUES
 		)))
-	
+
 	if(!locked || issilicon(user) || data["remoteUser"])
 		var/list/list/vents = list()
 		data["vents"] = vents
@@ -595,7 +601,7 @@
 				"extdefault"= (info["external"] == ONE_ATMOSPHERE),
 				"intdefault"= (info["internal"] == 0),
 			)))
-		
+
 
 		var/list/list/scrubbers = list()
 		data["scrubbers"] = scrubbers
@@ -622,7 +628,7 @@
 		data["scrubbers"] = scrubbers
 
 		data["mode"] = mode
-		
+
 		var/list/list/modes = list()
 		data["modes"] = modes
 		modes[++modes.len] = list("name" = "Filtering - Scrubs out contaminants", 			"mode" = AALARM_MODE_SCRUBBING,		"selected" = mode == AALARM_MODE_SCRUBBING, 	"danger" = 0)
@@ -675,14 +681,14 @@
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = input(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C) as num|null
+		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C, max_temperature, min_temperature)
 		if(isnum(input_temperature))
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
 				target_temperature = input_temperature + T0C
 		return TRUE
-	
+
 	// Account for remote users here.
 	// Yes, this is kinda snowflaky; however, I would argue it would be far more snowflakey
 	// to include "custom hrefs" and all the other bullshit that nano states have just for the
@@ -729,7 +735,7 @@
 			var/env = params["env"]
 
 			var/name = params["var"]
-			var/value = input(usr, "New [name] for [env]:", name, TLV[env][name]) as num|null
+			var/value = tgui_input_number(usr, "New [name] for [env]:", name, TLV[env][name])
 			if(!isnull(value) && !..())
 				if(value < 0)
 					TLV[env][name] = -1

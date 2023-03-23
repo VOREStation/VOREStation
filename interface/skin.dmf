@@ -126,6 +126,9 @@ macro "borghotkeymode"
 		name = "5"
 		command = ".me"
 	elem 
+		name = "6"
+		command = ".Subtle"
+	elem 
 		name = "A"
 		command = "KeyDown A"
 	elem
@@ -190,16 +193,19 @@ macro "borghotkeymode"
 		command = ".northeast"
 	elem 
 		name = "Y"
-		command = "Activate-Held-Object"
+		command = ".Whisper"
 	elem 
 		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		command = ".Whisper"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem 
+		name = "U"
+		command = "Rest"
 	elem 
 		name = "NUMPAD1"
 		command = "body-r-leg"
@@ -223,7 +229,7 @@ macro "borghotkeymode"
 		command = "body-toggle-head"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "request-help"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -262,7 +268,7 @@ macro "macro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
-	elem
+	elem 
 		name = "Shift"
 		command = "KeyDown Shift"
 	elem
@@ -447,7 +453,7 @@ macro "macro"
 		command = "body-toggle-head"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "request-help"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -486,7 +492,7 @@ macro "hotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
-	elem
+	elem 
 		name = "Shift"
 		command = "KeyDown Shift"
 	elem
@@ -728,7 +734,7 @@ macro "hotkeymode"
 		command = "body-toggle-head"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "request-help"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -921,6 +927,9 @@ macro "borgmacro"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "CTRL+U"
+		command = "Rest"
+	elem 
 		name = "CTRL+NUMPAD1"
 		command = "body-r-leg"
 	elem 
@@ -943,7 +952,7 @@ macro "borgmacro"
 		command = "body-toggle-head"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "request-help"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -1103,7 +1112,7 @@ menu "menu"
 		saved-params = "is-checked"
 	elem 
 		name = "&Admin help\tF1"
-		command = "adminhelp"
+		command = "request-help"
 		category = "&Help"
 		saved-params = "is-checked"
 	elem 

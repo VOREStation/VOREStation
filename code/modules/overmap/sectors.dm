@@ -12,6 +12,8 @@
 	var/known = TRUE
 	/// Name prior to being scanned if !known
 	var/unknown_name = "unknown sector"
+	var/real_name
+	var/real_desc
 	/// Icon_state prior to being scanned if !known
 	var/unknown_state = "field"
 
@@ -36,6 +38,11 @@
 	var/has_distress_beacon
 	var/list/levels_for_distress
 	var/list/unowned_areas // areas we don't own despite them being present on our z
+
+	var/list/possible_descriptors = list() //While only affects sectors for now, initialized here for proc definition convenience.
+	var/visitable_renamed = FALSE //changed if non-default name is assigned.
+
+	var/unique_identifier //Define this for objs that we want to be able to rename. Needed to avoid compiler errors if not included.
 
 /obj/effect/overmap/visitable/Initialize()
 	. = ..()
@@ -68,11 +75,16 @@
 	else
 		real_appearance = image(icon, src, icon_state)
 		real_appearance.override = TRUE
+		real_name = name
 		name = unknown_name
 		icon_state = unknown_state
 		color = null
+		real_desc = desc
 		desc = "Scan this to find out more information."
-		
+	//at the moment only used for the OM location renamer. Initializing here in case we want shuttles incl as well in future. Also proc definition convenience.
+	visitable_overmap_object_instances |= src
+
+
 
 // You generally shouldn't destroy these.
 /obj/effect/overmap/visitable/Destroy()
@@ -125,10 +137,16 @@
 /obj/effect/overmap/visitable/get_scan_data()
 	if(!known)
 		known = TRUE
-		name = initial(name)
+		if(real_name)
+			name = real_name
+		else
+			name = initial(name)
 		icon_state = initial(icon_state)
 		color = initial(color)
-		desc = initial(desc)
+		if(real_desc)
+			desc = real_desc
+		else
+			desc = initial(desc)
 	return ..()
 
 /obj/effect/overmap/visitable/proc/get_space_zlevels()
@@ -143,7 +161,7 @@
 	if(A in SSshuttles.shuttle_areas)
 		return 0
 	if(is_type_in_list(A, unowned_areas))
-		return 0	
+		return 0
 	if(get_z(object) in map_z)
 		return 1
 
@@ -213,17 +231,17 @@
 	This beacon was launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Per the Interplanetary Convention on Space SAR, those receiving this message must attempt rescue, \
 	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
-	
+
 	if(!levels_for_distress)
 		levels_for_distress = list(1)
 	for(var/zlevel in levels_for_distress)
 		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
-	
+
 	var/image/I = image(icon, icon_state = "distress")
 	I.plane = PLANE_LIGHTING_ABOVE
 	I.appearance_flags = KEEP_APART|RESET_TRANSFORM|RESET_COLOR
 	add_overlay(I)
-	
+
 	addtimer(CALLBACK(src, .proc/distress_update), 5 MINUTES)
 	return TRUE
 
@@ -258,4 +276,3 @@
 
 	testing("Overmap build complete.")
 	return 1
-

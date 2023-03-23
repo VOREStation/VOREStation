@@ -509,8 +509,8 @@
 			qdel(G)
 			src.updateUsrDialog()
 			return //Don't call up else we'll get attack messsages
-	if(istype(W, /obj/item/device/sleevecard))
-		var/obj/item/device/sleevecard/C = W
+	if(istype(W, /obj/item/device/paicard/sleevecard))
+		var/obj/item/device/paicard/sleevecard/C = W
 		user.unEquip(C)
 		C.removePersonality()
 		qdel(C)
@@ -556,7 +556,7 @@
 		return 0
 
 	if(mode == 2 && sleevecards) //Card sleeving
-		var/obj/item/device/sleevecard/card = new /obj/item/device/sleevecard(get_turf(src))
+		var/obj/item/device/paicard/sleevecard/card = new /obj/item/device/paicard/sleevecard(get_turf(src))
 		card.sleeveInto(MR, db_key = db_key)
 		sleevecards--
 		return 1

@@ -107,9 +107,9 @@ world/New()
 			output += "<b>Offense:</b>[N.body]<br>"
 			output += "<small>Occured at [time2text(N.date,"MM/DD hh:mm:ss")]</small><br>"
 			output += "<small>authored by <i>[N.author]</i></small><br>"
-			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
+			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];[HrefToken()];action=remove;ID=[N.ID]'>Flag as Handled</a>"
 			if(src.key == N.author)
-				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
+				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];[HrefToken()];action=edit;ID=[N.ID]'>Edit</a>"
 			output += "<br>"
 			output += "<br>"
 	else
@@ -127,7 +127,7 @@ world/New()
 	if(M.client)
 		CID = M.client.computer_id
 
-	var/body = input(src.mob, "Describe in detail what you're reporting [M] for", "Report") as null|text
+	var/body = tgui_input_text(src.mob, "Describe in detail what you're reporting [M] for", "Report")
 	if(!body) return
 
 
@@ -149,7 +149,7 @@ world/New()
 	for(var/datum/admin_report/N in reports)
 		if(N.ID == ID)
 			found = N
-	if(!found) 
+	if(!found)
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
 	found.done = 1
@@ -171,10 +171,10 @@ world/New()
 	for(var/datum/admin_report/N in reports)
 		if(N.ID == ID)
 			found = N
-	if(!found) 
+	if(!found)
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
-	var/body = input(src.mob, "Enter a body for the news", "Body") as null|message
+	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE, prevent_enter = TRUE)
 	if(!body) return
 
 	found.body = body

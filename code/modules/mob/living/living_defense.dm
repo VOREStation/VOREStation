@@ -101,14 +101,6 @@
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
-	//Being hit while using a deadman switch
-	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
-		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
-		if(signaler.deadman && prob(80))
-			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message("<font color='red'>[src] triggers their deadman's switch!</font>")
-			signaler.signal()
-
 	if(ai_holder && P.firer)
 		ai_holder.react_to_attack(P.firer)
 
@@ -274,10 +266,10 @@
 			miss_chance = max(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("<font color='blue'>\The [O] misses [src] narrowly!</font>")
+			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
-		src.visible_message("<font color='red'>[src] has been hit by [O].</font>")
+		src.visible_message("<span class='filter_warning'><font color='red'>[src] has been hit by [O].</font></span>")
 		var/armor = run_armor_check(null, "melee")
 		var/soaked = get_armor_soak(null, "melee")
 
@@ -304,7 +296,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
+			visible_message("<span class='filter_warning'><font color='red'>[src] staggers under the impact!</font></span>","<span class='filter_warning'><font color='red'>You stagger under the impact!</font></span>")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
@@ -323,6 +315,41 @@
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
 					src.anchored = TRUE
 					src.pinned += O
+
+	//VORESTATION EDIT START - Allows for thrown vore!
+	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
+	if(istype(AM, /mob/living))
+		var/mob/living/thrown_mob = AM
+
+		if(!allowmobvore && isanimal(thrown_mob)) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
+			return
+		if(!thrown_mob.allowmobvore && isanimal(src)) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
+			return
+
+		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
+		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
+		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
+			vore_selected.nom_mob(thrown_mob) //Eat them!!!
+			visible_message("<span class='warning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
+			if(thrown_mob.loc != vore_selected)
+				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			on_throw_vore_special(TRUE, thrown_mob)
+			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
+			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
+
+		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
+		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
+		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore)) //Pred thrown into prey.
+			visible_message("<span class='warning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
+			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
+			if(src.loc != thrown_mob.vore_selected)
+				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
+			return
+	//VORESTATION EDIT END - Allows for thrown vore!
+
+/mob/living/proc/on_throw_vore_special(var/pred = TRUE, var/mob/living/target)
+	return
 
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
@@ -474,11 +501,12 @@
 	to_chat(src, span("critical", "You've been struck by lightning!"))
 
 // Called when touching a lava tile.
-// Does roughly 100 damage to unprotected mobs, and 20 to fully protected mobs.
+// Does roughly 70 damage (30 instantly, up to ~40 over time) to unprotected mobs, and 10 to fully protected mobs.
 /mob/living/lava_act()
-	add_modifier(/datum/modifier/fire/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
-	inflict_heat_damage(40) // Another 40, however this is instantly applied to unprotected mobs.
-	adjustFireLoss(20) // Lava cannot be 100% resisted with fire protection.
+	adjust_fire_stacks(1)
+	add_modifier(/datum/modifier/fire/stack_managed/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
+	inflict_heat_damage(20) // Another 20, however this is instantly applied to unprotected mobs.
+	adjustFireLoss(10) // Lava cannot be 100% resisted with fire protection.
 
 /mob/living/proc/reagent_permeability()
 	return 1

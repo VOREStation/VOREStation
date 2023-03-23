@@ -28,4 +28,4 @@ var/list/_alien_default_emotes = list(
 )
 
 /mob/living/carbon/alien/get_available_emotes()
-	. = global._alien_default_emotes
+	. = global._alien_default_emotes.Copy()

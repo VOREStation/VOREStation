@@ -61,7 +61,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot tackle in your current state.")
+		to_chat(src, "<span class='filter_notice'>You cannot tackle in your current state.</span>")
 		return
 
 	last_special = world.time + 50
@@ -78,7 +78,7 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message(text("<font color='red'><B>[] [failed ? "tried to tackle" : "has tackled"] down []!</font></B>", src, T), 1)
+			O.show_message("<span class='filter_warning'><font color='red'><B>[src] [failed ? "tried to tackle" : "has tackled"] down [T]!</font></B></span>", 1)
 
 /mob/living/carbon/human/proc/commune()
 	set category = "Abilities"
@@ -94,26 +94,26 @@
 
 	if(!target) return
 
-	text = input(usr, "What would you like to say?", "Speak to creature", null, null)
+	text = tgui_input_text(usr, "What would you like to say?", "Speak to creature", null, MAX_MESSAGE_LEN)
 
-	text = sanitize(text)
+	text = sanitize(text, MAX_MESSAGE_LEN)
 
 	if(!text) return
 
 	var/mob/M = targets[target]
 
 	if(istype(M, /mob/observer/dead) || M.stat == DEAD)
-		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
+		to_chat(src, "<span class='filter_notice'>Not even a [src.species.name] can speak to the dead.</span>")
 		return
 
 	log_say("(COMMUNE to [key_name(M)]) [text]",src)
 
-	to_chat(M, "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>")
+	to_chat(M, "<span class='filter_say'><font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font></span>")
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		to_chat(H, "<font color='red'>Your nose begins to bleed...</font>")
+		to_chat(H, "<span class='filter_notice'><font color='red'>Your nose begins to bleed...</font></span>")
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()
@@ -126,7 +126,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("<font color='red'><B>[src] hurls out the contents of their stomach!</B></font>")
+		src.visible_message("<span class='filter_warning'><font color='red'><B>[src] hurls out the contents of their stomach!</B></font></span>")
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -134,11 +134,11 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"
 
-	var/msg = sanitize(input(usr, "Message:", "Psychic Whisper") as text|null)
+	var/msg = sanitize(tgui_input_text(usr, "Message:", "Psychic Whisper"))
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
-		to_chat(M, "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>")
-		to_chat(src, "<font color='green'>You said: \"[msg]\" to [M]</font>")
+		to_chat(M, "<span class='filter_say'><font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font></span>")
+		to_chat(src, "<span class='filter_say'><font color='green'>You said: \"[msg]\" to [M]</font></span>")
 	return
 
 /mob/living/carbon/human/proc/diona_split_nymph()
@@ -211,13 +211,13 @@
 	to_chat(src, "<span class='notice'>Performing self-diagnostic, please wait...</span>")
 
 	spawn(50)
-		var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
+		var/output = "<span class='filter_notice'><span class='notice'>Self-Diagnostic Results:\n</span>"
 
 		output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
 
 		if(isSynthetic())
 			output += "Current Battery Charge: [nutrition]\n"
-			
+
 			var/toxDam = getToxLoss()
 			if(toxDam)
 				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
@@ -237,6 +237,7 @@
 					output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
 				else
 					output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+		output += "</span>"
 
 		to_chat(src,output)
 
@@ -302,7 +303,7 @@
 		return
 	else
 		active_regen = TRUE
-		src.visible_message("<B>[src]</B>'s flesh begins to mend...")
+		src.visible_message("<span class='filter_notice'><B>[src]</B>'s flesh begins to mend...</span>")
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))

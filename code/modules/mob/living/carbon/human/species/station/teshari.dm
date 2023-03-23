@@ -59,7 +59,7 @@
 
 	ambiguous_genders = TRUE
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED	| SPECIES_NO_POSIBRAIN
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 	bump_flag = MONKEY
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
@@ -75,7 +75,7 @@
 	breath_cold_level_2 = 100	//Default 180
 	breath_cold_level_3 = 60	//Default 100
 
-	heat_level_1 = 320	//Default 360
+	heat_level_1 = 330	//Default 360
 	heat_level_2 = 370	//Default 400
 	heat_level_3 = 600	//Default 1000
 

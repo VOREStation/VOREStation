@@ -1,16 +1,11 @@
 import { Fragment } from 'inferno';
-import { useBackend, useSharedState } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section, Tabs } from '../components';
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 export const RoboticsControlConsole = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    can_hack,
-    safety,
-    show_detonate_all,
-    cyborgs = [],
-  } = data;
+  const { can_hack, safety, show_detonate_all, cyborgs = [] } = data;
   return (
     <Window width={500} height={460} resizable>
       <Window.Content scrollable>
@@ -20,13 +15,15 @@ export const RoboticsControlConsole = (props, context) => {
               icon={safety ? 'lock' : 'unlock'}
               content={safety ? 'Disable Safety' : 'Enable Safety'}
               selected={safety}
-              onClick={() => act('arm', {})} />
+              onClick={() => act('arm', {})}
+            />
             <Button
               icon="bomb"
               disabled={safety}
               content="Destroy ALL Cyborgs"
               color="bad"
-              onClick={() => act('nuke', {})} />
+              onClick={() => act('nuke', {})}
+            />
           </Section>
         )}
         <Cyborgs cyborgs={cyborgs} can_hack={can_hack} />
@@ -39,88 +36,75 @@ const Cyborgs = (props, context) => {
   const { cyborgs, can_hack } = props;
   const { act, data } = useBackend(context);
   if (!cyborgs.length) {
-    return (
-      <NoticeBox>
-        No cyborg units detected within access parameters.
-      </NoticeBox>
-    );
+    return <NoticeBox>No cyborg units detected within access parameters.</NoticeBox>;
   }
-  return cyborgs.map(cyborg => {
+  return cyborgs.map((cyborg) => {
     return (
       <Section
         key={cyborg.ref}
         title={cyborg.name}
-        buttons={(
+        buttons={
           <Fragment>
             {!!cyborg.hackable && !cyborg.emagged && (
               <Button
                 icon="terminal"
                 content="Hack"
                 color="bad"
-                onClick={() => act('hackbot', {
-                  ref: cyborg.ref,
-                })} />
+                onClick={() =>
+                  act('hackbot', {
+                    ref: cyborg.ref,
+                  })
+                }
+              />
             )}
             <Button.Confirm
               icon={cyborg.locked_down ? 'unlock' : 'lock'}
               color={cyborg.locked_down ? 'good' : 'default'}
-              content={cyborg.locked_down ? "Release" : "Lockdown"}
+              content={cyborg.locked_down ? 'Release' : 'Lockdown'}
               disabled={!data.auth}
-              onClick={() => act('stopbot', {
-                ref: cyborg.ref,
-              })} />
+              onClick={() =>
+                act('stopbot', {
+                  ref: cyborg.ref,
+                })
+              }
+            />
             <Button.Confirm
               icon="bomb"
               content="Detonate"
               disabled={!data.auth}
               color="bad"
-              onClick={() => act('killbot', {
-                ref: cyborg.ref,
-              })} />
+              onClick={() =>
+                act('killbot', {
+                  ref: cyborg.ref,
+                })
+              }
+            />
           </Fragment>
-        )}>
+        }>
         <LabeledList>
           <LabeledList.Item label="Status">
-            <Box color={cyborg.status
-              ? 'bad'
-              : cyborg.locked_down
-                ? 'average'
-                : 'good'}>
-              {cyborg.status
-                ? "Not Responding"
-                : cyborg.locked_down
-                  ? "Locked Down"
-                  : "Nominal"}
+            <Box color={cyborg.status ? 'bad' : cyborg.locked_down ? 'average' : 'good'}>
+              {cyborg.status ? 'Not Responding' : cyborg.locked_down ? 'Locked Down' : 'Nominal'}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Location">
-            <Box>
-              {cyborg.locstring}
-            </Box>
+            <Box>{cyborg.locstring}</Box>
           </LabeledList.Item>
           <LabeledList.Item label="Integrity">
-            <ProgressBar
-              color={cyborg.health > 50 ? "good" : "bad"}
-              value={cyborg.health / 100} />
+            <ProgressBar color={cyborg.health > 50 ? 'good' : 'bad'} value={cyborg.health / 100} />
           </LabeledList.Item>
-          {(typeof cyborg.charge === 'number') && (
+          {(typeof cyborg.charge === 'number' && (
             <Fragment>
               <LabeledList.Item label="Cell Charge">
-                <ProgressBar
-                  color={cyborg.charge > 30 ? "good" : "bad"}
-                  value={cyborg.charge / 100} />
+                <ProgressBar color={cyborg.charge > 30 ? 'good' : 'bad'} value={cyborg.charge / 100} />
               </LabeledList.Item>
               <LabeledList.Item label="Cell Capacity">
-                <Box color={cyborg.cell_capacity < 30000 ? "average" : "good"}>
-                  {cyborg.cell_capacity}
-                </Box>
+                <Box color={cyborg.cell_capacity < 30000 ? 'average' : 'good'}>{cyborg.cell_capacity}</Box>
               </LabeledList.Item>
             </Fragment>
-          ) || (
+          )) || (
             <LabeledList.Item label="Cell">
-              <Box color="bad">
-                No Power Cell
-              </Box>
+              <Box color="bad">No Power Cell</Box>
             </LabeledList.Item>
           )}
           {!!cyborg.is_hacked && (
@@ -128,13 +112,9 @@ const Cyborgs = (props, context) => {
               <Box color="bad">DISABLED</Box>
             </LabeledList.Item>
           )}
-          <LabeledList.Item label="Module">
-            {cyborg.module}
-          </LabeledList.Item>
+          <LabeledList.Item label="Module">{cyborg.module}</LabeledList.Item>
           <LabeledList.Item label="Master AI">
-            <Box color={cyborg.synchronization ? 'default' : 'average'}>
-              {cyborg.synchronization || "None"}
-            </Box>
+            <Box color={cyborg.synchronization ? 'default' : 'average'}>{cyborg.synchronization || 'None'}</Box>
           </LabeledList.Item>
         </LabeledList>
       </Section>

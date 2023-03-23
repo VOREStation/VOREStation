@@ -13,6 +13,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
 "abG" = (
@@ -111,6 +115,14 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/secondfloor/west)
+"agf" = (
+/obj/structure/table/bench/padded,
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/surface/station/hallway/secondary/secondfloor/command)
 "agj" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -345,6 +357,7 @@
 	name = "Cargo";
 	req_one_access = list(50)
 	},
+/obj/structure/sign/christmas/wreath,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/quartermaster/office)
 "amK" = (
@@ -680,12 +693,12 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
-/obj/structure/table/bench/padded,
 /obj/effect/floor_decal/corner/white/border,
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/structure/flora/pottedplant/xmas,
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/dormhallway)
 "auR" = (
@@ -1254,12 +1267,12 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/medical/patient_wing)
 "aSg" = (
-/obj/structure/flora/pottedplant/tropical,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /obj/machinery/status_display/supply_display{
 	pixel_y = -32
 	},
+/obj/structure/flora/pottedplant/xmas,
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/qm)
 "aSo" = (
@@ -2319,11 +2332,16 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 5
 	},
+<<<<<<< HEAD
 /obj/structure/flora/pottedplant/drooping,
 /obj/item/device/radio/intercom{
+=======
+/obj/item/radio/intercom{
+>>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 	dir = 4;
 	pixel_x = 21
 	},
+/obj/structure/flora/pottedplant/xmas,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/crew_quarters/heads/cmo)
 "bDD" = (
@@ -3505,6 +3523,10 @@
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 8
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
 "cmP" = (
@@ -3839,6 +3861,7 @@
 /area/surface/station/ai)
 "cyU" = (
 /obj/structure/table/wooden_reinforced,
+/obj/item/toy/xmastree,
 /turf/simulated/floor/wood,
 /area/surface/station/command/meeting_room)
 "czC" = (
@@ -4112,6 +4135,10 @@
 /obj/machinery/camera/network/medbay{
 	c_tag = "MED - Patient Room B";
 	dir = 5
+	},
+/obj/item/toy/xmastree{
+	pixel_x = -5;
+	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_b)
@@ -5057,6 +5084,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/locker_room)
+"dmY" = (
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled,
+/area/surface/station/hallway/primary/secondfloor/east)
 "doE" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/quartermaster/foyer)
@@ -5998,6 +6032,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
 "dWg" = (
@@ -6308,6 +6346,17 @@
 	dir = 8;
 	pixel_y = 32
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/sign/levels/security{
+	dir = 5;
+	pixel_y = 26
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
+>>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
 "ehU" = (
@@ -7200,6 +7249,10 @@
 	dir = 1;
 	pixel_y = 30
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
 "ePK" = (
@@ -7757,6 +7810,10 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 8
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -8615,6 +8672,10 @@
 /obj/machinery/camera/network/second_floor{
 	c_tag = "Second Floor -East Hallway 2";
 	dir = 4
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -9499,6 +9560,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /obj/machinery/station_map{
 	dir = 4;
+	pixel_x = -32
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
@@ -11763,6 +11828,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
 "hDC" = (
@@ -13005,6 +13074,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/toy/xmastree,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_1)
 "itI" = (
@@ -13657,6 +13727,7 @@
 "iKn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/christmas/wreath,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/quartermaster/office)
 "iKZ" = (
@@ -13830,6 +13901,10 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/hallway/secondary/secondfloor/command)
 "iPq" = (
@@ -13962,6 +14037,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
 "iRT" = (
@@ -13982,6 +14061,10 @@
 /obj/machinery/camera/network/medbay{
 	c_tag = "MED - Patient Room A";
 	dir = 5
+	},
+/obj/item/toy/xmastree{
+	pixel_x = -5;
+	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_a)
@@ -14027,6 +14110,10 @@
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = -21
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -14480,8 +14567,25 @@
 	name = "Research Division Access";
 	req_one_access = list(47)
 	},
+/obj/structure/sign/christmas/wreath,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/rnd/research_foyer)
+"jeC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 1
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/surface/station/hallway/secondary/secondfloor/civilian)
 "jeO" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -14595,6 +14699,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
@@ -14742,6 +14850,10 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -15323,6 +15435,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
@@ -16687,6 +16803,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
 "kuD" = (
@@ -18767,6 +18887,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central7,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/engineering/engi_restroom)
+"mgT" = (
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/surface/station/hallway/secondary/secondfloor/command)
 "mhc" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -18972,6 +19099,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/research)
+"mpF" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled,
+/area/surface/station/hallway/primary/secondfloor/east)
 "mqi" = (
 /obj/machinery/computer/centrifuge,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -20385,6 +20525,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/toy/xmastree,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_5)
 "nmz" = (
@@ -20848,6 +20989,10 @@
 "nzR" = (
 /obj/structure/table/standard,
 /obj/item/tabloid,
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/hallway/secondary/secondfloor/command)
 "nAp" = (
@@ -21987,6 +22132,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central7{
 	dir = 1
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
 "oup" = (
@@ -22811,6 +22960,10 @@
 	pixel_x = -24;
 	pixel_y = 12
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
 "oVf" = (
@@ -23089,6 +23242,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
+/obj/structure/flora/pottedplant/xmas,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/research_foyer)
 "pgm" = (
@@ -23230,6 +23384,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/toy/xmastree,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_2)
 "pkd" = (
@@ -23898,6 +24053,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/toy/xmastree,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_4)
 "pIq" = (
@@ -24051,10 +24207,16 @@
 	pixel_x = -32;
 	pixel_y = -6
 	},
+<<<<<<< HEAD
 /obj/structure/sign/directions/stairs_down{
 	dir = 4;
 	pixel_x = -32;
 	pixel_y = -12
+=======
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+>>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -24585,6 +24747,10 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 1
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
@@ -25432,6 +25598,10 @@
 	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
@@ -26303,6 +26473,10 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
 "rmT" = (
@@ -26448,6 +26622,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/west/elevator)
+"rsz" = (
+/obj/structure/flora/pottedplant/xmas,
+/turf/simulated/floor/wood,
+/area/surface/station/crew_quarters/captain)
 "rsP" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -26860,10 +27038,8 @@
 	dir = 1
 	},
 /obj/item/modular_computer/console/preset/command,
-/obj/machinery/computer/security/telescreen{
-	name = "Research Monitor";
-	network = list("Research","Toxins Test Area","Robots","Anomaly Isolation","Research Outpost");
-	pixel_y = 28
+/obj/item/toy/xmastree{
+	pixel_y = 11
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/crew_quarters/heads/rdoffice)
@@ -28050,6 +28226,10 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 8
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -29999,6 +30179,22 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/security/prison)
+"tBf" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 1
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/surface/station/hallway/secondary/secondfloor/civilian)
 "tBq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/spline/plain,
@@ -30928,6 +31124,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/toy/xmastree,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/sleep/Dorm_3)
 "uiT" = (
@@ -31855,6 +32052,10 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 8
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -33783,6 +33984,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
 "wkH" = (
@@ -36085,6 +36290,10 @@
 	dir = 1
 	},
 /obj/structure/table/bench/padded,
+/obj/structure/sign/christmas/lights{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/hallway/secondary/secondfloor/command)
 "xwr" = (
@@ -36316,6 +36525,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
 "xFM" = (
@@ -60039,7 +60252,7 @@ ddU
 ddU
 sBb
 rMU
-iYW
+jeC
 oWj
 dfb
 cOD
@@ -60296,7 +60509,7 @@ ddU
 ddU
 sBb
 dFq
-iYW
+jeC
 gdJ
 xVx
 cOD
@@ -60553,7 +60766,7 @@ ddU
 ddU
 sBb
 rMU
-iYW
+jeC
 jvK
 oZX
 xVx
@@ -61324,7 +61537,7 @@ ddU
 ddU
 ddU
 mxN
-jIT
+tBf
 oQQ
 gtF
 lcF
@@ -61581,7 +61794,7 @@ ddU
 ddU
 ddU
 rMU
-iYW
+jeC
 lyD
 uSL
 wRE
@@ -63123,7 +63336,7 @@ ddU
 ddU
 sBb
 rMU
-jIT
+tBf
 juh
 tzq
 xdj
@@ -63380,7 +63593,7 @@ ddU
 ddU
 sBb
 tWb
-iYW
+jeC
 imI
 pJV
 kMa
@@ -64151,7 +64364,7 @@ kst
 kst
 lnd
 bow
-iYW
+jeC
 qNP
 cCD
 lQR
@@ -69025,8 +69238,13 @@ uwO
 uwO
 uwO
 uwO
+<<<<<<< HEAD
 uDG
 iaD
+=======
+aPW
+rsz
+>>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 iaD
 jIo
 ifR
@@ -70575,7 +70793,7 @@ leV
 xHL
 mwp
 pim
-lMj
+mgT
 mRL
 dki
 hYK
@@ -70832,7 +71050,7 @@ xDt
 mKi
 srw
 bQX
-lMj
+mgT
 jgu
 pBd
 ibd
@@ -71346,7 +71564,7 @@ vfL
 vHm
 eLU
 dmy
-oXY
+agf
 oAv
 udE
 kki
@@ -71603,7 +71821,7 @@ oVJ
 xHL
 cAf
 jVB
-oXY
+agf
 ksz
 hAN
 eua
@@ -71860,7 +72078,7 @@ eXV
 mKi
 dNq
 bQX
-lMj
+mgT
 kzK
 qIh
 eua
@@ -72870,7 +73088,7 @@ kby
 lvx
 etV
 poa
-xYF
+dmY
 clG
 uSB
 uSB
@@ -72878,7 +73096,7 @@ uSB
 jlZ
 syR
 iSF
-cKe
+mpF
 cKe
 cKe
 kCl

@@ -141,8 +141,8 @@
 		if(dead)
 			channels_playing -= channel
 			channels_idle += channel
-			for(var/mob/M as anything in hearing_mobs)
+			for(var/mob/M in hearing_mobs)
 				M.stop_sound_channel(channelnumber)
 		else
-			for(var/mob/M as anything in hearing_mobs)
+			for(var/mob/M in hearing_mobs)
 				M.set_sound_channel_volume(channelnumber, (current_volume * 0.01) * volume * using_instrument.volume_multiplier)

@@ -40,7 +40,8 @@ var/list/mob_hat_cache = list()
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER
 	can_enter_vent_with = list(
-		/obj)
+		/obj,
+		/atom/movable/emissive_blocker)
 
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = SIMPLE_ANIMAL

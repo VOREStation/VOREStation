@@ -25,9 +25,9 @@
 
 	var/affects_dead = 0	// Does this chem process inside a corpse?
 	var/affects_robots = 0	// Does this chem process inside a Synth?
-	
+
 	var/allergen_type		// What potential allergens does this contain?
-	var/allergen_factor = 1	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
+	var/allergen_factor = 2	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
 
 	var/cup_icon_state = null
 	var/cup_name = null
@@ -117,23 +117,28 @@
 			else
 				var/obj/item/organ/internal/heart/machine/Pump = H.internal_organs_by_name[O_PUMP]
 				var/obj/item/organ/internal/stomach/machine/Cycler = H.internal_organs_by_name[O_CYCLER]
+				var/obj/item/organ/internal/nano/refactory/Refactory = H.internal_organs_by_name[O_FACT]		//VOREStation Addition: Proteans
 
 				if(active_metab.metabolism_class == CHEM_BLOOD)
 					if(Pump)
 						removed *= 1.1 - Pump.damage / Pump.max_damage
+					else if(Refactory)		//VOREStation Addition: Proteans
+						removed *= 1.1 - Refactory.damage / Refactory.max_damage
 					else
 						removed *= 0.1
 
 				else if(active_metab.metabolism_class == CHEM_INGEST)	// If the pump is damaged, we waste chems from the tank.
 					if(Pump)
 						ingest_abs_mult *= max(0.25, 1 - Pump.damage / Pump.max_damage)
-
+					else if(Refactory)		//VOREStation Addition: Proteans
+						ingest_abs_mult *= max(0.25, 1 - Refactory.damage / Refactory.max_damage)
 					else
 						ingest_abs_mult *= 0.2
 
 					if(Cycler)	// If we're damaged, we empty our tank slower.
 						ingest_rem_mult = max(0.1, 1 - (Cycler.damage / Cycler.max_damage))
-
+					else if(Refactory)		//VOREStation Addition: Proteans
+						ingest_rem_mult = max(0.1, 1 - (Refactory.damage / Refactory.max_damage))
 					else
 						ingest_rem_mult = 0.1
 
@@ -163,30 +168,10 @@
 				affect_ingest(M, alien, removed * ingest_abs_mult)
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, removed)
-	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH && !can_overdose_touch))
+	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH || can_overdose_touch))
 		overdose(M, alien, removed)
-	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!	
-		var/damage_severity = M.species.allergen_damage_severity*allergen_factor
-		var/disable_severity = M.species.allergen_disable_severity*allergen_factor	
-		if(M.species.allergen_reaction & AG_TOX_DMG)
-			M.adjustToxLoss(damage_severity)
-		if(M.species.allergen_reaction & AG_OXY_DMG)
-			M.adjustOxyLoss(damage_severity*1.5) //VOREStation Edit
-			if(prob(2.5*disable_severity))
-				M.emote(pick("cough","gasp","choke"))
-		if(M.species.allergen_reaction & AG_EMOTE)
-			if(prob(2.5*disable_severity))	//this has a higher base chance, but not *too* high
-				M.emote(pick("pale","shiver","twitch"))
-		if(M.species.allergen_reaction & AG_PAIN)
-			M.adjustHalLoss(disable_severity*2) //VOREStation Edit
-		if(M.species.allergen_reaction & AG_WEAKEN)
-			M.Weaken(disable_severity)
-		if(M.species.allergen_reaction & AG_BLURRY)
-			M.eye_blurry = max(M.eye_blurry, disable_severity)
-		if(M.species.allergen_reaction & AG_SLEEPY)
-			M.drowsyness = max(M.drowsyness, disable_severity)
-		if(M.species.allergen_reaction & AG_CONFUSE) //VOREStation Addition
-			M.Confuse(disable_severity/4) //VOREStation Addition
+	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!
+		M.add_chemical_effect(CE_ALLERGEN, allergen_factor * removed)
 	remove_self(removed)
 	return
 

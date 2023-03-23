@@ -81,7 +81,7 @@
 /obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
 	if(!ispath(path))
 		return 0
-	
+
 	var/atom/movable/AM = new path()
 	if(user)
 		user.put_in_hands(AM)
@@ -96,7 +96,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	
+
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
 	randomize_harvest_count = FALSE
@@ -121,13 +121,13 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	
+
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
 	randomize_harvest_count = TRUE
 	harvest_loot = list(/obj/item/stack/material/fiber = 1)
 	min_harvests = 1
-	max_harvests = 3		
+	max_harvests = 3
 
 /obj/structure/flora/ausbushes/spawn_harvest(var/path = null, var/mob/user = null)
 	. = ..()
@@ -300,7 +300,7 @@
 		user.drop_from_inventory(I, src)
 		I.forceMove(src)
 		stored_item = I
-		src.visible_message("[bicon(src)] [bicon(I)] [user] places [I] into [src].")
+		src.visible_message("\icon[src][bicon(src)] \icon[I][bicon(I)] [user] places [I] into [src].")
 		return
 	else
 		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
@@ -311,7 +311,7 @@
 		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
 	else
 		if(do_after(user, 10))
-			to_chat(user, "<span class='filter_notice'>You find [bicon(stored_item)] [stored_item] in [src]!</span>")
+			to_chat(user, "<span class='filter_notice'>You find \icon[stored_item][bicon(stored_item)] [stored_item] in [src]!</span>")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 	..()
@@ -607,7 +607,7 @@
 	to forming buds, the petals of which secrete the luminescent sap containing the pollen at the time of blooming. Certain \
 	horticulturists have found ways of halting this process prior to the secretion of the sap, leaving the flower's petals \
 	bright, at the cost of making that bud sterile."
-	value = CATALOGUER_REWARD_HARD
+	value = CATALOGUER_REWARD_MEDIUM
 
 /obj/structure/flora/sif/frostbelle
 	name = "frostbelle shrub"

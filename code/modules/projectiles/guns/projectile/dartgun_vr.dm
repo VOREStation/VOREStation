@@ -27,3 +27,10 @@
 	else
 		icon_state = "tranqgun"
 	return 1
+
+// This is to allow xenobio to activate slime cores via remote.
+/obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+	..()
+	if(blocked < 2)
+		if(istype(target, /obj/item/weapon/reagent_containers/food) || istype(target, /obj/item/slime_extract))
+			reagents.trans_to_obj(target, reagent_amount)

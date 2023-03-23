@@ -159,8 +159,8 @@
 
 	// We're still cooling down from the last move
 	if(!my_mob.checkMoveCooldown())
+		DEBUG_INPUT("--------")
 		return
-	DEBUG_INPUT("--------")
 	next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
 	next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 

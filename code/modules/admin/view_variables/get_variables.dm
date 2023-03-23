@@ -85,19 +85,19 @@
 
 	switch(.["class"])
 		if (VV_TEXT)
-			.["value"] = input(usr, "Enter new text:", "Text", current_value) as null|text
+			.["value"] = tgui_input_text(usr, "Enter new text:", "Text", current_value)
 			if (.["value"] == null)
 				.["class"] = null
 				return
 		if (VV_MESSAGE)
-			.["value"] = input(usr, "Enter new text:", "Text", current_value) as null|message
+			.["value"] = tgui_input_text(usr, "Enter new text:", "Text", current_value, multiline = TRUE)
 			if (.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if (VV_NUM)
-			.["value"] = input(usr, "Enter new number:", "Num", current_value) as null|num
+			.["value"] = tgui_input_number(usr, "Enter new number:", "Num", current_value)
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -124,7 +124,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input(usr, "Enter type:[error]", "Type", type) as null|text
+				type = tgui_input_text(usr, "Enter type:[error]", "Type", type)
 				if (!type)
 					break
 				type = text2path(type)
@@ -229,7 +229,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input(usr, "Enter type:[error]", "Type", type) as null|text
+				type = tgui_input_text(usr, "Enter type:[error]", "Type", type)
 				if (!type)
 					break
 				type = text2path(type)

@@ -286,8 +286,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	//qdel(src)
+	return ..()
 
 
 /mob/living/bot/farmbot/confirmTarget(var/atom/targ)
@@ -330,7 +330,7 @@
 /obj/item/weapon/farmbot_arm_assembly
 	name = "water tank/robot arm assembly"
 	desc = "A water tank with a robot arm permanently grafted to it."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/obj/chemical_tanks.dmi'
 	icon_state = "water_arm"
 	var/build_step = 0
 	var/created_name = "Farmbot"
@@ -409,7 +409,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = input(user, "Enter new robot name", name, created_name) as text
+		var/t = tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN)
 		t = sanitize(t, MAX_NAME_LEN)
 		if(!t)
 			return

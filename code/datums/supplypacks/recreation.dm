@@ -35,6 +35,15 @@
 	containertype = /obj/structure/closet/crate/allico
 	containername = "foam weapon crate"
 
+/datum/supply_pack/recreation/donksoftborg
+	name = "Donk-Soft Cyborg Blaster Crate"
+	contains = list(
+			/obj/item/borg/upgrade/toygun = 2,
+			)
+	cost = 35
+	containertype = /obj/structure/closet/crate/allico
+	containername = "foam weapon crate"
+
 /datum/supply_pack/recreation/donksoftvend
 	name = "Donk-Soft Vendor Crate"
 	contains = list()
@@ -63,15 +72,16 @@
 			/obj/item/device/camera_film = 2,
 			/obj/item/weapon/storage/photo_album,
 			/obj/item/weapon/packageWrap,
-			/obj/item/weapon/reagent_containers/glass/paint/red,
-			/obj/item/weapon/reagent_containers/glass/paint/green,
-			/obj/item/weapon/reagent_containers/glass/paint/blue,
-			/obj/item/weapon/reagent_containers/glass/paint/yellow,
-			/obj/item/weapon/reagent_containers/glass/paint/purple,
-			/obj/item/weapon/reagent_containers/glass/paint/black,
-			/obj/item/weapon/reagent_containers/glass/paint/white,
 			/obj/item/poster/custom,
-			/obj/item/weapon/wrapping_paper = 3
+			/obj/item/weapon/wrapping_paper = 3,
+			/obj/structure/easel,
+			/obj/item/paint_brush,
+			/obj/item/paint_palette,
+			/obj/item/canvas = 3,
+			/obj/item/canvas/nineteen_nineteen = 2,
+			/obj/item/canvas/twentythree_nineteen = 2,
+			/obj/item/canvas/twentythree_twentythree = 2,
+			/obj/item/canvas/twentyfour_twentyfour = 2
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/allico
@@ -85,7 +95,17 @@
 	contains = list(
 			/obj/item/device/pipe_painter = 2,
 			/obj/item/device/floor_painter = 2,
-			///obj/item/device/closet_painter = 2
+			/obj/item/weapon/reagent_containers/glass/paint/red,
+			/obj/item/weapon/reagent_containers/glass/paint/green,
+			/obj/item/weapon/reagent_containers/glass/paint/blue,
+			/obj/item/weapon/reagent_containers/glass/paint/yellow,
+			/obj/item/weapon/reagent_containers/glass/paint/violet,
+			/obj/item/weapon/reagent_containers/glass/paint/cyan,
+			/obj/item/weapon/reagent_containers/glass/paint/orange,
+			/obj/item/weapon/reagent_containers/glass/paint/purple,
+			/obj/item/weapon/reagent_containers/glass/paint/grey,
+			/obj/item/weapon/reagent_containers/glass/paint/black,
+			/obj/item/weapon/reagent_containers/glass/paint/white = 3
 			)
 
 /datum/supply_pack/recreation/cheapbait

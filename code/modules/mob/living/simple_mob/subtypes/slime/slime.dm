@@ -33,7 +33,7 @@ var/list/_slime_default_emotes = list(
 
 	faction = "slime" // Note that slimes are hostile to other slimes of different color regardless of faction (unless Unified).
 	maxHealth = 150
-	movement_cooldown = 0
+	movement_cooldown = -1
 	pass_flags = PASSTABLE
 	makes_dirt = FALSE	// Goop
 	mob_class = MOB_CLASS_SLIME
@@ -83,7 +83,7 @@ var/list/_slime_default_emotes = list(
 	can_enter_vent_with = list(/obj/item/clothing/head)
 
 /mob/living/simple_mob/slime/get_available_emotes()
-	return global._slime_default_emotes
+	return global._slime_default_emotes.Copy()
 
 /datum/say_list/slime
 	speak = list("Blorp...", "Blop...")
@@ -140,7 +140,8 @@ var/list/_slime_default_emotes = list(
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
 		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
 		I.pixel_y = -7 // Slimes are small.
-		I.appearance_flags = RESET_COLOR
+		I.appearance_flags = RESET_COLOR | KEEP_APART
+		I.blend_mode = BLEND_OVERLAY
 		add_overlay(I)
 
 // Controls the 'mood' overlay. Overrided in subtypes for specific behaviour.

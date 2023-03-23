@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/fix_vein
+	surgery_name = "Fix Vein"
 	priority = 2
 	allowed_tools = list(
 	/obj/item/weapon/surgical/FixOVein = 100, \
@@ -36,8 +37,8 @@
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool]." , \
-	"You start patching the damaged vein in [target]'s [affected.name] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start patching the damaged vein in [target]'s [affected.name] with \the [tool].</span>")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
@@ -61,6 +62,7 @@
 // Necrosis Surgery Step 1
 ///////////////////////////////////////////////////////////////
 /datum/surgery_step/fix_dead_tissue        //Debridement
+	surgery_name = "Remove Dead Tissue"
 	priority = 2
 	allowed_tools = list(
 		/obj/item/weapon/surgical/scalpel = 100,        \
@@ -89,8 +91,8 @@
 
 /datum/surgery_step/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool]." , \
-	"You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
@@ -110,6 +112,7 @@
 // Necrosis Surgery Step 2
 ///////////////////////////////////////////////////////////////
 /datum/surgery_step/treat_necrosis
+	surgery_name = "Treat Necrosis"
 	priority = 2
 	allowed_tools = list(
 		/obj/item/weapon/reagent_containers/dropper = 100,
@@ -146,8 +149,8 @@
 
 /datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool]." , \
-	"You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].</span>")
 	target.custom_pain("Something in your [affected.name] is causing you a lot of pain!", 50)
 	..()
 
@@ -187,6 +190,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/hardsuit
+	surgery_name = "Remove Hardsuit"
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 80,
 		/obj/item/weapon/surgical/circular_saw = 60,
@@ -215,8 +219,8 @@
 		rig = target.belt
 		if(!istype(rig))
 			return
-	user.visible_message("[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool]." , \
-	"You start cutting through the support systems of \the [rig] on [target] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start cutting through the support systems of \the [rig] on [target] with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -241,6 +245,7 @@
 	var/dehusk = 0
 
 /datum/surgery_step/dehusk/
+	surgery_name = "Dehusk"
 	priority = 1
 	can_infect = 0
 	blood_level = 1
@@ -256,6 +261,7 @@
 	return target_zone == BP_TORSO && (HUSK in target.mutations)
 
 /datum/surgery_step/dehusk/structinitial
+	surgery_name = "Create Structure"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bioregen = 100
 	)
@@ -285,6 +291,7 @@
 	..()
 
 /datum/surgery_step/dehusk/relocateflesh
+	surgery_name = "Relocate Flesh"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
@@ -316,6 +323,7 @@
 	..()
 
 /datum/surgery_step/dehusk/structfinish
+	surgery_name = "Finish Structure"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bioregen = 100, \
 		/obj/item/weapon/surgical/FixOVein = 30
@@ -357,6 +365,7 @@
 	..()
 
 /datum/surgery_step/internal/detoxify
+	surgery_name = "Detoxify"
 	blood_level = 1
 	allowed_tools = list(/obj/item/weapon/surgical/bioregen=100)
 	min_duration = 90

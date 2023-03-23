@@ -53,6 +53,8 @@
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
 		return FALSE
 	var/obj/item/I = user.get_active_hand() // ctrl-shift-click doesn't give us the item, we have to fetch it
+	if(!I)
+		return FALSE
 	return IC.attackby(I, user)
 
 /obj/item/clothing/attack_self(mob/user)

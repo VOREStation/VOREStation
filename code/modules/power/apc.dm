@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/updating_icon = 0
 	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
-	
+
 	var/nightshift_lights = FALSE
 	var/nightshift_setting = NIGHTSHIFT_AUTO
 	var/last_nightshift_switch = 0
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	if(!pixel_x && !pixel_y)
 		offset_apc()
-	
+
 	if(building)
 		area = get_area(src)
 		area.apc = src
@@ -1361,6 +1361,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	for(var/obj/machinery/light/L in area)
 		L.nightshift_mode(new_state)
+		L.update() //For some reason it gets hung up on updating the overlay for the light fixture somewhere down the line. This fixes it.
 		CHECK_TICK
 
 #undef APC_UPDATE_ICON_COOLDOWN

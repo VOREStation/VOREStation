@@ -157,6 +157,38 @@
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
 
+/obj/item/clothing/accessory/bowtie
+	name = "red bow tie"
+	desc = "Snazzy!"
+	icon_state = "redbowtie"
+	slot = ACCESSORY_SLOT_TIE
+
+/obj/item/clothing/accessory/bowtie/black
+	name = "black bow tie"
+	icon_state = "blackbowtie"
+
+/obj/item/clothing/accessory/bowtie/white
+	name = "white bow tie"
+	icon_state = "whitebowtie"
+
+/obj/item/clothing/accessory/maid_neck
+	name = "maid neck cover"
+	desc = "A neckpiece for a maid costume, it smells faintly of disappointment."
+	icon_state = "maid_neck"
+
+/obj/item/clothing/accessory/maidcorset
+	name = "maid corset"
+	desc = "The final touch that holds it all together."
+	icon_state = "maidcorset"
+
+/obj/item/clothing/accessory/maid_arms
+	name = "maid arm covers"
+	desc = "Cylindrical looking tubes that go over your arms, weird."
+	slot_flags = SLOT_OCLOTHING | SLOT_GLOVES | SLOT_TIE
+	body_parts_covered = ARMS
+	description_info = "Wearable as gloves, or attachable to uniforms. May visually conflict with actual gloves when attached to uniforms. Caveat emptor."
+	icon_state = "maid_arms"
+
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
@@ -265,6 +297,10 @@
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by high ranking officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
+
+/obj/item/clothing/accessory/medal/gold/casino
+	name = "medal of true lucky winner"
+	desc = "A gaudy golden medal with a logo of a casino engraved on top. The only achievement you had to earn this was great luck or great richness, neither of which is an achievement. Still, it instills a feeling of hope and smell of fresh bagels."
 
 // Base type for 'medals' found in a "dungeon" submap, as a sort of trophy to celebrate the player's conquest.
 /obj/item/clothing/accessory/medal/dungeon
@@ -505,3 +541,64 @@
 /obj/item/clothing/accessory/gaiter/green
 	name = "green neck gaiter"
 	icon_state = "gaiter_green"
+
+/obj/item/clothing/accessory/gaiter/blue
+	name = "blue neck gaiter"
+	icon_state = "gaiter_blue"
+
+/obj/item/clothing/accessory/gaiter/purple
+	name = "purple neck gaiter"
+	icon_state = "gaiter_purple"
+
+/obj/item/clothing/accessory/gaiter/orange
+	name = "orange neck gaiter"
+	icon_state = "gaiter_orange"
+
+/obj/item/clothing/accessory/gaiter/charcoal
+	name = "charcoal neck gaiter"
+	icon_state = "gaiter_charcoal"
+
+/obj/item/clothing/accessory/gaiter/snow
+	name = "white neck gaiter"
+	icon_state = "gaiter_snow"
+
+/*
+ * Pride Pins
+ */
+/obj/item/clothing/accessory/pride
+	name = "pride pin"
+	desc = "A pin displaying pride in one's identity."
+	icon_state = "pride"
+	slot = ACCESSORY_SLOT_MEDAL
+
+/obj/item/clothing/accessory/pride/bi
+	name = "bisexual pride pin"
+	icon_state = "pride_bi"
+
+/obj/item/clothing/accessory/pride/trans
+	name = "transgender pride pin"
+	icon_state = "pride_trans"
+
+/obj/item/clothing/accessory/pride/ace
+	name = "asexual pride pin"
+	icon_state = "pride_ace"
+
+/obj/item/clothing/accessory/pride/enby
+	name = "nonbinary pride pin"
+	icon_state = "pride_enby"
+
+/obj/item/clothing/accessory/pride/pan
+	name = "pansexual pride pin"
+	icon_state = "pride_pan"
+
+/obj/item/clothing/accessory/pride/lesbian
+	name = "lesbian pride pin"
+	icon_state = "pride_lesbian"
+
+/obj/item/clothing/accessory/pride/intersex
+	name = "intersex pride pin"
+	icon_state = "pride_intersex"
+
+/obj/item/clothing/accessory/pride/vore
+	name = "vore pride pin"
+	icon_state = "pride_vore"

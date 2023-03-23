@@ -145,6 +145,8 @@
 
 // Wanders randomly in cardinal directions.
 /datum/ai_holder/proc/handle_wander_movement()
+	if(!holder)
+		return
 	ai_log("handle_wander_movement() : Entered.", AI_LOG_TRACE)
 	if(isturf(holder.loc) && can_act())
 		wander_delay--
@@ -164,13 +166,13 @@
 	// No target, don't use the ladder
 	// Target is visible, don't use the ladder
 	if(!target || can_see_target(target))
-		return 
+		return
 
 	var/has_hands = TRUE
 	if(istype(holder, /mob/living/simple_mob))
 		var/mob/living/simple_mob/S = holder
 		has_hands = S.has_hands
-	
+
 	// Don't have means to use a ladder or the space around it, don't use the ladder
 	if(!has_hands && !holder.hovering)
 		return
@@ -178,7 +180,7 @@
 	var/obj/structure/ladder/L = locate() in get_turf(holder)
 	if(!istype(L))
 		return // No ladder, can't use it
-	
+
 	if(!holder.may_climb_ladders(L))
 		return // Can't climb the ladder for other reasons (Probably inconsequential?)
 
@@ -187,6 +189,6 @@
 		directions += L.target_down
 	if(L.allowed_directions & UP)
 		directions += L.target_up
-	
+
 	if(directions.len)
 		L.climbLadder(holder, pick(directions))

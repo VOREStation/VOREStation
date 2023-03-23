@@ -19,7 +19,8 @@
 	icon_base = "flesh_floor"
 
 /decl/flooring/grass/outdoors
-	flags = TURF_REMOVE_SHOVEL
+	flags = 0
+	build_type = null
 
 /decl/flooring/grass/outdoors/forest
 	icon = 'icons/turf/outdoors.dmi'
@@ -102,7 +103,7 @@
 
 /obj/item/stack/tile/floor/milspec/sterile
 	name = "sterile milspec floor tile"
-	
+
 /decl/flooring/tiling/milspec/raised
 	name = "raised milspec floor"
 	icon_base = "milspec_tcomms"

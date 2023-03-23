@@ -809,6 +809,19 @@
 		"nano" = COLOR_OFF_WHITE
 	)
 
+/decl/closet_appearance/crate/freezer/veymed
+	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"lid_stripes" = COLOR_RED,
+		"crate_cross" = COLOR_GREEN
+	)
+
+/decl/closet_appearance/crate/freezer/zenghu
+	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"zenghu" = COLOR_OFF_WHITE
+	)
+
 // Corporate Branding
 
 /decl/closet_appearance/crate/aether
@@ -1444,13 +1457,126 @@
 		"stripes" = COLOR_OFF_WHITE,
 		"glass" = COLOR_WHITE
 	)
-	
+
 /decl/closet_appearance/wall_double/survival
 	color = COLOR_CYAN_BLUE
 	decals = null
 	extra_decals = list(
 		"stripe_outer" = COLOR_WHITE
 	)
+
+/decl/closet_appearance/wall_double/emergency_engi
+	color = COLOR_YELLOW_GRAY
+	decals = null
+	extra_decals = list(
+		"stripe_inner" = COLOR_ORANGE,
+		"stripe_outer" = COLOR_OFF_WHITE,
+		"glass" = COLOR_WHITE
+	)
+
+/decl/closet_appearance/wall_double/security
+	color = COLOR_NT_RED
+	decals = null
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_WARM_YELLOW,
+		"vertical_stripe_left_m" = COLOR_WARM_YELLOW
+	)
+
+/decl/closet_appearance/wall_double/cargo
+	color = COLOR_WARM_YELLOW
+
+/decl/closet_appearance/wall_double/gaming
+	color = COLOR_DARK_BLUE_GRAY
+	decals = null
+	extra_decals = list(
+		"stripe_outer" = COLOR_PALE_PINK,
+		"glass" = COLOR_WHITE
+	)
+
+/decl/closet_appearance/wall_double/science
+	decals = list(
+		"holes"
+	)
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"stripe_inner_lower" = COLOR_PURPLE,
+		"stripe_inner_middle" = COLOR_PURPLE
+	)
+
+/decl/closet_appearance/wall_double/command
+	decals = list(
+		"holes_right"
+	)
+	color = COLOR_BLUE_GRAY
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_GOLD,
+		"vertical_stripe_left_m" = COLOR_GOLD,
+		"vertical_stripe_left_r" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/wall_double/ce
+	decals = list(
+		"holes_right"
+	)
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_DARK_GOLD,
+		"vertical_stripe_left_m" = COLOR_DARK_GOLD,
+		"vertical_stripe_left_r" = COLOR_DARK_GOLD
+	)
+
+/decl/closet_appearance/wall_double/rd
+	decals = list(
+		"holes_right"
+	)
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_PURPLE,
+		"vertical_stripe_left_m" = COLOR_GOLD,
+		"vertical_stripe_left_r" = COLOR_PURPLE
+	)
+
+/decl/closet_appearance/wall_double/cmo
+	decals = list(
+		"holes_right"
+	)
+	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_GOLD,
+		"vertical_stripe_left_m" = COLOR_GOLD,
+		"vertical_stripe_left_r" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/wall_double/hos
+	decals = list(
+		"holes_right"
+	)
+	color = COLOR_NT_RED
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_GOLD,
+		"vertical_stripe_left_m" = COLOR_WARM_YELLOW,
+		"vertical_stripe_left_r" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/wall_double/iaa
+	decals = list(
+		"holes_right"
+	)
+	color = COLOR_DARK_BLUE_GRAY
+	extra_decals = list(
+		"vertical_stripe_left_l" = COLOR_GOLD,
+		"vertical_stripe_left_m" = COLOR_GOLD,
+		"vertical_stripe_left_r" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/wall_double/engineering
+	decals = list(
+		"holes"
+	)
+	color = COLOR_YELLOW_GRAY
+
+/decl/closet_appearance/wall_double/generic_civ
+	color = COLOR_DARK_BLUE_GRAY
 
 // Carts
 /decl/closet_appearance/cart

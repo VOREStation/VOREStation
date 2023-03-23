@@ -19,7 +19,7 @@
 
 	maxHealth = 15
 	health = 15
-	movement_cooldown = 0
+	movement_cooldown = -1
 	hovering = TRUE
 
 	mob_bump_flag = 0

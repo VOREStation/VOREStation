@@ -131,11 +131,12 @@ SUBSYSTEM_DEF(job)
 
 	return department_datums[primary_department]
 
+/datum/controller/subsystem/job/proc/get_ping_role(var/role)
+	var/datum/job/J = get_job(role)
+	if(J.requestable)
+		return get_primary_department_of_job(J)
+
 // Someday it might be good to port code/game/jobs/job_controller.dm to here and clean it up.
-
-
-
-
 
 /datum/controller/subsystem/job/proc/job_debug_message(message)
 	if(debug_messages)

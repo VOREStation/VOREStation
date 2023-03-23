@@ -4,14 +4,6 @@
 	name = "stack of grass"
 	type_to_spawn = /obj/item/stack/tile/grass
 
-/obj/fiftyspawner/grass/sif
-	name = "stack of sifgrass"
-	type_to_spawn = /obj/item/stack/tile/grass/sif
-
-/obj/fiftyspawner/grass/sif/forest
-	name = "stack of sifgrass"
-	type_to_spawn = /obj/item/stack/tile/grass/sif/forest
-
 /obj/fiftyspawner/wood
 	name = "stack of wood"
 	type_to_spawn = /obj/item/stack/tile/wood
@@ -28,13 +20,65 @@
 	name = "stack of teal carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet/teal
 
-/obj/fiftyspawner/decocarpet
-	name = "stack of deco carpet"
-	type_to_spawn = /obj/item/stack/tile/carpet/deco
+/obj/fiftyspawner/turcarpet
+	name = "stack of turqoise carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/turcarpet
+
+/obj/fiftyspawner/bcarpet
+	name = "stack of black diamond-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/bcarpet
+
+/obj/fiftyspawner/blucarpet
+	name = "stack of blue diamond-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/blucarpet
+
+/obj/fiftyspawner/sblucarpet
+	name = "stack of silver-blue diamond-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/sblucarpet
+
+/obj/fiftyspawner/gaycarpet
+	name = "stack of pink diamond-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/gaycarpet
+
+/obj/fiftyspawner/purcarpet
+	name = "stack of purple diamond-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/purcarpet
+
+/obj/fiftyspawner/oracarpet
+	name = "stack of orange diamond-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/oracarpet
+
+/obj/fiftyspawner/brncarpet
+	name = "stack of brown ornate-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/brncarpet
+
+/obj/fiftyspawner/blucarpet2
+	name = "stack of blue ornate-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/blucarpet2
+
+/obj/fiftyspawner/greencarpet
+	name = "stack of green ornate-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/greencarpet
+
+/obj/fiftyspawner/purplecarpet
+	name = "stack of purple ornate-pattern carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/purplecarpet
+
+/obj/fiftyspawner/geocarpet
+	name = "stack of geometric carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/geo
 
 /obj/fiftyspawner/retrocarpet
-	name = "stack of retro carpet"
+	name = "stack of blue retro carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet/retro
+
+/obj/fiftyspawner/retrocarpet_red
+	name = "stack of red retro carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/retro_red
+
+/obj/fiftyspawner/happycarpet
+	name = "stack of happy carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/happy
 
 /obj/fiftyspawner/floor
 	name = "stack of floor tiles"

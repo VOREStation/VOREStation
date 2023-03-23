@@ -32,8 +32,8 @@
 	..()
 
 /obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
-	icon_state = toggleicon
 	hood_up = FALSE
+	update_icon()
 	hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
@@ -55,13 +55,19 @@
 				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
 				return
 			else
+				if(color != hood.color)
+					hood.color = color
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
 				hood_up = TRUE
 				hood.canremove = FALSE
-				icon_state = "[toggleicon]_t"
+				update_icon()
 				H.update_inv_wear_suit()
 	else
 		RemoveHood()
+
+/obj/item/clothing/suit/storage/hooded/update_icon()
+	. = ..()
+	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
 
 /obj/item/clothing/suit/storage/hooded/costume
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -139,7 +145,7 @@
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/weapon/gun/energy,
 	/obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
-	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet)
+	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet, /obj/item/clothing/mask/gas)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/hos
 	name = "head of security's winter coat"
@@ -150,7 +156,7 @@
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/weapon/gun/energy,
 	/obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
-	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet)
+	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet, /obj/item/clothing/mask/gas)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical
 	name = "medical winter coat"
@@ -163,7 +169,7 @@
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/device/analyzer, /obj/item/stack/medical,
 	/obj/item/weapon/dnainjector, /obj/item/weapon/reagent_containers/dropper, /obj/item/weapon/reagent_containers/syringe, /obj/item/weapon/reagent_containers/hypospray,
 	/obj/item/device/healthanalyzer, /obj/item/weapon/reagent_containers/glass/bottle, /obj/item/weapon/reagent_containers/glass/beaker,
-	/obj/item/weapon/reagent_containers/pill, /obj/item/weapon/storage/pill_bottle)
+	/obj/item/weapon/reagent_containers/pill, /obj/item/weapon/storage/pill_bottle, /obj/item/clothing/mask/gas)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt
 	name = "medical winter coat, alt"
@@ -205,12 +211,12 @@
 	desc = "A heavy winter jacket. A white star of life is emblazoned on the back, with the words search and rescue written underneath."
 	icon_state = "coatsar"
 	armor = list(melee = 15, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 5)
-	hoodtype = /obj/item/clothing/head/hood/winter/medical
+	hoodtype = /obj/item/clothing/head/hood/winter/medical/sar //VOREStation edit: sar winter hood
 	allowed = list (/obj/item/weapon/gun, /obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/device/analyzer, /obj/item/stack/medical,
 	/obj/item/weapon/dnainjector, /obj/item/weapon/reagent_containers/dropper, /obj/item/weapon/reagent_containers/syringe, /obj/item/weapon/reagent_containers/hypospray,
 	/obj/item/device/healthanalyzer, /obj/item/weapon/reagent_containers/glass/bottle, /obj/item/weapon/reagent_containers/glass/beaker,
-	/obj/item/weapon/reagent_containers/pill, /obj/item/weapon/storage/pill_bottle)
+	/obj/item/weapon/reagent_containers/pill, /obj/item/weapon/storage/pill_bottle, /obj/item/clothing/mask/gas)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/science
 	name = "science winter coat"
@@ -249,7 +255,7 @@
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/device/analyzer, /obj/item/device/flashlight,
 	/obj/item/device/multitool, /obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver,
-	/obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen, /obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
+	/obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen, /obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/clothing/head/hardhat) //please engineers take your hardhat with you I beg of you
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
 	name = "atmospherics winter coat"
@@ -300,7 +306,7 @@
 	hoodtype = /obj/item/clothing/head/hood/winter/cargo/miner
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/storage/fancy/cigarettes,
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit,
-	/obj/item/weapon/tank, /obj/item/device/radio, /obj/item/weapon/pickaxe, /obj/item/weapon/storage/bag/ore)
+	/obj/item/weapon/tank, /obj/item/device/radio, /obj/item/weapon/pickaxe, /obj/item/weapon/storage/bag/ore, /obj/item/clothing/mask/gas)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/bar
 	name = "bartender winter coat"

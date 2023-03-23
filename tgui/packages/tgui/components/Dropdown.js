@@ -32,8 +32,7 @@ export class Dropdown extends Component {
     if (open) {
       setTimeout(() => window.addEventListener('click', this.handleClick));
       this.menuRef.focus();
-    }
-    else {
+    } else {
       window.removeEventListener('click', this.handleClick);
     }
   }
@@ -48,7 +47,7 @@ export class Dropdown extends Component {
 
   buildMenu() {
     const { options = [], placeholder } = this.props; // VOREStation edit
-    const ops = options.map(option => (
+    const ops = options.map((option) => (
       <Box
         key={option}
         className="Dropdown__menuentry"
@@ -60,7 +59,7 @@ export class Dropdown extends Component {
     ));
     // VOREStation addition start
     if (placeholder) {
-      ops.unshift((
+      ops.unshift(
         <div
           key={placeholder}
           className="Dropdown__menuentry"
@@ -69,7 +68,7 @@ export class Dropdown extends Component {
           }}>
           -- {placeholder} --
         </div>
-      ));
+      );
     }
     // VOREStation addition end
     return ops.length ? ops : 'No Options Found';
@@ -93,24 +92,20 @@ export class Dropdown extends Component {
       placeholder, // VOREStation Addition
       ...boxProps
     } = props;
-    const {
-      className,
-      ...rest
-    } = boxProps;
+    const { className, ...rest } = boxProps;
 
     const adjustedOpen = over ? !this.state.open : this.state.open;
 
     const menu = this.state.open ? (
       <div
-        ref={menu => { this.menuRef = menu; }}
+        ref={(menu) => {
+          this.menuRef = menu;
+        }}
         tabIndex="-1"
         style={{
           'width': width,
         }}
-        className={classes([
-          noscroll && 'Dropdown__menu-noscroll' || 'Dropdown__menu',
-          over && 'Dropdown__over',
-        ])}>
+        className={classes([(noscroll && 'Dropdown__menu-noscroll') || 'Dropdown__menu', over && 'Dropdown__over'])}>
         {this.buildMenu()}
       </div>
     ) : null;
@@ -133,15 +128,9 @@ export class Dropdown extends Component {
             }
             this.setOpen(!this.state.open);
           }}>
-          {icon && (
-            <Icon
-              name={icon}
-              rotation={iconRotation}
-              spin={iconSpin}
-              mr={1} />
-          )}
+          {icon && <Icon name={icon} rotation={iconRotation} spin={iconSpin} mr={1} />}
           <span className="Dropdown__selected-text">
-            {displayText ? displayText : (this.state.selected || placeholder) /* VOREStation Edit */ }
+            {displayText ? displayText : this.state.selected || placeholder /* VOREStation Edit */}
           </span>
           {!!nochevron || (
             <span className="Dropdown__arrow-button">

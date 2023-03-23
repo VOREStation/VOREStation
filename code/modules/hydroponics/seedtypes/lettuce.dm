@@ -3,7 +3,7 @@
 	name = "lettuce"
 	seed_name = "lettuce"
 	display_name = "lettuce"
-	kitchen_tag = "cabbage"
+	kitchen_tag = "lettuce"
 	chems = list("nutriment" = list(1,15))
 
 /datum/seed/lettuce/New()

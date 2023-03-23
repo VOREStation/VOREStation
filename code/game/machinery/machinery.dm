@@ -111,7 +111,7 @@ Class Procs:
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/weapon/circuitboard/circuit = null
-	
+
 	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
 	// So if this is 1.0 then a 100 damage bullet will always break this structure
 	// If this is 0.5 then a 50 damage bullet will break this structure 25% of the time
@@ -284,7 +284,7 @@ Class Procs:
 
 /obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("[bicon(src)] <span class = 'notice'>[msg]</span>", 2)
+		O.show_message("\icon[src][bicon(src)] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text=null)
 	if(!text)
@@ -439,7 +439,7 @@ Class Procs:
 	for(var/obj/I in contents)
 		if(istype(I,/obj/item/weapon/card/id))
 			I.forceMove(src.loc)
-	
+
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
@@ -499,7 +499,7 @@ Class Procs:
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	
+
 	var/atom/droploc = drop_location()
 	if(!droploc || !contents.len) // not even a circuit?
 		playsound(src, 'sound/machines/machine_die_short.ogg')
@@ -513,17 +513,17 @@ Class Procs:
 	if(severity != 1)
 		for(var/obj/item/weapon/card/id/I in contents)
 			surviving_parts |= I
-	
+
 	// May populate some items to throw around
 	if(!LAZYLEN(component_parts) && circuit)
 		circuit.apply_default_parts(src)
-	
+
 	var/survivability
 	switch(severity)
 		// No survivors
 		if(1)
 			survivability = 0
-			
+
 		// 1 part survives
 		if(2)
 			survivability = 0
@@ -534,15 +534,15 @@ Class Procs:
 		// 50% of parts destroyed on average
 		if(3)
 			survivability = 50
-		
+
 		// No parts destroyed, but you lose the frame
 		else
 			survivability = 100
-		
+
 	for(var/atom/movable/P in contents)
 		if(prob(survivability))
 			surviving_parts |= P
-	
+
 	if(circuit && severity >= 2)
 		var/datum/frame/frame_types/FT = circuit.board_type
 		if(istype(FT))

@@ -20,32 +20,29 @@
   @include meta.load-css('../atomic/color.scss');
 
   // Components
-  @include meta.load-css('../components/Button.scss', $with: (
-    'color-default': #E8E4C9,
-    'color-disabled': #505050,
-    'color-selected': #9d0808,
-    'color-caution': #be6209,
-    'color-danger': #9a9d00,
-  ));
-  @include meta.load-css('../components/ProgressBar.scss', $with: (
-    'background-color': rgba(0, 0, 0, 0.5),
-  ));
-  @include meta.load-css('../components/Section.scss', $with: (
-    'background-color': rgba(0, 0, 0, 0.1),
-  ));
+  @include meta.load-css(
+    '../components/Button.scss',
+    $with: (
+      'color-default': #e8e4c9,
+      'color-disabled': #505050,
+      'color-selected': #9d0808,
+      'color-caution': #be6209,
+      'color-danger': #9a9d00
+    )
+  );
+  @include meta.load-css('../components/ProgressBar.scss', $with: ('background-color': rgba(0, 0, 0, 0.5)));
+  @include meta.load-css('../components/Section.scss', $with: ('background-color': rgba(0, 0, 0, 0.1)));
 
   // Interfaces
-  @include meta.load-css('../interfaces/TinderMessaging.scss', $with: (
-    'color-sent': #9faa91,
-    'color-received': #b8b37b,
-  ));
+  @include meta.load-css(
+    '../interfaces/TinderMessaging.scss',
+    $with: ('color-sent': #9faa91, 'color-received': #b8b37b)
+  );
 
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss', $with: (
-    'background-color': #363636,
-  ));
+  @include meta.load-css('../layouts/TitleBar.scss', $with: ('background-color': #363636));
 
   .Button {
     color: #161613;

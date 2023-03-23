@@ -44,13 +44,14 @@
 			var/seconds = C.last_activity_seconds()
 			entry += " (AFK - [round(seconds / 60)] minutes, [seconds % 60] seconds)"
 
-		entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+		entry += " [ADMIN_QUE(C.mob)]"
 		Lines += entry
 
 	for(var/line in sortList(Lines))
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
 	to_chat(src,msg)
 
 /client/verb/staffwho()
@@ -83,7 +84,7 @@
 		else if(check_rights(R_STEALTH, FALSE, C)) // event managers //VOREStation Edit: Retired Staff
 			category = R_EVENT
 			num_event_managers_online++
-		
+
 		temp += "\t[C] is a [C.holder.rank]"
 		if(holder)
 			if(C.holder.fakekey)
@@ -121,6 +122,28 @@
 	if(config.show_event_managers)
 		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg
 
+	var/num_mentors_online = 0
+	var/mmsg = ""
+
+	for(var/client/C in GLOB.mentors)
+		num_mentors_online++
+		mmsg += "\t[C] is a Mentor"
+		if(holder)
+			if(isobserver(C.mob))
+				mmsg += " - Observing"
+			else if(istype(C.mob,/mob/new_player))
+				mmsg += " - Lobby"
+			else
+				mmsg += " - Playing"
+
+			if(C.is_afk())
+				var/seconds = C.last_activity_seconds()
+				mmsg += " (AFK - [round(seconds / 60)] minutes, [seconds % 60] seconds)"
+		mmsg += "\n"
+
+	if(config.show_mentors)
+		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mmsg
+
 	msg += "\n<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.</span>"
 
-	to_chat(src, msg)
+	to_chat(src,"<span class='filter_notice'>[jointext(msg, "<br>")]</span>")

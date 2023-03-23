@@ -401,20 +401,20 @@
 		return
 
 	// Required
-	var/url = input(C, "REQUIRED: Provide URL for track", "Track URL") as text|null
+	var/url = tgui_input_text(C, "REQUIRED: Provide URL for track", "Track URL")
 	if(!url)
 		return
 
-	var/title = input(C, "REQUIRED: Provide title for track", "Track Title") as text|null
+	var/title = tgui_input_text(C, "REQUIRED: Provide title for track", "Track Title")
 	if(!title)
 		return
 
-	var/duration = input(C, "REQUIRED: Provide duration for track (in deciseconds, aka seconds*10)", "Track Duration") as num|null
+	var/duration = tgui_input_number(C, "REQUIRED: Provide duration for track (in deciseconds, aka seconds*10)", "Track Duration")
 	if(!duration)
 		return
 
 	// Optional
-	var/artist = input(C, "Optional: Provide artist for track", "Track Artist") as text|null
+	var/artist = tgui_input_text(C, "Optional: Provide artist for track", "Track Artist")
 	if(isnull(artist)) // Cancel rather than empty string
 		return
 
@@ -428,7 +428,7 @@
 	if(!check_rights(R_FUN|R_ADMIN))
 		return
 
-	var/track = input(C, "Input track title or URL to remove (must be exact)", "Remove Track") as text|null
+	var/track = tgui_input_text(C, "Input track title or URL to remove (must be exact)", "Remove Track")
 	if(!track)
 		return
 

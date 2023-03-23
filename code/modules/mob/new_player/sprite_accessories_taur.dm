@@ -191,6 +191,11 @@
 	suit_sprites = 'icons/mob/taursuits_horse.dmi'
 	icon_sprite_tag = "horse"
 
+/datum/sprite_accessory/tail/taur/horse/horse_2c
+	name = "Horse & colorable tail (Taur)"
+	extra_overlay = "horse_markings"
+	//icon_sprite_tag = "wolf2c"
+
 /datum/sprite_accessory/tail/taur/horse/synthhorse
 	name = "SynthHorse dual-color (Taur)"
 	icon_state = "synthhorse_s"
@@ -280,6 +285,11 @@
 	suit_sprites = 'icons/mob/taursuits_slug.dmi'
 	icon_sprite_tag = "slug"
 
+/datum/sprite_accessory/tail/taur/slug/snail
+	name = "Snail (Taur)"
+	icon_state = "slug_s"
+	extra_overlay = "snail_shell_marking"
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog (Taur)"
 	icon_state = "frog_s"
@@ -328,3 +338,11 @@
 	icon_state = "mermaid_s"
 	can_ride = 0
 	icon_sprite_tag = "mermaid"
+
+/datum/sprite_accessory/tail/taur/noodle
+	name = "Eastern Dragon (Taur)"
+	icon_state = "noodle_s"
+	extra_overlay = "noodle_markings"
+	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
+	clip_mask_state = "taur_clip_mask_noodle"
+	icon_sprite_tag = "noodle"

@@ -72,6 +72,45 @@
 	off_state = "eyepatch"
 	enables_planes = list(VIS_CH_STATUS,VIS_CH_HEALTH,VIS_FULLBRIGHT,VIS_MESONS)
 
+/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis
+	name = "tactical AR visor"
+	desc = "Special AR visor designed for security teams, protects your eyes and provides useful data. The red lights provide extra style and intimidation."
+	icon_state = "tacsecvis1"
+	icon = 'icons/inventory/eyes/item_vr.dmi'
+	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
+	enables_planes = list(VIS_CH_ID,VIS_CH_WANTED,VIS_CH_IMPTRACK,VIS_CH_IMPLOYAL,VIS_CH_IMPCHEM)
+	flash_protection = FLASH_PROTECTION_MODERATE
+	item_flags = AIRTIGHT
+	body_parts_covered = EYES
+	action_button_name = "Change scanning pattern"
+	action_button_is_hands_free = TRUE
+	var/static/list/tac_sec_vis_anim = list()
+
+/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis/Initialize(mapload)
+	. = ..()
+	tac_sec_vis_anim = list(
+		"Scanning pattern 1" = image(icon = src.icon, icon_state = "tacsecvis1"),
+		"Scanning pattern 2" = image(icon = src.icon, icon_state = "tacsecvis2"),
+		"Scanning pattern 3" = image(icon = src.icon, icon_state = "tacsecvis3"),
+		"Scanning pattern 4" = image(icon = src.icon, icon_state = "tacsecvis4"),
+		)
+
+/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis/attack_self(mob/user)
+	. = ..()
+	if(!istype(user) || user.incapacitated())
+		return
+
+	var/static/list/options = list("Scanning pattern 1" = "tacsecvis1", "Scanning pattern 2" = "tacsecvis2", "Scanning pattern 3" = "tacsecvis3","Scanning pattern 4" ="tacsecvis4")
+
+	var/choice = show_radial_menu(user, src, tac_sec_vis_anim, custom_check = FALSE, radius = 36, require_near = TRUE)
+
+	if(src && choice && !user.incapacitated() && in_range(user,src))
+		icon_state = options[choice]
+		user.update_inv_glasses()
+		user.update_action_buttons()
+		to_chat(user, "<span class='notice'>Your [src] now displays [choice] .</span>")
+		return 1
+
 /*---Tajaran-specific Eyewear---*/
 
 /obj/item/clothing/glasses/tajblind
@@ -83,6 +122,7 @@
 	item_state = "tajblind"
 	prescription = 1
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/hud/health/tajblind
 	name = "lightweight veil"
@@ -92,6 +132,7 @@
 	icon_state = "tajblind_med"
 	item_state = "tajblind_med"
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/sunglasses/sechud/tajblind
 	name = "sleek veil"
@@ -102,6 +143,7 @@
 	item_state = "tajblind_sec"
 	prescription = 1
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/meson/prescription/tajblind
 	name = "industrial veil"
@@ -112,6 +154,7 @@
 	item_state = "tajblind_meson"
 	off_state = "tajblind"
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses/material/prescription/tajblind
 	name = "mining veil"
@@ -122,6 +165,7 @@
 	item_state = "tajblind_meson"
 	off_state = "tajblind"
 	body_parts_covered = EYES
+	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses
 	sprite_sheets = list(

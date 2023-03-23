@@ -220,6 +220,7 @@
 	mappath = 'maps/gateway_vr/wildwest.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/gateway_destination
 
+#include "../gateway_vr/lucky_7.dm"
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -496,6 +497,8 @@
 #include "../offmap_vr/om_ships/curashuttle.dm"
 #include "../offmap_vr/om_ships/itglight.dm"
 #include "../offmap_vr/om_ships/abductor.dm"
+#include "../offmap_vr/om_ships/lunaship.dm"
+#include "../offmap_vr/om_ships/sdf_corvettes.dm"
 
 //////////////////////////////////////////////////////////////////////////////
 //Capsule deployed ships

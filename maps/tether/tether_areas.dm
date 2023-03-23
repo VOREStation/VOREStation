@@ -440,6 +440,8 @@
 	name = "\improper Medical Central Hall"
 /area/tether/surfacebase/medical/lowerhall
 	name = "\improper Medical Lower Hall"
+/area/tether/surfacebase/medical/autoresleeving
+	name = "\improper Medical Auto Resleeving"
 	//North SurfMed3-2 Stairwell
 /area/tether/surfacebase/medical/uppernorthstairwell
 	name = "\improper Medical Stairwell"
@@ -478,11 +480,10 @@
 
 /area/tether/surfacebase/entertainment
 	name = "\improper Entertainment Auditorium"
-	icon_state = "library"
+	icon_state = "entertainment"
 
 /area/tether/surfacebase/entertainment/stage
 	name = "\improper Entertainment Stage"
-	icon_state = "library"
 
 /area/tether/surfacebase/funny/clownoffice
 	name = "\improper Clown's Office"
@@ -502,7 +503,6 @@
 
 /area/tether/surfacebase/entertainment/backstage
 	name = "\improper Entertainment Backstage"
-	icon_state = "library"
 
 /area/tether/surfacebase/botanystorage
 	name = "\improper Botany Storage"

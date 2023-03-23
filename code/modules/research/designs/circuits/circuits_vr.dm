@@ -169,6 +169,13 @@
 	build_path = /obj/item/weapon/circuitboard/machine/vitals_monitor
 	sort_string = "HAAF"
 
+/datum/design/circuit/firework_launcher
+	name = "firework launcher"
+	id = "fireworklauncher"
+	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
+	build_path = /obj/item/weapon/circuitboard/firework_launcher
+	sort_string = "KBAAB"
+
 /datum/design/circuit/pointdefense
 	name = "point defense battery"
 	id = "pointdefense"

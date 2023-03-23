@@ -3,7 +3,7 @@
 	name = "modified power cell"
 	desc = "A modified power cell sitting in a highly conductive chassis."
 	origin_tech = list(TECH_POWER = 2)
-	icon_state = "exs_m"
+	icon_state = "modded"
 	maxcharge = 10000
 	matter = list(MAT_STEEL = 1000, MAT_GLASS = 80, MAT_SILVER = 100)
 	self_recharge = TRUE

@@ -73,10 +73,20 @@
 	item_cost = 15
 	path = /obj/fiftyspawner/glass
 
-/datum/uplink_item/item/tools/holdingpouch
-	name = "Pouch of Holding"
-	item_cost = 20
-	path = /obj/item/weapon/storage/pouch/holding
+/datum/uplink_item/item/tools/smallpouch
+	name = "Small Pouch"
+	item_cost = 5
+	path = /obj/item/weapon/storage/pouch/small
+
+/datum/uplink_item/item/tools/normalpouch
+	name = "Standard Pouch"
+	item_cost = 10
+	path = /obj/item/weapon/storage/pouch
+
+/datum/uplink_item/item/tools/largepouch
+	name = "Large Pouch"
+	item_cost = 15
+	path = /obj/item/weapon/storage/pouch/large
 
 /datum/uplink_item/item/tools/elitelaptop
 	name = "Laptop (Advanced)"
@@ -119,3 +129,18 @@
 	name = "Survival Capsule (Bar)"
 	item_cost = 80
 	path = /obj/item/device/survivalcapsule/luxurybar
+
+/datum/uplink_item/item/tools/capturecrystal
+	name = "Capture Crystal"
+	item_cost = 30
+	path = /obj/item/capture_crystal/basic
+
+/datum/uplink_item/item/tools/capturecrystal/great
+	name = "Capture Crystal (Great)"
+	item_cost = 40
+	path = /obj/item/capture_crystal/great
+
+/datum/uplink_item/item/tools/capturecrystal/ultra
+	name = "Capture Crystal (Ultra)"
+	item_cost = 50
+	path = /obj/item/capture_crystal/ultra

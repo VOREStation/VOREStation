@@ -58,7 +58,7 @@
 	init_hide_identity = TRUE
 	flags = 0
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/space_drugs/unidentified
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bliss/unidentified
 	init_hide_identity = TRUE
 	flags = 0
 

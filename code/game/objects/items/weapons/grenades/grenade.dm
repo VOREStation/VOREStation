@@ -13,6 +13,8 @@
 	var/det_time = 50
 	var/loadable = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
+	var/hud_state = "grenade_he" // TGMC Ammo HUD Port
+	var/hud_state_empty = "grenade_empty" // TGMC Ammo HUD Port
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))

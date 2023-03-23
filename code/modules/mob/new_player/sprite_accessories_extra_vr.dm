@@ -3,7 +3,7 @@
 
 /datum/sprite_accessory/marking //Override for base markings
 	color_blend_mode = ICON_ADD
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list() //This lets all races use
 
 /datum/sprite_accessory/marking/vr_vulp_belly
 	name = "belly fur (Vulp)"
@@ -81,7 +81,7 @@
 	icon_state = "sergal_full"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//species_allowed = list("Sergal")			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr_sergal_full_female
 	name = "Sergal Markings (Female)"
@@ -89,7 +89,7 @@
 	icon_state = "sergal_full_female"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//("Sergal")
 
 /datum/sprite_accessory/marking/vr_monoeye
 	name = "Monoeye"
@@ -401,6 +401,7 @@
 	icon_state = "tesh-feathers"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_harpy_feathers
 	name = "Rapala leg Feather"
@@ -488,7 +489,7 @@
 	icon = 'icons/mob/human_races/markings_vr.dmi'
 	icon_state = "eyes_panda"
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr_catwomantorso
 	name = "Catwoman chest stripes"
@@ -524,6 +525,7 @@
 	icon_state = "teshi_sf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_spirit_lights
 	name = "Ward - Spirit FBP Lights"
@@ -680,19 +682,6 @@
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 
 	//CitRP stuff
-/datum/sprite_accessory/marking/vr_vox_alt
-	name = "Vox Alternate"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "bay_vox"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_VOX)
-
-/datum/sprite_accessory/marking/vr_vox_alt_eyes
-	name = "Alternate Vox Eyes"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "bay_vox_eyes"
-	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_VOX)
 
 /datum/sprite_accessory/marking/vr_c_beast_body
 	name = "Cyber Body"
@@ -768,27 +757,6 @@
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/vr_voxscales
-	name = "Vox Scales"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_HEAD)
-
-/datum/sprite_accessory/marking/vr_voxclaws
-	name = "Vox Claws"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxclaws"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-
-/datum/sprite_accessory/marking/vr_voxbeak
-	name = "Vox Beak"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
 /datum/sprite_accessory/marking/vr_unathihood
 	name = "Cobra Hood"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
@@ -851,3 +819,86 @@
 	icon_state = "thunderthighs"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG)
+
+/datum/sprite_accessory/marking/vr_altevian_snout
+	name = "Altevian Snout"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-snout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_chin
+	name = "Altevian Chin"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-chin"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_nose
+	name = "Altevian Nose"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-nose"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_fangs
+	name = "Altevian Fangs"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-fangs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_incisors
+	name = "Altevian Incisors"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-incisors"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_eldritch_markings
+	name = "Eldritch Markings"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "perrinmarkings"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_L_ARM,BP_L_HAND,BP_R_ARM,BP_R_HAND,BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/vr_tesh_beak
+	name = "Teshari beak, pointed"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "tesh-beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/vr_tesh_beak_alt
+	name = "Teshari beak, rounded"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "tesh-beak-alt"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/vr_generic_hooves
+	name = "Generic Hooves"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "generic_hooves"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT)
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_unathi_blocky_head
+	name = "Unathi alt head (Blocky)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "unathi_blocky_head"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	hide_body_parts = list(BP_HEAD)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_unathi_blocky_head_eyes
+	name = "Unathi alt head eyes (Blocky)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "unathi_blocky_head_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)

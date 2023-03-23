@@ -34,6 +34,7 @@
 	vis_height = 64
 	has_eye_glow = TRUE
 	vore_eyes = TRUE
+	custom_eye_color = "#FF0000"
 
 	faction = "insects"
 	maxHealth = 200
@@ -83,6 +84,21 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 	say_list_type = /datum/say_list/sect_queen
+
+/mob/living/simple_mob/vore/sect_queen/Login()
+	. = ..()
+	verbs |= /mob/living/simple_mob/vore/sect_queen/proc/set_abdomen_color
+
+/mob/living/simple_mob/vore/sect_queen/proc/set_abdomen_color()
+	set name = "Set Glow Color"
+	set desc = "Customize your eyes and abdomen glow color."
+	set category = "Abilities"
+
+	var/new_color = input(src, "Please select color.", "Glow Color", custom_eye_color) as color|null
+	if(new_color)
+		custom_eye_color = new_color
+		remove_eyes()
+		add_eyes()
 
 /datum/say_list/sect_queen
 	say_got_target = list("chitters angrily!")

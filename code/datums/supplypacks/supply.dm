@@ -9,17 +9,29 @@
 /datum/supply_pack/supply/food
 	name = "Kitchen supply crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/condiment/flour = 6,
+			/obj/item/weapon/reagent_containers/food/condiment/carton/flour = 6,
 			/obj/item/weapon/reagent_containers/food/drinks/milk = 3,
 			/obj/item/weapon/reagent_containers/food/drinks/soymilk = 2,
 			/obj/item/weapon/storage/fancy/egg_box = 2,
 			/obj/item/weapon/reagent_containers/food/snacks/tofu = 4,
 			/obj/item/weapon/reagent_containers/food/snacks/meat = 4,
-			/obj/item/weapon/reagent_containers/food/condiment/yeast = 3
+			/obj/item/weapon/reagent_containers/food/condiment/yeast = 3,
+			/obj/item/weapon/reagent_containers/food/condiment/sprinkles = 1
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Food crate"
+
+/datum/supply_pack/supply/fancyfood
+	name = "Artisanal food delivery"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic = 6,
+			/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic = 6
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer/centauri
+	containername = "Artisanal food crate"
+
 
 /datum/supply_pack/supply/toner
 	name = "Toner cartridges"
@@ -145,7 +157,7 @@
 	containername = "Cargo Train Trolley Crate"
 
 /datum/supply_pack/explorergear
-	name="Explorer gear"
+	name="Away Team gear"
 	contains = list (
 					/obj/item/device/cataloguer,
 					/obj/item/device/geiger,
@@ -166,8 +178,8 @@
 					)
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "Explorer equipment"
-	access = access_explorer
+	containername = "Away Team equipment"
+	access = list(access_eva, access_explorer)
 
 /datum/supply_pack/pilotgear
 	name= "Pilot gear"
@@ -180,16 +192,15 @@
 					/obj/item/stack/marker_beacon/thirty,
 					/obj/item/device/gps/explorer,
 					/obj/item/clothing/gloves/fingerless,
-					/obj/item/device/cataloguer/compact,
 					/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 			 		/obj/item/clothing/shoes/boots/winter/explorer,
 					/obj/item/device/flashlight,
 					/obj/item/weapon/material/knife/tacknife/survival,
 					/obj/item/clothing/head/pilot_vr,
 					/obj/item/clothing/under/rank/pilot1,
+					/obj/item/clothing/suit/storage/toggle/bomber/pilot
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Pilot equipment"
 	access = access_pilot
-

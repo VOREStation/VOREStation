@@ -1,8 +1,8 @@
 /mob/living/simple_mob/animal/passive/mouse
 	nutrition = 20	//To prevent draining maint mice for infinite food. Low nutrition has no mechanical effect on simplemobs, so wont hurt mice themselves.
-
-	no_vore = TRUE //Mice can't eat others due to the amount of bugs caused by it.
 	vore_taste = "cheese"
+
+	restrict_vore_ventcrawl = TRUE
 
 	can_pull_size = ITEMSIZE_TINY // Rykka - Uncommented these. Not sure why they were commented out in the original Polaris files, maybe a mob rework mistake?
 	can_pull_mobs = MOB_PULL_NONE // Rykka - Uncommented these. Not sure why they were commented out in the original Polaris files, maybe a mob rework mistake?

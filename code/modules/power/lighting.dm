@@ -75,7 +75,7 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
-	if(.) 
+	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
@@ -215,6 +215,7 @@ var/global/list/light_type_cache = list()
 	idle_power_usage = 2
 	active_power_usage = 10
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	var/obj/item/weapon/light/installed_light //What light is currently in the socket! Updated in new()
 	var/on = 0					// 1 if on, 0 if off
 	var/brightness_range
 	var/brightness_power
@@ -251,6 +252,9 @@ var/global/list/light_type_cache = list()
 	var/brightness_power_ns
 	var/brightness_color_ns
 
+	var/overlay_color = LIGHT_COLOR_INCANDESCENT_TUBE
+
+
 /obj/machinery/light/flicker
 	auto_flicker = TRUE
 
@@ -266,6 +270,7 @@ var/global/list/light_type_cache = list()
 	light_type = /obj/item/weapon/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE	//VOREStation Edit
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
@@ -287,6 +292,7 @@ var/global/list/light_type_cache = list()
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct = null)
 	. = ..()
@@ -294,10 +300,10 @@ var/global/list/light_type_cache = list()
 		start_with_cell = FALSE
 		lamp_shade = 0
 		update_icon()
-	else	
+	else
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/weapon/cell/emergency_light(src)
-	
+
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
@@ -332,9 +338,10 @@ var/global/list/light_type_cache = list()
 		construct.transfer_fingerprints_to(src)
 		set_dir(construct.dir)
 	else
+		installed_light = new light_type(src)
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/weapon/cell/emergency_light(src)
-		var/obj/item/weapon/light/L = get_light_type_instance(light_type)
+		var/obj/item/weapon/light/L = get_light_type_instance(light_type) //This is fine, but old code.
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -357,18 +364,26 @@ var/global/list/light_type_cache = list()
 			//VOREStation Edit Start
 			if(shows_alerts && current_alert && on)
 				icon_state = "[base_state]-alert-[current_alert]"
+				add_light_overlay(FALSE, icon_state)
 			else
 				icon_state = "[base_state][on]"
+				if(on)
+					add_light_overlay()
+				else
+					remove_light_overlay()
 			//VOREStation Edit End
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 			on = 0
+			remove_light_overlay()	//VOREStation add
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
 			on = 0
+			remove_light_overlay()	//VOREStation add
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			on = 0
+			remove_light_overlay()	//VOREStation add
 	return
 
 /obj/machinery/light/flamp/update_icon()
@@ -377,15 +392,22 @@ var/global/list/light_type_cache = list()
 		switch(status)		// set icon_states
 			if(LIGHT_OK)
 				icon_state = "[base_state][on]"
+				if(on)	//VOREStation add
+					add_light_overlay()	//VOREStation add
+				else	//VOREStation add
+					remove_light_overlay()	//VOREStation add
 			if(LIGHT_EMPTY)
 				on = 0
 				icon_state = "[base_state][on]"
+				remove_light_overlay()	//VOREStation add
 			if(LIGHT_BURNED)
 				on = 0
 				icon_state = "[base_state][on]"
+				remove_light_overlay()	//VOREStation add
 			if(LIGHT_BROKEN)
 				on = 0
 				icon_state = "[base_state][on]"
+				remove_light_overlay()	//VOREStation add
 		return
 	else
 		base_state = "flamp"
@@ -395,6 +417,7 @@ var/global/list/light_type_cache = list()
 	if(!shows_alerts)
 		return
 	current_alert = "atmos"
+	light_color = "#6D6DFC"
 	brightness_color = "#6D6DFC"
 	update()
 
@@ -402,6 +425,7 @@ var/global/list/light_type_cache = list()
 	if(!shows_alerts)
 		return
 	current_alert = "fire"
+	light_color = "#FF3030"
 	brightness_color = "#FF3030"
 	update()
 
@@ -410,13 +434,13 @@ var/global/list/light_type_cache = list()
 		return
 
 	current_alert = null
-	var/obj/item/weapon/light/L = get_light_type_instance(light_type)
-	
+	var/obj/item/weapon/light/L = installed_light //This ensures any special bulbs will stay special!
+
 	if(L)
 		update_from_bulb(L)
 	else
 		brightness_color = nightshift_enabled ? initial(brightness_color_ns) : initial(brightness_color)
-	
+
 	update()
 
 //VOREstation Edit End
@@ -435,7 +459,12 @@ var/global/list/light_type_cache = list()
 		var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
 		var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
 		var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
-		if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
+		var/correct_overlay = nightshift_enabled ? brightness_color_ns : brightness_color //Gives lights the correct overlay if NS is enabled.
+		if(current_alert) //Oh no, we're on fire! Or the atmos is bad! Let's change the color
+			correct_range = brightness_range
+			correct_power = brightness_power
+			correct_color = brightness_color
+		if(light_range != correct_range || light_power != correct_power || light_color != correct_color || overlay_color != correct_overlay)
 			if(!auto_flicker)
 				switchcount++
 			if(rigged)
@@ -454,6 +483,7 @@ var/global/list/light_type_cache = list()
 			else
 				update_use_power(USE_POWER_ACTIVE)
 				set_light(correct_range, correct_power, correct_color)
+				overlay_color = correct_overlay
 		if(cell?.charge < cell?.maxcharge)
 			START_PROCESSING(SSobj, src)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
@@ -463,7 +493,7 @@ var/global/list/light_type_cache = list()
 	else
 		update_use_power(USE_POWER_IDLE)
 		set_light(0)
-
+	update_light() //VOREStation Edit - Makes lights update when their color is changed.
 	update_active_power_usage((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
 /obj/machinery/light/proc/nightshift_mode(var/state)
@@ -537,6 +567,7 @@ var/global/list/light_type_cache = list()
 	brightness_range = L.brightness_range
 	brightness_power = L.brightness_power
 	brightness_color = L.brightness_color
+	overlay_color = L.brightness_color
 
 	brightness_range_ns = L.nightshift_range
 	brightness_power_ns = L.nightshift_power
@@ -546,7 +577,8 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light/proc/insert_bulb(obj/item/weapon/light/L)
 	update_from_bulb(L)
-	qdel(L)
+	installed_light = L
+	L.loc = src //Move it into the socket!
 
 	on = powered()
 	update()
@@ -559,16 +591,17 @@ var/global/list/light_type_cache = list()
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()
-	. = new light_type(src.loc, src)
+	//. = new light_type(src.loc, src)
 
 	switchcount = 0
+	installed_light = null
 	status = LIGHT_EMPTY
 	update()
 
 /obj/machinery/light/attackby(obj/item/W, mob/user)
 
 	//Light replacer code
-	if(istype(W, /obj/item/device/lightreplacer))
+	if(istype(W, /obj/item/device/lightreplacer)) //These will never be modified, so it's fine to use old code.
 		var/obj/item/device/lightreplacer/LR = W
 		if(isliving(user))
 			var/mob/living/U = user
@@ -585,7 +618,9 @@ var/global/list/light_type_cache = list()
 			return
 
 		to_chat(user, "You insert [W].")
+		user.drop_item()
 		insert_bulb(W)
+		update() //Like other places, this is done later down the line but this is essential to updating the overlay when nightmode is involved. Again, I have no idea WHY.
 		src.add_fingerprint(user)
 
 		// attempt to break the light
@@ -690,6 +725,7 @@ var/global/list/light_type_cache = list()
 	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
 		visible_message("<span class='warning'>[src] short-circuits from too powerful of a power cell!</span>")
 		status = LIGHT_BURNED
+		installed_light.status = status
 		return FALSE
 	cell.use(pwr)
 	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
@@ -718,7 +754,7 @@ var/global/list/light_type_cache = list()
 	update(FALSE)
 	return
 
-// ai alt click - Make light flicker.  Very important for atmosphere.  
+// ai alt click - Make light flicker.  Very important for atmosphere.
 /obj/machinery/light/AIAltClick(mob/user)
 	flicker(1)
 
@@ -771,8 +807,11 @@ var/global/list/light_type_cache = list()
 	else
 		to_chat(user, "You remove the light [get_fitting_name()].")
 
-	// create a light tube/bulb item and put it in the user's hand
-	user.put_in_active_hand(remove_bulb())	//puts it in our active hand
+	//Let's actually put the real bulb in their hand.
+	installed_light.status = status //Update the bulb they're being given. If it's broken, the bulb should be as well!
+	user.put_in_active_hand(installed_light)	//puts it in our active hand
+	installed_light.update_icon()
+	remove_bulb()
 
 /obj/machinery/light/flamp/attack_hand(mob/user)
 	if(lamp_shade)
@@ -811,13 +850,17 @@ var/global/list/light_type_cache = list()
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-	status = LIGHT_BROKEN
+	status = LIGHT_BROKEN //This occasionally runtimes when it occurs midround after build mode spawns a broken light. No idea why.
+	installed_light.status = status
+	installed_light.update_icon()
 	update()
 
 /obj/machinery/light/proc/fix()
 	if(status == LIGHT_OK)
 		return
 	status = LIGHT_OK
+	if(installed_light)
+		installed_light.status = LIGHT_OK
 	on = 1
 	update()
 
@@ -894,7 +937,7 @@ var/global/list/light_type_cache = list()
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
 	matter = list(MAT_STEEL = 60)
-	
+
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/status = LIGHT_OK
 	///Base icon_state name to append suffixes for status
@@ -920,9 +963,16 @@ var/global/list/light_type_cache = list()
 	var/nightshift_power = 0.45
 	///Replaces brightness_color during nightshifts.
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
-	
+
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
+
+	//VOREStation Edit Start - Modifiable Lighting
+	var/init_brightness_range = 8
+	var/init_brightness_power = 1
+	var/init_nightshift_range = 8
+	var/init_nightshift_power = 0.45
+	//VOREStation Edit End - Modifiable Lighting
 
 /obj/item/weapon/light/tube
 	name = "light tube"
@@ -933,6 +983,8 @@ var/global/list/light_type_cache = list()
 	matter = list(MAT_GLASS = 100)
 	brightness_range = 7
 	brightness_power = 2
+	init_brightness_range = 7
+	init_brightness_power = 2
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEMSIZE_SMALL
@@ -942,6 +994,11 @@ var/global/list/light_type_cache = list()
 
 	nightshift_range = 10
 	nightshift_power = 1.5
+
+	init_brightness_range = 15
+	init_brightness_power = 4
+	init_nightshift_range = 10
+	init_nightshift_power = 1.5
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -957,14 +1014,24 @@ var/global/list/light_type_cache = list()
 	nightshift_range = 3
 	nightshift_power = 0.5
 
+	init_brightness_range = 5
+	init_brightness_power = 1
+	init_nightshift_range = 3
+	init_nightshift_power = 0.5
+
 // For 'floor lamps' in outdoor use and such
 /obj/item/weapon/light/bulb/large
 	name = "large light bulb"
 	brightness_range = 7
 	brightness_power = 1.5
-	
+
 	nightshift_range = 4
 	nightshift_power = 0.75
+
+	init_brightness_range = 7
+	init_brightness_power = 1.5
+	init_nightshift_range = 4
+	init_nightshift_power = 0.75
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
@@ -974,6 +1041,7 @@ var/global/list/light_type_cache = list()
 	brightness_range = 4
 	color = "#da0205"
 	brightness_color = "#da0205"
+	init_brightness_range = 4
 
 /obj/item/weapon/light/bulb/fire
 	name = "fire bulb"
@@ -1016,7 +1084,56 @@ var/global/list/light_type_cache = list()
 // if a syringe, can inject phoron to make it explode
 /obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
 	..()
-	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
+
+	//VOREStation Edit Start - Multitool Lighting!
+	if(istype(I,/obj/item/device/multitool))
+		var/list/menu_list = list(
+		"Normal Range",
+		"Normal Brightness",
+		"Normal Color",
+		"Nightshift Range",
+		"Nightshift Brightness",
+		"Nightshift Color",
+		)
+
+		var/modification_decision = tgui_input_list(usr, "What do you wish to change about this light?", "Light Adjustment", menu_list)
+		if(!modification_decision)
+			return //They didn't select anything!
+		switch(modification_decision)
+			if("Normal Range")
+				var/new_range = tgui_input_number(usr, "Choose the new range of the light! (1-[init_brightness_range])", "", init_brightness_range, init_brightness_range, 1, 0)
+				if(new_range)
+					brightness_range = new_range
+
+			if("Normal Brightness")
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_brightness_power])", "", init_brightness_power, init_brightness_power, 0.01, 0)
+				if(new_power)
+					brightness_power = new_power
+
+			if("Normal Color")
+				var/new_color = input(usr, "Choose a color to set the light to!", "", brightness_color) as color|null
+				if(new_color)
+					brightness_color = new_color
+
+			if("Nightshift Range")
+				var/new_range = tgui_input_number(usr, "Choose the new range of the light! (1-[init_nightshift_range])", "", init_nightshift_range, init_nightshift_range, 1)
+				if(new_range)
+					nightshift_range = new_range
+
+			if("Nightshift Brightness")
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_nightshift_power])", "", init_nightshift_power, init_nightshift_power, 0.01)
+				if(new_power)
+					nightshift_power = new_power
+
+			if("Nightshift Color")
+				var/new_color = input(usr, "Choose a color to set the light to!", "", nightshift_color) as color|null
+				if(new_color)
+					nightshift_color = new_color
+
+			else //Should never happen.
+				return
+
+	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 
 		to_chat(user, "You inject the solution into the [src].")

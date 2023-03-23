@@ -15,10 +15,12 @@
 	force = 5
 	throwforce = 10
 
+/obj/item/organ/internal/eyes/unathi
+	icon_state = "unathi_eyes"
 
 /obj/item/organ/internal/heart/unathi
 	icon_state = "unathi_heart-on"
-	dead_icon = "unath_heart-off"
+	dead_icon = "unathi_heart-off"
 
 /obj/item/organ/internal/lungs/unathi
 	color = "#b3cbc3"

@@ -10,6 +10,9 @@
 	var/points_per_crate = 5
 	var/rigged = 0
 
+	open_sound = 'sound/effects/crate_open.ogg'
+	close_sound = 'sound/effects/crate_close.ogg'
+
 /obj/structure/closet/crate/can_open()
 	return 1
 
@@ -32,7 +35,7 @@
 				if(usr.stunned)
 					return 2
 
-	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src, open_sound, 50, 1, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
 	src.opened = 1
@@ -48,7 +51,7 @@
 	if(!src.can_close())
 		return 0
 
-	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src, close_sound, 50, 1, -3)
 	var/itemcount = 0
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
@@ -87,7 +90,9 @@
 	src.set_dir(turn(src.dir, 90))
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
+	if(W.is_wrench() && istype(src,/obj/structure/closet/crate/bin))
+		return ..()
+	else if(opened)
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -302,6 +307,14 @@
 /obj/structure/closet/crate/freezer/nanotrasen
 	desc = "A freezer stamped with the logo of NanoTrasen."
 	closet_appearance = /decl/closet_appearance/crate/freezer/nanotrasen
+
+/obj/structure/closet/crate/freezer/veymed
+	desc = "A freezer stamped with the logo of Vey-Medical."
+	closet_appearance = /decl/closet_appearance/crate/freezer/veymed
+
+/obj/structure/closet/crate/freezer/zenghu
+	desc = "A freezer stamped with the logo of Zeng-Hu Pharmaceuticals."
+	closet_appearance = /decl/closet_appearance/crate/freezer/zenghu
 
 /obj/structure/closet/crate/freezer/return_air()
 	var/datum/gas_mixture/gas = (..())
@@ -692,3 +705,30 @@
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/spray/plantbgone = 2,
 		/obj/item/weapon/material/minihoe)
+
+//Laundry Cart
+/obj/structure/closet/crate/laundry
+	name = "Laundry Cart"
+	desc = "A cart with a large fabric bin on it used for transporting large amounts of clothes."
+	icon = 'icons/obj/closets/laundry.dmi'
+	closet_appearance = null
+	open_sound = 'sound/effects/rustle1.ogg'
+	close_sound = 'sound/effects/rustle2.ogg'
+
+//Wooden Crate
+/obj/structure/closet/crate/wooden
+	name = "wooden crate"
+	desc = "A crate made from wood and lined with straw. Cheapest form of storage."
+	icon = 'icons/obj/closets/wooden.dmi'
+	closet_appearance = null
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
+//Mining Cart
+/obj/structure/closet/crate/miningcar
+	name = "mining cart"
+	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
+	icon = 'icons/obj/closets/miningcar.dmi'
+	closet_appearance = null
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'

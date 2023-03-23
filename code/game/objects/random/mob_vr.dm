@@ -96,8 +96,8 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "666"
 /obj/random/ammo_all/item_to_spawn()
-	return pick(prob(5);/obj/item/weapon/storage/box/shotgunammo,\
-				prob(5);/obj/item/weapon/storage/box/shotgunshells,\
+	return pick(prob(5);/obj/item/ammo_magazine/ammo_box/b12g,\
+				prob(5);/obj/item/ammo_magazine/ammo_box/b12g/pellet,\
 				prob(5);/obj/item/ammo_magazine/clip/c762,\
 				prob(5);/obj/item/ammo_magazine/m380,\
 				prob(5);/obj/item/ammo_magazine/m45,\
@@ -111,24 +111,25 @@
 				prob(4);/obj/item/ammo_magazine/m9mmp90,\
 				prob(4);/obj/item/ammo_magazine/m10mm,\
 				prob(4);/obj/item/ammo_magazine/m545/small,\
-				prob(3);/obj/item/ammo_magazine/clip/c10mm,\
 				prob(3);/obj/item/ammo_magazine/clip/c44,\
+				prob(3);/obj/item/ammo_magazine/ammo_box/b10mm/emp,\
+				prob(3);/obj/item/ammo_magazine/ammo_box/b10mm,\
 				prob(3);/obj/item/ammo_magazine/s44,\
 				prob(3);/obj/item/ammo_magazine/m762,\
 				prob(3);/obj/item/ammo_magazine/m545,\
 				prob(3);/obj/item/weapon/cell/device/weapon,\
 				prob(2);/obj/item/ammo_magazine/m44,\
 				prob(2);/obj/item/ammo_magazine/s357,\
-				prob(2);/obj/item/ammo_magazine/m762m,\
+				prob(2);/obj/item/ammo_magazine/m762/ext,\
 				prob(2);/obj/item/ammo_magazine/clip/c12g,
 				prob(2);/obj/item/ammo_magazine/clip/c12g/pellet,\
 				prob(1);/obj/item/ammo_magazine/m45tommy,\
 			/*	prob(1);/obj/item/ammo_magazine/m95,\ */
 				prob(1);/obj/item/ammo_casing/rocket,\
-				prob(1);/obj/item/weapon/storage/box/sniperammo,\
-				prob(1);/obj/item/weapon/storage/box/flashshells,\
-				prob(1);/obj/item/weapon/storage/box/beanbags,\
-				prob(1);/obj/item/weapon/storage/box/stunshells,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b145,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/flash,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/beanbag,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/stunshell,\
 				prob(1);/obj/item/ammo_magazine/mtg,\
 				prob(1);/obj/item/ammo_magazine/m12gdrum,\
 				prob(1);/obj/item/ammo_magazine/m12gdrum/pellet,\
@@ -249,3 +250,57 @@
 				prob(1);/obj/random/coin,
 				prob(1);/obj/random/drinkbottle,
 				prob(1);/obj/random/tool/alien)
+
+//Scug spawner for the picnic!
+/obj/random/mob/wildscugs
+	name = "Random catslug spawner"
+	desc = "Spawns catslugs with random colours!"
+	icon_state = "vore"
+	mob_faction = "vore"
+	spawn_nothing_percentage = 25
+	mob_wander_distance = 4
+	mob_wander = 1
+	mob_returns_home = 1
+	var/newname = null
+	var/newdesc = null
+
+
+/obj/random/mob/wildscugs/item_to_spawn()
+	return pick(prob(99); /mob/living/simple_mob/vore/alienanimals/catslug,
+				prob(1); /mob/living/simple_mob/vore/alienanimals/catslug/suslug/color) //A super rare surprise
+
+/obj/random/mob/wildscugs/spawn_item()
+	var/build_path = item_to_spawn()
+
+	var/mob/living/simple_mob/M = new build_path(src.loc)
+	if(!istype(M))
+		return
+	if(M.has_AI())
+		var/datum/ai_holder/AI = M.ai_holder
+		AI.go_sleep() //Don't fight eachother while we're still setting up!
+		AI.returns_home = mob_returns_home
+		AI.wander = mob_wander
+		AI.max_home_distance = mob_wander_distance
+		if(overwrite_hostility)
+			AI.hostile = mob_hostile
+			AI.retaliate = mob_retaliate
+		AI.go_wake() //Now you can kill eachother if your faction didn't override.
+
+	if(pixel_x || pixel_y)
+		M.pixel_x = pixel_x
+		M.pixel_y = pixel_y
+
+	if(mob_faction)
+		M.faction = mob_faction
+
+	M.color = pick(COLOR_WHITE, COLOR_RED, COLOR_PURPLE, COLOR_YELLOW, COLOR_CYAN_BLUE, COLOR_RED_GRAY, COLOR_BEIGE, COLOR_PINK, COLOR_BLACK)
+	if(newname)
+		if(islist(newname))
+			M.name = pick(newname)
+		else
+			M.name = newname
+	if(newdesc)
+		if(islist(newdesc))
+			M.desc = pick(newdesc)
+		else
+			M.desc = newdesc

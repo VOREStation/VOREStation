@@ -1,0 +1,221 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/weapon/reagent_containers/food/snacks/chip/nacho/cheese,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"b" = (
+/obj/item/weapon/reagent_containers/food/snacks/chip/nacho/salsa,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"c" = (
+/obj/random/drinkbottle,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"d" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/weapon/storage/toolbox/lunchbox/cat/filled{
+	pixel_y = 8
+	},
+/obj/item/weapon/storage/toolbox/lunchbox/nymph/filled,
+/obj/item/clothing/suit/leathercoat{
+	desc = "Who would use a leather coat as a tablecloth?!";
+	name = "Tablecloth?!";
+	pixel_x = 5
+	},
+/obj/item/clothing/suit/greatcoat{
+	desc = "This great coat appears covered in food! Did... it get stolen and reused as ... ?!";
+	name = "Tablecloth?";
+	pixel_x = -9
+	},
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/fruit_smudge,
+/obj/item/weapon/storage/mre/random,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/template_noop)
+"h" = (
+/obj/structure/table/bench/wooden,
+/obj/effect/decal/cleanable/filth,
+/obj/random/mob/wildscugs{
+	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
+	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
+	},
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"i" = (
+/obj/structure/table/wooden_reinforced,
+/obj/random/pizzabox,
+/obj/item/weapon/storage/toolbox/lunchbox/mars/filled{
+	pixel_x = -10;
+	pixel_y = 11
+	},
+/obj/item/weapon/bedsheet/rd{
+	desc = "Is this Nubbins' doing?!";
+	name = "Strange tablecloth";
+	pixel_x = 11;
+	pixel_y = 12
+	},
+/obj/random/mug,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"k" = (
+/obj/random/drinkbottle,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/template_noop)
+"m" = (
+/obj/random/coin,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"n" = (
+/obj/effect/decal/cleanable/filth,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/template_noop)
+"p" = (
+/obj/random/junk,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"s" = (
+/obj/structure/table/bench/wooden,
+/obj/random/mob/wildscugs{
+	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
+	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
+	},
+/obj/item/weapon/ore/diamond{
+	name = "porl"
+	},
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"t" = (
+/obj/item/pizzavoucher,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"w" = (
+/obj/item/trash/chipbasket,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"z" = (
+/obj/random/drinksoft,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/template_noop)
+"A" = (
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"F" = (
+/obj/structure/table/bench/wooden,
+/obj/random/mob/wildscugs{
+	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
+	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
+	},
+/obj/item/weapon/material/twohanded/spear/foam{
+	desc = "The only way you can hunt things with this is by tickling them to death.";
+	name = "squishy foam spear"
+	},
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"J" = (
+/obj/structure/table/bench/wooden,
+/obj/random/mob/wildscugs{
+	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
+	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
+	},
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"L" = (
+/obj/effect/decal/remains/lizard,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"N" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/weapon/bedsheet/hosdouble{
+	desc = "Odd, this tablecloth looks... suspiciously like the bedsheets NanoTrasen security staff use!";
+	name = "Picnic Blanket"
+	},
+/obj/item/weapon/bedsheet/hosdouble{
+	desc = "Odd, this tablecloth looks... suspiciously like the bedsheets NanoTrasen security staff use!";
+	name = "Picnic Blanket";
+	pixel_x = 11
+	},
+/obj/item/weapon/storage/toolbox/lunchbox/heart/filled,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"O" = (
+/obj/structure/table/bench/wooden,
+/obj/random/mob/wildscugs{
+	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
+	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
+	},
+/obj/random/mug,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"Q" = (
+/obj/random/cigarettes,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+"S" = (
+/obj/structure/table/bench/wooden,
+/obj/item/weapon/towel/random,
+/obj/random/mob/wildscugs{
+	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
+	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
+	},
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
+/area/template_noop)
+"T" = (
+/obj/effect/decal/cleanable/tomato_smudge,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/template_noop)
+"Y" = (
+/obj/random/drinksoft,
+/turf/simulated/floor/outdoors/grass/seasonal/nomobs,
+/area/template_noop)
+
+(1,1,1) = {"
+c
+A
+A
+A
+A
+"}
+(2,1,1) = {"
+a
+T
+n
+n
+Y
+"}
+(3,1,1) = {"
+Q
+s
+h
+J
+w
+"}
+(4,1,1) = {"
+L
+N
+d
+i
+b
+"}
+(5,1,1) = {"
+t
+F
+O
+S
+m
+"}
+(6,1,1) = {"
+L
+z
+g
+k
+A
+"}
+(7,1,1) = {"
+A
+A
+A
+A
+p
+"}

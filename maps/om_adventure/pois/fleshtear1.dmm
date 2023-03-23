@@ -3,7 +3,9 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/mob/living/simple_mob/creature,
+/mob/living/simple_mob/creature{
+	faction = "spookyland"
+	},
 /turf/simulated/floor/flesh{
 	base_icon = 'icons/turf/stomach_vr.dmi'
 	},

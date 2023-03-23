@@ -17,7 +17,6 @@
 	protectiveness = 60 // 75%
 	reflectivity = 0.7 // Not a perfect mirror, but close.
 	stack_origin_tech = list(TECH_MATERIAL = 8)
-	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
 	supply_conversion_value = 9
 
 /datum/material/titanium
@@ -28,7 +27,6 @@
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
-	composite_material = null
 
 /datum/material/iron
 	name = "iron"

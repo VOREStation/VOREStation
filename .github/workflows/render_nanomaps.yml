@@ -11,13 +11,18 @@ on:
     paths:
       - 'maps/**'
 
+permissions: {}
 jobs:
   generate_maps:
+    permissions:
+      contents: write # to push to branch
+      pull-requests: write # to create pull requests (repo-sync/pull-request)
+
     name: 'Generate NanoMaps'
     runs-on: ubuntu-20.04
     steps:
     - name: Clone
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Branch
       run: |

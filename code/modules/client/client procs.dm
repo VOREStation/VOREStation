@@ -60,9 +60,17 @@
 		cmd_admin_pm(C,null)
 		return
 
+	if(href_list["mentorhelp_msg"])
+		var/client/C = locate(href_list["mentorhelp_msg"])
+		if(ismob(C))
+			var/mob/M = C
+			C = M.client
+		cmd_mentor_pm(C, null)
+		return
+
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>")
+			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you</span>")
 			return
 		if(mute_irc)
 			to_chat(usr, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
@@ -86,7 +94,7 @@
 					return
 				sane = TRUE
 				break
-		
+
 		if(!sane)
 			to_chat(src, "<span class='warning'>Sorry, that link doesn't appear to be valid. Please try again.</span>")
 			return
@@ -121,6 +129,7 @@
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
+		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
@@ -176,12 +185,17 @@
 	GLOB.directory[ckey] = src
 
 	GLOB.ahelp_tickets.ClientLogin(src)
+	GLOB.mhelp_tickets.ClientLogin(src)
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
 		GLOB.admins += src
 		holder.owner = src
+
+	mentorholder = mentor_datums[ckey]
+	if (mentorholder)
+		mentorholder.associate(GLOB.directory[ckey])
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -192,8 +206,12 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 	prefs.client = src // Only relevant if we reloaded it from the global list, otherwise prefs/New sets it
 
+	hook_vr("client_new",list(src)) //VOREStation Code. For now this only loads vore prefs, so better put before mob.Login() call but after normal prefs are loaded.
+
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
+	if(prefs)
+		prefs.selecting_slots = FALSE
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -234,8 +252,6 @@
 		if(config.aggressive_changelog)
 			src.changes()
 
-	hook_vr("client_new",list(src)) //VOREStation Code
-
 	if(config.paranoia_logging)
 		var/alert = FALSE //VOREStation Edit start.
 		if(isnum(player_age) && player_age == 0)
@@ -258,7 +274,11 @@
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
+	if (mentorholder)
+		mentorholder.owner = null
+		GLOB.mentors -= src
 	GLOB.ahelp_tickets.ClientLogout(src)
+	GLOB.mhelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	return ..()
@@ -564,3 +584,36 @@
 	set name = "TguiKeyUp"
 	set hidden = TRUE
 	return // stub
+
+/client/verb/toggle_fullscreen()
+	set name = "Toggle Fullscreen"
+	set category = "OOC"
+
+	fullscreen = !fullscreen
+
+	if (fullscreen)
+		winset(usr, "mainwindow", "on-size=")
+		winset(usr, "mainwindow", "titlebar=false")
+		winset(usr, "mainwindow", "can-resize=false")
+		winset(usr, "mainwindow", "menu=")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "is-maximized=true")
+	else
+		winset(usr, "mainwindow", "menu=menu")
+		winset(usr, "mainwindow", "titlebar=true")
+		winset(usr, "mainwindow", "can-resize=true")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "on-size=attempt_auto_fit_viewport") // The attempt_auto_fit_viewport() proc is not implemented yet
+
+/*
+/client/verb/toggle_status_bar()
+	set name = "Toggle Status Bar"
+	set category = "OOC"
+
+	show_status_bar = !show_status_bar
+
+	if (show_status_bar)
+		winset(usr, "input", "is-visible=true")
+	else
+		winset(usr, "input", "is-visible=false")
+*/

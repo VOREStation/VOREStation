@@ -4,10 +4,16 @@
 	icon = 'icons/obj/closets/bases/cabinet.dmi'
 	closet_appearance = /decl/closet_appearance/cabinet
 
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
 /obj/structure/closet/acloset
 	name = "strange closet"
 	desc = "It looks alien!"
 	closet_appearance = /decl/closet_appearance/alien
+
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"

@@ -9,4 +9,5 @@ cd tgui
 chmod +x bin/tgui
 bin/tgui --lint
 bin/tgui --test
+yarn tgui:prettier
 cd ..

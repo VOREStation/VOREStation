@@ -12,6 +12,7 @@
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
+	var/violent_throw = FALSE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/on_reagent_change() return // To suppress price updating. Bottles have their own price tags.
 
@@ -29,17 +30,25 @@
 	return ..()
 
 //when thrown on impact, bottles smash and spill their contents
+/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback)
+	. = ..()
+	if(istype(thrower) && thrower.a_intent == I_HURT)
+		violent_throw = TRUE
+		throw_source = get_turf(thrower)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
 	..()
 
-	var/mob/M = thrower
-	if(isGlass && istype(M) && M.a_intent == I_HURT)
+	if(isGlass && violent_throw)
 		var/throw_dist = get_dist(throw_source, loc)
-		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
+		if(smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
 			src.smash(loc, hit_atom)
+
+	violent_throw = FALSE
+	throw_source = null
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
 	if(!isGlass || !smash_duration)

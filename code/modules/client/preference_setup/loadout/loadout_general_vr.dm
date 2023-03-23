@@ -91,3 +91,13 @@
 	display_name = "mug with text"
 	description = "A mug with something written on it."
 	path = /obj/item/weapon/reagent_containers/food/drinks/textmug
+
+/datum/gear/schnapsen
+	display_name = "schnapsen playing cards"
+	description = "An ancient Austro-Hungarian suit of cards!"
+	path = /obj/item/weapon/deck/schnapsen
+
+/datum/gear/egy_game
+	display_name = "EGY playing cards"
+	description = "A deck of cards for playing EGY! Be the first to lose all cards!"
+	path = /obj/item/weapon/deck/egy

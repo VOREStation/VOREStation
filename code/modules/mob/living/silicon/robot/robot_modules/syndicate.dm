@@ -10,7 +10,6 @@
 					LANGUAGE_SIIK	= 0,
 					LANGUAGE_AKHANI = 0,
 					LANGUAGE_SKRELLIAN = 0,
-					LANGUAGE_SKRELLIANFAR = 0,
 					LANGUAGE_ROOTLOCAL = 0,
 					LANGUAGE_GUTTER = 1,
 					LANGUAGE_SCHECHI = 0,
@@ -151,7 +150,7 @@
 /obj/item/weapon/robot_module/robot/syndicate/combat_medic/New(var/mob/living/silicon/robot/R)
 	..()
 	src.modules += new /obj/item/borg/sight/hud/med(src)
-	src.modules += new /obj/item/device/healthanalyzer/advanced(src)
+	src.modules += new /obj/item/device/healthanalyzer/phasic(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)
 
 	// Surgery things.

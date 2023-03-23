@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/
+	surgery_name = "Limb"
 	priority = 3 // Must be higher than /datum/surgery_step/internal
 	req_open = 0
 	can_infect = 0
@@ -22,6 +23,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/attach
+	surgery_name = "Attach Limb"
 	allowed_tools = list(/obj/item/organ/external = 100)
 
 	min_duration = 50
@@ -50,8 +52,8 @@
 
 /datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = tool
-	user.visible_message("[user] starts attaching [E.name] to [target]'s [E.amputation_point].", \
-	"You start attaching [E.name] to [target]'s [E.amputation_point].")
+	user.visible_message("<span class='filter_notice'>[user] starts attaching [E.name] to [target]'s [E.amputation_point].</span>", \
+	"<span class='filter_notice'>You start attaching [E.name] to [target]'s [E.amputation_point].</span>")
 
 /datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = tool
@@ -81,6 +83,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/connect
+	surgery_name = "Connect Limb"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
@@ -97,8 +100,8 @@
 
 /datum/surgery_step/limb/connect/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
-	user.visible_message("[user] starts connecting tendons and muscles in [target]'s [E.amputation_point] with [tool].", \
-	"You start connecting tendons and muscle in [target]'s [E.amputation_point].")
+	user.visible_message("<span class='filter_notice'>[user] starts connecting tendons and muscles in [target]'s [E.amputation_point] with [tool].</span>", \
+	"<span class='filter_notice'>You start connecting tendons and muscle in [target]'s [E.amputation_point].</span>")
 
 /datum/surgery_step/limb/connect/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = target.get_organ(target_zone)
@@ -120,6 +123,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/mechanize
+	surgery_name = "Mechanize Limb"
 	allowed_tools = list(/obj/item/robot_parts = 100)
 
 	min_duration = 80
@@ -134,8 +138,8 @@
 		return isnull(target.get_organ(target_zone))
 
 /datum/surgery_step/limb/mechanize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts attaching \the [tool] to [target].", \
-	"You start attaching \the [tool] to [target].")
+	user.visible_message("<span class='filter_notice'>[user] starts attaching \the [tool] to [target].</span>", \
+	"<span class='filter_notice'>You start attaching \the [tool] to [target].</span>")
 
 /datum/surgery_step/limb/mechanize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/robot_parts/L = tool

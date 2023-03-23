@@ -188,6 +188,11 @@
 		if(mannequin.species && (mannequin.species.appearance_flags & HAS_SKIN_COLOR))
 			styles["Body Color"] = list("colorHref" = "skin_color", "color" = MOB_HEX_COLOR(mannequin, skin))
 
+		if (mannequin.species && mannequin.species.selects_bodytype)
+			if (!mannequin.species.base_species)
+				mannequin.species.base_species = mannequin.species.name
+			styles["Bodytype"] = list("styleHref" = "custom_base", "style" = mannequin.species.base_species)
+
 		var/datum/preferences/designer/P = new()
 		apply_markings_to_prefs(mannequin, P)
 		data["activeBodyRecord"]["markings"] = P.body_markings
@@ -231,7 +236,7 @@
 				mannequin.real_name = "Stock [S.name] Body"
 				mannequin.name = mannequin.real_name
 				mannequin.dna.real_name = mannequin.real_name
-				mannequin.dna.base_species = mannequin.species
+				mannequin.dna.base_species = mannequin.species.base_species
 				active_br = new(mannequin, FALSE, FALSE)
 				active_br.speciesname = "Custom Sleeve"
 				update_preview_icon()
@@ -263,7 +268,7 @@
 		if("menu")
 			menu = params["menu"]
 			temp = ""
-		
+
 		if("href_conversion")
 			PrefHrefMiddleware(params, usr)
 
@@ -281,8 +286,8 @@
 
 	mannequin.delete_inventory(TRUE)
 	update_preview_mob(mannequin)
-	COMPILE_OVERLAYS(mannequin)
-	
+	mannequin.ImmediateOverlayUpdate()
+
 	var/mutable_appearance/MA = new(mannequin)
 	south_preview.appearance = MA
 	south_preview.dir = SOUTH
@@ -369,7 +374,7 @@
 		return
 
 	if(params["target_href"] == "size_multiplier")
-		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Character Preference") as num|null
+		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from 25% to 200%", "Character Preference", null, 200, 25)
 		if(new_size && ISINRANGE(new_size,25,200))
 			active_br.sizemult = (new_size/100)
 			update_preview_icon()
@@ -392,6 +397,9 @@
 	ASSERT(istype(B))
 	var/datum/category_item/player_setup_item/general/basic/G = CG.items_by_name["Basic"]
 	ASSERT(istype(G))
+	var/datum/category_item/player_setup_item/vore/traits/V = CC.categories_by_name["VORE"].items_by_name["Traits"]
+	ASSERT(istype(V))
+	var/list/use_different_category = list("custom_base" = V) //add more here if needed
 
 	if(params["target_href"] == "bio_gender")
 		var/new_gender = tgui_input_list(user, "Choose your character's biological gender:", "Character Preference", G.get_genders())
@@ -404,11 +412,12 @@
 	var/href_list = list()
 	href_list["src"] = "\ref[src]"
 	href_list["[params["target_href"]]"] = params["target_value"]
+	var/datum/category_item/player_setup_item/to_use = (params["target_href"] in use_different_category) ? use_different_category[params["target_href"]] : B
 
 	var/action = 0
-	action = B.OnTopic(list2params(href_list), href_list, user)
+	action = to_use.OnTopic(list2params(href_list), href_list, user)
 	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
-		B.copy_to_mob(mannequin)
+		to_use.copy_to_mob(mannequin)
 		active_br.mydna.dna.ResetUIFrom(mannequin)
 		update_preview_icon()
 		return 1

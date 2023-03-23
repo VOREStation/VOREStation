@@ -393,7 +393,7 @@ var/global/datum/controller/occupations/job_master
 		//Equip custom gear loadout.
 		var/list/custom_equip_slots = list()
 		var/list/custom_equip_leftovers = list()
-		if(H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
+		if(H.client && H.client.prefs && H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
 			for(var/thing in H.client.prefs.gear)
 				var/datum/gear/G = gear_datums[thing]
 				if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
@@ -427,9 +427,10 @@ var/global/datum/controller/occupations/job_master
 				// Try desperately (and sorta poorly) to equip the item. Now with increased desperation!
 				if(G.slot && !(G.slot in custom_equip_slots))
 					var/metadata = H.client.prefs.gear[G.display_name]
-					if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
-						custom_equip_leftovers += thing
-					else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
+					//if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
+					//	custom_equip_leftovers += thing
+					//else
+					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
 						if(G.slot != slot_tie)
 							custom_equip_slots.Add(G.slot)
@@ -464,7 +465,7 @@ var/global/datum/controller/occupations/job_master
 				else
 					spawn_in_storage += thing
 	else
-		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
+		to_chat(H, "<span class='filter_notice'>Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.</span>")
 
 	H.job = rank
 	log_game("JOINED [key_name(H)] as \"[rank]\"")
@@ -532,16 +533,16 @@ var/global/datum/controller/occupations/job_master
 				W.color = R.color
 				qdel(R)
 
-	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
+	to_chat(H, "<span class='filter_notice'><B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B></span>")
 
 	if(job.supervisors)
-		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+		to_chat(H, "<span class='filter_notice'><b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b></span>")
 	if(job.has_headset)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
-		to_chat(H, "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>")
+		to_chat(H, "<span class='filter_notice'><b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b></span>")
 
 	if(job.req_admin_notify)
-		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+		to_chat(H, "<span class='filter_notice'><b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b></span>")
 
 	// EMAIL GENERATION
 	// Email addresses will be created under this domain name. Mostly for the looks.
@@ -558,13 +559,13 @@ var/global/datum/controller/occupations/job_master
 
 	// If even fallback login generation failed, just don't give them an email. The chance of this happening is astronomically low.
 	if(ntnet_global.does_email_exist(complete_login))
-		to_chat(H, "You were not assigned an email address.")
+		to_chat(H, "<span class='filter_notice'>You were not assigned an email address.</span>")
 		H.mind.store_memory("You were not assigned an email address.")
 	else
 		var/datum/computer_file/data/email_account/EA = new/datum/computer_file/data/email_account()
 		EA.password = GenerateKey()
 		EA.login = 	complete_login
-		to_chat(H, "Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.")
+		to_chat(H, "<span class='filter_notice'>Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.</span>")
 		H.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
 	// END EMAIL GENERATION
 
@@ -681,7 +682,7 @@ var/global/datum/controller/occupations/job_master
 			if(fail_deadly)
 				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice.</span>")
 				return
-			to_chat(C, "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
+			to_chat(C, "<span class='filter_warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.</span>")
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)
 			.["msg"] = "will arrive at the station shortly"

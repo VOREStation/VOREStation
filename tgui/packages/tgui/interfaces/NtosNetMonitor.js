@@ -1,7 +1,7 @@
-import { Section, Box, Button, NoticeBox, LabeledList, NumberInput } from "../components";
-import { useBackend } from "../backend";
-import { Fragment } from "inferno";
-import { NtosWindow } from "../layouts";
+import { Section, Box, Button, NoticeBox, LabeledList, NumberInput } from '../components';
+import { useBackend } from '../backend';
+import { Fragment } from 'inferno';
+import { NtosWindow } from '../layouts';
 
 export const NtosNetMonitor = (props, context) => {
   const { act, data } = useBackend(context);
@@ -24,135 +24,134 @@ export const NtosNetMonitor = (props, context) => {
     <NtosWindow resizable>
       <NtosWindow.Content scrollable>
         <NoticeBox>
-          WARNING: Disabling wireless transmitters when using
-          a wireless device may prevent you from reenabling them!
+          WARNING: Disabling wireless transmitters when using a wireless device may prevent you from reenabling them!
         </NoticeBox>
         <Section
           title="Wireless Connectivity"
-          buttons={(
+          buttons={
             <Button.Confirm
               icon={ntnetstatus ? 'power-off' : 'times'}
               content={ntnetstatus ? 'ENABLED' : 'DISABLED'}
               selected={ntnetstatus}
-              onClick={() => act('toggleWireless')} />
-          )}>
+              onClick={() => act('toggleWireless')}
+            />
+          }>
           {ntnetrelays ? (
             <LabeledList>
-              <LabeledList.Item label="Active NTNet Relays">
-                {ntnetrelays}
-              </LabeledList.Item>
+              <LabeledList.Item label="Active NTNet Relays">{ntnetrelays}</LabeledList.Item>
             </LabeledList>
-          ) : "No Relays Connected"}
+          ) : (
+            'No Relays Connected'
+          )}
         </Section>
         <Section title="Firewall Configuration">
           <LabeledList>
             <LabeledList.Item
               label="Software Downloads"
-              buttons={(
+              buttons={
                 <Button
                   icon={config_softwaredownload ? 'power-off' : 'times'}
                   content={config_softwaredownload ? 'ENABLED' : 'DISABLED'}
                   selected={config_softwaredownload}
-                  onClick={() => act('toggle_function', { id: "1" })} />
-              )} />
+                  onClick={() => act('toggle_function', { id: '1' })}
+                />
+              }
+            />
             <LabeledList.Item
               label="Peer to Peer Traffic"
-              buttons={(
+              buttons={
                 <Button
                   icon={config_peertopeer ? 'power-off' : 'times'}
                   content={config_peertopeer ? 'ENABLED' : 'DISABLED'}
                   selected={config_peertopeer}
-                  onClick={() => act('toggle_function', { id: "2" })} />
-              )} />
+                  onClick={() => act('toggle_function', { id: '2' })}
+                />
+              }
+            />
             <LabeledList.Item
               label="Communication Systems"
-              buttons={(
+              buttons={
                 <Button
                   icon={config_communication ? 'power-off' : 'times'}
                   content={config_communication ? 'ENABLED' : 'DISABLED'}
                   selected={config_communication}
-                  onClick={() => act('toggle_function', { id: "3" })} />
-              )} />
+                  onClick={() => act('toggle_function', { id: '3' })}
+                />
+              }
+            />
             <LabeledList.Item
               label="Remote System Control"
-              buttons={(
+              buttons={
                 <Button
                   icon={config_systemcontrol ? 'power-off' : 'times'}
                   content={config_systemcontrol ? 'ENABLED' : 'DISABLED'}
                   selected={config_systemcontrol}
-                  onClick={() => act('toggle_function', { id: "4" })} />
-              )} />
+                  onClick={() => act('toggle_function', { id: '4' })}
+                />
+              }
+            />
           </LabeledList>
         </Section>
         <Section title="Security Systems">
           {!!idsalarm && (
             <Fragment>
-              <NoticeBox>
-                NETWORK INCURSION DETECTED
-              </NoticeBox>
+              <NoticeBox>NETWORK INCURSION DETECTED</NoticeBox>
               <Box italics>
-                Abnormal activity has been detected in the network.
-                Check system logs for more information
+                Abnormal activity has been detected in the network. Check system logs for more information
               </Box>
             </Fragment>
           )}
           <LabeledList>
-            <LabeledList.Item label="Banned NIDs" buttons={(
-              <Fragment>
-                <Button
-                  icon="ban"
-                  onClick={() => act("ban_nid")}>
-                  Ban NID
-                </Button>
-                <Button
-                  icon="balance-scale"
-                  onClick={() => act("unban_nid")}>
-                  Unban NID
-                </Button>
-              </Fragment>
-            )}>
-              {banned_nids.join(", ") || "None"}
+            <LabeledList.Item
+              label="Banned NIDs"
+              buttons={
+                <Fragment>
+                  <Button icon="ban" onClick={() => act('ban_nid')}>
+                    Ban NID
+                  </Button>
+                  <Button icon="balance-scale" onClick={() => act('unban_nid')}>
+                    Unban NID
+                  </Button>
+                </Fragment>
+              }>
+              {banned_nids.join(', ') || 'None'}
             </LabeledList.Item>
             <LabeledList.Item
               label="IDS Status"
-              buttons={(
+              buttons={
                 <Fragment>
                   <Button
                     icon={idsstatus ? 'power-off' : 'times'}
                     content={idsstatus ? 'ENABLED' : 'DISABLED'}
                     selected={idsstatus}
-                    onClick={() => act('toggleIDS')} />
-                  <Button
-                    icon="sync"
-                    content="Reset"
-                    color="bad"
-                    onClick={() => act('resetIDS')} />
+                    onClick={() => act('toggleIDS')}
+                  />
+                  <Button icon="sync" content="Reset" color="bad" onClick={() => act('resetIDS')} />
                 </Fragment>
-              )} />
+              }
+            />
             <LabeledList.Item
               label="Max Log Count"
-              buttons={(
+              buttons={
                 <NumberInput
                   value={ntnetmaxlogs}
                   minValue={minlogs}
                   maxValue={maxlogs}
                   width="39px"
-                  onChange={(e, value) => act('updatemaxlogs', {
-                    new_number: value,
-                  })}
+                  onChange={(e, value) =>
+                    act('updatemaxlogs', {
+                      new_number: value,
+                    })
+                  }
                 />
-              )} />
+              }
+            />
           </LabeledList>
           <Section
             title="System Log"
             level={2}
-            buttons={(
-              <Button.Confirm
-                icon="trash"
-                content="Clear Logs"
-                onClick={() => act('purgelogs')} />
-            )}>
-            {ntnetlogs.map(log => (
+            buttons={<Button.Confirm icon="trash" content="Clear Logs" onClick={() => act('purgelogs')} />}>
+            {ntnetlogs.map((log) => (
               <Box key={log.entry} className="candystripe">
                 {log.entry}
               </Box>

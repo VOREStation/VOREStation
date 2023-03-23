@@ -9,6 +9,8 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
+	hud_state = "plasma_blast"
+	hud_state_empty = "battery_empty"
 
 	combustion = FALSE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
@@ -43,6 +45,7 @@
 	check_armour = "bullet"
 	sharp = TRUE
 	edge = TRUE
+	hud_state = "rocket_fire"
 
 /obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
 	explosion(target, -1, 0, 2)
@@ -62,6 +65,7 @@
 	light_power = 0.5
 	light_color = "#55AAFF"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	hud_state = "water"
 
 	combustion = FALSE
 
@@ -98,6 +102,7 @@
 /obj/item/projectile/temp/hot
 	name = "heat beam"
 	target_temperature = 1000
+	hud_state = "flame"
 
 	combustion = TRUE
 
@@ -109,6 +114,7 @@
 	damage_type = BRUTE
 	nodamage = 1
 	check_armour = "bullet"
+	hud_state = "monkey"
 
 /obj/item/projectile/meteor/Bump(atom/A as mob|obj|turf|area)
 	if(A == firer)
@@ -145,6 +151,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 	var/lasermod = 0
 	combustion = FALSE
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
@@ -187,6 +194,7 @@
 	nodamage = 1
 	check_armour = "energy"
 	var/decl/plantgene/gene = null
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/florayield
 	name = "beta somatoray"
@@ -201,6 +209,7 @@
 	light_color = "#FFFFFF"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 	var/lasermod = 0
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
@@ -218,6 +227,7 @@
 	name = "flayer ray"
 
 	combustion = FALSE
+	hud_state = "electrothermal"
 
 /obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
@@ -233,6 +243,7 @@
 	nodamage = 1
 	damage_type = HALLOSS
 	muzzle_type = /obj/effect/projectile/muzzle/bullet
+	hud_state = "monkey"
 
 /obj/item/projectile/bola
 	name = "bola"
@@ -241,6 +252,7 @@
 	embed_chance = 0 //Nada.
 	damage_type = HALLOSS
 	muzzle_type = null
+	hud_state = "monkey"
 
 	combustion = FALSE
 
@@ -260,7 +272,7 @@
 	embed_chance = 0 //Nada.
 	damage_type = BRUTE
 	muzzle_type = null
-
+	hud_state = "monkey"
 	combustion = FALSE
 
 /obj/item/projectile/webball/on_hit(var/atom/target, var/blocked = 0)
@@ -282,6 +294,7 @@
 	light_range = 4
 	light_power = 3
 	light_color = "#3300ff"
+	hud_state = "alloy_spike"
 
 	muzzle_type = /obj/effect/projectile/muzzle/tungsten
 	tracer_type = /obj/effect/projectile/tracer/tungsten

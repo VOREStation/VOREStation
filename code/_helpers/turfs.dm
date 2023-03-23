@@ -1,10 +1,20 @@
-// Returns the atom sitting on the turf.
-// For example, using this on a disk, which is in a bag, on a mob, will return the mob because it's on the turf.
-/proc/get_atom_on_turf(var/atom/movable/M)
-	var/atom/mloc = M
-	while(mloc && mloc.loc && !istype(mloc.loc, /turf/))
-		mloc = mloc.loc
-	return mloc
+/**
+* Returns a best attempt at the least-nested containing movable of subject, or subject.
+* eg, if subject is an item in a bag on a mob in a locker in the world, returns the locker.
+*/
+/proc/get_atom_on_turf(atom/movable/subject)
+	var/atom/parent = subject?.loc
+	if (!parent || !ismovable(subject) || isarea(parent))
+		return subject
+	var/atom/current = subject
+	do
+		parent = current.loc
+		if (isturf(parent))
+			return current
+		current = parent
+	while (current)
+	return subject
+
 
 /proc/iswall(turf/T)
 	return (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall) || istype(T, /turf/simulated/shuttle/wall))
@@ -121,7 +131,7 @@
 		var/old_icon1 = T.icon
 		var/old_decals = T.decals ? T.decals.Copy() : null
 
-		B.Destroy()
+		//B.Destroy()
 		X = B.ChangeTurf(T.type)
 		X.set_dir(old_dir1)
 		X.icon_state = old_icon_state1
@@ -146,7 +156,8 @@
 	for(var/obj/O in T)
 		if(O.simulated)
 			O.loc = X
-			O.update_light()
+			if(O.light_system == STATIC_LIGHT)
+				O.update_light()
 			if(z_level_change) // The objects still need to know if their z-level changed.
 				O.onTransitZ(T.z, X.z)
 

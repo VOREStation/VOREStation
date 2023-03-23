@@ -30,7 +30,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-	has_langs = list("Mouse")
+	has_langs = list(LANGUAGE_MOUSE, LANGUAGE_ECHOSONG)		// Haha squeak
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	meat_amount = 2

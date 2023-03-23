@@ -11,6 +11,9 @@
 	knockout_message = "collapses inwards, forming a disordered puddle of gray goo."
 	remains_type = /obj/effect/decal/cleanable/ash
 
+	selects_bodytype = SELECTS_BODYTYPE_SHAPESHIFTER
+	base_species = SPECIES_HUMAN
+
 	blood_color = "#505050" //This is the same as the 80,80,80 below, but in hex
 	flesh_color = "#505050"
 	base_color = "#FFFFFF" //Color mult, start out with this
@@ -20,6 +23,7 @@
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	health_hud_intensity = 2
 	num_alternate_languages = 3
+	species_language = LANGUAGE_EAL
 	assisted_langs = list(LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	color_mult = TRUE
 
@@ -122,9 +126,12 @@
 		saved_nif.quick_implant(H)
 
 /datum/species/protean/get_bodytype(var/mob/living/carbon/human/H)
-	if(H)
-		return H.impersonate_bodytype || ..()
-	return ..()
+	if(!H || base_species == name) return ..()
+	var/datum/species/S = GLOB.all_species[base_species]
+	return S.get_bodytype(H)
+
+/datum/species/protean/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
+	return GLOB.playable_species
 
 /datum/species/protean/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()

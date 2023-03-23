@@ -48,7 +48,7 @@
 /mob/living/carbon/brain/runechat_holder(datum/chatmessage/CM)
 	if(isturf(loc))
 		return ..()
-		
+
 	return loc
 
 /mob/living/carbon/brain/set_typing_indicator(var/state)
@@ -59,14 +59,49 @@
 		loc.cut_overlay(typing_indicator, TRUE)
 		return
 
-	if(!typing_indicator)
-		init_typing_indicator("[speech_bubble_appearance()]_typing")
+	var/cur_bubble_appearance = custom_speech_bubble
+	if(!cur_bubble_appearance || cur_bubble_appearance == "default")
+		cur_bubble_appearance = speech_bubble_appearance()
+	if(!typing_indicator || cur_typing_indicator != cur_bubble_appearance)
+		init_typing_indicator("[cur_bubble_appearance]_typing")
 
 	if(state && !typing)
-		loc.add_overlay(typing_indicator, TRUE)
+		add_overlay(typing_indicator, TRUE)
 		typing = TRUE
+		typing_indicator_active = typing_indicator
 	else if(typing)
-		loc.cut_overlay(typing_indicator, TRUE)
+		cut_overlay(typing_indicator_active, TRUE)
 		typing = FALSE
+		if(typing_indicator_active != typing_indicator)
+			qdel(typing_indicator_active)
+		typing_indicator_active = null
 
 	return state
+
+// Vorestation edit start
+
+/mob/living/carbon/brain/verb/backup_ping()
+	set category = "IC"
+	set name = "Notify Transcore"
+	set desc = "Your body is gone. Notify robotics to be resleeved!"
+	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
+	if(db)
+		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
+		if(!(record.dead_state == MR_DEAD))
+			if((world.time - timeofhostdeath ) > 5 MINUTES)	//Allows notify transcore to be used if you have an entry but for some reason weren't marked as dead
+				record.dead_state = MR_DEAD				//Such as if you got scanned but didn't take an implant. It's a little funky, but I mean, you got scanned
+				db.notify(record)						//So you probably will want to let someone know if you die.
+				record.last_notification = world.time
+				to_chat(src, "<span class='notice'>New notification has been sent.</span>")
+			else
+				to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
+		else if((world.time - record.last_notification) < 5 MINUTES)
+			to_chat(src, "<span class='warning'>Too little time has passed since your last notification.</span>")
+		else
+			db.notify(record)
+			record.last_notification = world.time
+			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
+	else
+		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
+
+// VS edit ends

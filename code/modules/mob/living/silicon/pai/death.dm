@@ -1,15 +1,16 @@
-/mob/living/silicon/pai/death(gibbed)
+//VOREStation Edit - Let's make it so that pAIs don't just always cease to be when they die! It would be cool if we could fix them.
+/mob/living/silicon/pai/death(gibbed,deathmessage="fizzles out and clatters to the floor...")
+//	set_respawn_timer()
 	release_vore_contents()
+	close_up(TRUE)
 	if(card)
-		card.removePersonality()
-		//if(gibbed) //VOREStation Edit Start. This prevents pAIs from joining back into their card after the card's killed
-		src.loc = get_turf(card)
-		qdel(card)
-		/*else
-			close_up()
-			qdel(card)*/ //VOREStation Edit End.
-	if(mind)
-		qdel(mind)
-	..(gibbed)
-	ghostize()
-	qdel(src)
+		card.cut_overlays()
+		card.setEmotion(16)
+		card.damage_random_component()
+
+		if(gibbed)
+			qdel(card)
+			..(gibbed)
+		else
+			card.add_overlay("pai-dead")
+			..(gibbed,deathmessage)

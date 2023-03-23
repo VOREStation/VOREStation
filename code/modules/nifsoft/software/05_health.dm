@@ -21,7 +21,8 @@
 	if((. = ..()))
 		a_drain = initial(a_drain)
 		mode = initial(mode)
-		nif.human.Stasis(0)
+		if(nif.human)				// What if we deactivate because human is gone?
+			nif.human.Stasis(0)
 
 /datum/nifsoft/medichines_org/life()
 	if((. = ..()))

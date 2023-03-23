@@ -8,7 +8,7 @@
 	In modern times, this exosuit has been dethroned from that title, yet it remains one of the more well built and armored \
 	exosuits, despite its age.\
 	<br><br>\
-	During the First Contact War against the Unathi, there was a need for various new technologies to be developed \
+	During the Hegemony War against the Unathi, there was a need for various new technologies to be developed \
 	to counter the Unathi war machine. One of many solutions created was the Durand, which was made to be heavy and \
 	well-armored, and be capable of powering the various weapons that could be mounted onto it. Presently, the \
 	Durand now generally serves as corporate asset protection hardware, due to modern militaries moving on to newer, \
@@ -17,10 +17,10 @@
 
 /mob/living/simple_mob/mechanical/mecha/combat/durand
 	name = "durand"
-	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the First Contact War."
+	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the Hegemony War."
 	catalogue_data = list(/datum/category_item/catalogue/technology/durand)
 	icon_state = "durand"
-	movement_cooldown = 10
+	movement_cooldown = 3
 	wreckage = /obj/structure/loot_pile/mecha/durand
 
 	maxHealth = 400
@@ -70,7 +70,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/combat/durand/defensive/mercenary
-	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the First Contact War.\
+	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the Hegemony War.\
 	This one has been retrofitted into a turret."
 
 	projectiletype = /obj/item/projectile/beam/heavylaser/fakeemitter

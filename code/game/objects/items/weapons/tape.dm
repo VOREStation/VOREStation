@@ -12,11 +12,11 @@
 /obj/item/weapon/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(user, /mob/living/silicon/robot) || user == H)
 		return TRUE
-		
+
 	for (var/obj/item/weapon/grab/G in H.grabbed_by)
 		if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
 			return TRUE
-			
+
 	return FALSE
 
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
@@ -36,7 +36,7 @@
 					to_chat(user, "<span class='warning'>\The [H] doesn't have any eyes.</span>")
 					return
 				if(H.glasses)
-					to_chat(user, "<span class='warning'>\The [H] is already wearing somethign on their eyes.</span>")
+					to_chat(user, "<span class='warning'>\The [H] is already wearing something on their eyes.</span>")
 					return
 				if(H.head && (H.head.body_parts_covered & FACE))
 					to_chat(user, "<span class='warning'>Remove their [H.head] first.</span>")
@@ -53,7 +53,7 @@
 					return
 
 				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
-				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses, ignore_obstructions = FALSE)
 				H.update_inv_glasses()
 				playsound(src, 'sound/effects/tape.ogg',25)
 
@@ -83,7 +83,7 @@
 
 				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
 
-				H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
+				H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask, ignore_obstructions = FALSE)
 				H.update_inv_wear_mask()
 				playsound(src, 'sound/effects/tape.ogg',25)
 

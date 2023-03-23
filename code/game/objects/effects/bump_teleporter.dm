@@ -23,12 +23,12 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 	if(!ismob(user))
 		//user.loc = src.loc	//Stop at teleporter location
 		return
-
+	var/mob/M = user	//VOREStation edit
 	if(!id_target)
 		//user.loc = src.loc	//Stop at teleporter location, there is nowhere to teleport to.
 		return
 
 	for(var/obj/effect/bump_teleporter/BT in BUMP_TELEPORTERS)
 		if(BT.id == src.id_target)
-			usr.loc = BT.loc	//Teleport to location with correct id.
+			M.forceMove(BT.loc)	//Teleport to location with correct id.	//VOREStation Edit
 			return

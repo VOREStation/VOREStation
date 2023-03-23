@@ -1,7 +1,7 @@
 /obj/item/weapon/storage/box/explorerkeys
 	name = "box of volunteer headsets"
 	desc = "A box full of volunteer headsets, for issuing out to exploration volunteers."
-	starts_with = list(/obj/item/device/radio/headset/volunteer = 7)
+	starts_with = list(/obj/item/device/radio/headset/explorer = 7)
 
 /obj/item/weapon/storage/box/commandkeys
 	name = "box of command keys"
@@ -36,3 +36,6 @@
 
 /obj/item/weapon/storage/box/brainzsnax/red
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
+
+/obj/item/weapon/storage/box/freezer
+	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/blood, /obj/item/weapon/reagent_containers/glass, /obj/item/weapon/reagent_containers/food)

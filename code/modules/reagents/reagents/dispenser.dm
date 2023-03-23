@@ -104,7 +104,7 @@
 
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
-	allergen_factor = 0.5	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
+	allergen_factor = 1	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
 	affects_robots = 1 //VOREStation Addition/Edit
 
@@ -114,29 +114,28 @@
 		L.adjust_fire_stacks(amount / 15)
 
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
-	if(issmall(M)) removed *= 2
-	var/strength_mod = 3 * M.species.alcohol_mod //Alcohol is 3x stronger when injected into the veins.
-	if(alien == IS_SKRELL)
-		strength_mod *= 5
-	if(alien == IS_TAJARA)
-		strength_mod *= 1.25
-	if(alien == IS_UNATHI)
-		strength_mod *= 0.75
-	if(alien == IS_DIONA)
-		strength_mod = 0
-	if(alien == IS_SLIME)
-		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed)
+	if(issmall(M))
+		removed *= 2
 
-	//VOREStation Edits Start
+	if(alien == IS_SLIME)
+		strength_mod *= 2
+		// VOREStation Edit - M.adjustToxLoss(removed)
+
+	var/strength_mod = 3 * M.species.chem_strength_alcohol //Alcohol is 3x stronger when injected into the veins.
+	if(!strength_mod)
+		return
+
+	M.add_chemical_effect(CE_ALCOHOL, 1)
+
 	var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
-	if(M.species.robo_ethanol_proc) //failsafe to make sure boozy-bots don't get rekt, since they process out of bloodstream
-		effective_dose = dose
+	if(M.species.robo_ethanol_proc) //failsafe to make sure boozy-bots don't get rekt, since they only process out of bloodstream rather than ingested
+		effective_dose = dose * M.species.chem_strength_alcohol
 
 	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)
 		M.adjust_nutrition(round(max(0,80 - strength) * removed)/30)	//the stronger it is, the more juice you gain; really weak stuff gets you nothing
 		to_world("[M] gained [round(max(0,80-strength))] multiplied by [removed], divided by 30 = [round(max(0,80 - strength) * removed)/30] nutrition this processing tick.")
 
-	if(!(M.isSynthetic()) || M.species.robo_ethanol_drunk)
+	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		M.add_chemical_effect(CE_ALCOHOL, 1)
 
 		if(effective_dose >= strength) // Early warning
@@ -158,8 +157,8 @@
 
 		if(halluci)
 			M.hallucination = max(M.hallucination, halluci*3)
-	
-	if(!(M.isSynthetic()) || (M.species.robo_ethanol_drunk && M.species.robo_ethanol_proc))
+
+	if((M.species.robo_ethanol_drunk && M.species.robo_ethanol_proc) || !(M.isSynthetic()))
 		if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
 			M.drowsyness = max(M.drowsyness, 60)
 		if(effective_dose >= strength * 6) // Toxic dose
@@ -172,18 +171,13 @@
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	if(!(M.species.allergens & allergen_type) && !(M.isSynthetic()))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects - VOREStation Edit (added synth check)
+
+	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
 		M.adjust_nutrition(nutriment_factor * removed)
-	var/strength_mod = 1 * M.species.alcohol_mod
-	if(alien == IS_SKRELL)
-		strength_mod *= 5
-	if(alien == IS_TAJARA)
-		strength_mod *= 1.25
-	if(alien == IS_UNATHI)
-		strength_mod *= 0.75
-	if(alien == IS_DIONA)
-		strength_mod = 0
-	if(alien == IS_SLIME)
-		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed * 2)
+
+	var/effective_dose = dose * M.species.chem_strength_alcohol
+	if(!effective_dose)
+		return
 
 	if(!(M.isSynthetic()))
 		M.add_chemical_effect(CE_ALCOHOL, 1)

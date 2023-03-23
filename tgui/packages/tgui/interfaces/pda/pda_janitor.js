@@ -1,23 +1,16 @@
-import { filter } from 'common/collections';
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../../components";
+import { useBackend } from '../../backend';
+import { Box, LabeledList, Section } from '../../components';
 
 export const pda_janitor = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    janitor,
-  } = data;
+  const { janitor } = data;
 
   return (
     <Box>
       <LabeledList>
         <LabeledList.Item label="Current Location">
-          {janitor.user_loc.x === 0 && (
-            <Box color="bad">Unknown</Box>
-          ) || (
+          {(janitor.user_loc.x === 0 && <Box color="bad">Unknown</Box>) || (
             <Box>
               {janitor.user_loc.x} / {janitor.user_loc.y}
             </Box>
@@ -25,7 +18,7 @@ export const pda_janitor = (props, context) => {
         </LabeledList.Item>
       </LabeledList>
       <Section level={2} title="Mop Locations">
-        {janitor.mops && (
+        {(janitor.mops && (
           <ul>
             {janitor.mops.map((mop, i) => (
               <li key={i}>
@@ -33,14 +26,10 @@ export const pda_janitor = (props, context) => {
               </li>
             ))}
           </ul>
-        ) || (
-          <Box color="bad">
-            No mops detected nearby.
-          </Box>
-        )}
+        )) || <Box color="bad">No mops detected nearby.</Box>}
       </Section>
       <Section level={2} title="Mop Bucket Locations">
-        {janitor.buckets && (
+        {(janitor.buckets && (
           <ul>
             {janitor.buckets.map((bucket, i) => (
               <li key={i}>
@@ -48,14 +37,10 @@ export const pda_janitor = (props, context) => {
               </li>
             ))}
           </ul>
-        ) || (
-          <Box color="bad">
-            No buckets detected nearby.
-          </Box>
-        )}
+        )) || <Box color="bad">No buckets detected nearby.</Box>}
       </Section>
       <Section level={2} title="Cleanbot Locations">
-        {janitor.cleanbots && (
+        {(janitor.cleanbots && (
           <ul>
             {janitor.cleanbots.map((cleanbot, i) => (
               <li key={i}>
@@ -63,14 +48,10 @@ export const pda_janitor = (props, context) => {
               </li>
             ))}
           </ul>
-        ) || (
-          <Box color="bad">
-            No cleanbots detected nearby.
-          </Box>
-        )}
+        )) || <Box color="bad">No cleanbots detected nearby.</Box>}
       </Section>
       <Section level={2} title="Janitorial Cart Locations">
-        {janitor.carts && (
+        {(janitor.carts && (
           <ul>
             {janitor.carts.map((cart, i) => (
               <li key={i}>
@@ -78,11 +59,7 @@ export const pda_janitor = (props, context) => {
               </li>
             ))}
           </ul>
-        ) || (
-          <Box color="bad">
-            No janitorial carts detected nearby.
-          </Box>
-        )}
+        )) || <Box color="bad">No janitorial carts detected nearby.</Box>}
       </Section>
     </Box>
   );

@@ -99,6 +99,7 @@
 	playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))
+	counterpart.persist_storable = persist_storable
 	src.forceMove(counterpart)
 	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")

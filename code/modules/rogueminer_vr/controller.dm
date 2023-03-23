@@ -197,6 +197,6 @@ var/datum/controller/rogue/rm_controller
 		rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
 		spawn(0) //Detatch it so we can return the new zone for now.
 			var/datum/rogue/zonemaster/ZM_oldest = get_oldest_zone()
-			ZM_oldest.clean_zone()
+			if(ZM_oldest) ZM_oldest.clean_zone()
 
 	return ZM_target

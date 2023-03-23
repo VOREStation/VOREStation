@@ -177,7 +177,7 @@
 			. = TRUE
 
 		if("calibration")
-			var/input = input(usr, "0-9", "disperser calibration", 0) as num|null
+			var/input = tgui_input_number(usr, "0-9", "disperser calibration", 0, 9, 0)
 			if(!isnull(input)) //can be zero so we explicitly check for null
 				var/calnum = sanitize_integer(text2num(params["calibration"]), 0, caldigit)//sanitiiiiize
 				calibration[calnum + 1] = sanitize_integer(input, 0, 9, 0)//must add 1 because js indexes from 0
@@ -189,14 +189,14 @@
 			. = TRUE
 
 		if("strength")
-			var/input = input(usr, "1-5", "disperser strength", 1) as num|null
+			var/input = tgui_input_number(usr, "1-5", "disperser strength", 1, 5, 1)
 			if(input && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				strength = sanitize_integer(input, 1, 5, 1)
 				middle.update_idle_power_usage(strength * range * 100)
 			. = TRUE
 
 		if("range")
-			var/input = input(usr, "1-5", "disperser radius", 1) as num|null
+			var/input = tgui_input_number(usr, "1-5", "disperser radius", 1, 5, 1)
 			if(input && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				range = sanitize_integer(input, 1, 5, 1)
 				middle.update_idle_power_usage(strength * range * 100)

@@ -145,3 +145,8 @@
 	name = "Weretiger Crate"
 	desc = "You can hear a lot of annoyed scratches, clearly someone doesn't enjoy being locked up."
 	starts_with = list(/mob/living/simple_mob/vore/weretiger)
+
+/obj/structure/largecrate/tits
+	name = "A pair of Great tits"
+	desc = "You can hear two round things inside"
+	starts_with = list (/mob/living/simple_mob/animal/passive/bird/azure_tit/great, /mob/living/simple_mob/animal/passive/bird/azure_tit/great)

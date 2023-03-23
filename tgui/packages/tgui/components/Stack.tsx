@@ -5,6 +5,7 @@
  */
 
 import { classes } from 'common/react';
+import { RefObject } from 'inferno';
 import { Flex, FlexItemProps, FlexProps } from './Flex';
 
 interface StackProps extends FlexProps {
@@ -19,26 +20,22 @@ export const Stack = (props: StackProps) => {
       className={classes([
         'Stack',
         fill && 'Stack--fill',
-        vertical
-          ? 'Stack--vertical'
-          : 'Stack--horizontal',
+        vertical ? 'Stack--vertical' : 'Stack--horizontal',
         className,
       ])}
       direction={vertical ? 'column' : 'row'}
-      {...rest} />
+      {...rest}
+    />
   );
 };
 
-const StackItem = (props: FlexProps) => {
-  const { className, ...rest } = props;
-  return (
-    <Flex.Item
-      className={classes([
-        'Stack__item',
-        className,
-      ])}
-      {...rest} />
-  );
+type StackItemProps = FlexProps & {
+  innerRef?: RefObject<HTMLDivElement>;
+};
+
+const StackItem = (props: StackItemProps) => {
+  const { className, innerRef, ...rest } = props;
+  return <Flex.Item className={classes(['Stack__item', className])} ref={innerRef} {...rest} />;
 };
 
 Stack.Item = StackItem;
@@ -51,13 +48,9 @@ const StackDivider = (props: StackDividerProps) => {
   const { className, hidden, ...rest } = props;
   return (
     <Flex.Item
-      className={classes([
-        'Stack__item',
-        'Stack__divider',
-        hidden && 'Stack__divider--hidden',
-        className,
-      ])}
-      {...rest} />
+      className={classes(['Stack__item', 'Stack__divider', hidden && 'Stack__divider--hidden', className])}
+      {...rest}
+    />
   );
 };
 

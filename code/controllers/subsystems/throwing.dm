@@ -145,6 +145,9 @@ SUBSYSTEM_DEF(throwing)
 
 		AM.Move(step, get_dir(AM, step))
 
+		if (!AM)		// Us moving somehow destroyed us?
+			return
+
 		if (!AM.throwing) // we hit something during our move
 			finalize(hit = TRUE)
 			return

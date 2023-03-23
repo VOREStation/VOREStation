@@ -30,7 +30,7 @@
 	spawn_positions = 2
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer,
-						"Gardener" = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit)
+						"Gardener" = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit, "Rancher" = /datum/alt_title/rancher)
 
 /datum/alt_title/hydroponicist
 	title = "Hydroponicist"
@@ -45,6 +45,10 @@
 	title = "Florist"
 	title_blurb = "A Florist may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
 
+/datum/alt_title/rancher
+	title = "Rancher"
+	title_blurb = "A Rancher is tasked with the care, feeding, raising, and harvesting of livestock."
+
 
 /datum/job/qm
 	pto_type = PTO_CARGO
@@ -56,6 +60,9 @@
 
 /datum/alt_title/cargo_supervisor
 	title = "Cargo Supervisor"
+
+/datum/job/qm/get_request_reasons()
+	return list("Training crew")
 
 
 /datum/job/cargo_tech
@@ -206,15 +213,15 @@
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Head of Personnel"
 	selection_color = "#515151"
 	economic_modifier = 5
 	minimal_player_age = 3
 	pto_type = PTO_CIVILIAN
-	access = list(access_pilot)
-	minimal_access = list(access_pilot)
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
+	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
 	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)

@@ -39,11 +39,19 @@
  * but in the future we may also incorporate the "mob_size", so that
  * a macro mouse is still only effectively "normal" or a micro dragon is still large etc.
  */
-/mob/proc/get_effective_size()
+/mob/proc/get_effective_size(var/micro = FALSE)
 	return 100000 //Whatever it is, it's too big to pick up, or it's a ghost, or something.
 
-/mob/living/get_effective_size()
+/mob/living/get_effective_size(var/micro = FALSE)
 	return size_multiplier
+
+/mob/living/carbon/human/get_effective_size(var/micro = FALSE)		// Set micro to TRUE for interactions where you're small, to FALSE for ones where you're large.
+	var/effective_size = size_multiplier
+	if(micro)
+		effective_size += species.micro_size_mod
+	else
+		effective_size += species.macro_size_mod
+	return effective_size
 
 /atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
 	var/area/A = get_area(src) //Get the atom's area to check for size limit.
@@ -65,7 +73,7 @@
  */
 
 
-/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
+/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
 		new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
 		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
@@ -99,21 +107,20 @@
 		resize.Translate(0, (vis_height/2) * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
 		animate(src, transform = resize, time = duration) //Animate the player resizing
 
-		var/aura_grow_to = change > 0 ? 2 : 0.5
-		var/aura_anim_duration = 5
-		var/aura_offset = change > 0 ? 0 : 10
-		var/aura_color = size_multiplier > new_size ? "#FF2222" : "#2222FF"
-		var/aura_loops = round((duration)/aura_anim_duration)
+		if(aura_animation)
+			var/aura_grow_to = change > 0 ? 2 : 0.5
+			var/aura_anim_duration = 5
+			var/aura_offset = change > 0 ? 0 : 10
+			var/aura_color = size_multiplier > new_size ? "#FF2222" : "#2222FF"
+			var/aura_loops = round((duration)/aura_anim_duration)
 
-		animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
+			animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
 	else
 		update_transform() //Lame way
 
-/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
+/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!resizable && !ignore_prefs)
 		return 1
-	if(species)
-		vis_height = species.icon_height
 	. = ..()
 	if(LAZYLEN(hud_list) && has_huds)
 		var/new_y_offset = vis_height * (size_multiplier - 1)
@@ -123,14 +130,13 @@
 			apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
+/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	size_multiplier = new_size
 
 /**
  * Verb proc for a command that lets players change their size OOCly.
  * Ace was here! Redid this a little so we'd use math for shrinking characters. This is the old code.
  */
-
 
 /mob/living/proc/set_size()
 	set name = "Adjust Mass"
@@ -141,12 +147,13 @@
 		return
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
-	var/new_size = input(nagmessage, "Pick a Size") as num|null
+	var/default = size_multiplier * 100
+	var/new_size = tgui_input_number(usr, nagmessage, "Pick a Size", default, 600, 1)
 	if(size_range_check(new_size))
 		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything
 		// but just in case it does, I'm leaving the null-src checking
-		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
+		log_admin("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
 
 /*
 //Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
@@ -160,11 +167,11 @@
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G) //second one is for the Grabber, only exists for animals to self-grab
-	if(!(pickup_pref && M.pickup_pref && pickup_active))
+	if(!(pickup_pref && M.pickup_pref && M.pickup_active))
 		return 0
 	if(!(M.a_intent == I_HELP))
 		return 0
-	var/size_diff = M.get_effective_size() - get_effective_size()
+	var/size_diff = M.get_effective_size(FALSE) - get_effective_size(TRUE)
 	if(!holder_default && holder_type)
 		holder_default = holder_type
 	if(!istype(M))
@@ -198,16 +205,16 @@
 		return TRUE
 
 	//Both small! Go ahead and go.
-	if(get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
+	if(get_effective_size(TRUE) <= RESIZE_A_SMALLTINY && tmob.get_effective_size(TRUE) <= RESIZE_A_SMALLTINY)		// For help intent interaction just assume both are 'smol'
 		return TRUE
 
 	//Worthy of doing messages at all
-	if(abs(get_effective_size() - tmob.get_effective_size()) >= 0.50)
+	if(abs(get_effective_size(TRUE) - tmob.get_effective_size(TRUE)) >= 0.50)
 		var/src_message = null
 		var/tmob_message = null
 
 		//Smaller person being stepped onto
-		if(get_effective_size() > tmob.get_effective_size() && ishuman(src))
+		if(get_effective_size(TRUE) > tmob.get_effective_size(TRUE) && ishuman(src))
 			src_message = "You carefully step over [tmob]."
 			tmob_message = "[src] steps over you carefully!"
 			var/mob/living/carbon/human/H = src
@@ -219,7 +226,7 @@
 				tmob_message = tail.msg_prey_help_run
 
 		//Smaller person stepping under larger person
-		else if(get_effective_size() < tmob.get_effective_size() && ishuman(tmob))
+		else if(get_effective_size(TRUE) < tmob.get_effective_size(TRUE) && ishuman(tmob))
 			src_message = "You run between [tmob]'s legs."
 			tmob_message = "[src] runs between your legs."
 			var/mob/living/carbon/human/H = tmob
@@ -229,9 +236,9 @@
 				tmob_message = tail.msg_owner_stepunder
 
 		if(src_message)
-			to_chat(src, STEP_TEXT_OWNER(src_message))
+			to_chat(src, "<span class='filter_notice'>[STEP_TEXT_OWNER(src_message)]</span>")
 		if(tmob_message)
-			to_chat(tmob, STEP_TEXT_PREY(tmob_message))
+			to_chat(tmob, "<span class='filter_notice'>[STEP_TEXT_PREY(tmob_message)]</span>")
 		return TRUE
 	return FALSE
 
@@ -264,13 +271,26 @@
 		return FALSE
 
 	var/mob/living/carbon/human/prey = tmob
-	if(!istype(prey))
+	var/can_pass = TRUE
+	var/size_ratio_needed = (a_intent == I_DISARM || a_intent == I_HURT) ? 0.75 : (a_intent == I_GRAB ? 0.5 : 0)
+	if (isturf(prey.loc))
+		for (var/atom/movable/M in prey.loc)
+			if (prey == M || pred == M)
+				continue
+			if (istype(M, /mob/living))
+				var/mob/living/L = M
+				if (!M.CanPass(src, prey.loc) && !(get_effective_size(FALSE) - L.get_effective_size(TRUE) >= size_ratio_needed || L.lying))
+					can_pass = FALSE
+				continue
+			if (!M.CanPass(src, prey.loc))
+				can_pass = FALSE
+	if(!istype(prey) || !can_pass)
 		//If they're not human, steppy shouldn't happen
 		return FALSE
 
 	// We need to be above a certain size ratio in order to do anything to the prey.
 	// For DISARM and HURT intent, this is >=0.75, for GRAB it is >=0.5
-	var/size_ratio = get_effective_size() - tmob.get_effective_size()
+	var/size_ratio = get_effective_size(FALSE) - tmob.get_effective_size(TRUE)
 	if(a_intent == I_GRAB && size_ratio < 0.5)
 		return FALSE
 	if((a_intent == I_DISARM || a_intent == I_HURT) && size_ratio < 0.75)
@@ -378,7 +398,7 @@
 	set category = "IC"
 
 	pickup_active = !pickup_active
-	to_chat(src, "You will [pickup_active ? "now" : "no longer"] attempt to pick up mobs when clicking them with help intent.")
+	to_chat(src, "<span class='filter_notice'>You will [pickup_active ? "now" : "no longer"] attempt to pick up mobs when clicking them with help intent.</span>")
 
 #undef STEP_TEXT_OWNER
 #undef STEP_TEXT_PREY

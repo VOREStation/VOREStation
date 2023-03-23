@@ -41,6 +41,9 @@
 	name = "detective wardrobe"
 	closet_appearance = /decl/closet_appearance/cabinet
 
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
 	starts_with = list(
 		/obj/item/clothing/head/det = 2,
 		/obj/item/clothing/head/det/grey = 2,
@@ -234,6 +237,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/roboticist = 2,
 		/obj/item/clothing/suit/storage/toggle/labcoat = 2,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics,
 		/obj/item/clothing/shoes/black = 2,
 		/obj/item/clothing/gloves/black = 2,
 		/obj/item/weapon/storage/backpack/toxins,
@@ -257,6 +261,7 @@
 		/obj/item/clothing/under/rank/chemist/skirt = 2,
 		/obj/item/clothing/shoes/white = 2,
 		/obj/item/clothing/suit/storage/toggle/labcoat/chemist = 2,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist,
 		/obj/item/weapon/storage/backpack/chemistry = 2,
 		/obj/item/weapon/storage/backpack/satchel/chem = 2,
 		/obj/item/weapon/storage/bag/chemistry = 2,)
@@ -284,6 +289,7 @@
 		/obj/item/clothing/under/rank/virologist/skirt = 2,
 		/obj/item/clothing/shoes/white = 2,
 		/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 2,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro,
 		/obj/item/clothing/mask/surgical = 2,
 		/obj/item/weapon/storage/backpack/virology = 2,
 		/obj/item/weapon/storage/backpack/satchel/vir = 2)
@@ -445,6 +451,9 @@
 /obj/structure/closet/wardrobe/captain
 	name = "site manager's wardrobe"
 	closet_appearance = /decl/closet_appearance/cabinet
+
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/captain,

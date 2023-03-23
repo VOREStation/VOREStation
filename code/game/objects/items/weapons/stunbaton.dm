@@ -100,7 +100,7 @@
 /obj/item/weapon/melee/baton/examine(mob/user)
 	. = ..()
 
-	if(Adjacent(user, src))
+	if(Adjacent(user))
 		if(bcell)
 			. += "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
 		if(!bcell)

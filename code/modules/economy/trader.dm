@@ -15,7 +15,7 @@
 	var/list/products = list()			//Anything in this list will be listed for sale
 	var/list/prices = list()			//Enter a type path with an associated number, and if the trader tries to sell something of that type, it will expect the number as the cost for that product
 	var/list/multiple = list()			//Enter a type path with an associated number, and the trader will have however many of that type to sell as the number you entered
-	var/trading = FALSE					//'Busy' - Only one person can trade at a time.	
+	var/trading = FALSE					//'Busy' - Only one person can trade at a time.
 	var/welcome_msg = "This machine accepts"	//The first part of the welcome message
 	var/welcome_accepts_name = "curious coins"	//The name of the kind of thing the trader expects, automatically set except on "item" mode, where if you enter a value it will not change it.
 	var/welcome_msg_finish = ". Would you like to browse the wares?"	//The final part of the welcome message.
@@ -258,7 +258,7 @@
 		dir = dt.dir
 		log_admin("[src] has been placed at [loc], [x],[y],[z]")
 	else
-		log_and_message_admins("[src] tried to move itself but its target pick list was empty, so it was not moved. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+		log_and_message_admins("[src] tried to move itself but its target pick list was empty, so it was not moved. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
 /obj/move_trader_landmark //You need to place the trader somewhere in the world and enable the 'move_trader' var. When the trader initializes, it will make a list of these landmarks and then move itself.
 	name = "trader mover"
@@ -324,7 +324,8 @@
 		/obj/item/capture_crystal/random = 50,
 		/obj/item/device/perfect_tele = 10,
 		/obj/item/device/chameleon = 25,
-		/obj/item/weapon/gun/energy/sizegun/old = 25,
+		/obj/item/weapon/gun/energy/sizegun = 25,
+		/obj/item/device/slow_sizegun = 25,
 		/obj/item/weapon/implant/sizecontrol = 25,
 		/obj/item/clothing/under/hyperfiber/bluespace = 25,
 		/obj/item/device/nif/authentic = 1,
@@ -349,7 +350,8 @@
 		/obj/item/capture_crystal/random = 15,
 		/obj/item/device/perfect_tele = 20,
 		/obj/item/device/chameleon = 20,
-		/obj/item/weapon/gun/energy/sizegun/old = 10,
+		/obj/item/weapon/gun/energy/sizegun = 10,
+		/obj/item/device/slow_sizegun = 10,
 		/obj/item/weapon/implant/sizecontrol = 10,
 		/obj/item/clothing/under/hyperfiber/bluespace = 10,
 		/obj/item/device/nif/authentic = 100,
@@ -372,7 +374,8 @@
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,
 		/obj/item/capture_crystal/random = 2,
-		/obj/item/weapon/gun/energy/sizegun/old = 2,
+		/obj/item/weapon/gun/energy/sizegun = 2,
+		/obj/item/device/slow_sizegun = 2,
 		/obj/item/weapon/implant/sizecontrol = 2,
 		/obj/item/clothing/under/hyperfiber/bluespace = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 10

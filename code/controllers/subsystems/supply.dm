@@ -363,15 +363,15 @@ SUBSYSTEM_DEF(supply)
 
 // Will add an item entry to the specified export receipt on the user-side list
 /datum/controller/subsystem/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
-	var/new_name = input(user, "Name", "Please enter the name of the item.") as null|text
+	var/new_name = tgui_input_text(user, "Name", "Please enter the name of the item.")
 	if(!new_name)
 		return
 
-	var/new_quantity = input(user, "Name", "Please enter the quantity of the item.") as null|num
+	var/new_quantity = tgui_input_number(user, "Name", "Please enter the quantity of the item.")
 	if(!new_quantity)
 		return
 
-	var/new_value = input(user, "Name", "Please enter the value of the item.") as null|num
+	var/new_value = tgui_input_number(user, "Name", "Please enter the value of the item.")
 	if(!new_value)
 		return
 

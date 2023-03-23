@@ -69,11 +69,15 @@
 	..()
 
 /obj/machinery/computer/message_monitor/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/computer/message_monitor/LateInitialize()
+	. = ..()
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
 		if(message_servers && message_servers.len > 0)
 			linkedServer = message_servers[1]
-	return ..()
 
 /obj/machinery/computer/message_monitor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -239,10 +243,10 @@
 			. = TRUE
 		//Change the password - KEY REQUIRED
 		if("pass")
-			var/dkey = trim(input(usr, "Please enter the current decryption key.") as text|null)
+			var/dkey = trim(tgui_input_text(usr, "Please enter the current decryption key."))
 			if(dkey && dkey != "")
 				if(linkedServer.decryptkey == dkey)
-					var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
+					var/newkey = trim(tgui_input_text(usr,"Please enter the new key (3 - 16 characters max):",null,null,16))
 					if(length(newkey) <= 3)
 						set_temp("NOTICE: Decryption key too short!", "average")
 					else if(length(newkey) > 16)
@@ -321,7 +325,7 @@
 			. = TRUE
 
 		if("addtoken")
-			linkedServer.spamfilter += input(usr,"Enter text you want to be filtered out","Token creation") as text|null
+			linkedServer.spamfilter += tgui_input_text(usr,"Enter text you want to be filtered out","Token creation")
 			. = TRUE
 
 		if("deltoken")

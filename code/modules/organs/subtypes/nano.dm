@@ -90,8 +90,7 @@
 	parent_organ = BP_TORSO
 	vital = TRUE
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/self_diagnostics,
-		/mob/living/carbon/human/proc/reagent_purge
+		/mob/living/carbon/human/proc/self_diagnostics
 	)
 
 /obj/item/organ/internal/nano/refactory
@@ -104,6 +103,9 @@
 
 	var/list/materials = list(MAT_STEEL = 0)
 	var/max_storage = 10000
+	organ_verbs = list(
+		/mob/living/carbon/human/proc/reagent_purge
+	)
 
 /obj/item/organ/internal/nano/refactory/proc/get_stored_material(var/material)
 	if(status & ORGAN_DEAD)

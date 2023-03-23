@@ -30,7 +30,7 @@
 
 
 	backbag = rand(1,6)
-	pdachoice = rand(1,5)
+	pdachoice = rand(1,7)
 	age = rand(current_species.min_age, current_species.max_age)
 	b_type = RANDOM_BLOOD_TYPE
 	if(H)
@@ -205,6 +205,8 @@
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
 		previewJob = job_master.GetJob(USELESS_JOB)
+	else if(ispAI(client.mob))	//VOREStation Edit! - pAIs shouldn't wear job gear~!
+		//Don't do anything!
 	else
 		for(var/datum/job/job in job_master.occupations)
 			var/job_flag
@@ -257,9 +259,10 @@
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
 	mannequin.update_transform() //VOREStation Edit to update size/shape stuff.
-	mannequin.toggle_tail(setting = TRUE)
-	mannequin.toggle_wing(setting = TRUE)
-	COMPILE_OVERLAYS(mannequin)
+	mannequin.toggle_tail(setting = animations_toggle)
+	mannequin.toggle_wing(setting = animations_toggle)
+	mannequin.update_tail_showing()
+	mannequin.ImmediateOverlayUpdate()
 
 	update_character_previews(new /mutable_appearance(mannequin))
 

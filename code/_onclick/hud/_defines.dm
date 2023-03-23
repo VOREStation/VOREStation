@@ -47,6 +47,7 @@
 #define ui_construct_purge "EAST:00,CENTER-1:15"
 #define ui_construct_fire "EAST-1:16,CENTER+1:13" //above health, slightly to the left
 #define ui_construct_pull "EAST-1:28,SOUTH+1:10" //above the zone_sel icon
+#define ui_pai_comms "EAST-1:28,SOUTH+1:5"
 
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,SOUTH:5"
@@ -102,6 +103,12 @@
 #define ui_alien_toxin "EAST-1:28,NORTH-2:25"
 #define ui_alien_fire "EAST-1:28,NORTH-3:25"
 #define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
+
+// Goes above HUD, mid-right
+#define ui_ammo_hud1 "EAST-1:28,CENTER+1:25"
+#define ui_ammo_hud2 "EAST-1:28,CENTER+2:27"
+#define ui_ammo_hud3 "EAST-1:28,CENTER+3:29"
+#define ui_ammo_hud4 "EAST-1:28,CENTER+4:31"
 
 //Middle right (status indicators)
 #define ui_temp "EAST-1:28,CENTER-2:13"

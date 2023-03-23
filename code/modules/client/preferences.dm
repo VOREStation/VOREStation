@@ -22,12 +22,15 @@ var/list/preferences_datums = list()
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 	var/tooltipstyle = "Midnight"		//Style for popup tooltips
-	var/client_fps = 0
+	var/client_fps = 40
 	var/ambience_freq = 5				// How often we're playing repeating ambience to a client.
 	var/ambience_chance = 35			// What's the % chance we'll play ambience (in conjunction with the above frequency)
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
+	var/tgui_input_mode = FALSE			// All the Input Boxes (Text,Number,List,Alert)
+	var/tgui_large_buttons = TRUE
+	var/tgui_swapped_buttons = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
@@ -60,7 +63,8 @@ var/list/preferences_datums = list()
 	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
-	var/list/language_prefixes = list() //Kanguage prefix keys
+	var/list/language_prefixes = list() //Language prefix keys
+	var/list/language_custom_keys = list() //Language custom call keys
 	var/list/gear						//Left in for Legacy reasons, will no longer save.
 	var/list/gear_list = list()			//Custom/fluff item loadouts.
 	var/gear_slot = 1					//The current gear save slot
@@ -72,8 +76,9 @@ var/list/preferences_datums = list()
 	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
 
 		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
+	var/home_system = "Unset"           //Current home or residence.
+	var/birthplace = "Unset"           //Location of birth.
+	var/citizenship = "None"            //Government or similar entity with which you hold citizenship.
 	var/faction = "None"                //General associated faction.
 	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.
@@ -406,6 +411,7 @@ var/list/preferences_datums = list()
 	var/name
 	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
+	var/default //VOREStation edit
 	for(var/i=1, i<= config.character_slots, i++)
 		S.cd = "/character[i]"
 		S["real_name"] >> name
@@ -416,19 +422,21 @@ var/list/preferences_datums = list()
 			name = "►[i] - [name]"
 		else
 			name = "[i] - [name]"
+		if (i == default_slot) //VOREStation edit
+			default = "[name][nickname ? " ([nickname])" : ""]"
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	selecting_slots = TRUE
-	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist)
+	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist, default)
 	selecting_slots = FALSE
 	if(!choice)
 		return
-	
+
 	var/slotnum = charlist[choice]
 	if(!slotnum)
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
-	
+
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()
@@ -463,12 +471,12 @@ var/list/preferences_datums = list()
 	selecting_slots = FALSE
 	if(!choice)
 		return
-	
+
 	var/slotnum = charlist[choice]
 	if(!slotnum)
 		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
-	
+
 	overwrite_character(slotnum)
 	sanitize_preferences()
 	ShowChoices(user)

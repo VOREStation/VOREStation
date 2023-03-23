@@ -245,6 +245,7 @@
 	desc = "Hot Stuff."
 	icon_state = "sus"
 	spawn_nothing_percentage = 50
+
 /obj/random/contraband/item_to_spawn()
 	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol, //VOREStation Edit,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
@@ -307,23 +308,71 @@
 				prob(5);/obj/item/weapon/spacecash/c1000)
 
 /obj/random/soap
-	name = "Random Soap"
-	desc = "This is a random bar of soap."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "soap"
+	name = "Random Soap (All)"
+	desc = "This is a random bar of soap. Includes special types."
+	icon = 'icons/obj/soap.dmi'
+	icon_state = "rainbow_soap"
 
 /obj/random/soap/item_to_spawn()
-	return pick(prob(3);/obj/item/weapon/soap,
-				prob(2);/obj/item/weapon/soap/nanotrasen,
-				prob(2);/obj/item/weapon/soap/deluxe,
-				prob(1);/obj/item/weapon/soap/syndie)
+	return pick(/obj/item/weapon/soap,
+				/obj/item/weapon/soap/nanotrasen,
+				/obj/item/weapon/soap/deluxe,
+				/obj/item/weapon/soap/syndie,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/water_soap,
+				/obj/item/weapon/soap/fire_soap,
+				/obj/item/weapon/soap/rainbow_soap,
+				/obj/item/weapon/soap/diamond_soap,
+				/obj/item/weapon/soap/uranium_soap,
+				/obj/item/weapon/soap/silver_soap,
+				/obj/item/weapon/soap/brown_soap,
+				/obj/item/weapon/soap/white_soap,
+				/obj/item/weapon/soap/grey_soap,
+				/obj/item/weapon/soap/pink_soap,
+				/obj/item/weapon/soap/purple_soap,
+				/obj/item/weapon/soap/blue_soap,
+				/obj/item/weapon/soap/cyan_soap,
+				/obj/item/weapon/soap/green_soap,
+				/obj/item/weapon/soap/yellow_soap,
+				/obj/item/weapon/soap/orange_soap,
+				/obj/item/weapon/soap/red_soap,
+				/obj/item/weapon/soap/golden_soap)
 
+/obj/random/soap_common
+	name = "Random Soap (Common)"
+	desc = "This is a random bar of soap. Only has the basic types; no NT, deluxe, or syndisoap."
+	icon = 'icons/obj/soap.dmi'
+	icon_state = "rainbow_soap"
+
+/obj/random/soap_common/item_to_spawn()
+	return pick(/obj/item/weapon/soap,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/water_soap,
+				/obj/item/weapon/soap/fire_soap,
+				/obj/item/weapon/soap/rainbow_soap,
+				/obj/item/weapon/soap/diamond_soap,
+				/obj/item/weapon/soap/uranium_soap,
+				/obj/item/weapon/soap/silver_soap,
+				/obj/item/weapon/soap/brown_soap,
+				/obj/item/weapon/soap/white_soap,
+				/obj/item/weapon/soap/grey_soap,
+				/obj/item/weapon/soap/pink_soap,
+				/obj/item/weapon/soap/purple_soap,
+				/obj/item/weapon/soap/blue_soap,
+				/obj/item/weapon/soap/cyan_soap,
+				/obj/item/weapon/soap/green_soap,
+				/obj/item/weapon/soap/yellow_soap,
+				/obj/item/weapon/soap/orange_soap,
+				/obj/item/weapon/soap/red_soap,
+				/obj/item/weapon/soap/golden_soap)
 
 /obj/random/drinkbottle
 	name = "random drink"
 	desc = "This is a random drink."
 	icon = 'icons/obj/drinks.dmi'
-	icon_state = "whiskeybottle"
+	icon_state = "whiskeybottle1"
 
 /obj/random/drinkbottle/item_to_spawn()
 	return pick(/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
@@ -699,8 +748,13 @@
 				/obj/item/toy/plushie/nukeplushie,
 				/obj/item/toy/plushie/otter,
 				/obj/item/toy/plushie/vox,
-				/obj/item/toy/plushie/borgplushie/drakiesec,
-				/obj/item/toy/plushie/borgplushie/drakiemed)
+				pick(list(/obj/item/toy/plushie/borgplushie/drake/sec,
+							/obj/item/toy/plushie/borgplushie/drake/med,
+							/obj/item/toy/plushie/borgplushie/drake/sci,
+							/obj/item/toy/plushie/borgplushie/drake/jani,
+							/obj/item/toy/plushie/borgplushie/drake/eng,
+							/obj/item/toy/plushie/borgplushie/drake/mine,
+							/obj/item/toy/plushie/borgplushie/drake/trauma)))
 				//VOREStation Add End
 
 /obj/random/plushielarge
@@ -760,7 +814,7 @@
 /obj/random/mouseremains/item_to_spawn()
 	return pick(/obj/item/device/assembly/mousetrap,
 				/obj/item/device/assembly/mousetrap/armed,
-				/obj/effect/decal/cleanable/spiderling_remains,
+				/obj/effect/decal/cleanable/bug_remains,
 				/obj/effect/decal/cleanable/ash,
 				/obj/item/trash/cigbutt,
 				/obj/item/trash/cigbutt/cigarbutt,
@@ -848,7 +902,7 @@
 				/obj/item/weapon/reagent_containers/food/snacks/donut/plain,
 				/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly,
 				/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
-				/obj/item/weapon/reagent_containers/food/snacks/cookiesnack)
+				/obj/item/weapon/reagent_containers/food/snacks/cookie)
 
 /obj/random/mre/dessert/vegan
 	name = "random vegan MRE dessert"
@@ -985,3 +1039,55 @@
 		prob(6);/obj/item/device/flashlight/color/yellow,
 		prob(2);/obj/item/device/flashlight/maglight
 	)
+
+/obj/random/mug
+	name = "Random Mug"
+	desc = "This is a random coffee mug."
+	icon = 'icons/obj/drinks_mugs.dmi'
+	icon_state = "coffeecup_spawner"
+
+/obj/random/mug/item_to_spawn()
+	return pick(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/sol,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/fleet,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/fivearrows,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/psc,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/alma,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/almp,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/nt,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/metal/wulf,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/gilthari,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/zeng,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/wt,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/aether,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/bishop,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/oculum,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/one,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/puni,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/heart,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/pawn,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/diona,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/britcup,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/flame,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/blue,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/black,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/green,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/green/dark,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/rainbow,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/metal,
+			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/talon)
+
+/obj/random/donkpocketbox
+	name = "Random Donk-pocket Box"
+	desc = "This is a random Donk-pocket Box."
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "donkpocket_spawner"
+
+/obj/random/donkpocketbox/item_to_spawn()
+	return pick(/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets/spicy,
+				/obj/item/weapon/storage/box/donkpockets/teriyaki,
+				/obj/item/weapon/storage/box/donkpockets/pizza,
+				/obj/item/weapon/storage/box/donkpockets/honk,
+				/obj/item/weapon/storage/box/donkpockets/gondola,
+				/obj/item/weapon/storage/box/donkpockets/berry)

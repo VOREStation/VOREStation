@@ -68,7 +68,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(input(usr, "What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the circuit?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(src && input && assembly.check_interactivity(M))
 		to_chat(M, "<span class='notice'>The circuit '[src.name]' is now labeled '[input]'.</span>")
 		displayed_name = input

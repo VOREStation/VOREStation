@@ -45,11 +45,26 @@
 						var/turf/T = get_turf(H)
 						if(T.get_lumcount() <= 0.1)
 							to_chat(usr, "<span class='notice'>You are slowly calming down in darkness' safety...</span>")
+						else if(isbelly(H.loc)) // Safety message for if inside a belly.
+							to_chat(usr, "<span class='notice'>You are slowly calming down within the darkness of something's belly, listening to their body as it moves around you. ...safe...</span>")
 						else
 							to_chat(usr, "<span class='notice'>You are slowly calming down... But safety of darkness is much preferred.</span>")
 				else
 					if(H.nutrition < 150)
 						to_chat(usr, "<span class='warning'>Your hunger is slowly making you unstable.</span>")
+		if("Reconstructing Form") // Allow Viewing Reconstruction Timer + Hatching for 'chimera
+			var/mob/living/carbon/human/H = usr
+			if(istype(H) && istype(H.species, /datum/species/xenochimera)) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
+				if(H.revive_ready == REVIVING_NOW)
+					to_chat(usr, "<span class='notice'>We are currently reviving, and will be done in [round((H.revive_finished - world.time) / 10)] seconds, or [round(((H.revive_finished - world.time) * 0.1) / 60)] minutes.</span>")
+				else if(H.revive_ready == REVIVING_DONE)
+					to_chat(usr, "<span class='warning'>You should have a notification + alert for this! Bug report that this is still here!</span>")
+					
+		if("Ready to Hatch") // Allow Viewing Reconstruction Timer + Hatching for 'chimera
+			var/mob/living/carbon/human/H = usr
+			if(istype(H) && istype(H.species, /datum/species/xenochimera)) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
+				if(H.revive_ready == REVIVING_DONE) // Sanity check.
+					H.hatch() // Hatch.
 
 		else
 			return 0

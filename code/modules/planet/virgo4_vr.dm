@@ -98,18 +98,22 @@ var/datum/planet/virgo4/planet_virgo4 = null
 /datum/weather_holder/virgo4
 	temperature = T0C
 	allowed_weather_types = list(
-		WEATHER_CLEAR		= new /datum/weather/virgo4/clear(),
-		WEATHER_OVERCAST	= new /datum/weather/virgo4/overcast(),
-		WEATHER_LIGHT_SNOW	= new /datum/weather/virgo4/light_snow(),
-		WEATHER_SNOW		= new /datum/weather/virgo4/snow(),
-		WEATHER_BLIZZARD	= new /datum/weather/virgo4/blizzard(),
-		WEATHER_RAIN		= new /datum/weather/virgo4/rain(),
-		WEATHER_STORM		= new /datum/weather/virgo4/storm(),
-		WEATHER_HAIL		= new /datum/weather/virgo4/hail(),
-		WEATHER_BLOOD_MOON	= new /datum/weather/virgo4/blood_moon(),
-		WEATHER_EMBERFALL	= new /datum/weather/virgo4/emberfall(),
-		WEATHER_ASH_STORM	= new /datum/weather/virgo4/ash_storm(),
-		WEATHER_FALLOUT		= new /datum/weather/virgo4/fallout()
+		WEATHER_CLEAR			= new /datum/weather/virgo4/clear(),
+		WEATHER_OVERCAST		= new /datum/weather/virgo4/overcast(),
+		WEATHER_LIGHT_SNOW		= new /datum/weather/virgo4/light_snow(),
+		WEATHER_SNOW			= new /datum/weather/virgo4/snow(),
+		WEATHER_BLIZZARD		= new /datum/weather/virgo4/blizzard(),
+		WEATHER_RAIN			= new /datum/weather/virgo4/rain(),
+		WEATHER_STORM			= new /datum/weather/virgo4/storm(),
+		WEATHER_HAIL			= new /datum/weather/virgo4/hail(),
+		WEATHER_FOG				= new /datum/weather/virgo4/fog(),
+		WEATHER_BLOOD_MOON		= new /datum/weather/virgo4/blood_moon(),
+		WEATHER_EMBERFALL		= new /datum/weather/virgo4/emberfall(),
+		WEATHER_ASH_STORM		= new /datum/weather/virgo4/ash_storm(),
+		WEATHER_ASH_STORM_SAFE	= new /datum/weather/virgo4/ash_storm_safe(),
+		WEATHER_FALLOUT			= new /datum/weather/virgo4/fallout(),
+		WEATHER_FALLOUT_TEMP	= new /datum/weather/virgo4/fallout/temp(),
+		WEATHER_CONFETTI		= new /datum/weather/virgo4/confetti()
 		)
 	roundstart_weather_chances = list(
 		WEATHER_CLEAR		= 50,
@@ -134,6 +138,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		)
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
+	imminent_transition_message = "The sky is rapidly clearing up."
 
 /datum/weather/virgo4/overcast
 	name = "overcast"
@@ -151,6 +156,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		"Clouds cut off your view of the sky.",
 		"It's very cloudy."
 		)
+	imminent_transition_message = "Benign clouds are quickly gathering."
 
 /datum/weather/virgo4/light_snow
 	name = "light snow"
@@ -159,13 +165,15 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	temp_low = 	263.15 // -10c
 	light_modifier = 0.7
 	transition_chances = list(
-		WEATHER_LIGHT_SNOW = 100
+		WEATHER_LIGHT_SNOW = 15,
+		WEATHER_OVERCAST = 80
 		)
 	observed_message = "It is snowing lightly."
 	transition_messages = list(
 		"Small snowflakes begin to fall from above.",
 		"It begins to snow lightly.",
 		)
+	imminent_transition_message = "It appears a light snow is about to start."
 
 /datum/weather/virgo4/snow
 	name = "moderate snow"
@@ -177,13 +185,15 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	light_modifier = 0.5
 	flight_failure_modifier = 5
 	transition_chances = list(
-		WEATHER_LIGHT_SNOW = 100
+		WEATHER_SNOW = 10,
+		WEATHER_LIGHT_SNOW = 80
 		)
 	observed_message = "It is snowing."
 	transition_messages = list(
 		"It's starting to snow.",
 		"The air feels much colder as snowflakes fall from above."
 	)
+	imminent_transition_message = "A snowfall is starting."
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
@@ -209,13 +219,15 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	light_modifier = 0.3
 	flight_failure_modifier = 10
 	transition_chances = list(
-		WEATHER_BLIZZARD = 100
+		WEATHER_BLIZZARD = 5,
+		WEATHER_SNOW = 80
 		)
 	observed_message = "A blizzard blows snow everywhere."
 	transition_messages = list(
 		"Strong winds howl around you as a blizzard appears.",
 		"It starts snowing heavily, and it feels extremly cold now."
 	)
+	imminent_transition_message = "Wind is howling. Blizzard is coming."
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
@@ -249,6 +261,9 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	transition_messages = list(
 		"The sky is dark, and rain falls down upon you."
 	)
+	imminent_transition_message = "Light drips of water are starting to fall from the sky."
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 /datum/weather/virgo4/rain/process_effects()
 	..()
@@ -290,10 +305,14 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		"Loud thunder is heard in the distance.",
 		"A bright flash heralds the approach of a storm."
 	)
+	imminent_transition_message = "You can hear distant thunder. Storm is coming."
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 
 	transition_chances = list(
-		WEATHER_STORM = 100
+		WEATHER_STORM = 10,
+		WEATHER_RAIN = 80
 		)
 
 /datum/weather/virgo4/storm/process_effects()
@@ -340,7 +359,9 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_message = "<span class='warning'>The hail smacks into you!</span>"
 
 	transition_chances = list(
-		WEATHER_HAIL = 100
+		WEATHER_HAIL = 10,
+		WEATHER_SNOW = 40,
+		WEATHER_RAIN = 40
 		)
 	observed_message = "Ice is falling from the sky."
 	transition_messages = list(
@@ -348,6 +369,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		"It begins to hail.",
 		"An intense chill is felt, and chunks of ice start to fall from the sky, towards you."
 	)
+	imminent_transition_message = "Small bits of ice are falling from the sky, growing larger by the second. Hail is starting, get to cover!"
 
 /datum/weather/virgo4/hail/process_effects()
 	..()
@@ -384,6 +406,30 @@ var/datum/planet/virgo4/planet_virgo4 = null
 			if(show_message)
 				to_chat(H, effect_message)
 
+/datum/weather/virgo4/fog
+	name = "fog"
+	icon_state = "fog"
+	wind_high = 1
+	wind_low = 0
+	light_modifier = 0.7
+
+	temp_high = 283.15 // 10c
+	temp_low = 	273.15 // 0c
+
+	transition_chances = list(
+		WEATHER_FOG = 10,
+		WEATHER_OVERCAST = 15
+		)
+	observed_message = "A fogbank has rolled over the region."
+	transition_messages = list(
+		"Fog rolls in.",
+		"Visibility falls as the air becomes dense.",
+		"The clouds drift lower, as if to smother the forests."
+	)
+	imminent_transition_message = "Clouds are drifting down as the area is getting foggy."
+	outdoor_sounds_type = /datum/looping_sound/weather/wind
+	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
+
 /datum/weather/virgo4/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
@@ -392,12 +438,13 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	temp_low = 283.15	// 10c
 	flight_failure_modifier = 25
 	transition_chances = list(
-		WEATHER_BLOODMOON = 100
+		WEATHER_BLOOD_MOON = 100
 		)
 	observed_message = "Everything is red. Something really ominous is going on."
 	transition_messages = list(
 		"The sky turns blood red!"
 	)
+	imminent_transition_message = "The sky is turning red. Blood Moon is starting."
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -417,6 +464,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	transition_messages = list(
 		"Gentle embers waft down around you like grotesque snow."
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers start to rain down."
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -438,6 +486,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	transition_messages = list(
 		"Smoldering clouds of scorching ash billow down around you!"
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers fill the air and wind is picking up too. Ashstorm is coming, get to cover!"
 	// Lets recycle.
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
@@ -451,6 +500,29 @@ var/datum/planet/virgo4/planet_virgo4 = null
 				continue // They're indoors, so no need to burn them with ash.
 
 			L.inflict_heat_damage(rand(1, 3))
+
+//A non-lethal variant of the ash_storm. Stays on indefinitely.
+/datum/weather/virgo4/ash_storm_safe
+	name = "light ash storm"
+	icon_state = "ashfall_moderate"
+	light_modifier = 0.1
+	light_color = "#FF0000"
+	temp_high = 323.15	// 50c
+	temp_low = 313.15	// 40c
+	wind_high = 6
+	wind_low = 3
+	flight_failure_modifier = 50
+	transition_chances = list(
+		WEATHER_ASH_STORM_SAFE = 100
+		)
+	observed_message = "All that can be seen is black smoldering ash."
+	transition_messages = list(
+		"Smoldering clouds of scorching ash billow down around you!"
+	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers fill the air and wind is picking up too."
+	// Lets recycle.
+	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
+	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
 
 // Totally radical.
@@ -467,6 +539,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	transition_messages = list(
 		"Radioactive soot and ash start to float down around you, contaminating whatever they touch."
 	)
+	imminent_transition_message = "Sky and clouds are growing sickly green... Radiation storm is approaching, get to cover!"
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -500,6 +573,34 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		return
 	if(T.is_outdoors())
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+
+/datum/weather/virgo4/fallout/temp
+	name = "short-term fallout"
+	timer_low_bound = 1
+	timer_high_bound = 3
+	transition_chances = list(
+		WEATHER_FALLOUT = 10,
+		WEATHER_RAIN = 50,
+		WEATHER_FOG = 35,
+		WEATHER_STORM = 20,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/virgo4/confetti
+	name = "confetti"
+	icon = 'icons/effects/weather_vr.dmi'
+	icon_state = "confetti"
+
+	transition_chances = list(
+		WEATHER_CLEAR = 50,
+		WEATHER_OVERCAST = 20,
+		WEATHER_CONFETTI = 5
+		)
+	observed_message = "Confetti is raining from the sky."
+	transition_messages = list(
+		"Suddenly, colorful confetti starts raining from the sky."
+	)
+	imminent_transition_message = "A rain is starting... A rain of confetti...?"
 
 /turf/unsimulated/wall/planetary/normal/virgo4
 	name = "deep ocean"

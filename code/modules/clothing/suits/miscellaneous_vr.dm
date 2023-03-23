@@ -74,15 +74,21 @@
 	desc = "Knightly armor for a mount who doesn't need any rider. This one is marked to the house of Mason."
 	icon_state = "Mason_barding"
 
-/obj/item/clothing/suit/taur_dress
+/obj/item/clothing/suit/taur
 	icon = 'icons/mob/taursuits_horse_vr.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	pixel_x = -16
 
-/obj/item/clothing/suit/taur_dress/white
+/obj/item/clothing/suit/taur/dress
 	name = "white wedding dress"
 	desc = "A fancy white dress with a blue underdress."
 	icon_state = "whitedress1"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/suit/taur/skirt
+	name = "taur skirt"
+	desc = "A skirt with a corset, fit for those with four legs."
+	icon_state = "skirt_colorable"
 	flags_inv = HIDESHOES
 
 /obj/item/clothing/suit/storage/det_trench/alt
@@ -134,3 +140,38 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunk"
 	armor = list("melee" = 10, "bullet" = 20, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
+
+// Cyberpunk recolorable vest
+/obj/item/clothing/suit/cyberpunk/recolorable
+	name = "cyberpunk vest"
+	desc = "A high tech looking vest. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
+
+	icon_state = "cyberpunk_recolor"
+
+// Altevian admiralty stuff
+/obj/item/clothing/suit/captunic/capjacket/altevian_admiral				// Subtype of capjacket because A) it makes sense and B) conviniently matching stats
+	name = "altevian officer's suit"
+	desc = "Formal attire worn by officers and bridge crew from the Altevian Hegemony. The material is made of high quality silk and provides maximum comfort and breathing room for those that are working double shifts all the time."
+	icon_state = "altevian-admiral"
+
+	species_restricted = list(SPECIES_ALTEVIAN)
+
+/obj/item/clothing/suit/captunic/capjacket/altevian_admiral/gray
+	name = "gray altevian officer's suit"
+	icon_state = "altevian-admiral-gray"
+
+/obj/item/clothing/suit/captunic/capjacket/altevian_admiral/white
+	name = "white altevian officer's suit"
+	icon_state = "altevian-admiral-white"
+
+/obj/item/clothing/suit/captunic/capjacket/altevian_admiral/dark
+	name = "dark altevian officer's suit"
+	icon_state = "altevian-admiral-dark"
+
+/obj/item/clothing/suit/captunic/capjacket/altevian_admiral/olive
+	name = "olive altevian officer's suit"
+	icon_state = "altevian-admiral-olive"
+
+/obj/item/clothing/suit/captunic/capjacket/altevian_admiral/yellow
+	name = "yellow altevian officer's suit"
+	icon_state = "altevian-admiral-yellow"

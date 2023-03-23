@@ -43,7 +43,8 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 /obj/machinery/fusion_fuel_injector/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = input(usr, "Enter a new ident tag.", "Fuel Injector", id_tag) as null|text
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Fuel Injector", id_tag, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return

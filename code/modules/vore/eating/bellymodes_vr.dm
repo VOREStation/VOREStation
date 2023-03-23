@@ -106,7 +106,7 @@
 
 	if(emote_active)
 		var/list/EL = emote_lists[digest_mode]
-		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD]))) && next_emote <= world.time)
+		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD])) || (digest_mode == DM_SELECT && (LAZYLEN(emote_lists[DM_HOLD])||LAZYLEN(emote_lists[DM_DIGEST])||LAZYLEN(emote_lists[DM_ABSORB])) )) && next_emote <= world.time)
 			var/living_count = 0
 			var/absorbed_count = 0
 			for(var/mob/living/L in contents)
@@ -124,9 +124,13 @@
 					formatted_message = replacetext(formatted_message, "%pred", owner)
 					formatted_message = replacetext(formatted_message, "%prey", M)
 					formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
-					to_chat(M, "<span class='notice'>[formatted_message]</span>")
+					if(formatted_message)
+						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 				else
-					if(digest_mode == DM_DIGEST && !M.digestable)
+					if (digest_mode == DM_SELECT)
+						var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
+						EL = emote_lists[DM_S.get_selective_mode(src, M)]
+					else if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
 
 					var/raw_message = pick(EL)
@@ -136,7 +140,8 @@
 					formatted_message = replacetext(formatted_message, "%prey", M)
 					formatted_message = replacetext(formatted_message, "%countprey", living_count)
 					formatted_message = replacetext(formatted_message, "%count", contents.len)
-					to_chat(M, "<span class='notice'>[formatted_message]</span>")
+					if(formatted_message)
+						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 
 	if(to_update)
 		updateVRPanels()
@@ -167,7 +172,7 @@
 			var/mob/living/L = A
 			touchable_mobs += L
 
-			if(L.absorbed)
+			if(L.absorbed && !issilicon(L))
 				L.Weaken(5)
 
 			// Fullscreen overlays
@@ -185,6 +190,10 @@
 				//Thickbelly flag
 				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)
 					H.muffled = TRUE
+
+				//Force psay
+				if((mode_flags & DM_FLAG_FORCEPSAY) && !H.forced_psay && H.absorbed)
+					H.forced_psay = TRUE
 
 				//Worn items flag
 				if(mode_flags & DM_FLAG_AFFECTWORN)
@@ -274,6 +283,12 @@
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")
 	to_chat(M, "<span class='notice'>[digest_alert_prey]</span>")
 
+	if(M.ckey)
+		GLOB.prey_digested_roundstat++
+
+	var/personal_nutrition_modifier = M.get_digestion_nutrition_modifier()
+	var/pred_digestion_efficiency = owner.get_digestion_efficiency_modifier()
+
 	if((mode_flags & DM_FLAG_LEAVEREMAINS) && M.digest_leave_remains)
 		handle_remains_leaving(M)
 	digestion_death(M)
@@ -281,9 +296,9 @@
 		owner.update_icons()
 	if(isrobot(owner))
 		var/mob/living/silicon/robot/R = owner
-		R.cell.charge += (nutrition_percent / 100) * compensation * 25
+		R.cell.charge += (nutrition_percent / 100) * compensation * 25 * personal_nutrition_modifier
 	else
-		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5)
+		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5 * personal_nutrition_modifier * pred_digestion_efficiency)
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition >= 100)

@@ -5,7 +5,8 @@
 	anchored = TRUE
 	
 	var/working = FALSE
-	
+	var/negative_dir = null	//VOREStation Addition
+
 /obj/machinery/recycling/process()
 	return PROCESS_KILL // these are all stateful
 
@@ -85,7 +86,12 @@
 /obj/machinery/recycling/crusher/can_accept_item(obj/item/O)
 	if(LAZYLEN(O.matter))
 		return ..()
-	return FALSE
+	//VOREStation Addition Start - Let's the machine decide to put things it can't accept somewhere else.
+	else if(negative_dir && isitem(O) && !ishuman(O.loc))
+		O.forceMove(get_step(src, negative_dir))
+	else
+		return FALSE
+	//VOREStation Addition End
 
 /obj/machinery/recycling/crusher/take_item(obj/item/O)
 	. = ..()

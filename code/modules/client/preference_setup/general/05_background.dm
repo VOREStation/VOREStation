@@ -7,6 +7,7 @@
 	S["sec_record"]				>> pref.sec_record
 	S["gen_record"]				>> pref.gen_record
 	S["home_system"]			>> pref.home_system
+	S["birthplace"]				>> pref.birthplace
 	S["citizenship"]			>> pref.citizenship
 	S["faction"]				>> pref.faction
 	S["religion"]				>> pref.religion
@@ -17,6 +18,7 @@
 	S["sec_record"]				<< pref.sec_record
 	S["gen_record"]				<< pref.gen_record
 	S["home_system"]			<< pref.home_system
+	S["birthplace"]				<< pref.birthplace
 	S["citizenship"]			<< pref.citizenship
 	S["faction"]				<< pref.faction
 	S["religion"]				<< pref.religion
@@ -24,6 +26,7 @@
 
 /datum/category_item/player_setup_item/general/background/sanitize_character()
 	if(!pref.home_system) pref.home_system = "Unset"
+	if(!pref.birthplace)  pref.birthplace =  "Unset"
 	if(!pref.citizenship) pref.citizenship = "None"
 	if(!pref.faction)     pref.faction =     "None"
 	if(!pref.religion)    pref.religion =    "None"
@@ -36,6 +39,7 @@
 	character.sec_record		= pref.sec_record
 	character.gen_record		= pref.gen_record
 	character.home_system		= pref.home_system
+	character.birthplace		= pref.birthplace
 	character.citizenship		= pref.citizenship
 	character.personal_faction	= pref.faction
 	character.religion			= pref.religion
@@ -43,7 +47,8 @@
 /datum/category_item/player_setup_item/general/background/content(var/mob/user)
 	. += "<b>Background Information</b><br>"
 	. += "Economic Status: <a href='?src=\ref[src];econ_status=1'>[pref.economic_status]</a><br/>"
-	. += "Home System: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
+	. += "Home: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
+	. += "Birthplace: <a href='?src=\ref[src];birthplace=1'>[pref.birthplace]</a><br/>"
 	. += "Citizenship: <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
 	. += "Faction: <a href='?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
 	. += "Religion: <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
@@ -67,23 +72,35 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["home_system"])
-		var/choice = tgui_input_list(user, "Please choose a home system.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
+		var/choice = tgui_input_list(user, "Please choose your home planet and/or system. This should be your current primary residence. Select \"Other\" to specify manually.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
-			var/raw_choice = sanitize(input(user, "Please enter a home system.", "Character Preference")  as text|null, MAX_NAME_LEN)
+			var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a home system.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(raw_choice && CanUseTopic(user))
 				pref.home_system = raw_choice
 		else
 			pref.home_system = choice
 		return TOPIC_REFRESH
 
-	else if(href_list["citizenship"])
-		var/choice = tgui_input_list(user, "Please choose your current citizenship.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
+	else if(href_list["birthplace"])
+		var/choice = tgui_input_list(user, "Please choose the planet and/or system or other appropriate location that you were born/created. Select \"Other\" to specify manually.", "Character Preference", home_system_choices + list("Unset","Other"), pref.birthplace)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
-			var/raw_choice = sanitize(input(user, "Please enter your current citizenship.", "Character Preference") as text|null, MAX_NAME_LEN)
+			var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a birthplace.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+			if(raw_choice && CanUseTopic(user))
+				pref.birthplace = raw_choice
+		else
+			pref.birthplace = choice
+		return TOPIC_REFRESH
+
+	else if(href_list["citizenship"])
+		var/choice = tgui_input_list(user, "Please select the faction or political entity with which you currently hold citizenship. Select \"Other\" to specify manually.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
+		if(!choice || !CanUseTopic(user))
+			return TOPIC_NOACTION
+		if(choice == "Other")
+			var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter your current citizenship.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(raw_choice && CanUseTopic(user))
 				pref.citizenship = raw_choice
 		else
@@ -91,11 +108,11 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["faction"])
-		var/choice = tgui_input_list(user, "Please choose a faction to work for.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
+		var/choice = tgui_input_list(user, "Please choose the faction you primarily work for, if you are not under the direct employ of NanoTrasen. Select \"Other\" to specify manually.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
-			var/raw_choice = sanitize(input(user, "Please enter a faction.", "Character Preference")  as text|null, MAX_NAME_LEN)
+			var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a faction.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(raw_choice)
 				pref.faction = raw_choice
 		else
@@ -103,11 +120,11 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["religion"])
-		var/choice = tgui_input_list(user, "Please choose a religion.", "Character Preference", religion_choices + list("None","Other"), pref.religion)
+		var/choice = tgui_input_list(user, "Please choose a religion. Select \"Other\" to specify manually.", "Character Preference", religion_choices + list("None","Other"), pref.religion)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
-			var/raw_choice = sanitize(input(user, "Please enter a religon.", "Character Preference")  as text|null, MAX_NAME_LEN)
+			var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a religon.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(raw_choice)
 				pref.religion = sanitize(raw_choice)
 		else
@@ -115,19 +132,19 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["set_medical_records"])
-		var/new_medical = sanitize(input(user,"Enter medical information here.","Character Preference", html_decode(pref.med_record)) as message|null, MAX_RECORD_LENGTH, extra = 0)
+		var/new_medical = strip_html_simple(tgui_input_text(user,"Enter medical information here.","Character Preference", html_decode(pref.med_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
 		if(!isnull(new_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.med_record = new_medical
 		return TOPIC_REFRESH
 
 	else if(href_list["set_general_records"])
-		var/new_general = sanitize(input(user,"Enter employment information here.","Character Preference", html_decode(pref.gen_record)) as message|null, MAX_RECORD_LENGTH, extra = 0)
+		var/new_general = strip_html_simple(tgui_input_text(user,"Enter employment information here.","Character Preference", html_decode(pref.gen_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
 		if(!isnull(new_general) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.gen_record = new_general
 		return TOPIC_REFRESH
 
 	else if(href_list["set_security_records"])
-		var/sec_medical = sanitize(input(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record)) as message|null, MAX_RECORD_LENGTH, extra = 0)
+		var/sec_medical = strip_html_simple(tgui_input_text(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
 		if(!isnull(sec_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.sec_record = sec_medical
 		return TOPIC_REFRESH

@@ -5,6 +5,14 @@
 	desc = "It's a hat used by chefs to keep hair out of your food. Judging by the food in the mess, they don't work."
 	icon_state = "chefhat"
 
+/obj/item/clothing/head/hairnet
+	name = "hairnet"
+	desc = "A hairnet used to keep the hair out of the way and out of the food."
+	icon_state = "hairnet"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi'
+		)
+
 //Captain
 /obj/item/clothing/head/caphat
 	name = "site manager's hat"

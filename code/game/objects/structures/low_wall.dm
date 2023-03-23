@@ -81,7 +81,7 @@
 		return
 
 	// Making windows, different per subtype
-	else if(istype(W, /obj/item/stack/material/glass))
+	else if(istype(W, /obj/item/stack/material/glass) || istype(W, /obj/item/stack/material/cyborg/glass))
 		handle_glass_use(user, W)
 		return
 

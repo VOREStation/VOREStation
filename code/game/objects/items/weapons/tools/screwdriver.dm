@@ -4,6 +4,7 @@
 /obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
 	center_of_mass = list("x" = 13,"y" = 7)
@@ -140,6 +141,7 @@
 	playsound(src,'sound/items/change_drill.ogg',50,1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))
+	counterpart.persist_storable = persist_storable
 	src.forceMove(counterpart)
 	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")

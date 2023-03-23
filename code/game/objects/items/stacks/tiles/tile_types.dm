@@ -42,16 +42,6 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/tile/grass/sif
-	name = "sivian grass tile"
-	singular_name = "sivian grass floor tile"
-	desc = "A patch of grass like those that decorate the plains of Sif."
-
-/obj/item/stack/tile/grass/sif/forest
-	name = "sivian overgrowth tile"
-	singular_name = "sivian overgrowth floor tile"
-	desc = "A patch of dark overgrowth like those that decorate the plains of Sif."
-
 /*
  * Wood
  */
@@ -75,6 +65,26 @@
 	desc = "An easy to fit wooden floor tile. It's blue!"
 	icon_state = "tile-sifwood"
 
+/obj/item/stack/tile/wood/alt
+	name = "wood floor tile"
+	singular_name = "wood floor tile"
+	icon_state = "tile-wood_tile"
+
+/obj/item/stack/tile/wood/parquet
+	name = "parquet wood floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood_parquet"
+
+/obj/item/stack/tile/wood/panel
+	name = "large wood floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood_large"
+
+/obj/item/stack/tile/wood/tile
+	name = "tiled wood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood_tile"
+
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
 	desc = "A device that makes wood floor tiles."
@@ -82,6 +92,8 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
 	build_type = /obj/item/stack/tile/wood
+
+
 
 /*
  * Carpets
@@ -101,30 +113,68 @@
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/stack/tile/carpet/teal
-	name = "teal carpet"
-	singular_name = "teal carpet"
 	desc = "A piece of teal carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-tealcarpet"
-	no_variants = FALSE
+
+/obj/item/stack/tile/carpet/turcarpet
+	desc = "A piece of turqoise carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-turcarpet"
 
 /obj/item/stack/tile/carpet/bcarpet
-	icon_state = "tile-carpet"
+	desc = "A piece of black diamond-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-bcarpet"
+
 /obj/item/stack/tile/carpet/blucarpet
-	icon_state = "tile-carpet"
-/obj/item/stack/tile/carpet/turcarpet
-	icon_state = "tile-carpet"
+	desc = "A piece of blue diamond-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-blucarpet"
+
 /obj/item/stack/tile/carpet/sblucarpet
-	icon_state = "tile-carpet"
+	desc = "A piece of silver-blue diamond-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-sblucarpet"
+
 /obj/item/stack/tile/carpet/gaycarpet
-	icon_state = "tile-carpet"
+	desc = "A piece of pink diamond-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-gaycarpet"
+
 /obj/item/stack/tile/carpet/purcarpet
-	icon_state = "tile-carpet"
+	desc = "A piece of purple diamond-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-purcarpet"
+
 /obj/item/stack/tile/carpet/oracarpet
-	icon_state = "tile-carpet"
-/obj/item/stack/tile/carpet/deco
+	desc = "A piece of orange diamond-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-oracarpet"
+
+/obj/item/stack/tile/carpet/brncarpet
+	desc = "A piece of brown ornate-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-brncarpet"
+
+/obj/item/stack/tile/carpet/blucarpet2
+	desc = "A piece of blue ornate-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-blucarpet2"
+
+/obj/item/stack/tile/carpet/greencarpet
+	desc = "A piece of green ornate-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-greencarpet"
+
+/obj/item/stack/tile/carpet/purplecarpet
+	desc = "A piece of purple ornate-pattern carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-purplecarpet"
+
+/obj/item/stack/tile/carpet/geo
 	icon_state = "tile-carpet-deco"
+	desc = "A piece of carpet with a gnarly geometric design. It is the same size as a normal floor tile!"
+
 /obj/item/stack/tile/carpet/retro
 	icon_state = "tile-carpet-retro"
+	desc = "A piece of carpet with totally wicked blue space patterns. It is the same size as a normal floor tile!"
+
+/obj/item/stack/tile/carpet/retro_red
+	icon_state = "tile-carpet-retro-red"
+	desc = "A piece of carpet with red-ical space patterns. It is the same size as a normal floor tile!"
+
+/obj/item/stack/tile/carpet/happy
+	icon_state = "tile-carpet-happy"
+	desc = "A piece of carpet with happy patterns. It is the same size as a normal floor tile!"
 
 /obj/item/stack/tile/floor
 	name = "floor tile"
@@ -155,6 +205,12 @@
 	name = "grid techfloor tile"
 	singular_name = "grid techfloor tile"
 	icon_state = "techtile_grid"
+	no_variants = FALSE
+
+/obj/item/stack/tile/floor/techmaint
+	name = "maint techfloor tile"
+	singular_name = "maint techfloor tile"
+	icon_state = "techtile_maint"
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/steel_dirty

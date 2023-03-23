@@ -47,10 +47,10 @@ var/list/slot_equipment_priority = list( \
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
+/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, ignore_obstructions = 1)
 	if(!W)
 		return 0
-	if(!W.mob_can_equip(src, slot, disable_warning))
+	if(!W.mob_can_equip(src, slot, disable_warning, ignore_obstructions))
 		if(del_on_fail)
 			qdel(W)
 
@@ -68,8 +68,8 @@ var/list/slot_equipment_priority = list( \
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot, ignore_obstructions = 1)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0, ignore_obstructions)
 
 //hurgh. these feel hacky, but they're the only way I could get the damn thing to work. I guess they could be handy for antag spawners too?
 /mob/proc/equip_voidsuit_to_slot_or_del_with_refit(obj/item/clothing/suit/space/void/W as obj, slot, species = SPECIES_HUMAN)
@@ -147,9 +147,10 @@ var/list/slot_equipment_priority = list( \
 // If canremove or other conditions need to be checked then use unEquip instead.
 
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
-	if(!W)
-		return 0
-	return remove_from_mob(W, target)
+	if(W)
+		remove_from_mob(W, target)
+		return TRUE
+	return FALSE
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
@@ -202,6 +203,23 @@ var/list/slot_equipment_priority = list( \
 	drop_from_inventory(I, target)
 	return TRUE
 
+//visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
+//item MUST BE FORCEMOVE'D OR QDEL'D
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)
+	return u_equip(I, force, null, TRUE, idrop)
+
+///sometimes we only want to grant the item's action if it's equipped in a specific slot.
+/obj/item/proc/item_action_slot_check(slot, mob/user)
+	if(slot == SLOT_BACK || slot == LEGS) //these aren't true slots, so avoid granting actions there
+		return FALSE
+	return TRUE
+
+///Get the item on the mob in the storage slot identified by the id passed in
+/mob/proc/get_item_by_slot(slot_id)
+	return null
+
+/mob/proc/getBackSlot()
+	return SLOT_BACK
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O, var/atom/target)
@@ -219,8 +237,7 @@ var/list/slot_equipment_priority = list( \
 		else
 			I.dropInto(drop_location())
 		I.dropped(src)
-	return 1
-
+	return TRUE
 
 //Returns the item equipped to the specified slot, if any.
 /mob/proc/get_equipped_item(var/slot)

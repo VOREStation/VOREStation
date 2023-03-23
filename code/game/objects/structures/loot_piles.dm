@@ -300,8 +300,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 	uncommon_loot = list(
 		/obj/item/weapon/storage/box/sinpockets,
-		/obj/item/weapon/storage/box/practiceshells,
-		/obj/item/weapon/storage/box/blanks,
+		/obj/item/ammo_magazine/ammo_box/b12g/practice,
+		/obj/item/ammo_magazine/ammo_box/b12g/blank,
 		/obj/item/weapon/storage/box/smokes,
 		/obj/item/weapon/storage/box/metalfoam,
 		/obj/item/weapon/storage/box/handcuffs,
@@ -311,8 +311,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	rare_loot = list(
 		/obj/item/weapon/storage/box/flashbangs,
 		/obj/item/weapon/storage/box/empslite,
-		/obj/item/weapon/storage/box/flashshells,
-		/obj/item/weapon/storage/box/stunshells,
+		/obj/item/ammo_magazine/ammo_box/b12g/flash,
+		/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 		/obj/item/weapon/storage/box/teargas
 	)
 

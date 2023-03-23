@@ -49,13 +49,13 @@ var/global/ingredientLimit = 20
 		I.forceMove(src)
 
 		if(S.reagents)
-			S.reagents.trans_to(src,S.reagents.total_volume)
+			S.reagents.trans_to_holder(reagents,S.reagents.total_volume)
 
 		ingredients += S
 
 		if(src.addTop)
 			cut_overlay(topping)
-		if(!fullyCustom && !stackIngredients && our_overlays.len)
+		if(!fullyCustom && !stackIngredients && LAZYLEN(our_overlays))
 			cut_overlay(filling) //we can't directly modify the overlay, so we have to remove it and then add it again
 			var/newcolor = S.filling_color != "#FFFFFF" ? S.filling_color : AverageColor(getFlatIcon(S, S.dir, 0), 1, 1)
 			filling.color = BlendRGB(filling.color, newcolor, 1/ingredients.len)
@@ -142,7 +142,7 @@ var/global/ingredientLimit = 20
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable/sandwich/attackby(obj/item/I,mob/user)
 	if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/slice/bread) && !addTop)
-		I.reagents.trans_to(src,I.reagents.total_volume)
+		I.reagents.trans_to_holder(reagents,I.reagents.total_volume)
 		qdel(I)
 		addTop = 1
 		src.drawTopping()

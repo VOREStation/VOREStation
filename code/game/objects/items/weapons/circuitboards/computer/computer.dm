@@ -203,9 +203,6 @@
 	name = T_BOARD("sensors console")
 	build_path = /obj/machinery/computer/ship/sensors
 
-
-
-
 /obj/item/weapon/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
 	build_path = /obj/machinery/computer/area_atmos
@@ -225,3 +222,8 @@
 	name = T_BOARD("automatic shutoff valve monitor")
 	build_path = /obj/machinery/computer/shutoff_monitor
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
+
+/obj/item/weapon/circuitboard/stockexchange
+	name = T_BOARD("stock exchange console")
+	build_path = /obj/machinery/computer/stockexchange
+	origin_tech = list(TECH_DATA = 2, TECH_MAGNET = 1)

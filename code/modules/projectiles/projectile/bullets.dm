@@ -12,6 +12,8 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	excavation_amount  = 20
 	var/mob_passthrough_check = 0
+	hud_state = "pistol_lightap"
+	hud_state_empty = "pistol_empty"  // Just in case we somehow have no hud_state_empty defined
 
 	muzzle_type = /obj/effect/projectile/muzzle/bullet
 
@@ -70,30 +72,38 @@
 /obj/item/projectile/bullet/pistol // 9mm pistols and most SMGs. Sacrifice power for capacity.
 	fire_sound = 'sound/weapons/gunshot2.ogg'
 	damage = 20
+	hud_state = "pistol"
+	hud_state_empty = "pistol_empty"
 
 /obj/item/projectile/bullet/pistol/ap
 	damage = 15
 	armor_penetration = 30
+	hud_state = "pistol_light_ap"
 
 /obj/item/projectile/bullet/pistol/hp
 	damage = 25
 	armor_penetration = -50
+	hud_state = "pistol_ap"
 
 /obj/item/projectile/bullet/pistol/medium // .45 (and maybe .40 if it ever gets added) caliber security pistols. Balance between capacity and power.
 	fire_sound = 'sound/weapons/gunshot3.ogg' // Snappier sound.
 	damage = 25
+	hud_state = "pistol"
 
 /obj/item/projectile/bullet/pistol/medium/ap
 	damage = 20
 	armor_penetration = 15
+	hud_state = "pistol_light_ap"
 
 /obj/item/projectile/bullet/pistol/medium/hp
 	damage = 30
 	armor_penetration = -50
+	hud_state = "pistol_ap"
 
 /obj/item/projectile/bullet/pistol/strong // .357 and .44 caliber stuff. High power pistols like the Mateba or Desert Eagle. Sacrifice capacity for power.
 	fire_sound = 'sound/weapons/gunshot4.ogg'
 	damage = 60
+	hud_state = "pistol_heavy"
 
 /obj/item/projectile/bullet/pistol/rubber/strong // "Rubber" bullets for high power pistols.
 	fire_sound = 'sound/weapons/gunshot3.ogg' // Rubber shots have less powder, but these still have more punch than normal rubber shot.
@@ -102,6 +112,7 @@
 	embed_chance = 0
 	sharp = FALSE
 	check_armour = "melee"
+	hud_state = "pistol_special"
 
 /obj/item/projectile/bullet/pistol/rubber // "Rubber" bullets for all other pistols.
 	name = "rubber bullet"
@@ -110,6 +121,7 @@
 	embed_chance = 0
 	sharp = FALSE
 	check_armour = "melee"
+	hud_state = "pistol_special"
 	fire_sound ='sound/weapons/Gunshot_pathetic.ogg' // Rubber shots have less powder in the casing.
 
 /* shotgun projectiles */
@@ -119,6 +131,8 @@
 	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	damage = 50
 	armor_penetration = 20
+	hud_state = "shotgun_slug"
+	hud_state_empty = "shotgun_empty"
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
@@ -127,6 +141,7 @@
 	embed_chance = 0
 	sharp = FALSE
 	check_armour = "melee"
+	hud_state = "shotgun_beanbag"
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
@@ -137,12 +152,14 @@
 	pellets = 6
 	range_step = 1
 	spread_step = 10
+	hud_state = "shotgun_buckshot"
 
 /obj/item/projectile/bullet/pellet/shotgun/flak
 	damage = 2 //The main weapon using these fires four at a time, usually with different destinations. Usually.
 	range_step = 2
 	spread_step = 30
 	armor_penetration = 10
+	hud_state = "shotgun_flechette"
 
 //EMP shotgun 'slug', it's basically a beanbag that pops a tiny emp when it hits. //Not currently used
 /obj/item/projectile/bullet/shotgun/ion
@@ -152,6 +169,7 @@
 	embed_chance = 0
 	sharp = FALSE
 	check_armour = "melee"
+	hud_state = "shotgun_ion"
 
 	combustion = FALSE
 
@@ -167,46 +185,57 @@
 	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
 	armor_penetration = 15
 	penetrating = 1
+	hud_state = "rifle"
+	hud_state_empty = "rifle_empty"
 
 /obj/item/projectile/bullet/rifle/a762
 	fire_sound = 'sound/weapons/Gunshot_heavy.ogg'
 	damage = 35
+	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a762/sniper // Hitscan specifically for sniper ammo; to be implimented at a later date, probably for the SVD. -Ace
 	fire_sound = 'sound/weapons/Gunshot_sniper.ogg'
 	hitscan = 1 //so the ammo isn't useless as a sniper weapon
+	hud_state = "hivelo"
 
 /obj/item/projectile/bullet/rifle/a762/ap
 	damage = 30
 	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
+	hud_state = "rifle_ap"
 
 /obj/item/projectile/bullet/rifle/a762/hp
 	damage = 40
 	armor_penetration = -50
 	penetrating = 0
+	hud_state = "hivelo_iff"
 
 /obj/item/projectile/bullet/rifle/a762/hunter // Optimized for killing simple animals and not people, because Balance(tm)
 	damage = 20
 	SA_bonus_damage = 50 // 70 total on animals.
 	SA_vulnerability = SA_ANIMAL
+	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a545
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	damage = 25
+	hud_state = "rifle"
 
 /obj/item/projectile/bullet/rifle/a545/ap
 	damage = 20
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
+	hud_state = "rifle_ap"
 
 /obj/item/projectile/bullet/rifle/a545/hp
 	damage = 35
 	armor_penetration = -50
 	penetrating = 0
+	hud_state = "hivelo_iff"
 
 /obj/item/projectile/bullet/rifle/a545/hunter
 	damage = 15
 	SA_bonus_damage = 35 // 50 total on animals.
 	SA_vulnerability = SA_ANIMAL
+	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a145 // 14.5�114mm is bigger than a .50 BMG round.
 	fire_sound = 'sound/weapons/Gunshot_cannon.ogg' // This is literally an anti-tank rifle caliber. It better sound like a fucking cannon.
@@ -216,6 +245,7 @@
 	penetrating = 5
 	armor_penetration = 80
 	hitscan = 1 //so the PTR isn't useless as a sniper weapon
+	hud_state = "sniper"
 
 	icon_state = "bullet_alt"
 	tracer_type = /obj/effect/projectile/tracer/cannon
@@ -226,10 +256,12 @@
 	weaken = 0
 	penetrating = 15
 	armor_penetration = 90
+	hud_state = "sniper_flak"
 
 /obj/item/projectile/bullet/rifle/a44rifle
 	fire_sound = 'sound/weapons/gunshot4.ogg'
 	damage = 50
+	hud_state = "revolver"
 
 /* Miscellaneous */
 
@@ -237,11 +269,13 @@
 	name = "co bullet"
 	damage = 20
 	damage_type = OXY
+	hud_state = "pistol_tranq"
 
 /obj/item/projectile/bullet/cyanideround
 	name = "poison bullet"
 	damage = 40
 	damage_type = TOX
+	hud_state = "pistol_tranq"
 
 /obj/item/projectile/bullet/burstbullet
 	name = "exploding bullet"
@@ -249,6 +283,7 @@
 	damage = 20
 	embed_chance = 0
 	edge = TRUE
+	hud_state = "pistol_fire"
 
 /obj/item/projectile/bullet/burstbullet/on_hit(var/atom/target, var/blocked = 0)
 	if(isturf(target))
@@ -264,6 +299,7 @@
 	damage_type = BURN
 	incendiary = 0.5
 	flammability = 2
+	hud_state = "pistol_fire"
 
 /obj/item/projectile/bullet/incendiary/flamethrower
 	name = "ball of fire"
@@ -276,12 +312,24 @@
 	agony = 30
 	range = 4
 	vacuum_traversal = 0
+	hud_state = "flame"
+
+/obj/item/projectile/bullet/incendiary/flamethrower/after_move()
+	..()
+
+
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		for(var/obj/effect/plant/Victim in T)
+			if(prob(max(20, 100 - (Victim.seed.get_trait(TRAIT_ENDURANCE)))))	// Chance to immediately kill a vine or rampant growth, minimum of 20%.
+				Victim.die_off()
 
 /obj/item/projectile/bullet/incendiary/flamethrower/large
 	damage = 5
 	incendiary = 3
 	flammability = 2
 	range = 6
+	hud_state = "flame"
 
 /obj/item/projectile/bullet/incendiary/flamethrower/tiny
 	damage = 2
@@ -291,11 +339,13 @@
 	modifier_duration = 20 SECONDS
 	range = 6
 	agony = 0
+	hud_state = "flame"
 
 /* Practice rounds and blanks */
 
 /obj/item/projectile/bullet/practice
 	damage = 5
+	hud_state = "smg_light"
 
 /obj/item/projectile/bullet/pistol/cap // Just the primer, such as a cap gun.
 	name = "cap"
@@ -305,6 +355,7 @@
 	nodamage = 1
 	embed_chance = 0
 	sharp = FALSE
+	hud_state = "monkey"
 
 	combustion = FALSE
 
@@ -320,6 +371,7 @@
 	nodamage = 1
 	embed_chance = 0
 	sharp = FALSE
+	hud_state = "smg_light"
 
 /* BB Rounds */
 /obj/item/projectile/bullet/bb // Generic single BB
@@ -329,6 +381,7 @@
 	embed_chance = 0
 	sharp = FALSE
 	silenced = TRUE
+	hud_state = "pistol_light"
 
 /obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
 	name = "BB"
@@ -340,6 +393,7 @@
 	range_step = 1
 	spread_step = 10
 	silenced = TRUE
+	hud_state = "pistol_light"
 
 /* toy projectiles */
 /obj/item/projectile/bullet/cap
@@ -353,6 +407,7 @@
 	impact_effect_type = null
 	fire_sound = 'sound/effects/snap.ogg'
 	combustion = FALSE
+	hud_state = "pistol_light"
 
 /obj/item/projectile/bullet/cap/process()
 	loc = null
@@ -372,6 +427,7 @@
 	icon = 'icons/obj/gun_toy.dmi'
 	icon_state = "foamdart_proj"
 	range = 15
+	hud_state = "grenade_dummy"
 
 /obj/item/projectile/bullet/foam_dart/on_impact(var/atom/A)
 	. = ..()
@@ -385,8 +441,31 @@
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
 
-/obj/item/projectile/bullet/foam_dart/riot
+/obj/item/projectile/bullet/foam_dart_riot
 	name = "riot foam dart"
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
-	agony = 50
+	damage = 0 // It's a damn toy.
+	embed_chance = 0
+	agony = 50 // The riot part of the riot dart
+	nodamage = TRUE
+	sharp = FALSE
+	damage_type = HALLOSS
+	impact_effect_type = null
+	fire_sound = 'sound/items/syringeproj.ogg'
+	combustion = FALSE
+	icon = 'icons/obj/gun_toy.dmi'
 	icon_state = "foamdart_riot_proj"
+	range = 15
+	hud_state = "grenade_he"
+
+/obj/item/projectile/bullet/foam_dart_riot/on_impact(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart_riot/on_range(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))

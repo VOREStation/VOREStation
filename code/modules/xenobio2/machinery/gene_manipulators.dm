@@ -102,15 +102,15 @@
 	in_use = 0
 	if(failed_task)
 		failed_task = 0
-		visible_message("[bicon(src)] [src] pings unhappily, flashing a red warning light.")
+		visible_message("\icon[src][bicon(src)] [src] pings unhappily, flashing a red warning light.")
 	else
-		visible_message("[bicon(src)] [src] pings happily.")
+		visible_message("\icon[src][bicon(src)] [src] pings happily.")
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.forceMove(get_turf(src))
-			visible_message("[bicon(src)] [src] beeps and spits out [loaded_disk].")
+			visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
 /obj/machinery/xenobio/extractor
@@ -126,7 +126,7 @@
 /obj/machinery/xenobio/extractor/Initialize()
 	. = ..()
 	default_apply_parts()
-	
+
 /obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
@@ -183,7 +183,7 @@
 /obj/machinery/xenobio/proc/eject_disk()
 	if(!loaded_disk) return
 	loaded_disk.forceMove(loc)
-	visible_message("[bicon(src)] [src] beeps and spits out [loaded_disk].")
+	visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
 	loaded_disk = null
 
 /obj/machinery/xenobio/extractor/Topic(href, href_list)
@@ -195,7 +195,7 @@
 		if(!product) return
 
 		product.forceMove(get_turf(src))
-		visible_message("[bicon(src)] [src] beeps and spits out [product].")
+		visible_message("\icon[src][bicon(src)] [src] beeps and spits out [product].")
 		product = null
 
 	if(href_list["eject_disk"])

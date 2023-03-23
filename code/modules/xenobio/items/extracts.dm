@@ -1,3 +1,5 @@
+//VOREStation Note - we use different xenobio balance in extracts_vr, keep this unticked.
+
 // Base
 /obj/item/slime_extract
 	name = "slime extract"
@@ -53,7 +55,7 @@
 	var/obj/item/slime_extract/T = holder.my_atom
 	T.uses--
 	if(T.uses <= 0)
-		T.visible_message("[bicon(T)]<b>\The [T]</b> goes inert.")
+		T.visible_message("\icon[T][bicon(T)]<b>\The [T]</b> goes inert.")
 		T.name = "inert [initial(T.name)]"
 
 

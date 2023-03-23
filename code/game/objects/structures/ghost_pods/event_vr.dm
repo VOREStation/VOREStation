@@ -1,3 +1,8 @@
+/obj/structure/ghost_pod/proc/reset_ghostpod()	//Makes the ghost pod usable again and re-adds it to the active ghost pod list if it is not on it.
+	active_ghost_pods |= src
+	used = FALSE
+	busy = FALSE
+
 /obj/structure/ghost_pod/ghost_activated/maintpred
 	name = "maintenance hole"
 	desc = "Looks like some creature dug its way into station's maintenance..."
@@ -42,29 +47,33 @@
 								  "Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
 								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
 								  "Weretiger" = /mob/living/simple_mob/vore/weretiger,
-								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug
+								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
+								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
 	..()
 	var/choice
-	var/randomize
 	var/finalized = "No"
 
+	if(jobban_isbanned(M, "GhostRoles"))
+		to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		reset_ghostpod()
+		return
+
 	while(finalized == "No" && M.client)
-		if(jobban_isbanned(M, "GhostRoles"))
-			to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
-			return
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
-		if(!choice)
-			randomize = TRUE
-			break
+		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
+			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
+			reset_ghostpod()
+			return
 
 		if(choice)
 			finalized = tgui_alert(M, "Are you sure you want to play as [choice]?","Confirmation",list("No","Yes"))
 
-	if(randomize)
-		choice = pick(possible_mobs)
+	if(!choice)	//If somehow we ended up here and we don't have a choice, let's just reset things!
+		reset_ghostpod()
+		return
 
 	var/mobtype = possible_mobs[choice]
 	var/mob/living/simple_mob/newPred = new mobtype(get_turf(src))

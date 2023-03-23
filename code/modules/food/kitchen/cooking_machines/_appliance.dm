@@ -157,12 +157,12 @@
 	if (stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		use_power = 1
-		user.visible_message("[user] turns [src] on.", "You turn on [src].")
+		user.visible_message("<span class='filter_notice'>[user] turns [src] on.</span>", "<span class='filter_notice'>You turn on [src].</span>")
 
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
-		user.visible_message("[user] turns [src] off.", "You turn off [src].")
+		user.visible_message("<span class='filter_notice'>[user] turns [src] off.</span>", "<span class='filter_notice'>You turn off [src].</span>")
 		cooking = FALSE // Stop cooking here, too, just in case.
 
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
@@ -180,14 +180,14 @@
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, "You lack the dexterity to do that!")
+		to_chat(usr, "<span class='filter_notice'>You lack the dexterity to do that!</span>")
 		return
 
 	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
 	if (!Adjacent(usr) && !issilicon(usr))
-		to_chat(usr, "You can't adjust the [src] from this distance, get closer!")
+		to_chat(usr, "<span class='filter_notice'>You can't adjust the [src] from this distance, get closer!</span>")
 		return
 
 	if(output_options.len)
@@ -489,6 +489,10 @@
 	var/list/cooktypes = list()
 	var/datum/reagents/buffer = new /datum/reagents(1000)
 	var/totalcolour
+	var/reagents_determine_color
+
+	if(!LAZYLEN(CI.container.contents))	// It's possible to make something, such as a cake in the oven, with only reagents. This stops them from being grey and sad.
+		reagents_determine_color = TRUE
 
 	for (var/obj/item/I in CI.container)
 		var/obj/item/weapon/reagent_containers/food/snacks/S
@@ -526,6 +530,13 @@
 	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(CI.container)
 	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
 																 //just call trans_to_holder instead
+
+	// Reagent-only foods.
+	if(reagents_determine_color)
+		totalcolour = result.reagents.get_color()
+
+		for(var/datum/reagent/reag in result.reagents.reagent_list)
+			words |= text2list(reag.name, " ")
 
 	//Filling overlay
 	var/image/I = image(result.icon, "[result.icon_state]_filling")

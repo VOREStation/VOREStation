@@ -53,7 +53,7 @@
 			// atoms/items/objects can be pretty and whatnot
 			var/atom/A = item
 			if(output_icons && isicon(A.icon) && !ismob(A)) // mobs tend to have unusable icons
-				item_str += "[bicon(A)]&nbsp;"
+				item_str += "\icon[A][bicon(A)]&nbsp;"
 			switch(determiners)
 				if(DET_NONE) item_str += A.name
 				if(DET_DEFINITE) item_str += "\the [A]"
@@ -216,6 +216,17 @@ This actually tests if they have the same entries and values.
 		if(!(entry in second) || (first[entry] != second[entry]))
 			return 0
 	return 1
+
+/*
+Checks if a list has the same entries and values as an element of big.
+*/
+/proc/in_as_list(var/list/little, var/list/big)
+	if(!islist(big))
+		return 0
+	for(var/element in big)
+		if(same_entries(little, element))
+			return 1
+	return 0
 
 /*
  * Returns list containing entries that are in either list but not both.
@@ -870,4 +881,3 @@ var/global/list/json_cache = list()
 	else
 		used_key_list[input_key] = 1
 	return input_key
-	

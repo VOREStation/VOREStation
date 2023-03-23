@@ -138,6 +138,7 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "duffle_med"
 	slowdown = 0
+	can_tilt = 0
 
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu/New()
 	..()
@@ -227,6 +228,14 @@
 		/obj/item/clothing/under/skirt/outfit/fluff/nikki,
 		/obj/item/clothing/shoes/fluff/nikki)
 
+// DefiintelyNotARock:Aku Zoles
+/obj/item/weapon/storage/secure/briefcase/dealer
+	name = "Aku's Dealer briefcase"
+	desc = "A slick black briefcase with a digital lock."
+	starts_with = list(
+		/obj/item/weapon/spacecasinocash/c1000 = 3,
+		/obj/item/weapon/storage/dicecup/loaded = 3)
+
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */
@@ -289,6 +298,18 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 /obj/item/weapon/storage/box/fluff/swimsuit/cowbikini
 	name = "Cow Bikini Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/cowbikini)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/stripperpink
+	name = "Skimpy Pink Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/stripper/stripper_pink)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/strippergreen
+	name = "Skimpy Green Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/stripper/stripper_green)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/mankini
+	name = "Pink Mankini capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/stripper/mankini)
 
 //Monkey boxes for the new primals we have
 /obj/item/weapon/storage/box/monkeycubes/sobakacubes

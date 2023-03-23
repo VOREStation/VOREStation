@@ -242,6 +242,42 @@
 	if((. = ..()))
 		playsound(src, 'sound/machines/shutdown.ogg', 60, 1)
 
+///////////////////
+//// COMPUTERS ////
+///////////////////
+
+/obj/structure/salvageable/console
+	name = "console"
+	icon_state = "console0"
+	salvageable_parts = list(
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 70,
+		/obj/item/trash/material/circuit = 60,
+		/obj/item/trash/material/metal = 60,
+		/obj/item/weapon/stock_parts/capacitor = 40,
+		/obj/item/weapon/stock_parts/capacitor = 40,
+		/obj/item/weapon/stock_parts/scanning_module = 40,
+		/obj/item/weapon/stock_parts/scanning_module = 40
+	)
+
+/obj/structure/salvageable/personal/Initialize()
+	. = ..()
+	icon_state = "console[rand(0,2)]"
+
+/obj/structure/salvageable/shuttle_console
+	name = "shuttle console"
+	icon_state = "shuttle"
+	salvageable_parts = list(
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 70,
+		/obj/item/trash/material/circuit = 60,
+		/obj/item/trash/material/metal = 60,
+		/obj/item/weapon/stock_parts/capacitor = 40,
+		/obj/item/weapon/stock_parts/capacitor = 40,
+		/obj/item/weapon/stock_parts/scanning_module = 40,
+		/obj/item/weapon/stock_parts/scanning_module = 40
+	)
+
 //////////////////
 //// ONE STAR ////
 //////////////////

@@ -14,6 +14,7 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	old_x = -48
 	old_y = 0
+	vis_height = 92
 	melee_damage_lower = 20
 	melee_damage_upper = 15
 	friendly = list("nudges", "sniffs on", "rumbles softly at", "slobberlicks")
@@ -23,7 +24,7 @@
 	response_help = "pets"
 	response_disarm = "shoves"
 	response_harm = "smacks"
-	movement_cooldown = 2
+	movement_cooldown = -1
 	harm_intent_damage = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -94,7 +95,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 1.5
+	movement_cooldown = -1.5
 
 /mob/living/simple_mob/vore/greatwolf/MouseDrop_T(mob/living/M, mob/living/user)
 	return

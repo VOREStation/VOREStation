@@ -5237,7 +5237,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangar)
 "jV" = (
-/obj/machinery/suit_cycler/exploration,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
 "jW" = (

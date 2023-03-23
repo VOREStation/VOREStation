@@ -15,7 +15,7 @@
 	var/toxloss = 0.0	//Toxic damage caused by being poisoned or radiated
 	var/fireloss = 0.0	//Burn damage caused by being way too hot, too cold or burnt.
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
-	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
+	var/brainloss = 0	//Thought-scrambly damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
 	var/nutrition = 400
@@ -55,7 +55,8 @@
 
 	var/image/dsoverlay = null //Overlay used for darksight eye adjustments
 
-	var/glow_toggle = 0					// If they're glowing!
+	var/glow_toggle = FALSE					// If they're glowing!
+	var/glow_override = FALSE				// Ignore the manual toggle
 	var/glow_range = 2
 	var/glow_intensity = null
 	var/glow_color = "#FFFFFF"			// The color they're glowing!
@@ -80,4 +81,4 @@
 	var/flying = 0				// Allows flight
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
-	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown. 
+	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown.

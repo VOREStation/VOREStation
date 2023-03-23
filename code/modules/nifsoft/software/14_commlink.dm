@@ -81,7 +81,7 @@
 			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
-			rendered = "<span class='game say'>[bicon(icon_object)] <span class='name'>[name_used]</span> [message]</span>"
+			rendered = "<span class='game say'>\icon[icon_object][bicon(icon_object)] <span class='name'>[name_used]</span> [message]</span>"
 			mob.show_message(rendered, 2)
 
 //Not supported by the internal one
@@ -128,4 +128,4 @@
 		return
 
 	if(ringer && nif.human)
-		nif.notify("Commlink message from [who]: \"[text]\" (<a href='?src=\ref[nifsoft];open=1'>Open</a>)")
+		nif.notify("Commlink message from [who]: \"[text]\" (<a href='?src=\ref[nifsoft];open=1'>Open</a>) (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)")

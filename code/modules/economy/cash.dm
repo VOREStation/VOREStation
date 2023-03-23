@@ -80,7 +80,7 @@
 	return worth
 
 /obj/item/weapon/spacecash/attack_self()
-	var/amount = input(usr, "How many [initial_name]s do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = tgui_input_number(usr, "How many [initial_name]s do you want to take? (0 to [src.worth])", "Take Money", 20)
 	if(!src || QDELETED(src))
 		return
 	amount = round(CLAMP(amount, 0, src.worth))

@@ -90,6 +90,8 @@ body.inverted {
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
+.mentor				{color: #808000;}
+.mentor_channel			{color: #808000; font-weight: bold;}
 .mod_channel			{color: #735638; font-weight: bold;}
 .mod_channel .admin		{color: #b82e00; font-weight: bold;}
 .admin_channel			{color: #9611D4; font-weight: bold;}
@@ -157,11 +159,13 @@ h1.alert, h2.alert		{color: #000000;}
 .skrell					{color: #00B0B3;}
 .skrellfar				{color: #70FCFF;}
 .soghun					{color: #50BA6C;}
-.solcom					{color: #22228B;}
+.solcom					{color: #3333CE;} /* VOREStation Edit */
 .changeling				{color: #800080;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
 .vulpkanin				{color: #B97A57;}
+.tavan					{color: #f54298; font-family: Arial}
+.echosong				{color: #826D8C;}
 .enochian				{color: #848A33; letter-spacing:-1pt; word-spacing:4pt; font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
 .daemon					{color: #5E339E; letter-spacing:-1pt; word-spacing:0pt; font-family: "Courier New", Courier, monospace;}
 .drudakar				{color: #bb2463; word-spacing:0pt; font-family: "High Tower Text", monospace;}
@@ -176,7 +180,6 @@ h1.alert, h2.alert		{color: #000000;}
 .interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
-.tavan					{color: #f54298; font-family: Arial}
 
 .black					{color: #000000;}
 .darkgray				{color: #808080;}
@@ -192,6 +195,8 @@ h1.alert, h2.alert		{color: #000000;}
 .inverted .orange			{color: #FF8C00;}
 .inverted .blue				{color: #6666FF;}
 .inverted .green			{color: #44FF44;}
+
+.pnarrate					{color: #009AB2;}
 
 /*BIG IMG.icon 			{width: 32px; height: 32px;}*/
 img.icon				{vertical-align: middle; max-height: 1em;}

@@ -23,15 +23,15 @@
 	desc = "A pair of cowboy boots made from python skin."
 	icon_state = "cowboy_snakeskin"
 
-/obj/item/clothing/shoes/boots/cowboy/lizard
-	name = "lizard skin boots"
-	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
-	icon_state = "lizardboots_green"
+/obj/item/clothing/shoes/boots/cowboy/green
+	name = "green cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots made out of snappy green leather."
+	icon_state = "cowboy_green"
 
-/obj/item/clothing/shoes/boots/cowboy/lizard/masterwork
-	name = "\improper Hugs-The-Feet lizard skin boots"
-	desc = "A pair of masterfully crafted lizard skin boots. Finally a good application for the station's most bothersome inhabitants."
-	icon_state = "lizardboots_blue"
+/obj/item/clothing/shoes/boots/cowboy/blue
+	name = "blue cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots made out of extra fancy blue leather."
+	icon_state = "cowboy_blue"
 
 /obj/item/clothing/shoes/boots/cowboy/brown
 	name = "brown cowboy boots"
@@ -169,7 +169,7 @@
 	icon_state = "winterboots_hydro"
 
 /obj/item/clothing/shoes/boots/winter/explorer
-	name = "explorer winter boots"
+	name = "away team winter boots"
 	desc = "Steel-toed winter boots for mining or exploration in hazardous environments. Very good at keeping toes warm and uncrushed."
 	icon_state = "explorer"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
@@ -241,3 +241,13 @@
 	icon_state = "jackboots"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.6
+
+/obj/item/clothing/shoes/boots/singer
+    name = "blue performer's boots"
+    desc = "These boots were made for dancing."
+    icon_state = "bsing"
+
+/obj/item/clothing/shoes/boots/singer/yellow
+	name = "yellow performer's boots"
+	desc = "These boots were made for dancing."
+	icon_state = "ysing"

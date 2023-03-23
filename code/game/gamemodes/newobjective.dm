@@ -749,7 +749,7 @@ datum
 
 
 			blueprints
-				steal_target = /obj/item/blueprints
+				steal_target = /obj/item/areaeditor/blueprints
 				explanation_text = "Steal the station's blueprints."
 				weight = 20
 
@@ -1081,8 +1081,8 @@ datum
 						return 0
 
 			drugs
-				steal_target = /datum/reagent/space_drugs
-				explanation_text = "Steal some space drugs."
+				steal_target = /datum/reagent/drugs/bliss
+				explanation_text = "Steal some bliss."
 				weight = 40
 
 				get_points(var/job)

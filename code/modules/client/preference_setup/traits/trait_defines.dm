@@ -2,14 +2,18 @@
 // The actual modifiers (if used) for these are stored inside code/modules/mob/_modifiers/traits.dm
 
 /datum/trait/modifier
+	abstract_type = /datum/trait/modifier
 	var/modifier_type = null // Type to add to the mob post spawn.
 
 /datum/trait/modifier/apply_trait_post_spawn(mob/living/L)
 	L.add_modifier(modifier_type)
 
+/datum/trait/modifier/is_available()
+	return !!modifier_type
+
 /datum/trait/modifier/generate_desc()
 	var/new_desc = desc
-	if(!modifier_type)
+	if(!is_available())
 		new_desc = "[new_desc] This trait is not implemented yet."
 		return new_desc
 	var/datum/modifier/M = new modifier_type()
@@ -23,6 +27,7 @@
 
 // Physical traits are what they sound like, and involve the character's physical body, as opposed to their mental state.
 /datum/trait/modifier/physical
+	abstract_type = /datum/trait/modifier/physical
 	name = "Physical"
 	category = "Physical"
 
@@ -195,6 +200,7 @@
 // 'Mental' traits are just those that only sapients can have, for now, and generally involves fears.
 // So far, all of them are just for fluff/don't have mechanical effects.
 /datum/trait/modifier/mental
+	abstract_type = /datum/trait/modifier/mental
 	name = "Mental"
 	category = "Mental"
 

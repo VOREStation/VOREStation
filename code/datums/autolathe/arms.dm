@@ -411,12 +411,6 @@
 	category = list("Arms and Ammunition")
 	hidden = 1
 
-/datum/category_item/autolathe/arms/pistol_clip_10mm
-	name = "ammo clip (10mm)"
-	path =/obj/item/ammo_magazine/clip/c10mm
-	category = list("Arms and Ammunition")
-	hidden = 1
-
 /datum/category_item/autolathe/arms/pistol_clip_50
 	name = "ammo clip (.44)"
 	path =/obj/item/ammo_magazine/clip/c50

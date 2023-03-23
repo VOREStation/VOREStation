@@ -24,7 +24,7 @@
 /obj/item/device/nifrepairer/attackby(obj/W, mob/user)
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/np = W
-		if(np.use(1) && supply.get_free_space() >= efficiency)
+		if((supply.get_free_space() >= efficiency) && np.use(1))
 			to_chat(user, "<span class='notice'>You convert some nanopaste into programmed nanites inside \the [src].</span>")
 			supply.add_reagent(id = "nifrepairnanites", amount = efficiency)
 			update_icon()

@@ -9,6 +9,9 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+
+		for(var/mob/living/voice/V in possessed_voice) // Delete voices.
+			V.Destroy() //Destroy the voice.
 		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
 			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
@@ -19,6 +22,7 @@
 					qdel(O)
 			else if(item_storage)
 				O.forceMove(item_storage)
+		GLOB.items_digested_roundstat++
 		qdel(src)
 		return w_class
 
@@ -39,6 +43,8 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+		for(var/mob/living/voice/V in possessed_voice) // Delete voices.
+			V.Destroy() //Destroy the voice.
 		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
 			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
@@ -57,6 +63,7 @@
 				S.use(1)
 				digest_stage = w_class
 		else
+			GLOB.items_digested_roundstat++
 			qdel(src)
 	if(g_damage > w_class)
 		return w_class
@@ -75,7 +82,7 @@
 	return FALSE
 /obj/item/weapon/pinpointer/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/blueprints/digest_act(var/atom/movable/item_storage = null)
+/obj/item/areaeditor/blueprints/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 /obj/item/weapon/disk/nuclear/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -94,7 +101,8 @@
 		icon = 'icons/obj/card_vr.dmi'
 		icon_state = "[initial(icon_state)]_digested"
 	else
-		sprite_stack += "digested"
+		if(!sprite_stack.Find("digested"))
+			sprite_stack += "digested"
 	update_icon()
 	return FALSE
 

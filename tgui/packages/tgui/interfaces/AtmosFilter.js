@@ -1,16 +1,12 @@
 import { useBackend } from '../backend';
 import { Button, LabeledList, NumberInput, Section, AnimatedNumber, Box } from '../components';
-import { getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 export const AtmosFilter = (props, context) => {
   const { act, data } = useBackend(context);
   const filterTypes = data.filter_types || [];
   return (
-    <Window
-      width={390}
-      height={187}
-      resizable>
+    <Window width={390} height={187} resizable>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -19,13 +15,12 @@ export const AtmosFilter = (props, context) => {
                 icon={data.on ? 'power-off' : 'times'}
                 content={data.on ? 'On' : 'Off'}
                 selected={data.on}
-                onClick={() => act('power')} />
+                onClick={() => act('power')}
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Transfer Rate">
               <Box inline mr={1}>
-                <AnimatedNumber
-                  value={data.last_flow_rate}
-                  format={val => val + " L/s"} />
+                <AnimatedNumber value={data.last_flow_rate} format={(val) => val + ' L/s'} />
               </Box>
               <NumberInput
                 animated
@@ -34,27 +29,36 @@ export const AtmosFilter = (props, context) => {
                 unit="L/s"
                 minValue={0}
                 maxValue={200}
-                onDrag={(e, value) => act('rate', {
-                  rate: value,
-                })} />
+                onDrag={(e, value) =>
+                  act('rate', {
+                    rate: value,
+                  })
+                }
+              />
               <Button
                 ml={1}
                 icon="plus"
                 content="Max"
                 disabled={data.rate === data.max_rate}
-                onClick={() => act('rate', {
-                  rate: 'max',
-                })} />
+                onClick={() =>
+                  act('rate', {
+                    rate: 'max',
+                  })
+                }
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Filter">
-              {filterTypes.map(filter => (
+              {filterTypes.map((filter) => (
                 <Button
                   key={filter.name}
                   selected={filter.selected}
                   content={filter.name}
-                  onClick={() => act('filter', {
-                    filterset: filter.f_type,
-                  })} />
+                  onClick={() =>
+                    act('filter', {
+                      filterset: filter.f_type,
+                    })
+                  }
+                />
               ))}
             </LabeledList.Item>
           </LabeledList>

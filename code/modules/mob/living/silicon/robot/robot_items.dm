@@ -25,12 +25,15 @@
 		if(loaded_item)
 			var/confirm = tgui_alert(user, "This will destroy the item inside forever. Are you sure?","Confirm Analyze",list("Yes","No"))
 			if(confirm == "Yes" && !QDELETED(loaded_item)) //This is pretty copypasta-y
-				to_chat(user, "You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.")
+				to_chat(user, "<span class='filter_notice'>You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.</span>")
 				flick("portable_analyzer_scan", src)
 				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+				var/research_levels = list()
 				for(var/T in loaded_item.origin_tech)
 					files.UpdateTech(T, loaded_item.origin_tech[T])
-					to_chat(user, "\The [loaded_item] had level [loaded_item.origin_tech[T]] in [CallTechName(T)].")
+					research_levels += "\The [loaded_item] had level [loaded_item.origin_tech[T]] in [CallTechName(T)]."
+				if (length(research_levels))
+					to_chat(user, "<span class='filter_notice'>[jointext(research_levels,"<br>")]</span>")
 				loaded_item = null
 				for(var/obj/I in contents)
 					for(var/mob/M in I.contents)
@@ -51,7 +54,7 @@
 			else
 				return
 		else
-			to_chat(user, "The [src] is empty.  Put something inside it first.")
+			to_chat(user, "<span class='filter_notice'>The [src] is empty.  Put something inside it first.</span>")
 	if(response == "Sync")
 		var/success = 0
 		for(var/obj/machinery/r_n_d/server/S in machines)
@@ -62,10 +65,10 @@
 			success = 1
 			files.RefreshResearch()
 		if(success)
-			to_chat(user, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
+			to_chat(user, "<span class='filter_notice'>You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.</span>")
 			playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		else
-			to_chat(user, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
+			to_chat(user, "<span class='filter_notice'>Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.</span>")
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 	if(response == "Eject")
 		if(loaded_item)
@@ -74,7 +77,7 @@
 			icon_state = initial(icon_state)
 			loaded_item = null
 		else
-			to_chat(user, "The [src] is already empty.")
+			to_chat(user, "<span class='filter_notice'>The [src] is already empty.</span>")
 
 
 /obj/item/weapon/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
@@ -86,13 +89,13 @@
 		return
 	if(istype(target,/obj/item))
 		if(loaded_item)
-			to_chat(user, "Your [src] already has something inside.  Analyze or eject it first.")
+			to_chat(user, "<span class='filter_notice'>Your [src] already has something inside.  Analyze or eject it first.</span>")
 			return
 		var/obj/item/I = target
 		I.loc = src
 		loaded_item = I
 		for(var/mob/M in viewers())
-			M.show_message(text("<span class='notice'>[user] adds the [I] to the [src].</span>"), 1)
+			M.show_message("<span class='notice'>[user] adds the [I] to the [src].</span>", 1)
 		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
@@ -171,7 +174,7 @@
 		else if(T.dead) //It's probably dead otherwise.
 			T.remove_dead(user)
 	else
-		to_chat(user, "Harvesting \a [target] is not the purpose of this tool. [src] is for plants being grown.")
+		to_chat(user, "<span class='filter_notice'>Harvesting \a [target] is not the purpose of this tool. [src] is for plants being grown.</span>")
 
 // A special tray for the service droid. Allow droid to pick up and drop items as if they were using the tray normally
 // Click on table to unload, click on item to load. Otherwise works identically to a tray.
@@ -214,7 +217,7 @@
 				add_overlay(image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer))
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("<font color='blue'>[user] loads some items onto their service tray.</font>")
+			user.visible_message("<span class='notice'>[user] loads some items onto their service tray.</span>")
 
 		return
 
@@ -254,9 +257,9 @@
 							sleep(rand(2,4))
 		if ( droppedSomething )
 			if ( foundtable )
-				user.visible_message("<font color='blue'>[user] unloads their service tray.</font>")
+				user.visible_message("<span class='notice'>[user] unloads their service tray.</span>")
 			else
-				user.visible_message("<font color='blue'>[user] drops all the items on their tray.</font>")
+				user.visible_message("<span class='notice'>[user] drops all the items on their tray.</span>")
 
 	return ..()
 
@@ -290,7 +293,7 @@
 				mode = 2
 			else
 				mode = 1
-			to_chat(user, "Changed printing mode to '[mode == 2 ? "Rename Paper" : "Write Paper"]'")
+			to_chat(user, "<span class='filter_notice'>Changed printing mode to '[mode == 2 ? "Rename Paper" : "Write Paper"]'</span>")
 
 	return
 
@@ -300,7 +303,7 @@
 /obj/item/weapon/pen/robopen/proc/RenamePaper(mob/user, obj/item/weapon/paper/paper)
 	if ( !user || !paper )
 		return
-	var/n_name = sanitizeSafe(input(user, "What would you like to label the paper?", "Paper Labelling", null)  as text, 32)
+	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32), 32)
 	if ( !user || !paper )
 		return
 
@@ -338,7 +341,7 @@
 	deploy_paper(get_turf(src))
 
 /obj/item/weapon/form_printer/proc/deploy_paper(var/turf/T)
-	T.visible_message("<font color='blue'>\The [src.loc] dispenses a sheet of crisp white paper.</font>")
+	T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
 	new /obj/item/weapon/paper(T)
 
 
@@ -378,7 +381,7 @@
 		overload_time = 0
 
 		var/mob/living/user = src.loc
-		user.visible_message("<span class='danger'>[user]'s shield reactivates!</span>", "<span class='danger'>Your shield reactivates!.</span>")
+		user.visible_message("<span class='danger'>[user]'s shield reactivates!</span>", "<span class='danger'>Your shield reactivates!</span>")
 		user.update_icon()
 
 /obj/item/borg/combat/shield/proc/adjust_flash_count(var/mob/living/user, amount)
@@ -392,7 +395,7 @@
 
 /obj/item/borg/combat/shield/proc/overload(var/mob/living/user)
 	active = 0
-	user.visible_message("<span class='danger'>[user]'s shield destabilizes!</span>", "<span class='danger'>Your shield destabilizes!.</span>")
+	user.visible_message("<span class='danger'>[user]'s shield destabilizes!</span>", "<span class='danger'>Your shield destabilizes!</span>")
 	user.update_icon()
 	overload_time = world.time
 
@@ -438,14 +441,14 @@
 
 /obj/item/weapon/inflatable_dispenser/attack_self()
 	mode = !mode
-	to_chat(usr, "You set \the [src] to deploy [mode ? "doors" : "walls"].")
+	to_chat(usr, "<span class='filter_notice'>You set \the [src] to deploy [mode ? "doors" : "walls"].</span>")
 
 /obj/item/weapon/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
 	..(A, user)
 	if(!user)
 		return
 	if(!user.Adjacent(A))
-		to_chat(user, "You can't reach!")
+		to_chat(user, "<span class='filter_notice'>You can't reach!</span>")
 		return
 	if(istype(A, /turf))
 		try_deploy_inflatable(A, user)
@@ -455,7 +458,7 @@
 /obj/item/weapon/inflatable_dispenser/proc/try_deploy_inflatable(var/turf/T, var/mob/living/user)
 	if(mode) // Door deployment
 		if(!stored_doors)
-			to_chat(user, "\The [src] is out of doors!")
+			to_chat(user, "<span class='filter_notice'>\The [src] is out of doors!</span>")
 			return
 
 		if(T && istype(T))
@@ -464,7 +467,7 @@
 
 	else // Wall deployment
 		if(!stored_walls)
-			to_chat(user, "\The [src] is out of walls!")
+			to_chat(user, "<span class='filter_notice'>\The [src] is out of walls!</span>")
 			return
 
 		if(T && istype(T))
@@ -472,40 +475,40 @@
 			stored_walls--
 
 	playsound(T, 'sound/items/zip.ogg', 75, 1)
-	to_chat(user, "You deploy the inflatable [mode ? "door" : "wall"]!")
+	to_chat(user, "<span class='filter_notice'>You deploy the inflatable [mode ? "door" : "wall"]!</span>")
 
 /obj/item/weapon/inflatable_dispenser/proc/pick_up(var/obj/A, var/mob/living/user)
 	if(istype(A, /obj/structure/inflatable))
 		if(!istype(A, /obj/structure/inflatable/door))
 			if(stored_walls >= max_walls)
-				to_chat(user, "\The [src] is full.")
+				to_chat(user, "<span class='filter_notice'>\The [src] is full.</span>")
 				return
 			stored_walls++
 			qdel(A)
 		else
 			if(stored_doors >= max_doors)
-				to_chat(user, "\The [src] is full.")
+				to_chat(user, "<span class='filter_notice'>\The [src] is full.</span>")
 				return
 			stored_doors++
 			qdel(A)
 		playsound(src, 'sound/machines/hiss.ogg', 75, 1)
-		visible_message("\The [user] deflates \the [A] with \the [src]!")
+		visible_message("<span class='filter_notice'>\The [user] deflates \the [A] with \the [src]!</span>")
 		return
 	if(istype(A, /obj/item/inflatable))
 		if(!istype(A, /obj/item/inflatable/door))
 			if(stored_walls >= max_walls)
-				to_chat(user, "\The [src] is full.")
+				to_chat(user, "<span class='filter_notice'>\The [src] is full.</span>")
 				return
 			stored_walls++
 			qdel(A)
 		else
 			if(stored_doors >= max_doors)
-				to_chat(usr, "\The [src] is full!")
+				to_chat(usr, "<span class='filter_notice'>\The [src] is full!</span>")
 				return
 			stored_doors++
 			qdel(A)
-		visible_message("\The [user] picks up \the [A] with \the [src]!")
+		visible_message("<span class='filter_notice'>\The [user] picks up \the [A] with \the [src]!</span>")
 		return
 
-	to_chat(user, "You fail to pick up \the [A] with \the [src]")
+	to_chat(user, "<span class='filter_notice'>You fail to pick up \the [A] with \the [src].</span>")
 	return

@@ -6,7 +6,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
-	icon = 'icons/obj/pda.dmi'
+	icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 	icon_state = "pda"
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
@@ -99,10 +99,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		S = 'sound/machines/twobeep.ogg'
 	playsound(loc, S, 50, 1)
 	for(var/mob/O in hearers(3, loc))
-		O.show_message(text("[bicon(src)] *[ttone]*"))
+		O.show_message(text("\icon[src][bicon(src)] *[ttone]*"))
 
 /obj/item/device/pda/proc/set_ringtone()
-	var/t = input(usr, "Please enter new ringtone", name, ttone) as text
+	var/t = tgui_input_text(usr, "Please enter new ringtone", name, ttone)
 	if(in_range(src, usr) && loc == usr)
 		if(t)
 			if(hidden_uplink && hidden_uplink.check_trigger(usr, lowertext(t), lowertext(lock_code)))
@@ -127,7 +127,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	new /obj/item/weapon/pen(src)
 	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
 	switch(pdachoice)
-		if(1) icon = 'icons/obj/pda.dmi'
+		if(1) icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 		if(2) icon = 'icons/obj/pda_slim.dmi'
 		if(3) icon = 'icons/obj/pda_old.dmi'
 		if(4) icon = 'icons/obj/pda_rugged.dmi'
@@ -146,9 +146,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				SPECIES_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 				SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 			)
+		if(7) icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+	add_overlay("pda-pen")
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
 /obj/item/device/pda/proc/can_use(mob/user)
@@ -277,6 +279,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			playsound(src, 'sound/machines/id_swipe.ogg', 100, 1)
 		else
 			id.loc = get_turf(src)
+		cut_overlay("pda-id")
 		id = null
 
 /obj/item/device/pda/proc/remove_pen()
@@ -287,6 +290,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(M.get_active_hand() == null)
 				M.put_in_hands(O)
 				to_chat(usr, "<span class='notice'>You remove \the [O] from \the [src].</span>")
+				cut_overlay("pda-pen")
 				return
 		O.loc = get_turf(src)
 	else
@@ -420,6 +424,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(((src in user.contents) && (C in user.contents)) || (istype(loc, /turf) && in_range(src, user) && (C in user.contents)) )
 				if(id_check(user, 2))
 					to_chat(user, "<span class='notice'>You put the ID into \the [src]'s slot.</span>")
+					add_overlay("pda-id")
 					updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
@@ -437,6 +442,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			user.drop_item()
 			C.loc = src
 			to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
+			add_overlay("pda-pen")
 	return
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
@@ -473,7 +479,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/weapon/storage/box/PDAs
 	name = "box of spare PDAs"
 	desc = "A box of spare PDA microcomputers."
-	icon = 'icons/obj/pda.dmi'
+	icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 	icon_state = "pdabox"
 
 /obj/item/weapon/storage/box/PDAs/New()

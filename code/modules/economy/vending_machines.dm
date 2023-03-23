@@ -47,17 +47,21 @@
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/shot = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/pint = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/mug = 10,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/wine = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe = 2,	//VOREStation Add - Carafes and Pitchers
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher = 2,	//VOREStation Add - Carafes and Pitchers
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/wine = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/grapejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint = 10,
+					/obj/item/weapon/reagent_containers/glass/beaker/stopperedbottle = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/gin = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine = 5,
 					/obj/item/weapon/reagent_containers/food/condiment/cookingoil = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/cornoil = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps = 5,
@@ -71,8 +75,6 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 5,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine = 5,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/grapejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/jager = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper = 15,
@@ -131,7 +133,7 @@
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A Galaksi brand vending machine which dispenses hot drinks."
-	description_fluff = "The Ward-Takahashi Galaksi Samovar 55 has been reconstituting hot drinks from their powdered forms since... Well, 2555, but the design has hardly changed in a century or so."
+	description_fluff = "The Ward-Takahashi Galaksi Samovar 55 has been reconstituting hot drinks from their powdered forms since... Well, 2305, but the design has hardly changed in a century or so."
 	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
 	vend_delay = 34
@@ -194,7 +196,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cb10 = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/tuna = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12)
+					/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax = 6)
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy = 2,
 				/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,
@@ -529,6 +532,7 @@
 					/obj/item/seeds/cocoapodseed = 3,
 					/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,
+					/obj/item/seeds/lettuce = 3,
 					/obj/item/seeds/grapeseed = 3,
 					/obj/item/seeds/pumpkinseed = 3,
 					/obj/item/seeds/cherryseed = 3,
@@ -627,6 +631,7 @@
 					/obj/item/device/analyzer = 5,
 					/obj/item/device/t_scanner = 5,
 					/obj/item/weapon/tool/screwdriver = 5,
+					/obj/item/weapon/extinguisher/mini = 3,
 					/obj/item/device/flashlight/glowstick = 3,
 					/obj/item/device/flashlight/glowstick/red = 3,
 					/obj/item/device/flashlight/glowstick/blue = 3,
@@ -898,9 +903,6 @@
 					/obj/item/weapon/reagent_containers/pill/adminordrazine = 10,
 					/obj/item/weapon/tool/crowbar = 1)
 
-
-////////////////////ancient_vend (Hot Food - Old) (ADDED 04/11/2021)////////////////////////////////////////////////////
-
 /obj/machinery/vending/hotfood
 	name = "\improper Hot Foods!"
 	desc = "An old vending machine promising 'hot foods'. You doubt any of its contents are still edible."
@@ -913,8 +915,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/old/hotdog = 3,
 					/obj/item/weapon/reagent_containers/food/snacks/old/taco = 2
 					)
-
-////////////////////weeb_vend (Nippon-tan!) (ADDED 04/11/2021)/////////////////////////////////////////////////
 
 /obj/machinery/vending/weeb
 	name = "\improper Nippon-tan!"
@@ -947,8 +947,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/daifuku = 5
 					)
 
-////////////////////sol_vend (Mars Mart) (ADDED 04/11/2021)////////////////////////////////////////////////////
-
 /obj/machinery/vending/sol
 	name = "\improper Sol-Snacks"
 	desc = "A SolCentric vending machine dispensing a number of Sol-themed snacks, along with other foods."
@@ -980,10 +978,6 @@
 					/obj/item/weapon/storage/box/gum = 2,
 					/obj/item/weapon/storage/box/admints = 2
 					)
-
-////////////////////snix_vend (Snix!) (ADDED 04/11/2021)////////////////////////////////////////////
-
-//////a food variant of the boda machine - It carries slavic themed foods.. Mostly beer snacks./////
 
 /obj/machinery/vending/snix
 	name = "\improper Snix"
@@ -1023,8 +1017,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/hakarl = 8
 					)
 
-////////////////////snl_vend (Shop-n-Large Snacks!) (ADDED 04/16/2021)//////////////////////////////
-
 /obj/machinery/vending/snlvend
 	name = "\improper Shop-n-Large Snacks!"
 	desc = "A Shop-n-Large brand vending machine! Enjoy all your favorites!"
@@ -1053,7 +1045,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 8
 					)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/unajerky = 1)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/unajerky = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
 
 	prices = list(	/obj/item/weapon/reagent_containers/food/snacks/tuna = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/semki = 5,
@@ -1076,8 +1069,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 5
 					)
 
-///////////////////////Soviet Stuff///////////////////////////////////////
-
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
 	desc = "An old sweet water vending machine, how did this end up here?"
@@ -1093,7 +1084,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vending_sound = "machines/vending/vending_cans.ogg"
 
-/obj/machinery/vending/sovietvend //ADDITION 04/20/2021
+/obj/machinery/vending/sovietvend
 	name = "Ration Station"
 	desc = "An old ration vendor unit. How it even still functional?"
 	icon = 'icons/obj/vending.dmi'
@@ -1103,8 +1094,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration = 8)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration = 2)
-
-///////////////////////Radical Renard///////////////////////////////////////
 
 /obj/machinery/vending/radren
 	name = "Radical Renard Sodas"
@@ -1133,9 +1122,6 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vending_sound = "machines/vending/vending_cans.ogg"
-
-///////////////////////Donk-Soft!///////////////////////////////////////
-
 /obj/machinery/vending/donksoft
 	name = "Donk-Soft!"
 	desc = "A toy vendor owned by Donk-Soft, a NanoTrasen sub-company."
@@ -1211,6 +1197,7 @@
 		/obj/item/clothing/under/rank/security = 5,
 		/obj/item/clothing/under/rank/security2 = 5,
 		/obj/item/clothing/under/rank/security/turtleneck = 5,
+		/obj/item/clothing/under/rank/security/modern = 5,
 		/obj/item/clothing/under/rank/security/skirt = 5,
 		/obj/item/clothing/shoes/boots/jackboots = 5,
 		/obj/item/clothing/head/soft/sec = 5,
@@ -1219,7 +1206,12 @@
 		/obj/item/clothing/mask/bandana/red = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security = 5,
 		/obj/item/clothing/accessory/armband = 5,
-		/obj/item/clothing/accessory/holster/waist = 5
+		/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis = 5, //VoreStation edit - cool visor!!!
+		/obj/item/clothing/glasses/hud/security/eyepatch2 = 5, //VoreStation edit - cool eyepatch!
+		/obj/item/clothing/accessory/holster/armpit = 2,	//VOREStation edit - gives some variety of available holsters for those who forgot to bring their own
+		/obj/item/clothing/accessory/holster/waist = 2,	//VOREStation edit - But also reduces the number per type, so there's 8 overall rather than like, 20
+		/obj/item/clothing/accessory/holster/hip = 2,	//VOREStation edit
+		/obj/item/clothing/accessory/holster/leg = 2	//VOREStation edit
 	)
 	req_log_access = access_hop
 	has_logs = 1
@@ -1238,6 +1230,7 @@
 		/obj/item/clothing/suit/chef = 5,
 		/obj/item/clothing/suit/chef/classic = 5,
 		/obj/item/clothing/head/chefhat = 5,
+		/obj/item/clothing/head/hairnet = 5,
 		/obj/item/clothing/under/waiter = 5,
 		/obj/item/clothing/under/sundress = 1
 	)
@@ -1524,7 +1517,7 @@
 	has_logs = 1
 
 /obj/machinery/vending/wardrobe/lawdrobe
-	name = "lawyer wardrobe vendor"
+	name = "IAA wardrobe vendor"
 	desc = "All the things you need to perform your job! Why didn't you already have them?"
 	product_slogans = "Want to do your job? Sure you do!"
 	icon_state = "lawdrobe"

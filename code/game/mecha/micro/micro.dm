@@ -26,7 +26,6 @@
 	max_micro_weapon_equip = 1
 	//add_req_access = 0
 	//operation_req_access = list(access_hos)
-	damage_absorption = list("brute"=1,"fire"=1,"bullet"=1,"laser"=1,"energy"=1,"bomb"=1)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
 	damage_minimum = 0				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
 	minimum_penetration = 0		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
@@ -121,7 +120,7 @@
 
 /obj/mecha/micro/move_inside()
 	var/mob/living/carbon/C = usr
-	if (C.size_multiplier >= 0.5)
+	if (C.get_effective_size(TRUE) >= 0.5)
 		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
 		return
 	else
@@ -129,7 +128,7 @@
 
 /obj/mecha/micro/move_inside_passenger()
 	var/mob/living/carbon/C = usr
-	if (C.size_multiplier >= 0.5)
+	if (C.get_effective_size(TRUE) >= 0.5)
 		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
 		return
 	else

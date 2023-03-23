@@ -32,7 +32,10 @@
 		for(var/obj/item/i in contents)
 			var/i_state = i.item_state
 			if(!i_state) i_state = i.icon_state
-			standing.add_overlay(image(icon = INV_BELT_DEF_ICON, icon_state = i_state))
+			var/image/add_icon = image(icon = INV_BELT_DEF_ICON, icon_state = i_state)
+			if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
+				standing.filters += filter(type = "alpha", icon = clip_mask)
+			standing.add_overlay(add_icon)
 	return standing
 
 /obj/item/weapon/storage/update_icon()
@@ -72,7 +75,8 @@
 		/obj/item/device/integrated_electronics/wirer,
 		/obj/item/device/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
 		/obj/item/weapon/shovel/spade, //VOREStation edit. If it can hold minihoes and hatchers, why not the gardening spade?
-		/obj/item/stack/nanopaste //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
+		/obj/item/stack/nanopaste, //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
+		/obj/item/device/geiger //VOREStation edit. Engineers work with rad-slinging stuff sometimes too
 		)
 
 /obj/item/weapon/storage/belt/utility/full
@@ -102,7 +106,9 @@
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/wirecutters
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/device/analyzer, //Vorestation edit. Gives atmos techs a few extra tools fitting their job from the start
+		/obj/item/weapon/extinguisher/mini //Vorestation edit. As above, the mini's much more handy to have rather than lugging a big one around
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
@@ -110,6 +116,40 @@
 	desc = "Holds tools, looks snazzy."
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
+	storage_slots = 8	//If they get better everything-else, why not the belt too?
+	can_hold = list(
+		/obj/item/weapon/rcd,	//They've given one from the get-go, it's hard to imagine they wouldn't be given something that can store it neater than a bag
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/clothing/glasses,
+		/obj/item/clothing/gloves,
+		/obj/item/device/pda,
+		/obj/item/device/megaphone,
+		/obj/item/taperoll,
+		/obj/item/device/radio/headset,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/device/geiger,
+		/obj/item/areaeditor/blueprints,	//It's a bunch of paper that could prolly be rolled up & slipped into the belt, not to mention CE only, see the RCD's thing above
+		/obj/item/wire_reader	//As above
+		)
 
 /obj/item/weapon/storage/belt/utility/chief/full
 	starts_with = list(
@@ -249,7 +289,8 @@
 		/obj/item/weapon/gun/projectile/p92x,
 		/obj/item/taperoll,
 		/obj/item/weapon/gun/projectile/colt/detective,
-		/obj/item/device/holowarrant
+		/obj/item/device/holowarrant,
+		/obj/item/device/ticket_printer	//VOREStation Edit
 		)
 
 /obj/item/weapon/storage/belt/detective
@@ -290,9 +331,12 @@
 		/obj/item/device/flash,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
-		/obj/item/ammo_magazine,
-		/obj/item/weapon/gun/projectile/colt/detective,
-		/obj/item/device/holowarrant
+		///obj/item/ammo_magazine,	//Detectives don't get projectile weapons as standard here
+		///obj/item/weapon/gun/projectile/colt/detective,	//Detectives don't get projectile weapons as standard here
+		/obj/item/weapon/gun/energy/stunrevolver/detective,	//In keeping with the same vein as above, they can store their special one
+		/obj/item/device/holowarrant,
+		/obj/item/weapon/reagent_containers/food/drinks/flask,
+		/obj/item/device/ticket_printer	//VOREStation Edit
 		)
 
 /obj/item/weapon/storage/belt/soulstone

@@ -84,6 +84,16 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
+	
+	//VOREStation Add Start
+	else if(ispAI(occupant))
+		var/mob/living/silicon/pai/P = occupant
+			
+		if(P.nutrition < 400)
+			P.nutrition = min(P.nutrition+10, 400)
+			cell.use(7000/450*10)
+	//VOREStation Add End
+
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 
@@ -100,12 +110,13 @@
 
 			// Also recharge their internal battery.
 			if(H.isSynthetic() && H.nutrition < 500) //VOREStation Edit
-				H.nutrition = min(H.nutrition+10, 500) //VOREStation Edit
+				H.nutrition = min(H.nutrition+(10*(1-H.species.synthetic_food_coeff)), 500) //VOREStation Edit
 				cell.use(7000/450*10)
 
 			// And clear up radiation
-			if(H.radiation > 0)
-				H.radiation = max(H.radiation - rand(5, 15), 0)
+			if(H.radiation > 0 || H.accumulated_rads > 0)
+				H.radiation = max(H.radiation - 25, 0)
+				H.accumulated_rads = max(H.accumulated_rads - 25, 0)
 
 		if(H.wearing_rig) // stepping into a borg charger to charge your rig and fix your shit
 			var/obj/item/weapon/rig/wornrig = H.get_rig()
@@ -198,7 +209,7 @@
 		desc += "<br>It is capable of repairing burn damage."
 
 /obj/machinery/recharge_station/proc/build_overlays()
-	cut_overlay()
+	cut_overlays()
 	switch(round(chargepercentage()))
 		if(1 to 20)
 			add_overlay("statn_c0")
@@ -257,6 +268,21 @@
 		occupant = R
 		update_icon()
 		return 1
+		
+	//VOREStation Add Start
+	else if(istype(L, /mob/living/silicon/pai))
+		var/mob/living/silicon/pai/P = L
+
+		if(P.incapacitated())
+			return
+
+		add_fingerprint(P)
+		P.reset_view(src)
+		P.forceMove(src)
+		occupant = P
+		update_icon()
+		return 1
+	//VOREStation Add End
 
 	else if(istype(L,  /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L

@@ -122,7 +122,7 @@
 
 /obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
-		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
 			to_chat(user, "<span class='notice'>The label can be at most 50 characters long.</span>")
 		else if(length(tmp_label) > 10)
@@ -260,6 +260,16 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	prefill = list("sacid" = 60)
+
+/obj/item/weapon/reagent_containers/glass/beaker/stopperedbottle
+	name = "stoppered bottle"
+	desc = "A stoppered bottle for keeping beverages fresh."
+	icon_state = "stopperedbottle"
+	center_of_mass = list("x" = 16,"y" = 13)
+	volume = 120
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(5,10,15,25,30,60,120)
+	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."

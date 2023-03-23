@@ -11,7 +11,7 @@
 	. = ..() 
 	
 /decl/emote/human/deathgasp/get_emote_message_3p(var/mob/living/carbon/human/user)
-	return "USER [user.species.get_death_message(user)]"
+	return "[user.species.get_death_message(user)]"
 
 /decl/emote/human/swish
 	key = "swish"

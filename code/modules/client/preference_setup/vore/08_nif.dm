@@ -26,6 +26,9 @@
 			pref.nif_path = null					//Kill!
 			WARNING("Loaded a NIF but it was an invalid path, [pref.real_name]")
 
+	if (ispath(pref.nif_path, /obj/item/device/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
+		pref.nif_path = null
+
 	if(ispath(pref.nif_path) && isnull(pref.nif_durability))		//How'd you lose this?
 		pref.nif_durability = initial(pref.nif_path.durability)		//Well, have a new one, my bad.
 		WARNING("Loaded a NIF but with no durability, [pref.real_name]")

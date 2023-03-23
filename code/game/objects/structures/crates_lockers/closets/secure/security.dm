@@ -29,11 +29,9 @@
 		/obj/item/device/radio/headset/heads/hop,
 		/obj/item/device/radio/headset/heads/hop/alt,
 		/obj/item/weapon/storage/box/ids = 2,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun/martin, //VOREStation Add,
-		/obj/item/weapon/storage/box/commandkeys, //VOREStation Add,
-		/obj/item/weapon/storage/box/servicekeys, //VOREStation Add,
-		///obj/item/weapon/gun/projectile/sec/flash, //VOREStation Removal,
+		/obj/item/weapon/gun/energy/gun/compact,
+		/obj/item/weapon/storage/box/commandkeys,
+		/obj/item/weapon/storage/box/servicekeys,
 		/obj/item/device/flash)
 
 /obj/structure/closet/secure_closet/hop2
@@ -62,7 +60,7 @@
 		/obj/item/clothing/under/suit_jacket/teal/skirt,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hop,
-		/obj/item/clothing/head/caphat/hop/beret/,
+		/obj/item/clothing/head/caphat/hop/beret,
 		/obj/item/clothing/head/caphat/hop/beret/white)
 
 
@@ -232,11 +230,14 @@
 	req_access = list(access_forensics_lockers)
 	closet_appearance = /decl/closet_appearance/cabinet/secure
 
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
 		/obj/item/clothing/gloves/black,
 		///obj/item/gunbox, // VOREStation Removal
-		/obj/item/weapon/gun/energy/stunrevolver/vintage,
+		/obj/item/gunbox/stun,
 		/obj/item/weapon/storage/belt/detective,
 		/obj/item/weapon/storage/box/evidence,
 		/obj/item/device/radio/headset/headset_sec,

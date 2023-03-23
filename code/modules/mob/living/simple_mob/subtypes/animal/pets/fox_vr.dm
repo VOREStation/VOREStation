@@ -9,7 +9,7 @@
 	icon_rest = "fox2_rest"
 	icon = 'icons/mob/pets.dmi'
 
-	movement_cooldown = 0.5
+	movement_cooldown = -1
 	see_in_dark = 6
 	mob_size = MOB_SMALL //Foxes are not smaller than cats so bumping them up to small
 

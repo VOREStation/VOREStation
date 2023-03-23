@@ -281,7 +281,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	)
 	reagents = list("spacespice" = 1)
-	fruit = list("cabbage" = 1, "lime" = 1)
+	fruit = list("lettuce" = 1, "lime" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/grilled_carp
 
 /datum/recipe/grilledcheese

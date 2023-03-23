@@ -42,11 +42,13 @@
 	var/digest_multiplier = 1
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
+	var/obj/item/device/healthanalyzer/med_analyzer = null
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
+	med_analyzer = new /obj/item/device/healthanalyzer
 
 /obj/item/device/dogborg/sleeper/Destroy()
 	go_out()
@@ -92,8 +94,10 @@
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(analyzer && istype(target,/obj/item))
 					var/obj/item/tech_item = target
+					var/list/tech_levels = list()
 					for(var/T in tech_item.origin_tech)
-						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
+						tech_levels += "\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)]."
+					to_chat(user, "<span class='notice'>[jointext(tech_levels, "<br>")]</span>")
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= target
@@ -128,7 +132,7 @@
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashman] slips inside.</span>")
-				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
@@ -159,10 +163,42 @@
 				update_patient()
 				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] lights up as [H.name] slips inside.</span>", "<span class='notice'>Your [src] lights up as [H] slips inside. Life support functions engaged.</span>")
-				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 
-/obj/item/device/dogborg/sleeper/proc/go_out(var/target)
+/obj/item/device/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
+	if (!ingesting || ingesting == hound)
+		return
+	var/obj/belly/belly = hound.vore_selected
+	if (!istype(hound) || !istype(belly) || !(belly in hound.vore_organs))
+		return
+	if (isliving(ingesting))
+		ingest_living(ingesting, belly)
+	else if (istype(ingesting, /obj/item))
+		var/obj/item/to_eat = ingesting
+		if (is_type_in_list(to_eat, item_vore_blacklist))
+			return
+		if (istype(to_eat, /obj/item/weapon/holder)) //just in case
+			var/obj/item/weapon/holder/micro = ingesting
+			var/delete_holder = TRUE
+			for (var/mob/living/M in micro.contents)
+				if (!ingest_living(M, belly) || M.loc == micro)
+					delete_holder = FALSE
+			if (delete_holder)
+				micro.held_mob = null
+				qdel(micro)
+			return
+		to_eat.forceMove(belly)
+		log_admin("VORE: [hound] used their [src] to swallow [to_eat].")
+
+/obj/item/device/dogborg/sleeper/proc/ingest_living(var/mob/living/victim, var/obj/belly/belly)
+	if (victim.devourable && is_vore_predator(hound))
+		belly.nom_mob(victim, hound)
+		add_attack_logs(hound, victim, "Eaten via [belly.name]")
+		return TRUE
+	return FALSE
+
+/obj/item/device/dogborg/sleeper/proc/go_out()
 	hound = src.loc
 	items_preserved.Cut()
 	cleaning = 0
@@ -179,9 +215,20 @@
 				var/obj/T = C
 				T.loc = hound.loc
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
-		update_patient()
-	else //You clicked eject with nothing in you, let's just reset stuff to be sure.
-		update_patient()
+	update_patient()
+
+/obj/item/device/dogborg/sleeper/proc/vore_ingest_all()
+	hound = src.loc
+	if (!istype(hound) || length(contents) <= 0)
+		return
+	if (!hound.vore_selected)
+		to_chat(hound, "<span class='warning'>You don't have a belly selected to empty the contents into!</span>")
+		return
+	for (var/C in contents)
+		if (isliving(C) || isitem(C))
+			ingest_atom(C)
+	hound.updateVRPanel()
+	update_patient()
 
 /obj/item/device/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
@@ -211,19 +258,23 @@
 					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
 
 	dat += "<h3>[name] Status</h3>"
+	dat += "<div style='display: flex; flex-wrap: wrap; flex-direction: row;'>"
 	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
 	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
+	dat += "<A href='?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
 	if(!cleaning)
 		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
 	else
 		dat += "<span class='linkOff'>Self-Clean</span>"
+	if(medsensor)
+		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	if(delivery)
 		dat += "<BR><h3>Cargo Compartment</h3><BR>"
 		dat += "<A href='?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
 		if(islist(deliverylists[delivery_tag]))
 			dat += "<A href='?src=\ref[src];slot_eject=1'>Eject Slot</A>"
-
+	dat += "</div>"
 	dat += "<div class='statusDisplay'>"
 
 	if(!delivery && compactor && length(contents))//garbage counter for trashpup
@@ -297,7 +348,7 @@
 				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"
 	dat += "</div>"
 
-	var/datum/browser/popup = new(user, "sleeper_b", "[name] Console", 400, 500, src)
+	var/datum/browser/popup = new(user, "sleeper_b", "[name] Console", 450, 500, src)
 	popup.set_content(dat)
 	popup.open()
 	UI_open = TRUE
@@ -336,12 +387,18 @@
 		if(cleaning)
 			sleeperUI(usr)
 			return
+	if(href_list["analyze"]) //DO HEALTH ANALYZER STUFF HERE.
+		med_analyzer.scan_mob(patient,hound)
 	if(href_list["port"])
 		switch(eject_port)
 			if("ingestion")
 				eject_port = "disposal"
 			if("disposal")
 				eject_port = "ingestion"
+		sleeperUI(usr)
+		return
+	if (href_list["ingest"])
+		vore_ingest_all()
 		sleeperUI(usr)
 		return
 	if(href_list["deliveryslot"])
@@ -548,10 +605,11 @@
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
 				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
-				water.add_charge(damage_gain)
+				if(water)
+					water.add_charge(damage_gain)
 				if(T.stat == DEAD)
 					if(ishuman(T))
-						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 					to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 					to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
 					var/deathsound = pick(
@@ -571,7 +629,7 @@
 							for(var/atom/movable/thing in B)
 								thing.forceMove(src)
 								if(ismob(thing))
-									to_chat(thing, "As [T] melts away around you, you find yourself in [hound]'s [name]")
+									to_chat(thing, "<span class='filter_notice'>As [T] melts away around you, you find yourself in [hound]'s [name].</span>")
 					for(var/obj/item/I in T)
 						if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
 							var/obj/item/organ/internal/mmi_holder/MMI = I
@@ -585,13 +643,18 @@
 					if(ishuman(T))
 						var/mob/living/carbon/human/Prey = T
 						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
-						water.add_charge(volume)
+						if(water)
+							water.add_charge(volume)
 					if(T.reagents)
 						volume = T.reagents.total_volume
-						water.add_charge(volume)
+						if(water)
+							water.add_charge(volume)
+					if(T.ckey)
+						GLOB.prey_digested_roundstat++
 					if(patient == T)
 						patient_laststat = null
 						patient = null
+					T.mind?.vore_death = TRUE
 					qdel(T)
 
 		//Pick a random item to deal with (if there are any)
@@ -612,7 +675,7 @@
 						for(var/tech in tech_item.origin_tech)
 							files.UpdateTech(tech, tech_item.origin_tech[tech])
 							synced = FALSE
-					if(volume)
+					if(volume && water)
 						water.add_charge(volume)
 					if(recycles && T.matter)
 						for(var/material in T.matter)
@@ -620,14 +683,14 @@
 							if(istype(T,/obj/item/stack))
 								var/obj/item/stack/stack = T
 								total_material *= stack.get_amount()
-							if(material == MAT_STEEL)
+							if(material == MAT_STEEL && metal)
 								metal.add_charge(total_material)
-							if(material == "glass")
+							if(material == "glass" && glass)
 								glass.add_charge(total_material)
 							if(decompiler)
-								if(material == "plastic")
+								if(material == "plastic" && plastic)
 									plastic.add_charge(total_material)
-								if(material == "wood")
+								if(material == "wood" && wood)
 									wood.add_charge(total_material)
 					drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
@@ -723,5 +786,12 @@
 	desc = "A mounted 'emergency containment cell'."
 	icon_state = "sleeperert"
 	injection_chems = list("inaprovaline", "paracetamol") // short list
+
+/obj/item/device/dogborg/sleeper/compactor/trauma //Trauma borg belly
+	name = "Recovery Belly"
+	desc = "A downgraded model of the medihound sleeper."
+	icon_state = "sleeper"
+	injection_chems = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
+	max_item_count = 1
 
 #undef SLEEPER_INJECT_COST

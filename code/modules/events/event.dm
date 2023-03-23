@@ -9,9 +9,10 @@
 	var/one_shot	= 0	// If true, then the event will not be re-added to the list of available events
 	var/add_to_queue= 1	// If true, add back to the queue of events upon finishing.
 	var/list/role_weights = list()
+	var/list/min_job_count = list()
 	var/datum/event/event_type
 
-/datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1)
+/datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1, var/list/min_jobs)
 	name = event_name
 	severity = event_severity
 	event_type = type
@@ -22,6 +23,9 @@
 	src.add_to_queue = add_to_queue
 	if(job_weights)
 		role_weights = job_weights
+	if(min_jobs)
+		min_job_count = min_jobs
+
 
 /datum/event_meta/proc/get_weight(var/list/active_with_role)
 	if(!enabled)
@@ -39,6 +43,16 @@
 	if(max_weight && total_weight > max_weight) total_weight = max_weight
 
 	return total_weight
+
+/datum/event_meta/proc/minimum_active(var/list/active_with_role)
+	var/can_fire = TRUE
+	for(var/role in min_job_count)
+		if(role in active_with_role)
+			if(active_with_role[role] < min_job_count[role])
+				can_fire = FALSE
+				break
+
+	return can_fire
 
 /datum/event_meta/no_overmap/get_weight() //these events have overmap equivalents, and shouldn't fire randomly if overmap is used
 	return global.using_map.use_overmap ? 0 : ..()

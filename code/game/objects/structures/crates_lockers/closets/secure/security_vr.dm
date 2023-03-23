@@ -189,7 +189,7 @@
 		/obj/item/weapon/storage/lockbox/medal,
 		/obj/item/device/radio/headset/heads/captain,
 		/obj/item/device/radio/headset/heads/captain/alt,
-		/obj/item/weapon/gun/energy/gun,
+		/obj/item/gunbox/captain,
 		/obj/item/weapon/melee/telebaton,
 		/obj/item/device/flash,
 		/obj/item/weapon/storage/box/ids,

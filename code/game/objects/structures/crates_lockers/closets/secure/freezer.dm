@@ -3,10 +3,15 @@
 	req_access = list(access_kitchen)
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/condiment/flour = 7,
-		/obj/item/weapon/reagent_containers/food/condiment/sugar = 2,
+		/obj/item/weapon/reagent_containers/food/condiment/carton/flour = 6,
+		/obj/item/weapon/reagent_containers/food/condiment/carton/sugar = 1,
+		/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic = 1,
+		/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic = 1,
 		/obj/item/weapon/reagent_containers/food/condiment/spacespice = 2
 		)
+
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()

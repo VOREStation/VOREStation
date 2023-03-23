@@ -13,6 +13,18 @@
 	display_name = "tourist, green"
 	path = /obj/item/clothing/shoes/tourist_2
 
+/datum/gear/shoes/sneakerspurple
+	display_name = "sneakers, purple"
+	path = /obj/item/clothing/shoes/sneakerspurple
+
+/datum/gear/shoes/sneakersblue
+	display_name = "sneakers, blue"
+	path = /obj/item/clothing/shoes/sneakersblue
+
+/datum/gear/shoes/sneakersred
+	display_name = "sneakers, red"
+	path = /obj/item/clothing/shoes/sneakersred
+
 /datum/gear/shoes/jackboots
 	display_name = "jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots
@@ -157,13 +169,13 @@
 	display_name = "cowboy boots, snake skin"
 	path = /obj/item/clothing/shoes/boots/cowboy/snakeskin
 
-/datum/gear/shoes/cowboy/lizard
-	display_name = "cowboy boots, lizard skin"
-	path = /obj/item/clothing/shoes/boots/cowboy/lizard
+/datum/gear/shoes/cowboy/green
+	display_name = "cowboy boots, green"
+	path = /obj/item/clothing/shoes/boots/cowboy/green
 
-/datum/gear/shoes/cowboy/lizard/masterwork
-	display_name = "cowboy boots, lizard skin (masterwork)"
-	path = /obj/item/clothing/shoes/boots/cowboy/lizard/masterwork
+/datum/gear/shoes/cowboy/blue
+	display_name = "cowboy boots, blue"
+	path = /obj/item/clothing/shoes/boots/cowboy/blue
 
 /datum/gear/shoes/jungle
 	display_name = "jungle boots"

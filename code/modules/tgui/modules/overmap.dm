@@ -307,7 +307,8 @@
 		/* HELM */
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
-			var/sec_name = input(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text
+			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
+			sec_name = sanitize(sec_name,MAX_NAME_LEN)
 			if(!sec_name)
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name
@@ -319,8 +320,8 @@
 					R.fields["x"] = linked.x
 					R.fields["y"] = linked.y
 				if("new")
-					var/newx = input(usr, "Input new entry x coordinate", "Coordinate input", linked.x) as num
-					var/newy = input(usr, "Input new entry y coordinate", "Coordinate input", linked.y) as num
+					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x)
+					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y)
 					R.fields["x"] = CLAMP(newx, 1, world.maxx)
 					R.fields["y"] = CLAMP(newy, 1, world.maxy)
 			known_sectors[sec_name] = R
@@ -335,12 +336,12 @@
 
 		if("setcoord")
 			if(params["setx"])
-				var/newx = input(usr, "Input new destiniation x coordinate", "Coordinate input", dx) as num|null
+				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx)
 				if(newx)
 					dx = CLAMP(newx, 1, world.maxx)
 
 			if(params["sety"])
-				var/newy = input(usr, "Input new destiniation y coordinate", "Coordinate input", dy) as num|null
+				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy)
 				if(newy)
 					dy = CLAMP(newy, 1, world.maxy)
 			. = TRUE
@@ -356,13 +357,13 @@
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = input(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000) as num|null
+			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
 
 		if("accellimit")
-			var/newlimit = input(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000) as num|null
+			var/newlimit = tgui_input_number(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000)
 			if(newlimit)
 				accellimit = max(newlimit/1000, 0)
 			. = TRUE
@@ -383,7 +384,7 @@
 			else
 				autopilot = !autopilot
 			. = TRUE
-		
+
 		if("apilot_lock")
 			autopilot_disabled = !autopilot_disabled
 			autopilot = FALSE
@@ -402,7 +403,7 @@
 			. = TRUE
 
 		if("set_global_limit")
-			var/newlim = input(usr, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100) as num
+			var/newlim = tgui_input_number(usr, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100, 100, 0)
 			linked.thrust_limit = clamp(newlim/100, 0, 1)
 			for(var/datum/ship_engine/E in linked.engines)
 				E.set_thrust_limit(linked.thrust_limit)
@@ -416,7 +417,7 @@
 
 		if("set_limit")
 			var/datum/ship_engine/E = locate(params["engine"])
-			var/newlim = input(usr, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit()) as num
+			var/newlim = tgui_input_number(usr, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit(), 100, 0)
 			var/limit = clamp(newlim/100, 0, 1)
 			if(istype(E))
 				E.set_thrust_limit(limit)
@@ -437,7 +438,7 @@
 		/* END ENGINES */
 		/* SENSORS */
 		if("range")
-			var/nrange = input(usr, "Set new sensors range", "Sensor range", sensors.range) as num|null
+			var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range)
 			if(nrange)
 				sensors.set_range(CLAMP(nrange, 1, world.view))
 			. = TRUE

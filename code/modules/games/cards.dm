@@ -157,7 +157,7 @@
 			players += player
 	//players -= usr
 	var/maxcards = max(min(cards.len,10),1)
-	var/dcard = input(usr, "How many card(s) do you wish to deal? You may deal up to [maxcards] cards.") as num
+	var/dcard = tgui_input_number(usr, "How many card(s) do you wish to deal? You may deal up to [maxcards] cards.", null, null, maxcards)
 	if(dcard > maxcards)
 		return
 	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal [dcard] card(s)?", "Deal to whom?", players)
@@ -188,7 +188,7 @@
 		if(P.name != "Blank Card")
 			to_chat(user,"<span class = 'notice'>You cannot write on that card.</span>")
 			return
-		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_PAPER_MESSAGE_LEN)
+		var/cardtext = sanitize(tgui_input_text(user, "What do you wish to write on the card?", "Card Editing", null, MAX_PAPER_MESSAGE_LEN), MAX_PAPER_MESSAGE_LEN)
 		if(!cardtext)
 			return
 		P.name = cardtext
@@ -321,7 +321,7 @@
 
 	var/i
 	var/maxcards = min(cards.len,5) // Maximum of 5 cards at once
-	var/discards = input(usr, "How many cards do you want to discard? You may discard up to [maxcards] card(s)") as num
+	var/discards = tgui_input_number(usr, "How many cards do you want to discard? You may discard up to [maxcards] card(s)", null, null, maxcards, 0)
 	if(discards > maxcards)
 		return
 	for	(i = 0;i < discards;i++)
@@ -400,11 +400,13 @@
 
 /obj/item/weapon/hand/update_icon(var/direction = 0)
 
-	if(!cards.len)
+	var/cardNumber = cards.len
+
+	if(!cardNumber)
 		qdel(src)
 		return
-	else if(cards.len > 1)
-		name = "hand of cards"
+	else if(cardNumber > 1)
+		name = "hand of cards ([cardNumber])"
 		desc = "Some playing cards."
 	else
 		name = "a playing card"
@@ -413,7 +415,7 @@
 	cut_overlays()
 
 
-	if(cards.len == 1)
+	if(cardNumber == 1)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
@@ -421,7 +423,7 @@
 		add_overlay(I)
 		return
 
-	var/offset = FLOOR(20/cards.len, 1)
+	var/offset = FLOOR(20/cardNumber, 1)
 
 	var/matrix/M = matrix()
 	if(direction)
@@ -452,6 +454,7 @@
 		I.transform = M
 		add_overlay(I)
 		i++
+
 
 /obj/item/weapon/hand/dropped(mob/user as mob)
 	if(locate(/obj/structure/table, loc))

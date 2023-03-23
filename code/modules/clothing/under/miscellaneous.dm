@@ -360,6 +360,11 @@
 	desc = "You must be a bit risque teasing all of them in a maid uniform!"
 	icon_state = "sexymaid"
 
+/obj/item/clothing/under/dress/maid/under_maid
+	name = "modern maid costume"
+	desc = "You're going to use this for housekeeping, right?"
+	icon_state = "under_maid"
+
 /obj/item/clothing/under/dress/dress_fire
 	name = "flame dress"
 	desc = "A small black dress with blue flames print on it."
@@ -413,16 +418,19 @@
 	name = "black corset"
 	desc = "A black corset and skirt for those fancy nights out."
 	icon_state = "black_corset"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/dress/flower_dress
 	name = "flower dress"
 	desc = "A beautiful dress with a skirt of flowers."
 	icon_state = "flower_dress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/red_swept_dress
 	name = "red swept dress"
 	desc = "A red dress that sweeps to the side."
 	icon_state = "red_swept_dress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/flamenco
 	name = "flamenco dress"
@@ -485,11 +493,13 @@
 	name = "polka dot dress"
 	desc = "A sleeveless, cream colored dress with red polka dots."
 	icon_state = "polka"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/twistfront
 	name = "twistfront crop dress"
 	desc = "A black skirt and red twistfront croptop. Fancy!"
 	icon_state = "twistfront"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/cropdress
 	name = "crop dress"
@@ -515,26 +525,31 @@
 	name = "little black dress"
 	desc = "A little strapless black dress with a red ribbon and flower accessory."
 	icon_state = "littleblackdress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/pinktutu
 	name = "pink tutu"
 	desc = "A black leotard with a pink mesh tutu. Perfect for ballet practice."
 	icon_state = "pinktutu"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/festivedress
 	name = "festive dress"
 	desc = "A red and white dress themed after some winter holidays. Tastefully festive!"
 	icon_state = "festivedress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/revealingdress
 	name = "revealing dress"
 	desc = "A very revealing black and blue dress. Is this work appropriate?"
 	icon_state = "revealingdress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/gothic
 	name = "gothic dress"
 	desc = "A black dress with a sheer mesh over it, tastefully old school goth."
 	icon_state = "gothic"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/formalred
 	name = "formal red dress"
@@ -581,11 +596,22 @@
 	name = "golden wrap"
 	desc = "An outfit so ostentatious that you feel poorer just looking at it."
 	icon_state = "goldwrap"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/dress/hightrousers
 	name = "high-waisted trousers"
 	desc = "A waistline this high is just made for ripping bodices, swashing buckles, or - just occasionally - sucking blood."
 	icon_state = "gayvampire"
+
+/obj/item/clothing/under/dress/singer
+	name = "blue singer dress"
+	desc = "Just looking at this makes you want to sing."
+	icon_state = "bsing"
+
+/obj/item/clothing/under/dress/singer/yellow
+	name = "yellow singer dress"
+	desc = "Just looking at this makes you want to sing."
+	icon_state = "ysing"
 
 /*
  * Wedding Stuff
@@ -873,18 +899,6 @@
 	desc = "It is a dark blue cheongsam dress."
 	icon_state = "cheongsam-darkblue"
 
-/obj/item/clothing/under/qipao_colorable
-	name = "qipao"
-	desc = "A traditional Chinese women's garment, typically made from silk."
-	icon_state = "qipao"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/qipao2_colorable
-	name = "slim qipao"
-	desc = "A traditional Chinese women's garment, typically made from silk. This one is fairly slim."
-	icon_state = "qipao2"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
 /obj/item/clothing/under/blazer
 	name = "blue blazer"
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
@@ -946,11 +960,13 @@
 	name = "green asymmetrical jumpsuit"
 	desc = "A green futuristic uniform with asymmetrical pants. Trendy!"
 	icon_state = "greenasym"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/cyberpunkharness
 	name = "cyberpunk strapped harness"
 	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
 	icon_state = "cyberhell"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/blackngold
 	name = "black and gold gown"
@@ -971,11 +987,13 @@
 	name = "flower skirt"
 	desc = "A flowery skirt that comes in a variety of colors."
 	icon_state = "flowerskirt"
+	body_parts_covered = LOWER_TORSO
 
 /obj/item/clothing/under/fashionminiskirt
 	name = "fashionable miniskirt"
 	desc = "An impractically short miniskirt allegedly making waves through the local fashion scene."
 	icon_state = "miniskirt_fashion"
+	body_parts_covered = LOWER_TORSO
 
 /obj/item/clothing/under/retrosweater
 	name = "retro sweater"
@@ -1114,7 +1132,7 @@
 
 /obj/item/clothing/under/explorer
 	desc = "A green uniform for operating in hazardous environments."
-	name = "explorer's jumpsuit"
+	name = "away team's jumpsuit"
 	icon_state = "explorer"
 
 /obj/item/clothing/under/explorer/armored
@@ -1257,18 +1275,43 @@
 	icon_state = "cowboy_grey"
 	worn_state = "cowboy_grey"
 
-/obj/item/clothing/under/primitive
-	name = "primitive clothes"
-	desc = "Some patched together rags. Better than being naked."
-	force = 0
-	icon_state = "rag"
-	worn_state = "rag"
-
 /obj/item/clothing/under/curator
 	name = "curator uniform"
 	desc = "A rugged uniform suitable for treasure hunting."
 	icon_state = "curator"
 	worn_state = "curator"
+
+/*
+ * 80s
+ */
+
+/obj/item/clothing/under/tropical
+	name = "black tropical oufit"
+	desc = "A classic themed outfit. This one makes you feel like an animal."
+	icon_state = "animalstyle"
+	worn_state = "animalstyle"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical)
+
+/obj/item/clothing/under/tropical/green
+	name = "puke-green tropical oufit"
+	desc = "A classic themed outfit. This one makes you look like puke."
+	icon_state = "tropicopuke"
+	worn_state = "tropicopuke"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical/green)
+
+/obj/item/clothing/under/tropical/pink
+	name = "pink tropical oufit"
+	desc = "A classic themed outfit. This one makes you feel nostalgic."
+	icon_state = "3005vintage"
+	worn_state = "3005vintage"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical/pink)
+
+/obj/item/clothing/under/tropical/blue
+	name = "pink tropical oufit"
+	desc = "A classic themed outfit. This one makes you feel out of touch."
+	icon_state = "miamivice"
+	worn_state = "miamivice"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical/blue)
 
 /*
  * Modern

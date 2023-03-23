@@ -91,7 +91,7 @@
 /datum/gear/uniform/pants/New()
 	..()
 	var/list/pants = list()
-	for(var/obj/item/clothing/under/pants/pant_type as anything in typesof(/obj/item/clothing/under/pants))
+	for(var/obj/item/clothing/under/pants/pant_type as anything in (typesof(/obj/item/clothing/under/pants) - typesof(/obj/item/clothing/under/pants/altevian)))
 		pants[initial(pant_type.name)] = pant_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
@@ -272,9 +272,8 @@
 	allowed_roles = list("Internal Affairs Agent")
 
 /datum/gear/uniform/suit/bartenderskirt
-	display_name = "suit, bartender skirt (Bartender)"
+	display_name = "suit, bartender skirt"
 	path = /obj/item/clothing/under/rank/bartender/skirt
-	allowed_roles = list("Bartender")
 
 /datum/gear/uniform/scrub
 	display_name = "scrubs selection"
@@ -698,6 +697,26 @@
 /datum/gear/uniform/utility/gsa_work
 	display_name = "heavy utility, galactic survey"
 	path = /obj/item/clothing/under/gsa_work
+
+/*
+ * 80s
+ */
+
+/datum/gear/uniform/tropical_outfit/black
+	display_name = "tropical outfit, animal style"
+	path = /obj/item/clothing/under/tropical
+
+/datum/gear/uniform/tropical_outfit/green
+	display_name = "tropical outfit, tropico-puke"
+	path = /obj/item/clothing/under/tropical/green
+
+/datum/gear/uniform/tropical_outfit/pink
+	display_name = "tropical outfit, 3005 vintage"
+	path = /obj/item/clothing/under/tropical/pink
+
+/datum/gear/uniform/tropical_outfit/blue
+	display_name = "tropical outfit, miami vice"
+	path = /obj/item/clothing/under/tropical/blue
 
 /*
  * Branded Uniforms

@@ -36,6 +36,7 @@
 /obj/item/ammo_casing/afoam_dart/riot
 	name = "riot foam dart"
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	projectile_type = /obj/item/projectile/bullet/foam_dart_riot
 	matter = list(MAT_STEEL = 210, MAT_PLASTIC = 60)
 	icon_state = "foamdart_riot"
 
@@ -54,6 +55,25 @@
 	projectile_type = /obj/item/projectile/bullet/bb
 	matter = list(MAT_PLASTIC = 20)
 	caseless = TRUE
+
+/obj/item/ammo_casing/a357/rubber
+	desc = "A .357 rubber bullet casing."
+	caliber = ".357"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+	matter = list(MAT_STEEL = 60)
+
+/obj/item/ammo_casing/a357/flash
+	desc = "A .357 flash bullet casing."
+	caliber = ".357"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/energy/flash/strong
+
+/obj/item/ammo_casing/a357/stun
+	desc = "A .357 stun bullet casing."
+	caliber = ".357"
+	icon_state = "w-casing"
+	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
 /*
  * .38
@@ -221,6 +241,18 @@
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	matter = list(MAT_STEEL = 75)
+
+/obj/item/ammo_casing/a10mm/practice
+	desc = "A 10mm practice bullet casing."
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/practice
+	matter = list(MAT_STEEL = 60)
+
+/obj/item/ammo_casing/a10mm/rubber
+	desc = "A 10mm rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	icon_state = "r-casing"
+	matter = list(MAT_STEEL = 60)
 
 /obj/item/ammo_casing/a10mm/emp
 	name = "10mm haywire round"

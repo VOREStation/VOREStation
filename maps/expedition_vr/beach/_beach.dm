@@ -85,10 +85,8 @@
 	//guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/fennec = 300,
-		/mob/living/simple_mob/animal/passive/snake/python = 100,
-		/mob/living/simple_mob/vore/alienanimals/teppi = 10,
-		/mob/living/simple_mob/vore/alienanimals/teppi/baby = 1
-	)
+		/mob/living/simple_mob/animal/passive/snake/python = 100
+		)
 
 /obj/tether_away_spawner/beach_outside_friendly
 	name = "Fennec Spawner"

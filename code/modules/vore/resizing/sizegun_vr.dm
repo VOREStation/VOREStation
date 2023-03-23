@@ -1,14 +1,14 @@
 //
 // Size Gun
 //
-
 /obj/item/weapon/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_override = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun"
+	icon_state = "sizegun-shrink100"
 	item_state = "sizegun"
+	var/initial_icon_state = "sizegun"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
@@ -42,7 +42,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
+	var/size_select = tgui_input_number(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100, 600, 1)
 	if(!size_select)
 		return //cancelled
 	//We do valid resize testing in actual firings because people move after setting these things.
@@ -65,8 +65,8 @@
 		else
 			ratio = max(round(ratio, 0.25) * 100, 25)
 
-		icon_state = "[initial(icon_state)]-[grow_mode][ratio]"
-		item_state = "[initial(icon_state)]-[grow_mode]"
+		icon_state = "[initial_icon_state]-[grow_mode][ratio]"
+		item_state = "[initial_icon_state]-[grow_mode]"
 
 	if(!ignore_inhands) update_held_icon()
 
@@ -74,44 +74,64 @@
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
-/obj/item/weapon/gun/energy/sizegun/old
-	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. This one seems to be an older model, but still functional. Warning: Do not insert into mouth."
-	icon_state = "sizegun-old"
-	item_state = "sizegun-old"
-
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
 	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."
-	icon_state = "sizegun_admin"
+	description_fluff = "A standard size gun that has been modified with \
+	a distabilized bluespace element that has allowed the gun to break the \
+	normal laws of physics and create a 'weapon' capable of sizing any \
+	creature well beyond any conceivable size. Only a handfull of these \
+	exist in the known universe and they are \
+	exclusively owned by NanoTrasen for research purposes."
+	icon_state = "sizegun_admin-shrink100"
 	item_state = "sizegun_admin"
+	initial_icon_state = "sizegun_admin"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
-/obj/item/weapon/gun/energy/sizegun/abductor
+/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun
+	name = "Precursor Alpha Object - Matter Manipulation Ray"
+	desc = "This appears to be some sort of weapon and if someone were to pull \
+	the trigger lopcated at the handle of the device it would fire a strong \
+	laser at whatever it is pointed towards. While the laser certainly looks \
+	dangerous, it is not, instead it is a powerful size manipulation spectrum \
+	that is not disimilar to the size guns used by NanoTrasen.\
+	<br><br>\
+	It is unknown why the precursors would need such a device, possibly for \
+	making it easier to transport large specimines. It is hard to tell \
+	exactly what purpose such a device served the precursors but researchers \
+	have their theories as they continue to analyse the technology."
+	value = CATALOGUER_REWARD_MEDIUM
+
+/obj/item/weapon/gun/energy/sizegun/admin/abductor
 	name = "alien size gun"
-	icon_state = "sizegun-abductor"
-	item_state = "laser"
+	desc = "A strange looking ray gun weapon with an adjustor knob on the side. The design is alien, but it bares a striking resemblence to the older model size guns that NT uses for research."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
+	icon_state = "sizegun-abductor-shrink100"
+	item_state = "sizegun-abductor"
+	initial_icon_state = "sizegun-abductor"
 	charge_cost = 0
-	projectile_type = /obj/item/projectile/beam/sizelaser/admin
-
-/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
-	item_state = initial(item_state)
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
 
 /obj/item/weapon/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input(usr, "Put the desired size (1-600%)", "Set Size", size_set_to * 100) as num|null
+	var/size_select = tgui_input_number(usr, "Put the desired size (1-600%)", "Set Size", size_set_to * 100, 600, 1)
 	if(!size_select)
 		return //cancelled
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
+
+/obj/item/weapon/gun/energy/sizegun/mounted
+	name = "mounted size gun"
+	self_recharge = 1
+	use_external_power = 1
 //
 // Beams for size gun
 //
-
 /obj/item/projectile/beam/sizelaser
 	name = "size beam"
 	icon_state = "xray"
@@ -119,6 +139,7 @@
 	damage = 0
 	check_armour = "laser"
 	var/set_size = 1 //Let's default to 100%
+	can_miss = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
@@ -165,7 +186,10 @@
 /obj/item/projectile/beam/sizelaser/grow
 	set_size = 2.0 //200% of current size
 
-/obj/item/weapon/gun/energy/sizegun/mounted
-	name = "mounted size gun"
-	self_recharge = 1
-	use_external_power = 1
+/obj/item/projectile/beam/sizelaser/admin/alien
+	name = "alien size beam"
+	icon_state = "darkb"
+
+	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
+	tracer_type = /obj/effect/projectile/tracer/darkmatter
+	impact_type = /obj/effect/projectile/impact/darkmatter

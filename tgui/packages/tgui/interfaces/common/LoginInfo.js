@@ -11,10 +11,7 @@ import { Box, Button, NoticeBox } from '../../components';
  */
 export const LoginInfo = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    authenticated,
-    rank,
-  } = data;
+  const { authenticated, rank } = data;
   if (!data) {
     return;
   }

@@ -75,9 +75,9 @@
 	for(var/i = 1 to 4)
 		var/datum/disease2/effect/Eff = s[i]
 		H += {"
-				<a href='?src=\ref[src];what=effect;stage=[i];effect=1'>[initial(Eff.name)]</a>
-				Chance: <a href='?src=\ref[src];what=effect;stage=[i];chance=1'>[s_chance[i]]</a>
-				Multiplier: <a href='?src=\ref[src];what=effect;stage=[i];multiplier=1'>[s_multiplier[i]]</a>
+				<a href='?src=\ref[src];[HrefToken()];what=effect;stage=[i];effect=1'>[initial(Eff.name)]</a>
+				Chance: <a href='?src=\ref[src];[HrefToken()];what=effect;stage=[i];chance=1'>[s_chance[i]]</a>
+				Multiplier: <a href='?src=\ref[src];[HrefToken()];what=effect;stage=[i];multiplier=1'>[s_multiplier[i]]</a>
 				<br />
 			"}
 	H += {"
@@ -91,27 +91,27 @@
 			continue
 		if(!f) H += " | "
 		else f = 0
-		H += "<a href='?src=\ref[src];what=species;toggle=[k]' style='color:[(k in species) ? "#006600" : "#ff0000"]'>[k]</a>"
+		H += "<a href='?src=\ref[src];[HrefToken()];what=species;toggle=[k]' style='color:[(k in species) ? "#006600" : "#ff0000"]'>[k]</a>"
 	H += {"
-	<a href="?src=\ref[src];what=species;reset=1" style="color:#0000aa">Reset</a>
+	<a href="?src=\ref[src];[HrefToken()];what=species;reset=1" style="color:#0000aa">Reset</a>
 	<br />
-	<b>Infection Chance:</b> <a href="?src=\ref[src];what=ichance">[infectionchance]</a><br />
-	<b>Spread Type:</b> <a href="?src=\ref[src];what=stype">[spreadtype]</a><br />
-	<b>Speed:</b> <a href="?src=\ref[src];what=speed">[speed]</a><br />
-	<b>Resistance:</b> <a href="?src=\ref[src];what=resistance">[resistance]</a><br />
+	<b>Infection Chance:</b> <a href="?src=\ref[src];[HrefToken()];what=ichance">[infectionchance]</a><br />
+	<b>Spread Type:</b> <a href="?src=\ref[src];[HrefToken()];what=stype">[spreadtype]</a><br />
+	<b>Speed:</b> <a href="?src=\ref[src];[HrefToken()];what=speed">[speed]</a><br />
+	<b>Resistance:</b> <a href="?src=\ref[src];[HrefToken()];what=resistance">[resistance]</a><br />
 	<br />
 	"}
 	f = 1
 	for(var/k in ALL_ANTIGENS)
 		if(!f) H += " | "
 		else f = 0
-		H += "<a href='?src=\ref[src];what=antigen;toggle=[k]' style='color:[(k in antigens) ? "#006600" : "#ff0000"]'>[k]</a>"
+		H += "<a href='?src=\ref[src];[HrefToken()];what=antigen;toggle=[k]' style='color:[(k in antigens) ? "#006600" : "#ff0000"]'>[k]</a>"
 	H += {"
-	<a href="?src=\ref[src];what=antigen;reset=1" style="color:#0000aa">Reset</a>
+	<a href="?src=\ref[src];[HrefToken()];what=antigen;reset=1" style="color:#0000aa">Reset</a>
 	<br />
 	<hr />
-	<b>Initial infectee:</b> <a href="?src=\ref[src];what=infectee">[infectee ? infectee : "(choose)"]</a>
-	<a href="?src=\ref[src];what=go" style="color:#ff0000">RELEASE</a>
+	<b>Initial infectee:</b> <a href="?src=\ref[src];[HrefToken()];what=infectee">[infectee ? infectee : "(choose)"]</a>
+	<a href="?src=\ref[src];[HrefToken()];what=go" style="color:#ff0000">RELEASE</a>
 	"}
 
 	user << browse(H, "window=virus2edit")
@@ -129,12 +129,12 @@
 				s_multiplier[stage] = max(1, round(initial(E.maxm)/2))
 			else if(href_list["chance"])
 				var/datum/disease2/effect/Eff = s[stage]
-				var/I = input(usr, "Chance, per tick, of this effect happening (min 0, max [initial(Eff.chance_maxm)])", "Effect Chance", s_chance[stage]) as null|num
+				var/I = tgui_input_number(usr, "Chance, per tick, of this effect happening (min 0, max [initial(Eff.chance_maxm)])", "Effect Chance", s_chance[stage], initial(Eff.chance_maxm), 0)
 				if(I == null || I < 0 || I > initial(Eff.chance_maxm)) return
 				s_chance[stage] = I
 			else if(href_list["multiplier"])
 				var/datum/disease2/effect/Eff = s[stage]
-				var/I = input(usr, "Multiplier for this effect (min 1, max [initial(Eff.maxm)])", "Effect Multiplier", s_multiplier[stage]) as null|num
+				var/I = tgui_input_number(usr, "Multiplier for this effect (min 1, max [initial(Eff.maxm)])", "Effect Multiplier", s_multiplier[stage], initial(Eff.maxm), 1)
 				if(I == null || I < 1 || I > initial(Eff.maxm)) return
 				s_multiplier[stage] = I
 		if("species")
@@ -150,7 +150,7 @@
 				if(!infectee.species || !(infectee.species.get_bodytype() in species))
 					infectee = null
 		if("ichance")
-			var/I = input(usr, "Input infection chance", "Infection Chance", infectionchance) as null|num
+			var/I = tgui_input_number(usr, "Input infection chance", "Infection Chance", infectionchance)
 			if(!I) return
 			infectionchance = I
 		if("stype")
@@ -158,7 +158,7 @@
 			if(!S) return
 			spreadtype = S
 		if("speed")
-			var/S = input(usr, "Input speed", "Speed", speed) as null|num
+			var/S = tgui_input_number(usr, "Input speed", "Speed", speed)
 			if(!S) return
 			speed = S
 		if("antigen")
@@ -172,7 +172,7 @@
 			else if(href_list["reset"])
 				antigens = list()
 		if("resistance")
-			var/S = input(usr, "Input % resistance to antibiotics", "Resistance", resistance) as null|num
+			var/S = tgui_input_number(usr, "Input % resistance to antibiotics", "Resistance", resistance)
 			if(!S) return
 			resistance = S
 		if("infectee")
@@ -215,7 +215,7 @@
 
 			spawned_viruses += D
 
-			message_admins("<span class='danger'>[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];info=1'>Info</a>)</span>")
+			message_admins("<span class='danger'>[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];[HrefToken()];info=1'>Info</a>)</span>")
 			log_admin("[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus!")
 			infect_virus2(infectee, D, forced=1)
 

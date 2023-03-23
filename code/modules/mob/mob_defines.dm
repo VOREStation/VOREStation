@@ -94,6 +94,7 @@
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
 	var/list/languages = list()         // For speaking/listening.
+	var/list/language_keys = list()		// List of language keys indexing languages
 	var/species_language = null			// For species who want reset to use a specified default.
 	var/only_species_language  = 0		// For species who can only speak their default and no other languages. Does not affect understanding.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
@@ -217,6 +218,9 @@
 
 	var/typing
 	var/obj/effect/decal/typing_indicator
+	var/obj/effect/decal/typing_indicator_active
+	var/cur_typing_indicator
+	var/custom_speech_bubble = "default"
 
 	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level
 
@@ -232,4 +236,4 @@
 
 	var/list/progressbars = null //VOREStation Edit
 
-	var/datum/focus //What receives our keyboard inputs. src by default // VOREStation Add - Key Handling
+	var/datum/focus //What receives our keyboard inputs. src by default

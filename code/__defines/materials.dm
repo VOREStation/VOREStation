@@ -54,6 +54,8 @@
 #define MAT_PLATINUM		"platinum"
 #define MAT_TRITIUM			"tritium"
 #define MAT_DEUTERIUM		"deuterium"
+#define MAT_CONCRETE		"concrete"
+#define MAT_PLASTEELREBAR	"plasteel rebar"
 
 
 #define DEFAULT_TABLE_MATERIAL MAT_PLASTIC

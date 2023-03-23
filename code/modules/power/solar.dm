@@ -1,4 +1,4 @@
-#define SOLAR_MAX_DIST 40
+//#define SOLAR_MAX_DIST 40		//VOREStation Removal
 #define SOLAR_AUTO_START_NO     0 // Will never start itself.
 #define SOLAR_AUTO_START_YES    1 // Will always start itself.
 #define SOLAR_AUTO_START_CONFIG 2 // Will start itself if config allows it (default is no).
@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 	var/glass_type = /obj/item/stack/material/glass
+	var/SOLAR_MAX_DIST = 40		//VOREStation Addition
 
 /obj/machinery/power/solar/drain_power()
 	return -1

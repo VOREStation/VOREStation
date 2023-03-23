@@ -11,6 +11,13 @@
     item_state = "hedget"
     force = 7 //One point extra than standard wire cutters.
 
+/obj/item/weapon/tool/wirecutters/clippers/trimmers/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+	if(!proximity) return
+	..()
+	if(A && istype(A,/obj/effect/plant))
+		var/obj/effect/plant/P = A
+		P.die_off()
+
 /obj/item/device/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
@@ -31,7 +38,7 @@
 	if(!ui)
 		ui = new(user, src, "PlantAnalyzer", name)
 		ui.open()
-	
+
 /obj/item/device/analyzer/plant_analyzer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
@@ -51,7 +58,7 @@
 /obj/item/device/analyzer/plant_analyzer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("print")
 			print_report(usr)
@@ -277,7 +284,7 @@
 
 	if(get_trait(TRAIT_SPORING))
 		data["trait_info"] += "It occasionally releases reagent carrying spores into the atmosphere."
-	
+
 	if(exude_gasses && exude_gasses.len)
 		for(var/gas in exude_gasses)
 			var/amount = ""

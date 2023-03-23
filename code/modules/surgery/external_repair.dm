@@ -3,6 +3,7 @@
 //						LIMB REPAIR SURGERY						//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/repairflesh/
+	surgery_name = "Repair Flesh"
 	priority = 1
 	can_infect = 1
 	blood_level = 1
@@ -36,6 +37,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/repairflesh/scan_injury
+	surgery_name = "Scan Injury"
 	allowed_tools = list(
 	/obj/item/weapon/autopsy_scanner = 100,
 	/obj/item/device/analyzer = 10
@@ -86,6 +88,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/repairflesh/repair_burns
+	surgery_name = "Repair Burns"
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/ointment = 100,
 	/obj/item/stack/medical/ointment = 50,
@@ -102,8 +105,6 @@
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.burn_stage < 1 || !(affected.burn_dam))
-			return 0
-		if(affected.burn_dam < affected.brute_dam)
 			return 0
 		return 1
 	return 0
@@ -152,6 +153,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/repairflesh/repair_brute
+	surgery_name = "Repair Brute"
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack = 100,
 	/obj/item/stack/medical/bruise_pack = 50,
@@ -168,8 +170,6 @@
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.brute_stage < 1 || !(affected.brute_dam))
-			return 0
-		if(affected.brute_dam < affected.burn_dam)
 			return 0
 		return 1
 	return 0

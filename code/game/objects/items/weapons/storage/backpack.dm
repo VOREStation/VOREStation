@@ -47,7 +47,32 @@
 
 /obj/item/weapon/storage/backpack/holding/duffle
 	name = "dufflebag of holding"
+	var/tilted = 0
 	icon_state = "holdingduffle"
+	
+/obj/item/weapon/storage/backpack/holding/duffle/Initialize()
+	. = ..()
+	if(prob(50))
+		icon_state = "[icon_state]_tilted"
+		tilted = 1
+	
+/obj/item/weapon/storage/backpack/holding/duffle/verb/tilt()
+	set name = "Adjust Duffelbag Angle"
+	set desc = "Adjust the angle of your dufflebag for cosmetic effect"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return
+	if(tilted)
+		icon_state = "[initial(icon_state)]"
+		to_chat(usr, "You adjust the angle of \the [src] to rest across your lower back.")
+		tilted = 0
+	else
+		icon_state = "[icon_state]_tilted"
+		to_chat(usr, "You adjust the angle of \the [src] to rest diagonally across your back.")
+		tilted = 1
+	update_icon()
+	usr.update_inv_back()
 
 /obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
@@ -59,7 +84,7 @@
 //Please don't clutter the parent storage item with stupid hacks.
 /obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
-		return 1
+		return FALSE
 	return ..()
 
 /obj/item/weapon/storage/backpack/santabag
@@ -147,7 +172,36 @@
 	desc = "A large dufflebag for holding extra things."
 	icon_state = "duffle"
 	slowdown = 0.5
+	var/tilted = 0
+	var/can_tilt = 1
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
+	
+/obj/item/weapon/storage/backpack/dufflebag/Initialize()
+	. = ..()
+	if(prob(50))
+		icon_state = "[icon_state]_tilted"
+		tilted = 1
+	
+/obj/item/weapon/storage/backpack/dufflebag/verb/tilt()
+	set name = "Adjust Duffelbag Angle"
+	set desc = "Adjust the angle of your dufflebag for cosmetic effect"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return
+	if(!can_tilt)
+		to_chat(usr, "[src] can't be adjusted like that.")
+		return
+	if(tilted)
+		icon_state = "[initial(icon_state)]"
+		to_chat(usr, "You adjust the angle of \the [src] to rest across your lower back.")
+		tilted = 0
+	else
+		icon_state = "[icon_state]_tilted"
+		to_chat(usr, "You adjust the angle of \the [src] to rest diagonally across your back.")
+		tilted = 1
+	update_icon()
+	usr.update_inv_back()
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
 	name = "black dufflebag"
@@ -203,7 +257,7 @@
 /obj/item/weapon/storage/backpack/dufflebag/cursed
 	name = "cursed dufflebag"
 	desc = "That probably shouldn't be moving..."
-	icon_state = "duffle_cursed"
+	icon_state = "duffle_curse"
 
 /*
  * Satchel Types

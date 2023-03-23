@@ -13,8 +13,11 @@
 	damage = 0
 	check_armour = "laser"
 	light_color = "#80F5FF"
+	hud_state = "laser_disabler"
 
 	combustion = FALSE
+
+	can_miss = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/medigun
 	tracer_type = /obj/effect/projectile/tracer/medigun

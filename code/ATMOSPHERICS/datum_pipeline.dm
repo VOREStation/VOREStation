@@ -162,6 +162,13 @@
 	if(istype(target, /turf/simulated))
 		var/turf/simulated/modeled_location = target
 
+		if (modeled_location.special_temperature)
+			air.temperature += thermal_conductivity * (modeled_location.special_temperature - air.temperature)
+			if (air.temperature < TCMB)
+				air.temperature = TCMB
+			if (network)
+				network.update = TRUE
+
 		if(modeled_location.blocks_air)
 
 			if((modeled_location.heat_capacity>0) && (partial_heat_capacity>0))

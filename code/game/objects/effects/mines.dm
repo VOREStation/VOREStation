@@ -96,7 +96,8 @@
 		explode(M)
 
 	if(istype(M, /mob/living/))
-		if(!M.hovering)
+		var/mob/living/mob = M
+		if(!mob.hovering || !mob.flying)
 			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -398,6 +399,6 @@
 
 // This tells AI mobs to not be dumb and step on mines willingly.
 /obj/item/weapon/mine/is_safe_to_step(mob/living/L)
-	if(!L.hovering)
+	if(!L.hovering || !L.flying)
 		return FALSE
 	return ..()

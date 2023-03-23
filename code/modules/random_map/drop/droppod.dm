@@ -10,6 +10,7 @@
 	limit_x = 3
 	limit_y = 3
 	preserve_map = 0
+	max_attempts = 1
 
 	wall_type = /turf/simulated/wall/titanium
 	floor_type = /turf/simulated/floor/reinforced
@@ -163,7 +164,7 @@
 		return
 
 	if(tgui_alert(usr, "Do you wish the mob to have a player?","Assign Player?",list("No","Yes")) == "No")
-		var/spawn_count = input(usr, "How many mobs do you wish the pod to contain?", "Drop Pod Selection", null) as num
+		var/spawn_count = tgui_input_number(usr, "How many mobs do you wish the pod to contain?", "Drop Pod Selection", null)
 		if(spawn_count <= 0)
 			return
 		for(var/i=0;i<spawn_count;i++)

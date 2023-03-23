@@ -46,7 +46,7 @@
 /obj/item/weapon/light/bulb/large
 	brightness_range = 6
 	brightness_power = 1
-	
+
 	nightshift_range = 6
 	nightshift_power = 0.45
 
@@ -60,6 +60,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	construct_type = /obj/machinery/light_construct/floortube
+	overlay_above_everything = FALSE
 
 /obj/machinery/light/floortube/flicker
 	auto_flicker = TRUE
@@ -106,6 +107,7 @@
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	construct_type = /obj/machinery/light_construct/bigfloorlamp
+	overlay_above_everything = TRUE
 
 /obj/machinery/light/bigfloorlamp/flicker
 	auto_flicker = TRUE
@@ -128,3 +130,82 @@
 			icon_state = "big_flamp-construct-stage2"
 		if(3)
 			icon_state = "big_flamp-empty"
+
+// Fairy lights
+
+/obj/item/weapon/light/bulb/smol
+	brightness_range = 1
+	brightness_power = 0.5
+
+	nightshift_range = 1
+	nightshift_power = 0.25
+
+
+/obj/machinery/light/small/fairylights
+	icon = 'icons/obj/lighting_vr.dmi'
+	icon_state = "fairy_lights1"
+	base_state = "fairy_lights"
+	desc = "A set of lights on a long string of wire, anchored to the walls."
+	light_type = /obj/item/weapon/light/bulb/smol
+	shows_alerts = FALSE
+	anchored = TRUE
+	plane = ABOVE_MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+	construct_type = null
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
+	overlay_above_everything = TRUE
+	color = "#3e5064"
+
+/obj/machinery/light/small/fairylights/broken()
+	return
+
+/obj/machinery/light/small/fairylights/flicker
+	auto_flicker = TRUE
+
+/obj/machinery/light
+	var/image/overlay_layer = null
+	var/overlay_above_everything = TRUE
+
+/obj/machinery/light/proc/add_light_overlay(do_color = TRUE, provided_state = null)
+	remove_light_overlay()
+	if(provided_state)
+		overlay_layer = image(icon, "[provided_state]-overlay")
+	else
+		overlay_layer = image(icon, "[base_state]-overlay")
+	overlay_layer.appearance_flags = RESET_COLOR|KEEP_APART
+	if(overlay_color && do_color)
+		overlay_layer.color = overlay_color
+	if(overlay_above_everything)
+		overlay_layer.plane = PLANE_LIGHTING_ABOVE
+	else
+		overlay_layer.plane = PLANE_EMISSIVE
+
+	add_overlay(overlay_layer)
+
+/obj/machinery/light/proc/remove_light_overlay()
+	if(overlay_layer)
+		cut_overlay(overlay_layer)
+		qdel(overlay_layer)
+		overlay_layer = null
+
+
+/*
+/obj/machinery/light_construct/bigfloorlamp
+	name = "big floor light fixture frame"
+	desc = "A big floor light fixture under construction."
+	icon = 'icons/obj/lighting32x64.dmi'
+	icon_state = "big_flamp-construct-stage1"
+	stage = 1
+	anchored = FALSE
+	fixture_type = /obj/machinery/light/bigfloorlamp
+	sheets_refunded = 1
+
+/obj/machinery/light_construct/bigfloorlamp/update_icon()
+	switch(stage)
+		if(1)
+			icon_state = "big_flamp-construct-stage1"
+		if(2)
+			icon_state = "big_flamp-construct-stage2"
+		if(3)
+			icon_state = "big_flamp-empty"
+*/

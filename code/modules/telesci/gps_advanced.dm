@@ -59,7 +59,7 @@
 /obj/item/device/gps/advanced/Topic(href, href_list)
 	..()
 	if(href_list["tag"] )
-		var/a = input(usr, "Please enter desired tag.", name, gpstag) as text
+		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gpstag)
 		a = uppertext(copytext(sanitize(a), 1, 5))
 		if(src.loc == usr)
 			gpstag = a

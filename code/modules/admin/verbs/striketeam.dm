@@ -43,7 +43,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 
 	choice = null
 	while(!choice)
-		choice = sanitize(input(src, "Please specify which mission the strike team shall undertake.", "Specify Mission", ""))
+		choice = sanitize(tgui_input_text(src, "Please specify which mission the strike team shall undertake.", "Specify Mission", ""))
 		if(!choice)
 			if(tgui_alert(usr, "Error, no mission set. Do you want to exit the setup process?","Strike Team",list("Yes","No"))=="Yes")
 				return

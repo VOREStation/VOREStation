@@ -2,9 +2,9 @@
 	if(armor[armor_type])
 		switch(armor[armor_type])
 			if(1 to 20)
-				return "It barely protects against [descriptive_attack_type]."
+				return "It provides negligibly small defense against [descriptive_attack_type]."
 			if(21 to 30)
-				return "It provides a very small defense against [descriptive_attack_type]."
+				return "It provides very small defense against [descriptive_attack_type]."
 			if(31 to 40)
 				return "It offers a small amount of protection against [descriptive_attack_type]."
 			if(41 to 50)
@@ -14,7 +14,7 @@
 			if(61 to 70)
 				return "It is very strong against [descriptive_attack_type]."
 			if(71 to 80)
-				return "This gives a very robust defense against [descriptive_attack_type]."
+				return "This gives extremely strong defense against [descriptive_attack_type]."
 			if(81 to 99)
 				return "Wearing this would make you nigh-invulerable against [descriptive_attack_type]."
 			if(100)

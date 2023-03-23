@@ -4,7 +4,7 @@
 	var/msg = "" // This is to make sure that the pieces have actually added something
 	var/raw_msg = ""
 	. = list("formatted" = "[verb], \"", "raw" = "")
-	
+
 	for(var/datum/multilingual_say_piece/SP in message_pieces)
 		iteration_count++
 		var/piece = SP.message
@@ -15,11 +15,11 @@
 			if(radio)
 				.["formatted"] = SP.speaking.format_message_radio(piece)
 				.["raw"] = piece
-				return 
+				return
 			else
 				.["formatted"] = SP.speaking.format_message(piece)
 				.["raw"] = piece
-				return 
+				return
 
 		if(iteration_count == 1)
 			piece = capitalize(piece)
@@ -27,14 +27,17 @@
 		if(always_stars)
 			piece = stars(piece)
 		else if(!say_understands(speaker, SP.speaking))
-			piece = saypiece_scramble(SP)
-			if(isliving(speaker))
-				var/mob/living/S = speaker
-				if(istype(S.say_list) && length(S.say_list.speak))
-					piece = pick(S.say_list.speak)
+			if(SP.speaking.flags & INAUDIBLE)
+				piece = ""
+			else
+				piece = saypiece_scramble(SP)
+				if(isliving(speaker))
+					var/mob/living/S = speaker
+					if(istype(S.say_list) && length(S.say_list.speak))
+						piece = pick(S.say_list.speak)
 
 		raw_msg += (piece + " ")
-		
+
 		//HTML formatting
 		if(!SP.speaking) // Catch the most generic case first
 			piece = "<span class='message body'>[piece]</span>"
@@ -44,7 +47,7 @@
 			piece = SP.speaking.format_message(piece)
 
 		msg += (piece + " ")
-	
+
 	if(msg == "")
 		// There is literally no content left in this message, we need to shut this shit down
 		.["formatted"] = "" // hear_say will suppress it
@@ -89,8 +92,8 @@
 	var/list/combined = combine_message(message_pieces, verb, speaker)
 	var/message = combined["formatted"]
 	if(message == "")
-		return
-	
+		return FALSE
+
 	if(sleeping || stat == UNCONSCIOUS)
 		hear_sleep(multilingual_to_message(message_pieces))
 		return FALSE
@@ -115,7 +118,7 @@
 			to_chat(src, "<span class='filter_say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] makes a noise, possibly speech, but you cannot hear them.</span>")
 	else
 		var/message_to_send = null
-		message_to_send = "<span class='game say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]</span>"
+		message_to_send = "<span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]"
 		if(check_mentioned(multilingual_to_message(message_pieces)) && is_preference_enabled(/datum/client_preference/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
@@ -126,22 +129,24 @@
 			var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 			playsound_local(source, speech_sound, sound_vol, 1)
 
+	return TRUE
+
 // Done here instead of on_hear_say() since that is NOT called if the mob is clientless (which includes most AI mobs).
 /mob/living/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	..()
+	.=..()
 	if(has_AI()) // Won't happen if no ai_holder exists or there's a player inside w/o autopilot active.
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 
 /mob/proc/on_hear_say(var/message)
-	to_chat(src, message)
+	to_chat(src, "<span class='game say'>[message]</span>")
 	if(teleop)
-		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[message]")
+		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
-	to_chat(src, "[time] [message]")
+	to_chat(src, "<span class='game say'>[time] [message]</span>")
 	if(teleop)
-		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[time] [message]")
+		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][time] [message]</span>")
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
@@ -169,10 +174,10 @@
         var/regex/R = new("\\[delimiter](.+?)\\[delimiter]","g")
         var/tag = GLOB.speech_toppings[delimiter]
         tagged_message = R.Replace(tagged_message,"<[tag]>$1</[tag]>")
-        
+
     return tagged_message
 
-/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
+/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/part_d, var/part_e, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
 	if(!client)
 		return
 
@@ -185,54 +190,58 @@
 	var/speaker_name = handle_speaker_name(speaker, vname, hard_to_hear)
 	var/track = handle_track(message, verb, speaker, speaker_name, hard_to_hear)
 
-	message = "[encode_html_emphasis(message)][part_c]"
+	message = "[encode_html_emphasis(message)][part_d]"
 
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))
 			to_chat(src, "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>")
 	else
-		on_hear_radio(part_a, speaker_name, track, part_b, message, part_c)
+		on_hear_radio(part_a, part_b, speaker_name, track, part_c, message, part_d, part_e)
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
-	var/final_message = "[part_a][speaker_name][part_b][formatted][part_c]"
+/mob/proc/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "<font size='3'><b>[final_message]</b></font>"
-	to_chat(src, final_message)
-
-/mob/observer/dead/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
-	var/final_message = "[part_a][track][part_b][formatted][part_c]"
-	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "<font size='3'><b>[final_message]</b></font>"
-	to_chat(src, final_message)
-
-/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
-	var/time = say_timestamp()
-	var/final_message = "[part_a][speaker_name][part_b][formatted][part_c]"
-	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+		final_message = "[part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[time][final_message]"
+		final_message = "[part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
-/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
-	var/time = say_timestamp()
-	var/final_message = "[part_a][track][part_b][formatted][part_c]"
+/mob/observer/dead/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/final_message = "[part_b][track][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+		final_message = "[part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[time][final_message]"
+		final_message = "[part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
-/mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
+/mob/living/silicon/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/time = say_timestamp()
+	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
+	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
+		final_message = "[part_a][time]<font size='3'><b>[final_message]</b></font>[part_e]"
+	else
+		final_message = "[part_a][time][final_message][part_e]"
+	to_chat(src, final_message)
+
+/mob/living/silicon/ai/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/time = say_timestamp()
+	var/final_message = "[part_b][track][part_c][formatted][part_d]"
+	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
+		final_message = "[part_a][time]<font size='3'><b>[final_message]</b></font>[part_e]"
+	else
+		final_message = "[part_a][time][final_message][part_e]"
+	to_chat(src, final_message)
+
+/mob/proc/hear_signlang(var/message, var/verb = "gestures", var/verb_understood = "gestures", var/datum/language/language, var/mob/speaker = null, var/speech_type = 1)
 	if(!client)
 		return
 
 	if(say_understands(speaker, language))
-		message = "<B>[speaker]</B> [verb], \"[message]\""
-	else
+		message = "<span class='game say'><B>[speaker]</B> [verb_understood], \"[message]\"</span>"
+	else if(!(language.ignore_adverb))
 		var/adverb
 		var/length = length(message) * pick(0.8, 0.9, 1.0, 1.1, 1.2)	//Adds a little bit of fuzziness
 		switch(length)
@@ -241,9 +250,11 @@
 			if(30 to 48)	adverb = " a message"
 			if(48 to 90)	adverb = " a lengthy message"
 			else			adverb = " a very lengthy message"
-		message = "<B>[speaker]</B> [verb][adverb]."
+		message = "<span class='game say'><B>[speaker]</B> [verb][adverb].</span>"
+	else
+		message = "<span class='game say'><B>[speaker]</B> [verb].</span>"
 
-	show_message(message, type = 1) // Type 1 is visual message
+	show_message(message, type = speech_type) // Type 1 is visual message
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""
@@ -293,4 +304,4 @@
 		name = speaker.voice_name
 
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
-	to_chat(src, rendered) 
+	to_chat(src, rendered)

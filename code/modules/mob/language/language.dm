@@ -12,6 +12,7 @@
 	var/exclaim_verb = "exclaims"     // Used when sentence ends in a !
 	var/whisper_verb                  // Optional. When not specified speech_verb + quietly/softly is used instead.
 	var/signlang_verb = list("signs", "gestures") // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
+	var/signlang_verb_understood = list("signs")  // snowflake bs, used only for echo
 	var/colour = "body"               // CSS style to use for strings in this language.
 	var/key = "x"                     // Character used to speak in language eg. :o for Unathi.
 	var/flags = 0                     // Various language flags.
@@ -20,6 +21,7 @@
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
 	var/machine_understands = 1		  // Whether machines can parse and understand this language
 	var/list/partial_understanding	  // List of languages that can /somehwat/ understand it, format is: name = chance of understanding a word
+	var/ignore_adverb = FALSE 		  // For inaudible languages that we dont want adverb for
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
@@ -128,11 +130,27 @@
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
+	speaker.verbs |= /mob/proc/adjust_hive_range	//VOREStation Add - If you don't have the verb you should.
+
 	if(!speaker_mask) speaker_mask = speaker.name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""
-
-	for(var/mob/player in player_list)
-		player.hear_broadcast(src, speaker, speaker_mask, message)
+	//VOREStation Edit Start
+	if(speaker.hive_lang_range == -1)
+		var/turf/t = get_turf(speaker)
+		for(var/mob/player in player_list)
+			var/turf/b = get_turf(player)
+			if (t.z == b.z)
+				player.hear_broadcast(src, speaker, speaker_mask, message)
+	else if(speaker.hive_lang_range)
+		var/turf/t = get_turf(speaker)
+		for(var/mob/player in player_list)
+			var/turf/b = get_turf(player)
+			if(get_dist(t,b) <= speaker.hive_lang_range)
+				player.hear_broadcast(src, speaker, speaker_mask, message)
+	else
+		for(var/mob/player in player_list)
+			player.hear_broadcast(src, speaker, speaker_mask, message)
+	//VOREStation Edit End
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if((language in languages) && language.check_special_condition(src))
@@ -185,11 +203,19 @@
 		return 0
 
 	languages.Add(new_language)
+	//VOREStation Addition Start
+	if(new_language.flags & HIVEMIND)
+		verbs |= /mob/proc/adjust_hive_range
+	//VOREStation Addition End
+
 	return 1
 
 /mob/proc/remove_language(var/rem_language)
 	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
+	var/prefix = get_custom_prefix_by_lang(src, L)
+	if(prefix)
+		language_keys.Remove(prefix)
 	languages.Remove(L)
 
 /mob/living/remove_language(rem_language)
@@ -235,10 +261,11 @@
 //TBD
 /mob/proc/check_lang_data()
 	. = ""
-	
+
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
-			. += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
+			var/lang_key = get_custom_prefix_by_lang(src, L)
+			. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b><br/>[L.desc]<br/><br/>"
 
 /mob/living/check_lang_data()
 	. = ""
@@ -248,12 +275,13 @@
 
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
+			var/lang_key = get_custom_prefix_by_lang(src, L)
 			if(L == default_language)
-				. += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
+				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
 			else if (can_speak(L))
-				. += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
+				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
 			else
-				. += "<b>[L.name] ([get_language_prefix()][L.key])</b> - cannot speak!<br/>[L.desc]<br/><br/>"
+				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - cannot speak!<br/>[L.desc]<br/><br/>"
 
 /mob/verb/check_languages()
 	set name = "Check Known Languages"
@@ -277,6 +305,22 @@
 				set_default_language(L)
 		check_languages()
 		return 1
+	else if(href_list["set_lang_key"])
+		var/datum/language/L = locate(href_list["set_lang_key"])
+		if(L && (L in languages))
+			var/old_key = get_custom_prefix_by_lang(src, L)
+			var/custom_key = tgui_input_text(src, "Input a new key for [L.name]", "Language Key", old_key)
+			if(custom_key && length(custom_key) == 1)
+				if(contains_az09(custom_key))
+					language_keys[custom_key] = L
+					if(old_key && old_key != custom_key)
+						language_keys.Remove(old_key)
+				else if(custom_key == " ")
+					if(old_key && old_key != custom_key)
+						language_keys.Remove(old_key)
+				else
+					tgui_alert_async(src, "Improper language key. Rejected.", "Error")
+		check_languages()
 	else
 		return ..()
 
@@ -285,5 +329,17 @@
 		if(L.flags & except_flags)
 			continue
 		target.add_language(L.name)
+		for(var/key in source.language_keys)
+			if(L == source.language_keys[key])
+				if(!(key in target.language_keys))
+					target.language_keys[key] = L
+
+/proc/get_custom_prefix_by_lang(var/mob/our_mob, var/language)
+	if(!our_mob || !our_mob.language_keys.len || !language)
+		return
+
+	for(var/key in our_mob.language_keys)
+		if(our_mob.language_keys[key] == language)
+			return key
 
 #undef SCRAMBLE_CACHE_LEN

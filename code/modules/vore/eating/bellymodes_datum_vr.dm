@@ -43,13 +43,19 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/old_brute = L.getBruteLoss()
 	var/old_burn = L.getFireLoss()
 	var/old_oxy = L.getOxyLoss()
+	var/old_tox = L.getToxLoss()
+	var/old_clone = L.getCloneLoss()
 	L.adjustBruteLoss(B.digest_brute)
 	L.adjustFireLoss(B.digest_burn)
 	L.adjustOxyLoss(B.digest_oxy)
+	L.adjustToxLoss(B.digest_tox)
+	L.adjustCloneLoss(B.digest_clone)
 	var/actual_brute = L.getBruteLoss() - old_brute
 	var/actual_burn = L.getFireLoss() - old_burn
 	var/actual_oxy = L.getOxyLoss() - old_oxy
-	var/damage_gain = (actual_brute + actual_burn + actual_oxy/2)*(B.nutrition_percent / 100)
+	var/actual_tox = L.getToxLoss() - old_tox
+	var/actual_clone = L.getCloneLoss() - old_clone
+	var/damage_gain = (actual_brute + actual_burn + actual_oxy/2 + actual_tox + actual_clone*2)*(B.nutrition_percent / 100)
 
 	var/offset = (1 + ((L.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 	var/difference = B.owner.size_multiplier / L.size_multiplier
@@ -57,9 +63,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		var/mob/living/silicon/robot/R = B.owner
 		R.cell.charge += 25 * damage_gain
 	if(offset) // If any different than default weight, multiply the % of offset.
-		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)*L.get_digestion_nutrition_modifier()*B.owner.get_digestion_efficiency_modifier()) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 	else
-		B.owner.adjust_nutrition(4.5 * (damage_gain) / difference)
+		B.owner.adjust_nutrition((4.5 * (damage_gain) / difference)*L.get_digestion_nutrition_modifier()*B.owner.get_digestion_efficiency_modifier())
 	if(L.stat != oldstat)
 		return list("to_update" = TRUE)
 
@@ -124,7 +130,19 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/oldstat = L.stat
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
-	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
+	var/mob/living/carbon/human/H = L
+	if(B.owner.nutrition > 90 && H.isSynthetic())
+		for(var/obj/item/organ/external/E in H.organs) //Needed for healing prosthetics
+			var/obj/item/organ/external/O = E
+			if(O.brute_dam > 0 || O.burn_dam > 0) //Making sure healing continues until fixed.
+				O.heal_damage(0.5, 0.5, 0, 1) // Less effective healing as able to fix broken limbs
+				B.owner.adjust_nutrition(-5)  // More costly for the pred, since metals and stuff
+			if(L.health < L.maxHealth)
+				L.adjustToxLoss(-2)
+				L.adjustOxyLoss(-2)
+				L.adjustCloneLoss(-1)
+				B.owner.adjust_nutrition(-1)  // Normal cost per old functionality
+	if(B.owner.nutrition > 90 && (L.health < L.maxHealth) && !H.isSynthetic())
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
 		L.adjustToxLoss(-5)
@@ -206,3 +224,75 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg = null
 		return list("to_update" = TRUE)
 	return
+
+/datum/digest_mode/selective //unselectable, "smart" digestion mode for mobs only
+	id = DM_SELECT
+	noise_chance = 50
+
+/datum/digest_mode/selective/process_mob(obj/belly/B, mob/living/L)
+	var/datum/digest_mode/tempmode = GLOB.digest_modes[DM_HOLD]			// Default to Hold in case of big oof fallback
+	//if not absorbed, see if they're food
+	switch(L.selective_preference)										// First, we respect prey prefs
+		if(DM_DIGEST)
+			if(L.digestable)
+				tempmode = GLOB.digest_modes[DM_DIGEST]					// They want to be digested and can be, Digest
+			else
+				tempmode = GLOB.digest_modes[DM_DRAIN]					// They want to be digested but can't be! Drain.
+		if(DM_ABSORB)
+			if(L.absorbable)
+				tempmode = GLOB.digest_modes[DM_ABSORB]					// They want to be absorbed and can be. Absorb.
+			else
+				tempmode = GLOB.digest_modes[DM_DRAIN]					// They want to be absorbed but can't be! Drain.
+		if(DM_DRAIN)
+			tempmode = GLOB.digest_modes[DM_DRAIN]						// They want to be drained. Drain.
+		if(DM_DEFAULT)
+			switch(B.selective_preference)								// They don't actually care? Time for our own preference.
+				if(DM_DIGEST)
+					if(L.digestable)
+						tempmode = GLOB.digest_modes[DM_DIGEST]			// We prefer digestion and they're digestible? Digest
+					else if(L.absorbable)
+						tempmode = GLOB.digest_modes[DM_ABSORB]			// If not digestible, are they absorbable? Then absorb.
+					else
+						tempmode = GLOB.digest_modes[DM_DRAIN]			// Otherwise drain.
+				if(DM_ABSORB)
+					if(L.absorbable)
+						tempmode = GLOB.digest_modes[DM_ABSORB]			// We prefer absorption and they're absorbable? Absorb.
+					else if(L.digestable)
+						tempmode = GLOB.digest_modes[DM_DIGEST]			// If not absorbable, are they digestible? Then digest.
+					else
+						tempmode = GLOB.digest_modes[DM_DRAIN]			// Otherwise drain.
+	return tempmode.process_mob(B, L)
+
+/datum/digest_mode/selective/proc/get_selective_mode(obj/belly/B, mob/living/L)
+	var/tempmode = DM_HOLD			// Default to Hold in case of big oof fallback
+	//if not absorbed, see if they're food
+	switch(L.selective_preference)										// First, we respect prey prefs
+		if(DM_DIGEST)
+			if(L.digestable)
+				tempmode = DM_DIGEST					// They want to be digested and can be, Digest
+			else
+				tempmode = DM_DRAIN					// They want to be digested but can't be! Drain.
+		if(DM_ABSORB)
+			if(L.absorbable)
+				tempmode = DM_ABSORB					// They want to be absorbed and can be. Absorb.
+			else
+				tempmode = DM_DRAIN					// They want to be absorbed but can't be! Drain.
+		if(DM_DRAIN)
+			tempmode = DM_DRAIN						// They want to be drained. Drain.
+		if(DM_DEFAULT)
+			switch(B.selective_preference)								// They don't actually care? Time for our own preference.
+				if(DM_DIGEST)
+					if(L.digestable)
+						tempmode = DM_DIGEST			// We prefer digestion and they're digestible? Digest
+					else if(L.absorbable)
+						tempmode = DM_ABSORB			// If not digestible, are they absorbable? Then absorb.
+					else
+						tempmode = DM_DRAIN			// Otherwise drain.
+				if(DM_ABSORB)
+					if(L.absorbable)
+						tempmode = DM_ABSORB			// We prefer absorption and they're absorbable? Absorb.
+					else if(L.digestable)
+						tempmode = DM_DIGEST			// If not absorbable, are they digestible? Then digest.
+					else
+						tempmode = DM_DRAIN			// Otherwise drain.
+	return tempmode

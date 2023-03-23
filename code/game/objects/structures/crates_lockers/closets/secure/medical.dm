@@ -41,6 +41,7 @@
 		/obj/item/device/radio/headset/headset_med,
 		/obj/item/device/radio/headset/headset_med/alt,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt,
 		/obj/item/clothing/shoes/boots/winter/medical,
 		/obj/item/clothing/under/rank/nursesuit,
 		/obj/item/clothing/head/nursehat,
@@ -106,6 +107,7 @@
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/suit/storage/toggle/labcoat/emt,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/para,
+		/obj/item/clothing/shoes/boots/winter/medical,
 		/obj/item/device/radio/headset/headset_med/alt,
 		/obj/item/weapon/cartridge/medical,
 		/obj/item/weapon/storage/briefcase/inflatable,
@@ -210,6 +212,9 @@
 	desc = "Store psychology tools and medicines in here."
 	req_access = list(access_psychiatrist)
 	closet_appearance = /decl/closet_appearance/cabinet/secure
+
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/psych,

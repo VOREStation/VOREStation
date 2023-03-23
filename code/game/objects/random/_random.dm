@@ -6,12 +6,14 @@
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/drop_get_turf = TRUE
 
-// creates a new object and deletes itself
+
 /obj/random/Initialize()
+	. = INITIALIZE_HINT_QDEL
 	..()
-	if(!prob(spawn_nothing_percentage))
-		try_spawn_item()
-	return INITIALIZE_HINT_QDEL
+	if (prob(spawn_nothing_percentage))
+		return
+	try_spawn_item()
+
 
 /obj/random/proc/try_spawn_item()
 	var/atom/result = spawn_item()
@@ -59,7 +61,7 @@ var/list/random_useful_
 	if(prob(70)) // Misc. junk
 		if(!random_junk_)
 			random_junk_ = subtypesof(/obj/item/trash)
-			random_junk_ += /obj/effect/decal/cleanable/spiderling_remains
+			random_junk_ += /obj/effect/decal/cleanable/bug_remains
 			random_junk_ += /obj/effect/decal/remains/mouse
 			random_junk_ += /obj/effect/decal/remains/robot
 			random_junk_ += /obj/item/weapon/paper/crumpled

@@ -16,8 +16,9 @@ var/list/department_radio_keys = list(
 	":u" = "Supply",		".u" = "Supply",
 	":v" = "Service",		".v" = "Service",
 	":p" = "AI Private",	".p" = "AI Private",
-	":y" = "Explorer",	".y" = "Explorer",
-	":a" = "Talon",		".a" = "Talon", //VOREStation Add,
+	":a" = "Away Team",	".a" = "Away Team",	//VOREStation Edit
+	":y" = "Talon",		".y" = "Talon", //VOREStation Add,
+	":g" = "Casino",	".g" = "Casino",
 
 	":R" = "right ear",	".R" = "right ear",
 	":L" = "left ear",	".L" = "left ear",
@@ -35,8 +36,9 @@ var/list/department_radio_keys = list(
 	":U" = "Supply",		".U" = "Supply",
 	":V" = "Service",		".V" = "Service",
 	":P" = "AI Private",	".P" = "AI Private",
-	":Y" = "Explorer",	".Y" = "Explorer",
-	":A" = "Talon",		".A" = "Talon", //VOREStation Add,
+	":A" = "Away Team",	".A" = "Away Team",
+	":Y" = "Talon",		".Y" = "Talon", //VOREStation Add,
+	":G" = "Casino",	".G" = "Casino",
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
 	":к" = "right ear",    ".к" = "right ear",
@@ -56,8 +58,9 @@ var/list/department_radio_keys = list(
 	":г" = "Supply",        ".г" = "Supply",
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
-	":н" = "Explorer",    ".н" = "Explorer",
-	":ф" = "Talon",        ".ф" = "Talon" //VOREStation Add
+	":ф" = "Away Team",    ".ф" = "Away Team",
+	":н" = "Talon",        ".н" = "Talon", //VOREStation Add
+	":п" = "Casino",	".п" = "Casino",
 )
 
 
@@ -141,7 +144,7 @@ var/list/channel_to_radio_key = new
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/whispering = 0)
+/mob/living/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)
@@ -155,7 +158,11 @@ var/list/channel_to_radio_key = new
 		if(stat == DEAD && !forbid_seeing_deadchat)
 			return say_dead(message)
 		return
-
+	//VOREStation Addition Start
+	if(forced_psay)
+		psay(message)
+		return
+	//VOREStation Addition End
 	//Parse the mode
 	var/message_mode = parse_message_mode(message, "headset")
 
@@ -250,6 +257,9 @@ var/list/channel_to_radio_key = new
 	//Default range and italics, may be overridden past here
 	var/message_range = world.view
 	var/italics = 0
+	var/do_sound = TRUE
+	if(!voice_sounds_list || !voice_sounds_list.len)
+		do_sound = FALSE
 
 	//Speaking into radios
 	if(used_radios.len)
@@ -291,8 +301,9 @@ var/list/channel_to_radio_key = new
 
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
-		if(S.speaking.flags & NONVERBAL)
+		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
 			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+			do_sound = FALSE
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()
@@ -325,7 +336,9 @@ var/list/channel_to_radio_key = new
 	//The 'post-say' static speech bubble
 	var/speech_bubble_test = say_test(message)
 	//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit. Commented this out in case we need to reenable.
-	var/speech_type = speech_bubble_appearance()
+	var/speech_type = custom_speech_bubble
+	if(!speech_type || speech_type == "default")
+		speech_type = speech_bubble_appearance()
 	var/image/speech_bubble = generate_speech_bubble(src, "[speech_type][speech_bubble_test]")
 	var/sb_alpha = 255
 	var/atom/loc_before_turf = src
@@ -357,18 +370,18 @@ var/list/channel_to_radio_key = new
 				var/runechat_enabled = M.client?.is_preference_enabled(/datum/client_preference/runechat_mob)
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
-					if(M.client && !runechat_enabled)
-						var/image/I1 = listening[M] || speech_bubble
-						images_to_clients[I1] |= M.client
-						M << I1
-					M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol)
+					if(M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol))
+						if(M.client && !runechat_enabled)
+							var/image/I1 = listening[M] || speech_bubble
+							images_to_clients[I1] |= M.client
+							M << I1
 				if(whispering && !isobserver(M)) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
-						if(M.client && !runechat_enabled)
-							var/image/I2 = listening[M] || speech_bubble
-							images_to_clients[I2] |= M.client
-							M << I2
-						M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2)
+						if(M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2))
+							if(M.client && !runechat_enabled)
+								var/image/I2 = listening[M] || speech_bubble
+								images_to_clients[I2] |= M.client
+								M << I2
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
 						M.show_message("<span class='game say'><span class='name'>[name]</span> [w_not_heard].</span>", 2)
 
@@ -389,30 +402,50 @@ var/list/channel_to_radio_key = new
 					C.images -= I
 			qdel(I)
 
+	var/ourfreq = null
+	if(voice_freq > 0 )
+		ourfreq = voice_freq
 	//Log the message to file
 	if(message_mode)
 		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
 	if(whispering)
+		if(do_sound && message)
+			playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/whisper_sounds)
+
 		log_whisper(message, src)
 	else
+		if(do_sound && message)
+			playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/say_sounds)
 		log_say(message, src)
 	return 1
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
+/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
 	if(loc != T)
 		for(var/mob/M in loc)
-			M.hear_signlang(message, verb, language, src)
+			M.hear_signlang(message, verb, verb_understood, language, src, type)
 
 	//We're on a turf, gesture to visible as if we were a normal language
 	else
+		var/low_range = FALSE
+		if(T && type == 2)			// type 2 is audible signlang. yes. sue me.
+			//Air is too thin to carry sound at all, contact speech only
+			var/datum/gas_mixture/environment = T.return_air()
+			var/pressure = environment ? environment.return_pressure() : 0
+			if(pressure < SOUND_MINIMUM_PRESSURE)
+				low_range = TRUE
+
 		var/list/potentials = get_mobs_and_objs_in_view_fast(T, world.view)
 		var/list/mobs = potentials["mobs"]
 		for(var/mob/M as anything in mobs)
-			M.hear_signlang(message, verb, language, src)
+			if(low_range && !(M in range(1, src)))
+				continue
+			M.hear_signlang(message, verb, verb_understood, language, src, type)
 		var/list/objs = potentials["objs"]
 		for(var/obj/O as anything in objs)
+			if(low_range && !(O in range(1, src)))
+				continue
 			O.hear_signlang(message, verb, language, src)
 	return 1
 

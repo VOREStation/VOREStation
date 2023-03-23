@@ -185,16 +185,14 @@
 			var/mob/living/carbon/human/H = holder
 			var/starting_nutrition = H.nutrition
 			H.adjust_nutrition(-10)
-			var/healing_amount = starting_nutrition - H.nutrition
-			if(healing_amount < 0) // If you are eating enough to somehow outpace this, congratulations, you are gluttonous enough to gain a boon.
-				healing_amount *= -2
+			var/healing_amount = starting_nutrition - H.nutrition //Anything above 9 nutrition will return 10. Anything below will give 0-9. Nutrition is capped at 0.
+			if(healing_amount)
+				H.adjustBruteLoss(-healing_amount * 0.25)
 
-			H.adjustBruteLoss(-healing_amount * 0.25)
+				H.adjustFireLoss(-healing_amount * 0.25)
 
-			H.adjustFireLoss(-healing_amount * 0.25)
+				H.adjustOxyLoss(-healing_amount * 0.25)
 
-			H.adjustOxyLoss(-healing_amount * 0.25)
-
-			H.adjustToxLoss(-healing_amount * 0.25)
+				H.adjustToxLoss(-healing_amount * 0.25)
 
 	..()

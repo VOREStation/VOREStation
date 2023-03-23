@@ -81,4 +81,4 @@
 
 /obj/item/weapon/storage/box/glasses/coffeemug
 	name = "box of coffee mugs"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/britcup = 7)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug = 7)

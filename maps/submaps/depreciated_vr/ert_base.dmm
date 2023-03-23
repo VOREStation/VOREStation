@@ -456,16 +456,16 @@
 /obj/item/weapon/gun/energy/sniperrifle{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
 /obj/item/weapon/cell/device/weapon,
@@ -507,17 +507,17 @@
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/beanbags,
-/obj/item/weapon/storage/box/beanbags,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "ba" = (

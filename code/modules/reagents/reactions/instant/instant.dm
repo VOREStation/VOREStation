@@ -82,10 +82,10 @@
 	required_reagents = list("aluminum" = 1, "iron" = 1, "oxygen" = 1)
 	result_amount = 3
 
-/decl/chemical_reaction/instant/space_drugs
-	name = "Space Drugs"
-	id = "space_drugs"
-	result = "space_drugs"
+/decl/chemical_reaction/instant/bliss
+	name = "Bliss"
+	id = "bliss"
+	result = "bliss"
 	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
 	result_amount = 3
 
@@ -689,6 +689,15 @@
 	required_reagents = list("liquidcarpeto" = 2, "plasticide" = 1)
 	carpet_type = /obj/item/stack/tile/carpet/oracarpet
 
+/decl/chemical_reaction/instant/concrete
+	name = "Concrete"
+	id = "concretereagent"
+	required_reagents = list("calcium" = 2, "silicate" = 2, "water" = 2)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/concrete/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/concrete(get_turf(holder.my_atom), created_volume)
+	return
 
 /* Grenade reactions */
 
@@ -1185,7 +1194,7 @@
 	name = "Talum-quem"
 	id = "talum_quem"
 	result = "talum_quem"
-	required_reagents = list("space_drugs" = 2, "sugar" = 1, "amatoxin" = 1)
+	required_reagents = list("bliss" = 2, "sugar" = 1, "amatoxin" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/qerr_quem

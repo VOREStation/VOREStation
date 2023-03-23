@@ -22,6 +22,19 @@
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
 
+/datum/gear/mask/sterile/white
+	display_name = "white sterile mask"
+	path = /obj/item/clothing/mask/surgical/white
+	cost = 2
+
+/datum/gear/mask/sterile/white/dust
+	display_name = "dust mask"
+	path = /obj/item/clothing/mask/surgical/dust
+
+/datum/gear/mask/sterile/white/cloth
+	display_name = "cloth face mask"
+	path = /obj/item/clothing/mask/surgical/cloth
+
 /datum/gear/mask/plaguedoctor
 	display_name = "plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor
@@ -56,3 +69,10 @@
 		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))
+
+/datum/gear/mask/lace
+	display_name = "lace veil"
+	path = /obj/item/clothing/mask/lacemask
+
+/datum/gear/mask/lace/New()
+	gear_tweaks += gear_tweak_free_color_choice

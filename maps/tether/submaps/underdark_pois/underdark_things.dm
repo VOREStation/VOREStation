@@ -1,3 +1,8 @@
+/datum/random_map/noise/ore/underdark
+	descriptor = "Underdark ore distribution map"
+	deep_val = 0.7
+	rare_val = 0.5
+
 // Weakened version of Phoron spiders
 /mob/living/simple_mob/animal/giant_spider/phorogenic/weak
 	maxHealth = 100
@@ -13,7 +18,7 @@
 /mob/living/simple_mob/animal/wolf/phoron
 
 	faction = "underdark"
-	movement_cooldown = 0
+	movement_cooldown = -1.5
 
 	harm_intent_damage = 5
 	melee_damage_lower = 5

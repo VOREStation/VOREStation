@@ -81,6 +81,28 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
+	for(var/M in markings)
+		var/datum/sprite_accessory/marking/mark = markings[M]["datum"]
+		if(mark.organ_override)
+			var/icon/mark_s = new/icon("icon" = mark.icon, "icon_state" = "[mark.icon_state]-[organ_tag]")
+			mob_icon = new /icon("icon" = mark.icon, "icon_state" = "blank")
+			mark_s.Blend(markings[M]["color"], mark.color_blend_mode) // VOREStation edit
+			mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
+			icon_cache_key = "[M][markings[M]["color"]]"
+			for(var/MM in markings)
+				var/datum/sprite_accessory/marking/mark_style = markings[MM]["datum"]
+				if(mark_style.organ_override)
+					continue
+				var/icon/mark_s_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+				mark_s.Blend(markings[MM]["color"], mark_style.color_blend_mode) // VOREStation edit
+				add_overlay(mark_s_s) //So when it's not on your body, it has icons
+				mob_icon.Blend(mark_s_s, ICON_OVERLAY) //So when it's on your body, it has icons
+				icon_cache_key += "[MM][markings[MM]["color"]]"
+
+			dir = EAST
+			icon = mob_icon
+			return mob_icon
+
 	var/gender = "m"
 	if(owner && owner.gender == FEMALE)
 		gender = "f"
@@ -131,7 +153,7 @@ var/global/list/limb_icon_cache = list()
 					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY) //VOREStation edit
 					limb_icon_cache[cache_key] = I
 				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
-			
+
 			// VOREStation edit start
 			if(nail_polish)
 				var/icon/I = new(nail_polish.icon, nail_polish.icon_state)

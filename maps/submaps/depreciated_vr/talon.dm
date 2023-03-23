@@ -390,7 +390,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/weapon/storage/bag/ore,
 		/obj/item/device/flashlight/lantern,
 		/obj/item/weapon/shovel,
-		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/pickaxe/drill,
 		/obj/item/weapon/mining_scanner,
 		/obj/item/clothing/glasses/material,
 		/obj/item/clothing/glasses/meson

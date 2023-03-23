@@ -736,12 +736,6 @@
 /obj/random/multiple/gun/projectile,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/supply)
-"kk" = (
-/obj/effect/overmap/visitable/sector/common_gateway/honlethhighlands,
-/turf/simulated/floor/water/deep{
-	temperature = 253.15
-	},
-/area/gateway/honlethhighlands/beach)
 "kx" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -3454,7 +3448,7 @@ bm
 bm
 bm
 bm
-kk
+bm
 aa
 "}
 (4,1,1) = {"

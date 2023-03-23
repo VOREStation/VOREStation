@@ -225,3 +225,28 @@
 
 /datum/riding/boat/get_offsets(pass_index) // list(dir = x, y, layer)
 	return list("[NORTH]" = list(1, 2), "[SOUTH]" = list(1, 2), "[EAST]" = list(1, 2), "[WEST]" = list(1, 2))
+
+/datum/riding/snowmobile
+	only_one_driver = TRUE // Keep your hands to yourself back there!
+
+/datum/riding/snowmobile/get_offsets(pass_index) // list(dir = x, y, layer)
+	var/H = 3 // Horizontal seperation.
+	var/V = 2 // Vertical seperation.
+	var/O = 2 // Vertical offset.
+	switch(pass_index)
+		if(1) // Person on front.
+			return list(
+				"[NORTH]" = list( 0, O+V, MOB_LAYER),
+				"[SOUTH]" = list( 0, O,   ABOVE_MOB_LAYER),
+				"[EAST]"  = list( H, O,   MOB_LAYER),
+				"[WEST]"  = list(-H, O,   MOB_LAYER)
+				)
+		if(2) // Person on back.
+			return list(
+				"[NORTH]" = list( 0, O,   ABOVE_MOB_LAYER),
+				"[SOUTH]" = list( 0, O+V, MOB_LAYER),
+				"[EAST]"  = list(-H, O,   MOB_LAYER),
+				"[WEST]"  = list( H, O,   MOB_LAYER)
+				)
+		else
+			return null // This will runtime, but we want that since this is out of bounds.

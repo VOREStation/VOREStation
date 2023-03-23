@@ -12,6 +12,10 @@
 "d" = (
 /turf/simulated/mineral/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
+"e" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/simulated/floor,
+/area/submap/virgo2/CaveS)
 "f" = (
 /obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -58,10 +62,6 @@
 /obj/item/stack/cable_coil,
 /obj/item/weapon/storage/toolbox,
 /obj/random/toolbox,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
-"w" = (
-/obj/structure/loot_pile/surface,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "x" = (
@@ -1352,7 +1352,7 @@ z
 z
 F
 u
-w
+e
 r
 d
 d
@@ -1472,7 +1472,7 @@ d
 d
 r
 r
-w
+e
 u
 r
 r

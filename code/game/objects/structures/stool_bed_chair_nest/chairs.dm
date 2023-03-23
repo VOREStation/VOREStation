@@ -9,8 +9,8 @@
 	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/Initialize()
-	. = ..()
+/obj/structure/bed/chair/New(var/newloc, var/new_material, var/new_padding_material)
+	..()
 	update_layer()
 
 /obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -93,44 +93,97 @@
 	color = null
 	applies_material_colour = 0
 
-// Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
+	name = "comfy chair"
 	desc = "It's a chair. It looks comfy."
 	icon_state = "comfychair"
 	base_icon = "comfychair"
 
-/obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","leather")
+/obj/structure/bed/chair/comfy/update_icon()
+	..()
+	var/image/I = image(icon, "[base_icon]_over")
+	I.layer = ABOVE_MOB_LAYER
+	I.plane = MOB_PLANE
+	I.color = material.icon_colour
+	add_overlay(I)
+	if(padding_material)
+		I = image(icon, "[base_icon]_padding_over")
+		I.layer = ABOVE_MOB_LAYER
+		I.plane = MOB_PLANE
+		I.color = padding_material.icon_colour
+		add_overlay(I)
 
-/obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","carpet")
+/obj/structure/bed/chair/comfy/brown/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, MAT_LEATHER)
 
-/obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","teal")
+/obj/structure/bed/chair/comfy/red/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "carpet")
 
-/obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","black")
+/obj/structure/bed/chair/comfy/teal/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "teal")
 
-/obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","green")
+/obj/structure/bed/chair/comfy/black/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "black")
 
-/obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","purple")
+/obj/structure/bed/chair/comfy/green/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "green")
 
-/obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","blue")
+/obj/structure/bed/chair/comfy/purp/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "purple")
 
-/obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","beige")
+/obj/structure/bed/chair/comfy/blue/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "blue")
 
-/obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","lime")
+/obj/structure/bed/chair/comfy/beige/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "beige")
 
-/obj/structure/bed/chair/comfy/yellow/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","yellow")
+/obj/structure/bed/chair/comfy/lime/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "lime")
 
-/obj/structure/bed/chair/comfy/orange/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","orange")
+/obj/structure/bed/chair/comfy/yellow/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "yellow")
+
+/obj/structure/bed/chair/comfy/orange/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "orange")
+
+/obj/structure/bed/chair/comfy/rounded
+	name = "rounded chair"
+	desc = "It's a rounded chair. It looks comfy."
+	icon_state = "roundedchair"
+	base_icon = "roundedchair"
+
+/obj/structure/bed/chair/comfy/rounded/brown/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, MAT_LEATHER)
+
+/obj/structure/bed/chair/comfy/rounded/red/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "carpet")
+
+/obj/structure/bed/chair/comfy/rounded/teal/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "teal")
+
+/obj/structure/bed/chair/comfy/rounded/black/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "black")
+
+/obj/structure/bed/chair/comfy/rounded/green/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "green")
+
+/obj/structure/bed/chair/comfy/rounded/purple/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "purple")
+
+/obj/structure/bed/chair/comfy/rounded/blue/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "blue")
+
+/obj/structure/bed/chair/comfy/rounded/beige/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "beige")
+
+/obj/structure/bed/chair/comfy/rounded/lime/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "lime")
+
+/obj/structure/bed/chair/comfy/rounded/yellow/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "yellow")
+
+/obj/structure/bed/chair/comfy/rounded/orange/New(var/newloc, var/new_material, var/new_padding_material)
+	..(newloc, MAT_STEEL, "orange")
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
@@ -146,7 +199,7 @@
 
 /obj/structure/bed/chair/office/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	
+
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
 /obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
@@ -240,7 +293,7 @@
 
 /obj/structure/bed/chair/sofa/update_layer()
 	// Corner east/west should be on top of mobs, any other state's north should be.
-	if((corner_piece && ((dir & EAST) || (dir & WEST))) || (!corner_piece && (dir & NORTH)))
+	if(!corner_piece && (dir & NORTH))
 		plane = MOB_PLANE
 		layer = MOB_LAYER + 0.1
 	else
@@ -258,6 +311,18 @@
 	icon_state = "sofacorner"
 	base_icon = "sofacorner"
 	corner_piece = TRUE
+
+/obj/structure/bed/chair/sofa/corner/update_icon()
+	..()
+	var/cache_key = "[base_icon]-armrest-[padding_material ? padding_material.name : "no_material"]-permanent"
+	if(isnull(stool_cache[cache_key]))
+		var/image/I = image(icon, "[base_icon]_armrest")
+		I.plane = MOB_PLANE
+		I.layer = ABOVE_MOB_LAYER
+		if(padding_material)
+			I.color = padding_material.icon_colour
+		stool_cache[cache_key] = I
+	add_overlay(stool_cache[cache_key])
 
 // Wooden nonsofa - no corners
 /obj/structure/bed/chair/sofa/pew
@@ -285,8 +350,8 @@
 	color = null
 	var/padding_color = "#CC0000"
 
-/obj/structure/bed/chair/sofa/bench/Initialize()
-	. = ..()
+/obj/structure/bed/chair/sofa/bench/New(var/newloc, var/new_material, var/new_padding_material)
+	..()
 	var/mutable_appearance/MA
 	// If we're north-facing, metal goes above mob, padding overlay goes below mob.
 	if((dir & NORTH) && !corner_piece)

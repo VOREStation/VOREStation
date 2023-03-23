@@ -45,12 +45,13 @@
 
 	var/active = 0
 	var/active_force = 30
+	var/active_armourpen = 50
 	var/active_throwforce = 20
 	var/active_w_class = ITEMSIZE_LARGE
 	var/active_embed_chance = 0		//In the off chance one of these is supposed to embed, you can just tweak this var
 	sharp = FALSE
 	edge = FALSE
-	armor_penetration = 50
+	armor_penetration = 0
 	flags = NOBLOODY
 	var/lrange = 2
 	var/lpower = 2
@@ -65,6 +66,7 @@
 	active = 1
 	embed_chance = active_embed_chance
 	force = active_force
+	armor_penetration = active_armourpen
 	throwforce = active_throwforce
 	sharp = TRUE
 	edge = TRUE
@@ -84,6 +86,7 @@
 	active = 0
 	embed_chance = initial(embed_chance)
 	force = initial(force)
+	armor_penetration = initial(armor_penetration)
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)
 	edge = initial(edge)

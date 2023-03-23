@@ -17,7 +17,7 @@
 	name = "crystal-feather duck"
 	desc = "A glittering flightless bird."
 	tt_desc = "S Anatidae vitriae"
-	catalogue_data = list(/datum/category_item/catalogue/fauna/crystalduck)
+	//catalogue_data = list(/datum/category_item/catalogue/fauna/crystalduck)		TODO: Write non-sif lore
 
 	faction = "duck"
 
@@ -30,7 +30,7 @@
 	maxHealth = 50
 	health = 50
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	meat_amount = 4
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken

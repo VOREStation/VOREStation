@@ -106,7 +106,7 @@
 		if(choice == "No")
 			return
 		var/basecolor = input(user, "Select a base color for the canvas:", "Base Color", canvas_color) as null|color
-		if(basecolor && Adjacent(user, src) && Adjacent(user, I))
+		if(basecolor && Adjacent(user) && user.get_active_hand() == I)
 			canvas_color = basecolor
 			reset_grid()
 			user.visible_message("[user] smears paint on [src], covering the entire thing in paint.", "You smear paint on [src], changing the color of the entire thing.", runemessage = "smears paint")
@@ -248,7 +248,7 @@
 	framed_offset_y = 6
 
 /obj/item/canvas/twentyfour_twentyfour
-	name = "ai universal standard canvas"
+	//name = "ai universal standard canvas"					// Uncomment this when AI can actually
 	//desc = "Besides being very large, the AI can accept these as a display from their internal database after you've hung it up." // Not yet
 	icon_state = "24x24"
 	width = 24
@@ -336,6 +336,7 @@
 	var/persistence_id
 	var/loaded = FALSE
 	var/curator = "nobody! Report bug if you see this."
+	var/static/list/art_appreciators = list()
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/public
@@ -406,11 +407,12 @@
 	if(current_canvas)
 		current_canvas.tgui_interact(user)
 		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
-
+		. += "<span class='notice'>Paintings hung here are curated based on interest. The more often someone EXAMINEs the painting, the longer it will stay in rotation.</span>"
 		// Painting loaded and persistent frame, give a hint about removal safety
 		if(persistence_id)
 			if(loaded)
-				. += "<span class='notice'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+				. += "<span class='warning'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+				back_of_the_line(user)
 			else
 				. += "<span class='warning'>This painting has not been entered into the archives yet. Removing it will prevent that from happening.</span>"
 
@@ -553,6 +555,20 @@
 		"author" = current_canvas.author_name,
 		"ckey" = current_canvas.author_ckey
 	))
+
+/obj/structure/sign/painting/proc/back_of_the_line(mob/user)
+	if(user.ckey in art_appreciators)
+		return
+	if(!persistence_id || !current_canvas || current_canvas.no_save)
+		return
+	var/data = current_canvas.get_data_string()
+	var/md5 = md5(lowertext(data))
+	for(var/list/entry in SSpersistence.all_paintings)
+		if(entry["md5"] == md5 && entry["persistence_id"] == persistence_id)
+			SSpersistence.all_paintings.Remove(list(entry))
+			SSpersistence.all_paintings.Add(list(entry))
+			art_appreciators += user.ckey
+			to_chat(user, "<span class='notice'>Showing interest in this painting renews its position in the curator database.</span>")
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()

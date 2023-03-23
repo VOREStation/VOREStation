@@ -1,37 +1,26 @@
-import { round } from 'common/math';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 
 export const DNAForensics = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    scan_progress,
-    scanning,
-    bloodsamp,
-    bloodsamp_desc,
-  } = data;
+  const { scan_progress, scanning, bloodsamp, bloodsamp_desc } = data;
   return (
     <Window width={540} height={326}>
       <Window.Content>
-        <Section title="Status" buttons={
-          <Fragment>
-            <Button
-              selected={scanning}
-              disabled={!bloodsamp}
-              icon="power-off"
-              onClick={() => act("scanItem")}>
-              {scanning ? "Halt Scan" : "Begin Scan"}
-            </Button>
-            <Button
-              disabled={!bloodsamp}
-              icon="eject"
-              onClick={() => act("ejectItem")}>
-              Eject Bloodsample
-            </Button>
-          </Fragment>
-        }>
+        <Section
+          title="Status"
+          buttons={
+            <Fragment>
+              <Button selected={scanning} disabled={!bloodsamp} icon="power-off" onClick={() => act('scanItem')}>
+                {scanning ? 'Halt Scan' : 'Begin Scan'}
+              </Button>
+              <Button disabled={!bloodsamp} icon="eject" onClick={() => act('ejectItem')}>
+                Eject Bloodsample
+              </Button>
+            </Fragment>
+          }>
           <LabeledList>
             <LabeledList.Item label="Scan Progress">
               <ProgressBar
@@ -40,23 +29,18 @@ export const DNAForensics = (props, context) => {
                   violet: [-Infinity, 99],
                 }}
                 value={scan_progress}
-                maxValue={100} />
+                maxValue={100}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section title="Blood Sample">
-          {bloodsamp && (
+          {(bloodsamp && (
             <Box>
               {bloodsamp}
-              <Box color="label">
-                {bloodsamp_desc}
-              </Box>
+              <Box color="label">{bloodsamp_desc}</Box>
             </Box>
-          ) || (
-            <Box color="bad">
-              No blood sample inserted.
-            </Box>
-          )}
+          )) || <Box color="bad">No blood sample inserted.</Box>}
         </Section>
       </Window.Content>
     </Window>

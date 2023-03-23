@@ -1,16 +1,22 @@
 /decl/emote/audible/synth
-	key = "beep"
-	emote_message_3p = "beeps."
-	emote_sound = 'sound/machines/twobeep.ogg'
+	key = "ping"
+	emote_message_3p = "pings."
+	emote_sound = 'sound/machines/ping.ogg'
 
 /decl/emote/audible/synth/mob_can_use(var/mob/living/user)
 	if(istype(user) && user.isSynthetic())
 		return ..()
 	return FALSE
 
-/decl/emote/audible/synth/ping
-	key = "ping"
-	emote_message_3p = "pings."
+/decl/emote/audible/synth/beep
+	key = "beep"
+	emote_message_3p = "beeps."
+	emote_sound = 'sound/machines/twobeep.ogg'
+	sound_vary = FALSE
+
+/decl/emote/audible/synth/bing
+	key = "bing"
+	emote_message_3p = "bings."
 	emote_sound = 'sound/machines/ping.ogg'
 
 /decl/emote/audible/synth/buzz
@@ -40,7 +46,7 @@
 	emote_sound = 'sound/voice/biamthelaw.ogg'
 
 /decl/emote/audible/synth/security/mob_can_use(var/mob/living/silicon/robot/user)
-	return ..() && (istype(user) && (istype(user.module, /obj/item/weapon/robot_module/robot/security) || istype(user.module, /obj/item/weapon/robot_module/robot/knine))) //VOREStation Add - knine module
+	return ..() && (istype(user) && (istype(user.module, /obj/item/weapon/robot_module/robot/security)))
 
 /decl/emote/audible/synth/security/halt
 	key = "halt"
@@ -54,3 +60,21 @@
 	emote_message_3p_target = "chirps happily at TARGET!"
 	emote_message_3p = "chirps happily."
 	emote_sound = 'sound/machines/dwoop.ogg'
+
+/decl/emote/audible/synth/boop
+	key = "roboboop"
+	emote_message_1p_target = "You boop at TARGET!"
+	emote_message_1p = "You boop."
+	emote_message_3p_target = "boops at TARGET!"
+	emote_message_3p = "boops."
+	emote_sound = 'sound/voice/roboboop.ogg'
+	sound_vary = TRUE
+
+/decl/emote/audible/synth/robochirp
+	key = "robochirp"
+	emote_message_1p_target = "You chirp at TARGET!"
+	emote_message_1p = "You chirp."
+	emote_message_3p_target = "chirps at TARGET!"
+	emote_message_3p = "chirps."
+	emote_sound = 'sound/voice/robochirp.ogg'
+	sound_vary = TRUE

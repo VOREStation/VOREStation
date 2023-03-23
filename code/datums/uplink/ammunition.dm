@@ -63,11 +63,11 @@
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = "Anti-Materiel Rifle ammo box (14.5mm)"
-	path = /obj/item/weapon/storage/box/sniperammo
+	path = /obj/item/ammo_magazine/ammo_box/b145
 
 /datum/uplink_item/item/ammo/sniperammo_highvel
 	name = "Anti-Materiel Rifle ammo box (14.5mm sabot)"
-	path = /obj/item/weapon/storage/box/sniperammo/highvel
+	path = /obj/item/ammo_magazine/ammo_box/b145/highvel
 
 /datum/uplink_item/item/ammo/c545
 	name = "Rifle Magazine (5.45mm)"
@@ -107,25 +107,25 @@
 
 /datum/uplink_item/item/ammo/g12
 	name = "12g Shotgun Ammo Box (Slug)"
-	path = /obj/item/weapon/storage/box/shotgunammo
+	path = /obj/item/ammo_magazine/ammo_box/b12g
 
 /datum/uplink_item/item/ammo/g12/beanbag
 	name = "12g Shotgun Ammo Box (Beanbag)"
-	path = /obj/item/weapon/storage/box/beanbags
+	path = /obj/item/ammo_magazine/ammo_box/b12g/beanbag
 	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/pellet
 	name = "12g Shotgun Ammo Box (Pellet)"
-	path = /obj/item/weapon/storage/box/shotgunshells
+	path =/obj/item/ammo_magazine/ammo_box/b12g/pellet
 
 /datum/uplink_item/item/ammo/g12/stun
 	name = "12g Shotgun Ammo Box (Stun)"
-	path = /obj/item/weapon/storage/box/stunshells
+	path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
 	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/flash
 	name = "12g Shotgun Ammo Box (Flash)"
-	path = /obj/item/weapon/storage/box/flashshells
+	path = /obj/item/ammo_magazine/ammo_box/b12g/flash
 	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/cell

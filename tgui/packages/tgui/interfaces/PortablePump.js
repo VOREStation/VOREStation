@@ -5,29 +5,21 @@ import { PortableBasicInfo } from './common/PortableAtmos';
 
 export const PortablePump = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    direction,
-    target_pressure,
-    default_pressure,
-    min_pressure,
-    max_pressure,
-  } = data;
+  const { direction, target_pressure, default_pressure, min_pressure, max_pressure } = data;
   return (
-    <Window
-      width={330}
-      height={375}
-      resizable>
+    <Window width={330} height={375} resizable>
       <Window.Content scrollable>
         <PortableBasicInfo />
         <Section
           title="Pump"
-          buttons={(
+          buttons={
             <Button
               icon={direction ? 'sign-in-alt' : 'sign-out-alt'}
               content={direction ? 'In' : 'Out'}
               selected={direction}
-              onClick={() => act('direction')} />
-          )}>
+              onClick={() => act('direction')}
+            />
+          }>
           <LabeledList>
             <LabeledList.Item label="Output">
               <Slider
@@ -38,29 +30,41 @@ export const PortablePump = (props, context) => {
                 value={target_pressure}
                 unit="kPa"
                 stepPixelSize={0.3}
-                onChange={(e, value) => act('pressure', {
-                  pressure: value,
-                })} />
+                onChange={(e, value) =>
+                  act('pressure', {
+                    pressure: value,
+                  })
+                }
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Presets">
               <Button
                 icon="minus"
                 disabled={target_pressure === min_pressure}
-                onClick={() => act('pressure', {
-                  pressure: 'min',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'min',
+                  })
+                }
+              />
               <Button
                 icon="sync"
                 disabled={target_pressure === default_pressure}
-                onClick={() => act('pressure', {
-                  pressure: 'reset',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'reset',
+                  })
+                }
+              />
               <Button
                 icon="plus"
                 disabled={target_pressure === max_pressure}
-                onClick={() => act('pressure', {
-                  pressure: 'max',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'max',
+                  })
+                }
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>

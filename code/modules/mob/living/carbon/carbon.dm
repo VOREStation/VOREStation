@@ -236,7 +236,7 @@
 					status += "MISSING"
 				if(org.status & ORGAN_MUTATED)
 					status += "weirdly shapen"
-				if(org.dislocated == 2)
+				if(org.dislocated == 1) //VOREStation Edit Bugfix
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
 					status += "hurts when touched"
@@ -429,6 +429,10 @@
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
+
+/mob/living/carbon/proc/remove_chemical_effect(var/effect, var/magnitude)
+	if(effect in chem_effects)
+		chem_effects[effect] = magnitude ? max(0,chem_effects[effect]-magnitude) : 0
 
 /mob/living/carbon/get_default_language()
 	if(default_language)

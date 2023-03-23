@@ -177,7 +177,7 @@
 	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
 	set category = "Debug"
 
-	var/job_filter = input(usr, "Contains what?","Job Filter") as text|null
+	var/job_filter = tgui_input_text(usr, "Contains what?","Job Filter")
 	if(!job_filter)
 		return
 

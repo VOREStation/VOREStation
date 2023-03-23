@@ -34,8 +34,8 @@
 	name = "Alden-Saraspova counter"
 	desc = "Aids in triangulation of exotic particles."
 	icon = 'icons/obj/xenoarchaeology.dmi'
-	icon_state = "flashgun"
-	item_state = "lampgreen"
+	icon_state = "xenoarch_scanner"
+	item_state = "analyzer"
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
 	matter = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
 	w_class = ITEMSIZE_SMALL
@@ -131,7 +131,7 @@
 
 			positive_locations.Add(D)
 
-			to_chat(user, "<span class='notice'>[bicon(src)] [src] pings.</span>")
+			to_chat(user, "<span class='notice'>\icon[src][bicon(src)] [src] pings.</span>")
 
 	else if(istype(A, /obj/structure/boulder))
 		var/obj/structure/boulder/B = A
@@ -149,7 +149,7 @@
 
 			positive_locations.Add(D)
 
-			to_chat(user, "<span class='notice'>[bicon(src)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
+			to_chat(user, "<span class='notice'>\icon[src][bicon(src)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
 
 /obj/item/device/depth_scanner/attack_self(var/mob/living/user)
 	tgui_interact(user)
@@ -197,7 +197,7 @@
 	if(..())
 		return TRUE
 
-	switch(action)	
+	switch(action)
 		if("select")
 			var/index = text2num(params["select"])
 			if(index && index <= LAZYLEN(positive_locations))
@@ -269,9 +269,9 @@
 						scan_ticks = 0
 						var/turf/T = get_turf(src)
 						if(target_radio)
-							T.visible_message("[bicon(src)] [src] [pick("chirps","chirrups","cheeps")] happily.")
+							T.visible_message("\icon[src][bicon(src)] [src] [pick("chirps","chirrups","cheeps")] happily.")
 						else
-							T.visible_message("[bicon(src)] [src] [pick("chirps","chirrups","cheeps")] sadly.")
+							T.visible_message("\icon[src][bicon(src)] [src] [pick("chirps","chirrups","cheeps")] sadly.")
 		else
 			icon_state = "pinoff"
 
@@ -337,7 +337,8 @@
 /obj/item/device/xenoarch_multi_tool/attack_self(var/mob/living/user)
 	depth_scanner.tgui_interact(user)
 
-/obj/item/device/xenoarch_multi_tool/verb/swap_settings(var/mob/living/user)
+/obj/item/device/xenoarch_multi_tool/verb/swap_settings()
+	var/mob/living/user = usr
 	set name = "Swap Functionality"
 	set desc = "Swap between the scanning and measuring functionality.."
 	mode = !mode
@@ -346,7 +347,8 @@
 	else
 		to_chat(user, "The device will now measure depth dug.")
 
-/obj/item/device/xenoarch_multi_tool/verb/scan_for_anomalies(var/mob/living/user)
+/obj/item/device/xenoarch_multi_tool/verb/scan_for_anomalies()
+	var/mob/living/user = usr
 	set name = "Scan for Anomalies"
 	set desc = "Scan for artifacts and anomalies within your vicinity."
 	anomaly_scanner.interact(user)

@@ -185,6 +185,7 @@
 	icon_state = "cryo_rear"
 	anchored = TRUE
 	dir = WEST
+	density = TRUE
 
 //Cryopods themselves.
 /obj/machinery/cryopod
@@ -474,8 +475,8 @@
 
 	//Handle job slot/tater cleanup.
 	var/job = to_despawn.mind.assigned_role
-
 	job_master.FreeRole(job)
+	to_despawn.mind.assigned_role = null
 
 	if(to_despawn.mind.objectives.len)
 		qdel(to_despawn.mind.objectives)
@@ -523,8 +524,19 @@
 	control_computer._admin_logs += "[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) at [stationtime2text()]"
 	log_and_message_admins("[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) entered cryostorage.")
 
-	announce.autosay("[to_despawn.real_name], [to_despawn.mind.role_alt_title], [on_store_message]", "[on_store_name]", announce_channel, using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
-	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2]</span>", 3)
+	//VOREStation Edit Start
+	var/depart_announce = TRUE
+	var/departing_job = to_despawn.mind.role_alt_title
+
+
+	if(istype(to_despawn, /mob/living/dominated_brain))
+		depart_announce = FALSE
+
+	if(depart_announce)
+		announce.autosay("[to_despawn.real_name][departing_job ? ", [departing_job], " : " "][on_store_message]", "[on_store_name]", announce_channel, using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
+		visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2]</span>", 3)
+
+	//VOREStation Edit End
 
 	//VOREStation Edit begin: Dont delete mobs-in-mobs
 	if(to_despawn.client && to_despawn.stat<2)
@@ -722,7 +734,7 @@
 
 		// Book keeping!
 		var/turf/location = get_turf(src)
-		log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
 
 		//Despawning occurs when process() is called with an occupant without a client.
