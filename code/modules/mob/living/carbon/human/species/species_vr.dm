@@ -8,6 +8,9 @@
 
 	var/organic_food_coeff = 1
 	var/synthetic_food_coeff = 0
+	var/robo_ethanol_proc = 0 //can we get fuel from booze, as a synth?
+	var/robo_ethanol_drunk = 0 //can we get *drunk* from booze, as a synth?
+
 	//var/vore_numbing = 0
 	var/metabolism = 0.0015
 	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.

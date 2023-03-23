@@ -148,6 +148,33 @@
 	can_take = SYNTHETICS
 	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.25)
 
+/datum/trait/neutral/synth_ethanolburner
+	name = "Ethanol Burner"
+	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. You still can't get drunk though."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_proc" = 1)
+	excludes = list(/datum/trait/neutral/synth_ethanol_crude,/datum/trait/neutral/synth_ethanol_sim)
+
+/datum/trait/neutral/synth_ethanol_crude
+	name = "Ethanol Burner (Crude)"
+	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. You will suffer almost all the effects of drinking it as well, though you can't die of liver failure."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_proc" = 1, "robo_ethanol_drunk" = 1)
+	excludes = list(/datum/trait/neutral/synth_ethanolburner,/datum/trait/neutral/synth_ethanol_sim)
+
+/datum/trait/neutral/synth_ethanol_sim
+	name = "Ethanol Simulator"
+	desc = "An unusual modification allows your synthetic body to simulate all but the lethal effects of ingested alcohols."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_drunk" = 1)
+	excludes = list(/datum/trait/neutral/synth_ethanolburner,/datum/trait/neutral/synth_ethanol_crude)
+
 /datum/trait/neutral/glowing_eyes
 	name = "Glowing Eyes"
 	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."

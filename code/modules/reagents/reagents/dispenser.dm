@@ -106,6 +106,8 @@
 	glass_desc = "A well-known alcohol with a variety of applications."
 	allergen_factor = 0.5	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
+	affects_robots = 1 //VOREStation Addition/Edit
+
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	..()
 	if(istype(L))
@@ -124,40 +126,52 @@
 		strength_mod = 0
 	if(alien == IS_SLIME)
 		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed)
-	
-	M.add_chemical_effect(CE_ALCOHOL, 1)
+
+	//VOREStation Edits Start
 	var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
+	if(M.species.robo_ethanol_proc) //failsafe to make sure boozy-bots don't get rekt, since they process out of bloodstream
+		effective_dose = dose
 
-	if(effective_dose >= strength) // Early warning
-		M.make_dizzy(18) // It is decreased at the speed of 3 per tick
-	if(effective_dose >= strength * 2) // Slurring
-		M.slurring = max(M.slurring, 90)
-	if(effective_dose >= strength * 3) // Confusion - walking in random directions
-		M.Confuse(60)
-	if(effective_dose >= strength * 4) // Blurry vision
-		M.eye_blurry = max(M.eye_blurry, 30)
-	if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
-		M.drowsyness = max(M.drowsyness, 60)
-	if(effective_dose >= strength * 6) // Toxic dose
-		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity*3)
-	if(effective_dose >= strength * 7) // Pass out
-		M.Paralyse(60)
-		M.Sleeping(90)
+	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)
+		M.adjust_nutrition(round(max(0,80 - strength) * removed)/30)	//the stronger it is, the more juice you gain; really weak stuff gets you nothing
+		to_world("[M] gained [round(max(0,80-strength))] multiplied by [removed], divided by 30 = [round(max(0,80 - strength) * removed)/30] nutrition this processing tick.")
 
-	if(druggy != 0)
-		M.druggy = max(M.druggy, druggy*3)
+	if(!(M.isSynthetic()) || M.species.robo_ethanol_drunk)
+		M.add_chemical_effect(CE_ALCOHOL, 1)
 
-	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > targ_temp)
-		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+		if(effective_dose >= strength) // Early warning
+			M.make_dizzy(18) // It is decreased at the speed of 3 per tick
+		if(effective_dose >= strength * 2) // Slurring
+			M.slurring = max(M.slurring, 90)
+		if(effective_dose >= strength * 3) // Confusion - walking in random directions
+			M.Confuse(60)
+		if(effective_dose >= strength * 4) // Blurry vision
+			M.eye_blurry = max(M.eye_blurry, 30)
 
-	if(halluci)
-		M.hallucination = max(M.hallucination, halluci*3)
+		if(druggy != 0)
+			M.druggy = max(M.druggy, druggy*3)
+
+		if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
+			M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+		if(adj_temp < 0 && M.bodytemperature > targ_temp)
+			M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+
+		if(halluci)
+			M.hallucination = max(M.hallucination, halluci*3)
+	
+	if(!(M.isSynthetic()) || (M.species.robo_ethanol_drunk && M.species.robo_ethanol_proc))
+		if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
+			M.drowsyness = max(M.drowsyness, 60)
+		if(effective_dose >= strength * 6) // Toxic dose
+			M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity*3)
+		if(effective_dose >= strength * 7) // Pass out
+			M.Paralyse(60)
+			M.Sleeping(90)
+	//VOREStation Edits End
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
+	if(!(M.species.allergens & allergen_type) && !(M.isSynthetic()))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects - VOREStation Edit (added synth check)
 		M.adjust_nutrition(nutriment_factor * removed)
 	var/strength_mod = 1 * M.species.alcohol_mod
 	if(alien == IS_SKRELL)
@@ -171,26 +185,28 @@
 	if(alien == IS_SLIME)
 		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed * 2)
 
-	M.add_chemical_effect(CE_ALCOHOL, 1)
+	if(!(M.isSynthetic()))
+		M.add_chemical_effect(CE_ALCOHOL, 1)
 
-	if(dose * strength_mod >= strength) // Early warning
-		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
-	if(dose * strength_mod >= strength * 2) // Slurring
-		M.slurring = max(M.slurring, 30)
-	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
-		M.Confuse(20)
-	if(dose * strength_mod >= strength * 4) // Blurry vision
-		M.eye_blurry = max(M.eye_blurry, 10)
-	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
-		M.drowsyness = max(M.drowsyness, 20)
-	if(dose * strength_mod >= strength * 6) // Toxic dose
-		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
-	if(dose * strength_mod >= strength * 7) // Pass out
-		M.Paralyse(20)
-		M.Sleeping(30)
+		if(dose * strength_mod >= strength) // Early warning
+			M.make_dizzy(6) // It is decreased at the speed of 3 per tick
+		if(dose * strength_mod >= strength * 2) // Slurring
+			M.slurring = max(M.slurring, 30)
+		if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
+			M.Confuse(20)
+		if(dose * strength_mod >= strength * 4) // Blurry vision
+			M.eye_blurry = max(M.eye_blurry, 10)
+		if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
+			M.drowsyness = max(M.drowsyness, 20)
+		if(dose * strength_mod >= strength * 6) // Toxic dose
+			M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
+		if(dose * strength_mod >= strength * 7) // Pass out
+			M.Paralyse(20)
+			M.Sleeping(30)
 
-	if(druggy != 0)
-		M.druggy = max(M.druggy, druggy)
+		if(druggy != 0)
+			M.druggy = max(M.druggy, druggy)
+	//VOREStation Edits End
 
 	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
