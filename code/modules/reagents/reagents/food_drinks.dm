@@ -4354,7 +4354,7 @@
 	..()
 
 	if(!(M.isSynthetic()))
-	M.apply_effect(max(M.radiation - 5 * removed, 0), IRRADIATE, check_protection = 0)
+		M.apply_effect(max(M.radiation - 5 * removed, 0), IRRADIATE, check_protection = 0)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.has_organ[O_LIVER])

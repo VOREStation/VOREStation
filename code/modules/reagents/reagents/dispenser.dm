@@ -153,6 +153,8 @@
 			M.hallucination = max(M.hallucination, halluci*3)
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	var/ep_base_power = 60	//base nutrition gain for ethanol-processing synthetics, reduced by alcohol strength
+	var/ep_final_mod = 30	//final divisor on nutrition gain
 	if(issmall(M))
 		removed *= 2
 
@@ -160,7 +162,7 @@
 		M.adjust_nutrition(nutriment_factor * removed)
 
 	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)
-		M.adjust_nutrition(round(max(0,80 - strength) * removed)/30)	//the stronger it is, the more juice you gain; really weak stuff gets you nothing
+		M.adjust_nutrition(round(max(0,ep_base_power - strength) * removed)/ep_final_mod)	//the stronger it is, the more juice you gain
 
 	var/effective_dose = dose * M.species.chem_strength_alcohol
 	if(!effective_dose)
