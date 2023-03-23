@@ -192,30 +192,19 @@
 
 /datum/trait/neutral/synth_ethanolburner
 	name = "Ethanol Burner"
-	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. You still can't get drunk though."
+	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. Doesn't allow you to get drunk by itself (for that, take Ethanol Simulator)."
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
 	var_changes = list("robo_ethanol_proc" = 1)
-	excludes = list(/datum/trait/neutral/synth_ethanol_crude,/datum/trait/neutral/synth_ethanol_sim)
-
-/datum/trait/neutral/synth_ethanol_crude
-	name = "Ethanol Burner (Crude)"
-	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. You will suffer almost all the effects of drinking it as well, though you can't die of liver failure."
-	cost = 0
-	custom_only = FALSE
-	can_take = SYNTHETICS
-	var_changes = list("robo_ethanol_proc" = 1, "robo_ethanol_drunk" = 1)
-	excludes = list(/datum/trait/neutral/synth_ethanolburner,/datum/trait/neutral/synth_ethanol_sim)
 
 /datum/trait/neutral/synth_ethanol_sim
 	name = "Ethanol Simulator"
-	desc = "An unusual modification allows your synthetic body to simulate all but the lethal effects of ingested alcohols."
+	desc = "An unusual modification allows your synthetic body to simulate all but the lethal effects of ingested alcohols. You'll get dizzy, slur your speech, suffer temporary loss of vision and even pass out! But hey, at least you don't have a liver to destroy."
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
 	var_changes = list("robo_ethanol_drunk" = 1)
-	excludes = list(/datum/trait/neutral/synth_ethanolburner,/datum/trait/neutral/synth_ethanol_crude)
 
 /datum/trait/neutral/glowing_eyes
 	name = "Glowing Eyes"

@@ -177,14 +177,13 @@
 			M.Confuse(20)
 		if(effective_dose >= strength * 4) // Blurry vision
 			M.eye_blurry = max(M.eye_blurry, 10)
-		if((M.species.robo_ethanol_drunk && M.species.robo_ethanol_proc) || !(M.isSynthetic()))
-			if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
-				M.drowsyness = max(M.drowsyness, 20)
-			if(effective_dose >= strength * 6) // Toxic dose
-				M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
-			if(effective_dose >= strength * 7) // Pass out
-				M.Paralyse(20)
-				M.Sleeping(30)
+		if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
+			M.drowsyness = max(M.drowsyness, 20)
+		if(effective_dose >= strength * 6) // Toxic dose
+			M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
+		if(effective_dose >= strength * 7) // Pass out
+			M.Paralyse(20)
+			M.Sleeping(30)
 
 		if(druggy != 0)
 			M.druggy = max(M.druggy, druggy)
