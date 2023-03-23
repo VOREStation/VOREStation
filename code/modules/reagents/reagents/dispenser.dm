@@ -161,7 +161,6 @@
 
 	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)
 		M.adjust_nutrition(round(max(0,80 - strength) * removed)/30)	//the stronger it is, the more juice you gain; really weak stuff gets you nothing
-		to_world("[M] gained [round(max(0,80-strength))] multiplied by [removed], divided by 30 = [round(max(0,80 - strength) * removed)/30] nutrition this processing tick.")
 
 	var/effective_dose = dose * M.species.chem_strength_alcohol
 	if(!effective_dose)
