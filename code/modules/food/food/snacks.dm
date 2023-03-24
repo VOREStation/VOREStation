@@ -91,6 +91,8 @@
 
 	if(istype(M, /mob/living/carbon))
 		//TODO: replace with standard_feed_mob() call.
+		var/swallow_whole = FALSE
+		var/obj/belly/belly_target				// These are surprise tools that will help us later
 
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
@@ -151,6 +153,12 @@
 						unconcious = TRUE
 						blocked = H.check_mouth_coverage()
 
+				if(isliving(user))	// We definitely are, but never hurts to check
+					var/mob/living/L = user
+					swallow_whole = L.stuffing_feeder
+				if(swallow_whole)
+					belly_target = M.vore_selected
+
 				if(unconcious)
 					to_chat(user, "<span class='warning'>You can't feed [H] through \the [blocked] while they are unconcious!</span>")
 					return
@@ -159,21 +167,44 @@
 					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+				if(swallow_whole)
+					if(!(M.feeding))
+						to_chat(user, "<span class='warning'>You can't feed [H] a whole [src] as they refuse to be fed whole things!</span>")
+						return
+					if(!belly_target)
+						to_chat(user, "<span class='warning'>You can't feed [H] a whole [src] as they don't appear to have a belly to fit it!</span>")
+						return
+
+				if(swallow_whole)
+					user.visible_message("<span class='danger'>[user] attempts to make [M] consume [src] whole into their [belly_target].</span>")
+				else
+					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+
+				var/feed_duration = 3 SECONDS
+				if(swallow_whole)
+					feed_duration = 5 SECONDS
 
 				user.setClickCooldown(user.get_attack_speed(src))
-				if(!do_mob(user, M)) return
+				if(!do_mob(user, M, feed_duration)) return
 
-				//Do we really care about this
-				add_attack_logs(user,M,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
+				if(swallow_whole && !belly_target) return			// Just in case we lost belly mid-feed
 
-				user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
+				if(swallow_whole)
+					add_attack_logs(user,M,"Whole-fed with [src.name] containing [reagentlist(src)] into [belly_target]", admin_notify = FALSE)
+					user.visible_message("<span class='danger'>[user] successfully forces [src] into [M]'s [belly_target].</span>")
+				else
+					add_attack_logs(user,M,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
+					user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
 			else
 				to_chat(user, "This creature does not seem to have a mouth!")
 				return
 
-		if(reagents)								//Handle ingestion of the reagent.
+		if(swallow_whole)
+			user.drop_item()
+			forceMove(belly_target)
+			return 1
+		else if(reagents)								//Handle ingestion of the reagent.
 			playsound(M,'sound/items/eatfood.ogg', rand(10,50), 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
@@ -1101,10 +1132,12 @@
 		to_chat(user, "<span class='notice'>The heating chemicals have already been spent.</span>")
 		return
 	has_been_heated = 1
-	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
+	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up. Now just to wait for it to be ready.")
 	spawn(200)
-		to_chat(user, "You think \the [src] is ready to eat about now.")
-		heat()
+		if(src)
+			if(src.loc == user)
+				to_chat(user, "You think \the [src] is ready to eat about now.")
+			heat()
 
 /obj/item/weapon/reagent_containers/food/snacks/brainburger
 	name = "brainburger"
@@ -4269,7 +4302,7 @@
 	icon_state = "bakedbeans"
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/beans/Initialize()
 	. = ..()
 	reagents.add_reagent("bean_protein", 6)
 
@@ -6400,7 +6433,7 @@
 	name = "\improper Suhariki"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "croutons"
-	desc = "Fried bread cubes. Popular in Terran territories."
+	desc = "Fried bread cubes. Popular in some Solar territories."
 	trash = /obj/item/trash/croutons
 	filling_color = "#c6b17f"
 	center_of_mass = list ("x"=15, "y"=9)
@@ -6574,7 +6607,7 @@
 	.=..()
 	reagents.add_reagent("capsaicin", 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/sun_snax //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/sun_snax
 	name = "\improper Sun Snax!"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "sun_snax"
@@ -6674,7 +6707,7 @@
 	.=..()
 	reagents.add_reagent("capsaicin",1)
 
-/obj/item/weapon/reagent_containers/food/snacks/wasabi_peas //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/wasabi_peas
 	name = "\improper Hadokikku Peas"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "wasabi_peas"
@@ -6880,7 +6913,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/canned/maps
 	name = "\improper MAPS"
 	icon_state = "maps"
-	desc = "A re-branding of a classic Terran snack! Contains mostly edible ingredients."
+	desc = "A re-branding of a classic Earth snack! Contains mostly edible ingredients."
 	trash = /obj/item/trash/maps
 	canned_open_state = "maps-open"
 	filling_color = "#330066"
@@ -7008,7 +7041,7 @@
 	description_fluff = "Despite Spacer advertisements consistently portraying their snack cakes as life-saving, \
 	tear-jerking survival food for spacers in all kinds of dramatic scenarios, the Spacer Snack Cake has been \
 	statistically proven to lower survival rates on all missions where it is present."
-	package_trash = /obj/item/trash/spacercake_wrap
+	package_trash = /obj/item/trash/spacer_cake_wrap
 	package_open_state = "spacercake_open"
 	filling_color = "#FFE591"
 	center_of_mass = list("x"=15, "y"=11)

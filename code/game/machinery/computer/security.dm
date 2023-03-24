@@ -31,6 +31,7 @@
 		"name" = "Please enter new name:",
 		"id" = "Please enter new id:",
 		"sex" = "Please select new sex:",
+		"species" = "Please input new species:",
 		"age" = "Please input new age:",
 		"rank" = "Please enter new rank:",
 		"fingerprint" = "Please input new fingerprint hash:",
@@ -148,6 +149,7 @@
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], "id")
 					fields[++fields.len] = FIELD("Entity Classification", active1.fields["brain_type"], "brain_type")
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
+					fields[++fields.len] = FIELD("Species", active1.fields["species"], "species")
 					fields[++fields.len] = FIELD("Age", "[active1.fields["age"]]", "age")
 					fields[++fields.len] = FIELD("Rank", active1.fields["rank"], "rank")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
@@ -424,6 +426,7 @@
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
+		<br>\nSpecies: [active1.fields["species"]]
 		<br>\nAge: [active1.fields["age"]]
 		<br>\nFingerprint: [active1.fields["fingerprint"]]
 		<br>\nPhysical Status: [active1.fields["p_stat"]]

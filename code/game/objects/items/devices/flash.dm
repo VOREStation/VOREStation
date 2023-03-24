@@ -1,6 +1,6 @@
 /obj/item/device/flash
 	name = "flash"
-	desc = "Used for blinding and being an asshole."
+	desc = "Used for blinding and disorienting."
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5

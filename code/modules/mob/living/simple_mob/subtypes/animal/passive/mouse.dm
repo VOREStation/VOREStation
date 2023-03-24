@@ -15,7 +15,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 3
 
-	movement_cooldown = 1.5
+	movement_cooldown = -1
 
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE

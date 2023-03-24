@@ -5,7 +5,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 
-	movement_cooldown = 4
+	movement_cooldown = 3
 
 /mob/living/simple_mob/animal/giant_spider/frost/broodling/Initialize()
 	. = ..()
@@ -23,7 +23,7 @@
 	taser_kill = TRUE
 	base_attack_cooldown = 20
 
-	movement_cooldown = 5
+	movement_cooldown = -1
 
 /mob/living/simple_mob/animal/giant_spider/electric/broodling/Initialize()
 	. = ..()
@@ -38,7 +38,7 @@
 	maxHealth = 40
 	health = 40
 
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 /mob/living/simple_mob/animal/giant_spider/hunter/broodling/Initialize()
 	. = ..()
@@ -53,7 +53,7 @@
 	maxHealth = 40
 	health = 40
 
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 /mob/living/simple_mob/animal/giant_spider/lurker/broodling/Initialize()
 	. = ..()
@@ -68,7 +68,7 @@
 	maxHealth = 60
 	health = 60
 
-	movement_cooldown = 8
+	movement_cooldown = 3
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/animal/giant_spider/nurse/broodling/Initialize()
@@ -84,7 +84,7 @@
 	maxHealth = 40
 	health = 40
 
-	movement_cooldown = 4
+	movement_cooldown = 3
 
 /mob/living/simple_mob/animal/giant_spider/pepper/broodling/Initialize()
 	. = ..()
@@ -102,7 +102,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 
-	movement_cooldown = 4
+	movement_cooldown = 1
 
 /mob/living/simple_mob/animal/giant_spider/thermic/broodling/Initialize()
 	. = ..()
@@ -117,7 +117,7 @@
 	maxHealth = 40
 	health = 40
 
-	movement_cooldown = 4
+	movement_cooldown = 1
 
 /mob/living/simple_mob/animal/giant_spider/tunneler/broodling/Initialize()
 	. = ..()
@@ -134,7 +134,7 @@
 
 	base_attack_cooldown = 20
 
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 
 /mob/living/simple_mob/animal/giant_spider/webslinger/broodling/Initialize()
 	. = ..()
@@ -152,7 +152,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 
-	movement_cooldown = 8
+	movement_cooldown = 3
 
 /mob/living/simple_mob/animal/giant_spider/broodling/Initialize()
 	. = ..()

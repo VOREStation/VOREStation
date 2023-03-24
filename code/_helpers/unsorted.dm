@@ -826,10 +826,22 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	else
 		O=new original.type(locate(0,0,0))
 
+	var/static/list/blacklisted_var_names = list(
+		"ATOM_TOPIC_EXAMINE",
+		"type",
+		"loc",
+		"locs",
+		"vars",
+		"parent",
+		"parent_type",
+		"verbs",
+		"ckey",
+		"key"
+	)
 	if(perfectcopy)
 		if((O) && (original))
 			for(var/V in original.vars)
-				if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key")))
+				if(!(V in blacklisted_var_names))
 					O.vars[V] = original.vars[V]
 	return O
 

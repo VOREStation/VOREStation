@@ -11,7 +11,7 @@
 	icon_dead = "new_morph_dead"
 	icon_rest = null
 	color = "#658a62"
-	movement_cooldown = 1
+	movement_cooldown = -1
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
 	mob_bump_flag = SLIME
@@ -136,7 +136,7 @@
 	//Morphed is weaker
 	melee_damage_lower = melee_damage_disguised
 	melee_damage_upper = melee_damage_disguised
-	movement_cooldown = 5
+	movement_cooldown = 1
 
 	morph_time = world.time + MORPH_COOLDOWN
 

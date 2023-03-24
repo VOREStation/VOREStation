@@ -18,7 +18,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 3
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 	hovering = TRUE // Birds can fly.
 	softfall = TRUE
 	parachuting = TRUE

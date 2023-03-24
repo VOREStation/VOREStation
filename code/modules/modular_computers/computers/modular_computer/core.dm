@@ -292,3 +292,9 @@
 		autorun.stored_data = null
 	else
 		autorun.stored_data = program
+
+/obj/item/modular_computer/proc/find_file_by_uid(var/uid)
+	if(hard_drive)
+		. = hard_drive.find_file_by_uid(uid)
+	if(portable_drive && !.)
+		. = portable_drive.find_file_by_uid(uid)

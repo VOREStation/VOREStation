@@ -13,3 +13,10 @@
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000, MAT_URANIUM = 2000)
 	build_path = /obj/item/rig_module/mounted/sizegun
+
+/datum/design/item/mecha/weapon/laser_gamma
+	name = "GA-X \"Render\" Experimental Gamma Laser"
+	id = "mech_laser_gamma"
+	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 4, TECH_PHORON = 4, TECH_POWER = 4, TECH_ILLEGAL = 3)
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_PHORON = 2500, MAT_SILVER = 1000, MAT_GOLD = 500, MAT_URANIUM = 3000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/gamma

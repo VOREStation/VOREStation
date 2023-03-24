@@ -198,7 +198,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/kvass
 	name = "\improper Kvass"
 	desc = "A true Slavic soda."
-	description_fluff = "A classic slavic beverage which many Space Russians still enjoy to this day. Fun fact, it is actually considered a weak beer by non-russians."
+	description_fluff = "A classic slavic beverage which many space-faring slavs still enjoy to this day. Fun fact, it is actually considered a weak beer by non-russians."
 	icon_state = "kvass"
 	center_of_mass = list("x"=16, "y"=10)
 

@@ -139,3 +139,20 @@ Talon pin
 /datum/gear/accessory/altevian_badge
 	display_name = "altevian badge"
 	path = /obj/item/clothing/accessory/altevian_badge
+
+/datum/gear/accessory/maid_neck
+	display_name = "maid neck cover"
+	path = /obj/item/clothing/accessory/maid_neck
+
+/datum/gear/accessory/maid_corset
+	display_name = "maid corset"
+	path = /obj/item/clothing/accessory/maidcorset
+
+//Antediluvian accessories
+/datum/gear/accessory/antediluvian
+	display_name = "antediluvian bracers"
+	path = /obj/item/clothing/accessory/antediluvian
+
+/datum/gear/accessory/antediluvian/loin
+	display_name = "antediluvian loincloth"
+	path = /obj/item/clothing/accessory/antediluvian/loincloth

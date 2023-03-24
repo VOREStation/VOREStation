@@ -44,3 +44,18 @@ var/global/list/acceptable_fruit_types= list(
 											"watermelon",
 											"wheat",
 											"whitebeet")
+
+// Some "scary" sounds.
+var/static/list/scawwySownds = list(
+	'sound/voice/ScawwySownds/a scawey sownd.ogg',
+	'sound/voice/ScawwySownds/is that you.ogg',
+	'sound/voice/ScawwySownds/lookit this darkness wow.ogg',
+	'sound/voice/ScawwySownds/maint preds.ogg',
+	'sound/voice/ScawwySownds/spooky sounds.ogg',
+	'sound/voice/ScawwySownds/sus.ogg',
+	'sound/voice/ScawwySownds/this is scaewy.ogg',
+	'sound/voice/ScawwySownds/what is that behind you.ogg',
+	'sound/voice/ScawwySownds/what you doin over dere.ogg',
+	'sound/voice/ScawwySownds/whats up with all the trash.ogg',
+	'sound/voice/ScawwySownds/youre afraid of the dark arent you.ogg'
+	)

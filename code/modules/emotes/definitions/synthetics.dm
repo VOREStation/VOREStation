@@ -14,6 +14,11 @@
 	emote_sound = 'sound/machines/twobeep.ogg'
 	sound_vary = FALSE
 
+/decl/emote/audible/synth/bing
+	key = "bing"
+	emote_message_3p = "bings."
+	emote_sound = 'sound/machines/ping.ogg'
+
 /decl/emote/audible/synth/buzz
 	key = "buzz"
 	emote_message_3p = "buzzes."

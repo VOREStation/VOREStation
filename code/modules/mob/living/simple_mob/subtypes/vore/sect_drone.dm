@@ -38,7 +38,7 @@
 	health = 90
 	see_in_dark = 8
 
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 	melee_damage_lower = 6
 	melee_damage_upper = 12

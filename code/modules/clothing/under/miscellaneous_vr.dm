@@ -205,6 +205,10 @@
 	icon_state = "qipao_white"
 	item_state = "qipao_white"
 
+/obj/item/clothing/under/qipao/white/colorable
+	name = "qipao"
+	starting_accessories = list(/obj/item/clothing/accessory/qipaogold)
+
 /obj/item/clothing/under/qipao/red
 	name = "red qipao"
 	icon_state = "qipao_red"
@@ -488,3 +492,98 @@
 	item_state = "qipao2"
 	worn_state = "qipao2"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/dress/antediluvian
+	name = "antediluvian corset"
+	desc = "A regal black and gold tight corset with silky sleeves. A sheer bodystocking accompanies it."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "antediluvian"
+	item_state = "antediluvian"
+	worn_state = "antediluvian"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/dress/antediluvian/sheerless
+	desc = "A regal black and gold tight corset with silky sleeves. This one is just the corset and sleeves, sans lace stockings and gloves."
+	worn_state = "antediluvian_c"
+
+//Colorable skirts
+/obj/item/clothing/under/skirt/colorable
+	name = "skirt"
+	desc = "A rather plain looking skirt."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "skirt_casual"
+	item_state = "skirt_casual"
+	worn_state = "skirt_casual"
+
+/obj/item/clothing/under/skirt/colorable/puffy
+	icon_state = "skirt_puffy"
+	item_state = "skirt_puffy"
+	worn_state = "skirt_puffy"
+
+/obj/item/clothing/under/skirt/colorable/skater
+	desc = "A skirt with loose frills."
+	icon_state = "skirt_skater"
+	item_state = "skirt_skater"
+	worn_state = "skirt_skater"
+
+/obj/item/clothing/under/skirt/colorable/pleated
+	desc = "A short skirt featuring pleat trailing up from the hem."
+	icon_state = "skirt_pleated"
+	item_state = "skirt_pleated"
+	worn_state = "skirt_pleated"
+
+/obj/item/clothing/under/skirt/colorable/pencil
+	name = "pencil skirt"
+	desc = "A short skirt that's almost as thin as a pencil. Almost."
+	icon_state = "skirt_pencil"
+	item_state = "skirt_pencil"
+	worn_state = "skirt_pencil"
+
+/obj/item/clothing/under/skirt/colorable/plaid
+	name = "plaid skirt"
+	desc = "A skirt featuring a plaid pattern."
+	icon_state = "skirt_plaid"
+	item_state = "skirt_plaid"
+	worn_state = "skirt_plaid"
+
+/obj/item/clothing/under/skirt/colorable/tube
+	desc = "A long thin skirt that trails beyond the knees."
+	icon_state = "skirt_tube"
+	item_state = "skirt_tube"
+	worn_state = "skirt_tube"
+
+/obj/item/clothing/under/skirt/colorable/long
+	name = "long skirt"
+	icon_state = "skirt_long"
+	item_state = "skirt_long"
+	worn_state = "skirt_long"
+
+/obj/item/clothing/under/skirt/colorable/high
+	name = "high skirt"
+	desc = "A skirt that rests at the waist instead of the hips."
+	icon_state = "skirt_high"
+	item_state = "skirt_high"
+	worn_state = "skirt_high"
+
+/obj/item/clothing/under/skirt/colorable/swept
+	name = "swept skirt"
+	desc = "A skirt with an angled hem; shorter on one side, longer on the other, like a sweep."
+	icon_state = "skirt_swept"
+	item_state = "skirt_swept"
+	worn_state = "skirt_swept"
+
+/obj/item/clothing/under/skirt/colorable/jumper
+	name = "jumper skirt"
+	desc = "A skirt that's held up by suspenders."
+	icon_state = "skirt_jumper"
+	item_state = "skirt_jumper"
+	worn_state = "skirt_jumper"
+
+/obj/item/clothing/under/skirt/colorable/jumperdress
+	name = "jumper dress"
+	desc = "A dress held up by suspenders. Not quite a skirt anymore."
+	icon_state = "skirt_jumperdress"
+	item_state = "skirt_jumperdress"
+	worn_state = "skirt_jumperdress"

@@ -451,7 +451,9 @@
 //Let's let our mob out!
 /obj/item/capture_crystal/proc/unleash(mob/living/user, atom/target)
 	if(!user && !target)			//We got thrown but we're not sure who did it, let's go to where the crystal is
-		bound_mob.forceMove(src.drop_location())
+		var/drop_loc = get_turf(src)
+		if (drop_loc)
+			bound_mob.forceMove(drop_loc)
 		return
 	if(!target)						//We know who wants to let us out, but they didn't say where, so let's drop us on them
 		bound_mob.forceMove(user.drop_location())

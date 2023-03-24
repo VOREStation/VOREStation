@@ -30,7 +30,7 @@
 	faction = "syndicate"
 	maxHealth = 15
 	health = 15
-	movement_cooldown = 0
+	movement_cooldown = -2
 
 	pass_flags = PASSTABLE
 	mob_swap_flags = 0
@@ -94,7 +94,7 @@
 /mob/living/simple_mob/mechanical/viscerator/piercing
 	attack_armor_pen = 20
 	base_attack_cooldown = 10 // One attack a second or so.
-	movement_cooldown = 0.5
+	movement_cooldown = -1
 
 /decl/mob_organ_names/viscerator
 	hit_zones = list("chassis", "rotor blades", "sensor array")

@@ -6926,7 +6926,6 @@
 /area/talon_v2/crew_quarters/sec_room)
 "vG" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -6983,6 +6982,9 @@
 /obj/structure/catwalk,
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
@@ -11230,6 +11232,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/mine_room)
 "JL" = (
@@ -14428,13 +14433,6 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
-"TH" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_x = -30
-	},
-/turf/simulated/wall/shull,
-/area/talon_v2/crew_quarters/mine_room)
 "TJ" = (
 /obj/machinery/mineral/stacking_unit_console{
 	pixel_y = -6;
@@ -27662,7 +27660,7 @@ It
 jY
 Ym
 Um
-TH
+IB
 Ax
 Eu
 yU

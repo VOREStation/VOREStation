@@ -68,19 +68,27 @@
 
 	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
 		open = 0
-		icon_state = initial(icon_state)
+		update_icon()
 		flags_inv = HIDETIE|HIDEHOLSTER
 		to_chat(usr, "You button up the coat.")
 	else if(open == 0)
 		open = 1
-		icon_state = "[icon_state]_open"
+		update_icon()
 		flags_inv = HIDEHOLSTER
 		to_chat(usr, "You unbutton the coat.")
 	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
 		return
-	update_clothing_icon()	//so our overlays update
+	if(istype(hood,/obj/item/clothing/head/hood/toggleable)) //checks if a hood (which you should use) is attached
+		var/obj/item/clothing/head/hood/toggleable/T = hood
+		T.open = open //copy the jacket's open state to the hood
+		T.update_icon(usr) //usr as an arg to fix a weird runtime
+		T.update_clothing_icon()
+	update_clothing_icon() //so our overlays update
 
+/obj/item/clothing/suit/storage/hooded/toggle/update_icon()
+	. = ..()
+	icon_state = "[toggleicon][open ? "_open" : ""][hood_up ? "_t" : ""]"
 
 //New Vest 4 pocket storage and badge toggles, until suit accessories are a thing.
 /obj/item/clothing/suit/storage/vest/heavy/New()

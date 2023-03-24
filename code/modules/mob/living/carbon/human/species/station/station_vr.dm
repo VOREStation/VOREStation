@@ -383,7 +383,11 @@
 	min_age = 18
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //Get ya quills done did
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
+	tail = "voxtail"
+	tail_animation = 'icons/mob/species/vox/tail.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
+	color_mult = 1
+	
 	descriptors = list(
 		/datum/mob_descriptor/vox_markings = 0
 		)
@@ -453,6 +457,8 @@
 	num_alternate_languages = 3
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	rarity_value = 5	//INTERDIMENSIONAL FLUFFERS
+
+	inherent_verbs = list(/mob/proc/adjust_hive_range)
 
 	siemens_coefficient = 0
 	darksight = 10

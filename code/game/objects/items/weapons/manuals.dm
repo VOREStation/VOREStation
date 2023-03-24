@@ -317,7 +317,7 @@
 
 				<h2>Power outage</h2>
 
-				A power problem has made the entire station lose power? Could be station-wide wiring problems or syndicate power sinks. In any case follow these steps:
+				A power problem has made the entire station lose power? Could be station-wide wiring problems or illegal power sinks. In any case follow these steps:
 
 				<ol>
 					<li><b><font color='red'>PANIC!</font></b></li>
@@ -1112,7 +1112,7 @@
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
 	item_state = "book8"
-	author = "Syndicate"
+	author = "Stealth Assault Enterprises"
 	title = "Fission Mailed: Nuclear Sabotage 101"
 
 	dat = {"<html>
@@ -1128,7 +1128,7 @@
 				</head>
 				<body>
 				<h1>Nuclear Explosives 101</h1>
-				Hello and thank you for choosing the Syndicate for your nuclear information needs. Today's crash course will deal with the operation of a Nuclear Fission Device.<br><br>
+				Hello and thank you for choosing Stealth Assault Enterprises for your nuclear information needs. Today's crash course will deal with the operation of a Nuclear Fission Device.<br><br>
 
 				First and foremost, DO NOT TOUCH ANYTHING UNTIL THE BOMB IS IN PLACE. Pressing any button on the compacted bomb will cause it to extend and bolt itself into place. If this is done, to unbolt it, one must completely log in, which at this time may not be possible.<br>
 
@@ -1144,7 +1144,7 @@
 
 				You now have activated the device. To deactivate the buttons at anytime, for example when you've already prepped the bomb for detonation, remove the authentication disk OR press R on the keypad.<br><br>
 				Now the bomb CAN ONLY be detonated using the timer. Manual detonation is not an option. Toggle off the SAFETY.<br>
-				<b>Note</b>: You wouldn't believe how many Syndicate Operatives with doctorates have forgotten this step.<br><br>
+				<b>Note</b>: You wouldn't believe how many SAARE Operatives with doctorates have forgotten this step.<br><br>
 
 				So use the - - and + + to set a detonation time between 5 seconds and 10 minutes. Then press the timer toggle button to start the countdown. Now remove the authentication disk so that the buttons deactivate.<br>
 				<b>Note</b>: THE BOMB IS STILL SET AND WILL DETONATE<br><br>

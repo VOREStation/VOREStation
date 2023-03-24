@@ -1848,8 +1848,8 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
-	child_tags_txt = "geck_sh_docking_port;geck_sh_docking_star";
-	id_tag = "geck_sh_docking";
+	child_tags_txt = "geck_cr_docking_port;geck_cr_docking_star";
+	id_tag = "geck_cr_docking";
 	pixel_y = 22
 	},
 /obj/structure/railing/grey{
@@ -2343,7 +2343,7 @@
 /obj/machinery/atmospherics/unary/vent_pump,
 /obj/structure/handrail,
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
-	id_tag = "geck_sh_docking_port";
+	id_tag = "geck_cr_docking_port";
 	name = "Port AIrlock Control";
 	pixel_y = 22
 	},
@@ -2988,7 +2988,7 @@
 /obj/machinery/atmospherics/unary/vent_pump,
 /obj/structure/handrail,
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
-	id_tag = "geck_sh_docking_star";
+	id_tag = "geck_cr_docking_star";
 	name = "Starboard Airlock Control";
 	pixel_y = 22
 	},

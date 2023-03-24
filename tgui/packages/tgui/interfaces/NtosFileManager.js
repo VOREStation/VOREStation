@@ -1,7 +1,7 @@
 /* eslint react/no-danger: "off" */
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, Section, Table } from '../components';
+import { Button, Section, Table, Flex } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosFileManager = (props, context) => {
@@ -10,7 +10,7 @@ export const NtosFileManager = (props, context) => {
   return (
     <NtosWindow resizable theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
-        {((filename || error) && (
+        {(filename && (
           <Section
             title={'Viewing File ' + filename}
             buttons={
@@ -20,7 +20,6 @@ export const NtosFileManager = (props, context) => {
                 <Button icon="times" content="Close" onClick={() => act('PRG_closefile')} />
               </Fragment>
             }>
-            {error || null}
             {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
              * It should be safe enough to support pencode in this way.
              */}
@@ -32,16 +31,16 @@ export const NtosFileManager = (props, context) => {
               <FileTable
                 files={files}
                 usbconnected={usbconnected}
-                onUpload={(file) => act('PRG_copytousb', { name: file })}
-                onDelete={(file) => act('PRG_deletefile', { name: file })}
-                onOpen={(file) => act('PRG_openfile', { name: file })}
+                onUpload={(file) => act('PRG_copytousb', { uid: file })}
+                onDelete={(file) => act('PRG_deletefile', { uid: file })}
+                onOpen={(file) => act('PRG_openfile', { uid: file })}
                 onRename={(file, newName) =>
                   act('PRG_rename', {
-                    name: file,
+                    uid: file,
                     new_name: newName,
                   })
                 }
-                onDuplicate={(file) => act('PRG_clone', { file: file })}
+                onDuplicate={(file) => act('PRG_clone', { uid: file })}
               />
             </Section>
             {(usbconnected && (
@@ -50,15 +49,16 @@ export const NtosFileManager = (props, context) => {
                   usbmode
                   files={usbfiles}
                   usbconnected={usbconnected}
-                  onUpload={(file) => act('PRG_copyfromusb', { name: file })}
-                  onDelete={(file) => act('PRG_deletefile', { name: file })}
+                  onUpload={(file) => act('PRG_copyfromusb', { uid: file })}
+                  onDelete={(file) => act('PRG_deletefile', { uid: file })}
+                  onOpen={(file) => act('PRG_openfile', { uid: file })}
                   onRename={(file, newName) =>
                     act('PRG_rename', {
-                      name: file,
+                      uid: file,
                       new_name: newName,
                     })
                   }
-                  onDuplicate={(file) => act('PRG_clone', { file: file })}
+                  onDuplicate={(file) => act('PRG_clone', { uid: file })}
                 />
               </Section>
             )) ||
@@ -69,6 +69,18 @@ export const NtosFileManager = (props, context) => {
               </Button>
             </Section>
           </Fragment>
+        )}
+        {error && (
+          <Flex wrap="wrap" position="fixed" bottom="5px">
+            <Flex.Item>
+              <Section>
+                <Button bottom="0" left="0" icon="ban" onClick={() => act('PRG_clearerror')} />
+              </Section>
+            </Flex.Item>
+            <Section>
+              <Flex.Item grow>{error}</Flex.Item>
+            </Section>
+          </Flex>
         )}
       </NtosWindow.Content>
     </NtosWindow>
@@ -94,9 +106,9 @@ const FileTable = (props) => {
                   content={file.name}
                   currentValue={file.name}
                   tooltip="Rename"
-                  onCommit={(e, value) => onRename(file.name, value)}
+                  onCommit={(e, value) => onRename(file.uid, value)}
                 />
-                <Button content="Open" onClick={() => onOpen(file.name)} />
+                <Button content="Open" onClick={() => onOpen(file.uid)} />
               </Fragment>
             ) : (
               file.name
@@ -112,13 +124,13 @@ const FileTable = (props) => {
                   confirmIcon="times"
                   confirmContent=""
                   tooltip="Delete"
-                  onClick={() => onDelete(file.name)}
+                  onClick={() => onDelete(file.uid)}
                 />
                 {!!usbconnected &&
                   (usbmode ? (
-                    <Button icon="download" tooltip="Download" onClick={() => onUpload(file.name)} />
+                    <Button icon="download" tooltip="Download" onClick={() => onUpload(file.uid)} />
                   ) : (
-                    <Button icon="upload" tooltip="Upload" onClick={() => onUpload(file.name)} />
+                    <Button icon="upload" tooltip="Upload" onClick={() => onUpload(file.uid)} />
                   ))}
               </Fragment>
             )}

@@ -207,3 +207,23 @@
 	name = "Dress shirt, masculine"
 	icon_state = "undershirt_dress"
 	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/midriff
+	name = "Tanktop, midriff"
+	icon_state = "tank_midriff"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/midriffshort
+	name = "Tanktop, midriff, short"
+	icon_state = "tank_midriff_short"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/shibari
+	name = "Shibari Binding"
+	icon_state = "shibari"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/leotard
+	name = "Leotard"
+	icon_state = "leotard"
+	has_color = TRUE

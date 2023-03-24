@@ -362,7 +362,7 @@
 	name = "spatial anomaly"
 	desc = "A strange section of the caves that seems twist and turn in ways that shouldn't be physically possible."
 	mappath = 'maps/submaps/surface_submaps/mountains/spatial_anomaly.dmm'
-	cost = 20
+	cost = INFINITY /// Prevent spawning.
 	fixed_orientation = TRUE
 
 /datum/map_template/surface/mountains/normal/Speakeasy //VOREStation add

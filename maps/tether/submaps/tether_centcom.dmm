@@ -624,6 +624,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/ccboat)
+"bI" = (
+/turf/simulated/floor/reinforced,
+/area/shuttle/centcom/ccbay)
 "bJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -5038,9 +5041,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"sX" = (
-/turf/simulated/floor/reinforced/airless,
-/area/shuttle/centcom/ccbay)
 "sY" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ArmouryC4";
@@ -25748,12 +25748,12 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
-sX
-sX
-sX
+bI
+bI
+bI
+bI
+bI
+bI
 fE
 gn
 mY
@@ -25761,8 +25761,8 @@ zN
 uf
 bG
 uf
-sX
-sX
+bI
+bI
 pR
 nJ
 ac
@@ -25890,8 +25890,8 @@ ZQ
 ac
 nJ
 px
-sX
-sX
+bI
+bI
 WO
 uf
 uf
@@ -27026,9 +27026,9 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
+bI
+bI
+bI
 uf
 uf
 bG
@@ -27168,12 +27168,12 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
-sX
-sX
-sX
+bI
+bI
+bI
+bI
+bI
+bI
 fE
 UC
 uf
@@ -27181,8 +27181,8 @@ uf
 uf
 bG
 uf
-sX
-sX
+bI
+bI
 pR
 nJ
 ic

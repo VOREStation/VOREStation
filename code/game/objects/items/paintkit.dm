@@ -98,10 +98,8 @@
 			suit.desc = new_desc
 			suit.icon_state = "[new_icon]_suit"
 			suit.toggleicon = "[new_icon]_suit"
-			suit.item_state = "[new_icon]_suit"
 			var/obj/item/clothing/head/hood/S = suit.hood
 			S.icon_state = "[new_icon]_helmet"
-			S.item_state = "[new_icon]_helmet"
 			if(new_icon_file)
 				suit.icon = new_icon_file
 				S.icon = new_icon_file

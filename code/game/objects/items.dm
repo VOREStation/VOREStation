@@ -25,6 +25,7 @@
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/force = 0
+	var/can_cleave = FALSE // If true, a 'cleaving' attack will occur.
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -503,17 +504,22 @@ var/list/global/slot_flags_enumeration = list(
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	if(isanimal(usr))	//VOREStation Edit Start - Allows simple mobs with hands to use the pickup verb
+		var/mob/living/simple_mob/s = usr
+		if(!s.has_hands)
+			to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
+			return
+	else if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
-	var/mob/living/carbon/C = usr
+	var/mob/living/L = usr
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if(src.anchored) //Object isn't anchored
 		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
 		return
-	if(C.get_active_hand()) //Hand is not full
+	if(L.get_active_hand()) //Hand is not full	//VOREStation Edit End
 		to_chat(usr, "<span class='warning'>Your hand is full.</span>")
 		return
 	if(!istype(src.loc, /turf)) //Object is on a turf
@@ -675,7 +681,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 
 /obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
-		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
+		M.show_message("<span class='filter_notice'>[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a></span>",1)
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -705,13 +711,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/cannotzoom
 
 	if((usr.stat && !zoom) || !(istype(usr,/mob/living/carbon/human)))
-		to_chat(usr, "You are unable to focus through the [devicename]")
+		to_chat(usr, "<span class='filter_notice'>You are unable to focus through the [devicename].</span>")
 		cannotzoom = 1
 	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
-		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
+		to_chat(usr, "<span class='filter_notice'>Your visor gets in the way of looking through the [devicename].</span>")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)
-		to_chat(usr, "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better")
+		to_chat(usr, "<span class='filter_notice'>You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better.</span>")
 		cannotzoom = 1
 
 	//We checked above if they are a human and returned already if they weren't.
@@ -741,7 +747,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				H.client.pixel_x = -viewoffset
 				H.client.pixel_y = 0
 
-		H.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
+		H.visible_message("<span class='filter_notice'>[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].</span>")
 		if(!ignore_visor_zoom_restriction)
 			H.looking_elsewhere = TRUE
 		H.handle_vision()
@@ -759,7 +765,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		H.handle_vision()
 
 		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].")
+			usr.visible_message("<span class='filter_notice'>[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].</span>")
 
 	return
 

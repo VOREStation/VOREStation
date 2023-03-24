@@ -212,6 +212,14 @@ Qipao
 	display_name = "qipao, white"
 	path = /obj/item/clothing/under/qipao/white
 
+/datum/gear/uniform/qipao_colorable_alt
+	display_name = "qipao, colorable alt"
+	path = /obj/item/clothing/under/qipao/white/colorable
+
+/datum/gear/uniform/qipao_colorable_alt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /*
 Bluespace jumpsuit
 */
@@ -295,7 +303,7 @@ Talon jumpsuit
 
 
 //Feminine Colored Jumpsuits.
-/datum/gear/suit/f_jumpsuit_alt
+/datum/gear/uniform/f_jumpsuit_alt
 	display_name = "Colored Feminine Jumpsuit"
 	path = /obj/item/clothing/under/color/fjumpsuit
 
@@ -312,3 +320,43 @@ Talon jumpsuit
     display_name = "undersuit, security, modernized (Security)"
     allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
     path = /obj/item/clothing/under/rank/security/modern
+
+/datum/gear/uniform/singer_blue
+	display_name = "blue singer dress"
+	path = /obj/item/clothing/under/dress/singer
+
+/datum/gear/uniform/singer_yellow
+	display_name = "yellow singer dress"
+	path = /obj/item/clothing/under/dress/singer/yellow
+
+//Antediluvian corsets from CitRP
+/datum/gear/uniform/antediluvian
+	display_name = "corset, antediluvian"
+	path = /obj/item/clothing/under/dress/antediluvian
+
+/datum/gear/uniform/antediluvianalt
+	display_name = "corset, antediluvian alt"
+	path = /obj/item/clothing/under/dress/antediluvian/sheerless
+
+//Colorable skirts
+/datum/gear/uniform/coloredskirts
+	display_name = "skirt selection, colorable"
+	path = /obj/item/clothing/under/skirt/colorable
+
+/datum/gear/uniform/coloredskirts/New()
+	..()
+	var/list/skirts = list(
+	"casual skirt"=/obj/item/clothing/under/skirt/colorable,
+	"puffy skirt"=/obj/item/clothing/under/skirt/colorable/puffy,
+	"skater skirt"=/obj/item/clothing/under/skirt/colorable/skater,
+	"pleated skirt"=/obj/item/clothing/under/skirt/colorable/pleated,
+	"pencil skirt"=/obj/item/clothing/under/skirt/colorable/pencil,
+	"plaid skirt"=/obj/item/clothing/under/skirt/colorable/plaid,
+	"tube skirt"=/obj/item/clothing/under/skirt/colorable/tube,
+	"long skirt"=/obj/item/clothing/under/skirt/colorable/long,
+	"high skirt"=/obj/item/clothing/under/skirt/colorable/high,
+	"swept skirt"=/obj/item/clothing/under/skirt/colorable/swept,
+	"jumper skirt"=/obj/item/clothing/under/skirt/colorable/jumper,
+	"jumper dress"=/obj/item/clothing/under/skirt/colorable/jumperdress
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(skirts), gear_tweak_free_color_choice)

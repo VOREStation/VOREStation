@@ -607,7 +607,7 @@
 	to forming buds, the petals of which secrete the luminescent sap containing the pollen at the time of blooming. Certain \
 	horticulturists have found ways of halting this process prior to the secretion of the sap, leaving the flower's petals \
 	bright, at the cost of making that bud sterile."
-	value = CATALOGUER_REWARD_HARD
+	value = CATALOGUER_REWARD_MEDIUM
 
 /obj/structure/flora/sif/frostbelle
 	name = "frostbelle shrub"

@@ -69,3 +69,10 @@
 		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))
+
+/datum/gear/mask/lace
+	display_name = "lace veil"
+	path = /obj/item/clothing/mask/lacemask
+
+/datum/gear/mask/lace/New()
+	gear_tweaks += gear_tweak_free_color_choice

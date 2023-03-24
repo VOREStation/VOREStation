@@ -30,10 +30,11 @@
 
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
-	/* VOREStation Removal
-	output += "[using_map.get_map_info()]"
+
+	output += "<b>Current Map:</b><br>"
+	output += "[using_map.full_name]"
 	output +="<hr>"
-	VOREStation Removal End */
+
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
@@ -67,10 +68,7 @@
 			else
 				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
 
-	if(client.check_for_new_server_news())
-		output += "<p><b><a href='byond://?src=\ref[src];shownews=1'>Show Game Updates</A> (NEW!)</b></p>"
-	else
-		output += "<p><a href='byond://?src=\ref[src];shownews=1'>Show Game Updates</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>View Changelog</A></p>"
 
 	if(SSsqlite.can_submit_feedback(client))
 		output += "<p>[href(src, list("give_feedback" = 1), "Give Feedback")]</p>"
@@ -348,6 +346,9 @@
 		else
 			client.feedback_form = new(client)
 
+	if(href_list["open_changelog"])
+		src << link("https://wiki.vore-station.net/Changelog")
+
 /mob/new_player/proc/handle_server_news()
 	if(!client)
 		return
@@ -486,6 +487,12 @@
 		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+	if(ishuman(character))
+		if(character.client.prefs.auto_backup_implant)
+			var/obj/item/weapon/implant/backup/imp = new(src)
+
+			if(imp.handle_implant(character,character.zone_sel.selecting))
+				imp.post_implant(character)
 
 	qdel(src) // Delete new_player mob
 

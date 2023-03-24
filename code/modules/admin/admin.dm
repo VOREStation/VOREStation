@@ -667,6 +667,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!channel) //They picked a channel
 		return
 
+	var/speech_verb = tgui_alert(usr, "What speech verb to use for the conversation?", "Type", list("states", "says"))
+	if(!speech_verb)
+		return
+
 	to_chat(usr, "<span class='notice'><B>Intercom Convo Directions</B><br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
 		add another line, and type a (whole) number of seconds to pause between that message, and the next message, then repeat the message syntax up to 20 times. For example:<br>\
 		--- --- ---<br>\
@@ -735,7 +739,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/this_sender = decomposed[i]
 			var/this_message = decomposed[++i]
 			var/this_wait = decomposed[++i]
-			global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", "says") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
+			global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
 			sleep(this_wait SECONDS)
 
 /datum/admins/proc/toggleooc()

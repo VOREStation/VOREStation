@@ -217,16 +217,12 @@
  * Mako
  */
 /obj/item/weapon/gun/projectile/revolver/lemat
-	name = "\improper \"Mako\" Revolver"
-	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. \
-	For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
-	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first \
-	extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies \
-	that would go on to become today’s TSCs. Focused on sleek ‘futurist’ designs which have largely fallen out of \
-	fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
-	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely \
-	unremarkable one way or another as weapons and used very standard firing mechanisms - the Mako was a notable \
-	exception, and original examples are much sought after."
+	name = "Mako revolver"
+	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
+	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons, and used very standard firing mechanisms - \
+	the Mako was a notable exception, so original examples are much sought after."
 	icon_state = "combatrevolver"
 	item_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

@@ -178,7 +178,7 @@
 	desc = "The surprisingly high-tech home of Sif Free Radio, the only radio station run by mindless clones."
 	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost4.dmm'
 	template_group = "Sif Free Radio"
-	cost = 10
+	cost = INFINITY /// Prevent spawning.
 
 /datum/map_template/surface/wilderness/deep/Boombase
 	name = "Boombase"
@@ -197,7 +197,7 @@
 	name = "Blue Shuttle Down"
 	desc = "You REALLY shouldn't be near this. Mostly because they're Police."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Blueshuttledown.dmm'
-	cost = 50
+	cost = INFINITY /// Prevent spawning.
 	template_group = "Shuttle Down"
 
 /datum/map_template/surface/wilderness/deep/Rockybase

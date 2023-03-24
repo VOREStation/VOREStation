@@ -1,8 +1,11 @@
+var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
+
 /turf/simulated/floor/outdoors/newdirt/attack_hand(mob/user)
 	if(user.pulling)
 		return ..()
-	var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 	if(!Adjacent(user))
+		return ..()
+	if(user.a_intent != I_HELP)
 		return ..()
 	if(icon_state in has_rocks)
 		user.visible_message("[user] loosens rocks from \the [src]...", "You loosen rocks from \the [src]...")

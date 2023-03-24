@@ -10,6 +10,6 @@
 	icon_dead = "mouse_brown_dead"
 	kitchen_tag = "rodent"
 
-	movement_cooldown = 0.5
+	movement_cooldown = -2
 
 	body_color = "brown"

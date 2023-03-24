@@ -68,6 +68,7 @@
 	desc = "A potent chemical mix that nullifies a slime's hunger, causing it to become docile and tame.  It might also work on other creatures?"
 	icon_state = "potlightpink"
 	description_info = "The target needs to be alive, not already passive, and be an animal or slime type entity."
+	var/currently_using = FALSE						// To avoid same potion being usable multiple times
 
 /obj/item/slimepotion/docility/attack(mob/living/simple_mob/M, mob/user)
 	if(!istype(M))
@@ -79,7 +80,11 @@
 	if(!M.has_AI())
 		to_chat(user, span("warning", "\The [M] is too strongly willed for this to affect them.")) // Most likely player controlled.
 		return
+	if(currently_using)
+		to_chat(user, span("warning", "This agent has already been used!")) // Possibly trying to cheese the dialogue box and use same potion on multiple targets.
+		return
 
+	currently_using = TRUE
 	var/datum/ai_holder/AI = M.ai_holder
 
 	// Slimes.

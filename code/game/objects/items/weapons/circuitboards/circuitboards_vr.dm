@@ -2,6 +2,17 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
+/obj/item/weapon/circuitboard/get_examine_desc()
+	. = ..()
+	if(LAZYLEN(req_components))
+		var/list/nice_list = list()
+		for(var/B in req_components)
+			var/atom/A = B
+			if(!ispath(A))
+				continue
+			nice_list += list("[req_components[A]] [initial(A.name)]")
+		. += "Required components: [english_list(nice_list)]."
+
 // VOREStation specific circuit boards!
 
 // Board for the parts lathe in partslathe.dm

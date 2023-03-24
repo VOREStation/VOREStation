@@ -202,6 +202,12 @@
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 3
 
+/datum/frame/frame_types/injector_maker
+	name = "Ready-to-Use Medicine 3000"
+	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/machinery/atmospheric_field_generator
+	frame_size = 3
+
 //////////////////////////////
 // Frame Object (Structure)
 //////////////////////////////
