@@ -86,10 +86,15 @@
 	update_icon()
 
 
+<<<<<<< HEAD
 /obj/item/device/taperecorder/hear_talk(mob/M, list/message_pieces, verb)
+=======
+/obj/item/taperecorder/hear_talk(mob/living/M, list/message_pieces, verb)
+>>>>>>> 46c088f9e84... Fixing Tape Recorder Voices (#8950)
 	var/msg = multilingual_to_message(message_pieces, requires_machine_understands = TRUE, with_capitalization = TRUE)
+	var/voice = M.GetVoice() //Defined on living, returns name for normal mobs/
 	if(mytape && recording)
-		mytape.record_speech("[M.name] [verb], \"[msg]\"")
+		mytape.record_speech("[voice] [verb], \"[msg]\"")
 
 
 /obj/item/device/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
