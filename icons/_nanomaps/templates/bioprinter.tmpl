@@ -1,0 +1,39 @@
+{{if data.isPrinting}}
+	<div class="notice">
+		Printing in progress...
+		<div class="floatRight">
+			{{:helper.link("Cancel", "cancel", { 'cancelPrint': 1 })}}
+		</div>
+	</div>
+{{/if}}
+{{:helper.link("Flush DNA Sample", "trash", { 'flushDNA': 1 }, data.dna && !data.isPrinting ? null : 'disabled')}}
+{{:helper.link("Eject Container", "eject", { 'ejectBeaker': 1 }, data.biomassContainer && !data.isPrinting ? null : 'disabled')}}
+<br/><br/>
+{{if !data.biomassContainer}}
+	<span class="bad">No biomass container inserted.</span>
+{{else}}
+	<b>Stored biomass:</b> {{:data.biomassVolume}}/{{:data.biomassMax}}
+{{/if}}
+<br/>
+{{if !data.dna}}
+	<span class="bad">No DNA sample inserted.</span>
+{{else}}
+	<b>DNA hash:</b> {{:data.dnaHash}}<br/>
+	<b>DNA species:</b> {{:data.dnaSpecies}}
+{{/if}}
+<br/>
+<b>Time to print:</b> {{:data.printTime / 10}} seconds
+<hr/>
+{{for data.products}}
+	<div class="item">
+		<div class="itemLabel">
+			{{:value.name}}
+		</div>
+		<div>
+			{{:helper.string('{0}/{1}', value.cost < data.biomassVolume ? value.cost : data.biomassVolume, value.cost)}}
+			<div class="floatRight">
+				{{:helper.link("Print", null, { "printOrgan" : value.name }, value.canPrint && !data.isPrinting ? null : 'disabled')}}
+			</div>
+		</div>
+	</div>
+{{/for}}

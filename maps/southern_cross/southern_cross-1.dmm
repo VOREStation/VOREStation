@@ -79504,7 +79504,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/machinery/organ_printer/flesh/full,
+/obj/machinery/bioprinter/full,
 /turf/simulated/floor/tiled/white,
 /area/medical/genetics_cloning)
 "cRS" = (

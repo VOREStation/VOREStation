@@ -26600,7 +26600,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/machinery/organ_printer/flesh/full,
+/obj/machinery/bioprinter/full,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/cloning)
 "mjM" = (
