@@ -331,6 +331,7 @@
 
 	return TRUE
 
+
 ////////////////////////////////
 //		Space Mercs
 ////////////////////////////////
@@ -385,6 +386,10 @@
 
 /mob/living/simple_mob/humanoid/merc/ranged/space/Process_Spacemove(var/check_drift = 0)
 	return
+
+
+
+
 
 ////////////////////////////////
 //			PoI Mercs

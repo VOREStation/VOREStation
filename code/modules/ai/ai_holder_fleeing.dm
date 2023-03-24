@@ -43,5 +43,6 @@
 		return
 
 	ai_log("flee_from_target() : Stepping away.", AI_LOG_TRACE)
+	delayed_say(safepick(holder.say_list.say_retreat))
 	step_away(holder, target, vision_range)
 	ai_log("flee_from_target() : Exiting.", AI_LOG_DEBUG)

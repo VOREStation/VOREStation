@@ -1,0 +1,2337 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"ax" = (
+/obj/structure/closet/l3closet/general,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"aX" = (
+/obj/machinery/door/airlock/research,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"be" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/item/pen{
+	pixel_x = -8
+	},
+/obj/item/paper{
+	info = "Can't believe they made me check in on this place. What a hellhole, none of the drones care for even the slightest spot of conversation. Oh well, at least the data they're sending back is still good."
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"bn" = (
+/turf/template_noop,
+/area/template_noop)
+"bp" = (
+/obj/structure/closet,
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/shoes/boots/duty,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/under/color/white,
+/obj/item/clothing/head/helmet,
+/obj/effect/floor_decal/spline/plain{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"bv" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"bB" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"bE" = (
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"bM" = (
+/obj/random/grenade/lethal,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"bO" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/Research1)
+"cl" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"cw" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/structure/sign/warning/secure_area{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"dm" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"dq" = (
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/electrical,
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"dG" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"dY" = (
+/obj/machinery/computer/cloning,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"eg" = (
+/mob/living/carbon/human/monkey{
+	faction = "drone";
+	name = "Simeon";
+	real_name = "Simeon";
+	voice_name = "Simeon"
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"ei" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Research1)
+"eo" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"eu" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"ex" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"eH" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/flashbangs,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/floor_decal/spline/plain{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"fD" = (
+/obj/structure/table/rack,
+/obj/machinery/door/window/holowindoor{
+	dir = 8
+	},
+/obj/random/energy,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"fR" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"fW" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"fZ" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner,
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"gF" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"gG" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"gJ" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"gL" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"gU" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central5,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"hh" = (
+/obj/structure/salvageable/server,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"hu" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"hK" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"hP" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"ia" = (
+/obj/structure/sign/warning/server_room{
+	pixel_y = -32
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"im" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"io" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"ir" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"it" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"iL" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"iU" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"iZ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"jh" = (
+/obj/structure/salvageable/personal,
+/obj/structure/table/steel_reinforced,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"jK" = (
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"kd" = (
+/obj/structure/table/standard,
+/obj/item/storage/box/syringes,
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"kR" = (
+/obj/structure/salvageable/data,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"ll" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/obj/structure/sign/warning/moving_parts{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"lF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"lS" = (
+/obj/structure/salvageable/server,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"mq" = (
+/obj/structure/salvageable/bliss,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"nq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"ns" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"nF" = (
+/obj/structure/closet/l3closet/general,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"nQ" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"oj" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central6,
+/obj/structure/sign/poster{
+	pixel_y = 32;
+	poster_decl = /decl/poster/nanotrasen/bay_24;
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"ok" = (
+/obj/structure/salvageable/machine,
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Research1)
+"oJ" = (
+/obj/structure/closet/medical_wall{
+	pixel_y = 30
+	},
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/ointment,
+/obj/item/reagent_containers/hypospray/autoinjector,
+/obj/random/medical/pillbottle,
+/obj/item/healthanalyzer,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"oV" = (
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/mechanical,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"pm" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"pr" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"pE" = (
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"pN" = (
+/obj/structure/salvageable/console_os,
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"qm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"qy" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/submap/Research1)
+"qC" = (
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"qF" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"qV" = (
+/obj/structure/sign/clock{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"ra" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"rr" = (
+/obj/machinery/door/airlock/research,
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"rs" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"rM" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"rZ" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"sL" = (
+/obj/structure/sign/warning/server_room{
+	pixel_x = 32
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"tQ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"ue" = (
+/obj/effect/floor_decal/spline/plain,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"uj" = (
+/obj/machinery/dna_scannernew,
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"un" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"uK" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"uS" = (
+/mob/living/simple_mob/humanoid/android/scientist,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"vd" = (
+/obj/structure/salvageable/data,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"ve" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"vk" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"vD" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"vZ" = (
+/obj/machinery/door/airlock/research,
+/turf/simulated/floor/tiled/dark,
+/area/submap/Research1)
+"wa" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"wb" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/beige/border,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"wC" = (
+/obj/effect/floor_decal/borderfloor/corner,
+/obj/effect/floor_decal/corner/beige/bordercorner,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"wM" = (
+/obj/structure/salvageable/autolathe,
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"xb" = (
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"xf" = (
+/obj/structure/salvageable/data,
+/obj/machinery/door/window/holowindoor{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"xr" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"xA" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"yc" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"yr" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"yA" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Research1)
+"yL" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"zt" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"zI" = (
+/obj/structure/table/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/holowindoor{
+	dir = 8
+	},
+/obj/random/handgun,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"zT" = (
+/obj/structure/closet/toolcloset,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"zW" = (
+/mob/living/simple_mob/humanoid/android/scientist,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Ae" = (
+/turf/simulated/floor/tiled/monofloor,
+/area/submap/Research1)
+"Ah" = (
+/obj/machinery/dna_scannernew,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"Ai" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Am" = (
+/obj/machinery/door/airlock/research,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Ap" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Ar" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"As" = (
+/obj/item/cell/device/weapon/empty,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"At" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/steeldecal/steel_decals_central5,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"Au" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 10
+	},
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Ay" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/beige/border,
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Bh" = (
+/obj/structure/table/standard,
+/obj/structure/salvageable/personal,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Bn" = (
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"BI" = (
+/turf/simulated/floor/outdoors/dirt/sif/planetuse,
+/area/submap/Research1)
+"Cd" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/item/paper_bin,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"Ck" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"Cw" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"CJ" = (
+/obj/structure/closet/l3closet/general,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"De" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -11
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"Dv" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"DC" = (
+/obj/structure/salvageable/server,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"Ej" = (
+/turf/template_noop,
+/area/submap/Research1)
+"EG" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"EI" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"Fh" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"FD" = (
+/obj/structure/table/rack,
+/obj/random/projectile/scrapped_pistol,
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"FK" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/woodentable,
+/obj/random/zippo,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"FS" = (
+/obj/structure/sign/warning/server_room{
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Gd" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/effect/floor_decal/milspec/box,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Gk" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"Gn" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"GP" = (
+/obj/structure/salvageable/data,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"GQ" = (
+/obj/effect/floor_decal/industrial/loading{
+	pixel_y = 9
+	},
+/turf/simulated/floor/tiled/monofloor{
+	dir = 1
+	},
+/area/submap/Research1)
+"Hg" = (
+/obj/structure/table/standard,
+/obj/item/disk/limb/cybersolutions,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/item/implantcase/language/eal,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"Ht" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Hw" = (
+/obj/effect/floor_decal/milspec/box,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"HB" = (
+/obj/effect/floor_decal/borderfloorwhite/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"HF" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/Research1)
+"Ik" = (
+/mob/living/simple_mob/humanoid/android/combat,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"Il" = (
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"IL" = (
+/turf/simulated/wall,
+/area/submap/Research1)
+"IT" = (
+/mob/living/simple_mob/humanoid/android/combat,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Jh" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 1;
+	pixel_y = -8
+	},
+/turf/simulated/floor/tiled/monofloor,
+/area/submap/Research1)
+"Kx" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"KY" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Lf" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Li" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner{
+	dir = 8
+	},
+/obj/structure/sign/biohazard{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Ms" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/beige/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"OG" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/beige/border,
+/obj/structure/sign/poster{
+	pixel_y = -32;
+	poster_decl = /decl/poster/pol_13
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"OK" = (
+/obj/structure/filingcabinet,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"Pb" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"Pm" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"PT" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"PU" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"Qv" = (
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"QJ" = (
+/obj/structure/table/woodentable,
+/obj/item/toy/desk/newtoncradle,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"Ra" = (
+/obj/machinery/door/window/holowindoor{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"Rn" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"RD" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"RM" = (
+/mob/living/simple_mob/humanoid/android/scientist,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/beige/border,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"RV" = (
+/turf/simulated/floor/tiled/neutral,
+/area/submap/Research1)
+"SL" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"Tq" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"Tx" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/structure/salvageable/personal,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"Tz" = (
+/turf/simulated/floor/tiled/monofloor{
+	dir = 1
+	},
+/area/submap/Research1)
+"TG" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/Research1)
+"TJ" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"Ue" = (
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"Uq" = (
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"Uv" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"UX" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/closet,
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/shoes/boots/duty,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/under/color/white,
+/obj/item/clothing/head/helmet,
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/submap/Research1)
+"UY" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/beige/border,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"VB" = (
+/obj/structure/closet/l3closet/general,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/Research1)
+"VN" = (
+/obj/structure/salvageable/machine,
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/Research1)
+"Wm" = (
+/obj/structure/salvageable/data,
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/holowindoor{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"Wp" = (
+/obj/structure/table/rack,
+/obj/machinery/door/window/holowindoor{
+	dir = 8
+	},
+/obj/random/multiple/gun/projectile/smg,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"WG" = (
+/obj/machinery/light/small,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"Xq" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"XI" = (
+/obj/structure/table/standard,
+/obj/item/storage/box/monkeycubes/farwacubes{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"XJ" = (
+/obj/structure/table/standard,
+/obj/item/disk/data,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"XT" = (
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"XU" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Research1)
+"XW" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"Yg" = (
+/mob/living/simple_mob/humanoid/android/scientist,
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"Yh" = (
+/obj/structure/salvageable/data,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+"Yo" = (
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled/steel,
+/area/submap/Research1)
+"YL" = (
+/obj/structure/sign/warning/secure_area{
+	pixel_x = 32
+	},
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Research1)
+"Zk" = (
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/Research1)
+"Zs" = (
+/obj/structure/salvageable/data,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Research1)
+
+(1,1,1) = {"
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+"}
+(2,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+ei
+ei
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(3,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+qy
+qy
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(4,1,1) = {"
+bn
+Ej
+Ej
+Ej
+ei
+HF
+Ej
+Ej
+Ej
+IL
+IL
+wa
+GQ
+Jh
+wa
+IL
+tQ
+it
+IL
+iZ
+Bn
+kd
+Ah
+dY
+uj
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(5,1,1) = {"
+bn
+Ej
+Ej
+Ej
+HF
+HF
+Ej
+Ej
+Ej
+IL
+VN
+Ik
+Tz
+Ae
+Tq
+aX
+nQ
+UY
+IL
+Uv
+Ra
+Ue
+Ue
+Ue
+Yo
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(6,1,1) = {"
+bn
+Ej
+Ej
+HF
+HF
+HF
+ei
+Ej
+Ej
+IL
+ab
+hK
+xA
+xA
+cl
+IL
+ll
+UY
+IL
+eg
+xb
+Uv
+Yg
+Ue
+WG
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(7,1,1) = {"
+bn
+Ej
+Ej
+HF
+HF
+HF
+ei
+Ej
+Ej
+IL
+ra
+fW
+IL
+IL
+IL
+IL
+qm
+UY
+IL
+Ck
+qC
+XI
+XJ
+rZ
+yr
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(8,1,1) = {"
+bn
+Ej
+Ej
+Ej
+ei
+ei
+Ej
+Ej
+Ej
+IL
+ra
+Qv
+oV
+dq
+zT
+IL
+dG
+UY
+IL
+IL
+IL
+IL
+IL
+vZ
+IL
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(9,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+IL
+ra
+Qv
+hu
+RV
+RV
+IL
+oj
+Li
+IL
+VB
+CJ
+TJ
+HB
+EI
+Zs
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(10,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+IL
+ra
+Qv
+uS
+RV
+RV
+IL
+Lf
+Xq
+rr
+Pb
+zt
+eu
+bE
+fZ
+hh
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(11,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+IL
+ra
+qF
+Hg
+pN
+wM
+IL
+SL
+SL
+IL
+ax
+nF
+bv
+gF
+ns
+Zs
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(12,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+IL
+IL
+aX
+IL
+IL
+IL
+IL
+Rn
+Rn
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+Ej
+Ej
+Ej
+bn
+"}
+(13,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+yA
+IL
+Cw
+yc
+RD
+Ht
+SL
+XU
+Il
+Il
+io
+tQ
+tQ
+IL
+Kx
+De
+IL
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(14,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+BI
+YL
+yA
+IL
+Cw
+Gn
+sL
+pr
+SL
+dm
+Fh
+Fh
+KY
+Il
+iL
+eo
+Gk
+RV
+IL
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(15,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+IL
+iU
+IL
+IL
+IL
+IL
+aX
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+bB
+wC
+IL
+IL
+IL
+IL
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(16,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+eH
+nq
+pm
+ia
+IL
+vd
+yc
+un
+vk
+vk
+lS
+mq
+DC
+IL
+dG
+UY
+IL
+ei
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(17,1,1) = {"
+bn
+Ej
+Ej
+ei
+bO
+FD
+pE
+pE
+ue
+aX
+nQ
+Il
+Il
+Il
+Il
+Il
+Il
+XT
+IL
+oJ
+UY
+IL
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(18,1,1) = {"
+bn
+Ej
+Ej
+ei
+IL
+fR
+EG
+UX
+bp
+IL
+GP
+Gn
+Il
+Il
+Il
+IT
+Il
+gG
+IL
+dG
+RM
+IL
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(19,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+SL
+IL
+IL
+IL
+IL
+IL
+Am
+IL
+xf
+Wm
+Gn
+Ai
+Bh
+IL
+dG
+OG
+IL
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(20,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+yc
+tQ
+tQ
+Au
+xr
+OK
+jK
+IL
+IL
+IL
+Am
+IL
+IL
+IL
+ir
+UY
+IL
+yA
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(21,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+Pm
+Pm
+rs
+Ay
+Tx
+TG
+jK
+IL
+bM
+FS
+hP
+Il
+Il
+IL
+cw
+UY
+IL
+ok
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(22,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+ve
+Zk
+lF
+wb
+Cd
+QJ
+qV
+IL
+As
+vD
+Il
+Il
+iL
+SL
+PU
+UY
+IL
+ei
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(23,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+kR
+Ar
+lF
+wb
+be
+TG
+jK
+IL
+As
+vD
+Il
+ex
+jh
+IL
+Dv
+gU
+SL
+BI
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(24,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+hh
+Ar
+zW
+Ms
+FK
+rM
+jK
+IL
+Ap
+IT
+Il
+Il
+yL
+IL
+Il
+At
+SL
+BI
+BI
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(25,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+Yh
+Ar
+lF
+Il
+PT
+jK
+jK
+SL
+PU
+Il
+gJ
+gJ
+gJ
+IL
+uK
+gL
+IL
+BI
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(26,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+XW
+Uq
+lF
+im
+PT
+jK
+jK
+IL
+Hw
+Gd
+zI
+Wp
+fD
+IL
+bO
+bO
+IL
+ei
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(27,1,1) = {"
+bn
+Ej
+Ej
+Ej
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+ei
+ei
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(28,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+ei
+ei
+ei
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(29,1,1) = {"
+bn
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+bn
+"}
+(30,1,1) = {"
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+bn
+"}

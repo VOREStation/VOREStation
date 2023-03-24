@@ -31,6 +31,7 @@
 	var/list/say_threaten = list()		// When threatening someone.
 	var/list/say_stand_down = list()	// When the threatened thing goes away.
 	var/list/say_escalate = list()		// When the threatened thing doesn't go away.
+	var/list/say_retreat = list()
 
 	var/threaten_sound = null			// Sound file played when the mob's AI calls threaten_target() for the first time.
 	var/stand_down_sound = null			// Sound file played when the mob's AI loses sight of the threatened target.
@@ -54,6 +55,7 @@
 	say_threaten = list("You best leave, this booty is mine.", "No plank to walk on, just walk away.")
 	say_stand_down = list("Good.")
 	say_escalate = list("Yarr! The booty is mine!")
+	say_retreat = list("I be retreating, matey!")
 
 // Mercs!
 /datum/say_list/merc
@@ -71,7 +73,29 @@
 	say_threaten = list("Get out of here!", "Hey! Private Property!")
 	say_stand_down = list("Good.")
 	say_escalate = list("Your funeral!", "Bring it!")
-	
+	say_retreat = list("Fuck! Pulling back!", "Shit!", "Oh, hell!")
+
+	threaten_sound = 'sound/weapons/TargetOn.ogg'
+	stand_down_sound = 'sound/weapons/TargetOff.ogg'
+
+
+/datum/say_list/android_scientist
+	speak = list(
+		"Resuming task: Collect data.",
+		"No anomalies found.",
+		"Error: No data sources found."
+		)
+	emote_hear = list("beeps quietly", "emits a soft buzz", "whirrs idly")
+	emote_see = list("scans the area", "focuses on an object", "shifts in place")
+	say_understood = list("Confirmed.", "Acknowledged.")
+	say_cannot = list("Declined.", "Refused.")
+	say_maybe_target = list("Unknown entity detected.  Investigating.", "Possible breach detected.", "Investigating.")
+	say_got_target = list("Threat detected.", "Defending facility.", "Engaging target.")
+	say_threaten = list("Unknown entity: Present authorization.", "Unknown entity. Scanning.")
+	say_stand_down = list("Stand-down accepted. Disengaging.")
+	say_escalate = list("Threat detected. Rectifying.", "Verification expired. Engaging.")
+	say_retreat = list("Disengaging.")
+
 	threaten_sound = 'sound/weapons/TargetOn.ogg'
 	stand_down_sound = 'sound/weapons/TargetOff.ogg'
 
@@ -114,6 +138,11 @@
 	say_cannot = list("Denied.", "Negative.")
 	say_maybe_target = list("Possible threat detected.  Investigating.", "Motion detected.", "Investigating.")
 	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
+	say_threaten = list("Warning: Vacate area.", "Warning to threat: Will engage lethally.")
+	say_stand_down = list("Stand-down accepted. Disengaging.")
+	say_escalate = list("Warning expired. Engaging.", "Threat removal engaged.")
+	say_retreat = list("Disengaging.")
+
 
 /datum/say_list/lizard
 	emote_hear = list("hisses")

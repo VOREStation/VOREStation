@@ -350,6 +350,7 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/deathden.dmm'
 	cost = 15
 
+<<<<<<< HEAD
 /datum/map_template/surface/wilderness/deep/leopardmanderden
 	name = "Leopardmander Den"
 	desc = "Den of a voracious but very rare beast."
@@ -397,3 +398,10 @@
 	desc = "A dangerous plateu of cliffs home to a rampant gold hoarding dragon"
 	mappath = 'maps/submaps/surface_submaps/wilderness/drgnplateu.dmm'
 	cost = 15
+=======
+/datum/map_template/surface/wilderness/deep/Research
+	name = "Gene Research Lab"
+	desc = "A covert gene research lab guarded by combat drones."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Research1.dmm'
+	cost = 30
+>>>>>>> a8b209ef93f... Adds Research Lab POI and some other stuff. (#9026)

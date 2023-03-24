@@ -180,6 +180,7 @@
 	name = "POI - Death Den"
 	ambience = AMBIENCE_FOREBODING
 
+<<<<<<< HEAD
 /area/submap/LeopardmanderDen
 	name = "POI - Leopardmander Den"
 	ambience = AMBIENCE_OTHERWORLDLY
@@ -211,3 +212,9 @@
 /area/submap/drgnplateu
 	name = "POI - Dragon Plateu"
 	ambience = AMBIENCE_SIF
+=======
+/area/submap/Research1
+	name = "POI - Gene Lab"
+	ambience = AMBIENCE_HIGHSEC
+	requires_power = FALSE
+>>>>>>> a8b209ef93f... Adds Research Lab POI and some other stuff. (#9026)

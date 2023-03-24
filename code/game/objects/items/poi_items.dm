@@ -112,5 +112,16 @@
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow-1"
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/growthcanister)
+<<<<<<< HEAD
 	anchored = FALSE
 	density = TRUE
+=======
+	anchored = 0
+	density = 1
+
+/mob/living/carbon/human/monkey/simeon/Initialize()
+	. = ..()
+	name = "Simeon"
+	real_name = name
+	desc = "This lab monkey has a certain glint in their eye."
+>>>>>>> a8b209ef93f... Adds Research Lab POI and some other stuff. (#9026)
