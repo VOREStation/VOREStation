@@ -4,7 +4,7 @@
 /obj/effect/landmark/mobcorpse/syndicatesoldier/drone
 	name = "Mercenary Drone"
 	corpseidjob = "Operative"
-	corpsesynthtype = 2
+	corpsesynthtype = 1
 	corpsesynthbrand = "Xion"
 
 /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/generateCorpseName()
@@ -16,7 +16,7 @@
 /obj/effect/landmark/mobcorpse/syndicatecommando/drone
 	name = "Mercenary Drone"
 	corpseidjob = "Operative"
-	corpsesynthtype = 2
+	corpsesynthtype = 1
 	corpsesynthbrand = "Xion"
 
 /obj/effect/landmark/mobcorpse/syndicatecommando/drone/generateCorpseName()
