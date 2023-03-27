@@ -30,7 +30,7 @@
 	path = /obj/item/device/camera
 
 /datum/gear/utility/codex
-	display_name = "the traveler's guide to vir"
+	display_name = "the traveler's guide to Virgo-Erigone"
 	path = /obj/item/weapon/book/codex //VOREStation Edit
 	cost = 0
 
