@@ -190,6 +190,22 @@
 	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.6)
 	excludes = list(/datum/trait/neutral/biofuel_value_down)
 
+/datum/trait/neutral/synth_ethanolburner
+	name = "Ethanol Burner"
+	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. Doesn't allow you to get drunk by itself (for that, take Ethanol Simulator)."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_proc" = 1)
+
+/datum/trait/neutral/synth_ethanol_sim
+	name = "Ethanol Simulator"
+	desc = "An unusual modification allows your synthetic body to simulate all but the lethal effects of ingested alcohols. You'll get dizzy, slur your speech, suffer temporary loss of vision and even pass out! But hey, at least you don't have a liver to destroy."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_drunk" = 1)
+
 /datum/trait/neutral/glowing_eyes
 	name = "Glowing Eyes"
 	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."
