@@ -667,3 +667,58 @@
 	name = "research shroud"
 	icon_state = "scishroud"
 	item_state = "scishroud"
+
+//Crop Jackets
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket
+	name = "white crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This one's in plain white, more or less."
+	icon_state = "cropjacket_white"
+	item_state = "cropjacket_white"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/blue
+	name = "blue crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Let everyone know who's in control of the situation around here."
+	icon_state = "cropjacket_blue"
+	item_state = "cropjacket_blue"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/red
+	name = "red crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. You could probably hide a holster under this without too much trouble."
+	icon_state = "cropjacket_red"
+	item_state = "cropjacket_red"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/green
+	name = "green crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. The faded green tones bring to mind the smell of antiseptics."
+	icon_state = "cropjacket_green"
+	item_state = "cropjacket_green"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/purple
+	name = "purple crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This doesn't seem like very practical labwear."
+	icon_state = "cropjacket_purple"
+	item_state = "cropjacket_purple"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/orange
+	name = "orange crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Perfect for keeping cool whilst showing off your gains from shifting crates."
+	icon_state = "cropjacket_orange"
+	item_state = "cropjacket_orange"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/charcoal
+	name = "charcoal crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Dark and slightly edgy, just like its wearer."
+	icon_state = "cropjacket_charcoal"
+	item_state = "cropjacket_charcoal"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/marine
+	name = "faded reflec crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Seems to be made of a semi-reflective material, like an EMT's jacket."
+	icon_state = "cropjacket_marine"
+	item_state = "cropjacket_marine"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/drab
+	name = "drab crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This one's a sort of olive-drab kind of colour."
+	icon_state = "cropjacket_drab"
+	item_state = "cropjacket_drab"
