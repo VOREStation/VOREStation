@@ -249,6 +249,13 @@
 	icon_state = "sepulchre_wingsc"
 	do_colouration = 1
 
+/datum/sprite_accessory/wing/sepulchre_c_yw_w
+	name = "demon wings (colorable, whitescale)"
+	desc = ""
+	icon_state = "sepulchre_wingsc_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/cyberdragon
 	name = "Cyber dragon wing (colorable)"
 	desc = ""
