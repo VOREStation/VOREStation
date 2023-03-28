@@ -47,11 +47,13 @@
 		pred.feed_grabbed_to_self_falling_nom(pred,prey)
 		pred.loc = fallloc
 		if(!safe_fall)
-			pred.Weaken(8)
+			if(!isrobot(pred)) //Borgs go totally unconsious when stunned, no fun when they miss reactions.
+				pred.Weaken(8)
 		pred.visible_message("<span class='danger'>\The [pred] falls right onto \the [prey]!</span>")
 	else if(prey.vore_selected && prey.can_be_drop_pred && pred.can_be_drop_prey && pred.drop_vore && prey.drop_vore)
 		prey.feed_grabbed_to_self_falling_nom(prey,pred)
-		prey.Weaken(4)
+		if(!isrobot(prey))
+			prey.Weaken(4)
 		prey.visible_message("<span class='danger'>\The [pred] falls right into \the [prey]!</span>")
 	else
 		pred.loc = prey.loc
