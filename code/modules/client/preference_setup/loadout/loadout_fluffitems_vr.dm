@@ -455,14 +455,14 @@
 	path = /obj/item/clothing/head/welding/fluff/zera
 	display_name = "Zera's Welding Mask"
 	slot = slot_head
-	ckeywhitelist = list("fuackwitt422")
+	ckeywhitelist = list("fuackwit422")
 	character_name = list("Zera Livanne")
 
 /datum/gear/fluff/zera_labcloak
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera
 	display_name = "Zera's Labcloak"
 	slot = slot_wear_suit
-	ckeywhitelist = list("fuackwitt422")
+	ckeywhitelist = list("fuackwit422")
 	character_name = list("Zera Livanne")
 
 
