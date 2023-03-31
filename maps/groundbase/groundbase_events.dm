@@ -42,7 +42,6 @@
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Vermin Infestation",/datum/event/infestation, 		50,		list(ASSIGNMENT_JANITOR = 25), 1),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Wallrot",			/datum/event/wallrot, 			0,		list(ASSIGNMENT_ENGINEER = 30), 1, min_jobs = list(ASSIGNMENT_ENGINEER = 1)),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Passing Wildlife",  /datum/event/roaming_wildlife,  40,		list(ASSIGNMENT_SECURITY = 20), min_jobs = list(ASSIGNMENT_SECURITY = 1)),
-		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Stray Ray",			/datum/event/ray_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
 	)
 	add_disabled_events(list(
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Ian Storm",			/datum/event/ianstorm,	 		1,		list(), 1),
@@ -50,6 +49,9 @@
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Aurora Caelus",		/datum/event/aurora_caelus,		2,		list(), 1),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Space Dust",		/datum/event/dust,	 			0, 		list(ASSIGNMENT_ENGINEER = 20), 0, 0, 50, min_jobs = list(ASSIGNMENT_ENGINEER = 2)),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Lost Carp",			/datum/event/carp_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Stray Ray",			/datum/event/ray_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Stray Shark",			/datum/event/shark_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Gnat Mob",			/datum/event/gnat_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
 	))
 
 /datum/event_container/moderate/New()
@@ -69,7 +71,6 @@
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Morph Spawn",				/datum/event/morph_spawn,				75,		list(ASSIGNMENT_ANY = 5), 0),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Predator",		/datum/event/maintenance_predator,		100,	list(ASSIGNMENT_ANY = 5), 0),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Roaming Wildlife",			/datum/event/roaming_wildlife,  		20,		list(ASSIGNMENT_SECURITY = 20, ASSIGNMENT_MEDICAL = 5), min_jobs = list(ASSIGNMENT_SECURITY = 2)),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Stray Rays",			/datum/event/ray_migration,  		20,		list(ASSIGNMENT_SECURITY = 20, ASSIGNMENT_MEDICAL = 5), min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 	)
 	add_disabled_events(list(
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Appendicitis", 			/datum/event/spontaneous_appendicitis, 	0,		list(ASSIGNMENT_MEDICAL = 30), 1),
@@ -83,6 +84,9 @@
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Carp School",				/datum/event/carp_migration,			0, 		list(ASSIGNMENT_SECURITY = 30), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Rogue Drones",				/datum/event/rogue_drone, 				0,		list(ASSIGNMENT_SECURITY = 20), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Jellyfish School",			/datum/event/jellyfish_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Stray Rays",			/datum/event/ray_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Shark Pack",			/datum/event/shark_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gnat Swarm",			/datum/event/gnat_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 	))
 
 /datum/event_container/major/New()
@@ -92,7 +96,6 @@
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Space Vines",			/datum/event/spacevine, 			10,		list(ASSIGNMENT_ENGINEER = 3, ASSIGNMENT_GARDENER = 3, ASSIGNMENT_SCIENTIST = 3), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Containment Breach",	/datum/event/prison_break/station,	0,	list(ASSIGNMENT_ENGINEER = 5, ASSIGNMENT_MEDICAL = 5, ASSIGNMENT_SECURITY = 5, ASSIGNMENT_SCIENTIST = 5), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Amassing Wildlife",	/datum/event/roaming_wildlife,  	0,		list(ASSIGNMENT_SECURITY = 10, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
-		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Stray Rays",			/datum/event/ray_migration,  		20,		list(ASSIGNMENT_SECURITY = 20, ASSIGNMENT_MEDICAL = 5), min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 	)
 	add_disabled_events(list(
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Meteor Strike",		/datum/event/meteor_strike,			10,		list(ASSIGNMENT_ENGINEER = 15), 1),
@@ -101,6 +104,9 @@
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Supply Demand",		/datum/event/supply_demand,			0,		list(ASSIGNMENT_ANY = 5, ASSIGNMENT_SCIENCE = 15, ASSIGNMENT_GARDENER = 10, ASSIGNMENT_ENGINEER = 10, ASSIGNMENT_MEDICAL = 15), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Jellyfish Migration",	/datum/event/jellyfish_migration,	5,	list(ASSIGNMENT_SECURITY = 5, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Carp Migration",		/datum/event/carp_migration,		10,		list(ASSIGNMENT_SECURITY = 5), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Stray Rays",			/datum/event/ray_migration,  		20,		list(ASSIGNMENT_SECURITY = 20, ASSIGNMENT_MEDICAL = 5), min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Shark Pack",			/datum/event/shark_migration,  		20,		list(ASSIGNMENT_SECURITY = 20, ASSIGNMENT_MEDICAL = 5), min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Gnat Swarm",			/datum/event/gnat_migration,  		20,		list(ASSIGNMENT_SECURITY = 20, ASSIGNMENT_MEDICAL = 5), min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 	))
 
 #undef ASSIGNMENT_ANY
