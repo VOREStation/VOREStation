@@ -58,6 +58,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	oxy_mod =		0
 	flash_mod =		0.5 //No centralized, lensed eyes.
 	item_slowdown_mod = 1.33
+	throwforce_absorb_threshold = 10
 
 	chem_strength_alcohol = 2
 
