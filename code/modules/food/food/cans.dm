@@ -4,6 +4,7 @@
 	flags = 0 //starts closed
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
+	cant_chance = 25 //arbitrarily high for april fools; if it's not reverted in its entirety I suggest rolling it down to 2% or something
 
 //DRINKS
 
@@ -36,6 +37,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 	drop_sound = 'sound/items/drop/disk.ogg'
 	pickup_sound = 'sound/items/pickup/disk.ogg'
+	cant_chance = 0
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle/Initialize()
 	. = ..()
