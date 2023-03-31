@@ -11,7 +11,7 @@
 
 /mob/living/simple_mob/animal/space/shark
 	name = "space shark"
-	desc = "A regal and imposing interstellar creature, "
+	desc = "A regal and imposing interstellar creature, and one that poses a serious threat to the ill-prepared."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shark)
 	icon = 'icons/mob/mobs_monsters/animal.dmi'
 	icon_state = "shark"
