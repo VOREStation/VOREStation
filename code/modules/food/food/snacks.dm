@@ -910,6 +910,18 @@
 	filling_color = "#2c2cff"
 	color = "#2c2cff"
 
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/ray
+	desc = "A fillet of space ray meat."
+	toxin_type = "stoxin"
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/gnat
+	desc = "A paltry sample of space-gnat meat. It looks pretty stringy and unpleasant, honestly."
+	toxin_amount = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/shark
+	desc = "A fillet of space shark meat. It looks rather tough and chewy."
+	toxin_amount = 5
+
 /obj/item/weapon/reagent_containers/food/snacks/crab_legs
 	name = "steamed crab legs"
 	desc = "Crab legs steamed and buttered to perfection. One day when the boss gets hungry..."
