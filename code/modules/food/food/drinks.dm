@@ -59,7 +59,7 @@
 		to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
 		flags |= OPENCONTAINER
 	else
-		to_chat(user, "<span class='warning'>...wait a second, this one doesn't have a ring pull. It's not a can, it's a can't!<span>")
+		to_chat(user, "<span class='warning'>...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b></span>")
 		name = "\improper can't of [initial(name)]"	//don't update the name until they try to open it
 
 /obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
