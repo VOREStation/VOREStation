@@ -686,12 +686,15 @@
 				return
 			if("general")
 				var/msg = strip_html_simple(tgui_input_text(usr,"Update the general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
-				flavor_texts[href_list["flavor_change"]] = msg
+				if(msg)
+					flavor_texts[href_list["flavor_change"]] = msg
+					set_flavor()
 				return
 			else
 				var/msg = strip_html_simple(tgui_input_text(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))
-				flavor_texts[href_list["flavor_change"]] = msg
-				set_flavor()
+				if(msg)
+					flavor_texts[href_list["flavor_change"]] = msg
+					set_flavor()
 				return
 	..()
 	return
