@@ -177,7 +177,7 @@
 			M.sleeping = 0
 			M.stuttering += 20
 			M.ear_deaf += 30
-			M.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+			M.deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 			M.Weaken(3)
 			if(prob(30))
 				M.Stun(10)

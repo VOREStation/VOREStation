@@ -320,10 +320,10 @@
 	//If they're deaf
 	if(ext_deaf)
 		ear_deaf = 5
-		deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
+		deaf_loop.start(skip_start_sound = TRUE) // VOREStation Add: Ear Ringing/Deafness
 	else
 		ear_deaf = 0
-		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness
+		deaf_loop.stop() // VOREStation Add: Ear Ringing/Deafness
 
 /mob/living/carbon/brain/caught_soul/hear_say()
 	if(ext_deaf || !client)

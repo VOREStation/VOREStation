@@ -110,7 +110,7 @@
 
 /datum/disease2/effect/deaf/activate(var/mob/living/carbon/mob,var/multiplier)
 	mob.ear_deaf += 20
-	mob.deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
+	mob.deaf_loop.start(skip_start_sound = TRUE) // VOREStation Add: Ear Ringing/Deafness
 
 /datum/disease2/effect/monkey
 	name = "Genome Regression"
@@ -289,7 +289,7 @@
 
 /datum/disease2/effect/minordeaf/activate(var/mob/living/carbon/mob,var/multiplier)
 	mob.ear_deaf = 5
-	mob.deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
+	mob.deaf_loop.start(skip_start_sound = TRUE) // VOREStation Add: Ear Ringing/Deafness
 
 /datum/disease2/effect/giggle
 	name = "Uncontrolled Laughter"

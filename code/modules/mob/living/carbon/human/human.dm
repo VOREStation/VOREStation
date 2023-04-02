@@ -142,7 +142,7 @@
 			if (!get_ear_protection() >= 2)
 				ear_damage += 30
 				ear_deaf += 120
-				deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+				deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 			if (prob(70) && !shielded)
 				Paralyse(10)
 
@@ -153,7 +153,7 @@
 			if (!get_ear_protection() >= 2)
 				ear_damage += 15
 				ear_deaf += 60
-				deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+				deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 			if (prob(50) && !shielded)
 				Paralyse(10)
 

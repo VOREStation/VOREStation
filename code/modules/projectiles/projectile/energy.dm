@@ -256,13 +256,13 @@
 		M.Weaken(2)
 		M.ear_damage += rand(1, 10)
 		M.ear_deaf = max(M.ear_deaf,15)
-		M.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+		M.deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 	if (M.ear_damage >= 15)
 		to_chat(M, "<span class='danger'>Your ears start to ring badly!</span>")
 		if (prob(M.ear_damage - 5))
 			to_chat(M, "<span class='danger'>You can't hear anything!</span>")
 			M.sdisabilities |= DEAF
-			M.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+			M.deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 	else
 		if (M.ear_damage >= 5)
 			to_chat(M, "<span class='danger'>Your ears start to ring!</span>")

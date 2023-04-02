@@ -19,7 +19,7 @@
 
 			ear_damage += 30
 			ear_deaf += 120
-			deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+			deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 
 		if(3.0)
 			b_loss += 30
@@ -27,7 +27,7 @@
 				Paralyse(1)
 			ear_damage += 15
 			ear_deaf += 60
-			deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+			deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 
 	adjustBruteLoss(b_loss)
 	adjustFireLoss(f_loss)

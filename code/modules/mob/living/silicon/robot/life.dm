@@ -121,8 +121,8 @@
 		src.ear_damage -= 0.05
 		src.ear_damage = max(src.ear_damage, 0)
 
-	if(src.ear_deaf <= 0) // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
-		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
+	if(src.ear_deaf <= 0) // VOREStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
+		deaf_loop.stop() // VOREStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 
 	src.density = !( src.lying )
 

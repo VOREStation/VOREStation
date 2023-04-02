@@ -92,7 +92,7 @@
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
 		blinded = 1
 		silent = 0
-		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
+		deaf_loop.stop() // VOREStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 	else				//ALIVE. LIGHTS ARE ON
 		if( !container && (health < config.health_threshold_dead || ((world.time - timeofhostdeath) > config.revival_brain_life)) )
 			death()
@@ -113,7 +113,7 @@
 					SetBlinded(1)
 					blinded = 1
 					ear_deaf = 1
-					deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
+					deaf_loop.start() // VOREStation Add: Ear Ringing/Deafness
 					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
@@ -126,7 +126,7 @@
 					blinded = 0
 					SetBlinded(0)
 					ear_deaf = 0
-					deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness
+					deaf_loop.stop() // VOREStation Add: Ear Ringing/Deafness
 					silent = 0
 					emp_damage -= 1
 				if(11 to 19)//Moderate level of EMP damage, resulting in nearsightedness and ear damage

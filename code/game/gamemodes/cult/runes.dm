@@ -912,7 +912,7 @@ var/list/sacrificed = list()
 			if(N)
 				continue
 			C.ear_deaf += 50
-			C.deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
+			C.deaf_loop.start(skip_start_sound = TRUE) // VOREStation Add: Ear Ringing/Deafness
 			C.show_message("<span class='warning'>The world around you suddenly becomes quiet.</span>", 3)
 			affected += C
 			if(prob(1))
@@ -933,7 +933,7 @@ var/list/sacrificed = list()
 			if(N)
 				continue
 			C.ear_deaf += 30
-			C.deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
+			C.deaf_loop.start(skip_start_sound = TRUE) // VOREStation Add: Ear Ringing/Deafness
 			//talismans is weaker.
 			C.show_message("<span class='warning'>The world around you suddenly becomes quiet.</span>", 3)
 			affected += C
