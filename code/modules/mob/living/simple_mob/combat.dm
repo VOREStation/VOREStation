@@ -14,9 +14,9 @@
 		handle_attack_delay(A, melee_attack_delay) // This will sleep this proc for a bit, which is why waitfor is false.
 
 	// Cooldown testing is done at click code (for players) and interface code (for AI).
-	setClickCooldown(get_attack_speed())
+	setClickCooldown(get_attack_speed() + ((injury_level / 2) SECONDS)) // VOREStation Edit: Delay how fast we can attack by our injury level / 2
 
-	// Returns a value, but will be lost if 
+	// Returns a value, but will be lost if
 	. = do_attack(A, their_T)
 
 	if(melee_attack_delay)
@@ -90,7 +90,7 @@
 	if(!istype(A) || QDELETED(A))
 		return
 
-	setClickCooldown(get_attack_speed())
+	setClickCooldown(get_attack_speed() + ((injury_level / 2) SECONDS)) // VOREStation Edit: Delay how fast we can attack by our injury level / 2
 
 	face_atom(A)
 

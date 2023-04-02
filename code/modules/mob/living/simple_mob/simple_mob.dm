@@ -168,6 +168,11 @@
 	var/obj/item/weapon/card/id/mobcard = null //VOREStation Edit
 	var/list/mobcard_access = list() //VOREStation Edit
 	var/mobcard_provided = FALSE //VOREStation Edit
+	// VOREStation Add: Move/Shoot/Attack delays based on damage
+	var/damage_fatigue_mult = 1			// Our multiplier for how heavily mobs are affected by injury. [UPDATE THIS IF THE FORMULA CHANGES]: Formula = injury_level = round(rand(2,6) * damage_fatigue_mult * clamp(((rand(2,5) * (health / getMaxHealth())) - rand(0,2)), 1, 20))
+	var/injury_level = 0 				// What our injury level is. Rather than being the flat damage, this is the amount added to various delays to simulate injuries in a manner as lightweight as possible.
+	var/threshold = 0.6					// When we start slowing down. Configure this setting per-mob. Default is 60%
+	// VOREStation Add End
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
@@ -259,6 +264,8 @@
 	if(m_intent == "walk")
 		. *= 1.5
 
+	. += injury_level // VOREStation Edit: Adding our injury level delay to our total
+
 	. += config.animal_delay
 
 	. += ..()
@@ -317,3 +324,21 @@
 	else
 		..()
 //Vorestation Add End
+
+/*
+ * VOREStation Add
+ * How injured are we? Returns a number that is then added to movement cooldown and firing/melee delay respectively.
+ * Called by movement_delay and our firing/melee delay checks
+*/
+/mob/living/simple_mob/proc/get_injury_level(var/mob/living/simple_mob/M)
+	var/h = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss // We're not updating our actual health here bc we want updatehealth() and other checks to handle that
+	if(h > 0) 												// Safety to prevent division by 0 errors
+		if((h / getMaxHealth()) <= threshold) 				// Essentially, did our health go down? We don't modify want to modify our total slowdown if we didn't actually take damage, and aren't below our threshold %
+			var/totaldelay = round(rand(2,6) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 20)) 	// totaldelay is how much delay we're going to feed into attacks and movement. Do NOT change this formula unless you know how to math.
+			injury_level = totaldelay 						// Adds our returned slowdown to the mob's injury level
+
+/mob/living/simple_mob/updatehealth()	// We don't want to fully override the check, just hook our own code in
+	get_injury_level()					// We check how injured we are, then actually update the mob on how hurt we are.
+	. = ..() 							// Calling parent here, actually updating our mob on how hurt we are.
+
+// VOREStation Add End
