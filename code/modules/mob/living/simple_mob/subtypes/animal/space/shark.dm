@@ -31,7 +31,7 @@
 
 	melee_damage_lower = 15
 	melee_damage_upper = 30 //don't mess with these critters!
-	base_attack_cooldown = 18 // Quite slow, given their power
+	base_attack_cooldown = 22 // Quite slow, given their power
 	attack_sharp = TRUE
 	attack_sound = 'sound/weapons/bite.ogg'
 	attacktext = list("lanced","bitten","impaled","gored")

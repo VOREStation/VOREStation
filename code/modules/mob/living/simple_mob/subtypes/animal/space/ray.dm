@@ -46,9 +46,9 @@
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
 
-	melee_damage_lower = 10
-	melee_damage_upper = 15	//minor damage variance, since they should only be fighting carp
-	base_attack_cooldown = 13 // A bit slower than carp
+	melee_damage_lower = 5
+	melee_damage_upper = 10	//minor damage variance, since they should only be fighting carp
+	base_attack_cooldown = 18 // A bit slower than carp
 	attack_sharp = TRUE
 	attack_sound = 'sound/weapons/bite.ogg'
 	attacktext = list("lanced","bitten","impaled","gored")
@@ -62,6 +62,16 @@
 	mob_bump_flag = 0
 
 	say_list_type = /datum/say_list/space_ray
+
+	var/knockdown_chance = 66
+
+/mob/living/simple_mob/animal/space/ray/apply_melee_effects(var/atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(prob(knockdown_chance))
+			L.Weaken(4)
+			L.visible_message(span("danger", "\The [src] buffets \the [L]!"))
+			src.ai_holder.remove_target()
 
 /datum/say_list/space_ray
 	emote_see = list("swoops","dives","drifts on a solar current","glides elegantly through the void","briefly tumbles")
