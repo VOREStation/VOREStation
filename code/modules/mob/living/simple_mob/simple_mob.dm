@@ -172,7 +172,7 @@
 	var/damage_fatigue_mult = 1			// Our multiplier for how heavily mobs are affected by injury. [UPDATE THIS IF THE FORMULA CHANGES]: Formula = injury_level = round(rand(2,6) * damage_fatigue_mult * clamp(((rand(2,5) * (health / getMaxHealth())) - rand(0,2)), 1, 20))
 	var/injury_level = 0 				// What our injury level is. Rather than being the flat damage, this is the amount added to various delays to simulate injuries in a manner as lightweight as possible.
 	var/threshold = 0.6					// When we start slowing down. Configure this setting per-mob. Default is 60%
-	var/injury_enrages = 0				// Do injuries enrage (aka strengthen) our mob? If yes, we'll interpret how hurt we are differently.
+	var/injury_enrages = FALSE				// Do injuries enrage (aka strengthen) our mob? If yes, we'll interpret how hurt we are differently.
 	// VOREStation Add End
 
 /mob/living/simple_mob/Initialize()
