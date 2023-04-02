@@ -38,6 +38,7 @@
 					else
 						H.Confuse(8)
 						H.Weaken(1)
+						H.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 						if ((prob(14) || (H == src.loc && prob(70))))
 							H.ear_damage += rand(1, 10)
 						else
@@ -54,6 +55,7 @@
 						H.Confuse(6)
 						H.ear_damage += rand(0, 3)
 						H.ear_deaf = max(H.ear_deaf,10)
+						H.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 
 					if(H.client)
 						if(prob(50))
@@ -65,15 +67,18 @@
 					H.Confuse(4)
 					H.ear_damage += rand(0, 1)
 					H.ear_deaf = max(H.ear_deaf,5)
+					H.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 
 				if(H.ear_damage >= 15)
 					to_chat(H, "<span class='danger'>Your ears start to ring badly!</span>")
+					H.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 
 					if(prob(H.ear_damage - 5))
 						to_chat(H, "<span class='danger'>You can't hear anything!</span>")
 						H.sdisabilities |= DEAF
 				else if(H.ear_damage >= 5)
 					to_chat(H, "<span class='danger'>Your ears start to ring!</span>")
+					H.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 			if(istype(L, /mob/living/silicon/robot))
 				var/mob/living/silicon/robot/R = L
 				if(L.client)

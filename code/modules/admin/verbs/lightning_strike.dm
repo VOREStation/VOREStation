@@ -93,6 +93,7 @@
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
 				C.ear_deaf += 10
+				C.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 			to_chat(L, span("danger", "Lightning struck nearby, and the thunderclap is deafening!"))
 
 #undef LIGHTNING_ZAP_RANGE

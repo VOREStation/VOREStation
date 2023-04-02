@@ -115,10 +115,14 @@
 		src.AdjustBlinded(-1)
 		src.blinded = 1
 
-	if (src.ear_deaf > 0) src.ear_deaf--
+	if (src.ear_deaf > 0)
+		src.ear_deaf--
 	if (src.ear_damage < 25)
 		src.ear_damage -= 0.05
 		src.ear_damage = max(src.ear_damage, 0)
+
+	if(src.ear_deaf <= 0) // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
+		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 
 	src.density = !( src.lying )
 

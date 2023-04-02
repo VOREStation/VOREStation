@@ -131,6 +131,7 @@
 		if(species.emp_sensitivity & EMP_DEAFEN)
 			src.ear_damage += rand(0,deafen_dur) //this will heal pretty quickly, but spamming them at someone could cause serious damage
 			src.ear_deaf = max(src.ear_deaf,deafen_dur)
+			src.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 		if(species.emp_sensitivity & EMP_CONFUSE)
 			if(confuse_dur >= 1)
 				to_chat(src, "<span class='danger'>Oh god, everything's spinning!</span>")

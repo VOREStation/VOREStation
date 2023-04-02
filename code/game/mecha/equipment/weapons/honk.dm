@@ -28,6 +28,7 @@
 		playsound(M, 'sound/effects/bang.ogg', 70, 1, 30)
 		M.SetSleeping(0)
 		M.ear_deaf += 30
+		M.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 		M.ear_damage += rand(5, 20)
 		M.Weaken(3)
 		M.Stun(5)

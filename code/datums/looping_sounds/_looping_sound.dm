@@ -16,6 +16,7 @@
 	direct			(bool)					If true plays directly to provided atoms instead of from them
 	opacity_check	(bool)					If true, things behind walls/opaque things won't hear the sounds.
 	pref_check		(type)					If set to a /datum/client_preference type, will check if the hearer has that preference active before playing it to them.
+	volume_chan		(type)					If set to a specific volume channel via the incoming argument, we tell the playsound proc to modulate volume based on that channel
 	exclusive		(bool)					If true, only one of this sound is allowed to play. Relies on if started is true or not. If true, it will not start another loop until it is false.
 */
 /datum/looping_sound
@@ -33,6 +34,7 @@
 	var/extra_range
 	var/opacity_check
 	var/pref_check
+	var/volume_chan
 	var/exclusive
 
 	var/timerid
@@ -104,7 +106,7 @@
 					continue
 			SEND_SOUND(thing, S)
 		else
-			playsound(thing, S, volume, vary, extra_range, ignore_walls = !opacity_check, preference = pref_check)
+			playsound(thing, S, volume, vary, extra_range, ignore_walls = !opacity_check, preference = pref_check, volume_channel = volume_chan)
 
 /datum/looping_sound/proc/get_sound(starttime, _mid_sounds)
 	if(!_mid_sounds)

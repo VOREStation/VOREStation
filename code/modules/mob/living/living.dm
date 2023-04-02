@@ -834,6 +834,10 @@
 /mob/living/adjustEarDamage(var/damage, var/deaf)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max(0, ear_deaf + deaf)
+	if(ear_deaf > 0)
+		deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
+	else if(ear_deaf <= 0)
+		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 
 //pass a negative argument to skip one of the variable
 /mob/living/setEarDamage(var/damage, var/deaf)
@@ -841,6 +845,7 @@
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
+		deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 
 /mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
 	if(!check_has_mouth())

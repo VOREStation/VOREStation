@@ -41,12 +41,14 @@
 	if(stat == DEAD)
 		blinded = 1
 		silent = 0
+		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 	else
 		updatehealth()
 		if(health <= 0)
 			death()
 			blinded = 1
 			silent = 0
+			deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 			return 1
 
 		if(paralysis && paralysis > 0)

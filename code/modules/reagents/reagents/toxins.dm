@@ -691,6 +691,7 @@
 			M.eye_blurry = max(M.eye_blurry, 30)
 			if(prob(20))
 				M.ear_deaf = max(M.ear_deaf, 4)
+				M.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 				M.Confuse(2)
 			else
 				M.Weaken(2)
@@ -735,6 +736,7 @@
 		if(alien == IS_SLIME)
 			if(prob(30))
 				M.ear_deaf = max(M.ear_deaf, 4)
+				M.deaf_loop.start() // CHOMPStation Add: Ear Ringing/Deafness
 			M.eye_blurry = max(M.eye_blurry, 60)
 			M.Weaken(30)
 			M.Confuse(40)

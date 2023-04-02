@@ -1202,6 +1202,7 @@
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
 		blinded = 1
 		silent = 0
+		deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
@@ -1209,6 +1210,7 @@
 			death()
 			blinded = 1
 			silent = 0
+			deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness - Not sure if we need this, but, safety.
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
@@ -1324,6 +1326,7 @@
 		//Ears
 		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
 			ear_deaf = max(ear_deaf, 1)
+			deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
 		else if(ear_deaf)			//deafness, heals slowly over time
 			ear_deaf = max(ear_deaf-1, 0)
 		else if(get_ear_protection() >= 2)	//resting your ears with earmuffs heals ear damage faster
@@ -1331,6 +1334,11 @@
 			ear_deaf = max(ear_deaf, 1)
 		else if(ear_damage < 25)	//ear damage heals slowly under this threshold. otherwise you'll need earmuffs
 			ear_damage = max(ear_damage-0.05, 0)
+
+		// CHOMPAdd: Handle Ear ringing, standalone safety check.
+		if(ear_deaf <= 0)
+			deaf_loop.stop() // CHOMPStation Add: Ear Ringing/Deafness
+		// CHOMPAdd End
 
 		//Resting
 		if(resting)

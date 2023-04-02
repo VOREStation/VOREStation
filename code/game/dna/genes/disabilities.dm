@@ -119,6 +119,8 @@
 /datum/dna/gene/disability/deaf/activate(var/mob/M, var/connected, var/flags)
 	..(M,connected,flags)
 	M.ear_deaf = 1
+	var/mob/living/mL = M // CHOMPStation Add: Ear Ringing/Deafness
+	mL.deaf_loop.start(skip_start_sound = TRUE) // CHOMPStation Add: Ear Ringing/Deafness
 
 /datum/dna/gene/disability/nearsighted
 	name="Nearsightedness"
