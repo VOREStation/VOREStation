@@ -165,6 +165,27 @@
 	extra_overlay = "altnaga_markings"
 	//icon_sprite_tag = "altnaga2c"
 
+/datum/sprite_accessory/tail/taur/naga/alt_3c
+	name = "Naga alt style tri-color (Taur)"
+	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
+	icon_state = "altnaga_s"
+	extra_overlay = "altnaga_markings"
+	extra_overlay2 = "altnaga_stripes"
+
+/datum/sprite_accessory/tail/taur/naga/alt_3c_rattler
+	name = "Naga alt style tri-color, rattler (Taur)"
+	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
+	icon_state = "altnaga_s"
+	extra_overlay = "altnaga_markings"
+	extra_overlay2 = "altnaga_rattler"
+
+/datum/sprite_accessory/tail/taur/naga/alt_3c_tailmaw
+	name = "Naga alt style tri-color, tailmaw (Taur)"
+	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
+	icon_state = "altnagatailmaw_s"
+	extra_overlay = "altnagatailmaw_markings"
+	extra_overlay2 = "altnagatailmaw_eyes"
+
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse (Taur)"
 	icon_state = "horse_s"
@@ -838,3 +859,30 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+
+/datum/sprite_accessory/tail/taur/ant
+	name = "Ant (dual color)"
+	icon_state = "ant_s"
+	extra_overlay = "ant_markings"
+	clip_mask_state = "taur_clip_mask_wasp"
+	icon_sprite_tag = "wasp"
+
+	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
+
+	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
+	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
+
+	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor!"
+	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor!"
+
+	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
+	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
+
+	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
+	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+
+/datum/sprite_accessory/tail/taur/naga/fat
+	name = "Naga (Taur, Fat, dual color)"
+	icon_state = "fatnaga_s"
+	extra_overlay = "fatnaga_markings"

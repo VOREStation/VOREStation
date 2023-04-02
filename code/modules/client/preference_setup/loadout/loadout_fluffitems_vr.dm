@@ -451,6 +451,20 @@
 	ckeywhitelist = list("flintlockdafox")
 	character_name = list("Flintlock Sharpsman")
 
+/datum/gear/fluff/zera_weldmask
+	path = /obj/item/clothing/head/welding/fluff/zera
+	display_name = "Zera's Welding Mask"
+	slot = slot_head
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
+/datum/gear/fluff/zera_labcloak
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera
+	display_name = "Zera's Labcloak"
+	slot = slot_wear_suit
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
 
 //  G CKEYS
 

@@ -37,6 +37,8 @@
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Space Dust",		/datum/event/dust,	 			0, 		list(ASSIGNMENT_ENGINEER = 20), 0, 0, 50, min_jobs = list(ASSIGNMENT_ENGINEER = 2)),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Economic News",		/datum/event/economic_event,	300),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Lost Carp",			/datum/event/carp_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Stray Ray",			/datum/event/ray_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Gnat Cloud",			/datum/event/gnat_migration, 	0, 		list(ASSIGNMENT_SECURITY = 10), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Money Hacker",		/datum/event/money_hacker, 		0, 		list(ASSIGNMENT_ANY = 4), 1, 10, 25),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Money Lotto",		/datum/event/money_lotto, 		0, 		list(ASSIGNMENT_ANY = 1), 1, 5, 15),
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Shipping Error",	/datum/event/shipping_error	, 	30, 	list(ASSIGNMENT_ANY = 2), 0),
@@ -84,6 +86,9 @@
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Morph Spawn",				/datum/event/morph_spawn,				75,		list(ASSIGNMENT_ANY = 5), 0),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Predator",		/datum/event/maintenance_predator,		100,	list(ASSIGNMENT_ANY = 5), 0),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Jellyfish School",			/datum/event/jellyfish_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gliding Rays",			/datum/event/ray_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 5), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Shark Pack",			/datum/event/shark_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gnat Swarm",			/datum/event/gnat_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 	)
 	add_disabled_events(list(
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Appendicitis", 			/datum/event/spontaneous_appendicitis, 	0,		list(ASSIGNMENT_MEDICAL = 30), 1),
@@ -102,6 +107,9 @@
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Carp Migration",		/datum/event/carp_migration,		10,		list(ASSIGNMENT_SECURITY = 5), 1, min_jobs = list(ASSIGNMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Containment Breach",	/datum/event/prison_break/station,	0,	list(ASSIGNMENT_ENGINEER = 5, ASSIGNMENT_MEDICAL = 5, ASSIGNMENT_SECURITY = 5, ASSIGNMENT_SCIENTIST = 5), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Jellyfish Migration",	/datum/event/jellyfish_migration,	5,	list(ASSIGNMENT_SECURITY = 5, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Gliding Rays",			/datum/event/ray_migration,		0,		list(ASSIGNMENT_SECURITY = 15, ASSIGNMENT_MEDICAL = 5), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Shark Pack",	/datum/event/shark_migration,	5,	list(ASSIGNMENT_SECURITY = 5, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
+		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Gnat Swarm",	/datum/event/gnat_migration,	5,	list(ASSIGNMENT_SECURITY = 5, ASSIGNMENT_MEDICAL = 3), 1, min_jobs = list(ASSIGNMENT_SECURITY = 2)),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Meteor Strike",		/datum/event/meteor_strike,			10,		list(ASSIGNMENT_ENGINEER = 15), 1),
 	)
 	add_disabled_events(list(
