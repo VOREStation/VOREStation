@@ -4,7 +4,7 @@
 	flags = 0 //starts closed
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
-	cant_chance = 25 //arbitrarily high for april fools; if it's not reverted in its entirety I suggest rolling it down to 2% or something
+	cant_chance = 1 //arbitrarily high for april fools; if it's not reverted in its entirety I suggest rolling it down to 2% or something
 
 //DRINKS
 
