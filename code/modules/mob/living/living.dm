@@ -18,6 +18,8 @@
 
 	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
+	deaf_loop = new(list(src), FALSE)  // VOREStation Add: Deaf Loop
+
 /mob/living/Destroy()
 	if(dsoverlay)
 		dsoverlay.loc = null //I'll take my coat with me
@@ -74,6 +76,8 @@
 			var/obj/item/OR = internal_organs[1]
 			internal_organs -= OR
 			qdel(OR)
+
+	QDEL_NULL(deaf_loop) // VOREStation Add: Deaf Loop
 
 	return ..()
 
