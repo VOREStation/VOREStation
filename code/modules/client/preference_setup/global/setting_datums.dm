@@ -373,7 +373,7 @@ var/list/_client_preferences_by_type
 	key = "RECEIVE_TIPS"
 	enabled_description = "Enabled"
 	disabled_description = "Disabled"
- 
+
 /datum/client_preference/pain_frequency
 	description = "Pain Messages Cooldown"
 	key = "PAIN_FREQUENCY"
@@ -381,6 +381,13 @@ var/list/_client_preferences_by_type
 	enabled_description = "Extended"
 	disabled_description = "Default"
 
+
+/datum/client_preference/ear_ringing
+	description = "Ear Ringing"
+	key = "EAR_RINGING"
+	enabled_by_default = FALSE
+	enabled_description = "Audible"
+	disabled_description = "Silent"
 
 /********************
 * Staff Preferences *

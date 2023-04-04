@@ -147,3 +147,14 @@
 	toggle_preference(pref_path)
 
 	to_chat(src, "The cooldown between pain messages for minor (under 20/5 injury. Multi-limb injuries are still faster) is now [ (is_preference_enabled(pref_path)) ? "extended" : "default"].")
+
+/client/verb/toggle_ear_ringing()
+	set name = "Toggle Ear Ringing"
+	set category = "Preferences"
+	set desc = "When toggled on, play an ear ringing noise when you become deaf, that fades to silence, and a cue when you regain your hearing."
+
+	var/pref_path = /datum/client_preference/ear_ringing
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "Audible warnings for deafness is now [ (is_preference_enabled(pref_path)) ? "enabled" : "disabled"].")
