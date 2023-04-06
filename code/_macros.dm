@@ -19,7 +19,7 @@
 #define log_world(message) to_world_log(message)
 #define to_file(file_entry, source_var) file_entry << source_var
 #define from_file(file_entry, target_var) file_entry >> target_var
-#define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
+#define show_browser(target, browser_content, browser_name) target << browse(parse_html(browser_content), browser_name)
 #define send_rsc(target, rsc_content, rsc_name)	target << browse_rsc(rsc_content, rsc_name)
 #define open_link(target, url) target << link(url)
 
@@ -45,3 +45,13 @@
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
 
 #define JOINTEXT(X) jointext(X, null)
+
+
+
+/proc/parse_html(var/browser_content)
+	if(isfile(browser_content))
+		return browser_content
+	else if(findtext(browser_content, "<html>"))
+		return replacetext(browser_content, "<html>", "<html><meta charset='UTF-8'>")
+	else
+		return "<HTML><meta charset='UTF-8'><BODY>[browser_content]</BODY></HTML>"
