@@ -11,6 +11,7 @@
 	density = FALSE
 	ghost_query_type = /datum/ghost_query/xenomorph_larva
 	delay_to_try_again = 1 MINUTES //10 minutes for egg to grow, 5 minutes for larva to mature
+	anchored = TRUE
 
 /obj/structure/ghost_pod/automatic/xenomorph_egg/create_occupant(var/mob/M)
 	var/mob/living/carbon/alien/larva/R = new(get_turf(src))
