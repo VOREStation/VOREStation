@@ -6,7 +6,7 @@
 	description_info = "This contains a growing xenomorph larva, which may wake up at any moment. The larva will be another player, once activated."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "egg"
-	icon_state_opened = "egg_opened" //Can be placed on map with used = 1 for POI decorations
+	icon_state_opened = "egg_opened"
 	var/health = 50 //So they can be destroyed by the crew
 	density = FALSE
 	ghost_query_type = /datum/ghost_query/xenomorph_larva
