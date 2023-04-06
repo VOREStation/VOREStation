@@ -14,7 +14,6 @@
 		testing("LANGSANI: Loaded from [pref.client]'s character [pref.real_name || "-name not yet loaded-"] savefile: [english_list(pref.alternate_languages || list())]")
 	S["language_prefixes"]	>> pref.language_prefixes
 	//VORE Edit Begin
-	S["species"]			>> pref.species
 	S["preflang"]			>> pref.preferred_language
 	//VORE Edit End
 	S["language_custom_keys"]	>> pref.language_custom_keys
