@@ -95,7 +95,7 @@
 /obj/effect/overmap/visitable/proc/gmtools_update_omobject_vars(var/setToHidden)
 	real_appearance = image(real_icon, src, real_icon_state)
 	real_appearance.override = TRUE
-	if(!setToHidden && known) //
+	if(setToHidden && known) //
 		name = unknown_name
 		icon = 'icons/obj/overmap.dmi'
 		icon_state = unknown_state
