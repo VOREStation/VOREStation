@@ -16,6 +16,11 @@
 	var/real_desc
 	/// Icon_state prior to being scanned if !known
 	var/unknown_state = "field"
+	//Set to null. Exists only for admins/GMs when spawning overmap objects.
+	//We need these as normal functionality relies on initial() which do not work at all with GM shenanigans.
+	var/real_icon //Holds the .dmi file for icon_state to pick from. Leave null if using standard overmap.dmi
+	var/real_icon_state //actual icon name to be used. Find examples inside 'icons/obj/overmap.dmi'
+	var/real_color
 
 	var/list/map_z = list()
 	var/list/extra_z_levels //if you need to manually insist that these z-levels are part of this sector, for things like edge-of-map step trigger transitions rather than multi-z complexes
@@ -84,6 +89,19 @@
 	//at the moment only used for the OM location renamer. Initializing here in case we want shuttles incl as well in future. Also proc definition convenience.
 	visitable_overmap_object_instances |= src
 
+//To be used by GMs and calling through var edits for the overmap object
+//It causes the overmap object to "reinitialize" its real_appearance for known = FALSE objects
+//Includes an argument that allows GMs/Admins to set a previously known sector to unknown. Set to any value except 0/False/Null to activate
+/obj/effect/overmap/visitable/proc/gmtools_update_omobject_vars(var/setToHidden)
+	real_appearance = image(real_icon, src, real_icon_state)
+	real_appearance.override = TRUE
+	if(!setToHidden && known) //
+		name = unknown_name
+		icon = 'icons/obj/overmap.dmi'
+		icon_state = unknown_state
+		color = null
+		desc = "Scan this to find out more information."
+		known = FALSE
 
 
 // You generally shouldn't destroy these.
@@ -141,8 +159,16 @@
 			name = real_name
 		else
 			name = initial(name)
-		icon_state = initial(icon_state)
-		color = initial(color)
+		if(real_icon_state) //Only true when GMs/Admins play with the object
+			if(real_icon)  //Only true if GMs/Admins want a non-standard icon from outside 'icons/obj/overmap.dmi'
+				icon = real_icon
+			icon_state = real_icon_state
+		else
+			icon_state = initial(icon_state)
+		if(real_color)
+			color = real_color
+		else
+			color = initial(color)
 		if(real_desc)
 			desc = real_desc
 		else
