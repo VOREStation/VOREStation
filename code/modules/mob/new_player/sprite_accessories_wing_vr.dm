@@ -311,3 +311,11 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "snail_shell_markings"
+
+/datum/sprite_accessory/wing/sectdrone_wing //We should some day make a variable to make some wings not be able to fly
+	name = "Sect drone wings (To use with bodytype marking)"
+	desc = ""
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	icon_state = "sectdrone_wing"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
