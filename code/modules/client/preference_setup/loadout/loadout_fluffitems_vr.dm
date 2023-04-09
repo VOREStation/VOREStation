@@ -37,7 +37,7 @@
 //  A CKEYS
 
 /datum/gear/fluff/mira_medal
-	path = /obj/item/clothing/accessory/medal/conduct
+	path = /obj/item/clothing/accessory/medal/silver/fluff/abc314
 	display_name = "Mira's Health Service Achievement medal"
 	ckeywhitelist = list("abc314")
 	character_name = list("Mira Nesyne")
