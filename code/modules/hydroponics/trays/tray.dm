@@ -374,9 +374,12 @@
 
 // If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
+	var/previous_plant
 
 	//Remove the seed if something is already planted.
-	if(seed) seed = null
+	if(seed)
+		previous_plant = seed.display_name
+		seed = null
 	seed = SSplants.seeds[pick(list("reishi","nettle","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
 	if(!seed) return //Weed does not exist, someone fucked up.
 
@@ -389,7 +392,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message("<span class='notice'>[src] has been overtaken by [seed.display_name].</span>")
+	visible_message("<span class='notice'>\The [previous_plant ? previous_plant : initial(name)] has been overtaken by [seed.display_name].</span>")
 
 	return
 
