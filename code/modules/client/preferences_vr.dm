@@ -5,6 +5,7 @@
 	var/directory_ad = ""		//Advertisement stuff to show in character directory.
 	var/sensorpref = 5			//Set character's suit sensor level
 	var/capture_crystal = 1	//Whether or not someone is able to be caught with capture crystals
+	var/auto_backup_implant = FALSE //Whether someone starts with a backup implant or not.
 
 	var/job_talon_high = 0
 	var/job_talon_med = 0
@@ -135,3 +136,14 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb", "TReceivePlayerTips")
+
+/client/verb/toggle_pain_frequency()
+	set name = "Toggle Pain Frequency"
+	set category = "Preferences"
+	set desc = "When toggled on, increases the cooldown of pain messages sent to chat for minor injuries"
+
+	var/pref_path = /datum/client_preference/pain_frequency
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "The cooldown between pain messages for minor (under 20/5 injury. Multi-limb injuries are still faster) is now [ (is_preference_enabled(pref_path)) ? "extended" : "default"].")

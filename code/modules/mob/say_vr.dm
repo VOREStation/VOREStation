@@ -347,11 +347,17 @@
 
 	for(var/mob/M as anything in m_viewers)
 		if(M)
-			if(isobserver(M))
-				message = "[message] ([ghost_follow_link(src, M)])"
 			if(isnewplayer(M))
 				continue
 			if(M.stat == UNCONSCIOUS || M.sleeping > 0)
 				continue
-			to_chat(M, message)
+			to_chat(M, "<span class='filter_say'>[isobserver(M) ? "[message] ([ghost_follow_link(src, M)])" : message]</span>")
 	log_emote(message, src)
+
+/mob/verb/select_speech_bubble()
+	set name = "Select Speech Bubble"
+	set category = "OOC"
+
+	var/new_speech_bubble = tgui_input_list(src, "Pick new voice (default for automatic selection)", "Character Preference", selectable_speech_bubbles)
+	if(new_speech_bubble)
+		custom_speech_bubble = new_speech_bubble

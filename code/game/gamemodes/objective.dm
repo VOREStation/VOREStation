@@ -627,6 +627,12 @@ var/global/list/all_objectives = list()
 	else
 		return 0
 
+/datum/objective/vore/check_completion()
+	if(owner && owner.vore_prey_eaten >= target_amount)
+		return 1
+	else
+		return 0
+
 // Heist objectives.
 /datum/objective/heist/proc/choose_target()
 	return

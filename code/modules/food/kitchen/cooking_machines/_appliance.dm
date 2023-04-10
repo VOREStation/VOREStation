@@ -157,12 +157,12 @@
 	if (stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		use_power = 1
-		user.visible_message("[user] turns [src] on.", "You turn on [src].")
+		user.visible_message("<span class='filter_notice'>[user] turns [src] on.</span>", "<span class='filter_notice'>You turn on [src].</span>")
 
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
-		user.visible_message("[user] turns [src] off.", "You turn off [src].")
+		user.visible_message("<span class='filter_notice'>[user] turns [src] off.</span>", "<span class='filter_notice'>You turn off [src].</span>")
 		cooking = FALSE // Stop cooking here, too, just in case.
 
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
@@ -180,14 +180,14 @@
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, "You lack the dexterity to do that!")
+		to_chat(usr, "<span class='filter_notice'>You lack the dexterity to do that!</span>")
 		return
 
 	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
 	if (!Adjacent(usr) && !issilicon(usr))
-		to_chat(usr, "You can't adjust the [src] from this distance, get closer!")
+		to_chat(usr, "<span class='filter_notice'>You can't adjust the [src] from this distance, get closer!</span>")
 		return
 
 	if(output_options.len)

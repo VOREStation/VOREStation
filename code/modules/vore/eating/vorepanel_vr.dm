@@ -797,7 +797,9 @@
 							var/mob/living/carbon/human/h = l
 							thismuch = thismuch * h.species.digestion_nutrition_modifier
 						l.adjust_nutrition(thismuch)
-					b.handle_digestion_death(ourtarget)
+					ourtarget.death()		// To make sure all on-death procs get properly called
+					if(ourtarget)
+						b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
 						to_chat(usr, "<span class= 'warning'>\The [ourtarget] declined your absorb attempt.</span>")

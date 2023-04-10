@@ -144,7 +144,7 @@
 	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
 
 /obj/item/clothing/shoes/laceup
-	name = "black oxford  shoes"
+	name = "black oxford shoes"
 	icon_state = "oxford_black"
 
 /obj/item/clothing/shoes/laceup/grey

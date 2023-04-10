@@ -5,7 +5,7 @@
 /client/proc/cmd_admin_pm_context(mob/M in mob_list)
 	set category = null
 	set name = "Admin PM Mob"
-	if(!holder)
+	if(!check_rights(R_ADMIN))
 		to_chat(src, "<span class='pm warning'>Error: Admin-PM-Context: Only administrators may use this command.</span>")
 		return
 	if( !ismob(M) || !M.client )
@@ -17,7 +17,7 @@
 /client/proc/cmd_admin_pm_panel()
 	set category = "Admin"
 	set name = "Admin PM"
-	if(!holder)
+	if(!check_rights(R_ADMIN))
 		to_chat(src, "<span class='pm warning'>Error: Admin-PM-Panel: Only administrators may use this command.</span>")
 		return
 	var/list/client/targets[0]

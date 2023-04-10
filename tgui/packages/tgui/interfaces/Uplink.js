@@ -74,6 +74,7 @@ const ExploitableInformation = (props, context) => {
             <LabeledList.Item label="Age">{exploit.age}</LabeledList.Item>
             <LabeledList.Item label="Rank">{exploit.rank}</LabeledList.Item>
             <LabeledList.Item label="Home System">{exploit.home_system}</LabeledList.Item>
+            <LabeledList.Item label="Birthplace">{exploit.birthplace}</LabeledList.Item>
             <LabeledList.Item label="Citizenship">{exploit.citizenship}</LabeledList.Item>
             <LabeledList.Item label="Faction">{exploit.faction}</LabeledList.Item>
             <LabeledList.Item label="Religion">{exploit.religion}</LabeledList.Item>

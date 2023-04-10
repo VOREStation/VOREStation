@@ -903,9 +903,6 @@
 					/obj/item/weapon/reagent_containers/pill/adminordrazine = 10,
 					/obj/item/weapon/tool/crowbar = 1)
 
-
-////////////////////ancient_vend (Hot Food - Old) (ADDED 04/11/2021)////////////////////////////////////////////////////
-
 /obj/machinery/vending/hotfood
 	name = "\improper Hot Foods!"
 	desc = "An old vending machine promising 'hot foods'. You doubt any of its contents are still edible."
@@ -918,8 +915,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/old/hotdog = 3,
 					/obj/item/weapon/reagent_containers/food/snacks/old/taco = 2
 					)
-
-////////////////////weeb_vend (Nippon-tan!) (ADDED 04/11/2021)/////////////////////////////////////////////////
 
 /obj/machinery/vending/weeb
 	name = "\improper Nippon-tan!"
@@ -952,8 +947,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/daifuku = 5
 					)
 
-////////////////////sol_vend (Mars Mart) (ADDED 04/11/2021)////////////////////////////////////////////////////
-
 /obj/machinery/vending/sol
 	name = "\improper Sol-Snacks"
 	desc = "A SolCentric vending machine dispensing a number of Sol-themed snacks, along with other foods."
@@ -985,10 +978,6 @@
 					/obj/item/weapon/storage/box/gum = 2,
 					/obj/item/weapon/storage/box/admints = 2
 					)
-
-////////////////////snix_vend (Snix!) (ADDED 04/11/2021)////////////////////////////////////////////
-
-//////a food variant of the boda machine - It carries slavic themed foods.. Mostly beer snacks./////
 
 /obj/machinery/vending/snix
 	name = "\improper Snix"
@@ -1027,8 +1016,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/pretzels = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/hakarl = 8
 					)
-
-////////////////////snl_vend (Shop-n-Large Snacks!) (ADDED 04/16/2021)//////////////////////////////
 
 /obj/machinery/vending/snlvend
 	name = "\improper Shop-n-Large Snacks!"
@@ -1082,8 +1069,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 5
 					)
 
-///////////////////////Soviet Stuff///////////////////////////////////////
-
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
 	desc = "An old sweet water vending machine, how did this end up here?"
@@ -1099,7 +1084,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vending_sound = "machines/vending/vending_cans.ogg"
 
-/obj/machinery/vending/sovietvend //ADDITION 04/20/2021
+/obj/machinery/vending/sovietvend
 	name = "Ration Station"
 	desc = "An old ration vendor unit. How it even still functional?"
 	icon = 'icons/obj/vending.dmi'
@@ -1109,8 +1094,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration = 8)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration = 2)
-
-///////////////////////Radical Renard///////////////////////////////////////
 
 /obj/machinery/vending/radren
 	name = "Radical Renard Sodas"
@@ -1139,9 +1122,6 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vending_sound = "machines/vending/vending_cans.ogg"
-
-///////////////////////Donk-Soft!///////////////////////////////////////
-
 /obj/machinery/vending/donksoft
 	name = "Donk-Soft!"
 	desc = "A toy vendor owned by Donk-Soft, a NanoTrasen sub-company."

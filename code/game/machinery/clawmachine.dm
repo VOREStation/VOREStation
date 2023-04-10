@@ -58,8 +58,13 @@
 						/obj/item/toy/plushie/tuxedo_cat,
 						/obj/item/toy/plushie/borgplushie/medihound,
 						/obj/item/toy/plushie/borgplushie/scrubpuppy,
-						/obj/item/toy/plushie/borgplushie/drakiesec,
-						/obj/item/toy/plushie/borgplushie/drakiemed,
+						/obj/item/toy/plushie/borgplushie/drake/sec,
+						/obj/item/toy/plushie/borgplushie/drake/med,
+						/obj/item/toy/plushie/borgplushie/drake/sci,
+						/obj/item/toy/plushie/borgplushie/drake/eng,
+						/obj/item/toy/plushie/borgplushie/drake/mine,
+						/obj/item/toy/plushie/borgplushie/drake/jani,
+						/obj/item/toy/plushie/borgplushie/drake/trauma,
 						/obj/item/toy/plushie/otter
 						)
 

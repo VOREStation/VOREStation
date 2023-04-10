@@ -79,11 +79,11 @@
 			cell.charge -= cost
 			if(cell.charge <= 0)
 				cell.charge = 0
-				to_chat(src, "<font color='red'>Your shield has overloaded!</font>")
+				to_chat(src, "<span class='filter_warning'><font color='red'>Your shield has overloaded!</font></span>")
 			else
 				brute -= absorb_brute
 				burn -= absorb_burn
-				to_chat(src, "<font color='red'>Your shield absorbs some of the impact!</font>")
+				to_chat(src, "<span class='filter_combat'><font color='red'>Your shield absorbs some of the impact!</font></span>")
 
 	if(!emp)
 		var/datum/robot_component/armour/A = get_armour()
@@ -126,11 +126,11 @@
 			cell.charge -= cost
 			if(cell.charge <= 0)
 				cell.charge = 0
-				to_chat(src, "<font color='red'>Your shield has overloaded!</font>")
+				to_chat(src, "<span class='filter_warning'><font color='red'>Your shield has overloaded!</font></span>")
 			else
 				brute -= absorb_brute
 				burn -= absorb_burn
-				to_chat(src, "<font color='red'>Your shield absorbs some of the impact!</font>")
+				to_chat(src, "<span class='filter_combat'><font color='red'>Your shield absorbs some of the impact!</font></span>")
 
 	var/datum/robot_component/armour/A = get_armour()
 	if(A)

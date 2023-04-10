@@ -158,6 +158,13 @@
 	icon_state = "soghun_dubhorns"
 	species_allowed = list(SPECIES_UNATHI, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
 
+/datum/sprite_accessory/hair/una_quinthorns
+	name = "Quintiple Unathi Horns"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "unathi_quintiple_horns"
+	species_allowed = list(SPECIES_UNATHI, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
 /datum/sprite_accessory/hair/taj_ears
 	name = "Tajaran Ears"
 	icon_state = "ears_plain"

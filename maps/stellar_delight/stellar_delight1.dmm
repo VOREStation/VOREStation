@@ -680,6 +680,17 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /area/stellardelight/deck1/exploshuttle)
+"bp" = (
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 8
+	},
+/obj/item/weapon/storage/box/evidence,
+/obj/item/weapon/storage/box/evidence,
+/obj/structure/closet/walllocker_double/security/west{
+	name = "evidence storage cabinet"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/security/security_cell_hallway)
 "bq" = (
 /obj/structure/table/bench/steel,
 /obj/effect/landmark/start/security,
@@ -800,6 +811,13 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
+"bC" = (
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/emergency_engi/east,
+/turf/simulated/floor/tiled/dark,
+/area/security/security_cell_hallway)
 "bD" = (
 /obj/structure/lattice,
 /turf/space,
@@ -1032,6 +1050,13 @@
 "bZ" = (
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/civilian)
+"ca" = (
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/structure/closet/walllocker_double/engineering/north,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/gateway)
 "cb" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -1043,6 +1068,24 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
+"cc" = (
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/rods,
+/obj/fiftyspawner/rglass,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/item/stack/material/plasteel{
+	amount = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/structure/closet/walllocker_double/engineering/north,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/gateway)
 "cd" = (
 /obj/machinery/camera/network/halls{
 	dir = 1
@@ -1253,6 +1296,36 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
+"cx" = (
+/obj/item/weapon/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/device/multitool,
+/obj/item/clothing/head/welding,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/weapon/storage/toolbox/electrical{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/device/assembly/signaler,
+/obj/item/device/assembly/signaler,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/engineering/north,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/gateway)
 "cy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -1263,6 +1336,22 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
+"cz" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/closet/walllocker_double/emergency_engi/north,
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
 "cA" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1318,6 +1407,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"cH" = (
+/obj/effect/floor_decal/milspec/color/emerald/half{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/emergency_engi/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/starboard)
 "cI" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 6
@@ -1347,6 +1443,14 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
+"cL" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/closet/walllocker_double/emergency_engi/west,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "cM" = (
@@ -1381,10 +1485,45 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"cP" = (
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/item/stack/material/plasteel{
+	amount = 10
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/structure/closet/walllocker_double/science/east{
+	name = "material sheets"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/assembly/robotics)
 "cQ" = (
 /obj/machinery/mineral/unloading_machine,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/oreprocessing)
+"cR" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/item/device/defib_kit/jumper_kit,
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/storage/box/bodybags{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/weapon/book/manual/robotics_manual,
+/obj/item/weapon/book/manual/robotics_cyborgs,
+/obj/structure/closet/walllocker_double/science/east,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/assembly/robotics)
 "cS" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel_grid,
@@ -1673,6 +1812,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/paramedic)
+"ds" = (
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/structure/closet/walllocker_double/science/north{
+	name = "material sheets"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/rnd/workshop)
 "dt" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/firealarm/angled{
@@ -1695,9 +1842,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/researchserver)
 "dv" = (
-/obj/structure/closet/walllocker_double/east,
-/turf/simulated/floor/carpet/purcarpet,
-/area/stellardelight/deck1/dorms/dorm2)
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/generic_civ/west,
+/turf/simulated/floor/carpet,
+/area/stellardelight/deck1/dorms/dorm8)
 "dw" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -1735,6 +1885,23 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/medical)
+"dz" = (
+/obj/item/weapon/weldingtool,
+/obj/item/clothing/glasses/welding,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/device/multitool,
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/machinery/firealarm/angled{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/engineering/north{
+	name = "xenobiology repair supplies"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/xenobiology)
 "dA" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -1753,6 +1920,31 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
+"dC" = (
+/obj/item/weapon/shovel,
+/obj/item/weapon/shovel,
+/obj/item/weapon/shovel,
+/obj/item/weapon/shovel,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/pickaxe,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/closet/walllocker_double/cargo/west{
+	name = "mining tools"
+	},
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "dD" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/purple,
@@ -1771,6 +1963,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
+"dE" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/structure/closet/walllocker_double/cargo/west{
+	name = "suit cooling units"
+	},
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "dF" = (
 /obj/machinery/computer/security/xenobio,
 /obj/machinery/alarm/angled,
@@ -1825,6 +2027,28 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/miningequipment)
+"dM" = (
+/obj/item/weapon/storage/box/syringes,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/robot_parts/l_arm,
+/obj/item/device/analyzer/plant_analyzer,
+/obj/item/device/analyzer/plant_analyzer,
+/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/weapon/material/minihoe,
+/obj/item/weapon/material/minihoe,
+/obj/item/inflatable/door,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/item/weapon/storage/box/botanydisk,
+/obj/item/weapon/storage/box/botanydisk,
+/obj/structure/closet/walllocker_double/science/west{
+	name = "xenoflora supplies"
+	},
+/turf/simulated/floor/tiled/eris,
+/area/rnd/xenobiology/xenoflora)
 "dN" = (
 /obj/structure/closet/secure_closet/hydroponics/sci{
 	req_access = list(77)
@@ -1946,6 +2170,19 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/assembly/robotics)
+"dX" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/emergency_engi/north,
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/aft)
 "dY" = (
 /obj/machinery/mineral/processing_unit,
 /turf/simulated/floor/tiled/eris/steel/cargo,
@@ -2020,6 +2257,13 @@
 /obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/paramedic)
+"eg" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/generic_civ/east,
+/turf/simulated/floor/carpet,
+/area/stellardelight/deck1/dorms/dorm1)
 "eh" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/window/brigdoor/southleft{
@@ -2336,6 +2580,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
+"eK" = (
+/obj/structure/closet/walllocker_double/generic_civ/west,
+/turf/simulated/floor/carpet/purcarpet,
+/area/stellardelight/deck1/dorms/dorm7)
 "eL" = (
 /obj/structure/mirror{
 	pixel_y = 38
@@ -2450,6 +2698,10 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenobiology)
+"eZ" = (
+/obj/structure/closet/walllocker_double/generic_civ/east,
+/turf/simulated/floor/carpet/purcarpet,
+/area/stellardelight/deck1/dorms/dorm2)
 "fa" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/pink{
@@ -2509,6 +2761,20 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/detectives_office)
+"fe" = (
+/obj/item/device/camera,
+/obj/item/weapon/folder/yellow,
+/obj/item/weapon/pen,
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/closet/walllocker_double/generic_civ/east,
+/turf/simulated/floor/tiled/milspec,
+/area/stellardelight/deck1/explobriefing)
 "ff" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -3082,36 +3348,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
-"gs" = (
-/obj/item/weapon/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/device/multitool,
-/obj/item/clothing/head/welding,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/weapon/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/structure/closet/walllocker_double/north,
-/obj/item/device/assembly/signaler,
-/obj/item/device/assembly/signaler,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/gateway)
 "gt" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -3823,21 +4059,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
-"hO" = (
-/obj/item/weapon/weldingtool,
-/obj/item/clothing/glasses/welding,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/structure/closet/walllocker_double/north,
-/obj/item/device/multitool,
-/obj/structure/sink/kitchen{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/machinery/firealarm/angled{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/rnd/xenobiology)
 "hP" = (
 /obj/structure/morgue{
 	dir = 2
@@ -4417,25 +4638,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
-"iV" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/closet/walllocker_double/west{
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
-	name = "Emergency Cabinet"
-	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/port)
 "iW" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -5496,18 +5698,16 @@
 	dir = 4;
 	pixel_x = -32
 	},
-/obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to the shuttle bay.";
-	name = "\improper Shuttle Bay";
-	pixel_x = -32;
-	pixel_y = -6
-	},
 /obj/structure/sign/directions/janitor{
 	pixel_x = -32;
 	pixel_y = -12
 	},
 /obj/machinery/camera/network/halls{
 	dir = 4
+	},
+/obj/structure/sign/directions/shuttle_bay{
+	pixel_x = -32;
+	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
@@ -8430,19 +8630,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/assembly/robotics)
-"rz" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/closet/walllocker_double/east,
-/obj/item/device/defib_kit/jumper_kit,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/bodybags{
-	pixel_x = -3;
-	pixel_y = -2
-	},
-/obj/item/weapon/book/manual/robotics_manual,
-/obj/item/weapon/book/manual/robotics_cyborgs,
-/turf/simulated/floor/tiled/steel_dirty,
-/area/assembly/robotics)
 "rA" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -8614,13 +8801,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway)
-"rS" = (
-/obj/structure/closet/walllocker_double/east{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/stellardelight/deck1/dorms/dorm7)
 "rT" = (
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
@@ -10797,33 +10977,6 @@
 /obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled/steel,
 /area/assembly/robotics)
-"wL" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/structure/closet/walllocker_double/north{
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
-	name = "Emergency Cabinet"
-	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/port)
 "wM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -12006,20 +12159,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
-"zm" = (
-/obj/structure/closet/walllocker_double/east,
-/obj/item/device/camera,
-/obj/item/weapon/folder/yellow,
-/obj/item/weapon/pen,
-/obj/structure/cable/green{
-	color = "#42038a";
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/milspec,
-/area/stellardelight/deck1/explobriefing)
 "zn" = (
 /obj/structure/closet/secure_closet/paramedic,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -12122,12 +12261,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
-"zA" = (
-/obj/structure/closet/walllocker_double/north,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/turf/simulated/floor/tiled/techfloor,
-/area/rnd/workshop)
 "zB" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/pink{
@@ -14158,24 +14291,6 @@
 "DS" = (
 /turf/simulated/wall/bay/red,
 /area/prison/cell_block)
-"DT" = (
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/rods,
-/obj/fiftyspawner/rglass,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
-/obj/structure/closet/walllocker_double/north,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/gateway)
 "DV" = (
 /obj/machinery/suit_cycler/pilot,
 /obj/machinery/light,
@@ -15858,16 +15973,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
-"HT" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/structure/closet/walllocker_double/east{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/simulated/floor/carpet,
-/area/stellardelight/deck1/dorms/dorm8)
 "HV" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -16480,29 +16585,6 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/stellardelight/deck1/dorms/dorm8)
-"Ja" = (
-/obj/structure/closet/walllocker_double/west,
-/obj/item/weapon/shovel,
-/obj/item/weapon/shovel,
-/obj/item/weapon/shovel,
-/obj/item/weapon/shovel,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
-/area/stellardelight/deck1/miningequipment)
 "Jb" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -16699,13 +16781,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
-"JB" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/closet/walllocker_double/east,
-/turf/simulated/floor/carpet,
-/area/stellardelight/deck1/dorms/dorm1)
 "JC" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -17596,29 +17671,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
-"Lz" = (
-/obj/structure/closet/walllocker_double/east{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/robot_parts/l_arm,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/weapon/material/knife/machete/hatchet,
-/obj/item/weapon/material/knife/machete/hatchet,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/minihoe,
-/obj/item/inflatable/door,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/weapon/storage/box/botanydisk,
-/obj/item/weapon/storage/box/botanydisk,
-/turf/simulated/floor/tiled/eris,
-/area/rnd/xenobiology/xenoflora)
 "LA" = (
 /obj/structure/cable/pink{
 	icon_state = "1-8"
@@ -17635,26 +17687,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
-"LB" = (
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
-/obj/structure/closet/walllocker_double/east,
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/steel,
-/area/assembly/robotics)
 "LC" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -19287,19 +19319,6 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
-"Pf" = (
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 8
-	},
-/obj/structure/closet/walllocker_double/east{
-	dir = 8;
-	name = "Evidence Storage";
-	pixel_x = -32
-	},
-/obj/item/weapon/storage/box/evidence,
-/obj/item/weapon/storage/box/evidence,
-/turf/simulated/floor/tiled/dark,
-/area/security/security_cell_hallway)
 "Pg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -19478,30 +19497,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
-"PD" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/closet/walllocker_double/north{
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
-	name = "Emergency Cabinet"
-	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/aft)
 "PE" = (
 /obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/milspec,
@@ -20480,13 +20475,6 @@
 "RC" = (
 /turf/simulated/wall/bay/red,
 /area/security/warden)
-"RD" = (
-/obj/structure/closet/walllocker_double/north,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/gateway)
 "RE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21012,15 +21000,13 @@
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to the shuttle bay.";
-	name = "\improper Shuttle Bay";
-	pixel_x = 32
-	},
 /obj/structure/sign/directions/science{
 	dir = 6;
 	pixel_x = 32;
 	pixel_y = -6
+	},
+/obj/structure/sign/directions/shuttle_bay{
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -21057,9 +21043,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to the shuttle bay.";
-	name = "\improper Shuttle Bay";
+/obj/structure/sign/directions/shuttle_bay{
 	pixel_y = -32
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -21553,10 +21537,8 @@
 	pixel_x = -32;
 	pixel_y = 6
 	},
-/obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to the shuttle bay.";
+/obj/structure/sign/directions/shuttle_bay{
 	dir = 10;
-	name = "\improper Shuttle Bay";
 	pixel_x = -32;
 	pixel_y = -6
 	},
@@ -22080,24 +22062,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
-"UO" = (
-/obj/structure/closet/walllocker_double/east{
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
-	name = "Emergency Cabinet"
-	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/security/security_cell_hallway)
 "UP" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -22294,24 +22258,6 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
-"Vk" = (
-/obj/structure/closet/walllocker_double/east{
-	desc = "A wall mounted storage cabinet marked with a cross and warning icon. This seems to contain an assortment of emergency supplies.";
-	name = "Emergency Cabinet"
-	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/effect/floor_decal/milspec/color/emerald/half{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/starboard)
 "Vl" = (
 /obj/machinery/door/window/brigdoor/eastleft{
 	name = "Slime Pen 6";
@@ -24302,14 +24248,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
-"Zm" = (
-/obj/structure/closet/walllocker_double/west,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/turf/simulated/floor/tiled/eris/steel/cargo,
-/area/stellardelight/deck1/miningequipment)
 "Zn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -31871,7 +31809,7 @@ ql
 TP
 CW
 Fx
-zm
+fe
 qk
 aC
 Fy
@@ -32977,7 +32915,7 @@ Sa
 xC
 hR
 ke
-iV
+cL
 Wz
 re
 MI
@@ -33390,7 +33328,7 @@ Je
 YF
 Vv
 Tc
-rS
+eK
 YF
 YF
 KF
@@ -33426,8 +33364,8 @@ dl
 sS
 pR
 rn
-Ja
-Zm
+dC
+dE
 vq
 pR
 aI
@@ -33662,7 +33600,7 @@ WB
 DY
 ZE
 Ku
-RD
+ca
 UY
 nD
 Ku
@@ -33804,7 +33742,7 @@ Ku
 Ku
 Ku
 Ku
-DT
+cc
 ll
 nD
 YM
@@ -34097,7 +34035,7 @@ kU
 ER
 rW
 lC
-HT
+dv
 ER
 EZ
 qX
@@ -34213,7 +34151,7 @@ Ba
 wT
 wT
 wT
-UO
+bC
 yR
 wT
 QC
@@ -34234,7 +34172,7 @@ LJ
 nD
 NR
 Ku
-wL
+cz
 Nf
 wS
 SH
@@ -34949,7 +34887,7 @@ AQ
 bi
 HX
 Gu
-JB
+eg
 bi
 RI
 uw
@@ -35224,7 +35162,7 @@ Ku
 Ku
 Ku
 Ku
-gs
+cx
 nD
 tb
 YM
@@ -35345,7 +35283,7 @@ TE
 CM
 qG
 PO
-Pf
+bp
 wT
 wT
 wT
@@ -35407,7 +35345,7 @@ cs
 LU
 Pz
 qD
-PD
+dX
 KX
 gQ
 HB
@@ -35662,7 +35600,7 @@ Sz
 nf
 Wa
 QM
-dv
+eZ
 nf
 nf
 fr
@@ -36099,7 +36037,7 @@ Wj
 Wj
 Wj
 Wj
-Vk
+cH
 WU
 tw
 Wj
@@ -36820,7 +36758,7 @@ aD
 fs
 Ab
 aM
-zA
+ds
 Dx
 eo
 Dx
@@ -36947,12 +36885,12 @@ dj
 sm
 aD
 JU
-LB
+cP
 nu
 yI
 af
 al
-rz
+cR
 ss
 aD
 bW
@@ -36985,7 +36923,7 @@ wI
 Xt
 UF
 Rm
-Lz
+dM
 RR
 bj
 bD
@@ -37957,7 +37895,7 @@ bD
 bD
 ym
 ym
-hO
+dz
 YW
 bc
 Dx

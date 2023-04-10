@@ -30,7 +30,7 @@
 	melee_damage_lower = 9
 	melee_damage_upper = 15
 
-	movement_cooldown = 0 // Hunters are FAST.
+	movement_cooldown = -2 // Hunters are FAST.
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hunter_spider
 

@@ -233,7 +233,7 @@
 				curblend = BLEND_OVERLAY
 				add = icon(I.icon, I.icon_state, base_icon_dir)
 			else // 'I' is an appearance object.
-				add = getFlatIcon(image(I), I.dir||curdir, curicon, curstate, curblend, FALSE, no_anim)
+				add = getFlatIcon(image(I), curdir, curicon, curstate, curblend, FALSE, no_anim)
 			if(!add)
 				continue
 			// Find the new dimensions of the flat icon to fit the added overlay

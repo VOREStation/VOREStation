@@ -1706,6 +1706,12 @@
 	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
+			//VOREStation Add Start
+			if(text2num(time2text(world.timeofday, "MM")) == 4)
+				if(text2num(time2text(world.timeofday, "DD")) == 1)
+					playsound_local(src,pick(scawwySownds),50, 0)
+					return
+			//VOREStation Add End
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()

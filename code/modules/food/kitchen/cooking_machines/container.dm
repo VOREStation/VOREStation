@@ -82,7 +82,7 @@
 		return
 
 	if (!Adjacent(user))
-		to_chat(user, "You can't reach [src] from here.")
+		to_chat(user, "<span class='filter_notice'>You can't reach [src] from here.</span>")
 		return
 
 	if (!contents.len)

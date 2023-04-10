@@ -25,7 +25,7 @@
 	faction = "space ghost"
 	maxHealth = 50
 	health = 50
-	movement_cooldown = 3.25
+	movement_cooldown = 0
 
 	see_in_dark = 10
 
@@ -137,7 +137,7 @@
 	faction = "space ghost"
 	maxHealth = 5
 	health = 5
-	movement_cooldown = 1
+	movement_cooldown = -1
 
 	see_in_dark = 10
 	alpha = 128

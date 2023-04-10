@@ -12,7 +12,7 @@
 	maxHealth = 125
 	health = 125
 
-	movement_cooldown = 0.5 SECONDS
+	movement_cooldown = -1
 
 	melee_damage_lower = 15
 	melee_damage_upper = 35

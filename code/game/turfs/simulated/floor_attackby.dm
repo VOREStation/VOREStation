@@ -201,7 +201,7 @@
 		return
 	if(!try_deconstruct_tile(W, user))
 		return
-	if(flooring)
+	if(flooring && !flooring.is_plating)
 		return
 	attackby(T, user)
 

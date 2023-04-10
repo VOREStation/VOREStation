@@ -19,6 +19,7 @@
 	entries += list(list("name" = "Name", 				"value" = S.registered_name))
 	entries += list(list("name" = "Photo", 				"value" = "Update"))
 	entries += list(list("name" = "Sex", 				"value" = S.sex))
+	entries += list(list("name" = "Species", 				"value" = S.species))
 	entries += list(list("name" = "Factory Reset",		"value" = "Use With Care"))
 	data["entries"] = entries
 
@@ -119,6 +120,12 @@
 				S.sex = new_sex
 				to_chat(usr, "<span class='notice'>Sex changed to '[new_sex]'.</span>")
 				. = TRUE
+		if("species")
+			var/new_species = sanitize(tgui_input_text(usr,"What species would you like to put on this card?","Agent Card Species", S.species))
+			if(!isnull(new_species) && tgui_status(usr, state) == STATUS_INTERACTIVE)
+				S.species = new_species
+				to_chat(usr, "<span class='notice'>Species changed to '[new_species]'.</span>")
+				. = TRUE
 		if("factoryreset")
 			if(tgui_alert(usr, "This will factory reset the card, including access and owner. Continue?", "Factory Reset", list("No", "Yes")) == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.age = initial(S.age)
@@ -136,6 +143,7 @@
 				S.registered_name = initial(S.registered_name)
 				S.unset_registered_user()
 				S.sex = initial(S.sex)
+				S.species = initial(S.species)
 				S.update_icon()
 				to_chat(usr, "<span class='notice'>All information has been deleted from \the [src].</span>")
 				. = TRUE

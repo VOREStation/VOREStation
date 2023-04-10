@@ -79,8 +79,8 @@
 // Queen verbs.
 /mob/living/carbon/human/proc/lay_egg()
 
-	set name = "Lay Egg (200)"
-	set desc = "Lay an egg to produce huggers to impregnate prey with."
+	set name = "Lay Egg (500)" //Cost is entire queen reserve, to compensate being able to reproduce on it's own
+	set desc = "Lay an egg that will eventually hatch into a new xenomorph larva. Life finds a way."
 	set category = "Abilities"
 
 	if(!config.aliens_allowed)
@@ -88,13 +88,13 @@
 		verbs -= /mob/living/carbon/human/proc/lay_egg
 		return
 
-	if(locate(/obj/structure/alien/egg) in get_turf(src))
+	if(locate(/obj/structure/ghost_pod/automatic/xenomorph_egg) in get_turf(src))
 		to_chat(src, "There's already an egg here.")
 		return
 
-	if(check_alien_ability(200,1,O_EGG))
+	if(check_alien_ability(500,1,O_EGG))
 		visible_message("<span class='alium'><B>[src] has laid an egg!</B></span>")
-		new /obj/structure/alien/egg(loc)
+		new /obj/structure/ghost_pod/automatic/xenomorph_egg(loc)
 
 	return
 
@@ -243,7 +243,7 @@
 
 	if(iswall(targetLoc))
 		targetLoc = get_turf(src)
-	
+
 	var/obj/O
 
 	switch(choice)

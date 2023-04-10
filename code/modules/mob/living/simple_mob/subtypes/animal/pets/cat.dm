@@ -35,7 +35,7 @@ var/list/_cat_default_emotes = list(
 	icon_state = "cat2"
 	item_state = "cat2"
 
-	movement_cooldown = 0.5 SECONDS
+	movement_cooldown = -1
 
 	meat_amount = 1
 	see_in_dark = 6 // Not sure if this actually works.

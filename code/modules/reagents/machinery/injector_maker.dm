@@ -192,7 +192,7 @@
 							to_chat(user, SPAN_WARNING("Not enough autoinjectors! You only have [src.count_small_injector]"))
 							return
 				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),MAX_MESSAGE_LEN,0,0,0)
-				make_injector("large injector", injector_amount, name, material, user)
+				make_injector("small injector", injector_amount, name, material, user)
 				update_icon()
 
 

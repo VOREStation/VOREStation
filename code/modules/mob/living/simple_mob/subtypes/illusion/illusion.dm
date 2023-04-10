@@ -10,7 +10,7 @@
 	shock_resist = 1
 	poison_resist = 1
 
-	movement_cooldown = 0
+	movement_cooldown = -2
 	mob_bump_flag = 0 // If the illusion can't be swapped it will be obvious.
 
 	response_help   = "pushes a hand through"

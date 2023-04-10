@@ -91,7 +91,7 @@
 /obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.is_screwdriver())
 		panel_open = !panel_open
-		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
+		user.visible_message("<span class='filter_notice'>[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].</span>", "<span class='filter_notice'>You [panel_open ? "open" : "close"] the maintenance panel of \the [src].</span>")
 		playsound(src, O.usesound, 50, 1)
 		update_icon()
 		return
@@ -130,11 +130,11 @@
 	else if(istype(O, /obj/item/weapon/gripper)) // Grippers. ~Mechoid.
 		var/obj/item/weapon/gripper/B = O	//B, for Borg.
 		if(!B.wrapped)
-			to_chat(user, "\The [B] is not holding anything.")
+			to_chat(user, "<span class='filter_notice'>\The [B] is not holding anything.</span>")
 			return
 		else
 			var/B_held = B.wrapped
-			to_chat(user, "You use \the [B] to put \the [B_held] into \the [src].")
+			to_chat(user, "<span class='filter_notice'>You use \the [B] to put \the [B_held] into \the [src].</span>")
 		return
 
 	else
@@ -145,7 +145,7 @@
 	if(!emagged)
 		emagged = 1
 		locked = -1
-		to_chat(user, "You short out the product lock on [src].")
+		to_chat(user, "<span class='filter_notice'>You short out the product lock on [src].</span>")
 		return 1
 
 /obj/machinery/smartfridge/proc/find_record(var/obj/item/O)

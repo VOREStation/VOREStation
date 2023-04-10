@@ -48,10 +48,11 @@
 /datum/reagent/ethanol/deathbell/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(dose * strength >= strength) // Early warning
-		M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
-	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
-		M.slurring = max(M.slurring, 30)
+	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
+		if(dose * strength >= strength) // Early warning
+			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
+			M.slurring = max(M.slurring, 30)
 
 /datum/reagent/ethanol/burnout
 	name = "Burnout"
@@ -70,22 +71,23 @@
 /datum/reagent/ethanol/burnout/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	// Deathbell effects.
-	if(dose * strength >= strength)
-		M.make_dizzy(24)
-	if(dose * strength >= strength * 2.5)
-		M.slurring = max(M.slurring, 30)
-	// Simulating heat effects of spice. Without spice.
-	if(alien == IS_DIONA || alien == IS_ALRAUNE)
-		return
-	else if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!H.can_feel_pain())
+	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
+		if(dose * strength >= strength)
+			M.make_dizzy(24)
+		if(dose * strength >= strength * 2.5)
+			M.slurring = max(M.slurring, 30)
+		// Simulating heat effects of spice. Without spice.
+		if(alien == IS_DIONA || alien == IS_ALRAUNE)
 			return
-		else
-			if((dose < 5) && (dose == metabolism || prob(5)))
-				to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
-			if(dose >= 5 && prob(5))
-				M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
+		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(!H.can_feel_pain())
+				return
+			else
+				if((dose < 5) && (dose == metabolism || prob(5)))
+					to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
+				if(dose >= 5 && prob(5))
+					M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
 
 /datum/reagent/ethanol/monstertamer
 	name = "Monster Tamer"
@@ -159,27 +161,28 @@
 /datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(M.species.organic_food_coeff) //it's still food!
-		switch(alien)
-			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
-			if(IS_SKRELL)
-				M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
-			if(IS_TESHARI)
-				M.adjust_nutrition(alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
-			if(IS_UNATHI)
-				M.adjust_nutrition(alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
-				//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
-			//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
-			else
-				M.adjust_nutrition(alt_nutriment_factor * removed)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-			H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-			if (H.feral <=0) //check if they're unferalled
-				H.feral = 0
-				to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
-				log_and_message_admins("is no longer feral.", H)
+	if(!(M.isSynthetic()))
+		if(M.species.organic_food_coeff) //it's still food!
+			switch(alien)
+				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+				if(IS_SKRELL)
+					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
+				if(IS_TESHARI)
+					M.adjust_nutrition(alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
+				if(IS_UNATHI)
+					M.adjust_nutrition(alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
+					//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
+				//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
+				else
+					M.adjust_nutrition(alt_nutriment_factor * removed)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (H.feral <=0) //check if they're unferalled
+					H.feral = 0
+					to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+					log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -216,10 +219,11 @@
 /datum/reagent/ethanol/galacticpanic/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(dose * strength >= strength) // Early warning
-		M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
-	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
-		M.slurring = max(M.slurring, 30)
+	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
+		if(dose * strength >= strength) // Early warning
+			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
+			M.slurring = max(M.slurring, 30)
 
 /datum/reagent/ethanol/bulldog
 	name = "Space Bulldog"
@@ -309,7 +313,9 @@
 
 /datum/reagent/ethanol/russianroulette/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.Stun(2)
+
+	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
+		M.Stun(2)
 
 /datum/reagent/ethanol/lovemaker
 	name = "The Love Maker"
@@ -460,27 +466,28 @@
 /datum/reagent/ethanol/hairoftherat/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(M.species.organic_food_coeff) //it's still food!
-		switch(alien)
-			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
-			if(IS_SKRELL)
-				M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
-			if(IS_TESHARI)
-				M.nutrition += (alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
-			if(IS_UNATHI)
-				M.nutrition += (alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
-				//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
-			//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
-			else
-				M.nutrition += (alt_nutriment_factor * removed)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
-			H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-			if (H.feral <=0) //check if they're unferalled
-				H.feral = 0
-				to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
-				log_and_message_admins("is no longer feral.", H)
+	if(!(M.isSynthetic()))
+		if(M.species.organic_food_coeff) //it's still food!
+			switch(alien)
+				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+				if(IS_SKRELL)
+					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
+				if(IS_TESHARI)
+					M.nutrition += (alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
+				if(IS_UNATHI)
+					M.nutrition += (alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
+					//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
+				//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
+				else
+					M.nutrition += (alt_nutriment_factor * removed)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
+				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (H.feral <=0) //check if they're unferalled
+					H.feral = 0
+					to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+					log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/ethanol/hairoftherat/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()

@@ -12,7 +12,7 @@
 	faction = "panther"
 	maxHealth = 150
 	health = 150
-	movement_cooldown = 2
+	movement_cooldown = -1
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"

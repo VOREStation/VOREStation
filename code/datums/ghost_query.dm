@@ -137,6 +137,14 @@
 	query_sound = 'sound/voice/hiss5.ogg'
 	be_special_flag = BE_ALIEN
 
+/datum/ghost_query/xenomorph_larva
+	role_name = "Xenomorph Larva"
+	question = "A xenomorph larva is ready to hatch from their egg. Would you like to join the hive?"
+	be_special_flag = BE_ALIEN
+	check_bans = list("Xenomorph")
+	cutoff_number = 1
+
+
 /datum/ghost_query/blob
 	role_name = "Blob"
 	question = "A rapidly expanding Blob has just appeared on the facility.  Would you like to play as it?"
@@ -197,4 +205,13 @@
 	question = "A cursed blade has been discovered by a curious explorer. \
 	Would you like to play as the soul imprisoned within?"
 	be_special_flag = BE_CURSEDSWORD
+	cutoff_number = 1
+
+/datum/ghost_query/shipwreck_survivor
+	role_name = "Shipwreck survivor"
+	question = "A person suspended in cryosleep has been discovered by a crewmember \
+	aboard a wrecked spaceship \
+	and they are attempting to open the cryopod.\n \
+	Would you like to play as the occupant? \n \
+	You MUST NOT use your station character!!!"
 	cutoff_number = 1

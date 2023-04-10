@@ -361,6 +361,10 @@
 	mouse_opacity = 2
 	screen_loc = "SOUTHWEST to NORTHEAST"
 
+/obj/screen/click_catcher/Initialize(mapload, ...)
+	. = ..()
+	verbs.Cut()
+
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && istype(usr, /mob/living/carbon))

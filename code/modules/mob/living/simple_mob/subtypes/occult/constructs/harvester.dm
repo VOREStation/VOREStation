@@ -18,7 +18,7 @@
 	attacktext = list("violently stabbed")
 	friendly = list("caresses")
 	organ_names = /decl/mob_organ_names/harvester
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	//	environment_smash = 1	// Whatever this gets renamed to, Harvesters need to break things
 

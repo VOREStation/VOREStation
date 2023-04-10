@@ -6,10 +6,11 @@ import { RankIcon } from './common/RankIcon';
 export const IDCard = (props, context) => {
   const { data } = useBackend(context);
 
-  const { registered_name, sex, age, assignment, fingerprint_hash, blood_type, dna_hash, photo_front } = data;
+  const { registered_name, sex, species, age, assignment, fingerprint_hash, blood_type, dna_hash, photo_front } = data;
 
   const dataIter = [
     { name: 'Sex', val: sex },
+    { name: 'Species', val: species },
     { name: 'Age', val: age },
     { name: 'Blood Type', val: blood_type },
     { name: 'Fingerprint', val: fingerprint_hash },

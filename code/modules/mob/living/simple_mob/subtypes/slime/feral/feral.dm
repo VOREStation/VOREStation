@@ -20,7 +20,7 @@
 	default_pixel_y = -10 // To prevent resetting above var.
 
 	maxHealth = 300
-	movement_cooldown = 10
+	movement_cooldown = -3
 	melee_attack_delay = 0.5 SECONDS
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/pointblank
@@ -93,4 +93,3 @@
 
 	if(L.has_AI()) // Other AIs should react to hostile auras.
 		L.ai_holder.react_to_attack(src)
-

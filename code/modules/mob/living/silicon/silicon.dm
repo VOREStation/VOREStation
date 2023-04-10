@@ -259,14 +259,16 @@
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
-	pose =  sanitize(tgui_input_text(usr, "This is [src]. It is...", "Pose", null))
+	pose =  strip_html_simple(tgui_input_text(usr, "This is [src]. It is...", "Pose", null))
 
 /mob/living/silicon/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC"
 
-	flavor_text =  sanitize(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", null))
+	var/new_flavortext = strip_html_simple(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", null))
+	if(new_flavortext)
+		flavor_text = new_flavortext
 
 /mob/living/silicon/binarycheck()
 	return 1
@@ -348,20 +350,20 @@
 					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)
-			to_chat(src, "<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>")
+			to_chat(src, "<span class='filter_notice'><A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A></span>")
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
 			var/list/alarms = queued_alarms[AH]
 			alarms.Cut()
 
 /mob/living/silicon/proc/raised_alarm(var/datum/alarm/A)
-	to_chat(src, "[A.alarm_name()]!")
+	to_chat(src, "<span class='filter_warning'>[A.alarm_name()]!</span>")
 
 /mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
 		cameratext += "[(cameratext == "")? "" : "|"]<A HREF=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
-	to_chat(src, "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])")
+	to_chat(src, "<span class='filter_warning'>[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])</span>")
 
 
 /mob/living/silicon/proc/is_traitor()

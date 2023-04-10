@@ -29,7 +29,7 @@
 	poison_per_bite = 3
 	poison_type = "chloralhydrate"
 
-	movement_cooldown = 5
+	movement_cooldown = 2
 
 	player_msg = "Upon dying, you will release a swarm of spiderlings or young hunter spiders.<br>\
 	If a spider emerges, you will be placed in control of it."
