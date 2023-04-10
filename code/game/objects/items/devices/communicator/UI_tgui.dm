@@ -210,7 +210,7 @@
 			"ref" = "\ref[comm]",
 		)))
 
-	//Devices that have been messaged or recieved messages from.
+	//Devices that have been messaged or received messages from.
 	for(var/obj/item/device/communicator/comm in im_contacts)
 		if(comm.exonet)
 			im_contacts_ui.Add(list(list(

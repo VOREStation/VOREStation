@@ -189,7 +189,7 @@
 	CHECK_TICK
 
 	var/list/loaded_submap_names = list()
-	var/list/template_groups_used = list() // Used to avoid spawning three seperate versions of the same PoI.
+	var/list/template_groups_used = list() // Used to avoid spawning three separate versions of the same PoI.
 
 	// Now lets start choosing some.
 	while(budget > 0 && overall_sanity > 0)

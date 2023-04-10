@@ -207,7 +207,7 @@
 
 /obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)
 	if (disabledAi)
-		return -1 //Transciever Disabled.
+		return -1 //Transceiver Disabled.
 	return ..(freq, level, 1)
 
 /obj/item/device/radio/headset/heads/rd
@@ -224,13 +224,13 @@
 
 /obj/item/device/radio/headset/heads/hos
 	name = "head of security's headset"
-	desc = "The headset of the hardass who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/hos/alt
 	name = "head of security's bowman headset"
-	desc = "The headset of the hardass who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
@@ -330,7 +330,7 @@
 
 /obj/item/device/radio/headset/mmi_radio/receive_range(freq, level)
 	if (!radio_enabled || istype(src.loc.loc, /mob/living/silicon) || istype(src.loc.loc, /obj/item/organ/internal))
-		return -1 //Transciever Disabled.
+		return -1 //Transceiver Disabled.
 	return ..(freq, level, 1)
 
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)

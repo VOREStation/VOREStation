@@ -356,7 +356,7 @@
 	return parts
 
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
-//It automatically updates damage overlays if necesary
+//It automatically updates damage overlays if necessary
 //It automatically updates health status
 /mob/living/carbon/human/heal_organ_damage(var/brute, var/burn)
 	var/list/obj/item/organ/external/parts = get_damaged_organs(brute,burn)
@@ -371,8 +371,8 @@
 /*
 In most cases it makes more sense to use apply_damage() instead! And make sure to check armour if applicable.
 */
-//Damages ONE external organ, organ gets randomly selected from damagable ones.
-//It automatically updates damage overlays if necesary
+//Damages ONE external organ, organ gets randomly selected from damageable ones.
+//It automatically updates damage overlays if necessary
 //It automatically updates health status
 /mob/living/carbon/human/take_organ_damage(var/brute, var/burn, var/sharp = FALSE, var/edge = FALSE)
 	var/list/obj/item/organ/external/parts = get_damageable_organs()

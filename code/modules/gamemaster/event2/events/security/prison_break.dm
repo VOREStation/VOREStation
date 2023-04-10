@@ -1,5 +1,5 @@
 
-// Type for inheritence.
+// Type for inheritance.
 // It has a null name, so it won't be ran.
 /datum/event2/meta/prison_break
 	chaos = 10
@@ -31,7 +31,7 @@
 
 	return 10 + (door_fixers * 20) + (afflicted_crew * 10) + trapped
 
-// This is overriden to have specific events trigger more often based on who is trapped in where, if applicable.
+// This is overridden to have specific events trigger more often based on who is trapped in where, if applicable.
 /datum/event2/meta/prison_break/proc/get_odds_from_trapped_mobs()
 	return 0
 
@@ -125,7 +125,7 @@
 	var/containment_display_desc = null
 	var/list/areas_to_break = list()
 	var/list/area_types_to_break = null // Area types to include.
-	var/list/area_types_to_ignore = null // Area types to exclude, usually due to undesired inclusion from inheritence.
+	var/list/area_types_to_ignore = null // Area types to exclude, usually due to undesired inclusion from inheritance.
 	var/ignore_blast_doors = FALSE
 
 /datum/event2/event/prison_break/brig

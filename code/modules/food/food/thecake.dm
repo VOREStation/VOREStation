@@ -173,7 +173,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/chaoscakeslice
 	name = "The Chaos Cake Slice"
-	desc = "A slice from The Chaos Cake, it pulses weirdly, as if angry to be seperated from the whole"
+	desc = "A slice from The Chaos Cake, it pulses weirdly, as if angry to be separated from the whole"
 	icon_state = "chaoscake_slice-1"
 
 	center_of_mass = list("x"=16, "y"=10)

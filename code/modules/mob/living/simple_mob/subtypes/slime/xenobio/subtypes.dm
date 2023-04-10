@@ -1,5 +1,5 @@
 // Here are where all the other colors of slime live.
-// They will generally fight each other if not Unified, meaning the xenobiologist has to seperate them.
+// They will generally fight each other if not Unified, meaning the xenobiologist has to separate them.
 
 // Tier 1.
 

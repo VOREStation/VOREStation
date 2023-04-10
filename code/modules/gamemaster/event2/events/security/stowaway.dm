@@ -1,4 +1,4 @@
-// Base type used for inheritence.
+// Base type used for inheritance.
 /datum/event2/meta/stowaway
 	event_class = "stowaway"
 	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_EVERYONE)

@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(cliff_icon_cache)
 
 /*
-Cliffs give a visual illusion of depth by seperating two places while presenting a 'top' and 'bottom' side.
+Cliffs give a visual illusion of depth by separating two places while presenting a 'top' and 'bottom' side.
 
 Mobs moving into a cliff from the bottom side will simply bump into it and be denied moving into the tile,
 where as mobs moving into a cliff from the top side will 'fall' off the cliff, forcing them to the bottom, causing significant damage and stunning them.
@@ -37,7 +37,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
 	plane = TURF_PLANE
 
-	var/icon_variant = null // Used to make cliffs less repeative by having a selection of sprites to display.
+	var/icon_variant = null // Used to make cliffs less repetitive by having a selection of sprites to display.
 	var/corner = FALSE // Used for icon things.
 	var/ramp = FALSE // Ditto.
 	var/bottom = FALSE // Used for 'bottom' typed cliffs, to avoid infinite cliffs, and for icons.

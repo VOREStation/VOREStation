@@ -1241,7 +1241,7 @@
 		throw_alert("weightless", /obj/screen/alert/weightless)
 
 // Tries to turn off things that let you see through walls, like mesons.
-// Each mob does vision a bit differently so this is just for inheritence and also so overrided procs can make the vision apply instantly if they call `..()`.
+// Each mob does vision a bit differently so this is just for inheritance and also so overridden procs can make the vision apply instantly if they call `..()`.
 /mob/living/proc/disable_spoiler_vision()
 	handle_vision()
 

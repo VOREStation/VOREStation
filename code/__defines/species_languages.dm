@@ -1,8 +1,8 @@
 // Species flags.
-#define NO_MINOR_CUT      	0x1	// Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
+#define NO_MINOR_CUT      	0x1	// Can step on broken glass with no ill-effects. Either thick skin (Diona), cut resistant (slimes) or incorporeal (shadows)
 #define IS_PLANT          	0x2	// Is a treeperson.
 #define NO_SCAN           	0x4	// Cannot be scanned in a DNA machine/genome-stolen.
-#define NO_PAIN           	0x8	// Cannot suffer halloss/recieves deceptive health indicator.
+#define NO_PAIN           	0x8	// Cannot suffer halloss/receives deceptive health indicator.
 #define NO_SLIP           	0x10	// Cannot fall over.
 #define NO_POISON         	0x20	// Cannot not suffer toxloss.
 #define NO_EMBED		0x40	// Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.
@@ -26,16 +26,16 @@
 
 // Species allergens
 #define ALLERGEN_MEAT		0x1		// Skrell won't like this.
-#define ALLERGEN_FISH		0x2		// Separate for completion's sake. Still bad for skrell.
+#define ALLERGEN_FISH		0x2		// Separate for completion's sake. Still bad for Skrell.
 #define ALLERGEN_FRUIT		0x4		// An apple a day only keeps the doctor away if they're allergic.
 #define ALLERGEN_VEGETABLE	0x8		// Taters 'n' carrots. Potato allergy is a thing, apparently.
 #define ALLERGEN_GRAINS		0x10	// Wheat, oats, etc.
 #define ALLERGEN_BEANS		0x20	// The musical fruit! Includes soy.
 #define ALLERGEN_SEEDS		0x40	// Hope you don't have a nut allergy.
-#define ALLERGEN_DAIRY		0x80	// Lactose intolerance, ho! Also bad for skrell.
+#define ALLERGEN_DAIRY		0x80	// Lactose intolerance, ho! Also bad for Skrell.
 #define ALLERGEN_FUNGI		0x100	// Delicious shrooms.
-#define ALLERGEN_COFFEE		0x200	// Mostly here for tajara.
-#define ALLERGEN_SUGARS		0x400	// For unathi-like reactions
+#define ALLERGEN_COFFEE		0x200	// Mostly here for Tajara.
+#define ALLERGEN_SUGARS		0x400	// For Unathi-like reactions
 #define ALLERGEN_EGGS		0x800	// For Skrell eggs allergy
 #define ALLERGEN_STIMULANT	0x1000	// Stimulants are what makes the Tajaran heart go ruh roh - not just coffee!
 

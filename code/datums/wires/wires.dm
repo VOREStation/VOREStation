@@ -80,7 +80,7 @@
 		tgui_interact(user)
 
 /**
- * Base proc, intended to be overriden. Wire datum specific checks you want to run before the TGUI is shown to the user should go here.
+ * Base proc, intended to be overridden. Wire datum specific checks you want to run before the TGUI is shown to the user should go here.
  */
 /datum/wires/proc/interactable(mob/user)
 	return TRUE
@@ -281,7 +281,7 @@
 /**
  * Gets the wire associated with the color passed in.
  *
- * Arugments:
+ * Arguments:
  * * color - a wire color.
  */
 /datum/wires/proc/get_wire(color)
@@ -290,7 +290,7 @@
 /**
  * Determines if the passed in wire is cut or not. Returns TRUE if it's cut, FALSE otherwise.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
 /datum/wires/proc/is_cut(wire)
@@ -299,7 +299,7 @@
 /**
  * Determines if the wire associated with the passed in color, is cut or not. Returns TRUE if it's cut, FALSE otherwise.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire color.
  */
 /datum/wires/proc/is_color_cut(color)
@@ -314,7 +314,7 @@
 /**
  * Cut or mend a wire. Calls `on_cut()`.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
 /datum/wires/proc/cut(wire)
@@ -328,7 +328,7 @@
 /**
  * Cut the wire which corresponds with the passed in color.
  *
- * Arugments:
+ * Arguments:
  * * color - a wire color.
  */
 /datum/wires/proc/cut_color(color)
@@ -350,10 +350,10 @@
 /**
  * Proc called when any wire is cut.
  *
- * Base proc, intended to be overriden.
+ * Base proc, intended to be overridden.
  * Place an behavior you want to happen when certain wires are cut, into this proc.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire define, NOT color. For example 'WIRE_ELECTRIFY'.
  * * mend - TRUE if we're mending the wire. FALSE if we're cutting.
  */
@@ -363,7 +363,7 @@
 /**
  * Pulses the given wire. Calls `on_pulse()`.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
 /datum/wires/proc/pulse(wire)
@@ -374,7 +374,7 @@
 /**
  * Pulses the wire associated with the given color.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire color.
  */
 /datum/wires/proc/pulse_color(color)
@@ -383,10 +383,10 @@
 /**
  * Proc called when any wire is pulsed.
  *
- * Base proc, intended to be overriden.
+ * Base proc, intended to be overridden.
  * Place behavior you want to happen when certain wires are pulsed, into this proc.
  *
- * Arugments:
+ * Arguments:
  * * wire - a wire define, NOT color. For example 'WIRE_ELECTRIFY'.
  */
 /datum/wires/proc/on_pulse(wire)
@@ -397,7 +397,7 @@
  *
  * Searches through the `assemblies` list for the wire that the signaler is attached to. Pulses the wire when it's found.
  *
- * Arugments:
+ * Arguments:
  * * S - the attached signaler receiving the signal.
  */
 /datum/wires/proc/pulse_assembly(obj/item/device/assembly/signaler/S)

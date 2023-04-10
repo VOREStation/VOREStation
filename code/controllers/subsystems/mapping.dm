@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(mapping)
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/datum/map_template/template as anything in subtypesof(/datum/map_template))
-		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
+		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritance.
 			continue
 		template = new template()
 		map_templates[template.name] = template

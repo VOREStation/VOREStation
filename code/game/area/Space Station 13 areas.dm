@@ -2345,7 +2345,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/aisat_interior
 	name = "\improper AI Satellite"
 	icon_state = "ai"
-	ambience = AMBIENCE_AI // The lack of inheritence hurts my soul.
+	ambience = AMBIENCE_AI // The lack of inheritance hurts my soul.
 
 /area/AIsatextFP
 	name = "\improper AI Sat Ext"

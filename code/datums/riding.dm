@@ -230,8 +230,8 @@
 	only_one_driver = TRUE // Keep your hands to yourself back there!
 
 /datum/riding/snowmobile/get_offsets(pass_index) // list(dir = x, y, layer)
-	var/H = 3 // Horizontal seperation.
-	var/V = 2 // Vertical seperation.
+	var/H = 3 // Horizontal separation.
+	var/V = 2 // Vertical separation.
 	var/O = 2 // Vertical offset.
 	switch(pass_index)
 		if(1) // Person on front.

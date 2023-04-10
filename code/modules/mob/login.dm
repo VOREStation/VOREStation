@@ -71,7 +71,7 @@
 	var/status_enabled = client.is_preference_enabled(/datum/client_preference/status_indicators)
 	plane_holder.set_vis(VIS_STATUS, status_enabled)
 
-	//set macro to normal incase it was overriden (like cyborg currently does)
+	//set macro to normal incase it was overridden (like cyborg currently does)
 	client.set_hotkeys_macro("macro", "hotkeymode")
 
 	if(!client.tooltips)

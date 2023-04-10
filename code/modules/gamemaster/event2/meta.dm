@@ -4,7 +4,7 @@
 // The code for actually executing an event should go inside the event object instead.
 /datum/event2/meta
 	// Name used for organization, shown in the debug verb for the GM system.
-	// If null, the meta event will be discarded when the GM system initializes, so it is safe to use nameless subtypes for inheritence.
+	// If null, the meta event will be discarded when the GM system initializes, so it is safe to use nameless subtypes for inheritance.
 	var/name = null
 
 	// If FALSE, the GM system won't pick this.
@@ -37,7 +37,7 @@
 
 	// The type path to the event associated with this meta object.
 	// When the GM chooses this event, a new instance is made.
-	// Seperate instances allow for multiple concurrent events without sharing state, e.g. two blobs.
+	// Separate instances allow for multiple concurrent events without sharing state, e.g. two blobs.
 	var/event_type = null
 
 

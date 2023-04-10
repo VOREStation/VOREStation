@@ -27,7 +27,7 @@
 
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user)
 	. = ..()
-	. += "It is currently in [mode ? "transmitting" : "recieving"] mode."
+	. += "It is currently in [mode ? "transmitting" : "receiving"] mode."
 	. += "Spatial rearrangement is [dropnoms_active ? "active" : "inactive"]."
 	if(Adjacent(user))
 		. += "It has [scanmod ? scanmod : "no scanner module"] installed."

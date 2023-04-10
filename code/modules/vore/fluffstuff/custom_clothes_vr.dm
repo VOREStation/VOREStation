@@ -154,7 +154,7 @@
 
 //Unknown. Please check records from the forums.
 /obj/item/clothing/under/suit_jacket/female/fluff/miqote
-	name = "Miqo'te Seperates"
+	name = "Miqo'te Separates"
 	desc = "This two-part set of clothing is very popular on the planet Hydaelyn. While made of very robust materials, its usefulness as armor is negated by the exposed midriff."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'

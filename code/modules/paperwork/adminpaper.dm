@@ -25,7 +25,7 @@
 	//clear first
 	interactions = null
 
-	//Snapshot is crazy and likes putting each topic hyperlink on a seperate line from any other tags so it's nice and clean.
+	//Snapshot is crazy and likes putting each topic hyperlink on a separate line from any other tags so it's nice and clean.
 	interactions += "<HR><center><font size= \"1\">The fax will transmit everything above this line</font><br>"
 	interactions += "<A href='?src=\ref[src];[HrefToken()];confirm=1'>Send fax</A> "
 	interactions += "<A href='?src=\ref[src];[HrefToken()];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "

@@ -140,7 +140,7 @@
 				return FBP_POSI
 			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/robot))
 				return FBP_DRONE
-			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi)) // This needs to come last because inheritence.
+			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi)) // This needs to come last because inheritance.
 				return FBP_CYBORG
 
 	return FBP_NONE

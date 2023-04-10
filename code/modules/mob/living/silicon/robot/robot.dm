@@ -1234,9 +1234,9 @@
 		G.drop_item_nm()
 
 /mob/living/silicon/robot/disable_spoiler_vision()
-	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY)) // Whyyyyyyyy have seperate defines.
+	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY)) // Whyyyyyyyy have separate defines.
 		var/i = 0
-		// Borg inventory code is very . . interesting and as such, unequiping a specific item requires jumping through some (for) loops.
+		// Borg inventory code is very . . interesting and as such, unequipping a specific item requires jumping through some (for) loops.
 		var/current_selection_index = get_selected_module() // Will be 0 if nothing is selected.
 		for(var/thing in list(module_state_1, module_state_2, module_state_3))
 			i++

@@ -341,7 +341,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	handle_lightning()
 
 // This gets called to do lightning periodically.
-// There is a seperate function to do the actual lightning strike, so that badmins can play with it.
+// There is a separate function to do the actual lightning strike, so that badmins can play with it.
 /datum/weather/virgo4/storm/proc/handle_lightning()
 	if(world.time < next_lightning_strike)
 		return // It's too soon to strike again.

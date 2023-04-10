@@ -1,5 +1,5 @@
 // A fluff structure for certain PoIs involving communications.
-// It makes audible sounds, generally in morse code.
+// It makes audible sounds, generally in Morse code.
 /obj/structure/prop/transmitter
 	name = "transmitter"
 	desc = "A machine that appears to be transmitting a message somewhere else. It sounds like it's on a loop."

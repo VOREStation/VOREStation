@@ -471,7 +471,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/dark_blue
 
-// This iterates over a ZAS zone's contents, so that things seperated in other zones aren't subjected to the temperature drop.
+// This iterates over a ZAS zone's contents, so that things separated in other zones aren't subjected to the temperature drop.
 /decl/chemical_reaction/instant/slime/dark_blue_cold_snap/on_reaction(var/datum/reagents/holder)
 	var/turf/simulated/T = get_turf(holder.my_atom)
 	if(!T) // Nullspace lacks zones.

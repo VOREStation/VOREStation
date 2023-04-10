@@ -108,7 +108,7 @@
 	if(!access_to_check) // No required_access, allow it.
 		return 1
 
-	// Admin override - allows operation of any computer as aghosted admin, as if you had any required access.
+	// Admin override - allows operation of any computer as a ghosted admin, as if you had any required access.
 	if(istype(user, /mob/observer/dead) && check_rights(R_ADMIN|R_EVENT, 0, user))
 		return 1
 
@@ -133,7 +133,7 @@
 		return computer.get_header_data()
 	return list()
 
-// This is performed on program startup. May be overriden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
+// This is performed on program startup. May be overridden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
 // When implementing new program based device, use this to run the program.
 /datum/computer_file/program/proc/run_program(var/mob/living/user)
 	if(can_run(user, 1) || !requires_access_to_run)

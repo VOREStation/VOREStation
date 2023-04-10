@@ -165,7 +165,7 @@
 
 /obj/item/integrated_circuit/list/jointext
 	name = "join text circuit"
-	desc = "This circuit will add all elements of a list into one string, seperated by a character."
+	desc = "This circuit will add all elements of a list into one string, separated by a character."
 	extended_desc = "Default settings will encode the entire list into a string."
 	inputs = list(
 		"list to join" = IC_PINTYPE_LIST,//

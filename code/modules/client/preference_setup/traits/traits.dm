@@ -192,7 +192,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 	return TRUE
 
 // Creates a description, if one doesn't exist.
-// This one is for inheritence, and so doesn't do anything.
+// This one is for inheritance, and so doesn't do anything.
 /datum/trait/proc/generate_desc()
 	return desc
 

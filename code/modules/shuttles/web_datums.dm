@@ -1,4 +1,4 @@
-// This file actually has four seperate datums.
+// This file actually has four separate datums.
 
 /**********
  * Routes *

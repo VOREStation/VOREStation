@@ -334,7 +334,7 @@
 	for(var/datum/material/req_mat as anything in mats) //Loop through all required materials
 		var/imat = req_mat
 		if(!istype(req_mat))
-			req_mat = GET_MATERIAL_REF(req_mat) //Get the ref if necesary
+			req_mat = GET_MATERIAL_REF(req_mat) //Get the ref if necessary
 		if(!materials[req_mat]) //Do we have the resource?
 			return FALSE //Can't afford it
 		var/amount_required = mats[imat] * multiplier

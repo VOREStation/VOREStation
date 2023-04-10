@@ -423,7 +423,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	<br><br>\
 	It should be noted that the findings in this group appear to conflict heavily with what is \
 	known about the Singularitarians, giving some credence towards these objects belonging to a \
-	seperate precursor. As such, the findings have been partitioned inside this scanner to this \
+	separate precursor. As such, the findings have been partitioned inside this scanner to this \
 	group, labeled Precursor Group Alpha."
 	value = CATALOGUER_REWARD_TRIVIAL
 	unlocked_by_any = list(/datum/category_item/catalogue/anomalous/precursor_a)

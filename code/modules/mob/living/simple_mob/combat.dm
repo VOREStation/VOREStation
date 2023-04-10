@@ -23,7 +23,7 @@
 		melee_post_animation(A)
 
 // This does the actual attack.
-// This is a seperate proc for the purposes of attack animations.
+// This is a separate proc for the purposes of attack animations.
 // A is the thing getting attacked, T is the turf A is/was on when attack_target was called.
 /mob/living/simple_mob/proc/do_attack(atom/A, turf/T)
 	face_atom(A)

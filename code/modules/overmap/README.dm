@@ -13,7 +13,7 @@ Used to build overmap in beginning, has basic information needed to create overm
 Its name and icon (if non-standard) vars will be applied to resulting overmap object.
 'mapy' and 'mapx' vars are optional, sector will be assigned random overmap coordinates if they are not set.
 Has two important vars:
-	obj_type	-	type of overmap object it spawns. Could be overriden for custom overmap objects.
+	obj_type	-	type of overmap object it spawns. Could be overridden for custom overmap objects.
 	landing_area -	type of area used as inbound shuttle landing, null if no shuttle landing area.
 
 Object could be placed anywhere on zlevel. Should only be placed on zlevel that should appear on overmap as a separate entitety.
@@ -26,12 +26,12 @@ Overmap object
 Represents a zlevel on the overmap. Spawned by metaobjects at the startup.
 	var/area/shuttle/shuttle_landing - keeps a reference to the area of where inbound shuttles should land
 
--CanPass should be overriden for access restrictions
--Crossed/Uncrossed can be overriden for applying custom effects.
+-CanPass should be overridden for access restrictions
+-Crossed/Uncrossed can be overridden for applying custom effects.
 Remember to call ..() in children, it updates ship's current sector.
 
 subtype /ship of this object represents spacefaring vessels.
-It has 'current_sector' var that keeps refernce to, well, sector ship currently in.
+It has 'current_sector' var that keeps reference to, well, sector ship currently in.
 
 *************************************************************
 Helm console
@@ -40,7 +40,7 @@ Helm console
 On creation console seeks a ship overmap object corresponding to this zlevel and links it.
 Clicking with empty hand on it starts steering, Cancel-Camera-View stops it.
 Helm console relays movement of mob to the linked overmap object.
-Helm console currently has no interface. All travel happens instanceously too.
+Helm console currently has no interface. All travel happens instantaneously too.
 Sector shuttles are not supported currently, only ship shuttles.
 
 *************************************************************
@@ -48,8 +48,8 @@ Exploration shuttle terminal
 *************************************************************
 A generic shuttle controller.
 Has a var landing_type defining type of area shuttle should be landing at.
-On initalizing, checks for a shuttle corresponding to this zlevel, and creates one if it's not there.
-Changes desitnation area depending on current sector ship is in.
+On initializing, checks for a shuttle corresponding to this zlevel, and creates one if it's not there.
+Changes destination area depending on current sector ship is in.
 Currently updating is called in attack_hand(), until a better place is found.
 Currently no modifications were made to interface to display availability of landing area in sector.
 
@@ -66,7 +66,7 @@ Guide to how make new sector
 0.Map
 Remember to define shuttle areas if you want sector be accessible via shuttles.
 Currently there are no other ways to reach sectors from ships.
-In examples, 4x6 shuttle area is used. In case of shuttle area being too big, it will apear in bottom left corner of it.
+In examples, 4x6 shuttle area is used. In case of shuttle area being too big, it will appear in bottom left corner of it.
 
 Remember to put a helm console and engine control console on ship maps.
 Ships need engines to move. Currently there are only thermal engines.

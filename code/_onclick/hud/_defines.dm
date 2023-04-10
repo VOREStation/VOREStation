@@ -15,10 +15,10 @@
 
 #define ui_entire_screen "WEST,SOUTH to EAST,NORTH"
 
-//Lower left, persistant menu
+//Lower left, persistent menu
 #define ui_inventory "WEST:6,SOUTH:5"
 
-//Lower center, persistant menu
+//Lower center, persistent menu
 #define ui_sstore1 "WEST+2:10,SOUTH:5"
 #define ui_id "WEST+3:12,SOUTH:5"
 #define ui_belt "WEST+4:14,SOUTH:5"
@@ -49,7 +49,7 @@
 #define ui_construct_pull "EAST-1:28,SOUTH+1:10" //above the zone_sel icon
 #define ui_pai_comms "EAST-1:28,SOUTH+1:5"
 
-//Lower right, persistant menu
+//Lower right, persistent menu
 #define ui_dropbutton "EAST-4:22,SOUTH:5"
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_pull_resist "EAST-2:26,SOUTH+1:7"

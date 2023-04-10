@@ -1,6 +1,6 @@
 // A simple datum that just holds many lists of lines for mobs to pick from.
 // This is its own datum in order to be able to have different types of mobs be able to use the same lines if desired,
-// even when inheritence wouldn't be able to do so.
+// even when inheritance wouldn't be able to do so.
 
 // Also note this also contains emotes, despite its name.
 // and now sounds because its probably better that way.

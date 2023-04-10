@@ -48,7 +48,7 @@
 				B.emag_act(1)
 
 	// Messaging server spam filters.
-	// This might be better served as a seperate event since it seems more like a hacker attack than a natural occurance.
+	// This might be better served as a separate event since it seems more like a hacker attack than a natural occurrence.
 	if(message_servers)
 		for(var/obj/machinery/message_server/MS in message_servers)
 			if(MS.z in get_location_z_levels())

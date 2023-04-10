@@ -125,8 +125,8 @@
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
-// It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
-// Also its nice to have these things seperated.
+// It is in a separate place to avoid an infinite loop situation with dragging mobs dragging each other.
+// Also its nice to have these things separated.
 /mob/living/carbon/human/proc/calculate_item_encumbrance()
 	if(shoes)	// Shoes can make you go faster.
 		if(!buckled || (buckled && istype(buckled, /obj/machinery/power/rtg/reg)))
@@ -138,7 +138,7 @@
 		. += I.slowdown
 
 	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
-	// This is done seperately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
+	// This is done separately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
 	for(var/obj/item/I in list(r_hand, l_hand) )
 		. += max(I.slowdown, 0)
 

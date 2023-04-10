@@ -110,7 +110,7 @@
 	dat += "</body></html>"
 	return dat.Join()
 
-// Used to show the full version of feedback in a seperate window.
+// Used to show the full version of feedback in a separate window.
 /datum/managed_browser/feedback_viewer/proc/display_big_feedback(author, text)
 	var/list/dat = list("<html><body>")
 	dat += replacetext(text, "\n", "<br>")

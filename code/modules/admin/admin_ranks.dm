@@ -13,7 +13,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	//load text from file
 	var/list/Lines = file2list("config/admin_ranks.txt")
 
-	//process each line seperately
+	//process each line separately
 	for(var/line in Lines)
 		if(!length(line))				continue
 		if(copytext(line,1,2) == "#")	continue
@@ -75,7 +75,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		//load text from file
 		var/list/Lines = file2list("config/admins.txt")
 
-		//process each line seperately
+		//process each line separately
 		for(var/line in Lines)
 			if(!length(line))				continue
 			if(copytext(line,1,2) == "#")	continue

@@ -77,7 +77,7 @@
 	special_attack_max_range = 4
 	special_attack_cooldown = 1 MINUTE
 
-	// Players have 2 seperate cooldowns for these, while the AI must choose one. Both respect special_attack_cooldown
+	// Players have 2 separate cooldowns for these, while the AI must choose one. Both respect special_attack_cooldown
 	var/last_strike_time = 0
 	var/last_flash_time = 0
 
@@ -105,7 +105,7 @@
 /mob/living/simple_mob/animal/sif/kururak/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.)
-		if(issilicon(L))	// Metal things are usually reflective, or in general aggrivating.
+		if(issilicon(L))	// Metal things are usually reflective, or in general aggravating.
 			return FALSE
 		if(ishuman(L))	// Might be metal, but they're humanoid shaped.
 			var/mob/living/carbon/human/H = L

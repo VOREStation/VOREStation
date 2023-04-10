@@ -23,7 +23,7 @@
 	if(isPlayerLevel(T.z))
 		new /obj/item/mecha_parts/mecha_tracking(src)
 
-/*	// One horrific bastardization of glorious inheritence dead. A billion to go. ~Mech
+/*	// One horrific bastardization of glorious inheritance dead. A billion to go. ~Mech
 /obj/mecha/medical/mechturn(direction)
 	set_dir(direction)
 	playsound(src,'sound/mecha/mechmove01.ogg',40,1)

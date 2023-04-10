@@ -1,5 +1,5 @@
 GLOBAL_VAR_CONST(MAX_CHICKENS, 50)	// How many chickens CAN we have?
-GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
+GLOBAL_VAR_INIT(chicken_count, 0)	// How many chickens DO we have?
 
 /mob/living/simple_mob/animal/passive/chicken
 	name = "chicken"

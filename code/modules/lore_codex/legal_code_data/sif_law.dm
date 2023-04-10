@@ -20,7 +20,7 @@
 /datum/lore/codex/category/law_minor_violations
 	name = "Minor Violations (Law)"
 	data = "Here is a list of the less severe violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
-	is required to be sent within 24 hours of a violation being comitted, for minor violations listed here."
+	is required to be sent within 24 hours of a violation being committed, for minor violations listed here."
 	children = list(
 		/datum/lore/codex/page/law/theft,
 		/datum/lore/codex/page/law/assault,
@@ -35,7 +35,7 @@
 /datum/lore/codex/page/law/assault/add_content()
 	name = "Assault"
 	definition = "To threaten use of physical force against someone while also having the capability and/or intent to carry out that threat."
-	suggested_punishments = "Seperation of offender from the threatened person.  Brig time of 10 minutes for first offense.  \
+	suggested_punishments = "Separation of offender from the threatened person.  Brig time of 10 minutes for first offense.  \
 	Repeat offenders can be brigged for up to (10 minutes times number of previous assault charges).  Demotion at discretion of Superior."
 	notes = "Not to be confused with [quick_link("Battery")], which covers actual physical injury. The threat must be viable and serious; \
 	two people threatening to punch each other out over comms wouldn't fall under this."
@@ -150,7 +150,7 @@
 	definition = "Stealing money that is entrusted to you by a corporation or person."
 	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled funds.  Fax Central Command and VirGov."
 	notes = "This includes funneling Departmental, Facility, or Crew funds into the offender's account.  It also includes pocketing \
-	transactions directly that are meant to go to a seperate account."
+	transactions directly that are meant to go to a separate account."
 	mandated = TRUE
 
 /datum/lore/codex/page/law/excessive_force/add_content()
@@ -168,7 +168,7 @@
 	definition = "To kill a sapient being without intent."
 	suggested_punishments = "Hold until Transfer, if unjustified.  Fax VirGov."
 	notes = "Includes provoked manslaughter, negligent manslaughter, and impassioned killing.  The important distinction between this \
-	and [quick_link("Murder")] is intent.  Manslaughter can be justified if force was nessecary and it was intented to prevent further loss of life or \
+	and [quick_link("Murder")] is intent.  Manslaughter can be justified if force was necessary and it was intended to prevent further loss of life or \
 	grievous injury to self or others, however persons involved in the kill will still be required to answer to higher legal authority \
 	after the shift."
 	mandated = TRUE

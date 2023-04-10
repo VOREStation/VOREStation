@@ -66,7 +66,7 @@ default behaviour is:
 				now_pushing = 0
 				return
 
-		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
+		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being separated from their puller
 		var/can_swap = 1
 		if(loc.density || tmob.loc.density)
 			can_swap = 0
@@ -253,7 +253,7 @@ default behaviour is:
 	// Will move our mob (probably)
 	. = ..() // Moved() called at this point if successful
 
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1) //seperated from our puller and not in the middle of a diagonal move
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1) //separated from our puller and not in the middle of a diagonal move
 		pulledby.stop_pulling()
 
 	if(s_active && !(s_active in contents) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.

@@ -67,7 +67,7 @@
 		for(var/mob/M in listening)
 			M.hear_holopad_talk(message_pieces, verb, src)
 		for(var/obj/O in listening_obj)
-			if(O == T) //Don't recieve your own speech
+			if(O == T) //Don't receive your own speech
 				continue
 			O.hear_talk(src, message_pieces, verb)
 		/*Radios "filter out" this conversation channel so we don't need to account for them.

@@ -126,7 +126,7 @@
 
 /*
  * Lombardi Revolvers
- * 		Use to be detective revolvers until seperated
+ * 		Use to be detective revolvers until separated
  */
 /obj/item/weapon/gun/projectile/revolver/lombardi
 	name = "Lombardi Buzzard"
@@ -140,7 +140,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/lombardi/gold
 	name = "Lombardi Deluxe 2502"
-	desc = "A sweet looking revolver that is deocrated with false gold and silver plating. Favored among by gamblers and criminals alike. Uses .357 rounds."
+	desc = "A sweet looking revolver that is decorated with false gold and silver plating. Favored among by gamblers and criminals alike. Uses .357 rounds."
 	icon_state = "lombardi_gold"
 
 /*

@@ -16,7 +16,7 @@
 
 // Proc: adjust_instability()
 // Parameters: 0
-// Description: Does nothing, because inheritence.
+// Description: Does nothing, because inheritance.
 /mob/living/proc/adjust_instability(var/amount)
 	instability = between(0, round(instability + amount, TECHNOMANCER_INSTABILITY_PRECISION), 200)
 

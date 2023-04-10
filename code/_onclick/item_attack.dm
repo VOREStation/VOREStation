@@ -15,7 +15,7 @@ item/attack() generates attack logs, sets click cooldown and calls the mob's att
 
 Item Hit Effects:
 
-item/apply_hit_effect() can be overriden to do whatever you want. However "standard" physical damage based weapons should make use of the target mob's hit_with_weapon() proc to
+item/apply_hit_effect() can be overridden to do whatever you want. However "standard" physical damage based weapons should make use of the target mob's hit_with_weapon() proc to
 avoid code duplication. This includes items that may sometimes act as a standard weapon in addition to having other effects (e.g. stunbatons on harm intent).
 */
 
@@ -30,7 +30,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
  *
  * Arguments:
  * * atom/A - The atom about to be hit
- * * mob/living/user - The mob doing the htting
+ * * mob/living/user - The mob doing the hitting
  * * params - click params such as alt/shift etc
  *
  * See: [/obj/item/proc/melee_attack_chain]
@@ -70,7 +70,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return I.attack(src, user, user.zone_sel.selecting, attack_modifier)
 
 // Used to get how fast a mob should attack, and influences click delay.
-// This is just for inheritence.
+// This is just for inheritance.
 /mob/proc/get_attack_speed()
 	return DEFAULT_ATTACK_COOLDOWN
 

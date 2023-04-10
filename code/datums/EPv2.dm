@@ -12,7 +12,7 @@ Version 1 never existed.
 To set up the exonet link, define a variable on your desired atom it is like this;
 	var/datum/exonet_protocol/exonet = null
 Afterwards, before you want to do networking, call exonet = New(src), then exonet.make_address(string), and give it a string to hash into the new IP.
-The reason it needs a string is so you can have the addresses be persistant, assuming no-one already took it first.
+The reason it needs a string is so you can have the addresses be persistent, assuming no-one already took it first.
 
 When you're no longer wanting to use the address and want to free it up, like when you want to Destroy() it, you need to call remove_address()
 
@@ -47,7 +47,7 @@ var/global/list/all_exonet_connections = list()
 
 // Proc: make_address()
 // Parameters: 1 (string - used to make into a hash that will be part of the new address)
-// Description: Allocates a new address based on the string supplied.  It results in consistant addresses for each round assuming it is not already taken..
+// Description: Allocates a new address based on the string supplied.  It results in consistent addresses for each round assuming it is not already taken..
 /datum/exonet_protocol/proc/make_address(var/string)
 	if(string)
 		var/new_address = null
@@ -118,7 +118,7 @@ var/global/list/all_exonet_connections = list()
 // Proc: send_message()
 // Parameters: 3 (target_address - the desired address to send the message to, data_type - text stating what the content is meant to be used for,
 // 		content - the actual 'message' being sent to the address)
-// Description: Sends the message to target_address, by calling receive_message() on the desired datum.  Returns true if the message is recieved.
+// Description: Sends the message to target_address, by calling receive_message() on the desired datum.  Returns true if the message is received.
 /datum/exonet_protocol/proc/send_message(var/target_address, var/data_type, var/content)
 	if(!address)
 		return FALSE

@@ -6,7 +6,7 @@
 	var/id = "reagent"
 	var/description = "A non-descript chemical."
 	var/taste_description = "bitterness"
-	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
+	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticeable
 	var/datum/reagents/holder = null
 	var/reagent_state = SOLID
 	var/list/data = null
@@ -27,7 +27,7 @@
 	var/affects_robots = 0	// Does this chem process inside a Synth?
 
 	var/allergen_type		// What potential allergens does this contain?
-	var/allergen_factor = 2	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
+	var/allergen_factor = 2	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple separate reagents.
 
 	var/cup_icon_state = null
 	var/cup_name = null

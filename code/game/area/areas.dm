@@ -19,7 +19,7 @@
 
 	var/debug = 0
 	var/requires_power = 1
-	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
+	var/always_unpowered = 0	//this gets overridden to 1 for space in area/New()
 
 	// Power channel status - Is it currently energized?
 	var/power_equip = TRUE
@@ -59,7 +59,7 @@
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
-	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
+	return INITIALIZE_HINT_LATELOAD // Areas traditionally are initialized AFTER other atoms.
 
 /area/LateInitialize()
 	if(!requires_power || !apc)

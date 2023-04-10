@@ -30,14 +30,14 @@ Portals also have some limitations to be aware of when mapping. Some of these ar
 	- Sounds currently are not carried across portals.
 	- Mismatched lighting between each portal end can make the portal look obvious.
 	- Portals look weird when observing as a ghost, or otherwise when able to see through walls. Meson vision will also spoil the illusion.
-	- Walls that change icons based on neightboring walls can give away that a portal is nearby if both sides don't have a similar transition.
+	- Walls that change icons based on neighboring walls can give away that a portal is nearby if both sides don't have a similar transition.
 	- Projectiles that pass through portals will generally work as intended, however aiming and firing upon someone on the other side of a portal
 	  will likely be weird due to the click targeting the real position of the thing clicked instead of the apparent position.
 	  Thrown objects suffer a similar fate.
 	- The tiles that are visually shown across a portal are determined based on visibility at the time of portal initialization,
 	  and currently don't update, meaning that opacity changes are not reflected, e.g. a wall is deconstructed, or an airlock is opened.
-	- There is currently a small but somewhat noticable pause in mob movement when moving across a portal,
-	  as a result of the mob's glide animation being inturrupted by a teleport.
+	- There is currently a small but somewhat noticeable pause in mob movement when moving across a portal,
+	  as a result of the mob's glide animation being interrupted by a teleport.
 	- Gas is not transferred through portals, and ZAS is oblivious to them.
 
 A lot of those limitations can potentially be solved with some more work. Otherwise, portals work best in static environments like Points of Interest,

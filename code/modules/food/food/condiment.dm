@@ -229,7 +229,7 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/on_reagent_change()
 	return
 
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker	//Seperate from above since it's a small shaker rather then
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker	//Separate from above since it's a small shaker rather then
 	name = "salt shaker"											//	a large one.
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"

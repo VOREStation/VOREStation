@@ -16,7 +16,7 @@
 
 	if (!isnull(cooked_icon))
 		icon_state = cooked_icon
-		flat_icon = null //Force regenating the flat icon for coatings, since we've changed the icon of the thing being coated
+		flat_icon = null //Force regenerating the flat icon for coatings, since we've changed the icon of the thing being coated
 	..()
 
 	if (name == initial(name))
@@ -36,7 +36,7 @@
 	name = "synthetic meat"
 	desc = "A synthetic slab of flesh."
 
-// Seperate definitions because some food likes to know if it's human.
+// Separate definitions because some food likes to know if it's human.
 // TODO: rewrite kitchen code to check a var on the meat item so we can remove
 // all these sybtypes.
 /obj/item/weapon/reagent_containers/food/snacks/meat/human

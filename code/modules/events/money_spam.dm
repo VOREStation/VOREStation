@@ -58,14 +58,14 @@
 					"Once you are a player with MaxBet, you will also receive lucrative weekly and monthly promotions.",\
 					"You will be able to enjoy over 450 top-flight casino games at MaxBet.")
 				if(2)
-					sender = pick(300;"QuickDatingSystem",200;"Find your Russian bride",50;"Tajaran beauties are waiting",50;"Find your secret skrell crush",50;"Beautiful unathi brides")
+					sender = pick(300;"QuickDatingSystem",200;"Find your Russian bride",50;"Tajaran beauties are waiting",50;"Find your secret Skrell crush",50;"Beautiful Unathi brides")
 					message = pick("Your profile caught my attention and I wanted to write and say hello (QuickDating).",\
 					"If you will write to me on my email [pick(first_names_female)]@[pick(last_names)].[pick("ru","ck","tj","ur","nt")] I shall necessarily send you a photo (QuickDating).",\
 					"I want that we write each other and I hope, that you will like my profile and you will answer me (QuickDating).",\
 					"You have (1) new message!",\
 					"You have (2) new profile views!")
 				if(3)
-					sender = pick("Galactic Payments Association","Better Business Bureau","[using_map.starsys_name] E-Payments","NAnoTransen Finance Deparmtent","Luxury Replicas")
+					sender = pick("Galactic Payments Association","Better Business Bureau","[using_map.starsys_name] E-Payments","NAnoTransen Finance Department","Luxury Replicas")
 					message = pick("Luxury watches for Blowout sale prices!",\
 					"Watches, Jewelry & Accessories, Bags & Wallets !",\
 					"Deposit 100$ and get 300$ totally free!",\
@@ -73,7 +73,7 @@
 					"We have been filed with a complaint from one of your customers in respect of their business relations with you.",\
 					"We kindly ask you to open the COMPLAINT REPORT (attached) to reply on this complaint..")
 				if(4)
-					sender = pick("Buy Dr. Maxman","Having dysfuctional troubles?")
+					sender = pick("Buy Dr. Maxman","Having dysfunctional troubles?")
 					message = pick("DR MAXMAN: REAL Doctors, REAL Science, REAL Results!",\
 					"Dr. Maxman was created by George Acuilar, M.D, a [using_map.boss_short] Certified Urologist who has treated over 70,000 patients sector wide with 'male problems'.",\
 					"After seven years of research, Dr Acuilar and his team came up with this simple breakthrough male enhancement formula.",\
@@ -86,15 +86,15 @@
 					"We are happy to inform you that due to the delay, we have been instructed to IMMEDIATELY deposit all funds into your account",\
 					"Dear fund beneficiary, We have please to inform you that overdue funds payment has finally been approved and released for payment",\
 					"Due to my lack of agents I require an off-world financial account to immediately deposit the sum of 1 POINT FIVE MILLION credits.",\
-					"Greetings sir, I regretfully to inform you that as I lay dying here due to my lack ofheirs I have chosen you to recieve the full sum of my lifetime savings of 1.5 billion credits")
+					"Greetings sir, I regretfully to inform you that as I lay dying here due to my lack of heirs I have chosen you to receive the full sum of my lifetime savings of 1.5 billion credits")
 				if(6)
-					sender = pick("[using_map.company_name] Morale Divison","Feeling Lonely?","Bored?","www.wetskrell.nt")
+					sender = pick("[using_map.company_name] Morale Division","Feeling Lonely?","Bored?","www.wetskrell.nt")
 					message = pick("The [using_map.company_name] Morale Division wishes to provide you with quality entertainment sites.",\
 					"WetSkrell.nt is a xenophillic website endorsed by NT for the use of male crewmembers among it's many stations and outposts.",\
-					"Wetskrell.nt only provides the higest quality of male entertaiment to [using_map.company_name] Employees.",\
+					"Wetskrell.nt only provides the highest quality of male entertainment to [using_map.company_name] Employees.",\
 					"Simply enter your [using_map.company_name] Bank account system number and pin. With three easy steps this service could be yours!")
 				if(7)
-					sender = pick("You have won free tickets!","Click here to claim your prize!","You are the 1000th vistor!","You are our lucky grand prize winner!")
+					sender = pick("You have won free tickets!","Click here to claim your prize!","You are the 1000th visitor!","You are our lucky grand prize winner!")
 					message = pick("You have won tickets to the newest ACTION JAXSON MOVIE!",\
 					"You have won tickets to the newest crime drama DETECTIVE MYSTERY IN THE CLAMITY CAPER!",\
 					"You have won tickets to the newest romantic comedy 16 RULES OF LOVE!",\

@@ -47,11 +47,11 @@
 
 	//Apparently, the person who wrote this code designed it so that
 	//blinded get reset each cycle and then get activated later in the
-	//code. Very ugly. I dont care. Moving this stuff here so its easy
+	//code. Very ugly. I don't care. Moving this stuff here so its easy
 	//to find it.
 	blinded = 0
 
-	//TODO: seperate this out
+	//TODO: separate this out
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
@@ -804,7 +804,7 @@
 
 /mob/living/carbon/human/proc/handle_allergens()
 	if(chem_effects[CE_ALLERGEN])
-		//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple seperate allergen typess simultaneously hurts more
+		//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple separate allergen typess simultaneously hurts more
 		var/damage_severity = species.allergen_damage_severity * chem_effects[CE_ALLERGEN]
 		var/disable_severity = species.allergen_disable_severity * chem_effects[CE_ALLERGEN]
 		if(species.allergen_reaction & AG_PHYS_DMG)
