@@ -7,12 +7,13 @@
 
 	//stopping power/lethality
 	force = 35
+	armor_penetration = 20		//the sheer impact force bypasses quite a bit of armour
 	var/unwielded_force_divisor = 0.25
 	var/wielded = 0
 	var/force_unwielded = 8.75
 	var/wieldsound = null
 	var/unwieldsound = null
-	var/charge_force_mult = 1.75	//damage multiplier on charged hits
+	var/charge_force_mult = 1.75	//damage and AP multiplier on charged hits
 	var/launch_force = 3	//yeet distance
 	var/launch_force_unwielded = 1	//awful w/ one hand, but still gets a little distance
 	var/launch_force_disarm = 1.5	//distance multiplier when swinging in disarm mode, since disarm attacks do half damage
@@ -44,14 +45,20 @@
 	var/mob/living/M = loc
 	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
 		wielded = 1
-		force = initial(force)
+		if(status)
+			force = initial(force)*charge_force_mult
+		else
+			force = initial(force)
 		launch_force = initial(launch_force)
 		weaken_force = initial(weaken_force)
 		name = "[initial(name)] (wielded)"
 		update_icon()
 	else
 		wielded = 0
-		force = force_unwielded
+		if(status)
+			force = force_unwielded*charge_force_mult
+		else
+			force = force_unwielded
 		launch_force = launch_force_unwielded
 		weaken_force = weaken_force_unwielded
 		name = "[initial(name)]"
@@ -186,11 +193,12 @@
 			user.visible_message("<span class='warning'>[user] charges \the [src]!</span>","<span class='warning'>You charge \the [src]. <b>It's hammer time!</b></span>")
 			playsound(src, "sparks", 75, 1, -1)
 			update_held_icon()
-			force *= charge_force_mult
+			armor_penetration *= charge_force_mult
 	else if(status)
 		status = 0
 		user.visible_message("<span class='notice'>[user] safely disengages \the [src]'s power field.</span>","<span class='notice'>\The [src] is now off.</span>")
 		update_held_icon()
+		armor_penetration = initial(armor_penetration)
 		playsound(src, "sparks", 75, 1, -1)
 		if(!bcell)
 			to_chat(user, "<span class='warning'>\The [src] does not have a power source!</span>")
@@ -209,7 +217,11 @@
 		update_held_icon()
 		if(istype(A,/obj/structure/window))
 			var/obj/structure/window/W = A
+			visible_message("<span class='warning'>\The [W] crumples under the force of the impact!<span>")
 			W.shatter()
+		else if(istype(A,/obj/structure/barricade))
+			var/obj/structure/barricade/B = A
+			B.dismantle()
 		else if(istype(A,/obj/structure/grille))
 			qdel(A)
 		powercheck(hitcost)
@@ -223,7 +235,7 @@
 	//yeet 'em away, boys!
 	if(status)
 		var/atom/target_zone = get_edge_target_turf(user,get_dir(user, target))
-		if(!target.anchored)
+		if(!target.anchored)	//unless they're secured in place, natch
 			target.throw_at(target_zone, launch_force, 2, user, FALSE)
 		target.Weaken(weaken_force)
 
