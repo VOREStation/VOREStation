@@ -4,6 +4,8 @@
 	icon_state = "forcemaul"
 	item_state = "forcemaul"
 	slot_flags = SLOT_BACK
+
+	//stopping power/lethality
 	force = 35
 	var/unwielded_force_divisor = 0.25
 	var/wielded = 0
@@ -17,6 +19,11 @@
 	var/weaken_force = 2	//stun power
 	var/weaken_force_unwielded = 0	//can't stun at all if used onehanded
 	var/weaken_force_disarm = 1.5	//stun multiplier when in disarm mode
+
+	//mining interacts
+	var/excavation_amount = 200
+	var/destroy_artefacts = TRUE	//sorry, breaks stuff
+
 	can_cleave = TRUE	//SSSSMITE!
 	attackspeed = 15	//very slow!!
 	sharp = FALSE
@@ -97,18 +104,18 @@
 	update_icon()
 	return
 
-/obj/item/weapon/melee/shock_maul/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/melee/shock_maul/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
 		if(bcell)
-			if(bcell.checked_use(chrgdeductamt))
+			if(bcell.checked_use(hitcost))
 				return 1
 			else
 				return 0
 	return null
 
-/obj/item/weapon/melee/shock_maul/proc/powercheck(var/chrgdeductamt)
+/obj/item/weapon/melee/shock_maul/proc/powercheck()
 	if(bcell)
-		if(bcell.charge < chrgdeductamt)
+		if(bcell.charge < hitcost)
 			status = 0
 			update_held_icon()
 
@@ -182,7 +189,7 @@
 			force *= charge_force_mult
 	else if(status)
 		status = 0
-		user.visible_message("<span class='notice'>[user] safely disengages \the [src]'s power fifeld.</span>","<span class='notice'>\The [src] is now off.</span>")
+		user.visible_message("<span class='notice'>[user] safely disengages \the [src]'s power field.</span>","<span class='notice'>\The [src] is now off.</span>")
 		update_held_icon()
 		playsound(src, "sparks", 75, 1, -1)
 		if(!bcell)
@@ -191,9 +198,21 @@
 		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/shock_maul/attack(mob/M, mob/user)
-	deductcharge(hitcost)
-	return ..()
+/obj/item/weapon/melee/shock_maul/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+	if(!proximity) return
+	..()
+	if(A && wielded && status)
+		deductcharge()
+		status = 0
+		user.visible_message("<span class='warning'>\The [src] discharges with a thunderous, hair-raising crackle!</span>")
+		playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
+		update_held_icon()
+		if(istype(A,/obj/structure/window))
+			var/obj/structure/window/W = A
+			W.shatter()
+		else if(istype(A,/obj/structure/grille))
+			qdel(A)
+		powercheck(hitcost)
 
 /obj/item/weapon/melee/shock_maul/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
@@ -204,12 +223,14 @@
 	//yeet 'em away, boys!
 	if(status)
 		var/atom/target_zone = get_edge_target_turf(user,get_dir(user, target))
-		target.throw_at(target_zone, launch_force, 2, user, FALSE)
+		if(!target.anchored)
+			target.throw_at(target_zone, launch_force, 2, user, FALSE)
 		target.Weaken(weaken_force)
 
+		deductcharge()
 		status = 0
 		user.visible_message("<span class='warning'>\The [src] discharges with a thunderous, hair-raising crackle!</span>")
-		playsound(src, "sparks", 75, 1, -1)
+		playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
 		update_held_icon()
 	powercheck(hitcost)
 
