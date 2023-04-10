@@ -176,13 +176,13 @@
 	if(!status && bcell && bcell.charge >= hitcost)
 		if(do_after(user, 2 SECONDS))
 			status = 1
-			to_chat(user, "<span class='notice'>You charge \the [src]. <b>It's hammer time.</b></span>")
+			user.visible_message("<span class='warning'>[user] charges \the [src]!</span>","<span class='warning'>You charge \the [src]. <b>It's hammer time!</b></span>")
 			playsound(src, "sparks", 75, 1, -1)
 			update_held_icon()
 			force *= charge_force_mult
 	else if(status)
 		status = 0
-		to_chat(user, "<span class='notice'>\The [src] is now off.</span>")
+		user.visible_message("<span class='notice'>[user] safely disengages \the [src]'s power fifeld.</span>","<span class='notice'>\The [src] is now off.</span>")
 		update_held_icon()
 		playsound(src, "sparks", 75, 1, -1)
 		if(!bcell)
@@ -208,7 +208,7 @@
 		target.Weaken(weaken_force)
 
 		status = 0
-		visible_message("<span class='warning'>\The [src] discharges with a thunderous crackle!</span>")
+		user.visible_message("<span class='warning'>\The [src] discharges with a thunderous, hair-raising crackle!</span>")
 		playsound(src, "sparks", 75, 1, -1)
 		update_held_icon()
 	powercheck(hitcost)
