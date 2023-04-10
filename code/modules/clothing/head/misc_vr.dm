@@ -91,7 +91,10 @@
 /obj/item/clothing/head/pizzaguy
 	name = "pizza delivery visor"
 	desc = "A fancy visor showing alignment to pizza delivery service. Extremely risky career choice."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "pizzadelivery"
+	item_state = "pizzadelivery"
 
 /obj/item/clothing/head/wedding
 	name = "wedding veil"
