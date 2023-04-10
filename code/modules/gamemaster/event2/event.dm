@@ -4,7 +4,7 @@
 
 /*
 
-Important: DO NOT `sleep()` in any of the procs here, or the GM will get stuck. Use callbacks insead.
+Important: DO NOT `sleep()` in any of the procs here, or the GM will get stuck. Use callbacks instead.
 Also please don't use spawn(), but use callbacks instead.
 
 Note that there is an important distinction between an event being ended, and an event being finished.
@@ -33,20 +33,20 @@ This allows for events that have their announcement happen after the end itself.
 
 	// If these are set, the announcement will be delayed by a random time between the lower and upper bounds.
 	// If the upper bound is not defined, then it will use the lower bound instead.
-	// Note that this is independant of the event itself, so you can have the announcement happen long after the event ended.
-	// This may not work if should_announce() is overrided.
+	// Note that this is independent of the event itself, so you can have the announcement happen long after the event ended.
+	// This may not work if should_announce() is overridden.
 	var/announce_delay_lower_bound = null
 	var/announce_delay_upper_bound = null
 
 	// If these are set, the event will be delayed by a random time between the lower and upper bounds.
 	// If the upper bound is not defined, then it will use the lower bound instead.
-	// This may not work if should_start() is overrided.
+	// This may not work if should_start() is overridden.
 	var/start_delay_lower_bound = null
 	var/start_delay_upper_bound = null
 
 	// If these are set, the event will automatically end at a random time between the lower and upper bounds.
 	// If the upper bound is not defined, then it will use the lower bound instead.
-	// This may not work if should_end() is overrided.
+	// This may not work if should_end() is overridden.
 	var/length_lower_bound = null
 	var/length_upper_bound = null
 

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////Alchohol bottles! -Agouri //////////////////////////
+///////////////////////////////////////////////Alcohol bottles! -Agouri //////////////////////////
 //Functionally identical to regular drinks. The only difference is that the default bottle size is 100. - Darem
 //Bottles now weaken and break when smashed on people's heads. - Giacom
 
@@ -8,7 +8,7 @@
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	force = 6
 	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
-	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
+	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons don't shatter when someone gets hit by it
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
@@ -323,7 +323,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
-	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing."
+	desc = "A sweet and strongly alcoholic drink, made after numerous distillations and years of maturing."
 	icon_state = "cognacbottle"
 	center_of_mass = list("x"=16, "y"=6)
 

@@ -54,7 +54,7 @@
 	..()
 	var/list/plushies = list()
 	var/list/blacklisted_types = list()
-	// look if theres a better way to do this im all ears
+	// look if there's a better way to do this im all ears
 	blacklisted_types += subtypesof(/obj/item/toy/plushie/therapy)
 	blacklisted_types += subtypesof(/obj/item/toy/plushie/fluff)
 	for(var/obj/item/toy/plushie/plushie_type as anything in subtypesof(/obj/item/toy/plushie) - blacklisted_types)

@@ -64,7 +64,7 @@
 // We want these to be constructable so more chimes can be added in departments.
 /datum/frame/frame_types/doorbell_chime
 	name = "Doorbell Chime"
-	frame_class = "alarm"  // It isn't an alarm, but thats the construction flow we want.
+	frame_class = "alarm"  // It isn't an alarm, but that's the construction flow we want.
 	frame_size = 3
 	frame_style = "wall"
 	circuit = /obj/item/weapon/circuitboard/doorbell_chime

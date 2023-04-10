@@ -3,7 +3,7 @@
 #define SHIELD_DAMTYPE_EM 2			// Electromagnetic damage - Ion weaponry, stun beams, ...
 #define SHIELD_DAMTYPE_HEAT 3		// Heat damage - Lasers, fire
 
-// TODO - Thats power not energy you silly goose! I think we mean 45 kilojoules
+// TODO - That's power not energy you silly goose! I think we mean 45 kilojoules
 #define ENERGY_PER_HP (45 KILOWATTS)// Base amount energy that will be deducted from the generator's internal reserve per 1 HP of damage taken
 #define ENERGY_UPKEEP_PER_TILE (4 KILOWATTS)	// Base upkeep per tile protected. Multiplied by various enabled shield modes. Without them the field does literally nothing.
 #define ENERGY_UPKEEP_IDLE 45                  // Base upkeep when idle; modified by other factors.

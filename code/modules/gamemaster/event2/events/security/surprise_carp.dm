@@ -57,7 +57,7 @@
 			log_debug("Surprise carp attack failed to find any space turfs offscreen to the victim.")
 
 // Gets suitable spots for carp to spawn, without risk of going off the edge of the map.
-// If there is demand for this proc, then it can easily be made independant and moved into one of the helper files.
+// If there is demand for this proc, then it can easily be made independent and moved into one of the helper files.
 /datum/event2/event/surprise_carp/proc/get_safe_square(atom/center, radius)
 	var/lower_left_x = max(center.x - radius, 1 + TRANSITIONEDGE)
 	var/lower_left_y = max(center.y - radius, 1 + TRANSITIONEDGE)

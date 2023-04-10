@@ -270,7 +270,7 @@
 
 // The Advanced Dark Gygax's AI.
 // The mob has three special attacks, based on the current intent.
-// This AI choose the appropiate intent for the situation, and tries to ensure it doesn't kill itself by firing missiles at its feet.
+// This AI choose the appropriate intent for the situation, and tries to ensure it doesn't kill itself by firing missiles at its feet.
 /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
 	conserve_ammo = TRUE					// Might help avoid 'I shoot the wall forever' cheese.
 	var/closest_desired_distance = 1		// Otherwise run up to them to be able to potentially shock or punch them.
@@ -285,7 +285,7 @@
 // Used to control the mob's positioning based on which special attack it has done.
 // Note that the intent will not change again until the next special attack is about to happen.
 /datum/ai_holder/simple_mob/intentional/adv_dark_gygax/on_engagement(atom/A)
-	// Make the AI backpeddle if using an AoE special attack.
+	// Make the AI backpedal if using an AoE special attack.
 	var/list/risky_intents = list(I_GRAB, I_HURT) // Mini-singulo and missiles.
 	if(holder.a_intent in risky_intents)
 		var/closest_distance = 1

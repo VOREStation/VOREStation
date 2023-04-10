@@ -48,7 +48,7 @@
 
 // Override for special behaviour.
 // Should return a list with one or more "/datum/category_item/catalogue" types, or null.
-// If overriding, it may be wise to call the super and get the results in order to merge the base result and the special result, if appropiate.
+// If overriding, it may be wise to call the super and get the results in order to merge the base result and the special result, if appropriate.
 /atom/proc/get_catalogue_data()
 	return catalogue_data
 

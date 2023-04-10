@@ -9,7 +9,7 @@
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
 /obj/item/clothing/gloves/arm_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
-	if(..()) //This will only run if no other problems occured when equiping.
+	if(..()) //This will only run if no other problems occurred when equipping.
 		if(H.wear_suit)
 			if(H.wear_suit.body_parts_covered & ARMS)
 				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [H.wear_suit], it's in the way.</span>")

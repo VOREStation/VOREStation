@@ -26,7 +26,7 @@
 
 // Species allergens
 #define ALLERGEN_MEAT		0x1		// Skrell won't like this.
-#define ALLERGEN_FISH		0x2		// Seperate for completion's sake. Still bad for skrell.
+#define ALLERGEN_FISH		0x2		// Separate for completion's sake. Still bad for skrell.
 #define ALLERGEN_FRUIT		0x4		// An apple a day only keeps the doctor away if they're allergic.
 #define ALLERGEN_VEGETABLE	0x8		// Taters 'n' carrots. Potato allergy is a thing, apparently.
 #define ALLERGEN_GRAINS		0x10	// Wheat, oats, etc.

@@ -1,6 +1,6 @@
 /obj/item/weapon/storage/box/casino
 	name = "prize box"
-	desc = "It's a lovely golden tinted cardboard box, maybe theres something valuable inside?"
+	desc = "It's a lovely golden tinted cardboard box, maybe there's something valuable inside?"
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "casino_box"
 

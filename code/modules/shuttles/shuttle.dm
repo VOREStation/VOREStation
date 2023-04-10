@@ -128,7 +128,7 @@
 		if(!post_warmup_checks())
 			cancel_launch(null)
 
-		if(!fuel_check()) //fuel error (probably out of fuel) occured, so cancel the launch
+		if(!fuel_check()) //fuel error (probably out of fuel) occurred, so cancel the launch
 			cancel_launch(null)
 
 		if (moving_status == SHUTTLE_IDLE)

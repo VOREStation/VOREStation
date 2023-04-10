@@ -10,7 +10,7 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
-	if(..()) //This will only run if no other problems occured when equiping.
+	if(..()) //This will only run if no other problems occurred when equipping.
 		for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
 			if(I && (src.body_parts_covered & ARMS && I.body_parts_covered & ARMS) )
 				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>")
@@ -524,7 +524,7 @@
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/pcarrier/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
-	if(..()) //This will only run if no other problems occured when equiping.
+	if(..()) //This will only run if no other problems occurred when equipping.
 		if(H.gloves)
 			if(H.gloves.body_parts_covered & ARMS)
 				for(var/obj/item/clothing/accessory/A in src)

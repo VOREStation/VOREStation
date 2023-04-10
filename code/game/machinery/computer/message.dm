@@ -214,7 +214,7 @@
 			if((istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot)) && (usr.mind.special_role && usr.mind.original == usr))
 				hacking = 1
 				update_icon()
-				//Time it takes to bruteforce is dependant on the password length.
+				//Time it takes to bruteforce is dependent on the password length.
 				spawn(100*length(linkedServer.decryptkey))
 					if(src && linkedServer && usr)
 						BruteForce(usr)

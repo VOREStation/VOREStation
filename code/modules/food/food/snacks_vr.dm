@@ -136,7 +136,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
 	name = "kitsune udon"
-	desc = "A purported favorite of kitsunes in ancient japanese myth: udon noodles, fried egg, and tofu."
+	desc = "A purported favorite of kitsunes in ancient Japanese myth: udon noodles, fried egg, and tofu."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "kitsuneudon"
 	trash = /obj/item/trash/asian_bowl
@@ -209,7 +209,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/mammi
 	name = "mämmi"
-	desc = "Traditional finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
+	desc = "Traditional Finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "mammi"
 	trash = /obj/item/trash/plate

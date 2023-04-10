@@ -278,7 +278,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		src.reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
 	reagents.update_total()
 
-//Transfers blood from reagents to vessel, respecting blood types compatability.
+//Transfers blood from reagents to vessel, respecting blood types compatibility.
 /mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
 	if(!should_have_organ(O_HEART))

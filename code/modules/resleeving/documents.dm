@@ -46,13 +46,13 @@
 					<li>The resleeving pod - For combining minds and bodies.</li>
 					<li>The resleeving console - For controlling the other machines.</li>
 				</ul>
-				Performing resleeving is relatively simple. Nanotrasen maintains body-scan backups of all guests taken when you began your employement, applied for a visa, or at another time.
+				Performing resleeving is relatively simple. Nanotrasen maintains body-scan backups of all guests taken when you began your employment, applied for a visa, or at another time.
 				These scans are stored in a database maintained by Nanotrasen, and are sent to stations where it may become necessary to put them to use. You can view all the current body scans at the
 				resleeving console. You can also view all current mindstate backups at the console.<br>
 				The process of resleeving is simply:
 				<ol>
 					<li>Select a body to create from the body records. This should be the person's original body, or a suitable donor body if none is available.</li>
-					<li>Create the body using either the SynthFab or the growpod. Upon completion, correct any issues with the body (typically slight genetic or other damage will have occured).</li>
+					<li>Create the body using either the SynthFab or the growpod. Upon completion, correct any issues with the body (typically slight genetic or other damage will have occurred).</li>
 					<li>Place the body into the resleeving pod, and select an appropriate mind to sleeve into the body on the console.</li>
 					<li>Sleeve the mind into the body, using the console.</li>
 				</ol>

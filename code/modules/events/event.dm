@@ -119,8 +119,8 @@
 /datum/event/proc/lastProcessAt()
 	return max(startWhen, max(announceWhen, endWhen))
 
-//Do not override this proc, instead use the appropiate procs.
-//This proc will handle the calls to the appropiate procs.
+//Do not override this proc, instead use the appropriate procs.
+//This proc will handle the calls to the appropriate procs.
 /datum/event/process()
 	if(activeFor > startWhen && activeFor < endWhen)
 		processing_active = FALSE

@@ -62,7 +62,7 @@
 	icon_scale_y = 0.5
 
 /mob/living/simple_mob/animal/passive/bird/european_robin
-	name = "european robin"
+	name = "European robin"
 	desc = "A species of bird, they have been studied for their sense of magnetoreception."
 	icon_state = "europeanrobin"
 	icon_dead = "europeanrobin-dead"

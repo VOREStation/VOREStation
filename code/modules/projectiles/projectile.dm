@@ -689,7 +689,7 @@
 	else
 		var/volume = vol_by_damage()
 		playsound(target_mob, hitsound, volume, 1, -1)
-		// X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+		// X has fired Y is now given by the guns so you can't tell who shot you if you could not see the shooter
 		target_mob.visible_message(
 			span("danger", "\The [target_mob] was hit in the [impacted_organ] by \the [src]!"),
 			span("critical", "You've been hit in the [impacted_organ] by \the [src]!")

@@ -1,4 +1,4 @@
-// Constantly emites radiation from the tile it's placed on.
+// Constantly emits radiation from the tile it's placed on.
 /obj/effect/map_effect/radiation_emitter
 	name = "radiation emitter"
 	icon_state = "radiation_emitter"

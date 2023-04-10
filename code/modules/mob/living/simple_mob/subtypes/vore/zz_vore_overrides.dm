@@ -152,7 +152,7 @@
 /mob/living/simple_mob/animal/passive/cat
 	vore_active = 1
 	// NO VORE SPRITES
-	//specific_targets = 0 // Targeting UNLOCKED //VOREStation Removal - Incompatable
+	//specific_targets = 0 // Targeting UNLOCKED //VOREStation Removal - Incompatible
 	vore_max_size = RESIZE_TINY
 
 /* //VOREStation AI Temporary removal

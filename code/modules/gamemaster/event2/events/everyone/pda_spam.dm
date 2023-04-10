@@ -86,14 +86,14 @@
 			"Once you are a player with MaxBet, you will also receive lucrative weekly and monthly promotions.",\
 			"You will be able to enjoy over 450 top-flight casino games at MaxBet.")
 		if(2)
-			sender = pick(300;"QuickDatingSystem",200;"Find your russian bride",50;"Tajaran beauties are waiting",50;"Find your secret skrell crush",50;"Beautiful unathi brides")
+			sender = pick(300;"QuickDatingSystem",200;"Find your Russian bride",50;"Tajaran beauties are waiting",50;"Find your secret skrell crush",50;"Beautiful unathi brides")
 			message = pick("Your profile caught my attention and I wanted to write and say hello (QuickDating).",\
 			"If you will write to me on my email [pick(first_names_female)]@[pick(last_names)].[pick("ru","ck","tj","ur","nt")] I shall necessarily send you a photo (QuickDating).",\
 			"I want that we write each other and I hope, that you will like my profile and you will answer me (QuickDating).",\
 			"You have (1) new message!",\
 			"You have (2) new profile views!")
 		if(3)
-			sender = pick("Galactic Payments Association","Better Business Bureau","[using_map.starsys_name] E-Payments","NAnoTransen Finance Deparmtent","Luxury Replicas")
+			sender = pick("Galactic Payments Association","Better Business Bureau","[using_map.starsys_name] E-Payments","NAnoTransen Finance Department","Luxury Replicas")
 			message = pick("Luxury watches for Blowout sale prices!",\
 			"Watches, Jewelry & Accessories, Bags & Wallets !",\
 			"Deposit 100$ and get 300$ totally free!",\
@@ -114,7 +114,7 @@
 			"We are happy to inform you that due to the delay, we have been instructed to IMMEDIATELY deposit all funds into your account",\
 			"Dear fund beneficiary, We have please to inform you that overdue funds payment has finally been approved and released for payment",\
 			"Due to my lack of agents I require an off-world financial account to immediately deposit the sum of 1 POINT FIVE MILLION credits.",\
-			"Greetings sir, I regretfully to inform you that as I lay dying here due to my lack ofheirs I have chosen you to recieve the full sum of my lifetime savings of 1.5 billion credits")
+			"Greetings sir, I regretfully to inform you that as I lay dying here due to my lack of heirs I have chosen you to receive the full sum of my lifetime savings of 1.5 billion credits")
 		if(6)
 			sender = pick("[using_map.company_name] Morale Divison","Feeling Lonely?","Bored?","www.wetskrell.nt")
 			message = pick("The [using_map.company_name] Morale Division wishes to provide you with quality entertainment sites.",\

@@ -1,7 +1,7 @@
 /datum/event2/meta/spacevine
 	name = "space-vine infestation"
 	departments = list(DEPARTMENT_ENGINEERING)
-	chaos = 10 // There's a really rare chance of vines getting something awful like phoron atmosphere but thats not really controllable.
+	chaos = 10 // There's a really rare chance of vines getting something awful like phoron atmosphere but that's not really controllable.
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/spacevine
 

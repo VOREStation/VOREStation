@@ -5,7 +5,7 @@ This class of armor takes armor and appearance data from a material "datum".
 They are also fragile based on material data and many can break/smash apart when hit.
 
 Materials has a var called protectiveness which plays a major factor in how good it is for armor.
-With the coefficent being 0.05, this is how strong different levels of protectiveness are (for melee)
+With the coefficient being 0.05, this is how strong different levels of protectiveness are (for melee)
 For bullets and lasers, material hardness and reflectivity also play a major role, respectively.
 
 
@@ -31,7 +31,7 @@ Protectiveness | Armor %
 	var/applies_material_color = TRUE
 	var/unbreakable = FALSE
 	var/default_material = null // Set this to something else if you want material attributes on init.
-	var/material_armor_modifier = 1 // Adjust if you want seperate types of armor made from the same material to have different protectiveness (e.g. makeshift vs real armor)
+	var/material_armor_modifier = 1 // Adjust if you want separate types of armor made from the same material to have different protectiveness (e.g. makeshift vs real armor)
 	var/material_slowdown_modifier = 0
 	var/material_slowdown_multiplier = 0.5
 

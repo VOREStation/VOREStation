@@ -59,7 +59,7 @@
 
 /obj/machinery/appliance/Destroy()
 	for(var/datum/cooking_item/CI as anything in cooking_objs)
-		qdel(CI.container)//Food is fragile, it probably doesnt survive the destruction of the machine
+		qdel(CI.container)//Food is fragile, it probably doesn't survive the destruction of the machine
 		cooking_objs -= CI
 		qdel(CI)
 	return ..()
@@ -639,7 +639,7 @@
 	var/delete = 1
 	var/status = CI.container.check_contents()
 
-	if (status == 1)//If theres only one object in a container then we extract that
+	if (status == 1)//If there's only one object in a container then we extract that
 		thing = locate(/obj/item) in CI.container
 		delete = 0
 	else//If the container is empty OR contains more than one thing, then we must extract the container

@@ -507,11 +507,11 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 
 /// generates a filename for a given asset.
 /// like generate_asset_name(), except returns the rsc reference and the rsc file hash as well as the asset name (sans extension)
-/// used so that certain asset files dont have to be hashed twice
+/// used so that certain asset files don't have to be hashed twice
 /proc/generate_and_hash_rsc_file(file, dmi_file_path)
 	var/rsc_ref = fcopy_rsc(file)
 	var/hash
-	//if we have a valid dmi file path we can trust md5'ing the rsc file because we know it doesnt have the bug described in http://www.byond.com/forum/post/2611357
+	//if we have a valid dmi file path we can trust md5'ing the rsc file because we know it doesn't have the bug described in http://www.byond.com/forum/post/2611357
 	if(dmi_file_path)
 		hash = md5(rsc_ref)
 	else //otherwise, we need to do the expensive fcopy() workaround
@@ -661,7 +661,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 
 	var/list/name_and_ref = generate_and_hash_rsc_file(icon2collapse, icon_path)//pretend that tuples exist
 
-	var/rsc_ref = name_and_ref[1] //weird object thats not even readable to the debugger, represents a reference to the icons rsc entry
+	var/rsc_ref = name_and_ref[1] //weird object that's not even readable to the debugger, represents a reference to the icons rsc entry
 	var/file_hash = name_and_ref[2]
 	key = "[name_and_ref[3]].png"
 

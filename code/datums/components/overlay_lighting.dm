@@ -22,8 +22,8 @@
  *
  * * The main limitation of this system is that it uses a limited number of pre-baked geometrical shapes, but for most uses it does the job.
  *
- * * Another limitation is for big lights: you only see the light if you see the object emiting it.
- * * For small objects this is good (you can't see them behind a wall), but for big ones this quickly becomes prety clumsy.
+ * * Another limitation is for big lights: you only see the light if you see the object emitting it.
+ * * For small objects this is good (you can't see them behind a wall), but for big ones this quickly becomes pretty clumsy.
 */
 /datum/component/overlay_lighting
 	///How far the light reaches, float.
@@ -64,7 +64,7 @@
 	var/directional
 	///Abstractional atom for directional light, we move this around to make the directional effect
 	var/obj/effect/abstract/directional_lighting/directional_atom
-	///A cone overlay for directional light, it's alpha and color are dependant on the light
+	///A cone overlay for directional light, it's alpha and color are dependent on the light
 	var/obj/effect/overlay/light_cone/cone
 	///Current tracked direction for the directional cast behaviour
 	var/current_direction

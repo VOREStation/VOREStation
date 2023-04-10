@@ -151,8 +151,8 @@
 /datum/riding/boat/small // 'Small' boats can hold up to two people.
 
 /datum/riding/boat/small/get_offsets(pass_index) // list(dir = x, y, layer)
-	var/H = 7 // Horizontal seperation.
-	var/V = 5 // Vertical seperation.
+	var/H = 7 // Horizontal separation.
+	var/V = 5 // Vertical separation.
 	var/O = 2 // Vertical offset.
 	switch(pass_index)
 		if(1) // Person in front.
@@ -178,8 +178,8 @@
 /datum/riding/boat/big // 'Big' boats can hold up to five people.
 
 /datum/riding/boat/big/get_offsets(pass_index) // list(dir = x, y, layer)
-	var/H = 12 // Horizontal seperation. Halved when facing up-down.
-	var/V = 4 // Vertical seperation.
+	var/H = 12 // Horizontal separation. Halved when facing up-down.
+	var/V = 4 // Vertical separation.
 	var/O = 7 // Vertical offset.
 	switch(pass_index)
 		if(1) // Person in center front, first row.

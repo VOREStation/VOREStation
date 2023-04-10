@@ -524,7 +524,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(temprole in total_antagonists)	//If the role exists already, add the name to it
 				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
 			else
-				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
+				total_antagonists.Add(temprole) //If the role doesn't exist in the list, create it and add the mob
 				total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
 
 	//Now print them all into the log!

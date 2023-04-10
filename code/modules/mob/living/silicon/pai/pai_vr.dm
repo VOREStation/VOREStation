@@ -535,7 +535,7 @@
 				refresh_software_status()
 
 /mob/living/silicon/pai/proc/refresh_software_status()	//This manages the pAI software status buttons icon states based on if you have them and if they are enabled
-	for(var/thing in software)							//this only gets called when you click one of the relevent buttons, rather than all the time!
+	for(var/thing in software)							//this only gets called when you click one of the relevant buttons, rather than all the time!
 		var/datum/pai_software/soft = software[thing]
 		if(istype(soft,/datum/pai_software/med_records))
 			soft_mr = TRUE

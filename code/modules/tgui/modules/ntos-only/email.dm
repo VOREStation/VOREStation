@@ -392,7 +392,7 @@
 		// The following entries are Modular Computer framework only, and therefore won't do anything in other cases (like AI View)
 
 		if("save")
-			// Fully dependant on modular computers here.
+			// Fully dependent on modular computers here.
 			var/obj/item/modular_computer/MC = tgui_host()
 
 			if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())

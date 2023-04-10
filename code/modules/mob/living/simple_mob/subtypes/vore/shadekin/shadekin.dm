@@ -171,7 +171,7 @@
 		)
 	B.emote_lists[DM_ABSORB] = list(
 		"The walls cling to you awfully close... It's almost like you're sinking into them.",
-		"You can feel the walls press in tightly against you, clinging to you posessively!",
+		"You can feel the walls press in tightly against you, clinging to you possessively!",
 		"It almost feels like you're sinking into the soft, doughy flesh!",
 		"You can feel the walls press in around you. Almost molten, so squishy!!"
 		)

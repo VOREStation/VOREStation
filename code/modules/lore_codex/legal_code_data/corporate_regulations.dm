@@ -287,7 +287,7 @@
 	name = "Neglect of Duty"
 	definition = "To fail to meet satisfactory work standards."
 	suggested_punishments = "Demotion at discretion of Superior.  Termination at discretion of Station Director."
-	notes = "This includes accidents, refusing or failing to work, or simply not providing a resonable amount of productivity, when the offender is capable of work.  This charge \
+	notes = "This includes accidents, refusing or failing to work, or simply not providing a reasonable amount of productivity, when the offender is capable of work.  This charge \
 	is meant to be applied only by Command staff to their subordinates, and not from individual Security Officers."
 
 /datum/lore/codex/page/law/deception
@@ -301,7 +301,7 @@
 	name = "Wrongful Dismissal"
 	definition = "To demote, dismiss, terminate, or otherwise reduce a crewmember's rank for no valid, or a knowingly false reason."
 	suggested_punishments = "Demotion.  Termination at discretion of Station Director.  Notify Central Command."
-	notes = "An Internal Affairs Agent is required to do an investigation in order to conclude if this has occured or not.  Security cannot \
+	notes = "An Internal Affairs Agent is required to do an investigation in order to conclude if this has occurred or not.  Security cannot \
 	give this charge out on their own."
 	mandated = TRUE
 

@@ -283,7 +283,7 @@
 /mob/living/simple_mob/IMove(turf/newloc, safety = TRUE)
 	if(istype(newloc,/turf/unsimulated/floor/sky))
 		return MOVEMENT_FAILED //Mobs aren't that stupid, probably
-	return ..() // Procede as normal.
+	return ..() // Proceed as normal.
 
 // Riding
 /datum/riding/simple_mob

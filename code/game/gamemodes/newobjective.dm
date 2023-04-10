@@ -55,7 +55,7 @@
 
 /proc/SelectObjectives(var/job,var/datum/mind/traitor,var/hijack = 0)
 	var/list/chosenobjectives = list()
-	var/list/theftobjectives = GenerateTheft(job,traitor)		//Separated all the objective types so they can be picked independantly of each other.
+	var/list/theftobjectives = GenerateTheft(job,traitor)		//Separated all the objective types so they can be picked independently of each other.
 	var/list/killobjectives = GenerateAssassinate(job,traitor)
 	var/list/frameobjectives = GenerateFrame(job,traitor)
 	var/list/protectobjectives = GenerateProtection(job,traitor)

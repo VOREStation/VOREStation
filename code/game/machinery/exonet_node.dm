@@ -173,7 +173,7 @@
 // Parameters: 4 (origin_address - Where the message is from, target_address - Where the message is going, data_type - Instructions on how to interpet content,
 // 		content - The actual message.
 // Description: This writes to the logs list, so that people can see what people are doing on the Exonet ingame.  Note that this is not an admin logging function.
-// 		Communicators are already logged seperately.
+// 		Communicators are already logged separately.
 /obj/machinery/exonet_node/proc/write_log(var/origin_address, var/target_address, var/data_type, var/content)
 	//var/timestamp = time2text(station_time_in_ds, "hh:mm:ss")
 	var/timestamp = "[stationdate2text()] [stationtime2text()]"

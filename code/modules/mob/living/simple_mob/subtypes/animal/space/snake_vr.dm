@@ -8,7 +8,7 @@
 	enabling them to swallow prey much larger than their heads with their highly mobile jaws. \
 	<br>\
 	This type of snake is nonvenomous and use their slender bodies to primarily subdue their prey. \
-	Nonvenomous snakes either swallow prey alive or kill them by constriction - this is dependant on the prey. \
+	Nonvenomous snakes either swallow prey alive or kill them by constriction - this is dependent on the prey. \
 	<br>\
 	Snakes are mostly passive - however they will attack if threatened - it is recommended that \
 	persons keep their distance as to not provoke these animals."

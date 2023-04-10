@@ -22,7 +22,7 @@
 	anchored = FALSE
 
 /obj/structure/closet/gimmick/russian
-	name = "russian surplus closet"
+	name = "Russian surplus closet"
 	desc = "It's a storage unit for Russian standard-issue surplus."
 	closet_appearance = /decl/closet_appearance/tactical
 

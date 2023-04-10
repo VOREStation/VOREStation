@@ -86,7 +86,7 @@
 
 /obj/machinery/appliance/cooker/fryer/update_cooking_power()
 	..()//In addition to parent temperature calculation
-	//Fryer efficiency also drops when oil levels arent optimal
+	//Fryer efficiency also drops when oil levels aren't optimal
 	var/oil_level = 0
 	var/datum/reagent/nutriment/triglyceride/oil/OL = oil.get_master_reagent()
 	if(OL && istype(OL))

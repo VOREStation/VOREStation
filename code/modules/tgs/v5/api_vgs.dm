@@ -58,7 +58,7 @@ GLOBAL_DATUM(vgs, /datum/tgs_api)
 /datum/tgs_api/v5/vgs1
 	server_port = 8080  // Default port
 
-// Override to prevent error messages from the lack of revision/test_merge information, and to use config isntead of params.
+// Override to prevent error messages from the lack of revision/test_merge information, and to use config instead of params.
 /datum/tgs_api/v5/vgs1/OnWorldNew()
 	if(config.vgs_server_port)
 		server_port = config.vgs_server_port

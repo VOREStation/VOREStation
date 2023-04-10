@@ -57,7 +57,7 @@
 	The Va'aen drake, or Sivian leopardmander, is a very large predator known for its unusual ability to heal people's wounds via saliva, or storing them in one of its multiple stomachs for extended periods of time. \
 	The majority of the Va'aen drake's long life is spent in isolation, hunting saviks and shantaks in Sif's mountainous regions or roaming the vast tundras of Sif, \
 	only seeking out other individuals during the summer mating season where they spend several months in courtship, usually only producing a single egg. \
-	Though completely docile towards humans and other large sapients, the Va'aen drake posesses great strength and a very potent paralyzing venom; \
+	Though completely docile towards humans and other large sapients, the Va'aen drake possesses great strength and a very potent paralyzing venom; \
 	a provoked Va'aen can be a danger to even the most hardy of explorers due to its surprising speed, crushing bite, and long lasting venom. \
 	The Va'aen has been hunted to near extinction by poachers due to its secretions' unusual healing properties, and its beautiful hide; encountering one has become very rare."
 	value = CATALOGUER_REWARD_HARD

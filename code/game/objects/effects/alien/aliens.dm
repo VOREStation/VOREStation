@@ -10,7 +10,7 @@
  */
 /obj/effect/alien
 	name = "alien thing"
-	desc = "theres something alien about this"
+	desc = "there's something alien about this"
 	icon = 'icons/mob/alien.dmi'
 
 /*

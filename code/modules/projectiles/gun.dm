@@ -242,7 +242,7 @@
 			return
 		if(auto_target)//If they already have one then update it
 			auto_target.loc = get_turf(A)
-			auto_target.delay_del = 1//And reset the del so its like they got a new one and doesnt instantly vanish
+			auto_target.delay_del = 1//And reset the del so its like they got a new one and doesn't instantly vanish
 			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
 		else//Otherwise just make a new one
 			auto_target = new/obj/screen/auto_target(get_turf(A), src)
@@ -354,7 +354,7 @@
 
 	var/shoot_time = (burst - 1)* burst_delay
 
-	//These should apparently be disabled to allow for the automatic system to function without causing near-permanant paralysis. Re-enabling them while we sort that out.
+	//These should apparently be disabled to allow for the automatic system to function without causing near-permanent paralysis. Re-enabling them while we sort that out.
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 
@@ -372,7 +372,7 @@
 */
 	for(var/i in 1 to burst)
 		/*	// Commented out for quality control and testing.
-		if(!reflex && automatic)//If we are shooting automatic then check our target, however if we are shooting reflex we dont use automatic
+		if(!reflex && automatic)//If we are shooting automatic then check our target, however if we are shooting reflex we don't use automatic
 			//extra sanity checking.
 			if(user.incapacitated())
 				return

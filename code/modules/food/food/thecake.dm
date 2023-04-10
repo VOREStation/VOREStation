@@ -275,4 +275,4 @@
 			desc = desclist2[stage]
 			icon_state = "chaoscake_unfinished-[stage]"
 		else
-			to_chat(user, "Hmm, doesnt seem like this layer is supposed to be added there?")
+			to_chat(user, "Hmm, doesn't seem like this layer is supposed to be added there?")

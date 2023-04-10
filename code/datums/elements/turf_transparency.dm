@@ -31,7 +31,7 @@
 	var/turf/below_turf = GetBelow(our_turf)
 	if(!below_turf)
 		our_turf.vis_contents.len = 0
-		if(!show_bottom_level(our_turf) && prune_on_fail) //If we cant show whats below, and we prune on fail, change the turf to plating as a fallback
+		if(!show_bottom_level(our_turf) && prune_on_fail) //If we cant show what's below, and we prune on fail, change the turf to plating as a fallback
 			our_turf.ChangeTurf(/turf/simulated/floor/plating)
 			return FALSE
 		else

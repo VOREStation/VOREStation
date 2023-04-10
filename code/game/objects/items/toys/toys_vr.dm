@@ -662,7 +662,7 @@
  * Russian revolver
  */
 /obj/item/toy/russian_revolver
-	name = "russian revolver"
+	name = "Russian revolver"
 	desc = "For fun and games!"
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "detective"

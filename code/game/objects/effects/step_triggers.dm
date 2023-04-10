@@ -3,7 +3,7 @@
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
-	invisibility = 99 // nope cant see this shit
+	invisibility = 99 // nope can't see this shit
 	plane = ABOVE_PLANE
 	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit

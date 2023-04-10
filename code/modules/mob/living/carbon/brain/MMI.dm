@@ -55,7 +55,7 @@
 
 		for(var/modifier_type in B.brainmob.modifiers)	//Can't be shoved in an MMI.
 			if(istype(modifier_type, /datum/modifier/no_borg))
-				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatable.</span>")
+				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatible.</span>")
 				return
 
 		user.visible_message("<b>\The [user]</b> sticks \a [O] into \the [src].")

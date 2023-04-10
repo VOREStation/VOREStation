@@ -3,21 +3,21 @@
 // individual player (IC) skill, and such, in order to try to choose the best events to take in order to add spice or variety to
 // the round.
 
-// This subsystem holds the logic that chooses events. Actual event processing is handled in a seperate subsystem.
+// This subsystem holds the logic that chooses events. Actual event processing is handled in a separate subsystem.
 SUBSYSTEM_DEF(game_master)
 	name = "Events (Game Master)"
 	wait = 1 MINUTE
 	runlevels = RUNLEVEL_GAME
 
 	// The GM object is what actually chooses events.
-	// It's held in a seperate object for better encapsulation, and allows for different 'flavors' of GMs to be made, that choose events differently.
+	// It's held in a separate object for better encapsulation, and allows for different 'flavors' of GMs to be made, that choose events differently.
 	var/datum/game_master/GM = null
 	var/game_master_type = /datum/game_master/default
 
 	var/list/available_events = list() // A list of meta event objects.
 
 	var/danger = 0						// The GM's best guess at how chaotic the round is.  High danger makes it hold back.
-	var/staleness = -20					// Determines liklihood of the GM doing something, increases over time.
+	var/staleness = -20					// Determines likelihood of the GM doing something, increases over time.
 
 	var/next_event = 0								// Minimum amount of time of nothingness until the GM can pick something again.
 
@@ -94,11 +94,11 @@ SUBSYSTEM_DEF(game_master)
 	staleness = round( between(-20, staleness + amount, 100), 0.1)
 
 // These are ran before committing to an event.
-// Returns TRUE if the system is allowed to procede, otherwise returns FALSE.
+// Returns TRUE if the system is allowed to proceed, otherwise returns FALSE.
 /datum/controller/subsystem/game_master/proc/pre_event_checks(quiet = FALSE)
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		if(!quiet)
-			log_game_master("Unable to start event: Ticker is nonexistant, or the game is not ongoing.")
+			log_game_master("Unable to start event: Ticker is nonexistent, or the game is not ongoing.")
 		return FALSE
 	if(GM.ignore_time_restrictions)
 		return TRUE
@@ -136,10 +136,10 @@ SUBSYSTEM_DEF(game_master)
 
 // This object makes the actual decisions.
 /datum/game_master
-	// Multiplier for how much 'danger' is accumulated. Higer generally makes it possible for more dangerous events to be picked.
+	// Multiplier for how much 'danger' is accumulated. Higher generally makes it possible for more dangerous events to be picked.
 	var/danger_modifier = 1.0
 
-	// Ditto.  Higher numbers generally result in more events occuring in a round.
+	// Ditto.  Higher numbers generally result in more events occurring in a round.
 	var/staleness_modifier = 1.0
 
 	var/decision_cooldown_lower_bound = 5 MINUTES	// Lower bound for how long to wait until -the potential- for another event being decided.
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(game_master)
 	if(check_rights(R_ADMIN|R_EVENT|R_DEBUG))
 		SSgame_master.interact(usr)
 	else
-		to_chat(usr, span("warning", "You do not have sufficent rights to view the GM panel, sorry."))
+		to_chat(usr, span("warning", "You do not have sufficient rights to view the GM panel, sorry."))
 
 /datum/controller/subsystem/game_master/proc/interact(var/client/user)
 	if(!user)

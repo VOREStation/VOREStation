@@ -11,7 +11,7 @@ When designing a new mob, all that is needed to give a mob an AI is to set
 its 'ai_holder_type' variable to the path of the AI that is desired.
 
 
-[Seperation]
+[Separation]
 
 In previous iterations of AI systems, the AI is generally written into the mob's code directly,
 which has some advantages, but often makes the code rigid, and also tied the speed of the AI
@@ -24,10 +24,10 @@ which is carried by the mob it controls. This gives some advantages;
 
 	Interfaces allow the base AI code to not need to know what particular mode it's controlling.
 
-	The processing of the AI is independant of the mob's Life() cycle, which allows for a
+	The processing of the AI is independent of the mob's Life() cycle, which allows for a
 	different clock rate.
 
-	Seperating the AI from the mob simplies the mob's code greatly.
+	Separating the AI from the mob simplifies the mob's code greatly.
 
 	It is more logical to think that a mob is the 'body', where as its ai_holder is
 	the 'mind'.

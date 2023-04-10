@@ -85,7 +85,7 @@
 
 /datum/reagent/nutriment/coating/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
-	//We'll assume that the batter isnt going to be regurgitated and eaten by someone else. Only show this once
+	//We'll assume that the batter isn't going to be regurgitated and eaten by someone else. Only show this once
 	if(data["cooked"] != 1)
 		if (!messaged)
 			to_chat(M, "<span class='warning'>Ugh, this raw [name] tastes disgusting.</span>")
@@ -2551,7 +2551,7 @@
 /datum/reagent/ethanol/ale
 	name = "Ale"
 	id = "ale"
-	description = "A dark alchoholic beverage made by malted barley and yeast."
+	description = "A dark alcoholic beverage made by malted barley and yeast."
 	taste_description = "hearty barley ale"
 	color = "#4C3100"
 	strength = 50
@@ -3724,7 +3724,7 @@
 /datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
 	id = "vodkatonic"
-	description = "For when a gin and tonic isn't russian enough."
+	description = "For when a gin and tonic isn't Russian enough."
 	taste_description = "tart bitterness"
 	color = "#0064C8" // rgb: 0, 100, 200
 	strength = 15
@@ -3745,7 +3745,7 @@
 	glass_name = "White Russian"
 	glass_desc = "A very nice looking drink. But that's just, like, your opinion, man."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_GRAINS|ALLERGEN_DAIRY|ALLERGEN_STIMULANT //Made from black russian(vodka(grains), kahlua(coffee/caffeine)) and cream(dairy)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_GRAINS|ALLERGEN_DAIRY|ALLERGEN_STIMULANT //Made from black Russian(vodka(grains), kahlua(coffee/caffeine)) and cream(dairy)
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
@@ -4325,7 +4325,7 @@
 	name = "Godka"
 	id = "godka"
 	description = "Number one drink AND fueling choice for Russians multiverse-wide."
-	taste_description = "russian steel and a hint of grain"
+	taste_description = "Russian steel and a hint of grain"
 	color = "#0064C8"
 	strength = 50
 
@@ -4354,7 +4354,7 @@
 /datum/reagent/ethanol/holywine
 	name = "Angel Ichor"
 	id = "holywine"
-	description = "A premium alchoholic beverage made from distilled angel blood."
+	description = "A premium alcoholic beverage made from distilled angel blood."
 	taste_description = "wings in a glass, and a hint of grape"
 	color = "#C4921E"
 	strength = 20

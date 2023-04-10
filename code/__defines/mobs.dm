@@ -13,7 +13,7 @@
 #define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
-#define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
+#define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurrences with the appropriate organ code
 #define DOING_TASK	0x8000  // Performing a do_after or do_mob that's exclusive
 
 // Grab levels.
@@ -28,7 +28,7 @@
 #define BORGXRAY  0x4
 #define BORGMATERIAL  0x8
 
-#define STANCE_ATTACK    11 // Backwards compatability
+#define STANCE_ATTACK    11 // Backwards compatibility
 #define STANCE_ATTACKING 12 // Ditto
 /*
 #define STANCE_IDLE      1	// Looking for targets if hostile.  Does idle wandering.
@@ -36,7 +36,7 @@
 #define STANCE_ATTACK    3	// Attempting to get into attack position
 #define STANCE_ATTACKING 4	// Doing attacks
 #define STANCE_TIRED     5	// Bears
-#define STANCE_FOLLOW    6	// Following somone
+#define STANCE_FOLLOW    6	// Following someone
 #define STANCE_BUSY      7	// Do nothing on life ticks (Other code is running)
 */
 #define STANCE_SLEEP        0	// Doing (almost) nothing, to save on CPU because nobody is around to notice or the mob died.
@@ -47,7 +47,7 @@
 #define STANCE_BLINDFIGHT   5	// Fighting something that cannot be seen by the mob, from invisibility or out of sight.
 #define STANCE_REPOSITION   6	// Relocating to a better position while in combat. Also used when moving away from a danger like grenades.
 #define STANCE_MOVE         7	// Similar to above but for out of combat. If a baddie is seen, they'll cancel and fight them.
-#define STANCE_FOLLOW       8	// Following somone, without trying to murder them.
+#define STANCE_FOLLOW       8	// Following someone, without trying to murder them.
 #define STANCE_FLEE         9	// Run away from the target because they're too spooky/we're dying/some other reason.
 #define STANCE_DISABLED     10	// Used when the holder is afflicted with certain status effects, such as stuns or confusion.
 
@@ -283,7 +283,7 @@
 #define FBP_DRONE	"Drone"
 
 // Similar to above but for borgs.
-// Seperate defines are unfortunately required since borgs display the brain differently for some reason.
+// Separate defines are unfortunately required since borgs display the brain differently for some reason.
 #define BORG_BRAINTYPE_CYBORG	"Cyborg"
 #define BORG_BRAINTYPE_POSI		"Robot"
 #define BORG_BRAINTYPE_DRONE	"Drone"
@@ -340,13 +340,13 @@
 #define SPECIES_REPLICANT_ALPHA	"Alpha Replicant"
 #define SPECIES_REPLICANT_BETA	"Beta Replicant"
 
-// Used to seperate simple animals by ""intelligence"".
+// Used to separate simple animals by ""intelligence"".
 #define SA_PLANT	1
 #define SA_ANIMAL	2
 #define SA_ROBOTIC	3
 #define SA_HUMANOID	4
 
-// More refined version of SA_* ""intelligence"" seperators.
+// More refined version of SA_* ""intelligence"" separators.
 // Now includes bitflags, so to target two classes you just do 'MOB_CLASS_ANIMAL|MOB_CLASS_HUMANOID'
 #define MOB_CLASS_NONE 			0	// Default value, and used to invert for _ALL.
 

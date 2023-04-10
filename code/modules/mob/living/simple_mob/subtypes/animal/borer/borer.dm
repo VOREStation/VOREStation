@@ -1,6 +1,6 @@
 // Borers are probably still going to be buggy as fuck, this is just bringing their mob defines up to the new system.
 // IMO they're a relic of several ages we're long past, their code and their design showing this plainly, but removing them would
-// make certain people Unhappy so here we are. They need a complete redesign but thats beyond the scope of the rewrite.
+// make certain people Unhappy so here we are. They need a complete redesign but that's beyond the scope of the rewrite.
 
 /mob/living/simple_mob/animal/borer
 	name = "cortical borer"

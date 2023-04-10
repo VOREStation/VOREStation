@@ -271,7 +271,7 @@
 
 	ai_log("react_to_attack() : Was attacked by [attacker].", AI_LOG_INFO)
 	on_attacked(attacker) // So we attack immediately and not threaten.
-	return give_target(attacker, urgent = TRUE) // Also handles setting the appropiate stance.
+	return give_target(attacker, urgent = TRUE) // Also handles setting the appropriate stance.
 
 // Sets a few vars so mobs that threaten will react faster to an attacker or someone who attacked them before.
 /datum/ai_holder/proc/on_attacked(atom/movable/AM)

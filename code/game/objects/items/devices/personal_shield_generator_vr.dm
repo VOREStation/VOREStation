@@ -351,7 +351,7 @@
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_belt) == src)
 		return 1
-	//RIGSuit compatability. This shouldn't be possible, however, except for select RIGs.
+	//RIGSuit compatibility. This shouldn't be possible, however, except for select RIGs.
 	if((slot_flags & SLOT_BACK) && M.get_equipped_item(slot_s_store) == src)
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_s_store) == src)

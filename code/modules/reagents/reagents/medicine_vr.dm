@@ -95,7 +95,7 @@
 
 
 
-/datum/reagent/prussian_blue //We don't have iodine, so prussian blue we go.
+/datum/reagent/prussian_blue //We don't have iodine, so Prussian blue we go.
 	name = "Prussian Blue"
 	id = "prussian_blue"
 	description = "Prussian Blue is an medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."

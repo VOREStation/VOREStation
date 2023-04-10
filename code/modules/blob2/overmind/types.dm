@@ -11,7 +11,7 @@
 
 	var/faction = "blob"				// The blob's faction.
 
-	var/attack_message = "The blob attacks you" // Base message the mob gets when blob_act() gets called on them by the blob.  An exclaimation point is added to the end.
+	var/attack_message = "The blob attacks you" // Base message the mob gets when blob_act() gets called on them by the blob.  An exclamation point is added to the end.
 	var/attack_message_living = null	// Appended to attack_message, if the target fails isSynthetic() check.
 	var/attack_message_synth = null		// Ditto, but if they pass isSynthetic().
 	var/attack_verb = "attacks"			// Used for the visible_message(), as the above is shown to the mob getting hit directly.
@@ -23,12 +23,12 @@
 	var/damage_lower = 30				// Lower bound for amount of damage to do for attacks.
 	var/damage_upper = 40				// Upper bound.
 
-	var/brute_multiplier = 0.5			// Adjust to make blobs stonger or weaker against brute damage.
+	var/brute_multiplier = 0.5			// Adjust to make blobs stronger or weaker against brute damage.
 	var/burn_multiplier = 1.0			// Ditto, for burns.
-	var/spread_modifier = 0.5			// A multipler on how fast the blob should naturally spread from the core and nodes.
+	var/spread_modifier = 0.5			// A multiplier on how fast the blob should naturally spread from the core and nodes.
 	var/slow_spread_with_size = TRUE	// Blobs that get really huge will slow down in expansion.
 
-	var/ai_aggressiveness = 10			// Probability of the blob AI attempting to attack someone next to the blob, independant of the attacks from node/core pulsing.
+	var/ai_aggressiveness = 10			// Probability of the blob AI attempting to attack someone next to the blob, independent of the attacks from node/core pulsing.
 
 	var/can_build_factories = FALSE		// Forbids this blob type from building factories.  Set to true to enable.
 	var/can_build_resources = FALSE		// Ditto, for resource blobs.

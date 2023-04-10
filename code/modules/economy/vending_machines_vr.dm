@@ -92,7 +92,7 @@
 
 /obj/machinery/vending/fooditalian
 	name = "Italian Imports"
-	desc = "You wanted some italian food? Well here's some imported from the local pizza place!"
+	desc = "You wanted some Italian food? Well here's some imported from the local pizza place!"
 	icon_state = "hotfood"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 15,

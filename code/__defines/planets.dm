@@ -20,7 +20,7 @@
 #define MOON_PHASE_WAXING_CRESCENT	"waxing crescent"
 #define MOON_PHASE_FIRST_QUARTER	"first quarter"
 #define MOON_PHASE_WAXING_GIBBOUS	"waxing gibbous"
-#define MOON_PHASE_FULL_MOON		"full moon" // ware-shantaks sold seperately.
+#define MOON_PHASE_FULL_MOON		"full moon" // were-shantaks sold separately.
 #define MOON_PHASE_WANING_GIBBOUS	"waning gibbous"
 #define MOON_PHASE_LAST_QUARTER		"last quarter"
 #define MOON_PHASE_WANING_CRESCENT	"waning crescent"

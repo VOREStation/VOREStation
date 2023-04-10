@@ -5,10 +5,10 @@
 	desc = "This specific spider has been catalogued as 'Carrier', \
 	and it belongs to the 'Nurse' caste. \
 	<br><br>\
-	The spider has a beige and red appearnce, with bright green eyes. \
+	The spider has a beige and red appearance, with bright green eyes. \
 	Inside the spider are a large number of younger spiders and spiderlings, hence \
 	the Carrier classification. \
-	If the host dies, they will be able to exit the body and survive independantly, \
+	If the host dies, they will be able to exit the body and survive independently, \
 	unless the host dies catastrophically."
 	value = CATALOGUER_REWARD_MEDIUM
 

@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 // Used for mapping in solar arrays which automatically start itself.
 // Generally intended for far away and remote locations, where player intervention is rare.
-// In the interest of backwards compatability, this isn't named auto_start, as doing so might break downstream maps.
+// In the interest of backwards compatibility, this isn't named auto_start, as doing so might break downstream maps.
 /obj/machinery/power/solar_control/autostart
 	auto_start = SOLAR_AUTO_START_YES
 

@@ -57,11 +57,11 @@ SUBSYSTEM_DEF(sqlite)
 	init_schema.Execute(sqlite_object)
 	sqlite_check_for_errors(init_schema, "Feedback table creation")
 
-	// Add more schemas below this if the SQLite DB gets expanded for things like persistant news, polls, bans, deaths, etc.
+	// Add more schemas below this if the SQLite DB gets expanded for things like persistent news, polls, bans, deaths, etc.
 
 // General error checking for SQLite.
 // Returns true if something went wrong. Also writes a log.
-// The desc parameter should be unique for each call, to make it easier to track down where the error occured.
+// The desc parameter should be unique for each call, to make it easier to track down where the error occurred.
 /datum/controller/subsystem/sqlite/proc/sqlite_check_for_errors(var/database/query/query_used, var/desc)
 	if(query_used && query_used.ErrorMsg())
 		log_debug("SQLite Error: [desc] : [query_used.ErrorMsg()]")

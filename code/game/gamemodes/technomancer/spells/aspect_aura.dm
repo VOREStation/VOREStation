@@ -19,7 +19,7 @@
 	if(istype(W, /obj/item/weapon/spell))
 		var/obj/item/weapon/spell/spell = W
 		if(!spell.aspect || spell.aspect == ASPECT_CHROMATIC)
-			to_chat(user, "<span class='warning'>You cannot combine \the [spell] with \the [src], as the aspects are incompatable.</span>")
+			to_chat(user, "<span class='warning'>You cannot combine \the [spell] with \the [src], as the aspects are incompatible.</span>")
 			return
 		user.drop_item(src)
 		src.loc = null

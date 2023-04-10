@@ -1,5 +1,5 @@
 // This is a datum-based artificial intelligence for simple mobs (and possibly others) to use.
-// The neat thing with having this here instead of on the mob is that it is independant of Life(), and that different mobs
+// The neat thing with having this here instead of on the mob is that it is independent of Life(), and that different mobs
 // can use a more or less complex AI by giving it a different datum.
 #define AI_NO_PROCESS			0
 #define AI_PROCESSING			(1<<0)
@@ -175,7 +175,7 @@
 		var/list/choices = list()
 		for(var/typechoice in types)
 			var/list/found = list()
-			for(var/atom/M as anything in searching) // Isnt't there a helper for this, maybe? I forget.
+			for(var/atom/M as anything in searching) // Isn't there a helper for this, maybe? I forget.
 				if(!(M.z in levels_working))
 					continue
 				if(!istype(M,typechoice))

@@ -1,5 +1,5 @@
 /mob/living/simple_mob/humanoid/russian
-	name = "russian"
+	name = "Russian"
 	desc = "For the Motherland!"
 	tt_desc = "E Homo sapiens"
 	icon_state = "russianmelee"

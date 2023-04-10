@@ -213,9 +213,9 @@
 
 // Proc: afterattack()
 // Parameters: 4 (target - the atom clicked on by user, user - the technomancer who clicked with the spell, proximity_flag - argument
-// telling the proc if target is adjacent to user, click_parameters - information on where exactly the click occured on the screen.)
+// telling the proc if target is adjacent to user, click_parameters - information on where exactly the click occurred on the screen.)
 // Description: Tests to make sure it can cast, then casts a combined, ranged, or melee spell based on what it can do and the
-// range the click occured.  Melee casts have higher priority than ranged if both are possible.  Sets cooldown at the end.
+// range the click occurred.  Melee casts have higher priority than ranged if both are possible.  Sets cooldown at the end.
 // Don't override this for spells, override the on_*_cast() spells shown above.
 /obj/item/weapon/spell/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!run_checks())

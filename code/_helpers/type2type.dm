@@ -53,7 +53,7 @@
 		num_list += text2num(x)
 	return num_list
 
-// Splits the text of a file at seperator and returns them in a list.
+// Splits the text of a file at separator and returns them in a list.
 /proc/file2list(filename, seperator="\n")
 	return splittext(return_file_text(filename),seperator)
 

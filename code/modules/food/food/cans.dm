@@ -198,7 +198,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/kvass
 	name = "\improper Kvass"
 	desc = "A true Slavic soda."
-	description_fluff = "A classic slavic beverage which many Space Russians still enjoy to this day. Fun fact, it is actually considered a weak beer by non-russians."
+	description_fluff = "A classic Slavic beverage which many Space Russians still enjoy to this day. Fun fact, it is actually considered a weak beer by non-Russians."
 	icon_state = "kvass"
 	center_of_mass = list("x"=16, "y"=10)
 
@@ -208,8 +208,8 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/kompot
 	name = "\improper Kompot"
-	desc = "A taste of russia in the summertime - canned for you consumption."
-	description_fluff = "A sweet and fruity beverage that was traditionally used to preserve frutis in harsh Russian winters that is now available for widespread comsumption."
+	desc = "A taste of Russia in the summertime - canned for you consumption."
+	description_fluff = "A sweet and fruity beverage that was traditionally used to preserve fruits in harsh Russian winters that is now available for widespread consumption."
 	icon_state = "kompot"
 	center_of_mass = list("x"=16, "y"=10)
 

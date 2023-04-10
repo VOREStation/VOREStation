@@ -169,7 +169,7 @@
 ///Vintage Military Bags///
 
 /obj/item/weapon/storage/backpack/vietnam
-	name = "vietnam backpack"
+	name = "Vietnam backpack"
 	desc = "There are tangos in the trees! We need napalm right now! Why is my gun jammed?"
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
@@ -177,7 +177,7 @@
 	icon_state = "nambackpack"
 
 /obj/item/weapon/storage/backpack/russian
-	name = "russian backpack"
+	name = "Russian backpack"
 	desc = "Useful for carrying large quantities of vodka."
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
@@ -185,7 +185,7 @@
 	icon_state = "ru_rucksack"
 
 /obj/item/weapon/storage/backpack/korean
-	name = "korean backpack"
+	name = "Korean backpack"
 	desc = "Insert witty description here."
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'

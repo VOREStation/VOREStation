@@ -315,7 +315,7 @@
 	log_admin("[user] threw a capture crystal at [M] and got [capture_chance]% chance to catch.")
 	return capture_chance
 
-//Handles checking relevent bans, preferences, and asking the player if they want to be caught
+//Handles checking relevant bans, preferences, and asking the player if they want to be caught
 /obj/item/capture_crystal/proc/capture_player(mob/living/M, mob/living/U)
 	if(jobban_isbanned(M, "GhostRoles"))
 		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")

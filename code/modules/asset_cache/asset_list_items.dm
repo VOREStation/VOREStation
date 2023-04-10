@@ -515,7 +515,7 @@
 
 // Nanomaps
 /datum/asset/simple/nanomaps
-	// It REALLY doesnt matter too much if these arent up to date
+	// It REALLY doesn't matter too much if these aren't up to date
 	// They are relatively big
 	assets = list(
 		// VOREStation Edit: We don't need Southern Cross

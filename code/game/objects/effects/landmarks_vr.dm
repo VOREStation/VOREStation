@@ -9,7 +9,7 @@
 
 /obj/effect/landmark/wildlife
 	name = "wildlife"
-	var/wildlife_type = 2		//1 for water, 2 for land; thats all for now
+	var/wildlife_type = 2		//1 for water, 2 for land; that's all for now
 
 /obj/effect/landmark/late_antag
 	name = "Antag Latespawn"

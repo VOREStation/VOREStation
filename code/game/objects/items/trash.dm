@@ -98,7 +98,7 @@
 	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/trash/asian_bowl
-	name = "asian bowl"
+	name = "Asian bowl"
 	icon_state	= "asian_bowl"
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'

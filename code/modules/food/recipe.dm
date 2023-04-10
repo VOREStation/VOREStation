@@ -160,7 +160,7 @@
 		return TRUE //Only snacks can be battered
 
 	if (coating == -1)
-		return TRUE //-1 value doesnt care
+		return TRUE //-1 value doesn't care
 
 	var/obj/item/weapon/reagent_containers/food/snacks/S = O
 	if (!S.coating)
@@ -208,7 +208,7 @@
 //We will subtract all the ingredients from the container, and transfer their reagents into a holder
 //We will not touch things which are not required for this recipe. They will be left behind for the caller
 //to decide what to do. They may be used again to make another recipe or discarded, or merged into the results,
-//thats no longer the concern of this proc
+//that's no longer the concern of this proc
 	var/datum/reagents/buffer = new /datum/reagents(10000000000, null)//
 
 
@@ -239,7 +239,7 @@
 	//And lastly deduct necessary quantities of reagents
 	if (reagents && reagents.len)
 		for (var/r in reagents)
-			//Doesnt matter whether or not there's enough, we assume that check is done before
+			//Doesn't matter whether or not there's enough, we assume that check is done before
 			container.reagents.trans_type_to(buffer, r, reagents[r])
 
 	/*

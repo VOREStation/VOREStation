@@ -172,7 +172,7 @@
 		<B>END LOG</B><BR>
 		<BR>
 		<B>CATALOGUER VOICE RECOGNITION RESULTS:</B><BR>
-		No match found for either speaker, but contextual clues and use of Old Earth russian (\'brat\', approximately \'brother\' or \'pal\') suggests out-of-sector criminal elements.
+		No match found for either speaker, but contextual clues and use of Old Earth Russian (\'brat\', approximately \'brother\' or \'pal\') suggests out-of-sector criminal elements.
 	"}
 
 /obj/structure/prop/blackbox/gecko_wreck

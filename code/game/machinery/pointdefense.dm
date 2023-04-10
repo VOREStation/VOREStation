@@ -266,7 +266,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		visible_message("[src] sputters as browns out while attempting to fire.")
 		flick(src, "[initial(icon_state)]_off")
 		return
-	//We throw a laser but it doesnt have to hit for meteor to explode
+	//We throw a laser but it doesn't have to hit for meteor to explode
 	var/obj/item/projectile/beam/pointdefense/beam = new(get_turf(src))
 	playsound(src, 'sound/weapons/mandalorian.ogg', 75, 1)
 	beam.launch_projectile(target = M.loc, user = src)

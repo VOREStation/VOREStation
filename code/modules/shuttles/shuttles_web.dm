@@ -1,4 +1,4 @@
-//This shuttle traverses a "web" of route_datums to have a wider range of places to go and make flying feel like movement is actually occuring.
+//This shuttle traverses a "web" of route_datums to have a wider range of places to go and make flying feel like movement is actually occurring.
 /datum/shuttle/autodock/web_shuttle
 	flags = SHUTTLE_FLAGS_ZERO_G
 	var/visible_name = null // The pretty name shown to people in announcements, since the regular name var is used internally for other things.

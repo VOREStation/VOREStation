@@ -1,5 +1,5 @@
 // This is a simple ticker for the new event system.
-// The logic that determines what events get chosen is held inside a seperate subsystem.
+// The logic that determines what events get chosen is held inside a separate subsystem.
 
 SUBSYSTEM_DEF(event_ticker)
 	name = "Events (Ticker)"

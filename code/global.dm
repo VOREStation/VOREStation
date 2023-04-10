@@ -5,7 +5,7 @@
 
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
-var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
+var/global/list/machines                 = list()	// ALL Machines, whether processing or not.
 var/global/list/processing_machines      = list()	// TODO - Move into SSmachines
 var/global/list/processing_power_items   = list()	// TODO - Move into SSmachines
 var/global/list/active_diseases          = list()
@@ -41,7 +41,7 @@ var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 300) //VOREStat
 var/round_progressing = 1
 
 var/master_mode       = "extended" // "extended"
-var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
+var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forcibly choose this mode.
 
 var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
@@ -52,7 +52,7 @@ var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src]
 var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 var/list/reg_dna       = list()
 
-var/mouse_respawn_time = 2.5 // Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes. Vorestation Edit - Changed to 2.5 minutes, half of 5, in accordance with mouse nerfs and realignment.
+var/mouse_respawn_time = 2.5 // Amount of time that must pass between a player dying as a mouse and respawning as a mouse. In minutes. Vorestation Edit - Changed to 2.5 minutes, half of 5, in accordance with mouse nerfs and realignment.
 
 var/list/monkeystart     = list()
 var/list/wizardstart     = list()

@@ -282,7 +282,7 @@
 				if("event")
 					restriction_check = category_event
 				else
-					to_chat(usr, "<span class='warning'>Prize checkout error has occured, purchase cancelled.</span>")
+					to_chat(usr, "<span class='warning'>Prize checkout error has occurred, purchase cancelled.</span>")
 					return FALSE
 
 			if(restriction_check < 1)
@@ -333,7 +333,7 @@
 /obj/machinery/casino_prize_dispenser/proc/do_logging(item, mob/user, datum/data/casino_prize/bi)
 	var/prize_log = "{ckey:[user.ckey]character_name:[user.name]item_path: [bi.equipment_path]}"
 	log[++log.len] = prize_log
-	//Currently doesnt have an ingame way to show. Can only be viewed through View-Variables, to ensure theres no chance of players ckeys exposed - Jack
+	//Currently doesn't have an ingame way to show. Can only be viewed through View-Variables, to ensure there's no chance of players ckeys exposed - Jack
 
 /obj/machinery/casino_prize_dispenser/proc/speak(var/message)
 	if(stat & NOPOWER)

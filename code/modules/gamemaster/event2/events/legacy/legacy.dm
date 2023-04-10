@@ -1,5 +1,5 @@
 // This is a somewhat special type of event, that bridges to the old event datum and makes it work with the new system.
-// It acts as a compatability layer between the old event, and the new GM system.
+// It acts as a compatibility layer between the old event, and the new GM system.
 // This is possible because the new datum is mostly a superset of the old one.
 /datum/event2/event/legacy
 	var/datum/event/legacy_event = null
