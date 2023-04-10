@@ -217,7 +217,7 @@
 		update_held_icon()
 		if(istype(A,/obj/structure/window))
 			var/obj/structure/window/W = A
-			visible_message("<span class='warning'>\The [W] crumples under the force of the impact!<span>")
+			visible_message("<span class='warning'>\The [W] crumples under the force of the impact!</span>")
 			W.shatter()
 		else if(istype(A,/obj/structure/barricade))
 			var/obj/structure/barricade/B = A
