@@ -1,16 +1,24 @@
 /obj/item/weapon/melee/shock_maul
 	name = "concussion maul"
 	desc = "A heavy-duty concussion hammer, typically used for mining. An iconic weapon for the many uprisings of Mars. It uses a manually engaged concussive-force amplifier unit in the head to multiply impact force, but its weight and the charge up time makes it difficult to use effectively. Devastating if used correctly, but requires skill."
-	description_fluff = ""
-	icon_state = "sledgehammer"
-	item_state = "sledgehammer"
+	icon_state = "forcemaul"
+	item_state = "forcemaul"
 	slot_flags = SLOT_BACK
 	force = 35
+	var/unwielded_force_divisor = 0.25
+	var/wielded = 0
+	var/force_unwielded = 8.75
+	var/wieldsound = null
+	var/unwieldsound = null
 	var/charge_force_mult = 1.75	//damage multiplier on charged hits
-	var/launch_force = 4	//yeet distance
+	var/launch_force = 3	//yeet distance
+	var/launch_force_unwielded = 1	//awful w/ one hand, but still gets a little distance
 	var/launch_force_disarm = 1.5	//distance multiplier when swinging in disarm mode, since disarm attacks do half damage
+	var/weaken_force = 2	//stun power
+	var/weaken_force_unwielded = 0	//can't stun at all if used onehanded
+	var/weaken_force_disarm = 1.5	//stun multiplier when in disarm mode
 	can_cleave = TRUE	//SSSSMITE!
-	attackspeed = 14	//very slow!!
+	attackspeed = 15	//very slow!!
 	sharp = FALSE
 	edge = FALSE
 	throwforce = 25
@@ -25,9 +33,27 @@
 	var/obj/item/weapon/cell/bcell = null
 	var/hitcost = 600	//you get 4 hits out of a standard cell
 
+/obj/item/weapon/melee/shock_maul/update_held_icon()
+	var/mob/living/M = loc
+	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
+		wielded = 1
+		force = initial(force)
+		launch_force = initial(launch_force)
+		weaken_force = initial(weaken_force)
+		name = "[initial(name)] (wielded)"
+		update_icon()
+	else
+		wielded = 0
+		force = force_unwielded
+		launch_force = launch_force_unwielded
+		weaken_force = weaken_force_unwielded
+		name = "[initial(name)]"
+	update_icon()
+	..()
+
 /obj/item/weapon/melee/shock_maul/New()
 	..()
-	update_icon()
+	update_held_icon()
 	return
 
 /obj/item/weapon/melee/shock_maul/get_cell()
@@ -84,20 +110,30 @@
 	if(bcell)
 		if(bcell.charge < chrgdeductamt)
 			status = 0
-			update_icon()
+			update_held_icon()
 
 /obj/item/weapon/melee/shock_maul/update_icon()
 	if(status)
-		icon_state = "[initial(icon_state)]_active"
+		icon_state = "[initial(icon_state)]_active[wielded]"
+		item_state = icon_state
 	else if(!bcell)
-		icon_state = "[initial(icon_state)]_nocell"
+		icon_state = "[initial(icon_state)]_nocell[wielded]"
+		item_state = icon_state
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = "[initial(icon_state)][wielded]"
+		item_state = icon_state
 
-	if(icon_state == "[initial(icon_state)]_active")
+	if(icon_state == "[initial(icon_state)]_active[wielded]")
 		set_light(2, 1, lightcolor)
 	else
 		set_light(0)
+
+/obj/item/weapon/melee/shock_maul/dropped()
+	..()
+	if(status)
+		status = 0
+		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
+	update_held_icon()
 
 /obj/item/weapon/melee/shock_maul/examine(mob/user)
 	. = ..()
@@ -115,10 +151,10 @@
 				user.drop_item()
 				W.loc = src
 				bcell = W
-				to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
-				update_icon()
+				to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
+				update_held_icon()
 			else
-				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
+				to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
 
@@ -130,7 +166,7 @@
 			bcell = null
 			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 			status = 0
-			update_icon()
+			update_held_icon()
 			return
 		..()
 	else
@@ -142,18 +178,17 @@
 			status = 1
 			to_chat(user, "<span class='notice'>You charge \the [src]. <b>It's hammer time.</b></span>")
 			playsound(src, "sparks", 75, 1, -1)
+			update_held_icon()
 			force *= charge_force_mult
-			update_icon()
-	else
+	else if(status)
 		status = 0
 		to_chat(user, "<span class='notice'>\The [src] is now off.</span>")
-		force = initial(force)
-		update_icon()
+		update_held_icon()
 		playsound(src, "sparks", 75, 1, -1)
 		if(!bcell)
-			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
-		else
-			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
+			to_chat(user, "<span class='warning'>\The [src] does not have a power source!</span>")
+	else
+		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
 	add_fingerprint(user)
 
 /obj/item/weapon/melee/shock_maul/attack(mob/M, mob/user)
@@ -164,23 +199,27 @@
 	. = ..()
 	if(user.a_intent == I_DISARM)
 		launch_force *= launch_force_disarm
+		weaken_force *= weaken_force_disarm
 
 	//yeet 'em away, boys!
 	if(status)
 		var/atom/target_zone = get_edge_target_turf(user,get_dir(user, target))
 		target.throw_at(target_zone, launch_force, 2, user, FALSE)
-		msg_admin_attack("[key_name(user)] launched [key_name(target)] with \the [src].")
+		target.Weaken(weaken_force)
 
 		status = 0
-		to_chat(user, "<span class='warning'>\The [src] has discharged!</span>")
+		visible_message("<span class='warning'>\The [src] discharges with a thunderous crackle!</span>")
 		playsound(src, "sparks", 75, 1, -1)
-		force = initial(force)
-		update_icon()
+		update_held_icon()
 	powercheck(hitcost)
 
 /obj/item/weapon/melee/shock_maul/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
+	if(status)
+		status = 0
+		visible_message("<span class='warning'>\The [src]'s power field hisses and sputters out.</span>")
+		update_held_icon()
 	..()
 
 /obj/item/weapon/melee/shock_maul/get_description_interaction()

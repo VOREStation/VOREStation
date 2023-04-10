@@ -1414,6 +1414,7 @@
 #include "code\game\objects\items\weapons\melee\energy_vr.dm"
 #include "code\game\objects\items\weapons\melee\misc.dm"
 #include "code\game\objects\items\weapons\melee\misc_vr.dm"
+#include "code\game\objects\items\weapons\melee\shock_maul.dm"
 #include "code\game\objects\items\weapons\storage\backpack.dm"
 #include "code\game\objects\items\weapons\storage\backpack_vr.dm"
 #include "code\game\objects\items\weapons\storage\bags.dm"
