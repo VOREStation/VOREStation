@@ -335,18 +335,6 @@
 "aQ" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -356,6 +344,16 @@
 	id = "xenobiopen5";
 	name = "Pen 5 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -464,16 +462,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "bc" = (
@@ -536,16 +530,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "bk" = (
@@ -2572,15 +2562,13 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -2836,18 +2824,6 @@
 "hX" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -2857,6 +2833,15 @@
 	id = "xenobiopen2";
 	name = "Pen 2 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -3769,16 +3754,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "kA" = (
@@ -5171,15 +5152,13 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -5375,18 +5354,6 @@
 "pq" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -5396,6 +5363,16 @@
 	id = "xenobiopen7";
 	name = "Pen 7 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -6866,15 +6843,13 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -7753,9 +7728,6 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -8879,18 +8851,6 @@
 "zB" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -8901,6 +8861,16 @@
 	name = "Pen 4 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "zC" = (
@@ -10065,18 +10035,6 @@
 "CS" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -10087,6 +10045,16 @@
 	name = "Pen 6 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "CT" = (
@@ -10510,8 +10478,7 @@
 	req_access = list(20)
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = null
+	dir = 8
 	},
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/item/clothing/suit/space/void/captain,
@@ -10534,7 +10501,6 @@
 "DX" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -11129,11 +11095,13 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = null
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/rnd/xenobiology)
@@ -12775,18 +12743,6 @@
 "Kg" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -12797,6 +12753,16 @@
 	name = "Pen 8 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "Kh" = (
@@ -14027,19 +13993,6 @@
 /area/groundbase/civilian/chapel)
 "NA" = (
 /obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -14049,6 +14002,17 @@
 	id = "xenobiopen3";
 	name = "Pen 3 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -15728,18 +15692,6 @@
 "Sj" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -15749,6 +15701,16 @@
 	id = "xenobiopen1";
 	name = "Pen 1 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -16202,16 +16164,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "Tx" = (
@@ -16629,15 +16587,13 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -18257,16 +18213,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = null
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor,
 /area/rnd/xenobiology)
 "ZL" = (
@@ -21471,7 +21423,7 @@ ZK
 ls
 iK
 ls
-ZK
+FO
 bb
 jA
 jA
