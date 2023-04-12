@@ -1794,12 +1794,17 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "eV" = (
-/obj/machinery/firealarm,
 /obj/machinery/computer/supplycomp/control{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	dir = 4;
+	pixel_x = -28
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -2482,7 +2487,7 @@
 /obj/structure/table/standard,
 /obj/item/weapon/clipboard,
 /obj/item/weapon/stamp/qm,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -4097,12 +4102,15 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
 "ly" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
+	},
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -4365,9 +4373,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "mj" = (
-/obj/machinery/alarm,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/light_switch{
+	pixel_y = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -5195,6 +5202,9 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "oS" = (
@@ -5917,13 +5927,13 @@
 /area/groundbase/command/hop)
 "qN" = (
 /obj/machinery/status_display/supply_display{
-	pixel_x = 32
+	pixel_y = 32
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/button/windowtint{
+	id = "qm_office";
+	layer = 3.3;
+	pixel_x = -24;
+	pixel_y = 27
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -6666,17 +6676,8 @@
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level2/eastspur)
 "sS" = (
-/obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/device/megaphone,
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	dir = 8;
-	pixel_x = 28
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -7563,6 +7564,9 @@
 /obj/structure/table/standard,
 /obj/machinery/photocopier/faxmachine{
 	department = "Quartermaster-Office"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -10816,11 +10820,16 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "EQ" = (
-/obj/structure/filingcabinet,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/closet/walllocker_double/cargo/north,
+/obj/item/weapon/cartridge/quartermaster{
+	pixel_x = 6;
+	pixel_y = 5
 	},
+/obj/item/weapon/cartridge/quartermaster{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/obj/item/weapon/cartridge/quartermaster,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "ET" = (
@@ -11999,9 +12008,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_y = -30
+/obj/machinery/alarm{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -12699,15 +12707,14 @@
 /area/groundbase/medical/triage)
 "JW" = (
 /obj/structure/table/standard,
-/obj/item/weapon/cartridge/quartermaster{
-	pixel_x = -4;
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/cartridge/quartermaster{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/weapon/cartridge/quartermaster,
+/obj/item/device/megaphone,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "JX" = (
@@ -12953,11 +12960,8 @@
 "KB" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/qm,
-/obj/machinery/button/windowtint{
-	id = "qm_office";
-	layer = 3.3;
-	pixel_x = 16;
-	pixel_y = -27
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
@@ -13065,11 +13069,10 @@
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/command)
 "KS" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/flora/pottedplant/minitree,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "KU" = (
@@ -14291,15 +14294,7 @@
 /turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "Ok" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
+/obj/structure/filingcabinet,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "Ol" = (
@@ -15158,6 +15153,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "QI" = (
@@ -16326,7 +16324,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "TR" = (
-/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "TS" = (
@@ -29612,7 +29612,7 @@ to
 OM
 Cz
 EQ
-ZD
+sS
 Zt
 ZD
 MW
