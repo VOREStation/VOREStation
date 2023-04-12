@@ -7220,13 +7220,7 @@
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "uA" = (
-/obj/structure/table/standard,
-/obj/item/clothing/head/soft,
-/obj/item/clothing/head/soft,
-/obj/item/weapon/stamp{
-	pixel_x = -3;
-	pixel_y = 3
-	},
+/obj/structure/closet/secure_closet/cargotech,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/storage)
 "uC" = (
