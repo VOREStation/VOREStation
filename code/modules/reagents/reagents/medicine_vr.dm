@@ -111,3 +111,17 @@
 		return
 	if(prob(10)) //Miniscule chance of removing some toxins.
 		M.adjustToxLoss(-10 * removed)
+
+/datum/reagent/lipozineplus // The anti-nutriment that rapidly removes weight.
+	name = "Lipozine Plus"
+	id = "lipozineplus"
+	description = "A chemical compound that causes a dangerously powerful fat-burning reaction."
+	taste_description = "mothballs"
+	reagent_state = LIQUID
+	color = "#47AD6D"
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/lipozineplus/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjust_nutrition(-20 * removed)
+	if(M.weight > 50)
+		M.weight -= 0.3
