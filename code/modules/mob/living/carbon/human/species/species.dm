@@ -99,6 +99,7 @@
 	var/flash_mod =     1								// Stun from blindness modifier (flashes and flashbangs)
 	var/flash_burn =    0								// how much damage to take from being flashed if light hypersensitive
 	var/sound_mod =     1								// Multiplier to the effective *range* of flashbangs. a flashbang's bang hits an entire screen radius, with some falloff.
+	var/throwforce_absorb_threshold = 0					// Ignore damage of thrown items below this value
 
 	var/chem_strength_heal =    1						// Multiplier to most beneficial chem strength
 	var/chem_strength_pain =    1						// Multiplier to painkiller strength (could be used in a negative trait to simulate long-term addiction reducing effects, etc.)

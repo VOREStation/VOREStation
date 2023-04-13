@@ -1,4 +1,4 @@
-/obj/structure/alien //Gurg Addition, framework for alien eggs and structures.
+/obj/structure/alien //Gurg Addition, framework for alien structures.
 	name = "alien thing"
 	desc = "There's something alien about this."
 	icon = 'icons/mob/alien.dmi'

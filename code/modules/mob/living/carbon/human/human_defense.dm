@@ -435,6 +435,10 @@ emp_act
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
+		if(species && species.throwforce_absorb_threshold >= throw_damage)
+			visible_message("<b>\The [O]</b> simply bounces off of [src]'s body!")
+			return
+
 		var/zone
 		if (istype(O.thrower, /mob/living))
 			var/mob/living/L = O.thrower

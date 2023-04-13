@@ -299,6 +299,25 @@ Talon winter coat
 	)
 	gear_tweaks += new/datum/gear_tweak/path(shrouds)
 
+/datum/gear/suit/roles/cropjackets
+	display_name = "crop jacket selection"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket
+
+/datum/gear/suit/roles/cropjackets/New()
+	..()
+	var/list/shrouds = list(
+		"white crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket,
+		"blue crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/blue,
+		"red crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/red,
+		"green crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/green,
+		"purple crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/purple,
+		"orange crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/orange,
+		"charcoal crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/charcoal,
+		"faded reflec crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/marine,
+		"drab crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/drab
+	)
+	gear_tweaks += new/datum/gear_tweak/path(shrouds)
+
 //Actually colorable hoodies
 /datum/gear/suit/roles/choodies
 	display_name = "hoodie selection, colorable"
