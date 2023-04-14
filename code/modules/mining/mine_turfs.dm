@@ -371,7 +371,6 @@ var/list/mining_overlay_cache = list()
 				valid_tool = 1
 				digspeed = P.digspeed
 
-
 		if(valid_tool)
 			if (sand_dug)
 				to_chat(user, "<span class='warning'>This area has already been dug.</span>")
@@ -441,6 +440,51 @@ var/list/mining_overlay_cache = list()
 				if(do_after(user, 15))
 					to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
+
+		if (istype(W, /obj/item/weapon/melee/shock_maul))
+			if(!istype(user.loc, /turf))
+				return
+
+			var/obj/item/weapon/melee/shock_maul/S = W
+			if(!S.wielded || !S.status)	//if we're not wielded OR not powered up, do nothing
+				to_chat(user, "<span class='warning'>\The [src] must be wielded in two hands and powered on to be used for mining!</span>")
+				return
+
+			var/newDepth = excavation_level + S.excavation_amount // Used commonly below
+
+			//handle any archaeological finds we might uncover
+			var/fail_message = ""
+			if(finds && finds.len)
+				var/datum/find/F = finds[1]
+				if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
+					fail_message = ". <b>[pick("There is a crunching noise","[S] collides with some different rock","Part of the rock face crumbles away","Something breaks under [S]")]</b>"
+					wreckfinds(S.destroy_artefacts)
+
+			to_chat(user, "<span class='notice'>You smash through \the [src][fail_message].</span>")
+
+			if(newDepth >= 200) // This means the rock is mined out fully
+				if(S.destroy_artefacts)
+					GetDrilled(0)
+				else
+					excavate_turf()
+				return
+
+			excavation_level += S.excavation_amount
+			update_archeo_overlays(S.excavation_amount)
+
+			//drop some rocks
+			next_rock += S.excavation_amount
+			while(next_rock > 50)
+				next_rock -= 50
+				var/obj/item/weapon/ore/O = new(src)
+				geologic_data.UpdateNearbyArtifactInfo(src)
+				O.geologic_data = geologic_data
+
+			user.visible_message("<span class='warning'>\The [src] discharges with a thunderous, hair-raising crackle!</span>")
+			playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
+			S.deductcharge()
+			S.status = 0
+			S.update_held_icon()
 
 		if (istype(W, /obj/item/weapon/pickaxe))
 			if(!istype(user.loc, /turf))

@@ -97,6 +97,21 @@
 				new outcropdrop(get_turf(src))
 			qdel(src)
 			return
+	if (istype(W, /obj/item/weapon/melee/shock_maul))
+		var/obj/item/weapon/melee/shock_maul/S = W
+		if(!S.wielded || !S.status)
+			to_chat(user, "<span class='warning'>\The [src] must be wielded in two hands and powered on to be used for mining!</span>")
+			return
+		to_chat(user, "<span class='notice'>You pulverize \the [src]!</span>")
+		for(var/i=0;i<(rand(mindrop,upperdrop));i++)
+			new outcropdrop(get_turf(src))
+		playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
+		user.visible_message("<span class='warning'>\The [S] discharges with a thunderous, hair-raising crackle!</span>")
+		S.deductcharge()
+		S.status = 0
+		S.update_held_icon()
+		qdel(src)
+		return
 
 /obj/random/outcrop //In case you want an outcrop without pre-determining the type of ore.
 	name = "random rock outcrop"
