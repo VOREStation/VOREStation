@@ -44,7 +44,7 @@
 	friendly = list("hugs")
 	see_in_dark = 8
 
-	mobcard_provided = TRUE
+	ID_provided = TRUE
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/catslug

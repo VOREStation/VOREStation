@@ -166,13 +166,13 @@
 	var/understands_common = TRUE 		//VOREStation Edit - Makes it so that simplemobs can understand galcomm without being able to speak it.
 	var/heal_countdown = 5				//VOREStation Edit - A cooldown ticker for passive healing
 	var/list/myid_access = list() //VOREStation Edit
-	var/mobcard_provided = FALSE //VOREStation Edit
+	var/ID_provided = FALSE //VOREStation Edit
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth
 
-	if(mobcard_provided) //VOREStation Edit
+	if(ID_provided) //VOREStation Edit
 		myid = new /obj/item/weapon/card/id(src)
 		myid.access = myid_access.Copy()
 
