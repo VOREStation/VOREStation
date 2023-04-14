@@ -320,16 +320,6 @@
 /decl/mob_organ_names
 	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.
 
-//VOREStation Add Start 	For allowing mobs with ID's door access
-/mob/living/simple_mob/Bump(var/atom/A)
-	if(mobcard && istype(A, /obj/machinery/door))
-		var/obj/machinery/door/D = A
-		if(client && !istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(mobcard))
-			D.open()
-	else
-		..()
-//Vorestation Add End
-
 /*
  * VOREStation Add
  * How injured are we? Returns a number that is then added to movement cooldown and firing/melee delay respectively.
