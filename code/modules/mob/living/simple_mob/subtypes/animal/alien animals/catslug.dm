@@ -426,7 +426,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/engislug)
 	holder_type = /obj/item/weapon/holder/catslug/custom/engislug
 	say_list_type = /datum/say_list/catslug/custom/engislug
-	mobcard_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_construction, access_atmospherics)
+	myid_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_construction, access_atmospherics)
 	siemens_coefficient = 0 		//Noodly fella's gone and built up an immunity from many small shocks
 
 	minbodytemp = 200
@@ -543,7 +543,7 @@
 		"bio" = 0,
 		"rad" = 0
 		)		//Similarly, \some\ armour values for a smidge more survivability compared to other catslugs.
-	mobcard_access = list(access_security, access_sec_doors, access_forensics_lockers, access_maint_tunnels)
+	myid_access = list(access_security, access_sec_doors, access_forensics_lockers, access_maint_tunnels)
 
 /datum/say_list/catslug/custom/gatslug
 	speak = list("Have any flashbangs?", "Valids!", "Heard spiders?", "What is that?", "Freeze!", "What are you doing?", "How did you get here?", "Red alert means big bangsticks.", "No being naughty now.", "WAOW!", "Who ate all the donuts?")
@@ -580,7 +580,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/medislug)
 	holder_type = /obj/item/weapon/holder/catslug/custom/medislug
 	say_list_type = /datum/say_list/catslug/custom/medislug
-	mobcard_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+	myid_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 
 /datum/say_list/catslug/custom/medislug
 	speak = list("Have any osteodaxon?", "What is that?", "Suit sensors!", "What are you doing?", "How did you get here?", "Put a mask on!", "No smoking!", "WAOW!", "Stop getting blood everywhere!", "WHERE IN MAINT?")
@@ -616,7 +616,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/scienceslug)
 	holder_type = /obj/item/weapon/holder/catslug/custom/scienceslug
 	say_list_type = /datum/say_list/catslug/custom/scienceslug
-	mobcard_access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
+	myid_access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
 
 
 /datum/say_list/catslug/custom/scienceslug
@@ -654,7 +654,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/cargoslug)
 	holder_type = /obj/item/weapon/holder/catslug/custom/cargoslug
 	say_list_type = /datum/say_list/catslug/custom/cargoslug
-	mobcard_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+	myid_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
 /datum/say_list/catslug/custom/cargoslug
 	speak = list("Disposals is not for slip and slide.", "What is that?", "Stamp those manifests!", "What are you doing?", "How did you get here?", "Can order pizza crate?", "WAOW!", "Where are all of our materials?", "Got glubbs?")
@@ -693,7 +693,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/capslug)
 	holder_type = /obj/item/weapon/holder/catslug/custom/capslug
 	say_list_type = /datum/say_list/catslug/custom/capslug
-	mobcard_access = list(access_maint_tunnels)		//The all_station_access part below adds onto this.
+	myid_access = list(access_maint_tunnels)		//The all_station_access part below adds onto this.
 
 /datum/say_list/catslug/custom/capslug
 	speak = list("How open big glass box with shiny inside?.", "What is that?", "Respect my authority!", "What are you doing?", "How did you get here?", "Fax for yellow-shirts!", "WAOW!", "Why is that console blinking and clicking?", "Do we need to call for ERT?", "Have been called comdom before, not sure why they thought I was a balloon.")
@@ -708,7 +708,7 @@
 	mob_radio.ks2type = /obj/item/device/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
 	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/heads/captain(mob_radio)
 	mob_radio.recalculateChannels(1)
-	mobcard.access |= get_all_station_access()
+	myid.access |= get_all_station_access()
 
 //=============================================================================
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
@@ -725,7 +725,7 @@
 	icon_dead = "deathslug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug) 			//So they don't get the spaceslug's cataloguer entry
 	say_list_type = /datum/say_list/catslug 			//Similarly, so they don't get the spaceslug's speech lines.
-	mobcard_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
+	myid_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
 	maxHealth = 100		//Tough noodles
 	health = 100
 	taser_kill = 0
@@ -750,7 +750,7 @@
 	. = ..()
 	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
-	mobcard.access |= get_all_station_access()
+	myid.access |= get_all_station_access()
 
 //Syndicate catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug
@@ -763,7 +763,7 @@
 	icon_dead = "syndislug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
 	say_list_type = /datum/say_list/catslug
-	mobcard_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+	myid_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 	faction = "syndicate"
 	maxHealth = 100		//Tough noodles
 	health = 100
@@ -795,7 +795,7 @@
 	mob_radio.ks2type = /obj/item/device/encryptionkey/syndicate
 	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/syndicate(mob_radio)
 	mob_radio.recalculateChannels(1)
-	mobcard.access |= get_all_station_access()
+	myid.access |= get_all_station_access()
 
 //ERT catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug
@@ -808,7 +808,7 @@
 	icon_dead = "responseslug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
 	say_list_type = /datum/say_list/catslug
-	mobcard_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
+	myid_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
 	maxHealth = 100		//Tough noodles
 	health = 100
 	taser_kill = 0
@@ -839,7 +839,7 @@
 	mob_radio.ks2type = /obj/item/device/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/ert(mob_radio)
 	mob_radio.recalculateChannels(1)
-	mobcard.access |= get_all_station_access()
+	myid.access |= get_all_station_access()
 
 //Pilot Catslug
 
