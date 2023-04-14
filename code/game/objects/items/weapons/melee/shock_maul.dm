@@ -163,6 +163,8 @@
 			. += "<span class='warning'>The concussion maul does not have a power source installed.</span>"
 
 /obj/item/weapon/melee/shock_maul/attackby(obj/item/weapon/W, mob/user)
+	if(!user.IsAdvancedToolUser())
+		return
 	if(istype(W, /obj/item/weapon/cell))
 		if(istype(W, /obj/item/weapon/cell/device))
 			if(!bcell)
@@ -178,7 +180,9 @@
 
 /obj/item/weapon/melee/shock_maul/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
-		if(bcell)
+		if(!user.IsAdvancedToolUser())
+			return
+		else if(bcell)
 			bcell.update_icon()
 			user.put_in_hands(bcell)
 			bcell = null
@@ -191,6 +195,8 @@
 		return ..()
 
 /obj/item/weapon/melee/shock_maul/attack_self(mob/user)
+	if(!user.IsAdvancedToolUser())
+		return
 	if(!status && bcell && bcell.charge >= hitcost)
 		if(do_after(user, 2 SECONDS))
 			status = 1
