@@ -902,3 +902,40 @@
 	icon_state = "unathi_blocky_head_eyes"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/manedwolf1
+	name = "Maned Wolf Primary Markings"
+	icon_state = "manedwolf1"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_TORSO,BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/vr/manedwolf2
+	name = "Maned Wolf Secondary Markings"
+	icon_state = "manedwolf2"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/vr/head_paint_front
+	name = "Head Paint Front"
+	icon_state = "paintfront"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/head_paint_back
+	name = "Head Paint"
+	icon_state = "paint"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/sect_drone
+	name = "Sect Drone Bodytype"
+	icon_state = "sectdrone"
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/sect_drone_eyes
+	name = "Sect Drone Eyes"
+	icon_state = "sectdrone_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)

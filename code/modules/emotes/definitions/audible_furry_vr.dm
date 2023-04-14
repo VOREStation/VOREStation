@@ -238,3 +238,8 @@
 	key = "coyawoo5"
 	emote_message_3p = "lets out a scraggly, whine-awoo."
 	emote_sound = 'sound/voice/coyoteawoo5.ogg'
+
+/decl/emote/audible/roarbark // Upstream port from CHOMP
+	key = "roarbark"
+	emote_message_3p = "lets out a roar-bark!"
+	emote_sound = 'sound/voice/roarbark.ogg'

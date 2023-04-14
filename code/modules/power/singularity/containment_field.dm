@@ -9,7 +9,10 @@
 	density = FALSE
 	unacidable = TRUE
 	use_power = USE_POWER_OFF
-	light_range = 4
+	light_on = TRUE
+	light_range = 2
+	light_power = 0.5
+	light_color = "#5BA8FF"
 	var/obj/machinery/field_generator/FG1 = null
 	var/obj/machinery/field_generator/FG2 = null
 	var/list/shockdirs

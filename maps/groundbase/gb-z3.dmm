@@ -906,13 +906,6 @@
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
-"oF" = (
-/turf/unsimulated/wall/planetary/normal{
-	desc = "It's quite impassable";
-	icon_state = "rock-dark";
-	name = "impassable rock"
-	},
-/area/groundbase/level3/sw)
 "oI" = (
 /obj/machinery/light{
 	dir = 1
@@ -3526,7 +3519,7 @@ Bg
 Bg
 Bg
 Bg
-oF
+Bg
 zh
 hO
 "}
@@ -14061,11 +14054,11 @@ IS
 IS
 IS
 IS
-IS
-IS
-IS
-IS
-IS
+vs
+vs
+vs
+sP
+sP
 oK
 iT
 iT
@@ -14203,11 +14196,11 @@ IS
 IS
 IS
 IS
-IS
-IS
-IS
-IS
-IS
+vs
+vs
+vs
+sP
+sP
 oK
 iT
 iT
@@ -14345,11 +14338,11 @@ IS
 IS
 IS
 IS
-IS
-IS
-IS
-IS
-IS
+vs
+vs
+vs
+sP
+sP
 oK
 Px
 xs

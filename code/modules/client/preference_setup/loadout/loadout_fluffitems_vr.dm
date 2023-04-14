@@ -35,6 +35,13 @@
 	character_name = list("Malady Blanche")
 
 //  A CKEYS
+
+/datum/gear/fluff/mira_medal
+	path = /obj/item/clothing/accessory/medal/silver/fluff/abc314
+	display_name = "Mira's Health Service Achievement medal"
+	ckeywhitelist = list("abc314")
+	character_name = list("Mira Nesyne")
+
 /datum/gear/fluff/lethe_helmet
 	path = /obj/item/clothing/head/helmet/hos/fluff/lethe
 	display_name = "Lethe's Helmet"

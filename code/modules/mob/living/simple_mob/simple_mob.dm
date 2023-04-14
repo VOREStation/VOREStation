@@ -165,9 +165,8 @@
 	var/limb_icon_key
 	var/understands_common = TRUE 		//VOREStation Edit - Makes it so that simplemobs can understand galcomm without being able to speak it.
 	var/heal_countdown = 5				//VOREStation Edit - A cooldown ticker for passive healing
-	var/obj/item/weapon/card/id/mobcard = null //VOREStation Edit
-	var/list/mobcard_access = list() //VOREStation Edit
-	var/mobcard_provided = FALSE //VOREStation Edit
+	var/list/myid_access = list() //VOREStation Edit
+	var/ID_provided = FALSE //VOREStation Edit
 	// VOREStation Add: Move/Shoot/Attack delays based on damage
 	var/damage_fatigue_mult = 0			// Our multiplier for how heavily mobs are affected by injury. [UPDATE THIS IF THE FORMULA CHANGES]: Formula = injury_level = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5))
 	var/injury_level = 0 				// What our injury level is. Rather than being the flat damage, this is the amount added to various delays to simulate injuries in a manner as lightweight as possible.
@@ -179,9 +178,9 @@
 	verbs -= /mob/verb/observe
 	health = maxHealth
 
-	if(mobcard_provided) //VOREStation Edit
-		mobcard = new /obj/item/weapon/card/id(src)
-		mobcard.access = mobcard_access.Copy()
+	if(ID_provided) //VOREStation Edit
+		myid = new /obj/item/weapon/card/id(src)
+		myid.access = myid_access.Copy()
 
 	for(var/L in has_langs)
 		languages |= GLOB.all_languages[L]

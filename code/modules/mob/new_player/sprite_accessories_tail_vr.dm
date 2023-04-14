@@ -12,6 +12,7 @@
 	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 	var/list/lower_layer_dirs = list(SOUTH)
+	var/icon_loaf = null
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
@@ -1325,6 +1326,14 @@
 	name = "Blade-like Tail"
 	icon = 'icons/mob/vore/tails_vr.dmi'
 	icon_state = "blade-like-tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/sectdrone_tail
+	name = "Sect Drone Tail (To use with bodytype-marking)"
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "sectdrone_tail"
+	extra_overlay = "sectdrone_tail_mark"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 

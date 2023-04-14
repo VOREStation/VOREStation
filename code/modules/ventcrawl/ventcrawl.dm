@@ -69,7 +69,7 @@ var/list/ventcrawl_machinery = list(
 		return 1
 	if(isanimal(src))
 		var/mob/living/simple_mob/S = src
-		if(carried_item == S.mobcard)	//VOREStation Edit
+		if(carried_item == S.myid)	//VOREStation Edit
 			return 1	//VOREStation Edit
 	//Try to find it in our allowed list (istype includes subtypes)
 	var/listed = FALSE
