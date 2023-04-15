@@ -33,6 +33,19 @@
 			"problemMatcher": [],
 			"label": "tgui: build tgfont",
 			"detail": "node mkdist.cjs && fantasticon --config config.cjs"
+		},
+		{
+			"type": "shell",
+			"command": "tgui/bin/tgui",
+			"windows": {
+				"command": ".\\tgui\\bin\\tgui-prettybuild.bat"
+			},
+			"problemMatcher": [
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": "build",
+			"label": "tgui: prettybuild"
 		}
 	]
 }
