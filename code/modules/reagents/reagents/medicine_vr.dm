@@ -150,5 +150,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/lipostipo/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.weight < 500) // No nutrition addedn from this horribly unhealthy drug, just makes you fat without even filling you up.
+	M.adjust_nutrition(-20 * removed)
+	if(M.weight < 500)
 		M.weight += 0.3
