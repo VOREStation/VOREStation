@@ -163,6 +163,20 @@
 	required_reagents = list("carbon" = 3, "iron" = 1, "nitrogen" = 3)
 	result_amount = 7
 
+/decl/chemical_reaction/instant/lipozilase
+	name = "Lipozilase"
+	id = "Lipozilase"
+	result = "lipozilase"
+	required_reagents = list("lipozine" = 1, "diethylamine" = 1)
+	result_amount = 2
+
+/decl/chemical_reaction/instant/lipostipo
+	name = "Lipostipo"
+	id = "Lipostipo"
+	result = "lipostipo"
+	required_reagents = list("lipozine" = 1, "nutriment" = 1, "fluorine" = 1)
+	result_amount = 3
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
 /decl/chemical_reaction/instant/meatcolony
