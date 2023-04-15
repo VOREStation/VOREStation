@@ -185,6 +185,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
+/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "au" = (
@@ -800,6 +801,7 @@
 	name = "Privacy Shutter Control";
 	pixel_y = 30
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "ca" = (
@@ -1281,6 +1283,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"du" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/circuits)
 "dv" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/belt/utility,
@@ -2211,6 +2217,7 @@
 /area/groundbase/science/xenobot)
 "gf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenohall)
 "gk" = (
@@ -2289,7 +2296,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -2664,6 +2671,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
 "hz" = (
@@ -2741,8 +2749,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/injector_maker{
-	pixel_x = -29
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 14
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	pixel_x = -25;
+	id = "chem_room"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
@@ -3643,6 +3658,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	id = "chem_room";
+	name = "Chemistry Shutters"
+	},
 /turf/simulated/floor,
 /area/groundbase/medical/Chemistry)
 "kj" = (
@@ -3801,6 +3820,7 @@
 	pixel_x = -32;
 	pixel_y = -1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "kL" = (
@@ -3848,6 +3868,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "kQ" = (
@@ -5039,8 +5060,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	dir = 8;
+	pixel_x = 28
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
+"ou" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
-/area/groundbase/cargo/storage)
+/area/groundbase/cargo/office)
 "ov" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -6168,6 +6202,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall,
 /area/groundbase/cargo/office)
+"rw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/groundbase/medical/triage)
 "rx" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave,
@@ -6549,6 +6589,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
+"sE" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "sF" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk,
@@ -6823,6 +6867,9 @@
 /obj/machinery/station_map{
 	dir = 4;
 	pixel_x = -32
+	},
+/obj/structure/bed/chair{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
@@ -7366,6 +7413,10 @@
 /obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"uV" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/hall)
 "uX" = (
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
@@ -7374,6 +7425,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
+"uZ" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "vb" = (
 /obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -7689,6 +7744,17 @@
 	outdoors = 0
 	},
 /area/groundbase/level2/nw)
+"vU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	id = "chem_room";
+	name = "Chemistry Shutters";
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/groundbase/medical/Chemistry)
 "vV" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/weapon/reagent_containers/glass/bucket,
@@ -7777,6 +7843,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
+"wi" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "wj" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -9027,6 +9097,7 @@
 /area/rnd/xenobiology)
 "zW" = (
 /obj/machinery/light,
+/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "zX" = (
@@ -9186,6 +9257,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "Aw" = (
@@ -11467,6 +11539,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "GO" = (
@@ -12739,6 +12812,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/injector_maker{
+	pixel_x = -29
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "Kg" = (
@@ -13709,6 +13785,12 @@
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
+"MI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "MJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -14386,6 +14468,10 @@
 "OD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
+	name = "Chemistry Cleaner"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "OE" = (
@@ -14806,6 +14892,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "PR" = (
@@ -16961,6 +17048,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room4)
+"VU" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "VV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -17135,6 +17228,10 @@
 	},
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/level2/nw)
+"Ws" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/wall/r_wall,
+/area/groundbase/science/rnd)
 "Wu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -23464,7 +23561,7 @@ iE
 fW
 WY
 MY
-MY
+wi
 rP
 xE
 xE
@@ -23544,7 +23641,7 @@ Tl
 UB
 Tl
 Ty
-Tl
+du
 Rh
 Fk
 AZ
@@ -24184,7 +24281,7 @@ iB
 LV
 wd
 YR
-YR
+MI
 OC
 sH
 Uy
@@ -24548,7 +24645,7 @@ Vr
 Vr
 sz
 Vr
-Vr
+uV
 XX
 xv
 Fx
@@ -24572,7 +24669,7 @@ Xb
 BY
 eC
 Mm
-Yp
+uZ
 Ie
 aF
 Mm
@@ -24951,7 +25048,7 @@ eN
 eN
 jG
 OY
-OY
+Ws
 gm
 rh
 dN
@@ -29445,9 +29542,9 @@ tw
 Ia
 yJ
 HU
-Du
+VU
 ty
-Ud
+sE
 fy
 ll
 br
@@ -30137,7 +30234,7 @@ zp
 Yc
 eL
 Lc
-FR
+ou
 Ta
 dv
 Wj
@@ -31001,7 +31098,7 @@ NC
 to
 to
 to
-ki
+vU
 nS
 Ur
 Yu
@@ -31143,7 +31240,7 @@ NC
 to
 to
 to
-ki
+vU
 xo
 UV
 Yu
@@ -31711,7 +31808,7 @@ NC
 to
 to
 to
-ki
+vU
 tt
 bx
 Yu
@@ -31853,7 +31950,7 @@ NC
 to
 to
 to
-ki
+vU
 ua
 Ur
 Yu
@@ -32003,7 +32100,7 @@ OD
 HR
 sW
 dr
-dr
+rw
 SH
 Fy
 fF
