@@ -13264,7 +13264,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -14336,6 +14336,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/device/multitool/station_buffered,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "bkU" = (
@@ -14915,6 +14916,37 @@
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/device/radio/headset/explorer{
+	pixel_y = -5;
+	pixel_x = -5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = 5;
+	pixel_x = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = 5;
+	pixel_x = 11
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = -5;
+	pixel_x = 11
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = -5;
+	pixel_x = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = -5
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
@@ -24779,6 +24811,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/device/radio/headset/explorer,
 /turf/simulated/floor,
 /area/tether/exploration/pilot_office)
 "lfI" = (
@@ -25819,6 +25852,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/item/device/radio/headset/explorer,
 /turf/simulated/floor,
 /area/tether/exploration/pilot_office)
 "mdh" = (
