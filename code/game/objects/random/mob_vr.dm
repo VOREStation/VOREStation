@@ -73,6 +73,7 @@
 				prob(2);/obj/item/weapon/twohanded/fireaxe,\
 				prob(2);/obj/item/weapon/gun/projectile/luger/brown,\
 				prob(2);/obj/item/weapon/gun/launcher/crossbow,\
+				prob(2);/obj/item/weapon/melee/shock_maul,\
 			/*	prob(1);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */ // Too OP
 				prob(1);/obj/item/weapon/gun/projectile/deagle/gold,\
 				prob(1);/obj/item/weapon/gun/energy/imperial,\
