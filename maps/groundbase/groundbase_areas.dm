@@ -337,6 +337,9 @@
 /area/groundbase/cargo/office
 	name = "Cargo Office"
 	lightswitch = 1
+/area/groundbase/cargo/storage
+	name = "Cargo Storage"
+	lightswitch = 0
 /area/groundbase/cargo/bay
 	name = "Cargo Bay"
 	lightswitch = 1
