@@ -22,6 +22,7 @@
 	var/obj/item/weapon/cell/bcell = null
 	var/hitcost = 240
 	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
+	var/grip_safety = TRUE
 
 /obj/item/weapon/melee/baton/New()
 	..()
@@ -69,18 +70,18 @@
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/melee/baton/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
 		if(bcell)
-			if(bcell.checked_use(chrgdeductamt))
+			if(bcell.checked_use(hitcost))
 				return 1
 			else
 				return 0
 	return null
 
-/obj/item/weapon/melee/baton/proc/powercheck(var/chrgdeductamt)
+/obj/item/weapon/melee/baton/proc/powercheck()
 	if(bcell)
-		if(bcell.charge < chrgdeductamt)
+		if(bcell.charge < hitcost)
 			status = 0
 			update_icon()
 
@@ -96,6 +97,13 @@
 		set_light(2, 1, lightcolor)
 	else
 		set_light(0)
+
+/obj/item/weapon/melee/baton/dropped()
+	..()
+	if(status && grip_safety)
+		status = 0
+		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
+	update_icon()
 
 /obj/item/weapon/melee/baton/examine(mob/user)
 	. = ..()
@@ -142,7 +150,7 @@
 		var/mob/living/silicon/robot/R = loc
 		if (istype(R))
 			bcell = R.cell
-	if(bcell && bcell.charge > hitcost)
+	if(bcell && bcell.charge >= hitcost)
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(src, "sparks", 75, 1, -1)
@@ -222,9 +230,10 @@
 	throwforce = 5
 	stunforce = 0
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
-	hitcost = 2500
+	hitcost = 2500	//runs off the same kind of big batteries as APCs, not small cells!
 	attack_verb = list("poked")
 	slot_flags = null
+	grip_safety = FALSE
 
 /obj/item/weapon/melee/baton/cattleprod/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell))
