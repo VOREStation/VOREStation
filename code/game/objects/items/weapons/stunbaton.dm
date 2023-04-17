@@ -208,7 +208,7 @@
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.forcesay(hit_appends)
-	powercheck(hitcost)
+	powercheck()
 
 /obj/item/weapon/melee/baton/emp_act(severity)
 	if(bcell)
