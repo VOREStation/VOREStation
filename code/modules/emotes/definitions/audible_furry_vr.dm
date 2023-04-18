@@ -243,3 +243,8 @@
 	key = "roarbark"
 	emote_message_3p = "lets out a roar-bark!"
 	emote_sound = 'sound/voice/roarbark.ogg'
+
+/decl/emote/audible/dook
+	key = "dook"
+	emote_message_3p = "dooks."
+	emote_sound = 'sound/voice/FerretDook.ogg'
