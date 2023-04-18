@@ -24233,7 +24233,7 @@
 /area/gateway/prep_room)
 "kHf" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
+	//convdir = -1;		//Incompatable with new behavior -Reo
 	id = "QMLoad2"
 	},
 /obj/machinery/light{
