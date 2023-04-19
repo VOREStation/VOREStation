@@ -4517,10 +4517,11 @@
 /datum/reagent/ethanol/deathbell/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(dose * strength >= strength) // Early warning
-		M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
-	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
-		M.slurring = max(M.slurring, 30)
+	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
+		if(dose * strength >= strength) // Early warning
+			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
+			M.slurring = max(M.slurring, 30)
 
 /datum/reagent/nutriment/magicdust
 	name = "Magic Dust"
