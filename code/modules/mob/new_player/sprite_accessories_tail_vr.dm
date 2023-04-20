@@ -1355,3 +1355,16 @@
 /datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_long
 	name = "Shadekin Long Tail"
 	icon_state = "shadekin_long_s"
+
+/datum/sprite_accessory/tail/longtail/zaprat
+	name = "bolt-shaped tail, dual color"
+	icon = 'icons/mob/vore/taurs_vr.dmi'
+	icon_state = "zaprat_s"
+	extra_overlay = "zaprat_markings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/longtail/zaprat/heart
+	name = "heart-bolt-shaped tail, dual color"
+	icon_state = "zaprat_heart_s"
+	extra_overlay = "zaprat_heart_markings"
