@@ -306,6 +306,13 @@
 	custom_only = FALSE
 	allergen = ALLERGEN_COFFEE
 
+/datum/trait/neutral/allergy/chocolate
+	name = "Allergy: Chocolate"
+	desc = "You're highly allergic to coco and chocolate in specific. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = 0
+	custom_only = FALSE
+	allergen = ALLERGEN_CHOCOLATE
+
 /datum/trait/neutral/allergy_reaction
 	name = "Allergy Reaction: Disable Toxicity"
 	desc = "Take this trait to disable the toxic damage effect of being exposed to one of your allergens. Combine with the Disable Suffocation trait to have purely nonlethal reactions."
