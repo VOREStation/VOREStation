@@ -27,8 +27,7 @@
 	open_layer = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/uppernorthstairwell{
@@ -223,11 +222,10 @@
 	open_layer = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/uppernorthstairwell{
@@ -974,10 +972,6 @@
 	req_access = list();
 	req_one_access = list(5,24)
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "aby" = (
@@ -1513,8 +1507,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -3402,8 +3395,7 @@
 	open_layer = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/triage)
@@ -3888,11 +3880,10 @@
 	open_layer = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/triage)
@@ -7657,11 +7648,10 @@
 "alH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "alI" = (
@@ -19455,10 +19445,6 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/sign/signnew/secure,
@@ -30870,12 +30856,11 @@
 	name = "Colony Director's Storage";
 	req_access = list(20)
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/item/clothing/suit/space/void/captain,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "bag" = (
@@ -42027,8 +42012,7 @@
 	open_layer = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
@@ -44588,6 +44572,24 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"xan" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology/xenoflora_storage)
 "xaU" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -61307,7 +61309,7 @@ aaq
 afS
 ack
 aeF
-ack
+xan
 afS
 afS
 afS
