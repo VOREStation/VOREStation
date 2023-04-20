@@ -38,6 +38,7 @@
 #define ALLERGEN_SUGARS		0x400	// For unathi-like reactions
 #define ALLERGEN_EGGS		0x800	// For Skrell eggs allergy
 #define ALLERGEN_STIMULANT	0x1000	// Stimulants are what makes the Tajaran heart go ruh roh - not just coffee!
+#define ALLERGEN_CHOCOLATE	0x2000	// Makes dogs die if they want to?
 
 // Allergen reactions
 #define AG_PHYS_DMG	0x1	// brute
