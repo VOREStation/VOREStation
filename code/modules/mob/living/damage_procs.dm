@@ -94,6 +94,32 @@
 				apply_damage(damage, BURN, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)	// Handle it as normal burn.
 			else
 				adjustToxLoss(damage * blocked)
+		if(ELECTROMAG)
+			damage = damage * blocked
+			switch(round(damage))
+				if(91 to INFINITY)
+					emp_act(1)
+				if(76 to 90)
+					if(prob(50))
+						emp_act(1)
+					else
+						emp_act(2)
+				if(61 to 75)
+					emp_act(2)
+				if(46 to 60)
+					if(prob(50))
+						emp_act(2)
+					else
+						emp_act(3)
+				if(31 to 45)
+					emp_act(3)
+				if(16 to 30)
+					if(prob(50))
+						emp_act(3)
+					else
+						emp_act(4)
+				if(0 to 15)
+					emp_act(4)
 	flash_weak_pain()
 	updatehealth()
 	return 1
