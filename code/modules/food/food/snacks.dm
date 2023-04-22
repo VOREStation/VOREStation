@@ -557,6 +557,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/donut/choc/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("chocolate", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/choc/jelly
 	name = "chocolate frosted jelly donut"
@@ -566,6 +567,7 @@
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
+	reagents.add_reagent("chocolate", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/blue
 	name = "blue frosted donut"
@@ -650,6 +652,7 @@
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
+	reagents.add_reagent("chocolate", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/jelly
 	name = "chocolate sprinkles jelly donut"
@@ -660,6 +663,7 @@
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("berryjuice", 5)
+	reagents.add_reagent("chocolate", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/meat
 	name = "meat donut"
