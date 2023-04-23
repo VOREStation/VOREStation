@@ -86,6 +86,21 @@
  * Ballistic
  */
 
+/obj/item/projectile/scatter/shotgun
+	name = "Shotgun scatter projectile"
+	hud_state = "shotgun_buckshot"
+	spread_submunition_damage = FALSE
+	submunition_spread_max = 60
+	submunition_spread_min = 50
+	submunitions = list(
+		/obj/item/projectile/bullet/shotgun/scatterprojectile = 6
+		)
+
+/obj/item/projectile/bullet/shotgun/scatterprojectile
+	name = "pellet"
+	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
+	damage = 12
+	armor_penetration = 0
 
 /obj/item/projectile/scatter/flechette
 	damage = 60
