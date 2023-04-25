@@ -38,6 +38,12 @@
 	light_power = 1
 	light_color = "#FF0D00"
 
+/obj/effect/projectile/muzzle/laser_em
+	icon_state = "muzzle_em_laser"
+	light_range = 3
+	light_power = 1
+	light_color = "#00C6FF"
+
 /obj/effect/projectile/muzzle/lightning
 	icon_state = "muzzle_lightning"
 	light_range = 2
