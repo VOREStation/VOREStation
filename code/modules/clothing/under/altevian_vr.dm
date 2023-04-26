@@ -19,24 +19,29 @@
 	name = "Altevian Hegemony Security Pants"
 	icon_state = "altevian-pants-sec"
 	worn_state = "altevian-pants-sec"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
 	starting_accessories = list(/obj/item/clothing/accessory/jacket/altevian/security)
 
 /obj/item/clothing/under/pants/altevian/engineering
 	name = "Altevian Hegemony Engineering Pants"
 	icon_state = "altevian-pants-eng"
 	worn_state = "altevian-pants-eng"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 	starting_accessories = list(/obj/item/clothing/accessory/jacket/altevian/engineering)
 
 /obj/item/clothing/under/pants/altevian/medical
 	name = "Altevian Hegemony Medical Pants"
 	icon_state = "altevian-pants-med"
 	worn_state = "altevian-pants-med"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	starting_accessories = list(/obj/item/clothing/accessory/jacket/altevian/medical)
 
 /obj/item/clothing/under/pants/altevian/science
 	name = "Altevian Hegemony Science Pants"
 	icon_state = "altevian-pants-sci"
 	worn_state = "altevian-pants-sci"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	starting_accessories = list(/obj/item/clothing/accessory/jacket/altevian/science)
 
 /obj/item/clothing/under/pants/altevian/cargo
@@ -56,20 +61,25 @@
 
 /obj/item/clothing/under/altevian/sci
 	name = "Altevian Science Duty Jumpsuit"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	icon_state = "altevian-specialist-sci"
 	worn_state = "altevian-specialist-sci"
 
 /obj/item/clothing/under/altevian/med
 	name = "Altevian Medical Duty Jumpsuit"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	icon_state = "altevian-specialist-med"
 	worn_state = "altevian-specialist-med"
 
 /obj/item/clothing/under/altevian/sec
 	name = "Altevian Security Duty Jumpsuit"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
 	icon_state = "altevian-specialist-sec"
 	worn_state = "altevian-specialist-sec"
 
 /obj/item/clothing/under/altevian/eng
 	name = "Altevian Engineering Duty Jumpsuit"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 	icon_state = "altevian-specialist-eng"
 	worn_state = "altevian-specialist-eng"
