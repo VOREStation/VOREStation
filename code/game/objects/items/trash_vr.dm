@@ -65,3 +65,29 @@
 	name = "\improper Prepackaged Meal Tray"
 	icon = 'icons/obj/trash_vr.dmi'
 	icon_state = "altevian_pack_turkey-trash"
+
+/obj/item/trash/ratpackramen
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_ramen_standard-trash"
+
+/obj/item/trash/ratpackramen/standard
+	icon_state = "altevian_pack_ramen_standard-trash"
+
+/obj/item/trash/ratpackramen/lacquer1
+	icon_state = "altevian_pack_ramen_lacquer1-trash"
+
+/obj/item/trash/ratpackramen/lacquer2
+	icon_state = "altevian_pack_ramen_lacquer2-trash"
+
+/obj/item/trash/ratpackramen/lacquer3
+	icon_state = "altevian_pack_ramen_lacquer3-trash"
+
+/obj/item/trash/ratpackramen/fleet
+	icon_state = "altevian_pack_ramen_fleet-trash"
+
+/obj/item/trash/ratpackramen/trans
+	icon_state = "altevian_pack_ramen_trans-trash"
+
+/obj/item/trash/ratpackramen/ace
+	icon_state = "altevian_pack_ramen_ace-trash"
