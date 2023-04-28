@@ -98,3 +98,9 @@ Talon hats
 /datum/gear/head/beret/talon
 	display_name = "beret, Talon"
 	path = /obj/item/clothing/head/beret
+
+// tiny tophat
+
+/datum/gear/head/tiny_tophat
+	display_name = "tiny tophat"
+	path = /obj/item/clothing/head/tinytophat
