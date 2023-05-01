@@ -91,3 +91,8 @@
 
 /obj/item/trash/ratpackramen/ace
 	icon_state = "altevian_pack_ramen_ace-trash"
+
+/obj/item/trash/ratpacktaco
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_taco-trash"

@@ -901,3 +901,15 @@
 		package_open_state = "altevian_pack_ramen_[bowl_color]-open"
 		package_opening_state = "altevian_pack_ramen_[bowl_color]-opening"
 		trash = text2path("/obj/item/trash/ratpackramen/[bowl_color]")
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco
+	name = "Triple Taco Tuck"
+	desc = "Three mini-tacos, minituarized further via altevian mad science into a convenient container. It comes with a salsa sauce!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_taco"
+	package_open_state = "altevian_pack_taco-open"
+	package_opening_state = "altevian_pack_taco-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpacktaco
+	nutriment_amt = 2
+	nutriment_desc = list("salsa sauce" = 2, "meat chunks" = 4, "cheese" = 3)
