@@ -933,15 +933,32 @@ var/global/list/selectable_speech_bubbles = list(
 	"cyber",
 	"ghost",
 	"slime_green",
+	"slime_yellow",
+	"slime_red",
+	"slime_blue",
 	"dark",
 	"plant",
 	"clown",
 	"fox",
+	"latte_fox",
+	"blue_fox",
 	"maus",
+	"wolf",
+	"red_panda",
+	"blue_panda",
+	"tentacles",
 	"heart",
 	"textbox",
 	"posessed",
-	"square")
+	"square",
+	"medical",
+	"medical_square",
+	"cardiogram",
+	"security",
+	"notepad",
+	"science",
+	"engineering",
+	"cargo")
 
 
 

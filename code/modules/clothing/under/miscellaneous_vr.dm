@@ -587,3 +587,12 @@
 	icon_state = "skirt_jumperdress"
 	item_state = "skirt_jumperdress"
 	worn_state = "skirt_jumperdress"
+
+// Gwen Beedell's clown outfit
+
+/obj/item/clothing/under/stripeddungarees
+	name = "striped dungarees"
+	desc = "A colourful set of striped dungarees, pretty funny lookin'."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "striped_clown_uniform"
