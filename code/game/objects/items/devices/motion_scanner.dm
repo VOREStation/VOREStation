@@ -36,7 +36,7 @@
 /obj/item/device/multi_scanner/AltClick()
 	power_stat = !power_stat
 	update_icon()
-	to_chat(usr,"<span class='notice'>You power \the [src] [power_stat ? "on" : "off"].")
+	to_chat(usr,"<span class='notice'>You power \the [src] [power_stat ? "on" : "off"].</span>")
 
 /obj/item/device/multi_scanner/update_icon()
 	if(power_stat)
