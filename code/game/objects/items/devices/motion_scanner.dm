@@ -1,7 +1,7 @@
 /obj/item/device/multi_scanner
 	name = "motion sensor"
 	desc = "A handheld device that scans the surrounding area for lifesigns using a sophisticated array of sensors, then outputs the scan results onto the display for the user to review. WARNING: Do not point the operational end of the device directly at organic life forms whilst scanning is in progress."
-	description_info = "The scanner must be powered on before it can be used. Toggle the power state with ALT+LEFT CLICK. It consumes a quarter of a standard device power cell's charge per scan."
+	description_info = "The scanner must be powered on before it can be used. Toggle the power state with ALT+LEFT CLICK. It does not require a cell to be installed to power on, but it does require one to scan. It consumes a quarter of a standard device power cell's charge per area scan."
 	icon_state = "hyperscan_off"
 	item_state = "multitool"
 	w_class = ITEMSIZE_SMALL
@@ -10,7 +10,7 @@
 	var/power_stat = 0	//0 = off / 1 = on
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/device
-	var/scan_cost = 120	//you get 4 pings per standard device cell (480)
+	var/scan_cost = 120	//you get 4 pings per standard device cell (480), deducted when the scan starts (so don't interrupt it!)
 
 /obj/item/device/multi_scanner/ghost_buster
 	detects_ghosts = TRUE
@@ -25,6 +25,8 @@
 	if(cell && power_stat)	//needs to be powered on to read the cell status
 		. += "\The [src] has a \the [cell] installed."
 		. += "The power readout indicates the device has [(cell.charge/cell.maxcharge)*100]% power remaining."
+	else if(!cell)
+		. += "It doesn't have a power cell installed."
 
 /obj/item/device/multi_scanner/emp_act(severity)
 	for(var/obj/O in contents)
@@ -32,14 +34,9 @@
 	..()
 
 /obj/item/device/multi_scanner/AltClick()
-	if(cell && cell.charge > 0)
-		power_stat = !power_stat
-		update_icon()
-		to_chat(usr,"<span class='notice'>You power \the [src] [power_stat ? "on" : "off"].")
-	else if(!cell)
-		to_chat(usr,"<span class='warning'>No cell installed!</span>")
-	else if(cell.charge < 1)
-		to_chat(usr,"<span class='warning'>Not enough power!</span>")
+	power_stat = !power_stat
+	update_icon()
+	to_chat(usr,"<span class='notice'>You power \the [src] [power_stat ? "on" : "off"].")
 
 /obj/item/device/multi_scanner/update_icon()
 	if(power_stat)
@@ -86,6 +83,9 @@
 	var/silicon_count
 	var/simple_count
 	var/ghost_count
+	if(!user.IsAdvancedToolUser())
+		to_chat(user,"<span class='warning'>This is way too complicated for you to understand!</span>")
+		return
 	if(!power_stat)
 		to_chat(usr,"<span class='warning'>Scanner not powered on, cannot proceed.</span>")
 		return
@@ -96,14 +96,14 @@
 		user.visible_message("<span class='notice'>[user] begins to scan the area with \the [src].</span>","<span class='notice'>Scan initiated, please remain stationary...</span>")
 		cell.charge -= scan_cost	//consume charge BEFORE outputting the result, to encourage people to be careful with it
 		playsound(src, 'sound/machines/terminal_alert.ogg', 75, 1, -1)
-		for(var/mob/living/carbon/A in orange(scan_range))
-			carbon_count++
-		for(var/mob/living/silicon/B in orange(scan_range))
-			silicon_count++
-		for(var/mob/living/simple_mob/C in orange(scan_range))
-			simple_count++
-		if(detects_ghosts)
-			for(var/mob/observer/dead/D in orange(scan_range))
+		for(var/mob/L in orange(scan_range))
+			if(istype(L,/mob/living/carbon))
+				carbon_count++
+			if(istype(L,/mob/living/silicon))
+				silicon_count++
+			if(istype(L,/mob/living/simple_mob))
+				simple_count++
+			if(detects_ghosts && istype(L,/mob/observer/dead))
 				ghost_count++
 
 		flick("hyperscan_scanning",src)
@@ -116,5 +116,5 @@
 				to_chat(usr,"<span class='notice'>Primitive Lifeforms in Range: [simple_count]</span>")
 			if(ghost_count > 0 && detects_ghosts)
 				to_chat(usr,"<span class='notice'>Ectoplasmic Lifeforms in range: [ghost_count]</span>")
-			if(carbon_count == 0 && silicon_count == 0 && simple_count == 0 && ghost_count == 0)	//didn't see nuffin'
+			if(carbon_count+silicon_count+simple_count < 1)	//didn't see nuffin'
 				to_chat(usr,"<span class='notice'>No lifesigns detected.</span>")
