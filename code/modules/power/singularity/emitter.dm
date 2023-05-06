@@ -272,6 +272,13 @@
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
+	switch(state)
+		if(0)
+			. += "<span class='warning'>It is not secured in place at all!</span>"
+		if(1)
+			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
+		if(2)
+			. += "<span class='notice'>It has been bolted down securely and welded down into place.</span>"
 	var/integrity_percentage = round((integrity / initial(integrity)) * 100)
 	switch(integrity_percentage)
 		if(0 to 30)
@@ -279,7 +286,7 @@
 		if(31 to 70)
 			. += "<span class='danger'>It is damaged.</span>"
 		if(77 to 99)
-			. += "<span class='warning'It is slightly damaged.</span>"
+			. += "<span class='warning'>It is slightly damaged.</span>"
 
 //R-UST port
 /obj/machinery/power/emitter/proc/get_initial_fire_delay()
