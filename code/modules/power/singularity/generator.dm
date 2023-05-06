@@ -10,6 +10,10 @@
 	var/energy = 0
 	var/creation_type = /obj/singularity
 
+/obj/machinery/the_singularitygen/examine()
+	. = ..()
+	. += "<span class='notice'>It is [anchored ? "secured" : "not secured"]!</span>"
+
 /obj/machinery/the_singularitygen/process()
 	var/turf/T = get_turf(src)
 	if(src.energy >= 200)
