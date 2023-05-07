@@ -21,6 +21,10 @@
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
 
+/obj/machinery/power/tesla_coil/examine()
+	. = ..()
+	. += "<span class='notice'>It is [anchored ? "secured" : "not secured"]!</span>"
+
 /obj/machinery/power/tesla_coil/New()
 	..()
 	wires = new(src)
@@ -106,6 +110,10 @@
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	circuit = /obj/item/weapon/circuitboard/grounding_rod
+
+/obj/machinery/power/grounding_rod/examine()
+	. = ..()
+	. += "<span class='notice'>It is [anchored ? "secured" : "not secured"]!</span>"
 
 /obj/machinery/power/grounding_rod/pre_mapped
 	anchored = TRUE

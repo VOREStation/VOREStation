@@ -40,6 +40,15 @@ field_generator power level display
 	var/light_power_on = 1
 	light_color = "#5BA8FF"
 
+/obj/machinery/field_generator/examine()
+	. = ..()
+	switch(state)
+		if(0)
+			. += "<span class='warning'>It is not secured in place at all!</span>"
+		if(1)
+			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
+		if(2)
+			. += "<span class='notice'>It has been bolted down securely and welded down into place.</span>"
 
 /obj/machinery/field_generator/update_icon()
 	cut_overlays()

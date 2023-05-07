@@ -4538,6 +4538,12 @@
 	nutriment_factor = 40 //very filling
 	color = "#d169b2"
 
+/datum/reagent/nutriment/magicdust/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	playsound(M, 'sound/items/hooh.ogg', 50, 1, -1)
+	if(prob(5))
+		to_chat(M, "<span class='warning'>You feel like you've been gnomed...</span>")
+
 /datum/reagent/drink/soda/kompot
 	name = "Kompot"
 	id = "kompot"
