@@ -200,7 +200,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
 		/obj/item/device/paicard,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,
+		/obj/item/weapon/reagent_containers/food/drinks/glass2/teacup/big //VOREStation Edit
 	)
 
 	uncommon_loot = list(

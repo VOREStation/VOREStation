@@ -72,3 +72,16 @@
 							/obj/item/weapon/stock_parts/console_screen = 1,
 							/obj/item/weapon/stock_parts/motor = 1,
 							/obj/item/weapon/stock_parts/capacitor = 1)
+
+/obj/item/weapon/circuitboard/coffeemaker
+	name = T_BOARD("coffeemaker")
+	desc = "The circuitboard for a coffee maker."
+	build_path = /obj/machinery/coffeemaker
+	board_type = new /datum/frame/frame_types/machine
+	contain_parts = 0
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	req_components = list(
+							/obj/item/weapon/stock_parts/console_screen = 1,
+							/obj/item/weapon/stock_parts/capacitor = 3,
+							/obj/item/weapon/stock_parts/motor = 1,
+							/obj/item/weapon/stock_parts/matter_bin = 1)

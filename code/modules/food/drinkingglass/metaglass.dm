@@ -136,7 +136,7 @@ Drinks Data
 	glass_icon_state = "glass_brown"
 
 /datum/reagent/drink/tea
-	glass_icon_state = "bigteacup"
+	glass_icon_state = "glass_brown"
 
 /datum/reagent/drink/tea/icetea
 	glass_icon_state = "icedteaglass"

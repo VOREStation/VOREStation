@@ -1043,8 +1043,8 @@
 /obj/random/mug
 	name = "Random Mug"
 	desc = "This is a random coffee mug."
-	icon = 'icons/obj/drinks_mugs.dmi'
-	icon_state = "coffeecup_spawner"
+	icon = 'icons/obj/drinks_coffee.dmi'
+	icon_state = "coffeemug_spawner"
 
 /obj/random/mug/item_to_spawn()
 	return pick(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug,

@@ -75,10 +75,14 @@
 	name = "box of drink sticks"
 	starts_with = list(/obj/item/weapon/glass_extra/stick = 14)
 
-/obj/item/weapon/storage/box/glasses/coffeecup
+/obj/item/weapon/storage/box/glasses/coffeecup //VOREStation Edit
 	name = "box of coffee cups"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/cup = 7)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeecup = 7)
 
-/obj/item/weapon/storage/box/glasses/coffeemug
+/obj/item/weapon/storage/box/glasses/coffeemug //VOREStation Edit
 	name = "box of coffee mugs"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug = 7)
+
+/obj/item/weapon/storage/box/glasses/teacup //VOREStation Edit
+	name = "box of tea cups"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/glass2/teacup = 7)

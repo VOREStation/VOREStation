@@ -261,7 +261,7 @@
 
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar
 	name = "sugar"
-	desc = "Sweetness in a bottle"
+	desc = "Sweetness in a bottle."
 	icon_state = "sugarsmall"
 
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar/Initialize()

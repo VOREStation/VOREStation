@@ -90,7 +90,7 @@
 /datum/gear/textmug
 	display_name = "mug with text"
 	description = "A mug with something written on it."
-	path = /obj/item/weapon/reagent_containers/food/drinks/textmug
+	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/textmug
 
 /datum/gear/schnapsen
 	display_name = "schnapsen playing cards"

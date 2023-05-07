@@ -204,3 +204,11 @@
 	result = "mudslide"
 	required_reagents = list("blackrussian" = 1, "irishcream" = 1)
 	result_amount = 2
+
+//Coffee Mixtures
+/decl/chemical_reaction/instant/drinks/americano
+	name = "Americano"
+	id = "americano"
+	result = "americano"
+	required_reagents = list("coffee" = 1, "water" = 2)
+	result_amount = 3

@@ -585,3 +585,32 @@
 	color = "#a6898d"
 
 ////////////////END BrainzSnax Reagents////////////////
+
+/datum/reagent/drink/coffee/americano
+	name = "Americano"
+	id = "americano"
+	description = "A crisp and refreshing beverage originating from Terra."
+	taste_description = "light coffee"
+	color = "#53381a"
+	adj_temp = 5
+
+	glass_name = "americano"
+	glass_desc = "A crisp and refreshing beverage originating from Terra."
+
+	cup_icon_state = "cup_coffee"
+	cup_name = "cup of americano"
+	cup_desc = "A crisp and refreshing beverage originating from Terra."
+	allergen_type = ALLERGEN_COFFEE
+
+/datum/reagent/drink/coffee/americano/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.heal_organ_damage(0.5 * removed, 0)
+
+/datum/reagent/nutriment/caramel
+	name = "Caramel"
+	id = "caramel"
+	description = "Who would have guessed that heated sugar could be so delicious?"
+	taste_description = "caramel"
+	reagent_state = SOLID
+	nutriment_factor = 5
+	color = "#D98736"

@@ -71,3 +71,25 @@
 	icon = 'icons/obj/abductor_vr.dmi'
 	icon_state = "dispenser_2way"
 	desc = "A mysterious machine which can fabricate many chemicals."
+
+/obj/machinery/chemical_dispenser/cafe_coffee
+	name = "café dispenser"
+	desc = "For making all those fancy roast bean drinks."
+	icon_state = "cafe_dispenser"
+	ui_title = "Café Dispenser"
+	amount = 10 //Smaller machine doesn't need so many slots
+	accept_drinking = 1
+
+/obj/machinery/chemical_dispenser/cafe_coffee/full
+	spawn_cartridges = list(
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/water
+		)

@@ -1,53 +1,36 @@
-/* Warm Mugs!
+/* Containers for all warm beverages!
  *
  * Contains:
- *		Britcup
+ *		Coffee Mug Base
+ *		Coffee Cup Base
+ *		Tea Cup Base
+ *		Coffee Pot
+ *		British Mug
  *		Text Mug
- *		Coffee Mugs
+ *		Government Mugs
+ *		Corporate Mugs
+ *		Symbols and Markings Mugs
+ *		Pure Colors and Other Mugs
  *		Tall Mugs
  */
 
 /*
- * Britcup
- */
-/obj/item/weapon/reagent_containers/food/drinks/britcup
-	name = "cup"
-	desc = "A cup with the British flag emblazoned on it."
-	icon_state = "britcup"
-	volume = 30
-	center_of_mass = list("x"=15, "y"=13)
-
-/obj/item/weapon/reagent_containers/food/drinks/britcup/on_reagent_change()
-	..()
-
-/*
- * Text Mug
- */
-/obj/item/weapon/reagent_containers/food/drinks/textmug
-	name = "mug with text"
-	desc = "A mug with something written on it."
-	icon = 'icons/obj/drinks_vr.dmi'
-	icon_state = "textmug"
-	volume = 30
-	center_of_mass = list("x"=15, "y"=13)
-
-/*
- * Coffee Mugs
+ * Coffee Mug Base
  */
 /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug
 	name = "coffee mug"
 	base_name = "mug"
-	desc = "A plain white coffee mug."
-	icon = 'icons/obj/drinks_mugs.dmi'
-	base_icon = "coffeecup"
+	desc = "A plain ceramic coffee mug."
+	icon = 'icons/obj/drinks_coffee.dmi'
+	base_icon = "coffeemug"
 	volume = 30
-	var/fillsource = "coffeecup"
+	var/fillsource = "coffeemug"
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/update_icon()
 	cut_overlays()
 
 	if(reagents.total_volume)
-		var/image/filling = image('icons/obj/drinks_mugs.dmi', src, null)
+		var/image/filling = image('icons/obj/drinks_coffee.dmi', src, null)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
 			if(0 to 39)
@@ -59,7 +42,188 @@
 		filling.color = reagents.get_color()
 		add_overlay(filling)
 
-// Government
+/*
+ * Coffee Cup Base
+ */
+/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeecup
+	name = "coffee cup"
+	base_name = "cup"
+	desc = "The container of oriental luxuries."
+	icon = 'icons/obj/drinks_coffee.dmi'
+	base_icon = "coffeecup"
+	volume = 20 //Slightly smaller cup shouldn't have the same volume as a mug
+	var/fillsource = "coffeecup"
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeecup/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/drinks_coffee.dmi', src, null)
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 44)
+				filling.icon_state = null
+				return
+			if(45 to 74) 	filling.icon_state = "[fillsource]50"
+			if(75 to INFINITY)	filling.icon_state = "[fillsource]100"
+		filling.color = reagents.get_color()
+		add_overlay(filling)
+
+/*
+ * Tea Cup Base
+ */
+/obj/item/weapon/reagent_containers/food/drinks/glass2/teacup
+	name = "tea cup"
+	base_name = "cup"
+	desc = "A cup in which tea is served. Hence the name."
+	icon = 'icons/obj/drinks_coffee.dmi'
+	base_icon = "teacup"
+	volume = 15
+	var/fillsource = "teacup"
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/teacup/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/drinks_coffee.dmi', src, null)
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 44)
+				filling.icon_state = null
+				return
+			if(45 to 74) 	filling.icon_state = "[fillsource]50"
+			if(75 to INFINITY)	filling.icon_state = "[fillsource]100"
+		filling.color = reagents.get_color()
+		add_overlay(filling)
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/teacup/big
+	name = "big tea cup"
+	base_name = "cup"
+	desc = "An absolute unit of a cup in which tea is served. Hence the name."
+	base_icon = "bigteacup"
+	volume = 45
+	fillsource = "bigteacup"
+
+/*
+ * Coffee Pot
+ */
+/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeepot
+	name = "coffee pot"
+	base_name = "coffeepot"
+	base_icon = "coffeepot"
+	desc = "A coffee pot"
+	icon = 'icons/obj/drinks_coffee.dmi'
+	matter = list(MAT_GLASS = 25, MAT_PLASTIC = 25)
+	volume = 120 //Enough for four full coffee mugs
+	var/fillsource = "coffeepot"
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeepot/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/drinks_coffee.dmi', src, null)
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 14)
+				filling.icon_state = null
+				return
+			if(15 to 29) 	filling.icon_state = "[fillsource]15"
+			if(30 to 44)	filling.icon_state = "[fillsource]30"
+			if(45 to 59)	filling.icon_state = "[fillsource]45"
+			if(60 to 74)	filling.icon_state = "[fillsource]60"
+			if(75 to 99)	filling.icon_state = "[fillsource]75"
+			if(100 to INFINITY)	filling.icon_state = "[fillsource]90"
+		filling.color = reagents.get_color()
+		add_overlay(filling)
+
+/*
+ * Syrup Bottles
+ */
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle
+	name = "vanilla syrup"
+	desc = "Now everything can taste like weak almonds!"
+	icon = 'icons/obj/drinks_coffee.dmi'
+	icon_state = "vanilla_bottle"
+	possible_transfer_amounts = list(1,5,10)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/afterattack(var/obj/target, var/mob/user, var/flag)
+	if(!user.Adjacent(target))
+		return
+	if(standard_dispenser_refill(user, target))
+		return
+	if(standard_pour_into(user, target))
+		return
+
+	flick("[icon_state]_anim", src)
+	if(istype(target, /obj/item/weapon/reagent_containers/food/snacks)) // These are not opencontainers but we can transfer to them
+		if(!reagents || !reagents.total_volume)
+			to_chat(user, "<span class='notice'>There is no condiment left in \the [src].</span>")
+			return
+
+		if(!target.reagents.get_free_space())
+			to_chat(user, "<span class='notice'>You can't add more condiment to \the [target].</span>")
+			return
+
+		var/trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You add [trans] units of the condiment to \the [target].</span>")
+	else
+		..()
+
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/Initialize()
+	. = ..()
+	reagents.add_reagent("vanilla", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/chocolate
+	name = "chocolate syrup"
+	desc = "An easy way to dispense chocolately goodness."
+	icon = 'icons/obj/drinks_coffee.dmi'
+	icon_state = "chocolate_bottle"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/chocolate/Initialize()
+	. = ..()
+	reagents.add_reagent("chocolate", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/caramel
+	name = "caramel syrup"
+	desc = "Buttery sweetness in a bottle."
+	icon = 'icons/obj/drinks_coffee.dmi'
+	icon_state = "caramel_bottle"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/caramel/Initialize()
+	. = ..()
+	reagents.add_reagent("caramel", 50)
+
+/obj/item/weapon/storage/box/syrup_bottle
+	name = "box of syrup bottles"
+	desc = "A box that containing several bottles of syrup used for mixed drinks."
+	icon_state = "box"
+	max_storage_space = ITEMSIZE_COST_SMALL * 6
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle = 2,
+		/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/chocolate = 2,
+		/obj/item/weapon/reagent_containers/food/condiment/small/syrup_bottle/caramel = 2
+	)
+
+/*
+ * Britcup
+ */
+/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/britcup
+	name = "cup"
+	desc = "A cup with the old British flag emblazoned on it."
+	base_icon = "britcup"
+
+/*
+ * Text Mug
+ */
+/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/textmug
+	name = "mug with text"
+	desc = "A mug with something written on it."
+	base_icon = "textmug"
+
+/*
+ * Government Mugs
+ */
 /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/sol
 	name = "\improper SCG coffee mug"
 	desc = "A blue coffee mug emblazoned with the crest of the Solar Confederate Government."
@@ -90,7 +254,9 @@
 	desc = "A coffee mug bearing the symbol of the Pearlshield Coalition."
 	base_icon = "coffeecup_psc"
 
-// Corporations
+/*
+ * Corporate Mugs
+ */
 /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/nt
 	name = "\improper NT coffee mug"
 	desc = "A blue NanoTrasen coffee mug."
@@ -136,7 +302,9 @@
 	desc = "A teal colored coffee mug with the Talon star logo on its face."
 	base_icon = "coffeecup_talon"
 
-// Symbols, markings
+/*
+ * Symbols and Markings Mugs
+ */
 /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/one
 	name = "#1 coffee mug"
 	desc = "A white coffee mug, prominently featuring a #1."
@@ -172,7 +340,9 @@
 	desc = "A coffee cup with the a flame emblazoned on it."
 	base_icon = "coffeecup_flame"
 
-// Pure colors & other
+/*
+ * Solid Colors and Other Mugs
+ */
 /obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/black
 	name = "black coffee mug"
 	desc = "A sleek black coffee mug."

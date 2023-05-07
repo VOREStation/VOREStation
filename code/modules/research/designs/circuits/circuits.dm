@@ -676,6 +676,12 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/microwave/advanced
 	sort_string = "HACAA"
 
+/datum/design/circuit/coffeemaker
+	name = "coffee maker board"
+	id = "coffeemaker_board"
+	req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
+	build_path = /obj/item/weapon/circuitboard/coffeemaker
+	sort_string = "HACAX"
 
 /datum/design/circuit/shield_generator
 	name = "shield generator"
