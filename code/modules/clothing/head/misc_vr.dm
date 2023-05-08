@@ -91,7 +91,10 @@
 /obj/item/clothing/head/pizzaguy
 	name = "pizza delivery visor"
 	desc = "A fancy visor showing alignment to pizza delivery service. Extremely risky career choice."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "pizzadelivery"
+	item_state = "pizzadelivery"
 
 /obj/item/clothing/head/wedding
 	name = "wedding veil"
@@ -160,3 +163,12 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
 		)
+
+// tiny tophat
+
+/obj/item/clothing/head/tinytophat
+	name = "tiny tophat"
+	desc = "A tophat that is far too small to properly sit on someone's head!"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "tiny_tophat"

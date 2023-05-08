@@ -11,7 +11,7 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 //	speed = 5
 	maxHealth = 25
 	health = 25

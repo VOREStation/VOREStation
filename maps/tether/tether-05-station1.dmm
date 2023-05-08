@@ -3266,6 +3266,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "afu" = (
@@ -5633,6 +5636,9 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "alR" = (
@@ -7014,6 +7020,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "apy" = (
@@ -7686,11 +7695,10 @@
 /obj/effect/floor_decal/corner_techfloor_grid,
 /obj/effect/floor_decal/techfloor/corner,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 1
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_gen)
@@ -10512,16 +10520,6 @@
 "aAW" = (
 /turf/simulated/wall,
 /area/crew_quarters/sleep/engi_wash)
-"aBa" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/engineering/gravity_gen)
 "aBe" = (
 /turf/simulated/wall,
 /area/quartermaster/warehouse)
@@ -13255,7 +13253,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -13584,11 +13582,10 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_gen)
 "aYF" = (
@@ -14327,6 +14324,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/device/multitool/station_buffered,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "bkU" = (
@@ -14906,6 +14904,37 @@
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/device/radio/headset/explorer{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_x = 11;
+	pixel_y = 5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/device/radio/headset/explorer{
+	pixel_y = -5
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
@@ -19323,13 +19352,13 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "gbR" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 1
-	},
 /obj/machinery/portable_atmospherics/canister/phoron,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
+	},
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
@@ -24192,7 +24221,7 @@
 /area/gateway/prep_room)
 "kHf" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
+	//convdir = -1;		//Incompatable with new behavior -Reo
 	id = "QMLoad2"
 	},
 /obj/machinery/light{
@@ -24770,6 +24799,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/device/radio/headset/explorer,
 /turf/simulated/floor,
 /area/tether/exploration/pilot_office)
 "lfI" = (
@@ -25810,6 +25840,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/item/device/radio/headset/explorer,
 /turf/simulated/floor,
 /area/tether/exploration/pilot_office)
 "mdh" = (
@@ -42709,11 +42740,11 @@ aac
 ank
 aox
 arc
-aBa
-aBa
 aHe
-aBa
-aBa
+aHe
+aHe
+aHe
+aHe
 aYA
 bqT
 akA

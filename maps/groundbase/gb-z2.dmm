@@ -185,6 +185,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
+/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "au" = (
@@ -335,17 +336,6 @@
 "aQ" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -355,6 +345,16 @@
 	id = "xenobiopen5";
 	name = "Pen 5 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -463,11 +463,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
@@ -532,11 +531,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
@@ -803,6 +801,7 @@
 	name = "Privacy Shutter Control";
 	pixel_y = 30
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "ca" = (
@@ -935,11 +934,9 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/obj/structure/table/standard,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/item/device/retail_scanner/cargo,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "cs" = (
@@ -1286,6 +1283,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"du" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/circuits)
 "dv" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/belt/utility,
@@ -1469,6 +1470,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
+"ed" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "ee" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 1
@@ -1789,7 +1808,18 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "eV" = (
-/obj/machinery/light,
+/obj/machinery/computer/supplycomp/control{
+	dir = 4
+	},
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	dir = 4;
+	pixel_x = -28
+	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "eX" = (
@@ -1930,9 +1960,10 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rd)
 "fs" = (
-/obj/machinery/newscaster{
-	layer = 3.3;
-	pixel_x = -27
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
@@ -2204,14 +2235,16 @@
 /area/groundbase/science/xenobot)
 "gf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenohall)
 "gk" = (
-/obj/structure/table/standard,
-/obj/item/weapon/clipboard,
-/obj/item/weapon/stamp/qm,
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/landmark/start/cargo,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "gm" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2281,7 +2314,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -2466,12 +2499,13 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
 "gX" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/polarized/full{
-	id = "qm_office"
+/obj/structure/table/standard,
+/obj/item/weapon/clipboard,
+/obj/item/weapon/stamp/qm,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "gY" = (
 /obj/structure/bed/chair/sofa/corner/black,
@@ -2517,12 +2551,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/hall)
-"he" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
 "hh" = (
 /obj/structure/table/steel,
 /obj/machinery/recharger,
@@ -2559,11 +2587,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2662,6 +2689,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
 "hz" = (
@@ -2739,8 +2767,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/injector_maker{
-	pixel_x = -29
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = -11;
+	pixel_y = 14
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	pixel_x = -25;
+	id = "chem_room"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
@@ -2775,6 +2810,10 @@
 /obj/machinery/seed_storage/garden,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/requests_console{
+	department = "Service";
+	pixel_y = 25
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
@@ -2818,17 +2857,6 @@
 "hX" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -2839,6 +2867,16 @@
 	name = "Pen 2 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "hY" = (
@@ -3188,6 +3226,9 @@
 	dir = 4;
 	pixel_x = -30;
 	pixel_y = 16
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -3635,6 +3676,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	id = "chem_room";
+	name = "Chemistry Shutters"
+	},
 /turf/simulated/floor,
 /area/groundbase/medical/Chemistry)
 "kj" = (
@@ -3724,6 +3769,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/server)
+"kv" = (
+/obj/structure/closet/secure_closet/quartermaster,
+/obj/item/weapon/storage/backpack/dufflebag,
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "ky" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3742,11 +3792,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
@@ -3789,6 +3838,7 @@
 	pixel_x = -32;
 	pixel_y = -1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "kL" = (
@@ -3836,6 +3886,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "kQ" = (
@@ -4071,6 +4122,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
+"ly" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "lz" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
@@ -4092,6 +4156,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"lB" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "lC" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4233,14 +4301,15 @@
 /turf/simulated/wall,
 /area/groundbase/medical/triage)
 "lU" = (
-/obj/structure/table/standard,
-/obj/item/weapon/folder/yellow,
-/obj/item/weapon/pen/red{
-	pixel_x = 2;
-	pixel_y = 6
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "lV" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/science/xenobot)
@@ -4325,14 +4394,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "mj" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/light_switch{
+	pixel_y = 30
 	},
-/turf/simulated/floor,
-/area/groundbase/cargo/office)
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "mk" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -4764,8 +4830,7 @@
 /area/groundbase/dorms/room8)
 "nD" = (
 /obj/machinery/disposal/wall{
-	dir = 8;
-	name = "auto-resleeving equipment deposit"
+	dir = 8
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -4820,6 +4885,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
+"nL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/tagger{
+	dir = 8;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "nM" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -5010,12 +5085,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
 "ot" = (
-/obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/item/device/megaphone,
 /obj/machinery/requests_console{
 	department = "Cargo Bay";
 	departmentType = 2;
@@ -5024,6 +5096,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
+"ou" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "ov" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -5136,11 +5215,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -5159,6 +5237,18 @@
 "oO" = (
 /turf/simulated/floor/wood,
 /area/groundbase/command/captain)
+"oR" = (
+/obj/structure/table/standard,
+/obj/item/weapon/folder/yellow,
+/obj/item/weapon/pen/red{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "oS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -5327,17 +5417,6 @@
 "pq" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -5347,6 +5426,16 @@
 	id = "xenobiopen7";
 	name = "Pen 7 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -5503,8 +5592,17 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "pM" = (
-/obj/machinery/alarm{
-	dir = 4
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "botgate";
+	name = "Botany shutters";
+	pixel_x = -27;
+	pixel_y = 6
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = -1
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
@@ -5868,9 +5966,17 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/command/hop)
 "qN" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled,
-/area/groundbase/cargo/office)
+/obj/machinery/status_display/supply_display{
+	pixel_y = 32
+	},
+/obj/machinery/button/windowtint{
+	id = "qm_office";
+	layer = 3.3;
+	pixel_x = -24;
+	pixel_y = 27
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "qP" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -6124,6 +6230,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall,
 /area/groundbase/cargo/office)
+"rw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/groundbase/medical/triage)
 "rx" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave,
@@ -6505,6 +6617,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
+"sE" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "sF" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk,
@@ -6610,12 +6726,10 @@
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level2/eastspur)
 "sS" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized/full{
-	id = "qm_office"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor,
+/turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "sT" = (
 /obj/machinery/seed_storage/xenobotany,
@@ -6782,6 +6896,9 @@
 	dir = 4;
 	pixel_x = -32
 	},
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "tA" = (
@@ -6802,11 +6919,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6831,6 +6947,11 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor,
 /area/groundbase/civilian/kitchen)
+"tE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "tF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -7149,6 +7270,10 @@
 /obj/structure/bookcase,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
+"uA" = (
+/obj/structure/closet/secure_closet/cargotech,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "uC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -7283,10 +7408,10 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
+/obj/machinery/photocopier/faxmachine{
+	department = "Cargo";
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "uT" = (
@@ -7316,6 +7441,10 @@
 /obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"uV" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/hall)
 "uX" = (
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
@@ -7324,6 +7453,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
+"uZ" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "vb" = (
 /obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -7332,6 +7465,14 @@
 /obj/structure/sign/department/chem,
 /turf/simulated/wall,
 /area/groundbase/medical/Chemistry)
+"ve" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "vh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
@@ -7472,6 +7613,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
+"vE" = (
+/obj/structure/table/standard,
+/obj/machinery/photocopier/faxmachine{
+	department = "Quartermaster-Office"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "vF" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/toolbox/mechanical{
@@ -7621,25 +7772,34 @@
 	outdoors = 0
 	},
 /area/groundbase/level2/nw)
+"vU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	id = "chem_room";
+	name = "Chemistry Shutters";
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/groundbase/medical/Chemistry)
 "vV" = (
-/obj/structure/disposalpipe/sortjunction{
-	dir = 1;
-	name = "Hydroponics";
-	sortType = "Hydroponics"
+/obj/structure/reagent_dispensers/watertank,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab,
-/area/groundbase/level2/nw)
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/hydroponics)
 "vW" = (
-/obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/qm,
-/obj/machinery/button/windowtint{
-	id = "qm_office";
-	layer = 3.3;
-	pixel_x = 16;
-	pixel_y = -27
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "vY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -7663,9 +7823,6 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -7714,6 +7871,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
+"wi" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "wj" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -7985,9 +8146,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/structure/closet/walllocker_double/cargo/west,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "xd" = (
@@ -8351,6 +8516,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
+"yd" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "ye" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -8542,11 +8713,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -8699,6 +8869,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/item/device/retail_scanner/cargo,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "zg" = (
@@ -8779,17 +8950,6 @@
 "zB" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -8800,6 +8960,16 @@
 	name = "Pen 4 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "zC" = (
@@ -8955,6 +9125,7 @@
 /area/rnd/xenobiology)
 "zW" = (
 /obj/machinery/light,
+/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "zX" = (
@@ -9004,6 +9175,10 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level2/nw)
+"Ae" = (
+/obj/machinery/vending/wardrobe/cargodrobe,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "Af" = (
 /obj/machinery/photocopier,
 /obj/machinery/light{
@@ -9110,6 +9285,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "Aw" = (
@@ -9440,6 +9616,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
+"Bk" = (
+/turf/simulated/wall,
+/area/groundbase/cargo/storage)
 "Bl" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/science/picnic)
@@ -9600,10 +9779,13 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
 "BS" = (
-/obj/structure/closet/secure_closet/hydroponics,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "BT" = (
@@ -9954,17 +10136,6 @@
 "CS" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -9975,6 +10146,16 @@
 	name = "Pen 6 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "CT" = (
@@ -10398,8 +10579,7 @@
 	req_access = list(20)
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/item/clothing/suit/space/void/captain,
@@ -10422,7 +10602,6 @@
 "DX" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -10553,10 +10732,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Ep" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Eq" = (
@@ -10705,8 +10881,16 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level2/ne)
 "EQ" = (
-/obj/structure/filingcabinet,
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/closet/walllocker_double/cargo/north,
+/obj/item/weapon/cartridge/quartermaster{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/weapon/cartridge/quartermaster{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/obj/item/weapon/cartridge/quartermaster,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "ET" = (
@@ -10740,15 +10924,6 @@
 /obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
-"EX" = (
-/obj/structure/closet/secure_closet/quartermaster,
-/obj/item/weapon/storage/backpack/dufflebag,
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_y = -30
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
 "EY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -10971,6 +11146,14 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/cargo/office)
+"FE" = (
+/obj/machinery/light/small,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "FF" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/bar)
@@ -10982,17 +11165,17 @@
 /area/groundbase/cargo/bay)
 "FJ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
+/obj/item/clothing/head/soft,
+/obj/item/clothing/head/soft,
+/obj/item/weapon/stamp{
+	pixel_x = -3;
+	pixel_y = 3
 	},
-/obj/item/weapon/cartridge/quartermaster{
-	pixel_x = 6;
-	pixel_y = 5
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/item/weapon/cartridge/quartermaster,
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "FL" = (
 /obj/machinery/light{
 	dir = 8
@@ -11013,14 +11196,35 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/rnd/xenobiology)
+"FQ" = (
+/obj/structure/table/marble,
+/obj/machinery/door/firedoor,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/window/brigdoor/westright{
+	dir = 4;
+	name = "Research Desk";
+	req_access = null;
+	req_one_access = list(35,28)
+	},
+/obj/machinery/door/blast/gate/thin{
+	dir = 8;
+	id = "botgate";
+	layer = 3.3
+	},
+/turf/simulated/floor,
+/area/groundbase/civilian/hydroponics)
 "FR" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11295,16 +11499,12 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
 "GD" = (
-/obj/machinery/computer/supplycomp/control{
-	dir = 8
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "qm_office"
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/status_display/supply_display{
-	pixel_x = 32
-	},
-/turf/simulated/floor/wood,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor,
 /area/groundbase/cargo/qm)
 "GE" = (
 /obj/machinery/door/firedoor,
@@ -11322,19 +11522,6 @@
 /obj/machinery/microwave,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
-"GH" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor,
-/area/rnd/xenobiology)
 "GI" = (
 /obj/effect/landmark{
 	name = "lightsout"
@@ -11380,6 +11567,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "GO" = (
@@ -11880,6 +12068,15 @@
 /obj/random/vendorall,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
+"If" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "Ig" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -12429,6 +12626,20 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
+"JG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/glass_mining{
+	id_tag = "cargodoor";
+	name = "Storage";
+	req_access = list(31);
+	req_one_access = null
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "JH" = (
 /obj/effect/landmark{
 	name = "morphspawn"
@@ -12560,9 +12771,14 @@
 /area/groundbase/medical/triage)
 "JW" = (
 /obj/structure/table/standard,
-/obj/machinery/photocopier/faxmachine{
-	department = "Quartermaster-Office"
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/device/megaphone,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "JX" = (
@@ -12575,11 +12791,12 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
 "JZ" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -30
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/item/weapon/stool/padded{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
@@ -12594,6 +12811,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
+"Kb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/sidewalk/side,
+/area/groundbase/level2/nw)
 "Kc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -12617,22 +12840,14 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/injector_maker{
+	pixel_x = -29
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "Kg" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -12643,6 +12858,16 @@
 	name = "Pen 8 Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "Kh" = (
@@ -12675,13 +12900,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Ki" = (
-/obj/structure/table/standard,
-/obj/item/clothing/head/soft,
-/obj/item/clothing/head/soft,
-/obj/item/weapon/stamp{
-	pixel_x = -3;
-	pixel_y = 3
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/camera/network/cargo,
 /turf/simulated/floor/tiled,
@@ -12805,7 +13023,11 @@
 /turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level2/ne)
 "KB" = (
-/obj/structure/flora/pottedplant/minitree,
+/obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/start/qm,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "KC" = (
@@ -12912,13 +13134,10 @@
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/command)
 "KS" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/structure/flora/pottedplant/minitree,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "KU" = (
@@ -13401,15 +13620,16 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "Mk" = (
-/obj/structure/table/standard,
-/obj/item/clothing/head/soft,
-/obj/item/clothing/head/soft,
-/obj/item/weapon/stamp{
-	pixel_x = -3;
-	pixel_y = 3
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled,
-/area/groundbase/cargo/office)
+/area/groundbase/cargo/storage)
 "Ml" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/power/apc{
@@ -13457,10 +13677,9 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "Mq" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "Mr" = (
@@ -13492,6 +13711,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"Mv" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/cargotech,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "Mw" = (
 /obj/machinery/autolathe{
 	hacked = 1
@@ -13586,6 +13812,12 @@
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/cargo/bay)
+"MI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "MJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -13673,11 +13905,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "MW" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "qm_office"
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/wall,
+/turf/simulated/floor,
 /area/groundbase/cargo/qm)
 "MX" = (
 /obj/structure/closet/firecloset,
@@ -13836,12 +14073,12 @@
 	},
 /area/groundbase/level2/se)
 "Ns" = (
-/obj/machinery/alarm,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
+/obj/structure/closet/secure_closet/cargotech,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "Nv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -13866,18 +14103,6 @@
 /area/groundbase/civilian/chapel)
 "NA" = (
 /obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -13887,6 +14112,17 @@
 	id = "xenobiopen3";
 	name = "Pen 3 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -13966,15 +14202,17 @@
 	},
 /area/groundbase/level2/se)
 "NP" = (
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_one_access = list(35,28)
-	},
+/obj/structure/table/marble,
 /obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/bmarble,
+/obj/machinery/door/blast/gate/thin{
+	dir = 8;
+	id = "botgate";
+	layer = 3.3
+	},
+/turf/simulated/floor,
 /area/groundbase/civilian/hydroponics)
 "NR" = (
 /obj/structure/cable/yellow,
@@ -14055,11 +14293,12 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room4)
 "Oa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/beehive,
+/obj/machinery/alarm{
+	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/side,
-/area/groundbase/level2/nw)
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/hydroponics)
 "Ob" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/yellow{
@@ -14123,15 +14362,7 @@
 /turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "Ok" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
+/obj/structure/filingcabinet,
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "Ol" = (
@@ -14241,11 +14472,11 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
 "OA" = (
-/obj/structure/closet/secure_closet/hydroponics,
 /obj/machinery/computer/guestpass{
 	dir = 4;
 	pixel_x = -25
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "OB" = (
@@ -14264,6 +14495,10 @@
 "OD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
+	name = "Chemistry Cleaner"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "OE" = (
@@ -14433,11 +14668,6 @@
 	dir = 1;
 	name = "Trash";
 	sortType = "Trash"
-	},
-/obj/structure/table/standard,
-/obj/machinery/photocopier/faxmachine{
-	department = "Cargo";
-	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -14689,6 +14919,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "PR" = (
@@ -14896,11 +15127,11 @@
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
 "Qv" = (
-/obj/machinery/vending/wardrobe/cargodrobe,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "Qw" = (
@@ -14995,6 +15226,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "QI" = (
@@ -15495,17 +15729,17 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/simulated/wall,
-/area/groundbase/cargo/office)
+/area/groundbase/cargo/qm)
 "RY" = (
 /obj/structure/noticeboard{
 	pixel_x = -32
@@ -15573,17 +15807,6 @@
 "Sj" = (
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -15593,6 +15816,16 @@
 	id = "xenobiopen1";
 	name = "Pen 1 Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
@@ -15853,8 +16086,7 @@
 /area/groundbase/science/xenohall)
 "SQ" = (
 /obj/machinery/disposal/wall{
-	dir = 1;
-	name = "Auto-Resleeving Item Deposit"
+	dir = 1
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -15878,6 +16110,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
+"SS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "ST" = (
 /obj/machinery/camera/network/research/xenobio,
 /turf/simulated/floor/reinforced,
@@ -16042,11 +16279,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
@@ -16154,6 +16390,12 @@
 /obj/effect/landmark/start/cargo,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
+"TR" = (
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/cargo/qm)
 "TS" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
@@ -16363,18 +16605,13 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
 "UC" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	name = "Hydroponics";
+	sortType = "Hydroponics"
 	},
-/obj/machinery/requests_console{
-	department = "Service";
-	dir = 4;
-	pixel_x = -25
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/civilian/hydroponics)
+/turf/simulated/floor/outdoors/sidewalk/slab,
+/area/groundbase/level2/nw)
 "UD" = (
 /turf/simulated/floor{
 	edge_blending_priority = -1;
@@ -16465,11 +16702,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -16596,14 +16832,12 @@
 /turf/simulated/wall/r_wall,
 /area/groundbase/science/picnic)
 "Vi" = (
-/obj/machinery/firealarm,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "qm_office"
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor,
 /area/groundbase/cargo/qm)
 "Vj" = (
 /obj/structure/table/standard,
@@ -16841,6 +17075,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room4)
+"VU" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "VV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -17015,6 +17255,10 @@
 	},
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/level2/nw)
+"Ws" = (
+/obj/structure/closet/firecloset/full,
+/turf/simulated/wall/r_wall,
+/area/groundbase/science/rnd)
 "Wu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -17571,6 +17815,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "Yd" = (
@@ -17652,6 +17897,10 @@
 	outdoors = 1
 	},
 /area/groundbase/science/xenobot)
+"Yo" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/hydroponics)
 "Yp" = (
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
@@ -17957,6 +18206,20 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
+"Zq" = (
+/obj/machinery/disposal/wall/cleaner{
+	desc = "Automatically cleans and transports items to the local auto-resleeving facilities.";
+	dir = 8;
+	name = "auto-resleeving equipment deposit"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/loading{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "Zr" = (
 /obj/structure/closet/secure_closet/hydroponics{
 	req_access = list(77)
@@ -17971,6 +18234,9 @@
 /turf/simulated/floor/carpet/blue,
 /area/groundbase/medical/psych)
 "Zt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "Zv" = (
@@ -18039,9 +18305,6 @@
 	},
 /area/groundbase/dorms/room6)
 "ZD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "ZE" = (
@@ -18089,15 +18352,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor,
 /area/rnd/xenobiology)
 "ZL" = (
@@ -19594,7 +19854,7 @@ ST
 jA
 jA
 oM
-GH
+ZK
 ls
 iK
 ls
@@ -20162,7 +20422,7 @@ ST
 jA
 jA
 UQ
-GH
+ZK
 ls
 iK
 ls
@@ -20730,7 +20990,7 @@ ST
 jA
 jA
 tB
-GH
+ZK
 ls
 kN
 ls
@@ -21298,11 +21558,11 @@ ST
 jA
 jA
 hl
-GH
+ZK
 ls
 iK
 ls
-ZK
+FO
 bb
 jA
 jA
@@ -23342,7 +23602,7 @@ iE
 fW
 WY
 MY
-MY
+wi
 rP
 xE
 xE
@@ -23422,7 +23682,7 @@ Tl
 UB
 Tl
 Ty
-Tl
+du
 Rh
 Fk
 AZ
@@ -24062,7 +24322,7 @@ iB
 LV
 wd
 YR
-YR
+MI
 OC
 sH
 Uy
@@ -24426,7 +24686,7 @@ Vr
 Vr
 sz
 Vr
-Vr
+uV
 XX
 xv
 Fx
@@ -24449,8 +24709,8 @@ LN
 Xb
 BY
 eC
-Mm
-Yp
+ed
+uZ
 Ie
 aF
 Mm
@@ -24654,8 +24914,8 @@ Hr
 pJ
 sF
 go
+UC
 sF
-vV
 go
 sF
 sF
@@ -24796,8 +25056,8 @@ wl
 sN
 pw
 oG
+Kb
 bY
-Oa
 oG
 bY
 bY
@@ -24829,7 +25089,7 @@ eN
 eN
 jG
 OY
-OY
+Ws
 gm
 rh
 dN
@@ -24883,7 +25143,7 @@ Wu
 RP
 XK
 As
-Mq
+bE
 IX
 yc
 jW
@@ -24937,9 +25197,9 @@ bY
 lM
 sN
 bY
-lM
-bY
-Oa
+EZ
+Kb
+pw
 lM
 wD
 Aq
@@ -25025,7 +25285,7 @@ jr
 iP
 Dw
 Dw
-Yp
+Mq
 Sy
 Cu
 bN
@@ -25079,8 +25339,8 @@ Wl
 Wl
 gH
 Wl
-Wl
-Wl
+NP
+FQ
 NP
 Wl
 Wl
@@ -25167,7 +25427,7 @@ hZ
 iA
 aA
 iA
-iA
+nL
 Ca
 sk
 bN
@@ -25221,7 +25481,7 @@ hQ
 fs
 Wv
 pM
-UC
+Yt
 JZ
 Ep
 OA
@@ -25309,7 +25569,7 @@ pK
 Yp
 Ct
 Ai
-Yp
+Zq
 eM
 Sq
 jM
@@ -26069,7 +26329,7 @@ iI
 Hi
 HH
 Wl
-WP
+vV
 Yt
 Wv
 Yt
@@ -26503,7 +26763,7 @@ Yt
 Yt
 Yt
 Yt
-Yt
+Yo
 In
 bY
 bY
@@ -26645,7 +26905,7 @@ Ox
 Yt
 Yt
 Yt
-Yt
+Yo
 In
 bY
 bY
@@ -26782,7 +27042,7 @@ Wl
 Kh
 Yt
 Rf
-Rf
+Oa
 HF
 KN
 YS
@@ -28867,11 +29127,11 @@ uP
 uP
 cK
 cK
-cK
-cK
-cK
-uP
-to
+Cz
+Cz
+GD
+Vi
+Cz
 RX
 It
 rv
@@ -29009,12 +29269,12 @@ uP
 uP
 cK
 cK
-cK
-uP
-uP
-uP
-to
-mj
+Cz
+eV
+JW
+vE
+kv
+Ly
 up
 ea
 Ln
@@ -29151,18 +29411,18 @@ to
 to
 iw
 to
-to
-to
-to
-to
-to
+Cz
 mj
+KB
+oR
+If
+Ly
 FR
 Lc
 Oi
 xK
 uS
-qN
+Lc
 FR
 FR
 Lc
@@ -29294,10 +29554,10 @@ to
 to
 to
 Cz
-Cz
+qN
 sS
 gX
-Cz
+TR
 Ly
 Ef
 yb
@@ -29323,9 +29583,9 @@ tw
 Ia
 yJ
 HU
-Du
+VU
 ty
-Ud
+sE
 fy
 ll
 br
@@ -29437,9 +29697,9 @@ to
 OM
 Cz
 EQ
-ZD
+sS
 Zt
-EX
+ZD
 MW
 Wg
 gB
@@ -29580,7 +29840,7 @@ to
 Cz
 Ok
 KS
-QH
+ly
 QH
 Jp
 Ug
@@ -29720,16 +29980,16 @@ ks
 ks
 ks
 Cz
-Vi
-FJ
-JW
-eV
+Cz
+Cz
+Cz
+Cz
 Cz
 Ki
 za
-za
+SS
 Vu
-Lc
+lB
 rj
 dA
 XU
@@ -29861,15 +30121,15 @@ ks
 ks
 ks
 ks
-Cz
-Ns
+Bk
+Ae
 vW
 lU
-he
-gX
 Mk
-Lc
-Lc
+JG
+ve
+ve
+ve
 yH
 gL
 Lc
@@ -30003,19 +30263,19 @@ ks
 ks
 ks
 ks
-Cz
-GD
+Bk
+yd
 ot
 gk
-KB
-Cz
+FE
+Bk
 Qv
-zp
+tE
 zp
 Yc
 eL
 Lc
-FR
+ou
 Ta
 dv
 Wj
@@ -30145,12 +30405,12 @@ UH
 ks
 ks
 ks
-Cz
-Cz
-Cz
-Cz
-Cz
-Cz
+Bk
+FJ
+Ns
+Mv
+uA
+Bk
 zX
 zX
 Lc
@@ -30198,12 +30458,12 @@ oH
 oH
 oH
 oH
-oH
-oH
-oH
-oH
-oH
-oH
+QD
+QD
+QD
+QD
+QD
+QD
 Bo
 Bo
 Bo
@@ -30287,12 +30547,12 @@ UH
 ks
 ks
 ks
-ks
-ks
-ks
-ks
-ks
-Wj
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
 dE
 dE
 Lc
@@ -30340,10 +30600,10 @@ oH
 oH
 oH
 oH
-oH
-oH
-oH
-oH
+QD
+QD
+QD
+QD
 QD
 Bo
 Bo
@@ -30434,7 +30694,7 @@ ks
 ks
 ks
 ks
-Wj
+Bk
 Wj
 oa
 oa
@@ -30482,10 +30742,10 @@ oH
 oH
 oH
 oH
-oH
-oH
-oH
-oH
+QD
+QD
+QD
+QD
 QD
 Bo
 Bo
@@ -30624,10 +30884,10 @@ oH
 oH
 oH
 oH
-oH
-oH
-oH
-oH
+QD
+QD
+QD
+QD
 Bo
 Bo
 Bo
@@ -30766,10 +31026,10 @@ oH
 oH
 oH
 oH
-oH
+QD
 Bo
-oH
-oH
+QD
+QD
 Bo
 Bo
 Bo
@@ -30879,7 +31139,7 @@ NC
 to
 to
 to
-ki
+vU
 nS
 Ur
 Yu
@@ -31021,7 +31281,7 @@ NC
 to
 to
 to
-ki
+vU
 xo
 UV
 Yu
@@ -31589,7 +31849,7 @@ NC
 to
 to
 to
-ki
+vU
 tt
 bx
 Yu
@@ -31731,7 +31991,7 @@ NC
 to
 to
 to
-ki
+vU
 ua
 Ur
 Yu
@@ -31881,7 +32141,7 @@ OD
 HR
 sW
 dr
-dr
+rw
 SH
 Fy
 fF

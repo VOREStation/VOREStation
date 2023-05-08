@@ -5,7 +5,7 @@
 /mob/living/simple_mob/mechanical/hivebot/tank
 	attacktext = list("prodded")
 	projectiletype = null // To force the AI to melee.
-	movement_cooldown = 10
+	movement_cooldown = 3
 	melee_damage_lower = 3
 	melee_damage_upper = 3
 	attack_sound = 'sound/weapons/Egloves.ogg'

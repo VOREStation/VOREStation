@@ -1570,3 +1570,12 @@
 
 /obj/item/weapon/dice/loaded/ceph/New()
 	icon_state = "ceph_d6[rand(1,sides)]"
+
+
+//abc123: Mira Nesyne
+/obj/item/clothing/accessory/medal/silver/fluff/abc314
+	name = "Health Service Achievement medal"
+	desc = "A small silver medal with the inscription \"For going above and beyond in the field.\" on it, along with the name Mira Nesyne."
+
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "silver"

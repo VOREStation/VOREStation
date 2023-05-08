@@ -360,3 +360,9 @@ Talon jumpsuit
 	"jumper dress"=/obj/item/clothing/under/skirt/colorable/jumperdress
 	)
 	gear_tweaks += list(new/datum/gear_tweak/path(skirts), gear_tweak_free_color_choice)
+
+// gwen beedells clown clothes
+
+/datum/gear/uniform/stripeddungarees
+	display_name = "striped dungarees"
+	path = /obj/item/clothing/under/stripeddungarees

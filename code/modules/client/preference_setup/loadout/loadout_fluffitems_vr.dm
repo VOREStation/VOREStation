@@ -35,6 +35,13 @@
 	character_name = list("Malady Blanche")
 
 //  A CKEYS
+
+/datum/gear/fluff/mira_medal
+	path = /obj/item/clothing/accessory/medal/silver/fluff/abc314
+	display_name = "Mira's Health Service Achievement medal"
+	ckeywhitelist = list("abc314")
+	character_name = list("Mira Nesyne")
+
 /datum/gear/fluff/lethe_helmet
 	path = /obj/item/clothing/head/helmet/hos/fluff/lethe
 	display_name = "Lethe's Helmet"
@@ -450,6 +457,20 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("flintlockdafox")
 	character_name = list("Flintlock Sharpsman")
+
+/datum/gear/fluff/zera_weldmask
+	path = /obj/item/clothing/head/welding/fluff/zera
+	display_name = "Zera's Welding Mask"
+	slot = slot_head
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
+/datum/gear/fluff/zera_labcloak
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera
+	display_name = "Zera's Labcloak"
+	slot = slot_wear_suit
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
 
 
 //  G CKEYS

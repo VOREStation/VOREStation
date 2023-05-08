@@ -8,6 +8,8 @@
 
 	var/organic_food_coeff = 1
 	var/synthetic_food_coeff = 0
+	var/robo_ethanol_proc = 0 //can we get fuel from booze, as a synth?
+	var/robo_ethanol_drunk = 0 //can we get *drunk* from booze, as a synth?
 	var/digestion_efficiency = 1 //VORE specific digestion var
 	//var/vore_numbing = 0
 	var/metabolism = 0.0015
@@ -78,7 +80,7 @@
 	if(new_copy.traits)
 		for(var/trait in new_copy.traits)
 			var/datum/trait/T = all_traits[trait]
-			T.apply(new_copy, H)
+			T.apply(new_copy, H, new_copy.traits[trait])
 
 	//Set up a mob
 	H.species = new_copy

@@ -13,7 +13,7 @@
 	maxHealth = 200
 	health = 200
 
-	movement_cooldown = 2
+	movement_cooldown = -1.5
 	see_in_dark = 10 //SHADEkin
 	has_hands = TRUE //Pawbs
 	seedarkness = FALSE //SHAAAADEkin

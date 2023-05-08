@@ -2563,3 +2563,75 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "perrinrobes_s"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+//Fuackwit422: Zera Livanne
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera
+	name = "Zera's Labcloak"
+	desc = "Zera's custom-designed lab-coat and cloak hybrid. Designed to perfectly align with OSHA and NT's Health and Safety regulations, while also allowing her to completely ignore all that if she really wanted."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zera_labcloak"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "zera_labcloak"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		open = 0
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		flags_inv = HIDETIE|HIDEHOLSTER
+		to_chat(usr, "You button up the coat.")
+	else if(open == 0)
+		open = 1
+		icon_state = "[icon_state]_open"
+		item_state = "[item_state]_open"
+		flags_inv = HIDEHOLSTER
+		to_chat(usr, "You unbutton the coat.")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_clothing_icon()	//so our overlays update
+
+/obj/item/clothing/head/welding/fluff/zera
+	name = "White Welding Mask"
+	desc = "It's a white welding mask. Zera likes it because it matches her labcoat."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zera_weld"
+	item_state = "zera_weld_onmob"
+	flags_inv = (HIDEEYES)
+	body_parts_covered = HEAD|EYES
+
+/obj/item/clothing/head/welding/fluff/zera/toggle() //overriding this 'cause it only conceals the eyes - it's a hat, not a mask
+	set category = "Object"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(up)
+			up = !up
+			body_parts_covered |= (EYES)
+			flags_inv |= (HIDEEYES)
+			icon_state = "zera_weld"
+			item_state = "zera_weld_onmob"
+			to_chat(usr, "You flip the helmet down to protect your eyes.")
+		else
+			up = !up
+			body_parts_covered &= ~(EYES)
+			flags_inv &= ~(HIDEEYES)
+			icon_state = "zera_weld_up"
+			item_state = "zera_weld_up_onmob"
+
+			to_chat(usr, "You push the helmet up out of your face.")
+		update_clothing_icon()	//so our mob-overlays
+		if (ismob(loc)) //should allow masks to update when it is opened/closed
+			var/mob/M = loc
+			M.update_inv_wear_mask()
+		usr.update_action_buttons()

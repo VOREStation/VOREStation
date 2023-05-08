@@ -12,7 +12,7 @@
 
 	maxHealth = 200
 	health = 200
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	faction = "worm"
 

@@ -228,7 +228,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/surface/outpost
 	requires_power = TRUE
 	dynamic_lighting = TRUE
-	ambience = null
+	ambience = list()
 
 /area/offmap/aerostat/surface/outpost/backroom
 	name = "V2 Outpost - Research Area"

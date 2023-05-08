@@ -117,12 +117,22 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	var/obj/effect/overlay/aiholo/hologram = new(T)//Spawn a blank effect at the location. //VOREStation Edit to specific type for adding vars
 	hologram.master = A //VOREStation Edit: So you can reference the master AI from in the hologram procs
 	hologram.icon = A.holo_icon
+	hologram.pixel_x = 16 - round(A.holo_icon.Width() / 2) //VOREStation Edit: centers the hologram on the tile
 	//hologram.mouse_opacity = 0//So you can't click on it. //VOREStation Removal
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	hologram.anchored = TRUE//So space wind cannot drag it.
 	hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
-	hologram.set_light(2)	//hologram lighting
-	hologram.color = color //painted holopad gives coloured holograms
+
+	if(!isnull(color))
+		hologram.color = color
+	else
+		hologram.color = A.holo_color
+
+	if(hologram.color)	//hologram lighting
+		hologram.set_light(2,1,hologram.color)
+	else
+		hologram.set_light(2)
+
 	masters[A] = hologram
 	set_light(2)			//pad lighting
 	icon_state = "holopad1"

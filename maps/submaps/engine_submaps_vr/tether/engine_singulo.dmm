@@ -33,9 +33,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact";
-	
+	dir = 10
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -86,10 +84,8 @@
 "ao" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
 	id_tag = "eng_north_airlock";
 	pixel_x = 24;
-	pixel_y = 0;
 	req_one_access = list(10,11);
 	tag_airpump = "eng_north_pump";
 	tag_chamber_sensor = "eng_north_sensor";
@@ -101,9 +97,7 @@
 "ap" = (
 /obj/machinery/portable_atmospherics/canister/phoron,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map";
-	
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -165,9 +159,7 @@
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
-	frequency = 1379;
 	id_tag = "eng_north_sensor";
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/structure/cable/cyan{
@@ -215,13 +207,10 @@
 	icon_state = "space";
 	layer = 4;
 	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact";
-	
+	dir = 10
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -256,7 +245,6 @@
 /area/engineering/engine_room)
 "ay" = (
 /obj/structure/cable/cyan{
-	d1 = 0;
 	d2 = 4;
 	icon_state = "0-4"
 	},
@@ -300,20 +288,16 @@
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
-	name = "RADIOACTIVE AREA";
-	pixel_x = 0;
-	pixel_y = 0
+	name = "RADIOACTIVE AREA"
 	},
 /turf/simulated/wall/r_wall,
 /area/engineering/engine_room)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -347,8 +331,7 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
@@ -434,10 +417,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0;
-	
+	dir = 1
 	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
@@ -539,9 +519,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact";
-	
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -579,7 +557,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
-	icon_state = "steel_decals_central5";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -611,9 +588,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map";
-	
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -734,11 +709,10 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 1
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/submap/pa_room)
@@ -759,9 +733,7 @@
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
-	name = "RADIOACTIVE AREA";
-	pixel_x = 0;
-	pixel_y = 0
+	name = "RADIOACTIVE AREA"
 	},
 /turf/simulated/wall/r_wall,
 /area/submap/pa_room)
@@ -798,9 +770,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -822,10 +792,6 @@
 "bn" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -834,6 +800,9 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/submap/pa_room)
 "bo" = (
@@ -910,7 +879,6 @@
 /area/template_noop)
 "bw" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
-	icon_state = "techfloororange_corners";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1090,22 +1058,18 @@
 	req_access = list(10)
 	},
 /obj/machinery/button/remote/blast_door{
-	name = "Engine Monitoring Room Blast Doors";
 	desc = "A remote control-switch for the engine control room blast doors.";
+	id = "EngineBlast";
+	name = "Engine Monitoring Room Blast Doors";
 	pixel_x = 5;
 	pixel_y = 7;
-	req_access = list(10);
-	id = "EngineBlast"
+	req_access = list(10)
 	},
 /turf/template_noop,
 /area/template_noop)
 "bP" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -1115,6 +1079,9 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/techfloor/orange/corner,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/submap/pa_room)
 "bQ" = (
@@ -1139,7 +1106,6 @@
 /area/submap/pa_room)
 "bU" = (
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
 	dir = 6
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -1152,7 +1118,6 @@
 /area/submap/pa_room)
 "bW" = (
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
 	dir = 6
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1173,8 +1138,7 @@
 "bY" = (
 /obj/machinery/alarm{
 	dir = 8;
-	pixel_x = 25;
-	pixel_y = 0
+	pixel_x = 25
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals8,
 /turf/simulated/floor/tiled,
@@ -1183,11 +1147,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
 /obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/submap/pa_room)
 "ca" = (
@@ -1201,9 +1164,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -1315,7 +1276,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
-	icon_state = "steel_decals_central5";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1336,16 +1296,13 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact";
-	
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -1486,9 +1443,7 @@
 	id_tag = "eng_south_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1379;
 	id_tag = "eng_south_sensor";
-	pixel_x = 0;
 	pixel_y = 25
 	},
 /obj/structure/cable/cyan{
@@ -1539,13 +1494,10 @@
 	icon_state = "space";
 	layer = 4;
 	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact";
-	
+	dir = 9
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -1603,10 +1555,8 @@
 "cB" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
 	id_tag = "eng_south_airlock";
 	pixel_x = 24;
-	pixel_y = 0;
 	req_one_access = list(10,11);
 	tag_airpump = "eng_south_pump";
 	tag_chamber_sensor = "eng_south_sensor";
