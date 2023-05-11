@@ -244,8 +244,8 @@ update_flag
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "The welding tool must be on to complete this task.")
 			return
-		if(air_contents.return_pressure() > 1 && !destroyed)
-			to_chat(user, "<span class ='warning'>\The [src]'s internal pressure is too high! Empty the canister before attempting to weld it apart.")
+		if(air_contents.return_pressure() > 1 && !destroyed) // Empty or broken cans are able to be deconstructed
+			to_chat(user, "<span class ='warning'>\The [src]'s internal pressure is too high! Empty the canister before attempting to weld it apart.</span>")
 			return
 		playsound(src, WT.usesound, 50, 1)
 		if(do_after(user, 20 * WT.toolspeed))
