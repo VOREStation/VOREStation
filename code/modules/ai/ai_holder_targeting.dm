@@ -143,7 +143,7 @@
 				else
 					return FALSE
 		//VOREStation add start
-		else if(forgive_resting)	//Doing it this way so we only think about the other conditions if the var is actually set
+		else if(forgive_resting && !isbelly(holder.loc))	//Doing it this way so we only think about the other conditions if the var is actually set
 			if((holder.health == holder.maxHealth) && !hostile && (L.resting || L.weakened || L.stunned))	//If our health is full, no one is fighting us, we can forgive
 				var/mob/living/simple_mob/vore/eater = holder
 				if(!eater.will_eat(L))		//We forgive people we can eat by eating them
