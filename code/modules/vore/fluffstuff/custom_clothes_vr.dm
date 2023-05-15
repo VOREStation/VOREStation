@@ -2488,7 +2488,7 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
-//Pandora029:Seona Young
+//Pandora029:Shona Young
 /obj/item/clothing/under/fluff/foxoflightsuit
 	name = "padded flightsuit"
 	desc = "A ruddy-orange combination immersion-and-flight suit, fitted with extra padding across the front of its legs. Warm, waterproof and practical, seveal patches are scattered across it alongside a hard-wearing harness."
