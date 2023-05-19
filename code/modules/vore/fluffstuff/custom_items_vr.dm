@@ -1518,7 +1518,7 @@
 	item_icons = list(slot_l_hand_str = 'icons/vore/custom_items_left_hand_vr.dmi', slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi')
 	icon_state = "kyuholotar"
 
-//Pandora029 - Seona Young
+//Pandora029 - Shona Young
 /obj/item/toy/plushie/fluff/seona_mofuorb
 	name = "comically oversized fox-orb plushie"
 	desc = "A humongous & adorable Largo© brand stuffed-toy that resembles a mix of slime and absurdly fluffy fox. It's colored white largely, with the tips of it's fox-like ears and tail transitioning to a nice pink-ish color. Comes complete with reactive expressions, according to the label."

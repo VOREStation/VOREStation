@@ -132,7 +132,6 @@
 
 	//We do not check if user can move or not, since this system is inspired to help see chat bubbles during scenes primarily.
 	//Preventing turning off the HUD could get in the way of scene flow.
-	usr.visible_emote("toggles a button on their [src.name]!") //Since we're turning stuff like arrest/medical HUD on/off, we should inform those nearby.
 	if(ar_toggled)
 		away_planes = enables_planes
 		enables_planes = null

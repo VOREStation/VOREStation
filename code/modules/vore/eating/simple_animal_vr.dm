@@ -8,7 +8,7 @@
 //
 /mob/living/simple_mob/proc/animal_nom(mob/living/T in living_mobs(1))
 	set name = "Animal Nom"
-	set category = "IC"
+	set category = "Abilities" // Moving this to abilities from IC as it's more fitting there
 	set desc = "Since you can't grab, you get a verb!"
 
 	if(stat != CONSCIOUS)

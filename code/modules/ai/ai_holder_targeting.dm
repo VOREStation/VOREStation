@@ -22,6 +22,8 @@
 											// This uses strings and not refs to allow for disguises, and to avoid needing to use weakrefs.
 	var/destructive = FALSE					// Will target 'neutral' structures/objects and not just 'hostile' ones.
 
+	var/forgive_resting = TRUE				//VOREStation add - If TRUE on a RETALIATE mob, then mob will drop target if it becomes hostile to you but hasn't taken damage
+
 // A lot of this is based off of /TG/'s AI code.
 
 // Step 1, find out what we can see.
@@ -140,6 +142,14 @@
 				//VOREStation Add End
 				else
 					return FALSE
+		//VOREStation add start
+		else if(forgive_resting && !isbelly(holder.loc))	//Doing it this way so we only think about the other conditions if the var is actually set
+			if((holder.health == holder.maxHealth) && !hostile && (L.resting || L.weakened || L.stunned))	//If our health is full, no one is fighting us, we can forgive
+				var/mob/living/simple_mob/vore/eater = holder
+				if(!eater.will_eat(L))		//We forgive people we can eat by eating them
+					set_stance(STANCE_IDLE)
+					return FALSE	//Forgiven
+		//VOREStation add end
 		if(holder.IIsAlly(L))
 			return FALSE
 		return TRUE

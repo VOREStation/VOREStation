@@ -67,7 +67,7 @@
 	var/last_search = 0
 	var/search_cooldown = 5 SECONDS
 	var/ignoreunarmed = TRUE
-	var/allowedtools = list(/obj/item/weapon/pickaxe, /obj/item/weapon/gun/energy/kinetic_accelerator, /obj/item/weapon/gun/magnetic/matfed/phoronbore, /obj/item/weapon/kinetic_crusher)
+	var/allowedtools = list(/obj/item/weapon/pickaxe, /obj/item/weapon/gun/energy/kinetic_accelerator, /obj/item/weapon/gun/magnetic/matfed/phoronbore, /obj/item/weapon/kinetic_crusher, /obj/item/weapon/melee/shock_maul)
 
 /mob/living/simple_mob/mechanical/mining_drone/Initialize()
 	ion_trail = new
