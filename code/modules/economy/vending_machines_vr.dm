@@ -637,6 +637,10 @@
 					/obj/item/clothing/mask/bandana/green = 5,
 					/obj/item/clothing/mask/bandana/red = 5,
 					/obj/item/clothing/mask/surgical = 5,
+					/obj/item/clothing/head/ushanka/neo_ushanka = 5,
+					/obj/item/clothing/head/ushanka/neo_ushanka_blue = 5,
+					/obj/item/clothing/head/papakha = 5,
+					/obj/item/clothing/head/papakha_white = 5,
 					/obj/item/clothing/accessory/pride/bi = 5,
 					/obj/item/clothing/accessory/pride/trans = 5,
 					/obj/item/clothing/accessory/pride/ace = 5,
@@ -925,6 +929,9 @@
 					/obj/item/clothing/under/suit_jacket/checkered/skirt = 5,
 					/obj/item/clothing/under/suit_jacket/tan = 5,
 					/obj/item/clothing/under/suit_jacket/tan/skirt = 5,
+					/obj/item/clothing/suit/storage/toggle/labcoat/neo_leather = 5,
+					/obj/item/clothing/suit/neo_gorka = 5,
+					/obj/item/clothing/suit/storage/toggle/labcoat/neo_civ_dep = 5,
 					/obj/item/clothing/under/scratch = 5,
 					/obj/item/clothing/under/scratch/skirt = 5,
 					/obj/item/clothing/under/sundress = 5,
@@ -1131,7 +1138,16 @@
 					/obj/item/clothing/under/tropical/pink = 50,
 					/obj/item/clothing/under/tropical/blue = 50)
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
-	contraband = list(/obj/item/clothing/under/rank/clown = 1)
+	contraband = list(/obj/item/clothing/under/rank/clown = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleneck = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleskirt = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleneck_blue = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleskirt_blue = 1,
+					/obj/item/clothing/under/rank/neo_suspicious_turtleneck = 1,
+					/obj/item/clothing/under/rank/neo_suspicious_turtleskirt = 1,
+					/obj/item/clothing/under/rank/neo_suspect_overalls = 1,
+					/obj/item/clothing/under/rank/neo_suspect_overalls_skirt = 1,
+					/obj/item/clothing/head/soft/neo_softcap = 2)
 
 /obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"

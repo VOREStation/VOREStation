@@ -253,7 +253,7 @@ this file deals with uniforms/under. */
 	rolled_sleeves = -1
 	rolled_down = -1
 
-//
+// CC
 
 /obj/item/clothing/under/rank/neo_centcom
 	name = "centcom officer's suit"
@@ -812,7 +812,7 @@ this file deals with uniforms/under. */
 /obj/item/clothing/under/rank/neo_robo_skirt
 	name = "roboticist's skirt"
 	desc = "it has a tag denoting it's made by Total Gear & Co."
-	icon_state = "neo_rob_skirt"
+	icon_state = "neo_robo_skirt"
 	rolled_sleeves = -1
 	rolled_down = -1
 

@@ -2103,6 +2103,7 @@
 #include "code\modules\clothing\suits\labcoat_vr.dm"
 #include "code\modules\clothing\suits\miscellaneous.dm"
 #include "code\modules\clothing\suits\miscellaneous_vr.dm"
+#include "code\modules\clothing\suits\neosuits.dm"
 #include "code\modules\clothing\suits\solgov.dm"
 #include "code\modules\clothing\suits\solgov_vr.dm"
 #include "code\modules\clothing\suits\storage.dm"
