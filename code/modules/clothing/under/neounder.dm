@@ -200,7 +200,7 @@ this file deals with uniforms/under. */
 /obj/item/clothing/under/rank/neo_suspect_turtleneck
 	name = "suspiciously comfortable turtleneck"
 	desc = "it has a tag denoting it's made by Total Gear & Co."
-	icon_state = "neo_suspect"
+	icon_state = "neo_suspect_turtle"
 	rolled_sleeves = -1
 	rolled_down = -1
 
