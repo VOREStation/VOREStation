@@ -2,6 +2,7 @@
 	var/restoration_external = 5
 	var/restoration_internal = 20
 	var/repair_external = FALSE
+	var/mech_repair = 10
 
 /obj/item/stack/nanopaste/advanced
 	name = "advanced nanopaste"
@@ -11,3 +12,4 @@
 	icon_state = "adv_nanopaste"
 	restoration_external = 10
 	repair_external = TRUE
+	mech_repair = 20
