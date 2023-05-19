@@ -1567,15 +1567,27 @@
 			for(var/slot in internal_components)
 				var/obj/item/mecha_parts/component/C = internal_components[slot]
 
-				if(C)
+				if(!C)
+					to_chat(user, "<span class='notice'>There are no components installed!</span>")
+					return
 
-					if(C.integrity < C.max_integrity)
-						while(C.integrity < C.max_integrity && NP && do_after(user, 1 SECOND, src))
-							if(NP.use(1))
-								C.adjust_integrity(10)
+				if(C.integrity >= C.max_integrity)
+					to_chat(user, "<span class='notice'>\The [C] does not require repairs.</span>")
 
-						to_chat(user, "<span class='notice'>You repair damage to \the [C].</span>")
+				else if(C.integrity < C.max_integrity)
+					to_chat(user, "<span class='notice'>You start to repair damage to \the [C].</span>")
+					while(C.integrity < C.max_integrity && NP)
+						if(do_after(user, 1 SECOND, src))
+							NP.use(1)
+							C.adjust_integrity(NP.mech_repair)
 
+							if(C.integrity >= C.max_integrity)
+								to_chat(user, "<span class='notice'>You finish repairing \the [C].</span>")
+								break
+
+							else if(NP.amount == 0)
+								to_chat(user, "<span class='warning'>Insufficient nanopaste to complete repairs!</span>")
+								break
 			return
 
 		else

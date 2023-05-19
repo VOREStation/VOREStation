@@ -39,6 +39,11 @@
 				return input(user, message, title, default) as message|null
 			else
 				return input(user, message, title, default) as text|null
+
+	//Client has TGUI input lock on; override whatever prevent_enter was specified beforehand
+	if(user.client.prefs.tgui_input_lock)
+		prevent_enter = TRUE
+
 	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout, prevent_enter)
 	text_input.tgui_interact(user)
 	text_input.wait()
