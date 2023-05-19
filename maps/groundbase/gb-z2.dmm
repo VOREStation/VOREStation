@@ -7265,7 +7265,13 @@
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "uA" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/table/standard,
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/storage)
 "uC" = (
