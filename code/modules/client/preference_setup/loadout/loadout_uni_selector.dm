@@ -120,6 +120,7 @@
 /datum/gear/uniform/civvie_uniform_selector/New()
 	..()
 	var/list/selector_uniforms = list(
+		"KHI uniform"=/obj/item/clothing/under/rank/khi/civ,
 		"TG&C plain turtleneck"=/obj/item/clothing/under/rank/neo_suspect_turtleneck,
 		"TG&C plain turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_suspect_turtleskirt,
 		"TG&C blue turtleneck"=/obj/item/clothing/under/rank/neo_suspect_turtleneck_blue,
@@ -189,7 +190,11 @@
 		"ST: Next Generation Ops"=/obj/item/clothing/under/rank/trek/engsec/next,
 		"ST: Voyager Ops"=/obj/item/clothing/under/rank/trek/engsec/voy,
 		"ST: DS9 Ops"=/obj/item/clothing/under/rank/trek/engsec/ds9,
-		"ST: Enterprise Ops"=/obj/item/clothing/under/rank/trek/engsec/ent
+		"ST: Enterprise Ops"=/obj/item/clothing/under/rank/trek/engsec/ent,
+		"TG&C bodyguard's suit"=/obj/item/clothing/under/rank/bodyguard_suit,
+		"TG&C bodyguard's skirt"=/obj/item/clothing/under/rank/bodyguard_skirt,
+		"TG&C bodyguard's turtleneck"=/obj/item/clothing/under/rank/bodyguard_turtleneck,
+		"TG&C bodyguard's turtleneck w/ skirt"=/obj/item/clothing/under/rank/bodyguard_turtleskirt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
