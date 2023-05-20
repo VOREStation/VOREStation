@@ -326,7 +326,7 @@
 	display_name = "Medical - Basic Uniforms"
 	description = "Select from a range of outfits available to all Medical personnel."
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
-	path =
+	path = /obj/item/clothing/under/rank/neo_med
 	slot = slot_w_uniform
 	sort_category = "Uniform Selectors"
 	cost = 2
@@ -400,7 +400,7 @@
 	display_name = "Medical - Chief Medical Officer's Uniforms"
 	description = "Select from a range of outfits available to all Chief Medical Officers."
 	allowed_roles = list("Chief Medical Officer")
-	path =
+	path = /obj/item/clothing/under/rank/neo_cmo
 	slot = slot_w_uniform
 	sort_category = "Uniform Selectors"
 	cost = 2
