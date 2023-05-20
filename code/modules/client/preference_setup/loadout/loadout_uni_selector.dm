@@ -1,5 +1,5 @@
 /*
-/datum/gear/uniform_selector/BLANK
+/datum/gear/uniform/BLANK_selector
 	display_name = "DEPT - BLANK's Uniforms"
 	description = "Select from a range of outfits available to all BLANK personnel."
 	allowed_roles = list("")
@@ -8,25 +8,23 @@
 	sort_category = "Uniform Selectors"
 	cost = 2
 
-/datum/gear/uniform_selector/BLANK/New()
+/datum/gear/uniform/BLANK_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 */
 
-/datum/gear/uniform_selector
-	slot = slot_w_uniform
-	sort_category = "Uniform Selectors"
-	cost = 2
-
-/datum/gear/uniform_selector/site_manager
+/datum/gear/uniform/site_manager_selector
 	display_name = "Command - Site Manager's Uniforms"
 	description = "Select from a range of outfits available to all Site Managers."
 	allowed_roles = list("Site Manager")
 	path = /obj/item/clothing/under/dress/dress_cap
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/site_manager/New()
+/datum/gear/uniform/site_manager_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"uniform w/ dress"=/obj/item/clothing/under/dress/dress_cap,
@@ -40,13 +38,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/head_of_personnel
+/datum/gear/uniform/head_of_personnel_selector
 	display_name = "Command - Head of Personnel's Uniforms"
 	description = "Select from a range of outfits available to all Heads of Personnel."
 	allowed_roles = list("Head of Personnel")
 	path = /obj/item/clothing/under/dress/dress_hop
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/head_of_personnel/New()
+/datum/gear/uniform/head_of_personnel_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"uniform w/ dress"=/obj/item/clothing/under/dress/dress_hop,
@@ -61,13 +62,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/security
+/datum/gear/uniform/security_selector
 	display_name = "Security - Basic Uniforms"
 	description = "Select from a range of outfits available to all Security personnel."
 	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 	path = /obj/item/clothing/under/rank/security/corp
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/security/New()
+/datum/gear/uniform/security_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"undersuit, modernized"=/obj/item/clothing/under/rank/security/modern,
@@ -98,13 +102,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/security_warden
+/datum/gear/uniform/security_warden_selector
 	display_name = "Security - Warden's Uniforms"
 	description = "Select from a range of outfits available to Wardens."
 	allowed_roles = list("Head of Security","Warden")
 	path = /obj/item/clothing/under/rank/warden/corp
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/security_warden/New()
+/datum/gear/uniform/security_warden_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/warden/skirt,
@@ -116,13 +123,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/security_detective
+/datum/gear/uniform/security_detective_selector
 	display_name = "Security - Detective's Uniforms"
 	description = "Select from a range of outfits available to all Detectives."
 	allowed_roles = list("Head of Security","Detective")
 	path = /obj/item/clothing/under/det/corporate
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/security_detective/New()
+/datum/gear/uniform/security_detective_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/det/skirt,
@@ -130,13 +140,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/security_head
+/datum/gear/uniform/security_head_selector
 	display_name = "Security - Head's Uniforms"
 	description = "Select from a range of outfits available to all Heads of Security."
 	allowed_roles = list("Head of Security")
 	path = /obj/item/clothing/under/rank/head_of_security/corp
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/security_head/New()
+/datum/gear/uniform/security_head_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/head_of_security/skirt,
@@ -163,13 +176,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/quartermaster
+/datum/gear/uniform/quartermaster_selector
 	display_name = "Cargo - Quartermaster's Uniforms"
 	description = "Select from a range of outfits available to all Quartermasters."
 	allowed_roles = list("Quartermaster")
 	path = /obj/item/clothing/under/rank/cargo/jeans
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/quartermaster/New()
+/datum/gear/uniform/quartermaster_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/cargo/skirt,
@@ -192,13 +208,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/cargo_general
+/datum/gear/uniform/cargo_general_selector
 	display_name = "Cargo - Basic Uniforms"
 	description = "Select from a range of outfits available to all Cargo personnel."
 	allowed_roles = list("Cargo Technician","Shaft Miner","Quartermaster")
 	path = /obj/item/clothing/under/rank/cargotech/jeans
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/cargo_general/New()
+/datum/gear/uniform/cargo_general_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/cargotech/skirt,
@@ -218,13 +237,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/cargo_miner
+/datum/gear/uniform/cargo_miner_selector
 	display_name = "Cargo - Miner's Uniforms"
 	description = "Select from a range of outfits available to all Mining personnel."
 	allowed_roles = list("Shaft Miner","Quartermaster")
 	path = /obj/item/clothing/under/rank/neo_miner
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/cargo_miner/New()
+/datum/gear/uniform/cargo_miner_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"TG&C miner's uniform"=/obj/item/clothing/under/rank/neo_miner,
@@ -232,13 +254,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/engineering_chief
+/datum/gear/uniform/engineering_chief_selector
 	display_name = "Engineering - Chief Engineer's Uniforms"
 	description = "Select from a range of outfits available to all Chief Engineers."
 	allowed_roles = list("Chief Engineer")
 	path = /obj/item/clothing/under/rank/neo_chiefengi
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/engineering_chief/New()
+/datum/gear/uniform/engineering_chief_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/chief_engineer/skirt,
@@ -253,13 +278,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/engineer
+/datum/gear/uniform/engineer_selector
 	display_name = "Engineering - Basic Uniforms"
 	description = "Select from a range of outfits available to all Engineering personnel."
 	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician")
 	path = /obj/item/clothing/under/rank/neo_engi
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/engineer/New()
+/datum/gear/uniform/engineer_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/engineer/skirt,
@@ -276,17 +304,120 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/uniform_selector/engi_atmos
+/datum/gear/uniform/engi_atmos_selector
 	display_name = "Engineering - Atmos Tech's Uniforms"
 	description = "Select from a range of outfits available to all Atmospherics Technicians."
 	allowed_roles = list("Chief Engineer","Atmospheric Technician")
 	path = /obj/item/clothing/under/rank/atmospheric_technician/skirt
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
 
-/datum/gear/uniform_selector/engi_atmos/New()
+/datum/gear/uniform/engi_atmos_selector/New()
 	..()
 	var/list/selector_uniforms = list(
 		"skirt"=/obj/item/clothing/under/rank/atmospheric_technician/skirt,
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_atmos,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_atmos_skirt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/medical_selector
+	display_name = "Medical - Basic Uniforms"
+	description = "Select from a range of outfits available to all Medical personnel."
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	path =
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/medical_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"skirt"=/obj/item/clothing/under/rank/medical/skirt,
+		"virologist skirt"=/obj/item/clothing/under/rank/virologist/skirt,
+		"turtleneck"=/obj/item/clothing/under/rank/medical/turtleneck,
+		"vey-medical jumpsuit"=/obj/item/clothing/under/corp/veymed,
+		"KHI uniform"=/obj/item/clothing/under/rank/khi/med,
+		"ST: Original Series Med-Sci"=/obj/item/clothing/under/rank/trek/medsci,
+		"ST: Next Generation Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/next,
+		"ST: Voyager Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/voy,
+		"ST: DS9 Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ds9,
+		"ST: Enterprise Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ent,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_med,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_med_skirt,
+		"TG&C virology jumpsuit"=/obj/item/clothing/under/rank/neo_viro,
+		"TG&C virology jumpskirt"=/obj/item/clothing/under/rank/neo_viro_skirt,
+		"TG&C dark jumpsuit"=/obj/item/clothing/under/rank/neo_med_dark,
+		"TG&C dark jumpskirt"=/obj/item/clothing/under/rank/neo_med_dark_skirt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/chemist_selector
+	display_name = "Medical - Chemist's Uniforms"
+	description = "Select from a range of outfits available to all Chemists."
+	allowed_roles = list("Chief Medical Officer","Chemist")
+	path = /obj/item/clothing/under/rank/neo_chem
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/chemist_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"skirt"=/obj/item/clothing/under/rank/chemist/skirt,
+		"TG&C chemist's jumpsuit"=/obj/item/clothing/under/rank/neo_chem,
+		"TG&C chemist's jumpskirt"=/obj/item/clothing/under/rank/neo_chem_skirt,
+		"TG&C pharmacy jumpsuit"=/obj/item/clothing/under/rank/neo_pharma,
+		"TG&C pharmacy jumpskirt"=/obj/item/clothing/under/rank/neo_pharma_skirt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/paramedic_selector
+	display_name = "Medical - Paramedic's Uniforms"
+	description = "Select from a range of outfits available to all Paramedics."
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	path = /obj/item/clothing/under/rank/paramedunidark
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/paramedic_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"dark"=/obj/item/clothing/under/rank/paramedunidark,
+		"dark w/ skirt"=/obj/item/clothing/under/rank/parameduniskirtdark,
+		"light"=/obj/item/clothing/under/rank/paramedunilight,
+		"light w/ skirt"=/obj/item/clothing/under/rank/parameduniskirtlight,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_para,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_para_skirt,
+		"TG&C light jumpsuit"=/obj/item/clothing/under/rank/neo_para_light,
+		"TG&C light jumpskirt"=/obj/item/clothing/under/rank/neo_para_light_skirt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/chief_medical_selector
+	display_name = "Medical - Chief Medical Officer's Uniforms"
+	description = "Select from a range of outfits available to all Chief Medical Officers."
+	allowed_roles = list("Chief Medical Officer")
+	path =
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/chief_medical_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"skirt"=/obj/item/clothing/under/rank/chief_medical_officer/skirt,
+		"KHI uniform, command"=/obj/item/clothing/under/rank/khi/cmd,
+		"ST: Original Series Command"=/obj/item/clothing/under/rank/trek/command,
+		"ST: Next Generation Command"=/obj/item/clothing/under/rank/trek/command/next,
+		"ST: Voyager Command"=/obj/item/clothing/under/rank/trek/command/voy,
+		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
+		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_cmo,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_cmo_skirt,
+		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_cmo_turtle,
+		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_cmo_turtle_skirt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
