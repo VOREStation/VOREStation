@@ -10741,6 +10741,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "wf" = (
+/obj/machinery/alarm/angled,
 /turf/simulated/floor,
 /area/maintenance/security_port)
 "wg" = (
