@@ -1,4 +1,6 @@
+//template for quickly making more, if it's ever needed
 /*
+
 /datum/gear/uniform/BLANK_selector
 	display_name = "DEPT - BLANK's Uniforms"
 	description = "Select from a range of outfits available to all BLANK personnel."
@@ -15,11 +17,13 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 */
 
+//Command/Specific
+
 /datum/gear/uniform/site_manager_selector
 	display_name = "Command - Site Manager's Uniforms"
 	description = "Select from a range of outfits available to all Site Managers."
 	allowed_roles = list("Site Manager")
-	path = /obj/item/clothing/under/dress/dress_cap
+	path = /obj/item/clothing/under/rank/neo_captain
 	slot = slot_w_uniform
 	sort_category = "Uniform Selectors"
 	cost = 2
@@ -34,7 +38,13 @@
 		"ST: Voyager Command"=/obj/item/clothing/under/rank/trek/command/voy,
 		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
 		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
-		"voidsuit underlayer"=/obj/item/clothing/under/undersuit/command
+		"voidsuit underlayer"=/obj/item/clothing/under/undersuit/command,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_captain,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_captain_skirt,
+		"TG&C utility suit"=/obj/item/clothing/under/rank/neo_commandutil,
+		"TG&C black suit"=/obj/item/clothing/under/rank/neo_captain_blacksuit,
+		"TG&C parade uniform"=/obj/item/clothing/under/rank/neo_captain_parade,
+		"TG&C jumpkilt"=/obj/item/clothing/under/rank/neo_captain_kilt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -42,7 +52,7 @@
 	display_name = "Command - Head of Personnel's Uniforms"
 	description = "Select from a range of outfits available to all Heads of Personnel."
 	allowed_roles = list("Head of Personnel")
-	path = /obj/item/clothing/under/dress/dress_hop
+	path = /obj/item/clothing/under/rank/neo_hop
 	slot = slot_w_uniform
 	sort_category = "Uniform Selectors"
 	cost = 2
@@ -58,9 +68,18 @@
 		"ST: Voyager Command"=/obj/item/clothing/under/rank/trek/command/voy,
 		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
 		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
-		"voidsuit underlayer"=/obj/item/clothing/under/undersuit/command
+		"voidsuit underlayer"=/obj/item/clothing/under/undersuit/command,
+		"TG&C command utility"=/obj/item/clothing/under/rank/neo_commandutil,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_hop,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_hop_skirt,
+		"TG&C parade uniform"=/obj/item/clothing/under/rank/neo_hop_parade_masc,
+		"TG&C parade dress"=/obj/item/clothing/under/rank/neo_hop_parade_fem,
+		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_hop_turtle,
+		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_hop_turtle_skirt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+//Security
 
 /datum/gear/uniform/security_selector
 	display_name = "Security - Basic Uniforms"
@@ -176,6 +195,8 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
+//Cargo
+
 /datum/gear/uniform/quartermaster_selector
 	display_name = "Cargo - Quartermaster's Uniforms"
 	description = "Select from a range of outfits available to all Quartermasters."
@@ -254,6 +275,8 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
+//Engineering
+
 /datum/gear/uniform/engineering_chief_selector
 	display_name = "Engineering - Chief Engineer's Uniforms"
 	description = "Select from a range of outfits available to all Chief Engineers."
@@ -321,6 +344,8 @@
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_atmos_skirt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+//Medical
 
 /datum/gear/uniform/medical_selector
 	display_name = "Medical - Basic Uniforms"
@@ -419,5 +444,74 @@
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_cmo_skirt,
 		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_cmo_turtle,
 		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_cmo_turtle_skirt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+//Science
+
+/datum/gear/uniform/research_director_selector
+	display_name = "Science - Research Director's Uniforms"
+	description = "Select from a range of outfits available to all Research Directors."
+	allowed_roles = list("Research Director")
+	path = /obj/item/clothing/under/rank/neo_rd_suit
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/research_director_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"KHI uniform, command"=/obj/item/clothing/under/rank/khi/cmd,
+		"ST: Original Series Command"=/obj/item/clothing/under/rank/trek/command,
+		"ST: Next Generation Command"=/obj/item/clothing/under/rank/trek/command/next,
+		"ST: Voyager Command"=/obj/item/clothing/under/rank/trek/command/voy,
+		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
+		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_rd_suit,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_rd_suit_skirt,
+		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_rd_turtle,
+		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_rd_turtle_skirt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/science_dept_selector
+	display_name = "Science - Basic Uniforms"
+	description = "Select from a range of outfits available to all Science personnel."
+	allowed_roles = list("Scientist","Research Director","Roboticist","Xenobiologist","Xenobotanist")
+	path = /obj/item/clothing/under/rank/neo_science
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/science_dept_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_science,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_science_skirt,
+		"TG&C utility"=/obj/item/clothing/under/rank/neo_util_sci,
+		"KHI uniform"=/obj/item/clothing/under/rank/khi/sci,
+		"ST: Original Series Med-Sci"=/obj/item/clothing/under/rank/trek/medsci,
+		"ST: Next Generation Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/next,
+		"ST: Voyager Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/voy,
+		"ST: DS9 Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ds9,
+		"ST: Enterprise Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ent
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/uniform/science_robotics_selector
+	display_name = "Science - Roboticist's Uniforms"
+	description = "Select from a range of outfits available to all Roboticists."
+	allowed_roles = list("Research Director","Roboticist")
+	path = /obj/item/clothing/under/rank/neo_robo
+	slot = slot_w_uniform
+	sort_category = "Uniform Selectors"
+	cost = 2
+
+/datum/gear/uniform/science_robotics_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"skirt"=/obj/item/clothing/under/rank/roboticist/skirt,
+		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_robo,
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_robo_skirt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
