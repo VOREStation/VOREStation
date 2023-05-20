@@ -28,6 +28,7 @@
 	selective_preference = client.prefs_vr.selective_preference
 	appendage_color = client.prefs_vr.appendage_color
 	appendage_alt_setting = client.prefs_vr.appendage_alt_setting
+	eating_privacy_global = client.prefs_vr.eating_privacy_global
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore
