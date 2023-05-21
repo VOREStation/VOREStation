@@ -60,8 +60,27 @@
 /datum/crafting_recipe/scopedrifle
 	name = "Bolt scope to bolt-action (cannot be removed)"
 	result = /obj/item/weapon/gun/projectile/shotgun/pump/rifle/scoped
-	reqs = list(list(/obj/item/device/binoculars/scope = 1), 
+	reqs = list(list(/obj/item/device/binoculars/scope = 1),
 		list(/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 1))
 	time = 180
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/scrap_bola
+	name = "Scrap Bola"
+	result = /obj/item/weapon/handcuffs/legcuffs/bola/cable
+	reqs = list(list(/obj/item/stack/material/steel = 6),
+		list(/obj/item/stack/cable_coil = 12))
+	time = 180
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/primitive_bola
+	name = "Primitive Bola"
+	result = /obj/item/weapon/handcuffs/legcuffs/bola
+	reqs = list(list(/obj/item/stack/material/flint = 6),
+		list(/obj/item/stack/material/cloth = 3),
+		list(/obj/item/stack/material/fiber = 6))
+	time = 120
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
