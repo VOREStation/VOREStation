@@ -156,5 +156,6 @@
 			prob(2);/obj/item/toy/tennis/blue,
 			prob(2);/obj/item/toy/tennis/purple,
 			prob(2);/obj/item/clothing/ears/earmuffs,
-			prob(2);/obj/item/clothing/ears/earmuffs/headphones
+			prob(2);/obj/item/clothing/ears/earmuffs/headphones,
+			prob(2);/obj/item/toy/baseball
 			)
