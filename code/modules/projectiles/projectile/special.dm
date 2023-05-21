@@ -246,7 +246,7 @@
 	hud_state = "monkey"
 
 /obj/item/projectile/bola
-	name = "bola"
+	name = "Web bola"
 	icon_state = "bola"
 	damage = 5
 	embed_chance = 0 //Nada.
@@ -259,7 +259,7 @@
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		var/obj/item/weapon/handcuffs/legcuffs/bola/B = new(src.loc)
+		var/obj/item/weapon/handcuffs/legcuffs/bola/web/B = new(src.loc)
 		if(!B.place_legcuffs(M,firer))
 			if(B)
 				qdel(B)
