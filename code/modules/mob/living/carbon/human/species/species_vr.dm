@@ -20,6 +20,7 @@
 	var/selects_bodytype = SELECTS_BODYTYPE_FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
 
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
+	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
 
 	var/is_weaver = FALSE
 	var/silk_production = FALSE

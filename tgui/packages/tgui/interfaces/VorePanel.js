@@ -451,6 +451,7 @@ const VoreSelectedBellyOptions = (props, context) => {
     egg_type,
     selective_preference,
     save_digest_mode,
+    eating_privacy_local,
   } = belly;
 
   return (
@@ -510,6 +511,12 @@ const VoreSelectedBellyOptions = (props, context) => {
               icon={display_absorbed_examine ? 'toggle-on' : 'toggle-off'}
               selected={display_absorbed_examine}
               content={display_absorbed_examine ? 'True' : 'False'}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Toggle Vore Privacy">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_eating_privacy' })}
+              content={capitalize(eating_privacy_local)}
             />
           </LabeledList.Item>
 
@@ -878,6 +885,7 @@ const VoreUserPreferences = (props, context) => {
     throw_vore,
     nutrition_message_visible,
     weight_message_visible,
+    eating_privacy_global,
   } = data.prefs;
 
   const { show_pictures } = data;
@@ -1198,6 +1206,22 @@ const VoreUserPreferences = (props, context) => {
         disabled: 'Examine Weight Messages Inactive',
       },
     },
+    eating_privacy_global: {
+      action: 'toggle_global_privacy',
+      test: eating_privacy_global,
+      tooltip: {
+        main:
+          'Sets default belly behaviour for vorebellies for announcing' +
+          ' ingesting or expelling prey' +
+          ' Overwritten by belly-specific preferences if set.',
+        enable: ' Click here to turn your messages subtle',
+        disable: ' Click here to turn your  messages loud',
+      },
+      content: {
+        enabled: 'Global Vore Privacy: Subtle',
+        disabled: 'Global Vore Privacy: Loud',
+      },
+    },
   };
 
   return (
@@ -1271,6 +1295,9 @@ const VoreUserPreferences = (props, context) => {
         </Flex.Item>
         <Flex.Item basis="32%">
           <Button fluid content="Selective Mode Preference" onClick={() => act('switch_selective_mode_pref')} />
+        </Flex.Item>
+        <Flex.Item basis="32%" grow={3}>
+          <VoreUserPreferenceItem spec={preferences.eating_privacy_global} />
         </Flex.Item>
       </Flex>
       <Section title="Aesthetic Preferences">

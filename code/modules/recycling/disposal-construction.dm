@@ -322,6 +322,7 @@
 						var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.set_dir(dir)
+						P.target = get_ranged_target_turf(src, dir, 10) //TODO: replace this with a proc parameter or other cleaner
 						var/obj/structure/disposalpipe/trunk/Trunk = CP
 						Trunk.linked = P
 

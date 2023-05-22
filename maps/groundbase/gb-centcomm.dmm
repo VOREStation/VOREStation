@@ -4405,12 +4405,6 @@
 /obj/item/weapon/book/manual/security_space_law,
 /turf/simulated/floor/tiled,
 /area/centcom/security)
-"pf" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/escape)
 "pg" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/carpet,
@@ -21031,9 +21025,9 @@ SA
 tQ
 tQ
 Ll
-pf
-pf
-pf
+Sc
+Sc
+Sc
 jh
 Sc
 Sc
