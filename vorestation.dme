@@ -2926,6 +2926,7 @@
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\neutral.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\positive.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\trait.dm"
+#include "code\modules\mob\living\carbon\human\species\station\traits_vr\traits_tutorial.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\weaver_objs.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\weaver_recipies.dm"
 #include "code\modules\mob\living\carbon\human\species\virtual_reality\avatar.dm"
