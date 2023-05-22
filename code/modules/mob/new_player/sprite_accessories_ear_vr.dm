@@ -917,3 +917,10 @@
 	extra_overlay = "zaprat-tips"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/kara //SatinIsle Fluff Item
+	name = "Pterokara horn"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "kara_horn"
+	ckeys_allowed = list("satinisle")
