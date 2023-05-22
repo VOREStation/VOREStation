@@ -7,6 +7,11 @@ then retrieve their relevant vars by assuming the character's species has the fu
 The ability is intended to be developed both as a to_chat() and a tgui window.
 The user is given the ability to choose which they would like whenever they press the ability to better suit whatever scenario they find themselves
 thirsty for knowledge.
+
+When adding new tutorials for trait subtypes, use <br> rather than \n newlines
+
+TGUI backend path: code\modules\tgui\modules\trait_tutorial_tgui.dm
+TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 */
 
 
@@ -17,13 +22,19 @@ thirsty for knowledge.
 	set name = "Explain Custom Traits"
 	set desc = "Click this verb to obtain a detailed tutorial on your selected traits. "
 	set category = "Abilities"
+	var/datum/tgui_module/trait_tutorial_tgui/fancy_UI
+	if(!fancy_UI)
+		fancy_UI = new /datum/tgui_module/trait_tutorial_tgui/ //Preventing a bunch of instances being spawned all over the place. Hopefully
+
+
 
 	var/list/list_of_traits = species.traits
-	if(!list_of_traits)
+	if(!LAZYLEN(list_of_traits))
 		to_chat(usr, SPAN_NOTICE("You do not have any custom traits!"))
+		return
 
 
-	var/UI_choice = tgui_alert(src, "Would you like the tutorial text to be printed to chat?", "Choose preferred tutorial interface", list("To Chat", "Cancel"))
+	var/UI_choice = tgui_alert(src, "Would you like the tutorial text to be printed to chat?", "Choose preferred tutorial interface", list("TGUI","To Chat", "Cancel"))
 	if(UI_choice == "Cancel")
 		return
 
@@ -34,7 +45,6 @@ thirsty for knowledge.
 	var/trait_tutorial = list() //name:tutorial
 	for(var/trait in list_of_traits)
 		var/datum/trait/T = all_traits[trait]
-		to_world_log("##DEBUG [T.name] is of category [T.category]")
 		trait_names += T.name
 		trait_desc[T.name] = T.desc
 		trait_tutorial[T.name] = T.tutorial
@@ -54,5 +64,7 @@ thirsty for knowledge.
 			<b>Guide:</b> \n [trait_tutorial[to_chat_choice]]"))
 
 
-//	else if(UI_choice == "TGUI")
-		to_chat(usr, SPAN_NOTICE("TGUI functionality is not yet implemented, sorry!"))
+	else if(UI_choice == "TGUI")
+
+		fancy_UI.set_vars(trait_names, trait_category, trait_desc, trait_tutorial)
+		fancy_UI.tgui_interact(usr)

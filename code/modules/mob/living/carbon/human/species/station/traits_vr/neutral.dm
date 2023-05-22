@@ -88,7 +88,7 @@
 	tutorial = "This trait forces you to only consume blood - you cannot have normal food anymore. Vore is, of course, an exception! <br> \
 		You can satisfy this by clicking bloodbags in your hand on harm intent, drinking from glasses, blood tomatoes \
 		or finding a (un)willing donor for your appropriate appendage! <br><br> \
-		Controls for taking blood from your victim can be changed at will by trying to drink from yourself.\
+		Controls for taking blood from your victim can be changed at will by trying to drink from yourself. <br>\
 		Intent-based control scheme: <br> \
 		HELP - Loud, No Bleeding <br> \
 		DISARM - Subtle, Causes bleeding <br> \
@@ -110,7 +110,7 @@
 	tutorial = "This trait allows you to consume blood on top of normal food! <br> \
 		You can do this by clicking bloodbags in your hand on harm intent, drinking from glasses, blood tomatoes \
 		or finding a (un)willing donor for your appropriate appendage! <br><br> \
-		Controls for taking blood from your victim can be changed at will by trying to drink from yourself.\
+		Controls for taking blood from your victim can be changed at will by trying to drink from yourself. <br>\
 		Intent-based control scheme: <br> \
 		HELP - Loud, No Bleeding <br> \
 		DISARM - Subtle, Causes bleeding <br> \

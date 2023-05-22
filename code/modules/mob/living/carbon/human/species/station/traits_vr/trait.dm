@@ -1,7 +1,7 @@
 /datum/trait
 	var/name
 	var/desc = "Contact a developer if you see this trait."
-	var/tutorial = "This trait has no detailed tutorial yet. Suggest one at #Dev-Suggestions on the discord!"
+	var/tutorial = "This trait has no detailed tutorial yet. Suggest one at #Dev-Suggestions on the discord!" //Use <br> for newlines, NOT \n
 
 	var/cost = 0
 	var/sort = TRAIT_SORT_NORMAL	// Sort order, 1 before 2 before 3 etc. Alphabetical is used for same-group traits.
