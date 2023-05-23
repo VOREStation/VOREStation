@@ -226,6 +226,7 @@
 				return TRUE
 
 			vend(item_records[index], amount)
+			update_icon()
 			return TRUE
 	return FALSE
 
