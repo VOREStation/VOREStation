@@ -1942,6 +1942,7 @@
 #include "code\modules\client\preference_setup\loadout\loadout_smoking.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_suit.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_suit_vr.dm"
+#include "code\modules\client\preference_setup\loadout\loadout_uni_selector.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_uniform.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_uniform_vr.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_utility.dm"
