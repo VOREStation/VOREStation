@@ -117,12 +117,6 @@ this file deals with suits/overwear. */
 
 // non transforming coats
 
-/obj/item/clothing/suit/neo_armsco_trench
-	name = "armsco heavy coat"
-	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
-	icon_state = "neo_armsco_trench"
-	body_parts_covered = UPPER_TORSO|ARMS
-
 /obj/item/clothing/suit/neo_gorka
 	name = "gorka jacket"
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
@@ -135,28 +129,31 @@ this file deals with suits/overwear. */
 	icon_state = "neo_gorka_cargo"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/neo_warden_heavy
-	name = "heavy warden coat"
-	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
-	icon_state = "neo_warden_heavy"
-	body_parts_covered = UPPER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
-
 /obj/item/clothing/suit/neo_runner_coat
 	name = "runner's coat"
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
 	icon_state = "neo_runner_coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/neo_bluewarden
-	name = "blue warden's jacket"
-	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
-	icon_state = "neo_bluewarden"
-	body_parts_covered = UPPER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
-
 /obj/item/clothing/suit/neo_medical_coat
 	name = "medical coat"
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
 	icon_state = "neo_medical_coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+
+// non-transforming armoured coats with storage
+
+/obj/item/clothing/suit/storage/vest/wardencoat/neo_bluewarden
+	name = "blue warden's jacket"
+	desc = "A common style of warden's jacket with armour vest, but in blue. It bears a tag that says 'Product of Total Gear & Co.'"
+	icon_state = "neo_bluewarden"
+
+/obj/item/clothing/suit/storage/vest/wardencoat/neo_warden_heavy
+	name = "heavy warden coat"
+	desc = "A heavy and somewhat-imposing looking armour vest over a long jacket. It bears a tag that says 'Product of Total Gear & Co.'"
+	icon_state = "neo_warden_heavy"
+
+/obj/item/clothing/suit/storage/vest/wardencoat/neo_armsco_trench
+	name = "armsco heavy coat"
+	desc = "A rich red longcoat trimmed in black with a warm brown synthetic fur ruff around the neck, lined with layers of para-aramid fibers for increased durability without compromising comfort. It bears a tag that says 'Product of Total Gear & Co.'"
+	icon_state = "neo_armsco_trench"

@@ -26,6 +26,7 @@
 		/obj/item/clothing/under/rank/neo_hos_parade_blue_fem,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_hos_parade,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_hosformal_blue,
+		/obj/item/clothing/suit/storage/vest/wardencoat/neo_armsco_trench,
 		/obj/item/clothing/head/helmet/HoS/hat/blue,
 		/obj/item/clothing/head/helmet/dermal,
 		/obj/item/device/radio/headset/heads/hos,
