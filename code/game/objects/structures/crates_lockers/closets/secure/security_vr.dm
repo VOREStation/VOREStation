@@ -24,6 +24,7 @@
 		/obj/item/clothing/under/rank/neo_hos_blackblue_skirt,
 		/obj/item/clothing/under/rank/neo_hos_parade_blue,
 		/obj/item/clothing/under/rank/neo_hos_parade_blue_fem,
+		/obj/item/clothing/under/rank/neo_hos_gorka,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_hos_parade,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_hosformal_blue,
 		/obj/item/clothing/suit/storage/vest/wardencoat/neo_armsco_trench,
