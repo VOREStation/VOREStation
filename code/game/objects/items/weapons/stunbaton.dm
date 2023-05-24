@@ -23,6 +23,7 @@
 	var/hitcost = 240
 	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 	var/grip_safety = TRUE
+	var/taped_safety = FALSE
 
 /obj/item/weapon/melee/baton/New()
 	..()
@@ -100,7 +101,7 @@
 
 /obj/item/weapon/melee/baton/dropped()
 	..()
-	if(status && grip_safety)
+	if(status && grip_safety && !taped_safety)
 		status = 0
 		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
 	update_icon()
@@ -109,6 +110,8 @@
 	. = ..()
 
 	if(Adjacent(user))
+		if(taped_safety)
+			. += "<span class='warning'>Someone has wrapped tape around the grip!</span>"
 		if(bcell)
 			. += "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
 		if(!bcell)
@@ -129,6 +132,17 @@
 				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
+	if(istype(W, /obj/item/weapon/tape_roll) || istype(W, /obj/item/taperoll))
+		if(grip_safety && !taped_safety)	//no point letting people wrap tape around the grips of batons without a safety
+			to_chat(user, "<span class='notice'>You firmly wrap tape around the baton's grip, disabling the safety system.</span>")
+			playsound(src, 'sound/effects/tape.ogg',25)
+			taped_safety = TRUE
+		else if(grip_safety && taped_safety)
+			to_chat(user, "<span class='notice'>The grip safety has already been taped down.</span>")
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
+		if(taped_safety)
+			to_chat(user, "<span class='notice'>You painstakingly scrape away the tape over the grip safety.</span>")
+			taped_safety = FALSE
 
 /obj/item/weapon/melee/baton/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
