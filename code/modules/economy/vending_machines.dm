@@ -301,7 +301,7 @@
 					/obj/item/toy/tennis = 15)
 	//VOREStation Edit End
 
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2) // VOREStation Add - Slurpable blobs.
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2, /obj/item/toy/baseball = 2) // VOREStation Add - Slurpable blobs.
 
 /obj/machinery/vending/cart
 	name = "PTech"
