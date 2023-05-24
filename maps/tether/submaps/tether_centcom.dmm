@@ -3500,6 +3500,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
+"lB" = (
+/obj/machinery/item_bank{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "lC" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -5470,6 +5476,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/terminal)
+"vF" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "vG" = (
 /obj/item/modular_computer/console/preset/civilian{
 	dir = 8
@@ -29101,7 +29118,7 @@ vu
 Zy
 Zy
 Zy
-Zy
+vF
 Zy
 Zy
 Zy
@@ -33763,7 +33780,7 @@ Ll
 OA
 Xf
 as
-VH
+lB
 VH
 VH
 VH
