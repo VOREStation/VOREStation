@@ -95,6 +95,13 @@ this file deals with uniforms/under. */
 	rolled_sleeves = -1
 	rolled_down = -1
 
+/obj/item/clothing/under/rank/neo_civvie_gorka
+	name = "civilan gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. For those who appreciate durable clothing. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_civvie_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+
 // Command
 
 /obj/item/clothing/under/rank/neo_captain
@@ -192,6 +199,20 @@ this file deals with uniforms/under. */
 	name = "pilot's jumpskirt"
 	desc = "it has a tag denoting it's made by Total Gear & Co."
 	icon_state = "neo_pilot_skirt"
+	rolled_sleeves = -1
+	rolled_down = -1
+
+/obj/item/clothing/under/rank/neo_cmd_gorka
+	name = "CO's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. Who said command-wear can't look slick? It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_cmd_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+
+/obj/item/clothing/under/rank/neo_pilot_gorka
+	name = "pilot's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. In the pipe, five by five. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_pilot_gorka"
 	rolled_sleeves = -1
 	rolled_down = -1
 
@@ -572,6 +593,26 @@ this file deals with uniforms/under. */
 	icon_state = "neo_runner"
 	rolled_sleeves = -1
 	rolled_down = -1
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
+/obj/item/clothing/under/rank/neo_hos_gorka
+	name = "head of security's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. Favoured by the Head of Security who wants to stay dry no matter what. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_hos_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
+/obj/item/clothing/under/rank/neo_sec_gorka
+	name = "security officer's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. For officers who expect to be patrolling in harsh conditions. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_sec_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
 
 // Cargo
 
@@ -655,7 +696,7 @@ this file deals with uniforms/under. */
 
 /obj/item/clothing/under/rank/neo_qm_gorka
 	name = "QM's gorka"
-	desc = "it has a tag denoting it's made by Total Gear & Co."
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. Preferred by quartermasters who do heavy lifting as well as paperwork. It has a tag denoting it's made by Total Gear & Co."
 	icon_state = "neo_qm_gorka"
 	rolled_sleeves = -1
 	rolled_down = -1
@@ -704,7 +745,7 @@ this file deals with uniforms/under. */
 
 /obj/item/clothing/under/rank/neo_cargo_gorka
 	name = "cargo tech's gorka"
-	desc = "it has a tag denoting it's made by Total Gear & Co."
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. No need to worry about improperly packaged goods ripping your jumpsuit with this. It has a tag denoting it's made by Total Gear & Co."
 	icon_state = "neo_cargo_gorka"
 	rolled_sleeves = -1
 	rolled_down = -1
@@ -761,6 +802,22 @@ this file deals with uniforms/under. */
 	name = "chief engineer's jumpskirt"
 	desc = "it has a tag denoting it's made by Total Gear & Co."
 	icon_state = "neo_chiefengi_skirt"
+	rolled_sleeves = -1
+	rolled_down = -1
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+
+/obj/item/clothing/under/rank/neo_ce_gorka
+	name = "chief engineer's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. For the chief engineer who values style <i>and</i> safety. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_ce_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+
+/obj/item/clothing/under/rank/neo_engi_gorka
+	name = "engineer's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. Not rated for high-power electrical shocks. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_engi_gorka"
 	rolled_sleeves = -1
 	rolled_down = -1
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
@@ -841,6 +898,20 @@ this file deals with uniforms/under. */
 	name = "genetic engineer's jumpskirt"
 	desc = "it has a tag denoting it's made by Total Gear & Co."
 	icon_state = "neo_gene_skirt"
+	rolled_sleeves = -1
+	rolled_down = -1
+
+/obj/item/clothing/under/rank/neo_rd_gorka
+	name = "research director's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. For research directors who like to get their hands dirty. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_rd_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+
+/obj/item/clothing/under/rank/neo_sci_gorka
+	name = "scientist's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. A favourite of mountaineering archaeologists. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_sci_gorka"
 	rolled_sleeves = -1
 	rolled_down = -1
 
@@ -1003,6 +1074,24 @@ this file deals with uniforms/under. */
 	name = "dark medical jumpskirt"
 	desc = "it has a tag denoting it's made by Total Gear & Co."
 	icon_state = "neo_med_dark_skirt"
+	rolled_sleeves = -1
+	rolled_down = -1
+	permeability_coefficient = 0.50
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+
+/obj/item/clothing/under/rank/neo_cmo_gorka
+	name = "chief medical officer's gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. Why worry about stains when everything slides right off? It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_cmo_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+	permeability_coefficient = 0.50
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+
+/obj/item/clothing/under/rank/neo_med_gorka
+	name = "medical staff gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. A popular choice among paramedical personnel. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_med_gorka"
 	rolled_sleeves = -1
 	rolled_down = -1
 	permeability_coefficient = 0.50
