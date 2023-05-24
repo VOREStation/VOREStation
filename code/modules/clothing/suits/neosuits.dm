@@ -153,6 +153,7 @@ this file deals with suits/overwear. */
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
 	icon_state = "neo_bluewarden"
 	body_parts_covered = UPPER_TORSO|ARMS
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/neo_medical_coat
 	name = "medical coat"
