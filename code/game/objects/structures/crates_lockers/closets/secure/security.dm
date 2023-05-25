@@ -149,8 +149,6 @@
 		/obj/item/clothing/suit/storage/vest/wardencoat/neo_bluewarden,
 		/obj/item/clothing/suit/storage/vest/wardencoat/neo_warden_heavy,
 		/obj/item/clothing/under/rank/neo_sec_gorka,
-		/obj/item/clothing/suit/neo_armsco_trench,
-		/obj/item/clothing/suit/neo_warden_heavy,
 		/obj/item/weapon/cartridge/security,
 		/obj/item/device/radio/headset/headset_sec,
 		/obj/item/device/radio/headset/headset_sec/alt,
