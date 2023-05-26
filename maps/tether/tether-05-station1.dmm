@@ -6139,6 +6139,9 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "any" = (
@@ -9291,6 +9294,7 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/quartermaster/delivery)
 "awM" = (
@@ -9920,11 +9924,11 @@
 "ayN" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/simple,
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
-/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "ayP" = (
@@ -14089,6 +14093,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
+	},
+/obj/machinery/light/floortube{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/foyer)
@@ -22594,6 +22601,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "jab" = (
@@ -24221,7 +24231,7 @@
 /area/gateway/prep_room)
 "kHf" = (
 /obj/machinery/conveyor_switch/oneway{
-	//convdir = -1;		//Incompatable with new behavior -Reo
+	//convdir = -1;		//Incompatable with new behavior -Reo;
 	id = "QMLoad2"
 	},
 /obj/machinery/light{
@@ -25032,6 +25042,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"lps" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/floortube,
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "lqr" = (
 /obj/machinery/atmospherics/binary/passive_gate,
 /obj/machinery/light/small{
@@ -25830,6 +25845,19 @@
 	},
 /turf/simulated/floor/grass,
 /area/quartermaster/qm)
+"mbB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "mcE" = (
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/tank/oxygen,
@@ -30857,6 +30885,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
+"sAy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/floortube{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "sBs" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -30870,7 +30908,7 @@
 /area/quartermaster/office)
 "sBQ" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /turf/simulated/floor,
@@ -46935,12 +46973,12 @@ aBM
 lje
 tIs
 saQ
-aEw
+lps
 uqB
 uqB
 uqB
 uqB
-tQu
+sAy
 oPH
 tHB
 bOm
@@ -47718,7 +47756,7 @@ bYN
 kRk
 bpT
 aWH
-cto
+afD
 cto
 cto
 cto
@@ -47726,13 +47764,13 @@ cto
 cto
 cto
 bpT
-cto
+afD
 cto
 cto
 fez
-afD
+cto
 iaf
-vLG
+mbB
 gVQ
 hbc
 htA

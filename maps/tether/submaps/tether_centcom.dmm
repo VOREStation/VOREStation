@@ -1297,7 +1297,7 @@
 /area/centcom/specops)
 "dG" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /turf/simulated/shuttle/floor,
@@ -6614,10 +6614,10 @@
 	name = "Shuttle Hatch"
 	},
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/shuttle/floor,
 /area/shuttle/supply)
 "BM" = (
 /obj/effect/floor_decal/fancy_shuttle{
