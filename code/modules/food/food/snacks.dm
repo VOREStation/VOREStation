@@ -37,6 +37,9 @@
 	/// Packaged meals that have opening animation
 	var/package_opening_state
 
+	/// Packaged Altevian Meal Check (for ones with fancy opening animations)
+	var/altevian = FALSE
+
 	/// If this is canned. If true, it will print a message and ask you to open it
 	var/canned = FALSE
 	/// Canned food switch to this state when opened, if set
@@ -289,8 +292,12 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
-	to_chat(user, "<span class='notice'>You unwrap [src].</span>")
-	playsound(user,'sound/effects/packagedfoodopen.ogg', 15, 1)
+	if(altevian)
+		to_chat(user, "<span class='notice'>You open [src].</span>")
+		playsound(user,'sound/machines/click.ogg', 15, 1)
+	else
+		to_chat(user, "<span class='notice'>You unwrap [src].</span>")
+		playsound(user,'sound/effects/packagedfoodopen.ogg', 15, 1)
 	if(package_trash)
 		var/obj/item/T = new package_trash
 		user.put_in_hands(T)

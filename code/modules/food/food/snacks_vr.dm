@@ -846,6 +846,7 @@
 	package_open_state = "altevian_pack_burger-open"
 	package_opening_state = "altevian_pack_burger-opening"
 	package = TRUE
+	altevian = TRUE
 	trash = /obj/item/trash/ratpackburger
 	nutriment_amt = 2
 	nutriment_desc = list("fresh buns" = 2, "burger patty" = 4, "pickles" = 1)
@@ -858,6 +859,7 @@
 	package_open_state = "altevian_pack_cheese-open"
 	package_opening_state = "altevian_pack_cheese-opening"
 	package = TRUE
+	altevian = TRUE
 	trash = /obj/item/trash/ratpackcheese
 	nutriment_amt = 2
 	nutriment_desc = list("gourmand cheese" = 4)
@@ -870,6 +872,7 @@
 	package_open_state = "altevian_pack_turkey-open"
 	package_opening_state = "altevian_pack_turkey-opening"
 	package = TRUE
+	altevian = TRUE
 	trash = /obj/item/trash/ratpackturkey
 	nutriment_amt = 18
 	nutriment_desc = list("high-quality poultry" = 4)
@@ -882,6 +885,7 @@
 	package_open_state = "altevian_pack_ramen_standard-open"
 	package_opening_state = "altevian_pack_ramen_standard-opening"
 	package = TRUE
+	altevian = TRUE
 	trash = /obj/item/trash/ratpackramen/standard
 	nutriment_amt = 2
 	nutriment_desc = list("savory noodles" = 4)
@@ -910,6 +914,7 @@
 	package_open_state = "altevian_pack_taco-open"
 	package_opening_state = "altevian_pack_taco-opening"
 	package = TRUE
+	altevian = TRUE
 	trash = /obj/item/trash/ratpacktaco
 	nutriment_amt = 2
 	nutriment_desc = list("salsa sauce" = 2, "meat chunks" = 4, "cheese" = 3)
