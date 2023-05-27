@@ -6139,6 +6139,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb01"
+	trash = /obj/item/trash/candy/cb01
 	nutriment_amt = 4
 	nutriment_desc = list("stale chocolate" = 2, "nougat" = 1, "caramel" = 1)
 	w_class = 1
@@ -6155,6 +6156,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb02"
+	trash = /obj/item/trash/candy/cb02
 	nutriment_amt = 4
 	nutriment_desc = list("chocolate" = 2, "caramel" = 1, "puffed rice" = 1)
 	w_class = 1
@@ -6171,6 +6173,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb03"
+	trash = /obj/item/trash/candy/cb03
 	nutriment_amt = 4
 	nutriment_desc = list("chocolate" = 4)
 	w_class = 1
@@ -6187,6 +6190,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb04"
+	trash = /obj/item/trash/candy/cb04
 	nutriment_amt = 4
 	nutriment_desc = list("chocolate" = 2, "salt = 1", "licorice" = 1)
 	w_class = 1
@@ -6203,6 +6207,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb05"
+	trash = /obj/item/trash/candy/cb05
 	nutriment_amt = 3
 	nutriment_desc = list("milk chocolate" = 2)
 	w_class = 1
@@ -6219,6 +6224,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb06"
+	trash = /obj/item/trash/candy/cb06
 	nutriment_amt = 4
 	nutriment_desc = list("chocolate" = 2, "coffee" = 1, "vanilla wafer" = 1)
 	w_class = 1
@@ -6236,6 +6242,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb07"
+	trash = /obj/item/trash/candy/cb07
 	nutriment_amt = 4
 	nutriment_desc = list("chocolate" = 2, "taro" = 2)
 	w_class = 1
@@ -6252,6 +6259,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb08"
+	trash = /obj/item/trash/candy/cb08
 	nutriment_amt = 3
 	nutriment_desc = list("chocolate" = 2, "malt puffs" = 1)
 	w_class = 1
@@ -6268,6 +6276,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb09"
+	trash = /obj/item/trash/candy/cb09
 	nutriment_amt = 6
 	nutriment_desc = list("peanuts" = 3, "condensed milk" = 1, "cashews" = 2)
 	w_class = 1
@@ -6286,6 +6295,7 @@
 	filling_color = "#552200"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cb10"
+	trash = /obj/item/trash/candy/cb10
 	nutriment_amt = 5
 	nutriment_desc = list("chocolate" = 2, "caramel" = 1, "peanuts" = 1, "nougat" = 1)
 	w_class = 1

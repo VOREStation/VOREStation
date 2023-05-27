@@ -431,3 +431,44 @@
 	icon_state = "brainzsnaxred"
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+//Candy Bars (1-10)
+/obj/item/trash/candy/cb01
+	name = "\improper Tau Ceti Bar wrapper"
+	icon_state = "cb01"
+
+/obj/item/trash/candy/cb02
+	name = "\improper Hundred-Thousand Thaler Bar wrapper"
+	icon_state = "cb02"
+
+/obj/item/trash/candy/cb03
+	name = "\improper Lars' Saltlakris wrapper"
+	icon_state = "cb03"
+
+/obj/item/trash/candy/cb04
+	name = "\improper Aerostat Bar wrapper"
+	icon_state = "cb04"
+
+/obj/item/trash/candy/cb05
+	name = "\improper Andromeda Bar wrapper"
+	icon_state = "cb05"
+
+/obj/item/trash/candy/cb06
+	name = "\improper Mocha Crunch wrapper"
+	icon_state = "cb06"
+
+/obj/item/trash/candy/cb07
+	name = "\improper TaroMilk Bar wrapper"
+	icon_state = "cb07"
+
+/obj/item/trash/candy/cb08
+	name = "\improper Cronk Bar wrapper"
+	icon_state = "cb08"
+
+/obj/item/trash/candy/cb09
+	name = "\improper Kaju Mamma! Bar wrapper"
+	icon_state = "cb09"
+
+/obj/item/trash/candy/cb10
+	name = "\improper Shantak Bar wrapper"
+	icon_state = "cb10"
