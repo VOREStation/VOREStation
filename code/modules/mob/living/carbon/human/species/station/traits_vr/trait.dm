@@ -33,6 +33,7 @@
 					S.vars[trait] = trait_prefs[trait]
 				if(TRAIT_VAREDIT_TARGET_MOB)
 					H.vars[trait] = trait_prefs[trait]
+	H.verbs |= /mob/living/carbon/human/proc/trait_tutorial
 	return
 
 //Applying trait to preferences rather than just us.

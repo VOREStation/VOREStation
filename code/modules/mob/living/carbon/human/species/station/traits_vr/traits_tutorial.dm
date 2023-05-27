@@ -1,5 +1,11 @@
 /*
-A new Ability given to all human mobs
+A new Ability given to those human mobs that have a non-zero number of traits.
+Verb is added by /datum/trait/proc/apply() in code\modules\mob\living\carbon\human\species\station\traits_vr\trait.dm file.
+This proc gets called whenever the user is spawned, resleeved, autoresleeved and so forth.
+If there are special cases that do NOT call this var that result in a completely new body -
+I will fix it once I am informed of their existence.
+Been tested - does NOT lead to multiples of the verb thanks to the |=.
+Given the apply() proc is only called if they have verbs - this should avoid it erronously popping up for traitless people.
 
 This ability intends to retrieve all positive, neutral and negative traits chosen in the character set-up
 then retrieve their relevant vars by assuming the character's species has the full list. This should always work. Should
@@ -18,7 +24,7 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 
 
 
-/mob/living/carbon/human/verb/trait_tutorial()
+/mob/living/carbon/human/proc/trait_tutorial()
 	set name = "Explain Custom Traits"
 	set desc = "Click this verb to obtain a detailed tutorial on your selected traits. "
 	set category = "Abilities"
@@ -29,9 +35,9 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 
 
 	var/list/list_of_traits = species.traits
-	if(!LAZYLEN(list_of_traits))
+	if(!LAZYLEN(list_of_traits)) //Although we shouldn't show up if no traits, leaving this in case someone loses theirs after (re)spawning.
 		to_chat(usr, SPAN_NOTICE("You do not have any custom traits!"))
-		return
+		return //Dont want an empty TGUI panel and list by accident after all.
 
 
 	var/UI_choice = tgui_alert(src, "Would you like the tutorial text to be printed to chat?", "Choose preferred tutorial interface", list("TGUI","To Chat", "Cancel"))
@@ -48,12 +54,12 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 		trait_names += T.name
 		trait_desc[T.name] = T.desc
 		trait_tutorial[T.name] = T.tutorial
-		switch(T.category) //Using magic numbers rather than the #defines because it did not work with defines and idk why
-			if(-1) //TRAIT_TYPE_NEGATIVE
+		switch(T.category)
+			if(TRAIT_TYPE_NEGATIVE)
 				trait_category[T.name] = "Negative Trait"
-			if(0) //TRAIT_TYPE_NEUTRAL
+			if(TRAIT_TYPE_NEUTRAL)
 				trait_category[T.name] = "Neutral Trait"
-			if(1) //TRAIT_TYPE_POSITIVE
+			if(TRAIT_TYPE_POSITIVE)
 				trait_category[T.name] = "Positive Trait"
 
 
