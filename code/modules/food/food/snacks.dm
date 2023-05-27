@@ -42,6 +42,9 @@
 	/// Canned food switch to this state when opened, if set
 	var/canned_open_state
 
+	/// For packaged/canned food sounds
+	var/opening_sound = null
+
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
@@ -290,7 +293,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
 	to_chat(user, "<span class='notice'>You unwrap [src].</span>")
-	playsound(user,'sound/effects/packagedfoodopen.ogg', 15, 1)
+	playsound(user,opening_sound, 15, 1)
 	if(package_trash)
 		var/obj/item/T = new package_trash
 		user.put_in_hands(T)
@@ -302,7 +305,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/proc/uncan(mob/user)
 	canned = FALSE
 	to_chat(user, "<span class='notice'>You unseal \the [src] with a crack of metal.</span>")
-	playsound(loc,'sound/effects/tincanopen.ogg', rand(10,50), 1)
+	playsound(loc,opening_sound, rand(10,50), 1)
 	if(canned_open_state)
 		icon_state = canned_open_state
 
@@ -6826,6 +6829,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/canned
 	icon = 'icons/obj/food_canned.dmi'
+	opening_sound = 'sound/effects/tincanopen.ogg'
 	canned = TRUE
 
 //////////Just a short line of Canned Consumables, great for treasure in faraway abandoned outposts//////////
@@ -7008,6 +7012,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged
 	icon = 'icons/obj/food_package.dmi'
+	opening_sound = 'sound/effects/packagedfoodopen.ogg'
 	package = TRUE
 
 //////////////Lunar Cakes - proof of concept//////////////
