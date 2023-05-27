@@ -1,3 +1,6 @@
+/*
+ * Expert Jobs
+ */
 /obj/machinery/smartfridge
 	var/expert_job = "Chef"
 /obj/machinery/smartfridge/seeds
@@ -6,14 +9,16 @@
 	expert_job = "Xenobiologist"
 /obj/machinery/smartfridge/secure/medbay
 	expert_job = "Chemist"
+/obj/machinery/smartfridge/secure/chemistry
+	expert_job = "Chemist"
 /obj/machinery/smartfridge/secure/virology
 	expert_job = "Medical Doctor" //Virologist is an alt-title unfortunately
-/obj/machinery/smartfridge/chemistry
-	expert_job = "Chemist" //Unsure what this one is used for, actually
 /obj/machinery/smartfridge/drinks
 	expert_job = "Bartender"
 
-// Allow thrown items into smartfridges
+/*
+ * Allow thrown items into smartfridges
+ */
 /obj/machinery/smartfridge/hitby(var/atom/movable/A, speed)
 	. = ..()
 	if(accept_check(A) && A.thrower)
@@ -31,11 +36,19 @@
 		else if(prob(20))
 			stock(A)
 
-//Chemistry 'chemavator'
+/*
+ * Chemistry 'chemavator' (multi-z chem storage)
+ */
 /obj/machinery/smartfridge/chemistry/chemvator
 	name = "\improper Smart Chemavator - Upper"
 	desc = "A refrigerated storage unit for medicine and chemical storage. Now sporting a fancy system of pulleys to lift bottles up and down."
+	expert_job = "Chemist"
 	var/obj/machinery/smartfridge/chemistry/chemvator/attached
+
+/obj/machinery/smartfridge/chemistry/chemvator/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers) || istype(O,/obj/item/weapon/reagent_containers/glass/))
+		return 1
+	return 0
 
 /obj/machinery/smartfridge/chemistry/chemvator/down/Destroy()
 	attached = null
