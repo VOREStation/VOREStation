@@ -98,6 +98,7 @@
 	name = "shipping cap"
 	desc = "It's a ballcap bearing the colors of Major Bill's Shipping."
 	icon_state = "mbillsoft"
+	item_state_slots = list(slot_r_hand_str = "redsoft", slot_l_hand_str = "redsoft")
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
 
 /obj/item/clothing/head/soft/med

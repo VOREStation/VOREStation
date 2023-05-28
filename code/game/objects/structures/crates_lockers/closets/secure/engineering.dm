@@ -11,6 +11,9 @@
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
 		/obj/item/clothing/under/rank/chief_engineer,
 		/obj/item/clothing/under/rank/chief_engineer/skirt,
+		/obj/item/clothing/under/rank/neo_chiefengi,
+		/obj/item/clothing/under/rank/neo_chiefengi_skirt,
+		/obj/item/clothing/under/rank/neo_ce_gorka,
 		/obj/item/clothing/head/hardhat/white,
 		///obj/item/clothing/head/welding,	//VOREStation Removal: Locker bloat, grr. They get fancy goggles or can raid the welding supplies locker for one of these.
 		/obj/item/clothing/gloves/heavy_engineer,	//VOREStation Edit: chief gets the good shit

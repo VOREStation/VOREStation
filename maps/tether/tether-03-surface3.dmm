@@ -9068,6 +9068,7 @@
 /obj/machinery/vending/snack{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aov" = (

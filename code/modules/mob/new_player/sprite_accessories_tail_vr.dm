@@ -1337,6 +1337,12 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/kara //SatinIsle fluff item
+	name = "Pterokara Tail"
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "kara_tail"
+	ckeys_allowed = list("satinisle")
+
 //LONG TAILS ARE NOT TAUR BUTTS >:O
 /datum/sprite_accessory/tail/longtail
 	name = "You should not see this..."

@@ -17,7 +17,7 @@
 	center_of_mass = null
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
-	VAR_PROTECTED/amount = 1
+	var/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/stacktype //determines whether different stack types can merge
 	var/build_type = null //used when directly applied to a turf

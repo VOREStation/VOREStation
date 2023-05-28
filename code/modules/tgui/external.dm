@@ -1,7 +1,8 @@
-/**
- * tgui external
+/*!
+ * External tgui definitions, such as src_object APIs.
  *
- * Contains all external tgui declarations.
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
  */
 
 /**

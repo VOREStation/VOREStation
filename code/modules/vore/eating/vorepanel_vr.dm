@@ -191,6 +191,7 @@
 			"belly_fullscreen" = selected.belly_fullscreen,
 			"belly_fullscreen_color" = selected.belly_fullscreen_color,
 			"colorization_enabled" = selected.colorization_enabled,
+			"eating_privacy_local" = selected.eating_privacy_local
 		)
 
 		var/list/addons = list()
@@ -284,7 +285,8 @@
 		"nutrition_message_visible" = host.nutrition_message_visible,
 		"nutrition_messages" = host.nutrition_messages,
 		"weight_message_visible" = host.weight_message_visible,
-		"weight_messages" = host.weight_messages
+		"weight_messages" = host.weight_messages,
+		"eating_privacy_global" = host.eating_privacy_global
 	)
 
 	return data
@@ -448,6 +450,12 @@
 			host.digestable = !host.digestable
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.digestable = host.digestable
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_global_privacy")
+			host.eating_privacy_global = !host.eating_privacy_global
+			if(host.client.prefs_vr)
+				host.eating_privacy_global = host.eating_privacy_global
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_devour")
@@ -1100,6 +1108,12 @@
 				return FALSE
 
 			host.vore_selected.release_verb = new_release_verb
+			. = TRUE
+		if("b_eating_privacy")
+			var/privacy_choice = tgui_input_list(usr, "Choose your belly-specific preference. Default uses global preference!", "Eating message privacy", list("default", "subtle", "loud"), "default")
+			if(privacy_choice == null)
+				return FALSE
+			host.vore_selected.eating_privacy_local = privacy_choice
 			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore
