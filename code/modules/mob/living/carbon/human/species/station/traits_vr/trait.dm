@@ -1,6 +1,7 @@
 /datum/trait
 	var/name
 	var/desc = "Contact a developer if you see this trait."
+	var/tutorial = "This trait has no detailed tutorial yet. Suggest one at #Dev-Suggestions on the discord!" //Use <br> for newlines, NOT \n
 
 	var/cost = 0
 	var/sort = TRAIT_SORT_NORMAL	// Sort order, 1 before 2 before 3 etc. Alphabetical is used for same-group traits.
@@ -32,6 +33,7 @@
 					S.vars[trait] = trait_prefs[trait]
 				if(TRAIT_VAREDIT_TARGET_MOB)
 					H.vars[trait] = trait_prefs[trait]
+	H.verbs |= /mob/living/carbon/human/proc/trait_tutorial
 	return
 
 //Applying trait to preferences rather than just us.

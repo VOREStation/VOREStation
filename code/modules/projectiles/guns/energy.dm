@@ -14,6 +14,8 @@
 	var/modifystate
 	var/charge_meter = 1	//if set, the icon state will be chosen based on the current charge
 
+	reload_time = 5		//Energy weapons are slower to reload than ballistics by default, but this is no change from current values
+
 	//self-recharging
 	var/self_recharge = 0	//if set, the weapon will recharge itself
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
@@ -113,8 +115,8 @@
 	if(!power_supply) return null
 	if(!ispath(projectile_type)) return null
 	if(!power_supply.checked_use(charge_cost)) return null
-	var/mob/living/M = loc // TGMC Ammo HUD 
-	if(istype(M)) // TGMC Ammo HUD 
+	var/mob/living/M = loc // TGMC Ammo HUD
+	if(istype(M)) // TGMC Ammo HUD
 		M?.hud_used.update_ammo_hud(M, src)
 	return new projectile_type(src)
 
@@ -129,7 +131,7 @@
 				to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
 			else
 				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
-				if(do_after(user, 5 * P.w_class))
+				if(do_after(user, reload_time * P.w_class))
 					user.remove_from_mob(P)
 					power_supply = P
 					P.loc = src
