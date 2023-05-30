@@ -278,7 +278,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			icon_key += "0"
 			continue
 		if(part)
-			wholeicontransparent &&= part.nonsolid
+			wholeicontransparent &&= part.transparent //VORESTATION EDIT: transparent instead of nonsolid
 			icon_key += "[part.species.get_race_key(part.owner)]"
 			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
 			icon_key += "[part.s_tone]"
@@ -343,11 +343,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
 		for(var/obj/item/organ/external/part in organs)
-<<<<<<< HEAD
-			if(isnull(part) || part.is_stump() || part.is_hidden_by_sprite_accessory()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
-=======
-			if(isnull(part) || part.is_stump() || part == chest)
->>>>>>> 5632af32c9a... reworks handling of transparent limbs (#8947)
+			if(isnull(part) || part.is_stump() || part == chest || part.is_hidden_by_sprite_accessory()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
 			var/icon/temp = part.get_icon(skeleton, !wholeicontransparent)
 
@@ -373,7 +369,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
 				if(part.icon_position & RIGHT)
 					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				if (part.nonsolid && !wholeicontransparent) //apply a little (a lot) extra transparency to make it look better
+				if (part.transparent && !wholeicontransparent) //apply a little (a lot) extra transparency to make it look better //VORESTATION EDIT: transparent instead of nonsolid
 					if ((istype(part, /obj/item/organ/external/leg) && apply_extra_transparency_leg) || (istype(part, /obj/item/organ/external/foot) && apply_extra_transparency_foot)) //maybe
 						temp2 += rgb(,,,30)
 				base_icon.Blend(temp2, ICON_UNDERLAY)
@@ -518,22 +514,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-<<<<<<< HEAD
-	if(head_organ.transparent)		//VOREStation Edit: Prometheans are not ALWAYS transparent
-=======
 	var/icon/ears_s = get_ears_overlay()
 
-	if(head_organ.nonsolid || head_organ.transparent)
->>>>>>> 5632af32c9a... reworks handling of transparent limbs (#8947)
+	if(head_organ.transparent) //VORESTATION EDIT: transparent instead of nonsolid
 		face_standing += rgb(,,,120)
 		if (ears_s)
 			ears_s += rgb(,,,180)
 
-<<<<<<< HEAD
-	var/icon/ears_s = get_ears_overlay()
 	var/image/em_block_ears
-=======
->>>>>>> 5632af32c9a... reworks handling of transparent limbs (#8947)
 	if(ears_s)
 		if(ears_s.Height() > face_standing.Height()) // Tol ears
 			face_standing.Crop(1, 1, face_standing.Width(), ears_s.Height())
@@ -598,13 +586,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	else
 		eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
 
-<<<<<<< HEAD
 	// Convert to emissive at some point
-=======
-	if (head_organ.nonsolid)
+	if (head_organ.transparent) //VOREStation Edit: transparent instead of nonsolid
 		eyes_icon += rgb(,,,180)
 
->>>>>>> 5632af32c9a... reworks handling of transparent limbs (#8947)
 	var/image/eyes_image = image(eyes_icon)
 	eyes_image.plane = PLANE_LIGHTING_ABOVE
 	eyes_image.appearance_flags = appearance_flags
@@ -1023,22 +1008,18 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	remove_layer(TAIL_UPPER_LAYER_ALT)
 	remove_layer(TAIL_LOWER_LAYER)
 
-<<<<<<< HEAD
 	var/tail_layer = get_tail_layer()
 	if(src.tail_style && src.tail_style.clip_mask_state)
 		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
 	if(tail_alt && tail_layer == TAIL_UPPER_LAYER)
 		tail_layer = TAIL_UPPER_LAYER_ALT
-=======
-	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
-	var/tail_layer = GET_TAIL_LAYER
->>>>>>> 5632af32c9a... reworks handling of transparent limbs (#8947)
+	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
 	var/image/tail_image = get_tail_image()
 	if(tail_image)
 		tail_image.layer = BODY_LAYER+tail_layer
-		tail_image.alpha = chest?.nonsolid ? 180 : 255
+		tail_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
 		overlays_standing[tail_layer] = tail_image
 		apply_layer(tail_layer)
 		return
@@ -1049,7 +1030,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
 		tail_image = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+tail_layer)
-		tail_image.alpha = chest?.nonsolid ? 180 : 255
+		tail_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
 		overlays_standing[tail_layer] = tail_image
 		animate_tail_reset()
 
@@ -1152,16 +1133,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	remove_layer(WING_LAYER)
 	remove_layer(WING_LOWER_LAYER)
 
-<<<<<<< HEAD
 	var/image/wing_image = get_wing_image(FALSE)
-=======
+
 	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
-	var/image/wing_image = get_wing_image()
->>>>>>> 5632af32c9a... reworks handling of transparent limbs (#8947)
 	if(wing_image)
 		wing_image.layer = BODY_LAYER+WING_LAYER
-		wing_image.alpha = chest?.nonsolid ? 180 : 255
+		wing_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
 		overlays_standing[WING_LAYER] = wing_image
 	if(wing_style && wing_style.multi_dir)
 		wing_image = get_wing_image(TRUE)

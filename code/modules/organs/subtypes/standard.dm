@@ -400,7 +400,7 @@
 
 	add_overlay(get_hair_icon())
 
-	if (nonsolid && can_apply_transparency)
+	if (transparent && can_apply_transparency) //VOREStation Edit: transparent instead of nonsolid
 		mob_icon += rgb(,,,180) //do it here so any markings become transparent as well
 
 	return mob_icon
