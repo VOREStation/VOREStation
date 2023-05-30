@@ -106,3 +106,12 @@
 	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	icon_state = "flatsalt"
 	item_state = "flatsalt"
+
+/obj/item/clothing/shoes/sandals_elegant
+	name = "elegant sandals"
+	desc = "A pair of sandals with thin straps. It emphasizes the ankles!"
+	icon_state = "sandals_elegant"
+	item_state = "sandals_elegant"
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
+	addblends = "sandals_elegant_a"
