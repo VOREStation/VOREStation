@@ -42,12 +42,16 @@
 	icon = 'maps/atoll/icons/decals/wall_decals.dmi'
 	icon_state = "wall_shadow"
 	anchored = 1
+	mouse_opacity = 0
 
 /obj/effect/decal/shadow/silhouette
 	icon_state = "silhouette"
 
 /obj/effect/decal/shadow/silhouette/pillar
 	icon_state = "silhouette_p"
+
+/obj/effect/decal/shadow/silhouette/support
+	icon_state = "silhouette_support"
 
 /obj/effect/decal/shadow/floor
 	icon_state = "floor_shadow"
@@ -56,7 +60,17 @@
 	icon = 'maps/atoll/icons/turfs/water.dmi'
 	icon_state = "1"
 	anchored = 1
+	mouse_opacity = 0
 
 /obj/effect/decal/whitecaps/Initialize()
 	icon_state = pick("1","2","3")
 	. = ..()
+
+//Godrays
+/obj/effect/decal/godray
+	icon = 'maps/atoll/icons/decals/godrays.dmi'
+	icon_state = "godrays"
+	anchored = 1
+	mouse_opacity = 0
+	layer = MOB_LAYER + 0.5
+	plane = MOB_PLANE
