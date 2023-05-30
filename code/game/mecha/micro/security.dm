@@ -27,8 +27,8 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/sec/polecat
 	internal_damage_threshold = 35
 	max_equip = 3
-	max_micro_utility_equip = 0
-	max_micro_weapon_equip = 3
+	max_utility_equip = 0
+	max_weapon_equip = 1
 	damage_minimum = 5		//A teeny bit of armor
 
 /obj/effect/decal/mecha_wreckage/micro/sec/polecat
@@ -47,9 +47,7 @@
 	max_temperature = 5000
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/sec/weasel
 	internal_damage_threshold = 20
-	max_equip = 2
-	max_micro_utility_equip = 0
-	max_micro_weapon_equip = 2
+	max_weapon_equip = 0 //Too light for dedicated mech weapons, can use jury rigged in a pinch
 
 /obj/effect/decal/mecha_wreckage/micro/sec/weasel
 	name = "Weasel wreckage"

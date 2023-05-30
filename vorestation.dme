@@ -1072,7 +1072,6 @@
 #include "code\game\mecha\micro\mecha_vr.dm"
 #include "code\game\mecha\micro\mechfab_designs_vr.dm"
 #include "code\game\mecha\micro\micro.dm"
-#include "code\game\mecha\micro\micro_equipment.dm"
 #include "code\game\mecha\micro\security.dm"
 #include "code\game\mecha\micro\utility.dm"
 #include "code\game\mecha\space\hoverpod.dm"

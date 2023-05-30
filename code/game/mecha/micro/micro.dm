@@ -18,12 +18,10 @@
 	internal_damage_threshold = 50
 	maint_access = 0
 	max_hull_equip = 1
-	max_weapon_equip = 0
-	max_utility_equip = 0
+	max_weapon_equip = 1
+	max_utility_equip = 1
 	max_universal_equip = 0
 	max_special_equip = 1
-	max_micro_utility_equip = 1
-	max_micro_weapon_equip = 1
 	//add_req_access = 0
 	//operation_req_access = list(access_hos)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
@@ -155,4 +153,3 @@
 
 /obj/effect/decal/mecha_wreckage/micro
 	icon = 'icons/mecha/micro.dmi'
-

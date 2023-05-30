@@ -13,11 +13,9 @@
 	infra_luminosity = 6
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/utility/gopher
 	internal_damage_threshold = 35
-	max_micro_utility_equip = 2
-	max_micro_weapon_equip = 0
-	max_equip = 2
+	max_utility_equip = 2
+	max_weapon_equip = 0
 
 /obj/effect/decal/mecha_wreckage/micro/utility/gopher
 	name = "Gopher wreckage"
 	icon_state = "gopher-broken"
-

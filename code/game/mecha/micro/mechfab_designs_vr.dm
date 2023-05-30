@@ -40,20 +40,6 @@
 	build_path = /obj/item/mecha_parts/micro/part/gopher_right_leg
 	materials = list(MAT_STEEL = 12500)
 
-/datum/design/item/mecha/drill/micro
-	name = "Miniature Drill"
-	id = "micro_drill"
-	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/micro
-	time = 5
-	materials = list(MAT_STEEL = 2500)
-
-/datum/design/item/mecha/hydraulic_clamp/micro
-	name = "Mounted ore box"
-	id = "ore_scoop"
-	build_path = /obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop
-	time = 5
-	materials = list(MAT_STEEL = 2500)
-
 /datum/design/item/mechfab/polecat
 	category = list("Polecat")
 	time = 10
@@ -101,37 +87,6 @@
 	build_path = /obj/item/mecha_parts/micro/part/polecat_armour
 	time = 25
 	materials = list(MAT_STEEL = 12500, MAT_PLASTIC = 7500)
-
-/datum/design/item/mecha/taser/micro
-	name = "\improper TS-12 \"Suppressor\" integrated taser"
-	id = "micro_taser"
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/microtaser
-
-/datum/design/item/mecha/weapon/laser/micro
-	name = "\improper WS-19 \"Torch\" laser carbine"
-	id = "micro_laser"
-//	req_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/microlaser
-
-/datum/design/item/mecha/weapon/laser_heavy/micro
-	name = "\improper PC-20 \"Lance\" light laser cannon"
-	id = "micro_laser_heavy"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/microheavy
-
-/datum/design/item/mecha/weapon/grenade_launcher/micro
-	name = "\improper FP-20 mounted grenade launcher"
-	id = "micro_flashbang_launcher"
-//	req_tech = list(TECH_COMBAT = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/microflashbang
-
-/datum/design/item/mecha/weapon/scattershot/micro
-	name = "\improper Remington C-12 \"Boomstick\""
-	desc = "A mounted combat shotgun with integrated ammo-lathe."
-	id = "micro_scattershot"
-//	req_tech = list(TECH_COMBAT = 4)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microshotgun
 
 /datum/design/item/mechfab/weasel
 	category = list("Weasel")

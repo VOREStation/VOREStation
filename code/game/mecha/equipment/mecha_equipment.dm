@@ -4,10 +4,6 @@
 #define EQUIP_WEAPON	"weapon"
 #define EQUIP_UTILITY	"utility"
 #define EQUIP_SPECIAL	"core"
-//VOREStation Addition begin: MICROMECHS
-#define EQUIP_MICRO_UTILITY	"micro_utility"
-#define EQUIP_MICRO_WEAPON	"micro_weapon"
-//VOREStation Addition end: MICROMECHS
 
 /obj/item/mecha_parts/mecha_equipment
 	name = "mecha equipment"
@@ -76,14 +72,6 @@
 			if(equip_type == EQUIP_SPECIAL)
 				chassis.special_equipment -= src
 				listclearnulls(chassis.special_equipment)
-			//VOREStation Addition begin: MICROMECHS
-			if(equip_type == EQUIP_MICRO_UTILITY)
-				chassis.micro_utility_equipment -= src
-				listclearnulls(chassis.micro_utility_equipment)
-			if(equip_type == EQUIP_MICRO_WEAPON)
-				chassis.micro_weapon_equipment -= src
-				listclearnulls(chassis.micro_weapon_equipment)
-			//VOREStation Addition end: MICROMECHS
 		chassis.universal_equipment -= src
 		chassis.equipment -= src
 		listclearnulls(chassis.equipment)
@@ -166,12 +154,6 @@
 		return 1
 	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len < M.max_special_equip)
 		return 1
-	//VOREStation Addition begin: MICROMECHS
-	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len < M.max_micro_utility_equip)
-		return 1
-	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len < M.max_micro_weapon_equip)
-		return 1
-	//VOREStation Addition end: MICROMECHS
 	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
 		if(equip_type == EQUIP_WEAPON && !istype(M, /obj/mecha/combat))
 			return 0
@@ -201,13 +183,6 @@
 		M.special_equipment += src
 		has_equipped = 1
 	//VOREStation Addition begin: MICROMECHS
-	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len < M.max_micro_utility_equip && !has_equipped)
-		M.micro_utility_equipment += src
-		has_equipped = 1
-	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len < M.max_micro_weapon_equip && !has_equipped)
-		M.micro_weapon_equipment += src
-		has_equipped = 1
-	//VOREStation Addition end: MICROMECHS
 	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip && !has_equipped)
 		M.universal_equipment += src
 	M.equipment += src
@@ -244,12 +219,6 @@
 				chassis.utility_equipment -= src
 			if(EQUIP_SPECIAL)
 				chassis.special_equipment -= src
-			//VOREStation Addition begin: MICROMECHS
-			if(EQUIP_MICRO_UTILITY)
-				chassis.micro_utility_equipment -= src
-			if(EQUIP_MICRO_WEAPON)
-				chassis.micro_weapon_equipment -= src
-			//VOREStation Addition end: MICROMECHS
 	if(chassis.selected == src)
 		chassis.selected = null
 	update_chassis_page()
