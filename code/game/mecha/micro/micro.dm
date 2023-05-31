@@ -17,7 +17,7 @@
 	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/simulated/wall)
 	internal_damage_threshold = 50
 	maint_access = 0
-	max_hull_equip = 1
+	max_hull_equip = 0 //No hull slots to prevent shenanigans
 	max_weapon_equip = 1
 	max_utility_equip = 1
 	max_universal_equip = 0
