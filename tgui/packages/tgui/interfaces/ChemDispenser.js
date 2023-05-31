@@ -72,7 +72,9 @@ const ChemDispenserChemicals = (properties, context) => {
     flexFillers.push(true);
   }
   return (
-    <Section title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'} flexGrow="1">
+    <Section
+      title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
+      flexGrow="1">
       <Flex direction="row" wrap="wrap" height="100%" align="flex-start">
         {chemicals.map((c, i) => (
           <Flex.Item key={i} grow="1" m={0.2} basis="40%" height="20px">
@@ -100,7 +102,12 @@ const ChemDispenserChemicals = (properties, context) => {
 
 const ChemDispenserBeaker = (properties, context) => {
   const { act, data } = useBackend(context);
-  const { isBeakerLoaded, beakerCurrentVolume, beakerMaxVolume, beakerContents = [] } = data;
+  const {
+    isBeakerLoaded,
+    beakerCurrentVolume,
+    beakerMaxVolume,
+    beakerContents = [],
+  } = data;
   return (
     <Section
       title="Beaker"
@@ -113,7 +120,12 @@ const ChemDispenserBeaker = (properties, context) => {
               {beakerCurrentVolume} / {beakerMaxVolume} units
             </Box>
           )}
-          <Button icon="eject" content="Eject" disabled={!isBeakerLoaded} onClick={() => act('ejectBeaker')} />
+          <Button
+            icon="eject"
+            content="Eject"
+            disabled={!isBeakerLoaded}
+            onClick={() => act('ejectBeaker')}
+          />
         </Box>
       }>
       <BeakerContents

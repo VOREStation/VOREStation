@@ -20,12 +20,21 @@ const ResearchControllerContent = (props, context) => {
 
   const { badmin, servers, consoles } = data;
 
-  const [selectedServer, setSelectedServer] = useSharedState(context, 'selectedServer', null);
+  const [selectedServer, setSelectedServer] = useSharedState(
+    context,
+    'selectedServer',
+    null
+  );
 
   let realServer = servers.find((s) => s.id === selectedServer);
 
   if (realServer) {
-    return <ResearchServer setSelectedServer={setSelectedServer} server={realServer} />;
+    return (
+      <ResearchServer
+        setSelectedServer={setSelectedServer}
+        server={realServer}
+      />
+    );
   }
 
   return (
@@ -72,7 +81,8 @@ const ResearchServer = (props, context) => {
       </Tabs>
       {(tab === 0 && <ResearchServerAccess server={server} />) || null}
       {(tab === 1 && <ResearchServerData server={server} />) || null}
-      {(tab === 2 && badmin && <ResearchServerTransfer server={server} />) || null}
+      {(tab === 2 && badmin && <ResearchServerTransfer server={server} />) ||
+        null}
     </Section>
   );
 };
@@ -102,18 +112,32 @@ const ResearchServerAccess = (props, context) => {
       <LabeledList>
         {consoles.length &&
           consoles.map((console) => (
-            <LabeledList.Item key={console.name} label={console.name + ' (' + console.loc + ')'}>
+            <LabeledList.Item
+              key={console.name}
+              label={console.name + ' (' + console.loc + ')'}>
               <Button
                 icon={hasUploadAccess(server, console) ? 'lock-open' : 'lock'}
                 selected={hasUploadAccess(server, console)}
-                onClick={() => act('toggle_upload', { server: server.ref, console: console.ref })}>
+                onClick={() =>
+                  act('toggle_upload', {
+                    server: server.ref,
+                    console: console.ref,
+                  })
+                }>
                 {hasUploadAccess(server, console) ? 'Upload On' : 'Upload Off'}
               </Button>
               <Button
                 icon={hasDownloadAccess(server, console) ? 'lock-open' : 'lock'}
                 selected={hasDownloadAccess(server, console)}
-                onClick={() => act('toggle_download', { server: server.ref, console: console.ref })}>
-                {hasDownloadAccess(server, console) ? 'Download On' : 'Download Off'}
+                onClick={() =>
+                  act('toggle_download', {
+                    server: server.ref,
+                    console: console.ref,
+                  })
+                }>
+                {hasDownloadAccess(server, console)
+                  ? 'Download On'
+                  : 'Download Off'}
               </Button>
             </LabeledList.Item>
           ))}
@@ -139,7 +163,9 @@ const ResearchServerData = (props, context) => {
                 confirmIcon="trash"
                 color="red"
                 content="Reset"
-                onClick={() => act('reset_tech', { server: server.ref, tech: tech.id })}
+                onClick={() =>
+                  act('reset_tech', { server: server.ref, tech: tech.id })
+                }
               />
             }
           />
@@ -156,7 +182,9 @@ const ResearchServerData = (props, context) => {
                 confirmIcon="trash"
                 color="red"
                 content="Delete"
-                onClick={() => act('reset_design', { server: server.ref, design: design.id })}
+                onClick={() =>
+                  act('reset_design', { server: server.ref, design: design.id })
+                }
               />
             }
           />
@@ -189,7 +217,12 @@ const ResearchServerTransfer = (props, context) => {
                 Transfer from {server.name} To {newserver.name}
               </Box>
             }
-            onClick={() => act('transfer_data', { server: server.ref, target: newserver.ref })}
+            onClick={() =>
+              act('transfer_data', {
+                server: server.ref,
+                target: newserver.ref,
+              })
+            }
           />
         </Box>
       ))}

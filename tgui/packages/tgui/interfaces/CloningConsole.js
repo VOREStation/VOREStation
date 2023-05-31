@@ -8,7 +8,8 @@ import { Window } from '../layouts';
 
 const viewRecordModalBodyOverride = (modal, context) => {
   const { act, data } = useBackend(context);
-  const { activerecord, realname, health, unidentity, strucenzymes } = modal.args;
+  const { activerecord, realname, health, unidentity, strucenzymes } =
+    modal.args;
   const damages = health.split(' - ');
   return (
     <Section level={2} m="-1rem" pb="1rem" title={'Records of ' + realname}>
@@ -99,7 +100,11 @@ const viewRecordModalBodyOverride = (modal, context) => {
               })
             }
           />
-          <Button icon="trash" content="Delete" onClick={() => act('del_rec')} />
+          <Button
+            icon="trash"
+            content="Delete"
+            onClick={() => act('del_rec')}
+          />
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -168,7 +173,17 @@ const CloningConsoleBody = (props, context) => {
 
 const CloningConsoleMain = (props, context) => {
   const { act, data } = useBackend(context);
-  const { loading, scantemp, occupant, locked, can_brainscan, scan_mode, numberofpods, pods, selected_pod } = data;
+  const {
+    loading,
+    scantemp,
+    occupant,
+    locked,
+    can_brainscan,
+    scan_mode,
+    numberofpods,
+    pods,
+    selected_pod,
+  } = data;
   const isLocked = locked && !!occupant;
   return (
     <Fragment>
@@ -267,7 +282,12 @@ const CloningConsoleMain = (props, context) => {
             }
 
             return (
-              <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
+              <Box
+                key={i}
+                width="64px"
+                textAlign="center"
+                display="inline-block"
+                mr="0.5rem">
                 <img
                   src={'pod_' + pod.status + '.gif'}
                   style={{
@@ -339,7 +359,11 @@ const CloningConsoleTemp = (props, context) => {
       <Box display="inline-block" verticalAlign="middle">
         {temp.text}
       </Box>
-      <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
+      <Button
+        icon="times-circle"
+        float="right"
+        onClick={() => act('cleartemp')}
+      />
       <Box clear="both" />
     </NoticeBox>
   );
@@ -384,10 +408,18 @@ const CloningConsoleStatus = (props, context) => {
       }>
       <LabeledList>
         <LabeledList.Item label="Scanner">
-          {scanner ? <Box color="good">Connected</Box> : <Box color="bad">Not connected!</Box>}
+          {scanner ? (
+            <Box color="good">Connected</Box>
+          ) : (
+            <Box color="bad">Not connected!</Box>
+          )}
         </LabeledList.Item>
         <LabeledList.Item label="Pods">
-          {numberofpods ? <Box color="good">{numberofpods} connected</Box> : <Box color="bad">None connected!</Box>}
+          {numberofpods ? (
+            <Box color="good">{numberofpods} connected</Box>
+          ) : (
+            <Box color="bad">None connected!</Box>
+          )}
         </LabeledList.Item>
       </LabeledList>
     </Section>

@@ -63,7 +63,9 @@ export const ExonetNode = (props, context) => {
                 {log}
               </Flex.Item>
             ))}
-            {!logs || logs.length === 0 ? <Box color="average">No logs found.</Box> : null}
+            {!logs || logs.length === 0 ? (
+              <Box color="average">No logs found.</Box>
+            ) : null}
           </Flex>
         </Section>
       </Window.Content>

@@ -15,7 +15,10 @@ export const NTNetRelay = (props, context) => {
   }
 
   return (
-    <Window width={dos_crashed ? 700 : 500} height={dos_crashed ? 600 : 300} resizable>
+    <Window
+      width={dos_crashed ? 700 : 500}
+      height={dos_crashed ? 600 : 300}
+      resizable>
       <Window.Content scrollable>{body}</Window.Content>
     </Window>
   );
@@ -42,7 +45,11 @@ const NTNetRelayContent = (props, context) => {
           {dos_overload} / {dos_capacity} GQ
         </LabeledList.Item>
         <LabeledList.Item label="Options">
-          <Button icon="exclamation-triangle" content="Purge network blacklist" onClick={() => act('purge')} />
+          <Button
+            icon="exclamation-triangle"
+            content="Purge network blacklist"
+            onClick={() => act('purge')}
+          />
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -55,20 +62,31 @@ const NTNetRelayCrash = (props, context) => {
   return (
     <FullscreenNotice title="ERROR">
       <Box fontSize="1.5rem" bold color="bad">
-        <Icon name="exclamation-triangle" verticalAlign="middle" size={3} mr="1rem" />
+        <Icon
+          name="exclamation-triangle"
+          verticalAlign="middle"
+          size={3}
+          mr="1rem"
+        />
         <h2>NETWORK BUFFERS OVERLOADED</h2>
         <h3>Overload Recovery Mode</h3>
         <i>
-          This system is suffering temporary outage due to overflow of traffic buffers. Until buffered traffic is
-          processed, all further requests will be dropped. Frequent occurences of this error may indicate insufficient
-          hardware capacity of your network. Please contact your network planning department for instructions on how to
-          resolve this issue.
+          This system is suffering temporary outage due to overflow of traffic
+          buffers. Until buffered traffic is processed, all further requests
+          will be dropped. Frequent occurences of this error may indicate
+          insufficient hardware capacity of your network. Please contact your
+          network planning department for instructions on how to resolve this
+          issue.
         </i>
         <h3>ADMINISTRATIVE OVERRIDE</h3>
         <b> CAUTION - Data loss may occur </b>
       </Box>
       <Box>
-        <Button icon="exclamation-triangle" content="Purge buffered traffic" onClick={() => act('restart')} />
+        <Button
+          icon="exclamation-triangle"
+          content="Purge buffered traffic"
+          onClick={() => act('restart')}
+        />
       </Box>
     </FullscreenNotice>
   );

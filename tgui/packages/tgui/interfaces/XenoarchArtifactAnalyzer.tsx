@@ -26,7 +26,10 @@ const XenoarchArtifactAnalyzerContent = (props, context) => {
   if (!owned_scanner) {
     return (
       <Section title="No Scanner Detected">
-        <Box color="bad">Warning: No scanner was detected. This machine requires a scanner to operate.</Box>
+        <Box color="bad">
+          Warning: No scanner was detected. This machine requires a scanner to
+          operate.
+        </Box>
       </Section>
     );
   }

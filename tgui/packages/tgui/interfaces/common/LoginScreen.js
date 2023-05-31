@@ -34,7 +34,12 @@ export const LoginScreen = (_properties, context) => {
       </Box>
       <Box color="label" my="1rem">
         ID:
-        <Button icon="id-card" content={scan ? scan : '----------'} ml="0.5rem" onClick={() => act('scan')} />
+        <Button
+          icon="id-card"
+          content={scan ? scan : '----------'}
+          ml="0.5rem"
+          onClick={() => act('scan')}
+        />
       </Box>
       <Button
         icon="sign-in-alt"

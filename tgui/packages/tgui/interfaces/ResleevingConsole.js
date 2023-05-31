@@ -11,14 +11,22 @@ const MENU_MIND = 3;
 
 const viewMindRecordModalBodyOverride = (modal, context) => {
   const { act, data } = useBackend(context);
-  const { activerecord, realname, obviously_dead, oocnotes, can_sleeve_active } = modal.args;
+  const {
+    activerecord,
+    realname,
+    obviously_dead,
+    oocnotes,
+    can_sleeve_active,
+  } = modal.args;
   return (
     <Section
       level={2}
       m="-1rem"
       pb="1rem"
       title={'Mind Record (' + realname + ')'}
-      buttons={<Button icon="times" color="red" onClick={() => act('modal_close')} />}>
+      buttons={
+        <Button icon="times" color="red" onClick={() => act('modal_close')} />
+      }>
       <LabeledList>
         <LabeledList.Item label="Name">{realname}</LabeledList.Item>
         <LabeledList.Item label="Status">{obviously_dead}</LabeledList.Item>
@@ -46,7 +54,9 @@ const viewMindRecordModalBodyOverride = (modal, context) => {
           />
         </LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
-          <Section style={{ 'word-break': 'break-all', 'height': '100px' }} scrollable>
+          <Section
+            style={{ 'word-break': 'break-all', 'height': '100px' }}
+            scrollable>
             {oocnotes}
           </Section>
         </LabeledList.Item>
@@ -57,22 +67,37 @@ const viewMindRecordModalBodyOverride = (modal, context) => {
 
 const viewBodyRecordModalBodyOverride = (modal, context) => {
   const { act, data } = useBackend(context);
-  const { activerecord, realname, species, sex, mind_compat, synthetic, oocnotes, can_grow_active } = modal.args;
+  const {
+    activerecord,
+    realname,
+    species,
+    sex,
+    mind_compat,
+    synthetic,
+    oocnotes,
+    can_grow_active,
+  } = modal.args;
   return (
     <Section
       level={2}
       m="-1rem"
       pb="1rem"
       title={'Body Record (' + realname + ')'}
-      buttons={<Button icon="times" color="red" onClick={() => act('modal_close')} />}>
+      buttons={
+        <Button icon="times" color="red" onClick={() => act('modal_close')} />
+      }>
       <LabeledList>
         <LabeledList.Item label="Name">{realname}</LabeledList.Item>
         <LabeledList.Item label="Species">{species}</LabeledList.Item>
         <LabeledList.Item label="Bio. Sex">{sex}</LabeledList.Item>
         <LabeledList.Item label="Mind Compat">{mind_compat}</LabeledList.Item>
-        <LabeledList.Item label="Synthetic">{synthetic ? 'Yes' : 'No'}</LabeledList.Item>
+        <LabeledList.Item label="Synthetic">
+          {synthetic ? 'Yes' : 'No'}
+        </LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
-          <Section style={{ 'word-break': 'break-all', 'height': '100px' }} scrollable>
+          <Section
+            style={{ 'word-break': 'break-all', 'height': '100px' }}
+            scrollable>
             {oocnotes}
           </Section>
         </LabeledList.Item>
@@ -117,7 +142,9 @@ export const ResleevingConsole = (props, context) => {
   return (
     <Window width={640} height={520} resizable>
       <ComplexModal maxWidth="75%" maxHeight="75%" />
-      <Window.Content className="Layout__content--flexColumn">{body}</Window.Content>
+      <Window.Content className="Layout__content--flexColumn">
+        {body}
+      </Window.Content>
     </Window>
   );
 };
@@ -168,9 +195,13 @@ const ResleevingConsoleBody = (props, context) => {
   if (menu === MENU_MAIN) {
     body = <ResleevingConsoleMain />;
   } else if (menu === MENU_BODY) {
-    body = <ResleevingConsoleRecords records={bodyrecords} actToDo="view_b_rec" />;
+    body = (
+      <ResleevingConsoleRecords records={bodyrecords} actToDo="view_b_rec" />
+    );
   } else if (menu === MENU_MIND) {
-    body = <ResleevingConsoleRecords records={mindrecords} actToDo="view_m_rec" />;
+    body = (
+      <ResleevingConsoleRecords records={mindrecords} actToDo="view_m_rec" />
+    );
   }
   return body;
 };
@@ -201,11 +232,17 @@ const ResleevingConsoleDiskPrep = (props, context) => {
         <h2>!!WARNING!!</h2>
       </Box>
       <Box color="bad">
-        This will transfer all minds to the dump disk, and the TransCore will be made unusable until post-shift
-        maintenance! This should only be used in emergencies!
+        This will transfer all minds to the dump disk, and the TransCore will be
+        made unusable until post-shift maintenance! This should only be used in
+        emergencies!
       </Box>
       <Box mt={4}>
-        <Button icon="eject" content="Eject Disk" color="good" onClick={() => act('ejectdisk')} />
+        <Button
+          icon="eject"
+          content="Eject Disk"
+          color="good"
+          onClick={() => act('ejectdisk')}
+        />
       </Box>
       <Box mt={4}>
         <Button.Confirm
@@ -223,7 +260,16 @@ const ResleevingConsoleDiskPrep = (props, context) => {
 
 const ResleevingConsoleMain = (props, context) => {
   const { act, data } = useBackend(context);
-  const { loading, scantemp, occupant, locked, can_brainscan, scan_mode, pods, selected_pod } = data;
+  const {
+    loading,
+    scantemp,
+    occupant,
+    locked,
+    can_brainscan,
+    scan_mode,
+    pods,
+    selected_pod,
+  } = data;
   const isLocked = locked && !!occupant;
   return (
     <Section title="Pods" level="2">
@@ -279,7 +325,12 @@ const ResleevingConsolePodGrowers = (props, context) => {
       }
 
       return (
-        <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
+        <Box
+          key={i}
+          width="64px"
+          textAlign="center"
+          display="inline-block"
+          mr="0.5rem">
           <img
             src={'pod_' + pod.status + '.gif'}
             style={{
@@ -309,7 +360,12 @@ const ResleevingConsolePodSleevers = (props, context) => {
   if (sleevers && sleevers.length) {
     return sleevers.map((pod, i) => {
       return (
-        <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
+        <Box
+          key={i}
+          width="64px"
+          textAlign="center"
+          display="inline-block"
+          mr="0.5rem">
           <img
             src={'sleeve_' + (pod.occupied ? 'occupied' : 'empty') + '.gif'}
             style={{
@@ -382,7 +438,12 @@ const ResleevingConsolePodSpods = (props, context) => {
       }
 
       return (
-        <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
+        <Box
+          key={i}
+          width="64px"
+          textAlign="center"
+          display="inline-block"
+          mr="0.5rem">
           <img
             src={'synthprinter' + (pod.busy ? '_working' : '') + '.gif'}
             style={{
@@ -456,7 +517,11 @@ const ResleevingConsoleTemp = (props, context) => {
       <Box display="inline-block" verticalAlign="middle">
         {temp.text}
       </Box>
-      <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
+      <Button
+        icon="times-circle"
+        float="right"
+        onClick={() => act('cleartemp')}
+      />
       <Box clear="both" />
     </NoticeBox>
   );

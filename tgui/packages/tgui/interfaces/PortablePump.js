@@ -5,7 +5,13 @@ import { PortableBasicInfo } from './common/PortableAtmos';
 
 export const PortablePump = (props, context) => {
   const { act, data } = useBackend(context);
-  const { direction, target_pressure, default_pressure, min_pressure, max_pressure } = data;
+  const {
+    direction,
+    target_pressure,
+    default_pressure,
+    min_pressure,
+    max_pressure,
+  } = data;
   return (
     <Window width={330} height={375} resizable>
       <Window.Content scrollable>

@@ -13,10 +13,17 @@ export const DNAForensics = (props, context) => {
           title="Status"
           buttons={
             <Fragment>
-              <Button selected={scanning} disabled={!bloodsamp} icon="power-off" onClick={() => act('scanItem')}>
+              <Button
+                selected={scanning}
+                disabled={!bloodsamp}
+                icon="power-off"
+                onClick={() => act('scanItem')}>
                 {scanning ? 'Halt Scan' : 'Begin Scan'}
               </Button>
-              <Button disabled={!bloodsamp} icon="eject" onClick={() => act('ejectItem')}>
+              <Button
+                disabled={!bloodsamp}
+                icon="eject"
+                onClick={() => act('ejectItem')}>
                 Eject Bloodsample
               </Button>
             </Fragment>

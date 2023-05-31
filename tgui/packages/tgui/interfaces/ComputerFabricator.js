@@ -12,7 +12,13 @@ export const ComputerFabricator = (props, context) => {
           Your perfect device, only three steps away...
         </Section>
         {data.state !== 0 && (
-          <Button fluid mb={1} icon="circle" content="Clear Order" onClick={() => act('clean_order')} />
+          <Button
+            fluid
+            mb={1}
+            icon="circle"
+            content="Clear Order"
+            onClick={() => act('clean_order')}
+          />
         )}
         {data.state === 0 && <CfStep1 />}
         {data.state === 1 && <CfStep2 />}
@@ -406,7 +412,8 @@ const CfStep4 = (props, context) => {
         Thank you for your purchase!
       </Box>
       <Box italic mt={1} textAlign="center">
-        If you experience any difficulties with your new device, please contact your local network administrator.
+        If you experience any difficulties with your new device, please contact
+        your local network administrator.
       </Box>
     </Section>
   );

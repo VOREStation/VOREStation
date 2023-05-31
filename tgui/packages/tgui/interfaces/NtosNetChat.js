@@ -79,10 +79,16 @@ export const NtosNetChat = (props, context) => {
                 <Box height="560px" overflowY="scroll">
                   {in_channel &&
                     (authorized ? (
-                      messages.map((message) => <Box key={message.msg}>{message.msg}</Box>)
+                      messages.map((message) => (
+                        <Box key={message.msg}>{message.msg}</Box>
+                      ))
                     ) : (
                       <Box textAlign="center">
-                        <Icon name="exclamation-triangle" mt={4} fontSize="40px" />
+                        <Icon
+                          name="exclamation-triangle"
+                          mt={4}
+                          fontSize="40px"
+                        />
                         <Box mt={1} bold fontSize="18px">
                           THIS CHANNEL IS PASSWORD PROTECTED
                         </Box>
@@ -123,12 +129,20 @@ export const NtosNetChat = (props, context) => {
                         })
                       }
                     />
-                    <Button.Confirm fluid content="Leave Channel" onClick={() => act('PRG_leavechannel')} />
+                    <Button.Confirm
+                      fluid
+                      content="Leave Channel"
+                      onClick={() => act('PRG_leavechannel')}
+                    />
                   </Fragment>
                 )}
                 {!!is_operator && authed && (
                   <Fragment>
-                    <Button.Confirm fluid content="Delete Channel" onClick={() => act('PRG_deletechannel')} />
+                    <Button.Confirm
+                      fluid
+                      content="Delete Channel"
+                      onClick={() => act('PRG_deletechannel')}
+                    />
                     <Button.Input
                       fluid
                       content="Rename Channel..."

@@ -57,7 +57,10 @@ const RIGSuitStatus = (props, context) => {
 
   const SealButton = (
     <Button
-      content={'Suit ' + (sealing ? 'seals working...' : sealed ? 'is Active' : 'is Inactive')}
+      content={
+        'Suit ' +
+        (sealing ? 'seals working...' : sealed ? 'is Active' : 'is Inactive')
+      }
       icon={sealing ? 'redo' : sealed ? 'power-off' : 'lock-open'}
       iconSpin={sealing}
       disabled={sealing}
@@ -232,13 +235,17 @@ const RIGSuitModules = (props, context) => {
           <Section
             key={module.name}
             level={2}
-            title={toTitleCase(module.name) + (module.damage ? ' (damaged)' : '')}
+            title={
+              toTitleCase(module.name) + (module.damage ? ' (damaged)' : '')
+            }
             buttons={
               <Fragment>
                 {module.can_select ? (
                   <Button
                     selected={module.name === primarysystem}
-                    content={module.name === primarysystem ? 'Selected' : 'Select'}
+                    content={
+                      module.name === primarysystem ? 'Selected' : 'Select'
+                    }
                     icon="arrow-circle-right"
                     onClick={() =>
                       act('interact_module', {
@@ -263,7 +270,11 @@ const RIGSuitModules = (props, context) => {
                 {module.can_toggle ? (
                   <Button
                     selected={module.is_active}
-                    content={module.is_active ? module.deactivatestring : module.activatestring}
+                    content={
+                      module.is_active
+                        ? module.deactivatestring
+                        : module.activatestring
+                    }
                     icon="arrow-circle-down"
                     onClick={() =>
                       act('interact_module', {
@@ -291,9 +302,13 @@ const RIGSuitModules = (props, context) => {
               <Flex.Item>
                 <Section title="Module Charges">
                   <LabeledList>
-                    <LabeledList.Item label="Selected">{capitalize(module.chargetype)}</LabeledList.Item>
+                    <LabeledList.Item label="Selected">
+                      {capitalize(module.chargetype)}
+                    </LabeledList.Item>
                     {module.charges.map((charge, i) => (
-                      <LabeledList.Item key={charge.caption} label={capitalize(charge.caption)}>
+                      <LabeledList.Item
+                        key={charge.caption}
+                        label={capitalize(charge.caption)}>
                         <Button
                           selected={module.realchargetype === charge.index}
                           icon="arrow-right"

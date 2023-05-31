@@ -22,12 +22,17 @@ export const RogueZones = (props, context) => {
       <Window.Content>
         <Section title="Current Area">
           <LabeledList>
-            <LabeledList.Item label="Mineral Content">{difficulty}</LabeledList.Item>
+            <LabeledList.Item label="Mineral Content">
+              {difficulty}
+            </LabeledList.Item>
             <LabeledList.Item
               label="Shuttle Location"
               buttons={
                 (can_recall_shuttle && (
-                  <Button color="bad" icon="rocket" onClick={() => act('recall_shuttle')}>
+                  <Button
+                    color="bad"
+                    icon="rocket"
+                    onClick={() => act('recall_shuttle')}>
                     Recall Shuttle
                   </Button>
                 )) ||
@@ -49,7 +54,11 @@ export const RogueZones = (props, context) => {
         <Section
           title="Scanner"
           buttons={
-            <Button disabled={!scan_ready} fluid icon="search" onClick={() => act('scan_for_new')}>
+            <Button
+              disabled={!scan_ready}
+              fluid
+              icon="search"
+              onClick={() => act('scan_for_new')}>
               Scan For Asteroids
             </Button>
           }>
@@ -65,8 +74,15 @@ export const RogueZones = (props, context) => {
                 }}
               />
             </LabeledList.Item>
-            {(scanning && <LabeledList.Item label="Scanning">In progress.</LabeledList.Item>) || null}
-            {(updated && !scanning && <LabeledList.Item label="Info">Updated shuttle destination!</LabeledList.Item>) ||
+            {(scanning && (
+              <LabeledList.Item label="Scanning">In progress.</LabeledList.Item>
+            )) ||
+              null}
+            {(updated && !scanning && (
+              <LabeledList.Item label="Info">
+                Updated shuttle destination!
+              </LabeledList.Item>
+            )) ||
               null}
             {(debug && (
               <LabeledList.Item label="Debug" labelColor="bad">

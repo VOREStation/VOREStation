@@ -33,13 +33,18 @@ export const Medbot = (props, context) => {
             </Button>
           }>
           <LabeledList>
-            <LabeledList.Item label="Maintenance Panel" color={open ? 'bad' : 'good'}>
+            <LabeledList.Item
+              label="Maintenance Panel"
+              color={open ? 'bad' : 'good'}>
               {open ? 'Open' : 'Closed'}
             </LabeledList.Item>
             <LabeledList.Item
               label="Beaker"
               buttons={
-                <Button disabled={!beaker} icon="eject" onClick={() => act('eject')}>
+                <Button
+                  disabled={!beaker}
+                  icon="eject"
+                  onClick={() => act('eject')}>
                   Eject
                 </Button>
               }>
@@ -49,7 +54,9 @@ export const Medbot = (props, context) => {
                 </ProgressBar>
               )) || <Box color="average">No beaker loaded.</Box>}
             </LabeledList.Item>
-            <LabeledList.Item label="Behavior Controls" color={locked ? 'good' : 'bad'}>
+            <LabeledList.Item
+              label="Behavior Controls"
+              color={locked ? 'good' : 'bad'}>
               {locked ? 'Locked' : 'Unlocked'}
             </LabeledList.Item>
           </LabeledList>
@@ -81,7 +88,9 @@ export const Medbot = (props, context) => {
                   icon={use_beaker ? 'toggle-on' : 'toggle-off'}
                   selected={use_beaker}
                   onClick={() => act('use_beaker')}>
-                  {use_beaker ? 'Loaded Beaker (When available)' : 'Internal Synthesizer'}
+                  {use_beaker
+                    ? 'Loaded Beaker (When available)'
+                    : 'Internal Synthesizer'}
                 </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Treatment Report">

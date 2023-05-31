@@ -141,7 +141,10 @@ const LayerSection = (props, context) => {
               })
             }>
             <Box
-              className={classes(['pipes32x32', preview.dir + '-' + preview.icon_state])}
+              className={classes([
+                'pipes32x32',
+                preview.dir + '-' + preview.icon_state,
+              ])}
               style={{
                 transform: 'scale(1.5) translate(9.5%, 9.5%)',
               }}
@@ -156,8 +159,13 @@ const LayerSection = (props, context) => {
 const PipeTypeSection = (props, context) => {
   const { act, data } = useBackend(context);
   const { categories = [] } = data;
-  const [categoryName, setCategoryName] = useLocalState(context, 'categoryName');
-  const shownCategory = categories.find((category) => category.cat_name === categoryName) || categories[0];
+  const [categoryName, setCategoryName] = useLocalState(
+    context,
+    'categoryName'
+  );
+  const shownCategory =
+    categories.find((category) => category.cat_name === categoryName) ||
+    categories[0];
   return (
     <Section fill scrollable>
       <Tabs>

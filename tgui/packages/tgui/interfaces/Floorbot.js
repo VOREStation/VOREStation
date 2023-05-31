@@ -5,7 +5,18 @@ import { Window } from '../layouts';
 export const Floorbot = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { on, open, locked, vocal, amount, possible_bmode, improvefloors, eattiles, maketiles, bmode } = data;
+  const {
+    on,
+    open,
+    locked,
+    vocal,
+    amount,
+    possible_bmode,
+    improvefloors,
+    eattiles,
+    maketiles,
+    bmode,
+  } = data;
 
   return (
     <Window width={390} height={310}>
@@ -21,10 +32,14 @@ export const Floorbot = (props, context) => {
             <LabeledList.Item label="Tiles Left">
               <AnimatedNumber value={amount} />
             </LabeledList.Item>
-            <LabeledList.Item label="Maintenance Panel" color={open ? 'bad' : 'good'}>
+            <LabeledList.Item
+              label="Maintenance Panel"
+              color={open ? 'bad' : 'good'}>
               {open ? 'Open' : 'Closed'}
             </LabeledList.Item>
-            <LabeledList.Item label="Behavior Controls" color={locked ? 'good' : 'bad'}>
+            <LabeledList.Item
+              label="Behavior Controls"
+              color={locked ? 'good' : 'bad'}>
               {locked ? 'Locked' : 'Unlocked'}
             </LabeledList.Item>
           </LabeledList>
@@ -33,7 +48,10 @@ export const Floorbot = (props, context) => {
           <Section title="Behavior Controls">
             <LabeledList>
               <LabeledList.Item label="Speaker">
-                <Button icon={vocal ? 'toggle-on' : 'toggle-off'} selected={vocal} onClick={() => act('vocal')}>
+                <Button
+                  icon={vocal ? 'toggle-on' : 'toggle-off'}
+                  selected={vocal}
+                  onClick={() => act('vocal')}>
                   {vocal ? 'On' : 'Off'}
                 </Button>
               </LabeledList.Item>
@@ -46,12 +64,18 @@ export const Floorbot = (props, context) => {
                 </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Finds Tiles">
-                <Button icon={eattiles ? 'toggle-on' : 'toggle-off'} selected={eattiles} onClick={() => act('tiles')}>
+                <Button
+                  icon={eattiles ? 'toggle-on' : 'toggle-off'}
+                  selected={eattiles}
+                  onClick={() => act('tiles')}>
                   {eattiles ? 'On' : 'Off'}
                 </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Makes Metal Sheets into Tiles">
-                <Button icon={maketiles ? 'toggle-on' : 'toggle-off'} selected={maketiles} onClick={() => act('make')}>
+                <Button
+                  icon={maketiles ? 'toggle-on' : 'toggle-off'}
+                  selected={maketiles}
+                  onClick={() => act('make')}>
                   {maketiles ? 'On' : 'Off'}
                 </Button>
               </LabeledList.Item>

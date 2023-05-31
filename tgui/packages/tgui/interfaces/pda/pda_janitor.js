@@ -33,7 +33,8 @@ export const pda_janitor = (props, context) => {
           <ul>
             {janitor.buckets.map((bucket, i) => (
               <li key={i}>
-                {bucket.x} / {bucket.y} - {bucket.dir} - Capacity: {bucket.volume}/{bucket.max_volume}
+                {bucket.x} / {bucket.y} - {bucket.dir} - Capacity:{' '}
+                {bucket.volume}/{bucket.max_volume}
               </li>
             ))}
           </ul>
@@ -44,7 +45,8 @@ export const pda_janitor = (props, context) => {
           <ul>
             {janitor.cleanbots.map((cleanbot, i) => (
               <li key={i}>
-                {cleanbot.x} / {cleanbot.y} - {cleanbot.dir} - Status: {cleanbot.status}
+                {cleanbot.x} / {cleanbot.y} - {cleanbot.dir} - Status:{' '}
+                {cleanbot.status}
               </li>
             ))}
           </ul>
@@ -55,7 +57,8 @@ export const pda_janitor = (props, context) => {
           <ul>
             {janitor.carts.map((cart, i) => (
               <li key={i}>
-                {cart.x} / {cart.y} - {cart.dir} - Water Level: {cart.volume}/{cart.max_volume}
+                {cart.x} / {cart.y} - {cart.dir} - Water Level: {cart.volume}/
+                {cart.max_volume}
               </li>
             ))}
           </ul>

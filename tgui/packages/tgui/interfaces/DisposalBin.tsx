@@ -90,7 +90,12 @@ export const DisposalBin = (props, context) => {
               />
             </LabeledList.Item>
             <LabeledList.Item label="Eject">
-              <Button icon="sign-out-alt" disabled={isAI} content="Eject Contents" onClick={() => act('eject')} />
+              <Button
+                icon="sign-out-alt"
+                disabled={isAI}
+                content="Eject Contents"
+                onClick={() => act('eject')}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>

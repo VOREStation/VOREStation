@@ -36,16 +36,27 @@ export const IdentificationComputerContent = (props, context) => {
     <Fragment>
       <Tabs>
         {(!ntos || !!data.have_id_slot) && (
-          <Tabs.Tab icon="home" selected={mode === 0} onClick={() => act('mode', { 'mode_target': 0 })}>
+          <Tabs.Tab
+            icon="home"
+            selected={mode === 0}
+            onClick={() => act('mode', { 'mode_target': 0 })}>
             Access Modification
           </Tabs.Tab>
         )}
-        <Tabs.Tab icon="home" selected={mode === 1} onClick={() => act('mode', { 'mode_target': 1 })}>
+        <Tabs.Tab
+          icon="home"
+          selected={mode === 1}
+          onClick={() => act('mode', { 'mode_target': 1 })}>
           Crew Manifest
         </Tabs.Tab>
         {!ntos ||
           (!!data.have_printer && (
-            <Tabs.Tab float="right" icon="print" onClick={() => act('print')} disabled={!mode && !has_modify} color="">
+            <Tabs.Tab
+              float="right"
+              icon="print"
+              onClick={() => act('print')}
+              disabled={!mode && !has_modify}
+              color="">
               Print
             </Tabs.Tab>
           ))}
@@ -88,11 +99,21 @@ export const IdentificationComputerAccessModification = (props, context) => {
       )}
       <LabeledList>
         <LabeledList.Item label="Target Identitity">
-          <Button icon="eject" fluid content={target_name} onClick={() => act('modify')} />
+          <Button
+            icon="eject"
+            fluid
+            content={target_name}
+            onClick={() => act('modify')}
+          />
         </LabeledList.Item>
         {!ntos && (
           <LabeledList.Item label="Authorized Identitity">
-            <Button icon="eject" fluid content={scan_name} onClick={() => act('scan')} />
+            <Button
+              icon="eject"
+              fluid
+              content={scan_name}
+              onClick={() => act('scan')}
+            />
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -101,10 +122,18 @@ export const IdentificationComputerAccessModification = (props, context) => {
           <Section title="Details" level={2}>
             <LabeledList>
               <LabeledList.Item label="Registered Name">
-                <Input value={target_owner} fluid onInput={(e, val) => act('reg', { reg: val })} />
+                <Input
+                  value={target_owner}
+                  fluid
+                  onInput={(e, val) => act('reg', { reg: val })}
+                />
               </LabeledList.Item>
               <LabeledList.Item label="Account Number">
-                <Input value={account_number} fluid onInput={(e, val) => act('account', { account: val })} />
+                <Input
+                  value={account_number}
+                  fluid
+                  onInput={(e, val) => act('account', { account: val })}
+                />
               </LabeledList.Item>
               <LabeledList.Item label="Dismissals">
                 <Button.Confirm
@@ -113,7 +142,9 @@ export const IdentificationComputerAccessModification = (props, context) => {
                   confirmIcon="fire"
                   fluid
                   content={'Dismiss ' + target_owner}
-                  confirmContent={'You are dismissing ' + target_owner + ', confirm?'}
+                  confirmContent={
+                    'You are dismissing ' + target_owner + ', confirm?'
+                  }
                   onClick={() => act('terminate')}
                 />
               </LabeledList.Item>
@@ -132,13 +163,16 @@ export const IdentificationComputerAccessModification = (props, context) => {
                         <Button
                           key={job.job}
                           selected={job.job === id_rank}
-                          onClick={() => act('assign', { 'assign_target': job.job })}>
+                          onClick={() =>
+                            act('assign', { 'assign_target': job.job })
+                          }>
                           {decodeHtmlEntities(job.display_name)}
                         </Button>
                       ))}
                     </Table.Cell>
                   </Table.Row>
-                  <Box mt={-1}>&nbsp;</Box> {/* Hacky little thing to add spacing */}
+                  <Box mt={-1}>&nbsp;</Box>{' '}
+                  {/* Hacky little thing to add spacing */}
                 </Fragment>
               ))}
               <Table.Row>
@@ -146,7 +180,12 @@ export const IdentificationComputerAccessModification = (props, context) => {
                   Special
                 </Table.Cell>
                 <Table.Cell>
-                  <Button onClick={() => act('assign', { 'assign_target': 'Custom' })}>Custom</Button>
+                  <Button
+                    onClick={() =>
+                      act('assign', { 'assign_target': 'Custom' })
+                    }>
+                    Custom
+                  </Button>
                 </Table.Cell>
               </Table.Row>
             </Table>
@@ -158,7 +197,12 @@ export const IdentificationComputerAccessModification = (props, context) => {
                   <Button
                     fluid
                     selected={access.allowed}
-                    onClick={() => act('access', { access_target: access.ref, allowed: access.allowed })}>
+                    onClick={() =>
+                      act('access', {
+                        access_target: access.ref,
+                        allowed: access.allowed,
+                      })
+                    }>
                     {decodeHtmlEntities(access.desc)}
                   </Button>
                 </Box>
@@ -192,7 +236,12 @@ export const IdentificationComputerRegions = (props, context) => {
                 <Button
                   fluid
                   selected={access.allowed}
-                  onClick={() => act(actName, { access_target: access.ref, allowed: access.allowed })}>
+                  onClick={() =>
+                    act(actName, {
+                      access_target: access.ref,
+                      allowed: access.allowed,
+                    })
+                  }>
                   {decodeHtmlEntities(access.desc)}
                 </Button>
               </Box>

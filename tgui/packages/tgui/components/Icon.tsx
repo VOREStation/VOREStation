@@ -13,12 +13,12 @@ import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 const FA_OUTLINE_REGEX = /-o$/;
 
 type IconPropsUnique = {
-  name: string,
-  size?: number,
-  spin?: boolean,
-  className?: string,
-  rotation?: number,
-  style?: string | CSSProperties,
+  name: string;
+  size?: number;
+  spin?: boolean;
+  className?: string;
+  rotation?: number;
+  style?: string | CSSProperties;
 };
 
 export type IconProps = IconPropsUnique & BoxProps;
@@ -78,8 +78,8 @@ export const Icon = (props: IconProps) => {
 Icon.defaultHooks = pureComponentHooks;
 
 type IconStackUnique = {
-  children: InfernoNode,
-  className?: string,
+  children: InfernoNode;
+  className?: string;
 };
 
 export type IconStackProps = IconStackUnique & BoxProps;
