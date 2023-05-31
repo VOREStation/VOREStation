@@ -3,9 +3,9 @@ import { getGasColor, getGasFromId, getGasLabel } from './constants';
 
 describe('gas helper functions', () => {
   it('should get the proper gas label', () => {
-    const gasId = 'antinoblium';
+    const gasId = 'n2o';
     const gasLabel = getGasLabel(gasId);
-    expect(gasLabel).toBe('Anti-Noblium');
+    expect(gasLabel).toBe('N₂O');
   });
 
   it('should get the proper gas label with a fallback', () => {
@@ -23,10 +23,10 @@ describe('gas helper functions', () => {
   });
 
   it('should get the proper gas color', () => {
-    const gasId = 'antinoblium';
+    const gasId = 'n2o';
     const gasColor = getGasColor(gasId);
 
-    expect(gasColor).toBe('maroon');
+    expect(gasColor).toBe('red');
   });
 
   it('should return a string if no gas is found', () => {
@@ -37,15 +37,15 @@ describe('gas helper functions', () => {
   });
 
   it('should return the gas object if found', () => {
-    const gasId = 'antinoblium';
+    const gasId = 'n2o';
     const gas = getGasFromId(gasId);
 
     expect(gas).toEqual({
-      id: 'antinoblium',
-      path: '/datum/gas/antinoblium',
-      name: 'Antinoblium',
-      label: 'Anti-Noblium',
-      color: 'maroon',
+      id: 'n2o',
+      // path: '/datum/gas/antinoblium',
+      name: 'Nitrous Oxide',
+      label: 'N₂O',
+      color: 'red',
     });
   });
 
