@@ -8,4 +8,5 @@
 	projectile = /obj/item/projectile/beam/medigun
 	fire_sound = 'sound/weapons/eluger.ogg'
 	equip_type = EQUIP_UTILITY
+	required_type = /obj/mecha/medical
 	origin_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 5, TECH_BIO = 6, TECH_POWER = 6)
