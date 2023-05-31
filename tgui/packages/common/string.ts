@@ -7,7 +7,7 @@
 /**
  * Removes excess whitespace and indentation from the string.
  */
-export const multiline = (str: string): string => {
+export const multiline = (str) => {
   if (Array.isArray(str)) {
     // Small stub to allow usage as a template tag
     return multiline(str.join(''));
@@ -44,17 +44,13 @@ export const multiline = (str: string): string => {
  *
  * Example: createGlobPattern('*@domain')('user@domain') === true
  */
-export const createGlobPattern = (pattern: string) => {
-  const escapeString = (str: string) => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
-  const regex = new RegExp(
-    '^' +
-      pattern
-        .split(/\*+/)
-        .map(escapeString)
-        .join('.*') +
-      '$'
-  );
-  return (str: string) => regex.test(str);
+export const createGlobPattern = (pattern) => {
+  const escapeString = (str) => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+  // prettier-ignore
+  const regex = new RegExp('^'
+    + pattern.split(/\*+/).map(escapeString).join('.*')
+    + '$');
+  return (str) => regex.test(str);
 };
 
 /**
@@ -81,10 +77,6 @@ export const createSearch = (searchText, stringifier) => {
   };
 };
 
-export const isUppercase = (chr: string) => {
-  return chr.toUpperCase() === chr;
-};
-
 /**
  * Capitalizes a word and lowercases the rest.
  * @param {string} str
@@ -92,17 +84,13 @@ export const isUppercase = (chr: string) => {
  *
  * @example capitalize('heLLo') === 'Hello'
  */
-export const capitalize = (str: string) => {
+export const capitalize = (str) => {
   // Handle array
   if (Array.isArray(str)) {
     return str.map(capitalize);
   }
   // Handle string
-  let chr = str.charAt(0);
-  if (isUppercase(chr)) {
-    return str; // Already caps, might be an acronym, so don't mess it up by lowercasing the rest
-  }
-  return chr.toUpperCase() + str.slice(1).toLowerCase();
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
 /**
@@ -114,7 +102,7 @@ export const capitalize = (str: string) => {
  *
  * @example capitalizeAll('heLLo woRLd') === 'HeLLo WoRLd'
  */
-export const capitalizeAll = (str: string): string => {
+export const capitalizeAll = (str) => {
   return str.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
 };
 
@@ -126,11 +114,11 @@ export const capitalizeAll = (str: string): string => {
  *
  * @example capitalizeFirst('heLLo woRLd') === 'HeLLo woRLd'
  */
-export const capitalizeFirst = (str: string): string => {
+export const capitalizeFirst = (str) => {
   return str.replace(/^\w/, (letter) => letter.toUpperCase());
 };
 
-export const toTitleCase = (str: string) => {
+export const toTitleCase = (str) => {
   // Handle array
   if (Array.isArray(str)) {
     return str.map(toTitleCase);
@@ -140,29 +128,11 @@ export const toTitleCase = (str: string) => {
     return str;
   }
   // Handle string
-  const WORDS_UPPER = ['Id', 'Tv', 'Rcd']; // VOREStation Edit
+  const WORDS_UPPER = ['Id', 'Tv'];
+  // prettier-ignore
   const WORDS_LOWER = [
-    'A',
-    'An',
-    'And',
-    'As',
-    'At',
-    'But',
-    'By',
-    'For',
-    'For',
-    'From',
-    'In',
-    'Into',
-    'Near',
-    'Nor',
-    'Of',
-    'On',
-    'Onto',
-    'Or',
-    'The',
-    'To',
-    'With',
+    'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
+    'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
   ];
   let currentStr = str.replace(/([^\W_]+[^\s-]*) */g, (str) => {
     return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
@@ -173,7 +143,7 @@ export const toTitleCase = (str: string) => {
   }
   for (let word of WORDS_UPPER) {
     const regex = new RegExp('\\b' + word + '\\b', 'g');
-    currentStr = currentStr.replace(regex, (str) => str.toUpperCase());
+    currentStr = currentStr.replace(regex, (str) => str.toLowerCase());
   }
   return currentStr;
 };
@@ -184,45 +154,43 @@ export const toTitleCase = (str: string) => {
  * @param  {String} str Encoded HTML string
  * @return {String} Decoded HTML string
  */
-export const decodeHtmlEntities = (str: string): string => {
+export const decodeHtmlEntities = (str) => {
   if (!str) {
     return str;
   }
-  const translate_re = /&(nbsp|amp|deg|quot|lt|gt|apos|trade);/g;
+  const translate_re = /&(nbsp|amp|quot|lt|gt|apos);/g;
   const translate = {
     nbsp: ' ',
     amp: '&',
-    deg: '°',
     quot: '"',
     lt: '<',
     gt: '>',
     apos: "'",
-    trade: '™',
   };
-  return (
-    str
-      // Newline tags
-      .replace(/<br>/gi, '\n')
-      .replace(/<\/?[a-z0-9-_]+[^>]*>/gi, '')
-      // Basic entities
-      .replace(translate_re, (match, entity) => translate[entity])
-      // Decimal entities
-      .replace(/&#?([0-9]+);/gi, (match, numStr) => {
-        const num = parseInt(numStr, 10);
-        return String.fromCharCode(num);
-      })
-      // Hex entities
-      .replace(/&#x?([0-9a-f]+);/gi, (match, numStr) => {
-        const num = parseInt(numStr, 16);
-        return String.fromCharCode(num);
-      })
-  );
+  // prettier-ignore
+  return str
+    // Newline tags
+    .replace(/<br>/gi, '\n')
+    .replace(/<\/?[a-z0-9-_]+[^>]*>/gi, '')
+    // Basic entities
+    .replace(translate_re, (match, entity) => translate[entity])
+    // Decimal entities
+    .replace(/&#?([0-9]+);/gi, (match, numStr) => {
+      const num = parseInt(numStr, 10);
+      return String.fromCharCode(num);
+    })
+    // Hex entities
+    .replace(/&#x?([0-9a-f]+);/gi, (match, numStr) => {
+      const num = parseInt(numStr, 16);
+      return String.fromCharCode(num);
+    });
 };
 
 /**
  * Converts an object into a query string,
  */
-export const buildQueryString = (obj) =>
-  Object.keys(obj)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]))
-    .join('&');
+// prettier-ignore
+export const buildQueryString = obj => Object.keys(obj)
+  .map(key => encodeURIComponent(key)
+    + '=' + encodeURIComponent(obj[key]))
+  .join('&');
