@@ -3,6 +3,8 @@
 /obj/item/weapon/tool/wirecutters/clippers
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "clippers"
 
 /obj/item/weapon/tool/wirecutters/clippers/trimmers
     name = "hedgetrimmers"

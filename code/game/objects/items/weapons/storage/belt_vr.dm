@@ -152,3 +152,26 @@
 		/obj/item/weapon/anobattery,
 		/obj/item/weapon/pickaxe
 		)
+
+/obj/item/weapon/storage/belt/hydro
+	name = "hydroponics belt"
+	desc = "A belt used to hold most hydroponics supplies. Suprisingly, not green."
+	icon = 'icons/inventory/belt/item_vr.dmi'
+	icon_state = "plantbelt"
+	item_state = "plantbelt"
+	storage_slots = 5
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5
+	can_hold = list(
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/reagent_containers/glass/beaker,
+		/obj/item/weapon/reagent_containers/glass/bottle,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/weapon/reagent_containers/spray/plantbgone,
+		/obj/item/weapon/plantspray,
+		/obj/item/weapon/gun/energy/floragun,
+		/obj/item/seeds
+		)
