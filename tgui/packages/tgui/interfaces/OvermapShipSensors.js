@@ -15,7 +15,17 @@ export const OvermapShipSensors = (props, context) => {
 
 export const OvermapShipSensorsContent = (props, context) => {
   const { act, data } = useBackend(context);
-  const { viewing, on, range, health, max_health, heat, critical_heat, status, contacts } = data;
+  const {
+    viewing,
+    on,
+    range,
+    health,
+    max_health,
+    heat,
+    critical_heat,
+    status,
+    contacts,
+  } = data;
 
   return (
     <Fragment>
@@ -23,10 +33,16 @@ export const OvermapShipSensorsContent = (props, context) => {
         title="Status"
         buttons={
           <Fragment>
-            <Button icon="eye" selected={viewing} onClick={() => act('viewing')}>
+            <Button
+              icon="eye"
+              selected={viewing}
+              onClick={() => act('viewing')}>
               Map View
             </Button>
-            <Button icon="power-off" selected={on} onClick={() => act('toggle_sensor')}>
+            <Button
+              icon="power-off"
+              selected={on}
+              onClick={() => act('toggle_sensor')}>
               {on ? 'Sensors Enabled' : 'Sensors Disabled'}
             </Button>
           </Fragment>
@@ -60,8 +76,12 @@ export const OvermapShipSensorsContent = (props, context) => {
               value={heat}
               maxValue={critical_heat}>
               {(heat < critical_heat * 0.5 && <Box>Temperature low.</Box>) ||
-                (heat < critical_heat * 0.75 && <Box>Sensor temperature high!</Box>) || (
-                  <Box>TEMPERATURE CRITICAL: Disable or reduce power immediately!</Box>
+                (heat < critical_heat * 0.75 && (
+                  <Box>Sensor temperature high!</Box>
+                )) || (
+                  <Box>
+                    TEMPERATURE CRITICAL: Disable or reduce power immediately!
+                  </Box>
                 )}
             </ProgressBar>
           </LabeledList.Item>
@@ -70,7 +90,11 @@ export const OvermapShipSensorsContent = (props, context) => {
       <Section title="Contacts">
         {(contacts.length &&
           contacts.map((alien) => (
-            <Button key={alien.ref} fluid icon="search" onClick={() => act('scan', { scan: alien.ref })}>
+            <Button
+              key={alien.ref}
+              fluid
+              icon="search"
+              onClick={() => act('scan', { scan: alien.ref })}>
               <Box bold inline>
                 Scan: {alien.name}
               </Box>

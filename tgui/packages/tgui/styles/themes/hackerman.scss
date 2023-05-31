@@ -23,16 +23,26 @@
   // Components
   @include meta.load-css(
     '../components/Button.scss',
-    $with: ('color-default': colors.$primary, 'color-disabled': #4a6a4a, 'color-selected': #00ff00)
+    $with: (
+      'color-default': colors.$primary,
+      'color-disabled': #4a6a4a,
+      'color-selected': #00ff00
+    )
   );
-  @include meta.load-css('../components/Input.scss', $with: ('border-color': colors.$primary));
+  @include meta.load-css(
+    '../components/Input.scss',
+    $with: ('border-color': colors.$primary)
+  );
   @include meta.load-css('../components/Modal.scss');
   @include meta.load-css('../components/Section.scss');
 
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss', $with: ('background-color': #223d22));
+  @include meta.load-css(
+    '../layouts/TitleBar.scss',
+    $with: ('background-color': #223d22)
+  );
 
   .Layout__content {
     background-image: none;

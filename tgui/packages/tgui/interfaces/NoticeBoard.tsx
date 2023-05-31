@@ -5,7 +5,12 @@ import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  notices: { name: string; isphoto: BooleanLike; ispaper: BooleanLike; ref: string }[];
+  notices: {
+    name: string;
+    isphoto: BooleanLike;
+    ispaper: BooleanLike;
+    ref: string;
+  }[];
 };
 
 export const NoticeBoard = (props, context) => {
@@ -22,16 +27,32 @@ export const NoticeBoard = (props, context) => {
               {notices.map((notice, i) => (
                 <LabeledList.Item key={i} label={notice.name}>
                   {(notice.isphoto && (
-                    <Button icon="image" content="Look" onClick={() => act('look', { ref: notice.ref })} />
+                    <Button
+                      icon="image"
+                      content="Look"
+                      onClick={() => act('look', { ref: notice.ref })}
+                    />
                   )) ||
                     (notice.ispaper && (
                       <Fragment>
-                        <Button icon="sticky-note" content="Read" onClick={() => act('read', { ref: notice.ref })} />
-                        <Button icon="pen" content="Write" onClick={() => act('write', { ref: notice.ref })} />
+                        <Button
+                          icon="sticky-note"
+                          content="Read"
+                          onClick={() => act('read', { ref: notice.ref })}
+                        />
+                        <Button
+                          icon="pen"
+                          content="Write"
+                          onClick={() => act('write', { ref: notice.ref })}
+                        />
                       </Fragment>
                     )) ||
                     'Unknown Entity'}
-                  <Button icon="minus-circle" content="Remove" onClick={() => act('remove', { ref: notice.ref })} />
+                  <Button
+                    icon="minus-circle"
+                    content="Remove"
+                    onClick={() => act('remove', { ref: notice.ref })}
+                  />
                 </LabeledList.Item>
               ))}
             </LabeledList>

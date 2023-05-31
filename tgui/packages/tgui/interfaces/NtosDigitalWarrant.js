@@ -66,7 +66,10 @@ const WarrantList = (props, context) => {
             <Table.Cell>{warrant.charges}</Table.Cell>
             <Table.Cell>{warrant.auth}</Table.Cell>
             <Table.Cell collapsing>
-              <Button icon="pen" onClick={() => act('editwarrant', { id: warrant.id })} />
+              <Button
+                icon="pen"
+                onClick={() => act('editwarrant', { id: warrant.id })}
+              />
             </Table.Cell>
           </Table.Row>
         ))) || (
@@ -113,20 +116,32 @@ const ActiveWarrant = (props, context) => {
             (isArrest && (
               <Fragment>
                 <Button icon="search" onClick={() => act('editwarrantname')} />
-                <Button icon="pen" onClick={() => act('editwarrantnamecustom')} />
+                <Button
+                  icon="pen"
+                  onClick={() => act('editwarrantnamecustom')}
+                />
               </Fragment>
-            )) || <Button icon="pen" onClick={() => act('editwarrantnamecustom')} />
+            )) || (
+              <Button icon="pen" onClick={() => act('editwarrantnamecustom')} />
+            )
           }>
           {warrantname}
         </LabeledList.Item>
         <LabeledList.Item
           label={warrantchargesLabel}
-          buttons={<Button icon="pen" onClick={() => act('editwarrantcharges')} />}>
+          buttons={
+            <Button icon="pen" onClick={() => act('editwarrantcharges')} />
+          }>
           {warrantcharges}
         </LabeledList.Item>
         <LabeledList.Item
           label="Authorized By"
-          buttons={<Button icon="balance-scale" onClick={() => act('editwarrantauth')} />}>
+          buttons={
+            <Button
+              icon="balance-scale"
+              onClick={() => act('editwarrantauth')}
+            />
+          }>
           {warrantauth}
         </LabeledList.Item>
       </LabeledList>

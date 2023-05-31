@@ -54,7 +54,14 @@ const TelecommsMultitoolMenuStatus = (props, context) => {
   return (
     <Section
       title="Status"
-      buttons={<Button icon="power-off" selected={on} content={on ? 'On' : 'Off'} onClick={() => act('toggle')} />}>
+      buttons={
+        <Button
+          icon="power-off"
+          selected={on}
+          content={on ? 'On' : 'Off'}
+          onClick={() => act('toggle')}
+        />
+      }>
       <LabeledList>
         <LabeledList.Item label="Identification String">
           <Button icon="pen" content={id} onClick={() => act('id')} />
@@ -62,8 +69,12 @@ const TelecommsMultitoolMenuStatus = (props, context) => {
         <LabeledList.Item label="Network">
           <Button icon="pen" content={network} onClick={() => act('network')} />
         </LabeledList.Item>
-        <LabeledList.Item label="Prefabrication">{autolinkers ? 'TRUE' : 'FALSE'}</LabeledList.Item>
-        {shadowlink ? <LabeledList.Item label="Shadow Link">Active.</LabeledList.Item> : null}
+        <LabeledList.Item label="Prefabrication">
+          {autolinkers ? 'TRUE' : 'FALSE'}
+        </LabeledList.Item>
+        {shadowlink ? (
+          <LabeledList.Item label="Shadow Link">Active.</LabeledList.Item>
+        ) : null}
         {multitool ? (
           <LabeledList.Item label="Multitool Buffer">
             {multitool_buffer ? (
@@ -73,11 +84,24 @@ const TelecommsMultitoolMenuStatus = (props, context) => {
             ) : null}
             <Button
               color={multitool_buffer ? 'green' : null}
-              content={multitool_buffer ? 'Link (' + multitool_buffer.id + ')' : 'Add Machine'}
+              content={
+                multitool_buffer
+                  ? 'Link (' + multitool_buffer.id + ')'
+                  : 'Add Machine'
+              }
               icon={multitool_buffer ? 'link' : 'plus'}
-              onClick={multitool_buffer ? () => act('link') : () => act('buffer')}
+              onClick={
+                multitool_buffer ? () => act('link') : () => act('buffer')
+              }
             />
-            {multitool_buffer ? <Button color="red" content="Flush" icon="trash" onClick={() => act('flush')} /> : null}
+            {multitool_buffer ? (
+              <Button
+                color="red"
+                content="Flush"
+                icon="trash"
+                onClick={() => act('flush')}
+              />
+            ) : null}
           </LabeledList.Item>
         ) : null}
       </LabeledList>
@@ -88,7 +112,11 @@ const TelecommsMultitoolMenuStatus = (props, context) => {
               key={link.ref}
               label={link.ref + ' ' + link.name + ' (' + link.id + ')'}
               buttons={
-                <Button.Confirm color="red" icon="trash" onClick={() => act('unlink', { unlink: link.index })} />
+                <Button.Confirm
+                  color="red"
+                  icon="trash"
+                  onClick={() => act('unlink', { unlink: link.index })}
+                />
               }
             />
           ))}
@@ -105,7 +133,9 @@ const TelecommsMultitoolMenuStatus = (props, context) => {
             onClick={() => act('delete', { delete: f.freq })}
           />
         ))}
-        {!filter || filter.length === 0 ? <Box color="label">No filters.</Box> : null}
+        {!filter || filter.length === 0 ? (
+          <Box color="label">No filters.</Box>
+        ) : null}
       </Section>
     </Section>
   );
@@ -188,7 +218,8 @@ const TelecommsMultitoolMenuPolymorphicOptions = (props, context) => {
           </LabeledList.Item>
         ) : null}
         {use_broadcast_range || use_receive_range ? (
-          <LabeledList.Item label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}>
+          <LabeledList.Item
+            label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}>
             <NumberInput
               value={range}
               minValue={minRange}

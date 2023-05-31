@@ -23,11 +23,18 @@ export const XenoarchSuspension = (props, context) => {
         <Section
           title={'Triple-phase S.F.G. MK III "Reliant"'}
           buttons={
-            <Button icon={locked ? 'lock' : 'lock-open'} selected={!locked} onClick={() => act('lock')}>
+            <Button
+              icon={locked ? 'lock' : 'lock-open'}
+              selected={!locked}
+              onClick={() => act('lock')}>
               {locked ? 'Locked' : 'Unlocked'}
             </Button>
           }>
-          {(locked && <Box color="bad">This interface is locked. Swipe an ID card to unlock it.</Box>) || (
+          {(locked && (
+            <Box color="bad">
+              This interface is locked. Swipe an ID card to unlock it.
+            </Box>
+          )) || (
             <Fragment>
               <LabeledList>
                 <LabeledList.Item label="Cell Charge">
@@ -44,8 +51,15 @@ export const XenoarchSuspension = (props, context) => {
                   )) || <Box color="bad">No cell inserted.</Box>}
                 </LabeledList.Item>
               </LabeledList>
-              <Button fluid mt={1} icon="meteor" selected={suspension_field} onClick={() => act('toggle_field')}>
-                {suspension_field ? 'Disengage Suspension Field' : 'Engage Suspension Field'}
+              <Button
+                fluid
+                mt={1}
+                icon="meteor"
+                selected={suspension_field}
+                onClick={() => act('toggle_field')}>
+                {suspension_field
+                  ? 'Disengage Suspension Field'
+                  : 'Engage Suspension Field'}
               </Button>
             </Fragment>
           )}

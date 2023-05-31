@@ -25,12 +25,18 @@ const VendingRow = (props, context) => {
       <Table.Cell bold color={product.color}>
         <Box inline position="relative">
           {product.name}
-          {product.desc ? <Tooltip content={product.desc} position="right" /> : null}
+          {product.desc ? (
+            <Tooltip content={product.desc} position="right" />
+          ) : null}
         </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box
-          color={(product.amount <= 0 && 'bad') || (product.amount <= product.max_amount / 2 && 'average') || 'good'}>
+          color={
+            (product.amount <= 0 && 'bad') ||
+            (product.amount <= product.max_amount / 2 && 'average') ||
+            'good'
+          }>
           {product.amount} in stock
         </Box>
       </Table.Cell>
@@ -95,7 +101,13 @@ export const VendingProducts = (props, context) => {
       {!!coin && (
         <Section
           title={coin + ' deposited'}
-          buttons={<Button icon="eject" content="Eject Coin" onClick={() => act('remove_coin')} />}
+          buttons={
+            <Button
+              icon="eject"
+              content="Eject Coin"
+              onClick={() => act('remove_coin')}
+            />
+          }
         />
       )}
     </Fragment>

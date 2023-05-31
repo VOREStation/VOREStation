@@ -15,28 +15,49 @@ export const OvermapDisperser = (props, context) => {
 
 const OvermapDisperserContent = (props, context) => {
   const { act, data } = useBackend(context);
-  const { faillink, calibration, overmapdir, cal_accuracy, strength, range, next_shot, nopower, skill, chargeload } =
-    data;
+  const {
+    faillink,
+    calibration,
+    overmapdir,
+    cal_accuracy,
+    strength,
+    range,
+    next_shot,
+    nopower,
+    skill,
+    chargeload,
+  } = data;
 
   if (faillink) {
-    return <Section title="Error">Machine is incomplete, out of range, or misaligned!</Section>;
+    return (
+      <Section title="Error">
+        Machine is incomplete, out of range, or misaligned!
+      </Section>
+    );
   }
 
   return (
     <Flex wrap="wrap" spacing={1}>
       <Flex.Item basis="22%">
         <Section title="Targeting" textAlign="center">
-          <OvermapPanControls actToDo="choose" selected={(val) => val === overmapdir} />
+          <OvermapPanControls
+            actToDo="choose"
+            selected={(val) => val === overmapdir}
+          />
         </Section>
       </Flex.Item>
       <Flex.Item basis="74%" grow={1}>
         <Section title="Charge">
           <LabeledList>
             {(nopower && (
-              <LabeledList.Item label="Error">At least one part of the machine is unpowered.</LabeledList.Item>
+              <LabeledList.Item label="Error">
+                At least one part of the machine is unpowered.
+              </LabeledList.Item>
             )) ||
               null}
-            <LabeledList.Item label="Charge Load Type">{chargeload}</LabeledList.Item>
+            <LabeledList.Item label="Charge Load Type">
+              {chargeload}
+            </LabeledList.Item>
             <LabeledList.Item label="Cooldown">
               {(next_shot === 0 && <Box color="good">Ready</Box>) ||
                 (next_shot > 1 && (
@@ -53,15 +74,23 @@ const OvermapDisperserContent = (props, context) => {
       <Flex.Item basis="50%" mt={1}>
         <Section title="Calibration">
           <AnimatedNumber value={cal_accuracy} />%
-          <Button ml={1} icon="exchange-alt" onClick={() => act('skill_calibration')}>
+          <Button
+            ml={1}
+            icon="exchange-alt"
+            onClick={() => act('skill_calibration')}>
             Pre-Calibration
           </Button>
           <Box mt={1}>
             {calibration.map((cal, i) => (
               <Box key={i}>
                 Cal #{i}:
-                <Button ml={1} icon="random" onClick={() => act('calibration', { calibration: i })}>
-                  {cal.toString() /* We do this to make the button size correctly at 0 */}
+                <Button
+                  ml={1}
+                  icon="random"
+                  onClick={() => act('calibration', { calibration: i })}>
+                  {
+                    cal.toString() /* We do this to make the button size correctly at 0 */
+                  }
                 </Button>
               </Box>
             ))}
@@ -77,7 +106,10 @@ const OvermapDisperserContent = (props, context) => {
               </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Radius">
-              <Button fluid icon="expand-arrows-alt" onClick={() => act('range')}>
+              <Button
+                fluid
+                icon="expand-arrows-alt"
+                onClick={() => act('range')}>
                 {range}
               </Button>
             </LabeledList.Item>

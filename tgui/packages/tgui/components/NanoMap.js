@@ -143,7 +143,11 @@ export class NanoMap extends Component {
 
     return (
       <Box className="NanoMap__container">
-        <Box style={newStyle} textAlign="center" onMouseDown={this.handleDragStart} onClick={this.handleOnClick}>
+        <Box
+          style={newStyle}
+          textAlign="center"
+          onMouseDown={this.handleDragStart}
+          onClick={this.handleOnClick}>
           <Box>{children}</Box>
         </Box>
         <NanoMapZoomer zoom={zoom} onZoom={this.handleZoom} />

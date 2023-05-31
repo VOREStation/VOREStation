@@ -22,10 +22,20 @@ const PROGRAM_ICONS = {
 
 export const NtosMain = (props, context) => {
   const { act, data } = useBackend(context);
-  const { device_theme, programs = [], has_light, light_on, comp_light_color, removable_media = [], login = [] } = data;
+  const {
+    device_theme,
+    programs = [],
+    has_light,
+    light_on,
+    comp_light_color,
+    removable_media = [],
+    login = [],
+  } = data;
   return (
     <NtosWindow
-      title={(device_theme === 'syndicate' && 'Syndix Main Menu') || 'NtOS Main Menu'}
+      title={
+        (device_theme === 'syndicate' && 'Syndix Main Menu') || 'NtOS Main Menu'
+      }
       theme={device_theme}
       width={400}
       height={500}
@@ -33,7 +43,11 @@ export const NtosMain = (props, context) => {
       <NtosWindow.Content scrollable>
         {!!has_light && (
           <Section>
-            <Button width="144px" icon="lightbulb" selected={light_on} onClick={() => act('PC_toggle_light')}>
+            <Button
+              width="144px"
+              icon="lightbulb"
+              selected={light_on}
+              onClick={() => act('PC_toggle_light')}>
               Flashlight: {light_on ? 'ON' : 'OFF'}
             </Button>
             <Button ml={1} onClick={() => act('PC_light_color')}>

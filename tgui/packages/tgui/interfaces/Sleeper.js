@@ -22,7 +22,15 @@ const damageRange = {
   bad: [0.5, Infinity],
 };
 
-const tempColors = ['bad', 'average', 'average', 'good', 'average', 'average', 'bad'];
+const tempColors = [
+  'bad',
+  'average',
+  'average',
+  'good',
+  'average',
+  'average',
+  'bad',
+];
 
 export const Sleeper = (props, context) => {
   const { act, data } = useBackend(context);
@@ -30,7 +38,9 @@ export const Sleeper = (props, context) => {
   const body = hasOccupant ? <SleeperMain /> : <SleeperEmpty />;
   return (
     <Window width={550} height={760} resizable>
-      <Window.Content className="Layout__content--flexColumn">{body}</Window.Content>
+      <Window.Content className="Layout__content--flexColumn">
+        {body}
+      </Window.Content>
     </Window>
   );
 };
@@ -42,8 +52,16 @@ const SleeperMain = (props, context) => {
     <Fragment>
       <SleeperOccupant />
       <SleeperDamage />
-      <SleeperDialysisPump title="Dialysis" active={dialysis} actToDo="togglefilter" />
-      <SleeperDialysisPump title="Stomach Pump" active={stomachpumping} actToDo="togglepump" />
+      <SleeperDialysisPump
+        title="Dialysis"
+        active={dialysis}
+        actToDo="togglefilter"
+      />
+      <SleeperDialysisPump
+        title="Stomach Pump"
+        active={stomachpumping}
+        actToDo="togglepump"
+      />
       <SleeperChemicals />
     </Fragment>
   );
@@ -64,9 +82,15 @@ const SleeperOccupant = (props, context) => {
             icon={auto_eject_dead ? 'toggle-on' : 'toggle-off'}
             selected={auto_eject_dead}
             content={auto_eject_dead ? 'On' : 'Off'}
-            onClick={() => act('auto_eject_dead_' + (auto_eject_dead ? 'off' : 'on'))}
+            onClick={() =>
+              act('auto_eject_dead_' + (auto_eject_dead ? 'off' : 'on'))
+            }
           />
-          <Button icon="user-slash" content="Eject" onClick={() => act('ejectify')} />
+          <Button
+            icon="user-slash"
+            content="Eject"
+            onClick={() => act('ejectify')}
+          />
           <Button content={stasis} onClick={() => act('changestasis')} />
         </Fragment>
       }>
@@ -131,7 +155,12 @@ const SleeperDamage = (props, context) => {
       <LabeledList>
         {damages.map((d, i) => (
           <LabeledList.Item key={i} label={d[0]}>
-            <ProgressBar key={i} min="0" max="100" value={occupant[d[1]] / 100} ranges={damageRange}>
+            <ProgressBar
+              key={i}
+              min="0"
+              max="100"
+              value={occupant[d[1]] / 100}
+              ranges={damageRange}>
               {round(occupant[d[1]], 0)}
             </ProgressBar>
           </LabeledList.Item>
@@ -158,7 +187,12 @@ const SleeperDialysisPump = (props, context) => {
             content={canDialysis ? 'Active' : 'Inactive'}
             onClick={() => act(actToDo)}
           />
-          <Button disabled={!isBeakerLoaded} icon="eject" content="Eject" onClick={() => act('removebeaker')} />
+          <Button
+            disabled={!isBeakerLoaded}
+            icon="eject"
+            content="Eject"
+            onClick={() => act('removebeaker')}
+          />
         </Fragment>
       }>
       {isBeakerLoaded ? (
@@ -211,15 +245,29 @@ const SleeperChemicals = (props, context) => {
         }
         return (
           <Box key={i} backgroundColor="rgba(0, 0, 0, 0.33)" mb="0.5rem">
-            <Section title={chem.title} level="3" mx="0" lineHeight="18px" buttons={odWarning}>
+            <Section
+              title={chem.title}
+              level="3"
+              mx="0"
+              lineHeight="18px"
+              buttons={odWarning}>
               <Flex align="flex-start">
-                <ProgressBar min="0" max={maxchem} value={chem.occ_amount / maxchem} color={barColor} mr="0.5rem">
+                <ProgressBar
+                  min="0"
+                  max={maxchem}
+                  value={chem.occ_amount / maxchem}
+                  color={barColor}
+                  mr="0.5rem">
                   {chem.pretty_amount}/{maxchem}u
                 </ProgressBar>
                 {amounts.map((a, i) => (
                   <Button
                     key={i}
-                    disabled={!chem.injectable || chem.occ_amount + a > maxchem || occupant.stat === 2}
+                    disabled={
+                      !chem.injectable ||
+                      chem.occ_amount + a > maxchem ||
+                      occupant.stat === 2
+                    }
                     icon="syringe"
                     content={a}
                     mb="0"
@@ -253,7 +301,11 @@ const SleeperEmpty = (props, context) => {
           No occupant detected.
           {(isBeakerLoaded && (
             <Box>
-              <Button icon="eject" content="Remove Beaker" onClick={() => act('removebeaker')} />
+              <Button
+                icon="eject"
+                content="Remove Beaker"
+                onClick={() => act('removebeaker')}
+              />
             </Box>
           )) ||
             null}

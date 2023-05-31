@@ -15,7 +15,9 @@ const prevNextCamera = (cameras, activeCamera) => {
   if (!activeCamera) {
     return [];
   }
-  const index = cameras.findIndex((camera) => camera.name === activeCamera.name);
+  const index = cameras.findIndex(
+    (camera) => camera.name === activeCamera.name
+  );
   return [cameras[index - 1]?.name, cameras[index + 1]?.name];
 };
 
@@ -32,7 +34,8 @@ const selectCameras = (cameras, searchText = '', networkFilter = '') => {
     // Optional search term
     searchText && filter(testSearch),
     // Optional network filter
-    networkFilter && filter((camera) => camera.networks.includes(networkFilter)),
+    networkFilter &&
+      filter((camera) => camera.networks.includes(networkFilter)),
     // Slightly expensive, but way better than sorting in BYOND
     sortBy((camera) => camera.name),
   ])(cameras);
@@ -52,7 +55,10 @@ export const CameraConsoleContent = (props, context) => {
 
   const { mapRef, activeCamera } = data;
   const cameras = selectCameras(data.cameras);
-  const [prevCameraName, nextCameraName] = prevNextCamera(cameras, activeCamera);
+  const [prevCameraName, nextCameraName] = prevNextCamera(
+    cameras,
+    activeCamera
+  );
   return (
     <Fragment>
       <div className="CameraConsole__left">
@@ -86,13 +92,22 @@ export const CameraConsoleContent = (props, context) => {
 export const CameraConsoleSearch = (props, context) => {
   const { act, data } = useBackend(context);
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
-  const [networkFilter, setNetworkFilter] = useLocalState(context, 'networkFilter', '');
+  const [networkFilter, setNetworkFilter] = useLocalState(
+    context,
+    'networkFilter',
+    ''
+  );
   const { activeCamera, allNetworks } = data;
   allNetworks.sort();
   const cameras = selectCameras(data.cameras, searchText, networkFilter);
   return (
     <Fragment>
-      <Input fluid mb={1} placeholder="Search for a camera" onInput={(e, value) => setSearchText(value)} />
+      <Input
+        fluid
+        mb={1}
+        placeholder="Search for a camera"
+        onInput={(e, value) => setSearchText(value)}
+      />
       <Dropdown
         mb={1}
         width="177px"
@@ -112,7 +127,9 @@ export const CameraConsoleSearch = (props, context) => {
               'Button--fluid',
               'Button--color--transparent',
               'Button--ellipsis',
-              activeCamera && camera.name === activeCamera.name && 'Button--selected',
+              activeCamera &&
+                camera.name === activeCamera.name &&
+                'Button--selected',
             ])}
             onClick={() => {
               refocusLayout();

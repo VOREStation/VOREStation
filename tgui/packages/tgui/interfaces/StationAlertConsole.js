@@ -18,7 +18,9 @@ export const StationAlertConsoleContent = (props, context) => {
   return categories.map((category) => (
     <Section key={category.category} title={category.category}>
       <ul>
-        {category.alarms.length === 0 && <li className="color-good">Systems Nominal</li>}
+        {category.alarms.length === 0 && (
+          <li className="color-good">Systems Nominal</li>
+        )}
         {category.alarms.map((alarm) => {
           let footer = '';
 
@@ -42,13 +44,19 @@ export const StationAlertConsoleContent = (props, context) => {
               </Section>
             );
           } else if (alarm.lost_sources) {
-            footer = <Box color="bad">Lost Alarm Sources: {alarm.lost_sources}</Box>;
+            footer = (
+              <Box color="bad">Lost Alarm Sources: {alarm.lost_sources}</Box>
+            );
           }
 
           return (
             <li key={alarm.name}>
               {alarm.name}
-              {alarm.origin_lost ? <Box color="bad">Alarm Origin Lost.</Box> : ''}
+              {alarm.origin_lost ? (
+                <Box color="bad">Alarm Origin Lost.</Box>
+              ) : (
+                ''
+              )}
               {footer}
             </li>
           );

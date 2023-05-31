@@ -13,11 +13,17 @@ export const TelecommsLogBrowser = (props, context) => {
     <Window width={575} height={450} resizable>
       <Window.Content scrollable>
         {temp ? (
-          <NoticeBox danger={temp.color === 'bad'} warning={temp.color !== 'bad'}>
+          <NoticeBox
+            danger={temp.color === 'bad'}
+            warning={temp.color !== 'bad'}>
             <Box display="inline-box" verticalAlign="middle">
               {temp.text}
             </Box>
-            <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
+            <Button
+              icon="times-circle"
+              float="right"
+              onClick={() => act('cleartemp')}
+            />
             <Box clear="both" />
           </NoticeBox>
         ) : null}
@@ -27,7 +33,11 @@ export const TelecommsLogBrowser = (props, context) => {
               label="Current Network"
               buttons={
                 <Fragment>
-                  <Button icon="search" content="Refresh" onClick={() => act('scan')} />
+                  <Button
+                    icon="search"
+                    content="Refresh"
+                    onClick={() => act('scan')}
+                  />
                   <Button
                     color="bad"
                     icon="exclamation-triangle"
@@ -37,7 +47,11 @@ export const TelecommsLogBrowser = (props, context) => {
                   />
                 </Fragment>
               }>
-              <Button content={network} icon="pen" onClick={() => act('network')} />
+              <Button
+                content={network}
+                icon="pen"
+                onClick={() => act('network')}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -63,7 +77,12 @@ const TelecommsServerSelection = (props, context) => {
     return (
       <Section title="Detected Telecommunications Servers">
         <Box color="bad">No servers detected.</Box>
-        <Button fluid content="Scan" icon="search" onClick={() => act('scan')} />
+        <Button
+          fluid
+          content="Scan"
+          icon="search"
+          onClick={() => act('scan')}
+        />
       </Section>
     );
   }
@@ -72,8 +91,14 @@ const TelecommsServerSelection = (props, context) => {
     <Section title="Detected Telecommunications Servers">
       <LabeledList>
         {servers.map((server) => (
-          <LabeledList.Item key={server.id} label={server.name + ' (' + server.id + ')'}>
-            <Button content="View" icon="eye" onClick={() => act('view', { id: server.id })} />
+          <LabeledList.Item
+            key={server.id}
+            label={server.name + ' (' + server.id + ')'}>
+            <Button
+              content="View"
+              icon="eye"
+              onClick={() => act('view', { id: server.id })}
+            />
           </LabeledList.Item>
         ))}
       </LabeledList>
@@ -88,7 +113,9 @@ const TelecommsSelectedServer = (props, context) => {
   return (
     <Section
       title={'Server (' + server.id + ')'}
-      buttons={<Button content="Return" icon="undo" onClick={() => act('mainmenu')} />}>
+      buttons={
+        <Button content="Return" icon="undo" onClick={() => act('mainmenu')} />
+      }>
       <LabeledList>
         <LabeledList.Item label="Total Recorded Traffic">
           {server.totalTraffic >= 1024
@@ -122,13 +149,22 @@ const TelecommsSelectedServer = (props, context) => {
                   }>
                   {log.input_type === 'Execution Error' ? (
                     <LabeledList>
-                      <LabeledList.Item label="Data type">Error</LabeledList.Item>
-                      <LabeledList.Item label="Output">{log.parameters['message']}</LabeledList.Item>
+                      <LabeledList.Item label="Data type">
+                        Error
+                      </LabeledList.Item>
+                      <LabeledList.Item label="Output">
+                        {log.parameters['message']}
+                      </LabeledList.Item>
                       <LabeledList.Item label="Delete">
-                        <Button icon="trash" onClick={() => act('delete', { id: log.id })} />
+                        <Button
+                          icon="trash"
+                          onClick={() => act('delete', { id: log.id })}
+                        />
                       </LabeledList.Item>
                     </LabeledList>
-                  ) : universal_translate || log.parameters['uspeech'] || log.parameters['intelligible'] ? (
+                  ) : universal_translate ||
+                    log.parameters['uspeech'] ||
+                    log.parameters['intelligible'] ? (
                     <TelecommsLog log={log} />
                   ) : (
                     <TelecommsLog error />
@@ -146,7 +182,9 @@ const TelecommsLog = (props, context) => {
   const { act, data } = useBackend(context);
   const { log, error } = props;
 
-  const { timecode, name, race, job, message } = (log && log.parameters) || { 'none': 'none' };
+  const { timecode, name, race, job, message } = (log && log.parameters) || {
+    'none': 'none',
+  };
 
   if (error) {
     return (

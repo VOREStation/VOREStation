@@ -21,7 +21,7 @@ let lpMarkersByName = {};
 /**
  * Marks a certain spot in the code for later measurements.
  */
-const mark = (name: string | number, timestamp?: number) => {
+const mark = (name, timestamp) => {
   if (process.env.NODE_ENV !== 'production') {
     if (supportsPerf && !timestamp) {
       hpMarkersByName[name] = performance.now();
@@ -35,7 +35,7 @@ const mark = (name: string | number, timestamp?: number) => {
  *
  * Use logger.log() to print the measurement.
  */
-const measure = (markerNameA: string | number, markerNameB: string | number) => {
+const measure = (markerNameA, markerNameB) => {
   if (process.env.NODE_ENV !== 'production') {
     let markerA = hpMarkersByName[markerNameA];
     let markerB = hpMarkersByName[markerNameB];
@@ -48,9 +48,11 @@ const measure = (markerNameA: string | number, markerNameB: string | number) => 
   }
 };
 
-const formatDuration = (duration: number) => {
+const formatDuration = (duration) => {
   const durationInFrames = duration / FRAME_DURATION;
-  return duration.toFixed(duration < 10 ? 1 : 0) + 'ms ' + '(' + durationInFrames.toFixed(2) + ' frames)';
+  // prettier-ignore
+  return duration.toFixed(duration < 10 ? 1 : 0) + 'ms '
+    + '(' + durationInFrames.toFixed(2) + ' frames)';
 };
 
 export const perf = {

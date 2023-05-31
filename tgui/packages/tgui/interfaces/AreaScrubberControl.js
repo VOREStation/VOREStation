@@ -14,7 +14,12 @@ export const AreaScrubberControl = (props, context) => {
     return (
       <Section title="Error">
         <Box color="bad">No Scrubbers Detected.</Box>
-        <Button fluid icon="search" content="Scan" onClick={() => act('scan')} />
+        <Button
+          fluid
+          icon="search"
+          content="Scan"
+          onClick={() => act('scan')}
+        />
       </Section>
     );
   }
@@ -25,7 +30,13 @@ export const AreaScrubberControl = (props, context) => {
         <Section>
           <Flex wrap="wrap">
             <Flex.Item m="2px" basis="49%">
-              <Button textAlign="center" fluid icon="search" content="Scan" onClick={() => act('scan')} />
+              <Button
+                textAlign="center"
+                fluid
+                icon="search"
+                content="Scan"
+                onClick={() => act('scan')}
+              />
             </Flex.Item>
             <Flex.Item m="2px" basis="49%" grow={1}>
               <Button
@@ -38,10 +49,22 @@ export const AreaScrubberControl = (props, context) => {
               />
             </Flex.Item>
             <Flex.Item m="2px" basis="49%">
-              <Button textAlign="center" fluid icon="toggle-on" content="All On" onClick={() => act('allon')} />
+              <Button
+                textAlign="center"
+                fluid
+                icon="toggle-on"
+                content="All On"
+                onClick={() => act('allon')}
+              />
             </Flex.Item>
             <Flex.Item m="2px" basis="49%" grow={1}>
-              <Button textAlign="center" fluid icon="toggle-off" content="All Off" onClick={() => act('alloff')} />
+              <Button
+                textAlign="center"
+                fluid
+                icon="toggle-off"
+                content="All Off"
+                onClick={() => act('alloff')}
+              />
             </Flex.Item>
           </Flex>
           <Flex wrap="wrap">
@@ -72,10 +95,18 @@ const BigScrubber = (props, context) => {
         onClick={() => act('toggle', { id: scrubber.id })}
       />
       <LabeledList>
-        <LabeledList.Item label="Pressure">{scrubber.pressure} kPa</LabeledList.Item>
-        <LabeledList.Item label="Flow Rate">{scrubber.flow_rate} L/s</LabeledList.Item>
+        <LabeledList.Item label="Pressure">
+          {scrubber.pressure} kPa
+        </LabeledList.Item>
+        <LabeledList.Item label="Flow Rate">
+          {scrubber.flow_rate} L/s
+        </LabeledList.Item>
         <LabeledList.Item label="Load">{scrubber.load} W</LabeledList.Item>
-        {showArea && <LabeledList.Item label="Area">{toTitleCase(scrubber.area)}</LabeledList.Item>}
+        {showArea && (
+          <LabeledList.Item label="Area">
+            {toTitleCase(scrubber.area)}
+          </LabeledList.Item>
+        )}
       </LabeledList>
     </Section>
   );

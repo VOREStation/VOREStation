@@ -41,9 +41,12 @@ export const CrewMonitorContent = (props, context) => {
   const { act, data, config } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
 
-  const crew = flow([sortBy((cm) => cm.name), sortBy((cm) => cm?.x), sortBy((cm) => cm?.y), sortBy((cm) => cm?.realZ)])(
-    data.crewmembers || []
-  );
+  const crew = flow([
+    sortBy((cm) => cm.name),
+    sortBy((cm) => cm?.x),
+    sortBy((cm) => cm?.y),
+    sortBy((cm) => cm?.realZ),
+  ])(data.crewmembers || []);
 
   const [zoom, setZoom] = useLocalState(context, 'zoom', 1);
 
@@ -124,10 +127,16 @@ export const CrewMonitorContent = (props, context) => {
   return (
     <Fragment>
       <Tabs>
-        <Tabs.Tab key="DataView" selected={0 === tabIndex} onClick={() => setTabIndex(0)}>
+        <Tabs.Tab
+          key="DataView"
+          selected={0 === tabIndex}
+          onClick={() => setTabIndex(0)}>
           <Icon name="table" /> Data View
         </Tabs.Tab>
-        <Tabs.Tab key="MapView" selected={1 === tabIndex} onClick={() => setTabIndex(1)}>
+        <Tabs.Tab
+          key="MapView"
+          selected={1 === tabIndex}
+          onClick={() => setTabIndex(1)}>
           <Icon name="map-marked-alt" /> Map View
         </Tabs.Tab>
       </Tabs>
@@ -143,7 +152,9 @@ const CrewMonitorMapView = (props, context) => {
     <Box height="526px" mb="0.5rem" overflow="hidden">
       <NanoMap onZoom={(v) => setZoom(v)}>
         {data.crewmembers
-          .filter((x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel)
+          .filter(
+            (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel
+          )
           .map((cm) => (
             <NanoMap.Marker
               key={cm.ref}

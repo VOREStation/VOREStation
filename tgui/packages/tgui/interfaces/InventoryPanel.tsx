@@ -22,7 +22,10 @@ export const InventoryPanel = (props, context) => {
               slots.length &&
               slots.map((slot) => (
                 <LabeledList.Item key={slot.name} label={slot.name}>
-                  <Button mb={-1} icon={slot.item ? 'hand-paper' : 'gift'} onClick={() => act(slot.act)}>
+                  <Button
+                    mb={-1}
+                    icon={slot.item ? 'hand-paper' : 'gift'}
+                    onClick={() => act(slot.act)}>
                     {slot.item || 'Nothing'}
                   </Button>
                 </LabeledList.Item>

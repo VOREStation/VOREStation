@@ -43,7 +43,8 @@ const NtosEmailClientDownloading = (props, context) => {
         </LabeledList.Item>
         <LabeledList.Item label="Progress">
           <ProgressBar color="good" value={down_progress} maxValue={down_size}>
-            {down_progress}/{down_size} ({round((down_progress / down_size) * 100, 1)}%)
+            {down_progress}/{down_size} (
+            {round((down_progress / down_size) * 100, 1)}%)
           </ProgressBar>
         </LabeledList.Item>
       </LabeledList>
@@ -71,9 +72,24 @@ const NtosEmailClientContent = (props, context) => {
       title={'Logged in as: ' + current_account}
       buttons={
         <Fragment>
-          <Button icon="plus" tooltip="New Message" tooltipPosition="left" onClick={() => act('new_message')} />
-          <Button icon="cogs" tooltip="Change Password" tooltipPosition="left" onClick={() => act('changepassword')} />
-          <Button icon="sign-out-alt" tooltip="Log Out" tooltipPosition="left" onClick={() => act('logout')} />
+          <Button
+            icon="plus"
+            tooltip="New Message"
+            tooltipPosition="left"
+            onClick={() => act('new_message')}
+          />
+          <Button
+            icon="cogs"
+            tooltip="Change Password"
+            tooltipPosition="left"
+            onClick={() => act('changepassword')}
+          />
+          <Button
+            icon="sign-out-alt"
+            tooltip="Log Out"
+            tooltipPosition="left"
+            onClick={() => act('logout')}
+          />
         </Fragment>
       }>
       {content}
@@ -89,13 +105,19 @@ const NtosEmailClientInbox = (props, context) => {
   return (
     <Section level={2} noTopPadding>
       <Tabs>
-        <Tabs.Tab selected={folder === 'Inbox'} onClick={() => act('set_folder', { 'set_folder': 'Inbox' })}>
+        <Tabs.Tab
+          selected={folder === 'Inbox'}
+          onClick={() => act('set_folder', { 'set_folder': 'Inbox' })}>
           Inbox
         </Tabs.Tab>
-        <Tabs.Tab selected={folder === 'Spam'} onClick={() => act('set_folder', { 'set_folder': 'Spam' })}>
+        <Tabs.Tab
+          selected={folder === 'Spam'}
+          onClick={() => act('set_folder', { 'set_folder': 'Spam' })}>
           Spam
         </Tabs.Tab>
-        <Tabs.Tab selected={folder === 'Deleted'} onClick={() => act('set_folder', { 'set_folder': 'Deleted' })}>
+        <Tabs.Tab
+          selected={folder === 'Deleted'}
+          onClick={() => act('set_folder', { 'set_folder': 'Deleted' })}>
           Deleted
         </Tabs.Tab>
       </Tabs>
@@ -114,8 +136,16 @@ const NtosEmailClientInbox = (props, context) => {
                 <Table.Cell>{msg.title}</Table.Cell>
                 <Table.Cell>{msg.timestamp}</Table.Cell>
                 <Table.Cell>
-                  <Button icon="eye" onClick={() => act('view', { view: msg.uid })} tooltip="View" />
-                  <Button icon="share" onClick={() => act('reply', { reply: msg.uid })} tooltip="Reply" />
+                  <Button
+                    icon="eye"
+                    onClick={() => act('view', { view: msg.uid })}
+                    tooltip="View"
+                  />
+                  <Button
+                    icon="share"
+                    onClick={() => act('reply', { reply: msg.uid })}
+                    tooltip="Reply"
+                  />
                   <Button
                     color="bad"
                     icon="trash"
@@ -227,7 +257,13 @@ const NtosEmailClientAddressBook = (props, context) => {
     <Section
       title="Address Book"
       level={2}
-      buttons={<Button color="bad" icon="times" onClick={() => act('set_recipient', { set_recipient: null })} />}>
+      buttons={
+        <Button
+          color="bad"
+          icon="times"
+          onClick={() => act('set_recipient', { set_recipient: null })}
+        />
+      }>
       {accounts.map((acc) => (
         <Button
           key={acc.login}
@@ -267,12 +303,20 @@ const NtosEmailClientNewMessage = (props, context) => {
       }>
       <LabeledList>
         <LabeledList.Item label="Title">
-          <Input fluid value={msg_title} onInput={(e, val) => act('edit_title', { val: val })} />
+          <Input
+            fluid
+            value={msg_title}
+            onInput={(e, val) => act('edit_title', { val: val })}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Recipient" verticalAlign="top">
           <Flex>
             <Flex.Item grow={1}>
-              <Input fluid value={msg_recipient} onInput={(e, val) => act('edit_recipient', { val: val })} />
+              <Input
+                fluid
+                value={msg_recipient}
+                onInput={(e, val) => act('edit_recipient', { val: val })}
+              />
             </Flex.Item>
             <Flex.Item>
               <Button
@@ -288,7 +332,10 @@ const NtosEmailClientNewMessage = (props, context) => {
           label="Attachments"
           buttons={
             (msg_hasattachment && (
-              <Button color="bad" icon="times" onClick={() => act('remove_attachment')}>
+              <Button
+                color="bad"
+                icon="times"
+                onClick={() => act('remove_attachment')}>
                 Remove Attachment
               </Button>
             )) || (
@@ -331,7 +378,15 @@ const NtosEmailClientError = (props, context) => {
   const { act } = useBackend(context);
   const { error } = props;
   return (
-    <Section title="Notification" buttons={<Button icon="arrow-left" content="Return" onClick={() => act('reset')} />}>
+    <Section
+      title="Notification"
+      buttons={
+        <Button
+          icon="arrow-left"
+          content="Return"
+          onClick={() => act('reset')}
+        />
+      }>
       <Box color="bad">{error}</Box>
     </Section>
   );
@@ -346,10 +401,18 @@ const NtosEmailClientLogin = (props, context) => {
     <Section title="Please Log In">
       <LabeledList>
         <LabeledList.Item label="Email address">
-          <Input fluid value={stored_login} onInput={(e, val) => act('edit_login', { val: val })} />
+          <Input
+            fluid
+            value={stored_login}
+            onInput={(e, val) => act('edit_login', { val: val })}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Password">
-          <Input fluid value={stored_password} onInput={(e, val) => act('edit_password', { val: val })} />
+          <Input
+            fluid
+            value={stored_password}
+            onInput={(e, val) => act('edit_password', { val: val })}
+          />
         </LabeledList.Item>
       </LabeledList>
       <Button icon="sign-in-alt" onClick={() => act('login')}>

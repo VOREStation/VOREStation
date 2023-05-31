@@ -27,17 +27,26 @@ export const pAIAtmos = (props, context) => {
       <Window.Content scrollable>
         <Section>
           <LabeledList>
-            {filter((i) => i.val !== '0' || i.entry === 'Pressure' || i.entry === 'Temperature')(aircontents).map(
-              (item) => (
-                <LabeledList.Item
-                  key={item.entry}
-                  label={item.entry}
-                  color={getItemColor(item.val, item.bad_low, item.poor_low, item.poor_high, item.bad_high)}>
-                  {item.val}
-                  {decodeHtmlEntities(item.units)}
-                </LabeledList.Item>
-              )
-            )}
+            {filter(
+              (i) =>
+                i.val !== '0' ||
+                i.entry === 'Pressure' ||
+                i.entry === 'Temperature'
+            )(aircontents).map((item) => (
+              <LabeledList.Item
+                key={item.entry}
+                label={item.entry}
+                color={getItemColor(
+                  item.val,
+                  item.bad_low,
+                  item.poor_low,
+                  item.poor_high,
+                  item.bad_high
+                )}>
+                {item.val}
+                {decodeHtmlEntities(item.units)}
+              </LabeledList.Item>
+            ))}
           </LabeledList>
         </Section>
       </Window.Content>

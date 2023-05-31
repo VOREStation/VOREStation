@@ -36,7 +36,10 @@ export const TraitSelection = (props, context) => {
         <Section title="Trait Selection" scrollable>
           <Tabs vertical scrollable>
             {names.map((name) => (
-              <Tabs.Tab key={name} selected={name === selection} onClick={() => act('select_trait', { name })}>
+              <Tabs.Tab
+                key={name}
+                selected={name === selection}
+                onClick={() => act('select_trait', { name })}>
                 <Box inline>{name}</Box>
               </Tabs.Tab>
             ))}
@@ -74,7 +77,11 @@ export const TraitDescription = (props, context) => {
       <b>Details & How to Use:</b>
       <br />
       <br />
-      <div dangerouslySetInnerHTML={{ __html: tutorials[name] as unknown as string }} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: tutorials[name] as unknown as string,
+        }}
+      />
     </Section>
   );
 };

@@ -21,7 +21,10 @@ export const AgentCard = (props, context) => {
             {entries.map((a) => (
               <Table.Row key={a.name}>
                 <Table.Cell>
-                  <Button onClick={() => act(a.name.toLowerCase().replace(/ /g, ''))} icon="cog" />
+                  <Button
+                    onClick={() => act(a.name.toLowerCase().replace(/ /g, ''))}
+                    icon="cog"
+                  />
                 </Table.Cell>
                 <Table.Cell>{a.name}</Table.Cell>
                 <Table.Cell>{a.value}</Table.Cell>

@@ -15,7 +15,10 @@ export const AssemblyProx = (props, context) => {
             <LabeledList.Item
               label="Timer"
               buttons={
-                <Button icon="stopwatch" selected={timing} onClick={() => act('timing')}>
+                <Button
+                  icon="stopwatch"
+                  selected={timing}
+                  onClick={() => act('timing')}>
                   {timing ? 'Counting Down' : 'Disabled'}
                 </Button>
               }>
@@ -42,7 +45,11 @@ export const AssemblyProx = (props, context) => {
               />
             </LabeledList.Item>
             <LabeledList.Item label="Armed">
-              <Button mr={1} icon={scanning ? 'lock' : 'lock-open'} selected={scanning} onClick={() => act('scanning')}>
+              <Button
+                mr={1}
+                icon={scanning ? 'lock' : 'lock-open'}
+                selected={scanning}
+                onClick={() => act('scanning')}>
                 {scanning ? 'ARMED' : 'Unarmed'}
               </Button>
               Movement sensor is active when armed!
