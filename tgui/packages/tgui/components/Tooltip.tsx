@@ -20,13 +20,16 @@ const DEFAULT_OPTIONS = {
   ],
 };
 
-const NULL_RECT = {
+const NULL_RECT: DOMRect = {
   width: 0,
   height: 0,
   top: 0,
   right: 0,
   bottom: 0,
   left: 0,
+  x: 0,
+  y: 0,
+  toJSON: () => null,
 };
 
 export class Tooltip extends Component<TooltipProps, TooltipState> {
@@ -38,7 +41,11 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
   static singletonPopper: ReturnType<typeof createPopper> | undefined;
   static currentHoveredElement: Element | undefined;
   static virtualElement: VirtualElement = {
-    getBoundingClientRect: () => (Tooltip.currentHoveredElement?.getBoundingClientRect() as DOMRect) ?? NULL_RECT,
+    // prettier-ignore
+    getBoundingClientRect: () => (
+      Tooltip.currentHoveredElement?.getBoundingClientRect()
+        ?? NULL_RECT
+    ),
   };
 
   getDOMNode() {
@@ -89,6 +96,7 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
     Tooltip.currentHoveredElement = undefined;
     Tooltip.renderedTooltip!.style.opacity = '0';
   }
+
   renderPopperContent() {
     const renderedTooltip = Tooltip.renderedTooltip;
     if (!renderedTooltip) {
@@ -101,10 +109,14 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
       () => {
         let singletonPopper = Tooltip.singletonPopper;
         if (singletonPopper === undefined) {
-          singletonPopper = createPopper(Tooltip.virtualElement, renderedTooltip!, {
-            ...DEFAULT_OPTIONS,
-            placement: this.props.position || 'auto',
-          });
+          singletonPopper = createPopper(
+            Tooltip.virtualElement,
+            renderedTooltip!,
+            {
+              ...DEFAULT_OPTIONS,
+              placement: this.props.position || 'auto',
+            }
+          );
 
           Tooltip.singletonPopper = singletonPopper;
         } else {

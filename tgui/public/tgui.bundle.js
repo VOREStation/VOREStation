@@ -28455,10 +28455,10 @@ exports.useSharedState = useSharedState;
 
 /***/ }),
 
-/***/ "./packages/tgui/components/AnimatedNumber.js":
-/*!****************************************************!*\
-  !*** ./packages/tgui/components/AnimatedNumber.js ***!
-  \****************************************************/
+/***/ "./packages/tgui/components/AnimatedNumber.tsx":
+/*!*****************************************************!*\
+  !*** ./packages/tgui/components/AnimatedNumber.tsx ***!
+  \*****************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -28467,38 +28467,67 @@ exports.useSharedState = useSharedState;
 exports.__esModule = true;
 exports.AnimatedNumber = void 0;
 
-var _math = __webpack_require__(/*! common/math */ "./packages/common/math.ts");
-
 var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
+
+var _math = __webpack_require__(/*! common/math */ "./packages/common/math.ts");
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function () { function _setPrototypeOf(o, p) { o.__proto__ = p; return o; } return _setPrototypeOf; }(); return _setPrototypeOf(o, p); }
 
-var FPS = 20;
-var Q = 0.5;
-
 var isSafeNumber = function isSafeNumber(value) {
+  // prettier-ignore
   return typeof value === 'number' && Number.isFinite(value) && !Number.isNaN(value);
 };
+
+/**
+ * Animated numbers are animated at roughly 60 frames per second.
+ */
+var SIXTY_HZ = 1000.0 / 60.0;
+/**
+ * The exponential moving average coefficient. Larger values result in a faster
+ * convergence.
+ */
+
+var Q = 0.8333;
+/**
+ * A small number.
+ */
+
+var EPSILON = 10e-4;
+/**
+ * An animated number label. Shows a number, formatted with an optionally
+ * provided function, and animates it towards its target value.
+ */
 
 var AnimatedNumber = /*#__PURE__*/function (_Component) {
   _inheritsLoose(AnimatedNumber, _Component);
 
+  /**
+   * The inner `<span/>` being updated sixty times per second.
+   */
+
+  /**
+   * The interval being used to update the inner span.
+   */
+
+  /**
+   * The current value. This values approaches the target value.
+   */
   function AnimatedNumber(props) {
     var _this;
 
     _this = _Component.call(this, props) || this;
-    _this.timer = null;
-    _this.state = {
-      value: 0
-    }; // Use provided initial state
+    _this.ref = (0, _inferno.createRef)();
+    _this.interval = void 0;
+    _this.currentValue = 0;
+    var initial = props.initial,
+        value = props.value;
 
-    if (isSafeNumber(props.initial)) {
-      _this.state.value = props.initial;
-    } // Set initial state with value provided in props
-    else if (isSafeNumber(props.value)) {
-      _this.state.value = Number(props.value);
+    if (initial !== undefined && isSafeNumber(initial)) {
+      _this.currentValue = initial;
+    } else if (isSafeNumber(value)) {
+      _this.currentValue = value;
     }
 
     return _this;
@@ -28506,34 +28535,11 @@ var AnimatedNumber = /*#__PURE__*/function (_Component) {
 
   var _proto = AnimatedNumber.prototype;
 
-  _proto.tick = function () {
-    function tick() {
-      var props = this.props,
-          state = this.state;
-      var currentValue = Number(state.value);
-      var targetValue = Number(props.value); // Avoid poisoning our state with infinities and NaN
-
-      if (!isSafeNumber(targetValue)) {
-        return;
-      } // Smooth the value using an exponential moving average
-
-
-      var value = currentValue * Q + targetValue * (1 - Q);
-      this.setState({
-        value: value
-      });
-    }
-
-    return tick;
-  }();
-
   _proto.componentDidMount = function () {
     function componentDidMount() {
-      var _this2 = this;
-
-      this.timer = setInterval(function () {
-        return _this2.tick();
-      }, 1000 / FPS);
+      if (this.currentValue !== this.props.value) {
+        this.startTicking();
+      }
     }
 
     return componentDidMount;
@@ -28541,42 +28547,132 @@ var AnimatedNumber = /*#__PURE__*/function (_Component) {
 
   _proto.componentWillUnmount = function () {
     function componentWillUnmount() {
-      clearTimeout(this.timer);
+      // Stop animating when the component is unmounted.
+      this.stopTicking();
     }
 
     return componentWillUnmount;
   }();
 
-  _proto.render = function () {
-    function render() {
-      var props = this.props,
-          state = this.state;
-      var format = props.format,
-          children = props.children;
-      var currentValue = state.value;
-      var targetValue = props.value; // Directly display values which can't be animated
+  _proto.shouldComponentUpdate = function () {
+    function shouldComponentUpdate(newProps) {
+      if (newProps.value !== this.props.value) {
+        // The target value has been adjusted; start animating if we aren't
+        // already.
+        this.startTicking();
+      } // We render the inner `span` directly using a ref to bypass inferno diffing
+      // and reach 60 frames per second--tell inferno not to re-render this tree.
 
-      if (!isSafeNumber(targetValue)) {
-        return targetValue || null;
+
+      return false;
+    }
+
+    return shouldComponentUpdate;
+  }()
+  /**
+   * Starts animating the inner span. If the inner span is already animating,
+   * this is a no-op.
+   */
+  ;
+
+  _proto.startTicking = function () {
+    function startTicking() {
+      var _this2 = this;
+
+      if (this.interval !== undefined) {
+        // We're already ticking; do nothing.
+        return;
       }
 
-      var formattedValue; // Use custom formatter
+      this.interval = setInterval(function () {
+        return _this2.tick();
+      }, SIXTY_HZ);
+    }
+
+    return startTicking;
+  }()
+  /**
+   * Stops animating the inner span.
+   */
+  ;
+
+  _proto.stopTicking = function () {
+    function stopTicking() {
+      if (this.interval === undefined) {
+        // We're not ticking; do nothing.
+        return;
+      }
+
+      clearInterval(this.interval);
+      this.interval = undefined;
+    }
+
+    return stopTicking;
+  }()
+  /**
+   * Steps forward one frame.
+   */
+  ;
+
+  _proto.tick = function () {
+    function tick() {
+      var currentValue = this.currentValue;
+      var value = this.props.value;
+
+      if (isSafeNumber(value)) {
+        // Converge towards the value.
+        this.currentValue = currentValue * Q + value * (1 - Q);
+      } else {
+        // If the value is unsafe, we're never going to converge, so stop ticking.
+        this.stopTicking();
+      }
+
+      if (Math.abs(value - this.currentValue) < Math.max(EPSILON, EPSILON * value)) {
+        // We're about as close as we're going to get--snap to the value and
+        // stop ticking.
+        this.currentValue = value;
+        this.stopTicking();
+      }
+
+      if (this.ref.current) {
+        // Directly update the inner span, without bothering inferno.
+        this.ref.current.textContent = this.getText();
+      }
+    }
+
+    return tick;
+  }()
+  /**
+   * Gets the inner text of the span.
+   */
+  ;
+
+  _proto.getText = function () {
+    function getText() {
+      var props = this.props,
+          currentValue = this.currentValue;
+      var format = props.format,
+          value = props.value;
+
+      if (!isSafeNumber(value)) {
+        return String(value);
+      }
 
       if (format) {
-        formattedValue = format(currentValue);
-      } // Fix our animated precision at target value's precision.
-      else {
-        var fraction = String(targetValue).split('.')[1];
-        var precision = fraction ? fraction.length : 0;
-        formattedValue = (0, _math.toFixed)(currentValue, (0, _math.clamp)(precision, 0, 8));
-      } // Use a custom render function
-
-
-      if (typeof children === 'function') {
-        return children(formattedValue, currentValue);
+        return format(this.currentValue);
       }
 
-      return formattedValue;
+      var fraction = String(value).split('.')[1];
+      var precision = fraction ? fraction.length : 0;
+      return (0, _math.toFixed)(currentValue, (0, _math.clamp)(precision, 0, 8));
+    }
+
+    return getText;
+  }();
+
+  _proto.render = function () {
+    function render() {
+      return (0, _inferno.createVNode)(1, "span", null, this.getText(), 0, null, null, this.ref);
     }
 
     return render;
@@ -28950,8 +29046,6 @@ var styleMapperByPropName = {
   verticalAlign: mapRawPropTo('vertical-align'),
   textTransform: mapRawPropTo('text-transform'),
   // VOREStation Addition
-  unselectable: mapRawPropTo('unselectable'),
-  // VOREStation Addition
   // Boolean props
   inline: mapBooleanPropTo('display', 'inline-block'),
   bold: mapBooleanPropTo('font-weight', 'bold'),
@@ -28980,17 +29074,10 @@ var styleMapperByPropName = {
   backgroundColor: mapColorPropTo('background-color'),
   // VOREStation Addition Start
   // Flex props
-  order: mapRawPropTo('order'),
-  flexDirection: mapRawPropTo('flex-direction'),
   flexGrow: mapRawPropTo('flex-grow'),
-  flexShrink: mapRawPropTo('flex-shrink'),
   flexWrap: mapRawPropTo('flex-wrap'),
-  flexFlow: mapRawPropTo('flex-flow'),
   flexBasis: mapRawPropTo('flex-basis'),
   flex: mapRawPropTo('flex'),
-  alignItems: mapRawPropTo('align-items'),
-  justifyContent: mapRawPropTo('justify-content'),
-  alignSelf: mapRawPropTo('align-self'),
   // VOREStation Addition End
   // Utility props
   fillPositionedParent: function () {
@@ -29102,7 +29189,7 @@ Box.defaultHooks = _react.pureComponentHooks;
 
 
 exports.__esModule = true;
-exports.ButtonInput = exports.ButtonConfirm = exports.ButtonCheckbox = exports.Button = void 0;
+exports.ButtonInput = exports.ButtonFile = exports.ButtonConfirm = exports.ButtonCheckbox = exports.Button = void 0;
 
 var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
 
@@ -29114,14 +29201,21 @@ var _logging = __webpack_require__(/*! ../logging */ "./packages/tgui/logging.ts
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
-var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.js");
+var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.tsx");
 
 var _Tooltip = __webpack_require__(/*! ./Tooltip */ "./packages/tgui/components/Tooltip.tsx");
 
-var _excluded = ["className", "fluid", "icon", "iconRotation", "iconSpin", "iconColor", "iconPosition", "iconSize", "color", "disabled", "selected", "tooltip", "tooltipPosition", "ellipsis", "compact", "circular", "content", "children", "onclick", "onClick"],
+var _excluded = ["className", "fluid", "icon", "iconRotation", "iconSpin", "iconColor", "iconPosition", "iconSize", "color", "disabled", "selected", "tooltip", "tooltipPosition", "ellipsis", "compact", "circular", "content", "children", "onclick", "onClick", "verticalAlignContent"],
     _excluded2 = ["checked"],
     _excluded3 = ["confirmContent", "confirmColor", "confirmIcon", "icon", "color", "content", "onClick"],
-    _excluded4 = ["fluid", "content", "icon", "iconRotation", "iconSpin", "tooltip", "tooltipPosition", "color", "placeholder", "maxLength"];
+    _excluded4 = ["fluid", "content", "icon", "iconRotation", "iconSpin", "tooltip", "tooltipPosition", "color", "placeholder", "maxLength"],
+    _excluded5 = ["onSelectFiles", "accept", "multiple"];
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == typeof value && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function () { function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; } return next; }(); return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function () { function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; } return next; }(); }, exports.values = values, Context.prototype = { constructor: Context, reset: function () { function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } } return reset; }(), stop: function () { function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; } return stop; }(), dispatchException: function () { function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } } return dispatchException; }(), abrupt: function () { function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); } return abrupt; }(), complete: function () { function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; } return complete; }(), finish: function () { function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } } return finish; }(), "catch": function () { function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); } return _catch; }(), delegateYield: function () { function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } return delegateYield; }() }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 
@@ -29152,6 +29246,7 @@ var Button = function Button(props) {
       children = props.children,
       onclick = props.onclick,
       onClick = props.onClick,
+      verticalAlignContent = props.verticalAlignContent,
       rest = _objectWithoutPropertiesLoose(props, _excluded);
 
   var hasContent = !!(content || children); // A warning about the lowercase onclick
@@ -29171,7 +29266,7 @@ var Button = function Button(props) {
     rest.unselectable = true;
   }
 
-  var buttonContent = (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Button', fluid && 'Button--fluid', disabled && 'Button--disabled', selected && 'Button--selected', hasContent && 'Button--hasContent', ellipsis && 'Button--ellipsis', circular && 'Button--circular', compact && 'Button--compact', iconPosition && 'Button--iconPosition--' + iconPosition, color && typeof color === 'string' ? 'Button--color--' + color : 'Button--color--default', className, (0, _Box.computeBoxClassName)(rest)]), [icon && iconPosition !== 'right' && (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
+  var buttonContent = (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Button', fluid && 'Button--fluid', disabled && 'Button--disabled', selected && 'Button--selected', hasContent && 'Button--hasContent', ellipsis && 'Button--ellipsis', circular && 'Button--circular', compact && 'Button--compact', iconPosition && 'Button--iconPosition--' + iconPosition, verticalAlignContent && 'Button--flex', verticalAlignContent && fluid && 'Button--flex--fluid', verticalAlignContent && 'Button--verticalAlignContent--' + verticalAlignContent, color && typeof color === 'string' ? 'Button--color--' + color : 'Button--color--default', className, (0, _Box.computeBoxClassName)(rest)]), (0, _inferno.createVNode)(1, "div", "Button__content", [icon && iconPosition !== 'right' && (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
     "name": icon,
     "color": iconColor,
     "rotation": iconRotation,
@@ -29182,7 +29277,7 @@ var Button = function Button(props) {
     "rotation": iconRotation,
     "spin": iconSpin,
     "fontSize": iconSize
-  })], 0, Object.assign({
+  })], 0), 2, Object.assign({
     "tabIndex": !disabled && '0',
     "onKeyDown": function () {
       function onKeyDown(e) {
@@ -29473,6 +29568,144 @@ var ButtonInput = /*#__PURE__*/function (_Component2) {
 exports.ButtonInput = ButtonInput;
 Button.Input = ButtonInput;
 
+var ButtonFile = /*#__PURE__*/function (_Component3) {
+  _inheritsLoose(ButtonFile, _Component3);
+
+  function ButtonFile() {
+    var _this6;
+
+    _this6 = _Component3.call(this) || this;
+    _this6.inputRef = (0, _inferno.createRef)();
+    return _this6;
+  }
+
+  var _proto3 = ButtonFile.prototype;
+
+  _proto3.read = /*#__PURE__*/function () {
+    var _read = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function () {
+      function _callee(files) {
+        var promises;
+        return _regeneratorRuntime().wrap(function () {
+          function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  promises = Array.from(files).map(function (file) {
+                    var reader = new FileReader();
+                    return new Promise(function (resolve) {
+                      reader.onload = function () {
+                        return resolve(reader.result);
+                      };
+
+                      reader.readAsText(file);
+                    });
+                  });
+                  _context.next = 3;
+                  return Promise.all(promises);
+
+                case 3:
+                  return _context.abrupt("return", _context.sent);
+
+                case 4:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }
+
+          return _callee$;
+        }(), _callee);
+      }
+
+      return _callee;
+    }()));
+
+    function read(_x) {
+      return _read.apply(this, arguments);
+    }
+
+    return read;
+  }();
+
+  _proto3.render = function () {
+    function render() {
+      var _this7 = this;
+
+      var _this$props3 = this.props,
+          onSelectFiles = _this$props3.onSelectFiles,
+          accept = _this$props3.accept,
+          multiple = _this$props3.multiple,
+          rest = _objectWithoutPropertiesLoose(_this$props3, _excluded5);
+
+      var filePicker = (0, _inferno.createVNode)(64, "input", null, null, 1, {
+        "hidden": true,
+        "type": "file",
+        "accept": accept,
+        "multiple": multiple,
+        "onChange": function () {
+          var _onChange = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function () {
+            function _callee2() {
+              var files, readFiles;
+              return _regeneratorRuntime().wrap(function () {
+                function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        files = _this7.inputRef.current.files;
+
+                        if (!files.length) {
+                          _context2.next = 6;
+                          break;
+                        }
+
+                        _context2.next = 4;
+                        return _this7.read(files);
+
+                      case 4:
+                        readFiles = _context2.sent;
+                        onSelectFiles(multiple ? readFiles : readFiles[0]);
+
+                      case 6:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }
+
+                return _callee2$;
+              }(), _callee2);
+            }
+
+            return _callee2;
+          }()));
+
+          function onChange() {
+            return _onChange.apply(this, arguments);
+          }
+
+          return onChange;
+        }()
+      }, null, this.inputRef);
+      return (0, _inferno.createFragment)([(0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, Button, Object.assign({}, rest, {
+        "onClick": function () {
+          function onClick() {
+            _this7.inputRef.current.click();
+          }
+
+          return onClick;
+        }()
+      }))), filePicker], 0);
+    }
+
+    return render;
+  }();
+
+  return ButtonFile;
+}(_inferno.Component);
+
+exports.ButtonFile = ButtonFile;
+Button.File = ButtonFile;
+
 /***/ }),
 
 /***/ "./packages/tgui/components/ByondUi.js":
@@ -29565,7 +29798,8 @@ var getBoundingBox = function getBoundingBox(element) {
   var _window$devicePixelRa;
 
   var pixelRatio = (_window$devicePixelRa = window.devicePixelRatio) != null ? _window$devicePixelRa : 1;
-  var rect = element.getBoundingClientRect();
+  var rect = element.getBoundingClientRect(); // prettier-ignore
+
   return {
     pos: [rect.left * pixelRatio, rect.top * pixelRatio],
     size: [(rect.right - rect.left) * pixelRatio, (rect.bottom - rect.top) * pixelRatio]
@@ -29983,6 +30217,7 @@ var _excluded = ["content", "children", "className", "color", "backgroundColor"]
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 var ColorBox = function ColorBox(props) {
+  // prettier-ignore
   var content = props.content,
       children = props.children,
       className = props.className,
@@ -29997,6 +30232,96 @@ var ColorBox = function ColorBox(props) {
 
 exports.ColorBox = ColorBox;
 ColorBox.defaultHooks = _react.pureComponentHooks;
+
+/***/ }),
+
+/***/ "./packages/tgui/components/Dialog.tsx":
+/*!*********************************************!*\
+  !*** ./packages/tgui/components/Dialog.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.UnsavedChangesDialog = exports.Dialog = void 0;
+
+var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
+
+var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
+
+var _Button = __webpack_require__(/*! ./Button */ "./packages/tgui/components/Button.js");
+
+/**
+ * @file
+ * @copyright 2022 raffclar
+ * @license MIT
+ */
+var Dialog = function Dialog(props) {
+  var title = props.title,
+      onClose = props.onClose,
+      children = props.children,
+      width = props.width,
+      height = props.height;
+  return (0, _inferno.createVNode)(1, "div", "Dialog", (0, _inferno.createComponentVNode)(2, _Box.Box, {
+    "className": "Dialog__content",
+    "width": width || '370px',
+    "height": height,
+    children: [(0, _inferno.createVNode)(1, "div", "Dialog__header", [(0, _inferno.createVNode)(1, "div", "Dialog__title", title, 0), (0, _inferno.createComponentVNode)(2, _Box.Box, {
+      "mr": 2,
+      children: (0, _inferno.createComponentVNode)(2, _Button.Button, {
+        "mr": "-3px",
+        "width": "26px",
+        "lineHeight": "22px",
+        "textAlign": "center",
+        "color": "transparent",
+        "icon": "window-close-o",
+        "tooltip": "Close",
+        "tooltipPosition": "bottom-start",
+        "onClick": onClose
+      })
+    })], 4), children]
+  }), 2);
+};
+
+exports.Dialog = Dialog;
+
+var DialogButton = function DialogButton(props) {
+  var onClick = props.onClick,
+      children = props.children;
+  return (0, _inferno.createComponentVNode)(2, _Button.Button, {
+    "onClick": onClick,
+    "className": "Dialog__button",
+    "verticalAlignContent": "middle",
+    children: children
+  });
+};
+
+Dialog.Button = DialogButton;
+
+var UnsavedChangesDialog = function UnsavedChangesDialog(props) {
+  var documentName = props.documentName,
+      onSave = props.onSave,
+      onDiscard = props.onDiscard,
+      onClose = props.onClose;
+  return (0, _inferno.createComponentVNode)(2, Dialog, {
+    "title": "Notepad",
+    "onClose": onClose,
+    children: [(0, _inferno.createVNode)(1, "div", "Dialog__body", [(0, _inferno.createTextVNode)("Do you want to save changes to "), documentName, (0, _inferno.createTextVNode)("?")], 0), (0, _inferno.createVNode)(1, "div", "Dialog__footer", [(0, _inferno.createComponentVNode)(2, DialogButton, {
+      "onClick": onSave,
+      children: "Save"
+    }), (0, _inferno.createComponentVNode)(2, DialogButton, {
+      "onClick": onDiscard,
+      children: "Don't Save"
+    }), (0, _inferno.createComponentVNode)(2, DialogButton, {
+      "onClick": onClose,
+      children: "Cancel"
+    })], 4)]
+  });
+};
+
+exports.UnsavedChangesDialog = UnsavedChangesDialog;
 
 /***/ }),
 
@@ -30087,7 +30412,7 @@ var _math = __webpack_require__(/*! common/math */ "./packages/common/math.ts");
 
 var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts");
 
-var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.js");
+var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.tsx");
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 
@@ -30131,7 +30456,7 @@ var DraggableControl = /*#__PURE__*/function (_Component) {
 
         clearTimeout(_this.flickerTimer);
         _this.flickerTimer = setTimeout(function () {
-          return _this.setState({
+          _this.setState({
             suppressingFlicker: false
           });
         }, suppressFlicker);
@@ -30178,6 +30503,7 @@ var DraggableControl = /*#__PURE__*/function (_Component) {
     };
 
     _this.handleDragMove = function (e) {
+      // prettier-ignore
       var _this$props2 = _this.props,
           minValue = _this$props2.minValue,
           maxValue = _this$props2.maxValue,
@@ -30280,24 +30606,13 @@ var DraggableControl = /*#__PURE__*/function (_Component) {
 
       if (dragging || suppressingFlicker) {
         displayValue = intermediateValue;
-      } // Setup a display element
-      // Shows a formatted number based on what we are currently doing
-      // with the draggable surface.
+      } // prettier-ignore
 
 
-      var renderDisplayElement = function () {
-        function renderDisplayElement(value) {
-          return value + (unit ? ' ' + unit : '');
-        }
-
-        return renderDisplayElement;
-      }();
-
-      var displayElement = animated && !dragging && !suppressingFlicker && (0, _inferno.createComponentVNode)(2, _AnimatedNumber.AnimatedNumber, {
+      var displayElement = (0, _inferno.createFragment)([animated && !dragging && !suppressingFlicker ? (0, _inferno.createComponentVNode)(2, _AnimatedNumber.AnimatedNumber, {
         "value": displayValue,
-        "format": format,
-        children: renderDisplayElement
-      }) || renderDisplayElement(format ? format(displayValue) : displayValue); // Setup an input element
+        "format": format
+      }) : format ? format(displayValue) : displayValue, unit ? ' ' + unit : ''], 0); // Setup an input element
       // Handles direct input via the keyboard
 
       var inputElement = (0, _inferno.createVNode)(64, "input", "NumberInput__input", null, 1, {
@@ -30427,10 +30742,10 @@ DraggableControl.defaultProps = {
 
 /***/ }),
 
-/***/ "./packages/tgui/components/Dropdown.js":
-/*!**********************************************!*\
-  !*** ./packages/tgui/components/Dropdown.js ***!
-  \**********************************************/
+/***/ "./packages/tgui/components/Dropdown.tsx":
+/*!***********************************************!*\
+  !*** ./packages/tgui/components/Dropdown.tsx ***!
+  \***********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -30441,13 +30756,19 @@ exports.Dropdown = void 0;
 
 var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
 
+var _core = __webpack_require__(/*! @popperjs/core */ "./.yarn/cache/@popperjs-core-npm-2.11.5-a338f16bd4-fd7f9dca3f.zip/node_modules/@popperjs/core/lib/index.js");
+
 var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts");
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
-var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.js");
+var _Button = __webpack_require__(/*! ./Button */ "./packages/tgui/components/Button.js");
 
-var _excluded = ["icon", "iconRotation", "iconSpin", "color", "over", "noscroll", "nochevron", "width", "onClick", "selected", "disabled", "displayText", "placeholder"],
+var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.tsx");
+
+var _Stack = __webpack_require__(/*! ./Stack */ "./packages/tgui/components/Stack.tsx");
+
+var _excluded = ["icon", "iconRotation", "iconSpin", "clipSelectedText", "color", "dropdownStyle", "over", "nochevron", "width", "onClick", "onSelected", "selected", "disabled", "displayText", "buttons"],
     _excluded2 = ["className"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -30456,16 +30777,48 @@ function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.crea
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function () { function _setPrototypeOf(o, p) { o.__proto__ = p; return o; } return _setPrototypeOf; }(); return _setPrototypeOf(o, p); }
 
+var DEFAULT_OPTIONS = {
+  placement: 'left-start',
+  modifiers: [{
+    name: 'eventListeners',
+    enabled: false
+  }]
+};
+var NULL_RECT = {
+  width: 0,
+  height: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  x: 0,
+  y: 0,
+  toJSON: function () {
+    function toJSON() {
+      return null;
+    }
+
+    return toJSON;
+  }()
+};
+var DROPDOWN_DEFAULT_CLASSNAMES = 'Layout Dropdown__menu';
+var DROPDOWN_SCROLL_CLASSNAMES = 'Layout Dropdown__menu-scroll';
+
 var Dropdown = /*#__PURE__*/function (_Component) {
   _inheritsLoose(Dropdown, _Component);
 
-  function Dropdown(props) {
+  function Dropdown() {
     var _this;
 
-    _this = _Component.call(this, props) || this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.menuContents = void 0;
     _this.state = {
-      selected: props.selected,
-      open: false
+      open: false,
+      selected: _this.props.selected
     };
 
     _this.handleClick = function () {
@@ -30479,28 +30832,163 @@ var Dropdown = /*#__PURE__*/function (_Component) {
 
   var _proto = Dropdown.prototype;
 
+  _proto.getDOMNode = function () {
+    function getDOMNode() {
+      return (0, _inferno.findDOMfromVNode)(this.$LI, true);
+    }
+
+    return getDOMNode;
+  }();
+
+  _proto.componentDidMount = function () {
+    function componentDidMount() {
+      var domNode = this.getDOMNode();
+
+      if (!domNode) {
+        return;
+      }
+    }
+
+    return componentDidMount;
+  }();
+
+  _proto.openMenu = function () {
+    function openMenu() {
+      var renderedMenu = Dropdown.renderedMenu;
+
+      if (renderedMenu === undefined) {
+        renderedMenu = document.createElement('div');
+        renderedMenu.className = DROPDOWN_DEFAULT_CLASSNAMES;
+        document.body.appendChild(renderedMenu);
+        Dropdown.renderedMenu = renderedMenu;
+      }
+
+      var domNode = this.getDOMNode();
+      Dropdown.currentOpenMenu = domNode;
+      renderedMenu.scrollTop = 0;
+      renderedMenu.style.width = this.props.menuWidth || // Hack, but domNode should *always* be the parent control meaning it will have width
+      // @ts-ignore
+      domNode.offsetWidth + "px";
+      renderedMenu.style.opacity = '1';
+      renderedMenu.style.pointerEvents = 'auto'; // ie hack
+      // ie has this bizarre behavior where focus just silently fails if the
+      // element being targeted "isn't ready"
+      // 400 is probably way too high, but the lack of hotloading is testing my
+      // patience on tuning it
+      // I'm beyond giving a shit at this point it fucking works whatever
+
+      setTimeout(function () {
+        var _Dropdown$renderedMen;
+
+        (_Dropdown$renderedMen = Dropdown.renderedMenu) == null ? void 0 : _Dropdown$renderedMen.focus();
+      }, 400);
+      this.renderMenuContent();
+    }
+
+    return openMenu;
+  }();
+
+  _proto.closeMenu = function () {
+    function closeMenu() {
+      if (Dropdown.currentOpenMenu !== this.getDOMNode()) {
+        return;
+      }
+
+      Dropdown.currentOpenMenu = undefined;
+      Dropdown.renderedMenu.style.opacity = '0';
+      Dropdown.renderedMenu.style.pointerEvents = 'none';
+    }
+
+    return closeMenu;
+  }();
+
   _proto.componentWillUnmount = function () {
     function componentWillUnmount() {
-      window.removeEventListener('click', this.handleClick);
+      this.closeMenu();
+      this.setOpen(false);
     }
 
     return componentWillUnmount;
   }();
 
-  _proto.setOpen = function () {
-    function setOpen(open) {
+  _proto.renderMenuContent = function () {
+    function renderMenuContent() {
       var _this2 = this;
 
-      this.setState({
-        open: open
+      var renderedMenu = Dropdown.renderedMenu;
+
+      if (!renderedMenu) {
+        return;
+      }
+
+      if (renderedMenu.offsetHeight > 200) {
+        renderedMenu.className = DROPDOWN_SCROLL_CLASSNAMES;
+      } else {
+        renderedMenu.className = DROPDOWN_DEFAULT_CLASSNAMES;
+      }
+
+      var _this$props$options = this.props.options,
+          options = _this$props$options === void 0 ? [] : _this$props$options;
+      var ops = options.map(function (option) {
+        var value, displayText;
+
+        if (typeof option === 'string') {
+          displayText = option;
+          value = option;
+        } else if (option !== null) {
+          displayText = option.displayText;
+          value = option.value;
+        }
+
+        return (0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Dropdown__menuentry', _this2.state.selected === value && 'selected']), displayText, 0, {
+          "onClick": function () {
+            function onClick() {
+              _this2.setSelected(value);
+            }
+
+            return onClick;
+          }()
+        }, value);
+      });
+      var to_render = ops.length ? ops : 'No Options Found';
+      (0, _inferno.render)((0, _inferno.createVNode)(1, "div", null, to_render, 0), renderedMenu, function () {
+        var singletonPopper = Dropdown.singletonPopper;
+
+        if (singletonPopper === undefined) {
+          singletonPopper = (0, _core.createPopper)(Dropdown.virtualElement, renderedMenu, Object.assign({}, DEFAULT_OPTIONS, {
+            placement: 'bottom-start'
+          }));
+          Dropdown.singletonPopper = singletonPopper;
+        } else {
+          singletonPopper.setOptions(Object.assign({}, DEFAULT_OPTIONS, {
+            placement: 'bottom-start'
+          }));
+          singletonPopper.update();
+        }
+      }, this.context);
+    }
+
+    return renderMenuContent;
+  }();
+
+  _proto.setOpen = function () {
+    function setOpen(open) {
+      var _this3 = this;
+
+      this.setState(function (state) {
+        return Object.assign({}, state, {
+          open: open
+        });
       });
 
       if (open) {
         setTimeout(function () {
-          return window.addEventListener('click', _this2.handleClick);
+          _this3.openMenu();
+
+          window.addEventListener('click', _this3.handleClick);
         });
-        this.menuRef.focus();
       } else {
+        this.closeMenu();
         window.removeEventListener('click', this.handleClick);
       }
     }
@@ -30510,118 +30998,191 @@ var Dropdown = /*#__PURE__*/function (_Component) {
 
   _proto.setSelected = function () {
     function setSelected(selected) {
-      this.setState({
-        selected: selected
+      this.setState(function (state) {
+        return Object.assign({}, state, {
+          selected: selected
+        });
       });
       this.setOpen(false);
-      this.props.onSelected(selected);
+
+      if (this.props.onSelected) {
+        this.props.onSelected(selected);
+      }
     }
 
     return setSelected;
   }();
 
-  _proto.buildMenu = function () {
-    function buildMenu() {
-      var _this3 = this;
-
-      var _this$props = this.props,
-          _this$props$options = _this$props.options,
-          options = _this$props$options === void 0 ? [] : _this$props$options,
-          placeholder = _this$props.placeholder; // VOREStation edit
-
-      var ops = options.map(function (option) {
-        return (0, _inferno.createComponentVNode)(2, _Box.Box, {
-          "className": "Dropdown__menuentry",
-          "onClick": function () {
-            function onClick() {
-              _this3.setSelected(option);
-            }
-
-            return onClick;
-          }(),
-          children: option
-        }, option);
-      }); // VOREStation addition start
-
-      if (placeholder) {
-        ops.unshift((0, _inferno.createVNode)(1, "div", "Dropdown__menuentry", [(0, _inferno.createTextVNode)("-- "), placeholder, (0, _inferno.createTextVNode)(" --")], 0, {
-          "onClick": function () {
-            function onClick() {
-              _this3.setSelected(null);
-            }
-
-            return onClick;
-          }()
-        }, placeholder));
-      } // VOREStation addition end
-
-
-      return ops.length ? ops : 'No Options Found';
+  _proto.getOptionValue = function () {
+    function getOptionValue(option) {
+      return typeof option === 'string' ? option : option.value;
     }
 
-    return buildMenu;
+    return getOptionValue;
+  }();
+
+  _proto.getSelectedIndex = function () {
+    function getSelectedIndex() {
+      var _this4 = this;
+
+      var selected = this.state.selected || this.props.selected;
+      var _this$props$options2 = this.props.options,
+          options = _this$props$options2 === void 0 ? [] : _this$props$options2;
+      return options.findIndex(function (option) {
+        return _this4.getOptionValue(option) === selected;
+      });
+    }
+
+    return getSelectedIndex;
+  }();
+
+  _proto.toPrevious = function () {
+    function toPrevious() {
+      if (this.props.options.length < 1) {
+        return;
+      }
+
+      var selectedIndex = this.getSelectedIndex();
+      var startIndex = 0;
+      var endIndex = this.props.options.length - 1;
+      var hasSelected = selectedIndex >= 0;
+
+      if (!hasSelected) {
+        selectedIndex = startIndex;
+      }
+
+      var previousIndex = selectedIndex === startIndex ? endIndex : selectedIndex - 1;
+      this.setSelected(this.getOptionValue(this.props.options[previousIndex]));
+    }
+
+    return toPrevious;
+  }();
+
+  _proto.toNext = function () {
+    function toNext() {
+      if (this.props.options.length < 1) {
+        return;
+      }
+
+      var selectedIndex = this.getSelectedIndex();
+      var startIndex = 0;
+      var endIndex = this.props.options.length - 1;
+      var hasSelected = selectedIndex >= 0;
+
+      if (!hasSelected) {
+        selectedIndex = endIndex;
+      }
+
+      var nextIndex = selectedIndex === endIndex ? startIndex : selectedIndex + 1;
+      this.setSelected(this.getOptionValue(this.props.options[nextIndex]));
+    }
+
+    return toNext;
   }();
 
   _proto.render = function () {
     function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var props = this.props;
 
       var icon = props.icon,
           iconRotation = props.iconRotation,
           iconSpin = props.iconSpin,
+          _props$clipSelectedTe = props.clipSelectedText,
+          clipSelectedText = _props$clipSelectedTe === void 0 ? true : _props$clipSelectedTe,
           _props$color = props.color,
           color = _props$color === void 0 ? 'default' : _props$color,
+          dropdownStyle = props.dropdownStyle,
           over = props.over,
-          noscroll = props.noscroll,
           nochevron = props.nochevron,
           width = props.width,
-          onClick = props.onClick,
+          _onClick = props.onClick,
+          onSelected = props.onSelected,
           selected = props.selected,
           disabled = props.disabled,
           displayText = props.displayText,
-          placeholder = props.placeholder,
+          buttons = props.buttons,
           boxProps = _objectWithoutPropertiesLoose(props, _excluded);
 
       var className = boxProps.className,
           rest = _objectWithoutPropertiesLoose(boxProps, _excluded2);
 
       var adjustedOpen = over ? !this.state.open : this.state.open;
-      var menu = this.state.open ? (0, _inferno.createVNode)(1, "div", (0, _react.classes)([noscroll && 'Dropdown__menu-noscroll' || 'Dropdown__menu', over && 'Dropdown__over']), this.buildMenu(), 0, {
-        "tabIndex": "-1",
-        "style": {
-          'width': width
-        }
-      }, null, function (menu) {
-        _this4.menuRef = menu;
-      }) : null;
-      return (0, _inferno.createVNode)(1, "div", "Dropdown", [(0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Box.Box, Object.assign({
-        "width": width,
-        "className": (0, _react.classes)(['Dropdown__control', 'Button', 'Button--color--' + color, disabled && 'Button--disabled', className])
-      }, rest, {
-        "onClick": function () {
-          function onClick() {
-            if (disabled && !_this4.state.open) {
-              return;
-            }
+      return (0, _inferno.createComponentVNode)(2, _Stack.Stack, {
+        "fill": true,
+        children: [(0, _inferno.createComponentVNode)(2, _Stack.Stack.Item, {
+          "width": width,
+          children: (0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Box.Box, Object.assign({
+            "width": '100%',
+            "className": (0, _react.classes)(['Dropdown__control', 'Button', 'Button--color--' + color, disabled && 'Button--disabled', className]),
+            "onClick": function () {
+              function onClick(event) {
+                if (disabled && !_this5.state.open) {
+                  return;
+                }
 
-            _this4.setOpen(!_this4.state.open);
-          }
+                _this5.setOpen(!_this5.state.open);
 
-          return onClick;
-        }(),
-        children: [icon && (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
-          "name": icon,
-          "rotation": iconRotation,
-          "spin": iconSpin,
-          "mr": 1
-        }), (0, _inferno.createVNode)(1, "span", "Dropdown__selected-text", displayText ? displayText : this.state.selected || placeholder
-        /* VOREStation Edit */
-        , 0), !!nochevron || (0, _inferno.createVNode)(1, "span", "Dropdown__arrow-button", (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
-          "name": adjustedOpen ? 'chevron-up' : 'chevron-down'
-        }), 2)]
-      }))), menu], 0);
+                if (_onClick) {
+                  _onClick(event);
+                }
+              }
+
+              return onClick;
+            }()
+          }, rest, {
+            children: [icon && (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
+              "name": icon,
+              "rotation": iconRotation,
+              "spin": iconSpin,
+              "mr": 1
+            }), (0, _inferno.createVNode)(1, "span", "Dropdown__selected-text", displayText || this.state.selected, 0, {
+              "style": {
+                overflow: clipSelectedText ? 'hidden' : 'visible'
+              }
+            }), nochevron || (0, _inferno.createVNode)(1, "span", "Dropdown__arrow-button", (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
+              "name": adjustedOpen ? 'chevron-up' : 'chevron-down'
+            }), 2)]
+          })))
+        }), buttons && (0, _inferno.createFragment)([(0, _inferno.createComponentVNode)(2, _Stack.Stack.Item, {
+          "height": '100%',
+          children: (0, _inferno.createComponentVNode)(2, _Button.Button, {
+            "height": '100%',
+            "icon": "chevron-left",
+            "disabled": disabled,
+            "onClick": function () {
+              function onClick() {
+                if (disabled) {
+                  return;
+                }
+
+                _this5.toPrevious();
+              }
+
+              return onClick;
+            }()
+          })
+        }), (0, _inferno.createComponentVNode)(2, _Stack.Stack.Item, {
+          "height": '100%',
+          children: (0, _inferno.createComponentVNode)(2, _Button.Button, {
+            "height": '100%',
+            "icon": "chevron-right",
+            "disabled": disabled,
+            "onClick": function () {
+              function onClick() {
+                if (disabled) {
+                  return;
+                }
+
+                _this5.toNext();
+              }
+
+              return onClick;
+            }()
+          })
+        })], 4)]
+      });
     }
 
     return render;
@@ -30631,6 +31192,143 @@ var Dropdown = /*#__PURE__*/function (_Component) {
 }(_inferno.Component);
 
 exports.Dropdown = Dropdown;
+Dropdown.renderedMenu = void 0;
+Dropdown.singletonPopper = void 0;
+Dropdown.currentOpenMenu = void 0;
+Dropdown.virtualElement = {
+  getBoundingClientRect: function () {
+    function getBoundingClientRect() {
+      var _Dropdown$currentOpen, _Dropdown$currentOpen2;
+
+      return (_Dropdown$currentOpen = (_Dropdown$currentOpen2 = Dropdown.currentOpenMenu) == null ? void 0 : _Dropdown$currentOpen2.getBoundingClientRect()) != null ? _Dropdown$currentOpen : NULL_RECT;
+    }
+
+    return getBoundingClientRect;
+  }()
+};
+
+/***/ }),
+
+/***/ "./packages/tgui/components/FitText.tsx":
+/*!**********************************************!*\
+  !*** ./packages/tgui/components/FitText.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.FitText = void 0;
+
+var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function () { function _setPrototypeOf(o, p) { o.__proto__ = p; return o; } return _setPrototypeOf; }(); return _setPrototypeOf(o, p); }
+
+var DEFAULT_ACCEPTABLE_DIFFERENCE = 5;
+
+var FitText = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(FitText, _Component);
+
+  function FitText() {
+    var _this;
+
+    _this = _Component.call(this) || this;
+    _this.ref = (0, _inferno.createRef)();
+    _this.state = {
+      fontSize: 0
+    };
+    _this.resize = _this.resize.bind(_assertThisInitialized(_this));
+    window.addEventListener('resize', _this.resize);
+    return _this;
+  }
+
+  var _proto = FitText.prototype;
+
+  _proto.componentDidUpdate = function () {
+    function componentDidUpdate(prevProps) {
+      if (prevProps.children !== this.props.children) {
+        this.resize();
+      }
+    }
+
+    return componentDidUpdate;
+  }();
+
+  _proto.componentWillUnmount = function () {
+    function componentWillUnmount() {
+      window.removeEventListener('resize', this.resize);
+    }
+
+    return componentWillUnmount;
+  }();
+
+  _proto.resize = function () {
+    function resize() {
+      var element = this.ref.current;
+
+      if (!element) {
+        return;
+      }
+
+      var maxWidth = this.props.maxWidth;
+      var start = 0;
+      var end = this.props.maxFontSize;
+
+      for (var _ = 0; _ < 10; _++) {
+        var _this$props$acceptabl;
+
+        var middle = Math.round((start + end) / 2);
+        element.style.fontSize = middle + "px";
+        var difference = element.offsetWidth - maxWidth;
+
+        if (difference > 0) {
+          end = middle;
+        } else if (difference < ((_this$props$acceptabl = this.props.acceptableDifference) != null ? _this$props$acceptabl : DEFAULT_ACCEPTABLE_DIFFERENCE)) {
+          start = middle;
+        } else {
+          break;
+        }
+      }
+
+      this.setState({
+        fontSize: Math.round((start + end) / 2)
+      });
+    }
+
+    return resize;
+  }();
+
+  _proto.componentDidMount = function () {
+    function componentDidMount() {
+      this.resize();
+    }
+
+    return componentDidMount;
+  }();
+
+  _proto.render = function () {
+    function render() {
+      var _this$props$native;
+
+      return (0, _inferno.createVNode)(1, "span", null, this.props.children, 0, {
+        "style": Object.assign({
+          'font-size': this.state.fontSize + "px"
+        }, typeof ((_this$props$native = this.props["native"]) == null ? void 0 : _this$props$native.style) === 'object' && this.props["native"].style)
+      }, null, this.ref);
+    }
+
+    return render;
+  }();
+
+  return FitText;
+}(_inferno.Component);
+
+exports.FitText = FitText;
 
 /***/ }),
 
@@ -30652,7 +31350,7 @@ var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
-var _excluded = ["className", "direction", "wrap", "align", "alignContent", "justify", "inline"],
+var _excluded = ["className", "direction", "wrap", "align", "justify", "inline"],
     _excluded2 = ["className"],
     _excluded3 = ["className", "style", "grow", "order", "shrink", "basis", "align"],
     _excluded4 = ["className"];
@@ -30670,7 +31368,6 @@ var computeFlexProps = function computeFlexProps(props) {
       direction = props.direction,
       wrap = props.wrap,
       align = props.align,
-      alignContent = props.alignContent,
       justify = props.justify,
       inline = props.inline,
       rest = _objectWithoutPropertiesLoose(props, _excluded);
@@ -30680,8 +31377,6 @@ var computeFlexProps = function computeFlexProps(props) {
       'flex-direction': direction,
       'flex-wrap': wrap === true ? 'wrap' : wrap,
       'align-items': align,
-      'align-content': alignContent,
-      // VOREStation Addition
       'justify-content': justify
     })
   }, rest));
@@ -30706,21 +31401,31 @@ var computeFlexItemClassName = function computeFlexItemClassName(props) {
 exports.computeFlexItemClassName = computeFlexItemClassName;
 
 var computeFlexItemProps = function computeFlexItemProps(props) {
+  var _ref;
+
+  // prettier-ignore
   var className = props.className,
       style = props.style,
       grow = props.grow,
       order = props.order,
       shrink = props.shrink,
-      _props$basis = props.basis,
-      basis = _props$basis === void 0 ? props.width : _props$basis,
+      basis = props.basis,
       align = props.align,
-      rest = _objectWithoutPropertiesLoose(props, _excluded3);
+      rest = _objectWithoutPropertiesLoose(props, _excluded3); // prettier-ignore
 
+
+  var computedBasis = (_ref = basis // IE11: Set basis to specified width if it's known, which fixes certain
+  // bugs when rendering tables inside the flex.
+  != null ? basis // IE11: Set basis to specified width if it's known, which fixes certain
+  // bugs when rendering tables inside the flex.
+  : props.width // If grow is used, basis should be set to 0 to be consistent with
+  // flex css shorthand `flex: 1`.
+  ) != null ? _ref : grow !== undefined ? 0 : undefined;
   return (0, _Box.computeBoxProps)(Object.assign({
     style: Object.assign({}, style, {
       'flex-grow': grow !== undefined && Number(grow),
       'flex-shrink': shrink !== undefined && Number(shrink),
-      'flex-basis': (0, _Box.unit)(basis),
+      'flex-basis': (0, _Box.unit)(computedBasis),
       'order': order,
       'align-self': align
     })
@@ -30733,7 +31438,7 @@ var FlexItem = function FlexItem(props) {
   var className = props.className,
       rest = _objectWithoutPropertiesLoose(props, _excluded4);
 
-  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)([className, computeFlexItemClassName(props), (0, _Box.computeBoxClassName)(props)]), null, 1, Object.assign({}, computeFlexItemProps(rest))));
+  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)([className, computeFlexItemClassName(props)]), null, 1, Object.assign({}, computeFlexItemProps(rest))));
 };
 
 FlexItem.defaultHooks = _react.pureComponentHooks;
@@ -30799,10 +31504,10 @@ Grid.Column = GridColumn;
 
 /***/ }),
 
-/***/ "./packages/tgui/components/Icon.js":
-/*!******************************************!*\
-  !*** ./packages/tgui/components/Icon.js ***!
-  \******************************************/
+/***/ "./packages/tgui/components/Icon.tsx":
+/*!*******************************************!*\
+  !*** ./packages/tgui/components/Icon.tsx ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -30817,38 +31522,42 @@ var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
-var _excluded = ["name", "size", "spin", "className", "rotation", "inverse"],
-    _excluded2 = ["className", "children"];
+var _excluded = ["style"],
+    _excluded2 = ["name", "size", "spin", "className", "rotation"],
+    _excluded3 = ["className", "children"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 var FA_OUTLINE_REGEX = /-o$/;
 
 var Icon = function Icon(props) {
-  var name = props.name,
-      size = props.size,
-      spin = props.spin,
-      className = props.className,
-      rotation = props.rotation,
-      inverse = props.inverse,
-      rest = _objectWithoutPropertiesLoose(props, _excluded);
+  var style = props.style,
+      restlet = _objectWithoutPropertiesLoose(props, _excluded);
+
+  var name = restlet.name,
+      size = restlet.size,
+      spin = restlet.spin,
+      className = restlet.className,
+      rotation = restlet.rotation,
+      rest = _objectWithoutPropertiesLoose(restlet, _excluded2);
 
   if (size) {
-    if (!rest.style) {
-      rest.style = {};
+    if (!style) {
+      style = {};
     }
 
-    rest.style['font-size'] = size * 100 + '%';
+    style['font-size'] = size * 100 + '%';
   }
 
-  if (typeof rotation === 'number') {
-    if (!rest.style) {
-      rest.style = {};
+  if (rotation) {
+    if (!style) {
+      style = {};
     }
 
-    rest.style['transform'] = "rotate(" + rotation + "deg)";
+    style['transform'] = "rotate(" + rotation + "deg)";
   }
 
+  rest.style = style;
   var boxProps = (0, _Box.computeBoxProps)(rest);
   var iconClass = '';
 
@@ -30859,7 +31568,18 @@ var Icon = function Icon(props) {
     // font awesome icon
     var faRegular = FA_OUTLINE_REGEX.test(name);
     var faName = name.replace(FA_OUTLINE_REGEX, '');
-    iconClass = (faRegular ? 'far ' : 'fas ') + 'fa-' + faName + (spin ? ' fa-spin' : '');
+    var preprendFa = !faName.startsWith('fa-');
+    iconClass = faRegular ? 'far ' : 'fas ';
+
+    if (preprendFa) {
+      iconClass += 'fa-';
+    }
+
+    iconClass += faName;
+
+    if (spin) {
+      iconClass += ' fa-spin';
+    }
   }
 
   return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "i", (0, _react.classes)(['Icon', iconClass, className, (0, _Box.computeBoxClassName)(rest)]), null, 1, Object.assign({}, boxProps)));
@@ -30871,7 +31591,7 @@ Icon.defaultHooks = _react.pureComponentHooks;
 var IconStack = function IconStack(props) {
   var className = props.className,
       children = props.children,
-      rest = _objectWithoutPropertiesLoose(props, _excluded2);
+      rest = _objectWithoutPropertiesLoose(props, _excluded3);
 
   return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "span", (0, _react.classes)(['IconStack', className, (0, _Box.computeBoxClassName)(rest)]), children, 0, Object.assign({}, (0, _Box.computeBoxProps)(rest))));
 };
@@ -30903,7 +31623,7 @@ var _ProgressBar = __webpack_require__(/*! ./ProgressBar */ "./packages/tgui/com
 
 var _Button = __webpack_require__(/*! ./Button */ "./packages/tgui/components/Button.js");
 
-var _excluded = ["children", "backgroundImage", "imageWidth"];
+var _excluded = ["children", "backgroundImage", "imageWidth", "initialLeft", "initialTop"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -30934,6 +31654,8 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
     };
     _this.handleMouseDown = _this.handleMouseDown.bind(_assertThisInitialized(_this));
     _this.handleMouseMove = _this.handleMouseMove.bind(_assertThisInitialized(_this));
+    _this.handleZoomIncrease = _this.handleZoomIncrease.bind(_assertThisInitialized(_this));
+    _this.handleZoomDecrease = _this.handleZoomDecrease.bind(_assertThisInitialized(_this));
     _this.onMouseUp = _this.onMouseUp.bind(_assertThisInitialized(_this));
     _this.doOffsetMouse = _this.doOffsetMouse.bind(_assertThisInitialized(_this));
     return _this;
@@ -30997,15 +31719,63 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
     return onMouseUp;
   }();
 
+  _proto.handleZoomIncrease = function () {
+    function handleZoomIncrease(event) {
+      var onZoomChange = this.props.onZoomChange;
+      var zoom = this.state.zoom;
+      var newZoomValue = Math.min(zoom + ZOOM_INCREMENT, ZOOM_MAX_VAL);
+      this.setState({
+        zoom: newZoomValue
+      });
+
+      if (onZoomChange) {
+        onZoomChange(newZoomValue);
+      }
+    }
+
+    return handleZoomIncrease;
+  }();
+
+  _proto.handleZoomDecrease = function () {
+    function handleZoomDecrease(event) {
+      var onZoomChange = this.props.onZoomChange;
+      var zoom = this.state.zoom;
+      var newZoomValue = Math.max(zoom - ZOOM_INCREMENT, ZOOM_MIN_VAL);
+      this.setState({
+        zoom: newZoomValue
+      });
+
+      if (onZoomChange) {
+        onZoomChange(newZoomValue);
+      }
+    }
+
+    return handleZoomDecrease;
+  }();
+
   _proto.handleMouseMove = function () {
     function handleMouseMove(event) {
+      var _this$props = this.props,
+          onBackgroundMoved = _this$props.onBackgroundMoved,
+          _this$props$initialLe = _this$props.initialLeft,
+          initialLeft = _this$props$initialLe === void 0 ? 0 : _this$props$initialLe,
+          _this$props$initialTo = _this$props.initialTop,
+          initialTop = _this$props$initialTo === void 0 ? 0 : _this$props$initialTo;
+
       if (this.state.mouseDown) {
+        var newX, newY;
         this.setState(function (state) {
+          newX = event.clientX - state.lastLeft;
+          newY = event.clientY - state.lastTop;
           return {
-            left: event.clientX - state.lastLeft,
-            top: event.clientY - state.lastTop
+            left: newX,
+            top: newY
           };
         });
+
+        if (onBackgroundMoved) {
+          onBackgroundMoved(newX + initialLeft, newY + initialTop);
+        }
       }
     }
 
@@ -31014,18 +31784,22 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
 
   _proto.render = function () {
     function render() {
-      var _this2 = this;
-
-      var _this$props = this.props,
-          children = _this$props.children,
-          backgroundImage = _this$props.backgroundImage,
-          imageWidth = _this$props.imageWidth,
-          rest = _objectWithoutPropertiesLoose(_this$props, _excluded);
+      var _this$props2 = this.props,
+          children = _this$props2.children,
+          backgroundImage = _this$props2.backgroundImage,
+          imageWidth = _this$props2.imageWidth,
+          _this$props2$initialL = _this$props2.initialLeft,
+          initialLeft = _this$props2$initialL === void 0 ? 0 : _this$props2$initialL,
+          _this$props2$initialT = _this$props2.initialTop,
+          initialTop = _this$props2$initialT === void 0 ? 0 : _this$props2$initialT,
+          rest = _objectWithoutPropertiesLoose(_this$props2, _excluded);
 
       var _this$state = this.state,
           left = _this$state.left,
           top = _this$state.top,
           zoom = _this$state.zoom;
+      var finalLeft = initialLeft + left;
+      var finalTop = initialTop + top;
       return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", null, [(0, _inferno.createVNode)(1, "div", null, null, 1, {
         "onMouseDown": this.handleMouseDown,
         "onMouseMove": this.handleMouseMove,
@@ -31034,7 +31808,7 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
           'height': '100%',
           'width': '100%',
           'background-image': "url(\"" + backgroundImage + "\")",
-          'background-position': left + "px " + top + "px",
+          'background-position': finalLeft + "px " + finalTop + "px",
           'background-repeat': 'repeat',
           'background-size': zoom * imageWidth + "px"
         }
@@ -31043,7 +31817,7 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
         "onMouseMove": this.handleMouseMove,
         "style": {
           'position': 'fixed',
-          'transform': "translate(" + left + "px, " + top + "px) scale(" + zoom + ")",
+          'transform': "translate(" + finalLeft + "px, " + finalTop + "px) scale(" + zoom + ")",
           'transform-origin': 'top left',
           'height': '100%',
           'width': '100%'
@@ -31054,15 +31828,7 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
         children: [(0, _inferno.createComponentVNode)(2, _Stack.Stack.Item, {
           children: (0, _inferno.createComponentVNode)(2, _Button.Button, {
             "icon": "minus",
-            "onClick": function () {
-              function onClick() {
-                return _this2.setState({
-                  zoom: Math.max(zoom - ZOOM_INCREMENT, ZOOM_MIN_VAL)
-                });
-              }
-
-              return onClick;
-            }()
+            "onClick": this.handleZoomDecrease
           })
         }), (0, _inferno.createComponentVNode)(2, _Stack.Stack.Item, {
           "grow": 1,
@@ -31075,15 +31841,7 @@ var InfinitePlane = /*#__PURE__*/function (_Component) {
         }), (0, _inferno.createComponentVNode)(2, _Stack.Stack.Item, {
           children: (0, _inferno.createComponentVNode)(2, _Button.Button, {
             "icon": "plus",
-            "onClick": function () {
-              function onClick() {
-                return _this2.setState({
-                  zoom: Math.min(zoom + ZOOM_INCREMENT, ZOOM_MAX_VAL)
-                });
-              }
-
-              return onClick;
-            }()
+            "onClick": this.handleZoomIncrease
           })
         })]
       })], 4, Object.assign({}, (0, _Box.computeBoxProps)(Object.assign({}, rest, {
@@ -31118,11 +31876,11 @@ exports.toInputValue = exports.Input = void 0;
 
 var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
 
+var _keycodes = __webpack_require__(/*! common/keycodes */ "./packages/common/keycodes.ts");
+
 var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts");
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
-
-var _keycodes = __webpack_require__(/*! common/keycodes */ "./packages/common/keycodes.ts");
 
 var _excluded = ["selfClear", "onInput", "onChange", "onEnter", "value", "maxLength", "placeholder"],
     _excluded2 = ["className", "fluid", "monospace"];
@@ -31133,6 +31891,7 @@ function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.crea
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function () { function _setPrototypeOf(o, p) { o.__proto__ = p; return o; } return _setPrototypeOf; }(); return _setPrototypeOf(o, p); }
 
+// prettier-ignore
 var toInputValue = function toInputValue(value) {
   return typeof value !== 'number' && typeof value !== 'string' ? '' : String(value);
 };
@@ -31166,14 +31925,9 @@ var Input = /*#__PURE__*/function (_Component) {
 
     _this.handleFocus = function (e) {
       var editing = _this.state.editing;
-      var autoSelect = _this.props.autoSelect;
 
       if (!editing) {
         _this.setEditing(true);
-      }
-
-      if (autoSelect) {
-        e.target.select();
       }
     };
 
@@ -31615,10 +32369,11 @@ var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx"
 
 var _Divider = __webpack_require__(/*! ./Divider */ "./packages/tgui/components/Divider.js");
 
-var _excluded = ["className", "label", "labelColor", "color", "textAlign", "verticalAlign", "buttons", "content", "children"];
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
 var LabeledList = function LabeledList(props) {
   var children = props.children;
   return (0, _inferno.createVNode)(1, "table", "LabeledList", children, 0);
@@ -31632,30 +32387,30 @@ var LabeledListItem = function LabeledListItem(props) {
       label = props.label,
       _props$labelColor = props.labelColor,
       labelColor = _props$labelColor === void 0 ? 'label' : _props$labelColor,
+      labelWrap = props.labelWrap,
       color = props.color,
       textAlign = props.textAlign,
-      verticalAlign = props.verticalAlign,
       buttons = props.buttons,
       content = props.content,
       children = props.children,
-      rest = _objectWithoutPropertiesLoose(props, _excluded);
-
+      _props$verticalAlign = props.verticalAlign,
+      verticalAlign = _props$verticalAlign === void 0 ? 'baseline' : _props$verticalAlign;
   return (0, _inferno.createVNode)(1, "tr", (0, _react.classes)(['LabeledList__row', className]), [(0, _inferno.createComponentVNode)(2, _Box.Box, {
     "as": "td",
-    "verticalAlign": verticalAlign,
     "color": labelColor,
-    "className": (0, _react.classes)(['LabeledList__cell', 'LabeledList__label']),
-    children: label ? label + ':' : null
-  }), (0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Box.Box, Object.assign({
+    "className": (0, _react.classes)(['LabeledList__cell', // Kinda flipped because we want nowrap as default. Cleaner CSS this way though.
+    !labelWrap && 'LabeledList__label--nowrap']),
+    "verticalAlign": verticalAlign,
+    children: label ? typeof label === 'string' ? label + ':' : label : null
+  }), (0, _inferno.createComponentVNode)(2, _Box.Box, {
     "as": "td",
     "color": color,
     "textAlign": textAlign,
-    "verticalAlign": verticalAlign,
     "className": (0, _react.classes)(['LabeledList__cell', 'LabeledList__content']),
-    "colSpan": buttons ? undefined : 2
-  }, rest, {
+    "colSpan": buttons ? undefined : 2,
+    "verticalAlign": verticalAlign,
     children: [content, children]
-  }))), buttons && (0, _inferno.createVNode)(1, "td", "LabeledList__cell LabeledList__buttons", buttons, 0)], 0);
+  }), buttons && (0, _inferno.createVNode)(1, "td", "LabeledList__cell LabeledList__buttons", buttons, 0)], 0);
 };
 
 LabeledListItem.defaultHooks = _react.pureComponentHooks;
@@ -31674,6 +32429,263 @@ var LabeledListDivider = function LabeledListDivider(props) {
 LabeledListDivider.defaultHooks = _react.pureComponentHooks;
 LabeledList.Item = LabeledListItem;
 LabeledList.Divider = LabeledListDivider;
+
+/***/ }),
+
+/***/ "./packages/tgui/components/MenuBar.tsx":
+/*!**********************************************!*\
+  !*** ./packages/tgui/components/MenuBar.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.MenuBar = exports.Dropdown = void 0;
+
+var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
+
+var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts");
+
+var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
+
+var _logging = __webpack_require__(/*! ../logging */ "./packages/tgui/logging.ts");
+
+var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.tsx");
+
+var _excluded = ["open", "openWidth", "children", "disabled", "display", "onMouseOver", "onClick", "onOutsideClick"],
+    _excluded2 = ["className"];
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function () { function _setPrototypeOf(o, p) { o.__proto__ = p; return o; } return _setPrototypeOf; }(); return _setPrototypeOf(o, p); }
+
+var Menu = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(Menu, _Component);
+
+  function Menu(props) {
+    var _this;
+
+    _this = _Component.call(this, props) || this;
+    _this.handleClick = void 0;
+
+    _this.handleClick = function (event) {
+      if (!_this.props.menuRef.current) {
+        _logging.logger.log("Menu.handleClick(): No ref");
+
+        return;
+      }
+
+      if (_this.props.menuRef.current.contains(event.target)) {
+        _logging.logger.log("Menu.handleClick(): Inside");
+      } else {
+        _logging.logger.log("Menu.handleClick(): Outside");
+
+        _this.props.onOutsideClick();
+      }
+    };
+
+    return _this;
+  } // eslint-disable-next-line react/no-deprecated
+
+
+  var _proto = Menu.prototype;
+
+  _proto.componentWillMount = function () {
+    function componentWillMount() {
+      window.addEventListener('click', this.handleClick);
+    }
+
+    return componentWillMount;
+  }();
+
+  _proto.componentWillUnmount = function () {
+    function componentWillUnmount() {
+      window.removeEventListener('click', this.handleClick);
+    }
+
+    return componentWillUnmount;
+  }();
+
+  _proto.render = function () {
+    function render() {
+      var _this$props = this.props,
+          width = _this$props.width,
+          children = _this$props.children;
+      return (0, _inferno.createVNode)(1, "div", 'MenuBar__menu', children, 0, {
+        "style": {
+          width: width
+        }
+      });
+    }
+
+    return render;
+  }();
+
+  return Menu;
+}(_inferno.Component);
+
+var MenuBarButton = /*#__PURE__*/function (_Component2) {
+  _inheritsLoose(MenuBarButton, _Component2);
+
+  function MenuBarButton(props) {
+    var _this2;
+
+    _this2 = _Component2.call(this, props) || this;
+    _this2.menuRef = void 0;
+    _this2.menuRef = (0, _inferno.createRef)();
+    return _this2;
+  }
+
+  var _proto2 = MenuBarButton.prototype;
+
+  _proto2.render = function () {
+    function render() {
+      var props = this.props;
+
+      var open = props.open,
+          openWidth = props.openWidth,
+          children = props.children,
+          disabled = props.disabled,
+          display = props.display,
+          onMouseOver = props.onMouseOver,
+          onClick = props.onClick,
+          onOutsideClick = props.onOutsideClick,
+          boxProps = _objectWithoutPropertiesLoose(props, _excluded);
+
+      var className = boxProps.className,
+          rest = _objectWithoutPropertiesLoose(boxProps, _excluded2);
+
+      return (0, _inferno.createVNode)(1, "div", null, [(0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Box.Box, Object.assign({
+        "className": (0, _react.classes)(['MenuBar__MenuBarButton', 'MenuBar__font', 'MenuBar__hover', className])
+      }, rest, {
+        "onClick": disabled ? undefined : onClick,
+        "onmouseover": onMouseOver,
+        children: (0, _inferno.createVNode)(1, "span", "MenuBar__MenuBarButton-text", display, 0)
+      }))), open && (0, _inferno.createComponentVNode)(2, Menu, {
+        "width": openWidth,
+        "menuRef": this.menuRef,
+        "onOutsideClick": onOutsideClick,
+        children: children
+      })], 0, null, null, this.menuRef);
+    }
+
+    return render;
+  }();
+
+  return MenuBarButton;
+}(_inferno.Component);
+
+var Dropdown = function Dropdown(props) {
+  var entry = props.entry,
+      children = props.children,
+      openWidth = props.openWidth,
+      display = props.display,
+      setOpenMenuBar = props.setOpenMenuBar,
+      openMenuBar = props.openMenuBar,
+      setOpenOnHover = props.setOpenOnHover,
+      openOnHover = props.openOnHover,
+      disabled = props.disabled,
+      className = props.className;
+  return (0, _inferno.createComponentVNode)(2, MenuBarButton, {
+    "openWidth": openWidth,
+    "display": display,
+    "disabled": disabled,
+    "open": openMenuBar === entry,
+    "className": className,
+    "onClick": function () {
+      function onClick() {
+        var open = openMenuBar === entry ? null : entry;
+        setOpenMenuBar(open);
+        setOpenOnHover(!openOnHover);
+      }
+
+      return onClick;
+    }(),
+    "onOutsideClick": function () {
+      function onOutsideClick() {
+        setOpenMenuBar(null);
+        setOpenOnHover(false);
+      }
+
+      return onOutsideClick;
+    }(),
+    "onMouseOver": function () {
+      function onMouseOver() {
+        if (openOnHover) {
+          setOpenMenuBar(entry);
+        }
+      }
+
+      return onMouseOver;
+    }(),
+    children: children
+  });
+};
+
+exports.Dropdown = Dropdown;
+
+var MenuItemToggle = function MenuItemToggle(props) {
+  var value = props.value,
+      displayText = props.displayText,
+      _onClick = props.onClick,
+      checked = props.checked;
+  return (0, _inferno.createComponentVNode)(2, _Box.Box, {
+    "className": (0, _react.classes)(['MenuBar__font', 'MenuBar__MenuItem', 'MenuBar__MenuItemToggle', 'MenuBar__hover']),
+    "onClick": function () {
+      function onClick() {
+        return _onClick(value);
+      }
+
+      return onClick;
+    }(),
+    children: [(0, _inferno.createVNode)(1, "div", "MenuBar__MenuItemToggle__check", checked && (0, _inferno.createComponentVNode)(2, _Icon.Icon, {
+      "size": 1.3,
+      "name": "check"
+    }), 0), displayText]
+  });
+};
+
+Dropdown.MenuItemToggle = MenuItemToggle;
+
+var MenuItem = function MenuItem(props) {
+  var value = props.value,
+      displayText = props.displayText,
+      _onClick2 = props.onClick;
+  return (0, _inferno.createComponentVNode)(2, _Box.Box, {
+    "className": (0, _react.classes)(['MenuBar__font', 'MenuBar__MenuItem', 'MenuBar__hover']),
+    "onClick": function () {
+      function onClick() {
+        return _onClick2(value);
+      }
+
+      return onClick;
+    }(),
+    children: displayText
+  });
+};
+
+Dropdown.MenuItem = MenuItem;
+
+var Separator = function Separator() {
+  return (0, _inferno.createVNode)(1, "div", "MenuBar__Separator");
+};
+
+Dropdown.Separator = Separator;
+
+var MenuBar = function MenuBar(props) {
+  var children = props.children;
+  return (0, _inferno.createComponentVNode)(2, _Box.Box, {
+    "className": "MenuBar",
+    children: children
+  });
+};
+
+exports.MenuBar = MenuBar;
+MenuBar.Dropdown = Dropdown;
 
 /***/ }),
 
@@ -31697,348 +32709,21 @@ var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx"
 
 var _Dimmer = __webpack_require__(/*! ./Dimmer */ "./packages/tgui/components/Dimmer.js");
 
-var _excluded = ["className", "children", "onEnter"];
+var _excluded = ["className", "children"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 var Modal = function Modal(props) {
   var className = props.className,
       children = props.children,
-      onEnter = props.onEnter,
-      rest = _objectWithoutPropertiesLoose(props, _excluded); // VOREStation Addition Start
-
-
-  var handleKeyDown;
-
-  if (onEnter) {
-    handleKeyDown = function handleKeyDown(e) {
-      var key = e.which || e.keyCode;
-
-      if (key === 13) {
-        onEnter(e);
-      }
-    };
-  } // VOREStation Addition End
-
+      rest = _objectWithoutPropertiesLoose(props, _excluded);
 
   return (0, _inferno.createComponentVNode)(2, _Dimmer.Dimmer, {
-    "onKeyDown": handleKeyDown
-    /* VOREStation Edit */
-    ,
     children: (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Modal', className, (0, _Box.computeBoxClassName)(rest)]), children, 0, Object.assign({}, (0, _Box.computeBoxProps)(rest))))
   });
 };
 
 exports.Modal = Modal;
-
-/***/ }),
-
-/***/ "./packages/tgui/components/NanoMap.js":
-/*!*********************************************!*\
-  !*** ./packages/tgui/components/NanoMap.js ***!
-  \*********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.NanoMap = void 0;
-
-var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
-
-var _ = __webpack_require__(/*! . */ "./packages/tgui/components/index.js");
-
-var _backend = __webpack_require__(/*! ../backend */ "./packages/tgui/backend.ts");
-
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function () { function _setPrototypeOf(o, p) { o.__proto__ = p; return o; } return _setPrototypeOf; }(); return _setPrototypeOf(o, p); }
-
-var pauseEvent = function pauseEvent(e) {
-  if (e.stopPropagation) {
-    e.stopPropagation();
-  }
-
-  if (e.preventDefault) {
-    e.preventDefault();
-  }
-
-  e.cancelBubble = true;
-  e.returnValue = false;
-  return false;
-};
-
-var zoomScale = 280;
-
-var NanoMap = /*#__PURE__*/function (_Component) {
-  _inheritsLoose(NanoMap, _Component);
-
-  function NanoMap(props) {
-    var _this;
-
-    _this = _Component.call(this, props) || this; // Auto center based on window size
-
-    var Xcenter = window.innerWidth / 2 - 256;
-    var Ycenter = window.innerHeight / 2 - 256;
-    _this.state = {
-      offsetX: Xcenter,
-      offsetY: Ycenter,
-      transform: 'none',
-      dragging: false,
-      originX: null,
-      originY: null,
-      zoom: 1
-    }; // Dragging
-
-    _this.handleDragStart = function (e) {
-      _this.ref = e.target;
-
-      _this.setState({
-        dragging: false,
-        originX: e.screenX,
-        originY: e.screenY
-      });
-
-      document.addEventListener('mousemove', _this.handleDragMove);
-      document.addEventListener('mouseup', _this.handleDragEnd);
-      pauseEvent(e);
-    };
-
-    _this.handleDragMove = function (e) {
-      _this.setState(function (prevState) {
-        var state = Object.assign({}, prevState);
-        var newOffsetX = e.screenX - state.originX;
-        var newOffsetY = e.screenY - state.originY;
-
-        if (prevState.dragging) {
-          state.offsetX += newOffsetX;
-          state.offsetY += newOffsetY;
-          state.originX = e.screenX;
-          state.originY = e.screenY;
-        } else {
-          state.dragging = true;
-        }
-
-        return state;
-      });
-
-      pauseEvent(e);
-    };
-
-    _this.handleDragEnd = function (e) {
-      _this.setState({
-        dragging: false,
-        originX: null,
-        originY: null
-      });
-
-      document.removeEventListener('mousemove', _this.handleDragMove);
-      document.removeEventListener('mouseup', _this.handleDragEnd);
-      pauseEvent(e);
-    };
-
-    _this.handleOnClick = function (e) {
-      var byondX = e.offsetX / _this.state.zoom / zoomScale;
-      var byondY = 1 - e.offsetY / _this.state.zoom / zoomScale; // Byond origin is bottom left, this is top left
-
-      e.byondX = byondX;
-      e.byondY = byondY;
-
-      if (typeof _this.props.onClick === 'function') {
-        _this.props.onClick(e);
-      }
-    };
-
-    _this.handleZoom = function (_e, value) {
-      _this.setState(function (state) {
-        var newZoom = Math.min(Math.max(value, 1), 8);
-        var zoomDiff = (newZoom - state.zoom) * 1.5;
-        state.zoom = newZoom;
-        var newOffsetX = state.offsetX - 262 * zoomDiff;
-
-        if (newOffsetX < -500) {
-          newOffsetX = -500;
-        }
-
-        if (newOffsetX > 500) {
-          newOffsetX = 500;
-        }
-
-        var newOffsetY = state.offsetY - 256 * zoomDiff;
-
-        if (newOffsetY < -200) {
-          newOffsetY = -200;
-        }
-
-        if (newOffsetY > 200) {
-          newOffsetY = 200;
-        }
-
-        state.offsetX = newOffsetX;
-        state.offsetY = newOffsetY;
-
-        if (props.onZoom) {
-          props.onZoom(state.zoom);
-        }
-
-        return state;
-      });
-    };
-
-    return _this;
-  }
-
-  var _proto = NanoMap.prototype;
-
-  _proto.render = function () {
-    function render() {
-      var _useBackend = (0, _backend.useBackend)(this.context),
-          config = _useBackend.config;
-
-      var _this$state = this.state,
-          dragging = _this$state.dragging,
-          offsetX = _this$state.offsetX,
-          offsetY = _this$state.offsetY,
-          _this$state$zoom = _this$state.zoom,
-          zoom = _this$state$zoom === void 0 ? 1 : _this$state$zoom;
-      var children = this.props.children;
-      var mapUrl = config.map + '_nanomap_z' + config.mapZLevel + '.png'; // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
-
-      var mapSize = zoomScale * zoom + 'px';
-      var newStyle = {
-        width: mapSize,
-        height: mapSize,
-        'margin-top': offsetY + 'px',
-        'margin-left': offsetX + 'px',
-        'overflow': 'hidden',
-        'position': 'relative',
-        'background-image': 'url(' + mapUrl + ')',
-        'background-size': 'cover',
-        'background-repeat': 'no-repeat',
-        'text-align': 'center',
-        'cursor': dragging ? 'move' : 'auto'
-      };
-      return (0, _inferno.createComponentVNode)(2, _.Box, {
-        "className": "NanoMap__container",
-        children: [(0, _inferno.createComponentVNode)(2, _.Box, {
-          "style": newStyle,
-          "textAlign": "center",
-          "onMouseDown": this.handleDragStart,
-          "onClick": this.handleOnClick,
-          children: (0, _inferno.createComponentVNode)(2, _.Box, {
-            children: children
-          })
-        }), (0, _inferno.createComponentVNode)(2, NanoMapZoomer, {
-          "zoom": zoom,
-          "onZoom": this.handleZoom
-        })]
-      });
-    }
-
-    return render;
-  }();
-
-  return NanoMap;
-}(_inferno.Component);
-
-exports.NanoMap = NanoMap;
-
-var NanoMapMarker = function NanoMapMarker(props, context) {
-  var x = props.x,
-      y = props.y,
-      _props$zoom = props.zoom,
-      zoom = _props$zoom === void 0 ? 1 : _props$zoom,
-      icon = props.icon,
-      tooltip = props.tooltip,
-      color = props.color,
-      onClick = props.onClick;
-
-  var handleOnClick = function handleOnClick(e) {
-    pauseEvent(e);
-
-    if (onClick) {
-      onClick(e);
-    }
-  };
-
-  var rx = x * 2 * zoom - zoom - 3;
-  var ry = y * 2 * zoom - zoom - 3;
-  return (0, _inferno.createVNode)(1, "div", null, (0, _inferno.createComponentVNode)(2, _.Box, {
-    "position": "absolute",
-    "className": "NanoMap__marker",
-    "lineHeight": "0",
-    "bottom": ry + 'px',
-    "left": rx + 'px',
-    "onMouseDown": handleOnClick,
-    children: [(0, _inferno.createComponentVNode)(2, _.Icon, {
-      "name": icon,
-      "color": color,
-      "fontSize": "6px"
-    }), (0, _inferno.createComponentVNode)(2, _.Tooltip, {
-      "content": tooltip
-    })]
-  }), 2);
-};
-
-NanoMap.Marker = NanoMapMarker;
-
-var NanoMapZoomer = function NanoMapZoomer(props, context) {
-  var _useBackend2 = (0, _backend.useBackend)(context),
-      act = _useBackend2.act,
-      config = _useBackend2.config,
-      data = _useBackend2.data;
-
-  return (0, _inferno.createComponentVNode)(2, _.Box, {
-    "className": "NanoMap__zoomer",
-    children: (0, _inferno.createComponentVNode)(2, _.LabeledList, {
-      children: [(0, _inferno.createComponentVNode)(2, _.LabeledList.Item, {
-        "label": "Zoom",
-        children: (0, _inferno.createComponentVNode)(2, _.Slider, {
-          "minValue": "1",
-          "maxValue": "8",
-          "stepPixelSize": "10",
-          "format": function () {
-            function format(v) {
-              return v + 'x';
-            }
-
-            return format;
-          }(),
-          "value": props.zoom,
-          "onDrag": function () {
-            function onDrag(e, v) {
-              return props.onZoom(e, v);
-            }
-
-            return onDrag;
-          }()
-        })
-      }), (0, _inferno.createComponentVNode)(2, _.LabeledList.Item, {
-        "label": "Z-Level",
-        children: data.map_levels.sort(function (a, b) {
-          return Number(a) - Number(b);
-        }).map(function (level) {
-          return (0, _inferno.createComponentVNode)(2, _.Button, {
-            "selected": ~~level === ~~config.mapZLevel,
-            "content": level,
-            "onClick": function () {
-              function onClick() {
-                act('setZLevel', {
-                  'mapZLevel': level
-                });
-              }
-
-              return onClick;
-            }()
-          }, level);
-        })
-      })]
-    })
-  });
-};
-
-NanoMap.Zoomer = NanoMapZoomer;
 
 /***/ }),
 
@@ -32101,7 +32786,7 @@ var _math = __webpack_require__(/*! common/math */ "./packages/common/math.ts");
 
 var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts");
 
-var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.js");
+var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.tsx");
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
@@ -32288,24 +32973,15 @@ var NumberInput = /*#__PURE__*/function (_Component) {
 
       if (dragging || suppressingFlicker) {
         displayValue = intermediateValue;
-      } // IE8: Use an "unselectable" prop because "user-select" doesn't work.
+      } // prettier-ignore
 
 
-      var renderContentElement = function () {
-        function renderContentElement(value) {
-          return (0, _inferno.createVNode)(1, "div", "NumberInput__content", value + (unit ? ' ' + unit : ''), 0, {
-            "unselectable": Byond.IS_LTE_IE8
-          });
-        }
-
-        return renderContentElement;
-      }();
-
-      var contentElement = animated && !dragging && !suppressingFlicker && (0, _inferno.createComponentVNode)(2, _AnimatedNumber.AnimatedNumber, {
+      var contentElement = (0, _inferno.createVNode)(1, "div", "NumberInput__content", [animated && !dragging && !suppressingFlicker ? (0, _inferno.createComponentVNode)(2, _AnimatedNumber.AnimatedNumber, {
         "value": displayValue,
-        "format": format,
-        children: renderContentElement
-      }) || renderContentElement(format ? format(displayValue) : displayValue);
+        "format": format
+      }) : format ? format(displayValue) : displayValue, unit ? ' ' + unit : ''], 0, {
+        "unselectable": Byond.IS_LTE_IE8
+      });
       return (0, _inferno.createComponentVNode)(2, _Box.Box, {
         "className": (0, _react.classes)(['NumberInput', fluid && 'NumberInput--fluid', className]),
         "minWidth": width,
@@ -32315,6 +32991,7 @@ var NumberInput = /*#__PURE__*/function (_Component) {
         "onMouseDown": this.handleDragStart,
         children: [(0, _inferno.createVNode)(1, "div", "NumberInput__barContainer", (0, _inferno.createVNode)(1, "div", "NumberInput__bar", null, 1, {
           "style": {
+            // prettier-ignore
             height: (0, _math.clamp)((displayValue - minValue) / (maxValue - minValue) * 100, 0, 100) + '%'
           }
         }), 2), contentElement, (0, _inferno.createVNode)(64, "input", "NumberInput__input", null, 1, {
@@ -32361,6 +33038,7 @@ var NumberInput = /*#__PURE__*/function (_Component) {
           "onKeyDown": function () {
             function onKeyDown(e) {
               if (e.keyCode === 13) {
+                // prettier-ignore
                 var _value = (0, _math.clamp)(parseFloat(e.target.value), minValue, maxValue);
 
                 if (Number.isNaN(_value)) {
@@ -32573,6 +33251,8 @@ var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
+var _constants = __webpack_require__(/*! ../constants */ "./packages/tgui/constants.ts");
+
 var _excluded = ["className", "value", "minValue", "maxValue", "color", "ranges", "children"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -32591,13 +33271,31 @@ var ProgressBar = function ProgressBar(props) {
       rest = _objectWithoutPropertiesLoose(props, _excluded);
 
   var scaledValue = (0, _math.scale)(value, minValue, maxValue);
-  var hasContent = children !== undefined;
-  var effectiveColor = color || (0, _math.keyOfMatchingRange)(value, ranges) || 'default';
-  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['ProgressBar', 'ProgressBar--color--' + effectiveColor, className, (0, _Box.computeBoxClassName)(rest)]), [(0, _inferno.createVNode)(1, "div", "ProgressBar__fill ProgressBar__fill--animated", null, 1, {
-    "style": {
-      width: (0, _math.clamp01)(scaledValue) * 100 + '%'
-    }
-  }), (0, _inferno.createVNode)(1, "div", "ProgressBar__content", hasContent ? children : (0, _math.toFixed)(scaledValue * 100) + '%', 0)], 4, Object.assign({}, (0, _Box.computeBoxProps)(rest))));
+  var hasContent = children !== undefined; // prettier-ignore
+
+  var effectiveColor = color || (0, _math.keyOfMatchingRange)(value, ranges) || 'default'; // We permit colors to be in hex format, rgb()/rgba() format,
+  // a name for a color-<name> class, or a base CSS class.
+
+  var outerProps = (0, _Box.computeBoxProps)(rest); // prettier-ignore
+
+  var outerClasses = ['ProgressBar', className, (0, _Box.computeBoxClassName)(rest)];
+  var fillStyles = {
+    'width': (0, _math.clamp01)(scaledValue) * 100 + '%'
+  };
+
+  if (_constants.CSS_COLORS.includes(effectiveColor) || effectiveColor === 'default') {
+    // If the color is a color-<name> class, just use that.
+    outerClasses.push('ProgressBar--color--' + effectiveColor);
+  } else {
+    // Otherwise, set styles directly.
+    // prettier-ignore
+    outerProps.style = (outerProps.style || "") + ("border-color: " + effectiveColor + ";");
+    fillStyles['background-color'] = effectiveColor;
+  }
+
+  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(outerClasses), [(0, _inferno.createVNode)(1, "div", "ProgressBar__fill ProgressBar__fill--animated", null, 1, {
+    "style": fillStyles
+  }), (0, _inferno.createVNode)(1, "div", "ProgressBar__content", hasContent ? children : (0, _math.toFixed)(scaledValue * 100) + '%', 0)], 4, Object.assign({}, outerProps)));
 };
 
 exports.ProgressBar = ProgressBar;
@@ -32639,21 +33337,20 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
 var DEFAULT_MIN = 0;
 var DEFAULT_MAX = 10000;
 /**
- * Takes a string input and parses integers from it.
+ * Takes a string input and parses integers or floats from it.
  * If none: Minimum is set.
  * Else: Clamps it to the given range.
  */
 
-var getClampedNumber = function getClampedNumber(value, minValue, maxValue) {
+var getClampedNumber = function getClampedNumber(value, minValue, maxValue, allowFloats) {
   var minimum = minValue || DEFAULT_MIN;
   var maximum = maxValue || maxValue === 0 ? maxValue : DEFAULT_MAX;
 
   if (!value || !value.length) {
     return String(minimum);
-  } // let parsedValue = parseInt(value.replace(/\D/g, ''), 10);
+  }
 
-
-  var parsedValue = parseFloat(value);
+  var parsedValue = allowFloats ? parseFloat(value.replace(/[^\-\d.]/g, '')) : parseInt(value.replace(/[^\-\d]/g, ''), 10);
 
   if (isNaN(parsedValue)) {
     return String(minimum);
@@ -32686,8 +33383,9 @@ var RestrictedInput = /*#__PURE__*/function (_Component) {
       var _this$props = _this.props,
           maxValue = _this$props.maxValue,
           minValue = _this$props.minValue,
-          onChange = _this$props.onChange;
-      e.target.value = getClampedNumber(e.target.value, minValue, maxValue);
+          onChange = _this$props.onChange,
+          allowFloats = _this$props.allowFloats;
+      e.target.value = getClampedNumber(e.target.value, minValue, maxValue, allowFloats);
 
       if (onChange) {
         onChange(e, +e.target.value);
@@ -32720,10 +33418,11 @@ var RestrictedInput = /*#__PURE__*/function (_Component) {
           maxValue = _this$props2.maxValue,
           minValue = _this$props2.minValue,
           onChange = _this$props2.onChange,
-          onEnter = _this$props2.onEnter;
+          onEnter = _this$props2.onEnter,
+          allowFloats = _this$props2.allowFloats;
 
       if (e.keyCode === _keycodes.KEY_ENTER) {
-        var safeNum = getClampedNumber(e.target.value, minValue, maxValue);
+        var safeNum = getClampedNumber(e.target.value, minValue, maxValue, allowFloats);
 
         _this.setEditing(false);
 
@@ -32766,12 +33465,13 @@ var RestrictedInput = /*#__PURE__*/function (_Component) {
 
       var _this$props3 = this.props,
           maxValue = _this$props3.maxValue,
-          minValue = _this$props3.minValue;
+          minValue = _this$props3.minValue,
+          allowFloats = _this$props3.allowFloats;
       var nextValue = (_this$props$value = this.props.value) == null ? void 0 : _this$props$value.toString();
       var input = this.inputRef.current;
 
       if (input) {
-        input.value = getClampedNumber(nextValue, minValue, maxValue);
+        input.value = getClampedNumber(nextValue, minValue, maxValue, allowFloats);
       }
 
       if (this.props.autoFocus || this.props.autoSelect) {
@@ -32794,7 +33494,8 @@ var RestrictedInput = /*#__PURE__*/function (_Component) {
 
       var _this$props4 = this.props,
           maxValue = _this$props4.maxValue,
-          minValue = _this$props4.minValue;
+          minValue = _this$props4.minValue,
+          allowFloats = _this$props4.allowFloats;
       var editing = this.state.editing;
       var prevValue = (_prevProps$value = prevProps.value) == null ? void 0 : _prevProps$value.toString();
       var nextValue = (_this$props$value2 = this.props.value) == null ? void 0 : _this$props$value2.toString();
@@ -32802,7 +33503,7 @@ var RestrictedInput = /*#__PURE__*/function (_Component) {
 
       if (input && !editing) {
         if (nextValue !== prevValue && nextValue !== input.value) {
-          input.value = getClampedNumber(nextValue, minValue, maxValue);
+          input.value = getClampedNumber(nextValue, minValue, maxValue, allowFloats);
         }
       }
     }
@@ -32877,11 +33578,11 @@ var _math = __webpack_require__(/*! common/math */ "./packages/common/math.ts");
 
 var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts");
 
-var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.js");
+var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.tsx");
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
-var _excluded = ["value", "minValue", "maxValue", "ranges", "alertAfter", "format", "size", "className", "style"];
+var _excluded = ["value", "minValue", "maxValue", "ranges", "alertAfter", "alertBefore", "format", "size", "className", "style"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -32898,6 +33599,7 @@ var RoundGauge = function RoundGauge(props) {
       maxValue = _props$maxValue === void 0 ? 1 : _props$maxValue,
       ranges = props.ranges,
       alertAfter = props.alertAfter,
+      alertBefore = props.alertBefore,
       format = props.format,
       _props$size = props.size,
       size = _props$size === void 0 ? 1 : _props$size,
@@ -32918,15 +33620,29 @@ var RoundGauge = function RoundGauge(props) {
     });
   }
 
-  var alertColor = null;
+  var shouldShowAlert = function shouldShowAlert() {
+    // If both after and before alert props are set, attempt to interpret both
+    // in a helpful way.
+    if (alertAfter && alertBefore && alertAfter < alertBefore) {
+      // If alertAfter is before alertBefore, only display an alert if
+      // we're between them.
+      if (alertAfter < value && alertBefore > value) {
+        return true;
+      }
+    } else if (alertAfter < value || alertBefore > value) {
+      // Otherwise, we have distint ranges, or only one or neither are set.
+      // Either way, being on the active side of either is sufficient.
+      return true;
+    }
 
-  if (alertAfter < value) {
-    alertColor = (0, _math.keyOfMatchingRange)(clampedValue, scaledRanges);
-  }
+    return false;
+  }; // prettier-ignore
 
+
+  var alertColor = shouldShowAlert() && (0, _math.keyOfMatchingRange)(clampedValue, scaledRanges);
   return (0, _inferno.createComponentVNode)(2, _Box.Box, {
     "inline": true,
-    children: [(0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['RoundGauge', className, (0, _Box.computeBoxClassName)(rest)]), (0, _inferno.createVNode)(32, "svg", null, [alertAfter && (0, _inferno.createVNode)(32, "g", (0, _react.classes)(['RoundGauge__alert', alertColor ? "active RoundGauge__alert--" + alertColor : '']), (0, _inferno.createVNode)(32, "path", null, null, 1, {
+    children: [(0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['RoundGauge', className, (0, _Box.computeBoxClassName)(rest)]), (0, _inferno.createVNode)(32, "svg", null, [(alertAfter || alertBefore) && (0, _inferno.createVNode)(32, "g", (0, _react.classes)(['RoundGauge__alert', alertColor ? "active RoundGauge__alert--" + alertColor : '']), (0, _inferno.createVNode)(32, "path", null, null, 1, {
       "d": "M48.211,14.578C48.55,13.9 49.242,13.472 50,13.472C50.758,13.472 51.45,13.9 51.789,14.578C54.793,20.587 60.795,32.589 63.553,38.106C63.863,38.726 63.83,39.462 63.465,40.051C63.101,40.641 62.457,41 61.764,41C55.996,41 44.004,41 38.236,41C37.543,41 36.899,40.641 36.535,40.051C36.17,39.462 36.137,38.726 36.447,38.106C39.205,32.589 45.207,20.587 48.211,14.578ZM50,34.417C51.426,34.417 52.583,35.574 52.583,37C52.583,38.426 51.426,39.583 50,39.583C48.574,39.583 47.417,38.426 47.417,37C47.417,35.574 48.574,34.417 50,34.417ZM50,32.75C50,32.75 53,31.805 53,22.25C53,20.594 51.656,19.25 50,19.25C48.344,19.25 47,20.594 47,22.25C47,31.805 50,32.75 50,32.75Z"
     }), 2), (0, _inferno.createVNode)(32, "g", null, (0, _inferno.createVNode)(32, "circle", "RoundGauge__ringTrack", null, 1, {
       "cx": "50",
@@ -33154,7 +33870,8 @@ var Slider = function Slider(props) {
         var hasFillValue = fillValue !== undefined && fillValue !== null;
         var scaledValue = (0, _math.scale)(value, minValue, maxValue);
         var scaledFillValue = (0, _math.scale)(fillValue != null ? fillValue : displayValue, minValue, maxValue);
-        var scaledDisplayValue = (0, _math.scale)(displayValue, minValue, maxValue);
+        var scaledDisplayValue = (0, _math.scale)(displayValue, minValue, maxValue); // prettier-ignore
+
         var effectiveColor = color || (0, _math.keyOfMatchingRange)(fillValue != null ? fillValue : value, ranges) || 'default';
         return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Slider', 'ProgressBar', 'ProgressBar--color--' + effectiveColor, className, (0, _Box.computeBoxClassName)(rest)]), [(0, _inferno.createVNode)(1, "div", (0, _react.classes)(['ProgressBar__fill', hasFillValue && 'ProgressBar__fill--animated']), null, 1, {
           "style": {
@@ -33163,6 +33880,7 @@ var Slider = function Slider(props) {
           }
         }), (0, _inferno.createVNode)(1, "div", "ProgressBar__fill", null, 1, {
           "style": {
+            // prettier-ignore
             width: (0, _math.clamp01)(Math.min(scaledFillValue, scaledDisplayValue)) * 100 + '%'
           }
         }), (0, _inferno.createVNode)(1, "div", "Slider__cursorOffset", [(0, _inferno.createVNode)(1, "div", "Slider__cursor"), (0, _inferno.createVNode)(1, "div", "Slider__pointer"), dragging && (0, _inferno.createVNode)(1, "div", "Slider__popupValue", displayElement, 0)], 0, {
@@ -33213,10 +33931,9 @@ var Stack = function Stack(props) {
       fill = props.fill,
       rest = _objectWithoutPropertiesLoose(props, _excluded);
 
-  return (0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Flex.Flex, Object.assign({
-    "className": (0, _react.classes)(['Stack', fill && 'Stack--fill', vertical ? 'Stack--vertical' : 'Stack--horizontal', className]),
-    "direction": vertical ? 'column' : 'row'
-  }, rest)));
+  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Stack', fill && 'Stack--fill', vertical ? 'Stack--vertical' : 'Stack--horizontal', className, (0, _Flex.computeFlexClassName)(props)]), null, 1, Object.assign({}, (0, _Flex.computeFlexProps)(Object.assign({
+    direction: vertical ? 'column' : 'row'
+  }, rest)))));
 };
 
 exports.Stack = Stack;
@@ -33226,9 +33943,7 @@ var StackItem = function StackItem(props) {
       innerRef = props.innerRef,
       rest = _objectWithoutPropertiesLoose(props, _excluded2);
 
-  return (0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Flex.Flex.Item, Object.assign({
-    "className": (0, _react.classes)(['Stack__item', className])
-  }, rest), null, innerRef));
+  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Stack__item', className, (0, _Flex.computeFlexItemClassName)(rest)]), null, 1, Object.assign({}, (0, _Flex.computeFlexItemProps)(rest)), null, innerRef));
 };
 
 Stack.Item = StackItem;
@@ -33238,12 +33953,52 @@ var StackDivider = function StackDivider(props) {
       hidden = props.hidden,
       rest = _objectWithoutPropertiesLoose(props, _excluded3);
 
-  return (0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Flex.Flex.Item, Object.assign({
-    "className": (0, _react.classes)(['Stack__item', 'Stack__divider', hidden && 'Stack__divider--hidden', className])
-  }, rest)));
+  return (0, _inferno.normalizeProps)((0, _inferno.createVNode)(1, "div", (0, _react.classes)(['Stack__item', 'Stack__divider', hidden && 'Stack__divider--hidden', className, (0, _Flex.computeFlexItemClassName)(rest)]), null, 1, Object.assign({}, (0, _Flex.computeFlexItemProps)(rest))));
 };
 
 Stack.Divider = StackDivider;
+
+/***/ }),
+
+/***/ "./packages/tgui/components/StyleableSection.tsx":
+/*!*******************************************************!*\
+  !*** ./packages/tgui/components/StyleableSection.tsx ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.StyleableSection = void 0;
+
+var _inferno = __webpack_require__(/*! inferno */ "./.yarn/cache/inferno-npm-7.4.11-3352a2fb62-1651aad357.zip/node_modules/inferno/index.esm.js");
+
+var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
+
+// The cost of flexibility and prettiness.
+var StyleableSection = function StyleableSection(props) {
+  return (0, _inferno.createComponentVNode)(2, _Box.Box, {
+    "style": props.style,
+    children: [(0, _inferno.createComponentVNode)(2, _Box.Box, {
+      "class": "Section__title",
+      "style": props.titleStyle,
+      children: [(0, _inferno.createComponentVNode)(2, _Box.Box, {
+        "class": "Section__titleText",
+        "style": props.textStyle,
+        children: props.title
+      }), (0, _inferno.createVNode)(1, "div", "Section__buttons", props.titleSubtext, 0)]
+    }), (0, _inferno.createComponentVNode)(2, _Box.Box, {
+      "class": "Section__rest",
+      children: (0, _inferno.createComponentVNode)(2, _Box.Box, {
+        "class": "Section__content",
+        children: props.children
+      })
+    })]
+  });
+};
+
+exports.StyleableSection = StyleableSection;
 
 /***/ }),
 
@@ -33328,7 +34083,7 @@ var _react = __webpack_require__(/*! common/react */ "./packages/common/react.ts
 
 var _Box = __webpack_require__(/*! ./Box */ "./packages/tgui/components/Box.tsx");
 
-var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.js");
+var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.tsx");
 
 var _excluded = ["className", "vertical", "fill", "fluid", "children"],
     _excluded2 = ["className", "selected", "color", "icon", "leftSlot", "rightSlot", "children"];
@@ -33389,8 +34144,8 @@ var _Input = __webpack_require__(/*! ./Input */ "./packages/tgui/components/Inpu
 
 var _keycodes = __webpack_require__(/*! common/keycodes */ "./packages/common/keycodes.ts");
 
-var _excluded = ["onChange", "onKeyDown", "onKeyPress", "onInput", "onFocus", "onBlur", "onEnter", "value", "maxLength", "placeholder"],
-    _excluded2 = ["className", "fluid"];
+var _excluded = ["onChange", "onKeyDown", "onKeyPress", "onInput", "onFocus", "onBlur", "onEnter", "value", "maxLength", "placeholder", "scrollbar", "noborder", "displayedValue"],
+    _excluded2 = ["className", "fluid", "nowrap"];
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -33406,9 +34161,9 @@ var TextArea = /*#__PURE__*/function (_Component) {
 
     _this = _Component.call(this, props, context) || this;
     _this.textareaRef = props.innerRef || (0, _inferno.createRef)();
-    _this.fillerRef = (0, _inferno.createRef)();
     _this.state = {
-      editing: false
+      editing: false,
+      scrolledAmount: 0
     };
     var _props$dontUseTabForI = props.dontUseTabForIndent,
         dontUseTabForIndent = _props$dontUseTabForI === void 0 ? false : _props$dontUseTabForI;
@@ -33458,7 +34213,7 @@ var TextArea = /*#__PURE__*/function (_Component) {
           onChange = _this$props.onChange,
           onInput = _this$props.onInput,
           onEnter = _this$props.onEnter,
-          onKeyDown = _this$props.onKeyDown;
+          onKey = _this$props.onKey;
 
       if (e.keyCode === _keycodes.KEY_ENTER) {
         _this.setEditing(false);
@@ -33502,10 +34257,11 @@ var TextArea = /*#__PURE__*/function (_Component) {
 
       if (!editing) {
         _this.setEditing(true);
-      }
+      } // Custom key handler
 
-      if (onKeyDown) {
-        onKeyDown(e, e.target.value);
+
+      if (onKey) {
+        onKey(e, e.target.value);
       }
 
       if (!dontUseTabForIndent) {
@@ -33519,6 +34275,10 @@ var TextArea = /*#__PURE__*/function (_Component) {
               selectionEnd = _e$target.selectionEnd;
           e.target.value = value.substring(0, selectionStart) + '\t' + value.substring(selectionEnd);
           e.target.selectionEnd = selectionStart + 1;
+
+          if (onInput) {
+            onInput(e, e.target.value);
+          }
         }
       }
     };
@@ -33544,6 +34304,17 @@ var TextArea = /*#__PURE__*/function (_Component) {
       }
     };
 
+    _this.handleScroll = function (e) {
+      var displayedValue = _this.props.displayedValue;
+      var input = _this.textareaRef.current;
+
+      if (displayedValue && input) {
+        _this.setState({
+          scrolledAmount: input.scrollTop
+        });
+      }
+    };
+
     return _this;
   }
 
@@ -33551,6 +34322,8 @@ var TextArea = /*#__PURE__*/function (_Component) {
 
   _proto.componentDidMount = function () {
     function componentDidMount() {
+      var _this2 = this;
+
       var nextValue = this.props.value;
       var input = this.textareaRef.current;
 
@@ -33558,9 +34331,13 @@ var TextArea = /*#__PURE__*/function (_Component) {
         input.value = (0, _Input.toInputValue)(nextValue);
       }
 
-      if (this.props.autoFocus) {
+      if (this.props.autoFocus || this.props.autoSelect) {
         setTimeout(function () {
-          return input.focus();
+          input.focus();
+
+          if (_this2.props.autoSelect) {
+            input.select();
+          }
         }, 1);
       }
     }
@@ -33614,17 +34391,32 @@ var TextArea = /*#__PURE__*/function (_Component) {
           value = _this$props2.value,
           maxLength = _this$props2.maxLength,
           placeholder = _this$props2.placeholder,
+          scrollbar = _this$props2.scrollbar,
+          noborder = _this$props2.noborder,
+          displayedValue = _this$props2.displayedValue,
           boxProps = _objectWithoutPropertiesLoose(_this$props2, _excluded); // Box props
 
 
       var className = boxProps.className,
           fluid = boxProps.fluid,
+          nowrap = boxProps.nowrap,
           rest = _objectWithoutPropertiesLoose(boxProps, _excluded2);
 
+      var scrolledAmount = this.state.scrolledAmount;
       return (0, _inferno.normalizeProps)((0, _inferno.createComponentVNode)(2, _Box.Box, Object.assign({
-        "className": (0, _react.classes)(['TextArea', fluid && 'TextArea--fluid', className])
+        "className": (0, _react.classes)(['TextArea', fluid && 'TextArea--fluid', noborder && 'TextArea--noborder', className])
       }, rest, {
-        children: (0, _inferno.createVNode)(128, "textarea", "TextArea__textarea", null, 1, {
+        children: [!!displayedValue && (0, _inferno.createComponentVNode)(2, _Box.Box, {
+          "position": "absolute",
+          "width": "100%",
+          "height": "100%",
+          "overflow": "hidden",
+          children: (0, _inferno.createVNode)(1, "div", (0, _react.classes)(['TextArea__textarea', 'TextArea__textarea_custom']), displayedValue, 0, {
+            "style": {
+              'transform': "translateY(-" + scrolledAmount + "px)"
+            }
+          })
+        }), (0, _inferno.createVNode)(128, "textarea", (0, _react.classes)(['TextArea__textarea', scrollbar && 'TextArea__textarea--scrollable', nowrap && 'TextArea__nowrap']), null, 1, {
           "placeholder": placeholder,
           "onChange": this.handleOnChange,
           "onKeyDown": this.handleKeyDown,
@@ -33632,8 +34424,12 @@ var TextArea = /*#__PURE__*/function (_Component) {
           "onInput": this.handleOnInput,
           "onFocus": this.handleFocus,
           "onBlur": this.handleBlur,
-          "maxLength": maxLength
-        }, null, this.textareaRef)
+          "onScroll": this.handleScroll,
+          "maxLength": maxLength,
+          "style": {
+            'color': displayedValue ? 'rgba(0, 0, 0, 0)' : 'inherit'
+          }
+        }, null, this.textareaRef)]
       })));
     }
 
@@ -33806,7 +34602,16 @@ var NULL_RECT = {
   top: 0,
   right: 0,
   bottom: 0,
-  left: 0
+  left: 0,
+  x: 0,
+  y: 0,
+  toJSON: function () {
+    function toJSON() {
+      return null;
+    }
+
+    return toJSON;
+  }()
 };
 
 var Tooltip = /*#__PURE__*/function (_Component) {
@@ -33950,11 +34755,12 @@ Tooltip.renderedTooltip = void 0;
 Tooltip.singletonPopper = void 0;
 Tooltip.currentHoveredElement = void 0;
 Tooltip.virtualElement = {
+  // prettier-ignore
   getBoundingClientRect: function () {
     function getBoundingClientRect() {
-      var _ref, _Tooltip$currentHover;
+      var _Tooltip$currentHover, _Tooltip$currentHover2;
 
-      return (_ref = (_Tooltip$currentHover = Tooltip.currentHoveredElement) == null ? void 0 : _Tooltip$currentHover.getBoundingClientRect()) != null ? _ref : NULL_RECT;
+      return (_Tooltip$currentHover = (_Tooltip$currentHover2 = Tooltip.currentHoveredElement) == null ? void 0 : _Tooltip$currentHover2.getBoundingClientRect()) != null ? _Tooltip$currentHover : NULL_RECT;
     }
 
     return getBoundingClientRect;
@@ -34045,9 +34851,9 @@ exports.TrackOutsideClicks = TrackOutsideClicks;
 
 
 exports.__esModule = true;
-exports.TrackOutsideClicks = exports.Tooltip = exports.TimeDisplay = exports.TextArea = exports.Tabs = exports.Table = exports.Stack = exports.Slider = exports.Section = exports.RoundGauge = exports.RestrictedInput = exports.ProgressBar = exports.Popper = exports.NumberInput = exports.NoticeBox = exports.NanoMap = exports.Modal = exports.LabeledList = exports.LabeledControls = exports.Knob = exports.KeyListener = exports.Input = exports.InfinitePlane = exports.Icon = exports.Grid = exports.Flex = exports.Dropdown = exports.DraggableControl = exports.Divider = exports.Dimmer = exports.ColorBox = exports.Collapsible = exports.Chart = exports.ByondUi = exports.Button = exports.Box = exports.BlockQuote = exports.Blink = exports.Autofocus = exports.AnimatedNumber = void 0;
+exports.TrackOutsideClicks = exports.Tooltip = exports.TimeDisplay = exports.TextArea = exports.Tabs = exports.Table = exports.StyleableSection = exports.Stack = exports.Slider = exports.Section = exports.RoundGauge = exports.RestrictedInput = exports.ProgressBar = exports.Popper = exports.NumberInput = exports.NoticeBox = exports.Modal = exports.MenuBar = exports.LabeledList = exports.LabeledControls = exports.Knob = exports.KeyListener = exports.Input = exports.InfinitePlane = exports.Icon = exports.Grid = exports.Flex = exports.FitText = exports.Dropdown = exports.DraggableControl = exports.Divider = exports.Dimmer = exports.Dialog = exports.ColorBox = exports.Collapsible = exports.Chart = exports.ByondUi = exports.Button = exports.Box = exports.BlockQuote = exports.Blink = exports.Autofocus = exports.AnimatedNumber = void 0;
 
-var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.js");
+var _AnimatedNumber = __webpack_require__(/*! ./AnimatedNumber */ "./packages/tgui/components/AnimatedNumber.tsx");
 
 exports.AnimatedNumber = _AnimatedNumber.AnimatedNumber;
 
@@ -34099,7 +34905,7 @@ var _DraggableControl = __webpack_require__(/*! ./DraggableControl */ "./package
 
 exports.DraggableControl = _DraggableControl.DraggableControl;
 
-var _Dropdown = __webpack_require__(/*! ./Dropdown */ "./packages/tgui/components/Dropdown.js");
+var _Dropdown = __webpack_require__(/*! ./Dropdown */ "./packages/tgui/components/Dropdown.tsx");
 
 exports.Dropdown = _Dropdown.Dropdown;
 
@@ -34107,11 +34913,15 @@ var _Flex = __webpack_require__(/*! ./Flex */ "./packages/tgui/components/Flex.t
 
 exports.Flex = _Flex.Flex;
 
+var _FitText = __webpack_require__(/*! ./FitText */ "./packages/tgui/components/FitText.tsx");
+
+exports.FitText = _FitText.FitText;
+
 var _Grid = __webpack_require__(/*! ./Grid */ "./packages/tgui/components/Grid.js");
 
 exports.Grid = _Grid.Grid;
 
-var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.js");
+var _Icon = __webpack_require__(/*! ./Icon */ "./packages/tgui/components/Icon.tsx");
 
 exports.Icon = _Icon.Icon;
 
@@ -34139,13 +34949,13 @@ var _LabeledList = __webpack_require__(/*! ./LabeledList */ "./packages/tgui/com
 
 exports.LabeledList = _LabeledList.LabeledList;
 
+var _MenuBar = __webpack_require__(/*! ./MenuBar */ "./packages/tgui/components/MenuBar.tsx");
+
+exports.MenuBar = _MenuBar.MenuBar;
+
 var _Modal = __webpack_require__(/*! ./Modal */ "./packages/tgui/components/Modal.js");
 
 exports.Modal = _Modal.Modal;
-
-var _NanoMap = __webpack_require__(/*! ./NanoMap */ "./packages/tgui/components/NanoMap.js");
-
-exports.NanoMap = _NanoMap.NanoMap;
 
 var _NoticeBox = __webpack_require__(/*! ./NoticeBox */ "./packages/tgui/components/NoticeBox.js");
 
@@ -34179,6 +34989,10 @@ var _Slider = __webpack_require__(/*! ./Slider */ "./packages/tgui/components/Sl
 
 exports.Slider = _Slider.Slider;
 
+var _StyleableSection = __webpack_require__(/*! ./StyleableSection */ "./packages/tgui/components/StyleableSection.tsx");
+
+exports.StyleableSection = _StyleableSection.StyleableSection;
+
 var _Stack = __webpack_require__(/*! ./Stack */ "./packages/tgui/components/Stack.tsx");
 
 exports.Stack = _Stack.Stack;
@@ -34206,6 +35020,10 @@ exports.TrackOutsideClicks = _TrackOutsideClicks.TrackOutsideClicks;
 var _Tooltip = __webpack_require__(/*! ./Tooltip */ "./packages/tgui/components/Tooltip.tsx");
 
 exports.Tooltip = _Tooltip.Tooltip;
+
+var _Dialog = __webpack_require__(/*! ./Dialog */ "./packages/tgui/components/Dialog.tsx");
+
+exports.Dialog = _Dialog.Dialog;
 
 /***/ }),
 
