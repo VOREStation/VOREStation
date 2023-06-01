@@ -148,3 +148,9 @@
 	req_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 5, TECH_BIO = 6)
 	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_DIAMOND = 1500, MAT_PHORON = 4000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/medigun
+
+/datum/design/item/mecha/weapon/scattershot/boomstick
+	name = "\improper Remington C-12 \"Boomstick\""
+	desc = "A mounted combat shotgun with integrated ammo-lathe."
+	id = "mech_boomstick"
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/boomstick
