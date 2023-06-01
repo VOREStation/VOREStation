@@ -35,7 +35,8 @@ GLOBAL_LIST_INIT(generic_fishing_pool_list, list(
 		/obj/random/junk = 80,
 		/obj/random/trash = 80,
 		/obj/item/weapon/spacecash/c1 = 10,
-		/obj/item/weapon/spacecash/c10 = 5,
+		/obj/item/weapon/spacecash/c5 = 3,
+		/obj/item/weapon/spacecash/c10 = 2,
 		/obj/item/weapon/spacecash/c100 = 1
 		))
 

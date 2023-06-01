@@ -276,6 +276,7 @@
 /obj/random/cash/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(12);/obj/item/weapon/spacecash/c1,
+				prob(10);/obj/item/weapon/spacecash/c5,
 				prob(8);/obj/item/weapon/spacecash/c10,
 				prob(4);/obj/item/weapon/spacecash/c20,
 				prob(1);/obj/item/weapon/spacecash/c50,
