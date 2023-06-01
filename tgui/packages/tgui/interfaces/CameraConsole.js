@@ -2,16 +2,15 @@ import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { classes } from 'common/react';
 import { createSearch } from 'common/string';
-import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, ByondUi, Input, Section, Dropdown } from '../components';
-import { refocusLayout, Window } from '../layouts';
+import { Button, ByondUi, Dropdown, Flex, Input, Section } from '../components';
+import { Window } from '../layouts';
 
 /**
  * Returns previous and next camera names relative to the currently
  * active camera.
  */
-const prevNextCamera = (cameras, activeCamera) => {
+export const prevNextCamera = (cameras, activeCamera) => {
   if (!activeCamera) {
     return [];
   }
@@ -26,9 +25,9 @@ const prevNextCamera = (cameras, activeCamera) => {
  *
  * Filters cameras, applies search terms and sorts the alphabetically.
  */
-const selectCameras = (cameras, searchText = '', networkFilter = '') => {
+export const selectCameras = (cameras, searchText = '', networkFilter = '') => {
   const testSearch = createSearch(searchText, (camera) => camera.name);
-  let fl = flow([
+  return flow([
     // Null camera filter
     filter((camera) => camera?.name),
     // Optional search term
@@ -39,20 +38,10 @@ const selectCameras = (cameras, searchText = '', networkFilter = '') => {
     // Slightly expensive, but way better than sorting in BYOND
     sortBy((camera) => camera.name),
   ])(cameras);
-  return fl;
 };
 
 export const CameraConsole = (props, context) => {
-  return (
-    <Window width={870} height={708} resizable>
-      <CameraConsoleContent />
-    </Window>
-  );
-};
-
-export const CameraConsoleContent = (props, context) => {
-  const { act, data, config } = useBackend(context);
-
+  const { act, data } = useBackend(context);
   const { mapRef, activeCamera } = data;
   const cameras = selectCameras(data.cameras);
   const [prevCameraName, nextCameraName] = prevNextCamera(
@@ -60,10 +49,10 @@ export const CameraConsoleContent = (props, context) => {
     activeCamera
   );
   return (
-    <Fragment>
+    <Window width={870} height={708}>
       <div className="CameraConsole__left">
         <Window.Content scrollable>
-          <CameraConsoleSearch />
+          <CameraConsoleContent />
         </Window.Content>
       </div>
       <div className="CameraConsole__right">
@@ -72,6 +61,26 @@ export const CameraConsoleContent = (props, context) => {
           {(activeCamera && activeCamera.name) || '—'}
         </div>
         <div className="CameraConsole__toolbarRight">
+          SEL:
+          <Button
+            icon="chevron-left"
+            disabled={!prevCameraName}
+            onClick={() =>
+              act('switch_camera', {
+                name: prevCameraName,
+              })
+            }
+          />
+          <Button
+            icon="chevron-right"
+            disabled={!nextCameraName}
+            onClick={() =>
+              act('switch_camera', {
+                name: nextCameraName,
+              })
+            }
+          />
+          | PAN:
           <Button icon="chevron-left" onClick={() => act('pan', { dir: 8 })} />
           <Button icon="chevron-up" onClick={() => act('pan', { dir: 1 })} />
           <Button icon="chevron-right" onClick={() => act('pan', { dir: 4 })} />
@@ -85,11 +94,11 @@ export const CameraConsoleContent = (props, context) => {
           }}
         />
       </div>
-    </Fragment>
+    </Window>
   );
 };
 
-export const CameraConsoleSearch = (props, context) => {
+export const CameraConsoleContent = (props, context) => {
   const { act, data } = useBackend(context);
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
   const [networkFilter, setNetworkFilter] = useLocalState(
@@ -101,46 +110,52 @@ export const CameraConsoleSearch = (props, context) => {
   allNetworks.sort();
   const cameras = selectCameras(data.cameras, searchText, networkFilter);
   return (
-    <Fragment>
-      <Input
-        fluid
-        mb={1}
-        placeholder="Search for a camera"
-        onInput={(e, value) => setSearchText(value)}
-      />
-      <Dropdown
-        mb={1}
-        width="177px"
-        options={allNetworks}
-        placeholder="No Filter"
-        onSelected={(value) => setNetworkFilter(value)}
-      />
-      <Section>
-        {cameras.map((camera) => (
-          // We're not using the component here because performance
-          // would be absolutely abysmal (50+ ms for each re-render).
-          <div
-            key={camera.name}
-            title={camera.name}
-            className={classes([
-              'Button',
-              'Button--fluid',
-              'Button--color--transparent',
-              'Button--ellipsis',
-              activeCamera &&
-                camera.name === activeCamera.name &&
-                'Button--selected',
-            ])}
-            onClick={() => {
-              refocusLayout();
-              act('switch_camera', {
-                name: camera.name,
-              });
-            }}>
-            {camera.name}
-          </div>
-        ))}
-      </Section>
-    </Fragment>
+    <Flex direction={'column'} height="100%">
+      <Flex.Item>
+        <Input
+          autoFocus
+          fluid
+          mt={1}
+          placeholder="Search for a camera"
+          onInput={(e, value) => setSearchText(value)}
+        />
+      </Flex.Item>
+      <Flex.Item>
+        <Dropdown
+          mb={1}
+          width="177px"
+          displayText={networkFilter || 'No Filter'}
+          options={allNetworks}
+          onSelected={(value) => setNetworkFilter(value)}
+        />
+      </Flex.Item>
+      <Flex.Item height="100%">
+        <Section fill scrollable>
+          {cameras.map((camera) => (
+            // We're not using the component here because performance
+            // would be absolutely abysmal (50+ ms for each re-render).
+            <div
+              key={camera.name}
+              title={camera.name}
+              className={classes([
+                'Button',
+                'Button--fluid',
+                'Button--color--transparent',
+                'Button--ellipsis',
+                activeCamera &&
+                  camera.name === activeCamera.name &&
+                  'Button--selected',
+              ])}
+              onClick={() =>
+                act('switch_camera', {
+                  name: camera.name,
+                })
+              }>
+              {camera.name}
+            </div>
+          ))}
+        </Section>
+      </Flex.Item>
+    </Flex>
   );
 };
