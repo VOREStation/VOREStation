@@ -6,9 +6,11 @@
 	var/list/entity_names = list()
 	var/list/entity_refs = list()
 
+
+
 //Appears as a right click verb on any obj and mob within view range.
 //when not right clicking we get a list to pick from in aforementioned view range.
-/client/proc/add_mob_for_narration(E as obj|mob in orange(world.view))
+/client/proc/add_mob_for_narration(E as obj|mob|turf in orange(world.view))
 	set name = "Narrate Entity (Add ref)"
 	set desc = "Saves a reference of target mob to be called when narrating."
 	set category = "Fun"
@@ -22,15 +24,10 @@
 		return
 	var/datum/entity_narrate/holder = entity_narrate_holder
 
-	//Added /obj functionality on top of mob. It works practically the same.
-	if(istype(E, /obj))
-		var/obj/O = E
-		var/unique_name = tgui_input_text(usr, "Please give the entity a unique name to track internally. \
-		This doesn't override how it appears in game", "tracker", O.name)
-		holder.entity_names += unique_name
-		holder.entity_refs[unique_name] = O
-		log_and_message_admins("added [O.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
-
+	//Since we extended to include all atoms, we're shutting things down with a guard clause for ghosts
+	if(istype(E, /mob/observer))
+		to_chat(usr, SPAN_NOTICE("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
+		return
 	//We require a static mob/living type to check for .client and also later on, to use the unique .say mechanics for stuttering and language
 	if(istype(E, /mob/living))
 		var/mob/living/L = E
@@ -43,6 +40,15 @@
 		holder.entity_names += unique_name
 		holder.entity_refs[unique_name] = L
 		log_and_message_admins("added [L.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
+
+	//Covering functionality for turfs and objs. We need static type to access the name var
+	else if(istype(E, /atom))
+		var/atom/A = E
+		var/unique_name = tgui_input_text(usr, "Please give the entity a unique name to track internally. \
+		This doesn't override how it appears in game", "tracker", A.name)
+		holder.entity_names += unique_name
+		holder.entity_refs[unique_name] = A
+		log_and_message_admins("added [A.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
 
 //Proc for keeping our ref list relevant, deleting mobs that are no longer relevant for our event
 /client/proc/remove_mob_for_narration()
@@ -60,8 +66,14 @@
 		return
 	var/datum/entity_narrate/holder = entity_narrate_holder
 
-	var/removekey = tgui_input_list(usr, "Choose which entity to remove", "remove reference", holder.entity_names, null)
-	if(removekey)
+	var/options = holder.entity_names + "Clear All"
+	var/removekey = tgui_input_list(usr, "Choose which entity to remove", "remove reference", options, null)
+	if(removekey == "Clear All")
+		var/confirm = tgui_alert(usr, "Do you really want to clear your entity list?", "confirm", list("Yes", "No"), "No")
+		if(confirm == "Yes")
+			holder.entity_names = list()
+			holder.entity_refs = list()
+	else if(removekey)
 		holder.entity_refs -= removekey
 		holder.entity_names -= removekey
 
@@ -108,22 +120,22 @@
 			return
 
 	//This does cost us some code duplication, but I think it's worth it.
-	//furthermore, objs require the usr to specify the verb when speaking, otherwise it looks like an emote.
-	else if(istype(holder.entity_refs[which_entity], /obj))
-		var/obj/our_entity = holder.entity_refs[which_entity]
+	//furthermore, objs & turfs require the usr to specify the verb when speaking, otherwise it looks like an emote.
+	else if(istype(holder.entity_refs[which_entity], /atom))
+		var/atom/our_entity = holder.entity_refs[which_entity]
 		if(mode == "Speak")
 			var/content = tgui_input_text(usr, "Input what you want [our_entity] to say", "narrate", null)
 			if(content)
-				our_entity.audible_message("[our_entity.name] [content]")
+				our_entity.audible_message("<b>[our_entity.name]</b> [content]")
 		else if(mode == "Emote")
 			var/content = tgui_input_text(usr, "Input what you want [our_entity] to do", "narrate", null)
 			if(content)
-				our_entity.visible_message("[our_entity.name] [content]")
+				our_entity.visible_message("<b>[our_entity.name]</b> [content]")
 		else
 			return
 
 /client/proc/narrate_mob_args(name as text, mode as text, message as text)
-	set name = "Narrate Mob"
+	set name = "Narrate Entity"
 	set desc = "Narrate entities using positional arguments. Name should be as saved in ref list, mode should be Speak or Emote, follow with message"
 	set category = "Fun"
 
@@ -163,14 +175,14 @@
 			return
 
 	//This does cost us some code duplication, but I think it's worth it.
-	//furthermore, objs require the usr to specify the verb when speaking, otherwise it looks like an emote.
-	else if(istype(holder.entity_refs[name], /obj))
-		var/obj/our_entity = holder.entity_refs[name]
+	//furthermore, objs/turfs require the usr to specify the verb when speaking, otherwise it looks like an emote.
+	else if(istype(holder.entity_refs[name], /atom))
+		var/atom/our_entity = holder.entity_refs[name]
 		if(!message)
 			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
 		if(message && mode == "Speak")
-			our_entity.audible_message("[our_entity.name] [message]")
+			our_entity.audible_message("<b>[our_entity.name]</b> [message]")
 		else if(message && mode == "Emote")
-			our_entity.visible_message("[our_entity.name] [message]")
+			our_entity.visible_message("<b>[our_entity.name]</b> [message]")
 		else
 			return
