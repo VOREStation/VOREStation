@@ -48,10 +48,10 @@
 
 /obj/item/device/uav/Initialize()
 	. = ..()
-	
+
 	if(!cell && cell_type)
 		cell = new cell_type
-	
+
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.stop()
@@ -69,7 +69,7 @@
 		. += "It has <i>'[nickname]'</i> scribbled on the side."
 	if(!cell)
 		. += "<span class='warning'>It appears to be missing a power cell.</span>"
-	
+
 	if(health <= (initial(health)/4))
 		. += "<span class='warning'>It looks like it might break at any second!</span>"
 	else if(health <= (initial(health)/2))
@@ -86,7 +86,7 @@
 		"Toggle Power" = radial_power,
 		"Pairing Mode" = radial_pair)
 	var/choice = show_radial_menu(user, src, options, require_near = !issilicon(user))
-	
+
 	switch(choice)
 		// Can pick up when off or packed
 		if("Pick Up")
@@ -113,11 +113,11 @@
 /obj/item/device/uav/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/modular_computer) && state == UAV_PAIRING)
 		var/obj/item/modular_computer/MC = I
-		LAZYDISTINCTADD(MC.paired_uavs, weakref(src))
+		LAZYDISTINCTADD(MC.paired_uavs, WEAKREF(src))
 		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
 		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
 		toggle_pairing()
-	
+
 	else if(I.is_screwdriver() && cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")
@@ -125,7 +125,7 @@
 			power_down()
 			cell.forceMove(get_turf(src))
 			cell = null
-	
+
 	else if(istype(I, /obj/item/weapon/cell) && !cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You insert [I] into [nickname].</span>")
@@ -185,7 +185,7 @@
 		playsound(src, 'sound/items/drop/metalboots.ogg', 75, 1)
 		power_down()
 		health -= initial(health)*0.25 //Lose 25% of your original health
-	
+
 	if(LAZYLEN(masters))
 		no_masters_time = 0
 	else if(no_masters_time++ > 50)
@@ -251,7 +251,7 @@
 /obj/item/device/uav/proc/power_down()
 	if(state != UAV_ON)
 		return
-	
+
 	state = UAV_OFF
 	update_icon()
 	stop_hover()
@@ -265,7 +265,7 @@
 	return cell
 
 /obj/item/device/uav/relaymove(var/mob/user, direction, signal = 1)
-	if(signal && state == UAV_ON && (weakref(user) in masters))
+	if(signal && state == UAV_ON && (WEAKREF(user) in masters))
 		if(next_move <= world.time)
 			next_move = world.time + (1 SECOND/signal)
 			step(src, direction)
@@ -276,10 +276,10 @@
 	return "[nickname] - [get_x(src)],[get_y(src)],[get_z(src)] - I:[health]/[initial(health)] - C:[cell ? "[cell.charge]/[cell.maxcharge]" : "Not Installed"]"
 
 /obj/item/device/uav/proc/add_master(var/mob/living/M)
-	LAZYDISTINCTADD(masters, weakref(M))
+	LAZYDISTINCTADD(masters, WEAKREF(M))
 
 /obj/item/device/uav/proc/remove_master(var/mob/living/M)
-	LAZYREMOVE(masters, weakref(M))
+	LAZYREMOVE(masters, WEAKREF(M))
 
 /obj/item/device/uav/check_eye()
 	if(state == UAV_ON)
@@ -310,7 +310,7 @@
 /obj/item/device/uav/hear_talk(var/mob/M, list/message_pieces, verb)
 	var/name_used = M.GetVoice()
 	for(var/wr_master in masters)
-		var/weakref/wr = wr_master
+		var/datum/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
 		var/list/combined = master.combine_message(message_pieces, verb, M)
 		var/message = combined["formatted"]
@@ -319,14 +319,14 @@
 
 /obj/item/device/uav/see_emote(var/mob/living/M, text)
 	for(var/wr_master in masters)
-		var/weakref/wr = wr_master
+		var/datum/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
 		var/rendered = "<i><span class='game say'>UAV received, <span class='message'>[text]</span></span></i>"
 		master.show_message(rendered, 2)
 
 /obj/item/device/uav/show_message(msg, type, alt, alt_type)
 	for(var/wr_master in masters)
-		var/weakref/wr = wr_master
+		var/datum/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
 		var/rendered = "<i><span class='game say'>UAV received, <span class='message'>[msg]</span></span></i>"
 		master.show_message(rendered, type)

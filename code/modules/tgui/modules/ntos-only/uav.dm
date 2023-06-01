@@ -30,7 +30,7 @@
 	var/list/paired_map = list()
 	var/obj/item/modular_computer/mc_host = tgui_host()
 	if(istype(mc_host))
-		for(var/weakref/wr as anything in mc_host.paired_uavs)
+		for(var/datum/weakref/wr as anything in mc_host.paired_uavs)
 			var/obj/item/device/uav/U = wr.resolve()
 			paired_map.Add(list(list("name" = "[U ? U.nickname : "!!Missing!!"]", "uavref" = "\ref[U]")))
 
@@ -40,7 +40,7 @@
 /datum/tgui_module/uav/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("switch_uav")
 			var/obj/item/device/uav/U = locate(params["switch_uav"]) //This is a \ref to the UAV itself
@@ -59,9 +59,9 @@
 			var/refstring = params["del_uav"] //This is a \ref to the UAV itself
 			var/obj/item/modular_computer/mc_host = tgui_host()
 			//This is so we can really scrape up any weakrefs that can't resolve
-			for(var/weakref/wr in mc_host.paired_uavs)
-				if(wr.ref == refstring)
-					if(current_uav?.weakref == wr)
+			for(var/datum/weakref/wr in mc_host.paired_uavs)
+				if(wr.reference == refstring)
+					if(current_uav?.weak_reference == wr)
 						set_current(null)
 					LAZYREMOVE(mc_host.paired_uavs, wr)
 			return TRUE
@@ -82,7 +82,7 @@
 			else if(current_uav.toggle_power())
 				//Clean up viewers faster
 				if(LAZYLEN(viewers))
-					for(var/weakref/W in viewers)
+					for(var/datum/weakref/W in viewers)
 						var/M = W.resolve()
 						if(M)
 							unlook(M)
@@ -97,7 +97,7 @@
 	RegisterSignal(U, COMSIG_MOVABLE_Z_CHANGED, .proc/current_uav_changed_z)
 
 	if(LAZYLEN(viewers))
-		for(var/weakref/W in viewers)
+		for(var/datum/weakref/W in viewers)
 			var/M = W.resolve()
 			if(M)
 				look(M)
@@ -111,7 +111,7 @@
 	current_uav = null
 
 	if(LAZYLEN(viewers))
-		for(var/weakref/W in viewers)
+		for(var/datum/weakref/W in viewers)
 			var/M = W.resolve()
 			if(M)
 				to_chat(M, "<span class='warning'>You're disconnected from the UAV's camera!</span>")
@@ -172,7 +172,7 @@
 /* All handling viewers */
 /datum/tgui_module/uav/Destroy()
 	if(LAZYLEN(viewers))
-		for(var/weakref/W in viewers)
+		for(var/datum/weakref/W in viewers)
 			var/M = W.resolve()
 			if(M)
 				unlook(M)
@@ -191,7 +191,7 @@
 	unlook(user)
 
 /datum/tgui_module/uav/proc/viewing_uav(mob/user)
-	return (weakref(user) in viewers)
+	return (WEAKREF(user) in viewers)
 
 /datum/tgui_module/uav/proc/look(mob/user)
 	if(issilicon(user)) //Too complicated for me to want to mess with at the moment
@@ -205,14 +205,14 @@
 		user.set_machine(tgui_host())
 	user.reset_view(current_uav)
 	current_uav.add_master(user)
-	LAZYDISTINCTADD(viewers, weakref(user))
+	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/uav/proc/unlook(mob/user)
 	user.unset_machine()
 	user.reset_view()
 	if(current_uav)
 		current_uav.remove_master(user)
-	LAZYREMOVE(viewers, weakref(user))
+	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/uav/check_eye(mob/user)
 	if(get_dist(user, tgui_host()) > 1 || user.blinded || !current_uav)
@@ -239,7 +239,7 @@
 /datum/tgui_module/uav/apply_visual(mob/M)
 	if(!M.client)
 		return
-	if(weakref(M) in viewers)
+	if(WEAKREF(M) in viewers)
 		M.overlay_fullscreen("fishbed",/obj/screen/fullscreen/fishbed)
 		M.overlay_fullscreen("scanlines",/obj/screen/fullscreen/scanline)
 
