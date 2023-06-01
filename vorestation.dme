@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\__byond_version_compat.dm"
 #include "code\__spaceman_dmm.dm"
 #include "code\_away_mission_tests.dm"
 #include "code\_macros.dm"
@@ -19,13 +20,10 @@
 #include "code\global.dm"
 #include "code\global_init.dm"
 #include "code\global_vr.dm"
-#include "code\hub.dm"
 #include "code\names.dm"
 #include "code\stylesheet.dm"
 #include "code\world.dm"
 #include "code\__datastructures\globals.dm"
-#include "code\__defines\__513_compatibility.dm"
-#include "code\__defines\__outdated_compatibility.dm"
 #include "code\__defines\_compile_options.dm"
 #include "code\__defines\_lists.dm"
 #include "code\__defines\_planes+layers.dm"
