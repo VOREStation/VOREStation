@@ -14,7 +14,13 @@ type Data = {
 export const Teleporter = (props, context) => {
   const { act, data } = useBackend<Data>(context);
 
-  const { locked_name, station_connected, hub_connected, calibrated, teleporter_on } = data;
+  const {
+    locked_name,
+    station_connected,
+    hub_connected,
+    calibrated,
+    teleporter_on,
+  } = data;
 
   return (
     <Window width={300} height={200} resizable>
@@ -22,7 +28,12 @@ export const Teleporter = (props, context) => {
         <Section>
           <LabeledList>
             <LabeledList.Item label="Target">
-              <Button fluid icon="bullseye" onClick={() => act('select_target')} content={locked_name} />
+              <Button
+                fluid
+                icon="bullseye"
+                onClick={() => act('select_target')}
+                content={locked_name}
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Calibrated">
               <Button.Checkbox
@@ -42,8 +53,12 @@ export const Teleporter = (props, context) => {
                 content={teleporter_on ? 'Online' : 'OFFLINE'}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Station">{station_connected ? 'Connected' : 'Not Connected'}</LabeledList.Item>
-            <LabeledList.Item label="Hub">{hub_connected ? 'Connected' : 'Not Connected'}</LabeledList.Item>
+            <LabeledList.Item label="Station">
+              {station_connected ? 'Connected' : 'Not Connected'}
+            </LabeledList.Item>
+            <LabeledList.Item label="Hub">
+              {hub_connected ? 'Connected' : 'Not Connected'}
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       </Window.Content>

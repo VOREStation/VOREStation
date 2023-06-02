@@ -5,7 +5,7 @@ importFormatting: oneline
 jsxBracketSameLine: true
 jsxSingleQuote: false
 offsetTernaryExpressions: true
-printWidth: 120
+printWidth: 80
 proseWrap: preserve
 quoteProps: preserve
 semi: true

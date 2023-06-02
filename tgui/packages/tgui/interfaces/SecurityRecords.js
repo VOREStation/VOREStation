@@ -69,7 +69,14 @@ const SecurityRecordsList = (_properties, context) => {
             icon="user"
             mb="0.5rem"
             color={record.color}
-            content={record.id + ': ' + record.name + ' (Criminal Status: ' + record.criminal + ')'}
+            content={
+              record.id +
+              ': ' +
+              record.name +
+              ' (Criminal Status: ' +
+              record.criminal +
+              ')'
+            }
             onClick={() => act('d_rec', { d_rec: record.ref })}
           />
         ))}
@@ -84,8 +91,18 @@ const SecurityRecordsMaintenance = (_properties, context) => {
     <Fragment>
       <Button icon="download" content="Backup to Disk" disabled />
       <br />
-      <Button icon="upload" content="Upload from Disk" my="0.5rem" disabled /> <br />
-      <Button.Confirm icon="trash" content="Delete All Security Records" onClick={() => act('del_all')} />
+      <Button
+        icon="upload"
+        content="Upload from Disk"
+        my="0.5rem"
+        disabled
+      />{' '}
+      <br />
+      <Button.Confirm
+        icon="trash"
+        content="Delete All Security Records"
+        onClick={() => act('del_all')}
+      />
     </Fragment>
   );
 };
@@ -125,7 +142,12 @@ const SecurityRecordsView = (_properties, context) => {
           onClick={() => act('print_p')}
         />
         <br />
-        <Button icon="arrow-left" content="Back" mt="0.5rem" onClick={() => act('screen', { screen: 2 })} />
+        <Button
+          icon="arrow-left"
+          content="Back"
+          mt="0.5rem"
+          onClick={() => act('screen', { screen: 2 })}
+        />
       </Section>
     </Fragment>
   );
@@ -146,7 +168,13 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
               <Box height="20px" inline preserveWhitespace>
                 {field.value}
               </Box>
-              {!!field.edit && <Button icon="pen" ml="0.5rem" onClick={() => doEdit(context, field)} />}
+              {!!field.edit && (
+                <Button
+                  icon="pen"
+                  ml="0.5rem"
+                  onClick={() => doEdit(context, field)}
+                />
+              )}
             </LabeledList.Item>
           ))}
         </LabeledList>
@@ -154,7 +182,11 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
       <Flex.Item textAlign="right">
         {!!general.has_photos &&
           general.photos.map((p, i) => (
-            <Box key={i} display="inline-block" textAlign="center" color="label">
+            <Box
+              key={i}
+              display="inline-block"
+              textAlign="center"
+              color="label">
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -183,7 +215,12 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
     return (
       <Box color="bad">
         Security records lost!
-        <Button icon="pen" content="New Record" ml="0.5rem" onClick={() => act('new')} />
+        <Button
+          icon="pen"
+          content="New Record"
+          ml="0.5rem"
+          onClick={() => act('new')}
+        />
       </Box>
     );
   }
@@ -213,7 +250,12 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
               </Box>
               <br />
               {comment.text}
-              <Button icon="comment-slash" color="bad" ml="0.5rem" onClick={() => act('del_c', { del_c: i + 1 })} />
+              <Button
+                icon="comment-slash"
+                color="bad"
+                ml="0.5rem"
+                onClick={() => act('del_c', { del_c: i + 1 })}
+              />
             </Box>
           ))
         )}
@@ -236,10 +278,16 @@ const SecurityRecordsNavigation = (_properties, context) => {
   const { screen } = data;
   return (
     <Tabs>
-      <Tabs.Tab selected={screen === 2} icon="list" onClick={() => act('screen', { screen: 2 })}>
+      <Tabs.Tab
+        selected={screen === 2}
+        icon="list"
+        onClick={() => act('screen', { screen: 2 })}>
         List Records
       </Tabs.Tab>
-      <Tabs.Tab icon="wrench" selected={screen === 3} onClick={() => act('screen', { screen: 3 })}>
+      <Tabs.Tab
+        icon="wrench"
+        selected={screen === 3}
+        onClick={() => act('screen', { screen: 3 })}>
         Record Maintenance
       </Tabs.Tab>
     </Tabs>

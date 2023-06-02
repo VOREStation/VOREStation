@@ -23,7 +23,8 @@ export const NtosNewsBrowser = (props, context) => {
       <NtosWindow.Content scrollable>
         {!!message && (
           <NoticeBox>
-            {message} <Button icon="times" onClick={() => act('PRG_clearmessage')} />
+            {message}{' '}
+            <Button icon="times" onClick={() => act('PRG_clearmessage')} />
           </NoticeBox>
         )}
         {body}
@@ -74,7 +75,9 @@ const ViewArticles = (props, context) => {
     <Section
       title="Articles List"
       buttons={
-        <Button.Checkbox onClick={() => act('PRG_toggle_archived')} checked={showing_archived}>
+        <Button.Checkbox
+          onClick={() => act('PRG_toggle_archived')}
+          checked={showing_archived}>
           Show Archived
         </Button.Checkbox>
       }>
@@ -84,7 +87,12 @@ const ViewArticles = (props, context) => {
             <LabeledList.Item
               label={article.name}
               key={article.uid}
-              buttons={<Button icon="download" onClick={() => act('PRG_openarticle', { uid: article.uid })} />}>
+              buttons={
+                <Button
+                  icon="download"
+                  onClick={() => act('PRG_openarticle', { uid: article.uid })}
+                />
+              }>
               {article.size} GQ
             </LabeledList.Item>
           ))) || (
@@ -100,17 +108,24 @@ const ViewArticles = (props, context) => {
 const ArticleDownloading = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { download_progress, download_maxprogress, download_rate } = data.download;
+  const { download_progress, download_maxprogress, download_rate } =
+    data.download;
 
   return (
     <Section title="Downloading...">
       <LabeledList>
         <LabeledList.Item label="Progress">
-          <ProgressBar color="good" minValue={0} value={download_progress} maxValue={download_maxprogress}>
+          <ProgressBar
+            color="good"
+            minValue={0}
+            value={download_progress}
+            maxValue={download_maxprogress}>
             {download_progress} / {download_maxprogress} GQ
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Download Speed">{download_rate} GQ/s</LabeledList.Item>
+        <LabeledList.Item label="Download Speed">
+          {download_rate} GQ/s
+        </LabeledList.Item>
         <LabeledList.Item label="Controls">
           <Button icon="ban" fluid onClick={() => act('PRG_reset')}>
             Abort Download

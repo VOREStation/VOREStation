@@ -6,7 +6,8 @@ import { FullscreenNotice } from './common/FullscreenNotice';
 export const AiSupermatter = (props, context) => {
   const { data } = useBackend(context);
 
-  const { integrity_percentage, ambient_temp, ambient_pressure, detonating } = data;
+  const { integrity_percentage, ambient_temp, ambient_pressure, detonating } =
+    data;
 
   let body = <AiSupermatterContent />;
   if (detonating) {
@@ -23,7 +24,13 @@ export const AiSupermatter = (props, context) => {
 const AiSupermatterDetonation = (props, context) => (
   <FullscreenNotice title="DETONATION IMMINENT">
     <Box fontSize="1.5rem" bold color="bad">
-      <Icon color="bad" name="exclamation-triangle" verticalAlign="middle" size={3} mr="1rem" />
+      <Icon
+        color="bad"
+        name="exclamation-triangle"
+        verticalAlign="middle"
+        size={3}
+        mr="1rem"
+      />
       <Box color="bad">CRYSTAL DELAMINATING</Box>
       <Box color="bad">Evacuate area immediately</Box>
     </Box>
@@ -61,7 +68,9 @@ const AiSupermatterContent = (props, context) => {
             {ambient_temp} K
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Environment Pressure">{ambient_pressure} kPa</LabeledList.Item>
+        <LabeledList.Item label="Environment Pressure">
+          {ambient_pressure} kPa
+        </LabeledList.Item>
       </LabeledList>
     </Section>
   );

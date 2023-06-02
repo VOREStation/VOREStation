@@ -27,10 +27,16 @@ export const MiningOreProcessingConsole = (props, context) => {
           title="Status"
           buttons={
             <Fragment>
-              <Button icon="bolt" selected={speed} onClick={() => act('speed_toggle')}>
+              <Button
+                icon="bolt"
+                selected={speed}
+                onClick={() => act('speed_toggle')}>
                 {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
               </Button>
-              <Button icon="power-off" selected={power} onClick={() => act('power')}>
+              <Button
+                icon="power-off"
+                selected={power}
+                onClick={() => act('power')}>
                 {power ? 'Smelting' : 'Not Smelting'}
               </Button>
             </Fragment>
@@ -39,7 +45,10 @@ export const MiningOreProcessingConsole = (props, context) => {
             <LabeledList.Item
               label="Current unclaimed points"
               buttons={
-                <Button disabled={unclaimedPoints < 1} icon="download" onClick={() => act('claim')}>
+                <Button
+                  disabled={unclaimedPoints < 1}
+                  icon="download"
+                  onClick={() => act('claim')}>
                   Claim
                 </Button>
               }>
@@ -54,7 +63,12 @@ export const MiningOreProcessingConsole = (props, context) => {
 };
 
 // ORDER IS IMPORTANT HERE.
-const processingOptions = ['Not Processing', 'Smelting', 'Compressing', 'Alloying'];
+const processingOptions = [
+  'Not Processing',
+  'Smelting',
+  'Compressing',
+  'Alloying',
+];
 
 // Higher in the list == closer to top
 // This is just kind of an arbitrary list to sort by because the machine has no predictable ore order in it's list

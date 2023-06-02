@@ -56,7 +56,13 @@ export const PowerMonitorContent = (props, context) => {
   return (
     <Section
       title="No active sensor. Listing all."
-      buttons={<Button content="Scan For Sensors" icon="undo" onClick={() => act('refresh')} />}>
+      buttons={
+        <Button
+          content="Scan For Sensors"
+          icon="undo"
+          onClick={() => act('refresh')}
+        />
+      }>
       {body}
     </Section>
   );
@@ -66,7 +72,11 @@ export const PowerMonitorFocus = (props, context) => {
   const { act, data } = useBackend(context);
   const { focus } = props;
   const { history } = focus;
-  const [sortByField, setSortByField] = useLocalState(context, 'sortByField', null);
+  const [sortByField, setSortByField] = useLocalState(
+    context,
+    'sortByField',
+    null
+  );
   const supply = history.supply[history.supply.length - 1] || 0;
   const demand = history.demand[history.demand.length - 1] || 0;
   const supplyData = history.supply.map((value, i) => [i, value]);
@@ -99,19 +109,33 @@ export const PowerMonitorFocus = (props, context) => {
     <Fragment>
       <Section
         title={focus.name}
-        buttons={<Button icon="sign-out-alt" content="Back To Main" onClick={() => act('clear')} />}
+        buttons={
+          <Button
+            icon="sign-out-alt"
+            content="Back To Main"
+            onClick={() => act('clear')}
+          />
+        }
       />
       <Flex mx={-0.5} mb={1}>
         <Flex.Item mx={0.5} width="200px">
           <Section>
             <LabeledList>
               <LabeledList.Item label="Supply">
-                <ProgressBar value={supply} minValue={0} maxValue={maxValue} color="teal">
+                <ProgressBar
+                  value={supply}
+                  minValue={0}
+                  maxValue={maxValue}
+                  color="teal">
                   {toFixed(supply / 1000) + ' kW'}
                 </ProgressBar>
               </LabeledList.Item>
               <LabeledList.Item label="Draw">
-                <ProgressBar value={demand} minValue={0} maxValue={maxValue} color="pink">
+                <ProgressBar
+                  value={demand}
+                  minValue={0}
+                  maxValue={maxValue}
+                  color="pink">
                   {toFixed(demand / 1000) + ' kW'}
                 </ProgressBar>
               </LabeledList.Item>
@@ -162,7 +186,9 @@ export const PowerMonitorFocus = (props, context) => {
           <Button.Checkbox
             checked={sortByField === 'problems'}
             content="Problems"
-            onClick={() => setSortByField(sortByField !== 'problems' && 'problems')}
+            onClick={() =>
+              setSortByField(sortByField !== 'problems' && 'problems')
+            }
           />
         </Box>
         <Table>
@@ -186,7 +212,9 @@ export const PowerMonitorFocus = (props, context) => {
               <td className="Table__cell text-right text-nowrap">
                 <AreaCharge charging={area.charging} charge={area.charge} />
               </td>
-              <td className="Table__cell text-right text-nowrap">{area.load}</td>
+              <td className="Table__cell text-right text-nowrap">
+                {area.load}
+              </td>
               <td className="Table__cell text-center text-nowrap">
                 <AreaStatusColorBox status={area.eqp} />
               </td>
@@ -212,7 +240,8 @@ export const AreaCharge = (props) => {
         width="18px"
         textAlign="center"
         name={
-          (charging === 0 && (charge > 50 ? 'battery-half' : 'battery-quarter')) ||
+          (charging === 0 &&
+            (charge > 50 ? 'battery-half' : 'battery-quarter')) ||
           (charging === 1 && 'bolt') ||
           (charging === 2 && 'battery-full')
         }
@@ -236,7 +265,13 @@ const AreaStatusColorBox = (props) => {
   const power = Boolean(status & 2);
   const mode = Boolean(status & 1);
   const tooltipText = (power ? 'On' : 'Off') + ` [${mode ? 'auto' : 'manual'}]`;
-  return <ColorBox color={power ? 'good' : 'bad'} content={mode ? undefined : 'M'} title={tooltipText} />;
+  return (
+    <ColorBox
+      color={power ? 'good' : 'bad'}
+      content={mode ? undefined : 'M'}
+      title={tooltipText}
+    />
+  );
 };
 
 AreaStatusColorBox.defaultHooks = pureComponentHooks;

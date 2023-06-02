@@ -107,7 +107,12 @@ const CommunicationsConsoleMain = (props, context) => {
                 disabled={!authmax || cc_cooldown > 0}
                 onClick={() => act('MessageSyndicate')}
               />
-              <Button icon="sync-alt" content="Reset Relays" disabled={!authmax} onClick={() => act('RestoreBackup')} />
+              <Button
+                icon="sync-alt"
+                content="Reset Relays"
+                disabled={!authmax}
+                onClick={() => act('RestoreBackup')}
+              />
             </LabeledList.Item>
           )) || (
             <LabeledList.Item label="Transmit">
@@ -126,7 +131,9 @@ const CommunicationsConsoleMain = (props, context) => {
           <LabeledList.Item label="Current Alert" color={security_level_color}>
             {alertLevelText}
           </LabeledList.Item>
-          <LabeledList.Item label="Change Alert">{alertLevelButtons}</LabeledList.Item>
+          <LabeledList.Item label="Change Alert">
+            {alertLevelButtons}
+          </LabeledList.Item>
           <LabeledList.Item label="Displays">
             <Button
               icon="tv"
@@ -161,7 +168,8 @@ const CommunicationsConsoleMain = (props, context) => {
 const CommunicationsConsoleAuth = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { authenticated, is_ai, esc_status, esc_callable, esc_recallable } = data;
+  const { authenticated, is_ai, esc_status, esc_callable, esc_recallable } =
+    data;
 
   let authReadable;
   if (!authenticated) {
@@ -180,12 +188,16 @@ const CommunicationsConsoleAuth = (props, context) => {
     <Fragment>
       <Section title="Authentication">
         <LabeledList>
-          {(is_ai && <LabeledList.Item label="Access Level">AI</LabeledList.Item>) || (
+          {(is_ai && (
+            <LabeledList.Item label="Access Level">AI</LabeledList.Item>
+          )) || (
             <LabeledList.Item label="Actions">
               <Button
                 icon={authenticated ? 'sign-out-alt' : 'id-card'}
                 selected={authenticated}
-                content={authenticated ? 'Log Out (' + authReadable + ')' : 'Log In'}
+                content={
+                  authenticated ? 'Log Out (' + authReadable + ')' : 'Log In'
+                }
                 onClick={() => act('auth')}
               />
             </LabeledList.Item>
@@ -194,7 +206,9 @@ const CommunicationsConsoleAuth = (props, context) => {
       </Section>
       <Section title="Escape Shuttle">
         <LabeledList>
-          {!!esc_status && <LabeledList.Item label="Status">{esc_status}</LabeledList.Item>}
+          {!!esc_status && (
+            <LabeledList.Item label="Status">{esc_status}</LabeledList.Item>
+          )}
           {!!esc_callable && (
             <LabeledList.Item label="Options">
               <Button
@@ -224,7 +238,8 @@ const CommunicationsConsoleAuth = (props, context) => {
 const CommunicationsConsoleMessage = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { message_current, message_deletion_allowed, authenticated, messages } = data;
+  const { message_current, message_deletion_allowed, authenticated, messages } =
+    data;
 
   if (message_current) {
     return (
@@ -249,7 +264,10 @@ const CommunicationsConsoleMessage = (props, context) => {
         <Button
           icon="eye"
           content="View"
-          disabled={!authenticated || (message_current && message_current.title === m.title)}
+          disabled={
+            !authenticated ||
+            (message_current && message_current.title === m.title)
+          }
           onClick={() => act('messagelist', { msgid: m.id })}
         />
         <Button
@@ -265,7 +283,13 @@ const CommunicationsConsoleMessage = (props, context) => {
   return (
     <Section
       title="Messages Received"
-      buttons={<Button icon="arrow-circle-left" content="Back To Main Menu" onClick={() => act('main')} />}>
+      buttons={
+        <Button
+          icon="arrow-circle-left"
+          content="Back To Main Menu"
+          onClick={() => act('main')}
+        />
+      }>
       <LabeledList>
         {(messages.length && messageRows) || (
           <LabeledList.Item label="404" color="bad">
@@ -296,7 +320,13 @@ const CommunicationsConsoleStatusDisplay = (props, context) => {
   return (
     <Section
       title="Modify Status Screens"
-      buttons={<Button icon="arrow-circle-left" content="Back To Main Menu" onClick={() => act('main')} />}>
+      buttons={
+        <Button
+          icon="arrow-circle-left"
+          content="Back To Main Menu"
+          onClick={() => act('main')}
+        />
+      }>
       <LabeledList>
         <LabeledList.Item label="Presets">{presetButtons}</LabeledList.Item>
         <LabeledList.Item label="Message Line 1">

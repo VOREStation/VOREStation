@@ -36,3 +36,11 @@
 /datum/gear/shoes/flats/alt
 	display_name = "flats, alt"
 	path = /obj/item/clothing/shoes/flats/white/color/alt
+
+/datum/gear/shoes/sandals_elegant
+	display_name = "sandals, elegant"
+	path = /obj/item/clothing/shoes/sandals_elegant
+
+/datum/gear/shoes/sandals_elegant/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice

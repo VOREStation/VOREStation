@@ -17,8 +17,12 @@ export const Uplink = (props, context) => {
     <Window width={620} height={580} theme="syndicate" resizable>
       <Window.Content scrollable>
         <UplinkHeader screen={screen} setScreen={setScreen} />
-        {(screen === 0 && <GenericUplink currencyAmount={telecrystals} currencySymbol="TC" />) ||
-          (screen === 1 && <ExploitableInformation />) || <Section color="bad">Error</Section>}
+        {(screen === 0 && (
+          <GenericUplink currencyAmount={telecrystals} currencySymbol="TC" />
+        )) ||
+          (screen === 1 && <ExploitableInformation />) || (
+            <Section color="bad">Error</Section>
+          )}
       </Window.Content>
     </Window>
   );
@@ -48,7 +52,8 @@ const UplinkHeader = (props, context) => {
       <Section title="Item Discount" level={2}>
         {(discount_amount < 100 && (
           <Box>
-            {discount_name} - {discount_amount}% off. Offer expires at: {offer_expiry}
+            {discount_name} - {discount_amount}% off. Offer expires at:{' '}
+            {offer_expiry}
           </Box>
         )) || <Box>No items currently discounted.</Box>}
       </Section>
@@ -64,22 +69,46 @@ const ExploitableInformation = (props, context) => {
   return (
     <Section
       title="Exploitable Information"
-      buttons={exploit && <Button icon="undo" content="Back" onClick={() => act('view_exploits', { id: 0 })} />}>
+      buttons={
+        exploit && (
+          <Button
+            icon="undo"
+            content="Back"
+            onClick={() => act('view_exploits', { id: 0 })}
+          />
+        )
+      }>
       {(exploit && (
         <Box>
           <LabeledList>
             <LabeledList.Item label="Name">{exploit.name}</LabeledList.Item>
             <LabeledList.Item label="Sex">{exploit.sex}</LabeledList.Item>
-            <LabeledList.Item label="Species">{exploit.species}</LabeledList.Item>
+            <LabeledList.Item label="Species">
+              {exploit.species}
+            </LabeledList.Item>
             <LabeledList.Item label="Age">{exploit.age}</LabeledList.Item>
             <LabeledList.Item label="Rank">{exploit.rank}</LabeledList.Item>
-            <LabeledList.Item label="Home System">{exploit.home_system}</LabeledList.Item>
-            <LabeledList.Item label="Birthplace">{exploit.birthplace}</LabeledList.Item>
-            <LabeledList.Item label="Citizenship">{exploit.citizenship}</LabeledList.Item>
-            <LabeledList.Item label="Faction">{exploit.faction}</LabeledList.Item>
-            <LabeledList.Item label="Religion">{exploit.religion}</LabeledList.Item>
-            <LabeledList.Item label="Fingerprint">{exploit.fingerprint}</LabeledList.Item>
-            <LabeledList.Item label="Other Affiliations">{exploit.antagfaction}</LabeledList.Item>
+            <LabeledList.Item label="Home System">
+              {exploit.home_system}
+            </LabeledList.Item>
+            <LabeledList.Item label="Birthplace">
+              {exploit.birthplace}
+            </LabeledList.Item>
+            <LabeledList.Item label="Citizenship">
+              {exploit.citizenship}
+            </LabeledList.Item>
+            <LabeledList.Item label="Faction">
+              {exploit.faction}
+            </LabeledList.Item>
+            <LabeledList.Item label="Religion">
+              {exploit.religion}
+            </LabeledList.Item>
+            <LabeledList.Item label="Fingerprint">
+              {exploit.fingerprint}
+            </LabeledList.Item>
+            <LabeledList.Item label="Other Affiliations">
+              {exploit.antagfaction}
+            </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item>Acquired Information</LabeledList.Item>
             <LabeledList.Item label="Notes">
@@ -108,7 +137,11 @@ export const GenericUplink = (props, context) => {
   const { act, data } = useBackend(context);
   const { compactMode, lockable, categories = [] } = data;
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
-  const [selectedCategory, setSelectedCategory] = useLocalState(context, 'category', categories[0]?.name);
+  const [selectedCategory, setSelectedCategory] = useLocalState(
+    context,
+    'category',
+    categories[0]?.name
+  );
   const testSearch = createSearch(searchText, (item) => {
     return item.name + item.desc;
   });
@@ -133,13 +166,20 @@ export const GenericUplink = (props, context) => {
       buttons={
         <Fragment>
           Search
-          <Input autoFocus value={searchText} onInput={(e, value) => setSearchText(value)} mx={1} />
+          <Input
+            autoFocus
+            value={searchText}
+            onInput={(e, value) => setSearchText(value)}
+            mx={1}
+          />
           <Button
             icon={compactMode ? 'list' : 'info'}
             content={compactMode ? 'Compact' : 'Detailed'}
             onClick={() => act('compact_toggle')}
           />
-          {!!lockable && <Button icon="lock" content="Lock" onClick={() => act('lock')} />}
+          {!!lockable && (
+            <Button icon="lock" content="Lock" onClick={() => act('lock')} />
+          )}
         </Fragment>
       }>
       <Flex>
@@ -159,7 +199,11 @@ export const GenericUplink = (props, context) => {
         )}
         <Flex.Item grow={1} basis={0}>
           {items.length === 0 && (
-            <NoticeBox>{searchText.length === 0 ? 'No items in this category.' : 'No results found.'}</NoticeBox>
+            <NoticeBox>
+              {searchText.length === 0
+                ? 'No items in this category.'
+                : 'No results found.'}
+            </NoticeBox>
           )}
           <ItemList
             compactMode={searchText.length > 0 || compactMode}
@@ -176,7 +220,11 @@ export const GenericUplink = (props, context) => {
 const ItemList = (props, context) => {
   const { compactMode, currencyAmount, currencySymbol } = props;
   const { act } = useBackend(context);
-  const [hoveredItem, setHoveredItem] = useLocalState(context, 'hoveredItem', {});
+  const [hoveredItem, setHoveredItem] = useLocalState(
+    context,
+    'hoveredItem',
+    {}
+  );
   const hoveredCost = (hoveredItem && hoveredItem.cost) || 0;
   // Append extra hover data to items
   const items = props.items.map((item) => {

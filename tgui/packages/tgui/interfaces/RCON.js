@@ -32,10 +32,16 @@ export const RCONContent = (props, context) => {
   return (
     <Fragment>
       <Tabs>
-        <Tabs.Tab key="SMESs" selected={0 === tabIndex} onClick={() => setTabIndex(0)}>
+        <Tabs.Tab
+          key="SMESs"
+          selected={0 === tabIndex}
+          onClick={() => setTabIndex(0)}>
           <Icon name="power-off" /> SMESs
         </Tabs.Tab>
-        <Tabs.Tab key="Breakers" selected={1 === tabIndex} onClick={() => setTabIndex(1)}>
+        <Tabs.Tab
+          key="Breakers"
+          selected={1 === tabIndex}
+          onClick={() => setTabIndex(1)}>
           <Icon name="bolt" /> Breakers
         </Tabs.Tab>
       </Tabs>
@@ -120,7 +126,8 @@ const SMESItem = (props, context) => {
                 average: [0.15, 0.5],
                 bad: [-Infinity, 0.15],
               }}>
-              {round(charge / (1000 * 60), 1)} kWh / {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
+              {round(charge / (1000 * 60), 1)} kWh /{' '}
+              {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
             </ProgressBar>
           </Stack.Item>
         </Stack>
@@ -246,7 +253,11 @@ const SMESControls = (props, context) => {
               maxValue={levelMax / POWER_MUL}
               step={5}
               stepPixelSize={4}
-              format={(value) => formatPower(available, 1) + '/' + formatPower(value * POWER_MUL, 1)}
+              format={(value) =>
+                formatPower(available, 1) +
+                '/' +
+                formatPower(value * POWER_MUL, 1)
+              }
               onDrag={(e, value) =>
                 act(changeAmountAct, {
                   target: value * POWER_MUL,

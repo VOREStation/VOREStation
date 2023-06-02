@@ -2774,8 +2774,8 @@
 	},
 /obj/machinery/button/remote/blast_door{
 	dir = 4;
-	pixel_x = -25;
-	id = "chem_room"
+	id = "chem_room";
+	pixel_x = -25
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
@@ -3718,13 +3718,9 @@
 /area/groundbase/medical/triage)
 "kp" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/weapon/shovel/spade,
-/obj/item/weapon/storage/belt/utility,
 /obj/item/stack/material/sandstone{
 	amount = 5
 	},
-/obj/item/device/retail_scanner/civilian,
-/obj/item/device/multitool,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4979,6 +4975,12 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor,
 /area/groundbase/cargo/office)
+"ob" = (
+/obj/structure/table/standard,
+/obj/item/device/retail_scanner/civilian,
+/obj/item/device/multitool,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/hydroponics)
 "od" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
@@ -5088,14 +5090,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	dir = 8;
-	pixel_x = 28
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/cargo/qm)
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/storage)
 "ou" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7271,7 +7267,13 @@
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "uA" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/table/standard,
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/storage)
 "uC" = (
@@ -7777,9 +7779,9 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
+	dir = 4;
 	id = "chem_room";
-	name = "Chemistry Shutters";
-	dir = 4
+	name = "Chemistry Shutters"
 	},
 /turf/simulated/floor,
 /area/groundbase/medical/Chemistry)
@@ -17899,6 +17901,9 @@
 /area/groundbase/science/xenobot)
 "Yo" = (
 /obj/structure/closet/secure_closet/hydroponics,
+/obj/item/stack/material/sandstone{
+	amount = 5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Yp" = (
@@ -26337,7 +26342,7 @@ Yt
 Yt
 Yt
 Yt
-Yt
+ob
 In
 bY
 bY

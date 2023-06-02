@@ -7,18 +7,30 @@ import { Materials } from './ExosuitFabricator';
 
 export const PartsLathe = (props, context) => {
   const { act, data } = useBackend(context);
-  const { panelOpen, copyBoard, copyBoardReqComponents, queue, building, buildPercent, error, recipies } = data;
+  const {
+    panelOpen,
+    copyBoard,
+    copyBoardReqComponents,
+    queue,
+    building,
+    buildPercent,
+    error,
+    recipies,
+  } = data;
   return (
     <Window width={500} height={500} resizable>
       <Window.Content scrollable>
-        {(error && <NoticeBox danger>Missing Materials: {error}</NoticeBox>) || null}
+        {(error && <NoticeBox danger>Missing Materials: {error}</NoticeBox>) ||
+          null}
         <Section title="Materials">
           <Materials displayAllMat />
         </Section>
         {(building && (
           <Section title="Currently Building">
             <LabeledList>
-              <LabeledList.Item label="Name">{toTitleCase(building)}</LabeledList.Item>
+              <LabeledList.Item label="Name">
+                {toTitleCase(building)}
+              </LabeledList.Item>
               <LabeledList.Item label="Progress">
                 <ProgressBar color="good" value={buildPercent} maxValue={100} />
               </LabeledList.Item>
@@ -59,7 +71,10 @@ export const PartsLathe = (props, context) => {
               <Box key={item} color="label">
                 #{i + 1}: {toTitleCase(item)}
                 {((i > 0 || !building) && (
-                  <Button ml={1} icon="times" onClick={() => act('cancel', { cancel: i + 1 })}>
+                  <Button
+                    ml={1}
+                    icon="times"
+                    onClick={() => act('cancel', { cancel: i + 1 })}>
                     Cancel
                   </Button>
                 )) ||
@@ -71,7 +86,9 @@ export const PartsLathe = (props, context) => {
           {recipies.length &&
             recipies.map((recipe) => (
               <Box key={recipe.name}>
-                <Button icon="wrench" onClick={() => act('queue', { queue: recipe.type })}>
+                <Button
+                  icon="wrench"
+                  onClick={() => act('queue', { queue: recipe.type })}>
                   {toTitleCase(recipe.name)}
                 </Button>
               </Box>

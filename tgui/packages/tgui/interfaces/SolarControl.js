@@ -21,14 +21,24 @@ export const SolarControl = (props, context) => {
       <Window.Content>
         <Section
           title="Status"
-          buttons={<Button icon="sync" content="Scan for new hardware" onClick={() => act('refresh')} />}>
+          buttons={
+            <Button
+              icon="sync"
+              content="Scan for new hardware"
+              onClick={() => act('refresh')}
+            />
+          }>
           <Grid>
             <Grid.Column>
               <LabeledList>
-                <LabeledList.Item label="Solar tracker" color={connected_tracker ? 'good' : 'bad'}>
+                <LabeledList.Item
+                  label="Solar tracker"
+                  color={connected_tracker ? 'good' : 'bad'}>
                   {connected_tracker ? 'OK' : 'N/A'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Solar panels" color={connected_panels > 0 ? 'good' : 'bad'}>
+                <LabeledList.Item
+                  label="Solar panels"
+                  color={connected_panels > 0 ? 'good' : 'bad'}>
                   {connected_panels}
                 </LabeledList.Item>
               </LabeledList>
@@ -48,7 +58,9 @@ export const SolarControl = (props, context) => {
                     {generated + ' W'}
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Star orientation">{sun_angle}°</LabeledList.Item>
+                <LabeledList.Item label="Star orientation">
+                  {sun_angle}°
+                </LabeledList.Item>
               </LabeledList>
             </Grid.Column>
           </Grid>

@@ -501,6 +501,12 @@
 	ckeywhitelist = list("hunterbirk")
 	character_name = list("Amaryll")
 
+/datum/gear/fluff/aria_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Aria's Distinguished Conduct Medal"
+	ckeywhitelist = list("hunterbirk")
+	character_name = list("Aria Blue")
+
 //  I CKEYS
 /datum/gear/fluff/ruda_badge
 	path = /obj/item/clothing/accessory/badge/holo/detective/ruda

@@ -92,11 +92,25 @@ const StockExchangeFullView = (props, context) => {
             <Table.Cell color="label">{stock.Owned}</Table.Cell>
             <Table.Cell color="label">{stock.Avail}</Table.Cell>
             <Table.Cell color="label">
-              <Button icon="plus" disabled={false} onClick={() => act('stocks_buy', { share: stock.REF })} />
-              <Button icon="minus" disabled={false} onClick={() => act('stocks_sell', { share: stock.REF })} />
+              <Button
+                icon="plus"
+                disabled={false}
+                onClick={() => act('stocks_buy', { share: stock.REF })}
+              />
+              <Button
+                icon="minus"
+                disabled={false}
+                onClick={() => act('stocks_sell', { share: stock.REF })}
+              />
               <br />
-              <Button content="A" onClick={() => act('stocks_archive', { share: stock.REF })} />
-              <Button content="H" onClick={() => act('stocks_history', { share: stock.REF })} />
+              <Button
+                content="A"
+                onClick={() => act('stocks_archive', { share: stock.REF })}
+              />
+              <Button
+                content="H"
+                onClick={() => act('stocks_history', { share: stock.REF })}
+              />
               <br />
             </Table.Cell>
           </Table.Row>
@@ -121,7 +135,10 @@ const StockExchangeCompactView = (props, context) => {
           <b>Unified shares</b> {stock.Unification} ago.
           <br />
           <b>Current value per share:</b> {stock.Value} |{' '}
-          <Button content="View history" onClick={() => act('stocks_history', { share: stock.REF })} />
+          <Button
+            content="View history"
+            onClick={() => act('stocks_history', { share: stock.REF })}
+          />
           <br />
           You currently own <b>{stock.Owned}</b> shares in this company.
           <br />
@@ -131,8 +148,15 @@ const StockExchangeCompactView = (props, context) => {
             <span>You cannot buy or sell shares in a bankrupt company!</span>
           ) : (
             <span>
-              <Button content="Buy shares" onClick={() => act('stocks_buy', { share: stock.REF })} /> |{' '}
-              <Button content="Sell shares" onClick={() => act('stocks_sell', { share: stock.REF })} />
+              <Button
+                content="Buy shares"
+                onClick={() => act('stocks_buy', { share: stock.REF })}
+              />{' '}
+              |{' '}
+              <Button
+                content="Sell shares"
+                onClick={() => act('stocks_sell', { share: stock.REF })}
+              />
             </span>
           )}
           <br />
@@ -140,7 +164,10 @@ const StockExchangeCompactView = (props, context) => {
           <br />
           <i>{stock.Products}</i>
           <br />
-          <Button content="View news archives" onClick={() => act('stocks_archive', { share: stock.REF })} />{' '}
+          <Button
+            content="View news archives"
+            onClick={() => act('stocks_archive', { share: stock.REF })}
+          />{' '}
           {/* [news ? " <span style='color:red'>(updated)</span>" : null] */}
           <Divider />
         </Box>
@@ -167,15 +194,26 @@ const StockExchangeLogs = (props, context) => {
             {log.type !== 'borrow' ? (
               <div>
                 {log.time} | <b>{log.user_name}</b>{' '}
-                {log.type === 'transaction_bought' ? <span>bought</span> : <span>sold</span>} <b>{log.stocks}</b> stocks
-                at {log.shareprice} a share for <b>{log.money}</b> total credits{' '}
-                {log.type === 'transaction_bought' ? <span>in</span> : <span>from</span>} <b>{log.company_name}</b>.
+                {log.type === 'transaction_bought' ? (
+                  <span>bought</span>
+                ) : (
+                  <span>sold</span>
+                )}{' '}
+                <b>{log.stocks}</b> stocks at {log.shareprice} a share for{' '}
+                <b>{log.money}</b> total credits{' '}
+                {log.type === 'transaction_bought' ? (
+                  <span>in</span>
+                ) : (
+                  <span>from</span>
+                )}{' '}
+                <b>{log.company_name}</b>.
                 <br />
               </div>
             ) : (
               <div>
-                {log.time} | <b>{log.user_name}</b> borrowed <b>{log.stocks}</b> stocks with a deposit of{' '}
-                <b>{log.money}</b> credits in <b>{log.company_name}</b>.<br />
+                {log.time} | <b>{log.user_name}</b> borrowed <b>{log.stocks}</b>{' '}
+                stocks with a deposit of <b>{log.money}</b> credits in{' '}
+                <b>{log.company_name}</b>.<br />
               </div>
             )}
             <Divider />
@@ -220,7 +258,8 @@ const StockExchangeArchive = (props, context) => {
               <i>{article.subtitle}</i>
               <br />
               {article.article}
-              <br />- {article.author}, {article.spacetime} (via <i>{article.outlet}</i>)
+              <br />- {article.author}, {article.spacetime} (via{' '}
+              <i>{article.outlet}</i>)
             </div>
             <Divider />
           </Box>

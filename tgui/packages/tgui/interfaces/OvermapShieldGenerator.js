@@ -20,8 +20,9 @@ const OvermapShieldGeneratorContent = (props, context) => {
   if (offline_for) {
     return (
       <Section title="EMERGENCY SHUTDOWN" color="bad">
-        An emergency shutdown has been initiated - generator cooling down. Please wait until the generator cools down
-        before resuming operation. Estimated time left: {offline_for} seconds.
+        An emergency shutdown has been initiated - generator cooling down.
+        Please wait until the generator cools down before resuming operation.
+        Estimated time left: {offline_for} seconds.
       </Section>
     );
   }
@@ -81,14 +82,17 @@ const OvermapShieldGeneratorStatus = (props, context) => {
       <LabeledList>
         <LabeledList.Item label="Generator is">
           {(running === 1 && <Box color="average">Shutting Down</Box>) ||
-            (running === 2 && ((overloaded && <Box color="bad">Overloaded</Box>) || <Box color="good">Running</Box>)) ||
+            (running === 2 &&
+              ((overloaded && <Box color="bad">Overloaded</Box>) || (
+                <Box color="good">Running</Box>
+              ))) ||
             (running === 3 && <Box color="average">Inactive</Box>) ||
             (running === 4 && (
               <Box color="blue">
                 Spinning Up&nbsp;
-                {(target_radius !== field_radius && <Box inline>(Adjusting Radius)</Box>) || (
-                  <Box inline>{spinup_counter * 2}s</Box>
-                )}
+                {(target_radius !== field_radius && (
+                  <Box inline>(Adjusting Radius)</Box>
+                )) || <Box inline>{spinup_counter * 2}s</Box>}
               </Box>
             )) || <Box color="bad">Offline</Box>}
         </LabeledList.Item>
@@ -101,7 +105,8 @@ const OvermapShieldGeneratorStatus = (props, context) => {
           <AnimatedNumber value={field_integrity} />%
         </LabeledList.Item>
         <LabeledList.Item label="Mitigation">
-          {mitigation_em}% EM / {mitigation_physical}% PH / {mitigation_heat}% HE / {mitigation_max}% MAX
+          {mitigation_em}% EM / {mitigation_physical}% PH / {mitigation_heat}%
+          HE / {mitigation_max}% MAX
         </LabeledList.Item>
         <LabeledList.Item label="Upkeep Energy Use">
           <AnimatedNumber value={upkeep_power_usage} /> kW
@@ -122,7 +127,8 @@ const OvermapShieldGeneratorStatus = (props, context) => {
         <LabeledList.Item label="Field Size">
           <AnimatedNumber value={functional_segments} />
           &nbsp;/&nbsp;
-          <AnimatedNumber value={total_segments} /> m&sup2; (radius <AnimatedNumber value={field_radius} />, target{' '}
+          <AnimatedNumber value={total_segments} /> m&sup2; (radius{' '}
+          <AnimatedNumber value={field_radius} />, target{' '}
           <AnimatedNumber value={target_radius} />)
         </LabeledList.Item>
       </LabeledList>
@@ -141,15 +147,23 @@ const OvermapShieldGeneratorControls = (props, context) => {
         <Fragment>
           {(running >= 2 && (
             <Box>
-              <Button icon="power-off" onClick={() => act('begin_shutdown')} selected>
+              <Button
+                icon="power-off"
+                onClick={() => act('begin_shutdown')}
+                selected>
                 Turn off
               </Button>
               {(running === 3 && (
-                <Button icon="power-off" onClick={() => act('toggle_idle', { toggle_idle: 0 })}>
+                <Button
+                  icon="power-off"
+                  onClick={() => act('toggle_idle', { toggle_idle: 0 })}>
                   Activate
                 </Button>
               )) || (
-                <Button icon="power-off" onClick={() => act('toggle_idle', { toggle_idle: 1 })} selected>
+                <Button
+                  icon="power-off"
+                  onClick={() => act('toggle_idle', { toggle_idle: 1 })}
+                  selected>
                   Deactivate
                 </Button>
               )}
@@ -160,7 +174,10 @@ const OvermapShieldGeneratorControls = (props, context) => {
             </Button>
           )}
           {(running && hacked && (
-            <Button icon="exclamation-triangle" onClick={() => act('emergency_shutdown')} color="bad">
+            <Button
+              icon="exclamation-triangle"
+              onClick={() => act('emergency_shutdown')}
+              color="bad">
               EMERGENCY SHUTDOWN
             </Button>
           )) ||

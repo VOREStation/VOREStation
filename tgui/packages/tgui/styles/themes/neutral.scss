@@ -29,7 +29,10 @@ $neutral: #ffb300;
   );
   @include meta.load-css(
     '../components/ProgressBar.scss',
-    $with: ('color-default-fill': $neutral, 'background-color': rgba(0, 0, 0, 0.5))
+    $with: (
+      'color-default-fill': $neutral,
+      'background-color': rgba(0, 0, 0, 0.5)
+    )
   );
   @include meta.load-css('../components/Section.scss');
 

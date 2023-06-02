@@ -63,7 +63,11 @@ export const PersonalCrafting = (props, context) => {
           title="Personal Crafting"
           buttons={
             <>
-              <Button.Checkbox content="Compact" checked={display_compact} onClick={() => act('toggle_compact')} />
+              <Button.Checkbox
+                content="Compact"
+                checked={display_compact}
+                onClick={() => act('toggle_compact')}
+              />
               <Button.Checkbox
                 content="Craftable Only"
                 checked={display_craftable_only}
@@ -120,7 +124,9 @@ const CraftingList = (props, context) => {
               icon="cog"
               content="Craft"
               disabled={!craftability[craftable.ref]}
-              tooltip={craftable.tool_text && 'Tools needed: ' + craftable.tool_text}
+              tooltip={
+                craftable.tool_text && 'Tools needed: ' + craftable.tool_text
+              }
               tooltipPosition="left"
               onClick={() =>
                 act('make', {
@@ -152,9 +158,21 @@ const CraftingList = (props, context) => {
           />
         }>
         <LabeledList>
-          {!!craftable.req_text && <LabeledList.Item label="Required">{craftable.req_text}</LabeledList.Item>}
-          {!!craftable.catalyst_text && <LabeledList.Item label="Catalyst">{craftable.catalyst_text}</LabeledList.Item>}
-          {!!craftable.tool_text && <LabeledList.Item label="Tools">{craftable.tool_text}</LabeledList.Item>}
+          {!!craftable.req_text && (
+            <LabeledList.Item label="Required">
+              {craftable.req_text}
+            </LabeledList.Item>
+          )}
+          {!!craftable.catalyst_text && (
+            <LabeledList.Item label="Catalyst">
+              {craftable.catalyst_text}
+            </LabeledList.Item>
+          )}
+          {!!craftable.tool_text && (
+            <LabeledList.Item label="Tools">
+              {craftable.tool_text}
+            </LabeledList.Item>
+          )}
         </LabeledList>
       </Section>
     );

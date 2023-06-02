@@ -35,7 +35,9 @@ export const AtmosControlContent = (props, context) => {
           <Button
             key={alarm.name}
             content={alarm.name}
-            color={alarm.danger === 2 ? 'bad' : alarm.danger === 1 ? 'average' : ''}
+            color={
+              alarm.danger === 2 ? 'bad' : alarm.danger === 1 ? 'average' : ''
+            }
             onClick={() => act('alarm', { 'alarm': alarm.ref })}
           />
         ))}
@@ -70,10 +72,16 @@ export const AtmosControlContent = (props, context) => {
   return (
     <Fragment>
       <Tabs>
-        <Tabs.Tab key="AlarmView" selected={0 === tabIndex} onClick={() => setTabIndex(0)}>
+        <Tabs.Tab
+          key="AlarmView"
+          selected={0 === tabIndex}
+          onClick={() => setTabIndex(0)}>
           <Icon name="table" /> Alarm View
         </Tabs.Tab>
-        <Tabs.Tab key="MapView" selected={1 === tabIndex} onClick={() => setTabIndex(1)}>
+        <Tabs.Tab
+          key="MapView"
+          selected={1 === tabIndex}
+          onClick={() => setTabIndex(1)}>
           <Icon name="map-marked-alt" /> Map View
         </Tabs.Tab>
       </Tabs>

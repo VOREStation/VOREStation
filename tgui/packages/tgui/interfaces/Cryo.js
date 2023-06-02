@@ -40,20 +40,32 @@ export const Cryo = (props, context) => {
 
 const CryoContent = (props, context) => {
   const { act, data } = useBackend(context);
-  const { isOperating, hasOccupant, occupant = [], cellTemperature, cellTemperatureStatus, isBeakerLoaded } = data;
+  const {
+    isOperating,
+    hasOccupant,
+    occupant = [],
+    cellTemperature,
+    cellTemperatureStatus,
+    isBeakerLoaded,
+  } = data;
   return (
     <Fragment>
       <Section
         title="Occupant"
         flexGrow="1"
         buttons={
-          <Button icon="user-slash" onClick={() => act('ejectOccupant')} disabled={!hasOccupant}>
+          <Button
+            icon="user-slash"
+            onClick={() => act('ejectOccupant')}
+            disabled={!hasOccupant}>
             Eject
           </Button>
         }>
         {hasOccupant ? (
           <LabeledList>
-            <LabeledList.Item label="Occupant">{occupant.name || 'Unknown'}</LabeledList.Item>
+            <LabeledList.Item label="Occupant">
+              {occupant.name || 'Unknown'}
+            </LabeledList.Item>
             <LabeledList.Item label="Health">
               <ProgressBar
                 min={occupant.health}
@@ -63,7 +75,9 @@ const CryoContent = (props, context) => {
                 <AnimatedNumber value={Math.round(occupant.health)} />
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Status" color={statNames[occupant.stat][0]}>
+            <LabeledList.Item
+              label="Status"
+              color={statNames[occupant.stat][0]}>
               {statNames[occupant.stat][1]}
             </LabeledList.Item>
             <LabeledList.Item label="Temperature">
@@ -73,8 +87,12 @@ const CryoContent = (props, context) => {
             <LabeledList.Divider />
             {damageTypes.map((damageType) => (
               <LabeledList.Item key={damageType.id} label={damageType.label}>
-                <ProgressBar value={occupant[damageType.type] / 100} ranges={{ bad: [0.01, Infinity] }}>
-                  <AnimatedNumber value={Math.round(occupant[damageType.type])} />
+                <ProgressBar
+                  value={occupant[damageType.type] / 100}
+                  ranges={{ bad: [0.01, Infinity] }}>
+                  <AnimatedNumber
+                    value={Math.round(occupant[damageType.type])}
+                  />
                 </ProgressBar>
               </LabeledList.Item>
             ))}
@@ -92,13 +110,19 @@ const CryoContent = (props, context) => {
       <Section
         title="Cell"
         buttons={
-          <Button icon="eject" onClick={() => act('ejectBeaker')} disabled={!isBeakerLoaded}>
+          <Button
+            icon="eject"
+            onClick={() => act('ejectBeaker')}
+            disabled={!isBeakerLoaded}>
             Eject Beaker
           </Button>
         }>
         <LabeledList>
           <LabeledList.Item label="Power">
-            <Button icon="power-off" onClick={() => act(isOperating ? 'switchOff' : 'switchOn')} selected={isOperating}>
+            <Button
+              icon="power-off"
+              onClick={() => act(isOperating ? 'switchOff' : 'switchOn')}
+              selected={isOperating}>
               {isOperating ? 'On' : 'Off'}
             </Button>
           </LabeledList.Item>
@@ -123,7 +147,10 @@ const CryoBeaker = (props, context) => {
         {beakerLabel ? beakerLabel : <Box color="average">No label</Box>}
         <Box color={!beakerVolume && 'bad'}>
           {beakerVolume ? (
-            <AnimatedNumber value={beakerVolume} format={(v) => Math.round(v) + ' units remaining'} />
+            <AnimatedNumber
+              value={beakerVolume}
+              format={(v) => Math.round(v) + ' units remaining'}
+            />
           ) : (
             'Beaker is empty'
           )}

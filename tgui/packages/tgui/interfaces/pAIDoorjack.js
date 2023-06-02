@@ -13,11 +13,16 @@ export const pAIDoorjack = (props, context) => {
         <Section>
           <LabeledList>
             <LabeledList.Item label="Cable">
-              {(machine && <Box color="good">Connected</Box>) || (cable && <Box color="average">Extended</Box>) || (
-                <Box>
-                  <Button icon="ethernet" content="Retracted" onClick={() => act('cable')} />
-                </Box>
-              )}
+              {(machine && <Box color="good">Connected</Box>) ||
+                (cable && <Box color="average">Extended</Box>) || (
+                  <Box>
+                    <Button
+                      icon="ethernet"
+                      content="Retracted"
+                      onClick={() => act('cable')}
+                    />
+                  </Box>
+                )}
             </LabeledList.Item>
             {(!!machine && (
               <LabeledList.Item label="Hack">
@@ -31,11 +36,22 @@ export const pAIDoorjack = (props, context) => {
                         average: [33, 67],
                         bad: [-Infinity, 33],
                       }}>
-                      <AnimatedNumber value={progress_a} />.<AnimatedNumber value={progress_b} />%
+                      <AnimatedNumber value={progress_a} />.
+                      <AnimatedNumber value={progress_b} />%
                     </ProgressBar>
-                    <Button icon="ban" color="bad" onClick={() => act('cancel')} />
+                    <Button
+                      icon="ban"
+                      color="bad"
+                      onClick={() => act('cancel')}
+                    />
                   </Box>
-                )) || <Button icon="virus" content="Start" onClick={() => act('jack')} />}
+                )) || (
+                  <Button
+                    icon="virus"
+                    content="Start"
+                    onClick={() => act('jack')}
+                  />
+                )}
               </LabeledList.Item>
             )) ||
               (!!aborted && (

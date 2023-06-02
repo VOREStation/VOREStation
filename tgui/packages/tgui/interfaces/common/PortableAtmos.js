@@ -5,7 +5,15 @@ import { Box, Section, LabeledList, Button, AnimatedNumber, ProgressBar } from '
 export const PortableBasicInfo = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { connected, holding, on, pressure, powerDraw, cellCharge, cellMaxCharge } = data;
+  const {
+    connected,
+    holding,
+    on,
+    pressure,
+    powerDraw,
+    cellCharge,
+    cellMaxCharge,
+  } = data;
 
   return (
     <Fragment>
@@ -46,7 +54,14 @@ export const PortableBasicInfo = (props, context) => {
       <Section
         title="Holding Tank"
         minHeight="82px"
-        buttons={<Button icon="eject" content="Eject" disabled={!holding} onClick={() => act('eject')} />}>
+        buttons={
+          <Button
+            icon="eject"
+            content="Eject"
+            disabled={!holding}
+            onClick={() => act('eject')}
+          />
+        }>
         {holding ? (
           <LabeledList>
             <LabeledList.Item label="Label">{holding.name}</LabeledList.Item>

@@ -27,12 +27,21 @@ export const LookingGlass = (props, context) => {
         <Section title="Controls">
           <LabeledList>
             <LabeledList.Item label="Gravity">
-              <Button fluid icon="user-astronaut" selected={gravity} onClick={() => act('gravity')}>
+              <Button
+                fluid
+                icon="user-astronaut"
+                selected={gravity}
+                onClick={() => act('gravity')}>
                 {gravity ? 'Enabled' : 'Disabled'}
               </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Full Immersion">
-              <Button mt={-1} fluid icon="eye" selected={immersion} onClick={() => act('immersion')}>
+              <Button
+                mt={-1}
+                fluid
+                icon="eye"
+                selected={immersion}
+                onClick={() => act('immersion')}>
                 {immersion ? 'Enabled' : 'Disabled'}
               </Button>
             </LabeledList.Item>

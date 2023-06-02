@@ -1,3 +1,8 @@
+/*!
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
  /**
   * tgui state: observer_state
   *
@@ -12,4 +17,3 @@ GLOBAL_DATUM_INIT(tgui_observer_state, /datum/tgui_state/observer_state, new)
 	if(check_rights(R_ADMIN|R_EVENT, 0, src))
 		return STATUS_INTERACTIVE
 	return STATUS_CLOSE
-

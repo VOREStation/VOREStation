@@ -13,7 +13,12 @@ export const PlayerNotesInfo = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const { device_theme, age, ckey, entries } = data;
   return (
-    <Window title={`Info on ${ckey}`} theme={device_theme} width={400} height={500} resizable>
+    <Window
+      title={`Info on ${ckey}`}
+      theme={device_theme}
+      width={400}
+      height={500}
+      resizable>
       <Window.Content scrollable>
         <Section title={`Player age: ${age}`}>
           <Table>
@@ -23,7 +28,8 @@ export const PlayerNotesInfo = (props, context) => {
                 <Table.Cell collapsing={false}>
                   <Divider />
                   <Box>
-                    Written by {entry.author} on <span color="blue">{entry.date}</span>
+                    Written by {entry.author} on{' '}
+                    <span color="blue">{entry.date}</span>
                     <br />
                     <span color="green">&quot;{entry.comment}&quot;</span>
                   </Box>

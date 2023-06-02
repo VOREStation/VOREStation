@@ -21,7 +21,9 @@ export const Radio = (props, context) => {
     useSyndMode,
   } = data;
 
-  const tunedChannel = RADIO_CHANNELS.find((channel) => channel.freq === Number(rawfreq));
+  const tunedChannel = RADIO_CHANNELS.find(
+    (channel) => channel.freq === Number(rawfreq)
+  );
 
   // Calculate window height
   let height = 156;
@@ -34,7 +36,11 @@ export const Radio = (props, context) => {
     height += 38;
   }
   return (
-    <Window width={310} height={height} resizable theme={useSyndMode ? 'syndicate' : ''}>
+    <Window
+      width={310}
+      height={height}
+      resizable
+      theme={useSyndMode ? 'syndicate' : ''}>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -110,7 +116,9 @@ export const Radio = (props, context) => {
             {!chan_list
               ? null
               : chan_list.map((channel) => {
-                const channeldata = RADIO_CHANNELS.find((c) => c.freq === Number(channel.freq));
+                const channeldata = RADIO_CHANNELS.find(
+                  (c) => c.freq === Number(channel.freq)
+                );
                 let color = 'default';
                 if (channeldata) {
                   color = channeldata.color;
@@ -123,7 +131,11 @@ export const Radio = (props, context) => {
                     textAlign="right">
                     {channel.secure_channel && subspace ? (
                       <Button
-                        icon={!channel.sec_channel_listen ? 'check-square-o' : 'square-o'}
+                        icon={
+                          !channel.sec_channel_listen
+                            ? 'check-square-o'
+                            : 'square-o'
+                        }
                         selected={!channel.sec_channel_listen}
                         content={!channel.sec_channel_listen ? 'On' : 'Off'}
                         onClick={() =>

@@ -5,7 +5,17 @@ import { Box, LabeledList, ProgressBar, Section } from '../components';
 
 export const ResleevingPod = (model, context) => {
   const { data } = useBackend(context);
-  const { occupied, name, health, maxHealth, stat, mindStatus, mindName, resleeveSick, initialSick } = data;
+  const {
+    occupied,
+    name,
+    health,
+    maxHealth,
+    stat,
+    mindStatus,
+    mindName,
+    resleeveSick,
+    initialSick,
+  } = data;
 
   return (
     <Window width={300} height={350} resizeable>
@@ -32,8 +42,16 @@ export const ResleevingPod = (model, context) => {
                     </ProgressBar>
                   )}
                 </LabeledList.Item>
-                <LabeledList.Item label="Mind Status">{mindStatus ? 'Present' : 'Missing'}</LabeledList.Item>
-                {mindStatus ? <LabeledList.Item label="Mind Occupying">{mindName}</LabeledList.Item> : ''}
+                <LabeledList.Item label="Mind Status">
+                  {mindStatus ? 'Present' : 'Missing'}
+                </LabeledList.Item>
+                {mindStatus ? (
+                  <LabeledList.Item label="Mind Occupying">
+                    {mindName}
+                  </LabeledList.Item>
+                ) : (
+                  ''
+                )}
               </LabeledList>
               {resleeveSick ? (
                 <Box color="average" mt={3}>
@@ -41,8 +59,10 @@ export const ResleevingPod = (model, context) => {
                   {initialSick ? (
                     <Fragment>
                       {' '}
-                      Motion Sickness also detected. Please allow the newly resleeved person a moment to get their
-                      bearings. This warning will disappear when Motion Sickness is no longer detected.
+                      Motion Sickness also detected. Please allow the newly
+                      resleeved person a moment to get their bearings. This
+                      warning will disappear when Motion Sickness is no longer
+                      detected.
                     </Fragment>
                   ) : (
                     ''

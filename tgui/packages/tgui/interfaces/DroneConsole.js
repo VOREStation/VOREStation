@@ -25,7 +25,11 @@ export const DroneConsole = (props, context) => {
           {!fabricator ? (
             <Box color="bad">
               Fabricator not detected.
-              <Button icon="sync" content="Search for Fabricator" onClick={() => act('search_fab')} />
+              <Button
+                icon="sync"
+                content="Search for Fabricator"
+                onClick={() => act('search_fab')}
+              />
             </Box>
           ) : (
             <Box color="good">Linked.</Box>
@@ -38,7 +42,11 @@ export const DroneConsole = (props, context) => {
             width="100%"
             onSelected={(val) => act('set_dcall_area', { area: val })}
           />
-          <Button icon="share-square" content="Send Ping" onClick={() => act('ping')} />
+          <Button
+            icon="share-square"
+            content="Send Ping"
+            onClick={() => act('ping')}
+          />
         </Section>
         <Section title="Maintenance Units">
           {drones && drones.length ? (
@@ -49,7 +57,11 @@ export const DroneConsole = (props, context) => {
                   label={drone.name}
                   buttons={
                     <Fragment>
-                      <Button icon="sync" content="Resync" onClick={() => act('resync', { ref: drone.ref })} />
+                      <Button
+                        icon="sync"
+                        content="Resync"
+                        onClick={() => act('resync', { ref: drone.ref })}
+                      />
                       <Button.Confirm
                         icon="exclamation-triangle"
                         color="red"
@@ -59,11 +71,15 @@ export const DroneConsole = (props, context) => {
                     </Fragment>
                   }>
                   <LabeledList>
-                    <LabeledList.Item label="Location">{drone.loc}</LabeledList.Item>
+                    <LabeledList.Item label="Location">
+                      {drone.loc}
+                    </LabeledList.Item>
                     <LabeledList.Item label="Charge">
                       {drone.charge} / {drone.maxCharge}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Active">{drone.active ? 'Yes' : 'No'}</LabeledList.Item>
+                    <LabeledList.Item label="Active">
+                      {drone.active ? 'Yes' : 'No'}
+                    </LabeledList.Item>
                   </LabeledList>
                 </LabeledList.Item>
               ))}

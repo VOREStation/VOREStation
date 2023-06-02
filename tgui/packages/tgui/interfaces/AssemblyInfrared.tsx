@@ -17,12 +17,20 @@ export const AssemblyInfrared = (props, context) => {
         <Section title="Infrared Unit">
           <LabeledList>
             <LabeledList.Item label="Laser">
-              <Button icon="power-off" fluid selected={on} onClick={() => act('state')}>
+              <Button
+                icon="power-off"
+                fluid
+                selected={on}
+                onClick={() => act('state')}>
                 {on ? 'On' : 'Off'}
               </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Visibility">
-              <Button icon="eye" fluid selected={visible} onClick={() => act('visible')}>
+              <Button
+                icon="eye"
+                fluid
+                selected={visible}
+                onClick={() => act('visible')}>
                 {visible ? 'Able to be seen' : 'Invisible'}
               </Button>
             </LabeledList.Item>

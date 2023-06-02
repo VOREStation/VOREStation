@@ -23,7 +23,12 @@ export const GasTemperatureSystem = (props, context) => {
         <Section
           title="Controls"
           buttons={
-            <Button icon="power-off" content={on ? 'On' : 'Off'} selected={on} onClick={() => act('toggleStatus')} />
+            <Button
+              icon="power-off"
+              content={on ? 'On' : 'Off'}
+              selected={on}
+              onClick={() => act('toggleStatus')}
+            />
           }>
           <LabeledControls>
             <LabeledControls.Item label="Power Level">
@@ -35,7 +40,9 @@ export const GasTemperatureSystem = (props, context) => {
                 onChange={(e, val) => act('setPower', { value: val })}
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Gas Pressure">{gasPressure} kPa</LabeledControls.Item>
+            <LabeledControls.Item label="Gas Pressure">
+              {gasPressure} kPa
+            </LabeledControls.Item>
           </LabeledControls>
         </Section>
         <Section title="Gas Temperature">
