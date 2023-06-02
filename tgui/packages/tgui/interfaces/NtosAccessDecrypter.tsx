@@ -37,7 +37,8 @@ export const NtosAccessDecrypter = (props, context) => {
         {(message && <NoticeBox>{message}</NoticeBox>) ||
           (running && (
             <Section>
-              Attempting to decrypt network access codes. Please wait. Rate: {rate} PHash/s
+              Attempting to decrypt network access codes. Please wait. Rate:{' '}
+              {rate} PHash/s
               <Box>
                 {/* I don't care anymore */}
                 {generate10String(lineLength)}
@@ -52,9 +53,9 @@ export const NtosAccessDecrypter = (props, context) => {
             </Section>
           )) || (
             <Section title="Pick access code to decrypt">
-              {(regions.length && <IdentificationComputerRegions actName="PRG_execute" />) || (
-                <Box>Please insert ID card.</Box>
-              )}
+              {(regions.length && (
+                <IdentificationComputerRegions actName="PRG_execute" />
+              )) || <Box>Please insert ID card.</Box>}
             </Section>
           )}
       </NtosWindow.Content>

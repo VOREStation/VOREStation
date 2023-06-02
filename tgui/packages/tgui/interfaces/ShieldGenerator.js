@@ -13,7 +13,9 @@ export const ShieldGenerator = (props, context) => {
 
   return (
     <Window width={500} height={400} resizable>
-      <Window.Content>{locked ? <ShieldGeneratorLocked /> : <ShieldGeneratorContent />}</Window.Content>
+      <Window.Content>
+        {locked ? <ShieldGeneratorLocked /> : <ShieldGeneratorContent />}
+      </Window.Content>
     </Window>
   );
 };
@@ -21,7 +23,12 @@ export const ShieldGenerator = (props, context) => {
 const ShieldGeneratorLocked = (props, context) => (
   <FullscreenNotice title="Locked">
     <Box fontSize="1.5rem" bold>
-      <Icon name="exclamation-triangle" verticalAlign="middle" size={3} mr="1rem" />
+      <Icon
+        name="exclamation-triangle"
+        verticalAlign="middle"
+        size={3}
+        mr="1rem"
+      />
     </Box>
     <Box color="label" my="1rem">
       Swipe your ID to begin.
@@ -56,34 +63,61 @@ const ShieldGeneratorContent = (props, context) => {
       <Section title="Status">
         <LabeledList>
           <LabeledList.Item label="Field Status">
-            {failing ? <Box color="bad">Unstable</Box> : <Box color="good">Stable</Box>}
+            {failing ? (
+              <Box color="bad">Unstable</Box>
+            ) : (
+              <Box color="good">Stable</Box>
+            )}
           </LabeledList.Item>
           <LabeledList.Item label="Overall Field Strength">
             {round(average_field_strength, 2)} Renwick (
-            {(target_field_strength && round((100 * average_field_strength) / target_field_strength, 1)) || 'NA'}%)
+            {(target_field_strength &&
+              round(
+                (100 * average_field_strength) / target_field_strength,
+                1
+              )) ||
+              'NA'}
+            %)
           </LabeledList.Item>
-          <LabeledList.Item label="Upkeep Power">{formatPower(upkeep)}</LabeledList.Item>
-          <LabeledList.Item label="Shield Generation Power">{formatPower(gen_power)}</LabeledList.Item>
-          <LabeledList.Item label="Currently Shielded">{shields} m&sup2;</LabeledList.Item>
+          <LabeledList.Item label="Upkeep Power">
+            {formatPower(upkeep)}
+          </LabeledList.Item>
+          <LabeledList.Item label="Shield Generation Power">
+            {formatPower(gen_power)}
+          </LabeledList.Item>
+          <LabeledList.Item label="Currently Shielded">
+            {shields} m&sup2;
+          </LabeledList.Item>
           <LabeledList.Item label="Capacitors">
             <LabeledList>
               {capacitorLen ? (
                 capacitors.map((cap, i) => (
                   <LabeledList.Item key={i} label={'Capacitor #' + i}>
-                    {cap.active ? <Box color="good">Online</Box> : <Box color="bad">Offline</Box>}
+                    {cap.active ? (
+                      <Box color="good">Online</Box>
+                    ) : (
+                      <Box color="bad">Offline</Box>
+                    )}
                     <LabeledList>
                       <LabeledList.Item label="Charge">
-                        {formatSiUnit(cap.stored_charge, 0, 'J')} ({100 * round(cap.stored_charge / cap.max_charge, 2)}
+                        {formatSiUnit(cap.stored_charge, 0, 'J')} (
+                        {100 * round(cap.stored_charge / cap.max_charge, 2)}
                         %)
                       </LabeledList.Item>
                       <LabeledList.Item label="Status">
-                        {cap.failing ? <Box color="bad">Discharging</Box> : <Box color="good">OK.</Box>}
+                        {cap.failing ? (
+                          <Box color="bad">Discharging</Box>
+                        ) : (
+                          <Box color="good">OK.</Box>
+                        )}
                       </LabeledList.Item>
                     </LabeledList>
                   </LabeledList.Item>
                 ))
               ) : (
-                <LabeledList.Item color="bad">No Capacitors Connected</LabeledList.Item>
+                <LabeledList.Item color="bad">
+                  No Capacitors Connected
+                </LabeledList.Item>
               )}
             </LabeledList>
           </LabeledList.Item>

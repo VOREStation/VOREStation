@@ -71,15 +71,20 @@ const AtmoSensor = (props, context) => {
     return <Box color="bad">UNABLE TO FIND SENSOR</Box>;
   }
 
-  const { pressure, temperature, oxygen, nitrogen, carbon_dioxide, phoron } = sensor.sensor_data;
+  const { pressure, temperature, oxygen, nitrogen, carbon_dioxide, phoron } =
+    sensor.sensor_data;
 
   let labeledListContents = [];
   if (pressure) {
-    labeledListContents.push(<LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>);
+    labeledListContents.push(
+      <LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>
+    );
   }
 
   if (temperature) {
-    labeledListContents.push(<LabeledList.Item label="Temperature">{temperature} K</LabeledList.Item>);
+    labeledListContents.push(
+      <LabeledList.Item label="Temperature">{temperature} K</LabeledList.Item>
+    );
   }
 
   if (oxygen || nitrogen || carbon_dioxide || phoron) {
@@ -88,7 +93,9 @@ const AtmoSensor = (props, context) => {
         <Flex justify="space-around">
           {oxygen ? <Flex.Item>({oxygen}% O²)</Flex.Item> : null}
           {nitrogen ? <Flex.Item>({nitrogen}% N²)</Flex.Item> : null}
-          {carbon_dioxide ? <Flex.Item>({carbon_dioxide}% CO²)</Flex.Item> : null}
+          {carbon_dioxide ? (
+            <Flex.Item>({carbon_dioxide}% CO²)</Flex.Item>
+          ) : null}
           {phoron ? <Flex.Item>({phoron}% TX)</Flex.Item> : null}
         </Flex>
       </LabeledList.Item>
@@ -166,14 +173,28 @@ const AtmoControlTankCore = (props, context) => {
 };
 
 const AtmoControlTankCoreControl = (props, context) => {
-  const { info, maxSliderValue, sliderControl, sliderFill, unit, name, limitName, actions } = props;
+  const {
+    info,
+    maxSliderValue,
+    sliderControl,
+    sliderFill,
+    unit,
+    name,
+    limitName,
+    actions,
+  } = props;
 
   return (
     <Section
       title={name}
       buttons={
         <Fragment>
-          <Button content="Refresh" icon="sync" disabled={!info} onClick={() => actions.refresh()} />
+          <Button
+            content="Refresh"
+            icon="sync"
+            disabled={!info}
+            onClick={() => actions.refresh()}
+          />
           <Button
             content="Power"
             icon="power-off"
@@ -184,15 +205,30 @@ const AtmoControlTankCoreControl = (props, context) => {
         </Fragment>
       }>
       <LabeledList>
-        {(info && <LabeledList.Item label={name}>{info.power ? 'Injecting' : 'On Hold'}</LabeledList.Item>) || (
+        {(info && (
+          <LabeledList.Item label={name}>
+            {info.power ? 'Injecting' : 'On Hold'}
+          </LabeledList.Item>
+        )) || (
           <LabeledList.Item>
             <Box color="bad">ERROR: Cannot Find {name} Port</Box>
-            <Button icon="search" content="Search" onClick={() => actions.refresh()} />
+            <Button
+              icon="search"
+              content="Search"
+              onClick={() => actions.refresh()}
+            />
           </LabeledList.Item>
         )}
         <LabeledList.Item
           label={limitName}
-          buttons={<Button content="Apply" icon="edit" disabled={!info} onClick={() => actions.apply()} />}>
+          buttons={
+            <Button
+              content="Apply"
+              icon="edit"
+              disabled={!info}
+              onClick={() => actions.apply()}
+            />
+          }>
           <Slider
             mt="0.4em"
             animated
@@ -225,7 +261,11 @@ const AtmoControlFuel = (props, context) => {
             onClick={() => act('injection')}
             disabled={automation || !device_info}
           />
-          <Button icon="sync" content="Refresh" onClick={() => act('refresh_status')} />
+          <Button
+            icon="sync"
+            content="Refresh"
+            onClick={() => act('refresh_status')}
+          />
           <Button
             icon="power-off"
             content="Injector Power"
@@ -237,8 +277,12 @@ const AtmoControlFuel = (props, context) => {
       }>
       {device_info ? (
         <LabeledList>
-          <LabeledList.Item label="Status">{device_info.power ? 'Injecting' : 'On Hold'}</LabeledList.Item>
-          <LabeledList.Item label="Rate">{device_info.volume_rate}</LabeledList.Item>
+          <LabeledList.Item label="Status">
+            {device_info.power ? 'Injecting' : 'On Hold'}
+          </LabeledList.Item>
+          <LabeledList.Item label="Rate">
+            {device_info.volume_rate}
+          </LabeledList.Item>
           <LabeledList.Item label="Automated Fuel Injection">
             <Button
               icon="robot"
@@ -251,7 +295,11 @@ const AtmoControlFuel = (props, context) => {
       ) : (
         <Fragment>
           <Box color="bad">ERROR: Cannot Find Device</Box>
-          <Button icon="search" content="Search" onClick={() => act('refresh_status')} />
+          <Button
+            icon="search"
+            content="Search"
+            onClick={() => act('refresh_status')}
+          />
         </Fragment>
       )}
     </Section>

@@ -6,7 +6,17 @@ import { Window } from '../layouts';
 export const TurbineControl = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { connected, compressor_broke, turbine_broke, broken, door_status, online, power, rpm, temp } = data;
+  const {
+    connected,
+    compressor_broke,
+    turbine_broke,
+    broken,
+    door_status,
+    online,
+    power,
+    rpm,
+    temp,
+  } = data;
 
   return (
     <Window width={520} height={440} resizable>
@@ -17,17 +27,27 @@ export const TurbineControl = (props, context) => {
               {(broken && (
                 <Box color="bad">
                   Setup is broken
-                  <Button icon="sync" onClick={() => act('reconnect')} content="Reconnect" />
+                  <Button
+                    icon="sync"
+                    onClick={() => act('reconnect')}
+                    content="Reconnect"
+                  />
                 </Box>
               )) || (
                 <Box color={online ? 'good' : 'bad'}>
-                  {online && !compressor_broke && !turbine_broke ? 'Online' : 'Offline'}
+                  {online && !compressor_broke && !turbine_broke
+                    ? 'Online'
+                    : 'Offline'}
                 </Box>
               )}
             </LabeledList.Item>
             <LabeledList.Item label="Compressor">
-              {(compressor_broke && <Box color="bad">Compressor is inoperable.</Box>) ||
-                (turbine_broke && <Box color="bad">Turbine is inoperable.</Box>) || (
+              {(compressor_broke && (
+                <Box color="bad">Compressor is inoperable.</Box>
+              )) ||
+                (turbine_broke && (
+                  <Box color="bad">Turbine is inoperable.</Box>
+                )) || (
                   <Box>
                     <Button.Checkbox
                       checked={online}
@@ -55,7 +75,14 @@ export const TurbineControl = (props, context) => {
               {broken ? '--' : <AnimatedNumber value={temp} />} K
             </LabeledList.Item>
             <LabeledList.Item label="Generated Power">
-              {broken ? '--' : <AnimatedNumber format={(v) => formatPower(v)} value={Number(power)} />}
+              {broken ? (
+                '--'
+              ) : (
+                <AnimatedNumber
+                  format={(v) => formatPower(v)}
+                  value={Number(power)}
+                />
+              )}
             </LabeledList.Item>
           </LabeledList>
         </Section>

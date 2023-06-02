@@ -37,11 +37,15 @@ export const ICCircuit = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="Complexity">{complexity}</LabeledList.Item>
             {(power_draw_idle && (
-              <LabeledList.Item label="Power Draw (Idle)">{formatPower(power_draw_idle)}</LabeledList.Item>
+              <LabeledList.Item label="Power Draw (Idle)">
+                {formatPower(power_draw_idle)}
+              </LabeledList.Item>
             )) ||
               null}
             {(power_draw_per_use && (
-              <LabeledList.Item label="Power Draw (Active)">{formatPower(power_draw_per_use)}</LabeledList.Item>
+              <LabeledList.Item label="Power Draw (Active)">
+                {formatPower(power_draw_per_use)}
+              </LabeledList.Item>
             )) ||
               null}
           </LabeledList>
@@ -58,7 +62,13 @@ export const ICCircuit = (props, context) => {
             )) ||
               null}
             <Flex.Item
-              basis={inputs.length && outputs.length ? '33%' : inputs.length || outputs.length ? '45%' : '100%'}>
+              basis={
+                inputs.length && outputs.length
+                  ? '33%'
+                  : inputs.length || outputs.length
+                    ? '45%'
+                    : '100%'
+              }>
               <Section title={displayed_name} mb={1}>
                 <Box>{desc}</Box>
               </Section>
@@ -98,7 +108,9 @@ const ICIODisplay = (props, context) => {
       <Button onClick={() => act('pin_name', { pin: iopin.ref })}>
         {decodeHtmlEntities(iopin.type)}: {iopin.name}
       </Button>
-      <Button onClick={() => act('pin_data', { pin: iopin.ref })}>{iopin.data}</Button>
+      <Button onClick={() => act('pin_data', { pin: iopin.ref })}>
+        {iopin.data}
+      </Button>
       <ICLinkDisplay pin={iopin} />
     </Box>
   ));
@@ -111,8 +123,14 @@ const ICLinkDisplay = (props, context) => {
 
   return pin.linked.map((link) => (
     <Box inline key={link.ref}>
-      <Button onClick={() => act('pin_unwire', { pin: pin.ref, link: link.ref })}>{link.name}</Button>@&nbsp;
-      <Button onClick={() => act('examine', { ref: link.holder_ref })}>{link.holder_name}</Button>
+      <Button
+        onClick={() => act('pin_unwire', { pin: pin.ref, link: link.ref })}>
+        {link.name}
+      </Button>
+      @&nbsp;
+      <Button onClick={() => act('examine', { ref: link.holder_ref })}>
+        {link.holder_name}
+      </Button>
     </Box>
   ));
 };

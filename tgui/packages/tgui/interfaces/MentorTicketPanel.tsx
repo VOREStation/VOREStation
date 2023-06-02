@@ -24,7 +24,18 @@ type Data = {
 
 export const MentorTicketPanel = (props, context) => {
   const { act, data } = useBackend<Data>(context);
-  const { id, title, name, state, opened_at, closed_at, opened_at_date, closed_at_date, actions, log } = data;
+  const {
+    id,
+    title,
+    name,
+    state,
+    opened_at,
+    closed_at,
+    opened_at_date,
+    closed_at_date,
+    actions,
+    log,
+  } = data;
   return (
     <Window width={900} height={600}>
       <Window.Content scrollable>
@@ -32,7 +43,11 @@ export const MentorTicketPanel = (props, context) => {
           title={'Ticket #' + id}
           buttons={
             <Box nowrap>
-              <Button icon="arrow-up" content="Escalate" onClick={() => act('escalate')} />{' '}
+              <Button
+                icon="arrow-up"
+                content="Escalate"
+                onClick={() => act('escalate')}
+              />{' '}
               <Button content="Legacy UI" onClick={() => act('legacy')} />
             </Box>
           }>
@@ -43,11 +58,13 @@ export const MentorTicketPanel = (props, context) => {
             <LabeledList.Item label="State">{State[state]}</LabeledList.Item>
             {State[state] === State.open ? (
               <LabeledList.Item label="Opened At">
-                {opened_at_date} ({Math.round((opened_at / 600) * 10) / 10} minutes ago.)
+                {opened_at_date} ({Math.round((opened_at / 600) * 10) / 10}{' '}
+                minutes ago.)
               </LabeledList.Item>
             ) : (
               <LabeledList.Item label="Closed At">
-                {closed_at_date} ({Math.round((closed_at / 600) * 10) / 10} minutes ago.){' '}
+                {closed_at_date} ({Math.round((closed_at / 600) * 10) / 10}{' '}
+                minutes ago.){' '}
                 <Button content="Reopen" onClick={() => act('reopen')} />
               </LabeledList.Item>
             )}

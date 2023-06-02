@@ -39,11 +39,28 @@ export const PrisonerManagement = (props, context) => {
                   {chemImplants.map((chem) => (
                     <Table.Row key={chem.ref}>
                       <Table.Cell textAlign="center">{chem.host}</Table.Cell>
-                      <Table.Cell textAlign="center">{chem.units}u remaining</Table.Cell>
                       <Table.Cell textAlign="center">
-                        <Button onClick={() => act('inject', { imp: chem.ref, val: 1 })}>(1)</Button>
-                        <Button onClick={() => act('inject', { imp: chem.ref, val: 5 })}>(5)</Button>
-                        <Button onClick={() => act('inject', { imp: chem.ref, val: 10 })}>(10)</Button>
+                        {chem.units}u remaining
+                      </Table.Cell>
+                      <Table.Cell textAlign="center">
+                        <Button
+                          onClick={() =>
+                            act('inject', { imp: chem.ref, val: 1 })
+                          }>
+                          (1)
+                        </Button>
+                        <Button
+                          onClick={() =>
+                            act('inject', { imp: chem.ref, val: 5 })
+                          }>
+                          (5)
+                        </Button>
+                        <Button
+                          onClick={() =>
+                            act('inject', { imp: chem.ref, val: 10 })
+                          }>
+                          (10)
+                        </Button>
                       </Table.Cell>
                     </Table.Row>
                   ))}
@@ -65,7 +82,9 @@ export const PrisonerManagement = (props, context) => {
                       </Table.Cell>
                       <Table.Cell textAlign="center">{track.loc}</Table.Cell>
                       <Table.Cell textAlign="center">
-                        <Button onClick={() => act('warn', { imp: track.ref })}>Message</Button>
+                        <Button onClick={() => act('warn', { imp: track.ref })}>
+                          Message
+                        </Button>
                       </Table.Cell>
                     </Table.Row>
                   ))}

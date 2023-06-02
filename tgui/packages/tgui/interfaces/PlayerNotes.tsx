@@ -18,7 +18,12 @@ export const PlayerNotes = (props, context) => {
   };
 
   return (
-    <Window title={'Player Notes'} theme={device_theme} width={400} height={500} resizable>
+    <Window
+      title={'Player Notes'}
+      theme={device_theme}
+      width={400}
+      height={500}
+      resizable>
       <Window.Content scrollable>
         <Section title="Player notes">
           <Button icon="filter" onClick={() => act('filter_player_notes')}>
@@ -37,7 +42,11 @@ export const PlayerNotes = (props, context) => {
             }
           />
           <Divider vertical />
-          <Button color="green" content={filter} onClick={() => act('clear_player_info_filter')} />
+          <Button
+            color="green"
+            content={filter}
+            onClick={() => act('clear_player_info_filter')}
+          />
           <Divider />
           <Table>
             {ckeys.map((ckey) => (

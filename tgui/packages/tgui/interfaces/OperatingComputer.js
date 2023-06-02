@@ -22,14 +22,26 @@ const damageRange = {
   bad: [0.5, Infinity],
 };
 
-const tempColors = ['bad', 'average', 'average', 'good', 'average', 'average', 'bad'];
+const tempColors = [
+  'bad',
+  'average',
+  'average',
+  'good',
+  'average',
+  'average',
+  'bad',
+];
 
 export const OperatingComputer = (props, context) => {
   const { act, data } = useBackend(context);
   const { hasOccupant, choice } = data;
   let body;
   if (!choice) {
-    body = hasOccupant ? <OperatingComputerPatient /> : <OperatingComputerUnoccupied />;
+    body = hasOccupant ? (
+      <OperatingComputerPatient />
+    ) : (
+      <OperatingComputerUnoccupied />
+    );
   } else {
     body = <OperatingComputerOptions />;
   }
@@ -37,10 +49,16 @@ export const OperatingComputer = (props, context) => {
     <Window width={650} height={455} resizable>
       <Window.Content>
         <Tabs>
-          <Tabs.Tab selected={!choice} icon="user" onClick={() => act('choiceOff')}>
+          <Tabs.Tab
+            selected={!choice}
+            icon="user"
+            onClick={() => act('choiceOff')}>
             Patient
           </Tabs.Tab>
-          <Tabs.Tab selected={!!choice} icon="cog" onClick={() => act('choiceOn')}>
+          <Tabs.Tab
+            selected={!!choice}
+            icon="cog"
+            onClick={() => act('choiceOn')}>
             Options
           </Tabs.Tab>
         </Tabs>
@@ -75,7 +93,12 @@ const OperatingComputerPatient = (props, context) => {
           </LabeledList.Item>
           {damages.map((d, i) => (
             <LabeledList.Item key={i} label={d[0] + ' Damage'}>
-              <ProgressBar key={i} min="0" max="100" value={occupant[d[1]] / 100} ranges={damageRange}>
+              <ProgressBar
+                key={i}
+                min="0"
+                max="100"
+                value={occupant[d[1]] / 100}
+                ranges={damageRange}>
                 {round(occupant[d[1]])}
               </ProgressBar>
             </LabeledList.Item>
@@ -104,7 +127,9 @@ const OperatingComputerPatient = (props, context) => {
                   {occupant.bloodPercent}%, {occupant.bloodLevel}cl
                 </ProgressBar>
               </LabeledList.Item>
-              <LabeledList.Item label="Pulse">{occupant.pulse} BPM</LabeledList.Item>
+              <LabeledList.Item label="Pulse">
+                {occupant.pulse} BPM
+              </LabeledList.Item>
             </Fragment>
           )}
         </LabeledList>
@@ -115,7 +140,9 @@ const OperatingComputerPatient = (props, context) => {
             {occupant.surgery.map((limb) => (
               <LabeledList.Item key={limb.name} label={limb.name}>
                 <LabeledList>
-                  <LabeledList.Item label="Current State">{limb.currentStage}</LabeledList.Item>
+                  <LabeledList.Item label="Current State">
+                    {limb.currentStage}
+                  </LabeledList.Item>
                   <LabeledList.Item label="Possible Next Steps">
                     {limb.nextSteps.map((step) => (
                       <div key={step}>{step}</div>

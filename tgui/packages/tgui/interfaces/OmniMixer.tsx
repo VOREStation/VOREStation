@@ -51,7 +51,11 @@ export const OmniMixer = (props, context) => {
                 disabled={config}
                 onClick={() => act('power')}
               />
-              <Button icon="wrench" selected={config} onClick={() => act('configure')} />
+              <Button
+                icon="wrench"
+                selected={config}
+                onClick={() => act('configure')}
+              />
             </Fragment>
           }>
           <Table>
@@ -69,7 +73,9 @@ export const OmniMixer = (props, context) => {
               {config ? <Table.Cell textAlign="center">Lock</Table.Cell> : null}
             </Table.Row>
             {ports ? (
-              ports.map((port) => <PortRow key={port.dir} port={port} config={config} />)
+              ports.map((port) => (
+                <PortRow key={port.dir} port={port} config={config} />
+              ))
             ) : (
               <Box color="bad">No Ports Detected</Box>
             )}
@@ -77,10 +83,16 @@ export const OmniMixer = (props, context) => {
         </Section>
         <Section title="Flow Rate">
           <LabeledList>
-            <LabeledList.Item label="Current Flow Rate">{last_flow_rate} L/s</LabeledList.Item>
+            <LabeledList.Item label="Current Flow Rate">
+              {last_flow_rate} L/s
+            </LabeledList.Item>
             <LabeledList.Item label="Flow Rate Limit">
               {config ? (
-                <Button icon="wrench" content={set_flow_rate / 10 + ' L/s'} onClick={() => act('set_flow_rate')} />
+                <Button
+                  icon="wrench"
+                  content={set_flow_rate / 10 + ' L/s'}
+                  onClick={() => act('set_flow_rate')}
+                />
               ) : (
                 set_flow_rate / 10 + ' L/s'
               )}

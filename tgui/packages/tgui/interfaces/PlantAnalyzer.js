@@ -31,7 +31,11 @@ const PlantAnalyzerContent = (props, context) => {
   const { no_seed, seed, reagents } = data;
 
   if (no_seed) {
-    return <Section title="Analyzer Unused">You should go scan a plant! There is no data currently loaded.</Section>;
+    return (
+      <Section title="Analyzer Unused">
+        You should go scan a plant! There is no data currently loaded.
+      </Section>
+    );
   }
 
   return (
@@ -42,7 +46,11 @@ const PlantAnalyzerContent = (props, context) => {
           <Button icon="print" onClick={() => act('print')}>
             Print Report
           </Button>
-          <Button icon="window-close" color="red" onClick={() => act('close')} />
+          <Button
+            icon="window-close"
+            color="red"
+            onClick={() => act('close')}
+          />
         </Fragment>
       }>
       <LabeledList>
@@ -51,8 +59,12 @@ const PlantAnalyzerContent = (props, context) => {
         </LabeledList.Item>
         <LabeledList.Item label="Endurance">{seed.endurance}</LabeledList.Item>
         <LabeledList.Item label="Yield">{seed.yield}</LabeledList.Item>
-        <LabeledList.Item label="Maturation Time">{seed.maturation_time}</LabeledList.Item>
-        <LabeledList.Item label="Production Time">{seed.production_time}</LabeledList.Item>
+        <LabeledList.Item label="Maturation Time">
+          {seed.maturation_time}
+        </LabeledList.Item>
+        <LabeledList.Item label="Production Time">
+          {seed.production_time}
+        </LabeledList.Item>
         <LabeledList.Item label="Potency">{seed.potency}</LabeledList.Item>
       </LabeledList>
       {(reagents.length && (

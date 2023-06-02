@@ -15,7 +15,10 @@ export const AssemblyTimer = (props, context) => {
             <LabeledList.Item
               label="Timer"
               buttons={
-                <Button icon="stopwatch" selected={timing} onClick={() => act('timing')}>
+                <Button
+                  icon="stopwatch"
+                  selected={timing}
+                  onClick={() => act('timing')}>
                   {timing ? 'Counting Down' : 'Disabled'}
                 </Button>
               }>

@@ -4,6 +4,19 @@
  * @license MIT
  */
 
+type Gas = {
+  id: string;
+  // path: string;
+  name: string;
+  label: string;
+  color: string;
+};
+
+// VOREStation Addition start
+/** 0.0 Degrees Celsius in Kelvin */
+export const T0C = 273.15;
+// VOREStation Addition end
+
 // UI states, which are mirrored from the BYOND code.
 export const UI_INTERACTIVE = 2;
 export const UI_UPDATE = 1;
@@ -49,7 +62,7 @@ export const COLORS = {
     acidicbuffer: '#fbc314',
     basicbuffer: '#3853a4',
   },
-};
+} as const;
 
 // Colors defined in CSS
 export const CSS_COLORS = [
@@ -167,7 +180,7 @@ export const RADIO_CHANNELS = [
     'freq': 1485,
     'color': '#008000',
   },
-];
+] as const;
 
 const GASES = [
   {
@@ -272,23 +285,62 @@ const GASES = [
     'label': 'Temperature',
     'color': 'yellow',
   },
-];
+] as const;
 
 // VOREStation Edit End
 
-export const getGasLabel = (gasId, fallbackValue) => {
-  const gasSearchString = String(gasId).toLowerCase();
-  const gas = GASES.find((gas) => gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString);
-  return (gas && gas.label) || fallbackValue || gasId;
+// Returns gas label based on gasId
+export const getGasLabel = (gasId: string, fallbackValue?: string) => {
+  if (!gasId) return fallbackValue || 'None';
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < GASES.length; idx++) {
+    if (GASES[idx].id === gasSearchString) {
+      return GASES[idx].label;
+    }
+  }
+
+  return fallbackValue || 'None';
 };
 
-export const getGasColor = (gasId) => {
-  const gasSearchString = String(gasId).toLowerCase();
-  const gas = GASES.find((gas) => gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString);
-  return gas && gas.color;
+// Returns gas color based on gasId
+export const getGasColor = (gasId: string) => {
+  if (!gasId) return 'black';
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < GASES.length; idx++) {
+    if (GASES[idx].id === gasSearchString) {
+      return GASES[idx].color;
+    }
+  }
+
+  return 'black';
 };
 
-// VOREStation Addition start
-/** 0.0 Degrees Celsius in Kelvin */
-export const T0C = 273.15;
-// VOREStation Addition end
+// Returns gas object based on gasId
+export const getGasFromId = (gasId: string): Gas | undefined => {
+  if (!gasId) return;
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < GASES.length; idx++) {
+    if (GASES[idx].id === gasSearchString) {
+      return GASES[idx];
+    }
+  }
+};
+
+/*
+// Returns gas object based on gasPath
+export const getGasFromPath = (gasPath: string): Gas | undefined => {
+  if (!gasPath) return;
+
+  for (let idx = 0; idx < GASES.length; idx++) {
+    if (GASES[idx].path === gasPath) {
+      return GASES[idx];
+    }
+  }
+};
+*/

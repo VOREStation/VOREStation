@@ -6,7 +6,10 @@ import { round } from 'common/math';
 export const PortableGenerator = (props, context) => {
   const { act, data } = useBackend(context);
   const stack_percent = data.fuel_stored / data.fuel_capacity;
-  const stackPercentState = (stack_percent >= 0.5 && 'good') || (stack_percent > 0.15 && 'average') || 'bad';
+  const stackPercentState =
+    (stack_percent >= 0.5 && 'good') ||
+    (stack_percent > 0.15 && 'average') ||
+    'bad';
   return (
     <Window width={450} height={340} resizable>
       <Window.Content scrollable>
@@ -26,7 +29,11 @@ export const PortableGenerator = (props, context) => {
               label="Fuel Type"
               buttons={
                 data.fuel_stored >= 1 && (
-                  <Button ml={1} icon="eject" disabled={data.active} onClick={() => act('eject')}>
+                  <Button
+                    ml={1}
+                    icon="eject"
+                    disabled={data.active}
+                    onClick={() => act('eject')}>
                     Eject
                   </Button>
                 )
@@ -46,7 +53,9 @@ export const PortableGenerator = (props, context) => {
                 {data.fuel_stored}cm&sup3; / {data.fuel_capacity}cm&sup3;
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Fuel Usage">{data.fuel_usage} cm&sup3;/s</LabeledList.Item>
+            <LabeledList.Item label="Fuel Usage">
+              {data.fuel_usage} cm&sup3;/s
+            </LabeledList.Item>
             <LabeledList.Item label="Temperature">
               <ProgressBar
                 value={data.temperature_current}
@@ -59,7 +68,9 @@ export const PortableGenerator = (props, context) => {
         </Section>
         <Section title="Output">
           <LabeledList>
-            <LabeledList.Item label="Current output" color={data.unsafe_output ? 'bad' : null}>
+            <LabeledList.Item
+              label="Current output"
+              color={data.unsafe_output ? 'bad' : null}>
               {data.power_output}
             </LabeledList.Item>
             <LabeledList.Item label="Adjust output">

@@ -3,7 +3,7 @@
 	var/initial_name = "Thaler"
 	desc = "It's worth 0 Thalers."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/economy.dmi'
 	icon_state = "spacecash1"
 	opacity = 0
 	density = FALSE
@@ -38,24 +38,24 @@
 /obj/item/weapon/spacecash/update_icon()
 	cut_overlays()
 	name = "[worth] [initial_name]\s"
-	if(worth in list(1000,500,200,100,50,20,10,1))
+	if(worth in list(1000,500,200,100,50,20,10,5,1))
 		icon_state = "spacecash[worth]"
 		desc = "It's worth [worth] [initial_name]s."
 		return
 	var/sum = src.worth
 	var/num = 0
-	for(var/i in list(1000,500,200,100,50,20,10,1))
+	for(var/i in list(1000,500,200,100,50,20,10,5,1))
 		while(sum >= i && num < 50)
 			sum -= i
 			num++
-			var/image/banknote = image('icons/obj/items.dmi', "spacecash[i]")
+			var/image/banknote = image('icons/obj/economy.dmi', "spacecash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
 			add_overlay(banknote)
 	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
-		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
+		var/image/banknote = image('icons/obj/economy.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
@@ -96,8 +96,14 @@
 /obj/item/weapon/spacecash/c1
 	name = "1 Thaler"
 	icon_state = "spacecash1"
-	desc = "It's worth 1 credit."
+	desc = "It's worth 1 Thaler."
 	worth = 1
+
+/obj/item/weapon/spacecash/c5
+	name = "5 Thaler"
+	icon_state = "spacecash5"
+	desc = "It's worth 5 Thalers."
+	worth = 5
 
 /obj/item/weapon/spacecash/c10
 	name = "10 Thaler"

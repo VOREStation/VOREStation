@@ -40,7 +40,10 @@ const MessageMonitorHack = (props, context) => {
   return (
     <FullscreenNotice title="ERROR">
       {isMalfAI ? (
-        <Box>Brute-forcing for server key. It will take 20 seconds for every character that the password has.</Box>
+        <Box>
+          Brute-forcing for server key. It will take 20 seconds for every
+          character that the password has.
+        </Box>
       ) : (
         <Box>
           01000010011100100111010101110100011001010010110
@@ -126,15 +129,28 @@ const MessageMonitorLogin = (props, context) => {
   return (
     <FullscreenNotice title="Welcome">
       <Box fontSize="1.5rem" bold>
-        <Icon name="exclamation-triangle" verticalAlign="middle" size={3} mr="1rem" />
+        <Icon
+          name="exclamation-triangle"
+          verticalAlign="middle"
+          size={3}
+          mr="1rem"
+        />
         Unauthorized
       </Box>
       <Box color="label" my="1rem">
         Decryption Key:
-        <Input placeholder="Decryption Key" ml="0.5rem" onChange={(e, val) => act('auth', { key: val })} />
+        <Input
+          placeholder="Decryption Key"
+          ml="0.5rem"
+          onChange={(e, val) => act('auth', { key: val })}
+        />
       </Box>
-      {!!isMalfAI && <Button icon="terminal" content="Hack" onClick={() => act('hack')} />}
-      <Box color="label">Please authenticate with the server in order to show additional options.</Box>
+      {!!isMalfAI && (
+        <Button icon="terminal" content="Hack" onClick={() => act('hack')} />
+      )}
+      <Box color="label">
+        Please authenticate with the server in order to show additional options.
+      </Box>
     </FullscreenNotice>
   );
 };
@@ -162,19 +178,34 @@ const MessageMonitorContent = (props, context) => {
   return (
     <Fragment>
       <Tabs>
-        <Tabs.Tab key="Main" selected={0 === tabIndex} onClick={() => setTabIndex(0)}>
+        <Tabs.Tab
+          key="Main"
+          selected={0 === tabIndex}
+          onClick={() => setTabIndex(0)}>
           <Icon name="bars" /> Main Menu
         </Tabs.Tab>
-        <Tabs.Tab key="MessageLogs" selected={1 === tabIndex} onClick={() => setTabIndex(1)}>
+        <Tabs.Tab
+          key="MessageLogs"
+          selected={1 === tabIndex}
+          onClick={() => setTabIndex(1)}>
           <Icon name="font" /> Message Logs
         </Tabs.Tab>
-        <Tabs.Tab key="RequestLogs" selected={2 === tabIndex} onClick={() => setTabIndex(2)}>
+        <Tabs.Tab
+          key="RequestLogs"
+          selected={2 === tabIndex}
+          onClick={() => setTabIndex(2)}>
           <Icon name="bold" /> Request Logs
         </Tabs.Tab>
-        <Tabs.Tab key="AdminMessage" selected={3 === tabIndex} onClick={() => setTabIndex(3)}>
+        <Tabs.Tab
+          key="AdminMessage"
+          selected={3 === tabIndex}
+          onClick={() => setTabIndex(3)}>
           <Icon name="comment-alt" /> Admin Messaging
         </Tabs.Tab>
-        <Tabs.Tab key="SpamFilter" selected={4 === tabIndex} onClick={() => setTabIndex(4)}>
+        <Tabs.Tab
+          key="SpamFilter"
+          selected={4 === tabIndex}
+          onClick={() => setTabIndex(4)}>
           <Icon name="comment-slash" /> Spam Filter
         </Tabs.Tab>
         <Tabs.Tab key="Logout" color="red" onClick={() => act('deauth')}>
@@ -196,7 +227,11 @@ const MessageMonitorMain = (props, context) => {
       title="Main Menu"
       buttons={
         <Fragment>
-          <Button icon="link" content="Server Link" onClick={() => act('find')} />
+          <Button
+            icon="link"
+            content="Server Link"
+            onClick={() => act('find')}
+          />
           <Button
             icon="power-off"
             content={'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
@@ -210,7 +245,12 @@ const MessageMonitorMain = (props, context) => {
           <Box color="good">Good</Box>
         </LabeledList.Item>
       </LabeledList>
-      <Button mt={1} icon="key" content="Set Custom Key" onClick={() => act('pass')} />
+      <Button
+        mt={1}
+        icon="key"
+        content="Set Custom Key"
+        onClick={() => act('pass')}
+      />
       <Button.Confirm
         color="red"
         confirmIcon="exclamation-triangle"
@@ -265,8 +305,12 @@ const MessageMonitorLogs = (props, context) => {
               }>
               {rc ? (
                 <LabeledList>
-                  <LabeledList.Item label="Message">{log.message}</LabeledList.Item>
-                  <LabeledList.Item label="Verification" color={log.id_auth === 'Unauthenticated' ? 'bad' : 'good'}>
+                  <LabeledList.Item label="Message">
+                    {log.message}
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Verification"
+                    color={log.id_auth === 'Unauthenticated' ? 'bad' : 'good'}>
                     {decodeHtmlEntities(log.id_auth)}
                   </LabeledList.Item>
                   <LabeledList.Item label="Stamp">{log.stamp}</LabeledList.Item>
@@ -285,7 +329,13 @@ const MessageMonitorLogs = (props, context) => {
 const MessageMonitorAdmin = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { possibleRecipients, customsender, customrecepient, customjob, custommessage } = data;
+  const {
+    possibleRecipients,
+    customsender,
+    customrecepient,
+    customjob,
+    custommessage,
+  } = data;
 
   const recipientOptions = Object.keys(possibleRecipients);
 
@@ -293,10 +343,18 @@ const MessageMonitorAdmin = (props, context) => {
     <Section title="Admin Messaging">
       <LabeledList>
         <LabeledList.Item label="Sender">
-          <Input fluid value={customsender} onChange={(e, val) => act('set_sender', { val: val })} />
+          <Input
+            fluid
+            value={customsender}
+            onChange={(e, val) => act('set_sender', { val: val })}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Sender's Job">
-          <Input fluid value={customjob} onChange={(e, val) => act('set_sender_job', { val: val })} />
+          <Input
+            fluid
+            value={customjob}
+            onChange={(e, val) => act('set_sender_job', { val: val })}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Recipient">
           <Dropdown
@@ -312,10 +370,20 @@ const MessageMonitorAdmin = (props, context) => {
           />
         </LabeledList.Item>
         <LabeledList.Item label="Message" verticalAlign="top">
-          <Input fluid mb={0.5} value={custommessage} onChange={(e, val) => act('set_message', { val: val })} />
+          <Input
+            fluid
+            mb={0.5}
+            value={custommessage}
+            onChange={(e, val) => act('set_message', { val: val })}
+          />
         </LabeledList.Item>
       </LabeledList>
-      <Button fluid icon="comment" content="Send Message" onClick={() => act('send_message')} />
+      <Button
+        fluid
+        icon="comment"
+        content="Send Message"
+        onClick={() => act('send_message')}
+      />
     </Section>
   );
 };
@@ -344,7 +412,11 @@ const MessageMonitorSpamFilter = (props, context) => {
           </LabeledList.Item>
         ))}
       </LabeledList>
-      <Button icon="plus" content="Add New Entry" onClick={() => act('addtoken')} />
+      <Button
+        icon="plus"
+        content="Add New Entry"
+        onClick={() => act('addtoken')}
+      />
     </Section>
   );
 };

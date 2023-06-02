@@ -39,7 +39,9 @@ export const OvermapFlightDataWrap = (props, context) => {
   // While, yes, this is a strange choice to use fieldset over Section
   // just look at how pretty the legend is, sticking partially through the border ;///;
   return (
-    <fieldset style={{ height: '100%', border: '1px solid #4972a1', margin: 'none' }} className="Section">
+    <fieldset
+      style={{ height: '100%', border: '1px solid #4972a1', margin: 'none' }}
+      className="Section">
       <legend>Flight Data</legend>
       <OvermapFlightData />
     </fieldset>
@@ -52,7 +54,9 @@ const OvermapManualControl = (props, context) => {
   const { canburn, manual_control } = data;
 
   return (
-    <fieldset style={{ height: '100%', border: '1px solid #4972a1' }} className="Section">
+    <fieldset
+      style={{ height: '100%', border: '1px solid #4972a1' }}
+      className="Section">
       <legend>Manual Control</legend>
       <Flex align="center" justify="center">
         <Flex.Item>
@@ -63,7 +67,10 @@ const OvermapManualControl = (props, context) => {
         <Box bold underline>
           Direct Control
         </Box>
-        <Button selected={manual_control} onClick={() => act('manual')} icon="compass">
+        <Button
+          selected={manual_control}
+          onClick={() => act('manual')}
+          icon="compass">
           {manual_control ? 'Enabled' : 'Disabled'}
         </Button>
       </Box>
@@ -77,14 +84,17 @@ const OvermapAutopilot = (props, context) => {
 
   if (autopilot_disabled) {
     return (
-      <fieldset style={{ height: '100%', border: '1px solid #4972a1' }} className="Section">
+      <fieldset
+        style={{ height: '100%', border: '1px solid #4972a1' }}
+        className="Section">
         <legend>Autopilot</legend>
         <Box textAlign="center" color="bad" fontSize={1.2}>
           AUTOPILOT DISABLED
         </Box>
         <Box textAlign="center" color="average">
-          Warning: This vessel is equipped with a class I autopilot. Class I autopilots are unable to do anything but
-          fly in a straight line directly towards the target, and may result in collisions.
+          Warning: This vessel is equipped with a class I autopilot. Class I
+          autopilots are unable to do anything but fly in a straight line
+          directly towards the target, and may result in collisions.
         </Box>
         <Box textAlign="center">
           <Button.Confirm
@@ -102,17 +112,25 @@ const OvermapAutopilot = (props, context) => {
   }
 
   return (
-    <fieldset style={{ height: '100%', border: '1px solid #4972a1' }} className="Section">
+    <fieldset
+      style={{ height: '100%', border: '1px solid #4972a1' }}
+      className="Section">
       <legend>Autopilot</legend>
       <LabeledList>
         <LabeledList.Item label="Target">
           {(dest && (
             <Fragment>
-              <Button onClick={() => act('setcoord', { setx: true })}>{d_x}</Button>
-              <Button onClick={() => act('setcoord', { sety: true })}>{d_y}</Button>
+              <Button onClick={() => act('setcoord', { setx: true })}>
+                {d_x}
+              </Button>
+              <Button onClick={() => act('setcoord', { sety: true })}>
+                {d_y}
+              </Button>
             </Fragment>
           )) || (
-            <Button icon="pen" onClick={() => act('setcoord', { setx: true, sety: true })}>
+            <Button
+              icon="pen"
+              onClick={() => act('setcoord', { setx: true, sety: true })}>
               None
             </Button>
           )}
@@ -123,10 +141,20 @@ const OvermapAutopilot = (props, context) => {
           </Button>
         </LabeledList.Item>
       </LabeledList>
-      <Button mt={1} fluid selected={autopilot} disabled={!dest} icon="robot" onClick={() => act('apilot')}>
+      <Button
+        mt={1}
+        fluid
+        selected={autopilot}
+        disabled={!dest}
+        icon="robot"
+        onClick={() => act('apilot')}>
         {autopilot ? 'Engaged' : 'Disengaged'}
       </Button>
-      <Button fluid color="good" icon="exclamation-triangle" onClick={() => act('apilot_lock')}>
+      <Button
+        fluid
+        color="good"
+        icon="exclamation-triangle"
+        onClick={() => act('apilot_lock')}>
         Lock Autopilot
       </Button>
     </fieldset>
@@ -150,12 +178,18 @@ const OvermapNavComputer = (props, context) => {
       </LabeledList>
       <Flex mt={1} align="center" justify="center" spacing={1}>
         <Flex.Item basis="50%">
-          <Button fluid icon="save" onClick={() => act('add', { add: 'current' })}>
+          <Button
+            fluid
+            icon="save"
+            onClick={() => act('add', { add: 'current' })}>
             Save Current Position
           </Button>
         </Flex.Item>
         <Flex.Item basis="50%">
-          <Button fluid icon="sticky-note" onClick={() => act('add', { add: 'new' })}>
+          <Button
+            fluid
+            icon="sticky-note"
+            onClick={() => act('add', { add: 'new' })}>
             Add New Entry
           </Button>
         </Flex.Item>
@@ -174,10 +208,14 @@ const OvermapNavComputer = (props, context) => {
                 {loc.x} : {loc.y}
               </Table.Cell>
               <Table.Cell collapsing>
-                <Button icon="rocket" onClick={() => act('setds', { x: loc.x, y: loc.y })}>
+                <Button
+                  icon="rocket"
+                  onClick={() => act('setds', { x: loc.x, y: loc.y })}>
                   Plot Course
                 </Button>
-                <Button icon="trash" onClick={() => act('remove', { remove: loc.reference })}>
+                <Button
+                  icon="trash"
+                  onClick={() => act('remove', { remove: loc.reference })}>
                   Remove
                 </Button>
               </Table.Cell>

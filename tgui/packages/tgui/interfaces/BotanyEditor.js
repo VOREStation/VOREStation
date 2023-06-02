@@ -25,7 +25,9 @@ export const BotanyEditor = (props, context) => {
             <Box>
               <LabeledList>
                 <LabeledList.Item label="Source">{sourceName}</LabeledList.Item>
-                <LabeledList.Item label="Gene Decay">{degradation}%</LabeledList.Item>
+                <LabeledList.Item label="Gene Decay">
+                  {degradation}%
+                </LabeledList.Item>
                 <LabeledList.Item label="Locus">{locus}</LabeledList.Item>
               </LabeledList>
               <Button mt={1} icon="eject" onClick={() => act('eject_disk')}>
