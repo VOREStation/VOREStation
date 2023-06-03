@@ -11,7 +11,7 @@
 
 /datum/tgui_module/ship/Destroy()
 	if(LAZYLEN(viewers))
-		for(var/weakref/W in viewers)
+		for(var/datum/weakref/W in viewers)
 			var/M = W.resolve()
 			if(M)
 				unlook(M)
@@ -56,16 +56,16 @@
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
 	GLOB.moved_event.register(user, src, /datum/tgui_module/ship/proc/unlook)
-	LAZYDISTINCTADD(viewers, weakref(user))
+	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
 	user.reset_view()
 	user.set_viewsize() // reset to default
 	GLOB.moved_event.unregister(user, src, /datum/tgui_module/ship/proc/unlook)
-	LAZYREMOVE(viewers, weakref(user))
+	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)
-	return (weakref(user) in viewers)
+	return (WEAKREF(user) in viewers)
 
 /datum/tgui_module/ship/check_eye(var/mob/user)
 	if(!get_dist(user, tgui_host()) > 1 || user.blinded || !linked)
