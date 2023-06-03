@@ -158,7 +158,9 @@
 							Left Mouse Button on AI mob            = Select/Deselect mob<br>\
 							Left Mouse Button + alt on AI mob      = Toggle hostility on mob<br>\
 							Left Mouse Button + shift on AI mob    = Toggle AI (also resets)<br>\
-							Left Mouse Button + ctrl on AI mob 	  = Copy mob faction<br>\
+							Left Mouse Button + ctrl on AI mob 	   = Copy mob faction<br>\
+							Middle Mouse Button + shift on any     = Set selected mob(s) to wander<br>\
+							Middle Mouse Button + shift on any     = Set selected mob(s) to NOT wander<br>\
 							Right Mouse Button + ctrl on any mob   = Paste mob faction copied with Left Mouse Button + shift<br>\
 							Right Mouse Button on enemy mob        = Command selected mobs to attack mob<br>\
 							Right Mouse Button on allied mob       = Command selected mobs to follow mob<br>\
@@ -544,6 +546,18 @@
 				else //Not living
 					for(var/mob/living/unit in holder.selected_mobs)
 						holder.deselect_AI_mob(user.client, unit)
+
+			if(pa.Find("middle"))
+				if(pa.Find("shift"))
+					to_chat(user, SPAN_NOTICE("All selected mobs set to wander"))
+					for(var/mob/living/unit in holder.selected_mobs)
+						var/datum/ai_holder/AI = unit.ai_holder
+						AI.wander = TRUE
+				if(pa.Find("ctrl"))
+					to_chat(user, SPAN_NOTICE("Setting mobs set to NOT wander"))
+					for(var/mob/living/unit in holder.selected_mobs)
+						var/datum/ai_holder/AI = unit.ai_holder
+						AI.wander = FALSE
 
 
 			if(pa.Find("right"))
