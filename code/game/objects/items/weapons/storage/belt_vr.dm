@@ -157,6 +157,7 @@
 	name = "hydroponics belt"
 	desc = "A belt used to hold most hydroponics supplies. Suprisingly, not green."
 	icon = 'icons/inventory/belt/item_vr.dmi'
+	icon_override = 'icons/inventory/belt/mob_vr.dmi'
 	icon_state = "plantbelt"
 	item_state = "plantbelt"
 	storage_slots = 5
