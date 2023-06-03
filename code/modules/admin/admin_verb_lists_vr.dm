@@ -170,7 +170,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/add_mob_for_narration,	//VOREStation Add
 	/client/proc/remove_mob_for_narration,	//VOREStation Add
 	/client/proc/narrate_mob,	//VOREStation Add
-	/client/proc/narrate_mob_args //VOREStation Add
+	/client/proc/narrate_mob_args, //VOREStation Add
+	/client/proc/assess_player_readiness  //VOREStation Add
 	)
 
 var/list/admin_verbs_spawn = list(

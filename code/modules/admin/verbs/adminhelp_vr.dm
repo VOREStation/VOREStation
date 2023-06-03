@@ -37,3 +37,29 @@
 	spawn(10 MINUTES)
 		if(usr)		// In case we left in the 10 minute cooldown
 			usr.verbs += /client/verb/adminspice	// 10 minute cool-down for spice request
+
+//Works using the event_consent_list associative list. key is ckey, value is time they pressed the button.
+//Checked by /client/proc/assess_player_readiness()
+/client/verb/show_event_interest()
+	set category = "Admin"
+	set name = "Show Event Enthusiasm"
+	set desc = "Let staff wanting to run events know you're eager for disruptive events."
+
+	if(usr.key in event_consent_list)
+		var/choice = tgui_alert(usr, "Would you rather focus on scenes or chilling out?",
+		"Withdraw Enthusiasm", list("Choose to Relax", "Cancel"))
+		if(choice == "Choose to Relax")
+			event_consent_list -= usr.key
+			to_chat(usr, SPAN_NOTICE("You have been removed from the list of people enthusiastic for events."))
+	else if(istype(usr, /mob/living))
+		var/choice = tgui_alert(usr, "Would you like to let staff know that you are actively available to respond to and engage with impromptu events \
+		such as rescuing people, filling special orders and so forth? This will add you to a list that staff can request at any time \
+		telling them where you are and whether you are AFK. This does not compel staff to entertain you. \
+		Please note: Your OOC prefs WILL NOT be overriden by opting in.",
+		"Consent to Disruption", list("Show Enthusiasm", "Cancel"))
+		if(choice == "Show Enthusiasm")
+			event_consent_list[usr.key] = world.time
+			to_chat(usr, SPAN_NOTICE("You have been added to list of players who are eager to have the rounds shaken up. \
+			You will be automatically removed if afk for over 30 minutes or leave the round through the verb or cryo/tram/portal"))
+	else
+		to_chat(usr, SPAN_NOTICE("Only players actively in the round can show interest!"))

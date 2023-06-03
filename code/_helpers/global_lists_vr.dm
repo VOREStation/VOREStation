@@ -12,6 +12,7 @@ var/global/list/everyone_traits_negative = list()	// Neutral traits available to
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
 var/global/list/active_ghost_pods = list()
+var/global/list/event_consent_list = list() // Assoc list of player ckey as key time of entry as value. Used for giving GMs player enthusiasm info.
 
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.

@@ -35,6 +35,10 @@ var/global/list/prevent_respawns = list()
 	if(mind)
 		SStranscore.leave_round(src)
 
+	//Removing player from list used by GMs to check player event interest.
+	if(key in event_consent_list)
+		event_consent_list -= key
+
 	//Job slot cleanup
 	var/job = src.mind.assigned_role
 	job_master.FreeRole(job)
