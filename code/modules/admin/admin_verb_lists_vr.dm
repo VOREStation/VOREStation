@@ -166,7 +166,11 @@ var/list/admin_verbs_fun = list(
 	/client/proc/admin_lightning_strike,
 	/client/proc/resize, //VOREStation Add,
 	/client/proc/cmd_admin_droppod_deploy,
-	/client/proc/adminorbit //VOREStation Add,
+	/client/proc/adminorbit, //VOREStation Add
+	/client/proc/add_mob_for_narration,	//VOREStation Add
+	/client/proc/remove_mob_for_narration,	//VOREStation Add
+	/client/proc/narrate_mob,	//VOREStation Add
+	/client/proc/narrate_mob_args //VOREStation Add
 	)
 
 var/list/admin_verbs_spawn = list(

@@ -1751,6 +1751,7 @@
 #include "code\modules\admin\verbs\debug_vr.dm"
 #include "code\modules\admin\verbs\diagnostics.dm"
 #include "code\modules\admin\verbs\dice.dm"
+#include "code\modules\admin\verbs\entity_narrate.dm"
 #include "code\modules\admin\verbs\fps.dm"
 #include "code\modules\admin\verbs\getlogs.dm"
 #include "code\modules\admin\verbs\grief_fixers.dm"
