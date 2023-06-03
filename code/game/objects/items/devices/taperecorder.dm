@@ -92,25 +92,14 @@
 		mytape.record_speech("[M.name] [verb], \"[msg]\"")
 
 
-<<<<<<< HEAD
 /obj/item/device/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
-	if(emote_type != 2) //only hearable emotes
-		return
-	if(mytape && recording)
-		mytape.record_speech("[strip_html_properly(text)]")
-
-
-/obj/item/device/taperecorder/show_message(msg, type, alt, alt_type)
-=======
-/obj/item/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
 	..()
 	if(emote_type == AUDIBLE_MESSAGE && mytape && recording)
 		mytape.record_speech("[strip_html_properly(text)]")
 
 
-/obj/item/taperecorder/show_message(msg, type, alt, alt_type)
+/obj/item/device/taperecorder/show_message(msg, type, alt, alt_type)
 	..()
->>>>>>> 642348983f6... Fixing positional custom emotes. (#9011)
 	var/recordedtext
 	if (msg && type == AUDIBLE_MESSAGE) //must be hearable
 		recordedtext = msg
