@@ -1,8 +1,8 @@
 /obj/machinery/mecha_part_fabricator/pros
-	icon = 'icons/obj/robotics.dmi'
+	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
 	icon_state = "prosfab"
 	name = "Prosthetics Fabricator"
-	desc = "A machine used for construction of prosthetics."
+	desc = "A machine used for the construction of prosthetics."
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
@@ -17,7 +17,7 @@
 	var/species_types = list("Human")
 	var/species = "Human"
 
-	loading_icon_state = "prosfab_loading"
+	loading_icon_state = null
 
 	materials = list(
 		MAT_STEEL = 0,
