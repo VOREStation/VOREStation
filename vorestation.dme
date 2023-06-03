@@ -2225,6 +2225,8 @@
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\error_handler\~defines.dm"
+#include "code\modules\eventkit\event_machinery.dm"
+#include "code\modules\eventkit\gm_interfaces\mob_spawner.dm"
 #include "code\modules\events\apc_damage.dm"
 #include "code\modules\events\atmos_leak.dm"
 #include "code\modules\events\aurora_caelus.dm"
