@@ -492,12 +492,17 @@
 		else
 			B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
 
-		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
-		adjust_nutrition(400)
-		sleep(50)
-		B.drip(1)
-		sleep(50)
-		B.drip(1)
+
+		if(!noise && !bleed) //If we're quiet and careful, there should be no blood to serve as evidence
+			B.remove_blood(82) //Removing in one go since we dont want splatter
+			adjust_nutrition(410) //We drink it all, not letting any go to waste!
+		else //Otherwise, we're letting blood drop to the floor
+			B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
+			adjust_nutrition(400)
+			sleep(50)
+			B.drip(1)
+			sleep(50)
+			B.drip(1)
 
 
 //Welcome to the adapted changeling absorb code.
