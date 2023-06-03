@@ -1105,7 +1105,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
 "cT" = (
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "cU" = (
