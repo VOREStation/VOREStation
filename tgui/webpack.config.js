@@ -26,10 +26,10 @@ const createStats = (verbose) => ({
 
 // prettier-ignore
 module.exports = (env = {}, argv) => {
-  const mode = argv.mode === 'production' ? 'production' : 'development';
+  const mode = argv.mode || 'production';
   const bench = env.TGUI_BENCH;
   const config = {
-    mode,
+    mode: mode === 'production' ? 'production' : 'development',
     context: path.resolve(__dirname),
     target: ['web', 'es3', 'browserslist:ie 8'],
     entry: {
@@ -89,7 +89,14 @@ module.exports = (env = {}, argv) => {
         },
         {
           test: /\.(png|jpg|svg)$/,
-          type: 'asset/inline',
+          use: [
+            {
+              loader: require.resolve('url-loader'),
+              options: {
+                esModule: false,
+              },
+            },
+          ],
         },
       ],
     },
@@ -110,7 +117,7 @@ module.exports = (env = {}, argv) => {
     stats: createStats(true),
     plugins: [
       new webpack.EnvironmentPlugin({
-        NODE_ENV: env.NODE_ENV || argv.mode || 'development',
+        NODE_ENV: env.NODE_ENV || mode,
         WEBPACK_HMR_ENABLED: env.WEBPACK_HMR_ENABLED || argv.hot || false,
         DEV_SERVER_IP: env.DEV_SERVER_IP || null,
       }),
@@ -131,7 +138,7 @@ module.exports = (env = {}, argv) => {
   }
 
   // Production build specific options
-  if (argv.mode === 'production') {
+  if (mode === 'production') {
     const TerserPlugin = require('terser-webpack-plugin');
     config.optimization.minimizer = [
       new TerserPlugin({
@@ -148,7 +155,7 @@ module.exports = (env = {}, argv) => {
   }
 
   // Development build specific options
-  if (argv.mode !== 'production') {
+  if (mode !== 'production') {
     config.devtool = 'cheap-module-source-map';
   }
 

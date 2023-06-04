@@ -105,8 +105,6 @@
 
 		CHECK_TICK
 
-
-
 	// This fucker has a history of playing on a banned account.
 	if(found)
 		var/msg = "[key_name(client)] has a banned account in connection history! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])"
@@ -142,3 +140,6 @@
 		query.Execute()
 		qdel(query)
 	*/
+
+#undef TGUI_TELEMETRY_MAX_CONNECTIONS
+#undef TGUI_TELEMETRY_RESPONSE_WINDOW
