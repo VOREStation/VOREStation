@@ -230,24 +230,12 @@ SUBSYSTEM_DEF(overlays)
 		if (!special && I.plane > 0)
 			continue
 		including += I
-<<<<<<< HEAD
 	if (!priority)
 		return including
 	for (var/image/I as anything in other.priority_overlays)
 		if (!special && I.plane > 0)
 			continue
 		including += I
-=======
-
-	if(!priority)
-		return including
-
-	for(var/image/I as anything in other.priority_overlays)
-		if(!special && I.plane > 0)
-			continue
-		including += I
-
->>>>>>> e43f590558 (Initial Commit for Collab)
 	return including
 
 /image/proc/add_overlay(x)
