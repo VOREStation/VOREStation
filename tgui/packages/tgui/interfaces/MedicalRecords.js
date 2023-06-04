@@ -275,14 +275,16 @@ const MedicalRecordsViewMedical = (_properties, context) => {
     <Fragment>
       <LabeledList>
         {medical.fields.map((field, i) => (
-          <LabeledList.Item key={i} label={field.field} preserveWhitespace>
-            {field.value}
-            <Button
-              icon="pen"
-              ml="0.5rem"
-              mb={field.line_break ? '1rem' : 'initial'}
-              onClick={() => doEdit(context, field)}
-            />
+          <LabeledList.Item key={i} label={field.field}>
+            <Box preserveWhitespace>
+              {field.value}
+              <Button
+                icon="pen"
+                ml="0.5rem"
+                mb={field.line_break ? '1rem' : 'initial'}
+                onClick={() => doEdit(context, field)}
+              />
+            </Box>
           </LabeledList.Item>
         ))}
       </LabeledList>
