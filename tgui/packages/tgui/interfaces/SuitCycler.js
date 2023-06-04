@@ -101,7 +101,7 @@ const SuitCyclerContent = (props, context) => {
           <LabeledList.Item label="Target Paintjob">
             <Dropdown
               noscroll
-              width="100%"
+              width="150px"
               options={departments}
               selected={departments[0]}
               onSelected={(val) => act('department', { department: val })}
@@ -109,7 +109,7 @@ const SuitCyclerContent = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Target Species">
             <Dropdown
-              width="100%"
+              width="150px"
               maxHeight="160px"
               options={species}
               selected={species[0]}
