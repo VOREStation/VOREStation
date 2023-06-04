@@ -3,7 +3,6 @@ import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
-import { refocusLayout } from '../layouts';
 
 const sortTypes = {
   'Alphabetical': (a, b) => a - b,
@@ -112,7 +111,7 @@ const CasinoPrizeDispenserItems = (props, context) => {
   });
   return (
     <Flex.Item grow="1" overflow="auto">
-      <Section onClick={(e) => refocusLayout()}>
+      <Section>
         {has_contents ? (
           contents
         ) : (

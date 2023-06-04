@@ -26,24 +26,19 @@ const ChemDispenserSettings = (properties, context) => {
     <Section title="Settings" flex="content">
       <LabeledList>
         <LabeledList.Item label="Dispense" verticalAlign="middle">
-          <Flex direction="row" wrap="wrap" spacing="1">
-            {dispenseAmounts.map((a, i) => (
-              <Flex.Item key={i} grow="1">
-                <Button
-                  textAlign="center"
-                  selected={amount === a}
-                  content={a + 'u'}
-                  m="0"
-                  fluid
-                  onClick={() =>
-                    act('amount', {
-                      amount: a,
-                    })
-                  }
-                />
-              </Flex.Item>
-            ))}
-          </Flex>
+          {dispenseAmounts.map((a, i) => (
+            <Button
+              textAlign="center"
+              selected={amount === a}
+              content={a + 'u'}
+              m="0"
+              onClick={() =>
+                act('amount', {
+                  amount: a,
+                })
+              }
+            />
+          ))}
         </LabeledList.Item>
         <LabeledList.Item label="Custom Amount">
           <Slider
