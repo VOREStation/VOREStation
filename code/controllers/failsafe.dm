@@ -101,4 +101,4 @@ var/datum/controller/failsafe/Failsafe
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
 	msg = "Failsafe Controller: [statclick.update("Defcon: [defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])")]"
-	return ..()
+	return msg

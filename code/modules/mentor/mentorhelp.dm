@@ -61,17 +61,22 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 //Tickets statpanel
 /datum/mentor_help_tickets/proc/stat_entry()
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
+	var/list/L = list()
 	var/num_disconnected = 0
-	stat("== Mentor Tickets ==")
-	stat("Active Tickets:", astatclick.update("[active_tickets.len]"))
+	L[++L.len] = list("== Mentor Tickets ==", "", null, null)
+	L[++L.len] = list("Active Tickets:", "[astatclick.update("[active_tickets.len]")]", null, REF(astatclick))
+	astatclick.update("[active_tickets.len]")
 	for(var/datum/mentor_help/MH as anything in active_tickets)
 		if(MH.initiator)
-			stat("#[MH.id]. [MH.initiator_ckey]:", MH.statclick.update())
+			L[++L.len] = list("#[MH.id]. [MH.initiator_ckey]:", "[MH.statclick.update()]", REF(MH))
 		else
 			++num_disconnected
 	if(num_disconnected)
-		stat("Disconnected:", astatclick.update("[num_disconnected]"))
-	stat("Resolved Tickets:", rstatclick.update("[resolved_tickets.len]"))
+		L[++L.len] = list("Disconnected:", "[astatclick.update("[num_disconnected]")]", null, REF(astatclick))
+	L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[resolved_tickets.len]")]", null, REF(rstatclick))
+	return L
 
 //Reassociate still open ticket if one exists
 /datum/mentor_help_tickets/proc/ClientLogin(client/C)

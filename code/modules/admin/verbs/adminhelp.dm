@@ -74,7 +74,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	SHOULD_NOT_SLEEP(TRUE)
 	var/list/L = list()
 	var/num_disconnected = 0
-	L[++L.len] = list("== Admin Tickets ==")
+	L[++L.len] = list("== Admin Tickets ==", "", null, null)
 	L[++L.len] = list("Active Tickets:", "[astatclick.update("[active_tickets.len]")]", null, REF(astatclick))
 	astatclick.update("[active_tickets.len]")
 	for(var/datum/admin_help/AH as anything in active_tickets)

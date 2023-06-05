@@ -140,6 +140,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_MACHINES		100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_PROJECTILES	150
+#define FIRE_PRIORITY_STATPANEL		390
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.

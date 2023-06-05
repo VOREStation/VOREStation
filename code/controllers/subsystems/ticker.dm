@@ -41,6 +41,8 @@ SUBSYSTEM_DEF(ticker)
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
 
+	var/round_start_time = 0
+
 // This global variable exists for legacy support so we don't have to rename every 'ticker' to 'SSticker' yet.
 var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/PreInit()
@@ -101,6 +103,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 // Called during GAME_STATE_SETTING_UP (RUNLEVEL_SETUP)
 /datum/controller/subsystem/ticker/proc/setup_tick(resumed = FALSE)
+	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
 	if(!setup_choose_gamemode())
 		// It failed, go back to lobby state and re-send the welcome message
 		pregame_timeleft = config.pregame_time
@@ -581,3 +584,5 @@ var/global/datum/controller/subsystem/ticker/ticker
 	minds = SSticker.minds
 
 	random_players = SSticker.random_players
+
+	round_start_time = SSticker.round_start_time

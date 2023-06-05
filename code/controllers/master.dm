@@ -589,7 +589,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	msg = "Byond: (FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))"
 	msg += "Master Controller: [statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])")]"
 
-	return ..()
+	return msg
 
 /datum/controller/master/StartLoadingMap(var/quiet = TRUE)
 	if(map_loading)

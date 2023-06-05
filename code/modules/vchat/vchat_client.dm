@@ -241,6 +241,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 			loaded = FALSE
 		if("debug")
 			data = debugmsg(arglist(params))
+		if("set_theme")
+			usr << output(params["theme"], "statbrowser:set_theme")
 
 	if(href_list["showingnum"])
 		message_buffer = CLAMP(text2num(href_list["showingnum"]), 50, 2000)

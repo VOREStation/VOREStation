@@ -1012,17 +1012,24 @@ function switch_ui_mode(options) {
 	doWinset(SKIN_BUTTONS.reduce(function(params, ctl) {params[ctl + ".background-color"] = options.buttonBgColor; return params;}, {}));
 	doWinset(SKIN_BUTTONS.reduce(function(params, ctl) {params[ctl + ".text-color"] = options.buttonTextColor; return params;}, {}));
 	doWinset(SKIN_ELEMENTS.reduce(function(params, ctl) {params[ctl + ".background-color"] = options.windowBgColor; return params;}, {}));
-	doWinset("infowindow", {
+	doWinset("statwindow", {
 		"background-color": options.tabBackgroundColor,
 		"text-color": options.tabTextColor
 	});
-	doWinset("infowindow.info", {
+	doWinset("stat", {
 		"background-color": options.tabBackgroundColor,
+		"tab-background-color": options.tabBackgroundColor,
 		"text-color": options.tabTextColor,
-		"highlight-color": options.highlightColor,
 		"tab-text-color": options.tabTextColor,
-		"tab-background-color": options.tabBackgroundColor
-	});
+		"prefix-color": options.tabTextColor,
+		"suffix-color": options.tabTextColor
+	})
+
+	if(options.buttonBgColor == "#40628a") {
+        push_Topic("set_theme&param[theme]=dark")
+	} else {
+		push_Topic("set_theme&param[theme]=light")
+	}
 }
 
 function doWinset(control_id, params) {

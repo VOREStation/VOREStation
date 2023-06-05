@@ -3,8 +3,9 @@ SUBSYSTEM_DEF(statpanels)
 	wait = 4
 	init_order = INIT_ORDER_STATPANELS
 	//init_stage = INITSTAGE_EARLY
-	//priority = FIRE_PRIORITY_STATPANEL
+	priority = FIRE_PRIORITY_STATPANEL
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	flags = SS_NO_INIT
 	var/list/currentrun = list()
 	var/list/global_data
 	var/list/mc_data
@@ -31,8 +32,7 @@ SUBSYSTEM_DEF(statpanels)
 			//"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Round ID: -- Not Available --",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
-			//"Round Time: [ROUND_TIME]",
-			"Round Time: -- Not Available --",
+			"Round Time: [ROUND_TIME()]",
 			"Station Time: [stationtime2text()]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
@@ -128,6 +128,8 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry()
+	ahelp_tickets += list("", "", null, null)
+	ahelp_tickets += GLOB.mhelp_tickets.stat_entry()
 	target.stat_panel.send_message("update_tickets", ahelp_tickets)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)

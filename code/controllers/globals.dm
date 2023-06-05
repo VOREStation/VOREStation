@@ -37,7 +37,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
 	msg = "GLOB: [statclick.update("Edit")]"
-	return ..()
+	return msg
 
 /datum/controller/global_vars/vv_edit_var(var_name, var_value)
 	if(gvars_datum_protected_varlist[var_name])
