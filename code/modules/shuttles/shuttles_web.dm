@@ -208,7 +208,7 @@
 
 /obj/machinery/computer/shuttle_control/web/tgui_data(mob/user)
 	var/list/data = list()
-	
+
 	var/list/routes[0]
 	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
@@ -409,10 +409,10 @@
 
 /obj/shuttle_connector/Initialize()
 	. = ..()
-	GLOB.shuttle_added.register_global(src, .proc/setup_routes)
+	GLOB.shuttle_added.register_global(src, PROC_REF(setup_routes))
 
 /obj/shuttle_connector/Destroy()
-	GLOB.shuttle_added.unregister_global(src, .proc/setup_routes)
+	GLOB.shuttle_added.unregister_global(src, PROC_REF(setup_routes))
 	. = ..()
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!

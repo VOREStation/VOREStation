@@ -206,7 +206,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.all_species[S.name] = S
 
 	//Shakey shakey shake
-	sortTim(GLOB.all_species, /proc/cmp_species, associative = TRUE)
+	sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_species), associative = TRUE)
 
 	//Split up the rest
 	for(var/speciesname in GLOB.all_species)
@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/oretype in paths)
 		var/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
-	
+
 	paths = subtypesof(/datum/alloy)
 	for(var/alloytype in paths)
 		GLOB.alloy_data += new alloytype()
@@ -310,7 +310,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 /proc/init_crafting_recipes(list/crafting_recipes)
 	for(var/path in subtypesof(/datum/crafting_recipe))
 		var/datum/crafting_recipe/recipe = new path()
-		recipe.reqs = sortList(recipe.reqs, /proc/cmp_crafting_req_priority)
+		recipe.reqs = sortList(recipe.reqs, GLOBAL_PROC_REF(cmp_crafting_req_priority))
 		crafting_recipes += recipe
 	return crafting_recipes
 /* // Uncomment to debug chemical reaction list.

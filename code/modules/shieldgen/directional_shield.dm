@@ -102,13 +102,13 @@
 	START_PROCESSING(SSobj, src)
 	if(always_on)
 		create_shields()
-	GLOB.moved_event.register(src, src, .proc/moved_event)
+	GLOB.moved_event.register(src, src, PROC_REF(moved_event))
 	return ..()
 
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
 	STOP_PROCESSING(SSobj, src)
-	GLOB.moved_event.unregister(src, src, .proc/moved_event)
+	GLOB.moved_event.unregister(src, src, PROC_REF(moved_event))
 	return ..()
 
 /obj/item/shield_projector/proc/moved_event()

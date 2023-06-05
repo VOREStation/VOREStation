@@ -34,7 +34,7 @@ var/list/runechat_image_cache = list()
 
 	var/image/emote_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
 	runechat_image_cache["emote"] = emote_image
-	
+
 	return TRUE
 
 /datum/chatmessage
@@ -99,10 +99,10 @@ var/list/runechat_image_cache = list()
 	if(!target || !owner)
 		qdel(src)
 		return
-	
+
 	// Register client who owns this message
 	owned_by = owner.client
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel_self)
+	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, PROC_REF(qdel_self))
 
 	var/extra_length = owned_by.is_preference_enabled(/datum/client_preference/runechat_long_messages)
 	var/maxlen = extra_length ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_LENGTH
@@ -147,10 +147,10 @@ var/list/runechat_image_cache = list()
 		// Icon on both ends?
 		//var/image/I = runechat_image_cache["emote"]
 		//text = "\icon[I][text]\icon[I]"
-		
+
 		// Icon on one end?
 		//LAZYADD(prefixes, "\icon[runechat_image_cache["emote"]]")
-		
+
 		// Asterisks instead?
 		text = "*&nbsp;[text]&nbsp;*"
 
@@ -168,7 +168,7 @@ var/list/runechat_image_cache = list()
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target.runechat_holder(src)
-	RegisterSignal(message_loc, COMSIG_PARENT_QDELETING, .proc/qdel_self)
+	RegisterSignal(message_loc, COMSIG_PARENT_QDELETING, PROC_REF(qdel_self))
 	if(owned_by.seen_messages)
 		var/idx = 1
 		var/combined_height = approx_lines
@@ -255,7 +255,7 @@ var/list/runechat_image_cache = list()
 	if(!message)
 		return
 	*/
- 
+
 	var/list/extra_classes = list()
 	extra_classes += existing_extra_classes
 

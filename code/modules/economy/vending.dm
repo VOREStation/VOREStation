@@ -619,7 +619,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	use_power(vend_power_usage)	//actuators and stuff
 	flick("[icon_state]-vend",src)
-	addtimer(CALLBACK(src, .proc/delayed_vend, R, user), vend_delay)
+	addtimer(CALLBACK(src, PROC_REF(delayed_vend), R, user), vend_delay)
 
 /obj/machinery/vending/proc/delayed_vend(datum/stored_item/vending_product/R, mob/user)
 	R.get_product(get_turf(src))
@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!throw_item)
 		return FALSE
 	throw_item.vendor_action(src)
-	INVOKE_ASYNC(throw_item, /atom/movable.proc/throw_at, target, rand(3, 10), rand(1, 3), src)
+	INVOKE_ASYNC(throw_item, TYPE_PROC_REF(/atom/movable, throw_at), target, rand(3, 10), rand(1, 3), src)
 	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
 	return 1
 
