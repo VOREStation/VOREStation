@@ -52,6 +52,9 @@ SUBSYSTEM_DEF(statpanels)
 		if(!target.stat_panel.is_ready())
 			continue
 
+		if(target.stat_tab == "Examine")
+			set_examine_tab(target)
+
 		if(target.stat_tab == "Status" && num_fires % status_wait == 0)
 			set_status_tab(target)
 
@@ -59,7 +62,7 @@ SUBSYSTEM_DEF(statpanels)
 			target.stat_panel.send_message("remove_admin_tabs")
 		else
 			//target.stat_panel.send_message("update_split_admin_tabs", !!(target.prefs.toggles & SPLIT_ADMIN_TABS))
-			target.stat_panel.send_message("update_split_admin_tabs", TRUE)
+			target.stat_panel.send_message("update_split_admin_tabs", FALSE)
 
 			if(!("MC" in target.panel_tabs) || !("Tickets" in target.panel_tabs))
 				target.stat_panel.send_message("add_admin_tabs", target.holder.href_token)
@@ -126,9 +129,26 @@ SUBSYSTEM_DEF(statpanels)
 		generate_mc_data()
 	target.stat_panel.send_message("update_mc", list(mc_data = mc_data, coord_entry = coord_entry))
 
+/datum/controller/subsystem/statpanels/proc/set_examine_tab(client/target)
+	var/description_holders = target.description_holders
+	var/list/examine_update = list()
+
+	examine_update += "[description_holders["icon"]]    <font size='5'>[description_holders["name"]]</font>" //The name, written in big letters.
+	examine_update += "[description_holders["desc"]]" //the default examine text.
+	if(description_holders["info"])
+		examine_update += "<font color='#084B8A'><b>[description_holders["info"]]</b></font><br />" //Blue, informative text.
+	if(description_holders["interactions"])
+		for(var/line in description_holders["interactions"])
+			examine_update += "<font color='#084B8A'><b>[line]</b></font><br />"
+	if(description_holders["fluff"])
+		examine_update += "<font color='#298A08'><b>[description_holders["fluff"]]</b></font><br />" //Yellow, fluff-related text.
+	if(description_holders["antag"])
+		examine_update += "<font color='#8A0808'><b>[description_holders["antag"]]</b></font><br />" //Red, malicious antag-related text
+
+	target.stat_panel.send_message("update_examine", examine_update)
+
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry()
-	ahelp_tickets += list("", "", null, null)
 	ahelp_tickets += GLOB.mhelp_tickets.stat_entry()
 	target.stat_panel.send_message("update_tickets", ahelp_tickets)
 
@@ -239,6 +259,10 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/immediate_send_stat_data(client/target)
 	if(!target.stat_panel.is_ready())
 		return FALSE
+
+	if(target.stat_tab == "Examine")
+		set_examine_tab(target)
+		return TRUE
 
 	if(target.stat_tab == "Status")
 		set_status_tab(target)

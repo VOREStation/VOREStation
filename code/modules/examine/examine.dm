@@ -56,7 +56,7 @@
 	description_holders["interactions"] = A.get_description_interaction()
 
 	description_holders["name"] = "[A.name]"
-	description_holders["icon"] = "\icon[A.examine_icon()]"
+	description_holders["icon"] = icon2html(A, src, A.icon_state)
 	description_holders["desc"] = A.desc
 
 /mob/Stat()
@@ -119,7 +119,6 @@
 	if(client)
 		var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
 		client.update_description_holders(A, is_antag)
-
 
 /mob/verb/mob_examine()
 	set name = "Mob Examine"

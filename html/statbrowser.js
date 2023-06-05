@@ -23,6 +23,7 @@ var spells = [];
 var spell_tabs = [];
 var verb_tabs = [];
 var verbs = [["", ""]]; // list with a list inside
+var examine = [];
 var tickets = [];
 var sdql2 = [];
 var permanent_tabs = []; // tabs that won't be cleared by wipes
@@ -259,6 +260,8 @@ function tab_change(tab) {
 		draw_debug();
 	} else if (tab == "Tickets") {
 		draw_tickets();
+	} else if (tab == "Examine") {
+		draw_examine();
 	} else if (tab == "SDQL2") {
 		draw_sdql2();
 	} else if (tab == turfname) {
@@ -273,6 +276,17 @@ function tab_change(tab) {
 
 function set_byond_tab(tab) {
 	Byond.sendMessage("Set-Tab", {tab: tab});
+}
+
+function draw_examine() {
+	statcontentdiv.textContent = "";
+	var div_content = document.createElement("div");
+	for (var i = 0; i < examine.length; i++) {
+		var parameter = document.createElement('p');
+		parameter.innerHTML = examine[i];
+		div_content.appendChild(parameter);
+	}
+	document.getElementById("statcontent").appendChild(div_content);
 }
 
 function draw_debug() {
@@ -526,10 +540,6 @@ function draw_sdql2() {
 }
 
 function draw_tickets() {
-	var body = document.createElement("div");
-	var header = document.createElement("h3");
-	header.textContent = "Tickets";
-	body.appendChild(header);
 	statcontentdiv.textContent = "";
 	var table = document.createElement("table");
 	if (!tickets) {
@@ -558,8 +568,7 @@ function draw_tickets() {
 		tr.appendChild(td2);
 		table.appendChild(tr);
 	}
-	body.appendChild(table);
-	document.getElementById("statcontent").appendChild(body);
+	document.getElementById("statcontent").appendChild(table);
 }
 
 function draw_spells(cat) {
@@ -909,6 +918,18 @@ Byond.subscribeTo('add_admin_tabs', function (ht) {
 	addPermanentTab("MC");
 	addPermanentTab("Tickets");
 });
+
+Byond.subscribeTo('update_examine', function (S) {
+	examine = S;
+	if (examine.length > 0 && !verb_tabs.includes("Examine")) {
+		verb_tabs.push("Examine");
+		addPermanentTab("Examine")
+	}
+	if (current_tab == "Examine") {
+		draw_examine();
+	}
+	tab_change("Examine");
+})
 
 Byond.subscribeTo('update_sdql2', function (S) {
 	sdql2 = S;
