@@ -210,8 +210,6 @@
 #define TSC_XION	"Xion" // Not really needed but consistancy I guess.
 #define TSC_GIL 	"Gilthari"
 
-#define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day
-
 #define MAX_CLIENT_VIEW	34  // Maximum effective value of client.view (According to DM references)
 
 // Maploader bounds indices
