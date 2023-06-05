@@ -273,7 +273,7 @@
 		force_open()
 
 	if(autoclose && src.operating && !(stat & BROKEN || stat & NOPOWER))
-		addtimer(CALLBACK(src, .proc/close, 15 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(close), 15 SECONDS))
 	return 1
 
 // Proc: close()

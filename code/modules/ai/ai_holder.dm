@@ -210,7 +210,7 @@
 	holder = new_holder
 	home_turf = get_turf(holder)
 	manage_processing(AI_PROCESSING)
-	GLOB.stat_set_event.register(holder, src, .proc/holder_stat_change)
+	GLOB.stat_set_event.register(holder, src, PROC_REF(holder_stat_change))
 	..()
 
 /datum/ai_holder/Destroy()

@@ -540,7 +540,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		all_traits[path] = instance
 
 	// Shakey shakey shake
-	sortTim(all_traits, /proc/cmp_trait_datums_name, associative = TRUE)
+	sortTim(all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
 
 	// Split 'em up
 	for(var/traitpath in all_traits)

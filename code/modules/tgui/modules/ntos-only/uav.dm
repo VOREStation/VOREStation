@@ -94,7 +94,7 @@
 
 	signal_strength = 0
 	current_uav = U
-	RegisterSignal(U, COMSIG_MOVABLE_Z_CHANGED, .proc/current_uav_changed_z)
+	RegisterSignal(U, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(current_uav_changed_z))
 
 	if(LAZYLEN(viewers))
 		for(var/datum/weakref/W in viewers)

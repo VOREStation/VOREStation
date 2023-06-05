@@ -127,7 +127,7 @@
 		usr.audible_message("[usr] jingles the [src]'s bell.", runemessage = "jingle")
 		playsound(src, 'sound/items/pickup/ring.ogg', 50, 1)
 		jingled = 1
-		addtimer(CALLBACK(src, .proc/jingledreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(jingledreset)), 50)
 	return
 
 /obj/item/clothing/accessory/collar/bell/proc/jingledreset()

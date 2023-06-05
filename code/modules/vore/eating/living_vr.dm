@@ -1193,7 +1193,7 @@
 
 /datum/component/vore_panel/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 	var/mob/living/owner = parent
 	if(owner.client)
 		create_mob_button(parent)
@@ -1215,7 +1215,7 @@
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
-		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/vore_panel_click)
+		RegisterSignal(screen_icon, COMSIG_CLICK, PROC_REF(vore_panel_click))
 	if(ispAI(user))
 		screen_icon.icon = 'icons/mob/pai_hud.dmi'
 		screen_icon.screen_loc = ui_acti
@@ -1229,7 +1229,7 @@
 /datum/component/vore_panel/proc/vore_panel_click(source, location, control, params, user)
 	var/mob/living/owner = user
 	if(istype(owner) && owner.vorePanel)
-		INVOKE_ASYNC(owner.vorePanel, .proc/tgui_interact, user)
+		INVOKE_ASYNC(owner.vorePanel, PROC_REF(tgui_interact), user)
 
 /**
  * Screen object for vore panel

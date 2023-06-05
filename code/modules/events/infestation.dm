@@ -53,7 +53,7 @@
 // Spawn a single vermin at given location.
 /datum/event/infestation/proc/spawn_one_vermin(var/loc)
 	var/mob/living/simple_mob/animal/M = new spawn_types(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_vermin_destruction)
+	GLOB.destroyed_event.register(M, src, PROC_REF(on_vermin_destruction))
 	spawned_vermin.Add(M)
 	return M
 
@@ -67,7 +67,7 @@
 // If vermin is kill, remove it from the list.
 /datum/event/infestation/proc/on_vermin_destruction(var/mob/M)
 	spawned_vermin -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_vermin_destruction)
+	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_vermin_destruction))
 
 
 

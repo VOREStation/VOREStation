@@ -18,7 +18,7 @@
 							nudge_lib = "lib/nudge.so"
 
 						spawn(0)
-							call(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[escape_shell_arg(msg)]")
+							LIBCALL(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[escape_shell_arg(msg)]")
 					else
 						spawn(0)
 							ext_python("ircbot_message.py", "[config.comms_password] [config.irc_bot_host] [channel] [escape_shell_arg(msg)]")
@@ -39,4 +39,3 @@
 /hook/startup/proc/ircNotify()
 	send2mainirc("Server starting up on byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
 	return 1
-
