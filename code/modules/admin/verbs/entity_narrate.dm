@@ -7,6 +7,20 @@
 	var/list/entity_refs = list()
 
 
+	//TGUI Helper Vars
+	var/tgui_id = "EntityNarrate"
+	var/tgui_selection_mode = 0 //0 for single entity, 1 for multi entity
+	var/tgui_selected_name = "" //String for single selection in-game name
+	var/tgui_selected_type = "" //String for single selection type
+	var/tgui_selected_id = ""   //String to retrieve ref from entity_refs
+	var/tgui_selected_refs //object references
+	var/list/tgui_selected_id_multi = list() //List of strings containing mob ids for multi selection
+	var/tgui_narrate_mode = 0 //0 for speak, 1 for emote
+	var/tgui_narrate_privacy = 0 //0 for loud, 1 for subtle
+	var/tgui_last_message = 0 // int to avoid spam
+
+
+
 
 //Appears as a right click verb on any obj and mob within view range.
 //when not right clicking we get a list to pick from in aforementioned view range.
@@ -98,13 +112,17 @@
 
 
 	//Obtaining and sanitizing arguments for the actual proc
-	var/which_entity = tgui_input_list(usr, "Choose which mob to narrate", "Narrate mob", holder.entity_names, null)
+	var/choices = holder.entity_names + "Open TGUI"
+	var/which_entity = tgui_input_list(usr, "Choose which mob to narrate", "Narrate mob", choices, null)
 	if(!which_entity) return
-	var/mode = tgui_alert(usr, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
-	if(mode == "Cancel") return
-	var/message = sanitize(tgui_input_text(usr, "Input what you want [which_entity] to say or do", "narrate", null, multiline = TRUE, prevent_enter = TRUE))
-	if(message)
-		narrate_mob_args(which_entity, mode, message)
+	if(which_entity == "Open TGUI")
+		holder.tgui_interact(usr)
+	else
+		var/mode = tgui_alert(usr, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
+		if(mode == "Cancel") return
+		var/message = sanitize(tgui_input_text(usr, "Input what you want [which_entity] to say or do", "narrate", null, multiline = TRUE, prevent_enter = TRUE))
+		if(message)
+			narrate_mob_args(which_entity, mode, message)
 
 //The actual logic of the verb. Called by narrate_mob() when used.
 /client/proc/narrate_mob_args(name as text, mode as text, message as text)
@@ -165,3 +183,123 @@
 			our_entity.visible_message("<b>[our_entity.name]</b> [message]")
 		else
 			return
+
+
+/datum/entity_narrate/tgui_state(mob/user)
+	return GLOB.tgui_admin_state
+
+/datum/entity_narrate/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, tgui_id, "Entity Narration")
+		ui.open()
+
+/datum/entity_narrate/tgui_data(mob/user)
+	var/list/data = list()
+	data["mode_select"] = tgui_narrate_mode
+	data["privacy_select"] = tgui_narrate_privacy
+	data["selected_id"] = tgui_selected_id
+	data["selected_name"] = tgui_selected_name
+	data["selected_type"] = tgui_selected_type
+	data["selection_mode"] = tgui_selection_mode
+	data["multi_id_selection"] = tgui_selected_id_multi
+	data["number_mob_selected"] = LAZYLEN(tgui_selected_id_multi)
+	data["entity_names"] = entity_names
+
+	return data
+
+/datum/entity_narrate/tgui_act(action, list/params)
+	. = ..()
+
+	if(.)	return
+	if(!check_rights_for(usr.client, R_FUN)) return
+
+	switch(action)
+		if("change_mode_multi")
+			tgui_selection_mode = !tgui_selection_mode
+			//Clearing selections after switching mode
+			tgui_selected_id_multi = list()
+			tgui_selected_id = ""
+			tgui_selected_type = ""
+			tgui_selected_name = ""
+			tgui_selected_refs = null
+		if("change_mode_privacy")
+			tgui_narrate_privacy = !tgui_narrate_privacy
+		if("change_mode_narration")
+			tgui_narrate_mode = !tgui_narrate_mode
+		if("select_entity")
+			if(tgui_selection_mode)
+				if(params["id_selected"] in tgui_selected_id_multi)
+					tgui_selected_id_multi -= params["id_selected"]
+				else
+					tgui_selected_id_multi += params["id_selected"]
+			else
+				if(params["id_selected"] in tgui_selected_id_multi)
+					tgui_selected_id_multi -= params["id_selected"]
+					tgui_selected_id = ""
+					tgui_selected_type = ""
+					tgui_selected_name = ""
+					tgui_selected_refs = null
+				else
+					tgui_selected_id_multi = list() //Using the same var for ease of implementation. Thus, we must reset to empty each time.
+					tgui_selected_id_multi += params["id_selected"]
+					tgui_selected_id = params["id_selected"]
+					tgui_selected_refs = entity_refs[tgui_selected_id]
+					if(istype(tgui_selected_refs, /mob/living))
+						var/mob/living/L = tgui_selected_refs
+						if(L.client)
+							tgui_selected_type = "!!!!PLAYER!!!!"
+							tgui_selected_name = L.name
+						else
+							tgui_selected_type = L.type
+							tgui_selected_name = L.name
+					else if(istype(tgui_selected_refs, /atom))
+						var/atom/A = tgui_selected_refs
+						tgui_selected_type = A.type
+						tgui_selected_name = A.name
+		if("narrate")
+			if(world.time < (tgui_last_message + 0.5 SECONDS))
+				to_chat(usr, SPAN_NOTICE("You can't messages that quickly! Wait at least half a second"))
+			else
+				to_chat(usr, SPAN_NOTICE("Message successfully sent!"))
+				tgui_last_message = world.time
+				var/message = sanitize(params["message"])
+				if(tgui_selection_mode)
+					for(var/entity in tgui_selected_id_multi)
+						var/ref = entity_refs[entity]
+						if(istype(ref, /mob/living))
+							var/mob/living/L = ref
+							if(L.client) continue //Skipping over mobs with players
+							narrate_tgui_mob(L, message)
+						else if(istype(ref, /atom))
+							var/atom/A = ref
+							narrate_tgui_atom(A, message)
+				else
+					var/ref = entity_refs[tgui_selected_id]
+					if(istype(ref, /mob/living))
+						var/mob/living/L = ref
+						if(!L.client)
+							narrate_tgui_mob(L, message)
+					else if(istype(ref, /atom))
+						var/atom/A = ref
+						narrate_tgui_atom(A, message)
+
+/datum/entity_narrate/proc/narrate_tgui_mob(mob/living/L, message as text)
+	if(tgui_narrate_mode && tgui_narrate_privacy)
+		L.custom_emote_vr(m_type = VISIBLE_MESSAGE, message = message)
+	else if(tgui_narrate_mode && !tgui_narrate_privacy)
+		L.custom_emote(VISIBLE_MESSAGE, message)
+	else if(!tgui_narrate_mode && tgui_narrate_privacy)
+		L.say(message, whispering = 1)
+	else if(!tgui_narrate_mode && !tgui_narrate_privacy)
+		L.say(message)
+
+/datum/entity_narrate/proc/narrate_tgui_atom(atom/A, message as text)
+	if(tgui_narrate_mode && tgui_narrate_privacy)
+		A.visible_message("<i><b>[A.name]</b> [message]</i>", range = 1)
+	else if(tgui_narrate_mode && !tgui_narrate_privacy)
+		A.visible_message("<b>[A.name]</b> [message]",)
+	else if(!tgui_narrate_mode && tgui_narrate_privacy)
+		A.audible_message("<i><b>[A.name]</b> [message]</i>", hearing_distance = 1)
+	else if(!tgui_narrate_mode && !tgui_narrate_privacy)
+		A.audible_message("<b>[A.name]</b> [message]")
