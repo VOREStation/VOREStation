@@ -70,9 +70,14 @@
 /**
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
  * It can be used by anything that calls it.
+ *
+ * Arguments:
+ * * new_size - CHANGE_ME.
+ * * animate - CHANGE_ME. Default: TRUE
+ * * uncapped - CHANGE_ME. Default: FALSE
+ * * ignore_prefs - CHANGE_ME. Default: FALSE
+ * * aura_animation - CHANGE_ME. Default: TRUE
  */
-
-
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
 		new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)

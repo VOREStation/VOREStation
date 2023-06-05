@@ -2635,3 +2635,45 @@ Departamental Swimsuits, for general use
 			var/mob/M = loc
 			M.update_inv_wear_mask()
 		usr.update_action_buttons()
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak
+	name = "Grand Purple Cloak"
+	desc = "Zera's custom-designed purple cloak. Nice and spooky, and the perfect length to hold up over your face with one hand like Count von Count."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "grand_purple_cloak"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "grand_purple_cloak"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		open = 0
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		flags_inv = HIDETIE|HIDEHOLSTER
+		to_chat(usr, "You button up the coat.")
+	else if(open == 0)
+		open = 1
+		icon_state = "[icon_state]_open"
+		item_state = "[item_state]_open"
+		flags_inv = HIDEHOLSTER
+		to_chat(usr, "You unbutton the coat.")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_clothing_icon()	//so our overlays update
+
+/obj/item/clothing/head/fluff/zerahat
+	name = "Grand Purple Hat"
+	desc = "It's a pointy purple hat. Zera likes it because it matches her ominous purple cloak."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "grand_purple_cloak_hat"
+	item_state = "grand_purple_cloak_hat_onmob"
