@@ -70,8 +70,9 @@ const getFilteredTickets = (
     if (
       (t.state === state || state === 'all') &&
       (t.level === level || level === 2)
-    )
+    ) {
       result.push(t);
+    }
   });
 
   return result;
