@@ -25,6 +25,9 @@
 #define START_PROCESSING(Processor, Datum) if (!(Datum.datum_flags & DF_ISPROCESSING)) {Datum.datum_flags |= DF_ISPROCESSING;Processor.processing += Datum}
 #define STOP_PROCESSING(Processor, Datum) Datum.datum_flags &= ~DF_ISPROCESSING;Processor.processing -= Datum
 
+#define MC_LOOP_RTN_NEWSTAGES 1
+#define MC_LOOP_RTN_GRACEFUL_EXIT 2
+
 //! SubSystem flags (Please design any new flags so that the default is off, to make adding flags to subsystems easier)
 
 /// subsystem does not initialize.
