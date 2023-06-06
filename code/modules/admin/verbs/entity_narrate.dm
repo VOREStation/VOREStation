@@ -46,11 +46,16 @@
 	if(istype(E, /mob/living))
 		var/mob/living/L = E
 		if(L.client)
-			to_chat(usr, "You may not speak for players!")
-			log_and_message_admins("attempted to speak for [L.ckey]'s mob", usr)
+			to_chat(usr, SPAN_NOTICE("[L.name] is a player. All attempts to speak through them \
+			gets logged in case of abuse."))
+			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", usr)
 			return
 		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", L.name))
+		if(unique_name in holder.entity_names)
+			to_chat(usr, SPAN_NOTICE("[unique_name] is not unique! Pick another!"))
+			add_mob_for_narration(L) //Recursively calling ourselves until cancelled or a unique name is given.
+			return
 		holder.entity_names += unique_name
 		holder.entity_refs[unique_name] = L
 		log_and_message_admins("added [L.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
@@ -60,6 +65,10 @@
 		var/atom/A = E
 		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", A.name))
+		if(unique_name in holder.entity_names)
+			to_chat(usr, SPAN_NOTICE("[unique_name] is not unique! Pick another!"))
+			add_mob_for_narration(A)
+			return
 		holder.entity_names += unique_name
 		holder.entity_refs[unique_name] = A
 		log_and_message_admins("added [A.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
@@ -120,7 +129,8 @@
 	else
 		var/mode = tgui_alert(usr, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
 		if(mode == "Cancel") return
-		var/message = sanitize(tgui_input_text(usr, "Input what you want [which_entity] to say or do", "narrate", null, multiline = TRUE, prevent_enter = TRUE))
+		var/message = tgui_input_text(usr, "Input what you want [which_entity] to [mode]", "narrate",
+		null, multiline = TRUE, prevent_enter = TRUE)
 		if(message)
 			narrate_mob_args(which_entity, mode, message)
 
@@ -145,8 +155,6 @@
 	//Sanitizing args
 	name = sanitize(name)
 	mode = sanitize(mode)
-	if(message)
-		message = sanitize(message)
 
 	if(!(mode in list("Speak", "Emote")))
 		to_chat(usr, SPAN_NOTICE("Valid modes are 'Speak' and 'Emote'."))
@@ -159,11 +167,9 @@
 	if(istype(holder.entity_refs[name], /mob/living))
 		var/mob/living/our_entity = holder.entity_refs[name]
 		if(our_entity.client) //Making sure we can't speak for players
-			to_chat(usr, SPAN_NOTICE("Cannot narrate mobs with active clients!"))
-			log_and_message_admins("attempted to speak for [our_entity.ckey]'s mob", usr)
-			return
+			log_and_message_admins("used entity-narrate to speak through [our_entity.ckey]'s mob", usr)
 		if(!message)
-			message = sanitize(tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null))
+			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null) //say/emote sanitize already
 		if(message && mode == "Speak")
 			our_entity.say(message)
 		else if(message && mode == "Emote")
@@ -176,7 +182,8 @@
 	else if(istype(holder.entity_refs[name], /atom))
 		var/atom/our_entity = holder.entity_refs[name]
 		if(!message)
-			message = sanitize(tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null))
+			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
+		message = sanitize(message)
 		if(message && mode == "Speak")
 			our_entity.audible_message("<b>[our_entity.name]</b> [message]")
 		else if(message && mode == "Emote")
@@ -263,13 +270,14 @@
 			else
 				to_chat(usr, SPAN_NOTICE("Message successfully sent!"))
 				tgui_last_message = world.time
-				var/message = sanitize(params["message"])
+				var/message = params["message"] //Sanitizing before speaking it
 				if(tgui_selection_mode)
 					for(var/entity in tgui_selected_id_multi)
 						var/ref = entity_refs[entity]
 						if(istype(ref, /mob/living))
 							var/mob/living/L = ref
-							if(L.client) continue //Skipping over mobs with players
+							if(L.client)
+								log_and_message_admins("used entity-narrate to speak through [L.ckey]'s mob", usr)
 							narrate_tgui_mob(L, message)
 						else if(istype(ref, /atom))
 							var/atom/A = ref
@@ -278,13 +286,15 @@
 					var/ref = entity_refs[tgui_selected_id]
 					if(istype(ref, /mob/living))
 						var/mob/living/L = ref
-						if(!L.client)
-							narrate_tgui_mob(L, message)
+						if(L.client)
+							log_and_message_admins("used entity-narrate to speak through [L.ckey]'s mob", usr)
+						narrate_tgui_mob(L, message)
 					else if(istype(ref, /atom))
 						var/atom/A = ref
 						narrate_tgui_atom(A, message)
 
 /datum/entity_narrate/proc/narrate_tgui_mob(mob/living/L, message as text)
+	//say and custom_emote sanitize it themselves, not sanitizing here to avoid double encoding.
 	if(tgui_narrate_mode && tgui_narrate_privacy)
 		L.custom_emote_vr(m_type = VISIBLE_MESSAGE, message = message)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)
@@ -295,6 +305,7 @@
 		L.say(message)
 
 /datum/entity_narrate/proc/narrate_tgui_atom(atom/A, message as text)
+	message = sanitize(message)
 	if(tgui_narrate_mode && tgui_narrate_privacy)
 		A.visible_message("<i><b>[A.name]</b> [message]</i>", range = 1)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)
