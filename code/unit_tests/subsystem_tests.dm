@@ -6,7 +6,7 @@
 	for(var/datum/controller/subsystem/SS in Master.subsystems)
 		if (SS.flags & SS_NO_INIT)
 			continue
-		if(!SS.subsystem_initialized)
+		if(!SS.initialized)
 			bad_subsystems += SS.type
 
 	if(bad_subsystems.len)

@@ -94,7 +94,7 @@
 
 	dynamic_lumcount = old_dynamic_lumcount
 
-	if(SSlighting.subsystem_initialized)
+	if(SSlighting.initialized)
 		lighting_object = old_lighting_object
 
 		directional_opacity = old_directional_opacity

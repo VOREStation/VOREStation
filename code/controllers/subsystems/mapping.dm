@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(mapping)
 	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
-	if(subsystem_initialized)
+	if(initialized)
 		return
 	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
 	maploader = new()

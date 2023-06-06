@@ -110,6 +110,7 @@
 #include "code\__defines\dcs\flags.dm"
 #include "code\__defines\dcs\helpers.dm"
 #include "code\__defines\dcs\signals.dm"
+#include "code\__defines\dcs\signals\signals_subsystem.dm"
 #include "code\_global_vars\bitfields.dm"
 #include "code\_global_vars\misc.dm"
 #include "code\_global_vars\mobs.dm"

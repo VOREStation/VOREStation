@@ -1,4 +1,6 @@
 #define MC_TICK_CHECK ( ( TICK_USAGE > Master.current_ticklimit || src.state != SS_RUNNING ) ? pause() : 0 )
+
+
 #define CURRENT_RUNLEVEL (2 ** (Master.current_runlevel - 1))
 
 #define MC_SPLIT_TICK_INIT(phase_count) var/original_tick_limit = Master.current_ticklimit; var/split_tick_phases = ##phase_count
@@ -57,25 +59,31 @@
 #define SS_POST_FIRE_TIMING 64
 
 //! SUBSYSTEM STATES
-#define SS_IDLE 0		/// aint doing shit.
-#define SS_QUEUED 1		/// queued to run
-#define SS_RUNNING 2	/// actively running
-#define SS_PAUSED 3		/// paused by mc_tick_check
-#define SS_SLEEPING 4	/// fire() slept.
-#define SS_PAUSING 5 	/// in the middle of pausing
+#define SS_IDLE 0 /// ain't doing shit.
+#define SS_QUEUED 1 /// queued to run
+#define SS_RUNNING 2 /// actively running
+#define SS_PAUSED 3 /// paused by mc_tick_check
+#define SS_SLEEPING 4 /// fire() slept.
+#define SS_PAUSING 5 /// in the middle of pausing
+
+// Subsystem init stages
+#define INITSTAGE_EARLY 1 //! Early init stuff that doesn't need to wait for mapload
+#define INITSTAGE_MAIN 2 //! Main init stage
+#define INITSTAGE_MAX 2 //! Highest initstage.
 
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
-    NEW_SS_GLOBAL(SS##X);\
-    PreInit();\
+	NEW_SS_GLOBAL(SS##X);\
+	PreInit();\
 }\
 /datum/controller/subsystem/##X
 
 #define PROCESSING_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/processing/##X);\
 /datum/controller/subsystem/processing/##X/New(){\
-    NEW_SS_GLOBAL(SS##X);\
-    PreInit();\
+	NEW_SS_GLOBAL(SS##X);\
+	PreInit();\
 }\
+/datum/controller/subsystem/processing/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/processing/##X
 
 // Boilerplate code for multi-step processors. See machines.dm for example use.

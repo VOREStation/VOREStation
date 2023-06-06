@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 				vchat_add_message(C.ckey, message)
 
 	// Now lets either queue it for sending, or send it right now
-	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.subsystem_initialized)
+	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
 		to_chat_immediate(target, world.time, message)
 	else
 		SSchat.queue(target, world.time, message)

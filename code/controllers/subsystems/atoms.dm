@@ -8,7 +8,6 @@ SUBSYSTEM_DEF(atoms)
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
 
-	var/static/initialized = INITIALIZATION_INSSATOMS
 	// var/list/created_atoms // This is never used, so don't bother. ~Leshana
 	var/static/old_initialized
 
@@ -16,6 +15,8 @@ SUBSYSTEM_DEF(atoms)
 	var/list/created_atoms
 
 	var/list/BadInitializeCalls = list()
+
+	initialized = INITIALIZATION_INSSATOMS
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.

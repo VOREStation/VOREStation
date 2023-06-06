@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(webhooks)
 	if(!holder)
 		return
 
-	if(!SSwebhooks.subsystem_initialized)
+	if(!SSwebhooks.initialized)
 		to_chat(usr, span_warning("Let the webhook subsystem initialize before trying to reload it."))
 		return
 

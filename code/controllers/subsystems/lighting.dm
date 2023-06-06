@@ -13,13 +13,13 @@ SUBSYSTEM_DEF(lighting)
 
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
-	if(!subsystem_initialized)
+	if(!initialized)
 		if (config.starlight)
 			for(var/area/A in world)
 				if (A.dynamic_lighting == DYNAMIC_LIGHTING_IFSTARLIGHT)
 					A.luminosity = 0
 
-		subsystem_initialized = TRUE
+		initialized = TRUE
 		create_all_lighting_objects()
 
 	fire(FALSE, TRUE)
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(lighting)
 
 		C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
 		C.update_objects()
-		
+
 		if(init_tick_checks)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
@@ -87,5 +87,5 @@ SUBSYSTEM_DEF(lighting)
 
 
 /datum/controller/subsystem/lighting/Recover()
-	subsystem_initialized = SSlighting.subsystem_initialized
+	initialized = SSlighting.initialized
 	..()
