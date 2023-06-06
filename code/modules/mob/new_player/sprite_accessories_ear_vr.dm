@@ -984,11 +984,26 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shark_fin"
 
-/datum/sprite_accessory/ears/sharklowhboth
+/datum/sprite_accessory/ears/sharkhighbothalt
+	name = "shark upper ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/sharklowboth
+	name = "shark lower ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharklowbothalt
 	name = "shark lower ears and fin alt style (Colorable)"
 	desc = ""
 	icon_state = "shark_ears_lower"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shark_fin_alt"
-
