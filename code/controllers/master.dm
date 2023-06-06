@@ -89,7 +89,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/list/_subsystems = list()
 	subsystems = _subsystems
 	if (Master != src)
-		if (istype(Master))
+		if (istype(Master)) //If there is an existing MC take over his stuff and delete it
 			Recover()
 			qdel(Master)
 			Master = src
@@ -358,10 +358,12 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	log_world(message)
 
 /datum/controller/master/proc/SetRunLevel(new_runlevel)
-	var/old_runlevel = isnull(current_runlevel) ? "NULL" : runlevel_flags[current_runlevel]
-	testing("MC: Runlevel changed from [old_runlevel] to [new_runlevel]")
-	current_runlevel = RUNLEVEL_FLAG_TO_INDEX(new_runlevel)
+	var/old_runlevel = current_runlevel
+
+	testing("MC: Runlevel changed from [isnull(old_runlevel) ? "NULL" : old_runlevel] to [new_runlevel]")
+	current_runlevel = log(2, new_runlevel) + 1
 	if(current_runlevel < 1)
+		current_runlevel = old_runlevel
 		CRASH("Attempted to set invalid runlevel: [new_runlevel]")
 
 // Starts the mc, and sticks around to restart it if the loop ever ends.
