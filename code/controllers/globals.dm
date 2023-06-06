@@ -1,9 +1,10 @@
+// See initialization order in /code/game/world.dm
 GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 /datum/controller/global_vars
 	name = "Global Variables"
 
-	var/list/gvars_datum_protected_varlist
+	var/static/list/gvars_datum_protected_varlist
 	var/list/gvars_datum_in_built_vars
 	var/list/gvars_datum_init_order
 
@@ -54,8 +55,8 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 			var/list/expected_global_procs = vars - gvars_datum_in_built_vars
 			for(var/I in global_procs)
 				expected_global_procs -= replacetext("[I]", "InitGlobal", "")
-			var/english_missing = expected_global_procs.Join(", ")
-			log_world("Missing procs: [english_missing]")
+			log_world("Missing procs: [expected_global_procs.Join(", ")]")
+
 	for(var/I in global_procs)
 		var/start_tick = world.time
 		call(src, I)()
