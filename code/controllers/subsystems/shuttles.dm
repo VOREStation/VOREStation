@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(shuttles)
 			LAZYDISTINCTADD(shuttles_to_initialize, shuttle_type)
 	block_init_queue = FALSE
 	process_init_queues()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/shuttles/fire(resumed = 0)
 	if (!resumed)

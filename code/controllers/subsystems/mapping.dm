@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(mapping)
 	// Lateload Code related to Expedition areas.
 	if(using_map) // VOREStation Edit: Re-enable this.
 		loadLateMaps()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/datum/map_template/template as anything in subtypesof(/datum/map_template))

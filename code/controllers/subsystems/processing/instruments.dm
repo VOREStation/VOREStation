@@ -24,7 +24,7 @@ PROCESSING_SUBSYSTEM_DEF(instruments)
 /datum/controller/subsystem/processing/instruments/Initialize()
 	initialize_instrument_data()
 	synthesizer_instrument_ids = get_allowed_instrument_ids()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/instruments/proc/on_song_new(datum/song/S)
 	songs += S
@@ -33,10 +33,11 @@ PROCESSING_SUBSYSTEM_DEF(instruments)
 	songs -= S
 
 /datum/controller/subsystem/processing/instruments/proc/initialize_instrument_data()
-	for(var/datum/instrument/I as anything in subtypesof(/datum/instrument))
-		if(initial(I.instrument_type) == I)
+	for(var/path in subtypesof(/datum/instrument))
+		var/datum/instrument/I = path
+		if(initial(I.abstract_type) == path)
 			continue
-		I = new I
+		I = new path
 		I.Initialize()
 		if(!I.id)
 			qdel(I)

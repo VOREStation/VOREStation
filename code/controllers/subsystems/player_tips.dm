@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(player_tips)
 	priority = FIRE_PRIORITY_PLAYERTIPS
 	runlevels = RUNLEVEL_GAME
 
-	wait = 3000 //We check if it's time to send a tip every 5 minutes (300 seconds)
+	wait = 5 MINUTES //We check if it's time to send a tip every 5 minutes
 	var/static/datum/player_tips/player_tips = new
 
 

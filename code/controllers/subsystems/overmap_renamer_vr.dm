@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(overmap_renamer)
 /datum/controller/subsystem/overmap_renamer/Initialize(timeofday)
 	update_names()
 
-	..()
+	return SS_INIT_SUCCESS
 
 /*Shouldn't be a switch statement. We want ALL of the if(map_template.name in visitable_z_leves_name_list) to fire
 if we end up with multiple renamable lateload overmap objects.*/

@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(media_tracks)
 /datum/controller/subsystem/media_tracks/Initialize(timeofday)
 	load_tracks()
 	sort_tracks()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/media_tracks/proc/load_tracks()
 	for(var/filename in config.jukebox_track_files)

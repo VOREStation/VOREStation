@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(skybox)
 	. = ..()
 
 /datum/controller/subsystem/skybox/Initialize()
-	. = ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!initialized)

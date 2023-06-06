@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(job)
 		setup_departments()
 	if(!occupations.len)
 		setup_occupations()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/job/proc/setup_occupations(faction = "Station")
 	occupations = list()

@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(chat)
 
 /datum/controller/subsystem/chat/Initialize(timeofday)
 	init_vchat()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/chat/fire()
 	var/list/msg_queue = src.msg_queue // Local variable for sanic speed.

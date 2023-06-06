@@ -1,10 +1,10 @@
-//Used to process objects. Fires once every second.
+//Used to process objects.
 
 SUBSYSTEM_DEF(processing)
 	name = "Processing"
 	priority = FIRE_PRIORITY_PROCESS
 	flags = SS_BACKGROUND|SS_POST_FIRE_TIMING|SS_NO_INIT
-	wait = 10
+	wait = 1 SECONDS
 
 	var/stat_tag = "P" //Used for logging
 	var/list/processing = list()
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(processing)
 /datum/controller/subsystem/processing/stat_entry()
 	..("[stat_tag]:[processing.len]")
 
-/datum/controller/subsystem/processing/fire(resumed = 0)
+/datum/controller/subsystem/processing/fire(resumed = FALSE)
 	if (!resumed)
 		currentrun = processing.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -69,14 +69,14 @@ SUBSYSTEM_DEF(processing)
 		log_world(msg)
 		return
 	msg += "Lists: current_run: [currentrun.len], processing: [processing.len]\n"
-	
+
 	if(!currentrun.len)
 		msg += "!!The subsystem just finished the processing list, and currentrun is empty (or has never run).\n"
 		msg += "!!The info below is the tail of processing instead of currentrun.\n"
-	
+
 	var/datum/D = currentrun.len ? currentrun[currentrun.len] : processing[processing.len]
 	msg += "Tail entry: [describeThis(D)] (this is likely the item AFTER the problem item)\n"
-	
+
 	var/position = processing.Find(D)
 	if(!position)
 		msg += "Unable to find context of tail entry in processing list.\n"
@@ -116,6 +116,19 @@ SUBSYSTEM_DEF(processing)
 	if(tick_use_limit > 0)
 		stack_trace("[log_info_line(subsystem.debug_last_thing)] took longer than a tick to process. Exceeded with [tick_use_limit]%")
 
-/datum/proc/process()
-	set waitfor = 0
+/**
+ * This proc is called on a datum on every "cycle" if it is being processed by a subsystem. The time between each cycle is determined by the subsystem's "wait" setting.
+ * You can start and stop processing a datum using the START_PROCESSING and STOP_PROCESSING defines.
+ *
+ * Since the wait setting of a subsystem can be changed at any time, it is important that any rate-of-change that you implement in this proc is multiplied by the seconds_per_tick that is sent as a parameter,
+ * Additionally, any "prob" you use in this proc should instead use the SPT_PROB define to make sure that the final probability per second stays the same even if the subsystem's wait is altered.
+ * Examples where this must be considered:
+ * - Implementing a cooldown timer, use `mytimer -= seconds_per_tick`, not `mytimer -= 1`. This way, `mytimer` will always have the unit of seconds
+ * - Damaging a mob, do `L.adjustFireLoss(20 * seconds_per_tick)`, not `L.adjustFireLoss(20)`. This way, the damage per second stays constant even if the wait of the subsystem is changed
+ * - Probability of something happening, do `if(SPT_PROB(25, seconds_per_tick))`, not `if(prob(25))`. This way, if the subsystem wait is e.g. lowered, there won't be a higher chance of this event happening per second
+ *
+ * If you override this do not call parent, as it will return PROCESS_KILL. This is done to prevent objects that dont override process() from staying in the processing list
+ */
+/datum/proc/process(seconds_per_tick)
+	set waitfor = FALSE
 	return PROCESS_KILL

@@ -15,4 +15,4 @@ SUBSYSTEM_DEF(assets)
 
 	for(var/client/C in GLOB.clients)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(getFilesSlow), C, preload, FALSE), 10)
-	return ..()
+	return SS_INIT_SUCCESS

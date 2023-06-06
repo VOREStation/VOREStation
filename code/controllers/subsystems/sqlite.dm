@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(sqlite)
 	connect()
 	if(sqlite_db)
 		init_schema(sqlite_db)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/sqlite/proc/connect()
 	if(!config.sqlite_enabled)

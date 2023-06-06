@@ -16,15 +16,19 @@ SUBSYSTEM_DEF(atoms)
 
 	var/list/BadInitializeCalls = list()
 
+	var/init_start_time
+
 	initialized = INITIALIZATION_INSSATOMS
 
-/datum/controller/subsystem/atoms/Initialize(timeofday)
+/datum/controller/subsystem/atoms/Initialize()
+	init_start_time = world.time
 	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.
+
 	initialized = INITIALIZATION_INNEW_MAPLOAD
-	to_world_log("Initializing objects")
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	InitializeAtoms()
-	return ..()
+	initialized = INITIALIZATION_INNEW_REGULAR
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
 	if(initialized == INITIALIZATION_INSSATOMS)
