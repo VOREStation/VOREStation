@@ -12,7 +12,7 @@ Deployable items
 /obj/machinery/deployable/barrier
 	name = "deployable barrier"
 	desc = "A deployable barrier. Swipe your ID card to lock/unlock it."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/objects_vr.dmi'
 	anchored = FALSE
 	density = TRUE
 	icon_state = "barrier0"
