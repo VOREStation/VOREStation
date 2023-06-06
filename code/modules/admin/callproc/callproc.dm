@@ -1,8 +1,86 @@
+
+GLOBAL_DATUM_INIT(AdminProcCallHandler, /mob/proccall_handler, new())
+GLOBAL_PROTECT(AdminProcCallHandler)
+
+/// Used to handle proccalls called indirectly by an admin (e.g. tgs, circuits).
+/// Has to be a mob because IsAdminAdvancedProcCall() checks usr, which is a mob variable.
+/// So usr is set to this for any proccalls that don't have any usr mob/client to refer to.
+/mob/proccall_handler
+	name = "ProcCall Handler"
+	desc = "If you are seeing this, tell a coder."
+
+	var/list/callers = list()
+
+	invisibility = INVISIBILITY_ABSTRACT
+	density = FALSE
+
+/// Adds a caller.
+/mob/proccall_handler/proc/add_caller(caller_name)
+	callers += caller_name
+	name = "[initial(name)] ([callers.Join(") (")])"
+
+/// Removes a caller.
+/mob/proccall_handler/proc/remove_caller(caller_name)
+	callers -= caller_name
+	name = "[initial(name)] ([callers.Join(") (")])"
+
+/mob/proccall_handler/Initialize(mapload)
+	. = ..()
+	if(GLOB.AdminProcCallHandler && GLOB.AdminProcCallHandler != src)
+		return INITIALIZE_HINT_QDEL
+	GLOB.AdminProcCallHandler = src
+
+/mob/proccall_handler/vv_edit_var(var_name, var_value)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	return FALSE
+
+/mob/proccall_handler/vv_do_topic(list/href_list)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	return FALSE
+
+/mob/proccall_handler/CanProcCall(procname)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	return FALSE
+
+// Shit will break if this is allowed to be deleted
+/mob/proccall_handler/Destroy(force)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	if(!force)
+		stack_trace("Attempted deletion on [type] - [name], aborting.")
+		return QDEL_HINT_LETMELIVE
+	return ..()
+
+/**
+ * Handles a userless proccall, used by circuits.
+ *
+ * Arguments:
+ * * user - a string used to identify the user
+ * * target - the target to proccall on
+ * * proc - the proc to call
+ * * arguments - any arguments
+ */
+/proc/HandleUserlessProcCall(user, datum/target, procname, list/arguments)
+	if(IsAdminAdvancedProcCall())
+		return
+	var/mob/proccall_handler/handler = GLOB.AdminProcCallHandler
+	handler.add_caller(user)
+	var/lastusr = usr
+	usr = handler
+	. = WrapAdminProcCall(target, procname, arguments)
+	usr = lastusr
+	handler.remove_caller(user)
+
 /client/proc/callproc()
 	set category = "Debug"
 	set name = "Advanced ProcCall"
-	set waitfor = 0
+	set waitfor = FALSE
+	callproc_blocking()
 
+/client/proc/callproc_blocking(list/get_retval)
 	if(!check_rights(R_DEBUG))
 		return
 

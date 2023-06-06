@@ -66,6 +66,8 @@
 #define COORD(src) "[src ? "([src.x],[src.y],[src.z])" : "nonexistent location"]"
 #define ADMIN_COORDJMP(src) "[src ? "[COORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_CA(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];secretsadmin=check_antagonist'>?</a>)"
+#define ADMIN_LUAVIEW(state) "(<a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];lua_state=[REF(state)]'>VIEW STATE</a>)"
+#define ADMIN_LUAVIEW_CHUNK(state, log_index) "(<a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];lua_state=[REF(state)];log_index=[log_index]'>VIEW CODE</a>)"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2

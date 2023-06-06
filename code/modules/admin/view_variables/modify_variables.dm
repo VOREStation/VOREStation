@@ -94,7 +94,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (O)
 		L = L.Copy()
 
-	L += var_value
+	L += list(var_value) //var_value could be a list
 
 	if(IS_VALID_ASSOC_KEY(var_value))
 		switch(tgui_alert(usr, "Would you like to associate a value with the list entry?","List VV",list("Yes","No")))
@@ -194,7 +194,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	else
 		variable = L[index]
 		//EXPERIMENTAL - Keep old associated value while modifying key, if any
-		if(IS_VALID_ASSOC_KEY(variable))		
+		if(IS_VALID_ASSOC_KEY(variable))
 			var/found = L[variable]
 			if(!isnull(found))
 				old_assoc_value = found

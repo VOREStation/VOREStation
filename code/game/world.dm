@@ -10,6 +10,8 @@
 	href_logfile = start_log("[log_path]-hrefs.htm")
 	error_log = start_log("[log_path]-error.log")
 	debug_log = start_log("[log_path]-debug.log")
+
+	GLOB.lua_log = "[log_path]/lua.log"
 	//VOREStation Edit End
 
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
@@ -418,7 +420,15 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	TgsReboot()
 	log_world("World rebooted at [time_stamp()]")
+	AUXTOOLS_FULL_SHUTDOWN(AUXLUA)
 	..()
+
+/world/Del()
+	AUXTOOLS_FULL_SHUTDOWN(AUXLUA)
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		call(debug_server, "auxtools_shutdown")()
+	. = ..()
 
 /hook/startup/proc/loadMode()
 	world.load_mode()

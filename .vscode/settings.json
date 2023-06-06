@@ -66,6 +66,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
     },
+    "Lua.diagnostics.enable": false,
     "debug.onTaskErrors": "abort",
     "dreammaker.objectTreePane": true,
     "dreammaker.autoUpdate": true,
