@@ -230,7 +230,7 @@
 				to_chat(user, "<span class='notice'>You changed the drill ID to: [newtag]</span>")
 			else
 				name = "[initial(name)]"
-				to_chat(user, SPAN_NOTICE("You removed the drill's ID and any extraneous labels."))
+				to_chat(user, span_notice("You removed the drill's ID and any extraneous labels."))
 			return
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -421,7 +421,7 @@
 /obj/machinery/mining/brace/examine(mob/user)
 	. = ..()
 	if(brace_tier >= 3)
-		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
+		. += span_notice("The internals of the brace look resilient enough to support a drill by itself.")
 
 /obj/machinery/mining/brace/Initialize()
 	. = ..()

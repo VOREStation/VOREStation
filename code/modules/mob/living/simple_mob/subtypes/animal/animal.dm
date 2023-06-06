@@ -37,4 +37,4 @@
 	var/new_flavour_text = sanitize((input("Please describe yourself.", "Flavour Text", flavor_text) as message|null), MAX_MESSAGE_LEN)
 	if(length(new_flavour_text) && !QDELETED(src))
 		flavor_text = new_flavour_text
-		to_chat(src, SPAN_NOTICE("Your flavour text has been updated."))
+		to_chat(src, span_notice("Your flavour text has been updated."))

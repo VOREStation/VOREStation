@@ -454,7 +454,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("\The [src] rejects your use due to lack of access!"))
+		to_chat(user, span_warning("\The [src] rejects your use due to lack of access!"))
 		return
 	tgui_interact(user)
 

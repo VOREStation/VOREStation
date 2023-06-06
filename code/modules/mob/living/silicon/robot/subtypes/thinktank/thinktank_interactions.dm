@@ -19,7 +19,7 @@
 
 	if(istype(W, /obj/item/weapon/cell) && !opened)
 		if(recharging)
-			to_chat(user, SPAN_WARNING("\The [src] already has \a [recharging.resolve()] inserted into its recharging port."))
+			to_chat(user, span_warning("\The [src] already has \a [recharging.resolve()] inserted into its recharging port."))
 		else if(user.unEquip(W))
 			W.forceMove(src)
 			recharging = WEAKREF(W)
@@ -42,7 +42,7 @@
 		return ..()
 
 	if(jobban_isbanned(user, "Robot"))
-		to_chat(user, SPAN_WARNING("You are banned from synthetic roles and cannot take control of \the [src]."))
+		to_chat(user, span_warning("You are banned from synthetic roles and cannot take control of \the [src]."))
 		return
 
 	// Boilerplate from drone fabs, unsure if there's a shared proc to use instead.
@@ -70,7 +70,7 @@
 
 /mob/living/silicon/robot/platform/proc/welcome_client()
 	if(client)
-		to_chat(src, SPAN_NOTICE("<b>You are a think-tank</b>, a kind of flexible and adaptive drone intelligence installed into an armoured platform. Your programming compels you to be friendly and helpful wherever possible."))
+		to_chat(src, span_notice("<b>You are a think-tank</b>, a kind of flexible and adaptive drone intelligence installed into an armoured platform. Your programming compels you to be friendly and helpful wherever possible."))
 	SetSleeping(0)
 	SetWeakened(0)
 	SetParalysis(0)

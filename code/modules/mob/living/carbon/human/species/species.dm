@@ -557,7 +557,7 @@
 			return FALSE
 
 		if(!silent)
-			to_chat(H, SPAN_NOTICE("You manage to lower impact of the fall and land safely."))
+			to_chat(H, span_notice("You manage to lower impact of the fall and land safely."))
 			landing.visible_message("<b>\The [H]</b> lowers down from above, landing safely.")
 			playsound(H, "rustle", 25, 1)
 		return TRUE
@@ -566,4 +566,3 @@
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
 	return
-

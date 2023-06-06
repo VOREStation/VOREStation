@@ -60,10 +60,10 @@
 	//try to crush it
 	if(ispath(trash))
 		if(contents.len &&  user.a_intent == I_HURT)  // only crumple with things inside on harmintent.
-			user.visible_message(SPAN_DANGER("[user] crushes \the [src], spilling its contents everywhere!"), SPAN_DANGER("You crush \the [src], spilling its contents everywhere!"))
+			user.visible_message(span_danger("[user] crushes \the [src], spilling its contents everywhere!"), span_danger("You crush \the [src], spilling its contents everywhere!"))
 			spill()
 		else
-			to_chat(user, SPAN_NOTICE("You crumple up \the [src].")) //make trash
+			to_chat(user, span_notice("You crumple up \the [src].")) //make trash
 		playsound(src.loc, 'sound/items/drop/wrapper.ogg', 30, 1)
 		var/obj/item/trash = new src.trash()
 		qdel(src)

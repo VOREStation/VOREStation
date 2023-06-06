@@ -158,7 +158,7 @@
 					O.forceMove(loc)
 					auto_align(I, params, TRUE)
 				else
-					to_chat(user, SPAN_WARNING("\The [I] is too big for you to move!"))
+					to_chat(user, span_warning("\The [I] is too big for you to move!"))
 				return
 
 /obj/structure/low_wall/proc/handle_rod_use(mob/user, obj/item/stack/rods/R)

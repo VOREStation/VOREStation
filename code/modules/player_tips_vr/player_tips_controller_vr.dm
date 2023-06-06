@@ -29,9 +29,9 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 		for(var/mob/M in player_list)
 			if(M.is_preference_enabled(/datum/client_preference/player_tips))
 				if(!M.key && !(M.key in HasReceived))
-					to_chat(M, SPAN_WARNING("You have periodic player tips enabled. You may turn them off at any time with the Toggle Receiving Player Tips verb in Preferences, or in character set up under the OOC tab!\n Player tips appear every 45-75 minutes."))
+					to_chat(M, span_warning("You have periodic player tips enabled. You may turn them off at any time with the Toggle Receiving Player Tips verb in Preferences, or in character set up under the OOC tab!\n Player tips appear every 45-75 minutes."))
 					HasReceived.Add(M.key)
-				to_chat(M, SPAN_NOTICE("[tip]"))
+				to_chat(M, span_notice("[tip]"))
 
 
 
@@ -46,4 +46,4 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 	if(choice == "cancel")
 		return
 	var/static/datum/player_tips/player_tips = new
-	to_chat(src, SPAN_NOTICE("[player_tips.pick_tip(choice)]"))
+	to_chat(src, span_notice("[player_tips.pick_tip(choice)]"))

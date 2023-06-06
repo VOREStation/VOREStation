@@ -47,7 +47,7 @@
 
 	if(istype(O, /obj/item/weapon/firework_star))
 		if(loaded_star)
-			to_chat(user, SPAN_NOTICE("\The [src] already has \a [loaded_star] inside, unload it first!"))
+			to_chat(user, span_notice("\The [src] already has \a [loaded_star] inside, unload it first!"))
 			return
 		if(user.unEquip(O, 0, src))
 			loaded_star = O

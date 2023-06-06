@@ -90,7 +90,7 @@
 		if(ismob(loc))
 			var/mob/living/M = loc
 			if(!no_message)
-				to_chat(M, SPAN_NOTICE("The [name] runs out of flavor."))
+				to_chat(M, span_notice("The [name] runs out of flavor."))
 			if(M.wear_mask)
 				M.remove_from_mob(src) //un-equip it so the overlays can update
 				M.update_inv_wear_mask(0)

@@ -151,7 +151,7 @@ reverse a descending sequence without violating stability.
 			if(call(cmp)(current, last) >= 0)
 				break
 			++runHi
-		reverseRange(L, lo, runHi)
+		reverse_range(L, lo, runHi)
 	else
 		while(runHi < hi)
 			last = current

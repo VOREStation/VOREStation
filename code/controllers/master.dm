@@ -1,10 +1,10 @@
- /**
-  * StonedMC
-  *
-  * Designed to properly split up a given tick among subsystems
-  * Note: if you read parts of this code and think "why is it doing it that way"
-  * Odds are, there is a reason
-  *
+/**
+ * StonedMC
+ *
+ * Designed to properly split up a given tick among subsystems
+ * Note: if you read parts of this code and think "why is it doing it that way"
+ * Odds are, there is a reason
+ *
  **/
 
 //This is the ABSOLUTE ONLY THING that should init globally like this
@@ -17,61 +17,101 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master
 	name = "Master"
 
-	// Are we processing (higher values increase the processing delay by n ticks)
+	/// Are we processing (higher values increase the processing delay by n ticks)
 	var/processing = TRUE
-	// How many times have we ran
+	/// How many times have we ran
 	var/iteration = 0
+	/// Stack end detector to detect stack overflows that kill the mc's main loop
+	var/datum/stack_end_detector/stack_end_detector
 
-	// world.time of last fire, for tracking lag outside of the mc
+	/// world.time of last fire, for tracking lag outside of the mc
 	var/last_run
 
-	// List of subsystems to process().
+	/// List of subsystems to process().
 	var/list/subsystems
+
+	///Most recent init stage to complete init.
+	var/static/init_stage_completed
 
 	// Vars for keeping track of tick drift.
 	var/init_timeofday
 	var/init_time
 	var/tickdrift = 0
 
+	/// How long is the MC sleeping between runs, read only (set by Loop() based off of anti-tick-contention heuristics)
 	var/sleep_delta = 1
 
-	var/make_runtime = 0
+	/// Only run ticker subsystems for the next n ticks.
+	var/skip_ticks = 0
 
-	var/initializations_finished_with_no_players_logged_in	//I wonder what this could be?
+	/// makes the mc main loop runtime
+	var/make_runtime = FALSE
 
-	// The type of the last subsystem to be process()'d.
+	var/initializations_finished_with_no_players_logged_in //I wonder what this could be?
+
+	/// The type of the last subsystem to be fire()'d.
 	var/last_type_processed
 
-	var/datum/controller/subsystem/queue_head //Start of queue linked list
-	var/datum/controller/subsystem/queue_tail //End of queue linked list (used for appending to the list)
+	var/datum/controller/subsystem/queue_head //!Start of queue linked list
+	var/datum/controller/subsystem/queue_tail //!End of queue linked list (used for appending to the list)
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
 	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE	//Are we loading in a new map?
+	var/map_loading = FALSE //!Are we loading in a new map?
 
-	var/current_runlevel	//for scheduling different subsystems for different stages of the round
+	var/current_runlevel //!for scheduling different subsystems for different stages of the round
+	var/sleep_offline_after_initializations = TRUE
+
+	/// During initialization, will be the instanced subsytem that is currently initializing.
+	/// Outside of initialization, returns null.
+	var/current_initializing_subsystem = null
 
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
 
-	//current tick limit, assigned by the queue controller before running a subsystem.
-	//used by check_tick as well so that the procs subsystems call can obey that SS's tick limits
-	var/static/current_ticklimit
+	var/static/random_seed
+
+	///current tick limit, assigned before running a subsystem.
+	///used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits
+	var/static/current_ticklimit = TICK_LIMIT_RUNNING
 
 /datum/controller/master/New()
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
+
+	if(!random_seed)
+		#ifdef UNIT_TESTS
+		random_seed = 29051994 // How about 22475?
+		#else
+		random_seed = rand(1, 1e9)
+		#endif
+		rand_seed(random_seed)
+
 	var/list/_subsystems = list()
 	subsystems = _subsystems
 	if (Master != src)
 		if (istype(Master))
 			Recover()
 			qdel(Master)
+			Master = src
 		else
-			var/list/subsytem_types = subtypesof(/datum/controller/subsystem)
-			sortTim(subsytem_types, GLOBAL_PROC_REF(cmp_subsystem_init))
-			for(var/I in subsytem_types)
-				_subsystems += new I
-		Master = src
+			//Code used for first master on game boot or if existing master got deleted
+			Master = src
+			var/list/subsystem_types = subtypesof(/datum/controller/subsystem)
+			sortTim(subsystem_types, GLOBAL_PROC_REF(cmp_subsystem_init))
+
+			//Find any abandoned subsystem from the previous master (if there was any)
+			var/list/existing_subsystems = list()
+			for(var/global_var in global.vars)
+				if (istype(global.vars[global_var], /datum/controller/subsystem))
+					existing_subsystems += global.vars[global_var]
+
+			//Either init a new SS or if an existing one was found use that
+			for(var/I in subsystem_types)
+				var/ss_idx = existing_subsystems.Find(I)
+				if (ss_idx)
+					_subsystems += existing_subsystems[ss_idx]
+				else
+					_subsystems += new I
 
 	if(!GLOB)
 		new /datum/controller/global_vars
@@ -84,14 +124,16 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/Shutdown()
 	processing = FALSE
 	sortTim(subsystems, GLOBAL_PROC_REF(cmp_subsystem_init))
-	reverseRange(subsystems)
+	reverse_range(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
 		log_world("Shutting down [ss.name] subsystem...")
+		if (ss.slept_count > 0)
+			log_world("Warning: Subsystem `[ss.name]` slept [ss.slept_count] times.")
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
 // Returns 1 if we created a new mc, 0 if we couldn't due to a recent restart,
-//	-1 if we encountered a runtime trying to recreate it
+// -1 if we encountered a runtime trying to recreate it
 /proc/Recreate_MC()
 	. = -1 //so if we runtime, things know we failed
 	if (world.time < Master.restart_timeout)
@@ -102,7 +144,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/delay = 50 * ++Master.restart_count
 	Master.restart_timeout = world.time + delay
 	Master.restart_clear = world.time + (delay * 2)
-	Master.processing = FALSE //stop ticking this one
+	if (Master) //Can only do this if master hasn't been deleted
+		Master.processing = FALSE //stop ticking this one
 	try
 		new/datum/controller/master()
 	catch
@@ -112,17 +155,22 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 /datum/controller/master/Recover()
 	var/msg = "## DEBUG: [time2text(world.timeofday)] MC restarted. Reports:\n"
-	for (var/varname in Master.vars)
-		switch (varname)
-			if("name", "tag", "bestF", "type", "parent_type", "vars", "statclick") // Built-in junk.
-				continue
-			else
-				var/varval = Master.vars[varname]
-				if (istype(varval, /datum)) // Check if it has a type var.
-					var/datum/D = varval
-					msg += "\t [varname] = [D]([D.type])\n"
-				else
-					msg += "\t [varname] = [varval]\n"
+	var/list/master_attributes = Master.vars
+	var/list/filtered_variables = list(
+		NAMEOF(src, name),
+		NAMEOF(src, parent_type),
+		NAMEOF(src, statclick),
+		NAMEOF(src, tag),
+		NAMEOF(src, type),
+		NAMEOF(src, vars),
+	)
+	for (var/varname in master_attributes - filtered_variables)
+		var/varval = master_attributes[varname]
+		if (isdatum(varval)) // Check if it has a type var.
+			var/datum/D = varval
+			msg += "\t [varname] = [D]([D.type])\n"
+		else
+			msg += "\t [varname] = [varval]\n"
 	log_world(msg)
 
 	var/datum/controller/subsystem/BadBoy = Master.last_type_processed
@@ -132,28 +180,24 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		LAZYINITLIST(BadBoy.failure_strikes)
 		switch(++BadBoy.failure_strikes[BadBoy.type])
 			if(2)
-				msg = "MC Notice: The [BadBoy.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
+				msg = "The [BadBoy.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
 				FireHim = TRUE
-				BadBoy.fail()
 			if(3)
-				msg = "MC Notice: The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
+				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be put offline."
 				BadBoy.flags |= SS_NO_FIRE
-				BadBoy.critfail()
 		if(msg)
-			log_game(msg)
-			message_admins("<span class='boldannounce'>[msg]</span>")
+			to_chat(GLOB.admins, span_boldannounce("[msg]"))
 			log_world(msg)
 
 	if (istype(Master.subsystems))
 		if(FireHim)
-			Master.subsystems += new BadBoy.type	//NEW_SS_GLOBAL will remove the old one
-
+			Master.subsystems += new BadBoy.type //NEW_SS_GLOBAL will remove the old one
 		subsystems = Master.subsystems
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_world("<span class='boldannounce'>The Master Controller is having some issues, we will need to re-initialize EVERYTHING</span>")
-		Initialize(20, TRUE)
+		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
+		Initialize(20, TRUE, FALSE)
 
 
 // Please don't stuff random bullshit here,

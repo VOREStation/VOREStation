@@ -549,12 +549,12 @@
 
 			if(pa.Find("middle"))
 				if(pa.Find("shift"))
-					to_chat(user, SPAN_NOTICE("All selected mobs set to wander"))
+					to_chat(user, span_notice("All selected mobs set to wander"))
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = TRUE
 				if(pa.Find("ctrl"))
-					to_chat(user, SPAN_NOTICE("Setting mobs set to NOT wander"))
+					to_chat(user, span_notice("Setting mobs set to NOT wander"))
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = FALSE

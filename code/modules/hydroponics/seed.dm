@@ -174,7 +174,7 @@
 		var/obj/item/organ/external/E = target.get_organ(target.hand ? BP_L_HAND : BP_R_HAND)
 		if(istype(E) && E.robotic < ORGAN_ROBOT && fruit)
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/5))
-			to_chat(target, SPAN_DANGER("You are stung by \the [fruit]!"))
+			to_chat(target, span_danger("You are stung by \the [fruit]!"))
 			for(var/chem in chems)
 				target.reagents.add_reagent(chem,injecting)
 				if (fruit.reagents)

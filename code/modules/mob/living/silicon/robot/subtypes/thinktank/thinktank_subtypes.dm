@@ -11,7 +11,7 @@
 /mob/living/silicon/robot/platform/explorer/welcome_client()
 	..()
 	if(client) // ganbatte tachikoma-san
-		to_chat(src, SPAN_NOTICE("You are tasked with supporting the Exploration and Science staff as they unearth the secrets of the planet. Do your best!"))
+		to_chat(src, span_notice("You are tasked with supporting the Exploration and Science staff as they unearth the secrets of the planet. Do your best!"))
 
 /obj/effect/landmark/robot_platform/explorer
 	platform_type = /mob/living/silicon/robot/platform/explorer
@@ -26,7 +26,7 @@
 /mob/living/silicon/robot/platform/cargo/welcome_client()
 	..()
 	if(client)
-		to_chat(src, SPAN_NOTICE("You are tasked with supporting the Cargo and Supply staff as they handle operational logistics. Do your best!"))
+		to_chat(src, span_notice("You are tasked with supporting the Cargo and Supply staff as they handle operational logistics. Do your best!"))
 
 /obj/effect/landmark/robot_platform/cargo
 	platform_type = /mob/living/silicon/robot/platform/cargo

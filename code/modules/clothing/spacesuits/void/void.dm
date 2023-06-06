@@ -180,18 +180,18 @@
 	if(H.wear_suit != src) return
 
 	if(helmet.light_on)
-		to_chat(H, SPAN_NOTICE("The helmet light shuts off as it retracts."))
+		to_chat(H, span_notice("The helmet light shuts off as it retracts."))
 		helmet.update_flashlight(H)
 
 	if(H.head == helmet)
-		to_chat(H, SPAN_NOTICE("You retract your suit helmet."))
+		to_chat(H, span_notice("You retract your suit helmet."))
 		helmet.canremove = TRUE
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 		playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 	else
 		if(H.head)
-			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
+			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = FALSE
@@ -211,7 +211,7 @@
 	var/mob/living/carbon/human/H = usr
 
 	if(!tank && !cooler)
-		to_chat(H, SPAN_NOTICE("There is no tank or cooling unit inserted."))
+		to_chat(H, span_notice("There is no tank or cooling unit inserted."))
 		return
 
 	if(!istype(H)) return
@@ -225,7 +225,7 @@
 	else
 		removing = cooler
 		cooler = null
-	to_chat(H, SPAN_DANGER("You press the emergency release, ejecting \the [removing] from your suit."))
+	to_chat(H, span_danger("You press the emergency release, ejecting \the [removing] from your suit."))
 	playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 	removing.canremove = TRUE
 	H.drop_from_inventory(removing)

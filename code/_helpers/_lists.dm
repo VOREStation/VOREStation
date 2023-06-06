@@ -806,7 +806,7 @@ Checks if a list has the same entries and values as an element of big.
 			L.Cut(fromIndex, fromIndex+1)
 
 //replaces reverseList ~Carnie
-/proc/reverseRange(list/L, start=1, end=0)
+/proc/reverse_range(list/L, start=1, end=0)
 	if(L.len)
 		start = start % L.len
 		end = end % (L.len+1)

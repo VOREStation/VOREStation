@@ -86,7 +86,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 /decl/emote/audible/drake_howl/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
 	if((. = ..()))
-		to_chat(target, SPAN_NOTICE("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
+		to_chat(target, span_notice("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
 
 /mob/living/simple_mob/animal/sif/grafadreka/get_available_emotes()
 	. = global._default_mob_emotes.Copy()
@@ -112,7 +112,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 		resting = TRUE
 		sitting = TRUE
 
-	to_chat(src, SPAN_NOTICE("You are now [sitting ? "sitting" : "getting up"]."))
+	to_chat(src, span_notice("You are now [sitting ? "sitting" : "getting up"]."))
 	update_canmove()
 	update_icon()
 
@@ -262,17 +262,17 @@ var/global/list/wounds_being_tended_by_drakes = list()
 	if(istype(user, /mob/living/simple_mob/animal/sif/grafadreka) || isobserver(user))
 		var/datum/gender/G = gender_datums[get_visible_gender()]
 		if(stored_sap >= 20)
-			. += SPAN_NOTICE("[G.His] sap reserves are high.")
+			. += span_notice("[G.His] sap reserves are high.")
 		else if(stored_sap >= 10)
-			. += SPAN_WARNING("[G.His] sap reserves are running low.")
+			. += span_warning("[G.His] sap reserves are running low.")
 		else
-			. += SPAN_DANGER("[G.His] sap reserves are depleted.")
+			. += span_danger("[G.His] sap reserves are depleted.")
 
 /mob/living/simple_mob/animal/sif/grafadreka/can_projectile_attack(var/atom/A)
 	if(a_intent != I_HURT || world.time < next_spit)
 		return FALSE
 	if(!has_sap(2))
-		to_chat(src, SPAN_WARNING("You have no sap to spit!"))
+		to_chat(src, span_warning("You have no sap to spit!"))
 		return FALSE
 	return ..()
 
@@ -428,7 +428,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		var/mob/living/friend = A
 		if(friend.stat == DEAD)
 			if(friend == src)
-				to_chat(src, SPAN_WARNING("\The [friend] is dead; tending their wounds is pointless."))
+				to_chat(src, span_warning("\The [friend] is dead; tending their wounds is pointless."))
 			else
 				return ..()
 			return TRUE
@@ -436,33 +436,33 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		if(!can_tend_wounds(friend))
 			if(friend == src)
 				if(health == maxHealth)
-					to_chat(src, SPAN_WARNING("You are unwounded."))
+					to_chat(src, span_warning("You are unwounded."))
 				else
-					to_chat(src, SPAN_WARNING("You cannot tend any of your wounds."))
+					to_chat(src, span_warning("You cannot tend any of your wounds."))
 			else
 				if(friend.health == friend.maxHealth)
 					return ..()
-				to_chat(src, SPAN_WARNING("You cannot tend any of \the [friend]'s wounds."))
+				to_chat(src, span_warning("You cannot tend any of \the [friend]'s wounds."))
 			return TRUE
 
 		if(friend.has_modifier_of_type(/datum/modifier/sifsap_salve))
 			if(friend == src)
-				to_chat(src, SPAN_WARNING("You have already cleaned your wounds."))
+				to_chat(src, span_warning("You have already cleaned your wounds."))
 			else
 				return ..()
 			return TRUE
 
 		if(!has_sap(10))
 			if(friend == src)
-				to_chat(src, SPAN_WARNING("You don't have enough sap to clean your wounds."))
+				to_chat(src, span_warning("You don't have enough sap to clean your wounds."))
 			else
 				return ..()
 			return TRUE
 
 		if(friend == src)
-			visible_message(SPAN_NOTICE("\The [src] begins to drool a blue-glowing liquid, which they start slathering over their wounds."))
+			visible_message(span_notice("\The [src] begins to drool a blue-glowing liquid, which they start slathering over their wounds."))
 		else
-			visible_message(SPAN_NOTICE("\The [src] begins to drool a blue-glowing liquid, which they start slathering over \the [friend]'s wounds."))
+			visible_message(span_notice("\The [src] begins to drool a blue-glowing liquid, which they start slathering over \the [friend]'s wounds."))
 
 		playsound(src, 'sound/effects/ointment.ogg', 25)
 
@@ -479,9 +479,9 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		set_AI_busy(FALSE)
 
 		if(friend == src)
-			visible_message(SPAN_NOTICE("\The [src] finishes licking at their wounds."))
+			visible_message(span_notice("\The [src] finishes licking at their wounds."))
 		else
-			visible_message(SPAN_NOTICE("\The [src] finishes licking at \the [friend]'s wounds."))
+			visible_message(span_notice("\The [src] finishes licking at \the [friend]'s wounds."))
 		playsound(src, 'sound/effects/ointment.ogg', 25)
 
 		// Sivian animals get a heal buff from the modifier, others just
@@ -568,7 +568,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 	set category = "Abilities"
 
 	if(!has_modifier_of_type(/datum/modifier/ace))
-		to_chat(src, SPAN_WARNING("You aren't the pack leader! Sit down!"))
+		to_chat(src, span_warning("You aren't the pack leader! Sit down!"))
 		return
 
 	audible_message("<b>\The [src]</b> barks loudly and rattles its neck spines.")
@@ -576,7 +576,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		if(drake == src || drake.faction != faction)
 			continue
 		if(drake.client)
-			to_chat(drake, SPAN_NOTICE("<b>The pack leader wishes for you to follow them.</b>"))
+			to_chat(drake, span_notice("<b>The pack leader wishes for you to follow them.</b>"))
 		else if(drake.ai_holder)
 			drake.ai_holder.set_follow(src)
 

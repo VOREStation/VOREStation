@@ -27,7 +27,7 @@
 				if(HS.get_amount() < HS.max_amount)
 					H = HS
 					break
-			
+
 			 // Either we found a valid stack, in which case increment amount,
 			 // Or we need to make a new stack
 			if(istype(H))
@@ -38,9 +38,9 @@
 			// Increment the amount
 			src.use(1)
 			scraped++
-		
+
 		if(scraped)
-			to_chat(user, SPAN_NOTICE("You scrape the hair off [scraped] hide\s."))
+			to_chat(user, span_notice("You scrape the hair off [scraped] hide\s."))
 	else
 		..()
 

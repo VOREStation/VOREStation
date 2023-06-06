@@ -26,7 +26,7 @@
 
 /obj/item/weapon/nailpolish/attack_self(var/mob/user)
 	open = !open
-	to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] \the [src]."))
+	to_chat(user, span_notice("You [open ? "open" : "close"] \the [src]."))
 	update_icon()
 
 /obj/item/weapon/nailpolish/update_icon()
@@ -63,18 +63,18 @@
 
 	if(!istype(target))
 		return
-	
+
 	var/bp = user.zone_sel.selecting
 	var/obj/item/organ/external/body_part = target.get_organ(bp)
 	if(!body_part)
-		to_chat(user, SPAN_WARNING("[target] is missing that limb!"))
+		to_chat(user, span_warning("[target] is missing that limb!"))
 		return
 	if(body_part.nail_polish)
-		to_chat(user, SPAN_NOTICE("[target]'s [body_part.name] already has nail polish on!"))
+		to_chat(user, span_notice("[target]'s [body_part.name] already has nail polish on!"))
 		return
 	var/datum/nail_polish/polish = body_part.get_polish(colour)
 	if(!polish)
-		to_chat(user, SPAN_NOTICE("You can't find any nails on [body_part] to paint."))
+		to_chat(user, span_notice("You can't find any nails on [body_part] to paint."))
 		return
 	if(user == target)
 		user.visible_message("<b>\The [user]</b> paints their nails with \the [src].", "You paint your nails with \the [src].")
@@ -82,7 +82,7 @@
 		if(do_after(user, 2 SECONDS, target))
 			user.visible_message("<b>\The [user]</b> paints \the [target]'s nails with \the [src].", "You paint \the [target]'s nails with \the [src].")
 		else
-			to_chat(user, SPAN_NOTICE("Both you and [target] must stay still!"))
+			to_chat(user, span_notice("Both you and [target] must stay still!"))
 			return
 	body_part.set_polish(polish)
 
@@ -101,7 +101,7 @@
 
 /obj/item/weapon/nailpolish_remover/attack_self(var/mob/user)
 	open = !open
-	to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] \the [src]."))
+	to_chat(user, span_notice("You [open ? "open" : "close"] \the [src]."))
 	update_icon()
 
 /obj/item/weapon/nailpolish_remover/update_icon()
@@ -114,14 +114,14 @@
 
 	if(!istype(target))
 		return
-	
+
 	var/bp = user.zone_sel.selecting
 	var/obj/item/organ/external/body_part = target.get_organ(bp)
 	if(!body_part)
-		to_chat(user, SPAN_WARNING("[target] is missing that limb!"))
+		to_chat(user, span_warning("[target] is missing that limb!"))
 		return
 	if(!body_part.nail_polish)
-		to_chat(user, SPAN_NOTICE("[target]'s [body_part.name] has no nail polish to remove!"))
+		to_chat(user, span_notice("[target]'s [body_part.name] has no nail polish to remove!"))
 		return
 	if(user == target)
 		user.visible_message("<b>\The [user]</b> removes their nail polish with \the [src].", "You remove your nail polish with \the [src].")
@@ -129,7 +129,7 @@
 		if(do_after(user, 2 SECONDS, target))
 			user.visible_message("<b>\The [user]</b> removes \the [target]'s nail polish with \the [src].", "You remove \the [target]'s nail polish with \the [src].")
 		else
-			to_chat(user, SPAN_NOTICE("Both you and [target] must stay still!"))
+			to_chat(user, span_notice("Both you and [target] must stay still!"))
 			return
 	body_part.set_polish(null)
 
@@ -142,4 +142,3 @@
 	icon = _icon
 	icon_state = _icon_state
 	color = _color
-	

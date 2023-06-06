@@ -57,7 +57,7 @@
 	src.reagents.trans_to_holder(R, src.reagents.total_volume)
 	qdel(src.reagents)
 	src.reagents = R
-	
+
 /obj/machinery/pump/update_icon()
 	..()
 	cut_overlays()
@@ -81,7 +81,7 @@
 /obj/machinery/pump/process()
 	if(!on)
 		return
-	
+
 	if(!anchored || !(cell?.use(active_power_usage)))
 		set_state(FALSE)
 		return
@@ -113,9 +113,9 @@
 	update_icon()
 	if(message)
 		if(on)
-			message = SPAN_NOTICE("\The [src] turns on.")
+			message = span_notice("\The [src] turns on.")
 		else
-			message = SPAN_NOTICE("\The [src] shuts down.")
+			message = span_notice("\The [src] shuts down.")
 		visible_message(message)
 	return TRUE
 
@@ -142,7 +142,7 @@
 /obj/machinery/pump/attackby(obj/item/weapon/W, mob/user)
 	. = TRUE
 	if(W.is_screwdriver() && !open)
-		to_chat(user, SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel."))
+		to_chat(user, span_notice("You [unlocked ? "screw" : "unscrew"] the battery panel."))
 		unlocked = !unlocked
 
 	else if(W.is_crowbar() && unlocked)
@@ -151,7 +151,7 @@
 			"<span class='notice'>You remove the battery panel.</span>" \
 		)
 		open = !open
-	
+
 	else if(W.is_wrench())
 		if(on)
 			to_chat(user, "<span class='notice'>\The [src] is active. Turn it off before trying to move it!</span>")

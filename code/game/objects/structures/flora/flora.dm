@@ -43,11 +43,11 @@
 		. += get_harvestable_desc()
 		if(harvest_tool)
 			var/obj/item/tool = harvest_tool
-			. += SPAN_NOTICE("\The [src] can be harvested with \a [initial(tool.name)].")
+			. += span_notice("\The [src] can be harvested with \a [initial(tool.name)].")
 
 	if(removal_tool)
 		var/obj/item/tool = removal_tool
-		. += SPAN_NOTICE("\The [src] can be removed with \a [initial(tool.name)].")
+		. += span_notice("\The [src] can be removed with \a [initial(tool.name)].")
 
 /obj/structure/flora/proc/get_harvestable_desc()
 	return "<span class='notice'>\The [src] seems to have something hanging from it.</span>"
@@ -58,15 +58,15 @@
 		var/harvest_spawn = pickweight(harvest_loot)
 		var/atom/movable/AM = spawn_harvest(harvest_spawn, user)
 		if(AM)
-			to_chat(user, SPAN_NOTICE("You harvest \the [AM] from \the [src]."))
+			to_chat(user, span_notice("You harvest \the [AM] from \the [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("You fail to harvest anything from \the [src]."))
+			to_chat(user, span_notice("You fail to harvest anything from \the [src]."))
 		return
 
 	if(removal_tool && istype(W, removal_tool))
-		to_chat(user, SPAN_WARNING("You start uprooting \the [src]..."))
+		to_chat(user, span_warning("You start uprooting \the [src]..."))
 		if(do_after(user, 30))
-			visible_message(SPAN_NOTICE("\The [user] uproots and discards \the [src]!"))
+			visible_message(span_notice("\The [user] uproots and discards \the [src]!"))
 			qdel(src)
 		return
 

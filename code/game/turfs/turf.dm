@@ -320,7 +320,7 @@
 		return FALSE
 
 	if(jobban_isbanned(vandal, "Graffiti"))
-		to_chat(vandal, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
+		to_chat(vandal, span_warning("You are banned from leaving persistent information across rounds."))
 		return
 
 	var/too_much_graffiti = 0

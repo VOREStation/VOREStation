@@ -570,7 +570,7 @@ var/list/global/slot_flags_enumeration = list(
 	if(!hit_zone)
 		U.do_attack_animation(M)
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-		visible_message(SPAN_DANGER("\The [U] attempts to stab \the [M] in the eyes, but misses!"))
+		visible_message(span_danger("\The [U] attempts to stab \the [M] in the eyes, but misses!"))
 		return
 
 	add_attack_logs(user,M,"Attack eyes with [name]")

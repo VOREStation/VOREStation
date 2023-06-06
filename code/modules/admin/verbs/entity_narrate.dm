@@ -26,7 +26,7 @@
 
 	//Since we extended to include all atoms, we're shutting things down with a guard clause for ghosts
 	if(istype(E, /mob/observer))
-		to_chat(usr, SPAN_NOTICE("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
+		to_chat(usr, span_notice("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
 		return
 	//We require a static mob/living type to check for .client and also later on, to use the unique .say mechanics for stuttering and language
 	if(istype(E, /mob/living))
@@ -131,17 +131,17 @@
 		message = sanitize(message)
 
 	if(!(mode in list("Speak", "Emote")))
-		to_chat(usr, SPAN_NOTICE("Valid modes are 'Speak' and 'Emote'."))
+		to_chat(usr, span_notice("Valid modes are 'Speak' and 'Emote'."))
 		return
 	if(!holder.entity_refs[name])
-		to_chat(usr, SPAN_NOTICE("[name] not in saved references!"))
+		to_chat(usr, span_notice("[name] not in saved references!"))
 
 	//Separate definition for mob/living and /obj due to .say() code allowing us to engage with languages, stuttering etc
 	//We also need this so we can check for .client
 	if(istype(holder.entity_refs[name], /mob/living))
 		var/mob/living/our_entity = holder.entity_refs[name]
 		if(our_entity.client) //Making sure we can't speak for players
-			to_chat(usr, SPAN_NOTICE("Cannot narrate mobs with active clients!"))
+			to_chat(usr, span_notice("Cannot narrate mobs with active clients!"))
 			log_and_message_admins("attempted to speak for [our_entity.ckey]'s mob", usr)
 			return
 		if(!message)

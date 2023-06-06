@@ -1,6 +1,19 @@
+/**
+	* # Subsystem base class
+	*
+	* Defines a subsystem to be managed by the [Master Controller][/datum/controller/master]
+	*
+	* Simply define a child of this subsystem, using the [SUBSYSTEM_DEF] macro, and the MC will handle registration.
+	* Changing the name is required
+**/
+
+
 /datum/controller/subsystem
 	// Metadata; you should define these.
-	name = "fire coderbus" //name of the subsystem
+
+	/// Name of the subsystem - you must change this
+	name = "fire coderbus"
+
 	var/init_order = INIT_ORDER_DEFAULT	//order of initialization. Higher numbers are initialized first, lower numbers later. Can be decimal and negative values.
 	var/wait = 20			//time to wait (in deciseconds) between each call to fire(). Must be a positive integer.
 	var/priority = FIRE_PRIORITY_DEFAULT	//When mutiple subsystems need to run in the same tick, higher priority subsystems will run first and be given a higher share of the tick before MC_TICK_CHECK triggers a sleep
@@ -20,6 +33,10 @@
 	var/tick_usage = 0		//average tick usage
 	var/tick_overrun = 0	//average tick overrun
 	var/state = SS_IDLE		//tracks the current state of the ss, running, paused, etc.
+
+	/// Tracks how many times a subsystem has ever slept in fire().
+	var/slept_count = 0
+
 	var/paused_ticks = 0	//ticks this ss is taking to run right now.
 	var/paused_tick_usage	//total tick_usage of all of our runs while pausing this run
 	var/ticks = 1			//how many ticks does this ss take to run on avg.
@@ -210,7 +227,7 @@
 	can_fire = FALSE
 	// Safely sleep in a loop until the subsystem is idle, (or its been un-suspended somehow)
 	while(can_fire <= 0 && state != SS_IDLE)
-		stoplag() // Safely sleep in a loop until 
+		stoplag() // Safely sleep in a loop until
 
 // Wakes a suspended subsystem.
 /datum/controller/subsystem/proc/wake()

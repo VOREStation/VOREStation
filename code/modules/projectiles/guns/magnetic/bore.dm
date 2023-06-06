@@ -209,7 +209,7 @@
 
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/process()
 	if(generator_state && !mat_storage)
-		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
+		audible_message(span_notice("\The [src] goes quiet."),span_notice("A motor noise cuts out."), runemessage = "goes quiet")
 		soundloop.stop()
 		generator_state = GEN_OFF
 
@@ -244,7 +244,7 @@
 
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/proc/toggle_generator(mob/living/user)
 	if(!generator_state && !mat_storage)
-		to_chat(user, SPAN_NOTICE("\The [src] has no fuel!"))
+		to_chat(user, span_notice("\The [src] has no fuel!"))
 		return
 
 	else if(!generator_state)
@@ -259,12 +259,12 @@
 		soundloop.start()
 		time_started = world.time
 		cell?.use(100)
-		audible_message(SPAN_NOTICE("\The [src] starts chugging."),SPAN_NOTICE("A motor noise starts up."), runemessage = "whirr")
+		audible_message(span_notice("\The [src] starts chugging."),span_notice("A motor noise starts up."), runemessage = "whirr")
 		generator_state = GEN_IDLE
 
 	else if(generator_state > GEN_OFF && time_started + 3 SECONDS < world.time)
 		soundloop.stop()
-		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
+		audible_message(span_notice("\The [src] goes quiet."),span_notice("A motor noise cuts out."), runemessage = "goes quiet")
 		generator_state = GEN_OFF
 
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded
