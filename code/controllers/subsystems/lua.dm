@@ -1,14 +1,8 @@
-//world/proc/shelleo
-#define SHELLEO_ERRORLEVEL 1
-#define SHELLEO_STDOUT 2
-#define SHELLEO_STDERR 3
-
-#define SSLUA_INIT_FAILED 2
-
 SUBSYSTEM_DEF(lua)
 	name = "Lua Scripting"
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	wait = 0.1 SECONDS
+	//flags = SS_OK_TO_FAIL_INIT
 
 	/// A list of all lua states
 	var/list/datum/lua_state/states = list()
@@ -26,9 +20,12 @@ SUBSYSTEM_DEF(lua)
 	/// Protects return values from getting GCed before getting converted to lua values
 	var/gc_guard
 
-/datum/controller/subsystem/lua/Initialize(start_timeofday)
-	try
+/datum/controller/subsystem/lua/Initialize()
+	//if(!CONFIG_GET(flag/auxtools_enabled))
+	//	warning("SSlua requires auxtools to be enabled to run.")
+	//..	return SS_INIT_NO_NEED
 
+	try
 		// Initialize the auxtools library
 		AUXTOOLS_CHECK(AUXLUA)
 
@@ -37,29 +34,17 @@ SUBSYSTEM_DEF(lua)
 		__lua_set_datum_proc_call_wrapper("/proc/wrap_lua_datum_proc_call")
 		__lua_set_global_proc_call_wrapper("/proc/wrap_lua_global_proc_call")
 		__lua_set_print_wrapper("/proc/wrap_lua_print")
-		OnConfigLoad() // TODO: Remove later when MC/Subsystem update is merged
+		OnConfigLoad() // TODO: Fix once MC/Subsystem update is out
 		return ..()
 	catch(var/exception/e)
 		// Something went wrong, best not allow the subsystem to run
-		subsystem_initialized = SSLUA_INIT_FAILED
-		can_fire = FALSE
-		var/time = (REALTIMEOFDAY - start_timeofday) / 10
-		var/msg = "Failed to initialize [name] subsystem after [time] seconds!"
-		to_chat(world, "<span class='boldwarning'>[msg]</span>")
-		warning(e.name)
-		return time
+		warning("Error initializing SSlua: [e.name]")
+		return ..()
 
-/datum/controller/subsystem/lua/proc/OnConfigLoad()
-	// Get the current working directory - we need it to set the LUAU_PATH environment variable
-	var/here = world.shelleo(world.system_type == MS_WINDOWS ? "cd" : "pwd")[SHELLEO_STDOUT]
-	here = replacetext(here, "\n", "")
-	var/last_char = copytext_char(here, -1)
-	if(last_char != "/" && last_char != "\\")
-		here += "/"
-
+/datum/controller/subsystem/lua/proc/OnConfigLoad() // TODO: Fix once MC/Subsystem update is out
 	// Read the paths from the config file
 	var/list/lua_path = list()
-	//var/list/config_paths = CONFIG_GET(str_list/lua_path)
+	//var/list/config_paths = CONFIG_GET(str_list/lua_path) // TODO: Fix once MC/Subsystem update is out
 	var/list/config_paths = list()
 	config_paths += "?"
 	config_paths += "?.lua"
@@ -68,8 +53,6 @@ SUBSYSTEM_DEF(lua)
 	config_paths += "lua/?.lua"
 	config_paths += "lua/?.luau"
 	for(var/path in config_paths)
-		if(path[1] != "/")
-			path = here + path
 		lua_path += path
 	world.SetConfig("env", "LUAU_PATH", jointext(lua_path, ";"))
 
@@ -77,7 +60,7 @@ SUBSYSTEM_DEF(lua)
 	AUXTOOLS_SHUTDOWN(AUXLUA)
 
 /datum/controller/subsystem/lua/proc/queue_resume(datum/lua_state/state, index, arguments)
-	if(subsystem_initialized != TRUE)
+	if(!subsystem_initialized)
 		return
 	if(!istype(state))
 		return
@@ -160,15 +143,5 @@ SUBSYSTEM_DEF(lua)
 				break
 
 	// Update every lua editor TGUI open for each state that had a task awakened or resumed
-	for(var/state in affected_states)
-		var/list/editor_list = LAZYACCESS(editors, "\ref[state]")
-		if(editor_list)
-			for(var/datum/lua_editor/editor in editor_list)
-				SStgui.update_uis(editor)
-
-//world/proc/shelleo
-#undef SHELLEO_ERRORLEVEL
-#undef SHELLEO_STDOUT
-#undef SHELLEO_STDERR
-
-#undef SSLUA_INIT_FAILED
+	for(var/datum/lua_state/state in affected_states)
+		INVOKE_ASYNC(state, TYPE_PROC_REF(/datum/lua_state, update_editors))

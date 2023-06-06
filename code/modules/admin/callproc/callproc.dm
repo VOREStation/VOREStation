@@ -160,35 +160,41 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
+/// Wrapper for proccalls where the datum is flagged as vareditted
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
-		to_chat(usr, "<span class='filter_adminlog'>Calling Del() is not allowed</span>")
+		to_chat(usr, "Calling Del() is not allowed")
 		return
 
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, "<span class='filter_adminlog'>Proccall on [target.type]/proc/[procname] is disallowed!</span>")
+		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
 		return
 	var/current_caller = GLOB.AdminProcCaller
-	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
-	if(!ckey)
+	var/user_identifier = usr ? usr.client?.ckey : GLOB.AdminProcCaller
+	var/is_remote_handler = usr == GLOB.AdminProcCallHandler
+	if(is_remote_handler)
+		user_identifier = GLOB.AdminProcCallHandler.name
+
+	if(!user_identifier)
 		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
-	if(current_caller && current_caller != ckey)
-		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
-			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
-			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, "<span class='adminnotice'>Running your proc</span>")
-			GLOB.AdminProcCallSpamPrevention -= ckey
-		else
-			UNTIL(!GLOB.AdminProcCaller)
+
+	if(!is_remote_handler && current_caller && current_caller != user_identifier)
+		to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running. Try again later.</span>")
+		return
+
 	GLOB.LastAdminCalledProc = procname
 	if(target != GLOBAL_PROC)
-		GLOB.LastAdminCalledTargetRef = "\ref[target]"
-	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
-	++GLOB.AdminProcCallCount
-	. = world.WrapAdminProcCall(target, procname, arguments)
-	if(--GLOB.AdminProcCallCount == 0)
-		GLOB.AdminProcCaller = null
+		GLOB.LastAdminCalledTargetRef = REF(target)
+
+	if(!is_remote_handler)
+		GLOB.AdminProcCaller = user_identifier //if this runtimes, too bad for you
+		++GLOB.AdminProcCallCount
+		. = world.WrapAdminProcCall(target, procname, arguments)
+		GLOB.AdminProcCallCount--
+		if(GLOB.AdminProcCallCount == 0)
+			GLOB.AdminProcCaller = null
+	else
+		. = world.WrapAdminProcCall(target, procname, arguments)
 
 //adv proc call this, ya nerds
 /world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
