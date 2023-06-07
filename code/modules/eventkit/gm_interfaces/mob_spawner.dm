@@ -24,8 +24,6 @@
 /datum/eventkit/mob_spawner/tgui_static_data(mob/user)
 	var/list/data = list()
 
-	data["mob_paths"] = typesof(/mob);
-
 	data["initial_x"] = usr.x;
 	data["initial_y"] = usr.y;
 	data["initial_z"] = usr.z;
@@ -43,12 +41,13 @@
 
 	data["path"] = path;
 
-	var/mob/M = new path();
-	if(M)
-		data["default_path_name"] = M.name;
-		data["default_desc"] = M.desc;
-		data["default_flavor_text"] = M.flavor_text;
-		qdel(M);
+	if(path)
+		var/mob/M = new path();
+		if(M)
+			data["default_path_name"] = M.name;
+			data["default_desc"] = M.desc;
+			data["default_flavor_text"] = M.flavor_text;
+			qdel(M);
 
 	return data
 
@@ -60,7 +59,11 @@
 		return
 	switch(action)
 		if("select_path")
-			path = params["path"]
+			var/list/choices = typesof(/mob)
+			var/newPath = tgui_input_list(usr, "Please select the new path of the mob you want to spawn.", items = choices)
+
+			path = newPath
+
 			return TRUE
 		if("loc_lock")
 			loc_lock = !loc_lock
@@ -76,6 +79,10 @@
 			var/x = params["x"]
 			var/y = params["y"]
 			var/z = params["z"]
+
+			if(!name)
+				to_chat(usr, "<span class='warning'>Name cannot be empty.</span>")
+				return FALSE
 
 			var/turf/T = locate(x, y, z)
 			if(!T)
