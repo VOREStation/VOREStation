@@ -1,14 +1,14 @@
 /**
-  * # Component
-  *
-  * The component datum
-  *
-  * A component should be a single standalone unit
-  * of functionality, that works by receiving signals from it's parent
-  * object to provide some single functionality (i.e a slippery component)
-  * that makes the object it's attached to cause people to slip over.
-  * Useful when you want shared behaviour independent of type inheritance
-  */
+ * # Component
+ *
+ * The component datum
+ *
+ * A component should be a single standalone unit
+ * of functionality, that works by receiving signals from it's parent
+ * object to provide some single functionality (i.e a slippery component)
+ * that makes the object it's attached to cause people to slip over.
+ * Useful when you want shared behaviour independent of type inheritance
+ */
 /datum/component
 	/**
 	  * Defines how duplicate existing components are handled when added to a datum
@@ -38,14 +38,17 @@
 	  */
 	var/can_transfer = FALSE
 
+	/// A lazy list of the sources for this component
+	var/list/sources
+
 /**
-  * Create a new component.
-  *
-  * Additional arguments are passed to [Initialize()][/datum/component/proc/Initialize]
-  *
-  * Arguments:
-  * * datum/P the parent datum this component reacts to signals from
-  */
+ * Create a new component.
+ *
+ * Additional arguments are passed to [Initialize()][/datum/component/proc/Initialize]
+ *
+ * Arguments:
+ * * datum/P the parent datum this component reacts to signals from
+ */
 /datum/component/New(list/raw_args)
 	parent = raw_args[1]
 	var/list/arguments = raw_args.Copy(2)
@@ -57,22 +60,24 @@
 	_JoinParent(parent)
 
 /**
-  * Called during component creation with the same arguments as in new excluding parent.
-  *
-  * Do not call `qdel(src)` from this function, `return COMPONENT_INCOMPATIBLE` instead
-  */
+ * Called during component creation with the same arguments as in new excluding parent.
+ *
+ * Do not call `qdel(src)` from this function, `return COMPONENT_INCOMPATIBLE` instead
+ */
 /datum/component/proc/Initialize(...)
 	return
 
 /**
-  * Properly removes the component from `parent` and cleans up references
-  *
-  * Arguments:
-  * * force - makes it not check for and remove the component from the parent
-  * * silent - deletes the component without sending a [COMSIG_COMPONENT_REMOVING] signal
-  */
+ * Properly removes the component from `parent` and cleans up references
+ *
+ * Arguments:
+ * * force - makes it not check for and remove the component from the parent
+ * * silent - deletes the component without sending a [COMSIG_COMPONENT_REMOVING] signal
+ */
 /datum/component/Destroy(force=FALSE, silent=FALSE)
-	if(!force && parent)
+	if(!parent)
+		return ..()
+	if(!force)
 		_RemoveFromParent()
 	if(!silent)
 		SEND_SIGNAL(parent, COMSIG_COMPONENT_REMOVING, src)
@@ -80,8 +85,8 @@
 	return ..()
 
 /**
-  * Internal proc to handle behaviour of components when joining a parent
-  */
+ * Internal proc to handle behaviour of components when joining a parent
+ */
 /datum/component/proc/_JoinParent()
 	var/datum/P = parent
 	//lazy init the parent's dc list
@@ -118,8 +123,8 @@
 	RegisterWithParent()
 
 /**
-  * Internal proc to handle behaviour when being removed from a parent
-  */
+ * Internal proc to handle behaviour when being removed from a parent
+ */
 /datum/component/proc/_RemoveFromParent()
 	var/datum/P = parent
 	var/list/dc = P.datum_components
@@ -139,23 +144,23 @@
 	UnregisterFromParent()
 
 /**
-  * Register the component with the parent object
-  *
-  * Use this proc to register with your parent object
-  *
-  * Overridable proc that's called when added to a new parent
-  */
+ * Register the component with the parent object
+ *
+ * Use this proc to register with your parent object
+ *
+ * Overridable proc that's called when added to a new parent
+ */
 /datum/component/proc/RegisterWithParent()
 	return
 
 /**
-  * Unregister from our parent object
-  *
-  * Use this proc to unregister from your parent object
-  *
-  * Overridable proc that's called when removed from a parent
-  * *
-  */
+ * Unregister from our parent object
+ *
+ * Use this proc to unregister from your parent object
+ *
+ * Overridable proc that's called when removed from a parent
+ * *
+ */
 /datum/component/proc/UnregisterFromParent()
 	return
 
@@ -511,13 +516,13 @@
 		target._JoinParent()
 
 /**
-  * Transfer all components to target
-  *
-  * All components from source datum are taken
-  *
-  * Arguments:
-  * * /datum/target the target to move the components to
-  */
+ * Transfer all components to target
+ *
+ * All components from source datum are taken
+ *
+ * Arguments:
+ * * /datum/target the target to move the components to
+ */
 /datum/proc/TransferComponents(datum/target)
 	var/list/dc = datum_components
 	if(!dc)
@@ -533,7 +538,7 @@
 			target.TakeComponent(comps)
 
 /**
-  * Return the object that is the host of any UI's that this component has
-  */
+ * Return the object that is the host of any UI's that this component has
+ */
 /datum/component/tgui_host()
 	return parent
