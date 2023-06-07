@@ -38,6 +38,8 @@
 	var/micro_size_mod = 0		// How different is our size for interactions that involve us being small?
 	var/macro_size_mod = 0		// How different is our size for interactions that involve us being big?
 	var/digestion_nutrition_modifier = 1
+	var/can_climb = FALSE
+	var/climbing_delay = 1.5	// We climb with a quarter delay
 
 
 /datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.

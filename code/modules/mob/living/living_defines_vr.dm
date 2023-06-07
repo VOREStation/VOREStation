@@ -14,3 +14,5 @@
 //custom temperature discomfort vars
 	var/list/custom_heat = list()
 	var/list/custom_cold = list()
+	var/can_climb = FALSE //Checked by turfs when using climb_wall(). Defined here for silicons and simple mobs
+	var/climbing_delay = 1.5 //By default, mobs climb at quarter speed. To be overriden by specific simple mobs or species speed

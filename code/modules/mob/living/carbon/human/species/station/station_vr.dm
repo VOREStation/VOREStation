@@ -319,6 +319,8 @@
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	wikilink="https://wiki.vore-station.net/Tajaran"
 	agility = 90
+	can_climb = TRUE
+	climbing_delay = 1.25 //No vassilian, but faster than a human who learned to climb!
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -387,7 +389,7 @@
 	tail_animation = 'icons/mob/species/vox/tail.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
 	color_mult = 1
-	
+
 	descriptors = list(
 		/datum/mob_descriptor/vox_markings = 0
 		)

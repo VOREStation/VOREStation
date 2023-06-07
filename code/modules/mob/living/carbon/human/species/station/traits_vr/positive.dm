@@ -218,3 +218,35 @@
 	cost = 1
 	var_changes = list("throwforce_absorb_threshold" = 10)
 
+
+
+
+/datum/trait/positive/wall_climber
+	name = "Climber"
+	desc = "You can climb certain walls without tools!"
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. You suffer from a movement delay of 1.5 with this trait.\n \
+	Your total climb time is expected to be 17.5 seconds. Tools may reduce this."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("can_climb" = TRUE)
+
+/datum/trait/positive/wall_climber_pro
+	name = "Climber, Master"
+	desc = "You can climb certain walls without tools! You are a professional rock climber at this, letting you climb as fast as a tajara!"
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. Your movement delay is just 1.25 with this trait.\n \
+	Your climb time is expected to be 9 seconds. Tools may reduce this. "
+	cost = 1
+	custom_only = FALSE
+	var_changes = list("can_climb" = TRUE, "climbing_delay" = 1.25)
+
+/datum/trait/positive/wall_climber_master
+	name = "Climber, Master"
+	desc = "You can climb certain walls without tools! You are a true master at this, letting you climb as a vassilian!"
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. Your movement delay is just 1.0 with this trait. \n \
+	Your climb time is expected to be 5 seconds."
+	cost = 2
+	custom_only = FALSE
+	var_changes = list("can_climb" = TRUE, "climbing_delay" = 1.0)

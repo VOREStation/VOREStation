@@ -82,3 +82,103 @@
 			return 0
 		if(direction == DOWN) //on a turf above, trying to enter
 			return 1
+
+/turf/simulated/proc/climb_wall()
+	set name = "Climb Wall"
+	set desc = "Using nature's gifts or technology, scale that wall!"
+	set category = "Object"
+	set src in oview(1)
+
+	if(!istype(usr, /mob/living)) return
+	var/mob/living/L = usr
+	var/climbing_delay_min = L.climbing_delay
+	var/fall_chance = 0
+	var/drop_our_held = FALSE
+
+	if(ishuman(L))
+		var/permit_human = FALSE
+		var/mob/living/carbon/human/H = L
+		if(H.species.climbing_delay < H.climbing_delay)
+			climbing_delay_min = H.species.climbing_delay
+		var/list/gear = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform,
+		H.gloves, H.shoes, H.belt, H.get_active_hand(), H.get_inactive_hand())
+		if(H.can_climb || H.species.can_climb)
+			permit_human = TRUE
+		for(var/obj/item/I in gear)
+			if(I.rock_climbing)
+				permit_human = TRUE
+				if(I.climbing_delay > climbing_delay_min)
+					climbing_delay_min = I.climbing_delay //We get the maximum possible speedup out of worn equipment
+		if(!permit_human)
+			var/sure = tgui_alert(H,"Are you sure you want to try without tools? It's VERY LIKELY \
+			you will fall and get hurt. More agile species might have better luck", "Second Thoughts", list("Bring it!", "Stay grounded"))
+			if(sure == "Stay grounded") return
+			fall_chance = clamp(100 - H.species.agility, 40, 90) //This should be 80 for most species. Traceur would reduce to 10%, so clamping higher
+	else if(!L.can_climb)
+		var/sure = tgui_alert(L,"Are you sure you want to try without tools? It's VERY LIKELY \
+			you will fall and get hurt. More agile species might have better luck", "Second Thoughts", list("Bring it!", "Stay grounded"))
+		if(sure == "Stay grounded") return
+		if(isrobot(L))
+			fall_chance = 80 // Robots get no mercy
+		else
+			fall_chance = 55  //Simple mobs do.
+		climbing_delay_min = 2
+	if(istype(L, /mob/living/simple_mob/vore/alienanimals/catslug))
+		var/obj/O = L.get_active_hand()
+		if(istype(O, /obj/item/weapon/material/twohanded/spear))
+			var/choice = tgui_alert(L, "Use your spear to climb faster? This will drop and break it!", "Scug Tactics", list("Yes!", "No"))
+			if(choice == "Yes!")
+				drop_our_held = TRUE
+				climbing_delay_min = 0.75
+
+
+
+	var/turf/above_wall = GetAbove(src)
+	if(!above_wall) //Should we even bother?
+		to_chat(L, SPAN_NOTICE("There's nothing interesting over this cliff!"))
+		return
+	//Making sure we got headroom
+	var/turf/above_mob = GetAbove(L)
+	if(!above_mob.CanZPass(L, UP))
+		to_chat(L, SPAN_WARNING("\The [above_mob] blocks your way."))
+		return
+	if(above_wall.density) //We check density rather than type since some walls dont have a floor on top.
+		to_chat(L, SPAN_WARNING("\The [above_wall] blocks your way."))
+		return
+	if(LAZYLEN(above_wall.contents) > 30) //We avoid checking the contents if it's too cluttered to avoid issues
+		to_chat(L, SPAN_WARNING("\The [above_wall] is too cluttered to climb onto!"))
+		return
+	for(var/atom/A in above_wall.contents)
+		if(A.density)
+			to_chat(L, SPAN_WARNING("\The [A.name] blocks your way!"))
+			return
+
+	// Climb time is 3.75 for scugs with spears (spear is dropped)
+	// Climb time is 5 for Master climbers, Vassilians, Well-geared humans
+	// Climb time is 9 for Tajara and Professional Climbers
+	// Climb time is 17.5 Seconds for amateur climbers
+	// Climb time is 20 seconds for scugs without a spear
+	// Climb time is 30 for gearless untrained people
+	var/climb_time = (5 * climbing_delay_min) SECONDS
+	if(fall_chance)
+		to_chat(L, SPAN_WARNING("You begin climbing over \The [src]. Getting a grip is exceedingly difficult..."))
+		climb_time += 20 SECONDS
+	else
+		to_chat(L, SPAN_NOTICE("You begin climbing above \The [src]! "))
+		if(climbing_delay_min > 1.25)
+			climb_time += 10 SECONDS
+		if(climbing_delay_min > 1.0)
+			climb_time += 2.5 SECONDS
+	L.custom_emote(VISIBLE_MESSAGE, "begins to climb up on \The [src]")
+	var/oops_time = world.time
+	to_chat(L, SPAN_WARNING("If you get interrupted after 4 seconds of climbing, you will fall and hurt yourself, beware!"))
+	if(do_after(L,climb_time))
+		if(prob(fall_chance))
+			to_chat(L, SPAN_DANGER("You slipped and fell!"))
+			L.forceMove(above_mob)
+		if(drop_our_held)
+			L.drop_item(get_turf(L))
+		L.forceMove(above_wall)
+		to_chat(L, SPAN_NOTICE("You clambered up successfully!"))
+	else if(world.time > (oops_time + 4 SECONDS))
+		L.forceMove(above_mob)
