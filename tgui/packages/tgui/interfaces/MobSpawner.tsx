@@ -1,6 +1,6 @@
 import { BooleanLike } from '../../common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Dropdown, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
+import { Button, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
