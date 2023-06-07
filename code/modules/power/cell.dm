@@ -25,6 +25,7 @@
 	var/self_recharge = FALSE // If true, the cell will recharge itself.
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
+	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	drop_sound = 'sound/items/drop/component.ogg'

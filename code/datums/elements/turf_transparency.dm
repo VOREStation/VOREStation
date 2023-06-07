@@ -14,8 +14,8 @@
 	our_turf.plane = OPENSPACE_PLANE
 	our_turf.layer = OPENSPACE_LAYER
 
-	RegisterSignal(target, COMSIG_TURF_MULTIZ_DEL, .proc/on_multiz_turf_del, override = TRUE)
-	RegisterSignal(target, COMSIG_TURF_MULTIZ_NEW, .proc/on_multiz_turf_new, override = TRUE)
+	RegisterSignal(target, COMSIG_TURF_MULTIZ_DEL, PROC_REF(on_multiz_turf_del), override = TRUE)
+	RegisterSignal(target, COMSIG_TURF_MULTIZ_NEW, PROC_REF(on_multiz_turf_new), override = TRUE)
 
 	update_multiz(our_turf, TRUE, TRUE)
 
@@ -75,12 +75,12 @@
 		if(!ispath(path))
 			warning("Z-level [our_turf] has invalid baseturf '[get_base_turf_by_area(our_turf)]' in area '[get_area(our_turf)]'")
 			path = /turf/space
-	
+
 	var/do_plane = ispath(path, /turf/space) ? SPACE_PLANE : null
 	var/do_state = ispath(path, /turf/space) ? "white" : initial(path.icon_state)
-	
+
 	var/mutable_appearance/underlay_appearance = mutable_appearance(initial(path.icon), do_state, layer = TURF_LAYER-0.02, plane = do_plane)
 	underlay_appearance.appearance_flags = RESET_ALPHA | RESET_COLOR
 	our_turf.underlays += underlay_appearance
-	
+
 	return TRUE

@@ -5,6 +5,7 @@
 	desc = "A tool used to take samples from plants."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "clippers"
+	random_color = FALSE
 
 /obj/item/weapon/tool/wirecutters/clippers/trimmers
     name = "hedgetrimmers"

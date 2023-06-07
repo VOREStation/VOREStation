@@ -69,7 +69,7 @@
 // Spawn a single ray at given location.
 /datum/event/ray_migration/proc/spawn_one_ray(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/ray(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_ray_destruction)
+	GLOB.destroyed_event.register(M, src, PROC_REF(on_ray_destruction))
 	spawned_ray.Add(M)
 	return M
 
@@ -83,7 +83,7 @@
 // If ray is bomphed, remove it from the list.
 /datum/event/ray_migration/proc/on_ray_destruction(var/mob/M)
 	spawned_ray -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_ray_destruction)
+	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_ray_destruction))
 
 /datum/event/ray_migration/end()
 	. = ..()

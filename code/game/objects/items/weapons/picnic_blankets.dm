@@ -33,6 +33,7 @@
 	var/blanket_type = CENTER
 	layer = HIDING_LAYER - 0.01 //Stuff shouldn't be able to hide under the blanket on the ground
 	var/list/attached_blankets = list()
+	anchored = TRUE
 
 /obj/structure/picnic_blanket_deployed/verb/fold_up()
 	set name = "Fold up"

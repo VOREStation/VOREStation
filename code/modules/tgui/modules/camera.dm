@@ -34,7 +34,7 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
-	
+
 	cam_plane_masters = get_tgui_plane_masters()
 
 	for(var/obj/screen/instance as anything in cam_plane_masters)
@@ -68,7 +68,7 @@
 
 /datum/tgui_module/camera/Destroy()
 	if(active_camera)
-		GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+		GLOB.moved_event.unregister(active_camera, src, PROC_REF(update_active_camera_screen))
 	active_camera = null
 	last_camera_turf = null
 	qdel(cam_screen)
@@ -131,7 +131,7 @@
 /datum/tgui_module/camera/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	if(action && !issilicon(usr))
 		playsound(tgui_host(), "terminal_type", 50, 1)
 
@@ -140,9 +140,9 @@
 		var/list/cameras = get_available_cameras(usr)
 		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		if(active_camera)
-			GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+			GLOB.moved_event.unregister(active_camera, src, PROC_REF(update_active_camera_screen))
 		active_camera = C
-		GLOB.moved_event.register(active_camera, src, .proc/update_active_camera_screen)
+		GLOB.moved_event.register(active_camera, src, PROC_REF(update_active_camera_screen))
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 		update_active_camera_screen()
 		return TRUE
@@ -167,9 +167,9 @@
 
 			if(target)
 				if(active_camera)
-					GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+					GLOB.moved_event.unregister(active_camera, src, PROC_REF(update_active_camera_screen))
 				active_camera = target
-				GLOB.moved_event.register(active_camera, src, .proc/update_active_camera_screen)
+				GLOB.moved_event.register(active_camera, src, PROC_REF(update_active_camera_screen))
 				playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 				update_active_camera_screen()
 				. = TRUE
@@ -273,7 +273,7 @@
 	// Turn off the console
 	if(length(concurrent_users) == 0 && is_living)
 		if(active_camera)
-			GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+			GLOB.moved_event.unregister(active_camera, src, PROC_REF(update_active_camera_screen))
 		active_camera = null
 		playsound(tgui_host(), 'sound/machines/terminal_off.ogg', 25, FALSE)
 
@@ -298,4 +298,3 @@
 
 /datum/tgui_module/camera/bigscreen/tgui_state(mob/user)
 	return GLOB.tgui_physical_state_bigscreen
-	

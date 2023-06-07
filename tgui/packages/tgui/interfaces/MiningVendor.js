@@ -2,7 +2,6 @@ import { createSearch } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
-import { refocusLayout } from '../layouts';
 import { MiningUser } from './common/Mining';
 
 const sortTypes = {
@@ -69,7 +68,7 @@ const MiningVendorItems = (props, context) => {
   });
   return (
     <Flex.Item grow="1" overflow="auto">
-      <Section onClick={(e) => refocusLayout()}>
+      <Section>
         {has_contents ? (
           contents
         ) : (

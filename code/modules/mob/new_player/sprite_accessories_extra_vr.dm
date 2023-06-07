@@ -981,3 +981,17 @@
 	icon_state = "nevrean_long"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_heterochromia_l
+	name = "Heterochromia (left eye)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "heterochromia_l"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_teshi_heterochromia_l
+	name = "Heterochromia (Teshari) (left eye)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "teshi_heterochromia_l"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
