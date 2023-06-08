@@ -191,7 +191,8 @@
 			"belly_fullscreen" = selected.belly_fullscreen,
 			"belly_fullscreen_color" = selected.belly_fullscreen_color,
 			"colorization_enabled" = selected.colorization_enabled,
-			"eating_privacy_local" = selected.eating_privacy_local
+			"eating_privacy_local" = selected.eating_privacy_local,
+			"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference
 		)
 
 		var/list/addons = list()
@@ -1114,6 +1115,16 @@
 			if(privacy_choice == null)
 				return FALSE
 			host.vore_selected.eating_privacy_local = privacy_choice
+			. = TRUE
+		if("b_silicon_belly")
+			var/belly_choice = tgui_input_list(usr, "Choose whether you'd like your belly overlay to show from sleepers \
+			or from normal vore bellies. NOTE: This ONLY applies to silicons, not human mobs!", "Belly Overlay Preference",
+			list("Sleeper", "Vorebelly"), "Sleeper")
+			if(belly_choice == null)
+				return FALSE
+			host.vore_selected.silicon_belly_overlay_preference = belly_choice
+
+			host.updateicon()
 			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore

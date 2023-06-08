@@ -55,6 +55,7 @@
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
+	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -228,7 +229,8 @@
 	"colorization_enabled",
 	"egg_type",
 	"save_digest_mode",
-	"eating_privacy_local"
+	"eating_privacy_local",
+	"silicon_belly_overlay_preference"
 	)
 
 	if (save_digest_mode == 1)
@@ -1214,6 +1216,7 @@
 	dupe.selective_preference = selective_preference
 	dupe.save_digest_mode = save_digest_mode
 	dupe.eating_privacy_local = eating_privacy_local
+	dupe.silicon_belly_overlay_preference = silicon_belly_overlay_preference
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

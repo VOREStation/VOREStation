@@ -665,6 +665,8 @@
 	else
 		belly.nom_mob(prey, user)
 
+	user.updateicon()
+
 	// Inform Admins
 	if(pred == user)
 		add_attack_logs(pred, prey, "Eaten via [belly.name]")

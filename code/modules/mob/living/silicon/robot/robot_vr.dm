@@ -1,6 +1,6 @@
 /mob/living/silicon/robot
-	var/sleeper_g
-	var/sleeper_r
+	var/sleeper_g //Set to True only for Medical mechs when patient alive
+	var/sleeper_r //Used in every other case. Currently also for Vorebellies. Ideally vorebellies will use sleeper_o once icons are made
 	var/leaping = 0
 	var/pounce_cooldown = 0
 	var/pounce_cooldown_time = 40
@@ -110,10 +110,14 @@
 	vr_sprite_check()
 	..()
 	if(dogborg == TRUE && stat == CONSCIOUS)
-		if(sleeper_g == TRUE)
-			add_overlay("[module_sprites[icontype]]-sleeper_g")
-		if(sleeper_r == TRUE)
-			add_overlay("[module_sprites[icontype]]-sleeper_r")
+		if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
+			if(sleeper_g == TRUE)
+				add_overlay("[module_sprites[icontype]]-sleeper_g")
+			if(sleeper_r == TRUE)
+				add_overlay("[module_sprites[icontype]]-sleeper_r")
+		else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
+			if(LAZYLEN(vore_selected.contents) >= 1)
+				add_overlay("[module_sprites[icontype]]-sleeper_r")
 		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
 			add_overlay("laser")
 		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))

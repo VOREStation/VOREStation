@@ -544,6 +544,7 @@ const VoreSelectedBellyOptions = (props, context) => {
     selective_preference,
     save_digest_mode,
     eating_privacy_local,
+    silicon_belly_overlay_preference,
   } = belly;
 
   return (
@@ -627,6 +628,14 @@ const VoreSelectedBellyOptions = (props, context) => {
                 act('set_attribute', { attribute: 'b_eating_privacy' })
               }
               content={capitalize(eating_privacy_local)}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Toggle Silicon Belly">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_silicon_belly' })
+              }
+              content={capitalize(silicon_belly_overlay_preference)}
             />
           </LabeledList.Item>
 
