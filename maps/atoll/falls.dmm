@@ -6,6 +6,7 @@
 "aD" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang,/obj/structure/flora/tree/atoll/mangrove{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "aE" = (/obj/structure/canopy_corner{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "aJ" = (/obj/effect/floor_decal/atoll/border{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"aM" = (/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "aN" = (/obj/structure/flora/tree/atoll/mangrove,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "aO" = (/obj/structure/canopy/edge/north,/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "aP" = (/obj/effect/floor_decal/atoll/bronze{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -33,7 +34,7 @@
 "cz" = (/obj/structure/canopy,/obj/structure/aqueduct/corner{dir = 9},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "cA" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang,/obj/effect/decal/shadow/silhouette/support,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "cE" = (/obj/structure/waterfall,/obj/structure/canopy/edge,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"cG" = (/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"cG" = (/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/obj/effect/floor_decal/atoll/border{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "cH" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "cS" = (/obj/structure/aqueduct/pillar,/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "cU" = (/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 9},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -60,11 +61,13 @@
 "ev" = (/obj/machinery/gateway{dir = 8},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ey" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "eA" = (/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 10},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"eC" = (/obj/effect/blocker,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "eG" = (/obj/structure/waterfall,/obj/structure/railing/overhang/waterless,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "eJ" = (/obj/effect/floor_decal/atoll/border{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "eN" = (/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/bronze{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "eX" = (/obj/structure/canopy/edge/south,/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "fj" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"fq" = (/obj/effect/floor_decal/atoll/bronze{dir = 5},/obj/structure/bed/chair/sofa/bench/marble,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "fu" = (/obj/structure/waterfall,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/waterfall/mist,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "fG" = (/obj/structure/railing/overhang,/obj/effect/decal/shadow/silhouette/support,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "fH" = (/obj/effect/floor_decal/atoll/power,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -75,6 +78,7 @@
 "go" = (/obj/structure/canopy,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "gs" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "gv" = (/obj/structure/canopy,/obj/effect/blocker,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"gw" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/effect/decal/shadow/silhouette,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "gx" = (/obj/structure/canopy/edge,/obj/effect/decal/godray{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "gy" = (/obj/effect/floor_decal/atoll/border{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "gz" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 40; teleport_y = 50},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -96,7 +100,7 @@
 "hz" = (/obj/structure/canopy,/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "hI" = (/obj/structure/canopy,/obj/structure/railing/overhang/waterless,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "hQ" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border/invert{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
-"hV" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"hV" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "hW" = (/obj/structure/canopy/edge/south,/obj/structure/canopy/edge/north,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "hX" = (/obj/structure/flora/tree/atoll/mangrove{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ic" = (/obj/structure/waterfall,/obj/effect/blocker,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -107,7 +111,9 @@
 "il" = (/obj/structure/canopy/edge/north,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ir" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "it" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang,/obj/effect/decal/shadow/silhouette/pillar{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"iy" = (/obj/structure/aqueduct,/obj/structure/canopy_corner{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "iz" = (/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"iF" = (/obj/effect/blocker,/obj/effect/decal/shadow,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "iJ" = (/obj/structure/canopy,/obj/structure/aqueduct/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "iN" = (/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "iS" = (/obj/effect/decal/shadow,/obj/effect/floor_decal/atoll/stairs,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -117,15 +123,18 @@
 "jx" = (/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "jD" = (/obj/effect/floor_decal/atoll/border{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "jE" = (/obj/effect/decal/godray{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"jF" = (/obj/structure/aqueduct{dir = 1},/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "jK" = (/obj/structure/waterfall,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "jM" = (/obj/effect/decal/shadow/floor,/obj/structure/waterfall,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "jO" = (/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "jP" = (/obj/structure/canopy/edge/south,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"jW" = (/obj/structure/canopy/edge/south,/obj/vehicle/boat{icon_state = "boat"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"jT" = (/obj/structure/canopy/edge/north,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"jW" = (/obj/structure/canopy/edge/south,/obj/vehicle/boat{icon_state = "boat"; dir = 8},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "jX" = (/obj/structure/railing/overhang/waterless,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "jZ" = (/obj/structure/canopy/edge/north,/obj/structure/temple,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ka" = (/obj/structure/waterfall,/obj/structure/canopy_corner,/obj/effect/blocker,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "kh" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"km" = (/obj/effect/blocker,/obj/structure/canopy,/obj/structure/railing/overhang/waterless,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ko" = (/obj/effect/blocker,/obj/structure/canopy_corner{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "kO" = (/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/border/invert{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "kQ" = (/obj/structure/canopy/edge/north,/obj/effect/decal/godray{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -134,6 +143,8 @@
 "ld" = (/obj/structure/canopy/edge/north,/obj/effect/decal/godray,/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
 "lh" = (/obj/effect/floor_decal/atoll/border{dir = 4},/obj/structure/aqueduct,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ll" = (/obj/structure/railing/overhang/waterless,/obj/structure/flora/tree/atoll/mangrove{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"lq" = (/obj/effect/floor_decal/atoll/bronze{dir = 9},/obj/structure/bed/chair/sofa/bench/marble,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"lu" = (/obj/structure/canopy/edge/north,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "lv" = (/obj/effect/blocker,/obj/structure/canopy,/obj/structure/aqueduct{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "lH" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "lI" = (/obj/structure/canopy/edge/north,/obj/effect/decal/godray,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -147,6 +158,7 @@
 "lX" = (/obj/structure/waterfall/top,/obj/structure/canopy/edge,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "mh" = (/obj/effect/decal/shadow/silhouette/support,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "mo" = (/obj/structure/canopy/edge,/obj/effect/decal/godray,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"ms" = (/obj/effect/blocker,/obj/effect/floor_decal/atoll/bronze{dir = 9},/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "mv" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "mC" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/structure/canopy/edge/right,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "mL" = (/obj/effect/blocker,/obj/structure/canopy/edge/north,/obj/structure/flora/tree/atoll/mangrove{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -166,6 +178,7 @@
 "nX" = (/obj/structure/canopy,/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "nY" = (/obj/structure/canopy/edge/north,/obj/effect/decal/godray{dir = 8},/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ob" = (/obj/structure/monolith/fifth,/obj/effect/decal/godray,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"of" = (/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/border/invert{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "oi" = (/obj/structure/railing/overhang/waterless/under{dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "or" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 44; teleport_y = 50},/obj/effect/floor_decal/atoll/border{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ov" = (/obj/effect/decal/shadow/silhouette,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -175,7 +188,8 @@
 "oF" = (/obj/effect/floor_decal/atoll/border{dir = 5},/obj/structure/bed/chair/sofa/bench/marble,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "oK" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "oR" = (/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
-"oV" = (/obj/effect/floor_decal/atoll/bronze{dir = 6},/obj/effect/floor_decal/atoll/border/invert{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"oV" = (/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 6},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"oW" = (/obj/effect/floor_decal/atoll/bronze{dir = 10},/obj/effect/floor_decal/atoll/border/invert{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "pb" = (/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "pj" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/effect/decal/shadow,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "pl" = (/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -184,6 +198,7 @@
 "pA" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 15; teleport_y = 116},/obj/effect/floor_decal/atoll/border{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "pV" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/canopy_corner{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "pX" = (/obj/effect/decal/shadow/silhouette,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"qa" = (/obj/structure/aqueduct{dir = 1},/obj/structure/canopy_corner{dir = 1},/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "qb" = (/obj/structure/monolith/fourth,/obj/effect/decal/godray,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "qk" = (/obj/effect/floor_decal/atoll/border{dir = 6},/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ql" = (/obj/structure/canopy/edge,/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
@@ -195,8 +210,9 @@
 "qK" = (/obj/effect/floor_decal/atoll/border{dir = 6},/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/step_trigger/teleporter/atoll{teleport_x = 32; teleport_y = 117},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "qS" = (/obj/structure/aqueduct/pillar{dir = 4},/obj/structure/canopy_corner{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "qW" = (/obj/structure/canopy_corner,/obj/structure/flora/tree/atoll/mangrove,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"qY" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"qY" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "rb" = (/obj/structure/canopy,/obj/effect/decal/godray{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"rc" = (/obj/structure/aqueduct,/obj/structure/aqueduct/pillar{dir = 1},/obj/effect/decal/shadow/silhouette,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "rg" = (/obj/effect/decal/shadow/floor,/obj/effect/decal/shadow/silhouette,/obj/structure/waterfall,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ri" = (/obj/structure/canopy,/obj/effect/decal/godray{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "rj" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -204,6 +220,7 @@
 "rs" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "ru" = (/obj/effect/blocker,/obj/structure/canopy,/obj/structure/temple,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ry" = (/obj/structure/canopy/edge/south,/obj/structure/railing/overhang,/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"rB" = (/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border/invert{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "rE" = (/obj/structure/waterfall,/obj/structure/waterfall/mist,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "rH" = (/obj/effect/decal/shadow/silhouette,/obj/structure/railing/overhang/waterless,/obj/structure/flora/tree/atoll/mangrove{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "rK" = (/obj/effect/floor_decal/atoll{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -213,28 +230,36 @@
 "so" = (/obj/structure/railing/overhang/waterless,/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "sr" = (/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "sE" = (/obj/effect/decal/shadow/floor,/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
+"sH" = (/obj/vehicle/boat{icon_state = "boat"; dir = 4},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
 "sI" = (/obj/structure/aqueduct,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "sN" = (/obj/structure/waterfall,/obj/structure/railing/overhang/waterless,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "sU" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang,/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"sV" = (/obj/structure/canopy,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "sX" = (/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "sY" = (/obj/structure/waterfall/top,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "sZ" = (/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "tf" = (/obj/structure/canopy_corner{dir = 1},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"tl" = (/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/border{dir = 5},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "to" = (/obj/structure/canopy/edge/south,/obj/structure/aqueduct/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "tr" = (/obj/structure/waterfall/mist,/obj/structure/waterfall,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "tt" = (/obj/effect/floor_decal/atoll/bronze{dir = 10},/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "tu" = (/obj/effect/decal/shadow/floor,/obj/structure/waterfall,/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"tz" = (/obj/structure/aqueduct{dir = 1},/obj/structure/canopy_corner,/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "tB" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "tD" = (/obj/effect/decal/shadow/silhouette/pillar,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"tJ" = (/obj/structure/canopy_corner{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "tM" = (/obj/structure/canopy/edge/right,/obj/structure/canopy/edge,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "tP" = (/obj/structure/canopy/edge/north,/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"tS" = (/obj/structure/canopy/edge/right,/obj/effect/decal/shadow/silhouette,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "tT" = (/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"tV" = (/obj/structure/aqueduct,/obj/effect/decal/shadow/silhouette,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "tX" = (/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
 "tY" = (/obj/effect/floor_decal/atoll,/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ub" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "ud" = (/obj/structure/canopy_corner{dir = 4},/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ug" = (/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "ui" = (/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/border{dir = 1},/obj/effect/landmark,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"uj" = (/obj/effect/blocker,/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "uo" = (/obj/structure/waterfall,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "uv" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/effect/decal/shadow/silhouette/pillar{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "uA" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
@@ -246,9 +271,11 @@
 "vl" = (/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "vm" = (/obj/effect/floor_decal/atoll/border/invert{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "vn" = (/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"vp" = (/obj/effect/blocker,/obj/structure/aqueduct,/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "vy" = (/obj/structure/waterfall/top,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "vI" = (/obj/structure/waterfall/top,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/structure/canopy/edge,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "vK" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
+"vM" = (/obj/structure/aqueduct/pillar{dir = 4},/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "vQ" = (/obj/structure/canopy,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "vT" = (/obj/effect/decal/shadow/silhouette,/obj/structure/canopy/edge/right,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "vW" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -286,12 +313,14 @@
 "yz" = (/obj/structure/waterfall/top,/obj/structure/aqueduct{dir = 8},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "yD" = (/obj/structure/waterfall,/obj/structure/waterfall/mist,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "yE" = (/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/landmark,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"yF" = (/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/obj/effect/floor_decal/atoll/border{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "yI" = (/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/border{dir = 9},/obj/effect/step_trigger/teleporter/atoll{teleport_x = 17; teleport_y = 124},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "yJ" = (/obj/effect/floor_decal/atoll/border{dir = 8},/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "yM" = (/obj/structure/canopy,/obj/effect/blocker,/obj/structure/aqueduct{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "yW" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 73; teleport_y = 50},/obj/effect/floor_decal/atoll/border{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "zb" = (/obj/structure/waterfall/top,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "zc" = (/obj/machinery/gateway{dir = 5},/obj/effect/floor_decal/atoll/border{dir = 5},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"zd" = (/obj/effect/floor_decal/atoll/bronze{dir = 10},/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "zh" = (/obj/structure/canopy/edge,/obj/structure/canopy/edge/right,/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "zk" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "zt" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -301,6 +330,7 @@
 "zE" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "zN" = (/obj/structure/aqueduct/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "zO" = (/obj/structure/aqueduct/pillar,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"zR" = (/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "zU" = (/obj/effect/blocker,/obj/structure/canopy/edge/north,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "zY" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ae" = (/obj/effect/floor_decal/atoll/border,/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -322,10 +352,11 @@
 "Bh" = (/obj/structure/railing/overhang,/obj/structure/flora/tree/atoll/mangrove,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Bo" = (/obj/structure/canopy/edge/south,/obj/effect/decal/godray{dir = 1},/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
 "Bq" = (/obj/structure/waterfall,/obj/structure/canopy/edge,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
+"BA" = (/obj/structure/aqueduct,/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "BB" = (/obj/effect/floor_decal/atoll/stairs,/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "BF" = (/obj/effect/floor_decal/atoll/border,/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/border/invert,/obj/effect/landmark,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "BH" = (/obj/structure/canopy,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"BL" = (/obj/structure/bed/chair/sofa/bench/marble,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"BL" = (/obj/structure/bed/chair/sofa/bench/marble,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/border,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Cb" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Cd" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Ce" = (/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -335,6 +366,7 @@
 "Cr" = (/obj/structure/railing/overhang/waterless/under{dir = 1},/obj/structure/railing/overhang/waterless/under{dir = 4},/obj/structure/waterfall,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "Cs" = (/obj/structure/railing/overhang/waterless/under{dir = 1},/obj/structure/waterfall,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "Cw" = (/obj/effect/landmark,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"Cz" = (/obj/structure/aqueduct,/obj/structure/aqueduct/pillar{dir = 1},/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "CH" = (/obj/effect/floor_decal/atoll/bronze{dir = 10},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "CL" = (/obj/structure/canopy_corner,/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "CM" = (/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
@@ -346,6 +378,7 @@
 "Dl" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Do" = (/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border{dir = 6},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Dp" = (/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"Dq" = (/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Du" = (/obj/effect/floor_decal/atoll/border,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Dw" = (/obj/structure/canopy_corner,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Dy" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 12; teleport_y = 50},/obj/effect/floor_decal/atoll/border{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -354,12 +387,13 @@
 "DI" = (/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "DJ" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "DM" = (/obj/structure/lightpost/atoll,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"DO" = (/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "DV" = (/obj/structure/railing/overhang/waterless/under{dir = 1},/obj/structure/railing/overhang/waterless/under{dir = 8},/obj/structure/waterfall,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "Eb" = (/obj/effect/blocker,/obj/structure/canopy/edge,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ej" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/structure/canopy/edge/north,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Em" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ep" = (/obj/structure/canopy_corner{dir = 1},/obj/structure/flora/tree/atoll/mangrove,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"Eq" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/vehicle/boat{icon_state = "boat"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"Eq" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/vehicle/boat{icon_state = "boat"; dir = 8},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Er" = (/obj/structure/bed/chair/sofa/bench/marble,/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Et" = (/obj/structure/railing/overhang,/obj/structure/flora/tree/atoll/mangrove{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ev" = (/obj/effect/floor_decal/atoll/border{dir = 8},/obj/structure/aqueduct,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -372,6 +406,7 @@
 "EW" = (/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "EY" = (/obj/effect/blocker,/obj/structure/canopy,/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Fb" = (/obj/structure/canopy/edge/north,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"Ff" = (/obj/vehicle/boat{icon_state = "boat"; dir = 8},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Fg" = (/obj/effect/floor_decal/atoll{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Fr" = (/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Fw" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -399,6 +434,7 @@
 "GG" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "GL" = (/obj/effect/floor_decal/atoll,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "GO" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
+"GP" = (/obj/structure/canopy,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ha" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/flora/tree/atoll/mangrove{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Hb" = (/obj/structure/canopy_corner{dir = 4},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Hi" = (/obj/structure/waterfall,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
@@ -440,6 +476,7 @@
 "Kx" = (/obj/structure/canopy/edge/south,/obj/structure/aqueduct{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "KD" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 71; teleport_y = 82},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "KG" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 1},/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"KL" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/obj/structure/canopy_corner{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "KM" = (/obj/structure/temple,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "KN" = (/obj/structure/monolith/first,/obj/effect/decal/godray,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "KT" = (/obj/effect/blocker,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/waterfall,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -447,6 +484,7 @@
 "KZ" = (/obj/structure/aqueduct{dir = 8},/obj/structure/canopy/edge,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Lb" = (/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/obj/effect/blocker,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "Lc" = (/obj/structure/waterfall,/obj/effect/decal/shadow/floor,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"Lg" = (/obj/effect/floor_decal/atoll/bronze{dir = 6},/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Lj" = (/obj/structure/canopy,/obj/structure/aqueduct{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Lr" = (/obj/structure/canopy/edge/south,/obj/structure/canopy_corner{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ls" = (/obj/structure/railing/overhang,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -472,7 +510,9 @@
 "My" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "MD" = (/obj/effect/decal/godray{dir = 4},/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
 "MM" = (/obj/effect/floor_decal/atoll/border{dir = 5},/obj/effect/floor_decal/atoll/bronze{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"MR" = (/obj/effect/blocker,/obj/structure/canopy_corner,/obj/effect/decal/shadow/silhouette,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Nf" = (/obj/effect/decal/shadow,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/obj/structure/railing/overhang/waterless,/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
+"Nh" = (/obj/effect/blocker,/obj/effect/floor_decal/atoll/bronze{dir = 10},/obj/effect/floor_decal/atoll/border/invert{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Nn" = (/obj/effect/floor_decal/atoll/stairs,/obj/effect/decal/shadow,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "No" = (/obj/effect/decal/shadow/silhouette,/obj/structure/canopy,/obj/structure/railing/overhang/waterless,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ns" = (/obj/structure/canopy/edge/north,/obj/structure/canopy/edge/south,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -492,6 +532,7 @@
 "OH" = (/obj/structure/canopy_corner{dir = 4},/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "OI" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Pd" = (/obj/structure/railing/overhang,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"Pe" = (/obj/structure/canopy_corner,/obj/structure/railing/overhang/waterless,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Pk" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 100; teleport_y = 50},/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/border/invert{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Pm" = (/obj/effect/floor_decal/atoll/bronze{dir = 6},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Pn" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -520,14 +561,16 @@
 "Rd" = (/obj/effect/decal/shadow,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/obj/structure/railing/overhang/waterless,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/effect/blocker,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "Rf" = (/obj/structure/aqueduct/pillar{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Rg" = (/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert,/obj/effect/landmark,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"Rl" = (/obj/structure/aqueduct{dir = 1},/obj/structure/canopy/edge/right,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Rn" = (/obj/structure/canopy_corner{dir = 4},/obj/structure/aqueduct{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Rw" = (/obj/structure/waterfall/top,/obj/structure/aqueduct{dir = 4},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "RE" = (/obj/effect/decal/shadow,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 1},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
-"RF" = (/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"RF" = (/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "RG" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/effect/decal/godray{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "RR" = (/obj/effect/floor_decal/atoll/bronze{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "RS" = (/obj/structure/canopy_corner,/turf/simulated/floor/water/atoll/sunk,/area/gateway/atoll/falls)
 "RV" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/effect/blocker,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"RW" = (/obj/structure/aqueduct/pillar{dir = 1},/obj/structure/canopy_corner{dir = 8},/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Si" = (/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/obj/structure/canopy/edge/north,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Sk" = (/obj/effect/floor_decal/atoll/border/invert,/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Sn" = (/obj/structure/canopy/edge/north,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -540,6 +583,7 @@
 "SN" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border/invert{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "SO" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/obj/effect/decal/shadow/silhouette,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "SR" = (/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/decal/godray,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"Tb" = (/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/border{dir = 9},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Td" = (/obj/structure/waterfall,/obj/structure/waterfall/mist,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Tg" = (/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/obj/structure/flora/tree/atoll/mangrove{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ti" = (/obj/structure/waterfall/top,/obj/structure/canopy/edge/south,/obj/structure/aqueduct{dir = 8},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
@@ -549,6 +593,7 @@
 "TA" = (/obj/machinery/gateway{dir = 6},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "TD" = (/obj/structure/temple,/obj/structure/flora/tree/atoll/mangrove{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "TF" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/canopy/edge/north,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"TH" = (/obj/structure/aqueduct{dir = 1},/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "TI" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border/invert{dir = 4},/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "TM" = (/obj/structure/waterfall,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "TR" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 83; teleport_y = 50},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -565,28 +610,31 @@
 "Vb" = (/obj/machinery/gateway,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Vc" = (/obj/effect/floor_decal/atoll/bronze{dir = 6},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Vd" = (/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/border{dir = 10},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
-"Ve" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/vehicle/boat{icon_state = "boat"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"Ve" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/vehicle/boat{icon_state = "boat"; dir = 4},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Vg" = (/obj/effect/blocker,/obj/structure/canopy/edge/south,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Vk" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll{dir = 8},/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"Vn" = (/obj/structure/aqueduct/pillar{dir = 4},/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Vp" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/border{dir = 9},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Vs" = (/obj/effect/decal/shadow/silhouette,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Vx" = (/obj/effect/blocker,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "VM" = (/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "VQ" = (/obj/structure/canopy/edge,/obj/structure/canopy/edge/right,/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"VT" = (/obj/structure/railing/overhang,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"VT" = (/obj/structure/railing/overhang,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "VZ" = (/obj/structure/canopy_corner{dir = 1},/obj/structure/aqueduct,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Wc" = (/obj/effect/decal/shadow/silhouette,/obj/structure/flora/tree/atoll/mangrove{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Wj" = (/obj/structure/canopy,/obj/structure/aqueduct{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Wk" = (/obj/structure/waterfall/top,/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
+"Wm" = (/obj/effect/blocker,/obj/structure/aqueduct{dir = 1},/obj/structure/canopy,/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Wp" = (/obj/effect/floor_decal/atoll/bronze{dir = 4},/obj/effect/floor_decal/atoll/bronze,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Ww" = (/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/border{dir = 1},/obj/effect/decal/godray{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "WA" = (/obj/effect/floor_decal/atoll{dir = 4},/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "WK" = (/obj/effect/floor_decal/atoll/stairs,/obj/effect/decal/shadow,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "WM" = (/obj/effect/decal/shadow/floor,/obj/effect/floor_decal/atoll/border{dir = 4},/obj/effect/floor_decal/atoll/bronze{dir = 1},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
-"WP" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/vehicle/boat{icon_state = "boat"; dir = 4},/obj/effect/decal/godray{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"WO" = (/obj/structure/canopy_corner{dir = 8},/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"WP" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/vehicle/boat{icon_state = "boat"; dir = 4},/obj/effect/decal/godray{dir = 1},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "WQ" = (/obj/structure/canopy_corner,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "WS" = (/obj/effect/floor_decal/atoll/border{dir = 6},/obj/structure/bed/chair/sofa/bench/marble{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
-"WV" = (/obj/vehicle/boat{icon_state = "boat"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"WV" = (/obj/vehicle/boat{icon_state = "boat"; dir = 4},/obj/item/weapon/oar,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "WW" = (/obj/effect/floor_decal/atoll/border{dir = 4},/obj/effect/floor_decal/atoll/border{dir = 8},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "WX" = (/obj/effect/floor_decal/atoll/bronze{dir = 8},/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/bronze{dir = 1},/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Xa" = (/obj/effect/floor_decal/atoll/border{dir = 10},/obj/structure/bed/chair/sofa/bench/marble{dir = 4},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
@@ -603,14 +651,18 @@
 "XR" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 14; teleport_y = 117},/obj/effect/floor_decal/atoll/border/invert{dir = 1},/obj/effect/floor_decal/atoll/bronze,/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "XX" = (/obj/structure/railing/overhang/waterless{icon_state = "wbronze_railing0"; dir = 4},/obj/structure/canopy/edge,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ya" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/canopy/edge/north,/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"Yb" = (/obj/structure/canopy_corner{dir = 8},/obj/structure/railing/overhang/waterless,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Ym" = (/obj/effect/floor_decal/atoll/border/invert{dir = 8},/obj/effect/floor_decal/atoll/border{dir = 5},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Yn" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/effect/decal/shadow/silhouette/support,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Yv" = (/obj/effect/step_trigger/teleporter/atoll{teleport_x = 57; teleport_y = 50},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
 "Yw" = (/obj/structure/waterfall,/obj/structure/aqueduct{dir = 4},/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
+"Yy" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/effect/decal/shadow/silhouette/pillar{dir = 4},/obj/structure/canopy/edge/right,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "YC" = (/obj/structure/waterfall,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
+"YE" = (/obj/effect/decal/shadow/silhouette/support,/obj/structure/canopy,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "YG" = (/obj/structure/flora/tree/atoll/mangrove{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "YH" = (/obj/structure/canopy/edge/north,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 4},/obj/effect/decal/shadow/silhouette/support,/obj/effect/decal/godray{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "YK" = (/obj/machinery/gateway{dir = 9},/obj/effect/floor_decal/atoll/border{dir = 9},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"YL" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/canopy_corner{dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Za" = (/obj/structure/waterfall,/obj/structure/waterfall/mist,/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Zb" = (/obj/structure/flora/tree/atoll/mangrove{dir = 4},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "Zf" = (/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 8},/obj/structure/railing/overhang{icon_state = "bronze_railing0"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
@@ -625,7 +677,8 @@
 "ZM" = (/obj/effect/decal/shadow{icon_state = "wall_shadow"; dir = 1},/obj/structure/railing/overhang/waterless,/obj/effect/blocker,/turf/simulated/floor/atoll/vertical,/area/gateway/atoll/falls)
 "ZN" = (/obj/structure/aqueduct/pillar{dir = 4},/obj/structure/canopy_corner{dir = 8},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 "ZP" = (/obj/structure/waterfall,/obj/structure/aqueduct{dir = 8},/obj/structure/waterfall/mist,/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
-"ZQ" = (/obj/effect/floor_decal/atoll/bronze{dir = 10},/obj/effect/floor_decal/atoll/border/invert,/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"ZQ" = (/obj/effect/floor_decal/atoll/border/invert,/obj/effect/floor_decal/atoll/bronze{dir = 10},/turf/simulated/floor/atoll,/area/gateway/atoll/falls)
+"ZX" = (/obj/structure/canopy_corner{dir = 1},/obj/effect/decal/shadow/silhouette{icon_state = "silhouette"; dir = 1},/turf/simulated/floor/water/atoll,/area/gateway/atoll/falls)
 
 (1,1,1) = {"
 FrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrLjhhFrFrWQqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnlaVMPnqnqnqnqn
@@ -641,56 +694,56 @@ FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrLjhhFrFrFrFrFrBqHiHiHiHiHiHiHiHiHiGoHiHiHiHiHi
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrLjhhFrFrFrFrFrvcHiHiHiHiHiHiHiHiHiGoHiHiHiHiHiHiHiHiHiGoHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiGoZoqyhjVMVMVMGhhpsNGoHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiGoHiHiHiHiHiHiHiHiHiGoHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiGoHiHiHiHiHiHiHiHiKcGoHiHiHiHiHi
 WjWjWjWjWjWjNuWjWjWjWjWjWjWjWjWjWjFrFrFrFrFrFrFrFrcEjKjKjKjKjKjKjKjKGoHiHiHiHiHiHiHiHiHiGojKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKGOqyFgciGqGqGqFgcihpxsjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKGoHiHiHiHiHiHiHiHiHiGojKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKGoHiHiHiHiHiHiHiHiKcGojKjKjKjKjK
 nXnXnXnXnXnXEYnXGvnXnXnXGvnXnXnXGvczFrFrFrFrFrFrFrAhwrwrwrwrwrwrwrwrGoHiHiHiHiHiHiHiHiHiGowrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrGOaWGLxogditgdgSrKaJxstrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrtrGoHiHiHiHiHiHiHiHiHiGowrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrGoHiHiHiHiHiHiHiHiKcGowrwrwrwrwr
-FrFrFrFrFrFrlPFriJFrFrFriJFrFrFriJFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGOaWWWPnlaKNPnHaWWaJxsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiKcGoqnqnqnqnqn
-FrFrFrFrFrFrlPFriJFrLTaEiJFrFrFrHshIhIFrFrFrFrFrFrzCtXtXqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGOaWFgaDgIsUgIPHciaJxsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiKcGoqnqnqnqnqn
-FrFrFrFrFrFrlPLTQoLrWQqntoaEFrBHXRWwkOaRFrFrFrFrFrzCjxjxqnqnqnqnqnqnUZHiHiHiHiHiHiHiHiHiUZqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnHDaWGLrKGqGqGqGLrKaJpjqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnUZHiHiHiHiHiHiHiHiHiUZqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnUZHiHiHiHiHiHiHiHiKcUZqnqnqnqnqn
-FrFrFrFrFrFrlPzCmhFrFrWQFVhuFrBHSKLMHQaRFrFrFrFrLTqnqnqnqnqnqnqnqnqnCMjKjKjKjKjKjKjKjKjKCMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnubaWiNjDjDjDjDjDvmaJnDqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnCMjKjKjKjKjKjKjKjKjKCMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnCMjKjKjKjKjKjKjKjKicCMqnqnqnqnqn
-FrFrFrFrFrFrlPWQhuFrFrFrFrFrFrBHHMAuvWaRFxLyaEFrzCqnqntXtXqnqnqnqnqnVswrwrwrwrwrwrwrwrwrVsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnpXGfDbaAdGVMaAdGGfDbovqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnVswrwrwrwrwrwrwrwrwrVsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnVswrwrwrwrwrwrwrwrGEVsqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrLTUrUrUraEBHpmtfFrzCqnqnjxsoqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnjxqnqnqnqnqngIgIgIgIgIqnqnqnqnqnqnqnqnqnjxREREWKiSREiSWKREREjxqnqnqnqnqnqnqnqnqngIgIgIgIgIqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnozjxqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrhIhIFrFrFrFrzCGoGoGohuFrQmFrFrzCqnqngActMtqnqnqnqnqnqnTvqntXqnqnqnqnqnqnqnqnqnqnladjDuDuDuoFmvgIgIgIgIgIgIgIgIgICMCMBBxHCMxHBBCMCMgIgIgIgIgIgIgIgIgIPddjDuDuDuoFPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrBHFgciaRFrFrFrzCUZUZUZFrFrCMaEFrzCqnYGqnREqnqnZbqnqnqnlRfHEjjxqnqnqnqnqnqnqnqnqnqnlaaWZEQqIJGhDuhjRRvlvlvlvlErLDVMhchctBWMXqkhCbhchcVMRRErvlvlvlvlLDGhDuhjZEQqIJaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrBHGLrKaRFrFrFrWQCMCMCMaEFrbJhuFrzCqnTvTvVsqnTvTvTvTvhuFrUrFrzCqnqnqnqnqnqnqnqnqnqnlaaWCexIWpVMVMVMVMVMVMVMVMVMVMVMVMVMVMaJxzaWVMVMVMVMVMVMVMVMVMVMVMVMVMVMCeQeWpaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrREREFrhIhIhIhINTNTbJhuFrUcFrLTqngAFgcismgAdRgsxvMjaRFrUZFrWQqnqnqntXqnqnqnqnqnqnlaaWCHJkPmiNjDvmtTJkJkJkJkJkaPVMVMVMVMGhDuhjVMVMVMVMtTeNeNeNeNeNaPiNjDvmCHJkPmaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnKMqnqnYGqnqnaNqnqnqnjxqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrLTCMCMBHyIESGDMMUQUcUcFrFrFrFrzCqngAGLrKMtgApARgyEgUaRFrCMFrFrzCqnqnjxqnqnqnqnqnqnlaGfvmVMiNDbZfPCPCPCPCPCPCPCPCPCwFCHVMVMVMVMVMPmnAPCPCPCPCPCPCPCPCPCOIGfvmVMiNDbPnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrWQOuagBHVdBauiqKaRhIFrFrFrFrFrzCqnqnREREqngAXadwvnWSxFFrNohIFrzCqnqnqnqnqnqnqnqnqngIVTaWVMaJZfqnqnqnqnqnqnqnqnqnqnqnPCwFVMVMVMnAPCqnqnqnqnqnqnqnqnqnqnqnOIaWVMaJqYgIqnqnqnqnZbqnqnqnqnKMqnqnqnqnqnqnqnqnqntXtXqnqnqnqnqntXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrUcUcFrREREREREBHfHaRFrFrFrLTqnqnqnVsFUllqnUrUrUrUrrbHbNCXuaRzCqnqnqnqnqnqnqnqntXVMGhhjVMGhPnqnqnqnqnqnqnRfqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnRfqnqnqnqnqnqnlahjVMGhhjVMtXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxjxqnqnqnqnqnjxqnqnKMqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrNTNTniagFrQmaEFrFxFrzCqnqnqnzkDIEWMtUZUZUZUZFrDwZIVcaRzCqnqnqnqnqntXtXtXEyCwVMVMVMVMPnqnqnqnqnqnqnzNqnqnqnqnqnqnsEVMVMPnqnqnqnqnqnzNqnqnqnqnqnqnlaVMVMVMVMVMVMtXtXtXtXtXtXtXtXtXtXtXqntXqnqntXqntXqnqnqnqnqnqnhXqnqnqntXqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrUcUcUcUcFrwfhuFxFxFrzCqnqnqnqnUrUrqwCMCMCMCMFrFrREREFrzCKMqnqnqnqntXtXtXsEVMVMVMVMVMPnqnqnqnqnqnqnzNqnqnqnqnqnqntXsEVMPnqnqnqnqnqnzNqnqnqnqnqnqnlaVMVMVMVMVMsEtXjxtXtXtXtXtXtXtXtXjxqnjxtXqnjxqnjxtXqnqnqnqnqnqnqnqnqnjxqnqntXqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrLTjxFrFxFxLTqnqnaNqnqnUZUZFrnbniWcagFrFrCMCMFrzCqnqnqntXqnjxjxjxjxPCOIvmVMiNPnqnqnqnqnqnqnKuqnqnqnqnqnlaVMtXsEqnqnqnqnqnqnKuqnqnqnqnqnqnlavmVMiNZfPCjxjxhXjxjxjxjxjxjxjxjxqnqnqnjxqnqnqnZbjxqnqnqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrWQhuFrFrLTqnqnqnqnqnqnCMCMFrDpDpDpDpFrFrniagFrzCYGqnqnjxqnqnqnqnqngIPHaWVMaJmvgIqnqnqnqnqnmhqnqnqnqnqnqnsETgtXhXqnqnqnqnqnmhqnqnqnqnqngIPHaWVMaJmvgIqnqnqnqnqnqnqnqnqnqnqnqnqnqnqntXqnqnqnqnaNKMqnqnqnqnqnXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXLXFXFXFXFXFXF
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrLTqnqnqnqnqnqnqnVsvTFrFrFrFrFrFrFrDpDpFrzCqntXtXqnqnqnqnqnladRDuhjVMGhDumNPnqnqnqnqnqnqnKMqnZbqnqntXtXtXqnKMqnqnqnqnqnqnqnqnqnladRDuhjVMGhDumNPnqnqnqnqnqnqnqnqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnYGMrqnsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSQSsXsXsXsXsXJS
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFxLTqnqnqnqnqnqntXqnjxjxjPaEFrFrFrFrFrFrFrLTqnqntXtXqnqnqnqnqnlaaWtTeNeNeNaPaJPnqnqnqnqnqnqnqnqnqnqnlaVMtXjxqnqnqnqnqnqnqnqnqnqnqnlaaWtTeNeNeNaPaJPnqnqnqnZbqnqnqnqnqnqnqnqnqnqnjxtXqnqnqnqntXqnqntXxOeeKMKuqnqnqnqnqnqnKuqnqnqnqnqnqnKuozqnqnqnqnqnKu
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrLTjPqnqnqnqnqnqnqnjxqntXqnqnqnjPjPjPjPjPjPjPqnqnqnjxjxqnqnqnqnqnlaaWQzxogdgSbVaJPnqnqnqnqnqnqnqntXtXtXtXsEVMtXqnqntXtXtXqnqnqnqnqnqnlaaWQzxogdgSbVaJPnqnqnqnqnqnqnqnqnqnKMqnqnqnaNqntXqnqnqnqnjxqntXjxxOeeqnmhqnqnqnqnqnqnmhqnqnqnqnqnqnmhozqnqnqnqnqnmh
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnqntXqnqnqntXqnqnqnqnqnqnlaaWQzPnhXlabVaJPnqnqnqnqnqnqnqnjxtXtXtXjxsEVMtXtXVMtXjxqnYGqnqnqnqnlaaWQzPnZblabVaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqntXjxqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFruKqnqnqnqnqnqnqnqnqnqnqnqnaNqngIqnqntXqnqnjxqnqnqnjxqnqnqnqnqnqnlaaWQzmvgIPHbVaJPnqnqnqnqngIqnqnqnjxjxgPqnZHgdjxjxgdjxqnqngIqnqnqnqnlaaWQzmvgIPHbVaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqngIqnqnqnqnqnjxqnqnxOeeqnqnqnqngIqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrpVVMPnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnjxqnqnqnqnqnqnqntXqnqnqnqnqnlaaWRRvlvlvlLDaJPnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnlaaWRRvlvlvlLDaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnxOeeqnqnqnlaVMPnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrLTlaVMPnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnaNqnqnqnjxqnqnqnqnqnlaXajDvmVMiNjDWSPnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnlaXajDvmVMiNjDWSvYqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnxOeeqnqnqnlaVMPnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrWQlaVMsYwMwMwMwMwMwMwMwMwMwMwMwMWkVMPnqnqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnTzJOaWVMaJvywuwMwMwMwMWkVMPnqnqnqnqnqnlaVMPnqnqnqnqnqnlaVMsYwMwMwMwMwuzbaWVMaJaUzYqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnlaVMsYwMwMwMwMwMwMwMyzRwwMwMwMWkVMPnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrPUVMbwHiHiHiHiHiHiHiHiHiHiHiHimYVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlahjVMGhbwHiHiHiHiHimYVMsYwMwMwMwMwMWkVMsYwMwMwMwMwMWkVMbwHiHiHiHiHimYhjVMGhPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMbwHiHiHiHiHiHiHixpYwHiHiHimYVMPnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrPUVMyDwrwrwrwrwrwrwrwrwrwrwrwrrEVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMyDwrwrwrwrwrrEVMbwHiHiHiHiHimYVMbwHiHiHiHiHimYVMyDwrwrwrwrwrrEVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMyDwrwrwrwrwrwrwrZPblwrwrwrrEVMPnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
+FrFrFrFrFrFrlPFriJFrFrFriJFrFrFriJFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGOaWWWPnlaKNPnHaWWaJxsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiKcGoqnqnqnqnqw
+FrFrFrFrFrFrlPFriJFrLTaEiJFrFrFrHshIhIFrFrFrFrFrFrzCtXtXqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGOaWFgaDgIsUgIPHciaJxsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnGoHiHiHiHiHiHiHiHiHiGoqnqnqnqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnqnGoHiHiHiHiHiHiHiHiKcGoqnqnqnhuFr
+FrFrFrFrFrFrlPLTQoLrWQqntoaEFrBHXRWwkOaRFrFrFrFrFrzCjxjxqnqnqnqnqnqnUZHiHiHiHiHiHiHiHiHiUZqnqnqnqnqnqnqnZbqnqnqnqnqnqnqnqnqnqnqnHDaWGLrKGqGqGqGLrKaJpjqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnUZHiHiHiHiHiHiHiHiHiUZqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnUZHiHiHiHiHiHiHiHiKcUZqnqnhuFrFr
+FrFrFrFrFrFrlPzCmhFrFrWQFVhuFrBHSKLMHQaRFrFrFrFrLTqnqnqnqnqnqnqnqnqnCMjKjKjKjKjKjKjKjKjKCMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnubaWiNjDjDjDjDjDvmaJnDqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnCMjKjKjKjKjKjKjKjKjKCMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnCMjKjKjKjKjKjKjKjKicCMqndsFrFrFr
+FrFrFrFrFrFrlPWQhuFrFrFrFrFrFrBHHMAuvWaRFrLyaEFrzCqnqntXtXqnqnqnqnqnVswrwrwrwrwrwrwrwrwrVsqnqnqnqnqnqnqnFfqnqnqnqnqnqnZbqnqnqnqnpXGfDbaAdGVMaAdGGfDbovqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnVswrwrwrwrwrwrwrwrwrVsqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnVswrwrwrwrwrwrwrwrGEVsqndsFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrLTUrUrUraEBHpmtfFrzCqnqnjxsoqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnjxqnqnqnaNqngIgIgIgIgIqnqnqnqnqnqnqnqnqnjxREREWKiSREiSWKREREjxqnqnhXqnqnqnqnqnqngIgIgIgIgIqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxqwqwqwqnqnqnqnqnozSiqwhuFrFrFr
+FrFrFrFrFrFrlPFrFrhIhIFrFrFrFrzCGoGoGohuFrQmFrFrzCqnqngActMtqnqnqnqnqnqnTvqntXqnqnqnqnqnqnqnqnqnqnladjDuDuDuoFmvgIgIgIgIgIgIgIgIgICMCMBBxHCMxHBBCMCMgIgIgIgIgIgIgIgIgIPddjDuDuDuoFPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrFrFrWQqnqnqnqwiiFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrBHFgciaRFrFrFrzCUZUZUZFrFrCMaEFrzCqnYGqnREqnqnZbqnqnqnlRfHEjjxqnqnqnqnqnqnqnqnqnqnlaaWZEQqIJGhDuhjRRvlvlvlvlErLDVMhchctBWMXqkhCbhchcVMRRErvlvlvlvlLDGhDuhjZEQqIJaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrFrFrFrFrPeqwhuFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrBHGLrKaRFrFrFrWQCMCMCMaEFrbJhuFrzCqnTvTvVsqnTvTvTvTvhuFrUrFrzCqnqnqnqnqnqnqnqnqnqnlaaWCexIWpVMVMVMVMVMVMVMVMVMVMVMVMVMVMaJxzaWVMVMVMVMVMVMVMVMVMVMVMVMVMVMCeQeWpaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqntXqnqnqndsFrLTaEFrFrBHLgaRFrFrkmhIhIFrFrFrFr
+FrFrFrFrFrFrlPFrFrREREFrhIhIhIhINTNTbJhuFrUcFrLTqngAFgcismgAdRgsxvMjaRFrUZFrWQqnqnqntXqnqnqnqnqnqnlaaWCHJkPmiNjDvmtTJkJkJkJkJkaPVMVMVMVMGhDuhjVMVMVMVMtTeNeNeNeNeNaPiNjDvmCHJkPmaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnKMqnqnYGqnqnaNqnqnqnjxqnqnqndsFrWQqnjPaELTQmhIhIBHmsrBXuaRFrFrFr
+FrFrFrFrFrFrlPFrLTCMCMBHyIESGDMMUQUcUcFrFrFrFrzCqngAGLrKMtgApARgyEgUaRFrCMFrFrzCqnqnjxhXqnqnqnqnqnlaGfvmVMiNDbZfPCTzgdgdgdgdgdzYPCwFCHVMVMVMVMVMPmnAPCTzgdgdgdgdgdzYPCOIGfvmVMiNDbPnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrWQqndsWQgwDqzRGPNhaMVcaRFrFrFr
+FrFrFrFrFrFrlPFrWQOuagBHVdBauiqKaRhIFrFrFrFrFrzCqnqnREREqngAXadwvnWSxFFrNohIFrzCqnqnqnqnqnqnqnqnqngIVTaWVMaJztqnqnqnqnqnqnqnqnqnqnqnPCwFVMVMVMnAPCqnqnqnqnqnqnqnqnqnqnqnSJaWVMaJqYgIqnqnqnqnZbqnqnqnqnKMqnqnqnqnqnqnqnqnqntXtXqnqnqnqnqntXqnqnqnqnqnqnaEFrFrWQqnaEUcQmQmFrwBUrUrFrFrFrFr
+FrFrFrFrFrFrlPFrFrUcUcFrREREREREBHfHaRFrFrFrLTqnqnqnVsFUllqnUrUrUrUrrbHbNCXuaRzCqnqnqnqnqnqnqnqntXVMGhhjVMGhPnqnqnqnqnqnqnRfqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnRfqnqnqnqnqnqnlahjVMGhhjVMtXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxjxqnqnqnqnqnjxqnqnKMqnqnqnqnaEFrFrWQhuFrCMCMFreCGoGoFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrNTNTniagFrQmaEFrFxFrzCqnqnqnzkDIEWMtUZUZUZUZFrDwZIVcaRzCqnqnqnqnqntXtXtXEyCwVMVMVMVMPnqnqnqnqnqnqnzNqnqnqnqnqnqnsEVMVMPnqnqnqnqnqnzNqnqnqnqnqnqnlaVMVMVMVMVMVMtXtXtXtXtXtXtXtXtXtXtXqntXqnqntXqntXqnqnqnqnqnqnhXqnqnqntXqnqnqnqnTvYbFrFrFrLTVstSFriFUZUZFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrUcUcUcUcFrwfhuFxFxFrzCqnqnqnqnUrUrqwCMCMCMCMFrFrREREFrzCKMqnqnqnqntXtXtXsEVMVMVMVMVMPnqnqnqnqnqnqnzNqnqnqnqnqnqntXsEVMPnqnqnqnqnqnzNqnqnqnqnqnqnlaVMVMVMVMVMsEtXjxtXtXtXtXtXtXsHtXjxqnjxtXqnjxqnjxtXqnqnqnqnqnqnqnqnqnjxqnqntXgAzdLgWOFrFrWQaOZXFrujCMCMFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrLTjxFrFxFxLTqnqnaNqnqnUZUZFrnbniWcagFrFrCMCMFrzCqnqnqntXqnjxjxjxjxPCOIvmVMiNPnqnqnqnqnqnqnKuqnqnqnqnqnlaVMtXsEqnqnqnqnqnqnKuqnqnqnqnqnqnlavmVMiNZfPCjxjxhXjxjxjxjxjxjxjxjxqnqnqnjxqnqnqnZbjxqnqnqnqnqnqnqnqnqnqnqnqnjxqnQmQmqnjPaEFrFrFrFrMRVstSFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrWQhuFrFrLTqnqnqnqnqnqnCMCMFrDpDpDpDpFrFrniagFrzCYGqnqnjxqnqnqnqnqngIPHaWVMaJmvgIqnqnqnqnqnmhqnqnqnqnqnqnsETgtXhXqnqnqnqnqnmhqnqnqnqnqngIPHaWVMaJmvgIqnqnqnqnqnqnqnqnqnqnqnqnqnqnqntXqnqnqnqnaNKMqnqnqnqnqnXFXFXFXFXFXFXFjFjFXFXFRlTHOHIRWjWmtzqaTHTHTHTH
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrLTqnqnqnqnqnqnqnVsvTFrFrFrFrFrFrFrDpDpFrzCqntXtXqnqnqnqnqnladRDuhjVMGhDumNPnqnqnqnqnqnqnKMqnZbqnqntXtXtXqnKMqnqnqnqnqnqnqnqnqnladRDuhjVMGhDumNPnqnqnqnqnqnqnqnqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnYGMrqnsXJSsXsXsXsXsXtVrcsXsXiyBAycsXRWvpBABABABABACz
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFxLTqnqnqnqnqnqntXqnjxjxjPaEFrFrFrFrFrFrFrLTqnqntXtXqnqnqnqnqnlaaWtTeNeNeNaPaJPnqnqnqnqnqnqnqnqnqnqnlajaVMjxqnqnqnqnqnqnqnqnqnqnqnlaaWtTeNeNeNaPaJPnqnqnqnZbqnqnqnqnqnqnqnqnqnqnjxtXqnqnqnqntXqnqntXxOeeKMKuqnqnqnqnqnjxVnqndsFrFrzCqnKuPAFrFrFrFrFrvM
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrLTjPqnqnqnqnqnqnqnjxqntXqnqnqnjPjPjPjPjPjPjPqnqnqnjxjxqnqnqnqnqnlaaWQzxogdgSbVaJPnqnqnqnqnqnqnqntXtXtXtXsEVMtXqnqntXtXtXqnqnqnqnqnqnlaaWQzxogdgSbVaJPnqnqnqnqnqnqnqnqnqnKMqnqnqnaNqntXqnqnqnqnjxqntXjxxOeeqnmhqnqnqnqnqnqnmhqndsFrFrWQqnmhiiFrFrFrFrFrYE
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnqntXqnqnqntXqnqnqnqnqnqnlaaWQzPnhXlabVaJPnqnqnqnqnqnqnqnjxtXtXtXjxsEVMtXtXVMtXjxqnYGqnqnqnqnlaaWQzPnZblabVaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqntXjxqnxOeeqnqnqnqnqnqnqnqnqnqndsFrFrFrWQhulPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFruKqnqnqnqnqnqnqnqnqnqnqnqnaNqngIqnqntXqnqnjxqnqnqnjxqnqnqnqnqnqnlaaWQzmvgIPHbVaJPnqnqnqnqngIqnqnqnjxjxgPqnZHgdjxjxgdjxqnqngIqnqnqnqnlaaWQzmvgIPHbVaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqngIqnqnqnqnqnjxqnqnxOeeqnqnqnqngIqnqnqnqnqnqnaEFrFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrpVVMPnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnjxqnqnqnqnqnqnqntXqnqnqnqnqnlaaWRRvlvlvlLDaJPnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnlaaWRRvlvlvlLDaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnxOeeqnqnqnlaVMPnqnqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrLTlaVMPnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnaNqnqnqnjxqnqnqnqnqnlaXajDvmVMiNjDWSPnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnqnqnlaVMPnqnqnqnlaXajDvmVMiNjDWSvYqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMPnqnqnqnqnqnqnqnxOeeqnqnqnlaVMPnqnqnqnqnqnqnaEFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrWQlaVMsYwMwMwMwMwMwMwMwMwMwMwMwMWkVMPnqnqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnTzJOaWVMaJvywuwMwMwMwMWkVMPnqnqnqnqnqnlaVMPnqnqnqnqnqnlaVMsYwMwMwMwMwuzbaWVMaJaUzYqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnlaVMsYwMwMwMwMwMwMwMyzRwwMwMwMWkVMPnqnqnqnqnqnqnqnjPjPaElPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrPUVMbwHiHiHiHiHiHiHiHiHiHiHiHimYVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlahjVMGhbwHiHiHiHiHimYVMsYwMwMwMwMwMWkVMsYwMwMwMwMwMWkVMbwHiHiHiHiHimYhjVMGhPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMbwHiHiHiHiHiHiHixpYwHiHiHimYVMPnqnqnqnqnqnqnqnqnqndslPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrPUVMyDwrwrwrwrwrwrwrwrwrwrwrwrrEVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMyDwrwrwrwrwrrEVMbwHiHiHiHiHimYVMbwHiHiHiHiHimYVMyDwrwrwrwrwrrEVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMyDwrwrwrwrwrwrwrZPblwrwrwrrEVMPnqnqnqnqnqnqnqnqnqnqnVgjPjPjPjPjPjP
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrvIVMMtqnqnqnqnqnqnqnqnqnqnqnqngAVMsYwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMdGVMaAqnqnqnqnqnqngAVMyDwrwrwrwrwrrEVMyDwrwrwrwrwrrEVMMtqnqnqnqnqnqndGVMaAwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMWkVMMtqnqnqnqnqnqnqnxOeeqnqnqngAVMsYwMwMwMwMwMwMwMwMwMwMGawMwMwMwMwMwM
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrBqREqnqnqnqnqnqnqnqnqnqnqnqnqnqnREHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiuWQmuWqnqnqnqnqnqnqnQmqnqnqnqnqnqnqnQmqnqnqnqnqnqnqnQmqnqnqnqnZbqnqnuWQmuWHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiREqnqnqnqnqnqnqnqnxOeeqnqnqnqnREHiHiHiHiHiHiHiHiHiHiHiPNHiHiHiHiHiHi
 FrFrFrFrFrFrlPFrFrFrFrFxFxFrFrAhCMqnqwqwqnqnqnqnqnqnqnqnqnqnqnCMwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrZFuWCMuWPnqnhXqnqnqnqnCMqnqnqnqnZbqnqnCMqnqnqnqnqnqnqnCMqnqnqnqnqnqnlauWCMuWTdwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrCMqnqnqnqnqnqnqnqnxOeeqnqnqnqnCMwrwrwrwrwrwrwrwrwrwrwrGEwrwrwrwrwrwr
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrzCVshuFrFrWQqwqnqnqnqnqnqnqnqnqnVsqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMXqVMPnqnqnqnqnqnqnVsqnqnqnqnqnqnqnVsqnqnqnqnhXqnqnVsqnqnqnqnqnqnlaVMXqVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnVsqnqnqnqnqnqnqnqnxOeeqnqnqnqnVsqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrLTqnAXFrFrFrFrFrWQqwqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMlNVMPnqnqnqnqnqnqnjxqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnjxqnqnqnqnqnqnlaVMlNVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjxqnqnqnqnqnqnqnqnxOeeqnqnqnqnjxqnqnqnqnqnqnqnqnqnqnqnzUqnqnqnqnqwhu
 FrFrFrFrFrFrlPFrFrFrFrFrFrLTqndsFrFrLTaEFrFrFrFrWQqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMLsVMPnqnZbqnqnqnqnqnqnqnqnqnqnqngIgIgIhXqnqnqnqnqnqnqnqnqnqnqnqnlaVMfjVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhulPWQqnqnhuFrFr
-FrFrFrFrFrFrlPFrFrFrFrFrFrzCqndsFrFrWQqwjPaEFrFrFrzCqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnPdtTBLaPieqnqnqnqnqnaNqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnaNqnqnqnqnqnqnqnhXqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrlPFrWQhuFrFrFr
-FrFrFrFrFrFrgvFrFrFrFrFrLTqnqndsFrFrFrFrWQhuFrFrFrzCqnqnqnqnqnqntXjxtXqnYGqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnYGPdtTPmxaCHaPieqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrFrFrLTqnqnqnqnaEFrFrFrFrFrFrFrLTqnqnKMqnqnqnqwaOqwaOqwqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnhXqnqnlaVMWpwPqnQtCeVMPnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnKMqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrFrFrzCqnqnqnqnqnaEFrFrFrLTjPjPqnqnqnqnqnqnhuFrFxFrFrFrWQqnqnqnqnqnhXqnqnqnqnqnqnqnlaVMVMtTPnqnYGqnqnqnqnqnqnqnqnlaVMWpPnqnlaCeVMPnqnZbqnqnqnqnqnqnqnqnlaaPVMVMPnqnaNqnqnqnqnqnqnqnhXqnqnqnqnqwqwqwqnqnqnqnqnaNqnqnqnxOeeqnhXqnqnqnqnqnqnqnqnqnqnqnhuFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrFrFrzCqnqnqnqnqnqnjPjPjPqnqnqnqnYGqnqnqnhuFrFxFxFrFrFrFrWQqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMWpieqnqnqnqnqnqnqnqnqnqnlaVMWpPnyvlaCeVMPnqnqnqnqnqnqnqnqnqnqnPdCeVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrFrFrWQqnqnqnqnqnqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqndsFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqnlaaPVMRRIJiegIgIgIgIgIgIgIgIEtPdjaWpmvqnPHCecGiegIgIgIgIgIgIgIAKgIPdZELDVMtTPnqnqnqnqnqnqnqnqnqwqwqwqwhuFrFrFrFrFrWQqwqwqnqnqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqnhuFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrFrLTqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqnlabVVMVMRRvlLDVMVMiNjDvmVMVMVMVMVMRRIJfjZELDVMVMVMVMVMiNjDvmVMVMRRvlLDVMVMWpPnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnxOeeqnqnqnqnqntXjxqnhXqnqndsFrFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrFrzCqnqnqnqnqnqnqnqnaNqnqnqwqwqnqnqwqwqnaEFrFrFrFrFrFrFrLTqnqnqnqnqnqnqnqnqnqnqnqnlaWXaPVMVMVMVMVMVMaJfHaWVMVMVMVMVMVMRRQqLDVMVMVMVMVMVMaJfHaWVMVMVMVMVMVMVMdKPnqnqnqnqnhXqnqnhuFrFrFrFrFrFrLTaEFrFrFrFrFrWQqnqnqnqnxOeeqnZbqnqnqntXqnqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrLTqnqnqnqnqnqnqnqnqnqwqwhuFrFrWQhuFrFrWQqnjPaEFrFrFrLTjPqnqnqnqnqnqnqnqnqnqnqnqnqnqnwFNxeNaPVMVMVMVMGhDuhjVMVMVMVMVMVMVMVMVMVMVMVMVMVMVMGhDuhjVMVMVMVMtTJkdKZfqnqnqnqnqnqnqndsFrFrFrFrLTjPjPqnqnaEFrFrFrFrFrzCqnqnqnxOeeqnqnqnqnqnjxqnqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqnqnhuFrFrFrFrFrFrFrFrFrFrWQqnqnjPjPjPqnqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCwFVMVMVMnAPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCqnqnqnqnqnqnqnqnhuFrFrFrFrWQqnqnYGqndsFrFrFrFrFrzCYGqnqnxOeeqnqnqnqnqntXtXqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqntXjxqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPHVMVMVMmvqnqnqnqnqnqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrWQaNqnqndsFrFrFrFrFrzCqnqnqnxOeeqnqnaNqnqntXtXqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqntXtXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnYGqnqnqnqnqnqnPHVMVMVMVMVMmvqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnZbqnqnqndsFrFrFrFrFrFrFrmMqwqwhuFrFrFrFrFrzCqnqnqnxOeeqnqnqnqnqntXjxqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnaNqnqnqnjxjxqnKMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMMhEmCwVMVMPnqnqnqnqnqnqnqnqnqwqwqwqnqnqnqnqnqnqnqnqnqnaEFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqnaEFrFrFrlPFrFrFrFrFrFr
-FrFrFrFrFrFrgvFrLTqnqnqnqnqnqnqnqnqnaEFrFrFrFrFrFrFrFrFrFrLTqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqwqwqwqnqnqwqwqnqnqngIlaFgxozYgITzgSciPngIaNqnqnqnqnqndsFrFrFrWQqnqnqnqnqnqnqnZbqnqnaEFrFrFrFrFrFrFrFrFrFrFrFrFrLTqnqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqndsFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrzCqndsFrFrWQqwjPaEFrFrFrzCqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnqnqnqnqnqnFfqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnPdTbBLtlieqnqnqnqnqnaNqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnaNqnqnqnqnqnqnqnhXqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrlPFrWQhuFrFrFr
+FrFrFrFrFrFrgvFrFrFrFrFrLTqnqndsFrFrFrFrWQhuFrFrFrzCqnqnqnqnqnqntXjxtXqnYGqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnYGPdTbVcxaoWtlieqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrgvFrFrFrFrLTqnqnqnqnaEFrFrFrFrFrFrFrLTqnqnKMqnqnqnqwaOqwaOqwqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnhXqnqnlaqyDOwPqnQtofhpPnqnqnqnqnqnqnqnqnqnqnlaVMVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnKMqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrgvFrFrFrFrzCqnqnqnqnqnaEFrFrFrLTjPjPqnqnqnqnqnqnhuFrFxFrFrFrWQqnqnqnqnqnhXqnqnqnqnqnqnqnlaVMVMtTPnqnYGqnqnqnqnqnqnqnqnlaaWWpPnqnlaCeaJPnqnZbqnqnqnqnqnqnqnqnlaaPVMVMPnqnaNqnqnqnqnqnqnqnhXqnqnqnqnqwqwqwqnqnqnqnqnaNqnqnqnxOeeqnhXqnqnqnqnqnqnqnqnqnqnqnhuFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrgvFrFrFrFrzCqnqnqnqnqnqnjPjPjPqnqnqnqnYGqnqnqnhuFrFxFxFrFrFrFrWQqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMWpieqnqnqnqnqnqnqnqnqnqnlaaWWpPnyvlaCeaJPnqnqnqnqnqnqnqnqnqnqnPdCeVMVMPnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrFrFrWQqnqnqnqnqnqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqndsFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrgvFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqnlaaPVMRRfqiegIgIgIgIgIgIgIgIEtPdyFWpmvqnPHCecGiegIgIgIgIgIgIgIAKgIPdlqLDVMtTPnqnWVqnqnqnqnqnqnqwqwqwqwhuFrFrFrFrFrWQqwqwqnqnqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqnhuFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrgvFrFrFrLTqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqngIqnlabVVMVMRRvlLDVMVMVpdyYmVMVMVMGhhjRRIJfjZELDGhhjVMVMVMVpdyYmVMVMRRvlLDVMVMWpPnqngIqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnxOeeqnqnqnqnqntXjxqnhXqnqndsFrFrFrFrlPFrFrLTaEFrFr
+FrFrFrFrFrFrgvFrFrFrzCqnqnqnqnqnqnqnqnaNqnqnqwqwqnqnqwqwqnaEFrFrFrFrFrFrFrLTqnqnqnqnqnqnqnqnqnlaDMPnlaWXaPVMVMVMVMVMVMWWfHXmVMVMVMVMVMVMRRQqLDVMVMVMVMVMVMWWfHXmVMVMVMVMVMVMVMdKPnlaDMPnqnhXqnqnhuFrFrFrFrFrFrLTaEFrFrFrFrFrWQqnqnqnqnxOeeqnZbqnqnqntXqnqnqnqnqndsFrFrFrFrlPFrLTqndsFrFr
+FrFrFrFrFrFrgvFrFrLTqnqnqnqnqnqnqnqnqnqwqwhuFrFrWQhuFrFrWQqnjPaEFrFrFrLTjPqnqnqnqnqnqnqnqnqnqnqnirqnqnQtNxeNaPVMVMVMVMJiGqDoVMVMVMVMVMVMVMVMVMVMVMVMVMVMVMJiGqDoVMVMVMVMtTJkdKztqnqnirqnqnqnqndsFrFrFrFrLTjPjPqnqnaEFrFrFrFrFrzCqnqnqnxOeeqnqnqnqnqnjxqnqnqnqnqndsFrFrLTaElPFrzCqnhuFrFr
+FrFrFrFrFrFrgvFrFrzCqnqnqnhXqnqnqnqnhuFrFrFrFrFrFrFrFrFrFrWQqnqnjPjPjPqnqnqnqnqnqnqnqntXqnqnqnqnqnqnqnqnPCPCPCPCPCTzgdgdgdgdgdzYPCPCPCwFVMVMVMnAPCPCPCTzgdgdgdgdgdzYPCPCPCPCPCqnqnqnqnqnqnqnqnhuFrFrFrFrWQqnqnYGqndsFrFrFrFrFrzCYGqnqnxOeeqnqnqnqnqntXtXqnqnqnqndsFrFrWQdslPLTqndsFrFrFr
+FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqntXjxqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPHVMVMVMmvqnqnqnqnqnqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrWQaNqnqndsFrFrFrFrFrzCqnqnqnxOeeqnqnaNqnqntXtXqnqnqnqndsFrFrFrzCVgqnqndsFrFrFr
+FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnqnqnqnqntXtXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnYGqnqnqnqnqnqnPHVMVMVMVMVMmvqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnZbqnqnqndsFrFrFrFrFrFrFrmMqwqwhuFrFrFrFrFrzCqnqnqnxOeeqnqnqnqnqntXjxqnqnqnqndsFrFrFrWQzUqwqwhuFrFrFr
+FrFrFrFrFrFrgvFrFrzCqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnqnqnqnaNqnqnqnjxjxFfKMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaVMVMMhEmCwVMVMPnqnqnqnqnqnqnqnqnqwqwqwqnqnqnqnqnqnqnqnqnqnaEFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqnaEFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrgvFrLTqnqnqnqnqnZbqnqnqnaEFrFrFrFrFrFrFrFrFrFrLTqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqwqwqwqnqnqwqwqnqnqngIlaFgxozYgITzgSciPngIaNqnqnqnqnqndsFrFrFrWQqnqnqnqnqnqnqnZbqnqnaEFrFrFrFrFrFrFrFrFrFrFrFrFrLTqnqnqnqnxOeeqnqnqnqnqntXtXqnqnqnqnqndsFrFrFrlPFrFrFrFrFrFr
 FrFrFrFrFrFrgvFrzCqnqnqnqnqnqnqnqnqnqnjPaEFrFrFrFrFrFrLTjPqnqntXqnqnqntXtXqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnqnhuFrFrFrWQhuFrFrWQqnlaDMPndWqnlafHPnqndWlaDMPnqnqnqnqnqwhuFrFrFrFrzCqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrFrFrFrFrzCqnZbqnqnxOeeqnqnqnqnqnjxtXqnqnZbqnqnqnaEFrFrlPFrFrFrFrFrFr
-FrFxFrFrFrFrlPLTqnqnqnqnqnqnqnqnqnqnqnqnqnaEFrFrFrFrLTqnqnqntXjxtXtXtXtXtXtXqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrzCqnirlaGLmvgIirgIPHrKPnirqnqnqnighuFrFrFrFrFrFrzCYGqnqnqnqnqnqnqnqnqnjPjPjPaEFrFrFrFrFrFrLTjPjPqnqnqnqnqnxOeeqnqnqnqnqnqnjxqnqnqnqnqnqndsFrFrlPFrFrFrFrFrFr
-FrFxFrFrFxFrkoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaEFrFrLTqnqnqnqnjxqnjxjxjxjxjxjxqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnaEFrFrFrFrFrFrFrFrzCqnqnlaGfvmCwfjKDiNDbPnqnqnqndsFrFrFrFrFrFrLTjPqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjPaEFrFrLTjPqnqnqnqnqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqnaEFrlPFrFrFrFrFrFr
+FrFxFrFrFrFrlPLTqnqnqnqnYGqnqnqnqnqnqnqnqnaEFrFrFrFrLTqnqnqntXjxtXtXtXtXtXtXqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrFrFrFrFrFrzCqnirlaGLmvgIirgIPHrKPnirqnqnqnighuFrFrFrFrFrFrzCYGqnqnqnqnqnqnqnqnqnjPjPjPaEFrFrFrFrFrFrLTjPjPqnqnqnqnqnxOeeqnqnqnqnqnqnjxqnqnqnqnqnqndsFrFrlPFrFrFrFrFrFr
+FrFxFrFrFxFrkoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaEFrFrLTqnqnqnqnjxqnjxjxjxjxjxjxqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnaEFrFrFrFrFrFrFrFrzCqnqnlaGfvmCwfjKDiNDbPnqnqnWVdsFrFrFrFrFrFrLTjPqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjPaEFrFrLTjPqnqnqnqnqnqnqnqnxOeeqnqnqnqnqnqnqnqnqnqnqnqnqnqnaEFrlPFrFrFrFrFrFr
 WjPPWjWjWjOHXLXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFeXeXXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFXFeXIRWjWjWjOHeXeXXFXFXFXFIcLEizANSkqkqEXFXFXFXFoBWjWjWjWjWjWjSFXFXFXFXFXFXFXFXFXFXFEwXFXFXFXFXFXFXFeXeXXFXFXFXFXFXFXFXFXFXFqnKMqnhXqnqnqnqnYGqnqnqnqnaNqnqndsFrlPFrFrFrFrFrFr
 nXIZnXcjnXycQSsXJSsXsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXFFFFZBsXsXsXsXsXsXJSsXGGEvsIlhzEsXJSsXsXsXsXQsnXnXudFFFFsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXsXsXsXsXsXJSsXdgqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaElPFrFrFrFrFrFr
 FriJFrFrLTqnozqnzNqnqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnPHaWVMaJmvqnzNqnqnqnqnzNjPjPqnqnqnZbzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnzNqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndslPFrFrFrFrFrFr
@@ -712,23 +765,23 @@ HiHiHiHiHiHiPNHiUZGoGoGoUZHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHi
 HiHiHiHiHiHiPNHiCMUZUZUZCMHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiCMCMCMCMCMHiHiHiHiHiHiHiHiBBBBBBGoBBBBBBHiHiHiHiHiHiHiHiCMCMCMCMCMHiHiHiHiHiHiHiHiHiHiHiHimWmWmWHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiCMUZUZUZCMHiPNHiHiHiHiHiHi
 mWmWmWuojKjKdkjMhcCMCMCMhcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLchchchchchcLcLcLcLcLcLcLcLcFBhcXMUZlHhcSLLcLcjMjMjMjMLcLchchchchchcLcLcLcLcLcLcLcLcLcLcLcLcmWmWmWLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcLcjMhcCMCMCMhcLcKTjKjKYCmWmWmW
 fufufuwrwrwrGEUsVMhchchcVMZaSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMPCPCPCPCPCSMSMSMSMSMSMSMADARVMAyCMgyVMeJZaSMSMSMSMSMSMSMPCPCPCPCPCSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMSMUsVMhchchcVMZaGEwrwrwrSMSMSM
-WQqnqnqnqnqnozqnPCPCPCPCPCqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaARVMAyFQgyVMeJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPCPCPCPCPCqnozqnqnqnqnqnqn
-FrzCqnqnqnqnozqngIgIqnqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaARVMAyNzgyVMeJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqnqngIgIqnqnozqnqnqnqnqnqn
-FrWQqnqnqnqnozlaFgciPnqnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaARVMAyLsgyVMeJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnYGqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnZbqnlaFgciPnqnozqnqnqnqnqnqn
-FrFrWQqnqnqnozlaGLrKPnqnqnaNqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqngIEtgIqnqnqnqnqnqnqnqnqnqngIgIgIgIqnqnqnqnqnqnqnqnlaARVMMgAebqVMeJPnqnqnqnqnqnqnqnqngIgIgIgIYGqnqnqnqnqnqnqnqnqngIgIgIqnirqnqnqnaNqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnlaGLrKPnqnozqnqnqnqnqnqn
-FrFrFrWQqnqnozqnTzzYgIgIqnqnqnqnqnqnqnKMqnqnqnqnqnqnKMqnqnqnaNqnqnKMqnqnqnqngIPdcUvlnQiegIqnqnqnqnqnqnqnlaFgqyDuhpieqnqnqnqnqnqnqnPHVdApcfdTApdThwmvqnqnqnqnqnqnqnPHqyDuhpciPnqnqnqnqnqnqnqngIPHcUvlnQmvgIqnKMqnqnqnqnqnqnKMqnqnqnYGqnqnKMqnqnqnqnqnqnqnqnqnqngIgITzzYqnqnozqnqnqnqnqnqn
-FrFrFrFrzCqnozqnqnPdvlvlieqnqnqnqnqnqntXqnqnqnqnqnqntXqnqnqnqnqnqnqnqnqnqnlaqyDuDuDuDuDuhpPnqnqnqnqnqnqnqnQtaWVMGhhpPnqnqngIqnqnlaZEVMiNDbIkGfvmVMIJPnqnqngIqnqnlaqyhjVMaJwPqnqnqnqnqnqntXlaqyDuDuDuDuDuhpPnqnZbqnqnhXqnqnqntXtXtXqnqnqnqnqnZbqnqnhXqnqnaNqnPHqyhpmvqnqnqnozqnqnqnqnqnqn
-FrFrFrFrzCqnozqnlaVMQzwLgzPnqnqnqnqnqntXtXqnqnqntXqnjxqnqnqnqnqntXqnqnqnqnlaDyCwVMVMVMCwQpPntXqnqnqnqnqnqnHaorCwCweaPnqnlafHPnqnlaYvCwaJwPqnQtaWCwTRPnqnlafHPnqnlayWCwCwajPnqnqnqnqnqnZbjxlahdCwVMVMVMCwboPnqntXqntXqnqnqnqnjxtXjxaNqnqntXqnqntXqnqnqnqnqnlaPkPpSNDzPnqnqnozqnqnqnqnqnqn
-FrFrFrLTqnqnozqnqnrjeNeNFwqnqnqnqnqnqnjxjxqnqnqntXqnYGqnqnqnqnqnjxqntXqnqnlaGfjDjDjDjDjDDbPnjxqnqnqnqnqnqnPHaWVMiNDbPnqnqnirqnqnlaZQvmaJmvqnPHaWiNoVPnqnqnirqnqnlaGfvmVMaJmvqnqnqnqnqnqnqnlaGfjDjDjDjDjDDbPnqntXtXjxqnqntXqnhXjxqntXqntXjxtXqnjxqnqnqnqnqnqncHGfDbCnqnqnqnozqnqnqnqnqnqn
-FrFrLTqnqnqnozqngIgIIFPCqnqnKMqnqnqnqnqnqnZbqnqnjxqnqnqnqnqnqnqnqnqnjxqnqnqnTzuveAJkduMuzYqnqnqnKMqnqnqnlaGLGfjDDbnAqnqnqnqnqnqnqnSJaWGhoFfjdjhjaJztqnqnqnqnqnqnqnOIGfjDDbrKPnKMqnqnqnqnqnqnTzJOeAJkduaUzYqnqngPjxqnqnqnjxqnqnqnqnjxqnjxqnjxqnqnqnKMqnqnqnhXqnPCPCgIgIgIqnozqnqnqnqnqnqn
-FrFrWQqnqnqnozlaVpdyYmPnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIZbqnqnqnqnqngIqnPCPCPCqnqnqnqnqnqnqnqnqnqnTzgdgdzYqnqnqnqnqnqnqnqnlaaWVMGhDuhjVMaJPnqnqnqnqnqnqnqnqnTzgdgdzYqnqnqnqnqnqnqnqnqnZbPCPCPCqngIqnqnqnqnqnqngIqnqnqnqnZbqngIqnqnqnqnqnqngIqnqnqnqnqnqnlatTJkaPPnozqnqnqnqnqnqn
-FrFrFrzCqnqnozlaWWXKXmPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnYGqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWtTJkVMJkaPaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnqnlaWpDMCePnozqnqnqnqnqnqn
-FrFrFrzCqnqnozlaJiGqDoPnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWWpoKQqoKCeaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnYGqnqnqnqnqnqnqnqnqnqnirqnqnaNqnqnqnirqnqnqnqnqnqnirqnqnYGqnqnqnirqnqnqnqnqnqnlaRRQqLDPnozqnqnqnqnqnqn
-FrFrLTqnqnqnozqnTzgdzYqnqnqnqnqnqnqnqnKMqnqnqnqnqnqnKMqnqnqnqnqnqnKMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWWpmvirPHCeaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaNqnqnqnTDqnqnqnqnqnqnKMqnaNqnqnqnqnKMqnqnqnqnqnqnqnqnqnhXqnqnTzgdzYqnozqnqnqnqnqnqn
-FrFrzCqnqnqnozqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWVMpbDFEWVMaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaNqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrFrzCqnqnqnozqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPdaWWpztgISJCeaJieqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-FrLTqnqnqnqnozqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPdMghjWpeyeNeyCeGhItieqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
-LTqnqnqnqnqnozqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlabVVMVMRRQqVMQqLDVMVMWpPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnYGqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnozqnqnqnqnqnqn
+qwqwqnqnqwqwozqnPCPCPCPCPCqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaARVMAyFQgyVMeJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPCPCPCPCPCqnozqwqwqwqwqwqw
+FrFrWQhuFrFrihqngIgIqnqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnFflaARVMAyNzgyVMeJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqnqngIgIqnqwiiFrFrFrFrFrFr
+FrFrFrFrFrFrlPPUFgciPnqnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaARVMAyLsgyVMeJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnYGqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnZbqnlaFgciNUFrlPFrFrLTaEFrFr
+FrFrFrFrFrFrlPPUGLrKPnqnqnaNqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqngIEtgIqnqnqnqnqnqnqnqnqnqngIgIgIgIqnqnqnqnqnqnqnqnlaARVMMgAebqVMeJPnqnqnqnqnqnqnqnqngIgIgIgIYGqnqnqnqnqnqnqnqnqngIgIgIqnirqnqnqnaNqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnlaGLrKYLFrlPLTjPqndsFrFr
+FrFrFrFrFrFrlPWQTzzYgIgIqnqnqnqnqnqnqnKMqnqnqnqnqnqnKMqnqnqnaNqnqnKMqnqnqnqngIPdcUvlnQiegIqnqnqnqnqnqnqnlaFgqyDuhpieqnqnqnqnqnqnqnPHVdApcfdTApdThwmvqnqnqnqnqnqnqnPHqyDuhpciPnqnqnqnqnqnqnqngIPHcUvlnQmvgIqnKMqnqnqnqnqnqnKMqnqnqnYGqnqnKMqnqnqnqnqnqnqnqnqnqngIgITzYyFrFrlPzCqnqnhuFrFr
+FrFrFrLTaEFrlPFrzCPdvlvlieqnqnqnqnqnqntXqnqnqnqnqnqntXqnqnqnqnqnqnqnqnqnqnlaqyDuDuDuDuDuhpPnqnqnqnqnqnqnqnQtaWVMGhhpPnqnqngIFfqnlaZEVMiNDbIkGfvmVMIJPnqnqngIqnqnlaqyhjVMaJwPqnqnqnqnqnqntXlaqyDuDuDuDuDuhpPnqnZbqnqnhXqnqnqntXtXtXqnqnqnqnqnZbqnqnhXqnqnaNqnPHqyhpmvdsFrFrkoqnqndsFrFrFr
+FrFrFrzCqnaElPFrPUVMQzwLgzPnqnqnqnqnqntXtXqnqnqntXqnjxqnqnqnqnqntXqnqnqnqnlaDyCwVMVMVMCwQpPntXqnqnqnqnqnqnHaorCwCweaPnqnlafHPnqnlaYvCwaJwPqnQtaWCwTRPnqnlafHPnqnlayWCwCwajPnqnqnqnqnqnZbjxlahdCwVMVMVMCwboPnqntXqntXqnqnqnqnjxtXjxaNqnqntXqnqntXqnqnqnqnqnlaPkPpSNDzNUFrFrihqnqndsFrFrFr
+FrFrFrzCqnhulPFrzCrjeNeNFwqnqnqnqnqnqnjxjxqnqnqntXqnYGqnqnqnqnqnjxqntXqnqnlaGfjDjDjDjDjDDbPnjxqnqnqnqnqnqnPHaWVMiNDbPnqnqnirqnqnlaZQvmaJmvqnPHaWiNoVPnqnqnirqnqnlaGfvmVMaJmvqnqnqnqnqnqnqnlaGfjDjDjDjDjDDbPnqntXtXjxqnqntXqnhXjxqntXqntXjxtXqnjxqnqnqnqnqnqncHGfDbCnqnaEFrlPWQqnqnaEFrFr
+FrFrFrWQhuFrlPLTgIgIIFPCqnqnKMqnqnqnqnqnqnZbqnqnjxqnqnqnqnqnqnqnqnqnjxqnqnqnTzuveAJkduMuzYqnqnqnKMqnqnqnlaGLGfjDDbnAqnqnqnqnqnqnqnSJaWGhoFfjdjhjaJztqnqnqnqnqnqnqnOIGfjDDbrKPnKMqnqnqnqnqnqnTzJOeAJkduaUzYqnqngPjxqnqnqnjxqnqnqnqnjxqnjxqnjxqnqnqnKMqnqnqnhXqnPCPCgIgIgIaEruFrzCqnqnaEFr
+FrFrFrFrFrFrlPPUVpdyYmPnqnqnqnqnqngIqnqnqnqnqnqngIqnqnqnqnqnqngIZbqnqnqnqnqngIqnPCPCPCqnqnqnqnqnqnqnqnqnqnTzgdgdzYqnqnqnqnqnqnqnqnlaaWVMGhDuhjVMaJPnqnqnqnqnqnqnqnqnTzgdgdzYqnqnqnqnqnqnqnqnqnZbPCPCPCqngIWVqnqnqnqnqngIqnqnqnqnZbqngIqnqnqnqnqnqngIqnqnqnqnqnqnlatTJkaPNUlPFrzCqnqnhuFr
+FrFrFrFrFrFrkolaWWXKXmPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnYGqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWtTJkVMJkaPaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnlaDMPnqnqnqnqnqnlaWpDMCeNUlPFrWQqwhuFrFr
+FrFrFrFrFrFrihlaJiGqDoPnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnirqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWWpoKQqoKCeaJPnqnWVqnqnqnqnqnqnqnqnqnqnqnqnqnYGqnqnqnqnqnqnqnqnqnqnirqnqnaNqnqnqnirqnqnqnqnqnqnirqnqnYGqnqnqnirqnqnqnqnqnqnlaRRQqLDYLlPFrFrFrFrFrFr
+FrFrLTaEFrFrlPzCTzgdzYqnqnqnqnqnqnqnqnKMqnqnqnqnqnqnKMqnqnqnqnqnqnKMqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWWpmvirPHCeaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaNqnqnqnTDqnqnqnqnqnqnKMqnaNqnqnqnqnKMqnqnqnqnqnqnqnqnqnhXqnqnTzgdKLFrlPFrFrFrFrFrFr
+FrFrWQqnaEFrlPzCqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlaaWVMpbDFEWVMaJPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnZbqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnaNqnqnqnqnqnqnqnqnhuFrFrlPFrFrFrFrFrFr
+FrFrFrWQhuFrlPzCqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPdaWWpztgISJCeaJieqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhXqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnhuFrFrFrlPFrFrFrFrFrFr
+FrFrFrFrFrFrkoqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnPdMghjWpeyeNeyCeGhItieqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqndsFrFrFrFrlPFrFrFrFrFrFr
+jPjPjPjPjPjPozqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnlabVVMVMRRQqVMQqLDVMVMWpPnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnYGqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnqnjPjPjPjPVgjPjPjPjPjPjP
 wMwMwMwMwMwMGawMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwEJkGlNneNeNeNGlNnJkvKwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMwMGawMwMwMwMwMwM
 HiHiHiHiHiHiPNHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiGoREBBBBREREREBBBBREGoHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiPNHiHiHiHiHiHi
 HiHiHiHiHiHiPNHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiGOVkhcTIdYdYdYhQhcafxsHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiPNHiHiHiHiHiHi
@@ -743,23 +796,23 @@ FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrFrFrLTjPjPjPjPjPjPjPjPqnqnqnaEFrFrFrLTjPjP
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrLTjPjPjPjPqnqnqnqnqnqwqwqwqnqnqnqnhuFrFrFrzCqnqwqwqnqndsFrFrFrFrzCqnhuFrFrFrFrzCqnqnEpFrFrFrFrOaaWaJPnqnlaDMPnqnlaaWaJNUFrFrFrWQchqwqndsFrFrFrFrLTjPjPjPqnqnqntXtXqnqndsFrFrFrFrFrWQhuFrLTjPjPjPqwqwqngAVxVxVxVMVMMtllFTFTFTTvgAVMVMVxVxVxRVqnaEFrFrFrFr
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrzCqwqwqnqnqwqwqnqnhuFrFrFrWQqnqndsFrFrFrFrgxdsFrFrWQqndsFrFrFrFrzCdsFrFrFrFrFrzCqnhuFrFrFrFrFrOaaWaJPnqnqntDqnqnlaaWaJNUFrFrFrFryqFrWQdsFrFrFrFrzCqntXqnqwcuqwaOtXqnqndsFrFrFrFrFrFrFrLTqnqnqndsFrFrzCjXVxMbREREREgAFgGqGqGqciMtREREREAAVxPRqnhuFrFrFrFr
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrLTdsFrFrWQbWFrFrzChuFrFrFrFryqzCqndsFrFrFrLTlTdsFrFrFrzCdsFrLTBojPqndsFrFrFrFrLTqndsFrFrFrFrFrFrOaaWaJPnqnqnqnqnqnlaaWaJNUFrFrFrFrFrFrFrzCjPjPjPjPqntXjxhuFrHPFrFrKYqnqndsFrFrFrFrFrFrFrzCqnqnqndsFrFrXXVxVxUkCMGxCMgAWWMbNfAAWWMtCMGxCMsZVxVxmCFrFrFrFrFr
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrzCdsFrFrFrFrFrFrEKFrFrFrFrFrLTqntXqnjPaEFrWQqndsFrFrLTqnqnjPqnMDtXqndsFrFrFrFrzCqndsFrFrLTClClClPHaWaJPnqnqnqnqnqnlaaWaJmvJEJEJEaEFrFrFrzCqnqnqnqnqnjxqnFrFrEKFrFrWQtXqndsFrFrFrFrFrFrFrWQqnqnqnhuFrFrXXVxMbVspXDMovgAWWSOobLLWWMtpXDMovVsAAVxmCFrLTaEFrFr
-FrFrFrFrFrLTPAFrLTaEFrFrFrFrFrzCdsFrFrFrFrFrFrEKFrFrFrFrFrzCqnjxqnqndsFrFrzCqnaEFrWQqwqwqnqnjxjxqwhuFrFrFrFrzCqnqnjPjWlaCeiNjDdqhjaJPnqnqngIqnqnlaaWGhCdjDvmQzVejPjPjPqnqntXqnqntXqnhuFrFrEKFrFrFrCLqndsFrFrFrFrFrFrFrFrWQqwhuFrFrFrXXVxDejxjxREjxgAWWsmJUzkWWMtjxREjxjxNLVxmCFrzCdsFrFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrzCdsFrFrFrFrFrFrEKFrFrFrFrFrLTqntXqnjPaEFrWQqndsFrFrLTqnqnjPqnMDtXqndsFrFrFrFrzCqndsFrFrLTClClClPHaWaJPnqnqnqnqnqnlaaWaJmvJEJEJEaEFrFrFrzCqnqnqnqnqnjxdsFrFrEKFrFrWQtXqndsFrFrFrFrFrFrFrWQqnqnqnhuFrFrXXVxMbVspXDMovgAWWSOobLLWWMtpXDMovVsAAVxmCFrLTaEFrFr
+FrFrFrFrFrLTPAFrLTaEFrFrFrFrFrzCdsFrFrFrFrFrFrEKFrFrFrFrFrzCqnjxqnqndsFrFrzCqnaEFrWQqwqwqnqnjxjxqwhuFrFrFrFrzCqnqnjPjWlaCeiNjDdqhjaJPnqnqngIqnqnlaaWGhCdjDvmQzVejPjPjPqnqntXqnqntXqwhuFrFrEKFrFrFrCLqndsFrFrFrFrFrFrFrFrWQqwhuFrFrFrXXVxDejxjxREjxgAWWsmJUzkWWMtjxREjxjxNLVxmCFrzCdsFrFr
 FrFrFrFrFrWQozryqndsFrFrFrFrFrWQdsFrFrFrFrFrFrEKFrFrFrFrFrzCqnqntXqndsFrFrzCqndsFrFrFrFrWQqnqndsFrFrFrLTjPjPqnsrqnqnqnEqCeaJfHaWVMaJPnqnlaDMPnqnlaaWVMaJfHaWQzWPsrqnqnqnqnjxtXqnUiFrFrFruUeoFrFrFrFrzCtXaEFrFrFrFrFrFrFrFrFrFrFrFrLTgAVxVMMtqnVsqngAWWgWrHjXWWMtqnVsqngAVMVxMtjPqndsFrFx
 FrFrFrFrFrhzEbqbPnqnhWaEFrFrriFrEKFrFrFrLTNsNshuFrFrFrLTjPgIPdbVjxqndsFrFrWQqndsFrFrFrFrFrWQjphuFrFrFrWQqnqnqnqnqnqwqwEqCeGhDuoRvmaJPnqnqntDqnqnlaaWiNwxDuhjQzVeJqqwqwRcqntXtXqndsFrFrFrRSeoFrFrFrFrWQjxtXjPjPjPjPaEFrFrFrFrFrFrLTqnqnAGVMMtaNjxqngAGLGqGqGqrKMtqnjxqngAVMRdqnqnqwqnaEFr
 FrFrFrFrFrLTozOiqndsFrzCjPaEFrLTdsFrFrFrVQFrFrFrFrFrFrWQlaZEQqsEjEqnqnaEFrFrzCdsFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnqndsFrFrWQFbgCJuuvaWaJPnqnqnqnqnqnlaaWaJaUgdYaTFhuFrFrFrzCqnjxtXqndsFrFrFrUcMkFrFrFrFrFrzCtXtXtXtXqndsFrFrFrFrFrFrWQqngAVxVMMtqnqnqnqnREuWuWuWREqnqnqnqngAVMVxMtdsFrzCdsFr
 FrFrFrFrFrWQiiFrWQhuFrWQqwqwdaqwhuFrFrFrEKFrFrFrFrFrFrFrOatteNtXMDsrtXqnrRrRqndsFrFrFrFrFrFrFrFrFrFrFrFrWQjZqnqndsFrFrFrFrFrFrOaaWaJPnqnqnqnqnqnlaaWaJPndsFrFrFrFrFrFrWQqnqwaOqndsFrFrFrFrzCjPjPaEFrFrWQaOaOaOlWqndsFrFrFrFrFrFrFrFrXXVxMbqnqnqnqnqnVsuWuWuWVsqnqnqnqnqnAAVxMtqnjPqndsFr
-FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrrbEKFrFrFrFrFrFrFrWQgCgdtXtXtXjxdsUcUczCdsFrFrFrFrFrFrFrFrFrFrFrFrFrFrzCqndsFrFrLTaEFrFrOaaWaJPnqnqngIqnqnlaaWaJPnhuFrFrFrFrFrFrFrEKFrFrzCqnNsrRrRrRqnqnqnqnaEFrFrFrFrFrUcWQqnjPjPjPjPjPjPjPjPgAVxDeqnqnqnqnqnplhVjDRFjOqnqnqnqnqnNLVxMtqnqnqnhuFr
+FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrrbEKFrFrFrFrFrFrFrWQgCgdtXtXtXjxdsUcUczCdsFrFrFrFrFrFrFrFrFrFrFrFrFrFrzCqndsFrFrLTaEFrFrOaaWaJPnqnqngIqnqnlaaWaJPnhuFrFrFrFrFrFrFrEKFrFrzCqnNsrRrRrRqnqnqnqnaEFrFrFrFrFrUcWQqnjPjPjPjPjPjPjPjPgAVxDeqnqnqnqnqnplhVApRFjOqnqnqnqnqnNLVxMtqnqnqnhuFr
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrrbWQhWaEFrFrFrFrFrFrFrqWjxjxtXqnqnaEFrzCdsFrFrFrFrFrFrFrFrFrFrFrFrFrFrzCqnqnjPjPqndsFrFrOaaWaJPnqnlaDMPnqnlaaWaJNUFrFrFrFrFrFrFrFrEKFrFrzCdsFrUcUcUczCqnRcqnqnaEFrFrFrFrFrFrzCqnqnqntXtXqnqntXgAVxVMMtKMqnqnqnlaeJfHgyPnKMqnqnqngAVMVxMtqnqnhuFrFr
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrhzFrriEKFrFrFrFrFrFrFrFrWQqnjxqwqwhuFrzCdsFrFrLTaEFrFrFrFrFrFrFrFrFrFrzCqnqnqnqnjphuFrLTlaaWaJmvqnqntDqnqnPHaWaJNUFrFrFrFrFrFrFrFrEKFrFrWQdsFrFrFrFrWQqnjEqnqndsFrFrFrFrFrLTqnqnqnqnjxlWlWlWaOqnAGVMMtqnqnqnqnRGPBBFHmPnqnqnqnqngAVMRdqnqnhuFrFrFx
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrEKFrFrFrFrFrFrFrFrFrzCdsFrFrFrFrzCdsFrLTqndsFrFrFrFrFrFrFrFrFrFrWQqwtXqndsFrFrFrWQlayJaJcimvgIgIgIPHFgaWJgNUFrFrFrFrFrFrLTjPdsFrFrFrzCaEFrFrFrFryuqnqnqwhuFrFrFrFrFrzCsrqnqwqwhuUcUcUcFrXXVxVMMtqngIqnqnlaGBsaNDPnqnqngIqngAVMVxMthuFrFrFrFr
 FrFrFrFrFrFrlPFrFrFrFrFrFrFrFrFrFrFrFrFrLTNshuFrFrFrFrFrFrFrFrFrzCdsFrFrLTjPqnqnJztXqnqnjPjPjPjPjPJzaEFrFrFrFrFrKYtXeoFrFrFrFrOaaWGhDuDuhpfHqyDuDuhjaJPnaEFrFrFrFrFrzCqnhuFrFrFrzCqnaEFrFrFrWQlWhuFrFrFrFrFrLTjPqnRcUJFrFrFrFrFrFrLTgAVxMbqnlaDMPnqnlanWSRLzPnqnlaDMPnqnAAVxmCFrFrFrFrFr
 WjWjWjWjWjWjNuWjOHeXeXIRWjWjWjWjWjWjWjWjzhWjWjWjWjWjWjWjWjWjFrFrgxqnhWhWqwqwqwqwldtXqnqwqwlWchqwqwjxdsFrFrFrFrFrzCjxUiFrFrFrLTlaGfjDjDjDdwGqvnjDjDjDDbPndsFrFrFrFrFrzCdsFrFrFrFrWQqnqnaEFrFrFrUcFrFrFrFrFrFrzCqnqnqwhuFrFrFrFrFrLTqngAVxDeTvTvtDTvTvTvAWKGbKTvOxTvtDTvTvNLVxmCFrFrFrFrFr
 nXnXGvnXnXnXEYnXMisXsXVZnXnXnXGvnXnXnXnXzuGvnXnXnXnXnXnXGvnXEzFrmodsFrFrFrFrFrFrUcKYdsFrFrUcFrFrFrzCdsFrFrFrFrFrzCqndsFrFrFrWQqnPCPCPCPCPCPCPCPCPCPCPCqnhuFrFrFrFrFresdsFrFrFrFrFrzCqnqnjPjPjPaEFrFrFrLTjPjPqnqndsFrFrFrFrFrFrFrqnqnuAVxVxVxVxxRVxVxVxVxxRVxVxVxVxxRVxVxVxVxmCFrFrFrFrFr
-FrFrcSFrFrFrlPFrFKaNdsFrLTClClxKClClaEFrEKiJFrFrFrLTClaEiJFrRnKxjEdsFrFrFrFrFrFrFrzCdsFrFrFrFrFrFrzCqnaEFrFrLTjPqnqndsFrFrFrFrzCqnqwqwqnqnWVqnqwqwqwqwhuFrFrFrFrFrFrXzdsFrFrFrFrFrWQqntXtXtXjEqnJzJzJzqnqnqnqwqwhuFrFrFrFrFrFrLTqnqwtXUrUrUrPJTvPJUrUrPJTvPJUrUrPJTvPJUrUrIeqnaEFrFrFrFr
-FrLTICaEFrFrlPLTzNqnhuFrOaugVMzOVMAPbbFrzCDfFrFrFrOafHNUiJFrKZeeqnqnaEFrFrLTjPjPjPqnhuFrFrLTjPjPjPqnqnqnjPjPqnqnqnqndsFrFrLTjPqnhuFrFrWQqnqndsFrFrFrFrFrFrFrFrFrFrFrFrEKFrLTjPaEFrFrWQaOaOlWHXlWlWlWaOqwqwhuFrFrFrFrFrLTaEFrLTqnhuFrqlUZUZfTVxVxVxCjfTVxVxVxCjfTVxVxVxCjUZHUqnqnaEFrFrFr
-FrzCKuhuFrFrlPWQKudsFrFrOabVVMMvVMWpPnNsqnKujPNsNschSnqnZNFrmSeeqnqnqnjPjPqnqnqnqndsFrFrLTqnqwqwqwqwqwqwqwqwqwqwqwqwhuFrFrzCqnhuFrFrFrOfzCqnqnjPjPjPjPjPjPjPJzCPFrFrFrEKFrgxqndsFrFrFrFrFrUcUcUcUcUcFrFrFrFrFrLTaEFrFrWQqnjPtXdsFrFrqlCMCMCMUrUrUrCMCMUrUrUrCMCMUrUrUrCMCMLbqnqnqnaEFrFr
-FrWQlKFrFrFrlPFrwidsFrFrWQartPYHnYilhuFrWQFVhuFrFrFrFrbBlKyqLjzDqwqwlWlWlIqwjpqwqwhuFrFrWQEpFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrzChuFrFrFrFrFrWQqwqnqnqwqnqnqnqnqwaOlWrRrRrRlWrRkQqwhuFrFrFrFrFrFrFrLTjPaEFrFrFrFrLTqnqnaEFrFrWQqnjxdsFrFrKYVsVsVsGoGoGoVsVsGoGoGoVsVsGoGoGoVsVsnsqnqnqnqnaEFr
+FrFrcSFrFrFrlPFrFKaNdsFrLTClClxKClClaEFrEKiJFrFrFrLTClaEiJFrRnKxjEdsFrFrFrFrFrFrFrzCdsFrFrFrFrFrFrzCqnaEFrFrLTjPqnqndsFrFrFrFrzCqnqwqwqnqnWVqnqwqwqwqwhuFrFrFrFrFrFrXzdsFrFrFrFrFrWQqntXtXtXjEqnJzJzJzqngIgIqwqwhuFrFrFrFrFrFrLTqnqwtXUrUrUrPJTvPJUrUrPJTvPJUrUrPJTvPJUrUrIeqnaEFrFrFrFr
+FrLTICaEFrFrlPLTzNqnhuFrOaugVMzOVMAPbbFrzCDfFrFrFrOafHNUiJFrKZeeqnqnaEFrFrLTjPjPjPqnhuFrFrLTjPjPjPqnqntXjPjPqnqnqnqndsFrFrLTjPqnhuFrFrWQqnqndsFrFrFrFrFrFrFrFrFrFrFrFrEKFrLTjPaEFrFrWQaOaOlWHXlWlWlWaOlujTtJsVFrFrFrFrLTaEFrLTqnhuFrqlUZUZfTVxVxVxCjfTVxVxVxCjfTVxVxVxCjUZHUqnqnaEFrFrFr
+FrzCKuhuFrFrlPWQKudsFrFrOabVVMMvVMWpPnNsqnKujPNsNschSnqnZNFrmSeeqnqnqnjPjPqnqnqnqndsFrFrLTqnqwqwqwqwqwaOlWqwqwqwqwqwhuFrFrzCqnhuFrFrFrOfzCqnqnjPjPjPjPjPjPjPJzCPFrFrFrEKFrgxqndsFrFrFrFrFrUcUcUcUcUcFrFrgovQFrLTaEFrFrWQqnjPtXdsFrFrqlCMCMCMUrUrUrCMCMUrUrUrCMCMUrUrUrCMCMLbqnqnqnaEFrFr
+FrWQlKFrFrFrlPFrwidsFrFrWQartPYHnYilhuFrWQFVhuFrFrFrFrbBlKyqLjzDqwqwlWlWlIqwjpqwqwhuFrFrWQEpFrFrFrFrFrFrUcFrFrFrFrFrFrFrFrzChuFrFryqFrFrWQqwKMqnqwqnqnqnqnqwaOlWrRrRrRlWrRkQqwhuFrFrFrFrFrFrFrLTjPaEFrFrFrFrLTqnqnaEFrFrWQqnjxdsFrFrKYVsVsVsGoGoGoVsVsGoGoGoVsVsGoGoGoVsVsnsqnqnqnqnaEFr
 FrFrFrFrFrFrlPLTqnqnaEFrFrFrgoFOvQFrFrLTaEFrFrFrFrFrFrFrFrFrLjhhFrFrUcUcFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrLTdsFrFrFrFrFrFrFrFrWQhuFrWQlIqwhuFrFrUcUcUcUcUcUcFrFrFrFrFrFrFrFrFrFrWQqwqwjPaEFrFrWQlIqwqnaEFrFrWQqwhuFrFrWQSiSiSijujujuSiSijujujuSiSijujujuSiSiqCqwqwqwqwhuFr
 FrFrFrFrFrFrlPihmLzUiilPlPlPlPlPlPkoVgoziilPlPlPlPlPlPlPlPlPAilvlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPihiilPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPihozlPlPrulPlPihJalPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlPFrFrFrFrFrFr
 FrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrWQqwhuFrFrFrFrFrFrFrFrFrFrLjhhFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrLTjPaEFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrtMFrFrFrFrFrFrzCjPjPjPaEFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFrFr
