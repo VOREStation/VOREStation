@@ -273,8 +273,6 @@
 		"can_be_drop_pred" = host.can_be_drop_pred,
 		"allow_inbelly_spawning" = host.allow_inbelly_spawning,
 		"allow_spontaneous_tf" = host.allow_spontaneous_tf,
-		"appendage_color" = host.appendage_color,
-		"appendage_alt_setting" = host.appendage_alt_setting,
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
