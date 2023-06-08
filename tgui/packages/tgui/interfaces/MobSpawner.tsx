@@ -1,6 +1,6 @@
 import { BooleanLike } from '../../common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Dropdown, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
+import { Button, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -11,8 +11,6 @@ type Data = {
   default_flavor_text: string;
 
   default_speak_emotes: string[];
-
-  mob_paths: string[];
 
   loc_lock: BooleanLike;
   loc_x: number;
@@ -91,11 +89,10 @@ const GeneralMobSettings = (props, context) => {
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
-            <Dropdown
+            <Button
               fluid
-              options={data.mob_paths}
-              displayText={data.path || 'No path selected yet.'}
-              onSelected={(val) => act('select_path', { path: val })}
+              content={data.path || 'Select Path'}
+              onClick={(val) => act('select_path')}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Spawn Amount">
@@ -182,9 +179,9 @@ const GeneralMobSettings = (props, context) => {
         onCLick={() =>
           act('start_spawn', {
             amount: amount,
-            name: name,
-            desc: desc,
-            flavor_text: flavorText,
+            name: name || data.default_path_name,
+            desc: desc || data.default_desc,
+            flavor_text: flavorText || data.default_flavor_text,
             size_multiplier: sizeMultiplier * 0.01,
             x: data.loc_lock ? data.loc_x : x,
             y: data.loc_lock ? data.loc_y : y,
