@@ -657,6 +657,45 @@
 	msg_prey_stepunder = "You jump over %prey's thick tail."
 	msg_owner_stepunder = "%owner bounds over your tail."
 
+/datum/sprite_accessory/tail/taur/altmermaid
+	name = "Mermaid Alt. (Taur)"
+	icon_state = "altmermaid_s"
+	can_ride = 0
+	icon_sprite_tag = "altmermaid"
+
+	msg_owner_help_walk = "You carefully slither around %prey."
+	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
+
+	msg_owner_help_run = "You carefully slither around %prey."
+	msg_prey_help_run = "%owner's huge tail slithers past beside you!"
+
+	msg_owner_disarm_run = "Your tail slides over %prey, pushing them down to the ground!"
+	msg_prey_disarm_run = "%owner's tail slides over you, forcing you down to the ground!"
+
+	msg_owner_disarm_walk = "You push down on %prey with your tail, pinning them down under you!"
+	msg_prey_disarm_walk = "%owner pushes down on you with their tail, pinning you down below them!"
+
+	msg_owner_harm_run = "Your heavy tail carelessly slides past %prey, crushing them!"
+	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their heavy tail!"
+
+	msg_owner_harm_walk = "Your heavy tail slowly and methodically slides down upon %prey, crushing against the floor below!"
+	msg_prey_harm_walk = "%owner's thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below!"
+
+	msg_owner_grab_success = "You slither over %prey with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight confines of your tail!"
+	msg_prey_grab_success = "%owner slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight confines of their tail!"
+
+	msg_owner_grab_fail = "You squish %prey under your large, thick tail, forcing them onto the ground!"
+	msg_prey_grab_fail = "%owner pins you under their large, thick tail, forcing you onto the ground!"
+
+	msg_prey_stepunder = "You jump over %prey's thick tail."
+	msg_owner_stepunder = "%owner bounds over your tail."
+
+/datum/sprite_accessory/tail/taur/altmermaid/marked
+	name = "Mermaid Koi (Taur)"
+	icon_state = "altmermaid_s"
+	extra_overlay = "altmermaid_markings"
+	extra_overlay2 = "altmermaid_markings2"
+
 /datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same
 	name = "Cow w/ paws (Taur)"
 	icon_state = "pawcow_s"
@@ -962,3 +1001,4 @@
 	name = "Naga (Taur, Fat, dual color)"
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
+
