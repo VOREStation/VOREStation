@@ -26,7 +26,7 @@
 
 /turf/simulated/floor/water/atoll
 	name = "shallow water"
-	desc = "This water looks pretty shallow and calm. You'd almost feel bad for hopping in and disturbing it's serene flatness."
+	desc = "This water looks pretty shallow and calm. You'd almost feel bad for hopping in and disturbing its serene flatness."
 	icon = 'maps/atoll/icons/turfs/water.dmi'
 	icon_state = "shallow"
 	under_state = "shallow"
