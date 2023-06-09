@@ -63,7 +63,7 @@
 	if(query_sound)
 		SEND_SOUND(C, sound(query_sound))
 
-	tgui_alert_async(D, question, "[role_name] request", list("Yes", "No", "Never for this round"), CALLBACK(src, .proc/get_reply), wait_time SECONDS)
+	tgui_alert_async(D, question, "[role_name] request", list("Yes", "No", "Never for this round"), CALLBACK(src, PROC_REF(get_reply)), wait_time SECONDS)
 
 /// Process an async alert response
 /datum/ghost_query/proc/get_reply(response)
@@ -87,7 +87,7 @@
 			else if(finished) // Already finished candidate list
 				to_chat(D, "<span class='warning'>Unfortunately, you were not fast enough, and there are no more available roles. Sorry.</span>")
 			else // Prompt a second time
-				tgui_alert_async(D, "Are you sure you want to play as a [role_name]?", "[role_name] request", list("I'm Sure", "Nevermind"), CALLBACK(src, .proc/get_reply), wait_time SECONDS)
+				tgui_alert_async(D, "Are you sure you want to play as a [role_name]?", "[role_name] request", list("I'm Sure", "Nevermind"), CALLBACK(src, PROC_REF(get_reply)), wait_time SECONDS)
 
 		if("I'm Sure")
 			if(!evaluate_candidate(D)) // Failed revalidation
@@ -136,6 +136,14 @@
 	question = "An Alien has just been created on the facility.  Would you like to play as them?"
 	query_sound = 'sound/voice/hiss5.ogg'
 	be_special_flag = BE_ALIEN
+
+/datum/ghost_query/xenomorph_larva
+	role_name = "Xenomorph Larva"
+	question = "A xenomorph larva is ready to hatch from their egg. Would you like to join the hive?"
+	be_special_flag = BE_ALIEN
+	check_bans = list("Xenomorph")
+	cutoff_number = 1
+
 
 /datum/ghost_query/blob
 	role_name = "Blob"

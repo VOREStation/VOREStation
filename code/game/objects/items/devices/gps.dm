@@ -45,8 +45,8 @@ var/list/GPS_list = list()
 
 	if(istype(loc, /mob))
 		holder = loc
-		GLOB.moved_event.register(holder, src, .proc/update_compass)
-		GLOB.dir_set_event.register(holder, src, .proc/update_compass)
+		GLOB.moved_event.register(holder, src, PROC_REF(update_compass))
+		GLOB.dir_set_event.register(holder, src, PROC_REF(update_compass))
 
 	if(holder && tracking)
 		if(!is_in_processing_list)

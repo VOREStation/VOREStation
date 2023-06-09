@@ -285,3 +285,10 @@
 	cost = 45
 	allow_duplicates = FALSE
 	discard_prob = 50
+
+/datum/map_template/debrisfield/blasted_sdf
+	name = "Blasted SDF Corvette"
+	mappath = 'maps/offmap_vr/om_ships/sdf_corvette_wreck.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+	discard_prob = 25

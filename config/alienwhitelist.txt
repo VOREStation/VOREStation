@@ -1,5 +1,6 @@
 1062aphelion - Protean
 admiraldragon - Vox
+adriano20037 - Protean
 aetherelemental - Daemon
 alphaprime1 - Protean
 amarewolf - Xenochimera
@@ -42,8 +43,10 @@ exgame - Vox
 falloutdog3 - Black-Eyed Shadekin
 flaktual - Vox
 flurriee - Protean
+foxglovepurpur - Diona
 funnyman2003 - Xenochimera
 fuzlet - Protean
+grallstonefist - Black-Eyed Shadekin
 greennyy - Protean
 h0lysquirr3l - Protean
 hawkerthegreat - Vox
@@ -108,6 +111,9 @@ pastelprincedan - Protean
 pearlprophet - Protean
 pemdesos - Protean
 phoenixx0 - Vox
+pontifexminimus - Black-Eyed Shadekin
+pontifexminimus - Protean
+pontifexminimus - Xenochimera
 qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
 residentcody - Black-Eyed Shadekin

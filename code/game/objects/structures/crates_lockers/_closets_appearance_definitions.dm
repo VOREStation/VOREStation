@@ -809,6 +809,19 @@
 		"nano" = COLOR_OFF_WHITE
 	)
 
+/decl/closet_appearance/crate/freezer/veymed
+	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"lid_stripes" = COLOR_RED,
+		"crate_cross" = COLOR_GREEN
+	)
+
+/decl/closet_appearance/crate/freezer/zenghu
+	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"zenghu" = COLOR_OFF_WHITE
+	)
+
 // Corporate Branding
 
 /decl/closet_appearance/crate/aether

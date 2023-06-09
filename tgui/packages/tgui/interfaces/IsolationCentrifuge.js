@@ -6,17 +6,22 @@ import { Window } from '../layouts';
 export const IsolationCentrifuge = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { busy, antibodies, pathogens, is_antibody_sample, sample_inserted } = data;
+  const { busy, antibodies, pathogens, is_antibody_sample, sample_inserted } =
+    data;
 
   let blood_sample = <Box color="average">No vial detected.</Box>;
 
   if (sample_inserted) {
     if (!antibodies && !pathogens) {
-      blood_sample = <Box color="average">No antibodies or viral strains detected.</Box>;
+      blood_sample = (
+        <Box color="average">No antibodies or viral strains detected.</Box>
+      );
     } else {
       blood_sample = (
         <Fragment>
-          {antibodies ? <Section title="Antibodies">{antibodies}</Section> : null}
+          {antibodies ? (
+            <Section title="Antibodies">{antibodies}</Section>
+          ) : null}
           {pathogens.length ? (
             <Section title="Pathogens">
               <LabeledList>
@@ -44,7 +49,8 @@ export const IsolationCentrifuge = (props, context) => {
           </Section>
         ) : (
           <Fragment>
-            <Section title={is_antibody_sample ? 'Antibody Sample' : 'Blood Sample'}>
+            <Section
+              title={is_antibody_sample ? 'Antibody Sample' : 'Blood Sample'}>
               <Flex spacing={1} mb={1}>
                 <Flex.Item grow={1}>
                   <Button
@@ -72,7 +78,11 @@ export const IsolationCentrifuge = (props, context) => {
                 <LabeledList>
                   {antibodies && !is_antibody_sample ? (
                     <LabeledList.Item label="Isolate Antibodies">
-                      <Button icon="pen" content={antibodies} onClick={() => act('antibody')} />
+                      <Button
+                        icon="pen"
+                        content={antibodies}
+                        onClick={() => act('antibody')}
+                      />
                     </LabeledList.Item>
                   ) : null}
                   {pathogens.length ? (
@@ -82,7 +92,9 @@ export const IsolationCentrifuge = (props, context) => {
                           key={virus.name}
                           icon="pen"
                           content={virus.name}
-                          onClick={() => act('isolate', { isolate: virus.reference })}
+                          onClick={() =>
+                            act('isolate', { isolate: virus.reference })
+                          }
                         />
                       ))}
                     </LabeledList.Item>

@@ -25,7 +25,7 @@
 	faction = "space ghost"
 	maxHealth = 50
 	health = 50
-	movement_cooldown = 3.25
+	movement_cooldown = 0
 
 	see_in_dark = 10
 
@@ -137,7 +137,7 @@
 	faction = "space ghost"
 	maxHealth = 5
 	health = 5
-	movement_cooldown = 1
+	movement_cooldown = -1
 
 	see_in_dark = 10
 	alpha = 128
@@ -192,7 +192,7 @@
 	. = ..()
 	icon_living = "spookyghost-[rand(1,2)]"
 	icon_state = icon_living
-	addtimer(CALLBACK(src, .proc/death), 35 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(death)), 35 SECONDS)
 	update_icon()
 
 /datum/ai_holder/simple_mob/melee/space_ghost

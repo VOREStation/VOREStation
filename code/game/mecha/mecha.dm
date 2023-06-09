@@ -566,7 +566,7 @@
 		"View Stats" = radial_image_statpanel
 	)
 
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_occupant_radial, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_occupant_radial), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_occupant_radial(user))
 		return
 	if(!choice)
@@ -1567,15 +1567,27 @@
 			for(var/slot in internal_components)
 				var/obj/item/mecha_parts/component/C = internal_components[slot]
 
-				if(C)
+				if(!C)
+					to_chat(user, "<span class='notice'>There are no components installed!</span>")
+					return
 
-					if(C.integrity < C.max_integrity)
-						while(C.integrity < C.max_integrity && NP && do_after(user, 1 SECOND, src))
-							if(NP.use(1))
-								C.adjust_integrity(10)
+				if(C.integrity >= C.max_integrity)
+					to_chat(user, "<span class='notice'>\The [C] does not require repairs.</span>")
 
-						to_chat(user, "<span class='notice'>You repair damage to \the [C].</span>")
+				else if(C.integrity < C.max_integrity)
+					to_chat(user, "<span class='notice'>You start to repair damage to \the [C].</span>")
+					while(C.integrity < C.max_integrity && NP)
+						if(do_after(user, 1 SECOND, src))
+							NP.use(1)
+							C.adjust_integrity(NP.mech_repair)
 
+							if(C.integrity >= C.max_integrity)
+								to_chat(user, "<span class='notice'>You finish repairing \the [C].</span>")
+								break
+
+							else if(NP.amount == 0)
+								to_chat(user, "<span class='warning'>Insufficient nanopaste to complete repairs!</span>")
+								break
 			return
 
 		else

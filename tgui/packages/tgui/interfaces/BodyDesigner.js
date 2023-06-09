@@ -15,9 +15,23 @@ export const BodyDesigner = (props, context) => {
       <Window.Content>
         {disk ? (
           <Box>
-            <Button icon="save" content="Save To Disk" onClick={() => act('savetodisk')} disabled={!activeBodyRecord} />
-            <Button icon="save" content="Load From Disk" onClick={() => act('loadfromdisk')} disabled={!diskStored} />
-            <Button icon="eject" content="Eject" onClick={() => act('ejectdisk')} />
+            <Button
+              icon="save"
+              content="Save To Disk"
+              onClick={() => act('savetodisk')}
+              disabled={!activeBodyRecord}
+            />
+            <Button
+              icon="save"
+              content="Load From Disk"
+              onClick={() => act('loadfromdisk')}
+              disabled={!diskStored}
+            />
+            <Button
+              icon="eject"
+              content="Eject"
+              onClick={() => act('ejectdisk')}
+            />
           </Box>
         ) : null}
         {body}
@@ -30,8 +44,16 @@ const BodyDesignerMain = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Section title="Database Functions">
-      <Button icon="eye" content="View Individual Body Records" onClick={() => act('menu', { menu: 'Body Records' })} />
-      <Button icon="eye" content="View Stock Body Records" onClick={() => act('menu', { menu: 'Stock Records' })} />
+      <Button
+        icon="eye"
+        content="View Individual Body Records"
+        onClick={() => act('menu', { menu: 'Body Records' })}
+      />
+      <Button
+        icon="eye"
+        content="View Stock Body Records"
+        onClick={() => act('menu', { menu: 'Stock Records' })}
+      />
     </Section>
   );
 };
@@ -42,7 +64,13 @@ const BodyDesignerBodyRecords = (props, context) => {
   return (
     <Section
       title="Body Records"
-      buttons={<Button icon="arrow-left" content="Back" onClick={() => act('menu', { menu: 'Main' })} />}>
+      buttons={
+        <Button
+          icon="arrow-left"
+          content="Back"
+          onClick={() => act('menu', { menu: 'Main' })}
+        />
+      }>
       {bodyrecords.map((record) => (
         <Button
           icon="eye"
@@ -61,7 +89,13 @@ const BodyDesignerStockRecords = (props, context) => {
   return (
     <Section
       title="Stock Records"
-      buttons={<Button icon="arrow-left" content="Back" onClick={() => act('menu', { menu: 'Main' })} />}>
+      buttons={
+        <Button
+          icon="arrow-left"
+          content="Back"
+          onClick={() => act('menu', { menu: 'Main' })}
+        />
+      }>
       {stock_bodyrecords.map((record) => (
         <Button
           icon="eye"
@@ -82,10 +116,20 @@ const BodyDesignerSpecificRecord = (props, context) => {
       <Flex.Item basis="165px">
         <Section
           title="Specific Record"
-          buttons={<Button icon="arrow-left" content="Back" onClick={() => act('menu', { menu: 'Main' })} />}>
+          buttons={
+            <Button
+              icon="arrow-left"
+              content="Back"
+              onClick={() => act('menu', { menu: 'Main' })}
+            />
+          }>
           <LabeledList>
-            <LabeledList.Item label="Name">{activeBodyRecord.real_name}</LabeledList.Item>
-            <LabeledList.Item label="Species">{activeBodyRecord.speciesname}</LabeledList.Item>
+            <LabeledList.Item label="Name">
+              {activeBodyRecord.real_name}
+            </LabeledList.Item>
+            <LabeledList.Item label="Species">
+              {activeBodyRecord.speciesname}
+            </LabeledList.Item>
             <LabeledList.Item label="Bio. Sex">
               <Button
                 icon="pen"
@@ -98,7 +142,9 @@ const BodyDesignerSpecificRecord = (props, context) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Synthetic">{activeBodyRecord.synthetic}</LabeledList.Item>
+            <LabeledList.Item label="Synthetic">
+              {activeBodyRecord.synthetic}
+            </LabeledList.Item>
             <LabeledList.Item label="Mind Compat">
               {activeBodyRecord.locked}
               <Button
@@ -271,9 +317,16 @@ const BodyDesignerOOCNotes = (props, context) => {
       title="Body OOC Notes (This is OOC!)"
       height="100%"
       scrollable
-      buttons={<Button icon="arrow-left" content="Back" onClick={() => act('menu', { menu: 'Specific Record' })} />}
+      buttons={
+        <Button
+          icon="arrow-left"
+          content="Back"
+          onClick={() => act('menu', { menu: 'Specific Record' })}
+        />
+      }
       style={{ 'word-break': 'break-all' }}>
-      {(activeBodyRecord && activeBodyRecord.booc) || 'ERROR: Body record not found!'}
+      {(activeBodyRecord && activeBodyRecord.booc) ||
+        'ERROR: Body record not found!'}
     </Section>
   );
 };

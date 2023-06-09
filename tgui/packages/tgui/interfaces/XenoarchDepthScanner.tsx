@@ -37,11 +37,21 @@ export const XenoarchDepthScanner = (props, context) => {
             }>
             <LabeledList>
               <LabeledList.Item label="Time">{current.time}</LabeledList.Item>
-              <LabeledList.Item label="Coords">{current.coords}</LabeledList.Item>
-              <LabeledList.Item label="Anomaly Depth">{current.depth} cm</LabeledList.Item>
-              <LabeledList.Item label="Anomaly Size">{current.clearance} cm</LabeledList.Item>
-              <LabeledList.Item label="Dissonance Spread">{current.dissonance_spread}</LabeledList.Item>
-              <LabeledList.Item label="Anomaly Material">{current.material}</LabeledList.Item>
+              <LabeledList.Item label="Coords">
+                {current.coords}
+              </LabeledList.Item>
+              <LabeledList.Item label="Anomaly Depth">
+                {current.depth} cm
+              </LabeledList.Item>
+              <LabeledList.Item label="Anomaly Size">
+                {current.clearance} cm
+              </LabeledList.Item>
+              <LabeledList.Item label="Dissonance Spread">
+                {current.dissonance_spread}
+              </LabeledList.Item>
+              <LabeledList.Item label="Anomaly Material">
+                {current.material}
+              </LabeledList.Item>
             </LabeledList>
           </Section>
         )) ||
@@ -59,7 +69,10 @@ export const XenoarchDepthScanner = (props, context) => {
           }>
           {(positive_locations.length &&
             positive_locations.map((loc) => (
-              <Button key={loc.index} icon="eye" onClick={() => act('select', { select: loc.index })}>
+              <Button
+                key={loc.index}
+                icon="eye"
+                onClick={() => act('select', { select: loc.index })}>
                 {loc.time}, {loc.coords}
               </Button>
             ))) || <Box color="bad">No traces found.</Box>}

@@ -22,15 +22,16 @@ LabeledList.defaultHooks = pureComponentHooks;
 
 type LabeledListItemProps = {
   className?: string | BooleanLike;
-  label?: string | BooleanLike;
+  label?: string | InfernoNode | BooleanLike;
   labelColor?: string | BooleanLike;
+  labelWrap?: boolean;
   color?: string | BooleanLike;
   textAlign?: string | BooleanLike;
-  verticalAlign?: string | BooleanLike; // VOREStation Addition
   buttons?: InfernoNode;
   /** @deprecated */
   content?: any;
   children?: InfernoNode;
+  verticalAlign?: string;
 };
 
 const LabeledListItem = (props: LabeledListItemProps) => {
@@ -38,36 +39,40 @@ const LabeledListItem = (props: LabeledListItemProps) => {
     className,
     label,
     labelColor = 'label',
+    labelWrap,
     color,
     textAlign,
-    verticalAlign, // VOREStation Addition
     buttons,
     content,
     children,
-    ...rest // VOREStation Addition
+    verticalAlign = 'baseline',
   } = props;
   return (
     <tr className={classes(['LabeledList__row', className])}>
       <Box
         as="td"
-        verticalAlign={verticalAlign} // VOREStation Addition
         color={labelColor}
-        className={classes(['LabeledList__cell', 'LabeledList__label'])}>
-        {label ? label + ':' : null}
+        className={classes([
+          'LabeledList__cell',
+          // Kinda flipped because we want nowrap as default. Cleaner CSS this way though.
+          !labelWrap && 'LabeledList__label--nowrap',
+        ])}
+        verticalAlign={verticalAlign}>
+        {label ? (typeof label === 'string' ? label + ':' : label) : null}
       </Box>
       <Box
         as="td"
         color={color}
         textAlign={textAlign}
-        verticalAlign={verticalAlign} // VOREStation Addition
         className={classes(['LabeledList__cell', 'LabeledList__content'])}
         colSpan={buttons ? undefined : 2}
-        {...rest} /* VOREStation Addition*/
-      >
+        verticalAlign={verticalAlign}>
         {content}
         {children}
       </Box>
-      {buttons && <td className="LabeledList__cell LabeledList__buttons">{buttons}</td>}
+      {buttons && (
+        <td className="LabeledList__cell LabeledList__buttons">{buttons}</td>
+      )}
     </tr>
   );
 };

@@ -1,12 +1,10 @@
-/* SmartFridge.  Much todo
-*/
 /obj/machinery/smartfridge
 	name = "\improper SmartFridge"
 	desc = "For storing all sorts of things! This one doesn't accept any of them!"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/vending_smartfridge.dmi'
 	icon_state = "smartfridge"
 	var/icon_base = "smartfridge" //Iconstate to base all the broken/deny/etc on
-	var/icon_contents = "misc" //Overlay to put on glass to show contents
+	var/icon_contents = "food" //Overlay to put on that show contents
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -67,31 +65,40 @@
 
 /obj/machinery/smartfridge/update_icon()
 	cut_overlays()
-	if(stat & (BROKEN|NOPOWER))
-		icon_state = "[icon_base]-off"
-	else
-		icon_state = icon_base
-
 	if(panel_open)
 		add_overlay("[icon_base]-panel")
 
-	// Fridge contents
-	switch(contents.len)
-		if(1 to 3)
-			add_overlay("[icon_base]-[icon_contents]1")
-		if(3 to 6)
-			add_overlay("[icon_base]-[icon_contents]2")
-		if(6 to INFINITY)
-			add_overlay("[icon_base]-[icon_contents]3")
+	if(stat & (BROKEN))
+		cut_overlays()
+		icon_state = "[icon_base]-broken"
 
-/*******************
-*   Item Adding
-********************/
+	if(stat & (NOPOWER))
+		icon_state = "[icon_base]-off"
+		switch(contents.len)
+			if(0)
+				add_overlay("[icon_base]-0-off")
+			if(1 to 3)
+				add_overlay("[icon_base]-[icon_contents]1-off")
+			if(3 to 6)
+				add_overlay("[icon_base]-[icon_contents]2-off")
+			if(6 to INFINITY)
+				add_overlay("[icon_base]-[icon_contents]3-off")
+	else
+		icon_state = icon_base
+		switch(contents.len)
+			if(0)
+				add_overlay("[icon_base]-0")
+			if(1 to 3)
+				add_overlay("[icon_base]-[icon_contents]1")
+			if(3 to 6)
+				add_overlay("[icon_base]-[icon_contents]2")
+			if(6 to INFINITY)
+				add_overlay("[icon_base]-[icon_contents]3")
 
 /obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.is_screwdriver())
 		panel_open = !panel_open
-		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
+		user.visible_message("<span class='filter_notice'>[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].</span>", "<span class='filter_notice'>You [panel_open ? "open" : "close"] the maintenance panel of \the [src].</span>")
 		playsound(src, O.usesound, 50, 1)
 		update_icon()
 		return
@@ -112,7 +119,7 @@
 		user.remove_from_mob(O)
 		stock(O)
 		user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
-		sortTim(item_records, /proc/cmp_stored_item_name)
+		sortTim(item_records, GLOBAL_PROC_REF(cmp_stored_item_name))
 
 	else if(istype(O, /obj/item/weapon/storage/bag))
 		var/obj/item/weapon/storage/bag/P = O
@@ -130,11 +137,11 @@
 	else if(istype(O, /obj/item/weapon/gripper)) // Grippers. ~Mechoid.
 		var/obj/item/weapon/gripper/B = O	//B, for Borg.
 		if(!B.wrapped)
-			to_chat(user, "\The [B] is not holding anything.")
+			to_chat(user, "<span class='filter_notice'>\The [B] is not holding anything.</span>")
 			return
 		else
 			var/B_held = B.wrapped
-			to_chat(user, "You use \the [B] to put \the [B_held] into \the [src].")
+			to_chat(user, "<span class='filter_notice'>You use \the [B] to put \the [B_held] into \the [src].</span>")
 		return
 
 	else
@@ -145,7 +152,7 @@
 	if(!emagged)
 		emagged = 1
 		locked = -1
-		to_chat(user, "You short out the product lock on [src].")
+		to_chat(user, "<span class='filter_notice'>You short out the product lock on [src].</span>")
 		return 1
 
 /obj/machinery/smartfridge/proc/find_record(var/obj/item/O)
@@ -226,6 +233,7 @@
 				return TRUE
 
 			vend(item_records[index], amount)
+			update_icon()
 			return TRUE
 	return FALSE
 
@@ -247,12 +255,12 @@
 		throw_item.throw_at(target,16,3,src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
 	SStgui.update_uis(src)
+	update_icon()
 	return TRUE
 
-/************************
-*   Secure SmartFridges
-*************************/
-
+/*
+ * Secure Smartfridges
+ */
 /obj/machinery/smartfridge/secure/tgui_act(action, params)
 	if(stat & (NOPOWER|BROKEN))
 		return TRUE

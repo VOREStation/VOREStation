@@ -14,11 +14,17 @@ const abnormalities = [
   [
     'hasBorer',
     'bad',
-    (occupant) => 'Large growth detected in frontal lobe,' + ' possibly cancerous. Surgical removal is recommended.',
+    (occupant) =>
+      'Large growth detected in frontal lobe,' +
+      ' possibly cancerous. Surgical removal is recommended.',
   ],
   ['hasVirus', 'bad', (occupant) => 'Viral pathogen detected in blood stream.'],
   ['blind', 'average', (occupant) => 'Cataracts detected.'],
-  ['colourblind', 'average', (occupant) => 'Photoreceptor abnormalities detected.'],
+  [
+    'colourblind',
+    'average',
+    (occupant) => 'Photoreceptor abnormalities detected.',
+  ],
   ['nearsighted', 'average', (occupant) => 'Retinal misalignment detected.'],
   /* VOREStation Add */
   [
@@ -115,7 +121,11 @@ const germStatus = (i) => {
 export const BodyScanner = (props, context) => {
   const { data } = useBackend(context);
   const { occupied, occupant = {} } = data;
-  const body = occupied ? <BodyScannerMain occupant={occupant} /> : <BodyScannerEmpty />;
+  const body = occupied ? (
+    <BodyScannerMain occupant={occupant} />
+  ) : (
+    <BodyScannerEmpty />
+  );
   return (
     <Window width={690} height={600} resizable>
       <Window.Content scrollable className="Layout__content--flexColumn">
@@ -179,13 +189,17 @@ const BodyScannerMainOccupant = (props, context) => {
           &deg;F
         </LabeledList.Item>
         <LabeledList.Item label="Blood Volume">
-          <AnimatedNumber value={round(occupant.blood.volume, 0)} /> units&nbsp;(
+          <AnimatedNumber value={round(occupant.blood.volume, 0)} />{' '}
+          units&nbsp;(
           <AnimatedNumber value={round(occupant.blood.percent, 0)} />
           %)
         </LabeledList.Item>
         {/* VOREStation Add */}
         <LabeledList.Item label="Weight">
-          {round(data.occupant.weight) + 'lbs, ' + round(data.occupant.weight / 2.20463) + 'kgs'}
+          {round(data.occupant.weight) +
+            'lbs, ' +
+            round(data.occupant.weight / 2.20463) +
+            'kgs'}
         </LabeledList.Item>
         {/* VOREStation Add End */}
       </LabeledList>
@@ -209,7 +223,8 @@ const BodyScannerMainReagents = (props) => {
               <Table.Row key={reagent.name}>
                 <Table.Cell>{reagent.name}</Table.Cell>
                 <Table.Cell textAlign="right">
-                  {reagent.amount} Units {reagent.overdose ? <Box color="bad">OVERDOSING</Box> : null}
+                  {reagent.amount} Units{' '}
+                  {reagent.overdose ? <Box color="bad">OVERDOSING</Box> : null}
                 </Table.Cell>
               </Table.Row>
             ))}
@@ -229,7 +244,8 @@ const BodyScannerMainReagents = (props) => {
               <Table.Row key={reagent.name}>
                 <Table.Cell>{reagent.name}</Table.Cell>
                 <Table.Cell textAlign="right">
-                  {reagent.amount} Units {reagent.overdose ? <Box color="bad">OVERDOSING</Box> : null}
+                  {reagent.amount} Units{' '}
+                  {reagent.overdose ? <Box color="bad">OVERDOSING</Box> : null}
                 </Table.Cell>
               </Table.Row>
             ))}
@@ -246,10 +262,18 @@ const BodyScannerMainAbnormalities = (props) => {
   const { occupant } = props;
 
   let hasAbnormalities =
-    occupant.hasBorer || occupant.blind || occupant.colourblind || occupant.nearsighted || occupant.hasVirus;
+    occupant.hasBorer ||
+    occupant.blind ||
+    occupant.colourblind ||
+    occupant.nearsighted ||
+    occupant.hasVirus;
 
   /* VOREStation Add */
-  hasAbnormalities = hasAbnormalities || occupant.humanPrey || occupant.livingPrey || occupant.objectPrey;
+  hasAbnormalities =
+    hasAbnormalities ||
+    occupant.humanPrey ||
+    occupant.livingPrey ||
+    occupant.objectPrey;
   /* VOREStation Add End */
 
   if (!hasAbnormalities) {
@@ -288,9 +312,14 @@ const BodyScannerMainDamage = (props) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell>
-                <BodyScannerMainDamageBar value={occupant[d1[1]]} marginBottom={i < damages.length - 2} />
+                <BodyScannerMainDamageBar
+                  value={occupant[d1[1]]}
+                  marginBottom={i < damages.length - 2}
+                />
               </Table.Cell>
-              <Table.Cell>{!!d2 && <BodyScannerMainDamageBar value={occupant[d2[1]]} />}</Table.Cell>
+              <Table.Cell>
+                {!!d2 && <BodyScannerMainDamageBar value={occupant[d2[1]]} />}
+              </Table.Cell>
             </Table.Row>
           </Fragment>
         ))}
@@ -377,7 +406,9 @@ const BodyScannerMainOrgansExternal = (props) => {
                   !!o.status.robotic && 'Robotic',
                   !!o.status.dead && <Box color="bad">DEAD</Box>,
                 ])}
-                {reduceOrganStatus(o.implants.map((s) => (s.known ? s.name : 'Unknown object')))}
+                {reduceOrganStatus(
+                  o.implants.map((s) => (s.known ? s.name : 'Unknown object'))
+                )}
               </Box>
             </Table.Cell>
           </Table.Row>
@@ -408,13 +439,21 @@ const BodyScannerMainOrgansInternal = (props) => {
           <Table.Row key={i} textTransform="capitalize">
             <Table.Cell width="33%">{o.name}</Table.Cell>
             <Table.Cell textAlign="center">
-              <ProgressBar min="0" max={o.maxHealth} value={o.damage / 100} mt={i > 0 && '0.5rem'} ranges={damageRange}>
+              <ProgressBar
+                min="0"
+                max={o.maxHealth}
+                value={o.damage / 100}
+                mt={i > 0 && '0.5rem'}
+                ranges={damageRange}>
                 {round(o.damage, 0)}
               </ProgressBar>
             </Table.Cell>
             <Table.Cell textAlign="right" width="33%">
               <Box color="average" inline>
-                {reduceOrganStatus([germStatus(o.germ_level), !!o.inflamed && 'Appendicitis detected.'])}
+                {reduceOrganStatus([
+                  germStatus(o.germ_level),
+                  !!o.inflamed && 'Appendicitis detected.',
+                ])}
               </Box>
               <Box inline>
                 {reduceOrganStatus([

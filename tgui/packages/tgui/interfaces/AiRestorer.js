@@ -15,7 +15,16 @@ export const AiRestorer = () => {
 
 export const AiRestorerContent = (props, context) => {
   const { act, data } = useBackend(context);
-  const { AI_present, error, name, laws, isDead, restoring, health, ejectable } = data;
+  const {
+    AI_present,
+    error,
+    name,
+    laws,
+    isDead,
+    restoring,
+    health,
+    ejectable,
+  } = data;
   return (
     <Fragment>
       {error && <NoticeBox textAlign="center">{error}</NoticeBox>}

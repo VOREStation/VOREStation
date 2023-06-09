@@ -51,7 +51,7 @@
 			return
 		if(user.unEquip(O, 0, src))
 			loaded_star = O
-			to_chat(user, "<span class='notice'>You insert the firework star into the launcher.</span>")
+			to_chat(user, "<span class='notice'>You insert the firework star into \the [src].</span>")
 			add_fingerprint(user)
 			update_icon()
 			return
@@ -67,7 +67,7 @@
 	if(!user || user.stat != 0)
 		return
 	if(!loaded_star)
-		to_chat(user, "<span class='notice'>There is no firework star loaded in the launcher.</span>")
+		to_chat(user, "<span class='notice'>There is no firework star loaded in \the [src].</span>")
 		return
 	else
 		loaded_star.forceMove(get_turf(src))
@@ -81,25 +81,25 @@
 		return
 
 	if(!loaded_star)
-		to_chat(user, "<span class='notice'>There is no firework star loaded in the launcher.</span>")
+		to_chat(user, "<span class='notice'>There is no firework star loaded in \the [src].</span>")
 		return
 
 	if((world.time - last_launch) <= launch_cooldown)
-		to_chat(user, "<span class='notice'>The launcher is still re-priming for launch.</span>")
+		to_chat(user, "<span class='notice'>\The [src] is still re-priming for launch.</span>")
 		return
 
 	if(!anchored)
-		to_chat(user, "<span class='warning'>Launcher must be firmly secured to the ground before firework can be launched!</span>")
+		to_chat(user, "<span class='warning'>\The [src] must be firmly secured to the ground before firework can be launched!</span>")
 		return
 
 	var/datum/planet/P = get_planet()
 	if(!P || !(P.weather_holder))				// There are potential cases of being outside but not on planet. And checking whether planet has weather at all is more sanity thing than anything.
-		to_chat(user, "<span class='warning'>Launcher beeps as its safeties seem to prevent launch in the current location.</span>")
+		to_chat(user, "<span class='warning'>\The [src] beeps as its safeties seem to prevent launch in the current location.</span>")
 		return
 
 	var/datum/weather_holder/WH = P.weather_holder
 	if(WH.firework_override && istype(loaded_star, /obj/item/weapon/firework_star/weather))			// Enable weather-based events to not be ruined
-		to_chat(user, "<span class='warning'>Launcher beeps as it seems some interference is preventing launch of this type of firework.</span>")
+		to_chat(user, "<span class='warning'>\The [src] beeps as it seems some interference is preventing launch of this type of firework.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You launch the firework!</span>")

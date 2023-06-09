@@ -14,6 +14,12 @@
 	light_power = 1
 	light_color = "#FF0D00"
 
+/obj/effect/projectile/impact/laser_em
+	icon_state = "impact_em_laser"
+	light_range = 3
+	light_power = 1
+	light_color = "#00C6FF"
+
 /obj/effect/projectile/impact/xray
 	icon_state = "impact_xray"
 	light_range = 2

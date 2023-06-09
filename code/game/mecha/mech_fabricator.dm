@@ -1,8 +1,8 @@
 /obj/machinery/mecha_part_fabricator
 	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
-	icon_state = "mechfab-idle"
+	icon_state = "mechfab"
 	name = "Exosuit Fabricator"
-	desc = "A machine used for construction of mechas."
+	desc = "A machine used for the construction of mechas."
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -213,7 +213,7 @@
   * Adds the overlay to show the fab working and sets active power usage settings.
   */
 /obj/machinery/mecha_part_fabricator/proc/on_start_printing()
-	add_overlay("fab-active")
+	add_overlay("[icon_state]-active")
 	use_power = USE_POWER_ACTIVE
 
 /**
@@ -222,7 +222,7 @@
   * Removes the overlay to show the fab working and sets idle power usage settings. Additionally resets the description and turns off queue processing.
   */
 /obj/machinery/mecha_part_fabricator/proc/on_finish_printing()
-	cut_overlay("fab-active")
+	cut_overlay("[icon_state]-active")
 	use_power = USE_POWER_IDLE
 	desc = initial(desc)
 	process_queue = FALSE
@@ -632,11 +632,9 @@
 			if(S && S.get_amount() >= 1)
 				var/count = 0
 				flick("[loading_icon_state]", src)
-				// yess hacky but whatever
+				// yess hacky but whatever //even more hacky now, but at least it works
 				if(loading_icon_state == "mechfab-idle")
-					add_overlay("mechfab-load-metal")
-					spawn(10)
-						cut_overlays("mechfab-load-metal")
+					flick("mechfab-load-metal", src)
 				while(materials[S.material.name] + amnt <= res_max_amount && S.get_amount() >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)

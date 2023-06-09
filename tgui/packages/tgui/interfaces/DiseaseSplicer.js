@@ -36,7 +36,14 @@ const DiseaseSplicerVirusDish = (props, context) => {
   return (
     <Section
       title="Virus Dish"
-      buttons={<Button icon="eject" content="Eject Dish" disabled={!dish_inserted} onClick={() => act('eject')} />}>
+      buttons={
+        <Button
+          icon="eject"
+          content="Eject Dish"
+          disabled={!dish_inserted}
+          onClick={() => act('eject')}
+        />
+      }>
       <LabeledList>
         <LabeledList.Item label="Growth Density">
           <ProgressBar
@@ -61,7 +68,8 @@ const DiseaseSplicerVirusDish = (props, context) => {
             {(effects &&
               effects.map((effect) => (
                 <Box color="label" key={effect.stage}>
-                  ({effect.stage}) {effect.name} {effect.badness > 1 ? 'Dangerous!' : null}
+                  ({effect.stage}) {effect.name}{' '}
+                  {effect.badness > 1 ? 'Dangerous!' : null}
                 </Box>
               ))) || <Box>No virus sample loaded.</Box>}
           </Section>
@@ -81,7 +89,11 @@ const DiseaseSplicerVirusDish = (props, context) => {
                 onClick={() => act('grab', { grab: e.reference })}
               />
             ))}
-            <Button content="Species" icon="exchange-alt" onClick={() => act('affected_species')} />
+            <Button
+              content="Species"
+              icon="exchange-alt"
+              onClick={() => act('affected_species')}
+            />
           </Section>
         </Fragment>
       )}
@@ -92,7 +104,16 @@ const DiseaseSplicerVirusDish = (props, context) => {
 const DiseaseSplicerStorage = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { dish_inserted, buffer, species_buffer, effects, info, growth, affected_species, busy } = data;
+  const {
+    dish_inserted,
+    buffer,
+    species_buffer,
+    effects,
+    info,
+    growth,
+    affected_species,
+    busy,
+  } = data;
 
   return (
     <Section title="Storage">

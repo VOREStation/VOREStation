@@ -34,7 +34,7 @@
 
 	universal_understand = 1
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15

@@ -5,7 +5,15 @@ import { Window } from '../layouts';
 export const BotanyIsolator = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { geneMasks, activity, degradation, disk, loaded, hasGenetics, sourceName } = data;
+  const {
+    geneMasks,
+    activity,
+    degradation,
+    disk,
+    loaded,
+    hasGenetics,
+    sourceName,
+  } = data;
 
   if (activity) {
     return (
@@ -25,12 +33,17 @@ export const BotanyIsolator = (props, context) => {
             <Box>
               <LabeledList>
                 <LabeledList.Item label="Source">{sourceName}</LabeledList.Item>
-                <LabeledList.Item label="Gene decay">{degradation}%</LabeledList.Item>
+                <LabeledList.Item label="Gene decay">
+                  {degradation}%
+                </LabeledList.Item>
                 {(disk &&
                   geneMasks.length &&
                   geneMasks.map((mask) => (
                     <LabeledList.Item key={mask.mask} label={mask.mask}>
-                      <Button mb={-1} icon="download" onClick={() => act('get_gene', { get_gene: mask.tag })}>
+                      <Button
+                        mb={-1}
+                        icon="download"
+                        onClick={() => act('get_gene', { get_gene: mask.tag })}>
                         Extract
                       </Button>
                     </LabeledList.Item>
@@ -71,7 +84,9 @@ export const BotanyIsolator = (props, context) => {
           {(loaded && (
             <Box>
               <LabeledList>
-                <LabeledList.Item label="Packet Loaded">{loaded}</LabeledList.Item>
+                <LabeledList.Item label="Packet Loaded">
+                  {loaded}
+                </LabeledList.Item>
               </LabeledList>
               <Button mt={1} icon="cog" onClick={() => act('scan_genome')}>
                 Process Genome

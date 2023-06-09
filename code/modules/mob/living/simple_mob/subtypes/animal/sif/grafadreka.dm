@@ -149,7 +149,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 	maxHealth = 150
 	health = 150
-	movement_cooldown = 2
+	movement_cooldown = -1
 	base_attack_cooldown = 1 SECOND
 
 	organ_names = /decl/mob_organ_names/grafadreka

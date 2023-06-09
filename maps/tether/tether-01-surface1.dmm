@@ -4098,9 +4098,7 @@
 	name = "north bump";
 	pixel_y = 28
 	},
-/mob/living/simple_mob/vore/aggressive/rat{
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
-	},
+/mob/living/simple_mob/vore/aggressive/rat/pet,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "agR" = (
@@ -20657,6 +20655,9 @@
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)

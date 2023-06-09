@@ -22,6 +22,8 @@
 	var/obj/item/weapon/cell/bcell = null
 	var/hitcost = 240
 	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
+	var/grip_safety = TRUE
+	var/taped_safety = FALSE
 
 /obj/item/weapon/melee/baton/New()
 	..()
@@ -69,18 +71,18 @@
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/melee/baton/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
 		if(bcell)
-			if(bcell.checked_use(chrgdeductamt))
+			if(bcell.checked_use(hitcost))
 				return 1
 			else
 				return 0
 	return null
 
-/obj/item/weapon/melee/baton/proc/powercheck(var/chrgdeductamt)
+/obj/item/weapon/melee/baton/proc/powercheck()
 	if(bcell)
-		if(bcell.charge < chrgdeductamt)
+		if(bcell.charge < hitcost)
 			status = 0
 			update_icon()
 
@@ -97,10 +99,19 @@
 	else
 		set_light(0)
 
+/obj/item/weapon/melee/baton/dropped()
+	..()
+	if(status && grip_safety && !taped_safety)
+		status = 0
+		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
+	update_icon()
+
 /obj/item/weapon/melee/baton/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
+		if(taped_safety)
+			. += "<span class='warning'>Someone has wrapped tape around the grip!</span>"
 		if(bcell)
 			. += "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
 		if(!bcell)
@@ -121,6 +132,17 @@
 				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
+	if(istype(W, /obj/item/weapon/tape_roll) || istype(W, /obj/item/taperoll))
+		if(grip_safety && !taped_safety)	//no point letting people wrap tape around the grips of batons without a safety
+			to_chat(user, "<span class='notice'>You firmly wrap tape around the baton's grip, disabling the safety system.</span>")
+			playsound(src, 'sound/effects/tape.ogg',25)
+			taped_safety = TRUE
+		else if(grip_safety && taped_safety)
+			to_chat(user, "<span class='notice'>The grip safety has already been taped down.</span>")
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
+		if(taped_safety)
+			to_chat(user, "<span class='notice'>You painstakingly scrape away the tape over the grip safety.</span>")
+			taped_safety = FALSE
 
 /obj/item/weapon/melee/baton/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
@@ -142,7 +164,7 @@
 		var/mob/living/silicon/robot/R = loc
 		if (istype(R))
 			bcell = R.cell
-	if(bcell && bcell.charge > hitcost)
+	if(bcell && bcell.charge >= hitcost)
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(src, "sparks", 75, 1, -1)
@@ -200,7 +222,7 @@
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.forcesay(hit_appends)
-	powercheck(hitcost)
+	powercheck()
 
 /obj/item/weapon/melee/baton/emp_act(severity)
 	if(bcell)
@@ -222,9 +244,10 @@
 	throwforce = 5
 	stunforce = 0
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
-	hitcost = 2500
+	hitcost = 2500	//runs off the same kind of big batteries as APCs, not small cells!
 	attack_verb = list("poked")
 	slot_flags = null
+	grip_safety = FALSE
 
 /obj/item/weapon/melee/baton/cattleprod/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell))

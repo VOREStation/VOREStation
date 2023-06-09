@@ -637,6 +637,10 @@
 					/obj/item/clothing/mask/bandana/green = 5,
 					/obj/item/clothing/mask/bandana/red = 5,
 					/obj/item/clothing/mask/surgical = 5,
+					/obj/item/clothing/head/ushanka/neo_ushanka = 5,
+					/obj/item/clothing/head/ushanka/neo_ushanka_blue = 5,
+					/obj/item/clothing/head/papakha = 5,
+					/obj/item/clothing/head/papakha_white = 5,
 					/obj/item/clothing/accessory/pride/bi = 5,
 					/obj/item/clothing/accessory/pride/trans = 5,
 					/obj/item/clothing/accessory/pride/ace = 5,
@@ -925,6 +929,10 @@
 					/obj/item/clothing/under/suit_jacket/checkered/skirt = 5,
 					/obj/item/clothing/under/suit_jacket/tan = 5,
 					/obj/item/clothing/under/suit_jacket/tan/skirt = 5,
+					/obj/item/clothing/under/rank/neo_civvie_gorka = 5,
+					/obj/item/clothing/suit/storage/toggle/labcoat/neo_leather = 5,
+					/obj/item/clothing/suit/neo_gorka = 5,
+					/obj/item/clothing/suit/storage/toggle/labcoat/neo_civ_dep = 5,
 					/obj/item/clothing/under/scratch = 5,
 					/obj/item/clothing/under/scratch/skirt = 5,
 					/obj/item/clothing/under/sundress = 5,
@@ -1131,7 +1139,16 @@
 					/obj/item/clothing/under/tropical/pink = 50,
 					/obj/item/clothing/under/tropical/blue = 50)
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
-	contraband = list(/obj/item/clothing/under/rank/clown = 1)
+	contraband = list(/obj/item/clothing/under/rank/clown = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleneck = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleskirt = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleneck_blue = 1,
+					/obj/item/clothing/under/rank/neo_suspect_turtleskirt_blue = 1,
+					/obj/item/clothing/under/rank/neo_suspicious_turtleneck = 1,
+					/obj/item/clothing/under/rank/neo_suspicious_turtleskirt = 1,
+					/obj/item/clothing/under/rank/neo_suspect_overalls = 1,
+					/obj/item/clothing/under/rank/neo_suspect_overalls_skirt = 1,
+					/obj/item/clothing/head/soft/neo_softcap = 2)
 
 /obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"
@@ -1149,6 +1166,7 @@
 					/obj/item/weapon/storage/pill_bottle/dice = 5,
 					/obj/item/weapon/storage/pill_bottle/dice_nerd = 5,
 					/obj/item/weapon/melee/umbrella/random = 10,
+					/obj/item/weapon/picnic_blankets_carried = 10,
 					/obj/item/weapon/deck/schnapsen = 5,
 					/obj/item/weapon/deck/egy = 5)
 	prices = list(/obj/item/weapon/cane = 100,
@@ -1162,6 +1180,7 @@
 					/obj/item/weapon/storage/pill_bottle/dice = 100,
 					/obj/item/weapon/storage/pill_bottle/dice_nerd = 100,
 					/obj/item/weapon/melee/umbrella/random = 100,
+					/obj/item/weapon/picnic_blankets_carried = 100,
 					/obj/item/weapon/deck/schnapsen = 100,
 					/obj/item/weapon/deck/egy = 100)
 	premium = list(/obj/item/toy/bosunwhistle = 1)
@@ -3500,6 +3519,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/ratfruitcake = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackburger = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/ratpackramen = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey = 2)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/ratprotein = 8,
@@ -3508,4 +3529,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/ratfruitcake = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackburger = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/ratpackramen = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey = 200)

@@ -44,7 +44,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	var/tmp/stat = NIF_PREINSTALL		// Status of the NIF
 	var/tmp/install_done				// Time when install will finish
-	var/tmp/open = FALSE				// If it's open for maintenance (1-2)
+	var/tmp/open = FALSE				// If it's open for maintenance (1-3)
 	var/tmp/should_be_in = BP_HEAD		// Organ we're supposed to be held in
 
 	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
@@ -203,6 +203,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		persist_nif_data(human)
 
 	if(durability <= 0)
+		durability = 0	//failsafe us to a minimum of 0% so we don't just wash into massively negative durability from repeated EMPs
 		stat = NIF_TEMPFAIL
 		update_icon()
 
@@ -232,22 +233,25 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			return
 		if(durability >= initial(durability))
 			to_chat(user,"<span class='notice'>There's no damaged wiring that needs replacing!</span>")
+			open = 3
+			update_icon()
 			return
 		if(do_after(user, 6 SECONDS, src) && open == 1 && C.use(3))
-			user.visible_message("[user] replaces some wiring in \the [src].","<span class='notice'>You replace some of the burned out wiring in \the [src].</span>")
+			user.visible_message("[user] replaces some wiring in \the [src].","<span class='notice'>You replace any burned out wiring in \the [src].</span>")
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-			repair(initial(durability))
-			update_icon()
-	else if(open == 1 && istype(W,/obj/item/device/multitool))
-		if(do_after(user, 8 SECONDS, src) && open == 1)
-			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
 			open = 2
 			update_icon()
-	else if(open == 2 && W.is_screwdriver())
-		if(do_after(user, 3 SECONDS, src) && open == 2)
+	else if(open == 2 && istype(W,/obj/item/device/multitool))
+		if(do_after(user, 8 SECONDS, src) && open == 2)
+			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
+			open = 3
+			update_icon()
+	else if(open == 3 && W.is_screwdriver())
+		if(do_after(user, 3 SECONDS, src) && open == 3)
 			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.</span>")
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = FALSE
+			repair(initial(durability))
 			stat = NIF_PREINSTALL
 			update_icon()
 
@@ -379,7 +383,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	last_notification = message // TGUI Hook
 
-	to_chat(human,"<b>\[\icon[src.big_icon][bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
+	to_chat(human,"<span class='filter_nif'><b>\[\icon[src.big_icon][bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"</span>")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
 		human << bad_sound

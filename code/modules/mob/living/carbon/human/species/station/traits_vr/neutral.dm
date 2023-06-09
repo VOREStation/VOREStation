@@ -85,25 +85,44 @@
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
+	tutorial = "This trait forces you to only consume blood - you cannot have normal food anymore. Vore is, of course, an exception! <br> \
+		You can satisfy this by clicking bloodbags in your hand on harm intent, drinking from glasses, blood tomatoes \
+		or finding a (un)willing donor for your appropriate appendage! <br><br> \
+		Controls for taking blood from your victim can be changed at will by trying to drink from yourself. <br>\
+		Intent-based control scheme: <br> \
+		HELP - Loud, No Bleeding <br> \
+		DISARM - Subtle, Causes bleeding <br> \
+		GRAB - Subtle, No Bleeding <br> \
+		HARM - Loud, Causes Bleeding"
+
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("organic_food_coeff" = 0, "bloodsucker" = TRUE)
 	excludes = list(/datum/trait/neutral/bloodsucker_freeform)
 
 /datum/trait/neutral/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/bloodsuck
 
 /datum/trait/neutral/bloodsucker_freeform
 	name = "Bloodsucker"
 	desc = "You get fangs that can be used to drain blood from prey."
+	tutorial = "This trait allows you to consume blood on top of normal food! <br> \
+		You can do this by clicking bloodbags in your hand on harm intent, drinking from glasses, blood tomatoes \
+		or finding a (un)willing donor for your appropriate appendage! <br><br> \
+		Controls for taking blood from your victim can be changed at will by trying to drink from yourself. <br>\
+		Intent-based control scheme: <br> \
+		HELP - Loud, No Bleeding <br> \
+		DISARM - Subtle, Causes bleeding <br> \
+		GRAB - Subtle, No Bleeding <br> \
+		HARM - Loud, Causes Bleeding"
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("bloodsucker" = TRUE)
 	excludes = list(/datum/trait/neutral/bloodsucker)
 
 /datum/trait/neutral/bloodsucker_freeform/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/bloodsuck
 
 /datum/trait/neutral/succubus_drain
@@ -113,7 +132,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/succubus_drain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
@@ -125,7 +144,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/long_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/long_vore
 
 /datum/trait/neutral/feeder
@@ -135,7 +154,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/feeder/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/slime_feed
 
 /datum/trait/neutral/stuffing_feeder
@@ -143,9 +162,10 @@
 	desc = "Allows you to feed food to other people whole, rather than bite by bite."
 	cost = 0
 	custom_only = FALSE
+	has_preferences = list("stuffing_feeder" = list(TRAIT_PREF_TYPE_BOOLEAN, "Default", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
 /datum/trait/neutral/stuffing_feeder/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/toggle_stuffing_mode
 
 /datum/trait/neutral/hard_vore
@@ -155,7 +175,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/shred_limb
 
 /datum/trait/neutral/trashcan
@@ -166,7 +186,7 @@
 	var_changes = list("trashcan" = 1)
 
 /datum/trait/neutral/trashcan/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/eat_trash
 
 /datum/trait/neutral/gem_eater
@@ -177,7 +197,7 @@
 	var_changes = list("organic_food_coeff" = 0, "eat_minerals" = 1)
 
 /datum/trait/neutral/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/eat_minerals
 
 /datum/trait/neutral/synth_chemfurnace
@@ -189,6 +209,22 @@
 	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.6)
 	excludes = list(/datum/trait/neutral/biofuel_value_down)
 
+/datum/trait/neutral/synth_ethanolburner
+	name = "Ethanol Burner"
+	desc = "You are able to gain energy through consuming and processing alcohol. The more alcoholic it is, the more energy you gain. Doesn't allow you to get drunk by itself (for that, take Ethanol Simulator)."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_proc" = 1)
+
+/datum/trait/neutral/synth_ethanol_sim
+	name = "Ethanol Simulator"
+	desc = "An unusual modification allows your synthetic body to simulate all but the lethal effects of ingested alcohols. You'll get dizzy, slur your speech, suffer temporary loss of vision and even pass out! But hey, at least you don't have a liver to destroy."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("robo_ethanol_drunk" = 1)
+
 /datum/trait/neutral/glowing_eyes
 	name = "Glowing Eyes"
 	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."
@@ -198,7 +234,7 @@
 	has_preferences = list("has_glowing_eyes" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glowing on spawn", TRAIT_VAREDIT_TARGET_SPECIES))
 
 /datum/trait/neutral/glowing_eyes/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/toggle_eye_glow
 
 /datum/trait/neutral/glowing_body
@@ -209,8 +245,8 @@
 	has_preferences = list("glow_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glowing on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE), \
 							"glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_VAREDIT_TARGET_MOB))
 
-/datum/trait/neutral/glowing_body/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs = null)
-	..(S,H)
+/datum/trait/neutral/glowing_body/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
 
@@ -224,7 +260,7 @@
 
 /datum/trait/neutral/allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	S.allergens |= allergen
-	..(S,H)
+	..()
 
 /datum/trait/neutral/allergy/meat
 	name = "Allergy: Meat"
@@ -289,6 +325,13 @@
 	custom_only = FALSE
 	allergen = ALLERGEN_COFFEE
 
+/datum/trait/neutral/allergy/chocolate
+	name = "Allergy: Chocolate"
+	desc = "You're highly allergic to coco and chocolate in specific. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = 0
+	custom_only = FALSE
+	allergen = ALLERGEN_CHOCOLATE
+
 /datum/trait/neutral/allergy_reaction
 	name = "Allergy Reaction: Disable Toxicity"
 	desc = "Take this trait to disable the toxic damage effect of being exposed to one of your allergens. Combine with the Disable Suffocation trait to have purely nonlethal reactions."
@@ -298,7 +341,7 @@
 
 /datum/trait/neutral/allergy_reaction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	S.allergen_reaction ^= reaction
-	..(S,H)
+	..()
 
 /datum/trait/neutral/allergy_reaction/oxy
 	name = "Allergy Reaction: Disable Suffocation"
@@ -473,7 +516,7 @@
 	cost = 0
 
 /datum/trait/neutral/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.add_modifier(/datum/modifier/trait/colorblind_monochrome)
 
 /datum/trait/neutral/colorblind/para_vulp
@@ -482,7 +525,7 @@
 	cost = 0
 
 /datum/trait/neutral/colorblind/para_vulp/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.add_modifier(/datum/modifier/trait/colorblind_vulp)
 
 /datum/trait/neutral/colorblind/para_taj
@@ -491,7 +534,7 @@
 	cost = 0
 
 /datum/trait/neutral/colorblind/para_taj/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.add_modifier(/datum/modifier/trait/colorblind_taj)
 
 // Body shape traits
@@ -505,7 +548,7 @@
 	excludes = list(/datum/trait/neutral/tall, /datum/trait/neutral/short, /datum/trait/neutral/shorter)
 
 /datum/trait/neutral/taller/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/tall
@@ -518,7 +561,7 @@
 	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/short, /datum/trait/neutral/shorter)
 
 /datum/trait/neutral/tall/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/short
@@ -531,7 +574,7 @@
 	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/shorter)
 
 /datum/trait/neutral/short/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/shorter
@@ -544,7 +587,7 @@
 	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/short)
 
 /datum/trait/neutral/shorter/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/obese
@@ -557,7 +600,7 @@
 	excludes = list(/datum/trait/neutral/fat, /datum/trait/neutral/thin, /datum/trait/neutral/thinner)
 
 /datum/trait/neutral/obese/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/fat
@@ -570,7 +613,7 @@
 	excludes = list(/datum/trait/neutral/obese, /datum/trait/neutral/thin, /datum/trait/neutral/thinner)
 
 /datum/trait/neutral/fat/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/thin
@@ -583,7 +626,7 @@
 	excludes = list(/datum/trait/neutral/fat, /datum/trait/neutral/obese, /datum/trait/neutral/thinner)
 
 /datum/trait/neutral/thin/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/thinner
@@ -596,7 +639,7 @@
 	excludes = list(/datum/trait/neutral/fat, /datum/trait/neutral/obese, /datum/trait/neutral/thin)
 
 /datum/trait/neutral/thinner/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.update_transform()
 
 /datum/trait/neutral/dominate_predator
@@ -606,7 +649,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/proc/dominate_predator
 
 /datum/trait/neutral/dominate_prey
@@ -616,7 +659,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/dominate_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/dominate_prey
 
 /datum/trait/neutral/submit_to_prey
@@ -626,7 +669,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/submit_to_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/lend_prey_control
 
 /datum/trait/neutral/vertical_nom
@@ -636,7 +679,7 @@
 	custom_only = FALSE
 
 /datum/trait/neutral/vertical_nom/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/vertical_nom
 
 /datum/trait/neutral/micro_size_down
@@ -718,5 +761,5 @@
 	has_preferences = list("pain" = list(TRAIT_PREF_TYPE_BOOLEAN, "Enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
 /datum/trait/neutral/synth_cosmetic_pain/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/trait_prefs = null)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/toggle_pain_module

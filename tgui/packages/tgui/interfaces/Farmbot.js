@@ -37,7 +37,9 @@ export const Farmbot = (props, context) => {
                 </ProgressBar>
               )) || <Box color="average">No water tank detected.</Box>}
             </LabeledList.Item>
-            <LabeledList.Item label="Behavior Controls" color={locked ? 'good' : 'bad'}>
+            <LabeledList.Item
+              label="Behavior Controls"
+              color={locked ? 'good' : 'bad'}>
               {locked ? 'Locked' : 'Unlocked'}
             </LabeledList.Item>
           </LabeledList>

@@ -30,14 +30,26 @@ const virusModalBodyOverride = (modal, context) => {
       level={2}
       m="-1rem"
       title={virus.name || 'Virus'}
-      buttons={<Button icon="times" color="red" onClick={() => act('modal_close')} />}>
+      buttons={
+        <Button icon="times" color="red" onClick={() => act('modal_close')} />
+      }>
       <Box mx="0.5rem">
         <LabeledList>
-          <LabeledList.Item label="Spread">{virus.spread_text} Transmission</LabeledList.Item>
-          <LabeledList.Item label="Possible cure">{virus.antigen}</LabeledList.Item>
-          <LabeledList.Item label="Rate of Progression">{virus.rate}</LabeledList.Item>
-          <LabeledList.Item label="Antibiotic Resistance">{virus.resistance}%</LabeledList.Item>
-          <LabeledList.Item label="Species Affected">{virus.species}</LabeledList.Item>
+          <LabeledList.Item label="Spread">
+            {virus.spread_text} Transmission
+          </LabeledList.Item>
+          <LabeledList.Item label="Possible cure">
+            {virus.antigen}
+          </LabeledList.Item>
+          <LabeledList.Item label="Rate of Progression">
+            {virus.rate}
+          </LabeledList.Item>
+          <LabeledList.Item label="Antibiotic Resistance">
+            {virus.resistance}%
+          </LabeledList.Item>
+          <LabeledList.Item label="Species Affected">
+            {virus.species}
+          </LabeledList.Item>
           <LabeledList.Item label="Symptoms">
             <LabeledList>
               {virus.symptoms.map((s) => (
@@ -94,7 +106,7 @@ export const MedicalRecords = (_properties, context) => {
   return (
     <Window width={800} height={380} resizable>
       <ComplexModal maxHeight="100%" maxWidth="80%" />
-      <Window.Content className="Layout__content--flexColumn">
+      <Window.Content className="Layout__content--flexColumn" scrollable>
         <LoginInfo />
         <TemporaryNotice />
         <MedicalRecordsNavigation />
@@ -137,8 +149,18 @@ const MedicalRecordsMaintenance = (_properties, context) => {
     <Fragment>
       <Button icon="download" content="Backup to Disk" disabled />
       <br />
-      <Button icon="upload" content="Upload from Disk" my="0.5rem" disabled /> <br />
-      <Button.Confirm icon="trash" content="Delete All Medical Records" onClick={() => act('del_all')} />
+      <Button
+        icon="upload"
+        content="Upload from Disk"
+        my="0.5rem"
+        disabled
+      />{' '}
+      <br />
+      <Button.Confirm
+        icon="trash"
+        content="Delete All Medical Records"
+        onClick={() => act('del_all')}
+      />
     </Fragment>
   );
 };
@@ -171,7 +193,12 @@ const MedicalRecordsView = (_properties, context) => {
           onClick={() => act('print_p')}
         />
         <br />
-        <Button icon="arrow-left" content="Back" mt="0.5rem" onClick={() => act('screen', { screen: 2 })} />
+        <Button
+          icon="arrow-left"
+          content="Back"
+          mt="0.5rem"
+          onClick={() => act('screen', { screen: 2 })}
+        />
       </Section>
     </Fragment>
   );
@@ -192,7 +219,13 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
               <Box height="20px" display="inline-block" preserveWhitespace>
                 {field.value}
               </Box>
-              {!!field.edit && <Button icon="pen" ml="0.5rem" onClick={() => doEdit(context, field)} />}
+              {!!field.edit && (
+                <Button
+                  icon="pen"
+                  ml="0.5rem"
+                  onClick={() => doEdit(context, field)}
+                />
+              )}
             </LabeledList.Item>
           ))}
         </LabeledList>
@@ -200,7 +233,11 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
       <Box width="50%" float="right" textAlign="right">
         {!!general.has_photos &&
           general.photos.map((p, i) => (
-            <Box key={i} display="inline-block" textAlign="center" color="label">
+            <Box
+              key={i}
+              display="inline-block"
+              textAlign="center"
+              color="label">
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -225,7 +262,12 @@ const MedicalRecordsViewMedical = (_properties, context) => {
     return (
       <Box color="bad">
         Medical records lost!
-        <Button icon="pen" content="New Record" ml="0.5rem" onClick={() => act('new')} />
+        <Button
+          icon="pen"
+          content="New Record"
+          ml="0.5rem"
+          onClick={() => act('new')}
+        />
       </Box>
     );
   }
@@ -233,14 +275,16 @@ const MedicalRecordsViewMedical = (_properties, context) => {
     <Fragment>
       <LabeledList>
         {medical.fields.map((field, i) => (
-          <LabeledList.Item key={i} label={field.field} preserveWhitespace>
-            {field.value}
-            <Button
-              icon="pen"
-              ml="0.5rem"
-              mb={field.line_break ? '1rem' : 'initial'}
-              onClick={() => doEdit(context, field)}
-            />
+          <LabeledList.Item key={i} label={field.field}>
+            <Box preserveWhitespace>
+              {field.value}
+              <Button
+                icon="pen"
+                ml="0.5rem"
+                mb={field.line_break ? '1rem' : 'initial'}
+                onClick={() => doEdit(context, field)}
+              />
+            </Box>
           </LabeledList.Item>
         ))}
       </LabeledList>
@@ -255,7 +299,12 @@ const MedicalRecordsViewMedical = (_properties, context) => {
               </Box>
               <br />
               {comment.text}
-              <Button icon="comment-slash" color="bad" ml="0.5rem" onClick={() => act('del_c', { del_c: i + 1 })} />
+              <Button
+                icon="comment-slash"
+                color="bad"
+                ml="0.5rem"
+                onClick={() => act('del_c', { del_c: i + 1 })}
+              />
             </Box>
           ))
         )}
@@ -279,7 +328,12 @@ const MedicalRecordsViruses = (_properties, context) => {
   virus.sort((a, b) => (a.name > b.name ? 1 : -1));
   return virus.map((vir, i) => (
     <Fragment key={i}>
-      <Button icon="flask" content={vir.name} mb="0.5rem" onClick={() => act('vir', { vir: vir.D })} />
+      <Button
+        icon="flask"
+        content={vir.name}
+        mb="0.5rem"
+        onClick={() => act('vir', { vir: vir.D })}
+      />
       <br />
     </Fragment>
   ));
@@ -304,7 +358,10 @@ const MedicalRecordsMedbots = (_properties, context) => {
                 <Box color="good">Online</Box>
                 <Box mt="0.5rem">
                   {medbot.use_beaker
-                    ? 'Reservoir: ' + medbot.total_volume + '/' + medbot.maximum_volume
+                    ? 'Reservoir: ' +
+                    medbot.total_volume +
+                    '/' +
+                    medbot.maximum_volume
                     : 'Using internal synthesizer.'}
                 </Box>
               </Fragment>
@@ -323,19 +380,27 @@ const MedicalRecordsNavigation = (_properties, context) => {
   const { screen } = data;
   return (
     <Tabs>
-      <Tabs.Tab selected={screen === 2} onClick={() => act('screen', { screen: 2 })}>
+      <Tabs.Tab
+        selected={screen === 2}
+        onClick={() => act('screen', { screen: 2 })}>
         <Icon name="list" />
         List Records
       </Tabs.Tab>
-      <Tabs.Tab selected={screen === 5} onClick={() => act('screen', { screen: 5 })}>
+      <Tabs.Tab
+        selected={screen === 5}
+        onClick={() => act('screen', { screen: 5 })}>
         <Icon name="database" />
         Virus Database
       </Tabs.Tab>
-      <Tabs.Tab selected={screen === 6} onClick={() => act('screen', { screen: 6 })}>
+      <Tabs.Tab
+        selected={screen === 6}
+        onClick={() => act('screen', { screen: 6 })}>
         <Icon name="plus-square" />
         Medbot Tracking
       </Tabs.Tab>
-      <Tabs.Tab selected={screen === 3} onClick={() => act('screen', { screen: 3 })}>
+      <Tabs.Tab
+        selected={screen === 3}
+        onClick={() => act('screen', { screen: 3 })}>
         <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>

@@ -44,7 +44,12 @@ export const OvermapPanControls = (props, context) => {
           icon="arrow-up"
           iconRotation={-45}
         />
-        <Button disabled={disabled} selected={selected(1)} onClick={() => act(actToDo, { dir: 1 })} icon="arrow-up" />
+        <Button
+          disabled={disabled}
+          selected={selected(1)}
+          onClick={() => act(actToDo, { dir: 1 })}
+          icon="arrow-up"
+        />
         <Button
           disabled={disabled}
           selected={selected(5)}
@@ -54,8 +59,18 @@ export const OvermapPanControls = (props, context) => {
         />
       </Box>
       <Box>
-        <Button disabled={disabled} selected={selected(8)} onClick={() => act(actToDo, { dir: 8 })} icon="arrow-left" />
-        <Button disabled={disabled} selected={selected(0)} onClick={() => act('brake')} icon="ban" />
+        <Button
+          disabled={disabled}
+          selected={selected(8)}
+          onClick={() => act(actToDo, { dir: 8 })}
+          icon="arrow-left"
+        />
+        <Button
+          disabled={disabled}
+          selected={selected(0)}
+          onClick={() => act('brake')}
+          icon="ban"
+        />
         <Button
           disabled={disabled}
           selected={selected(4)}
@@ -71,7 +86,12 @@ export const OvermapPanControls = (props, context) => {
           icon="arrow-down"
           iconRotation={45}
         />
-        <Button disabled={disabled} selected={selected(2)} onClick={() => act(actToDo, { dir: 2 })} icon="arrow-down" />
+        <Button
+          disabled={disabled}
+          selected={selected(2)}
+          onClick={() => act(actToDo, { dir: 2 })}
+          icon="arrow-down"
+        />
         <Button
           disabled={disabled}
           selected={selected(6)}

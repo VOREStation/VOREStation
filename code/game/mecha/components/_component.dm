@@ -138,11 +138,25 @@
 		var/obj/item/stack/nanopaste/NP = W
 
 		if(integrity < max_integrity)
+			to_chat(user, "<span class='notice'>You start to repair damage to \the [src].</span>")
 			while(integrity < max_integrity && NP)
-				if(do_after(user, 1 SECOND, src) && NP.use(1))
-					adjust_integrity(10)
+				if(do_after(user, 1 SECOND, src))
+					NP.use(1)
+					adjust_integrity(NP.mech_repair)
+
+					if(integrity >= max_integrity)
+						to_chat(user, "<span class='notice'>You finish repairing \the [src].</span>")
+						break
+
+					else if(NP.amount == 0)
+						to_chat(user, "<span class='warning'>Insufficient nanopaste to complete repairs!</span>")
+						break
+
 
 			return
+
+		else
+			to_chat(user, "<span class='notice'>\The [src] doesn't require repairs.</span>")
 
 	return ..()
 

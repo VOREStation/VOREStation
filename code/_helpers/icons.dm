@@ -215,7 +215,7 @@
 						break
 				layers[current] = current_layer
 
-		//sortTim(layers, /proc/cmp_image_layer_asc)
+		//sortTim(layers, GLOBAL_PROC_REF(cmp_image_layer_asc))
 
 		var/icon/add // Icon of overlay being added
 
@@ -384,15 +384,15 @@ GLOBAL_LIST_EMPTY(icon_state_lists)
 
 GLOBAL_LIST_EMPTY(cached_examine_icons)
 /proc/set_cached_examine_icon(var/atom/A, var/icon/I, var/expiry = 12000)
-	GLOB.cached_examine_icons[weakref(A)] = I
+	GLOB.cached_examine_icons[WEAKREF(A)] = I
 	if(expiry)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/uncache_examine_icon, weakref(A)), expiry, TIMER_UNIQUE)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(uncache_examine_icon), WEAKREF(A)), expiry, TIMER_UNIQUE)
 
 /proc/get_cached_examine_icon(var/atom/A)
-	var/weakref/WR = weakref(A)
+	var/datum/weakref/WR = WEAKREF(A)
 	return GLOB.cached_examine_icons[WR]
 
-/proc/uncache_examine_icon(var/weakref/WR)
+/proc/uncache_examine_icon(var/datum/weakref/WR)
 	GLOB.cached_examine_icons -= WR
 
 /proc/adjust_brightness(var/color, var/value)

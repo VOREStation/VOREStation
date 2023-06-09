@@ -21,7 +21,12 @@ export const BeaconLocator = (props, context) => {
               Locked on. Follow the arrow.
             </Box>
           )) || <Box color="average">No lock.</Box>}
-          <Button mt={1} mb={1} fluid icon="broadcast-tower" onClick={() => act('reset_tracking')}>
+          <Button
+            mt={1}
+            mb={1}
+            fluid
+            icon="broadcast-tower"
+            onClick={() => act('reset_tracking')}>
             Reset tracker
           </Button>
           <LabeledList>

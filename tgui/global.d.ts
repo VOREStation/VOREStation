@@ -21,6 +21,13 @@ declare module '*.svg' {
   export default content;
 }
 
+namespace JSX {
+  interface IntrinsicElements {
+    marquee: any;
+    blink: any;
+  }
+}
+
 type TguiMessage = {
   type: string;
   payload?: any;
@@ -191,4 +198,6 @@ const Byond: ByondType;
 
 interface Window {
   Byond: ByondType;
+  __store__: Store<unknown, AnyAction>;
+  __augmentStack__: (store: Store) => StackAugmentor;
 }

@@ -13,3 +13,6 @@
 		min_broken_damage = o_min_broken_damage
 	else
 		return ..()
+
+/obj/item/organ/external/digitize(var/company, var/skip_prosthetics = FALSE, var/keep_organs = FALSE)
+	robotize(company, skip_prosthetics, keep_organs)

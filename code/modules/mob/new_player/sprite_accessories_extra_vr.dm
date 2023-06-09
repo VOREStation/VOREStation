@@ -902,3 +902,96 @@
 	icon_state = "unathi_blocky_head_eyes"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_manedwolf1
+	name = "Maned Wolf Primary Markings"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "manedwolf1"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_TORSO,BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/vr_manedwolf2
+	name = "Maned Wolf Secondary Markings"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "manedwolf2"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/vr_head_paint_front
+	name = "Head Paint Front"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "paintfront"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_head_paint_back
+	name = "Head Paint"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "paint"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_sect_drone
+	name = "Sect Drone Bodytype"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "sectdrone"
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_sect_drone_eyes
+	name = "Sect Drone Eyes"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "sectdrone_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_zaprat_cheeks
+	name = "Cheek Marks"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "zaprat_cheeks"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_secbirbfeathers
+	name = "Secretary Bird Feathers"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "secbirbfeathers"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_zmaskanime
+	name = "eye mask (anime eyes)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "zmaskanime"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_birdpants
+	name = "leg coverings (nev/rap)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "birdpants"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG, BP_L_LEG, BP_GROIN)
+
+/datum/sprite_accessory/marking/vr/nevrean_long
+	name = "Long Snout"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "nevrean_long"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_heterochromia_l
+	name = "Heterochromia (left eye)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "heterochromia_l"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_teshi_heterochromia_l
+	name = "Heterochromia (Teshari) (left eye)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "teshi_heterochromia_l"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+

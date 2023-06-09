@@ -343,9 +343,31 @@ BLIND     // can't see anything
 	icon_state = "aviator"
 
 /obj/item/clothing/glasses/sunglasses/bigshot
-	name = "big shot's glasses"
-	desc = "A pair of glasses to help you feel more like a \[BIG SHOT]."
-	icon_state = "bigshot"
+	name = "colored glasses"
+	desc = "A pair of glasses with uniquely colored lenses to make you feel like a \[BIG SHOT]."
+	description_fluff = "A prototype model of the AR glasses which focused on stylization and \
+	functionality. The concept never caught on and was replaced with the earlier rendition of \
+	the modern AR glasses. These have quite clearly seen better days as the AR function no \
+	longer works, the toggle merely obscuring the users vison."
+	icon_state = "salesman"
+	var/ar = 0
+
+/obj/item/clothing/glasses/sunglasses/bigshot/examine(mob/user as mob)
+	. = ..()
+	. += to_chat(usr, "<span class='notice'>Alt-click to toggle modes.</span>")
+
+/obj/item/clothing/glasses/sunglasses/bigshot/AltClick()
+	set src in usr
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.ar)
+			src.ar = !src.ar
+			icon_state = initial(icon_state)
+			to_chat(usr, "You press a small button on \the [src] and deactivate the AR mode.")
+		else
+			src.ar = !src.ar
+			icon_state = "[initial(icon_state)]_fzz"
+			to_chat(usr, "You press a small button on \the [src] and activate the AR mode.")
+		update_clothing_icon()
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"

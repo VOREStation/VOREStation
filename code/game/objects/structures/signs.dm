@@ -256,12 +256,12 @@
 
 /obj/structure/sign/redcross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "An interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "bluecross"
 
 /obj/structure/sign/greencross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "An interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "bluecross2"
 
 /obj/structure/sign/goldenplaque
@@ -816,6 +816,16 @@
 	name = "\improper Kitchen"
 	desc = "A pictographic direction sign with a knife, plate, and fork, stating the level to find the nearest dining establishment on."
 	icon_state = "level_kitchen"
+
+/obj/structure/sign/directions/shuttle_bay
+	name = "\improper Shuttle Bay"
+	desc = "A direction sign, pointing out the way to the nearest shuttle bay."
+	icon_state = "direction_bay"
+
+/obj/structure/sign/levels/shuttle_bay
+	name = "\improper Shuttle Bay"
+	desc = "A direction sign, stating the level to find the nearest shuttle bay on."
+	icon_state = "level_bay"
 
 /obj/structure/sign/directions/tram
 	name = "\improper Public Transit Station"

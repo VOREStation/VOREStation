@@ -249,6 +249,13 @@
 	icon_state = "sepulchre_wingsc"
 	do_colouration = 1
 
+/datum/sprite_accessory/wing/sepulchre_c_yw_w
+	name = "demon wings (colorable, whitescale)"
+	desc = ""
+	icon_state = "sepulchre_wingsc_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/cyberdragon
 	name = "Cyber dragon wing (colorable)"
 	desc = ""
@@ -304,3 +311,18 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "snail_shell_markings"
+
+/datum/sprite_accessory/wing/sectdrone_wing //We should some day make a variable to make some wings not be able to fly
+	name = "Sect drone wings (To use with bodytype marking)"
+	desc = ""
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	icon_state = "sectdrone_wing"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/kara //SatinIsle Fluff Item
+	name = "Pterokara wings"
+	desc = ""
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	icon_state = "feathered_kara"
+	ckeys_allowed = list("satinisle")

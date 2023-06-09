@@ -4405,12 +4405,6 @@
 /obj/item/weapon/book/manual/security_space_law,
 /turf/simulated/floor/tiled,
 /area/centcom/security)
-"pf" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/escape)
 "pg" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/carpet,
@@ -7858,6 +7852,12 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"Af" = (
+/obj/machinery/item_bank{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "Ai" = (
 /obj/structure/sign/department/armory,
 /turf/simulated/floor/tiled,
@@ -9127,6 +9127,17 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/centcom/command)
+"ET" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "EV" = (
 /obj/item/weapon/storage/box/evidence,
 /obj/item/weapon/folder/red,
@@ -15110,7 +15121,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 10
 	},
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "XE" = (
@@ -21031,9 +21042,9 @@ SA
 tQ
 tQ
 Ll
-pf
-pf
-pf
+Sc
+Sc
+Sc
 jh
 Sc
 Sc
@@ -29040,7 +29051,7 @@ dR
 Fo
 Fo
 Fo
-Fo
+ET
 Fo
 Fo
 Fo
@@ -33702,7 +33713,7 @@ Lu
 bm
 qE
 wc
-vd
+Af
 vd
 vd
 vd

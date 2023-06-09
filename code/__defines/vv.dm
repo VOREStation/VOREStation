@@ -55,3 +55,5 @@
 // /atom
 #define VV_HK_ATOM_EXPLODE "turf_explode"
 #define VV_HK_ATOM_EMP "turf_emp"
+
+#define VV_HK_WEAKREF_RESOLVE "weakref_resolve"

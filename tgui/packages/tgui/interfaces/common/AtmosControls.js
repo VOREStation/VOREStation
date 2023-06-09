@@ -5,8 +5,19 @@ import { Button, LabeledList, NumberInput, Section } from '../../components';
 export const Vent = (props, context) => {
   const { vent } = props;
   const { act } = useBackend(context);
-  const { id_tag, long_name, power, checks, excheck, incheck, direction, external, internal, extdefault, intdefault } =
-    vent;
+  const {
+    id_tag,
+    long_name,
+    power,
+    checks,
+    excheck,
+    incheck,
+    direction,
+    external,
+    internal,
+    extdefault,
+    intdefault,
+  } = vent;
   return (
     <Section
       level={2}

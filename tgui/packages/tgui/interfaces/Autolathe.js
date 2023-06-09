@@ -32,7 +32,11 @@ export const Autolathe = (props, context) => {
 
   const [category, setCategory] = useSharedState(context, 'category', 0);
 
-  const [searchText, setSearchText] = useSharedState(context, 'search_text', '');
+  const [searchText, setSearchText] = useSharedState(
+    context,
+    'search_text',
+    ''
+  );
 
   const testSearch = createSearch(searchText, (recipe) => recipe.name);
 
@@ -58,7 +62,12 @@ export const Autolathe = (props, context) => {
               onSelected={(val) => setCategory(categories.indexOf(val))}
             />
           }>
-          <Input fluid placeholder="Search for..." onInput={(e, v) => setSearchText(v)} mb={1} />
+          <Input
+            fluid
+            placeholder="Search for..."
+            onInput={(e, v) => setSearchText(v)}
+            mb={1}
+          />
           {recipesToShow.map((recipe) => (
             <Flex justify="space-between" align="center" key={recipe.ref}>
               <Flex.Item>
@@ -75,13 +84,17 @@ export const Autolathe = (props, context) => {
                     <Button
                       color={(recipe.hidden && 'red') || null}
                       disabled={!canBeMade(recipe, materials, 5)}
-                      onClick={() => act('make', { make: recipe.ref, multiplier: 5 })}>
+                      onClick={() =>
+                        act('make', { make: recipe.ref, multiplier: 5 })
+                      }>
                       x5
                     </Button>
                     <Button
                       color={(recipe.hidden && 'red') || null}
                       disabled={!canBeMade(recipe, materials, 10)}
-                      onClick={() => act('make', { make: recipe.ref, multiplier: 10 })}>
+                      onClick={() =>
+                        act('make', { make: recipe.ref, multiplier: 10 })
+                      }>
                       x10
                     </Button>
                   </Box>
@@ -91,7 +104,10 @@ export const Autolathe = (props, context) => {
               <Flex.Item>
                 {(recipe.requirements &&
                   Object.keys(recipe.requirements)
-                    .map((mat) => toTitleCase(mat) + ': ' + recipe.requirements[mat])
+                    .map(
+                      (mat) =>
+                        toTitleCase(mat) + ': ' + recipe.requirements[mat]
+                    )
                     .join(', ')) || <Box>No resources required.</Box>}
               </Flex.Item>
             </Flex>

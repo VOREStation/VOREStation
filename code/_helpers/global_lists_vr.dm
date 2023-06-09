@@ -13,6 +13,10 @@ var/global/list/traits_costs = list()		// Just path = cost list, saves time in c
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
 var/global/list/active_ghost_pods = list()
 
+//Global vars for making the overmap_renamer subsystem.
+//Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
+var/global/list/visitable_overmap_object_instances = list()
+
 var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")
 
 // Used by the ban panel to determine what departments are offmap departments. All these share an 'offmap roles' ban.
@@ -536,7 +540,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		all_traits[path] = instance
 
 	// Shakey shakey shake
-	sortTim(all_traits, /proc/cmp_trait_datums_name, associative = TRUE)
+	sortTim(all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
 
 	// Split 'em up
 	for(var/traitpath in all_traits)
@@ -757,6 +761,7 @@ var/global/list/xenobio_gold_mobs_safe = list(
 										/mob/living/simple_mob/vore/rabbit,
 										/mob/living/simple_mob/vore/redpanda,
 										/mob/living/simple_mob/vore/sheep,
+										/mob/living/simple_mob/vore/squirrel,
 										/mob/living/simple_mob/vore/solargrub)
 
 var/global/list/xenobio_gold_mobs_birds = list(/mob/living/simple_mob/animal/passive/bird/black_bird,
@@ -928,14 +933,32 @@ var/global/list/selectable_speech_bubbles = list(
 	"cyber",
 	"ghost",
 	"slime_green",
+	"slime_yellow",
+	"slime_red",
+	"slime_blue",
 	"dark",
 	"plant",
 	"clown",
 	"fox",
+	"latte_fox",
+	"blue_fox",
 	"maus",
+	"wolf",
+	"red_panda",
+	"blue_panda",
+	"tentacles",
 	"heart",
 	"textbox",
-	"posessed")
+	"posessed",
+	"square",
+	"medical",
+	"medical_square",
+	"cardiogram",
+	"security",
+	"notepad",
+	"science",
+	"engineering",
+	"cargo")
 
 
 

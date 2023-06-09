@@ -16,15 +16,14 @@
 /obj/machinery/cell_charger/Initialize()
 	. = ..()
 	default_apply_parts()
+	add_overlay("ccharger1")
 
 /obj/machinery/cell_charger/update_icon()
-	icon_state = "ccharger[charging ? 1 : 0]"
-
 	if(!anchored)
+		cut_overlays()
 		icon_state = "ccharger2"
 
 	if(charging && !(stat & (BROKEN|NOPOWER)))
-
 		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		//to_world("nl: [newlevel]")
 
@@ -34,8 +33,14 @@
 			add_overlay("ccharger-o[newlevel]")
 
 			chargelevel = newlevel
-	else
+
+		add_overlay(image(charging.icon, charging.icon_state))
+		add_overlay("ccharger-[charging.connector_type]-on")
+
+	else if(anchored)
 		cut_overlays()
+		icon_state = "ccharger0"
+		add_overlay("ccharger1")
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
@@ -77,6 +82,7 @@
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attach" : "detach"] [src] [anchored ? "to" : "from"] the ground")
 		playsound(src, W.usesound, 75, 1)
+		update_icon()
 	else if(default_deconstruction_screwdriver(user, W))
 		return
 	else if(default_deconstruction_crowbar(user, W))

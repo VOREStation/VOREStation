@@ -30,7 +30,11 @@ export const MiningStackingConsole = (props, context) => {
                   key={stack.type}
                   label={toTitleCase(stack.type)}
                   buttons={
-                    <Button icon="eject" onClick={() => act('release_stack', { stack: stack.type })}>
+                    <Button
+                      icon="eject"
+                      onClick={() =>
+                        act('release_stack', { stack: stack.type })
+                      }>
                       Eject
                     </Button>
                   }>

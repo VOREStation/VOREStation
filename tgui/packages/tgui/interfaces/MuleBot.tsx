@@ -27,7 +27,14 @@ export const MuleBot = (props, context) => {
             <LabeledList.Item label="ID">{suffix}</LabeledList.Item>
             <LabeledList.Item
               label="Current Load"
-              buttons={<Button icon="eject" content="Unload Now" disabled={!load} onClick={() => act('unload')} />}>
+              buttons={
+                <Button
+                  icon="eject"
+                  content="Unload Now"
+                  disabled={!load}
+                  onClick={() => act('unload')}
+                />
+              }>
               {load ? load : 'None.'}
             </LabeledList.Item>
           </LabeledList>
@@ -58,23 +65,52 @@ const MuleBotClosed = (props, context) => {
         <Box color="bad">This interface is currently locked.</Box>
       ) : (
         <Fragment>
-          <Button fluid icon="stop" content="Stop" onClick={() => act('stop')} />
-          <Button fluid icon="truck-monster" content="Proceed" onClick={() => act('go')} />
-          <Button fluid icon="home" content="Return Home" onClick={() => act('home')} />
-          <Button fluid icon="map-marker-alt" content="Set Destination" onClick={() => act('destination')} />
-          <Button fluid icon="cog" content="Set Home" onClick={() => act('sethome')} />
+          <Button
+            fluid
+            icon="stop"
+            content="Stop"
+            onClick={() => act('stop')}
+          />
+          <Button
+            fluid
+            icon="truck-monster"
+            content="Proceed"
+            onClick={() => act('go')}
+          />
+          <Button
+            fluid
+            icon="home"
+            content="Return Home"
+            onClick={() => act('home')}
+          />
+          <Button
+            fluid
+            icon="map-marker-alt"
+            content="Set Destination"
+            onClick={() => act('destination')}
+          />
+          <Button
+            fluid
+            icon="cog"
+            content="Set Home"
+            onClick={() => act('sethome')}
+          />
           <Button
             fluid
             icon="home"
             selected={auto_return}
-            content={'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')}
+            content={
+              'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')
+            }
             onClick={() => act('autoret')}
           />
           <Button
             fluid
             icon="biking"
             selected={!crates_only}
-            content={'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')}
+            content={
+              'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')
+            }
             onClick={() => act('cargotypes')}
           />
         </Fragment>

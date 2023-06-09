@@ -28,7 +28,7 @@
 	icon_state = "frog"
 	icon = 'icons/mob/vore.dmi'
 
-	movement_cooldown = 4 //fast as fucc boie.
+	movement_cooldown = 0.5 //fast as fucc boie.
 	can_be_drop_pred = 1 //They can tongue vore.
 
 	meat_amount = 4
@@ -54,7 +54,7 @@
 /mob/living/simple_mob/vore/aggressive/frog/do_special_attack(atom/A)
 	set_AI_busy(TRUE)
 	do_windup_animation(A, 20)
-	addtimer(CALLBACK(src, .proc/chargeend, A), 20)
+	addtimer(CALLBACK(src, PROC_REF(chargeend), A), 20)
 
 /mob/living/simple_mob/vore/aggressive/frog/proc/chargeend(atom/A)
 	if(stat) //you are dead

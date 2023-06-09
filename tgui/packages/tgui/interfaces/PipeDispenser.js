@@ -7,8 +7,13 @@ export const PipeDispenser = (props, context) => {
   const { act, data } = useBackend(context);
   const { disposals, p_layer, pipe_layers, categories = [] } = data;
 
-  const [categoryName, setCategoryName] = useLocalState(context, 'categoryName');
-  const shownCategory = categories.find((category) => category.cat_name === categoryName) || categories[0];
+  const [categoryName, setCategoryName] = useLocalState(
+    context,
+    'categoryName'
+  );
+  const shownCategory =
+    categories.find((category) => category.cat_name === categoryName) ||
+    categories[0];
   return (
     <Window width={425} height={515} resizable>
       <Window.Content scrollable>

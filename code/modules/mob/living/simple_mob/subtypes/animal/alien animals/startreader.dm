@@ -20,7 +20,7 @@
 	faction = "space turtle"
 	maxHealth = 1000
 	health = 1000
-	movement_cooldown = 20
+	movement_cooldown = 10
 
 	see_in_dark = 10
 

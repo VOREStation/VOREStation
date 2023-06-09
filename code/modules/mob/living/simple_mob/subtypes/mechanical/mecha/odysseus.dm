@@ -22,7 +22,7 @@
 	wreckage = /obj/structure/loot_pile/mecha/odysseus
 
 	maxHealth = 120
-	movement_cooldown = 0
+	movement_cooldown = -1
 	turn_sound = 'sound/mecha/mechmove01.ogg'
 
 	melee_damage_lower = 5
@@ -79,6 +79,3 @@
 /obj/item/projectile/fake_syringe/poison
 	modifier_type_to_apply = /datum/modifier/poisoned
 	modifier_duration = 1 MINUTE // About 30 damage per stack over a minute.
-
-
-

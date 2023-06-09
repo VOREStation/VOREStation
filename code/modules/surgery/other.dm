@@ -37,8 +37,8 @@
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool]." , \
-	"You start patching the damaged vein in [target]'s [affected.name] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start patching the damaged vein in [target]'s [affected.name] with \the [tool].</span>")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
@@ -91,8 +91,8 @@
 
 /datum/surgery_step/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool]." , \
-	"You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
@@ -149,8 +149,8 @@
 
 /datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool]." , \
-	"You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].</span>")
 	target.custom_pain("Something in your [affected.name] is causing you a lot of pain!", 50)
 	..()
 
@@ -219,8 +219,8 @@
 		rig = target.belt
 		if(!istype(rig))
 			return
-	user.visible_message("[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool]." , \
-	"You start cutting through the support systems of \the [rig] on [target] with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool].</span>" , \
+	"<span class='filter_notice'>You start cutting through the support systems of \the [rig] on [target] with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

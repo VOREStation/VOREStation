@@ -5,7 +5,15 @@ import { NtosWindow } from '../layouts';
 
 export const NtosConfiguration = (props, context) => {
   const { act, data } = useBackend(context);
-  const { PC_device_theme, power_usage, battery_exists, battery = {}, disk_size, disk_used, hardware = [] } = data;
+  const {
+    PC_device_theme,
+    power_usage,
+    battery_exists,
+    battery = {},
+    disk_size,
+    disk_used,
+    hardware = [],
+  } = data;
   return (
     <NtosWindow theme={PC_device_theme} width={520} height={630} resizable>
       <NtosWindow.Content scrollable>
@@ -17,7 +25,9 @@ export const NtosConfiguration = (props, context) => {
             </Box>
           }>
           <LabeledList>
-            <LabeledList.Item label="Battery Status" color={!battery_exists && 'average'}>
+            <LabeledList.Item
+              label="Battery Status"
+              color={!battery_exists && 'average'}>
               {battery_exists ? (
                 <ProgressBar
                   value={battery.charge}
@@ -37,7 +47,11 @@ export const NtosConfiguration = (props, context) => {
           </LabeledList>
         </Section>
         <Section title="File System">
-          <ProgressBar value={disk_used} minValue={0} maxValue={disk_size} color="good">
+          <ProgressBar
+            value={disk_used}
+            minValue={0}
+            maxValue={disk_size}
+            color="good">
             {disk_used} GQ / {disk_size} GQ
           </ProgressBar>
         </Section>

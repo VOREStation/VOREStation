@@ -40,13 +40,11 @@ export class DraggableControl extends Component {
           suppressingFlicker: true,
         });
         clearTimeout(this.flickerTimer);
-        this.flickerTimer = setTimeout(
-          () =>
-            this.setState({
-              suppressingFlicker: false,
-            }),
-          suppressFlicker
-        );
+        this.flickerTimer = setTimeout(() => {
+          this.setState({
+            suppressingFlicker: false,
+          });
+        }, suppressFlicker);
       }
     };
 
@@ -81,7 +79,14 @@ export class DraggableControl extends Component {
     };
 
     this.handleDragMove = (e) => {
-      const { minValue, maxValue, step, stepPixelSize, dragMatrix } = this.props;
+      // prettier-ignore
+      const {
+        minValue,
+        maxValue,
+        step,
+        stepPixelSize,
+        dragMatrix,
+      } = this.props;
       this.setState((prevState) => {
         const state = { ...prevState };
         const offset = getScalarScreenOffset(e, dragMatrix) - state.origin;
@@ -95,7 +100,11 @@ export class DraggableControl extends Component {
             maxValue + step
           );
           // Clamp the final value
-          state.value = clamp(state.internalValue - (state.internalValue % step) + stepOffset, minValue, maxValue);
+          state.value = clamp(
+            state.internalValue - (state.internalValue % step) + stepOffset,
+            minValue,
+            maxValue
+          );
           state.origin = getScalarScreenOffset(e, dragMatrix);
         } else if (Math.abs(offset) > 4) {
           state.dragging = true;
@@ -139,7 +148,12 @@ export class DraggableControl extends Component {
   }
 
   render() {
-    const { dragging, editing, value: intermediateValue, suppressingFlicker } = this.state;
+    const {
+      dragging,
+      editing,
+      value: intermediateValue,
+      suppressingFlicker,
+    } = this.state;
     const {
       animated,
       value,
@@ -160,17 +174,19 @@ export class DraggableControl extends Component {
     if (dragging || suppressingFlicker) {
       displayValue = intermediateValue;
     }
-    // Setup a display element
-    // Shows a formatted number based on what we are currently doing
-    // with the draggable surface.
-    const renderDisplayElement = (value) => value + (unit ? ' ' + unit : '');
-    const displayElement =
-      (animated && !dragging && !suppressingFlicker && (
-        <AnimatedNumber value={displayValue} format={format}>
-          {renderDisplayElement}
-        </AnimatedNumber>
-      )) ||
-      renderDisplayElement(format ? format(displayValue) : displayValue);
+    // prettier-ignore
+    const displayElement = (
+      <>
+        {
+          (animated && !dragging && !suppressingFlicker) ?
+            (<AnimatedNumber value={displayValue} format={format} />) :
+            (format ? format(displayValue) : displayValue)
+        }
+
+        { (unit ? ' ' + unit : '') }
+      </>
+    );
+
     // Setup an input element
     // Handles direct input via the keyboard
     const inputElement = (

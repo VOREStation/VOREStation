@@ -43,9 +43,9 @@ export const GeneralRecords = (_properties, context) => {
   }
 
   return (
-    <Window width={800} height={640} resizable scrollable>
+    <Window width={800} height={640} resizable>
       <ComplexModal />
-      <Window.Content className="Layout__content--flexColumn">
+      <Window.Content className="Layout__content--flexColumn" scrollable>
         <LoginInfo />
         <TemporaryNotice />
         <GeneralRecordsNavigation />
@@ -87,7 +87,11 @@ const GeneralRecordsList = (_properties, context) => {
       <Box mb="0.2rem">
         <Button icon="pen" content="New Record" onClick={() => act('new')} />
       </Box>
-      <Input fluid placeholder="Search by Name, DNA, or ID" onInput={(e, value) => setSearchText(value)} />
+      <Input
+        fluid
+        placeholder="Search by Name, DNA, or ID"
+        onInput={(e, value) => setSearchText(value)}
+      />
       <Box mt="0.5rem">
         {records.map((record, i) => (
           <Button
@@ -105,7 +109,13 @@ const GeneralRecordsList = (_properties, context) => {
 
 const GeneralRecordsMaintenance = (_properties, context) => {
   const { act } = useBackend(context);
-  return <Button.Confirm icon="trash" content="Delete All Employment Records" onClick={() => act('del_all')} />;
+  return (
+    <Button.Confirm
+      icon="trash"
+      content="Delete All Employment Records"
+      onClick={() => act('del_all')}
+    />
+  );
 };
 
 const GeneralRecordsView = (_properties, context) => {
@@ -133,7 +143,12 @@ const GeneralRecordsView = (_properties, context) => {
           onClick={() => act('print_p')}
         />
         <br />
-        <Button icon="arrow-left" content="Back" mt="0.5rem" onClick={() => act('screen', { screen: 2 })} />
+        <Button
+          icon="arrow-left"
+          content="Back"
+          mt="0.5rem"
+          onClick={() => act('screen', { screen: 2 })}
+        />
       </Section>
     </Fragment>
   );
@@ -146,7 +161,12 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
     return (
       <Box color="bad">
         General record lost!
-        <Button icon="pen" content="New Record" ml="0.5rem" onClick={() => act('new')} />
+        <Button
+          icon="pen"
+          content="New Record"
+          ml="0.5rem"
+          onClick={() => act('new')}
+        />
       </Box>
     );
   }
@@ -159,7 +179,13 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
               <Box height="20px" display="inline-block">
                 {field.value}
               </Box>
-              {!!field.edit && <Button icon="pen" ml="0.5rem" onClick={() => doEdit(context, field)} />}
+              {!!field.edit && (
+                <Button
+                  icon="pen"
+                  ml="0.5rem"
+                  onClick={() => doEdit(context, field)}
+                />
+              )}
             </LabeledList.Item>
           ))}
         </LabeledList>
@@ -177,7 +203,12 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
                 </Box>
                 <br />
                 {comment.text}
-                <Button icon="comment-slash" color="bad" ml="0.5rem" onClick={() => act('del_c', { del_c: i + 1 })} />
+                <Button
+                  icon="comment-slash"
+                  color="bad"
+                  ml="0.5rem"
+                  onClick={() => act('del_c', { del_c: i + 1 })}
+                />
               </Box>
             ))
           )}
@@ -195,7 +226,11 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
       <Box width="50%" float="right" textAlign="right">
         {!!general.has_photos &&
           general.photos.map((p, i) => (
-            <Box key={i} display="inline-block" textAlign="center" color="label">
+            <Box
+              key={i}
+              display="inline-block"
+              textAlign="center"
+              color="label">
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -218,11 +253,15 @@ const GeneralRecordsNavigation = (_properties, context) => {
   const { screen } = data;
   return (
     <Tabs>
-      <Tabs.Tab selected={screen === 2} onClick={() => act('screen', { screen: 2 })}>
+      <Tabs.Tab
+        selected={screen === 2}
+        onClick={() => act('screen', { screen: 2 })}>
         <Icon name="list" />
         List Records
       </Tabs.Tab>
-      <Tabs.Tab selected={screen === 3} onClick={() => act('screen', { screen: 3 })}>
+      <Tabs.Tab
+        selected={screen === 3}
+        onClick={() => act('screen', { screen: 3 })}>
         <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>

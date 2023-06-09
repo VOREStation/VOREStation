@@ -12,7 +12,11 @@ export const pda_news = (props, context) => {
 
   return (
     <Box>
-      {(!feeds.length && <Box color="bad">Error: No newsfeeds available. Please try again later.</Box>) ||
+      {(!feeds.length && (
+        <Box color="bad">
+          Error: No newsfeeds available. Please try again later.
+        </Box>
+      )) ||
         (target_feed && <NewsTargetFeed />) || <NewsFeed />}
     </Box>
   );
@@ -25,9 +29,19 @@ const NewsTargetFeed = (props, context) => {
 
   return (
     <Section
-      title={decodeHtmlEntities(target_feed.name) + ' by ' + decodeHtmlEntities(target_feed.author)}
+      title={
+        decodeHtmlEntities(target_feed.name) +
+        ' by ' +
+        decodeHtmlEntities(target_feed.author)
+      }
       level={2}
-      buttons={<Button content="Back" icon="chevron-up" onClick={() => act('newsfeed', { newsfeed: null })} />}>
+      buttons={
+        <Button
+          content="Back"
+          icon="chevron-up"
+          onClick={() => act('newsfeed', { newsfeed: null })}
+        />
+      }>
       {(target_feed.messages.length &&
         target_feed.messages.map((message) => (
           <Section key={message.ref}>
@@ -39,7 +53,8 @@ const NewsTargetFeed = (props, context) => {
               </Box>
             )}
             <Box color="grey">
-              [{message.message_type} by {decodeHtmlEntities(message.author)} - {message.time_stamp}]
+              [{message.message_type} by {decodeHtmlEntities(message.author)} -{' '}
+              {message.time_stamp}]
             </Box>
           </Section>
         ))) || <Box>No stories found in {target_feed.name}.</Box>}

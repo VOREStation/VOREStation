@@ -389,8 +389,6 @@
 	set desc = "Bites prey and drains them of a significant portion of blood, feeding you in the process. You may only do this once per minute."
 	set category = "Abilities"
 
-	if(last_special > world.time)
-		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot bite anyone in your current state!")
@@ -400,9 +398,27 @@
 	for(var/mob/living/carbon/human/M in view(1,src))
 		if(!istype(M,/mob/living/silicon) && Adjacent(M))
 			choices += M
-	choices -= src
 
-	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite?", "Suck Blood", choices)
+
+	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite? Select yourself to bring up configuration for privacy and bleeding. \
+	Beware! Configuration resets on new round!", "Suck Blood", choices)
+
+	if(B == src) //We are using this to minimize the amount of pop-ups or buttons.
+		var/control_options = list("always loud", "pop-up", "intents", "always subtle")
+		src.species.bloodsucker_controlmode = tgui_input_list(src,"Choose your preferred control of blood sucking. \
+		You can only cause bleeding wounds with pop up and intents modes. Choosing intents prints controls to chat.", "Configure Bloodsuck", control_options, "always loud")
+		if(src.species.bloodsucker_controlmode == "intents") //We are printing to chat for better readability
+			to_chat(src, SPAN_NOTICE("You've chosen to use intents for blood draining. \n \
+			HELP - Loud, No Bleeding \n \
+			DISARM - Subtle, Causes bleeding \n \
+			GRAB - Subtle, No Bleeding \n \
+			HARM - Loud, Causes Bleeding"))
+		return
+
+	if(last_special > world.time)
+		to_chat(src, "You cannot suck blood so quickly in a row!")
+		return
+
 
 	if(!B || !src || src.stat) return
 
@@ -418,18 +434,75 @@
 		return
 
 	last_special = world.time + 600
-	src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>")
+
+	var/control_pref = src.species.bloodsucker_controlmode
+	var/noise = TRUE
+	var/bleed = FALSE
+
+	switch(control_pref)
+		if("always subtle")
+			noise = FALSE
+		if("pop-up")
+			if(tgui_alert(src, "Do you want to be subtle?", "Privacy", list("Yes", "No")) == "Yes")
+				noise = FALSE
+			if(tgui_alert(src, "Do you want your target to keep bleeding?", "Continue Bleeding", list("Yes", "No")) == "Yes" )
+				bleed = TRUE
+		if("intents")
+			/*
+			Logic is, with "Help", we are taking our time but it's pretty obvious..
+			With "disarm", we rush the act, letting it keep bleeding
+			"HURT" is self-evidently loud and bleedy
+			"Grab" is subtle because we keep our prey tight and close.
+			*/
+			switch(src.a_intent)
+				//if(I_HELP) uses default values. Added as a comment for clarity
+				if(I_DISARM)
+					noise = FALSE
+					bleed = TRUE
+				if(I_GRAB)
+					noise = FALSE
+				if(I_HURT)
+					bleed =TRUE
+
+
+
+
+	if(noise)
+		src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>")
+	else
+		src.visible_message("<font color='red'><i>[src] moves their head next to [B]'s neck, seemingly looking for something!</i></font>", range = 1)
+
+	if(bleed) //Due to possibility of missing/misclick and missing the bleeding cues, we are warning the scene members of BLEEDING being on
+		to_chat(src, SPAN_WARNING("This is going to cause [B] to keep bleeding!"))
+		to_chat(B, SPAN_DANGER("You are going to keep bleeding from this bite!"))
 
 	if(do_after(src, 300, B)) //Thrirty seconds.
 		if(!Adjacent(B)) return
-		src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
-		B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
-		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
-		adjust_nutrition(400)
-		sleep(50)
-		B.drip(1)
-		sleep(50)
-		B.drip(1)
+		if(noise)
+			src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
+		else
+			src.visible_message("<font color='red'><i>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</i></font>", range = 1)
+		if(bleed)
+			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, soaked = 0, sharp = TRUE, edge = FALSE)
+			var/obj/item/organ/external/E = B.get_organ(BP_HEAD)
+			if(!(E.status & ORGAN_BLEEDING))
+				E.status |= ORGAN_BLEEDING //If 10 points of piercing didn't make the organ bleed, we are making it bleed.
+
+
+		else
+			B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
+
+
+		if(!noise && !bleed) //If we're quiet and careful, there should be no blood to serve as evidence
+			B.remove_blood(82) //Removing in one go since we dont want splatter
+			adjust_nutrition(410) //We drink it all, not letting any go to waste!
+		else //Otherwise, we're letting blood drop to the floor
+			B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
+			adjust_nutrition(400)
+			sleep(50)
+			B.drip(1)
+			sleep(50)
+			B.drip(1)
 
 
 //Welcome to the adapted changeling absorb code.

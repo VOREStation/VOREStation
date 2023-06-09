@@ -111,3 +111,31 @@
 		return
 	if(prob(10)) //Miniscule chance of removing some toxins.
 		M.adjustToxLoss(-10 * removed)
+
+/datum/reagent/lipozilase // The anti-nutriment that rapidly removes weight.
+	name = "Lipozilase"
+	id = "lipozilase"
+	description = "A chemical compound that causes a dangerously powerful fat-burning reaction."
+	taste_description = "blandness"
+	reagent_state = LIQUID
+	color = "#47AD6D"
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/lipozilase/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjust_nutrition(-20 * removed)
+	if(M.weight > 50)
+		M.weight -= 0.3
+
+/datum/reagent/lipostipo // The drug that rapidly increases weight.
+	name = "Lipostipo"
+	id = "lipostipo"
+	description = "A chemical compound that causes a dangerously powerful fat-adding reaction."
+	taste_description = "blubber"
+	reagent_state = LIQUID
+	color = "#61731C"
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/lipostipo/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjust_nutrition(-20 * removed)
+	if(M.weight < 500)
+		M.weight += 0.3

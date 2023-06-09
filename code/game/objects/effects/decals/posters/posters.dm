@@ -3,7 +3,7 @@
 		if(exact)
 			return decls_repository.get_decl(path)
 		else
-			var/list/L = decls_repository.get_decls_of_type(path) 
+			var/list/L = decls_repository.get_decls_of_type(path)
 			return L[pick(L)]
 	return null
 
@@ -27,7 +27,9 @@
 		src.poster_decl = get_poster_decl(poster_decl, TRUE)
 	else
 		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
-	
+		while (istype(src.poster_decl, /decl/poster/lewd))
+			src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+
 	name += " - [src.poster_decl.name]"
 	return ..()
 
@@ -58,8 +60,8 @@
 		if (locate(/obj/structure/sign/poster) in T)
 			stuff_on_wall = 1
 			break
-	
-	if(stuff_on_wall)		
+
+	if(stuff_on_wall)
 		to_chat(user, "<span class='notice'>There is already a poster there!</span>")
 		return FALSE
 
@@ -71,7 +73,7 @@
 		to_chat(user, "<span class='notice'>You place the poster!</span>")
 		qdel(src)
 		return TRUE
-	
+
 	P.roll_and_drop(P.loc)
 	qdel(src)
 	return FALSE
@@ -101,7 +103,7 @@
 	var/list/options = list()
 	var/list/decl/poster/posters = decls_repository.get_decls_of_type(/decl/poster)
 	for(var/option in posters)
-		options[posters[option].listing_name] = posters[option]
+		options[posters[option].name] = posters[option]
 
 	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
 	if(src && choice && !M.stat && in_range(M,src))
@@ -156,7 +158,9 @@
 	else if(ispath(P))
 		src.poster_decl = get_poster_decl(P, TRUE)
 	else
-		src.poster_decl = get_poster_decl(target_poster_decl_path, FALSE)		
+		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+		while (istype(src.poster_decl, /decl/poster/lewd))
+			src.poster_decl = get_poster_decl(/decl/poster, FALSE)
 
 	name = "[initial(name)] - [poster_decl.name]"
 	desc = "[initial(desc)] [poster_decl.desc]"
