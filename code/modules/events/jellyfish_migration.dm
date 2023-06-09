@@ -69,7 +69,7 @@
 // Spawn a single jellyfish at given location.
 /datum/event/jellyfish_migration/proc/spawn_one_jellyfish(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/vore/alienanimals/space_jellyfish(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_jellyfish_destruction)
+	GLOB.destroyed_event.register(M, src, PROC_REF(on_jellyfish_destruction))
 	spawned_jellyfish.Add(M)
 	return M
 
@@ -83,7 +83,7 @@
 // If jellyfish is bomphed, remove it from the list.
 /datum/event/jellyfish_migration/proc/on_jellyfish_destruction(var/mob/M)
 	spawned_jellyfish -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_jellyfish_destruction)
+	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_jellyfish_destruction))
 
 /datum/event/jellyfish_migration/end()
 	. = ..()

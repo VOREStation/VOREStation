@@ -359,7 +359,7 @@
 	. = ..()
 	set_pin_data(IC_INPUT, 1, frequency)
 	set_pin_data(IC_INPUT, 2, code)
-	addtimer(CALLBACK(src, .proc/set_frequency, frequency), 40)
+	addtimer(CALLBACK(src, PROC_REF(set_frequency), frequency), 40)
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)

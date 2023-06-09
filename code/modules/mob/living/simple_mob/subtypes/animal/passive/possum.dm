@@ -88,7 +88,7 @@
 
 /datum/ai_holder/simple_mob/passive/possum/poppy/on_hear_say(mob/living/speaker, message)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_keywords, message), rand(1 SECOND, 3 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(check_keywords), message), rand(1 SECOND, 3 SECONDS))
 
 /datum/ai_holder/simple_mob/passive/possum/poppy/proc/check_keywords(var/message)
 	var/mob/living/simple_mob/animal/passive/opossum/poss = holder

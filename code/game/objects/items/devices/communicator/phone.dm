@@ -349,14 +349,14 @@
 	video_source = comm.camera
 	comm.visible_message("<span class='danger'>\icon[src][bicon(src)] New video connection from [comm].</span>")
 	update_active_camera_screen()
-	GLOB.moved_event.register(video_source, src, .proc/update_active_camera_screen)
+	GLOB.moved_event.register(video_source, src, PROC_REF(update_active_camera_screen))
 	update_icon()
 
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
 /obj/item/device/communicator/proc/end_video(var/reason)
-	GLOB.moved_event.unregister(video_source, src, .proc/update_active_camera_screen)
+	GLOB.moved_event.unregister(video_source, src, PROC_REF(update_active_camera_screen))
 	show_static()
 	video_source = null
 
@@ -364,4 +364,3 @@
 
 	visible_message(.)
 	update_icon()
-

@@ -298,7 +298,7 @@
 
 	// Intended for simple mobs
 	if(!owner.client && autotransferlocation && autotransferchance > 0)
-		addtimer(CALLBACK(src, /obj/belly/.proc/check_autotransfer, thing, autotransferlocation), autotransferwait)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/belly, check_autotransfer), thing, autotransferlocation), autotransferwait)
 
 // Called whenever an atom leaves this belly
 /obj/belly/Exited(atom/movable/thing, atom/OldLoc)
@@ -1159,7 +1159,7 @@
 		else
 			// Didn't transfer, so wait before retrying
 			// I feel like there's a way to make this timer looping using the normal looping thing, but pass in the ID and cancel it if we aren't looping again
-			addtimer(CALLBACK(src, .proc/check_autotransfer, prey, autotransferlocation), autotransferwait)
+			addtimer(CALLBACK(src, PROC_REF(check_autotransfer), prey, autotransferlocation), autotransferwait)
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes

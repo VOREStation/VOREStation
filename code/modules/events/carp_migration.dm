@@ -69,7 +69,7 @@
 // Spawn a single carp at given location.
 /datum/event/carp_migration/proc/spawn_one_carp(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/carp/event(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_carp_destruction)
+	GLOB.destroyed_event.register(M, src, PROC_REF(on_carp_destruction))
 	spawned_carp.Add(M)
 	return M
 
@@ -83,7 +83,7 @@
 // If carp is bomphed, remove it from the list.
 /datum/event/carp_migration/proc/on_carp_destruction(var/mob/M)
 	spawned_carp -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_carp_destruction)
+	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_carp_destruction))
 
 /datum/event/carp_migration/end()
 	. = ..()

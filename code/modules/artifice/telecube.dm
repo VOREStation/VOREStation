@@ -193,10 +193,10 @@
 /obj/item/weapon/telecube/proc/cooldown(var/mate_too = FALSE)
 	if(!ready)
 		return
-	
+
 	ready = FALSE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/ready), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(ready)), cooldown_time)
 	if(mate_too && mate)
 		mate.cooldown(mate_too = FALSE) //No infinite recursion pls
 

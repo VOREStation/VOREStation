@@ -8,7 +8,7 @@
 
 //The MOB being invisible presents some problems though, which I am not entirely sure how to resolve
 //Such as, being unable to be attacked by other mobs, and possibly unable to be attacked by players.
-//This does not at all prevent the mob from attacking other things though 
+//This does not at all prevent the mob from attacking other things though
 //so in general, please ensure that you never spawn these where players can ordinarily access them.
 
 //The mob was made invisible though, because the sensors can't detect invisible objects, so when the /visitable/simplemob was made invisible
@@ -47,7 +47,7 @@
 
 /obj/effect/overmap/visitable/simplemob/proc/om_mob_event_setup()
 	scanner_desc = parent.scanner_desc
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_parent_moved)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_parent_moved))
 	skybox_pixel_x = rand(-100,100)
 	if(known)
 		name = initial(parent.name)
@@ -109,4 +109,3 @@
 /mob/living/simple_mob/vore/overmap/Destroy()
 	qdel_null(child_om_marker)
 	return ..()
-

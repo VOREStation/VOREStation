@@ -69,7 +69,7 @@
 // Spawn a single shark at given location.
 /datum/event/shark_migration/proc/spawn_one_shark(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/shark/event(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_shark_destruction)
+	GLOB.destroyed_event.register(M, src, PROC_REF(on_shark_destruction))
 	spawned_shark.Add(M)
 	return M
 
@@ -83,7 +83,7 @@
 // If shark is bomphed, remove it from the list.
 /datum/event/shark_migration/proc/on_shark_destruction(var/mob/M)
 	spawned_shark -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_shark_destruction)
+	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_shark_destruction))
 
 /datum/event/shark_migration/end()
 	. = ..()

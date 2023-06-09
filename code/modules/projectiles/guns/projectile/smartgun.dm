@@ -34,7 +34,7 @@
 	var/image/I = ..()
 	if(I)
 		I.pixel_x = -16
-	return I	
+	return I
 
 /obj/item/weapon/gun/projectile/smartgun/loaded
 	magazine_type = /obj/item/ammo_magazine/smartgun
@@ -68,7 +68,7 @@
 			return
 
 		cycling = TRUE
-		
+
 		if(closed)
 			icon_state = "[initial(icon_state)]_open"
 			playsound(src, 'sound/weapons/smartgunopen.ogg', 75, 0)
@@ -77,7 +77,7 @@
 			icon_state = "[initial(icon_state)]_closed"
 			playsound(src, 'sound/weapons/smartgunclose.ogg', 75, 0)
 			to_chat(user, "<span class='notice'>You ready [src] so that it can be fired.</span>")
-		addtimer(CALLBACK(src, .proc/toggle_real_state), 2 SECONDS, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(toggle_real_state)), 2 SECONDS, TIMER_UNIQUE)
 
 /obj/item/weapon/gun/projectile/smartgun/proc/toggle_real_state()
 	cycling = FALSE
@@ -147,4 +147,3 @@
 	max_ammo = 5
 	ammo_type = /obj/item/ammo_casing/smartgun
 	multiple_sprites = TRUE
-

@@ -1,6 +1,6 @@
 /datum/component/personal_crafting/Initialize()
 	if(ismob(parent))
-		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 
 /datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	// SIGNAL_HANDLER
@@ -12,7 +12,7 @@
 	C.alpha = H.ui_alpha
 	LAZYADD(H.other_important, C)
 	CL.screen += C
-	RegisterSignal(C, COMSIG_CLICK, .proc/component_ui_interact)
+	RegisterSignal(C, COMSIG_CLICK, PROC_REF(component_ui_interact))
 
 /datum/component/personal_crafting
 	var/busy
@@ -279,28 +279,28 @@
 		if(amt <= 0)//since machinery can have 0 aka CRAFTING_MACHINERY_USE - i.e. use it, don't consume it!
 			continue
 
-		// If the path is in R.parts, we want to grab those to stuff into the product		
+		// If the path is in R.parts, we want to grab those to stuff into the product
 		var/amt_to_transfer = 0
 		if(is_path_in_list(path_key, R.parts))
 			amt_to_transfer = R.parts[path_key]
 
-		
+
 		// Reagent: gotta go sniffing in all the beakers
 		if(ispath(path_key, /datum/reagent))
 			var/datum/reagent/reagent = path_key
 			var/id = initial(reagent.id)
 
-			for(var/obj/item/weapon/reagent_containers/RC in surroundings)				
+			for(var/obj/item/weapon/reagent_containers/RC in surroundings)
 				// Found everything we need
 				if(amt <= 0 && amt_to_transfer <= 0)
-					break	
+					break
 
 				// If we need to keep any to put in the new object, pull it out
 				if(amt_to_transfer > 0)
 					var/A = RC.reagents.trans_id_to(parts["reagents"], id, amt_to_transfer)
 					amt_to_transfer -= A
 					amt -= A
-				
+
 				// If we need to consume some amount of it
 				if(amt > 0)
 					var/datum/reagent/RG = RC.reagents.get_reagent(id)
@@ -322,27 +322,27 @@
 						parts["items"] += split
 						amt_to_transfer -= split.get_amount()
 						amt -= split.get_amount()
-				
+
 				if(amt > 0)
 					var/A = min(amt, S.get_amount())
 					if(S.use(A))
 						amt -= A
-				
+
 
 		else // Just a regular item. Find them all and delete them
 			for(var/atom/movable/I in surroundings)
 				if(amt <= 0 && amt_to_transfer <= 0)
 					break
-				
+
 				if(!istype(I, path_key))
 					continue
-				
+
 				// Special case: the reagents may be needed for other recipes
 				if(istype(I, /obj/item/weapon/reagent_containers))
 					var/obj/item/weapon/reagent_containers/RC = I
 					if(RC.reagents.total_volume > 0)
 						continue
-				
+
 				// We're using it for something
 				amt--
 
@@ -351,7 +351,7 @@
 					parts["items"] += I
 					amt_to_transfer--
 					continue
-					
+
 				// Snowflake handling of reagent containers and storage atoms.
 				// If we consumed them in our crafting, we should dump their contents out before qdeling them.
 				if(istype(I, /obj/item/weapon/reagent_containers))
@@ -369,7 +369,7 @@
 	// SIGNAL_HANDLER
 
 	if(user == parent)
-		INVOKE_ASYNC(src, .proc/tgui_interact, user)
+		INVOKE_ASYNC(src, PROC_REF(tgui_interact), user)
 
 /datum/component/personal_crafting/tgui_state(mob/user)
 	return GLOB.tgui_not_incapacitated_turf_state
@@ -499,7 +499,7 @@
 			//Also these are typepaths so sadly we can't just do "[a]"
 			L += "[req[req_atom]] [initial(req_atom.name)]"
 		req_text += L.Join(" OR ")
-		
+
 	for(var/obj/machinery/content as anything in R.machinery)
 		req_text += "[R.reqs[content]] [initial(content.name)]"
 	if(R.additional_req_text)
