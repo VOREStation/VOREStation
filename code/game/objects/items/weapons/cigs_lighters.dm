@@ -335,7 +335,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar
 	name = "premium cigar"
 	desc = "A brown roll of tobacco and... well, you're not quite sure. This thing's huge!"
-	description_fluff = "While the label does say that this is a 'premium cigar', it really cannot match other types of cigars on the market.  Is it a quality cigarette?  Perhaps.  Was it hand-made with care?  No."
+	description_fluff = "While the label does say that this is a 'premium cigar', it \
+	really cannot match other types of cigars on the market. Is it a quality \
+	cigarette? Perhaps. Was it hand-made with care? No."
 	icon_state = "cigar2"
 	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
@@ -353,14 +355,22 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
 	desc = "There's little more you could want from a cigar."
-	description_fluff = "Cohiba has been a popular cigar company for centuries.  They are still based out of Cuba and refuse to expand and therefore have a very limited quantity, making their cigars coveted all through known space. Robusto is one of their most popular shapes of cigars."
+	description_fluff = "Cohiba has been a popular cigar company for centuries. \
+	They are still based out of Cuba and refuse to expand and therefore have a very \
+	limited quantity, making their cigars coveted all through known space. Robusto \
+	is one of their most popular shapes of cigars."
 	icon_state = "cigar2"
 	nicotine_amt = 7
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	name = "premium Havanian cigar"
-	desc = "A cigar fit for only the best of the best."
-	description_fluff = "'Havanian' is an umbrella term for any cigar made in the typical handmade style of Cuba. This particular cigar is from Gilthari's cigar manufacturers and produced galaxy-wide. While this way of making quality cigars has become slightly bastardized over the years, overall quality has remained relatively the same, even if there is a large quantity of 'Havanian' cigars."
+	desc = "Save these for the fancy-pantses at the next CentCom black tie reception. \
+	You can't blow the smoke from such majestic stogies in just anyone's face."
+	description_fluff = "'Havanian' is an umbrella term for any cigar made in the \
+	typical handmade style of Cuba. This particular cigar is from Gilthari's cigar \
+	manufacturers and produced galaxy-wide. While this way of making quality cigars \
+	has become slightly bastardized over the years, overall quality has remained \
+	relatively the same, even if there is a large quantity of 'Havanian' cigars."
 	icon_state = "cigar2"
 	max_smoketime = 7200
 	smoketime = 7200
@@ -400,7 +410,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/pipe
 	name = "smoking pipe"
 	desc = "A pipe, for smoking. Made of fine, stained cherry wood."
-	description_fluff = "ClassiCo Accessories and Haberdashers, originating out of Mars, claim to produce products 'for the modern gentlefolk'. Most of their items are high-end and expensive, but they pledge to back their prices up with quality, and usually do."
+	description_fluff = "ClassiCo Accessories and Haberdashers, originating out of Mars, \
+	claim to produce products 'for the modern gentlefolk'. Most of their items are high-end \
+	and expensive, but they pledge to back their prices up with quality, and usually do."
 	icon_state = "pipe"
 	item_state = "pipe"
 	smoketime = 0
@@ -507,7 +519,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/reagent_containers/rollingpaper
 	name = "rolling paper"
 	desc = "A small, thin piece of easily flammable paper, commonly used for rolling and smoking various dried plants."
-	description_fluff = "The legalization of certain substances propelled the sale of rolling papers through the roof. Now almost every Trans-stellar produces a variety, often of questionable quality."
+	description_fluff = "The legalization of certain substances propelled the sale of rolling \
+	papers through the roof. Now almost every Trans-stellar produces a variety, often of questionable quality."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig paper"
 	volume = 25
@@ -555,76 +568,84 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	qdel(src)
 
 /////////
-//ZIPPO//
+//CHEAP//
 /////////
 /obj/item/weapon/flame/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
-	description_fluff = "The 'hand-made in Altair' sticker underneath is a charming way of saying 'Made with prison labour'. It's no wonder the company can sell these things so cheap."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "lighter-g"
-	item_state = "lighter-g"
+	description_fluff = "The 'hand-made in Altair' sticker underneath is a charming way of \
+	saying 'Made with prison labour'. It's no wonder the company can sell these things so cheap."
+	icon = 'icons/obj/lighters.dmi'
+	icon_state = "lighter"
+	item_state = "lighter"
 	w_class = ITEMSIZE_TINY
 	throwforce = 4
 	slot_flags = SLOT_BELT
 	attack_verb = list("burnt", "singed")
 	var/base_state
+	/// Sounds
 	var/activation_sound = 'sound/items/lighter_on.ogg'
 	var/deactivation_sound = 'sound/items/lighter_off.ogg'
+	/// Color of the flame and how big the flame is (pulled from Welder code)
+	var/flame_color = "#FF9933"
+	var/flame_intensity = 2
+	/// Color List
+	var/random_color = FALSE
+	var/available_colors = list(COLOR_ASSEMBLY_BLACK,
+								COLOR_ASSEMBLY_BGRAY,
+								COLOR_ASSEMBLY_WHITE,
+								COLOR_ASSEMBLY_RED,
+								COLOR_ASSEMBLY_ORANGE,
+								COLOR_ASSEMBLY_BEIGE,
+								COLOR_ASSEMBLY_BROWN,
+								COLOR_ASSEMBLY_GOLD,
+								COLOR_ASSEMBLY_YELLOW,
+								COLOR_ASSEMBLY_GURKHA,
+								COLOR_ASSEMBLY_LGREEN,
+								COLOR_ASSEMBLY_GREEN,
+								COLOR_ASSEMBLY_LBLUE,
+								COLOR_ASSEMBLY_BLUE,
+								COLOR_ASSEMBLY_PURPLE,
+								COLOR_ASSEMBLY_HOT_PINK)
 
-/obj/item/weapon/flame/lighter/zippo
-	name = "\improper Zippo lighter"
-	desc = "The zippo."
-	description_fluff = "Still going after all these years."
-	icon = 'icons/obj/zippo.dmi'
-	icon_state = "zippo"
-	item_state = "zippo"
-	activation_sound = 'sound/items/zippo_on.ogg'
-	deactivation_sound = 'sound/items/zippo_off.ogg'
-
+// TODO: Remove this path from POIs and loose maps (it's no longer needed)
 /obj/item/weapon/flame/lighter/random
-/obj/item/weapon/flame/lighter/random/New()
-	icon_state = "lighter-[pick("r","c","y","g")]"
-	item_state = icon_state
-	base_state = icon_state
+
+// Randomizes Cheap Lighters on Spawn
+/obj/item/weapon/flame/lighter/Initialize()
+	. = ..()
+	var/image/I = image(icon, "lighter-[pick("trans","tall","matte")]")
+	I.color = pick(available_colors)
+	add_overlay(I)
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
-	if(!base_state)
-		base_state = icon_state
 	if(!lit)
 		lit = 1
-		icon_state = "[base_state]on"
-		item_state = "[base_state]on"
+		icon_state = "lighteron"
 		playsound(src, activation_sound, 75, 1)
-		if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
-			user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+		if(prob(95))
+			user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
 		else
-			if(prob(95))
-				user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
+			to_chat(user, "<span class='warning'>You burn yourself while lighting the lighter.</span>")
+			if (user.get_left_hand() == src)
+				user.apply_damage(2,BURN,"l_hand")
 			else
-				to_chat(user, "<span class='warning'>You burn yourself while lighting the lighter.</span>")
-				if (user.get_left_hand() == src)
-					user.apply_damage(2,BURN,"l_hand")
-				else
-					user.apply_damage(2,BURN,"r_hand")
-				user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
+				user.apply_damage(2,BURN,"r_hand")
+			user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
-		set_light(2)
+		set_light(2, 0.5, "#FF9933")
 		START_PROCESSING(SSobj, src)
+		update_icon()
 	else
 		lit = 0
-		icon_state = "[base_state]"
-		item_state = "[base_state]"
+		icon_state = "lighter"
 		playsound(src, deactivation_sound, 75, 1)
-		if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
-			user.visible_message("<span class='rose'>You hear a quiet click, as [user] shuts off [src] without even looking at what they're doing.</span>")
-		else
-			user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
+		user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
 
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
+		update_icon()
 	return
-
 
 /obj/item/weapon/flame/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
@@ -650,6 +671,45 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/turf/location = get_turf(src)
 	if(location)
 		location.hotspot_expose(700, 5)
+	return
+
+/////////
+//ZIPPO//
+/////////
+/obj/item/weapon/flame/lighter/zippo
+	name = "\improper Zippo lighter"
+	desc = "The zippo."
+	description_fluff = "Still going after all these years."
+	icon_state = "zippo"
+	item_state = "zippo"
+	activation_sound = 'sound/items/zippo_on.ogg'
+	deactivation_sound = 'sound/items/zippo_off.ogg'
+
+/obj/item/weapon/flame/lighter/zippo/Initialize()
+	. = ..()
+	cut_overlays() //Prevents the Cheap Lighter overlay from appearing on this
+
+/obj/item/weapon/flame/lighter/zippo/attack_self(mob/living/user)
+	if(!base_state)
+		base_state = icon_state
+	if(!lit)
+		lit = 1
+		icon_state = "[base_state]on"
+		item_state = "[base_state]on"
+		playsound(src, activation_sound, 75, 1)
+		user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+
+		set_light(2, 0.5, "#FF9933")
+		START_PROCESSING(SSobj, src)
+	else
+		lit = 0
+		icon_state = "[base_state]"
+		item_state = "[base_state]"
+		playsound(src, deactivation_sound, 75, 1)
+		user.visible_message("<span class='rose'>You hear a quiet click, as [user] shuts off [src] without even looking at what they're doing.</span>")
+
+		set_light(0)
+		STOP_PROCESSING(SSobj, src)
 	return
 
 //Here we add Zippo skins.
@@ -709,3 +769,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter/zippo/rainbow
 	name = "\improper rainbow Zippo lighter"
 	icon_state = "rainbowzippo"
+
+/obj/item/weapon/flame/lighter/zippo/skull
+	name = "\improper badass Zippo lighter"
+	desc = "An absolutely badass zippo lighter. Just look at that skull!"
+	icon_state = "skullzippo"
