@@ -33,7 +33,6 @@
 
 	/// Whether we have applied our light yet or not.
 	var/applied = FALSE
-
 	/// whether we are to be added to SSlighting's sources_queue list for an update
 	var/needs_update = LIGHTING_NO_UPDATE
 
