@@ -1,22 +1,36 @@
-#define INVENTORY_POUCH_SPACE ITEMSIZE_COST_SMALL*4 // 25% the size of a backpack for normal size
+/* POUCHES
+ * Small storage items that can fit in your pocket slots
+ *
+ * Contains:
+ *		Base pouch code
+ *		Generic pouches
+ *		Bluespace pouch
+ *		Ammo pouches
+ *		Engineering pouches
+ *		Medical pouches
+ *
+ */
 
-// Pouches for small storage in pocket slots
+// Defines the storage size. Quarter the storage size of a backpack to start.
+#define INVENTORY_POUCH_SPACE ITEMSIZE_COST_SMALL * 4
+
+/*
+ * Base Storage Pouch
+ */
 /obj/item/weapon/storage/pouch
-	name = "storage pouch (medium)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access."
+	name = "storage pouch"
+	desc = "You should not be seeing this. Contact your local admin."
 	icon = 'icons/inventory/pockets/item.dmi'
-	slot_flags = SLOT_POCKET
+	slot_flags = SLOT_POCKET | SLOT_BELT
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
-	icon_state = "medium_generic"
 	max_w_class = ITEMSIZE_NORMAL
-	max_storage_space = INVENTORY_POUCH_SPACE
 	can_hold = null
 	pocketable = TRUE
 
 	var/insert_delay = 0 SECONDS
-	var/remove_delay = 2 SECONDS
+	var/remove_delay = 0 SECONDS
 
 /obj/item/weapon/storage/pouch/stall_insertion(obj/item/W, mob/user)
 	// No delay if you have the pouch in your hands
@@ -44,32 +58,92 @@
 /obj/item/weapon/storage/pouch/pocket_description(mob/haver, mob/examiner)
 	return "[src]"
 
-/obj/item/weapon/storage/pouch/large
-	name = "storage pouch (large)"
-	desc = "This storage pouch can be used to provide a good amount of additional storage for quick access."
-	icon_state = "large_generic"
-	max_storage_space = ITEMSIZE_COST_SMALL*6
-	remove_delay = 3 SECONDS //VOREStation Add: Slightly more cumbersome
-
+/*
+ * Generic Pouches
+ */
 /obj/item/weapon/storage/pouch/small
-	name = "storage pouch (small)"
-	desc = "This storage pouch can be used to provide a small amount of additional storage for quick access."
+	name = "small generic pouch"
+	desc = "A storage pouch that can be used to provide a small amount of additional storage for quick access."
 	icon_state = "small_generic"
-	max_storage_space = ITEMSIZE_COST_SMALL*2
-	remove_delay = 1 SECOND //VOREStation Add: Slightly less cumbersome
+	max_storage_space = INVENTORY_POUCH_SPACE * 0.5
+	remove_delay = 1 SECONDS
 
+/obj/item/weapon/storage/pouch/medium
+	name = "generic pouch"
+	desc = "A storage pouch that can be used to provide some additional storage for quick access."
+	icon_state = "medium_generic"
+	max_storage_space = INVENTORY_POUCH_SPACE
+	remove_delay = 2 SECONDS
+
+/obj/item/weapon/storage/pouch/large
+	name = "large generic pouch"
+	desc = "A storage pouch that can be used to provide a good amount of additional storage for quick access."
+	icon_state = "large_generic"
+	max_storage_space = INVENTORY_POUCH_SPACE * 1.5
+	remove_delay = 3 SECONDS
+
+/obj/item/weapon/storage/pouch/flares
+	name = "flare pouch"
+	desc = "A sturdy tubular pouch that is commonly used to carry flares or glowsticks."
+	icon_state = "flare"
+	storage_slots = 5
+	can_hold = list(/obj/item/device/flashlight/flare,
+					/obj/item/device/flashlight/glowstick)
+
+/obj/item/weapon/storage/pouch/flares/update_icon()
+	cut_overlays()
+	if(contents.len)
+		add_overlay("flare_[contents.len]")
+	..()
+
+/obj/item/weapon/storage/pouch/flares/full_flare
+	starts_with = list(/obj/item/device/flashlight/flare = 5)
+
+/obj/item/weapon/storage/pouch/flares/full_glow
+	starts_with = list(/obj/item/device/flashlight/glowstick = 5)
+
+/*
+ * Bluespace Pouch
+ */
+/obj/item/weapon/storage/pouch/holding
+	name = "pouch of holding"
+	desc = "If your pockets are not large enough to store all your belongings, you may want to use this high-tech pouch that opens into a localized pocket of bluespace (pun intended)."
+	icon_state = "holdingpouch"
+	max_storage_space = INVENTORY_POUCH_SPACE * 2
+	remove_delay = 2 SECONDS
+
+/*
+ * Ammo Pouches
+ */
 /obj/item/weapon/storage/pouch/ammo
-	name = "storage pouch (ammo)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold ammunition, cells, explosives, and grenades."
+	name = "ammo pouch"
+	desc = "A storage pouch that can hold ammo magazines and bullets, not the boxes though."
 	icon_state = "ammo"
 	max_storage_space = INVENTORY_POUCH_SPACE
-	can_hold = list(/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/cell/device/weapon, /obj/item/weapon/grenade, /obj/item/weapon/plastique) //Vorestation Add - make it more useful for non-sec/explo
+	remove_delay = 2 SECONDS
+	can_hold = list(/obj/item/ammo_magazine,
+					/obj/item/ammo_casing,
+					/obj/item/weapon/cell/device/weapon)
 
+/obj/item/weapon/storage/pouch/grenade
+	name = "grenade pouch"
+	desc = "A storage pouch that can hold explosives and grenades."
+	icon_state = "ammo"
+	max_storage_space = INVENTORY_POUCH_SPACE
+	remove_delay = 2 SECONDS
+	can_hold = list(/obj/item/weapon/grenade,
+					/obj/item/weapon/plastique)
+
+/*
+ * Engineering Pouches
+ */
 /obj/item/weapon/storage/pouch/eng_tool
-	name = "storage pouch (tools)"
+	name = "engineering tools pouch"
 	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold tools."
 	icon_state = "engineering_tool"
-	max_storage_space = INVENTORY_POUCH_SPACE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 4
+	remove_delay = 0 SECONDS //Basically a weaker version of the tool belt, no need for a delay
+	storage_slots = 4
 	can_hold = list(
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver,
@@ -95,43 +169,49 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
-		/obj/item/device/integrated_electronics/debugger, 
-		/obj/item/weapon/shovel/spade, 
-		/obj/item/stack/nanopaste, 
-		/obj/item/device/geiger
-	) //Vorestation Add - make it the same as the tool-belt why was it not like this to start with wtf
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/device/geiger)
 
 /obj/item/weapon/storage/pouch/eng_supply
-	name = "storage pouch (supplies)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold engineering supplies."
+	name = "engineering supply pouch"
+	desc = "A pouch for holding various engineering scanners, power cells and equipment."
 	icon_state = "engineering_supply"
 	max_storage_space = INVENTORY_POUCH_SPACE
+	remove_delay = 2 SECONDS
 	can_hold = list(
-		/obj/item/weapon/cell/device,
 		/obj/item/stack/cable_coil,
 		/obj/item/taperoll,
-		/obj/item/weapon/extinguisher,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/tape_roll,
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/glass,
+		/obj/item/device/robotanalyzer,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/device/geiger,
 		/obj/item/device/lightreplacer,
-		/obj/item/weapon/cell
-	) //Vorestation Add - makes it actually useful lmao, adds sheets and cells as well as light replacers and lets you take any extinguisher that fits
+		/obj/item/weapon/cell)
 
 /obj/item/weapon/storage/pouch/eng_parts
-	name = "storage pouch (parts)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold machinery components."
+	name = "engineering material pouch"
+	desc = "A pouch for holding sheets, rods, miscellaneous parts and cable coils."
 	icon_state = "part_pouch"
-	max_storage_space = INVENTORY_POUCH_SPACE*2 //Vorestation Add - yeah lemme give up my pocket to hold FOUR CAPACITORS or have an inferior box... now you can hold eight in your pocket so its at least a box
+	max_storage_space = INVENTORY_POUCH_SPACE * 2
+	remove_delay = 2 SECONDS
 	can_hold = list(
 		/obj/item/weapon/stock_parts,
 		/obj/item/stack/cable_coil,
-		/obj/item/weapon/circuitboard
-	)
+		/obj/item/weapon/circuitboard,
+		/obj/item/stack/material,
+		/obj/item/stack/rods)
 
+/*
+ * Medical Pouches
+ */
 /obj/item/weapon/storage/pouch/medical
-	name = "storage pouch (medical)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold medical supplies."
+	name = "medical supply pouch"
+	desc = "A small pouch for holding medical supplies."
 	icon_state = "medical_supply"
 	max_storage_space = INVENTORY_POUCH_SPACE
 	can_hold = list(
@@ -156,66 +236,22 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/taperoll/medical,
 		/obj/item/weapon/storage/box/freezer,
-		/obj/item/clothing/mask/chewable/candy/lolli,    
-	) //Vorestation add - added a bunch of misc medical stuff
-	max_storage_space = ITEMSIZE_COST_SMALL*3 //Vorestation Add - makes it slightly smaller since its a lot of stuff with pocket access
-	remove_delay = 5 //Vorestation Add - .5 second delay, get the medical things faster because there is no reason to use this otherwise. still gotta stop moving to take things out.
+		/obj/item/clothing/mask/chewable/candy/lolli)
+	max_storage_space = INVENTORY_POUCH_SPACE * 1.5
+	remove_delay = 4
 
-/obj/item/weapon/storage/pouch/flares
-	name = "storage pouch (flares)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold flares and glowsticks."
-	icon_state = "flare"
-	storage_slots = 5
-	can_hold = list(/obj/item/device/flashlight/flare, /obj/item/device/flashlight/glowstick)
-/obj/item/weapon/storage/pouch/flares/full_flare
-	starts_with = list(/obj/item/device/flashlight/flare = 5)
-/obj/item/weapon/storage/pouch/flares/full_glow
-	starts_with = list(/obj/item/device/flashlight/glowstick = 5)
+/obj/item/weapon/storage/pouch/injector
+	name = "injector pouch"
+	desc = "A sturdy tubular pouch that is commonly used to carry various autoinjectors."
+	icon_state = "injector"
+	storage_slots = 4
+	remove_delay = 2 SECONDS
+	can_hold = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector)
 
-/obj/item/weapon/storage/pouch/flares/update_icon()
+/obj/item/weapon/storage/pouch/injector/update_icon()
 	cut_overlays()
 	if(contents.len)
-		add_overlay("flare_[contents.len]")
+		add_overlay("injector_[contents.len]")
 	..()
-
-/obj/item/weapon/storage/pouch/holster
-	name = "storage pouch (holster)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can hold one normal sized weapon."
-	icon_state = "pistol_holster"
-	storage_slots = 1
-	can_hold = list(/obj/item/weapon/gun) //this covers basically everything I think so its fine
-	remove_delay = 0
-/obj/item/weapon/storage/pouch/holster/full_stunrevolver
-	starts_with = list(/obj/item/weapon/gun/energy/stunrevolver)
-/obj/item/weapon/storage/pouch/holster/full_taser
-	starts_with = list(/obj/item/weapon/gun/energy/taser)
-
-/obj/item/weapon/storage/pouch/holster/update_icon()
-	cut_overlays()
-	if(contents.len)
-		add_overlay("pistol_layer")
-	..()
-
-/obj/item/weapon/storage/pouch/baton
-	name = "storage pouch (melee)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can hold one normal size melee." //Vorestation add - make it a melee pouch literally why would you hold ONE BATON
-	icon_state = "baton_holster"
-	storage_slots = 1
-	can_hold = list(/obj/item/weapon/melee, /obj/item/weapon/material, /obj/item/weapon/tool/wrench) //should be like, every melee weapon I could think of that was normal size. Can make it more specific if needed. Also wrench because I thought it was funny.
-	remove_delay = 0
-/obj/item/weapon/storage/pouch/baton/full
-	starts_with = list(/obj/item/weapon/melee/baton)
-
-/obj/item/weapon/storage/pouch/baton/update_icon()
-	cut_overlays()
-	if(contents.len)
-		add_overlay("baton_layer")
-	..()
-
-/obj/item/weapon/storage/pouch/holding
-	name = "storage pouch of holding"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Seems to use extradimensional storage!"
-	icon_state = "holdingpouch"
-	max_storage_space = INVENTORY_POUCH_SPACE*2 //VOREStation Edit: Consistency with normal bags of holding
 
 #undef INVENTORY_POUCH_SPACE

@@ -1017,19 +1017,18 @@
 
 /obj/random/pouch/item_to_spawn()
 	return pick(
-		prob(10);/obj/item/weapon/storage/pouch, // medium
-		prob(3);/obj/item/weapon/storage/pouch/large,
-		prob(8);/obj/item/weapon/storage/pouch/small,
-		prob(5);/obj/item/weapon/storage/pouch/ammo,
+		prob(10);/obj/item/weapon/storage/pouch/small,
+		prob(8);/obj/item/weapon/storage/pouch/medium,
+		prob(6);/obj/item/weapon/storage/pouch/flares/full_flare,
+		prob(6);/obj/item/weapon/storage/pouch/flares/full_glow,
 		prob(5);/obj/item/weapon/storage/pouch/eng_tool,
 		prob(5);/obj/item/weapon/storage/pouch/eng_supply,
 		prob(5);/obj/item/weapon/storage/pouch/eng_parts,
-		prob(5);/obj/item/weapon/storage/pouch/medical,
-		prob(5);/obj/item/weapon/storage/pouch/flares/full_flare,
-		prob(5);/obj/item/weapon/storage/pouch/flares/full_glow,
-		prob(5);/obj/item/weapon/storage/pouch/holster,
-		prob(5);/obj/item/weapon/storage/pouch/baton/full,
-		prob(1);/obj/item/weapon/storage/pouch/holding
+		prob(4);/obj/item/weapon/storage/pouch/medical,
+		prob(5);/obj/item/weapon/storage/pouch/injector,
+		prob(3);/obj/item/weapon/storage/pouch/large,
+		prob(2);/obj/item/weapon/storage/pouch/ammo,
+		prob(2);/obj/item/weapon/storage/pouch/grenade
 	)
 
 /obj/random/flashlight

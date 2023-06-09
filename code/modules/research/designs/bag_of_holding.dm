@@ -36,26 +36,25 @@
 	desc = "Considerably more utilitarian than the Bag of Holding, the Trashbag of Holding is a janitor's best friend."
 	id = "trashbag_holding"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
-	materials = list("gold" = 2000, "diamond" = 1000, "uranium" = 250)
+	materials = list(MAT_GOLD = 2000, MAT_DIAMOND = 1000, MAT_URANIUM = 250)
 	build_path = /obj/item/weapon/storage/bag/trash/holding
 	sort_string = "QAAAC"
 
 /datum/design/item/boh/pouch_holding
 	name = "Pouch of Holding"
-	desc = "Somehow compresses the storage of a backpack into a pouch-sized container!"
+	desc = "If your pockets are not large enough to store all your belongings, you may want to use this high-tech pouch that opens into a localized pocket of bluespace (pun intended)."
 	id = "pouch_holding"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
-	materials = list("gold" = 3000, "diamond" = 2000, "uranium" = 250)
+	materials = list(MAT_GOLD = 2000, MAT_DIAMOND = 1000, MAT_URANIUM = 250)
 	build_path = /obj/item/weapon/storage/pouch/holding
 	sort_string = "QAAAD"
-	
 
 /datum/design/item/boh/belt_holding_med
 	name = "Medical Belt of Holding"
 	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
 	id = "belt_holding_med"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
-	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
+	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 2000, MAT_TITANIUM = 500)
 	build_path = /obj/item/weapon/storage/belt/medical/holding
 	sort_string = "QAAAE"
 
@@ -64,7 +63,6 @@
 	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
 	id = "belt_holding_utility"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
-	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
+	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 2000, MAT_TITANIUM = 500)
 	build_path = /obj/item/weapon/storage/belt/utility/holding
 	sort_string = "QAAAF"
-	
