@@ -210,7 +210,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "aw" = (
-/obj/machinery/firework_launcher,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "ax" = (
