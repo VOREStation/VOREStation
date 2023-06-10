@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import { useBackend } from '../backend';
-import { Flex, Tabs, Section, Box, Divider } from '../components';
+import { Stack, Tabs, Section, Box } from '../components';
 import { Window } from '../layouts';
 
 type data = {
@@ -15,9 +15,9 @@ type data = {
 export const TraitTutorial = (props, context) => {
   const { act, data } = useBackend<data>(context);
   return (
-    <Window width={804} height={426} scrollable>
+    <Window width={804} height={426}>
       <Window.Content scrollable>
-        <Section title="Guide to Custom Traits" scrollable>
+        <Section title="Guide to Custom Traits">
           <TraitSelection />
         </Section>
       </Window.Content>
@@ -31,10 +31,10 @@ export const TraitSelection = (props, context) => {
   const { names, selection } = data;
 
   return (
-    <Flex scrollable>
-      <Flex.Item shrink scrollable>
-        <Section title="Trait Selection" scrollable>
-          <Tabs vertical scrollable>
+    <Stack>
+      <Stack.Item shrink>
+        <Section title="Trait Selection">
+          <Tabs vertical>
             {names.map((name) => (
               <Tabs.Tab
                 key={name}
@@ -45,18 +45,15 @@ export const TraitSelection = (props, context) => {
             ))}
           </Tabs>
         </Section>
-      </Flex.Item>
-      <Flex.Item grow={2}>
-        <Divider vertical />
-      </Flex.Item>
-      <Flex.Item grow={8} scrollable>
+      </Stack.Item>
+      <Stack.Item grow={8}>
         {selection && (
-          <Section title={selection} scrollable>
+          <Section title={selection}>
             <TraitDescription name={selection} />
           </Section>
         )}
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };
 
@@ -67,7 +64,7 @@ export const TraitDescription = (props, context) => {
   const { descriptions, categories, tutorials } = data;
 
   return (
-    <Section scrollable flexWrap>
+    <Section StackWrap>
       <b>Name:</b> {name}
       <br />
       <b>Category:</b> {categories[name]}

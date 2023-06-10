@@ -214,4 +214,5 @@
 	and they are attempting to open the cryopod.\n \
 	Would you like to play as the occupant? \n \
 	You MUST NOT use your station character!!!"
+	be_special_flag = BE_SURVIVOR
 	cutoff_number = 1
