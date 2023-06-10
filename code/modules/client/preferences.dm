@@ -32,6 +32,7 @@ var/list/preferences_datums = list()
 	var/tgui_input_lock = FALSE
 	var/tgui_large_buttons = TRUE
 	var/tgui_swapped_buttons = FALSE
+	var/obfuscate_job = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
