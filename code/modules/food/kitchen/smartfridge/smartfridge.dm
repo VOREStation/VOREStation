@@ -119,7 +119,7 @@
 		user.remove_from_mob(O)
 		stock(O)
 		user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
-		sortTim(item_records, /proc/cmp_stored_item_name)
+		sortTim(item_records, GLOBAL_PROC_REF(cmp_stored_item_name))
 
 	else if(istype(O, /obj/item/weapon/storage/bag))
 		var/obj/item/weapon/storage/bag/P = O

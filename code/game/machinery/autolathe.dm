@@ -30,7 +30,7 @@
 	var/filtertext
 
 /obj/machinery/autolathe/Initialize()
-	AddComponent(/datum/component/material_container, subtypesof(/datum/material), 0, MATCONTAINER_EXAMINE, _after_insert = CALLBACK(src, .proc/AfterMaterialInsert))
+	AddComponent(/datum/component/material_container, subtypesof(/datum/material), 0, MATCONTAINER_EXAMINE, _after_insert = CALLBACK(src, PROC_REF(AfterMaterialInsert)))
 	. = ..()
 	if(!autolathe_recipes)
 		autolathe_recipes = new()

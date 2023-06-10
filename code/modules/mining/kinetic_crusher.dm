@@ -69,8 +69,8 @@
 /obj/item/weapon/kinetic_crusher/Initialize()
 	. = ..()
 	if(requires_Wield)
-		RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-		RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+		RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+		RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 
 /obj/item/weapon/kinetic_crusher/ComponentInitialize()
 	. = ..()
@@ -163,7 +163,7 @@
 		D.fire()
 		charged = FALSE
 		update_icon()
-		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
+		addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
 		// * (user?.ConflictElementCount(CONFLICT_ELEMENT_CRUSHER) || 1 - tentatively commented out
 		return
 	if(proximity_flag && isliving(target))
@@ -258,7 +258,7 @@
 	update_item_state = FALSE
 	slot_flags = SLOT_BELT
 
-		
+
 
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets
@@ -425,4 +425,3 @@ but alas
 - hatterhat
 
 */
-

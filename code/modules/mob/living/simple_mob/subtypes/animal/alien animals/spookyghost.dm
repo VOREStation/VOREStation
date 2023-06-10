@@ -192,7 +192,7 @@
 	. = ..()
 	icon_living = "spookyghost-[rand(1,2)]"
 	icon_state = icon_living
-	addtimer(CALLBACK(src, .proc/death), 35 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(death)), 35 SECONDS)
 	update_icon()
 
 /datum/ai_holder/simple_mob/melee/space_ghost

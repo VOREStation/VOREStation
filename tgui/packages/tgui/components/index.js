@@ -30,6 +30,7 @@ export { LabeledControls } from './LabeledControls';
 export { LabeledList } from './LabeledList';
 export { MenuBar } from './MenuBar';
 export { Modal } from './Modal';
+export { NanoMap } from './NanoMap';
 export { NoticeBox } from './NoticeBox';
 export { NumberInput } from './NumberInput';
 export { ProgressBar } from './ProgressBar';

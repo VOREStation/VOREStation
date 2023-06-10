@@ -106,7 +106,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	setup_tgui_camera()
 
 	//This is a pretty terrible way of doing this.
-	addtimer(CALLBACK(src, .proc/register_to_holder), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(register_to_holder)), 5 SECONDS)
 
 // Proc: register_to_holder()
 // Parameters: None
@@ -376,4 +376,3 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		return
 
 	icon_state = initial(icon_state)
-

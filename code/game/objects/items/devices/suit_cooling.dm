@@ -2,8 +2,9 @@
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = ITEMSIZE_LARGE
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/suit_cooler.dmi'
 	icon_state = "suitcooler0"
+	item_state = "coolingpack"
 	slot_flags = SLOT_BACK
 
 	//copied from tank.dm
@@ -171,13 +172,32 @@
 	return ..()
 
 /obj/item/device/suit_cooling_unit/proc/updateicon()
-	if (cover_open)
-		if (cell)
+	cut_overlays()
+	if(cover_open)
+		if(cell)
 			icon_state = "suitcooler1"
 		else
 			icon_state = "suitcooler2"
-	else
-		icon_state = "suitcooler0"
+		return
+
+	icon_state = "suitcooler0"
+
+	if(!cell || !on)
+		return
+
+	switch(round(cell.percent()))
+		if(86 to INFINITY)
+			add_overlay("battery-0")
+		if(69 to 85)
+			add_overlay("battery-1")
+		if(52 to 68)
+			add_overlay("battery-2")
+		if(35 to 51)
+			add_overlay("battery-3")
+		if(18 to 34)
+			add_overlay("battery-4")
+		if(-INFINITY to 17)
+			add_overlay("battery-5")
 
 /obj/item/device/suit_cooling_unit/examine(mob/user)
 	. = ..()
@@ -218,7 +238,7 @@
 
 /obj/item/device/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (W.is_screwdriver())
-		to_chat(user, "<span class='warning'>This model has the cell permanently installed!</span>")
+		to_chat(user, "<span class='warning'>This cooler's cell is permanently installed!</span>")
 		return
 
 	return ..()
