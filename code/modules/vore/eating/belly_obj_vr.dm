@@ -56,6 +56,10 @@
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
 	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
+	var/visible_belly_minimum_prey = 1 //What LAZYLEN(vore_selected.contents) we require to show the belly. Customizable
+	var/overlay_min_prey_size	= 0 	//Minimum prey size for belly overlay to show. 0 to disable
+	var/override_min_prey_size = FALSE	//If true, exceeding override prey number will override minimum size requirements
+	var/override_min_prey_num	= 1		//We check belly contents against this to override min size
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -230,7 +234,11 @@
 	"egg_type",
 	"save_digest_mode",
 	"eating_privacy_local",
-	"silicon_belly_overlay_preference"
+	"silicon_belly_overlay_preference",
+	"visible_belly_minimum_prey",
+	"overlay_min_prey_size",
+	"override_min_prey_size",
+	"override_min_prey_num",
 	)
 
 	if (save_digest_mode == 1)
@@ -1146,6 +1154,7 @@
 		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
+	owner.updateicon()
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)
@@ -1217,6 +1226,10 @@
 	dupe.save_digest_mode = save_digest_mode
 	dupe.eating_privacy_local = eating_privacy_local
 	dupe.silicon_belly_overlay_preference = silicon_belly_overlay_preference
+	dupe.visible_belly_minimum_prey	= visible_belly_minimum_prey
+	dupe.overlay_min_prey_size	= overlay_min_prey_size
+	dupe.override_min_prey_size = override_min_prey_size
+	dupe.override_min_prey_num	= override_min_prey_num
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

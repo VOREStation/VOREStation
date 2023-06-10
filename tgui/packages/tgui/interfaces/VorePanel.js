@@ -521,8 +521,10 @@ const VoreSelectedBellyDescriptions = (props, context) => {
 };
 
 const VoreSelectedBellyOptions = (props, context) => {
-  const { act } = useBackend(context);
+  const { act, data } = useBackend(context);
 
+  const { host_mobtype } = data;
+  const { is_dogborg, is_vore_simple_mob } = host_mobtype;
   const { belly } = props;
   const {
     can_taste,
@@ -545,6 +547,10 @@ const VoreSelectedBellyOptions = (props, context) => {
     save_digest_mode,
     eating_privacy_local,
     silicon_belly_overlay_preference,
+    visible_belly_minimum_prey,
+    overlay_min_prey_size,
+    override_min_prey_size,
+    override_min_prey_num,
   } = belly;
 
   return (
@@ -630,14 +636,6 @@ const VoreSelectedBellyOptions = (props, context) => {
               content={capitalize(eating_privacy_local)}
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Toggle Silicon Belly">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_silicon_belly' })
-              }
-              content={capitalize(silicon_belly_overlay_preference)}
-            />
-          </LabeledList.Item>
 
           <LabeledList.Item label="Save Digest Mode">
             <Button
@@ -650,6 +648,7 @@ const VoreSelectedBellyOptions = (props, context) => {
             />
           </LabeledList.Item>
         </LabeledList>
+        <VoreSelectedMobTypeBellyButtons belly={belly} />
       </Flex.Item>
       <Flex.Item basis="49%" grow={1}>
         <LabeledList>
@@ -728,6 +727,91 @@ const VoreSelectedBellyOptions = (props, context) => {
       </Flex.Item>
     </Flex>
   );
+};
+
+const VoreSelectedMobTypeBellyButtons = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { host_mobtype } = data;
+  const { is_dogborg, is_vore_simple_mob } = host_mobtype;
+  const { belly } = props;
+  const {
+    silicon_belly_overlay_preference,
+    visible_belly_minimum_prey,
+    overlay_min_prey_size,
+    override_min_prey_size,
+    override_min_prey_num,
+  } = belly;
+
+  if (is_dogborg) {
+    return (
+      <Section title={'Dogborg Controls'} width={'80%'}>
+        <LabeledList>
+          <LabeledList.Item label="Toggle Belly Overlay Mode">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_silicon_belly' })
+              }
+              content={capitalize(silicon_belly_overlay_preference)}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Minimum Prey num for VoreBelly">
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_min_belly_number_flat',
+                })
+              }
+              content={visible_belly_minimum_prey}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Minimum Prey Size for Vorebelly">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_min_belly_prey_size' })
+              }
+              content={overlay_min_prey_size * 100 + '%'}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Toggle Number Override">
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_override_min_belly_prey_size',
+                })
+              }
+              icon={override_min_prey_size ? 'toggle-on' : 'toggle-off'}
+              selected={override_min_prey_size}
+              content={override_min_prey_size ? 'On' : 'Off'}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Minimum Prey Number Override">
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_min_belly_number_override',
+                })
+              }
+              content={override_min_prey_num}
+            />
+          </LabeledList.Item>
+        </LabeledList>
+      </Section>
+    );
+  } else if (is_vore_simple_mob) {
+    return (
+      // For now, we're only returning empty. TODO: Simple mob belly controls
+      <LabeledList>
+        <LabeledList.Item />
+      </LabeledList>
+    );
+  } else {
+    return (
+      // Returning Empty element
+      <LabeledList>
+        <LabeledList.Item />
+      </LabeledList>
+    );
+  }
 };
 
 const VoreSelectedBellySounds = (props, context) => {
