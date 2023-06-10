@@ -1202,13 +1202,6 @@
 	icon_state = "hair_zone"
 	flags = HAIR_TIEABLE
 
-/datum/sprite_accessory/hair/una_hood
-	name = "Cobra Hood"
-	icon = 'icons/mob/human_face_alt.dmi'
-	icon_add = 'icons/mob/human_face_alt_add.dmi'
-	icon_state = "soghun_hood"
-	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-
 /datum/sprite_accessory/hair/una_doublehorns
 	name = "Double Unathi Horns"
 	icon = 'icons/mob/human_face_alt.dmi'

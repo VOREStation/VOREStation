@@ -757,13 +757,6 @@
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/vr_unathihood
-	name = "Cobra Hood"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "unathihood"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
 /datum/sprite_accessory/marking/vr_unathidoublehorns
 	name = "Double Unathi Horns"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
