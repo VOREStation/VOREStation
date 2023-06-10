@@ -32,6 +32,7 @@
 #define SPECIES_XENOCHIMERA		"Xenochimera"
 #define SPECIES_ZORREN_HIGH		"Zorren"
 #define SPECIES_CUSTOM			"Custom Species"
+#define SPECIES_TAJARAN			"Tajara"
 //monkey species
 #define SPECIES_MONKEY_AKULA		"Sobaka"
 #define SPECIES_MONKEY_NEVREAN		"Sparra"
