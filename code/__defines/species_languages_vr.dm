@@ -3,6 +3,7 @@
 #define LANGUAGE_DRUDAKAR "D'Rudak'Ar"
 #define LANGUAGE_BIRDSONG "Birdsong"
 #define LANGUAGE_SAGARU "Sagaru"
+#define LANGUAGE_GOLDRING "Gold Ring"
 #define LANGUAGE_CANILUNZT "Canilunzt"
 #define LANGUAGE_ECUREUILIAN "Ecureuilian"
 #define LANGUAGE_DAEMON "Daemon"

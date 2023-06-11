@@ -60,6 +60,7 @@
 #define span_changeling(str) ("<span class='changeling'>" + str + "</span>")
 #define span_sergal(str) ("<span class='sergal'>" + str + "</span>")
 #define span_birdsongc(str) ("<span class='birdsongc'>" + str + "</span>")
+#define span_goldring(str) ("<span class='goldring'>" + str + "</span>")
 #define span_vulpkanin(str) ("<span class='vulpkanin'>" + str + "</span>")
 #define span_enochian(str) ("<span class='enochian'>" + str + "</span>")
 #define span_daemon(str) ("<span class='daemon'>" + str + "</span>")

@@ -14,23 +14,24 @@
 
 /datum/category_item/catalogue/fauna/sergal
 	name = "Sapients - Sergal"
-	desc = "The dominant species in the Vilous System, the Sergal are a\
-	strange mammalian clade which shares similarities with \
-	masurpials, pelagic creatures and wolves. Collectivist and\
-	organising themselves in tribes and city states, they have\
-	eclipsed the private colony venture trying to hold them \
-	economically beholden and now have joined the sapient \
-	diaspora on more equal terms."
+	desc = "One of the three primary Eltus races of the Vilous System. The Sergal is a \
+	strange mammalian-like ovoviviparous creature which shares reminiscent similarities with \
+	sharks, rabbits, kangaroos, canines, reptiles, and avian species. Collectivist and \
+	organising themselves in tribes in the past, the modern Sergal lives in a post-industrial world \
+	roughly similar to the 1900's of the Sol system, and often works very closely with the second \
+	Eltus race, the Agudner."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/fauna/nevrean
 	name = "Sapients - Nevrean"
-	desc = "A co-sapient species from Vilous, the Nevrean have found their\
-	ecological niche as nomadic traders and craftsmen, \
-	developing a rich oral tradition, that is being slowly \
-	codified by the Sergals in an efforts to culturally export \
-	it through the stars. The modern Nevrean co-inhabits most \
-	places the Sergals do as comrades and historical allies."
+	desc = "The third of the three primary Eltus races of the Vilous System. \
+	Having a similar appearance to feathered dinosaurs with a distinct case of sexual dimorphism, \
+	Nevreans have very distinct and unparalleled differences between their genders. \
+	Because of their sexual dimorphism, both male and female Nevreans could be considered their own species at a glance, \
+	due to the vast array of both mental, physical, and social differences between male and female Nevrean. \
+	Existing often as immigrants and refugees in the past, Nevreans were treated poorly by the other two Eltus races, and had little to no rights in their species history. \
+	The modern Nevrean eventually gained equal rights among the Eltus species of the Vilous System, \
+	and live in general harmony with the other two Eltus races."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/fauna/rapala

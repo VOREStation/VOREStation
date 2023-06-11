@@ -1441,6 +1441,7 @@
 	M.add_language(LANGUAGE_ZADDAT)
 	M.add_language(LANGUAGE_BIRDSONG)
 	M.add_language(LANGUAGE_SAGARU)
+	M.add_language(LANGUAGE_GOLDRING)
 	M.add_language(LANGUAGE_DAEMON)
 	M.add_language(LANGUAGE_ENOCHIAN)
 	M.add_language(LANGUAGE_VESPINAE)

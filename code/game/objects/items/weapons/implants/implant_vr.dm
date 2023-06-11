@@ -29,6 +29,7 @@
 		source.add_language(LANGUAGE_SCHECHI)
 		source.add_language(LANGUAGE_BIRDSONG)
 		source.add_language(LANGUAGE_SAGARU)
+		source.add_language(LANGUAGE_GOLDRING)
 		source.add_language(LANGUAGE_CANILUNZT)
 		source.add_language(LANGUAGE_SOL_COMMON) //In case they're giving a xenomorph an implant or something.
 		source.add_language(LANGUAGE_TAVAN)

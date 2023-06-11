@@ -11,7 +11,7 @@
 
 /datum/language/birdsong
 	name = LANGUAGE_BIRDSONG
-	desc = "A tweety language primarily spoken by Nevreans."
+	desc = "A tweety animalistic language often spoke by ancient Nevreans. In the past it was used as a poor substitute for a language, before the creation of the Gold Ring language on Tal."
 	speech_verb = "chirps"
 	colour = "birdsongc"
 	key = "G"
@@ -19,11 +19,20 @@
 
 /datum/language/sergal
 	name = LANGUAGE_SAGARU
-	desc = "The dominant language of the Sergal homeworld, Vilous. It consists of aggressive low-pitched hissing and throaty growling."
-	speech_verb = "snarls"
+	desc = "The ancient animalistic language of the Sergals. While a poor substitute for a real language, it often gets the point across. This 'language' was completely replaced in the modern day by the official language of Tal, Gold Ring."
+	speech_verb = "yarps"
 	colour = "sergal"
 	key = "T"
-	syllables = list ("grr", "gah", "woof", "arf", "arra", "rah", "wor", "sarg")
+	syllables = list ("yip", "yap", "yigh", "whine", "meww", "sqwack", "chirp", "chorp", "charp", "neigh", "whimper")
+
+/datum/language/goldring
+	name = LANGUAGE_GOLDRING
+	desc = "The dominant language of the Eltus species homeworld, Tal. Gold Ring is the official tongue in the Vilous System, and is spoken by Sergals, Nevreans, and Agudners. The name of the language comes from the megalopolis capital it was birthed from, and the location that the written word of Tal was made, Gold Ring."
+	colour = "goldring"
+	key = "GR"
+	syllables = list ("ka", "ta", "sa", "na", "ha", "ma", "ya", "ra", "wa", "ki", "chi", "shi", "ni", "hi", "mi", \
+	"ri", "ku", "tsu", "su", "nu", "fu", "mu", "yu", "ru", "ke", "te", "se", "ne", "he", "me", "re", "ko", "to", \
+	"so", "no", "ho", "mo", "yo", "ro", "wo")
 
 /datum/language/vulpkanin
 	name = LANGUAGE_CANILUNZT

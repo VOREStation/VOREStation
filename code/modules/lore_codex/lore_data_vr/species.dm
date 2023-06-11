@@ -66,7 +66,7 @@
 /datum/lore/codex/page/rapala/add_content()
 	name ="Rapala"
 	keywords = list("Rapala")
-	data = "The Rapala, formally “Rapala-Unathi” are a vassal species of the Unathi \
+	data = "The Rapala, formally ï¿½Rapala-Unathiï¿½ are a vassal species of the Unathi \
 	in form of winged Humanoids. While they share a similar outwards appearance with humans, \
 	they have a much more complex system of sexual genetics, as well superior 3D awareness. \
 	The Rapala act as emissaries, diplomats and spies for their overlords, although it is an open \
@@ -111,29 +111,29 @@
 /datum/lore/codex/page/nevrean/add_content()
 	name = "Nevrean"
 	keywords += list("Nevrean")
-	data = "A co-sapient species from Vilous, the Nevrean have found their\
-	ecological niche as nomadic traders and craftsmen, \
-	developing a rich oral tradition, that is being slowly \
-	codified by the Sergals in an efforts to culturally export \
-	it through the stars. The modern Nevrean co-inhabits most \
-	places the Sergals do as comrades and historical allies."
+	data = "The third of the three primary Eltus races of the Vilous System. \
+	Having a similar appearance to feathered dinosaurs with a distinct case of sexual dimorphism, \
+	Nevreans have very distinct and unparalleled differences between their genders. \
+	Because of their sexual dimorphism, both male and female Nevreans could be considered their own species at a glance, \
+	due to the vast array of both mental, physical, and social differences between male and female Nevrean. \
+	Existing often as immigrants and refugees in the past, Nevreans were treated poorly by the other two Eltus races, and had little to no rights in their species history. \
+	The modern Nevrean eventually gained equal rights among the Eltus species of the Vilous System, \
+	and live in general harmony with the other two Eltus races."
 
 /datum/lore/codex/page/sergal/add_content()
 	name = "Sergal"
 	keywords += list("Sergal")
-	data = "The dominant species in the Vilous System, the Sergal are a\
-	strange mammalian clade which shares similarities with \
-	masurpials, pelagic creatures and wolves. Collectivist and\
-	organising themselves in tribes and city states, they have\
-	eclipsed the private colony venture trying to hold them \
-	economically beholden and now have joined the sapient \
-	diaspora on more equal terms."
+	data = "One of the three primary Eltus races of the Vilous System. The Sergal is a \
+	strange mammalian-like ovoviviparous creature with no sexual dimorphism, \
+	which shares reminiscent similarities with sharks, rabbits, kangaroos, canines, reptiles, and avian species. \
+	Collectivist and organising themselves in tribes in the past, the modern Sergal lives in a post-industrial world \
+	roughly similar to the 1900's of the Sol system, and often works very closely with the second Eltus race, the Agudner."
 
 /datum/lore/codex/page/vulpkanin/add_content()
 	name = "Vulpkanin"
 	keywords += list("Vulpkanin")
 	data = "The Vulpkanin are the remnants of an ancient precursor which resided in the Coreward Periphery \
-	3000 to 4000 years ago, residing on a planet called “Altam”. Vulpkanin diverged from the precursors due \
+	3000 to 4000 years ago, residing on a planet called ï¿½Altamï¿½. Vulpkanin diverged from the precursors due \
 	to heavy isolation after the fall, presumably due to being a freshly found colony. A lack of material support \
 	regressed their technology to pre-industrial standards, from which they had to recover from in long and hard years. At the point \
 	of discovery by human explorers, they have formed an early interplanetary society and accession into the Diaspora went over relatively smoothly. \
@@ -146,7 +146,7 @@
 	name = "Zorren"
 	keywords += list("Zorren")
 	data =  "The Zorren are the remnants of an ancient precursor which resided in the Coreward Periphery 3000 to 4000 \
-	years ago, residing on a planet called “Menhir”, which we call Virgo 4. Zorren organise themselves through various \
+	years ago, residing on a planet called ï¿½Menhirï¿½, which we call Virgo 4. Zorren organise themselves through various \
 	feudal-styled kingdoms and monarchies, of which the most prominent is the Kingdom of An-Tahk-Et. They are obsessed \
 	over their ancient heritage and the power of the noble houses comes through the control and excavation of old technology \
 	of their precursors, leading to a massive divide between commoners, who live as serfs and the nobility, who live in \
@@ -291,7 +291,3 @@
 	Nearly always emerged from the ranks of Beta-class drones, Alpha-Class are considered sapient, and are thus protected by the same rights. \
 	Unwanted modification, alteration of their code can classify as murder, making them a welcome deterrent against thieves and saboteurs. \
 	Some even claim they are just as capable of emotions and dreams as humans, as prepestrous as that sounds."
-
-
-
-

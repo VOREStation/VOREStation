@@ -106,6 +106,7 @@ h1.alert, h2.alert		{color: #000000;}
 .changeling				{color: #800080;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
+.goldring				{color: #E7BC00; font-family: sans-serif}
 .vulpkanin				{color: #B97A57;}
 .tavan					{color: #f54298; font-family: Arial}
 .drudakar				{color: #bb2463; word-spacing:0pt; font-family: "High Tower Text", monospace;}
