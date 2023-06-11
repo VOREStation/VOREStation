@@ -29,9 +29,10 @@
 	Nevreans have very distinct and unparalleled differences between their genders. \
 	Because of their sexual dimorphism, both male and female Nevreans could be considered their own species at a glance, \
 	due to the vast array of both mental, physical, and social differences between male and female Nevrean. \
-	Existing often as immigrants and refugees in the past, Nevreans were treated poorly by the other two Eltus races, and had little to no rights in their species history. \
-	The modern Nevrean eventually gained equal rights among the Eltus species of the Vilous System, \
-	and live in general harmony with the other two Eltus races."
+	Existing often as immigrants and refugees in the past due to the Tal world war, \
+	Nevreans were treated poorly by the other two Eltus races, and had little to no rights in civilized society outside of Nevrea. \
+	The modern Nevrean eventually gained equal rights among the Eltus species in Gold Ring, \
+	and live in general harmony with the other two Eltus races in current times."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/fauna/rapala
