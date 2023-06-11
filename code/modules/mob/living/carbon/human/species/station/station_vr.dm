@@ -21,13 +21,16 @@
 	min_age = 18
 	max_age = 60 //60 human years is roughly 95 sergal years.
 
-	blurb = "There are two subspecies of Sergal; Southern and Northern. Northern sergals are a highly aggressive race \
-	that primitively lived in the plains and tundra of their homeworld in the past. They are characterized by long, fluffy fur bodies with cold colors; \
-	usually with white abdomens, somewhat short ears, and thick faces. Southern sergals are much more docile and live in \
-	Gold Ring and are scattered around the outskirts in rural areas and small towns. They usually have short, brown or yellow \
-	(or other 'earthy' colors) fur, long ears, and a long, thin face. They are smaller than their Northern relatives. Both have had strong \
+	blurb = "There are two subspecies of Sergal; Southern and Northern. Northern sergals are a very territorial race \
+	that use mob mentality and tactics to aggressively defend their land. While aggressive in groups, northern sergals are very cowardly alone, \
+	and will primarily follow a group decision over individual decision. The northern sergal primitively lived in the \
+	plains and tundra of their homeworld in the past. They are characterized by long, fluffy fur bodies with cold colors; \
+	usually with white abdomens, somewhat short ears, and thick faces. Southern sergals are much more civilized, and typically live in \
+	Gold Ring, and the innermost areas where the Bloodstones reside. They can also be found in more rural areas outside of Gold Ring, \
+	often in small to moderate communal towns or farms. They usually have short, brown or yellow (or other 'earthy' colors) fur, \
+	long ears, and a long, thin face. They are smaller than their Northern relatives. Both have had strong \
 	racial tensions in the past, which has resulted in more than a number of wars and outright attempts at genocide. \
-	In the modern age the two subspecies have mostly melded into one species, but the two subspecies still remain \
+	In the modern age the two subspecies have mostly melded into one species, but the two subspecies can still be found \
 	on the far outskirts of Tal."
 
 	wikilink="https://wiki.vore-station.net/Backstory#Sergal"
