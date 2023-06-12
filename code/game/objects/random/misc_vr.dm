@@ -189,7 +189,7 @@
 				prob(1);/obj/random/thermalponcho,
 				prob(5);/obj/random/contraband,
 				prob(5);/obj/random/cargopod,
-				prob(1);/obj/item/weapon/flame/lighter/random,
+				prob(1);/obj/item/weapon/flame/lighter,
 				prob(1);/obj/item/weapon/storage/wallet/random,
 				prob(1);/obj/random/cutout)
 

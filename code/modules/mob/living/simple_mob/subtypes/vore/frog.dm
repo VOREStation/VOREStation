@@ -54,7 +54,7 @@
 /mob/living/simple_mob/vore/aggressive/frog/do_special_attack(atom/A)
 	set_AI_busy(TRUE)
 	do_windup_animation(A, 20)
-	addtimer(CALLBACK(src, .proc/chargeend, A), 20)
+	addtimer(CALLBACK(src, PROC_REF(chargeend), A), 20)
 
 /mob/living/simple_mob/vore/aggressive/frog/proc/chargeend(atom/A)
 	if(stat) //you are dead

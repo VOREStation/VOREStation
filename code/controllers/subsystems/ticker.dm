@@ -220,7 +220,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		end_game_state = END_GAME_READY_TO_END
 		current_state = GAME_STATE_FINISHED
 		Master.SetRunLevel(RUNLEVEL_POSTGAME)
-		INVOKE_ASYNC(src, .proc/declare_completion)
+		INVOKE_ASYNC(src, PROC_REF(declare_completion))
 	else if (mode_finished && (end_game_state < END_GAME_MODE_FINISHED))
 		end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
 		mode.cleanup()

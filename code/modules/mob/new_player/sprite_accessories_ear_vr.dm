@@ -518,6 +518,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/cobra_hood
+	name = "Cobra hood (large)"
+	desc = ""
+	icon_state = "cobra_hood"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "cobra_hood-inner"
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -984,11 +992,26 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shark_fin"
 
-/datum/sprite_accessory/ears/sharklowhboth
+/datum/sprite_accessory/ears/sharkhighbothalt
+	name = "shark upper ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/sharklowboth
+	name = "shark lower ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharklowbothalt
 	name = "shark lower ears and fin alt style (Colorable)"
 	desc = ""
 	icon_state = "shark_ears_lower"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shark_fin_alt"
-

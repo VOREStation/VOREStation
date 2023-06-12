@@ -31,7 +31,7 @@
 
 /datum/component/nif_menu/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 	var/mob/owner = parent
 	if(owner.client)
 		create_mob_button(parent)
@@ -53,7 +53,7 @@
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
-		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
+		RegisterSignal(screen_icon, COMSIG_CLICK, PROC_REF(nif_menu_click))
 	screen_icon.icon = HUD.ui_style
 	screen_icon.color = HUD.ui_color
 	screen_icon.alpha = HUD.ui_alpha
@@ -65,7 +65,7 @@
 /datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
-		INVOKE_ASYNC(H.nif, .proc/tgui_interact, user)
+		INVOKE_ASYNC(H.nif, PROC_REF(tgui_interact), user)
 
 /**
  * Screen object for NIF menu access

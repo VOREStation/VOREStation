@@ -80,7 +80,7 @@
 // Or in Destroy at all, but especially after the ..().
 /obj/machinery/Destroy()
 	if(ismovable(loc))
-		GLOB.moved_event.unregister(loc, src, .proc/update_power_on_move) // Unregister just in case
+		GLOB.moved_event.unregister(loc, src, PROC_REF(update_power_on_move)) // Unregister just in case
 	var/power = POWER_CONSUMPTION
 	REPORT_POWER_CONSUMPTION_CHANGE(power, 0)
 	. = ..()
@@ -91,9 +91,9 @@
 	. = ..()
 	update_power_on_move(src, old_loc, loc)
 	if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
-		GLOB.moved_event.register(loc, src, .proc/update_power_on_move)
+		GLOB.moved_event.register(loc, src, PROC_REF(update_power_on_move))
 	if(ismovable(old_loc)) // Unregister recursive movement.
-		GLOB.moved_event.unregister(old_loc, src, .proc/update_power_on_move)
+		GLOB.moved_event.unregister(old_loc, src, PROC_REF(update_power_on_move))
 
 /obj/machinery/proc/update_power_on_move(atom/movable/mover, atom/old_loc, atom/new_loc)
 	var/area/old_area = get_area(old_loc)

@@ -255,7 +255,7 @@
 	name = "Falls Monolith - The Song"
 	desc = "Her song cannot end. If her song ends, then we end. We cannot outlive a missing song. We cannot \
 	live with the mourning of our fell makers. We will die. But the life on this wanderstar will go on. \
-	Who will it live for then? We primaries are the only ones with the lorehalldeals to acknowledge it's beauty."
+	Who will it live for then? We primaries are the only ones with the mindset to acknowledge it's beauty."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/anomalous/mono5

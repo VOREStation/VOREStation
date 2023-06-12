@@ -38,7 +38,7 @@
 	Please allow for up to one minute while radiation levels dissipate, and report to \
 	medbay if you experience any unusual symptoms. Maintenance will lose all \
 	access again shortly.", "Anomaly Alert")
-	addtimer(CALLBACK(src, .proc/maint_callback), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(maint_callback)), 2 MINUTES)
 
 /datum/event2/event/radiation_storm/proc/maint_callback()
 	revoke_maint_all_access()

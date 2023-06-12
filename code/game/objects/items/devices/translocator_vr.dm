@@ -125,7 +125,7 @@ This device can be easily used to break ERP preferences due to the nature of tel
 Make sure you carefully examine someone's OOC prefs before teleporting them if you are going to use this device for ERP purposes.
 This device records all warnings given and teleport events for admin review in case of pref-breaking, so just don't do it.
 "},"OOC Warning")
-	var/choice = show_radial_menu(user, radial_menu_anchor, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, radial_menu_anchor, radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
 		return
