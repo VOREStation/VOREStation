@@ -36,7 +36,11 @@ export class Window extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const shouldUpdateGeometry = this.props.width !== prevProps.width || this.props.height !== prevProps.height;
+    // prettier-ignore
+    const shouldUpdateGeometry = (
+      this.props.width !== prevProps.width
+      || this.props.height !== prevProps.height
+    );
     if (shouldUpdateGeometry) {
       this.updateGeometry();
     }
@@ -64,8 +68,12 @@ export class Window extends Component {
     const dispatch = useDispatch(this.context);
     const fancy = config.window?.fancy;
     // Determine when to show dimmer
-    const showDimmer =
-      config.user && (config.user.observer ? config.status < UI_DISABLED : config.status < UI_INTERACTIVE);
+    // prettier-ignore
+    const showDimmer = config.user && (
+      config.user.observer
+        ? config.status < UI_DISABLED
+        : config.status < UI_INTERACTIVE
+    );
     return (
       <Layout className="Window" theme={theme}>
         <TitleBar
@@ -81,15 +89,25 @@ export class Window extends Component {
           canClose={canClose}>
           {buttons}
         </TitleBar>
-        <div className={classes(['Window__rest', debugLayout && 'debug-layout'])}>
+        <div
+          className={classes(['Window__rest', debugLayout && 'debug-layout'])}>
           {!suspended && children}
           {showDimmer && <div className="Window__dimmer" />}
         </div>
         {fancy && (
           <>
-            <div className="Window__resizeHandle__e" onMousedown={resizeStartHandler(1, 0)} />
-            <div className="Window__resizeHandle__s" onMousedown={resizeStartHandler(0, 1)} />
-            <div className="Window__resizeHandle__se" onMousedown={resizeStartHandler(1, 1)} />
+            <div
+              className="Window__resizeHandle__e"
+              onMousedown={resizeStartHandler(1, 0)}
+            />
+            <div
+              className="Window__resizeHandle__s"
+              onMousedown={resizeStartHandler(0, 1)}
+            />
+            <div
+              className="Window__resizeHandle__se"
+              onMousedown={resizeStartHandler(1, 1)}
+            />
           </>
         )}
       </Layout>
@@ -100,8 +118,12 @@ export class Window extends Component {
 const WindowContent = (props) => {
   const { className, fitted, children, ...rest } = props;
   return (
-    <Layout.Content className={classes(['Window__content', className])} {...rest}>
-      {(fitted && children) || <div className="Window__contentPadding">{children}</div>}
+    <Layout.Content
+      className={classes(['Window__content', className])}
+      {...rest}>
+      {(fitted && children) || (
+        <div className="Window__contentPadding">{children}</div>
+      )}
     </Layout.Content>
   );
 };
@@ -121,20 +143,47 @@ const statusToColor = (status) => {
 };
 
 const TitleBar = (props, context) => {
-  const { className, title, status, canClose, fancy, onDragStart, onClose, children } = props;
+  const {
+    className,
+    title,
+    status,
+    canClose,
+    fancy,
+    onDragStart,
+    onClose,
+    children,
+  } = props;
   const dispatch = useDispatch(context);
+  // prettier-ignore
+  const finalTitle = (
+    typeof title === 'string'
+    && title === title.toLowerCase()
+    && toTitleCase(title)
+    || title
+  );
   return (
     <div className={classes(['TitleBar', className])}>
-      {(status === undefined && <Icon className="TitleBar__statusIcon" name="tools" opacity={0.5} />) || (
-        <Icon className="TitleBar__statusIcon" color={statusToColor(status)} name="eye" />
+      {(status === undefined && (
+        <Icon className="TitleBar__statusIcon" name="tools" opacity={0.5} />
+      )) || (
+        <Icon
+          className="TitleBar__statusIcon"
+          color={statusToColor(status)}
+          name="eye"
+        />
       )}
-      <div className="TitleBar__dragZone" onMousedown={(e) => fancy && onDragStart(e)} />
+      <div
+        className="TitleBar__dragZone"
+        onMousedown={(e) => fancy && onDragStart(e)}
+      />
       <div className="TitleBar__title">
-        {(typeof title === 'string' && title === title.toLowerCase() && toTitleCase(title)) || title}
+        {finalTitle}
         {!!children && <div className="TitleBar__buttons">{children}</div>}
       </div>
       {process.env.NODE_ENV !== 'production' && (
-        <div className="TitleBar__devBuildIndicator" onClick={() => dispatch(toggleKitchenSink())}>
+        <div
+          className="TitleBar__devBuildIndicator"
+          onClick={() => dispatch(toggleKitchenSink())}>
           <Icon name="bug" />
         </div>
       )}

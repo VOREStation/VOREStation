@@ -92,18 +92,6 @@
 		to_chat(user, "You unwrap the package.")
 		qdel(src)
 
-/obj/item/weapon/storage/fancy/cigar/havana // Putting this here 'cuz fuck it. -Spades
-	name = "\improper Havana cigar case"
-	desc = "Save these for the fancy-pantses at the next CentCom black tie reception. You can't blow the smoke from such majestic stogies in just anyone's face."
-	icon_state = "cigarcase"
-	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEMSIZE_TINY
-	throwforce = 2
-	slot_flags = SLOT_BELT
-	storage_slots = 7
-	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar/havana)
-	icon_type = "cigar"
-
 /obj/item/weapon/miscdisc
 	name = "strange artefact"
 	desc = "A large disc-shaped item, with a red, opaque crystal embedded in the center. It is some what heavy. There are indentations along the ring of the disc. Alien scripture lines the disc."

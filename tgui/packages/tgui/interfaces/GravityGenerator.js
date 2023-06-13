@@ -27,7 +27,11 @@ export const GravityGenerator = (props, context) => {
               confirmIcon="exclamation-triangle"
               color="red"
               content="Toggle Breaker"
-              confirmContent={breaker ? 'This will disable gravity!' : 'This will enable gravity!'}
+              confirmContent={
+                breaker
+                  ? 'This will disable gravity!'
+                  : 'This will enable gravity!'
+              }
               onClick={() => act('gentoggle')}
             />
           }>
@@ -35,8 +39,12 @@ export const GravityGenerator = (props, context) => {
             <LabeledList.Item label="Breaker Setting">
               {breaker ? 'Generator Enabled' : 'Generator Disabled'}
             </LabeledList.Item>
-            <LabeledList.Item label="Charge Mode">Generator {genstatus}</LabeledList.Item>
-            <LabeledList.Item label="Charge Status">{charge_count}%</LabeledList.Item>
+            <LabeledList.Item label="Charge Mode">
+              Generator {genstatus}
+            </LabeledList.Item>
+            <LabeledList.Item label="Charge Status">
+              {charge_count}%
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       </Window.Content>

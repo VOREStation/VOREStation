@@ -43,7 +43,8 @@
 		"TG&C utility suit"=/obj/item/clothing/under/rank/neo_commandutil,
 		"TG&C black suit"=/obj/item/clothing/under/rank/neo_captain_blacksuit,
 		"TG&C parade uniform"=/obj/item/clothing/under/rank/neo_captain_parade,
-		"TG&C jumpkilt"=/obj/item/clothing/under/rank/neo_captain_kilt
+		"TG&C jumpkilt"=/obj/item/clothing/under/rank/neo_captain_kilt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_cmd_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -73,7 +74,8 @@
 		"TG&C parade uniform"=/obj/item/clothing/under/rank/neo_hop_parade_masc,
 		"TG&C parade dress"=/obj/item/clothing/under/rank/neo_hop_parade_fem,
 		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_hop_turtle,
-		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_hop_turtle_skirt
+		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_hop_turtle_skirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_cmd_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -90,7 +92,8 @@
 	var/list/selector_uniforms = list(
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_pilot,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_pilot_skirt,
-		"Major Bill's flightsuit"=/obj/item/clothing/under/mbill_flight
+		"Major Bill's flightsuit"=/obj/item/clothing/under/mbill_flight,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_pilot_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -149,7 +152,8 @@
 		"Utility uniform, navy"=/obj/item/clothing/under/utility/blue,
 		"Utility uniform, grey"=/obj/item/clothing/under/utility/grey,
 		"Utility uniform, tan"=/obj/item/clothing/under/utility/tan,
-		"Utility uniform, green"=/obj/item/clothing/under/utility/green
+		"Utility uniform, green"=/obj/item/clothing/under/utility/green,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_civvie_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -195,7 +199,8 @@
 		"TG&C bodyguard's suit"=/obj/item/clothing/under/rank/bodyguard_suit,
 		"TG&C bodyguard's skirt"=/obj/item/clothing/under/rank/bodyguard_skirt,
 		"TG&C bodyguard's turtleneck"=/obj/item/clothing/under/rank/bodyguard_turtleneck,
-		"TG&C bodyguard's turtleneck w/ skirt"=/obj/item/clothing/under/rank/bodyguard_turtleskirt
+		"TG&C bodyguard's turtleneck w/ skirt"=/obj/item/clothing/under/rank/bodyguard_turtleskirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_sec_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -268,7 +273,8 @@
 		"ST: Next Generation Command"=/obj/item/clothing/under/rank/trek/command/next,
 		"ST: Voyager Command"=/obj/item/clothing/under/rank/trek/command/voy,
 		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
-		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent
+		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_hos_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -370,7 +376,8 @@
 		"ST: DS9 Command"=/obj/item/clothing/under/rank/trek/command/ds9,
 		"ST: Enterprise Command"=/obj/item/clothing/under/rank/trek/command/ent,
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_chiefengi,
-		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_chiefengi_skirt
+		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_chiefengi_skirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_ce_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -396,6 +403,7 @@
 		"voidsuit underlayer"=/obj/item/clothing/under/undersuit/hazard,
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_engi,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_engi_skirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_engi_gorka,
 		"hazard jumpsuit"=/obj/item/clothing/under/hazard
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
@@ -446,6 +454,7 @@
 		"TG&C virology jumpskirt"=/obj/item/clothing/under/rank/neo_viro_skirt,
 		"TG&C dark jumpsuit"=/obj/item/clothing/under/rank/neo_med_dark,
 		"TG&C dark jumpskirt"=/obj/item/clothing/under/rank/neo_med_dark_skirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_med_gorka,
 		"sterile jumpsuit"=/obj/item/clothing/under/sterile
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
@@ -512,7 +521,8 @@
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_cmo,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_cmo_skirt,
 		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_cmo_turtle,
-		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_cmo_turtle_skirt
+		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_cmo_turtle_skirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_cmo_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -538,7 +548,8 @@
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_rd_suit,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_rd_suit_skirt,
 		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_rd_turtle,
-		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_rd_turtle_skirt
+		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_rd_turtle_skirt,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_rd_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -561,7 +572,8 @@
 		"ST: Next Generation Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/next,
 		"ST: Voyager Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/voy,
 		"ST: DS9 Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ds9,
-		"ST: Enterprise Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ent
+		"ST: Enterprise Med-Sci"=/obj/item/clothing/under/rank/trek/medsci/ent,
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_sci_gorka
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 

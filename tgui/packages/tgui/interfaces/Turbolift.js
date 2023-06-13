@@ -18,7 +18,13 @@ export const Turbolift = (props, context) => {
             <Fragment>
               <Button
                 icon={doors_open ? 'door-open' : 'door-closed'}
-                content={doors_open ? (fire_mode ? 'Close Doors (SAFETY OFF)' : 'Doors Open') : 'Doors Closed'}
+                content={
+                  doors_open
+                    ? fire_mode
+                      ? 'Close Doors (SAFETY OFF)'
+                      : 'Doors Open'
+                    : 'Doors Closed'
+                }
                 selected={doors_open && !fire_mode}
                 color={fire_mode ? 'red' : null}
                 onClick={() => act('toggle_doors')}
@@ -32,7 +38,11 @@ export const Turbolift = (props, context) => {
             </Fragment>
           }>
           {!fire_mode || (
-            <Section className="Section--elevator--fire" textAlign="center" title="FIREFIGHTER MODE ENGAGED" />
+            <Section
+              className="Section--elevator--fire"
+              textAlign="center"
+              title="FIREFIGHTER MODE ENGAGED"
+            />
           )}
           <Flex wrap="wrap">
             {floors.map((floor) => (
@@ -44,7 +54,15 @@ export const Turbolift = (props, context) => {
                   <Flex.Item basis="8%" textAlign="left">
                     <Button
                       icon="circle"
-                      color={floor.current ? 'red' : floor.target ? 'green' : floor.queued ? 'yellow' : null}
+                      color={
+                        floor.current
+                          ? 'red'
+                          : floor.target
+                            ? 'green'
+                            : floor.queued
+                              ? 'yellow'
+                              : null
+                      }
                       onClick={() => act('move_to_floor', { ref: floor.ref })}
                     />
                   </Flex.Item>

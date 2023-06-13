@@ -43,7 +43,12 @@ export const NtosArcade = (props, context) => {
                   </LabeledList.Item>
                 </LabeledList>
                 <Box my={1} mx={4} />
-                <Section backgroundColor={data.PauseState === 1 ? '#1b3622' : '#471915'}>{data.Status}</Section>
+                <Section
+                  backgroundColor={
+                    data.PauseState === 1 ? '#1b3622' : '#471915'
+                  }>
+                  {data.Status}
+                </Section>
               </Grid.Column>
               <Grid.Column>
                 <ProgressBar
@@ -108,7 +113,9 @@ export const NtosArcade = (props, context) => {
               content="Claim Tickets"
             />
           </Box>
-          <Box color={data.TicketCount >= 1 ? 'good' : 'normal'}>Earned Tickets: {data.TicketCount}</Box>
+          <Box color={data.TicketCount >= 1 ? 'good' : 'normal'}>
+            Earned Tickets: {data.TicketCount}
+          </Box>
         </Section>
       </NtosWindow.Content>
     </NtosWindow>

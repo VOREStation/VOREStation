@@ -52,8 +52,15 @@ const SuitStorageUnitContent = (props, context) => {
       }>
       {!!(occupied && safeties) && (
         <NoticeBox>
-          Biological entity detected in suit chamber. Please remove before continuing with operation.
-          <Button fluid icon="eject" color="red" content="Eject Entity" onClick={() => act('eject_guy')} />
+          Biological entity detected in suit chamber. Please remove before
+          continuing with operation.
+          <Button
+            fluid
+            icon="eject"
+            color="red"
+            content="Eject Entity"
+            onClick={() => act('eject_guy')}
+          />
         </NoticeBox>
       )}
       {(locked && (
@@ -122,13 +129,15 @@ const SuitStorageUnitPanel = (props, context) => {
   return (
     <Section title="Maintenance Panel">
       <Box color="grey">
-        The panel is ridden with controls, button and meters, labeled in strange signs and symbols that you cannot
-        understand. Probably the manufactoring world&apos;s language. Among other things, a few controls catch your eye.
+        The panel is ridden with controls, button and meters, labeled in strange
+        signs and symbols that you cannot understand. Probably the manufactoring
+        world&apos;s language. Among other things, a few controls catch your
+        eye.
       </Box>
       <br />
       <Box>
-        A small dial with a biohazard symbol next to it. It&apos;s pointing towards a gauge that reads{' '}
-        {uv_super ? '15nm' : '185nm'}.
+        A small dial with a biohazard symbol next to it. It&apos;s pointing
+        towards a gauge that reads {uv_super ? '15nm' : '185nm'}.
         <Flex mt={1} align="center" textAlign="center">
           <Flex.Item basis="50%" textAlign="center">
             <Knob
@@ -152,7 +161,12 @@ const SuitStorageUnitPanel = (props, context) => {
       <br />
       <Box>
         A thick old-style button, with 2 grimy LED lights next to it. The{' '}
-        {safeties ? <font color="green">GREEN</font> : <font color="red">RED</font>} LED is on.
+        {safeties ? (
+          <font color="green">GREEN</font>
+        ) : (
+          <font color="red">RED</font>
+        )}{' '}
+        LED is on.
         <Flex mt={1} align="center" textAlign="center">
           <Flex.Item basis="50%" textAlign="center">
             <Button
@@ -178,13 +192,18 @@ const SuitStorageUnitPanel = (props, context) => {
 };
 
 const SuitStorageUnitUV = (props, context) => {
-  return <NoticeBox>Contents are currently being decontaminated. Please wait.</NoticeBox>;
+  return (
+    <NoticeBox>
+      Contents are currently being decontaminated. Please wait.
+    </NoticeBox>
+  );
 };
 
 const SuitStorageUnitBroken = (props, context) => {
   return (
     <NoticeBox danger>
-      Unit chamber is too contaminated to continue usage. Please call for a qualified individual to perform maintenance.
+      Unit chamber is too contaminated to continue usage. Please call for a
+      qualified individual to perform maintenance.
     </NoticeBox>
   );
 };

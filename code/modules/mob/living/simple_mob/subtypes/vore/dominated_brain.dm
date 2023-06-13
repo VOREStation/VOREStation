@@ -44,8 +44,8 @@
 
 /mob/living/dominated_brain/proc/lets_register_our_signals()
 	if(prey_body)
-		RegisterSignal(prey_body, COMSIG_PARENT_QDELETING, .proc/prey_was_deleted, TRUE)
-	RegisterSignal(pred_body, COMSIG_PARENT_QDELETING, .proc/pred_was_deleted, TRUE)
+		RegisterSignal(prey_body, COMSIG_PARENT_QDELETING, PROC_REF(prey_was_deleted), TRUE)
+	RegisterSignal(pred_body, COMSIG_PARENT_QDELETING, PROC_REF(pred_was_deleted), TRUE)
 
 /mob/living/dominated_brain/proc/lets_unregister_our_signals()
 	prey_was_deleted()

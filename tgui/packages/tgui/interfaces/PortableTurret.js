@@ -23,7 +23,9 @@ export const PortableTurret = (props, context) => {
   return (
     <Window width={500} height={400} resizable>
       <Window.Content scrollable>
-        <NoticeBox>Swipe an ID card to {locked ? 'unlock' : 'lock'} this interface.</NoticeBox>
+        <NoticeBox>
+          Swipe an ID card to {locked ? 'unlock' : 'lock'} this interface.
+        </NoticeBox>
         <Section>
           <LabeledList>
             <LabeledList.Item label="Status">

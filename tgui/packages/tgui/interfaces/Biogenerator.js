@@ -3,7 +3,6 @@ import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
-import { refocusLayout } from '../layouts';
 
 const sortTypes = {
   'Alphabetical': (a, b) => a - b,
@@ -16,14 +15,22 @@ export const Biogenerator = (props, context) => {
   return (
     <Window width={400} height={450} resizable>
       <Window.Content className="Layout__content--flexColumn" scrollable>
-        {(data.processing && <Section title="Processing">The biogenerator is processing reagents!</Section>) || (
+        {(data.processing && (
+          <Section title="Processing">
+            The biogenerator is processing reagents!
+          </Section>
+        )) || (
           <Fragment>
             <Section>
               {data.points} points available.
               <Button ml={1} icon="blender" onClick={() => act('activate')}>
                 Activate
               </Button>
-              <Button ml={1} icon="eject" disabled={!data.beaker} onClick={() => act('detach')}>
+              <Button
+                ml={1}
+                icon="eject"
+                disabled={!data.beaker}
+                onClick={() => act('detach')}>
                 Eject Beaker
               </Button>
             </Section>
@@ -41,8 +48,16 @@ const BiogeneratorItems = (props, context) => {
   const { points, items } = data;
   // Search thingies
   const [searchText, _setSearchText] = useLocalState(context, 'search', '');
-  const [sortOrder, _setSortOrder] = useLocalState(context, 'sort', 'Alphabetical');
-  const [descending, _setDescending] = useLocalState(context, 'descending', false);
+  const [sortOrder, _setSortOrder] = useLocalState(
+    context,
+    'sort',
+    'Alphabetical'
+  );
+  const [descending, _setDescending] = useLocalState(
+    context,
+    'descending',
+    false
+  );
   const searcher = createSearch(searchText, (item) => {
     return item[0];
   });
@@ -64,12 +79,22 @@ const BiogeneratorItems = (props, context) => {
     }
 
     has_contents = true;
-    return <BiogeneratorItemsCategory key={kv[0]} title={kv[0]} items={items_in_cat} />;
+    return (
+      <BiogeneratorItemsCategory
+        key={kv[0]}
+        title={kv[0]}
+        items={items_in_cat}
+      />
+    );
   });
   return (
     <Flex.Item grow="1" overflow="auto">
-      <Section onClick={(e) => refocusLayout()}>
-        {has_contents ? contents : <Box color="label">No items matching your criteria was found!</Box>}
+      <Section>
+        {has_contents ? (
+          contents
+        ) : (
+          <Box color="label">No items matching your criteria was found!</Box>
+        )}
       </Section>
     </Flex.Item>
   );
@@ -78,12 +103,20 @@ const BiogeneratorItems = (props, context) => {
 const BiogeneratorSearch = (props, context) => {
   const [_searchText, setSearchText] = useLocalState(context, 'search', '');
   const [_sortOrder, setSortOrder] = useLocalState(context, 'sort', '');
-  const [descending, setDescending] = useLocalState(context, 'descending', false);
+  const [descending, setDescending] = useLocalState(
+    context,
+    'descending',
+    false
+  );
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
         <Flex.Item grow="1" mr="0.5rem">
-          <Input placeholder="Search by item name.." width="100%" onInput={(_e, value) => setSearchText(value)} />
+          <Input
+            placeholder="Search by item name.."
+            width="100%"
+            onInput={(_e, value) => setSearchText(value)}
+          />
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown

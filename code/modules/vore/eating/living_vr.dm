@@ -50,6 +50,7 @@
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
 	var/appendage_alt_setting = FALSE	// Dictates if 'long_vore' user pulls prey to them or not. 1 = user thrown towards target.
+	var/eating_privacy_global = FALSE //Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
 	var/regen_sounds = list(
 		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
@@ -278,14 +279,13 @@
 	P.can_be_drop_pred = src.can_be_drop_pred
 	P.allow_inbelly_spawning = src.allow_inbelly_spawning
 	P.allow_spontaneous_tf = src.allow_spontaneous_tf
-	P.appendage_color = src.appendage_color
-	P.appendage_alt_setting = src.appendage_alt_setting
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
 	P.drop_vore = src.drop_vore
 	P.slip_vore = src.slip_vore
 	P.throw_vore = src.throw_vore
 	P.stumble_vore = src.stumble_vore
+	P.eating_privacy_global = src.eating_privacy_global
 
 	P.nutrition_message_visible = src.nutrition_message_visible
 	P.nutrition_messages = src.nutrition_messages
@@ -327,14 +327,13 @@
 	can_be_drop_pred = P.can_be_drop_pred
 	allow_inbelly_spawning = P.allow_inbelly_spawning
 	allow_spontaneous_tf = P.allow_spontaneous_tf
-	appendage_color = P.appendage_color
-	appendage_alt_setting = P.appendage_alt_setting
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
 	drop_vore = P.drop_vore
 	slip_vore = P.slip_vore
 	throw_vore = P.throw_vore
 	stumble_vore = P.stumble_vore
+	eating_privacy_global = P.eating_privacy_global
 
 	nutrition_message_visible = P.nutrition_message_visible
 	nutrition_messages = P.nutrition_messages
@@ -600,6 +599,18 @@
 		to_chat(user, "<span class='warning'>They aren't aren't in a state to be devoured.</span>")
 		return FALSE
 
+	//Determining vore attempt privacy
+	var/message_range = world.view
+	if(!pred.is_slipping && !prey.is_slipping) //We only care about privacy preference if it's NOT a spontaneous vore.
+		switch(belly.eating_privacy_local) //if("loud") case not added, as it would not modify message_range
+			if("default")
+				if(pred.eating_privacy_global)
+					message_range = 1
+			if("subtle")
+				message_range = 1
+
+
+
 	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
 	if(prey.is_slipping)
@@ -616,7 +627,10 @@
 		success_msg = "<span class='warning'>[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 
 	// Announce that we start the attempt!
-	user.visible_message(attempt_msg)
+
+
+	user.visible_message(attempt_msg, range = message_range)
+
 
 	// Now give the prey time to escape... return if they did
 	var/swallow_time
@@ -633,7 +647,7 @@
 		return FALSE // Prey escpaed (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
-	user.visible_message(success_msg)
+	user.visible_message(success_msg, range = message_range)
 
 	// Actually shove prey into the belly.
 	if(istype(prey.loc, /obj/item/weapon/holder))
@@ -646,6 +660,8 @@
 		qdel(H)
 	else
 		belly.nom_mob(prey, user)
+
+	user.updateicon()
 
 	// Inform Admins
 	if(pred == user)
@@ -1079,6 +1095,7 @@
 	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Can be picked up:</b> [pickup_pref ? "Allowed" : "Disallowed"]<br>"
+	dispvoreprefs += "<b>Global Vore Privacy is:</b> [eating_privacy_global ? "Subtle" : "Loud"]<br>"
 	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=300x400;can_resize=1;can_minimize=0")
 	onclose(user, "[name]")
 	return
@@ -1174,7 +1191,7 @@
 
 /datum/component/vore_panel/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))
 	var/mob/living/owner = parent
 	if(owner.client)
 		create_mob_button(parent)
@@ -1196,7 +1213,7 @@
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
-		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/vore_panel_click)
+		RegisterSignal(screen_icon, COMSIG_CLICK, PROC_REF(vore_panel_click))
 	if(ispAI(user))
 		screen_icon.icon = 'icons/mob/pai_hud.dmi'
 		screen_icon.screen_loc = ui_acti
@@ -1210,7 +1227,7 @@
 /datum/component/vore_panel/proc/vore_panel_click(source, location, control, params, user)
 	var/mob/living/owner = user
 	if(istype(owner) && owner.vorePanel)
-		INVOKE_ASYNC(owner.vorePanel, .proc/tgui_interact, user)
+		INVOKE_ASYNC(owner.vorePanel, PROC_REF(tgui_interact), user)
 
 /**
  * Screen object for vore panel

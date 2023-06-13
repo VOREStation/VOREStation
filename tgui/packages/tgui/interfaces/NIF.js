@@ -9,15 +9,32 @@ const NIF_TEMPFAIL = 2;
 const NIF_INSTALLING = 3;
 const NIF_PREINSTALL = 4;
 
-const validThemes = ['abductor', 'cardtable', 'hackerman', 'malfunction', 'ntos', 'paper', 'retro', 'syndicate'];
+const validThemes = [
+  'abductor',
+  'cardtable',
+  'hackerman',
+  'malfunction',
+  'ntos',
+  'paper',
+  'retro',
+  'syndicate',
+];
 
 export const NIF = (props, context) => {
   const { act, config, data } = useBackend(context);
 
   const { theme, last_notification } = data;
 
-  const [settingsOpen, setSettingsOpen] = useLocalState(context, 'settingsOpen', false);
-  const [viewingModule, setViewing] = useLocalState(context, 'viewingModule', null);
+  const [settingsOpen, setSettingsOpen] = useLocalState(
+    context,
+    'settingsOpen',
+    false
+  );
+  const [viewingModule, setViewing] = useLocalState(
+    context,
+    'viewingModule',
+    null
+  );
 
   return (
     <Window theme={theme} width={500} height={400} resizable>
@@ -26,7 +43,9 @@ export const NIF = (props, context) => {
           <NoticeBox info>
             <Table verticalAlign="middle">
               <Table.Row verticalAlign="middle">
-                <Table.Cell verticalAlign="middle">{last_notification}</Table.Cell>
+                <Table.Cell verticalAlign="middle">
+                  {last_notification}
+                </Table.Cell>
                 <Table.Cell verticalAlign="middle" collapsing>
                   <Button
                     color="red"
@@ -58,7 +77,10 @@ export const NIF = (props, context) => {
                       setViewing(null);
                     }}
                   />
-                  <Button icon="window-close" onClick={() => setViewing(null)} />
+                  <Button
+                    icon="window-close"
+                    onClick={() => setViewing(null)}
+                  />
                 </Fragment>
               }>
               <Box>{viewingModule.desc}</Box>
@@ -74,7 +96,8 @@ export const NIF = (props, context) => {
                 additionally while active.
               </Box>
               <Box color={viewingModule.illegal ? 'bad' : 'good'}>
-                It is {viewingModule.illegal ? 'NOT ' : ''}a legal software package.
+                It is {viewingModule.illegal ? 'NOT ' : ''}a legal software
+                package.
               </Box>
               <Box>
                 The MSRP of the package is{' '}
@@ -103,7 +126,9 @@ export const NIF = (props, context) => {
               onClick={() => setSettingsOpen(!settingsOpen)}
             />
           }>
-          {(settingsOpen && <NIFSettings />) || <NIFMain setViewing={setViewing} />}
+          {(settingsOpen && <NIFSettings />) || (
+            <NIFMain setViewing={setViewing} />
+          )}
         </Section>
       </Window.Content>
     </Window>
@@ -153,7 +178,14 @@ const getNutritionText = (nutrition, isSynthetic) => {
 const NIFMain = (props, context) => {
   const { act, config, data } = useBackend(context);
 
-  const { nif_percent, nif_stat, last_notification, nutrition, isSynthetic, modules } = data;
+  const {
+    nif_percent,
+    nif_stat,
+    last_notification,
+    nutrition,
+    isSynthetic,
+    modules,
+  } = data;
 
   const { setViewing } = props;
 
@@ -170,7 +202,8 @@ const NIFMain = (props, context) => {
               average: [25, 50],
               bad: [-Infinity, 0],
             }}>
-            {getNifCondition(nif_stat, nif_percent)} (<AnimatedNumber value={nif_percent} />
+            {getNifCondition(nif_stat, nif_percent)} (
+            <AnimatedNumber value={nif_percent} />
             %)
           </ProgressBar>
         </LabeledList.Item>

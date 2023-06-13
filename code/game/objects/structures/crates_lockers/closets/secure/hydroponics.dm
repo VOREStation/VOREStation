@@ -10,13 +10,15 @@
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/device/radio/headset/headset_service,
 		/obj/item/clothing/head/greenbandana,
+		/obj/item/weapon/shovel/spade,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/knife/machete/hatchet,
 		/obj/item/weapon/reagent_containers/glass/beaker = 2,
 		/obj/item/weapon/tool/wirecutters/clippers/trimmers,
 		/obj/item/weapon/reagent_containers/spray/plantbgone,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,
-		/obj/item/clothing/shoes/boots/winter/hydro)
+		/obj/item/clothing/shoes/boots/winter/hydro,
+		/obj/item/weapon/storage/belt/hydro)
 
 /obj/structure/closet/secure_closet/hydroponics/Initialize()
 	if(prob(50))

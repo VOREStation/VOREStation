@@ -8302,8 +8302,6 @@
 /area/crew_quarters/captain)
 "rO" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/weapon/shovel/spade,
-/obj/item/weapon/storage/belt/utility,
 /obj/item/stack/material/sandstone{
 	amount = 5
 	},
@@ -14221,7 +14219,7 @@
 	input_tag = "cooling_in";
 	name = "Engine Cooling Control";
 	output_tag = "cooling_out";
-	sensors = list("burn_chamber" = "Burn Chamber");
+	sensors = list("burn_chamber"="Burn Chamber");
 	throwpass = 1
 	},
 /turf/simulated/floor,
@@ -14757,7 +14755,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
 	},
 /obj/machinery/power/apc/angled{
 	dir = 1
@@ -18491,7 +18489,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)

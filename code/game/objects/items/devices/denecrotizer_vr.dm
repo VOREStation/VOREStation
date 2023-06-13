@@ -49,7 +49,7 @@
 	if(!evaluate_ghost_join(user))
 		return ..()
 
-	tgui_alert_async(usr, "Would you like to become [src]? It is bound to [revivedby].", "Become Mob", list("Yes","No"), CALLBACK(src, .proc/reply_ghost_join), 20 SECONDS)
+	tgui_alert_async(usr, "Would you like to become [src]? It is bound to [revivedby].", "Become Mob", list("Yes","No"), CALLBACK(src, PROC_REF(reply_ghost_join)), 20 SECONDS)
 
 /// A reply to an async alert request was received
 /mob/living/simple_mob/proc/reply_ghost_join(response)
@@ -64,7 +64,7 @@
 /mob/living/simple_mob/proc/ghost_join(mob/observer/dead/D)
 	log_and_message_admins("[key_name_admin(D)] joined [src] as a ghost [ADMIN_FLW(src)]")
 	active_ghost_pods -= src
-	
+
 	// Move the ghost in
 	if(D.mind)
 		D.mind.active = TRUE
@@ -72,7 +72,7 @@
 	else
 		src.ckey = D.ckey
 	qdel(D)
-	
+
 	// Clean up the simplemob
 	ghostjoin = FALSE
 	ghostjoin_icon()
@@ -91,14 +91,14 @@
 		return FALSE
 
 	// At this point we can at least send them messages as to why they can't join, since they are a mob with a client
-	if(!ghostjoin)	
+	if(!ghostjoin)
 		to_chat(D, "<span class='notice'>Sorry, [src] is no longer ghost-joinable.</span>")
 		return FALSE
 
 	if(ckey)
 		to_chat(D, "<span class='notice'>Sorry, someone else has already inhabited [src].</span>")
 		return FALSE
-	
+
 	if(capture_caught && !D.client.prefs.capture_crystal)
 		to_chat(D, "<span class='notice'>Sorry, [src] is participating in capture mechanics, and your preferences do not allow for that.</span>")
 		return FALSE
@@ -128,7 +128,7 @@
 		else
 			. += "<span class='notice'>The screen indicates that this device can be used again in [cooldowntime] seconds, and that it has enough energy for [charges] uses.</span>"
 
-/obj/item/device/denecrotizer/proc/check_target(mob/living/simple_mob/target, mob/living/user) 
+/obj/item/device/denecrotizer/proc/check_target(mob/living/simple_mob/target, mob/living/user)
 	if(!target.Adjacent(user))
 		return FALSE
 	if(user.a_intent != I_HELP) //be gentle
@@ -150,10 +150,10 @@
 		if(!advanced)
 			to_chat(user, "<span class='notice'>[src] doesn't seem to work on that.</span>")
 			return FALSE
-		if(target.ai_holder.retaliate || target.ai_holder.hostile) // You can be friends with still living mobs if they are passive I GUESS 
+		if(target.ai_holder.retaliate || target.ai_holder.hostile) // You can be friends with still living mobs if they are passive I GUESS
 			to_chat(user, "<span class='notice'>[src] doesn't seem to work on that.</span>")
 			return FALSE
-		if(!target.mind) 
+		if(!target.mind)
 			user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
 			if(do_after(user, revive_time, exclusive = TASK_USER_EXCLUSIVE, target = target))
 				target.faction = user.faction
@@ -197,7 +197,7 @@
 			icon_state = "[initial(icon_state)]-o"
 			update_icon()
 		return
-		
+
 /obj/item/device/denecrotizer/proc/basic_rez(mob/living/simple_mob/target, mob/living/user) //so medical can have a way to bring back people's pets or whatever, does not change any settings about the mob or offer it to ghosts.
 	user.visible_message("[user] presses [src] to [target]...", runemessage = "presses [src] to [target]")
 	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
@@ -235,9 +235,9 @@
 		I.invisibility = INVISIBILITY_OBSERVER
 		I.plane = PLANE_GHOSTS
 		I.appearance_flags = KEEP_APART|RESET_TRANSFORM
-	
+
 	cut_overlay(I)
-	
+
 	if(ghostjoin)
 		add_overlay(I)
 

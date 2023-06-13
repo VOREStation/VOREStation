@@ -12,7 +12,17 @@ export const RustFuelControl = () => (
 );
 
 type Data = {
-  fuels: { name: string; x; y; z; active: BooleanLike; deployed: BooleanLike; ref: string; fuel_amt; fuel_type }[];
+  fuels: {
+    name: string;
+    x;
+    y;
+    z;
+    active: BooleanLike;
+    deployed: BooleanLike;
+    ref: string;
+    fuel_amt;
+    fuel_type;
+  }[];
 };
 
 export const RustFuelContent = (props, context) => {
@@ -23,7 +33,13 @@ export const RustFuelContent = (props, context) => {
   return (
     <Section
       title="Fuel Injectors"
-      buttons={<Button icon="pencil-alt" content={'Set Tag'} onClick={() => act('set_tag')} />}>
+      buttons={
+        <Button
+          icon="pencil-alt"
+          content={'Set Tag'}
+          onClick={() => act('set_tag')}
+        />
+      }>
       <Table>
         <Table.Row header>
           <Table.Cell>Name</Table.Cell>

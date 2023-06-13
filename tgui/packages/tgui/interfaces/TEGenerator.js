@@ -7,7 +7,8 @@ import { formatSiUnit, formatPower } from '../format';
 export const TEGenerator = (props, context) => {
   const { data } = useBackend(context);
 
-  const { totalOutput, maxTotalOutput, thermalOutput, primary, secondary } = data;
+  const { totalOutput, maxTotalOutput, thermalOutput, primary, secondary } =
+    data;
 
   return (
     <Window width={550} height={310} resizable>
@@ -19,7 +20,9 @@ export const TEGenerator = (props, context) => {
                 {formatPower(totalOutput)}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Thermal Output">{formatPower(thermalOutput)}</LabeledList.Item>
+            <LabeledList.Item label="Thermal Output">
+              {formatPower(thermalOutput)}
+            </LabeledList.Item>
           </LabeledList>
         </Section>
         {primary && secondary ? (
@@ -32,7 +35,10 @@ export const TEGenerator = (props, context) => {
             </Flex.Item>
           </Flex>
         ) : (
-          <Box color="bad">Warning! Both circulators must be connected in order to operate this machine.</Box>
+          <Box color="bad">
+            Warning! Both circulators must be connected in order to operate this
+            machine.
+          </Box>
         )}
       </Window.Content>
     </Window>
@@ -42,17 +48,37 @@ export const TEGenerator = (props, context) => {
 const TEGCirculator = (props, context) => {
   const { name, values } = props;
 
-  const { dir, output, flowCapacity, inletPressure, inletTemperature, outletPressure, outletTemperature } = values;
+  const {
+    dir,
+    output,
+    flowCapacity,
+    inletPressure,
+    inletTemperature,
+    outletPressure,
+    outletTemperature,
+  } = values;
 
   return (
     <Section title={name + ' (' + dir + ')'}>
       <LabeledList>
-        <LabeledList.Item label="Turbine Output">{formatPower(output)}</LabeledList.Item>
-        <LabeledList.Item label="Flow Capacity">{round(flowCapacity, 2)}%</LabeledList.Item>
-        <LabeledList.Item label="Inlet Pressure">{formatSiUnit(inletPressure * 1000, 0, 'Pa')}</LabeledList.Item>
-        <LabeledList.Item label="Inlet Temperature">{round(inletTemperature, 2)} K</LabeledList.Item>
-        <LabeledList.Item label="Outlet Pressure">{formatSiUnit(outletPressure * 1000, 0, 'Pa')}</LabeledList.Item>
-        <LabeledList.Item label="Outlet Temperature">{round(outletTemperature, 2)} K</LabeledList.Item>
+        <LabeledList.Item label="Turbine Output">
+          {formatPower(output)}
+        </LabeledList.Item>
+        <LabeledList.Item label="Flow Capacity">
+          {round(flowCapacity, 2)}%
+        </LabeledList.Item>
+        <LabeledList.Item label="Inlet Pressure">
+          {formatSiUnit(inletPressure * 1000, 0, 'Pa')}
+        </LabeledList.Item>
+        <LabeledList.Item label="Inlet Temperature">
+          {round(inletTemperature, 2)} K
+        </LabeledList.Item>
+        <LabeledList.Item label="Outlet Pressure">
+          {formatSiUnit(outletPressure * 1000, 0, 'Pa')}
+        </LabeledList.Item>
+        <LabeledList.Item label="Outlet Temperature">
+          {round(outletTemperature, 2)} K
+        </LabeledList.Item>
       </LabeledList>
     </Section>
   );

@@ -78,6 +78,15 @@
 				prob(9);/obj/item/weapon/cell/super,
 				prob(1);/obj/item/weapon/cell/hyper)
 
+/obj/random/powercell/device
+	name = "random device powercell"
+	desc = "This is a random device powercell."
+	icon_state = "random_device"
+
+/obj/random/powercell/device/item_to_spawn()
+	return pick(prob(80);/obj/item/weapon/cell/device,
+				prob(10);/obj/item/weapon/cell/device/hyper,
+				prob(10);/obj/item/weapon/cell/device/empproof)
 
 /obj/random/bomb_supply
 	name = "bomb supply"
@@ -276,6 +285,7 @@
 /obj/random/cash/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(12);/obj/item/weapon/spacecash/c1,
+				prob(10);/obj/item/weapon/spacecash/c5,
 				prob(8);/obj/item/weapon/spacecash/c10,
 				prob(4);/obj/item/weapon/spacecash/c20,
 				prob(1);/obj/item/weapon/spacecash/c50,

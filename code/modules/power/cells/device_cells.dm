@@ -21,9 +21,44 @@
 	update_icon()
 
 /*
+ * Crap Device
+ */
+/obj/item/weapon/cell/device/crap
+	name = "\improper rechargable D battery"
+	desc = "An older, cheap power cell designed to power handheld devices. It's probably been in use for quite some time now."
+	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
+	origin_tech = list(TECH_POWER = 0)
+	icon_state = "device_crap"
+	maxcharge = 240
+	matter = list(MAT_STEEL = 350, MAT_GLASS = 30)
+
+/obj/item/weapon/cell/device/crap/update_icon() //No visible charge indicator
+	return
+
+/obj/item/weapon/cell/device/crap/empty/Initialize()
+	. = ..()
+	charge = 0
+	update_icon()
+
+/*
+ * Hyper Device
+ */
+/obj/item/weapon/cell/device/hyper
+	name = "hyper device power cell"
+	desc = "A small power cell designed to power handheld devices. Has a better charge than a standard device cell."
+	icon_state = "hype_device_cell"
+	maxcharge = 600
+	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
+
+/obj/item/weapon/cell/device/hyper/empty/Initialize()
+	. = ..()
+	charge = 0
+	update_icon()
+
+/*
  * EMP Proof Device
  */
-/obj/item/weapon/cell/device/empproof //UNUSED
+/obj/item/weapon/cell/device/empproof
 	name = "shielded device power cell"
 	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
 	icon_state = "up_device_cell"

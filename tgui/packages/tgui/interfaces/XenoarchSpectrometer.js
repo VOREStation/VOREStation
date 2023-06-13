@@ -37,23 +37,38 @@ export const XenoarchSpectrometer = (props, context) => {
           title="Status"
           buttons={
             <Fragment>
-              <Button icon="signal" selected={scanning} onClick={() => act('scanItem')}>
+              <Button
+                icon="signal"
+                selected={scanning}
+                onClick={() => act('scanItem')}>
                 {scanning ? 'HALT SCAN' : 'Begin Scan'}
               </Button>
-              <Button icon="eject" disabled={!scanned_item} onClick={() => act('ejectItem')}>
+              <Button
+                icon="eject"
+                disabled={!scanned_item}
+                onClick={() => act('ejectItem')}>
                 Eject Item
               </Button>
             </Fragment>
           }>
           <LabeledList>
-            <LabeledList.Item label="Item">{scanned_item || <Box color="bad">No item inserted.</Box>}</LabeledList.Item>
-            <LabeledList.Item label="Heuristic Analysis">{scanned_item_desc || 'None found.'}</LabeledList.Item>
+            <LabeledList.Item label="Item">
+              {scanned_item || <Box color="bad">No item inserted.</Box>}
+            </LabeledList.Item>
+            <LabeledList.Item label="Heuristic Analysis">
+              {scanned_item_desc || 'None found.'}
+            </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section title="Scanner">
           <LabeledList>
             <LabeledList.Item label="Scan Progress">
-              <ProgressBar value={scan_progress} minValue={0} maxValue={100} color="good" />
+              <ProgressBar
+                value={scan_progress}
+                minValue={0}
+                maxValue={100}
+                color="good"
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Vacuum Seal Integrity">
               <ProgressBar
@@ -69,7 +84,11 @@ export const XenoarchSpectrometer = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="MASER" buttons={<NoticeBox info>Match wavelengths to progress the scan.</NoticeBox>}>
+        <Section
+          title="MASER"
+          buttons={
+            <NoticeBox info>Match wavelengths to progress the scan.</NoticeBox>
+          }>
           <LabeledList>
             <LabeledList.Item label="MASER Efficiency">
               <ProgressBar
@@ -100,7 +119,11 @@ export const XenoarchSpectrometer = (props, context) => {
         <Section title="Environment / Internal">
           <LabeledList>
             <LabeledList.Item label="Centrifuge Speed">
-              <ProgressBar value={scanner_rpm} minValue={0} maxValue={1000} color="good">
+              <ProgressBar
+                value={scanner_rpm}
+                minValue={0}
+                maxValue={1000}
+                color="good">
                 {scanner_rpm} RPM
               </ProgressBar>
             </LabeledList.Item>
@@ -122,8 +145,13 @@ export const XenoarchSpectrometer = (props, context) => {
         <Section
           title="Radiation"
           buttons={
-            <Button selected={rad_shield_on} icon="radiation" onClick={() => act('toggle_rad_shield')}>
-              {rad_shield_on ? 'Disable Radiation Shielding' : 'Enable Radiation Shielding'}
+            <Button
+              selected={rad_shield_on}
+              icon="radiation"
+              onClick={() => act('toggle_rad_shield')}>
+              {rad_shield_on
+                ? 'Disable Radiation Shielding'
+                : 'Enable Radiation Shielding'}
             </Button>
           }>
           <LabeledList>

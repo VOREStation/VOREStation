@@ -11,8 +11,6 @@
  *
  * If collection is 'null' or 'undefined', it will be returned "as is"
  * without emitting any errors (which can be useful in some cases).
- *
- * @returns {any[]}
  */
 export const filter =
   <T>(iterateeFn: (input: T, index: number, collection: T[]) => boolean) =>
@@ -34,11 +32,13 @@ export const filter =
   };
 
 type MapFunction = {
-  <T, U>(iterateeFn: (value: T, index: number, collection: T[]) => U): (collection: T[]) => U[];
-
-  <T, U, K extends string | number>(iterateeFn: (value: T, index: K, collection: Record<K, T>) => U): (
-    collection: Record<K, T>
+  <T, U>(iterateeFn: (value: T, index: number, collection: T[]) => U): (
+    collection: T[]
   ) => U[];
+
+  <T, U, K extends string | number>(
+    iterateeFn: (value: T, index: K, collection: Record<K, T>) => U
+  ): (collection: Record<K, T>) => U[];
 };
 
 /**
@@ -69,6 +69,26 @@ export const map: MapFunction =
     throw new Error(`map() can't iterate on type ${typeof collection}`);
   };
 
+/**
+ * Given a collection, will run each element through an iteratee function.
+ * Will then filter out undefined values.
+ */
+export const filterMap = <T, U>(
+  collection: T[],
+  iterateeFn: (value: T) => U | undefined
+): U[] => {
+  const finalCollection: U[] = [];
+
+  for (const value of collection) {
+    const output = iterateeFn(value);
+    if (output !== undefined) {
+      finalCollection.push(output);
+    }
+  }
+
+  return finalCollection;
+};
+
 const COMPARATOR = (objA, objB) => {
   const criteriaA = objA.criteria;
   const criteriaB = objB.criteria;
@@ -91,8 +111,6 @@ const COMPARATOR = (objA, objB) => {
  * of running each element in a collection thru each iteratee.
  *
  * Iteratees are called with one argument (value).
- *
- * @returns {any[]}
  */
 export const sortBy =
   <T>(...iterateeFns: ((input: T) => unknown)[]) =>
@@ -125,6 +143,8 @@ export const sortBy =
   };
 
 export const sort = sortBy();
+
+export const sortStrings = sortBy<string>();
 
 /**
  * Returns a range of numbers from start to end, exclusively.
@@ -171,7 +191,9 @@ export const uniqBy =
     const result: T[] = [];
     const seen: unknown[] = iterateeFn ? [] : result;
     let index = -1;
-    outer: while (++index < length) {
+    // prettier-ignore
+    outer:
+    while (++index < length) {
       let value: T | 0 = array[index];
       const computed = iterateeFn ? iterateeFn(value) : value;
       if (computed === computed) {
@@ -194,7 +216,6 @@ export const uniqBy =
     }
     return result;
   };
-/* eslint-enable indent */
 
 export const uniq = uniqBy();
 
@@ -236,3 +257,91 @@ export const zipWith =
   (...arrays: T[][]): U[] => {
     return map((values: T[]) => iterateeFn(...values))(zip(...arrays));
   };
+
+const binarySearch = <T, U = unknown>(
+  getKey: (value: T) => U,
+  collection: readonly T[],
+  inserting: T
+): number => {
+  if (collection.length === 0) {
+    return 0;
+  }
+
+  const insertingKey = getKey(inserting);
+
+  let [low, high] = [0, collection.length];
+
+  // Because we have checked if the collection is empty, it's impossible
+  // for this to be used before assignment.
+  let compare: U = undefined as unknown as U;
+  let middle = 0;
+
+  while (low < high) {
+    middle = (low + high) >> 1;
+
+    compare = getKey(collection[middle]);
+
+    if (compare < insertingKey) {
+      low = middle + 1;
+    } else if (compare === insertingKey) {
+      return middle;
+    } else {
+      high = middle;
+    }
+  }
+
+  return compare > insertingKey ? middle : middle + 1;
+};
+
+export const binaryInsertWith =
+  <T, U = unknown>(getKey: (value: T) => U) =>
+  (collection: readonly T[], value: T) => {
+    const copy = [...collection];
+    copy.splice(binarySearch(getKey, collection, value), 0, value);
+    return copy;
+  };
+
+/**
+ * This method takes a collection of items and a number, returning a collection
+ * of collections, where the maximum amount of items in each is that second arg
+ */
+export const paginate = <T>(collection: T[], maxPerPage: number): T[][] => {
+  const pages: T[][] = [];
+  let page: T[] = [];
+  let itemsToAdd = maxPerPage;
+
+  for (const item of collection) {
+    page.push(item);
+    itemsToAdd--;
+    if (!itemsToAdd) {
+      itemsToAdd = maxPerPage;
+      pages.push(page);
+      page = [];
+    }
+  }
+  if (page.length) {
+    pages.push(page);
+  }
+  return pages;
+};
+
+const isObject = (obj: unknown) => typeof obj === 'object' && obj !== null;
+
+// Does a deep merge of two objects. DO NOT FEED CIRCULAR OBJECTS!!
+export const deepMerge = (...objects: any[]): any => {
+  const target = {};
+  for (const object of objects) {
+    for (const key of Object.keys(object)) {
+      const targetValue = target[key];
+      const objectValue = object[key];
+      if (Array.isArray(targetValue) && Array.isArray(objectValue)) {
+        target[key] = [...targetValue, ...objectValue];
+      } else if (isObject(targetValue) && isObject(objectValue)) {
+        target[key] = deepMerge(targetValue, objectValue);
+      } else {
+        target[key] = objectValue;
+      }
+    }
+  }
+  return target;
+};

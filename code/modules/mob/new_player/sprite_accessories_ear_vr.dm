@@ -518,6 +518,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/cobra_hood
+	name = "Cobra hood (large)"
+	desc = ""
+	icon_state = "cobra_hood"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "cobra_hood-inner"
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -917,3 +925,93 @@
 	extra_overlay = "zaprat-tips"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/kara //SatinIsle Fluff Item
+	name = "Pterokara horn"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "kara_horn"
+	ckeys_allowed = list("satinisle")
+
+/datum/sprite_accessory/ears/shark
+	name = "shark ears (Colorable)"
+	desc = ""
+	icon_state = "shark_ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkhigh
+	name = "shark upper ears (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharklow
+	name = "shark lower ears (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkfin
+	name = "shark fin (Colorable)"
+	desc = ""
+	icon_state = "shark_fin"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkfinalt
+	name = "shark fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_fin_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkboth
+	name = "shark ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharkbothalt
+	name = "shark ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/sharkhighboth
+	name = "shark upper ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharkhighbothalt
+	name = "shark upper ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/sharklowboth
+	name = "shark lower ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharklowbothalt
+	name = "shark lower ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"

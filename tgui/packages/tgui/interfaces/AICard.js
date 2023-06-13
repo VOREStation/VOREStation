@@ -5,7 +5,16 @@ import { Window } from '../layouts';
 export const AICard = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { has_ai, integrity, backup_capacitor, flushing, has_laws, laws, wireless, radio } = data;
+  const {
+    has_ai,
+    integrity,
+    backup_capacitor,
+    flushing,
+    has_laws,
+    laws,
+    wireless,
+    radio,
+  } = data;
 
   if (has_ai === 0) {
     return (
@@ -52,7 +61,10 @@ export const AICard = (props, context) => {
                   <ProgressBar color={integrityColor} value={integrity / 100} />
                 </LabeledList.Item>
                 <LabeledList.Item label="Power">
-                  <ProgressBar color={powerColor} value={backup_capacitor / 100} />
+                  <ProgressBar
+                    color={powerColor}
+                    value={backup_capacitor / 100}
+                  />
                 </LabeledList.Item>
               </LabeledList>
             </Box>

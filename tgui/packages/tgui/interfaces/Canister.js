@@ -23,7 +23,12 @@ export const Canister = (props, context) => {
         <Section
           title="Canister"
           buttons={
-            <Button icon="pencil-alt" disabled={!can_relabel} content="Relabel" onClick={() => act('relabel')} />
+            <Button
+              icon="pencil-alt"
+              disabled={!can_relabel}
+              content="Relabel"
+              onClick={() => act('relabel')}
+            />
           }>
           <LabeledControls>
             <LabeledControls.Item minWidth="66px" label="Tank Pressure">
@@ -95,8 +100,15 @@ export const Canister = (props, context) => {
             </LabeledControls.Item>
             <LabeledControls.Item mr={1} label="Port">
               <Box position="relative">
-                <Icon size={1.25} name={connected ? 'plug' : 'times'} color={connected ? 'good' : 'bad'} />
-                <Tooltip content={connected ? 'Connected' : 'Disconnected'} position="top" />
+                <Icon
+                  size={1.25}
+                  name={connected ? 'plug' : 'times'}
+                  color={connected ? 'good' : 'bad'}
+                />
+                <Tooltip
+                  content={connected ? 'Connected' : 'Disconnected'}
+                  position="top"
+                />
               </Box>
             </LabeledControls.Item>
           </LabeledControls>
@@ -105,7 +117,12 @@ export const Canister = (props, context) => {
           title="Holding Tank"
           buttons={
             !!holding && (
-              <Button icon="eject" color={valveOpen && 'danger'} content="Eject" onClick={() => act('eject')} />
+              <Button
+                icon="eject"
+                color={valveOpen && 'danger'}
+                content="Eject"
+                onClick={() => act('eject')}
+              />
             )
           }>
           {!!holding && (

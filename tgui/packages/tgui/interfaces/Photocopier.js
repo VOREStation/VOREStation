@@ -80,12 +80,21 @@ const Options = (props, context) => {
           />
         </Flex.Item>
         <Flex.Item>
-          <Button ml={0.2} icon="copy" textAlign="center" onClick={() => act('make_copy')}>
+          <Button
+            ml={0.2}
+            icon="copy"
+            textAlign="center"
+            onClick={() => act('make_copy')}>
             Copy
           </Button>
         </Flex.Item>
       </Flex>
-      <Button mt={0.5} textAlign="center" icon="reply" fluid onClick={() => act('remove')}>
+      <Button
+        mt={0.5}
+        textAlign="center"
+        icon="reply"
+        fluid
+        onClick={() => act('remove')}>
         Remove item
       </Button>
     </Section>
@@ -99,7 +108,12 @@ const AIOptions = (props, context) => {
   return (
     <Section title="AI Options">
       <Box>
-        <Button fluid icon="images" textAlign="center" disabled={!can_AI_print} onClick={() => act('ai_photo')}>
+        <Button
+          fluid
+          icon="images"
+          textAlign="center"
+          disabled={!can_AI_print}
+          onClick={() => act('ai_photo')}>
           Print photo from database
         </Button>
       </Box>

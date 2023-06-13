@@ -71,8 +71,8 @@
 	if(istype(shuttle_datum,/datum/shuttle/autodock/overmap))
 		var/datum/shuttle/autodock/overmap/oms = shuttle_datum
 		oms.myship = src
-	GLOB.shuttle_pre_move_event.register(shuttle_datum, src, .proc/pre_shuttle_jump)
-	GLOB.shuttle_moved_event.register(shuttle_datum, src, .proc/on_shuttle_jump)
+	GLOB.shuttle_pre_move_event.register(shuttle_datum, src, PROC_REF(pre_shuttle_jump))
+	GLOB.shuttle_moved_event.register(shuttle_datum, src, PROC_REF(on_shuttle_jump))
 	on_landing(landmark, shuttle_datum.current_location) // We "land" at round start to properly place ourselves on the overmap.
 
 
@@ -144,7 +144,7 @@
 
 /obj/effect/shuttle_landmark/visiting_shuttle/shuttle_arrived(datum/shuttle/shuttle)
 	LAZYSET(core_landmark.visitors, src, shuttle)
-	GLOB.shuttle_moved_event.register(shuttle, src, .proc/shuttle_left)
+	GLOB.shuttle_moved_event.register(shuttle, src, PROC_REF(shuttle_left))
 
 /obj/effect/shuttle_landmark/visiting_shuttle/proc/shuttle_left(datum/shuttle/shuttle, obj/effect/shuttle_landmark/old_landmark, obj/effect/shuttle_landmark/new_landmark)
 	if(old_landmark == src)

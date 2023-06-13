@@ -40,7 +40,8 @@ export const NtosNetDownloader = (props, context) => {
         {!!hackedavailable && (
           <Section title="UNKNOWN Software Repository">
             <NoticeBox mb={1}>
-              Please note that Nanotrasen does not recommend download of software from non-official servers.
+              Please note that Nanotrasen does not recommend download of
+              software from non-official servers.
             </NoticeBox>
             {hacked_programs.map((program) => (
               <Program key={program.filename} program={program} />
@@ -77,8 +78,13 @@ const Program = (props, context) => {
         </Flex.Item>
         <Flex.Item ml={2} width="94px" textAlign="center">
           {(program.filename === downloadname && (
-            <ProgressBar color="green" minValue={0} maxValue={downloadsize} value={downloadcompletion}>
-              {round((downloadcompletion / downloadsize) * 100, 1)}% ({downloadspeed}GQ/s)
+            <ProgressBar
+              color="green"
+              minValue={0}
+              maxValue={downloadsize}
+              value={downloadcompletion}>
+              {round((downloadcompletion / downloadsize) * 100, 1)}% (
+              {downloadspeed}GQ/s)
             </ProgressBar>
           )) ||
             (downloads_queue.indexOf(program.filename) !== -1 && (

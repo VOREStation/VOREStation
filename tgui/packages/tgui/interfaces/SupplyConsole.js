@@ -26,7 +26,10 @@ const viewCrateContents = (modal, context) => {
           onClick={() => act('request_crate', { ref: ref })}
         />
       }>
-      <Section title={'Contains' + (random ? ' any ' + random + ' of:' : '')} scrollable height="200px">
+      <Section
+        title={'Contains' + (random ? ' any ' + random + ' of:' : '')}
+        scrollable
+        height="200px">
         {manifest.map((m) => (
           <Box key={m}>{m}</Box>
         ))}
@@ -62,15 +65,30 @@ const SupplyConsoleShuttleStatus = (props, context) => {
   if (shuttle_auth) {
     if (shuttle.launch === 1 && shuttle.mode === 0) {
       shuttle_buttons = (
-        <Button icon="rocket" content="Send Away" onClick={() => act('send_shuttle', { mode: 'send_away' })} />
+        <Button
+          icon="rocket"
+          content="Send Away"
+          onClick={() => act('send_shuttle', { mode: 'send_away' })}
+        />
       );
-    } else if (shuttle.launch === 2 && (shuttle.mode === 3 || shuttle.mode === 1)) {
+    } else if (
+      shuttle.launch === 2 &&
+      (shuttle.mode === 3 || shuttle.mode === 1)
+    ) {
       shuttle_buttons = (
-        <Button icon="ban" content="Cancel Launch" onClick={() => act('send_shuttle', { mode: 'cancel_shuttle' })} />
+        <Button
+          icon="ban"
+          content="Cancel Launch"
+          onClick={() => act('send_shuttle', { mode: 'cancel_shuttle' })}
+        />
       );
     } else if (shuttle.launch === 1 && shuttle.mode === 5) {
       shuttle_buttons = (
-        <Button icon="rocket" content="Send Shuttle" onClick={() => act('send_shuttle', { mode: 'send_to_station' })} />
+        <Button
+          icon="rocket"
+          content="Send Shuttle"
+          onClick={() => act('send_shuttle', { mode: 'send_to_station' })}
+        />
       );
     }
     if (shuttle.force) {
@@ -96,7 +114,9 @@ const SupplyConsoleShuttleStatus = (props, context) => {
                   <Button
                     icon="exclamation-triangle"
                     content="Force Launch"
-                    onClick={() => act('send_shuttle', { mode: 'force_shuttle' })}
+                    onClick={() =>
+                      act('send_shuttle', { mode: 'force_shuttle' })
+                    }
                   />
                 ) : null}
               </Fragment>
@@ -105,7 +125,9 @@ const SupplyConsoleShuttleStatus = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Engine">{shuttle.engine}</LabeledList.Item>
           {shuttle.mode === 4 ? (
-            <LabeledList.Item label="ETA">{shuttle.time > 1 ? formatTime(shuttle.time) : 'LATE'}</LabeledList.Item>
+            <LabeledList.Item label="ETA">
+              {shuttle.time > 1 ? formatTime(shuttle.time) : 'LATE'}
+            </LabeledList.Item>
           ) : null}
         </LabeledList>
       </Section>
@@ -123,19 +145,34 @@ const SupplyConsoleMenu = (props, context) => {
   return (
     <Section title="Menu">
       <Tabs>
-        <Tabs.Tab icon="box" selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
+        <Tabs.Tab
+          icon="box"
+          selected={tabIndex === 0}
+          onClick={() => setTabIndex(0)}>
           Request
         </Tabs.Tab>
-        <Tabs.Tab icon="check-circle-o" selected={tabIndex === 1} onClick={() => setTabIndex(1)}>
+        <Tabs.Tab
+          icon="check-circle-o"
+          selected={tabIndex === 1}
+          onClick={() => setTabIndex(1)}>
           Accepted
         </Tabs.Tab>
-        <Tabs.Tab icon="circle-o" selected={tabIndex === 2} onClick={() => setTabIndex(2)}>
+        <Tabs.Tab
+          icon="circle-o"
+          selected={tabIndex === 2}
+          onClick={() => setTabIndex(2)}>
           Requests
         </Tabs.Tab>
-        <Tabs.Tab icon="book" selected={tabIndex === 3} onClick={() => setTabIndex(3)}>
+        <Tabs.Tab
+          icon="book"
+          selected={tabIndex === 3}
+          onClick={() => setTabIndex(3)}>
           Order history
         </Tabs.Tab>
-        <Tabs.Tab icon="book" selected={tabIndex === 4} onClick={() => setTabIndex(4)}>
+        <Tabs.Tab
+          icon="book"
+          selected={tabIndex === 4}
+          onClick={() => setTabIndex(4)}>
           Export history
         </Tabs.Tab>
       </Tabs>
@@ -153,7 +190,11 @@ const SupplyConsoleMenuOrder = (props, context) => {
 
   const { categories, supply_packs, contraband, supply_points } = data;
 
-  const [activeCategory, setActiveCategory] = useLocalState(context, 'activeCategory', null);
+  const [activeCategory, setActiveCategory] = useLocalState(
+    context,
+    'activeCategory',
+    null
+  );
 
   const viewingPacks = flow([
     filter((val) => val.group === activeCategory),
@@ -199,7 +240,9 @@ const SupplyConsoleMenuOrder = (props, context) => {
                     <Button
                       content="#"
                       color={pack.cost > supply_points ? 'red' : null}
-                      onClick={() => act('request_crate_multi', { ref: pack.ref })}
+                      onClick={() =>
+                        act('request_crate_multi', { ref: pack.ref })
+                      }
                     />
                   </Stack.Item>
                   <Stack.Item>
@@ -241,7 +284,9 @@ const SupplyConsoleMenuOrderList = (props, context) => {
   const { mode } = props;
   const { orders, order_auth, supply_points } = data;
 
-  const displayedOrders = orders.filter((val) => val.status === mode || mode === 'All');
+  const displayedOrders = orders.filter(
+    (val) => val.status === mode || mode === 'All'
+  );
 
   if (!displayedOrders.length) {
     return <Section level={2}>No orders found.</Section>;
@@ -285,7 +330,11 @@ const SupplyConsoleMenuOrderList = (props, context) => {
                         icon="pen"
                         content="Edit"
                         onClick={() => {
-                          act('edit_order_value', { ref: order.ref, edit: field.field, default: field.entry });
+                          act('edit_order_value', {
+                            ref: order.ref,
+                            edit: field.field,
+                            default: field.entry,
+                          });
                         }}
                       />
                     ) : null
@@ -294,7 +343,9 @@ const SupplyConsoleMenuOrderList = (props, context) => {
                 </LabeledList.Item>
               ) : null
             )}
-            {mode === 'All' ? <LabeledList.Item label="Status">{order.status}</LabeledList.Item> : null}
+            {mode === 'All' ? (
+              <LabeledList.Item label="Status">{order.status}</LabeledList.Item>
+            ) : null}
           </LabeledList>
           {order_auth && mode === 'Requested' ? (
             <Fragment>
@@ -304,7 +355,11 @@ const SupplyConsoleMenuOrderList = (props, context) => {
                 disabled={order.cost > supply_points}
                 onClick={() => act('approve_order', { ref: order.ref })}
               />
-              <Button icon="times" content="Deny" onClick={() => act('deny_order', { ref: order.ref })} />
+              <Button
+                icon="times"
+                content="Deny"
+                onClick={() => act('deny_order', { ref: order.ref })}
+              />
             </Fragment>
           ) : null}
         </Section>
@@ -335,7 +390,13 @@ const SupplyConsoleMenuHistoryExport = (props, context) => {
                     <Button
                       icon="pen"
                       content="Edit"
-                      onClick={() => act('export_edit', { ref: r.ref, edit: title.field, default: title.entry })}
+                      onClick={() =>
+                        act('export_edit', {
+                          ref: r.ref,
+                          edit: title.field,
+                          default: title.entry,
+                        })
+                      }
                     />
                   ) : null
                 }>
@@ -393,7 +454,11 @@ const SupplyConsoleMenuHistoryExport = (props, context) => {
                 content="Add Item To Record"
                 onClick={() => act('export_add_field', { ref: r.ref })}
               />
-              <Button icon="trash" content="Delete Record" onClick={() => act('export_delete', { ref: r.ref })} />
+              <Button
+                icon="trash"
+                content="Delete Record"
+                onClick={() => act('export_delete', { ref: r.ref })}
+              />
             </Fragment>
           ) : null}
         </Section>

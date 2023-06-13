@@ -1,17 +1,45 @@
-//
-// datum defines!
-// Note: Adding vars to /datum adds a var to EVERYTHING! Don't go overboard.
-//
-
+/**
+ * The absolute base class for everything
+ *
+ * A datum instantiated has no physical world prescence, use an atom if you want something
+ * that actually lives in the world
+ *
+ * Be very mindful about adding variables to this class, they are inherited by every single
+ * thing in the entire game, and so you can easily cause memory usage to rise a lot with careless
+ * use of variables at this level
+ */
 /datum
-	var/gc_destroyed //Time when this object was destroyed.
-	var/list/active_timers  //for SStimer
-	var/list/datum_components //for /datum/components
+	/**
+	  * Tick count time when this object was destroyed.
+	  *
+	  * If this is non zero then the object has been garbage collected and is awaiting either
+	  * a hard del by the GC subsystme, or to be autocollected (if it has no references)
+	  */
+	var/gc_destroyed
+
+	/// Active timers with this datum as the target
+	var/list/active_timers
+
+	/**
+	  * Components attached to this datum
+	  *
+	  * Lazy associated list in the structure of `type:component/list of components`
+	  */
+	var/list/datum_components
+	/**
+	  * Any datum registered to receive signals from this datum is in this list
+	  *
+	  * Lazy associated list in the structure of `signal:registree/list of registrees`
+	  */
 	var/list/comp_lookup
 	var/list/list/signal_procs // List of lists
 	var/signal_enabled = FALSE
-	var/weakref/weakref // Holder of weakref instance pointing to this datum
+
+	/// Datum level flags
 	var/datum_flags = NONE
+
+	/// A weak reference to another datum
+	var/datum/weakref/weak_reference
 
 #ifdef REFERENCE_TRACKING
 	var/tmp/running_find_references
@@ -35,7 +63,7 @@
 			continue
 		qdel(timer)
 
-	weakref = null // Clear this reference to ensure it's kept for as brief duration as possible.
+	weak_reference = null // Clear this reference to ensure it's kept for as brief duration as possible.
 
 	//BEGIN: ECS SHIT
 	signal_enabled = FALSE

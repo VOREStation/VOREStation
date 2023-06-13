@@ -301,7 +301,7 @@
 					/obj/item/toy/tennis = 15)
 	//VOREStation Edit End
 
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2) // VOREStation Add - Slurpable blobs.
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2, /obj/item/toy/baseball = 2) // VOREStation Add - Slurpable blobs.
 
 /obj/machinery/vending/cart
 	name = "PTech"
@@ -336,7 +336,7 @@
 					/obj/item/weapon/storage/chewables/tobacco = 5,
 					/obj/item/weapon/storage/chewables/tobacco/fine = 5,
 					/obj/item/weapon/storage/box/matches = 10,
-					/obj/item/weapon/flame/lighter/random = 4,
+					/obj/item/weapon/flame/lighter = 4,
 					/obj/item/clothing/mask/smokable/ecig/util = 2,
 					///obj/item/clothing/mask/smokable/ecig/deluxe = 2,
 					/obj/item/clothing/mask/smokable/ecig/simple = 2,
@@ -365,7 +365,7 @@
 					/obj/item/weapon/storage/chewables/tobacco = 10,
 					/obj/item/weapon/storage/chewables/tobacco/fine = 20,
 					/obj/item/weapon/storage/box/matches = 1,
-					/obj/item/weapon/flame/lighter/random = 2,
+					/obj/item/weapon/flame/lighter/ = 2,
 					/obj/item/clothing/mask/smokable/ecig/util = 100,
 					///obj/item/clothing/mask/smokable/ecig/deluxe = 300,
 					/obj/item/clothing/mask/smokable/ecig/simple = 150,
@@ -1227,6 +1227,7 @@
 		/obj/item/clothing/under/rank/neo_corrections = 5,
 		/obj/item/clothing/under/rank/neo_corrections_skirt = 5,
 		/obj/item/clothing/under/rank/neo_runner = 5,
+		/obj/item/clothing/under/rank/neo_sec_gorka = 5,
 		/obj/item/clothing/suit/neo_runner_coat = 5,
 		/obj/item/clothing/shoes/boots/jackboots/silver = 5,
 		/obj/item/clothing/shoes/boots/jackboots/white = 5,
@@ -1294,6 +1295,7 @@
 		/obj/item/clothing/under/rank/neo_para_light_skirt = 5,
 		/obj/item/clothing/under/rank/neo_med_dark = 5,
 		/obj/item/clothing/under/rank/neo_med_dark_skirt = 5,
+		/obj/item/clothing/under/rank/neo_med_gorka = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_emt = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_labcoat = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_highvis = 5,
@@ -1400,6 +1402,7 @@
 		/obj/item/clothing/under/rank/neo_science = 5,
 		/obj/item/clothing/under/rank/neo_science_skirt = 5,
 		/obj/item/clothing/under/rank/neo_util_sci = 5,
+		/obj/item/clothing/under/rank/neo_sci_gorka = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_sci_dep = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_labcoat = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science = 5,
@@ -1480,6 +1483,7 @@
 		/obj/item/clothing/mask/bandana/gold = 5,
 		/obj/item/clothing/under/rank/neo_engi = 5,
 		/obj/item/clothing/under/rank/neo_engi_skirt = 5,
+		/obj/item/clothing/under/rank/neo_engi_gorka = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_engi_dep = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering = 5,
 		/obj/item/clothing/shoes/boots/winter/engineering = 5,

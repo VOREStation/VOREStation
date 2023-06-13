@@ -7,7 +7,14 @@ import { formatSiUnit, formatPower } from '../format';
 export const ShieldCapacitor = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { active, time_since_fail, stored_charge, max_charge, charge_rate, max_charge_rate } = data;
+  const {
+    active,
+    time_since_fail,
+    stored_charge,
+    max_charge,
+    charge_rate,
+    max_charge_rate,
+  } = data;
 
   return (
     <Window width={500} height={400} resizable>
@@ -24,11 +31,21 @@ export const ShieldCapacitor = (props, context) => {
           }>
           <LabeledList>
             <LabeledList.Item label="Capacitor Status">
-              {time_since_fail > 2 ? <Box color="good">OK.</Box> : <Box color="bad">Discharging!</Box>}
+              {time_since_fail > 2 ? (
+                <Box color="good">OK.</Box>
+              ) : (
+                <Box color="bad">Discharging!</Box>
+              )}
             </LabeledList.Item>
             <LabeledList.Item label="Stored Energy">
-              <AnimatedNumber value={stored_charge} format={(val) => formatSiUnit(val, 0, 'J')} /> (
-              <AnimatedNumber value={100 * round(stored_charge / max_charge, 1)} />
+              <AnimatedNumber
+                value={stored_charge}
+                format={(val) => formatSiUnit(val, 0, 'J')}
+              />{' '}
+              (
+              <AnimatedNumber
+                value={100 * round(stored_charge / max_charge, 1)}
+              />
               %)
             </LabeledList.Item>
             <LabeledList.Item label="Charge Rate">

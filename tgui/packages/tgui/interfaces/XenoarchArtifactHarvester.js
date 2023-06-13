@@ -10,7 +10,9 @@ export const XenoarchArtifactHarvester = (props, context) => {
   return (
     <Window width={450} height={200} resizable>
       <Window.Content>
-        {(no_scanner && <Box color="bad">Warning: No scanner detected.</Box>) || (
+        {(no_scanner && (
+          <Box color="bad">Warning: No scanner detected.</Box>
+        )) || (
           <Section>
             {(harvesting > 0 && (
               <Box>
@@ -18,7 +20,11 @@ export const XenoarchArtifactHarvester = (props, context) => {
                   Please wait. Harvesting in progress.
                 </Box>
                 <ArtHarvestBatteryProgress />
-                <Button mt={1} fluid icon="stop" onClick={() => act('stopharvest')}>
+                <Button
+                  mt={1}
+                  fluid
+                  icon="stop"
+                  onClick={() => act('stopharvest')}>
                   Stop Early
                 </Button>
               </Box>
@@ -29,7 +35,11 @@ export const XenoarchArtifactHarvester = (props, context) => {
                     Please wait. Energy dump in progress.
                   </Box>
                   <ArtHarvestBatteryProgress />
-                  <Button mt={1} fluid icon="stop" onClick={() => act('stopharvest')}>
+                  <Button
+                    mt={1}
+                    fluid
+                    icon="stop"
+                    onClick={() => act('stopharvest')}>
                     Stop Early
                   </Button>
                 </Box>
@@ -37,13 +47,21 @@ export const XenoarchArtifactHarvester = (props, context) => {
               (Object.keys(inserted_battery).length && (
                 <Box>
                   <LabeledList>
-                    <LabeledList.Item label="Name">{inserted_battery.name}</LabeledList.Item>
+                    <LabeledList.Item label="Name">
+                      {inserted_battery.name}
+                    </LabeledList.Item>
                     <LabeledList.Item label="Charge">
                       <ArtHarvestBatteryProgress />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Energy Signature ID">{inserted_battery.artifact_id}</LabeledList.Item>
+                    <LabeledList.Item label="Energy Signature ID">
+                      {inserted_battery.artifact_id}
+                    </LabeledList.Item>
                   </LabeledList>
-                  <Button mt={1} fluid icon="eject" onClick={() => act('ejectbattery')}>
+                  <Button
+                    mt={1}
+                    fluid
+                    icon="eject"
+                    onClick={() => act('ejectbattery')}>
                     Eject Battery
                   </Button>
                   <Button fluid icon="bolt" onClick={() => act('drainbattery')}>
@@ -70,5 +88,11 @@ const ArtHarvestBatteryProgress = (props, context) => {
     return <Box color="bad">No battery inserted.</Box>;
   }
 
-  return <ProgressBar minValue={0} value={inserted_battery.stored_charge} maxValue={inserted_battery.capacity} />;
+  return (
+    <ProgressBar
+      minValue={0}
+      value={inserted_battery.stored_charge}
+      maxValue={inserted_battery.capacity}
+    />
+  );
 };

@@ -11,7 +11,9 @@ export const BeakerContents = (props) => {
   return (
     <Box>
       {(!beakerLoaded && <Box color="label">No beaker loaded.</Box>) ||
-        (beakerContents.length === 0 && <Box color="label">Beaker is empty.</Box>)}
+        (beakerContents.length === 0 && (
+          <Box color="label">Beaker is empty.</Box>
+        ))}
       {beakerContents.map((chemical, i) => (
         <Box key={chemical.name} width="100%">
           <Flex align="center" justify="space-between">

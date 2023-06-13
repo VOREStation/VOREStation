@@ -301,6 +301,26 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/suit/ranger_poncho
+	display_name = "ranger poncho selection"
+	path = /obj/item/clothing/accessory/poncho/roles/ranger
+	cost = 1
+
+/datum/gear/suit/ranger_poncho/New()
+	..()
+	var/list/ranger_ponchos = list(
+		"red ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger,
+		"tan ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/tan,
+		"gray ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/gray,
+		"green ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/green,
+		"blue ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/blue,
+		"purple ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/purple,
+		"orange ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/orange,
+		"charcoal ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/charcoal,
+		"white ranger poncho" = /obj/item/clothing/accessory/poncho/roles/ranger/snow
+	)
+	gear_tweaks += new/datum/gear_tweak/path(ranger_ponchos)
+
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe
