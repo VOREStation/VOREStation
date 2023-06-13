@@ -165,7 +165,7 @@
 	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 	path = /obj/item/clothing/under/rank/security/corp
 	sort_category = "Uniforms"
-	cost = 2
+	cost = 1
 
 /datum/gear/uniform/security_selector/New()
 	..()
@@ -210,7 +210,7 @@
 	allowed_roles = list("Head of Security","Warden")
 	path = /obj/item/clothing/under/rank/warden/corp
 	sort_category = "Uniforms"
-	cost = 2
+	cost = 1
 
 /datum/gear/uniform/security_warden_selector/New()
 	..()
@@ -231,7 +231,7 @@
 	allowed_roles = list("Head of Security","Detective")
 	path = /obj/item/clothing/under/det/corporate
 	sort_category = "Uniforms"
-	cost = 2
+	cost = 1
 
 /datum/gear/uniform/security_detective_selector/New()
 	..()
@@ -247,7 +247,7 @@
 	allowed_roles = list("Head of Security")
 	path = /obj/item/clothing/under/rank/head_of_security/corp
 	sort_category = "Uniforms"
-	cost = 2
+	cost = 1
 
 /datum/gear/uniform/security_head_selector/New()
 	..()
