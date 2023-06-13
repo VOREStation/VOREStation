@@ -80,6 +80,9 @@
 
 	src.set_dir(turn(src.dir, 270))
 
+/obj/structure/bed/chair/AltClick(mob/living/user) //Why this wasn't added sooner I will never know
+	rotate_clockwise()
+
 /obj/structure/bed/chair/shuttle
 	name = "chair"
 	icon_state = "shuttlechair"
@@ -90,6 +93,14 @@
 /obj/structure/bed/chair/shuttle_padded
 	icon_state = "shuttlechair2"
 	base_icon = "shuttlechair2"
+	color = null
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/comfy/carp_skin
+	name = "carpskin chair"
+	desc = "A luxurious chair, the many purple scales reflect the light in a most pleasing manner."
+	icon_state = "carp_chair"
+	base_icon = "carp_chair"
 	color = null
 	applies_material_colour = 0
 
@@ -270,7 +281,6 @@
 	icon_state = "wooden_chair_wings"
 
 //sofa
-
 /obj/structure/bed/chair/sofa
 	name = "sofa"
 	desc = "It's a sofa. You sit on it. Possibly with someone else."
