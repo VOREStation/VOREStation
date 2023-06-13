@@ -6,13 +6,23 @@ import { BeakerContents } from './common/BeakerContents';
 import { ComplexModal, modalOpen, modalRegisterBodyOverride } from './common/ComplexModal';
 
 const transferAmounts = [1, 5, 10, 30, 60];
-const bottleStyles = ['bottle.png', 'small_bottle.png', 'wide_bottle.png', 'round_bottle.png', 'reagent_bottle.png'];
+const bottleStyles = [
+  'bottle.png',
+  'small_bottle.png',
+  'wide_bottle.png',
+  'round_bottle.png',
+  'reagent_bottle.png',
+];
 
 const analyzeModalBodyOverride = (modal, context) => {
   const { act, data } = useBackend(context);
   const result = modal.args.analysis;
   return (
-    <Section level={2} m="-1rem" pb="1rem" title={data.condi ? 'Condiment Analysis' : 'Reagent Analysis'}>
+    <Section
+      level={2}
+      m="-1rem"
+      pb="1rem"
+      title={data.condi ? 'Condiment Analysis' : 'Reagent Analysis'}>
       <Box mx="0.5rem">
         <LabeledList>
           <LabeledList.Item label="Name">{result.name}</LabeledList.Item>
@@ -21,8 +31,12 @@ const analyzeModalBodyOverride = (modal, context) => {
           </LabeledList.Item>
           {result.blood_type && (
             <Fragment>
-              <LabeledList.Item label="Blood type">{result.blood_type}</LabeledList.Item>
-              <LabeledList.Item label="Blood DNA" className="LabeledList__breakContents">
+              <LabeledList.Item label="Blood type">
+                {result.blood_type}
+              </LabeledList.Item>
+              <LabeledList.Item
+                label="Blood DNA"
+                className="LabeledList__breakContents">
                 {result.blood_dna}
               </LabeledList.Item>
             </Fragment>
@@ -50,7 +64,13 @@ const analyzeModalBodyOverride = (modal, context) => {
 
 export const ChemMaster = (props, context) => {
   const { data } = useBackend(context);
-  const { condi, beaker, beaker_reagents = [], buffer_reagents = [], mode } = data;
+  const {
+    condi,
+    beaker,
+    beaker_reagents = [],
+    buffer_reagents = [],
+    mode,
+  } = data;
   return (
     <Window width={575} height={500} resizable>
       <ComplexModal />
@@ -61,7 +81,10 @@ export const ChemMaster = (props, context) => {
           bufferNonEmpty={buffer_reagents.length > 0}
         />
         <ChemMasterBuffer mode={mode} bufferReagents={buffer_reagents} />
-        <ChemMasterProduction isCondiment={condi} bufferNonEmpty={buffer_reagents.length > 0} />
+        <ChemMasterProduction
+          isCondiment={condi}
+          bufferNonEmpty={buffer_reagents.length > 0}
+        />
         {/* <ChemMasterCustomization /> */}
       </Window.Content>
     </Window>
@@ -73,9 +96,19 @@ const ChemMasterBeaker = (props, context) => {
   const { beaker, beakerReagents, bufferNonEmpty } = props;
 
   let headerButton = bufferNonEmpty ? (
-    <Button.Confirm icon="eject" disabled={!beaker} content="Eject and Clear Buffer" onClick={() => act('eject')} />
+    <Button.Confirm
+      icon="eject"
+      disabled={!beaker}
+      content="Eject and Clear Buffer"
+      onClick={() => act('eject')}
+    />
   ) : (
-    <Button icon="eject" disabled={!beaker} content="Eject and Clear Buffer" onClick={() => act('eject')} />
+    <Button
+      icon="eject"
+      disabled={!beaker}
+      content="Eject and Clear Buffer"
+      onClick={() => act('eject')}
+    />
   );
 
   return (
@@ -271,7 +304,11 @@ const ChemMasterProduction = (props, context) => {
           onClick={() => act('ejectp')}
         />
       }>
-      {!props.isCondiment ? <ChemMasterProductionChemical /> : <ChemMasterProductionCondiment />}
+      {!props.isCondiment ? (
+        <ChemMasterProductionChemical />
+      ) : (
+        <ChemMasterProductionCondiment />
+      )}
     </Section>
   );
 };
@@ -281,7 +318,12 @@ const ChemMasterProductionChemical = (props, context) => {
   return (
     <LabeledList>
       <LabeledList.Item label="Pills">
-        <Button icon="circle" content="One (60u max)" mr="0.5rem" onClick={() => modalOpen(context, 'create_pill')} />
+        <Button
+          icon="circle"
+          content="One (60u max)"
+          mr="0.5rem"
+          onClick={() => modalOpen(context, 'create_pill')}
+        />
         <Button
           icon="plus-circle"
           content="Multiple"
@@ -307,8 +349,17 @@ const ChemMasterProductionChemical = (props, context) => {
         </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Patches">
-        <Button icon="square" content="One (60u max)" mr="0.5rem" onClick={() => modalOpen(context, 'create_patch')} />
-        <Button icon="plus-square" content="Multiple" onClick={() => modalOpen(context, 'create_patch_multiple')} />
+        <Button
+          icon="square"
+          content="One (60u max)"
+          mr="0.5rem"
+          onClick={() => modalOpen(context, 'create_patch')}
+        />
+        <Button
+          icon="plus-square"
+          content="Multiple"
+          onClick={() => modalOpen(context, 'create_patch_multiple')}
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Bottle">
         <Button
@@ -318,9 +369,15 @@ const ChemMasterProductionChemical = (props, context) => {
           mb="0.5rem"
           onClick={() => modalOpen(context, 'create_bottle')}
         />
-        <Button icon="plus-square" content="Multiple" onClick={() => modalOpen(context, 'create_bottle_multiple')} />
+        <Button
+          icon="plus-square"
+          content="Multiple"
+          onClick={() => modalOpen(context, 'create_bottle_multiple')}
+        />
         <br />
-        <Button mb="0.5rem" onClick={() => modalOpen(context, 'change_bottle_style')}>
+        <Button
+          mb="0.5rem"
+          onClick={() => modalOpen(context, 'change_bottle_style')}>
           <div
             style={
               'display: inline-block;' +
@@ -352,7 +409,12 @@ const ChemMasterProductionCondiment = (props, context) => {
         onClick={() => modalOpen(context, 'create_condi_pack')}
       />
       <br />
-      <Button icon="wine-bottle" content="Create bottle (60u max)" mb="0" onClick={() => act('create_condi_bottle')} />
+      <Button
+        icon="wine-bottle"
+        content="Create bottle (60u max)"
+        mb="0"
+        onClick={() => act('create_condi_bottle')}
+      />
     </Fragment>
   );
 };

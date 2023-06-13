@@ -9,12 +9,12 @@
 	category = UTILITY_SPELLS
 //VOREStation Add - Multiple technomancer support
 /datum/technomancer_marker
-	var/weakref/U
+	var/datum/weakref/U
 	var/image/I
 	var/turf/T
 
 /datum/technomancer_marker/New(var/mob/user)
-	U = weakref(user)
+	U = WEAKREF(user)
 	T = get_turf(user)
 	I = image('icons/goonstation/featherzone.dmi', T, "spawn-wall")
 	I.plane = TURF_PLANE
@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 		return 0
 	if(pay_energy(1000))
 		//VOREStation Add - Multiple technomancer support
-		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)]
+		var/datum/technomancer_marker/marker = GLOB.mark_spells[WEAKREF(user)]
 		//They have one in the list
 		if(istype(marker))
 			qdel(marker)
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 		//They don't have one yet
 		else
 			to_chat(user, "<span class='notice'>You mark \the [get_turf(user)] under you.</span>")
-		GLOB.mark_spells[weakref(user)] = new /datum/technomancer_marker(user)
+		GLOB.mark_spells[WEAKREF(user)] = new /datum/technomancer_marker(user)
 		//VOREStation Add End
 		adjust_instability(5)
 		return 1
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 
 /obj/item/weapon/spell/recall/on_use_cast(var/mob/living/user)
 	if(pay_energy(3000))
-		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)] //VOREStation Add - Multiple technomancer support
+		var/datum/technomancer_marker/marker = GLOB.mark_spells[WEAKREF(user)] //VOREStation Add - Multiple technomancer support
 		if(!istype(marker))
 			to_chat(user, "<span class='danger'>There's no Mark!</span>")
 			return 0
@@ -128,4 +128,3 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	else
 		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
 		return 0
-

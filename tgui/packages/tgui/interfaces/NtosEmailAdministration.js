@@ -40,7 +40,11 @@ const MainMenu = (props, context) => {
         Select account to administrate
       </Box>
       {accounts.map((account) => (
-        <Button fluid icon="eye" key={account.uid} onClick={() => act('viewaccount', { viewaccount: account.uid })}>
+        <Button
+          fluid
+          icon="eye"
+          key={account.uid}
+          onClick={() => act('viewaccount', { viewaccount: account.uid })}>
           {account.login}
         </Button>
       ))}
@@ -75,8 +79,17 @@ const ViewEmail = (props, context) => {
 
 const ViewAccount = (props, context) => {
   const { act, data } = useBackend(context);
-  const { error, msg_title, msg_body, msg_timestamp, msg_source, current_account, cur_suspended, messages, accounts } =
-    data;
+  const {
+    error,
+    msg_title,
+    msg_body,
+    msg_timestamp,
+    msg_source,
+    current_account,
+    cur_suspended,
+    messages,
+    accounts,
+  } = data;
   return (
     <Section
       title={'Viewing ' + current_account + ' in admin mode'}
@@ -116,7 +129,9 @@ const ViewAccount = (props, context) => {
                 <Table.Cell>{message.title}</Table.Cell>
                 <Table.Cell>{message.timestamp}</Table.Cell>
                 <Table.Cell>
-                  <Button icon="eye" onClick={() => act('viewmail', { viewmail: message.uid })}>
+                  <Button
+                    icon="eye"
+                    onClick={() => act('viewmail', { viewmail: message.uid })}>
                     View
                   </Button>
                 </Table.Cell>

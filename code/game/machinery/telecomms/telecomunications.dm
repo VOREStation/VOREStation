@@ -272,7 +272,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))
 		return
-	linked_radios_weakrefs |= weakref(R)
+	linked_radios_weakrefs |= WEAKREF(R)
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
 	if(!on) // has to be on to receive messages
@@ -299,7 +299,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		var/obj/item/device/radio/R = signal.data["radio"]
 
 		//Who're you?
-		if(!(weakref(R) in linked_radios_weakrefs))
+		if(!(WEAKREF(R) in linked_radios_weakrefs))
 			signal.data["reject"] = 1
 			return 0
 

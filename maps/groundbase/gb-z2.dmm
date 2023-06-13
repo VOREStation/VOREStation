@@ -210,7 +210,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "aw" = (
-/obj/machinery/firework_launcher,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "ax" = (
@@ -3718,13 +3717,9 @@
 /area/groundbase/medical/triage)
 "kp" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/weapon/shovel/spade,
-/obj/item/weapon/storage/belt/utility,
 /obj/item/stack/material/sandstone{
 	amount = 5
 	},
-/obj/item/device/retail_scanner/civilian,
-/obj/item/device/multitool,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4979,6 +4974,12 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor,
 /area/groundbase/cargo/office)
+"ob" = (
+/obj/structure/table/standard,
+/obj/item/device/retail_scanner/civilian,
+/obj/item/device/multitool,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/hydroponics)
 "od" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
@@ -17899,6 +17900,9 @@
 /area/groundbase/science/xenobot)
 "Yo" = (
 /obj/structure/closet/secure_closet/hydroponics,
+/obj/item/stack/material/sandstone{
+	amount = 5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Yp" = (
@@ -26337,7 +26341,7 @@ Yt
 Yt
 Yt
 Yt
-Yt
+ob
 In
 bY
 bY

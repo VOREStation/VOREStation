@@ -11,7 +11,8 @@ export const LawManager = (props, context) => {
   return (
     <Window width={800} height={600} resizable>
       <Window.Content scrollable>
-        {(isSlaved && <NoticeBox info>Law-synced to {isSlaved}</NoticeBox>) || null}
+        {(isSlaved && <NoticeBox info>Law-synced to {isSlaved}</NoticeBox>) ||
+          null}
         <LawManagerContent />
       </Window.Content>
     </Window>
@@ -71,9 +72,18 @@ const LawManagerLaws = (props, context) => {
 
   return (
     <Section>
-      {(has_ion_laws && <LawsTable laws={ion_laws} title={ion_law_nr + ' Laws:'} mt={-2} />) || null}
-      {((has_zeroth_laws || has_inherent_laws) && <LawsTable laws={allLaws} title="Inherent Laws" mt={-2} />) || null}
-      {(has_supplied_laws && <LawsTable laws={supplied_laws} title="Supplied Laws" mt={-2} />) || null}
+      {(has_ion_laws && (
+        <LawsTable laws={ion_laws} title={ion_law_nr + ' Laws:'} mt={-2} />
+      )) ||
+        null}
+      {((has_zeroth_laws || has_inherent_laws) && (
+        <LawsTable laws={allLaws} title="Inherent Laws" mt={-2} />
+      )) ||
+        null}
+      {(has_supplied_laws && (
+        <LawsTable laws={supplied_laws} title="Supplied Laws" mt={-2} />
+      )) ||
+        null}
       <Section level={2} title="Controls" mt={-2}>
         <LabeledList>
           <LabeledList.Item label="Statement Channel">
@@ -82,7 +92,9 @@ const LawManagerLaws = (props, context) => {
                 key={chan.channel}
                 content={chan.channel}
                 selected={channel === chan.channel}
-                onClick={() => act('law_channel', { law_channel: chan.channel })}
+                onClick={() =>
+                  act('law_channel', { law_channel: chan.channel })
+                }
               />
             ))}
           </LabeledList.Item>
@@ -114,7 +126,13 @@ const LawManagerLaws = (props, context) => {
               <Table.Row>
                 <Table.Cell collapsing>Zero</Table.Cell>
                 <Table.Cell>
-                  <Input value={zeroth_law} fluid onChange={(e, val) => act('change_zeroth_law', { val: val })} />
+                  <Input
+                    value={zeroth_law}
+                    fluid
+                    onChange={(e, val) =>
+                      act('change_zeroth_law', { val: val })
+                    }
+                  />
                 </Table.Cell>
                 <Table.Cell>N/A</Table.Cell>
                 <Table.Cell collapsing>
@@ -128,7 +146,11 @@ const LawManagerLaws = (props, context) => {
             <Table.Row>
               <Table.Cell collapsing>Ion</Table.Cell>
               <Table.Cell>
-                <Input value={ion_law} fluid onChange={(e, val) => act('change_ion_law', { val: val })} />
+                <Input
+                  value={ion_law}
+                  fluid
+                  onChange={(e, val) => act('change_ion_law', { val: val })}
+                />
               </Table.Cell>
               <Table.Cell>N/A</Table.Cell>
               <Table.Cell collapsing>
@@ -140,7 +162,13 @@ const LawManagerLaws = (props, context) => {
             <Table.Row>
               <Table.Cell>Inherent</Table.Cell>
               <Table.Cell>
-                <Input value={inherent_law} fluid onChange={(e, val) => act('change_inherent_law', { val: val })} />
+                <Input
+                  value={inherent_law}
+                  fluid
+                  onChange={(e, val) =>
+                    act('change_inherent_law', { val: val })
+                  }
+                />
               </Table.Cell>
               <Table.Cell>N/A</Table.Cell>
               <Table.Cell>
@@ -152,10 +180,18 @@ const LawManagerLaws = (props, context) => {
             <Table.Row>
               <Table.Cell>Supplied</Table.Cell>
               <Table.Cell>
-                <Input value={supplied_law} fluid onChange={(e, val) => act('change_supplied_law', { val: val })} />
+                <Input
+                  value={supplied_law}
+                  fluid
+                  onChange={(e, val) =>
+                    act('change_supplied_law', { val: val })
+                  }
+                />
               </Table.Cell>
               <Table.Cell>
-                <Button icon="pen" onClick={() => act('change_supplied_law_position')}>
+                <Button
+                  icon="pen"
+                  onClick={() => act('change_supplied_law_position')}>
                   {supplied_law_position}
                 </Button>
               </Table.Cell>
@@ -205,7 +241,9 @@ const LawsTable = (props, context) => {
                   fluid
                   icon="volume-up"
                   selected={law.state}
-                  onClick={() => act('state_law', { ref: law.ref, state_law: !law.state })}>
+                  onClick={() =>
+                    act('state_law', { ref: law.ref, state_law: !law.state })
+                  }>
                   {law.state ? 'Yes' : 'No'}
                 </Button>
               </Table.Cell>
@@ -248,7 +286,8 @@ const LawManagerLawSets = (props, context) => {
   return (
     <Fragment>
       <NoticeBox>
-        Remember: Stating laws other than those currently loaded may be grounds for decommissioning! - NanoTrasen
+        Remember: Stating laws other than those currently loaded may be grounds
+        for decommissioning! - NanoTrasen
       </NoticeBox>
       {(law_sets.length &&
         law_sets.map((laws) => (
@@ -260,24 +299,42 @@ const LawManagerLawSets = (props, context) => {
                 <Button
                   disabled={!isMalf}
                   icon="sync"
-                  onClick={() => act('transfer_laws', { transfer_laws: laws.ref })}>
+                  onClick={() =>
+                    act('transfer_laws', { transfer_laws: laws.ref })
+                  }>
                   Load Laws
                 </Button>
-                <Button icon="volume-up" onClick={() => act('state_law_set', { state_law_set: laws.ref })}>
+                <Button
+                  icon="volume-up"
+                  onClick={() =>
+                    act('state_law_set', { state_law_set: laws.ref })
+                  }>
                   State Laws
                 </Button>
               </Fragment>
             }>
             {(laws.laws.has_ion_laws && (
-              <LawsTable noButtons laws={laws.laws.ion_laws} title={laws.laws.ion_law_nr + ' Laws:'} />
+              <LawsTable
+                noButtons
+                laws={laws.laws.ion_laws}
+                title={laws.laws.ion_law_nr + ' Laws:'}
+              />
             )) ||
               null}
             {((laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws) && (
-              <LawsTable noButtons laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)} title={laws.header} />
+              <LawsTable
+                noButtons
+                laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
+                title={laws.header}
+              />
             )) ||
               null}
             {(laws.laws.has_supplied_laws && (
-              <LawsTable noButtons laws={laws.laws.supplied_laws} title="Supplied Laws" />
+              <LawsTable
+                noButtons
+                laws={laws.laws.supplied_laws}
+                title="Supplied Laws"
+              />
             )) ||
               null}
           </Section>

@@ -53,7 +53,7 @@
 	animate(alert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
 
 	if(alert.timeout)
-		addtimer(CALLBACK(src, .proc/alert_timeout, alert, category), alert.timeout)
+		addtimer(CALLBACK(src, PROC_REF(alert_timeout), alert, category), alert.timeout)
 		alert.timeout = world.time + alert.timeout - world.tick_lag
 	return alert
 
@@ -436,7 +436,7 @@ so as to remain in compliance with the most up-to-date laws."
 
 		if(alert.icon_state in cached_icon_states(ui_style))
 			alert.icon = ui_style
-		
+
 		else if(!alert.no_underlay)
 			var/image/I = image(icon = ui_style, icon_state = "template")
 			I.color = ui_color

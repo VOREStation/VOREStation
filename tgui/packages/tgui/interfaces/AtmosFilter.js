@@ -20,7 +20,10 @@ export const AtmosFilter = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Transfer Rate">
               <Box inline mr={1}>
-                <AnimatedNumber value={data.last_flow_rate} format={(val) => val + ' L/s'} />
+                <AnimatedNumber
+                  value={data.last_flow_rate}
+                  format={(val) => val + ' L/s'}
+                />
               </Box>
               <NumberInput
                 animated

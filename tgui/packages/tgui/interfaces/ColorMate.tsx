@@ -23,10 +23,17 @@ export const ColorMate = (props, context) => {
             <Section title="Paint">
               <Flex justify="center" align="center">
                 <Flex.Item basis="50%">
-                  <Box backgroundColor={activecolor} width="120px" height="120px" />
+                  <Box
+                    backgroundColor={activecolor}
+                    width="120px"
+                    height="120px"
+                  />
                 </Flex.Item>
                 <Flex.Item basis="50% ">
-                  <Button fluid icon="eye-dropper" onClick={() => act('select')}>
+                  <Button
+                    fluid
+                    icon="eye-dropper"
+                    onClick={() => act('select')}>
                     Select Color
                   </Button>
                   <Button fluid icon="fill-drip" onClick={() => act('paint')}>

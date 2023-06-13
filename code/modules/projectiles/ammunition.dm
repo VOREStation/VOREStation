@@ -281,4 +281,4 @@
 /obj/item/ammo_magazine/ammo_box/examine(mob/user)
 	. = ..()
 
-	. += to_chat(usr, "<span class='notice'>Alt-click to extract contents</span>")
+	. += to_chat(usr, "<span class='notice'>Alt-click to extract contents.</span>")

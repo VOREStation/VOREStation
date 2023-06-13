@@ -5,7 +5,14 @@ import { Window } from '../layouts';
 
 type Data = {
   id: string;
-  turrets: { id: string; active: BooleanLike; ref: string; effective_range; reaction_wheel_delay; recharge_time }[];
+  turrets: {
+    id: string;
+    active: BooleanLike;
+    ref: string;
+    effective_range;
+    reaction_wheel_delay;
+    recharge_time;
+  }[];
 };
 
 export const PointDefenseControl = (props, context) => {
@@ -29,12 +36,23 @@ export const PointDefenseControl = (props, context) => {
                   </Button>
                 }>
                 <LabeledList>
-                  <LabeledList.Item label="Effective range">{pd.effective_range}</LabeledList.Item>
-                  <LabeledList.Item label="Reaction wheel delay">{pd.reaction_wheel_delay}</LabeledList.Item>
-                  <LabeledList.Item label="Recharge time">{pd.recharge_time}</LabeledList.Item>
+                  <LabeledList.Item label="Effective range">
+                    {pd.effective_range}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Reaction wheel delay">
+                    {pd.reaction_wheel_delay}
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Recharge time">
+                    {pd.recharge_time}
+                  </LabeledList.Item>
                 </LabeledList>
               </Section>
-            ))) || <Box color="bad">Error: No weapon systems detected. Please check network connection.</Box>}
+            ))) || (
+            <Box color="bad">
+              Error: No weapon systems detected. Please check network
+              connection.
+            </Box>
+          )}
         </Section>
       </Window.Content>
     </Window>

@@ -45,14 +45,21 @@ const AccountTerminalContent = (props, context) => {
           onClick={() => act('view_accounts_list')}>
           Home
         </Tabs.Tab>
-        <Tabs.Tab selected={creating_new_account} icon="cog" onClick={() => act('create_account')}>
+        <Tabs.Tab
+          selected={creating_new_account}
+          icon="cog"
+          onClick={() => act('create_account')}>
           New Account
         </Tabs.Tab>
-        <Tabs.Tab disabled={creating_new_account} icon="print" onClick={() => act('print')}>
+        <Tabs.Tab
+          disabled={creating_new_account}
+          icon="print"
+          onClick={() => act('print')}>
           Print
         </Tabs.Tab>
       </Tabs>
-      {(creating_new_account && <NewAccountView />) || (detailed_account_view && <DetailedView />) || <ListView />}
+      {(creating_new_account && <NewAccountView />) ||
+        (detailed_account_view && <DetailedView />) || <ListView />}
     </Section>
   );
 };
@@ -93,15 +100,32 @@ const NewAccountView = (props, context) => {
 const DetailedView = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { access_level, station_account_number, account_number, owner_name, money, suspended, transactions } = data;
+  const {
+    access_level,
+    station_account_number,
+    account_number,
+    owner_name,
+    money,
+    suspended,
+    transactions,
+  } = data;
 
   return (
     <Section
       title="Account Details"
       level={2}
-      buttons={<Button icon="ban" selected={suspended} content="Suspend" onClick={() => act('toggle_suspension')} />}>
+      buttons={
+        <Button
+          icon="ban"
+          selected={suspended}
+          content="Suspend"
+          onClick={() => act('toggle_suspension')}
+        />
+      }>
       <LabeledList>
-        <LabeledList.Item label="Account Number">#{account_number}</LabeledList.Item>
+        <LabeledList.Item label="Account Number">
+          #{account_number}
+        </LabeledList.Item>
         <LabeledList.Item label="Holder">{owner_name}</LabeledList.Item>
         <LabeledList.Item label="Balance">{money}₮</LabeledList.Item>
         <LabeledList.Item label="Status" color={suspended ? 'bad' : 'good'}>
@@ -126,8 +150,16 @@ const DetailedView = (props, context) => {
       </Section>
       {access_level >= 2 && (
         <Section title="Silent Funds Transfer" level={2}>
-          <Button icon="plus" onClick={() => act('add_funds')} content="Add Funds" />
-          <Button icon="plus" onClick={() => act('remove_funds')} content="Remove Funds" />
+          <Button
+            icon="plus"
+            onClick={() => act('add_funds')}
+            content="Add Funds"
+          />
+          <Button
+            icon="plus"
+            onClick={() => act('remove_funds')}
+            content="Remove Funds"
+          />
         </Section>
       )}
       <Section title="Transactions" level={2} mt={1}>
@@ -173,7 +205,11 @@ const ListView = (props, context) => {
               <Button
                 fluid
                 content={'#' + acc.account_number}
-                onClick={() => act('view_account_detail', { 'account_index': acc.account_index })}
+                onClick={() =>
+                  act('view_account_detail', {
+                    'account_index': acc.account_index,
+                  })
+                }
               />
             </LabeledList.Item>
           ))}

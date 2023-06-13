@@ -37,7 +37,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))
 		return
-	linked_radios_weakrefs |= weakref(R)
+	linked_radios_weakrefs |= WEAKREF(R)
 
 /obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// Don't broadcast rejected signals
@@ -66,7 +66,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
 		var/list/forced_radios
-		for(var/weakref/wr in linked_radios_weakrefs)
+		for(var/datum/weakref/wr in linked_radios_weakrefs)
 			var/obj/item/device/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
@@ -149,7 +149,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))
 		return
-	linked_radios_weakrefs |= weakref(R)
+	linked_radios_weakrefs |= WEAKREF(R)
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
 
@@ -197,7 +197,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/datum/radio_frequency/connection = signal.data["connection"]
 
 		var/list/forced_radios
-		for(var/weakref/wr in linked_radios_weakrefs)
+		for(var/datum/weakref/wr in linked_radios_weakrefs)
 			var/obj/item/device/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
@@ -255,7 +255,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/datum/radio_frequency/connection = signal.data["connection"]
 
 		var/list/forced_radios
-		for(var/weakref/wr in linked_radios_weakrefs)
+		for(var/datum/weakref/wr in linked_radios_weakrefs)
 			var/obj/item/device/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
@@ -761,4 +761,3 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//to_world_log("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 
 	return signal
-

@@ -32,7 +32,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
-
+	action_button_name = "Toggle Helmet"
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM
@@ -47,12 +47,23 @@
 	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
 	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
 	var/obj/item/device/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
-	
+
 	//Cycler settings
 	var/no_cycle = FALSE	//stop this item from being put in a cycler
 
+//Does it spawn with any Inbuilt devices?
+/obj/item/clothing/suit/space/void/Initialize()
+	. = ..()
+	if(boots && ispath(boots))
+		boots = new boots(src)
+	if(helmet && ispath(helmet))
+		helmet = new helmet(src)
+	if(tank && ispath(tank))
+		tank = new tank(src)
+
 /obj/item/clothing/suit/space/void/examine(user)
 	. = ..()
+	. += to_chat(usr, "<span class='notice'>Alt-click to relase Tank/Cooling unit if installed.</span>")
 	for(var/obj/item/I in list(helmet,boots,tank,cooler))
 		. += "It has \a [I] installed."
 	if(tank && in_range(src,user))
@@ -145,13 +156,18 @@
 	helmet.set_light_flags(helmet.light_flags & ~LIGHT_ATTACHED)
 	helmet = null
 
-/obj/item/clothing/suit/space/void/verb/toggle_helmet()
+/obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
+	toggle_helmet()
 
+/obj/item/clothing/suit/space/void/verb/toggle_helmet()
 	set name = "Toggle Helmet"
 	set category = "Object"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	if(!isliving(loc))
+		return
 
 	if(!helmet)
 		to_chat(usr, "There is no helmet installed.")
@@ -159,43 +175,44 @@
 
 	var/mob/living/carbon/human/H = usr
 
-	if(!istype(H))
-		return
-	if(H.stat)
-		return
-	if(H.wear_suit != src)
-		return
+	if(!istype(H)) return
+	if(H.stat) return
+	if(H.wear_suit != src) return
+
+	if(helmet.light_on)
+		to_chat(H, SPAN_NOTICE("The helmet light shuts off as it retracts."))
+		helmet.update_flashlight(H)
 
 	if(H.head == helmet)
-		to_chat(H, "<span class='notice'>You retract your suit helmet.</span>")
+		to_chat(H, SPAN_NOTICE("You retract your suit helmet."))
 		helmet.canremove = TRUE
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
+		playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 	else
 		if(H.head)
-			to_chat(H, "<span class='danger'>You cannot deploy your helmet while wearing \the [H.head].</span>")
+			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
-			helmet.pickup(H)
 			helmet.canremove = FALSE
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
-	
-	if(helmet.light_system == STATIC_LIGHT)
-		helmet.update_light()
+			playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
+
+/obj/item/clothing/suit/space/void/AltClick(mob/living/user)
+	eject_tank()
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
-
 	set name = "Eject Voidsuit Tank/Cooler"
 	set category = "Object"
 	set src in usr
 
 	if(!istype(src.loc,/mob/living)) return
 
-	if(!tank && !cooler)
-		to_chat(usr, "There is no tank or cooling unit inserted.")
-		return
-
 	var/mob/living/carbon/human/H = usr
+
+	if(!tank && !cooler)
+		to_chat(H, SPAN_NOTICE("There is no tank or cooling unit inserted."))
+		return
 
 	if(!istype(H)) return
 	if(H.stat) return
@@ -208,7 +225,8 @@
 	else
 		removing = cooler
 		cooler = null
-	to_chat(H, "<span class='info'>You press the emergency release, ejecting \the [removing] from your suit.</span>")
+	to_chat(H, SPAN_DANGER("You press the emergency release, ejecting \the [removing] from your suit."))
+	playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 	removing.canremove = TRUE
 	H.drop_from_inventory(removing)
 

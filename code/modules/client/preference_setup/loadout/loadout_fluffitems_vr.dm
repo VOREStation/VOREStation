@@ -472,6 +472,20 @@
 	ckeywhitelist = list("fuackwit422")
 	character_name = list("Zera Livanne")
 
+/datum/gear/fluff/zera_cloak
+	path = /obj/item/clothing/head/fluff/zerahat
+	display_name = "Grand Purple Hat"
+	slot = slot_head
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
+/datum/gear/fluff/zera_hat
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak
+	display_name = "Grand Purple Cloak"
+	slot = slot_wear_suit
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
 
 //  G CKEYS
 
@@ -500,6 +514,12 @@
 	display_name = "Amaryll's Claws"
 	ckeywhitelist = list("hunterbirk")
 	character_name = list("Amaryll")
+
+/datum/gear/fluff/aria_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Aria's Distinguished Conduct Medal"
+	ckeywhitelist = list("hunterbirk")
+	character_name = list("Aria Blue")
 
 //  I CKEYS
 /datum/gear/fluff/ruda_badge

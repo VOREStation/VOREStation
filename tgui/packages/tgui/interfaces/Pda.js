@@ -33,7 +33,9 @@ export const Pda = (props, context) => {
     return (
       <Window>
         <Window.Content>
-          <Section stretchContents>Warning: No ID information found! Please swipe ID!</Section>
+          <Section stretchContents>
+            Warning: No ID information found! Please swipe ID!
+          </Section>
         </Window.Content>
       </Window>
     );
@@ -41,12 +43,23 @@ export const Pda = (props, context) => {
 
   let App = getPdaApp(app.template);
 
-  const [settingsMode, setSettingsMode] = useLocalState(context, 'settingsMode', false);
+  const [settingsMode, setSettingsMode] = useLocalState(
+    context,
+    'settingsMode',
+    false
+  );
 
   return (
-    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null} resizable>
+    <Window
+      width={580}
+      height={670}
+      theme={useRetro ? 'pda-retro' : null}
+      resizable>
       <Window.Content scrollable>
-        <PDAHeader settingsMode={settingsMode} setSettingsMode={setSettingsMode} />
+        <PDAHeader
+          settingsMode={settingsMode}
+          setSettingsMode={setSettingsMode}
+        />
         {(settingsMode && <PDASettings />) || (
           <Section
             title={
@@ -78,14 +91,23 @@ const PDAHeader = (props, context) => {
       <Flex align="center" justify="space-between">
         {!!idInserted && (
           <Flex.Item>
-            <Button icon="eject" color="transparent" onClick={() => act('Authenticate')} content={idLink} />
+            <Button
+              icon="eject"
+              color="transparent"
+              onClick={() => act('Authenticate')}
+              content={idLink}
+            />
           </Flex.Item>
         )}
         <Flex.Item grow={1} textAlign="center" bold>
           {stationTime}
         </Flex.Item>
         <Flex.Item>
-          <Button selected={settingsMode} onClick={() => setSettingsMode(!settingsMode)} icon="cog" />
+          <Button
+            selected={settingsMode}
+            onClick={() => setSettingsMode(!settingsMode)}
+            icon="cog"
+          />
           <Button onClick={() => act('Retro')} icon="adjust" />
         </Flex.Item>
       </Flex>
@@ -102,7 +124,11 @@ const PDASettings = (props, context) => {
     <Section title="Settings">
       <LabeledList>
         <LabeledList.Item label="R.E.T.R.O Mode">
-          <Button icon="cog" content={'Retro Theme'} onClick={() => act('Retro')} />
+          <Button
+            icon="cog"
+            content={'Retro Theme'}
+            onClick={() => act('Retro')}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Touch Sounds">
           <Button
@@ -114,12 +140,20 @@ const PDASettings = (props, context) => {
         </LabeledList.Item>
         {!!cartridge_name && (
           <LabeledList.Item label="Cartridge">
-            <Button icon="eject" onClick={() => act('Eject')} content={cartridge_name} />
+            <Button
+              icon="eject"
+              onClick={() => act('Eject')}
+              content={cartridge_name}
+            />
           </LabeledList.Item>
         )}
         {!!idInserted && (
           <LabeledList.Item label="ID Card">
-            <Button icon="eject" onClick={() => act('Authenticate')} content={idLink} />
+            <Button
+              icon="eject"
+              onClick={() => act('Authenticate')}
+              content={idLink}
+            />
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -135,7 +169,12 @@ const PDAFooter = (props, context) => {
   const { app, useRetro } = data;
 
   return (
-    <Box position="fixed" bottom="0%" left="0%" right="0%" backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}>
+    <Box
+      position="fixed"
+      bottom="0%"
+      left="0%"
+      right="0%"
+      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}>
       <Flex>
         <Flex.Item basis="33%">
           <Button

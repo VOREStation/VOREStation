@@ -12,11 +12,17 @@ export const TelecommsMachineBrowser = (props, context) => {
     <Window width={575} height={450} resizable>
       <Window.Content scrollable>
         {temp ? (
-          <NoticeBox danger={temp.color === 'bad'} warning={temp.color !== 'bad'}>
+          <NoticeBox
+            danger={temp.color === 'bad'}
+            warning={temp.color !== 'bad'}>
             <Box display="inline-box" verticalAlign="middle">
               {temp.text}
             </Box>
-            <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
+            <Button
+              icon="times-circle"
+              float="right"
+              onClick={() => act('cleartemp')}
+            />
             <Box clear="both" />
           </NoticeBox>
         ) : null}
@@ -26,7 +32,11 @@ export const TelecommsMachineBrowser = (props, context) => {
               label="Current Network"
               buttons={
                 <Fragment>
-                  <Button icon="search" content="Probe Network" onClick={() => act('scan')} />
+                  <Button
+                    icon="search"
+                    content="Probe Network"
+                    onClick={() => act('scan')}
+                  />
                   <Button
                     color="bad"
                     icon="exclamation-triangle"
@@ -36,21 +46,31 @@ export const TelecommsMachineBrowser = (props, context) => {
                   />
                 </Fragment>
               }>
-              <Button content={network} icon="pen" onClick={() => act('network')} />
+              <Button
+                content={network}
+                icon="pen"
+                onClick={() => act('network')}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>
         {machinelist && machinelist.length ? (
           <TelecommsBrowser
             title={
-              selectedMachine ? selectedMachine.name + ' (' + selectedMachine.id + ')' : 'Detected Network Entities'
+              selectedMachine
+                ? selectedMachine.name + ' (' + selectedMachine.id + ')'
+                : 'Detected Network Entities'
             }
             list={selectedMachine ? selectedMachine.links : machinelist}
             showBack={selectedMachine}
           />
         ) : (
           <Section title="No Devices Found">
-            <Button icon="search" content="Probe Network" onClick={() => act('scan')} />
+            <Button
+              icon="search"
+              content="Probe Network"
+              onClick={() => act('scan')}
+            />
           </Section>
         )}
       </Window.Content>
@@ -66,15 +86,29 @@ const TelecommsBrowser = (props, context) => {
   return (
     <Section
       title={title}
-      buttons={showBack && <Button icon="undo" content="Back to Main Menu" onClick={() => act('mainmenu')} />}>
+      buttons={
+        showBack && (
+          <Button
+            icon="undo"
+            content="Back to Main Menu"
+            onClick={() => act('mainmenu')}
+          />
+        )
+      }>
       <Box color="label">
         <u>Linked entities</u>
       </Box>
       <LabeledList>
         {list.length ? (
           list.map((machine) => (
-            <LabeledList.Item key={machine.id} label={machine.name + ' (' + machine.id + ')'}>
-              <Button content="View" icon="eye" onClick={() => act('view', { id: machine.id })} />
+            <LabeledList.Item
+              key={machine.id}
+              label={machine.name + ' (' + machine.id + ')'}>
+              <Button
+                content="View"
+                icon="eye"
+                onClick={() => act('view', { id: machine.id })}
+              />
             </LabeledList.Item>
           ))
         ) : (

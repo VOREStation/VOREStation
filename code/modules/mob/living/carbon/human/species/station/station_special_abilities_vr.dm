@@ -470,7 +470,7 @@
 	if(noise)
 		src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>")
 	else
-		src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>", range = 1)
+		src.visible_message("<font color='red'><i>[src] moves their head next to [B]'s neck, seemingly looking for something!</i></font>", range = 1)
 
 	if(bleed) //Due to possibility of missing/misclick and missing the bleeding cues, we are warning the scene members of BLEEDING being on
 		to_chat(src, SPAN_WARNING("This is going to cause [B] to keep bleeding!"))
@@ -481,7 +481,7 @@
 		if(noise)
 			src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
 		else
-			src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>", range = 1)
+			src.visible_message("<font color='red'><i>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</i></font>", range = 1)
 		if(bleed)
 			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, soaked = 0, sharp = TRUE, edge = FALSE)
 			var/obj/item/organ/external/E = B.get_organ(BP_HEAD)
@@ -492,12 +492,17 @@
 		else
 			B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
 
-		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
-		adjust_nutrition(400)
-		sleep(50)
-		B.drip(1)
-		sleep(50)
-		B.drip(1)
+
+		if(!noise && !bleed) //If we're quiet and careful, there should be no blood to serve as evidence
+			B.remove_blood(82) //Removing in one go since we dont want splatter
+			adjust_nutrition(410) //We drink it all, not letting any go to waste!
+		else //Otherwise, we're letting blood drop to the floor
+			B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
+			adjust_nutrition(400)
+			sleep(50)
+			B.drip(1)
+			sleep(50)
+			B.drip(1)
 
 
 //Welcome to the adapted changeling absorb code.

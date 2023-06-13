@@ -38,19 +38,36 @@ export const FaxContent = (props, context) => {
 
   return (
     <Section>
-      {!!cooldown && <NoticeBox info>Transmitter arrays realigning. Please stand by.</NoticeBox>}
+      {!!cooldown && (
+        <NoticeBox info>
+          Transmitter arrays realigning. Please stand by.
+        </NoticeBox>
+      )}
       <LabeledList>
-        <LabeledList.Item label="Network">{bossName} Quantum Entanglement Network</LabeledList.Item>
+        <LabeledList.Item label="Network">
+          {bossName} Quantum Entanglement Network
+        </LabeledList.Item>
       </LabeledList>
       {(copyItem && (
         <Box mt={1}>
           <LabeledList>
-            <LabeledList.Item label="Currently Sending">{copyItem}</LabeledList.Item>
+            <LabeledList.Item label="Currently Sending">
+              {copyItem}
+            </LabeledList.Item>
             <LabeledList.Item label="Sending To">
-              <Button icon="map-marker-alt" content={destination} onClick={() => act('dept')} />
+              <Button
+                icon="map-marker-alt"
+                content={destination}
+                onClick={() => act('dept')}
+              />
             </LabeledList.Item>
           </LabeledList>
-          <Button icon="share-square" onClick={() => act('send')} content="Send" fluid />
+          <Button
+            icon="share-square"
+            onClick={() => act('send')}
+            content="Send"
+            fluid
+          />
         </Box>
       )) || <Box mt={1}>Please insert item to transmit.</Box>}
     </Section>
@@ -68,7 +85,12 @@ const RemoveItem = (props, context) => {
 
   return (
     <Box>
-      <Button fluid icon="eject" onClick={() => act('remove')} content="Remove Item" />
+      <Button
+        fluid
+        icon="eject"
+        onClick={() => act('remove')}
+        content="Remove Item"
+      />
     </Box>
   );
 };

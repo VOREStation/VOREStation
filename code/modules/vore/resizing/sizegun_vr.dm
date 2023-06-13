@@ -25,7 +25,7 @@
 
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
-	verbs += .proc/select_size
+	verbs += PROC_REF(select_size)
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()

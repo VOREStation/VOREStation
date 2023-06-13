@@ -29,10 +29,14 @@ export const Secbot = (props, context) => {
             </Button>
           }>
           <LabeledList>
-            <LabeledList.Item label="Maintenance Panel" color={open ? 'bad' : 'good'}>
+            <LabeledList.Item
+              label="Maintenance Panel"
+              color={open ? 'bad' : 'good'}>
               {open ? 'Open' : 'Closed'}
             </LabeledList.Item>
-            <LabeledList.Item label="Behavior Controls" color={locked ? 'good' : 'bad'}>
+            <LabeledList.Item
+              label="Behavior Controls"
+              color={locked ? 'good' : 'bad'}>
               {locked ? 'Locked' : 'Unlocked'}
             </LabeledList.Item>
           </LabeledList>
@@ -41,7 +45,10 @@ export const Secbot = (props, context) => {
           <Section title="Behavior Controls">
             <LabeledList>
               <LabeledList.Item label="Check for Weapon Authorization">
-                <Button icon={idcheck ? 'toggle-on' : 'toggle-off'} selected={idcheck} onClick={() => act('idcheck')}>
+                <Button
+                  icon={idcheck ? 'toggle-on' : 'toggle-off'}
+                  selected={idcheck}
+                  onClick={() => act('idcheck')}>
                   {idcheck ? 'Yes' : 'No'}
                 </Button>
               </LabeledList.Item>
@@ -79,7 +86,10 @@ export const Secbot = (props, context) => {
               </LabeledList.Item>
               {!!bot_patrolling && (
                 <LabeledList.Item label="Auto Patrol">
-                  <Button icon={patrol ? 'toggle-on' : 'toggle-off'} selected={patrol} onClick={() => act('patrol')}>
+                  <Button
+                    icon={patrol ? 'toggle-on' : 'toggle-off'}
+                    selected={patrol}
+                    onClick={() => act('patrol')}>
                     {patrol ? 'Yes' : 'No'}
                   </Button>
                 </LabeledList.Item>

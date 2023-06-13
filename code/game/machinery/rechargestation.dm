@@ -110,7 +110,7 @@
 
 			// Also recharge their internal battery.
 			if(H.isSynthetic() && H.nutrition < 500) //VOREStation Edit
-				H.nutrition = min(H.nutrition+(10*(1-H.species.synthetic_food_coeff)), 500) //VOREStation Edit
+				H.nutrition = min(H.nutrition+(10*(1-max(H.species.synthetic_food_coeff, 0.9))), 500) //VOREStation Edit
 				cell.use(7000/450*10)
 
 			// And clear up radiation

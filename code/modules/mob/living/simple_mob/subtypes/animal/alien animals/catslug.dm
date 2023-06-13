@@ -242,7 +242,7 @@
 	else if(prob(0.5))
 		holder.lay_down()
 		go_sleep()
-		addtimer(CALLBACK(src, .proc/consider_awakening), rand(1 MINUTE, 5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+		addtimer(CALLBACK(src, PROC_REF(consider_awakening)), rand(1 MINUTE, 5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 	else
 		return ..()
 

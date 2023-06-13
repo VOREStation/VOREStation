@@ -5,18 +5,26 @@
  *	re-implemented in other classes.
  *
  *	Contains:
+ *		Generic non-item
  *		Trash Bag
+ *		Plastic Bag
  *		Mining Satchel
  *		Plant Bag
  *		Sheet Snatcher
+ *		Sheet Snatcher (Cyborg)
  *		Cash Bag
  *		Chemistry Bag
- 		Food Bag
-
+ *		Food Bag
+ *		Food Bag (Service Hound)
+ *		Evidence Bag
+ *
  *	-Sayu
  */
 
-//  Generic non-item
+
+// -----------------------------
+//          Generic non-item
+// -----------------------------
 /obj/item/weapon/storage/bag
 	allow_quick_gather = 1
 	allow_quick_empty = 1
@@ -67,7 +75,6 @@
 // -----------------------------
 //        Plastic Bag
 // -----------------------------
-
 /obj/item/weapon/storage/bag/plasticbag
 	name = "plastic bag"
 	desc = "It's a very flimsy, very noisy alternative to a bag."
@@ -85,9 +92,9 @@
 //        Mining Satchel
 // -----------------------------
 /*
- * Mechoid - Orebags are the most common quick-gathering thing, and also have tons of lag associated with it. Their checks are going to be hyper-simplified due to this, and their INCREDIBLY singular target contents.
+ * Mechoid - Orebags are the most common quick-gathering thing, and also have tons of lag associated with it.
+ * Their checks are going to be hyper-simplified due to this, and their INCREDIBLY singular target contents.
  */
-
 /obj/item/weapon/storage/bag/ore
 	name = "mining satchel"
 	desc = "This little bugger can be used to store and transport ores."
@@ -239,25 +246,14 @@
 /obj/item/weapon/storage/bag/ore/open(mob/user as mob) //No opening it for the weird UI of having shit-tons of ore inside it.
 	user.examinate(src)
 
-/*
-/obj/item/weapon/storage/bag/ore/proc/update_ore_count() //Stolen from ore boxes. OLD way of storing ore.
-
-	stored_ore = list()
-
-	for(var/obj/item/weapon/ore/O in contents)
-		if(stored_ore[O.name])
-			stored_ore[O.name]++
-		else
-			stored_ore[O.name] = 1
-*/
 // -----------------------------
 //          Plant bag
 // -----------------------------
-
 /obj/item/weapon/storage/bag/plants
 	name = "plant bag"
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics_machines_vr.dmi'
 	icon_state = "plantbag"
+	desc = "A sturdy bag used to transport fresh produce with ease."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
@@ -265,8 +261,9 @@
 
 /obj/item/weapon/storage/bag/plants/large
 	name = "large plant bag"
-	w_class = ITEMSIZE_SMALL
-	max_storage_space = ITEMSIZE_COST_NORMAL * 45
+	icon_state = "large_plantbag"
+	desc = "A large and sturdy bag used to transport fresh produce with ease."
+	max_storage_space = ITEMSIZE_COST_NORMAL * 50
 
 // -----------------------------
 //        Sheet Snatcher
@@ -400,23 +397,8 @@
 
 /obj/item/weapon/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
-	desc = ""
+	desc = null
 	capacity = 500//Borgs get more because >specialization
-
-// -----------------------------
-//    Food Bag (Service Hound)
-// -----------------------------
-/obj/item/weapon/storage/bag/dogborg
-	name = "dog bag"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "foodbag"
-	desc = "A bag for storing things of all kinds."
-	max_storage_space = ITEMSIZE_COST_NORMAL * 25
-	max_w_class = ITEMSIZE_NORMAL
-	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment,
-	/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/coin,/obj/item/weapon/spacecash,
-	/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown,/obj/item/weapon/reagent_containers/pill)
 
 // -----------------------------
 //           Cash Bag
@@ -432,12 +414,12 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash,/obj/item/weapon/spacecasinocash)
 
-	// -----------------------------
-	//           Chemistry Bag
-	// -----------------------------
+// -----------------------------
+//         Chemistry Bag
+// -----------------------------
 /obj/item/weapon/storage/bag/chemistry
 	name = "chemistry bag"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "chembag"
 	desc = "A bag for storing pills, patches, and bottles."
 	max_storage_space = 200
@@ -445,12 +427,38 @@
 	slowdown = 3
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
 
-	// -----------------------------
-	//           Food Bag
-	// -----------------------------
+// -----------------------------
+//           Xeno Bag
+// -----------------------------
+/obj/item/weapon/storage/bag/xeno
+	name = "xenobiology bag"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "xenobag"
+	desc = "A bag for storing various slime products."
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/slime_extract,/obj/item/slimepotion, /obj/item/weapon/reagent_containers/food/snacks/monkeycube)
+
+// -----------------------------
+//         Virology Bag
+// -----------------------------
+/obj/item/weapon/storage/bag/virology
+	name = "virology bag"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "biobag"
+	desc = "A bag for storing various biological products."
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial/,/obj/item/weapon/virusdish/)
+
+// -----------------------------
+//           Food Bag
+// -----------------------------
 /obj/item/weapon/storage/bag/food
 	name = "food bag"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "foodbag"
 	desc = "A bag for storing foods of all kinds."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
@@ -458,16 +466,30 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment)
 
-	// -----------------------------
-	//           Evidence Bag
-	// -----------------------------
+// -----------------------------
+//    Food Bag (Service Hound)
+// -----------------------------
+/obj/item/weapon/storage/bag/dogborg
+	name = "dog bag"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "foodbag"
+	desc = "An intergrated bag for storing things of all kinds."
+	max_storage_space = ITEMSIZE_COST_NORMAL * 25
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment,
+	/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/coin,/obj/item/weapon/spacecash,
+	/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown,/obj/item/weapon/reagent_containers/pill)
+
+// -----------------------------
+//           Evidence Bag
+// -----------------------------
 /obj/item/weapon/storage/bag/detective
 	name = "secure satchel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "detbag"
 	desc = "A bag for storing investigation things. You know, securely."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 15
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/forensics/swab,/obj/item/weapon/sample/print,/obj/item/weapon/sample/fibers,/obj/item/weapon/evidencebag)
-

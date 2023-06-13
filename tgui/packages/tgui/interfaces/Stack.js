@@ -70,7 +70,10 @@ const Multipliers = (props, context) => {
 
   const { recipe, maxMultiplier } = props;
 
-  let maxM = Math.min(maxMultiplier, Math.floor(recipe.max_res_amount / recipe.res_amount));
+  let maxM = Math.min(
+    maxMultiplier,
+    Math.floor(recipe.max_res_amount / recipe.res_amount)
+  );
 
   let multipliers = [5, 10, 25];
 

@@ -30,8 +30,14 @@
       'color-danger': #9a9d00
     )
   );
-  @include meta.load-css('../components/ProgressBar.scss', $with: ('background-color': rgba(0, 0, 0, 0.5)));
-  @include meta.load-css('../components/Section.scss', $with: ('background-color': rgba(0, 0, 0, 0.1)));
+  @include meta.load-css(
+    '../components/ProgressBar.scss',
+    $with: ('background-color': rgba(0, 0, 0, 0.5))
+  );
+  @include meta.load-css(
+    '../components/Section.scss',
+    $with: ('background-color': rgba(0, 0, 0, 0.1))
+  );
 
   // Interfaces
   @include meta.load-css(
@@ -42,7 +48,10 @@
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss', $with: ('background-color': #363636));
+  @include meta.load-css(
+    '../layouts/TitleBar.scss',
+    $with: ('background-color': #363636)
+  );
 
   .Button {
     color: #161613;

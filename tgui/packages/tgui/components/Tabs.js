@@ -27,7 +27,16 @@ export const Tabs = (props) => {
 };
 
 const Tab = (props) => {
-  const { className, selected, color, icon, leftSlot, rightSlot, children, ...rest } = props;
+  const {
+    className,
+    selected,
+    color,
+    icon,
+    leftSlot,
+    rightSlot,
+    children,
+    ...rest
+  } = props;
   return (
     <div
       className={classes([

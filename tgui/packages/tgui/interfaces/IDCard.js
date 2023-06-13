@@ -6,7 +6,17 @@ import { RankIcon } from './common/RankIcon';
 export const IDCard = (props, context) => {
   const { data } = useBackend(context);
 
-  const { registered_name, sex, species, age, assignment, fingerprint_hash, blood_type, dna_hash, photo_front } = data;
+  const {
+    registered_name,
+    sex,
+    species,
+    age,
+    assignment,
+    fingerprint_hash,
+    blood_type,
+    dna_hash,
+    photo_front,
+  } = data;
 
   const dataIter = [
     { name: 'Sex', val: sex },
@@ -53,7 +63,10 @@ export const IDCard = (props, context) => {
               </LabeledList>
             </Flex.Item>
           </Flex>
-          <Flex className="IDCard__NamePlate" align="center" justify="space-around">
+          <Flex
+            className="IDCard__NamePlate"
+            align="center"
+            justify="space-around">
             <Flex.Item>
               <Box textAlign="center">{registered_name}</Box>
             </Flex.Item>

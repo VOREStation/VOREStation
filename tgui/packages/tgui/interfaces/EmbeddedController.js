@@ -75,7 +75,9 @@ export const EmbeddedController = (props, context) => {
 
   const Component = primaryRoutes[internalTemplateName];
   if (!Component) {
-    throw Error('Unable to find Component for template name: ' + internalTemplateName);
+    throw Error(
+      'Unable to find Component for template name: ' + internalTemplateName
+    );
   }
 
   return (
@@ -117,7 +119,11 @@ const StatusDisplay = (props, context) => {
       <LabeledList>
         {bars.map((bar) => (
           <LabeledList.Item key={bar.label} label={bar.label}>
-            <ProgressBar color={bar.color(bar.value)} minValue={bar.minValue} maxValue={bar.maxValue} value={bar.value}>
+            <ProgressBar
+              color={bar.color(bar.value)}
+              minValue={bar.minValue}
+              maxValue={bar.maxValue}
+              value={bar.value}>
               {bar.textValue}
             </ProgressBar>
           </LabeledList.Item>
@@ -140,14 +146,18 @@ const StandardControls = (props, context) => {
   if (data['interior_status'] && data.interior_status.state === 'open') {
     externalForceSafe = false;
   } else if (data['external_pressure'] && data['chamber_pressure']) {
-    externalForceSafe = !(Math.abs(data['external_pressure'] - data['chamber_pressure']) > 5);
+    externalForceSafe = !(
+      Math.abs(data['external_pressure'] - data['chamber_pressure']) > 5
+    );
   }
 
   let internalForceSafe = true;
   if (data['exterior_status'] && data.exterior_status.state === 'open') {
     internalForceSafe = false;
   } else if (data['internal_pressure'] && data['chamber_pressure']) {
-    internalForceSafe = !(Math.abs(data['internal_pressure'] - data['chamber_pressure']) > 5);
+    internalForceSafe = !(
+      Math.abs(data['internal_pressure'] - data['chamber_pressure']) > 5
+    );
   }
 
   return (
@@ -216,7 +226,9 @@ const EscapePodStatus = (props, context) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Escape Pod Status">{statusToHtml[data.docking_status]}</LabeledList.Item>
+        <LabeledList.Item label="Escape Pod Status">
+          {statusToHtml[data.docking_status]}
+        </LabeledList.Item>
         <LabeledList.Item label="Docking Hatch">{dockHatch}</LabeledList.Item>
       </LabeledList>
     </Section>
@@ -230,7 +242,11 @@ const EscapePodStatus = (props, context) => {
  */
 const Armed = (props, context) => {
   const { data, act } = useBackend(context);
-  return data.armed ? <Box color="average">ARMED</Box> : <Box color="good">SYSTEMS OK</Box>;
+  return data.armed ? (
+    <Box color="average">ARMED</Box>
+  ) : (
+    <Box color="good">SYSTEMS OK</Box>
+  );
 };
 
 /**
@@ -276,7 +292,11 @@ const DockStatus = (props, context) => {
   let dockStatus = statusToHtml[data.docking_status];
 
   if (data.override_enabled) {
-    dockStatus = <Box color="bad">{data.docking_status.toUpperCase()}-OVERRIDE ENABLED</Box>;
+    dockStatus = (
+      <Box color="bad">
+        {data.docking_status.toUpperCase()}-OVERRIDE ENABLED
+      </Box>
+    );
   }
 
   return dockStatus;
@@ -296,7 +316,11 @@ const AirlockConsoleAdvanced = (props, context) => {
   const { act, data } = useBackend(context);
 
   const color = (value) => {
-    return value < 80 || value > 120 ? 'bad' : value < 95 || value > 110 ? 'average' : 'good';
+    return value < 80 || value > 120
+      ? 'bad'
+      : value < 95 || value > 110
+        ? 'average'
+        : 'good';
   };
 
   const bars = [
@@ -333,10 +357,20 @@ const AirlockConsoleAdvanced = (props, context) => {
         <StandardControls />
         <Box>
           <Button icon="sync" content="Purge" onClick={() => act('purge')} />
-          <Button icon="lock-open" content="Secure" onClick={() => act('secure')} />
+          <Button
+            icon="lock-open"
+            content="Secure"
+            onClick={() => act('secure')}
+          />
         </Box>
         <Box>
-          <Button disabled={!data.processing} icon="ban" color="bad" content="Abort" onClick={() => act('abort')} />
+          <Button
+            disabled={!data.processing}
+            icon="ban"
+            color="bad"
+            content="Abort"
+            onClick={() => act('abort')}
+          />
         </Box>
       </Section>
     </Fragment>
@@ -361,7 +395,11 @@ const AirlockConsoleSimple = (props, context) => {
       label: 'Chamber Pressure',
       textValue: data.chamber_pressure + ' kPa',
       color: (value) => {
-        return value < 80 || value > 120 ? 'bad' : value < 95 || value > 110 ? 'average' : 'good';
+        return value < 80 || value > 120
+          ? 'bad'
+          : value < 95 || value > 110
+            ? 'average'
+            : 'good';
       },
     },
   ];
@@ -372,7 +410,13 @@ const AirlockConsoleSimple = (props, context) => {
       <Section title="Controls">
         <StandardControls />
         <Box>
-          <Button disabled={!data.processing} icon="ban" color="bad" content="Abort" onClick={() => act('abort')} />
+          <Button
+            disabled={!data.processing}
+            icon="ban"
+            color="bad"
+            content="Abort"
+            onClick={() => act('abort')}
+          />
         </Box>
       </Section>
     </Fragment>
@@ -397,7 +441,11 @@ const AirlockConsolePhoron = (props, context) => {
       label: 'Chamber Pressure',
       textValue: data.chamber_pressure + ' kPa',
       color: (value) => {
-        return value < 80 || value > 120 ? 'bad' : value < 95 || value > 110 ? 'average' : 'good';
+        return value < 80 || value > 120
+          ? 'bad'
+          : value < 95 || value > 110
+            ? 'average'
+            : 'good';
       },
     },
     {
@@ -418,7 +466,13 @@ const AirlockConsolePhoron = (props, context) => {
       <Section title="Controls">
         <StandardControls />
         <Box>
-          <Button disabled={!data.processing} icon="ban" color="bad" content="Abort" onClick={() => act('abort')} />
+          <Button
+            disabled={!data.processing}
+            icon="ban"
+            color="bad"
+            content="Abort"
+            onClick={() => act('abort')}
+          />
         </Box>
       </Section>
     </Fragment>
@@ -442,7 +496,11 @@ const AirlockConsoleDocking = (props, context) => {
       label: 'Chamber Pressure',
       textValue: data.chamber_pressure + ' kPa',
       color: (value) => {
-        return value < 80 || value > 120 ? 'bad' : value < 95 || value > 110 ? 'average' : 'good';
+        return value < 80 || value > 120
+          ? 'bad'
+          : value < 95 || value > 110
+            ? 'average'
+            : 'good';
       },
     },
   ];
@@ -467,7 +525,13 @@ const AirlockConsoleDocking = (props, context) => {
       <Section title="Controls">
         <StandardControls />
         <Box>
-          <Button disabled={!data.processing} icon="ban" color="bad" content="Abort" onClick={() => act('abort')} />
+          <Button
+            disabled={!data.processing}
+            icon="ban"
+            color="bad"
+            content="Abort"
+            onClick={() => act('abort')}
+          />
         </Box>
       </Section>
     </Fragment>
@@ -571,8 +635,12 @@ primaryRoutes['DockingConsoleMulti'] = DockingConsoleMulti;
 const DoorAccessConsole = (props, context) => {
   const { act, data } = useBackend(context);
 
-  let interiorOpen = data.interior_status.state === 'open' || data.exterior_status.state === 'closed';
-  let exteriorOpen = data.exterior_status.state === 'open' || data.interior_status.state === 'closed';
+  let interiorOpen =
+    data.interior_status.state === 'open' ||
+    data.exterior_status.state === 'closed';
+  let exteriorOpen =
+    data.exterior_status.state === 'open' ||
+    data.interior_status.state === 'closed';
 
   return (
     <Section

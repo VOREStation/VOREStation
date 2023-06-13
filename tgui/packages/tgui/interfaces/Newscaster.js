@@ -34,7 +34,11 @@ const NewscasterContent = (props, context) => {
 
   const { user } = data;
 
-  const [screen, setScreen] = useSharedState(context, 'screen', NEWSCASTER_SCREEN_MAIN);
+  const [screen, setScreen] = useSharedState(
+    context,
+    'screen',
+    NEWSCASTER_SCREEN_MAIN
+  );
   let Template = screenToTemplate[screen];
 
   return (
@@ -55,26 +59,45 @@ const NewscasterMainMenu = (props, context) => {
     <Fragment>
       <Section title="Main Menu">
         {wanted_issue && (
-          <Button fluid icon="eye" onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWWANTED)} color="bad">
+          <Button
+            fluid
+            icon="eye"
+            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWWANTED)}
+            color="bad">
             Read WANTED Issue
           </Button>
         )}
-        <Button fluid icon="eye" onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
+        <Button
+          fluid
+          icon="eye"
+          onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
           View Feed Channels
         </Button>
-        <Button fluid icon="plus" onClick={() => setScreen(NEWSCASTER_SCREEN_NEWCHANNEL)}>
+        <Button
+          fluid
+          icon="plus"
+          onClick={() => setScreen(NEWSCASTER_SCREEN_NEWCHANNEL)}>
           Create Feed Channel
         </Button>
-        <Button fluid icon="plus" onClick={() => setScreen(NEWSCASTER_SCREEN_NEWSTORY)}>
+        <Button
+          fluid
+          icon="plus"
+          onClick={() => setScreen(NEWSCASTER_SCREEN_NEWSTORY)}>
           Create Feed Message
         </Button>
-        <Button fluid icon="print" onClick={() => setScreen(NEWSCASTER_SCREEN_PRINT)}>
+        <Button
+          fluid
+          icon="print"
+          onClick={() => setScreen(NEWSCASTER_SCREEN_PRINT)}>
           Print Newspaper
         </Button>
       </Section>
       {!!securityCaster && (
         <Section title="Feed Security Functions">
-          <Button fluid icon="plus" onClick={() => setScreen(NEWSCASTER_SCREEN_NEWWANTED)}>
+          <Button
+            fluid
+            icon="plus"
+            onClick={() => setScreen(NEWSCASTER_SCREEN_NEWWANTED)}>
             Manage &quot;Wanted&quot; Issue
           </Button>
         </Section>
@@ -110,15 +133,26 @@ const NewscasterNewChannel = (props, context) => {
           {user}
         </LabeledList.Item>
         <LabeledList.Item label="Accept Public Feeds">
-          <Button icon={c_locked ? 'lock' : 'lock-open'} selected={!c_locked} onClick={() => act('set_channel_lock')}>
+          <Button
+            icon={c_locked ? 'lock' : 'lock-open'}
+            selected={!c_locked}
+            onClick={() => act('set_channel_lock')}>
             {c_locked ? 'No' : 'Yes'}
           </Button>
         </LabeledList.Item>
       </LabeledList>
-      <Button fluid color="good" icon="plus" onClick={() => act('submit_new_channel')}>
+      <Button
+        fluid
+        color="good"
+        icon="plus"
+        onClick={() => act('submit_new_channel')}>
         Submit Channel
       </Button>
-      <Button fluid color="bad" icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+      <Button
+        fluid
+        color="bad"
+        icon="undo"
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
         Cancel
       </Button>
     </Section>
@@ -223,10 +257,18 @@ const NewscasterNewStory = (props, context) => {
           </Button>
         </LabeledList.Item>
       </LabeledList>
-      <Button fluid color="good" icon="plus" onClick={() => act('submit_new_message')}>
+      <Button
+        fluid
+        color="good"
+        icon="plus"
+        onClick={() => act('submit_new_message')}>
         Submit Message
       </Button>
-      <Button fluid color="bad" icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+      <Button
+        fluid
+        color="bad"
+        icon="undo"
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
         Cancel
       </Button>
     </Section>
@@ -249,16 +291,28 @@ const NewscasterPrint = (props, context) => {
         </Button>
       }>
       <Box color="label" mb={1}>
-        Newscaster currently serves a total of {total_num} Feed channels, {active_num} of which are active, and a total
-        of {message_num} Feed stories.
+        Newscaster currently serves a total of {total_num} Feed channels,{' '}
+        {active_num} of which are active, and a total of {message_num} Feed
+        stories.
       </Box>
       <LabeledList>
-        <LabeledList.Item label="Liquid Paper remaining">{paper_remaining * 100} cm&sup3;</LabeledList.Item>
+        <LabeledList.Item label="Liquid Paper remaining">
+          {paper_remaining * 100} cm&sup3;
+        </LabeledList.Item>
       </LabeledList>
-      <Button mt={1} fluid color="good" icon="plus" onClick={() => act('print_paper')}>
+      <Button
+        mt={1}
+        fluid
+        color="good"
+        icon="plus"
+        onClick={() => act('print_paper')}>
         Print Paper
       </Button>
-      <Button fluid color="bad" icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+      <Button
+        fluid
+        color="bad"
+        icon="undo"
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
         Cancel
       </Button>
     </Section>
@@ -283,7 +337,8 @@ const NewscasterNewWanted = (props, context) => {
       <LabeledList>
         {!!wanted_issue && (
           <LabeledList.Item label="Already In Circulation">
-            A wanted issue is already in circulation. You can edit or cancel it below.
+            A wanted issue is already in circulation. You can edit or cancel it
+            below.
           </LabeledList.Item>
         )}
         <LabeledList.Item label="Criminal Name">
@@ -294,7 +349,11 @@ const NewscasterNewWanted = (props, context) => {
           />
         </LabeledList.Item>
         <LabeledList.Item label="Description">
-          <Input fluid value={decodeHtmlEntities(msg)} onInput={(e, val) => act('set_wanted_desc', { val: val })} />
+          <Input
+            fluid
+            value={decodeHtmlEntities(msg)}
+            onInput={(e, val) => act('set_wanted_desc', { val: val })}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Attach Photo">
           <Button fluid icon="image" onClick={() => act('set_attachment')}>
@@ -305,15 +364,28 @@ const NewscasterNewWanted = (props, context) => {
           {user}
         </LabeledList.Item>
       </LabeledList>
-      <Button mt={1} fluid color="good" icon="plus" onClick={() => act('submit_wanted')}>
+      <Button
+        mt={1}
+        fluid
+        color="good"
+        icon="plus"
+        onClick={() => act('submit_wanted')}>
         Submit Wanted Issue
       </Button>
       {!!wanted_issue && (
-        <Button fluid color="average" icon="minus" onClick={() => act('cancel_wanted')}>
+        <Button
+          fluid
+          color="average"
+          icon="minus"
+          onClick={() => act('cancel_wanted')}>
           Take Down Issue
         </Button>
       )}
-      <Button fluid color="bad" icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+      <Button
+        fluid
+        color="bad"
+        icon="undo"
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
         Cancel
       </Button>
     </Section>
@@ -356,8 +428,12 @@ const NewscasterViewWanted = (props, context) => {
             {decodeHtmlEntities(wanted_issue.author)}
           </LabeledList.Item>
           <LabeledList.Divider />
-          <LabeledList.Item label="Criminal">{decodeHtmlEntities(wanted_issue.criminal)}</LabeledList.Item>
-          <LabeledList.Item label="Description">{decodeHtmlEntities(wanted_issue.desc)}</LabeledList.Item>
+          <LabeledList.Item label="Criminal">
+            {decodeHtmlEntities(wanted_issue.criminal)}
+          </LabeledList.Item>
+          <LabeledList.Item label="Description">
+            {decodeHtmlEntities(wanted_issue.desc)}
+          </LabeledList.Item>
           <LabeledList.Item label="Photo">
             {(wanted_issue.img && <img src={wanted_issue.img} />) || 'None'}
           </LabeledList.Item>
@@ -379,7 +455,9 @@ const NewscasterViewSelected = (props, context) => {
       <Section
         title="Channel Not Found"
         buttons={
-          <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
+          <Button
+            icon="undo"
+            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
             Back
           </Button>
         }>
@@ -399,10 +477,14 @@ const NewscasterViewSelected = (props, context) => {
               icon="ban"
               confirmIcon="ban"
               content="Issue D-Notice"
-              onClick={() => act('toggle_d_notice', { ref: viewing_channel.ref })}
+              onClick={() =>
+                act('toggle_d_notice', { ref: viewing_channel.ref })
+              }
             />
           )}
-          <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
+          <Button
+            icon="undo"
+            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
             Back
           </Button>
         </Fragment>
@@ -417,15 +499,18 @@ const NewscasterViewSelected = (props, context) => {
               content={decodeHtmlEntities(viewing_channel.author)}
               tooltip="Censor?"
               confirmContent="Censor Author"
-              onClick={() => act('censor_channel_author', { ref: viewing_channel.ref })}
+              onClick={() =>
+                act('censor_channel_author', { ref: viewing_channel.ref })
+              }
             />
           )) || <Box>{decodeHtmlEntities(viewing_channel.author)}</Box>}
         </LabeledList.Item>
       </LabeledList>
       {!!viewing_channel.censored && (
         <Box color="bad">
-          ATTENTION: This channel has been deemed as threatening to the welfare of the station, and marked with a{' '}
-          {company} D-Notice. No further feed story additions are allowed while the D-Notice is in effect.
+          ATTENTION: This channel has been deemed as threatening to the welfare
+          of the station, and marked with a {company} D-Notice. No further feed
+          story additions are allowed while the D-Notice is in effect.
         </Box>
       )}
       {(!!viewing_channel.messages.length &&
@@ -439,7 +524,8 @@ const NewscasterViewSelected = (props, context) => {
               </Box>
             )}
             <Box color="grey">
-              [Story by {decodeHtmlEntities(message.author)} - {message.timestamp}]
+              [Story by {decodeHtmlEntities(message.author)} -{' '}
+              {message.timestamp}]
             </Box>
             {!!securityCaster && (
               <Fragment>
@@ -449,20 +535,26 @@ const NewscasterViewSelected = (props, context) => {
                   icon="strikethrough"
                   confirmIcon="strikethrough"
                   content="Censor Story"
-                  onClick={() => act('censor_channel_story_body', { ref: message.ref })}
+                  onClick={() =>
+                    act('censor_channel_story_body', { ref: message.ref })
+                  }
                 />
                 <Button.Confirm
                   color="bad"
                   icon="strikethrough"
                   confirmIcon="strikethrough"
                   content="Censor Author"
-                  onClick={() => act('censor_channel_story_author', { ref: message.ref })}
+                  onClick={() =>
+                    act('censor_channel_story_author', { ref: message.ref })
+                  }
                 />
               </Fragment>
             )}
           </Section>
         ))) ||
-        (!viewing_channel.censored && <Box color="average">No feed messages found in channel.</Box>)}
+        (!viewing_channel.censored && (
+          <Box color="average">No feed messages found in channel.</Box>
+        ))}
     </Section>
   );
 };

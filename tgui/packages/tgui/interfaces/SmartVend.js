@@ -12,14 +12,19 @@ export const SmartVend = (props, context) => {
           {(data.secure && (
             <NoticeBox danger={data.locked === -1} info={data.locked !== -1}>
               {data.locked === -1 ? (
-                <Box>Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or 1=1&apos;%($...</Box>
+                <Box>
+                  Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or
+                  1=1&apos;%($...
+                </Box>
               ) : (
                 <Box>Secure Access: Please have your identification ready.</Box>
               )}
             </NoticeBox>
           )) ||
             null}
-          {(data.contents.length === 0 && <NoticeBox>Unfortunately, this {config.title} is empty.</NoticeBox>) || (
+          {(data.contents.length === 0 && (
+            <NoticeBox>Unfortunately, this {config.title} is empty.</NoticeBox>
+          )) || (
             <Table>
               <Table.Row header>
                 <Table.Cell collapsing>Item</Table.Cell>

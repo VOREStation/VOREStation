@@ -73,9 +73,21 @@ export const PressureRegulator = (props, context) => {
               label="Desired Output Pressure"
               buttons={
                 <Fragment>
-                  <Button icon="compress-arrows-alt" content="MIN" onClick={() => act('set_press', { press: 'min' })} />
-                  <Button icon="expand-arrows-alt" content="MAX" onClick={() => act('set_press', { press: 'max' })} />
-                  <Button icon="wrench" content="SET" onClick={() => act('set_press', { press: 'set' })} />
+                  <Button
+                    icon="compress-arrows-alt"
+                    content="MIN"
+                    onClick={() => act('set_press', { press: 'min' })}
+                  />
+                  <Button
+                    icon="expand-arrows-alt"
+                    content="MAX"
+                    onClick={() => act('set_press', { press: 'max' })}
+                  />
+                  <Button
+                    icon="wrench"
+                    content="SET"
+                    onClick={() => act('set_press', { press: 'set' })}
+                  />
                 </Fragment>
               }>
               {pressure_set / 100} kPa
@@ -94,7 +106,11 @@ export const PressureRegulator = (props, context) => {
                     content="MAX"
                     onClick={() => act('set_flow_rate', { press: 'max' })}
                   />
-                  <Button icon="wrench" content="SET" onClick={() => act('set_flow_rate', { press: 'set' })} />
+                  <Button
+                    icon="wrench"
+                    content="SET"
+                    onClick={() => act('set_flow_rate', { press: 'set' })}
+                  />
                 </Fragment>
               }>
               {set_flow_rate / 10} L/s
