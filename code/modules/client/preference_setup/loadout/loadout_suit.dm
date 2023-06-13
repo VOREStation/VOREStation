@@ -544,7 +544,8 @@
 	gear_tweaks += new/datum/gear_tweak/path(flannel)
 
 /datum/gear/suit/denim_jacket
-	display_name = "denim jacket"
+	display_name = "denim jacket and vest selection"
+	description = "Select from a small range of denim jackets and vests."
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket
 
 /datum/gear/suit/denim_jacket/New()
