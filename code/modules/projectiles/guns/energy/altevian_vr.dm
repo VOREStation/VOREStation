@@ -10,7 +10,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 1000)
 	projectile_type = /obj/item/projectile/beam/meeplaser
-	charge_cost = 150
+	charge_cost = 450
 
 /obj/item/weapon/gun/energy/altevian/large
 	name = "Proto-Reactive Beam Thruster"
@@ -23,7 +23,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 4)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/meeplaser/strong
-	charge_cost = 300
+	charge_cost = 200
 
 /obj/item/projectile/beam/meeplaser
 	name = "meep beam"
