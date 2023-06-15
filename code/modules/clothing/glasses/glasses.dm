@@ -318,16 +318,15 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/regular/thin
 	name = "prescription thin-rimmed glasses"
-	desc = "Glasses with frames are so last century."
+	desc = "More expensive, more fragile and much less practical, but glasses with frames are so last century."
 	icon_state = "glasses_thin"
 	prescription = 1
 
 /obj/item/clothing/glasses/thin
 	name = "thin-rimmed glasses"
-	desc = "Glasses with frames are so last century."
+	desc = "More expensive, more fragile and much less practical, but glasses with frames are so last century."
 	icon_state = "glasses_thin"
 	prescription = 0
-
 
 /obj/item/clothing/glasses/sunglasses
 	name = "sunglasses"
