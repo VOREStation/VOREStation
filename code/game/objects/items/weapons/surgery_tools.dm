@@ -244,7 +244,7 @@
 	toolspeed = 0.5
 
 /obj/item/weapon/surgical/circular_saw/cyborg
-	icon_state = "cyborg_saw"
+	//icon_state = "cyborg_saw"
 	toolspeed = 0.5
 
 /obj/item/weapon/surgical/bonegel/cyborg
