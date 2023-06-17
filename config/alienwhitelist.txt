@@ -70,6 +70,7 @@ kered2 - Protean
 khanivore - Protean
 killjaden - Protean
 kira72 - Xenochimera
+kira72 - Protean
 kitchifox - Black-Eyed Shadekin
 konner1055 - Black-Eyed Shadekin
 konner1055 - Protean
@@ -81,6 +82,7 @@ lizehrd - Xenochimera
 looptyloo - Protean
 lordlag - Black-Eyed Shadekin
 lorgenz - Protean
+losstinspess - Protean
 losstinspess - Xenochimera
 negatist - Protean
 magpiemayhem - Vox
