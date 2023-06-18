@@ -329,6 +329,8 @@
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 10,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 10,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/professionals = 10,
 					/obj/item/weapon/storage/rollingpapers = 10,
 					/obj/item/weapon/storage/rollingpapers/blunt = 10,
 					/obj/item/weapon/storage/chewables/tobacco = 5,
@@ -349,15 +351,15 @@
 					/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico = 2,
 					/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico = 5)
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
-	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/professionals = 5)
+	premium = list(/obj/item/weapon/storage/fancy/cigar = 5)
 	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 12,
 					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 20,
 					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 14,
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 17,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 22,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 18,
+					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 24,
+					/obj/item/weapon/storage/fancy/cigarettes/professionals = 27,
 					/obj/item/weapon/storage/rollingpapers = 10,
 					/obj/item/weapon/storage/rollingpapers/blunt = 20,
 					/obj/item/weapon/storage/chewables/tobacco = 10,
