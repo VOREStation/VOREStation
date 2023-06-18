@@ -23,7 +23,6 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
 	cost = 2
 
-
 /datum/gear/suit/roles/labcoat_old/New()
 	..()
 	var/list/labcoats = list(
@@ -92,7 +91,6 @@
 	display_name = "chiton"
 	path = /obj/item/clothing/suit/chiton
 
-
 //oversized t-shirt
 /datum/gear/suit/oversize
 	display_name = "oversized t-shirt (colorable)"
@@ -109,7 +107,6 @@ Talon winter coat
 	display_name = "winter coat, Talon"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon
 
-
 /datum/gear/suit/armor/combat/crusader_explo
 	display_name = "knight, explo"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
@@ -118,20 +115,14 @@ Talon winter coat
 /datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
-	allowed_roles = list ("Field Medic")
+	allowed_roles = list ("Paramedic")
 
 //Atmos-coloured hazard vest
 	display_name = "hazard vest, atmospherics"
 	path = /obj/item/clothing/suit/storage/hazardvest/atmos
 	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
 
-//Long fur coat
-/datum/gear/suit/russofurcoat
-	display_name = "long fur coat"
-	path = /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
-
 //Colorable Hoodie
-
 /datum/gear/suit/hoodie_vr
 	display_name = "hoodie with hood (colorable)"
 	path = /obj/item/clothing/suit/storage/hooded/hoodie

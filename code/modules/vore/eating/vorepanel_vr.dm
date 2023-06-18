@@ -8,6 +8,12 @@
 #define BELLIES_DESC_MAX 4096
 #define FLAVOR_MAX 400
 
+//INSERT COLORIZE-ONLY STOMACHS HERE
+var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
+														"a_synth_flesh_mono_hole",
+														"a_anim_belly",
+														"multi_layer_test_tummy")
+
 /mob/living
 	var/datum/vore_look/vorePanel
 
@@ -202,6 +208,8 @@
 			"weight_ex" = host.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
 			"belly_fullscreen_color" = selected.belly_fullscreen_color,
+			"belly_fullscreen_color_secondary" = selected.belly_fullscreen_color_secondary,
+			"belly_fullscreen_color_trinary" = selected.belly_fullscreen_color_trinary,
 			"colorization_enabled" = selected.colorization_enabled,
 			"eating_privacy_local" = selected.eating_privacy_local,
 			"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
@@ -241,6 +249,8 @@
 		selected_list["disable_hud"] = selected.disable_hud
 		selected_list["colorization_enabled"] = selected.colorization_enabled
 		selected_list["belly_fullscreen_color"] = selected.belly_fullscreen_color
+		selected_list["belly_fullscreen_color_secondary"] = selected.belly_fullscreen_color_secondary
+		selected_list["belly_fullscreen_color_trinary"] = selected.belly_fullscreen_color_trinary
 
 		if(selected.colorization_enabled)
 			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_colorized_vore.dmi') //Makes any icons inside of here selectable.
@@ -252,10 +262,7 @@
 			//Why? I have no flipping clue. As you can see above, vore_colorized is included in the assets but isn't working. It makes no sense.
 			//I can only imagine this is a BYOND/TGUI issue with the cache. If you can figure out how to fix this and make it so you only need to
 			//include things in full_colorized_vore, that would be great. For now, this is the only workaround that I could get to work.
-			selected_list["possible_fullscreens"] -= "a_synth_flesh_mono"
-			selected_list["possible_fullscreens"] -= "a_synth_flesh_mono_hole"
-			selected_list["possible_fullscreens"] -= "a_anim_belly"
-			//INSERT COLORIZE-ONLY STOMACHS HERE
+			selected_list["possible_fullscreens"] -= belly_colorable_only_fullscreens
 
 		var/list/selected_contents = list()
 		for(var/O in selected)
@@ -534,7 +541,9 @@
 				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
 			if(!host.show_vore_fx)
 				host.clear_fullscreen("belly")
-				//host.clear_fullscreen("belly2") //For multilayered stomachs. Not currently implemented.
+				host.clear_fullscreen("belly2")
+				host.clear_fullscreen("belly3")
+				host.clear_fullscreen("belly4")
 				if(!host.hud_used.hud_shown)
 					host.toggle_hud_vis()
 			unsaved_changes = TRUE
@@ -1399,6 +1408,16 @@
 			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color = newcolor
+			. = TRUE
+		if("b_fullscreen_color_secondary")
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
+			if(newcolor)
+				host.vore_selected.belly_fullscreen_color_secondary = newcolor
+			. = TRUE
+		if("b_fullscreen_color_trinary")
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
+			if(newcolor)
+				host.vore_selected.belly_fullscreen_color_trinary = newcolor
 			. = TRUE
 		if("b_save_digest_mode")
 			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode
