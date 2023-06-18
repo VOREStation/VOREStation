@@ -1,7 +1,7 @@
 /datum/technomancer/spell/mend_life
 	name = "Mend Life"
 	desc = "Heals minor wounds, such as cuts, bruises, burns, and other non-lifethreatening injuries.  \
-	Instability is split between the target and technomancer, if seperate.  The function will end prematurely \
+	Instability is split between the target and technomancer, if separate.  The function will end prematurely \
 	if the target is completely healthy, preventing further instability."
 	spell_power_desc = "Healing amount increased."
 	cost = 50
