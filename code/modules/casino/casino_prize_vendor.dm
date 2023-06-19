@@ -282,7 +282,7 @@
 				if("event")
 					restriction_check = category_event
 				else
-					to_chat(usr, "<span class='warning'>Prize checkout error has occured, purchase cancelled.</span>")
+					to_chat(usr, "<span class='warning'>Prize checkout error has occurred, purchase cancelled.</span>")
 					return FALSE
 
 			if(restriction_check < 1)
