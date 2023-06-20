@@ -19901,6 +19901,7 @@
 	id = "kitchen";
 	layer = 3.3
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aGu" = (
@@ -21065,18 +21066,17 @@
 /area/tether/surfacebase/servicebackroom)
 "aIk" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/blast/shutters{
-	dir = 8;
-	id = "kitchen";
-	layer = 3.3;
-	name = "Kitchen Shutters"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 8
 	},
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
+	},
+/obj/machinery/door/blast/gate/thin{
+	dir = 8;
+	id = "kitchen";
+	layer = 3.3
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
