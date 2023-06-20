@@ -5308,7 +5308,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/ore/bluespace_crystal,
+/obj/item/weapon/bluespace_crystal,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "sQ" = (
