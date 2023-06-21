@@ -25,6 +25,7 @@
 	tank_type = /obj/item/weapon/tank/stasis/nitro_cryo
 	stasis_level = 2	// Lower than the normal cryobag, because it's not made for meat that dies. It's made for robots and is freezing.
 	var/obj/item/clothing/accessory/badge/corptag	// The tag on the bag.
+	robobag = TRUE
 
 /obj/structure/closet/body_bag/cryobag/robobag/examine(mob/user)
 	. = ..()
@@ -131,3 +132,9 @@
 	..()
 	if(!istype(holder.loc, /obj/structure/closet/body_bag/cryobag/robobag))
 		src.expire()
+
+/obj/item/usedcryobag/robobag
+	name = "used synthmorph bag"
+	desc = "Pretty useless now..."
+	icon_state = "bodybag_used"
+	icon = 'icons/obj/robobag.dmi'

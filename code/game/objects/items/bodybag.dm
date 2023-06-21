@@ -30,6 +30,7 @@
 	density = FALSE
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = 0
+	var/robobag = FALSE
 
 /obj/structure/closet/body_bag/attackby(var/obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/pen))
@@ -156,8 +157,11 @@
 
 /obj/structure/closet/body_bag/cryobag/open()
 	. = ..()
-	if(used)
+	if(used && !robobag)
 		new /obj/item/usedcryobag(loc)
+		qdel(src)
+	else if(used)
+		new /obj/item/usedcryobag/robobag(loc)
 		qdel(src)
 
 /obj/structure/closet/body_bag/cryobag/update_icon()
@@ -258,6 +262,6 @@
 
 /obj/item/usedcryobag
 	name = "used stasis bag"
-	desc = "Pretty useless now.."
+	desc = "Pretty useless now..."
 	icon_state = "bodybag_used"
 	icon = 'icons/obj/closets/cryobag.dmi'
