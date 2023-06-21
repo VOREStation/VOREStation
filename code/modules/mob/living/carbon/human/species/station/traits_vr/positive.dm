@@ -222,8 +222,22 @@
 
 
 /datum/trait/positive/wall_climber
-	name = "Climber"
-	desc = "You can climb certain walls without tools!"
+	name = "Climber, Amateur"
+	desc = "You can climb certain walls without tools! This is likely a personal skill you developed."
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. You suffer from a movement delay of 1.5 with this trait.\n \
+	Your total climb time is expected to be 17.5 seconds. Tools may reduce this. \n\n \
+	This likewise allows descending walls, provided you're facing an empty space and standing on \
+	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
+	cost = 1
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJ, SPECIES_VASILISSAN)	// They got unique climbing delay.
+	var_changes = list("can_climb" = TRUE)
+	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber_natural)
+
+/datum/trait/positive/wall_climber_natural
+	name = "Climber, Natural"
+	desc = "You can climb certain walls without tools! This is likely due to the unique anatomy of your species. CUSTOM AND XENOCHIM ONLY"
 	tutorial = "You must approach a wall and right click it and select the \
 	'climb wall' verb to climb it. You suffer from a movement delay of 1.5 with this trait.\n \
 	Your total climb time is expected to be 17.5 seconds. Tools may reduce this. \n\n \
@@ -231,31 +245,26 @@
 	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("can_climb" = TRUE)
-	excludes = list(/datum/trait/positive/wall_climber_pro,/datum/trait/positive/wall_climber_master)
+	allowed_species = list(SPECIES_XENOCHIMERA, SPECIES_CUSTOM)	//So that we avoid needless bloat for xenochim
+	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber)
 
 /datum/trait/positive/wall_climber_pro
-	name = "Climber, Master"
-	desc = "You can climb certain walls without tools! You are a professional rock climber at this, letting you climb as fast as a tajara!"
+	name = "Climber, Professional"
+	desc = "You can climb certain walls without tools! You are a professional rock climber at this, letting you climb almost twice as fast!"
 	tutorial = "You must approach a wall and right click it and select the \
 	'climb wall' verb to climb it. Your movement delay is just 1.25 with this trait.\n \
 	Your climb time is expected to be 9 seconds. Tools may reduce this. \n\n \
 	This likewise allows descending walls, provided you're facing an empty space and standing on \
 	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
-	cost = 1
-	custom_only = FALSE
-	var_changes = list("can_climb" = TRUE, "climbing_delay" = 1.25)
-	excludes = list(/datum/trait/positive/wall_climber,/datum/trait/positive/wall_climber_master)
-
-/datum/trait/positive/wall_climber_master
-	name = "Climber, Master"
-	desc = "You can climb certain walls without tools! You are a true master at this, letting you climb as a vassilian!"
-	tutorial = "You must approach a wall and right click it and select the \
-	'climb wall' verb to climb it. Your movement delay is just 1.0 with this trait. \n \
-	Your climb time is expected to be 5 seconds. \n\n \
-	This likewise allows descending walls, provided you're facing an empty space and standing on \
-	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
 	cost = 2
 	custom_only = FALSE
-	var_changes = list("can_climb" = TRUE, "climbing_delay" = 1.0)
-	excludes = list(/datum/trait/positive/wall_climber_pro,/datum/trait/positive/wall_climber)
+	var_changes = list("climbing_delay" = 1.25)
+	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
+	excludes = list(/datum/trait/positive/wall_climber,/datum/trait/positive/wall_climber_natural)
+
+// This feels jank, but it's the cleanest way I could do TRAIT_VARCHANGE_LESS_BETTER while having a boolean var change
+// Alternate would've been banned_species = list(SPECIES_TAJ, SPECIES_VASSILISIAN)
+// Opted for this as it's "future proof"
+/datum/trait/positive/wall_climber_pro/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	S.can_climb = TRUE

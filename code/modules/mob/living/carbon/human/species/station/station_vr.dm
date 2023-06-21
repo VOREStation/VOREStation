@@ -320,7 +320,7 @@
 	wikilink="https://wiki.vore-station.net/Tajaran"
 	agility = 90
 	can_climb = TRUE
-	climbing_delay = 1.25 //No vassilian, but faster than a human who learned to climb!
+	climbing_delay = 1.00 //Cats are good climbers.
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN

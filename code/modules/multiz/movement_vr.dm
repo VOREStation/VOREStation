@@ -94,9 +94,13 @@
 	var/climbing_delay_min = L.climbing_delay
 	var/fall_chance = 0
 	var/drop_our_held = FALSE
+	var/nutrition_cost = 50 //Climbing up is harder!
 
 	//Checking if there's any point trying to climb
 	var/turf/above_wall = GetAbove(src)
+	if(L.nutrition <= nutrition_cost)
+		to_chat(L, SPAN_WARNING("You [L.isSynthetic() ? "lack the energy" : "are too hungry"] for such strenous activities!"))
+		return
 	if(!above_wall) //No multiZ
 		to_chat(L, SPAN_NOTICE("There's nothing interesting over this cliff!"))
 		return
@@ -173,10 +177,19 @@
 			climb_time += 10 SECONDS
 		if(climbing_delay_min > 1.0)
 			climb_time += 2.5 SECONDS
+	switch(L.nutrition)	//Values are 50 lower than the warning icon appearing
+		if(100 to 200)
+			to_chat(L, SPAN_NOTICE("Climbing while [L.isSynthetic() ? "low on power" : "hungry"] slows you down"))
+			climb_time += 1 SECONDS
+		if(nutrition_cost to 100)
+			to_chat(L, SPAN_DANGER("You [L.isSynthetic() ? "lack enough power" : "are too hungry"] to climb safely!"))
+			climb_time +=3 SECONDS
+			if(fall_chance < 30)
+				fall_chance = 30
 	L.custom_emote(VISIBLE_MESSAGE, "begins to climb up on \The [src]")
 	var/oops_time = world.time
 	var/grace_time = 4 SECONDS
-	to_chat(L, SPAN_WARNING("If you get interrupted after [grace_time] seconds of climbing, you will fall and hurt yourself, beware!"))
+	to_chat(L, SPAN_WARNING("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
 	if(do_after(L,climb_time))
 		if(prob(fall_chance))
 			to_chat(L, SPAN_DANGER("You slipped and fell!"))
@@ -185,6 +198,7 @@
 			if(drop_our_held)
 				L.drop_item(get_turf(L))
 			L.forceMove(above_wall)
+		L.adjust_nutrition(-nutrition_cost)
 
 		to_chat(L, SPAN_NOTICE("You clambered up successfully!"))
 	else if(world.time > (oops_time + grace_time))
@@ -198,9 +212,13 @@
 	var/fall_chance = 0	//Increased if we can't actually climb
 	var/turf/our_turf = get_turf(src) //floor we're standing on
 	var/climbing_delay_min = src.climbing_delay //We take the lowest climbing delay between mob, species and gear.
+	var/nutrition_cost = 25	//Descending is easier!
 
 
 	//Check if we can even try to climb
+	if(nutrition <= nutrition_cost)
+		to_chat(src, SPAN_WARNING("You [isSynthetic() ? "lack the energy" : "are too hungry"] for such strenous activities!"))
+		return
 	var/turf/below_wall = GetBelow(our_turf)
 	if(!below_wall)	//No multiZ
 		to_chat(src, SPAN_NOTICE("There's nothing interesting below us!"))
@@ -271,6 +289,16 @@
 			climb_time += 10 SECONDS
 		if(climbing_delay_min > 1.0)
 			climb_time += 2.5 SECONDS
+	switch(nutrition)	//Values are 50 lower than the warning icon appearing
+		if(100 to 200)
+			to_chat(src, SPAN_NOTICE("Climbing while [isSynthetic() ? "low on power" : "hungry"] slows you down"))
+			climb_time += 1 SECONDS
+		if(nutrition_cost to 100)
+			to_chat(src, SPAN_DANGER("You [isSynthetic() ? "lack enough power" : "are too hungry"] to climb safely!"))
+			climb_time +=3 SECONDS
+			if(fall_chance < 30)
+				fall_chance = 30
+
 	if(!climbing_surface.climbable)
 		to_chat(src, SPAN_DANGER("\The [climbing_surface] is not suitable for climbing! Even for a master climber, this is risky!"))
 		if(fall_chance < 75 )
@@ -278,13 +306,14 @@
 	src.custom_emote(VISIBLE_MESSAGE, "begins to climb down along  \The [below_wall]")
 	var/oops_time = world.time
 	var/grace_time = 3 SECONDS
-	to_chat(src, SPAN_WARNING("If you get interrupted after [grace_time] seconds of climbing, you will fall and hurt yourself, beware!"))
+	to_chat(src, SPAN_WARNING("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
 	if(do_after(src,climb_time))
 		if(prob(fall_chance))
 			to_chat(src, SPAN_DANGER("You slipped and fell!"))
 			src.forceMove(front_of_us)
 		else
 			src.forceMove(destination)
-		to_chat(src, SPAN_NOTICE("You descended successfully!"))
+			to_chat(src, SPAN_NOTICE("You descended successfully!"))
+		adjust_nutrition(-nutrition_cost)
 	else if(world.time > (oops_time + grace_time))
 		src.forceMove(front_of_us)
