@@ -8,9 +8,6 @@
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_state = "c_flesh_floor_edges"
 
-/obj/effect/floor_decal/industrial/outline/red
-	name = "red outline"
-	color = COLOR_RED
 /obj/effect/floor_decal/borderfloor/shifted
 	icon_state = "borderfloor_shifted"
 
@@ -232,3 +229,238 @@
 	icon_state = "mss_green_corner"
 /obj/effect/floor_decal/milspec_sterile/green/half
 	icon_state = "mss_green_side"
+
+//Shuttle Floor Decals
+/obj/effect/floor_decal/shuttle
+	name = "partial outline"
+	icon_state = "semi_outline"
+/obj/effect/floor_decal/shuttle/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/shuttle/grey
+	color = "#545253"
+/obj/effect/floor_decal/shuttle/blue
+	color = "#00B8B2"
+
+/obj/effect/floor_decal/shuttle/handicap
+	name = "handicap marker"
+	icon_state = "handicap"
+/obj/effect/floor_decal/shuttle/handicap/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/shuttle/handicap/grey
+	color = "#545253"
+
+/obj/effect/floor_decal/shuttle/loading
+	name = "loading/unloading marker"
+	icon_state = "exit_and_entrance"
+/obj/effect/floor_decal/shuttle/loading/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/shuttle/loading/grey
+	color = "#545253"
+/obj/effect/floor_decal/shuttle/loading/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/shuttle/full_2
+	name = "hatched marker"
+	icon_state = "full_2"
+/obj/effect/floor_decal/shuttle/full_2/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/shuttle/full_2/grey
+	color = "#545253"
+/obj/effect/floor_decal/shuttle/full_2/blue
+	color = "#00B8B2"
+
+//Industrial Floor Decals
+/obj/effect/floor_decal/industrial/warning
+	name = "hazard stripes"
+	icon_state = "warning"
+/obj/effect/floor_decal/industrial/warning/corner
+	icon_state = "warningcorner"
+/obj/effect/floor_decal/industrial/warning/full
+	icon_state = "warningfull"
+/obj/effect/floor_decal/industrial/warning/cee
+	icon_state = "warningcee"
+/obj/effect/floor_decal/industrial/warning/tile
+	icon_state = "warningtile"
+
+/obj/effect/floor_decal/industrial/warning/dust
+	icon_state = "warning_dust"
+/obj/effect/floor_decal/industrial/warning/dust/corner
+	icon_state = "warningcorner_dust"
+/obj/effect/floor_decal/industrial/warning/dust/full
+	icon_state = "warningfull_dust"
+/obj/effect/floor_decal/industrial/warning/dust/cee
+	icon_state = "warningcee_dust"
+/obj/effect/floor_decal/industrial/warning/dust/tile
+	icon_state = "warningtile_dust"
+
+/obj/effect/floor_decal/industrial/danger
+	name = "danger stripes"
+	icon_state = "danger"
+/obj/effect/floor_decal/industrial/danger/corner
+	icon_state = "dangercorner"
+/obj/effect/floor_decal/industrial/danger/full
+	icon_state = "dangerfull"
+/obj/effect/floor_decal/industrial/danger/cee
+	icon_state = "dangercee"
+
+/obj/effect/floor_decal/industrial/hatch
+	name = "hatched marking"
+	icon_state = "delivery"
+/obj/effect/floor_decal/industrial/hatch/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/hatch/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/hatch/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/hatch/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/rad_floor
+	name = "radiation marking"
+	icon_state = "rad_floor"
+/obj/effect/floor_decal/industrial/rad_floor/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/rad_floor/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/rad_floor/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/rad_floor/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/outline
+	name = "white outline"
+	icon_state = "outline"
+/obj/effect/floor_decal/industrial/outline/blue
+	name = "blue outline"
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/outline/yellow
+	name = "yellow outline"
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/outline/grey
+	name = "grey outline"
+	color = "#545253"
+/obj/effect/floor_decal/industrial/outline/red
+	name = "red outline"
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/outline/cut_corners
+	name = "white cut outline"
+	icon_state = "cut_corners"
+/obj/effect/floor_decal/industrial/outline/cut_corners/blue
+	name = "blue cut outline"
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/outline/cut_corners/yellow
+	name = "yellow cut outline"
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/outline/cut_corners/grey
+	name = "grey cut outline"
+	color = "#545253"
+/obj/effect/floor_decal/industrial/outline/cut_corners/red
+	name = "red cut outline"
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/loading
+	name = "loading area"
+	icon_state = "loading"
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/loading/white
+	color = null
+/obj/effect/floor_decal/industrial/loading/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/loading/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/loading/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/arrows
+	name = "tri-arrows"
+	icon_state = "tri-arrows"
+/obj/effect/floor_decal/industrial/arrows/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/arrows/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/arrows/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/arrows/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/caution
+	name = "caution"
+	icon_state = "caution"
+/obj/effect/floor_decal/industrial/caution/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/caution/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/caution/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/caution/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/stand_clear
+	name = "stand clear"
+	icon_state = "stand_clear"
+/obj/effect/floor_decal/industrial/stand_clear/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/stand_clear/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/stand_clear/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/stand_clear/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/bot_outline
+	name = "bot outline"
+	icon_state = "bot_outline"
+/obj/effect/floor_decal/industrial/bot_outline/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/bot_outline/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/bot_outline/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/bot_outline/red
+	color = "#a70000"
+
+/obj/effect/floor_decal/industrial/bot_outline/corner
+	icon_state = "bot_corners"
+/obj/effect/floor_decal/industrial/bot_outline/corner/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/bot_outline/corner/blue
+	color = "#00B8B2"
+/obj/effect/floor_decal/industrial/bot_outline/corner/grey
+	color = "#545253"
+/obj/effect/floor_decal/industrial/bot_outline/corner/red
+	color = "#a70000"
+
+//Colored Warning Stripes
+/obj/effect/floor_decal/industrial/warning/color
+	icon_state = "warning_color"
+/obj/effect/floor_decal/industrial/warning/color/corner
+	icon_state = "warningcorner_color"
+/obj/effect/floor_decal/industrial/warning/color/full
+	icon_state = "warningfull_color"
+/obj/effect/floor_decal/industrial/warning/color/cee
+	icon_state = "warningcee_color"
+/obj/effect/floor_decal/industrial/warning/color/tile
+	icon_state = "warningtile_color"
+
+/obj/effect/floor_decal/industrial/warning/color/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/warning/color/corner/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/warning/color/full/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/warning/color/cee/yellow
+	color = "#CFCF55"
+/obj/effect/floor_decal/industrial/warning/color/tile/yellow
+	color = "#CFCF55"
+
+/obj/effect/floor_decal/industrial/warning/color/red
+	color = "#a70000"
+/obj/effect/floor_decal/industrial/warning/color/corner/red
+	color = "#a70000"
+/obj/effect/floor_decal/industrial/warning/color/full/red
+	color = "#a70000"
+/obj/effect/floor_decal/industrial/warning/color/cee/red
+	color = "#a70000"
+/obj/effect/floor_decal/industrial/warning/color/tile/red
+	color = "#a70000"
