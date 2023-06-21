@@ -488,6 +488,30 @@
 	extra_overlay_w = "fatsynthfeline_markings"
 	extra_overlay2_w = "fatsynthfeline_glow"
 
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi
+	name = "Synthetic chassis - agile (Taur)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi_fat
+	name = "Synthetic chassis - agile (Taur, Fat)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_fat_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi_wag
+	name = "Synthetic chassis - agile (Taur, Fat vwag)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	ani_state = "synthtaur1_s"
+	extra_overlay_w = "synthtaur1_fat_markings"
+	extra_overlay2_w = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
 	icon_state = "slug_s"

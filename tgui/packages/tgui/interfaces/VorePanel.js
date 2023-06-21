@@ -887,6 +887,8 @@ const VoreSelectedBellyVisuals = (props, context) => {
     possible_fullscreens,
     disable_hud,
     belly_fullscreen_color,
+    belly_fullscreen_color_secondary,
+    belly_fullscreen_color_trinary,
     mapRef,
     colorization_enabled,
   } = belly;
@@ -908,7 +910,37 @@ const VoreSelectedBellyVisuals = (props, context) => {
                 val: null,
               })
             }>
-            Select Color
+            Select Primary Color
+          </Button>
+          <Box
+            backgroundColor={belly_fullscreen_color_secondary}
+            width="20px"
+            height="20px"
+          />
+          <Button
+            icon="eye-dropper"
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_fullscreen_color_secondary',
+                val: null,
+              })
+            }>
+            Select Secondary Color
+          </Button>
+          <Box
+            backgroundColor={belly_fullscreen_color_trinary}
+            width="20px"
+            height="20px"
+          />
+          <Button
+            icon="eye-dropper"
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_fullscreen_color_trinary',
+                val: null,
+              })
+            }>
+            Select Trinary Color
           </Button>
           <LabeledList.Item label="Enable Coloration">
             <Button

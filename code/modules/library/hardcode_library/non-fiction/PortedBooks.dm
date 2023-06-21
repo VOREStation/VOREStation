@@ -44,7 +44,7 @@ Category: Non-Fiction
 
 /obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov
 	name = "The Viability of Corporate Government"
-	desc = "A harbound book titled \"The Viability of Corporate Government\" by Yang Simiao."
+	desc = "A hardbound book titled \"The Viability of Corporate Government\" by Yang Simiao."
 	description_info = "This book is titled \"The Viability of Corporate Government\" by Yang Simiao. It seems to be an opinion piece on the relationship between corporations and the stations they own."
 
 	title = "The Viability of Corporate Government"

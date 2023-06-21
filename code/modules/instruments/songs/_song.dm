@@ -206,7 +206,7 @@
 	if(playing)
 		return
 	if(!using_instrument?.ready())
-		to_chat(user, "<span class='warning'>An error has occured with [src]. Please reset the instrument.</span>")
+		to_chat(user, "<span class='warning'>An error has occurred with [src]. Please reset the instrument.</span>")
 		return
 	compile_chords()
 	if(!length(compiled_chords))

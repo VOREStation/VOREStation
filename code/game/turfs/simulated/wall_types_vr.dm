@@ -206,6 +206,7 @@ var/list/flesh_overlay_cache = list()
 /turf/simulated/wall/solidrock
 	icon_state = "solidrock"
 	icon = 'icons/turf/wall_masks_vr.dmi'
+	climbable = TRUE
 
 /turf/simulated/wall/titanium
 	icon_state = "titanium"

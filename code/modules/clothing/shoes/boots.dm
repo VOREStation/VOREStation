@@ -190,6 +190,7 @@
 	desc = "A pair of winter boots, with metal bracing attached to assist in climbing rocky terrain."
 	icon_state = "climbing_boots"
 	rock_climbing = TRUE
+	//Climbing delay with boots is 1
 
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"

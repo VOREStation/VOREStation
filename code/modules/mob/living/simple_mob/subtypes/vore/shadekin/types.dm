@@ -115,7 +115,7 @@
 	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet of the creature. \
 	It's warm, and the air is thick. You can hear its body squelch and shift around you as you settle into its stomach! \
 	It's relatively calm inside the dark organ. Wet and almost molten for how gooey your surroundings feel. \
-	You can feel the doughy walls cling to you posessively... It's almost like you could sink into them. \
+	You can feel the doughy walls cling to you possessively... It's almost like you could sink into them. \
 	There is also an ominous gurgling from somewhere nearby..."
 
 	player_msg = "You're familiar with generating your own energy, but occasionally \

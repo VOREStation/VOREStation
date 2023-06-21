@@ -58,7 +58,7 @@
 	desc = "A deluxe belt with many pouches. It can hold a very wide variety of items, but less items overall than a dedicated belt. Still, it's useful for any explorer who wants to be prepared for anything they might find."
 	icon = 'icons/inventory/belt/item_vr.dmi'
 	icon_state = "pathfinder_belt"
-	item_state = "explorer_belt"
+	item_state = "pathfinder_belt"
 	storage_slots = 7	//two more, bringing it on par with normal belts
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 

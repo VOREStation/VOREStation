@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	description_info = "This is a special device used to obtain information about objects and entities in the environment. \
 	To scan something, click on it with the scanner at a distance. \
 	Scanning something requires remaining within a certain radius of the object for a specific period of time, until the \
-	scan is finished. If the scan is inturrupted, it can be resumed from where it was left off, if the same thing is \
+	scan is finished. If the scan is interrupted, it can be resumed from where it was left off, if the same thing is \
 	scanned again."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "cataloguer"
