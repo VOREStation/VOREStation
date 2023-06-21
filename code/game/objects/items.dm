@@ -112,6 +112,9 @@
 
 	var/protean_drop_whitelist = FALSE
 
+	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
+	var/climbing_delay = 1 //If rock_climbing, lower better.
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)
