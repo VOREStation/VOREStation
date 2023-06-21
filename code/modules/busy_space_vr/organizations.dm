@@ -219,7 +219,7 @@
 			"Finlay","Onasilos","Makropolus","Surt","Boinayel",
 			"Eyeke","Cayahuanca","Hamarik","Abol","Hiisi",
 			"Belisama","Mintome","Neri","Toge","Iolaus",
-			"Koyopa","Independance","Ixbalanque","Magor","Fold",
+			"Koyopa","Independence","Ixbalanque","Magor","Fold",
 			"Santamasa","Noifasui","Kavian","Babylonia","Bran",
 			"Alef","Lete","Chura","Wadirum","Buru",
 			"Umbaasaa","Vytis","Peitruss","Trimobe","Baiduri",

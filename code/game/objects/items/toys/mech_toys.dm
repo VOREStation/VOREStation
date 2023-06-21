@@ -90,7 +90,7 @@
 			return FALSE
 		// If the attacker_controller isn't next to the attacking toy (and doesn't have telekinesis), the battle ends.
 		if(!in_range(attacker, attacker_controller))
-			attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] seperates from [attacker], ending the battle.</span>", \
+			attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] separates from [attacker], ending the battle.</span>", \
 								"<span class='notice'> You separate from [attacker], ending the battle. </span>")
 			return FALSE
 
@@ -99,13 +99,13 @@
 			if(opponent.incapacitated())
 				return FALSE
 			if(!in_range(src, opponent))
-				opponent.visible_message("<span class='notice'> [opponent.name] seperates from [src], ending the battle.</span>", \
+				opponent.visible_message("<span class='notice'> [opponent.name] separates from [src], ending the battle.</span>", \
 							"<span class='notice'> You separate from [src], ending the battle. </span>")
 				return FALSE
 		// If it's not PVP and the attacker_controller isn't next to the defending toy (and doesn't have telekinesis), the battle ends.
 		else
 			if (!in_range(src, attacker_controller))
-				attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] seperates from [src] and [attacker], ending the battle.</span>", \
+				attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] separates from [src] and [attacker], ending the battle.</span>", \
 									"<span class='notice'> You separate [attacker] and [src], ending the battle. </span>")
 				return FALSE
 

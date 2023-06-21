@@ -14,7 +14,7 @@
 	which would at first appear to hinder the Electric Spider, however the stimulant also causes twitching, \
 	uncontrollable movement, and organ failure, which is accelerated when the bitten prey tries to use their \
 	newfound speed to flee. It is not uncommon for prey to collapse and die shortly after appearing to have \
-	'escaped' the spider, enabling a form of persistance hunting for the Electric Spider."
+	'escaped' the spider, enabling a form of persistence hunting for the Electric Spider."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/animal/giant_spider/electric

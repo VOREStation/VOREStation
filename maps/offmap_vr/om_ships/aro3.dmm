@@ -1226,7 +1226,7 @@
 /obj/structure/closet/crate{
 	name = "qpad parts"
 	},
-/obj/item/weapon/ore/bluespace_crystal,
+/obj/item/weapon/bluespace_crystal,
 /obj/item/weapon/stock_parts/capacitor/hyper,
 /obj/item/weapon/stock_parts/manipulator/hyper,
 /obj/item/stack/cable_coil{

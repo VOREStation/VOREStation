@@ -7,7 +7,7 @@
 	allowed_roles = list("")
 	path =
 	slot = slot_w_uniform
-	sort_category = "Uniform Selectors"
+	sort_category = "Uniforms"
 	cost = 2
 
 /datum/gear/uniform/BLANK_selector/New()
@@ -24,8 +24,8 @@
 	description = "Select from a range of outfits available to all Site Managers."
 	allowed_roles = list("Site Manager")
 	path = /obj/item/clothing/under/rank/neo_captain
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/site_manager_selector/New()
 	..()
@@ -53,8 +53,8 @@
 	description = "Select from a range of outfits available to all Heads of Personnel."
 	allowed_roles = list("Head of Personnel")
 	path = /obj/item/clothing/under/rank/neo_hop
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/head_of_personnel_selector/New()
 	..()
@@ -84,7 +84,7 @@
 	description = "Select from a range of outfits available to all Pilots."
 	allowed_roles = list("Pilot")
 	path = /obj/item/clothing/under/rank/neo_pilot
-	sort_category = "Uniform Selectors"
+	sort_category = "Uniforms"
 	cost = 1
 
 /datum/gear/uniform/pilot_uniform_selector/New()
@@ -102,7 +102,7 @@
 	description = "Select from a range of outfits available to all Janitorial personnel."
 	allowed_roles = list("Janitor")
 	path = /obj/item/clothing/under/rank/neo_janitor
-	sort_category = "Uniform Selectors"
+	sort_category = "Uniforms"
 	cost = 1
 
 /datum/gear/uniform/janitor_uniform_selector/New()
@@ -117,7 +117,7 @@
 	display_name = "Civilian - Basic Uniforms"
 	description = "Select from a range of uniforms available to all personnel. Includes miscellaneous corporate contractor uniforms."
 	path = /obj/item/clothing/under/utility/grey
-	sort_category = "Uniform Selectors"
+	sort_category = "Uniforms"
 	cost = 1
 
 /datum/gear/uniform/civvie_uniform_selector/New()
@@ -138,6 +138,7 @@
 		"Corporate, Focal Point Energistics uniform"=/obj/item/clothing/under/corp/focal,
 		"Corporate, Grayson Manufactories uniform"=/obj/item/clothing/under/corp/grayson,
 		"Corporate, Grayson Manufactories jumpsuit"=/obj/item/clothing/under/corp/grayson_jump,
+		"Corporate, Kaleidoscope"=/obj/item/clothing/under/corp/kaleidoscope,
 		"Corporate, Ward-Takahashi uniform"=/obj/item/clothing/under/corp/wardt,
 		"Corporate, Hephaestus Arms uniform"=/obj/item/clothing/under/corp/hephaestus,
 		"Corporate, Centauri Provisions uniform"=/obj/item/clothing/under/corp/centauri,
@@ -163,8 +164,8 @@
 	description = "Select from a range of outfits available to all Security personnel."
 	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 	path = /obj/item/clothing/under/rank/security/corp
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/security_selector/New()
 	..()
@@ -208,8 +209,8 @@
 	description = "Select from a range of outfits available to Wardens."
 	allowed_roles = list("Head of Security","Warden")
 	path = /obj/item/clothing/under/rank/warden/corp
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/security_warden_selector/New()
 	..()
@@ -229,8 +230,8 @@
 	description = "Select from a range of outfits available to all Detectives."
 	allowed_roles = list("Head of Security","Detective")
 	path = /obj/item/clothing/under/det/corporate
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/security_detective_selector/New()
 	..()
@@ -245,8 +246,8 @@
 	description = "Select from a range of outfits available to all Heads of Security."
 	allowed_roles = list("Head of Security")
 	path = /obj/item/clothing/under/rank/head_of_security/corp
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/security_head_selector/New()
 	..()
@@ -284,8 +285,8 @@
 	description = "Select from a range of outfits available to all Quartermasters."
 	allowed_roles = list("Quartermaster")
 	path = /obj/item/clothing/under/rank/cargo/jeans
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/quartermaster_selector/New()
 	..()
@@ -315,8 +316,8 @@
 	description = "Select from a range of outfits available to all Cargo personnel."
 	allowed_roles = list("Cargo Technician","Shaft Miner","Quartermaster")
 	path = /obj/item/clothing/under/rank/cargotech/jeans
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/cargo_general_selector/New()
 	..()
@@ -343,8 +344,8 @@
 	description = "Select from a range of outfits available to all Mining personnel."
 	allowed_roles = list("Shaft Miner","Quartermaster")
 	path = /obj/item/clothing/under/rank/neo_miner
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/cargo_miner_selector/New()
 	..()
@@ -361,8 +362,8 @@
 	description = "Select from a range of outfits available to all Chief Engineers."
 	allowed_roles = list("Chief Engineer")
 	path = /obj/item/clothing/under/rank/neo_chiefengi
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/engineering_chief_selector/New()
 	..()
@@ -385,8 +386,8 @@
 	description = "Select from a range of outfits available to all Engineering personnel."
 	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician")
 	path = /obj/item/clothing/under/rank/neo_engi
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/engineer_selector/New()
 	..()
@@ -402,7 +403,8 @@
 		"voidsuit underlayer"=/obj/item/clothing/under/undersuit/hazard,
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_engi,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_engi_skirt,
-		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_engi_gorka
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_engi_gorka,
+		"hazard jumpsuit"=/obj/item/clothing/under/hazard
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -411,8 +413,8 @@
 	description = "Select from a range of outfits available to all Atmospherics Technicians."
 	allowed_roles = list("Chief Engineer","Atmospheric Technician")
 	path = /obj/item/clothing/under/rank/atmospheric_technician/skirt
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/engi_atmos_selector/New()
 	..()
@@ -430,8 +432,8 @@
 	description = "Select from a range of outfits available to all Medical personnel."
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 	path = /obj/item/clothing/under/rank/neo_med
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/medical_selector/New()
 	..()
@@ -452,7 +454,8 @@
 		"TG&C virology jumpskirt"=/obj/item/clothing/under/rank/neo_viro_skirt,
 		"TG&C dark jumpsuit"=/obj/item/clothing/under/rank/neo_med_dark,
 		"TG&C dark jumpskirt"=/obj/item/clothing/under/rank/neo_med_dark_skirt,
-		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_med_gorka
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_med_gorka,
+		"sterile jumpsuit"=/obj/item/clothing/under/sterile
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -461,8 +464,8 @@
 	description = "Select from a range of outfits available to all Chemists."
 	allowed_roles = list("Chief Medical Officer","Chemist")
 	path = /obj/item/clothing/under/rank/neo_chem
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/chemist_selector/New()
 	..()
@@ -480,8 +483,8 @@
 	description = "Select from a range of outfits available to all Paramedics."
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
 	path = /obj/item/clothing/under/rank/paramedunidark
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/paramedic_selector/New()
 	..()
@@ -502,7 +505,7 @@
 	description = "Select from a range of outfits available to all Chief Medical Officers."
 	allowed_roles = list("Chief Medical Officer")
 	path = /obj/item/clothing/under/rank/neo_cmo
-	sort_category = "Uniform Selectors"
+	sort_category = "Uniforms"
 	cost = 2
 
 /datum/gear/uniform/chief_medical_selector/New()
@@ -530,8 +533,8 @@
 	description = "Select from a range of outfits available to all Research Directors."
 	allowed_roles = list("Research Director")
 	path = /obj/item/clothing/under/rank/neo_rd_suit
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/research_director_selector/New()
 	..()
@@ -555,8 +558,8 @@
 	description = "Select from a range of outfits available to all Science personnel."
 	allowed_roles = list("Scientist","Research Director","Roboticist","Xenobiologist","Xenobotanist")
 	path = /obj/item/clothing/under/rank/neo_science
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/science_dept_selector/New()
 	..()
@@ -579,8 +582,8 @@
 	description = "Select from a range of outfits available to all Roboticists."
 	allowed_roles = list("Research Director","Roboticist")
 	path = /obj/item/clothing/under/rank/neo_robo
-	sort_category = "Uniform Selectors"
-	cost = 2
+	sort_category = "Uniforms"
+	cost = 1
 
 /datum/gear/uniform/science_robotics_selector/New()
 	..()

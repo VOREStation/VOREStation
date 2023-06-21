@@ -16,11 +16,6 @@
 	display_name = "beret, red"
 	path = /obj/item/clothing/head/beret
 
-/datum/gear/head/beret/bsec
-	display_name = "beret, navy (officer)"
-	path = /obj/item/clothing/head/beret/sec/navy/officer
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
@@ -30,11 +25,6 @@
 	display_name = "beret, navy (hos)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
 	allowed_roles = list("Head of Security")
-
-/datum/gear/head/beret/csec
-	display_name = "beret, corporate (officer)"
-	path = /obj/item/clothing/head/beret/sec/corporate/officer
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/head/beret/csec_warden
 	display_name = "beret, corporate (warden)"
@@ -54,69 +44,33 @@
 	display_name = "beret, purple"
 	path = /obj/item/clothing/head/beret/purple
 
-/datum/gear/head/beret/sec
-	display_name = "beret, red (security)"
-	path = /obj/item/clothing/head/beret/sec
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
-
 /datum/gear/head/cap
-	display_name = "cap, black"
+	display_name = "cap, brown-flat"
+	path = /obj/item/clothing/head/flatcap
+
+/datum/gear/head/cap/selector
+	display_name = "cap selector (plain)"
+	description = "Pick from a range of plain, coloured softcaps. Includes black, blue, green, and more!"
 	path = /obj/item/clothing/head/soft/black
 
-/datum/gear/head/cap/blue
-	display_name = "cap, blue"
-	path = /obj/item/clothing/head/soft/blue
+/datum/gear/head/cap/selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"black"=/obj/item/clothing/head/soft/black,
+		"blue"=/obj/item/clothing/head/soft/blue,
+		"green"=/obj/item/clothing/head/soft/green,
+		"grey"=/obj/item/clothing/head/soft/grey,
+		"orange"=/obj/item/clothing/head/soft/orange,
+		"purple"=/obj/item/clothing/head/soft/purple,
+		"rainbow"=/obj/item/clothing/head/soft/rainbow,
+		"red"=/obj/item/clothing/head/soft/red,
+		"yellow"=/obj/item/clothing/head/soft/yellow
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/head/cap/mailman
 	display_name = "cap, blue station"
 	path = /obj/item/clothing/head/mailman
-
-/datum/gear/head/cap/flat
-	display_name = "cap, brown-flat"
-	path = /obj/item/clothing/head/flatcap
-
-/datum/gear/head/cap/corp
-	display_name = "cap, corporate (Security)"
-	path = /obj/item/clothing/head/soft/sec/corp
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
-
-/datum/gear/head/cap/green
-	display_name = "cap, green"
-	path = /obj/item/clothing/head/soft/green
-
-/datum/gear/head/cap/grey
-	display_name = "cap, grey"
-	path = /obj/item/clothing/head/soft/grey
-
-/datum/gear/head/cap/med
-	display_name = "cap, medical (Medical)"
-	path = /obj/item/clothing/head/soft/med
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Search and Rescue")
-
-/datum/gear/head/cap/orange
-	display_name = "cap, orange"
-	path = /obj/item/clothing/head/soft/orange
-
-/datum/gear/head/cap/purple
-	display_name = "cap, purple"
-	path = /obj/item/clothing/head/soft/purple
-
-/datum/gear/head/cap/rainbow
-	display_name = "cap, rainbow"
-	path = /obj/item/clothing/head/soft/rainbow
-
-/datum/gear/head/cap/red
-	display_name = "cap, red"
-	path = /obj/item/clothing/head/soft/red
-
-/datum/gear/head/cap/sec
-	display_name = "cap, security (Security)"
-	path = /obj/item/clothing/head/soft/sec
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
-
-/datum/gear/head/cap/yellow
-	display_name = "cap, yellow"
-	path = /obj/item/clothing/head/soft/yellow
 
 /datum/gear/head/cap/white
 	display_name = "cap (colorable)"
@@ -134,69 +88,45 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/head/cap/mbill
-	display_name = "cap, major bill's"
-	path = /obj/item/clothing/head/soft/mbill
-
 /datum/gear/head/cap/sol
 	display_name = "cap, sol"
 	path = /obj/item/clothing/head/soft/solgov
 
 /datum/gear/head/cowboy
-	display_name = "cowboy"
+	display_name = "cowboy hat selector"
+	description = "Pick from a range of styles of classic cowboy hat. Giddyup!"
 	path = /obj/item/clothing/head/cowboy
 
-/datum/gear/head/cowboy/rattan
-	display_name = "cowboy, rattan"
-	path = /obj/item/clothing/head/cowboy/rattan
-
-/datum/gear/head/cowboy/dark
-	display_name = "cowboy, dark"
-	path = /obj/item/clothing/head/cowboy/dark
-
-/datum/gear/head/cowboy/ranger
-	display_name = "cowboy, ranger"
-	path = /obj/item/clothing/head/cowboy/ranger
-
-/datum/gear/head/cowboy/black
-	display_name = "cowboy, black"
-	path = /obj/item/clothing/head/cowboy/black
-
-/datum/gear/head/cowboy/fancy
-	display_name = "cowboy, fancy"
-	path = /obj/item/clothing/head/cowboy/fancy
-
-/datum/gear/head/cowboy/rustler
-	display_name = "cowboy, rustler"
-	path = /obj/item/clothing/head/cowboy/rustler
-
-/datum/gear/head/cowboy/black
-	display_name = "cowboy, bandit"
-	path = /obj/item/clothing/head/cowboy/bandit
-
-/datum/gear/head/cowboy/wide
-	display_name = "cowboy, wide"
-	path = /obj/item/clothing/head/cowboy/wide
+/datum/gear/head/cowboy/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Classic"=/obj/item/clothing/head/cowboy,
+		"Rattan"=/obj/item/clothing/head/cowboy/rattan,
+		"Dark"=/obj/item/clothing/head/cowboy/dark,
+		"Ranger"=/obj/item/clothing/head/cowboy/ranger,
+		"Black"=/obj/item/clothing/head/cowboy/black,
+		"Fancy"=/obj/item/clothing/head/cowboy/fancy,
+		"Rustler's"=/obj/item/clothing/head/cowboy/rustler,
+		"Bandit's"=/obj/item/clothing/head/cowboy/bandit,
+		"Wide"=/obj/item/clothing/head/cowboy/wide
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/head/fedora/grey
-	display_name = "fedora, grey"
+	display_name = "fedora selector"
+	description = "Pick from a range of fedoras. Available in grey, white, brown, beige, and panama style."
 	path = /obj/item/clothing/head/fedora
 
-/datum/gear/head/fedora/brown
-	display_name = "fedora, brown"
-	path = /obj/item/clothing/head/fedora/brown
-
-/datum/gear/head/fedora/white
-	display_name = "fedora, white"
-	path = /obj/item/clothing/head/fedora/white
-
-/datum/gear/head/fedora/beige
-	display_name = "fedora, beige"
-	path = /obj/item/clothing/head/fedora/beige
-
-/datum/gear/head/fedora/panama
-	display_name = "fedora, panama"
-	path = /obj/item/clothing/head/fedora/panama
+/datum/gear/head/fedora/grey/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Brown"=/obj/item/clothing/head/fedora/brown,
+		"White"=/obj/item/clothing/head/fedora/white,
+		"Beige"=/obj/item/clothing/head/fedora/beige,
+		"Panama"=/obj/item/clothing/head/fedora/panama,
+		"Grey"=/obj/item/clothing/head/fedora
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/head/hairflower
 	display_name = "hair flower pin (colorable)"
@@ -353,27 +283,23 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/head/welding/
-	display_name = "welding, normal (engineering/robotics)"
+/datum/gear/head/welding
+	display_name = "welding mask selection"
+	description = "Select from a range of welding masks (engineering crew/roboticists only)"
 	path = /obj/item/clothing/head/welding
 	cost = 2
 	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Research Director","Roboticist")
 
-/datum/gear/head/welding/demon
-	display_name = "welding, demon (engineering/robotics)"
-	path = /obj/item/clothing/head/welding/demon
-
-/datum/gear/head/welding/knight
-	display_name = "welding, knight (engineering/robotics)"
-	path = /obj/item/clothing/head/welding/knight
-
-/datum/gear/head/welding/fancy
-	display_name = "welding, fancy (engineering/robotics)"
-	path = /obj/item/clothing/head/welding/fancy
-
-/datum/gear/head/welding/engie
-	display_name = "welding, engie (engineering/robotics)"
-	path = /obj/item/clothing/head/welding/engie
+/datum/gear/head/welding/New()
+	..()
+	var/list/selector_uniforms = list(
+		"plain"=/obj/item/clothing/head/welding,
+		"engineering"=/obj/item/clothing/head/welding/engie,
+		"fancy"=/obj/item/clothing/head/welding/fancy,
+		"demonic"=/obj/item/clothing/head/welding/demon,
+		"knightly"=/obj/item/clothing/head/welding/knight
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/head/beret/solgov
 	display_name = "beret government, selection"
@@ -445,3 +371,38 @@
 /datum/gear/head/wheat
 	display_name = "straw hat"
 	path = /obj/item/clothing/head/wheat
+
+/datum/gear/head/sec_hat_selector
+	display_name = "Security - Basic Headwear"
+	description = "Select from a range of hats available to all Security personnel."
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+	path = /obj/item/clothing/head/soft/sec/corp
+
+/datum/gear/head/sec_hat_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"Navy Security Beret"=/obj/item/clothing/head/beret/sec/navy/officer,
+		"CorpSec Beret"=/obj/item/clothing/head/beret/sec/corporate/officer,
+		"Security Beret"=/obj/item/clothing/head/beret/sec,
+		"CorpSec Softcap"=/obj/item/clothing/head/soft/sec/corp,
+		"Security Softcap"=/obj/item/clothing/head/soft/sec,
+		"Proxima Centauri Contractor Beret"=/obj/item/clothing/head/beret/corp/pcrc
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
+
+/datum/gear/head/med_hat_selector
+	display_name = "Medical - Basic Headwear"
+	description = "Select from a range of hats available to all Medical personnel."
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	path = /obj/item/clothing/head/soft/med
+
+/datum/gear/head/med_hat_selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"medical softcap"=/obj/item/clothing/head/soft/med,
+		"paramedic softcap"=/obj/item/clothing/head/soft/paramed,
+		"medical beret"=/obj/item/clothing/head/beret/medical,
+		"chemist's beret"=/obj/item/clothing/head/beret/medical/chem,
+		"virologist's beret"=/obj/item/clothing/head/beret/medical/viro
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))

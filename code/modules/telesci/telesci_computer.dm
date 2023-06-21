@@ -46,10 +46,10 @@
 	. = ..()
 	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)
-		crystals += new /obj/item/weapon/ore/bluespace_crystal/artificial(src) // starting crystals
+		crystals += new /obj/item/weapon/bluespace_crystal/artificial(src) // starting crystals
 
 /obj/machinery/computer/telescience/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/weapon/ore/bluespace_crystal))
+	if(istype(W, /obj/item/weapon/bluespace_crystal))
 		if(crystals.len >= max_crystals)
 			to_chat(user, "<span class='warning'>There are not enough crystal slots.</span>")
 			return

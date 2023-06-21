@@ -36,7 +36,7 @@
 			traitors.spawn_uplink(N)
 			N.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 			N.mind.accept_tcrystals = 1
-			message_admins("[N]/([N.ckey]) has recieved an uplink and telecrystals from the syndicate beacon.")
+			message_admins("[N]/([N.ckey]) has received an uplink and telecrystals from the syndicate beacon.")
 
 	updateUsrDialog()
 	return
