@@ -1587,6 +1587,7 @@
 #include "code\game\objects\structures\ghost_pods\survivor.dm"
 #include "code\game\objects\structures\props\alien_props.dm"
 #include "code\game\objects\structures\props\alien_props_vr.dm"
+#include "code\game\objects\structures\props\altevian.dm"
 #include "code\game\objects\structures\props\beam_prism.dm"
 #include "code\game\objects\structures\props\blackbox.dm"
 #include "code\game\objects\structures\props\esoteric.dm"
