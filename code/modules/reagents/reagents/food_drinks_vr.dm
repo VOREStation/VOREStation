@@ -554,3 +554,73 @@
 	color = "#a6898d"
 
 ////////////////END BrainzSnax Reagents////////////////
+
+/datum/reagent/nutriment/protein_powder
+	name = "Protein Powder"
+	id = "protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement."
+	taste_description = "powdery protein"
+	color = "#f4e6dd"
+
+/datum/reagent/nutriment/protein_shake
+	name = "Protein Shake"
+	id = "protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement."
+	taste_description = "pure protein"
+	color = "#ebd8cb"
+
+/datum/reagent/nutriment/protein_powder/vanilla
+	name = "Vanilla Protein Powder"
+	id = "vanilla_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added vanilla flavoring."
+	taste_description = "powdery vanilla"
+	color = "#fff7d2"
+
+/datum/reagent/nutriment/protein_shake/vanilla
+	name = "Vanilla Protein Shake"
+	id = "vanilla_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added vanilla flavoring."
+	taste_description = "vanilla"
+	color = "#faefbc"
+
+/datum/reagent/nutriment/protein_powder/banana
+	name = "Banana Protein Powder"
+	id = "banana_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added banana flavoring."
+	taste_description = "powdery banana"
+	color = "#faefbc"
+
+/datum/reagent/nutriment/protein_shake/banana
+	name = "Banana Protein Powder"
+	id = "banana_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added banana flavoring."
+	taste_description = "banana"
+	color = "#e6daa1"
+
+/datum/reagent/nutriment/protein_powder/chocolate
+	name = "Chocolate Protein Powder"
+	id = "chocolate_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added chocolate flavoring."
+	taste_description = "powdery chocolate"
+	color = "#865b3e"
+
+/datum/reagent/nutriment/protein_shake/chocolate
+	name = "Chocolate Protein Shake"
+	id = "chocolate_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added chocolate flavoring."
+	taste_description = "chocolate"
+	color = "#644730"
+
+/datum/reagent/nutriment/protein_powder/strawberry
+	name = "Strawberry Protein Powder"
+	id = "strawberry_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added strawberry flavoring."
+	taste_description = "powdery strawberry"
+	color = "#eba1a1"
+
+/datum/reagent/nutriment/protein_shake/strawberry
+	name = "Strawberry Protein Shake"
+	id = "strawberry_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added strawberry flavoring."
+	taste_description = "strawberry"
+	color = "#e28585"
