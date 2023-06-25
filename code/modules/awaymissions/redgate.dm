@@ -13,9 +13,9 @@
 /obj/structure/redgate/Destroy()
 	if(target)
 		target.target = null
+		target.toggle_portal()
 		target = null
-		target.icon_state = "off"
-		target.density = FALSE
+		set_light(0)
 
 	return ..()
 
@@ -26,16 +26,27 @@
 		return
 
 	if(!target)
-		icon_state = "off"
-		density = FALSE
+		toggle_portal()
 
 	var/turf/place = get_turf(target)
 	var/possible_turfs = place.AdjacentTurfs()
 	if(isemptylist(possible_turfs))
 		to_chat(M, "<span class='notice'>Something blocks your way.</span>")
 		return
-	temptarg = pick(possible_turfs)
+	var/turf/temptarg = pick(possible_turfs)
 	do_safe_teleport(M, temptarg, 0)
+
+/obj/structure/redgate/proc/toggle_portal()
+	if(target)
+		icon_state = "on"
+		density = TRUE
+		plane = ABOVE_MOB_PLANE
+		set_light(5, 0.75, "#da5656")
+	else
+		icon_state = "off"
+		density = FALSE
+		plane = OBJ_PLANE
+		set_light(0)
 
 /obj/structure/redgate/Bumped(mob/M as mob)
 	src.teleport(M)
@@ -46,35 +57,44 @@
 	return
 
 /obj/structure/redgate/attack_hand(mob/M as mob)
-	src.teleport(M)
-	return
+	if(density)
+		src.teleport(M)
+	else
+		if(!find_partner())
+			to_chat(M, "<span class='warning'>The [src] remains off... seems like it doesn't have a destination.</span>")
+
 
 /obj/structure/redgate/attack_ghost(var/mob/observer/dead/user)
 	if(target && user?.client?.holder)
 		user.forceMove(get_turf(target))
-	else return
+	else
+		return ..()
 
 /obj/structure/redgate/away/Initialize()
 	. = ..()
+	if(!find_partner())
+		log_and_message_admins("An away redgate spawned but wasn't able to find a gateway to link to. If this appeared at roundstart, something has gone wrong, otherwise if you spawn another gate they should connect.")
+
+/obj/structure/redgate/proc/find_partner()
 	for(var/obj/structure/redgate/g in world)
 		if(istype(g, /obj/structure/redgate))
 			if(g.target)
 				continue
+			else if(g == src)
+				continue
 			else if(g.z in using_map.station_levels)
 				target = g
 				g.target = src
-				icon_state = "on"
-				g.icon_state = "on"
-				density = TRUE
-				g.density = TRUE
+				toggle_portal()
+				target.toggle_portal()
 				break
 			else if(g != src)
 				target = g
 				g.target = src
-				icon_state = "on"
-				g.icon_state = "on"
-				density = TRUE
-				g.density = TRUE
+				toggle_portal()
+				target.toggle_portal()
 				break
 	if(!target)
-		log_and_message_admins("An away redgate spawned but wasn't able to find a gateway to link to. If this appeared at roundstart, something has gone wrong, otherwise if you spawn another gate they should connect.")
+		return FALSE
+	else
+		return TRUE
