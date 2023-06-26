@@ -2,16 +2,16 @@
 "af" = (
 /obj/structure/prop/rock/round,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "ax" = (
 /turf/simulated/floor/outdoors/ironsand{
 	outdoors = 0
 	},
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "bl" = (
 /obj/structure/flora/rocks1,
 /turf/simulated/floor/outdoors/grass,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "ce" = (
 /obj/structure/table/standard,
 /obj/random/maintenance,
@@ -19,415 +19,418 @@
 /obj/random/maintenance,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "ch" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
 /turf/simulated/floor,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "cM" = (
 /obj/structure/bed/chair/sofa/brown{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "ev" = (
 /obj/structure/flora/tree/jungle_small,
 /turf/simulated/floor/outdoors/mud,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "eG" = (
 /obj/structure/flora/rocks1,
 /turf/simulated/floor/outdoors/grass/forest,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "gj" = (
 /obj/structure/prop/rock/flat,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "gJ" = (
 /turf/simulated/floor/wood/sif,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "gK" = (
 /turf/simulated/floor/reinforced,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "gQ" = (
 /obj/effect/fake_sun,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "hm" = (
 /obj/structure/table/steel,
 /obj/random/maintenance,
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "ho" = (
 /obj/random/awayloot/nofail,
 /turf/simulated/floor/wood/sif,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "hJ" = (
 /turf/simulated/mineral,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "hS" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/hopdouble,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "iy" = (
 /turf/simulated/floor/weird_things/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "iB" = (
 /obj/structure/prop/rock/crystal_dust,
 /turf/simulated/floor/outdoors/ironsand{
 	outdoors = 0
 	},
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "jO" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "kx" = (
 /turf/unsimulated/wall/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "kE" = (
 /obj/structure/bonfire,
 /turf/simulated/floor/reinforced,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "lg" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
 /turf/simulated/floor/wood/sif,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "lJ" = (
 /obj/structure/lattice,
 /obj/random/contraband/nofail,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "mh" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "mv" = (
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/outdoors/newdirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "mU" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "nc" = (
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "oB" = (
 /turf/simulated/floor/outdoors/sidewalk,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "oR" = (
 /obj/structure/table/woodentable,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "pt" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
 /turf/simulated/floor/outdoors/grass,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "pI" = (
 /obj/structure/prop/rock/sharp,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "ro" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/redgrid/off{
 	alpha = 60
 	},
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "rE" = (
 /obj/item/weapon/paper,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "si" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/floor/outdoors/ironsand{
 	outdoors = 0
 	},
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "sl" = (
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "tL" = (
 /turf/simulated/floor,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "tV" = (
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "uO" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/floor/outdoors/newdirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "vk" = (
 /obj/structure/prop/rock/small,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "vm" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "wy" = (
 /obj/structure/flora/rocks2,
 /turf/simulated/floor/outdoors/grass,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "xg" = (
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "xq" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "xw" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "yA" = (
 /obj/random/maintenance,
 /turf/simulated/floor,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "yD" = (
 /obj/structure/prop/rock/small/alt,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "yH" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
 	},
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "yQ" = (
 /turf/simulated/floor/outdoors/grass,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "zv" = (
 /turf/simulated/floor/outdoors/sidewalk/side,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "zF" = (
 /turf/simulated/floor/outdoors/grass/forest,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Ag" = (
 /turf/simulated/floor/bmarble,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "AU" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/purpledouble,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "BD" = (
 /turf/simulated/floor/wood,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "BP" = (
 /obj/structure/simple_door/wood,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "BU" = (
 /obj/structure/flora/tree/bigtree,
 /turf/simulated/floor/outdoors/grass/forest,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Cg" = (
 /obj/item/weapon/paper,
 /obj/structure/table/woodentable,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Cj" = (
 /obj/structure/table/rack,
 /obj/random/maintenance,
 /obj/random/maintenance,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Cx" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/wood,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "CH" = (
 /obj/structure/table/rack,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "CJ" = (
 /turf/simulated/wall/ironphoron,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Ei" = (
 /obj/structure/lattice,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Fq" = (
 /obj/structure/flora/rocks2,
 /turf/simulated/floor/outdoors/newdirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Ft" = (
 /obj/structure/table/standard,
 /obj/random/maintenance,
 /obj/random/maintenance,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Fu" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "FC" = (
 /obj/structure/bed/chair/sofa{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "FI" = (
 /obj/structure/bed/chair/sofa,
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "FZ" = (
 /obj/random/awayloot/nofail,
 /turf/simulated/floor/water,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "GS" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/bmarble,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "IL" = (
 /obj/random/maintenance,
 /turf/simulated/floor/wood/sif,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "IW" = (
 /obj/structure/flora/tree/dead,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Jp" = (
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Lx" = (
 /obj/structure/table/woodentable,
 /obj/random/awayloot/nofail,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Md" = (
 /obj/structure/table/rack,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Mv" = (
 /obj/structure/flora/tree/bigtree,
 /turf/simulated/floor/outdoors/grass,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "MG" = (
 /turf/simulated/floor/outdoors/sidewalk/slab,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "MJ" = (
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Nu" = (
 /turf/simulated/wall/wood,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "OE" = (
 /obj/structure/bonfire,
 /turf/simulated/floor/outdoors/newdirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Pj" = (
 /obj/random/maintenance,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "PM" = (
 /turf/simulated/floor/outdoors/snow,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "QB" = (
 /obj/structure/prop/rock/crystal,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
+"QG" = (
+/turf/simulated/wall/dungeon,
+/area/redgate/wilds)
 "QR" = (
 /obj/structure/prop/rock/crystal,
 /turf/simulated/floor/outdoors/ironsand{
 	outdoors = 0
 	},
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Rd" = (
 /obj/item/weapon/broken_bottle,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Rl" = (
 /obj/random/contraband/nofail,
 /turf/simulated/floor/wood/sif,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Sk" = (
 /turf/simulated/floor/water,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "St" = (
 /obj/structure/flora/tree/bigtree,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Tn" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
 /turf/simulated/floor/outdoors/grass/forest,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Uy" = (
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "UP" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/simulated/floor/carpet,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "VI" = (
 /obj/structure/table/steel,
 /obj/random/maintenance,
 /turf/simulated/floor/bmarble,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Wa" = (
 /obj/structure/prop/rock/small,
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Wh" = (
 /turf/simulated/floor/outdoors/mud,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "WW" = (
 /turf/simulated/floor/outdoors/newdirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Xh" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Xj" = (
 /turf/simulated/floor/redgrid/off{
 	alpha = 60
 	},
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Ye" = (
 /turf/simulated/floor/outdoors/ice,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "Yi" = (
 /obj/random/awayloot/nofail,
 /turf/simulated/floor/bmarble,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "YB" = (
 /obj/structure/lattice,
 /obj/random/awayloot/nofail,
 /turf/unsimulated/floor/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "YU" = (
 /turf/simulated/wall/dungeon,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "Zo" = (
 /obj/structure/simple_door/iron,
 /turf/simulated/floor/dungeon,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 "ZA" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/floor/outdoors/mud,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "ZE" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/floor/outdoors/ironsand,
-/area/submap/admin_upload/pow)
+/area/redgate/wilds)
 "ZN" = (
 /obj/random/pottedplant,
 /turf/simulated/floor/tiled/dark,
-/area/submap/admin_upload/pow)
+/area/redgate/structure)
 
 (1,1,1) = {"
 kx
@@ -15442,8 +15445,8 @@ ax
 ax
 ax
 ax
-YU
-YU
+QG
+QG
 hJ
 hJ
 YU
@@ -15585,7 +15588,7 @@ ax
 ax
 ax
 gK
-YU
+QG
 hJ
 hJ
 hJ
@@ -15727,7 +15730,7 @@ ax
 ax
 ax
 gK
-YU
+QG
 hJ
 hJ
 hJ
@@ -15869,7 +15872,7 @@ ax
 ax
 ax
 gK
-YU
+QG
 hJ
 hJ
 hJ
@@ -16010,8 +16013,8 @@ nc
 nc
 ax
 hJ
-YU
-YU
+QG
+QG
 hJ
 hJ
 hJ
