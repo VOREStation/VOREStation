@@ -199,7 +199,8 @@
 		)
 
 	lateload_redgate = list(
-		list("Teppi Ranch")
+		list("Teppi Ranch"),
+		list("Innland")
 		)
 
 	ai_shell_restricted = TRUE

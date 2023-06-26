@@ -260,17 +260,22 @@
 	name = "Redgate Destination"
 	z = Z_LEVEL_REDGATE
 
-/datum/map_template/common_lateload/redgate/teppi_ranch
-	name = "Teppi Ranch"
-	desc = "Looks like a cave with some grass in it."
-	mappath = 'maps/redgate/teppiranch.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
-
-/datum/map_template/common_lateload/redgate/grasscave/on_map_loaded(z)
+/datum/map_template/common_lateload/redgate/on_map_loaded(z)
 	. = ..()
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_REDGATE, world.maxx, world.maxy)
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_REDGATE, 64, 64)
 
+/datum/map_template/common_lateload/redgate/teppi_ranch
+	name = "Teppi Ranch"
+	desc = "An abandoned teppi ranch!"
+	mappath = 'maps/redgate/teppiranch.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
+
+/datum/map_template/common_lateload/redgate/innland
+	name = "Innland"
+	desc = "Caves and grass and a tavern, woah!"
+	mappath = 'maps/redgate/innland.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like

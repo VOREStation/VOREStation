@@ -212,7 +212,8 @@
 		)
 
 	lateload_redgate = list(
-		list("Teppi Ranch")
+		list("Teppi Ranch"),
+		list("Innland")
 		)
 
 	lateload_gb_north = list(
