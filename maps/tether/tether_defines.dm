@@ -22,6 +22,8 @@
 #define Z_LEVEL_FUELDEPOT					20
 #define Z_LEVEL_GATEWAY						21
 #define Z_LEVEL_OM_ADVENTURE				22
+#define Z_LEVEL_REDGATE						23
+
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -194,6 +196,10 @@
 
 	lateload_overmap = list(
 		list("Grass Cave")
+		)
+
+	lateload_redgate = list(
+		list("Teppi Ranch")
 		)
 
 	ai_shell_restricted = TRUE

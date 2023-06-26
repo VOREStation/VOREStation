@@ -18,6 +18,7 @@
 #define Z_LEVEL_OFFMAP1						17
 #define Z_LEVEL_GATEWAY						18
 #define Z_LEVEL_OM_ADVENTURE				19
+#define Z_LEVEL_REDGATE						20
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -208,6 +209,10 @@
 
 	lateload_overmap = list(
 		list("Grass Cave")
+		)
+
+	lateload_redgate = list(
+		list("Teppi Ranch")
 		)
 
 	lateload_gb_north = list(

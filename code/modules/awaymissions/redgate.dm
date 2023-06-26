@@ -98,3 +98,27 @@
 		return FALSE
 	else
 		return TRUE
+
+/area/redgate
+	name = "redgate"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "redblacir"
+
+/area/redgate/wilds
+	name = "wilderness"
+
+/area/redgate/structure
+	name = "structure"
+	icon_state = "redwhisqu"
+
+/area/redgate/structure/powered
+	requires_power = 0
+
+/area/redgate/lit
+	dynamic_lighting = 0
+
+/area/redgate/structure/powered/teppi_ranch
+	name = "ranch"
+
+/area/redgate/structure/powered/teppi_ranch/barn
+	name = "barn"
