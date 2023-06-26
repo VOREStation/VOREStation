@@ -908,7 +908,7 @@
 	},
 /area/redgate/wilds)
 "lb" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
 "ld" = (
 /obj/structure/flora/ausbushes/brflowers,
