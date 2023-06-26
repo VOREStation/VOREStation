@@ -15,6 +15,7 @@
 #define Z_LEVEL_OFFMAP1						14
 #define Z_LEVEL_GATEWAY						15
 #define Z_LEVEL_OM_ADVENTURE				16
+#define Z_LEVEL_REDGATE						17
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -164,6 +165,13 @@
 
 	lateload_overmap = list(
 		list("Grass Cave")
+		)
+
+	lateload_redgate = list(
+		list("Teppi Ranch"),
+		list("Innland"),
+		list("Abandoned Island"),
+		list("Dark Adventure")
 		)
 
 	ai_shell_restricted = TRUE
