@@ -1,7 +1,7 @@
 /datum/technomancer/spell/asphyxiation
 	name = "Asphyxiation"
 	desc = "Launches a projectile at a target.  If the projectile hits, a short-lived toxin is created inside what the projectile \
-	hits, which inhibits the delivery of oxygen.  The effectiveness of the toxin is heavily dependant on how healthy the target is, \
+	hits, which inhibits the delivery of oxygen.  The effectiveness of the toxin is heavily dependent on how healthy the target is, \
 	with the target taking more damage the more wounded they are.  The effect lasts for twelve seconds."
 	cost = 140
 	obj_path = /obj/item/weapon/spell/insert/asphyxiation

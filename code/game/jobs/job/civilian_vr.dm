@@ -139,11 +139,11 @@
 
 /datum/alt_title/historian
 	title = "Historian"
-	title_blurb = "The Historian uses the Library as a base of operation to record any important events occuring on station."
+	title_blurb = "The Historian uses the Library as a base of operation to record any important events occurring on station."
 
 /datum/alt_title/archivist
 	title = "Archivist"
-	title_blurb = "The Archivist uses the Library as a base of operation to record any important events occuring on station."
+	title_blurb = "The Archivist uses the Library as a base of operation to record any important events occurring on station."
 
 /datum/alt_title/professor
 	title = "Professor"

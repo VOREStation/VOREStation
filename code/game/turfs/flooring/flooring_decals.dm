@@ -518,21 +518,23 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/spline/plain
 	name = "spline - plain"
 	icon_state = "spline_plain"
+/obj/effect/floor_decal/spline/plain/corner
+	icon_state = "spline_plain_corner"
+/obj/effect/floor_decal/spline/plain/cee
+	icon_state = "spline_plain_cee"
+/obj/effect/floor_decal/spline/plain/three_quarters
+	icon_state = "spline_plain_full"
 
 /obj/effect/floor_decal/spline/fancy
 	name = "spline - fancy"
 	icon_state = "spline_fancy"
-
 /obj/effect/floor_decal/spline/fancy/wood
 	name = "spline - wood"
 	color = "#CB9E04"
-
 /obj/effect/floor_decal/spline/fancy/wood/corner
 	icon_state = "spline_fancy_corner"
-
 /obj/effect/floor_decal/spline/fancy/wood/cee
 	icon_state = "spline_fancy_cee"
-
 /obj/effect/floor_decal/spline/fancy/wood/three_quarters
 	icon_state = "spline_fancy_full"
 
@@ -592,6 +594,10 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/industrial/outline/grey
 	name = "grey outline"
 	color = "#808080"
+
+/obj/effect/floor_decal/industrial/outline/red
+	name = "red outline"
+	color = COLOR_RED
 
 /obj/effect/floor_decal/industrial/loading
 	name = "loading area"

@@ -20,7 +20,7 @@
 	},
 /area/submap/LeopardmanderDen)
 "bj" = (
-/obj/item/weapon/ore/bluespace_crystal,
+/obj/item/weapon/bluespace_crystal,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b{
 	outdoors = 0
 	},

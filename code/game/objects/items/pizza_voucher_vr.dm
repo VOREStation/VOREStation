@@ -30,7 +30,7 @@
 			"<span class='notice'>A small bluespace rift opens just above your head and spits out a pizza box!</span>",
 			"<span class='notice'>You hear a fwoosh followed by a thump.</span>")
 		if(special_delivery)
-			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECIEVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
+			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECEIVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
 			new /obj/effect/falling_effect/pizza_delivery/special(user.loc)
 		else
 			new /obj/effect/falling_effect/pizza_delivery(user.loc)

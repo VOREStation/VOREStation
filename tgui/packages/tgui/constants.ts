@@ -182,6 +182,9 @@ export const RADIO_CHANNELS = [
   },
 ] as const;
 
+/*
+Entries must match /code/defines/gases.dm entries.
+*/
 const GASES = [
   {
     'id': 'oxygen',
@@ -190,13 +193,13 @@ const GASES = [
     'color': 'blue',
   },
   {
-    'id': 'n2',
+    'id': 'nitrogen',
     'name': 'Nitrogen',
     'label': 'N₂',
-    'color': 'red',
+    'color': 'green',
   },
   {
-    'id': 'carbon dioxide',
+    'id': 'carbon_dioxide',
     'name': 'Carbon Dioxide',
     'label': 'CO₂',
     'color': 'grey',
@@ -208,64 +211,16 @@ const GASES = [
     'color': 'pink',
   },
   {
-    'id': 'water_vapor',
-    'name': 'Water Vapor',
-    'label': 'H₂O',
-    'color': 'grey',
-  },
-  {
-    'id': 'nob',
-    'name': 'Hyper-noblium',
-    'label': 'Hyper-nob',
+    'id': 'volatile_fuel',
+    'name': 'Volatile Fuel',
+    'label': 'EXP',
     'color': 'teal',
   },
   {
-    'id': 'n2o',
+    'id': 'nitrous_oxide',
     'name': 'Nitrous Oxide',
     'label': 'N₂O',
     'color': 'red',
-  },
-  {
-    'id': 'no2',
-    'name': 'Nitryl',
-    'label': 'NO₂',
-    'color': 'brown',
-  },
-  {
-    'id': 'tritium',
-    'name': 'Tritium',
-    'label': 'Tritium',
-    'color': 'green',
-  },
-  {
-    'id': 'bz',
-    'name': 'BZ',
-    'label': 'BZ',
-    'color': 'purple',
-  },
-  {
-    'id': 'stim',
-    'name': 'Stimulum',
-    'label': 'Stimulum',
-    'color': 'purple',
-  },
-  {
-    'id': 'pluox',
-    'name': 'Pluoxium',
-    'label': 'Pluoxium',
-    'color': 'blue',
-  },
-  {
-    'id': 'miasma',
-    'name': 'Miasma',
-    'label': 'Miasma',
-    'color': 'olive',
-  },
-  {
-    'id': 'hydrogen',
-    'name': 'Hydrogen',
-    'label': 'H₂',
-    'color': 'white',
   },
   {
     'id': 'other',
@@ -290,13 +245,18 @@ const GASES = [
 // VOREStation Edit End
 
 // Returns gas label based on gasId
+// Checks GASES for both id (all chars lowercase)
+// and name (each word start capitalized, to match standards in code\defines\gases.dm)
 export const getGasLabel = (gasId: string, fallbackValue?: string) => {
   if (!gasId) return fallbackValue || 'None';
 
-  const gasSearchString = gasId.toLowerCase();
+  const gasSearchId = gasId.toLowerCase();
+  const gasSearchName = gasId.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+    letter.toUpperCase()
+  );
 
   for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
+    if (GASES[idx].id === gasSearchId || GASES[idx].name === gasSearchName) {
       return GASES[idx].label;
     }
   }
@@ -305,13 +265,18 @@ export const getGasLabel = (gasId: string, fallbackValue?: string) => {
 };
 
 // Returns gas color based on gasId
+// Checks GASES for both id (all chars lowercase)
+// and name (each word start capitalized, to match standards in code\defines\gases.dm)
 export const getGasColor = (gasId: string) => {
   if (!gasId) return 'black';
 
-  const gasSearchString = gasId.toLowerCase();
+  const gasSearchId = gasId.toLowerCase();
+  const gasSearchName = gasId.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+    letter.toUpperCase()
+  );
 
   for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
+    if (GASES[idx].id === gasSearchId || GASES[idx].name === gasSearchName) {
       return GASES[idx].color;
     }
   }
@@ -320,13 +285,18 @@ export const getGasColor = (gasId: string) => {
 };
 
 // Returns gas object based on gasId
+// Checks GASES for both id (all chars lowercase)
+// and name (each word start capitalized, to match standards in code\defines\gases.dm)
 export const getGasFromId = (gasId: string): Gas | undefined => {
   if (!gasId) return;
 
-  const gasSearchString = gasId.toLowerCase();
+  const gasSearchId = gasId.toLowerCase();
+  const gasSearchName = gasId.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+    letter.toUpperCase()
+  );
 
   for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
+    if (GASES[idx].id === gasSearchId || GASES[idx].name === gasSearchName) {
       return GASES[idx];
     }
   }

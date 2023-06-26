@@ -1203,7 +1203,7 @@
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/una_hood
-	name = "Cobra Hood"
+	name = "Cobra Hood (small)"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "soghun_hood"

@@ -758,7 +758,7 @@
 	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_unathihood
-	name = "Cobra Hood"
+	name = "Cobra hood (small)"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
 	icon_state = "unathihood"
 	color_blend_mode = ICON_MULTIPLY

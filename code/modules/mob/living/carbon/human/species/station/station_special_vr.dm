@@ -423,6 +423,8 @@
 	primitive_form = "Wolpin"
 	color_mult = 1
 	icon_height = 64
+	can_climb = TRUE
+	climbing_delay = 1
 
 	min_age = 18
 	max_age = 200
@@ -460,4 +462,3 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
-

@@ -128,7 +128,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/sprinter
 	case_type = /obj/item/weapon/implantcase/sprinter
-	
+
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/armblade
 	case_type = /obj/item/weapon/implantcase/armblade
 
@@ -146,7 +146,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"
-	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."
+	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold separately."
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/chameleon/full,
 		/obj/item/weapon/gun/energy/chameleon

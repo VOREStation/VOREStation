@@ -2953,8 +2953,8 @@
 "gu" = (
 /obj/machinery/button/remote/airlock{
 	id = "z1stall4";
-	specialfunctions = 4;
-	pixel_y = 26
+	pixel_y = 26;
+	specialfunctions = 4
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -6170,6 +6170,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
+"nz" = (
+/obj/structure/redgate,
+/turf/simulated/floor/reinforced,
+/area/groundbase/civilian/toolstorage)
 "nA" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/clothing/suit/armor/vest/wolftaur{
@@ -8284,6 +8288,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"sF" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/groundbase/civilian/toolstorage)
 "sH" = (
 /obj/effect/floor_decal/techfloor/orange,
 /obj/effect/landmark{
@@ -9875,6 +9885,13 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level1/centsquare)
+"wy" = (
+/obj/machinery/door/airlock/glass{
+	name = "redgate"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/toolstorage)
 "wA" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
@@ -13797,8 +13814,8 @@
 "FT" = (
 /obj/machinery/button/remote/airlock{
 	id = "z1stall5";
-	specialfunctions = 4;
-	pixel_y = 26
+	pixel_y = 26;
+	specialfunctions = 4
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -14074,6 +14091,9 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"GB" = (
+/turf/simulated/floor/reinforced,
+/area/groundbase/civilian/toolstorage)
 "GC" = (
 /obj/item/weapon/circuitboard/telecomms/processor,
 /obj/item/weapon/circuitboard/telecomms/processor,
@@ -30684,10 +30704,10 @@ PP
 xJ
 EN
 lE
-Eb
-Eb
-Eb
-HQ
+GB
+GB
+GB
+sF
 Eb
 Eb
 Eb
@@ -30826,14 +30846,14 @@ XS
 WC
 KQ
 lE
-Eb
-Eb
-Eb
-Nv
-Nv
-Eb
-Eb
-tP
+GB
+nz
+GB
+wy
+Vs
+Vs
+Vs
+JY
 eR
 eR
 eR
@@ -30968,11 +30988,11 @@ XS
 WC
 uz
 lE
+GB
+GB
+GB
+sF
 Eb
-Eb
-Nv
-Nv
-Nv
 Eb
 Eb
 tP
@@ -31110,10 +31130,10 @@ nO
 Li
 CZ
 lE
-Eb
-Eb
-Nv
-Eb
+Dt
+Dt
+Dt
+Dt
 Eb
 Eb
 Eb
@@ -31253,7 +31273,7 @@ lE
 lE
 lE
 Eb
-Eb
+HQ
 Eb
 Eb
 Eb
