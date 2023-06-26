@@ -213,7 +213,9 @@
 
 	lateload_redgate = list(
 		list("Teppi Ranch"),
-		list("Innland")
+		list("Innland"),
+		list("Abandoned Island"),
+		list("Dark Adventure")
 		)
 
 	lateload_gb_north = list(

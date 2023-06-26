@@ -239,7 +239,9 @@
 /area/redgate/structure/powered/teppi_ranch)
 "rr" = (
 /obj/effect/fake_sun,
-/turf/unsimulated/mineral,
+/turf/unsimulated/wall/planetary/normal/virgo4{
+	name = "the end"
+	},
 /area/redgate/wilds)
 "rH" = (
 /turf/simulated/floor/carpet/bcarpet,
@@ -499,7 +501,9 @@
 /turf/simulated/floor/water,
 /area/redgate/wilds)
 "JP" = (
-/turf/unsimulated/mineral,
+/turf/unsimulated/wall/planetary/normal/virgo4{
+	name = "the end"
+	},
 /area/redgate/wilds)
 "Kd" = (
 /obj/structure/fence/corner{

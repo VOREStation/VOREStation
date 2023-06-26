@@ -899,11 +899,10 @@
 "ge" = (
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
-"gg" = (
-/turf/unsimulated/mineral,
-/area/redgate/wilds)
 "kw" = (
-/turf/unsimulated/wall/planetary/normal/virgo4,
+/turf/unsimulated/wall/planetary/normal/virgo4{
+	name = "the end"
+	},
 /area/redgate/wilds)
 "lb" = (
 /turf/simulated/mineral/ignore_cavegen,
@@ -959,149 +958,149 @@
 /area/redgate/structure)
 
 (1,1,1) = {"
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
 "}
 (2,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -1240,10 +1239,10 @@ lb
 lb
 lb
 au
-gg
+kw
 "}
 (3,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -1382,10 +1381,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (4,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -1524,10 +1523,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (5,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -1666,10 +1665,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (6,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -1808,10 +1807,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (7,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -1950,10 +1949,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (8,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2092,10 +2091,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (9,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2234,10 +2233,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (10,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2376,10 +2375,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (11,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2518,10 +2517,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (12,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2660,10 +2659,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (13,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2802,10 +2801,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (14,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -2944,10 +2943,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (15,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3086,10 +3085,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (16,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3228,10 +3227,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (17,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3370,10 +3369,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (18,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3512,10 +3511,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (19,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3654,10 +3653,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (20,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3796,10 +3795,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (21,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -3938,10 +3937,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (22,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4080,10 +4079,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (23,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4222,10 +4221,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (24,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4364,10 +4363,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (25,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4506,10 +4505,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (26,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4648,10 +4647,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (27,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4790,10 +4789,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (28,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -4932,10 +4931,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (29,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5074,10 +5073,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (30,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5216,10 +5215,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (31,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5358,10 +5357,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (32,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5500,10 +5499,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (33,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5642,10 +5641,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (34,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5784,10 +5783,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (35,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -5926,10 +5925,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (36,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6068,10 +6067,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (37,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6210,10 +6209,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (38,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6352,10 +6351,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (39,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6494,10 +6493,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (40,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6636,10 +6635,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (41,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6778,10 +6777,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (42,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -6920,10 +6919,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (43,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7062,10 +7061,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (44,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7204,10 +7203,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (45,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7346,10 +7345,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (46,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7488,10 +7487,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (47,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7630,10 +7629,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (48,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7772,10 +7771,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (49,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -7914,10 +7913,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (50,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -8056,10 +8055,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (51,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -8198,10 +8197,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (52,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -8340,10 +8339,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (53,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -8482,10 +8481,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (54,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -8624,10 +8623,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (55,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -8766,10 +8765,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (56,1,1) = {"
-gg
+kw
 lb
 lb
 ae
@@ -8908,10 +8907,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (57,1,1) = {"
-gg
+kw
 lb
 ae
 ae
@@ -9050,10 +9049,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (58,1,1) = {"
-gg
+kw
 ub
 ub
 ub
@@ -9192,7 +9191,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (59,1,1) = {"
 kw
@@ -9334,7 +9333,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (60,1,1) = {"
 kw
@@ -9476,7 +9475,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (61,1,1) = {"
 kw
@@ -9618,7 +9617,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (62,1,1) = {"
 kw
@@ -9760,7 +9759,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (63,1,1) = {"
 kw
@@ -9902,7 +9901,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (64,1,1) = {"
 kw
@@ -10044,7 +10043,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (65,1,1) = {"
 kw
@@ -10186,7 +10185,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (66,1,1) = {"
 kw
@@ -10328,7 +10327,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (67,1,1) = {"
 kw
@@ -10470,10 +10469,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (68,1,1) = {"
-gg
+kw
 ub
 ub
 ub
@@ -10612,10 +10611,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (69,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -10754,10 +10753,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (70,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -10896,10 +10895,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (71,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -11038,10 +11037,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (72,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -11180,10 +11179,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (73,1,1) = {"
-gg
+kw
 lb
 lb
 ub
@@ -11322,10 +11321,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (74,1,1) = {"
-gg
+kw
 lb
 lb
 ub
@@ -11464,10 +11463,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (75,1,1) = {"
-gg
+kw
 lb
 lb
 ub
@@ -11606,10 +11605,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (76,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -11748,10 +11747,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (77,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -11890,10 +11889,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (78,1,1) = {"
-gg
+kw
 lb
 ub
 ub
@@ -12032,10 +12031,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (79,1,1) = {"
-gg
+kw
 ub
 ub
 ub
@@ -12174,7 +12173,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (80,1,1) = {"
 kw
@@ -12316,7 +12315,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (81,1,1) = {"
 kw
@@ -12458,7 +12457,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (82,1,1) = {"
 kw
@@ -12600,7 +12599,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (83,1,1) = {"
 kw
@@ -12742,7 +12741,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (84,1,1) = {"
 kw
@@ -12884,7 +12883,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (85,1,1) = {"
 kw
@@ -13026,7 +13025,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (86,1,1) = {"
 kw
@@ -13168,7 +13167,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (87,1,1) = {"
 kw
@@ -13310,7 +13309,7 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (88,1,1) = {"
 kw
@@ -13452,10 +13451,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (89,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -13594,10 +13593,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (90,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -13736,10 +13735,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (91,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -13878,10 +13877,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (92,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14020,10 +14019,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (93,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14162,10 +14161,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (94,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14304,10 +14303,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (95,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14446,10 +14445,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (96,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14588,10 +14587,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (97,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14730,10 +14729,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (98,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -14872,10 +14871,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (99,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15014,10 +15013,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (100,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15156,10 +15155,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (101,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15298,10 +15297,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (102,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15440,10 +15439,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (103,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15582,10 +15581,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (104,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15724,10 +15723,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (105,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -15866,10 +15865,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (106,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16008,10 +16007,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (107,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16150,10 +16149,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (108,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16292,10 +16291,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (109,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16434,10 +16433,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (110,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16576,10 +16575,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (111,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16718,10 +16717,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (112,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -16860,10 +16859,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (113,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17002,10 +17001,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (114,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17144,10 +17143,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (115,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17286,10 +17285,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (116,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17428,10 +17427,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (117,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17570,10 +17569,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (118,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17712,10 +17711,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (119,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17854,10 +17853,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (120,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -17996,10 +17995,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (121,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18138,10 +18137,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (122,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18280,10 +18279,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (123,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18422,10 +18421,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (124,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18564,10 +18563,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (125,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18706,10 +18705,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (126,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18848,10 +18847,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (127,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -18990,10 +18989,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (128,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19132,10 +19131,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (129,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19274,10 +19273,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (130,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19416,10 +19415,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (131,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19558,10 +19557,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (132,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19700,10 +19699,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (133,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19842,10 +19841,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (134,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -19984,10 +19983,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (135,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -20126,10 +20125,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (136,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -20268,10 +20267,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (137,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -20410,10 +20409,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (138,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -20552,10 +20551,10 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (139,1,1) = {"
-gg
+kw
 lb
 lb
 lb
@@ -20694,147 +20693,147 @@ lb
 lb
 lb
 lb
-gg
+kw
 "}
 (140,1,1) = {"
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
 "}

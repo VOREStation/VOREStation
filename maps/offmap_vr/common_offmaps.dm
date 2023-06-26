@@ -277,6 +277,18 @@
 	mappath = 'maps/redgate/innland.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
+/datum/map_template/common_lateload/redgate/innland
+	name = "Abandoned Island"
+	desc = "It seems like it used to be people here!"
+	mappath = 'maps/redgate/abandonedisland.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
+
+/datum/map_template/common_lateload/redgate/darkadventure
+	name = "Dark Adventure"
+	desc = "This place seems broken!"
+	mappath = 'maps/redgate/darkadventure.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
