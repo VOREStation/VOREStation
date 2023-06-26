@@ -42,7 +42,7 @@
 
 /area/gb_mine/
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-	base_turf = /turf/simulated/mineral/floor/vacuum
+	base_turf = /turf/simulated/mineral/floor
 /area/gb_mine/unexplored
 	name = "Virgo 3c Underground"
 	icon_state = "unexplored"

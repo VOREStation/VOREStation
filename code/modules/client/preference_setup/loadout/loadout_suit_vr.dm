@@ -50,7 +50,7 @@
 
 /datum/gear/suit/old_poncho //This is made from an old sprite which has been here for quite some time. Called old poncho because duplicates
 	display_name = "Colorful poncho"
-	description = "A mexican looking poncho. It look like it fits wolf taurs as well."
+	description = "A Mexican looking poncho. It look like it fits wolf taurs as well."
 	path = /obj/item/clothing/suit/poncho
 
 //Detective alternative
@@ -117,10 +117,10 @@ Talon winter coat
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
 	allowed_roles = list ("Paramedic")
 
-//Atmos-coloured hazard vest
-	display_name = "hazard vest, atmospherics"
-	path = /obj/item/clothing/suit/storage/hazardvest/atmos
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+//Long fur coat
+/datum/gear/suit/russofurcoat
+	display_name = "long fur coat"
+	path = /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
 
 //Colorable Hoodie
 /datum/gear/suit/hoodie_vr

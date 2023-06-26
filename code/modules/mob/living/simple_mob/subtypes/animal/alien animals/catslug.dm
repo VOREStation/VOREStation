@@ -43,6 +43,8 @@
 	mob_size = MOB_SMALL
 	friendly = list("hugs")
 	see_in_dark = 8
+	can_climb = TRUE
+	climbing_delay = 2.0
 
 	ID_provided = TRUE
 

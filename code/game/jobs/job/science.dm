@@ -33,7 +33,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 	job_description = "The Research Director manages and maintains the Research department. They are required to ensure the safety of the entire crew, \
-						at least with regards to anything occuring in the Research department, and to inform the crew of any disruptions that \
+						at least with regards to anything occurring in the Research department, and to inform the crew of any disruptions that \
 						might originate from Research. The Research Director often has at least passing knowledge of most of the Research department, but \
 						are encouraged to allow their staff to perform their own duties."
 	alt_titles = list("Research Supervisor" = /datum/alt_title/research_supervisor)

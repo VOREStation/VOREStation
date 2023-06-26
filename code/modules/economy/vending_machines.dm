@@ -275,33 +275,47 @@
 	desc = "Fueled by your inner inadequacy!"
 	description_fluff = "Provided by NanoMed, SweatMAX promises solutions to all of your problems. Premium gains at premium prices. Resale of SweatMAX products is a violation of NanoTrasen guidelines."
 	icon_state = "fitness"
-	//VOREStation Edit Start
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 16,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 16,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/vanilla = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/banana = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/chocolate = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/strawberry = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/fruitbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
-					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
 					/obj/item/weapon/towel/random = 8,
 					/obj/item/toy/tennis = 4)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 1,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/vanilla = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/banana = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/chocolate = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/strawberry = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/fruitbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 5,
 					/obj/item/weapon/reagent_containers/pill/diet = 25,
-					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
 					/obj/item/weapon/towel/random = 20,
 					/obj/item/toy/tennis = 15)
-	//VOREStation Edit End
 
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2, /obj/item/toy/baseball = 2) // VOREStation Add - Slurpable blobs.
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4,
+						/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2,
+						/obj/item/toy/baseball = 2) // VOREStation Add - Slurpable blobs.
 
 /obj/machinery/vending/cart
 	name = "PTech"

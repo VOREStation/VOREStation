@@ -34,7 +34,7 @@
 		<B>Captain Willis 06:13:15:</B> (Expletives), I'm turning us around. Put out a distress call to Control, we'll be back in Sif orbit in a couple of minutes.<BR>
 		**
 		<BR>
-		<B>V.I.S Traffic Control 06:15:49:</B> MBT-540 we are recieving you. Your atmospheric sensors are reading potentially harmful toxins in your cargo bay. Advise locking down interior cargo bay doors. Please stand by.<BR>
+		<B>V.I.S Traffic Control 06:15:49:</B> MBT-540 we are receiving you. Your atmospheric sensors are reading potentially harmful toxins in your cargo bay. Advise locking down interior cargo bay doors. Please stand by.<BR>
 		<B>Captain Adisu 06:16:10:</B> Understood. <BR> ** <BR><B>V.I.S Traffic Control 06:27:02: </B> MBT-540, we have no docking bays available at this time, are you equipped for atmospheric re-entry?<BR>
 		<B>Captain Willis 06:27:12:</B> We-We are shielded. But we have fuel and air for-<BR>
 		<B>V.I.S Traffic Control 06:27:17:</B> Please make an emergency landing at the coordinates provided and standby for further information.<BR>
@@ -172,7 +172,7 @@
 		<B>END LOG</B><BR>
 		<BR>
 		<B>CATALOGUER VOICE RECOGNITION RESULTS:</B><BR>
-		No match found for either speaker, but contextual clues and use of Old Earth russian (\'brat\', approximately \'brother\' or \'pal\') suggests out-of-sector criminal elements.
+		No match found for either speaker, but contextual clues and use of Old Earth Russian (\'brat\', approximately \'brother\' or \'pal\') suggests out-of-sector criminal elements.
 	"}
 
 /obj/structure/prop/blackbox/gecko_wreck

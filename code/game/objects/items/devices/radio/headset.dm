@@ -224,13 +224,13 @@
 
 /obj/item/device/radio/headset/heads/hos
 	name = "head of security's headset"
-	desc = "The headset of the hardass who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/hos/alt
 	name = "head of security's bowman headset"
-	desc = "The headset of the hardass who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 

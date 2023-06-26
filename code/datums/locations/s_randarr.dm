@@ -122,7 +122,7 @@
 	desc = "The larger world that Ahdomai orbits. It is often mythologically associated as S'randarr's Shield, and is informally known \
 	as Shield among the Tajaran and formally among the humans. It is uninhabitable, as it has a largely methane atmosphere and lacks water \
 	or other features necessary to life. Nonetheless, a domed, underdeveloped colony exists, called Hran'vasa, heavily funded by Osiris Atmospherics, \
-	practically the only non-Ahdomain official holding for the Tajaran race. It is incredibly dependant on outside support and imports for life, \
+	practically the only non-Ahdomain official holding for the Tajaran race. It is incredibly dependent on outside support and imports for life, \
 	but has a high export of noble gasses for corporate use."
 
 /datum/locations/messa
@@ -132,5 +132,5 @@
 
 /datum/locations/al_benj_sri
 	name = "Al-Benj S'ri"
-	desc = "An astroid belt seperating S'randarr and Messa from Ahdomai. This is known also as \"The Sea of Souls\". Those sould in Al-Benj S'ri \
+	desc = "An asteroid belt separating S'randarr and Messa from Ahdomai. This is known also as \"The Sea of Souls\". Those sold in Al-Benj S'ri \
 	are said to be in limbo between S'randarr and Messa, as they both fight over them."

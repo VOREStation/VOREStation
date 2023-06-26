@@ -526,3 +526,48 @@
 /obj/item/weapon/reagent_containers/food/condiment/spacespice/Initialize()
 	. = ..()
 	reagents.add_reagent("spacespice", 40)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder
+	name = "protein powder packet"
+	desc = "Contains 5u of regular protein powder. Mix with 25u of water and enjoy."
+	icon_state = "protein_powder1"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/Initialize()
+	. = ..()
+	reagents.add_reagent("protein_powder", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/vanilla
+	name = "vanilla protein powder packet"
+	desc = "Contains 5u of vanilla flavored protein powder. Mix with 25u of water and enjoy."
+	icon_state = "protein_powder2"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/vanilla/Initialize()
+	. = ..()
+	reagents.add_reagent("vanilla_protein_powder", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/banana
+	name = "banana protein powder packet"
+	desc = "Contains 5u of banana flavored protein powder. Mix with 25u of water and enjoy."
+	icon_state = "protein_powder3"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/banana/Initialize()
+	. = ..()
+	reagents.add_reagent("banana_protein_powder", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/chocolate
+	name = "chocolate protein powder packet"
+	desc = "Contains 5u of chocolate flavored protein powder. Mix with 25u of water and enjoy."
+	icon_state = "protein_powder4"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/chocolate/Initialize()
+	. = ..()
+	reagents.add_reagent("chocolate_protein_powder", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/strawberry
+	name = "strawberry protein powder packet"
+	desc = "Contains 5u of strawberry flavored protein powder. Mix with 25u of water and enjoy."
+	icon_state = "protein_powder5"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/strawberry/Initialize()
+	. = ..()
+	reagents.add_reagent("strawberry_protein_powder", 5)

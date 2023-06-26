@@ -172,7 +172,7 @@
 
 /obj/item/clothing/head/helmet/space/void/medical/bio
 	name = "biohazard voidsuit helmet"
-	desc = "A special suit designed to protect the user in hazardous enviornments on the field. It feels heavier than the standard suit with extra protection around the joints."
+	desc = "A special suit designed to protect the user in hazardous environments on the field. It feels heavier than the standard suit with extra protection around the joints."
 	icon_state = "rig0-medical_bio"
 	item_state_slots = list(slot_r_hand_str = "medical_helm_bio", slot_l_hand_str = "medical_helm_bio")
 	armor = list(melee = 55, bullet = 15, laser = 20, energy = 15, bomb = 15, bio = 100, rad = 75)
@@ -182,7 +182,7 @@
 
 /obj/item/clothing/suit/space/void/medical/bio
 	name = "biohazard voidsuit"
-	desc = "A special suit designed to protect the user in hazardous enviornments on the field. It feels heavier than the standard suit with extra protection around the joints."
+	desc = "A special suit designed to protect the user in hazardous environments on the field. It feels heavier than the standard suit with extra protection around the joints."
 	icon_state = "rig-medical_bio"
 	item_state_slots = list(slot_r_hand_str = "medical_voidsuit_bio", slot_l_hand_str = "medical_voidsuit_bio")
 	armor = list(melee = 55, bullet = 15, laser = 20, energy = 15, bomb = 15, bio = 100, rad = 75)

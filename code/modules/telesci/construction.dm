@@ -15,7 +15,7 @@
 	build_path = /obj/machinery/telepad
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
 	req_components = list(
-							/obj/item/weapon/ore/bluespace_crystal = 1,
+							/obj/item/weapon/bluespace_crystal = 1,
 							/obj/item/weapon/stock_parts/capacitor = 2,
 							/obj/item/stack/cable_coil = 5,
 							/obj/item/weapon/stock_parts/console_screen = 1)
@@ -27,7 +27,7 @@
 	build_path = /obj/machinery/power/quantumpad
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 4, TECH_BLUESPACE = 4)
 	req_components = list(
-		/obj/item/weapon/ore/bluespace_crystal = 1,
+		/obj/item/weapon/bluespace_crystal = 1,
 		/obj/item/weapon/stock_parts/capacitor = 1,
 		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/stack/cable_coil = 5)
