@@ -277,7 +277,7 @@
 	mappath = 'maps/redgate/innland.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
-/datum/map_template/common_lateload/redgate/innland
+/datum/map_template/common_lateload/redgate/abandonedisland
 	name = "Abandoned Island"
 	desc = "It seems like it used to be people here!"
 	mappath = 'maps/redgate/abandonedisland.dmm'

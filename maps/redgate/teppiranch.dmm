@@ -292,7 +292,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)
 "uX" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_cavegen,
 /area/redgate/wilds)
 "vv" = (
 /turf/simulated/floor/outdoors/grass/seasonal{
@@ -428,7 +428,7 @@
 "Fc" = (
 /obj/structure/table/hardwoodtable,
 /obj/item/weapon/paper{
-	info = "<i>Goeleigh,<br><br>This isn't how I wanted to give this message to you. They say that the light is coming this way, and we won't even know it's here until it's upon us. There's no way to know when it will arrive, so we can't really afford to wait around. My family has secured us a ride on a ship, and we'll be going to one of the rimward colonies. They say that they are making strides to build some new kind of gate there, something that will take us far from that light, somewhere safe. We can't really bring the animals, but perhaps you can make some arrangements for them.<br><br>As soon as you read this, get yourself out of here and come find us. We left you enough money to make the trip in the usual spot. We'll be in the registry once we arrive. We're waiting for you.<br><br>Yours, Medley</i>";
+	info = "<font face="Verdana" color=black><i>Goeleigh,<BR><BR>This isn&#39;t how I wanted to give this message to you. They say that the light is coming this way, and we won&#39;t even know it&#39;s here until it&#39;s upon us. There&#39;s no way to know when it will arrive, so we can&#39;t really afford to wait around. My family has secured us a ride on a ship, and we&#39;ll be going to one of the rimward colonies. They say that they are making strides to build some new kind of gate there, something that will take us far from that light, somewhere safe. We can&#39;t really bring the animals, but perhaps you can make some arrangements for them.<BR><BR>As soon as you read this, get yourself out of here and come find us. We left you enough money to make the trip in the usual spot. We&#39;ll be in the registry once we arrive. We&#39;re waiting for you.<BR><BR>Yours, Medley</i></font>";
 	name = "elegantly scrawled note"
 	},
 /turf/simulated/floor/wood,
