@@ -6,23 +6,23 @@
 /area/redgate/wilds)
 "af" = (
 /turf/simulated/wall/wood,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "aj" = (
 /obj/structure/table/woodentable,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "am" = (
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ap" = (
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ar" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
@@ -31,7 +31,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "at" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
 /turf/simulated/floor/outdoors/grass/seasonal,
@@ -46,20 +46,20 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "aK" = (
 /obj/structure/flora/pottedplant/minitree,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "aL" = (
 /turf/simulated/floor/reinforced,
 /area/redgate/wilds)
 "aM" = (
 /turf/simulated/floor/carpet/purcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "aN" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/outdoors/grass/seasonal,
@@ -70,7 +70,7 @@
 /area/redgate/wilds)
 "bh" = (
 /turf/simulated/floor/reinforced,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "br" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/reinforced,
@@ -87,7 +87,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bt" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -99,7 +99,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bu" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/floor_decal/corner/green{
@@ -110,7 +110,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "by" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -120,7 +120,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bE" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -128,25 +128,25 @@
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bF" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass/seasonal/dark{
 	base_desc = "Thick, green grass... who knows what's hiding in it!"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bG" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/outdoors/grass/seasonal/dark{
 	base_desc = "Thick, green grass... who knows what's hiding in it!"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bO" = (
 /turf/simulated/mineral/floor/ignore_cavegen{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "bT" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/floor/outdoors/grass/seasonal/dark{
@@ -186,10 +186,10 @@
 /area/redgate/wilds)
 "cy" = (
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cA" = (
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cD" = (
 /turf/simulated/wall/wood,
 /area/redgate/wilds)
@@ -202,7 +202,7 @@
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cQ" = (
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
@@ -212,11 +212,14 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cU" = (
 /obj/structure/filingcabinet,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cV" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin{
@@ -226,40 +229,40 @@
 	pixel_y = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cW" = (
 /obj/structure/flora/pottedplant/fern,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cX" = (
 /obj/structure/bookcase,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "cZ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "da" = (
 /obj/structure/table/woodentable,
 /obj/random/contraband,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "db" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /mob/living/simple_mob/animal/goat,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dc" = (
 /obj/structure/bed/psych{
 	desc = "For prime comfort when slacking off from management. Also good for goats. Somehow.";
 	name = "The Comfiest Couch in the World"
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dd" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/outdoors/grass/seasonal{
@@ -271,7 +274,7 @@
 	pixel_y = -32
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "df" = (
 /obj/machinery/door/airlock{
 	name = "Management"
@@ -283,24 +286,24 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dg" = (
 /obj/structure/sink/kitchen{
 	name = "sink";
 	pixel_y = 28
 	},
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dh" = (
 /obj/structure/sign/poster{
 	pixel_y = 32
 	},
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "di" = (
 /obj/machinery/washing_machine,
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dj" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/floor/outdoors/grass/seasonal/dark{
@@ -309,14 +312,14 @@
 /area/redgate/wilds)
 "dl" = (
 /turf/simulated/wall,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dm" = (
 /obj/machinery/recharge_station,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dn" = (
 /obj/structure/sign/poster{
 	pixel_y = 32
@@ -325,13 +328,13 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "do" = (
 /obj/structure/mopbucket,
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/mop,
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dp" = (
 /obj/structure/table/steel,
 /obj/item/weapon/reagent_containers/spray/cleaner,
@@ -343,7 +346,7 @@
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dt" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/simulated/floor/outdoors/grass/seasonal{
@@ -355,7 +358,7 @@
 	name = "Custodial Closet"
 	},
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dv" = (
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/lights/mixed,
@@ -364,7 +367,7 @@
 /obj/item/weapon/storage/box/lights/mixed,
 /obj/item/weapon/storage/laundry_basket,
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dA" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -373,7 +376,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dB" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/floor_decal/corner/green{
@@ -386,7 +389,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dC" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -395,7 +398,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dD" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
@@ -405,7 +408,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dE" = (
 /obj/structure/table/marble,
 /obj/item/weapon/book/manual/barman_recipes,
@@ -416,7 +419,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dF" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -429,19 +432,19 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dJ" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dK" = (
 /obj/structure/kitchenspike,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dL" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/weapon/storage/box/monkeycubes,
@@ -466,7 +469,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dM" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/floor_decal/corner/green{
@@ -476,7 +479,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dQ" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/outdoors/grass/seasonal{
@@ -490,7 +493,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dS" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
@@ -499,7 +502,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dT" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -507,7 +510,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dU" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Kitchen cold room";
@@ -516,12 +519,12 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "dV" = (
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ea" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/roastbeef,
@@ -529,7 +532,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eb" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -542,7 +545,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ec" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -551,21 +554,21 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ed" = (
 /obj/machinery/gibber,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ee" = (
 /obj/machinery/biogenerator,
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ef" = (
 /obj/machinery/seed_storage/garden,
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eh" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
@@ -578,7 +581,7 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ei" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -591,7 +594,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ej" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -603,7 +606,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ek" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -613,14 +616,14 @@
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/reagent_containers/glass/bucket,
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "el" = (
 /obj/machinery/seed_extractor,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "en" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
@@ -630,19 +633,19 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eo" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 9
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ep" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eq" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -652,7 +655,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "er" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -661,25 +664,25 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "et" = (
 /obj/structure/sink/kitchen{
 	name = "sink";
 	pixel_y = 28
 	},
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eu" = (
 /obj/machinery/vending/hydronutrients,
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ev" = (
 /obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ew" = (
 /obj/structure/table/marble,
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
@@ -689,11 +692,11 @@
 	pixel_x = 3
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ex" = (
 /obj/structure/table/marble,
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ey" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -703,14 +706,14 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ez" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
 	req_access = list(28)
 	},
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eE" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/meatballsoup,
@@ -718,10 +721,10 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eF" = (
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eH" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -731,11 +734,11 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eI" = (
 /obj/machinery/smartfridge,
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eN" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/meatsteak,
@@ -743,12 +746,12 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eO" = (
 /obj/structure/table/marble,
 /obj/item/weapon/reagent_containers/glass/rag,
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eP" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -764,14 +767,14 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eQ" = (
 /obj/machinery/door/airlock/glass{
 	name = "Garden";
 	req_access = list(28)
 	},
 /turf/simulated/floor/plating,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eR" = (
 /obj/structure/sign/poster{
 	pixel_y = -32
@@ -780,23 +783,23 @@
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eS" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_coffee/full,
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eT" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_soft/full,
 /turf/simulated/floor/lino,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eU" = (
 /obj/machinery/vending/boozeomat,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eV" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/closet/chefcloset,
@@ -811,7 +814,7 @@
 /obj/item/weapon/packageWrap,
 /obj/item/weapon/packageWrap,
 /turf/simulated/floor/tiled/white,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eW" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -820,7 +823,7 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "eZ" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -833,13 +836,13 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "fe" = (
 /obj/machinery/door/airlock{
 	name = "Tavern"
 	},
 /turf/unsimulated/floor/steel,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ff" = (
 /obj/structure/railing{
 	dir = 8
@@ -847,13 +850,13 @@
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "fh" = (
 /mob/living/simple_mob/animal/passive/cow,
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "fi" = (
 /obj/structure/railing{
 	dir = 4
@@ -861,7 +864,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "fj" = (
 /mob/living/simple_mob/animal/passive/chicken,
 /turf/simulated/mineral/floor/ignore_cavegen{
@@ -876,7 +879,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "fl" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/outdoors/grass/seasonal,
@@ -940,22 +943,28 @@
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "mB" = (
 /obj/structure/bonfire/permanent,
 /turf/simulated/floor/reinforced,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "ub" = (
 /turf/simulated/floor/water,
 /area/redgate/wilds)
 "ve" = (
 /turf/simulated/floor/outdoors/newdirt,
-/area/redgate/structure)
+/area/redgate/structure/powered)
 "xW" = (
 /turf/simulated/floor/outdoors/grass/seasonal{
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
-/area/redgate/structure)
+/area/redgate/structure/powered)
+"Ha" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/redgate/structure/powered)
 
 (1,1,1) = {"
 kw
@@ -5262,7 +5271,7 @@ cQ
 af
 cX
 dc
-am
+Ha
 df
 ap
 ap
