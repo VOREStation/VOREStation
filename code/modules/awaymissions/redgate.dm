@@ -9,6 +9,7 @@
 	pixel_x = -16
 
 	var/obj/structure/redgate/target
+	var/list/exceptions = list(/obj/structure/ore_box)	//made it a var so that GMs or map makers can selectively allow things to pass through
 
 /obj/structure/redgate/Destroy()
 	if(target)
@@ -20,10 +21,15 @@
 	return ..()
 
 /obj/structure/redgate/proc/teleport(var/mob/M as mob)
+	var/keycheck = TRUE
 	if (!istype(M,/mob/living))		//We only want mob/living, no bullets or mechs or AI eyes or items
-		return
-	if(!M.ckey)		//We only want players, no bringing the weird stuff on the other side back
-		return
+		if(M.type in exceptions)
+			keycheck = FALSE		//we'll allow it
+		else
+			return
+	if(keycheck)		//exceptions probably won't have a ckey
+		if(!M.ckey)		//We only want players, no bringing the weird stuff on the other side back
+			return
 
 	if(!target)
 		toggle_portal()
@@ -103,6 +109,7 @@
 	name = "redgate"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "redblacir"
+	base_turf = /turf/simulated/mineral/floor/cave
 
 /area/redgate/wilds
 	name = "wilderness"

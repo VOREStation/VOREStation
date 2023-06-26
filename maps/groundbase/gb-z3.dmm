@@ -22,6 +22,16 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
+"ad" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
+/obj/item/weapon/tank/phoron,
+/obj/item/weapon/tank/phoron,
+/obj/item/weapon/tool/crowbar/red,
+/obj/structure/closet/walllocker_double/engineering/east,
+/turf/simulated/floor,
+/area/shuttle/groundbase/exploration)
 "ak" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -2413,16 +2423,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
-"Ma" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
-/obj/structure/closet/walllocker_double/east,
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tool/crowbar/red,
-/turf/simulated/floor,
-/area/shuttle/groundbase/exploration)
 "Mc" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -7675,7 +7675,7 @@ XT
 PH
 HE
 CU
-Ma
+ad
 PH
 PH
 XC
