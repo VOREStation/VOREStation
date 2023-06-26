@@ -642,7 +642,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/structure/powered/teppi_ranch)
 "Qc" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
 "Qi" = (
 /obj/machinery/chem_master/condimaster,

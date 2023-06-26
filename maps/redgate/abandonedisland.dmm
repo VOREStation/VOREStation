@@ -20,7 +20,7 @@
 /turf/simulated/floor/wood/broken,
 /area/redgate/structure)
 "aN" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/cave,
 /area/redgate/wilds)
 "aO" = (
 /turf/simulated/floor/outdoors/grass/forest,
