@@ -497,7 +497,7 @@
 "dS" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
-	req_access = list(28)
+	req_access = null
 	},
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
@@ -514,7 +514,7 @@
 "dU" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Kitchen cold room";
-	req_access = list(28)
+	req_access = null
 	},
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
@@ -710,7 +710,7 @@
 "ez" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
-	req_access = list(28)
+	req_access = null
 	},
 /turf/unsimulated/floor/steel,
 /area/redgate/structure/powered)
@@ -907,6 +907,12 @@
 	name = "the end"
 	},
 /area/redgate/wilds)
+"la" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered)
 "lb" = (
 /turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
@@ -5556,7 +5562,7 @@ cQ
 cQ
 cQ
 af
-aM
+la
 aM
 aM
 dl
