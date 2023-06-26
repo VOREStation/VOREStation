@@ -142,7 +142,7 @@
 	},
 /area/redgate/structure/powered)
 "bO" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -164,7 +164,7 @@
 	},
 /area/redgate/wilds)
 "cq" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -198,7 +198,7 @@
 /area/redgate/wilds)
 "cL" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -867,7 +867,7 @@
 /area/redgate/structure/powered)
 "fj" = (
 /mob/living/simple_mob/animal/passive/chicken,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -918,7 +918,7 @@
 /area/redgate/wilds)
 "le" = (
 /obj/effect/landmark/event_scatter,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
