@@ -292,7 +292,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)
 "uX" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
 "vv" = (
 /turf/simulated/floor/outdoors/grass/seasonal{
