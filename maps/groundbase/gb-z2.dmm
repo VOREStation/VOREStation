@@ -209,9 +209,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
-"aw" = (
-/turf/simulated/floor/tiled,
-/area/groundbase/science/hall)
 "ax" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/weapon/towel/random,
@@ -3121,12 +3118,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
-"iH" = (
-/turf/simulated/floor{
-	edge_blending_priority = -1;
-	outdoors = 1
-	},
-/area/groundbase/level2/westspur)
 "iI" = (
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
@@ -23838,7 +23829,7 @@ aB
 PR
 lw
 Vr
-aw
+Vr
 Bl
 ag
 ag
@@ -26913,11 +26904,11 @@ Yo
 In
 bY
 bY
-iH
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -27056,10 +27047,10 @@ Wl
 bY
 bY
 bY
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -27198,10 +27189,10 @@ Wl
 bY
 OI
 OI
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -27340,10 +27331,10 @@ bY
 bY
 OI
 OI
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN
