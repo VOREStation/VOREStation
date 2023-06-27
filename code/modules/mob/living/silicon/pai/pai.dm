@@ -36,10 +36,10 @@
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
 		//VOREStation Addition Start
-		"Dire wolf" = "pai-diredog"
-		"Horse (Lune)" = "pai-horse_lune"
-		"Horse (Soleil)" = "pai-horse_soleil"
-		"Dragon" = "pai-pdragon"
+		"Dire wolf" = "pai-diredog",
+		"Horse (Lune)" = "pai-horse_lune",
+		"Horse (Soleil)" = "pai-horse_soleil",
+		"Dragon" = "pai-pdragon",
 		"Bear" = "pai-bear",
 		"Fennec" = "pai-fen",
 		"Type Zero" = "pai-typezero",
