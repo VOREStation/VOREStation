@@ -62,7 +62,7 @@
 /turf/simulated/floor/wood/sif,
 /area/redgate/wilds)
 "hJ" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/cave,
 /area/redgate/wilds)
 "hS" = (
 /obj/structure/bed/double/padded,

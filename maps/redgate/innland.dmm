@@ -142,7 +142,7 @@
 	},
 /area/redgate/structure/powered)
 "bO" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -164,7 +164,7 @@
 	},
 /area/redgate/wilds)
 "cq" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -198,7 +198,7 @@
 /area/redgate/wilds)
 "cL" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -497,7 +497,7 @@
 "dS" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
-	req_access = list(28)
+	req_access = null
 	},
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
@@ -514,7 +514,7 @@
 "dU" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Kitchen cold room";
-	req_access = list(28)
+	req_access = null
 	},
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
@@ -710,7 +710,7 @@
 "ez" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
-	req_access = list(28)
+	req_access = null
 	},
 /turf/unsimulated/floor/steel,
 /area/redgate/structure/powered)
@@ -867,7 +867,7 @@
 /area/redgate/structure/powered)
 "fj" = (
 /mob/living/simple_mob/animal/passive/chicken,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -907,8 +907,14 @@
 	name = "the end"
 	},
 /area/redgate/wilds)
+"la" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/redgate/structure/powered)
 "lb" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
 "ld" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -918,7 +924,7 @@
 /area/redgate/wilds)
 "le" = (
 /obj/effect/landmark/event_scatter,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
 	name = "dirt"
 	},
@@ -5556,7 +5562,7 @@ cQ
 cQ
 cQ
 af
-aM
+la
 aM
 aM
 dl

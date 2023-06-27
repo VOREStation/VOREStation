@@ -89,6 +89,7 @@
 	to_chat(M, "<span class='warning'>You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind.</span>")
 	newPred.ckey = M.ckey
 	newPred.visible_message("<span class='warning'>[newPred] emerges from somewhere!</span>")
+	log_and_message_admins("successfully entered \a [src] and became a [newPred].")
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/no_announce
@@ -123,6 +124,7 @@
 
 	newMorph.ckey = M.ckey
 	newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
+	log_and_message_admins("successfully entered \a [src] and became a Morph.")
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce
