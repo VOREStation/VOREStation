@@ -695,7 +695,7 @@
     display_name = "relatable jacket"
     path = /obj/item/clothing/suit/storage/drive
 
-datum/gear/suit/motojacket
+/datum/gear/suit/motojacket
     display_name = "motorcycle jacket"
     path = /obj/item/clothing/suit/storage/toggle/moto_jacket
 
@@ -703,7 +703,7 @@ datum/gear/suit/motojacket
     display_name = "punk vest"
     path = /obj/item/clothing/suit/storage/punkvest
 
-datum/gear/suit/raincoat
+/datum/gear/suit/raincoat
     display_name = "raincoat"
     path = /obj/item/clothing/suit/storage/hooded/raincoat
 
