@@ -674,3 +674,55 @@
 	"Earth kimono" = /obj/item/clothing/suit/kimono/earth
 	)
 	gear_tweaks += new/datum/gear_tweak/path(kimonos)
+
+//cropped hoodies
+/datum/gear/suit/roles/croppedhoodies
+	display_name = "cropped hoodie selection"
+	path = /obj/item/clothing/suit/storage/croppedhoodie
+
+/datum/gear/suit/roles/croppedhoodies/New()
+	..()
+	var/list/croppedhoodies = list(
+		"cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie,
+		"high cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie/croppier,
+		"very high cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie/croppierer,
+		"super high cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie/croppiest
+	)
+	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += new/datum/gear_tweak/path(croppedhoodies)
+
+/datum/gear/suit/drive
+    display_name = "relatable jacket"
+    path = /obj/item/clothing/suit/storage/drive
+
+datum/gear/suit/motojacket
+    display_name = "motorcycle jacket"
+    path = /obj/item/clothing/suit/storage/toggle/moto_jacket
+
+/datum/gear/suit/punkvest
+    display_name = "punk vest"
+    path = /obj/item/clothing/suit/storage/punkvest
+
+datum/gear/suit/raincoat
+    display_name = "raincoat"
+    path = /obj/item/clothing/suit/storage/hooded/raincoat
+
+//hooded cloaks
+/datum/gear/suit/roles/hoodedcloaks
+	display_name = "hooded cloak selection"
+	path = /obj/item/clothing/suit/storage/hooded/cloak
+
+/datum/gear/suit/roles/hoodedcloaks/New()
+	..()
+	var/list/hoodedcloaks = list(
+		"hooded maroon cloak"=/obj/item/clothing/suit/storage/hooded/cloak,
+		"hooded winter cloak"=/obj/item/clothing/suit/storage/hooded/cloak/winter,
+		"hooded asymmetric cloak"=/obj/item/clothing/suit/storage/hooded/cloak/asymmetric,
+		"hooded fancy cloak"=/obj/item/clothing/suit/storage/hooded/cloak/fancy
+	)
+	gear_tweaks += new/datum/gear_tweak/path(hoodedcloaks)
+
+//nerdy shirt
+/datum/gear/suit/nerdshirt
+    display_name = "nerdy shirt"
+    path = /obj/item/clothing/suit/nerdshirt

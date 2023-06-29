@@ -252,3 +252,8 @@
 	name = "yellow performer's boots"
 	desc = "These boots were made for dancing."
 	icon_state = "ysing"
+
+/obj/item/clothing/shoes/boots/half_moon
+    name = "half moon boots"
+    desc = "Flexible and tight, these boots ensure the wearer will be leaving a solid impression without sacrificing mobility."
+    icon_state = "half_moon"
