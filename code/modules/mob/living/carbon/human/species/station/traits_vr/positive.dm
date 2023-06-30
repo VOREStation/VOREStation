@@ -245,6 +245,7 @@
 	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
 	cost = 0
 	custom_only = FALSE
+	var_changes = list("can_climb" = TRUE)
 	allowed_species = list(SPECIES_XENOCHIMERA, SPECIES_CUSTOM)	//So that we avoid needless bloat for xenochim
 	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber)
 

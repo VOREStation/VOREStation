@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aE" = (
-/obj/structure/flora/tree/jungle_small,
-/turf/simulated/floor/outdoors/grass,
-/area/redgate/wilds)
 "aF" = (
 /turf/simulated/mineral/floor/cave{
 	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
@@ -20,14 +16,10 @@
 /turf/simulated/floor/wood/broken,
 /area/redgate/structure)
 "aN" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/cave,
 /area/redgate/wilds)
 "aO" = (
-/turf/simulated/floor/outdoors/grass/forest,
-/area/redgate/wilds)
-"aR" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/redgate/wilds)
 "aS" = (
 /turf/simulated/floor/wood,
@@ -37,14 +29,8 @@
 	outdoors = 1
 	},
 /area/redgate/wilds)
-"aV" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/beach/water{
-	outdoors = 1
-	},
-/area/redgate/wilds)
 "aX" = (
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "aY" = (
 /turf/simulated/floor/beach/sand{
@@ -56,10 +42,6 @@
 /area/redgate/wilds)
 "ba" = (
 /turf/simulated/floor/water/deep,
-/area/redgate/wilds)
-"bc" = (
-/obj/structure/flora/tree/jungle,
-/turf/simulated/floor/outdoors/grass,
 /area/redgate/wilds)
 "bd" = (
 /obj/structure/flora/tree/palm,
@@ -119,15 +101,11 @@
 /area/redgate/wilds)
 "bl" = (
 /obj/structure/closet/coffin,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "bm" = (
 /obj/random/contraband,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bn" = (
 /obj/fiftyspawner/wood,
@@ -138,48 +116,28 @@
 /area/redgate/wilds)
 "bp" = (
 /obj/random/tool,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "bq" = (
 /obj/random/medical,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "br" = (
 /obj/fiftyspawner/wood,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bs" = (
 /obj/fiftyspawner/phoron,
 /obj/structure/closet/crate,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bt" = (
 /obj/random/coin,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bv" = (
 /obj/fiftyspawner/glass,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bw" = (
 /obj/fiftyspawner/wood,
@@ -196,11 +154,7 @@
 /area/redgate/wilds)
 "bz" = (
 /obj/random/firstaid,
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bA" = (
 /obj/random/tool,
@@ -245,7 +199,7 @@
 /area/redgate/structure)
 "bI" = (
 /obj/structure/closet/crate/bin,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "bJ" = (
 /obj/structure/simple_door/wood,
@@ -279,11 +233,11 @@
 /area/redgate/structure)
 "bN" = (
 /obj/structure/flora/tree/palm,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "bS" = (
 /obj/structure/bonfire/permanent,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "bT" = (
 /obj/structure/flora/sif/subterranean,
@@ -303,22 +257,18 @@
 /area/redgate/wilds)
 "tj" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "vW" = (
 /obj/random/mob/semirandom_mob_spawner/fish/c,
 /turf/simulated/floor/water/deep,
 /area/redgate/wilds)
 "xL" = (
-/turf/simulated/mineral/floor/cave{
-	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/redgate/wilds)
 "xM" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "zB" = (
 /obj/random/mob/semirandom_mob_spawner/fish/b,
@@ -326,11 +276,11 @@
 /area/redgate/wilds)
 "Cq" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "GL" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/redgate/wilds)
 "HL" = (
 /obj/random/mob/semirandom_mob_spawner/fish,
@@ -348,19 +298,19 @@
 /area/redgate/wilds)
 "NT" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/redgate/wilds)
 "PV" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/redgate/wilds)
 "Rf" = (
-/obj/structure/redgate,
+/obj/structure/redgate/away,
 /turf/simulated/floor/wood,
 /area/redgate/structure)
 "RY" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
-/turf/simulated/floor/outdoors/grass,
+/turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/wilds)
 "SJ" = (
 /turf/simulated/floor/wood{
@@ -369,7 +319,7 @@
 /area/redgate/wilds)
 "VJ" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark,
 /area/redgate/wilds)
 "YW" = (
 /obj/random/mob/semirandom_mob_spawner/fish/d,
@@ -1887,7 +1837,7 @@ aY
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -2180,7 +2130,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -2315,7 +2265,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -2735,19 +2685,6 @@ aN
 aX
 aX
 aX
-bc
-aX
-aX
-aX
-aX
-aX
-aX
-aX
-aX
-aX
-aX
-aX
-bc
 aX
 aX
 aX
@@ -2764,7 +2701,20 @@ aX
 aX
 aX
 aX
-bc
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 aX
 aX
 aX
@@ -3044,7 +2994,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -3163,7 +3113,7 @@ aN
 aX
 aX
 aX
-bc
+aX
 aX
 Cq
 aX
@@ -3283,7 +3233,7 @@ aO
 aO
 aO
 aO
-aV
+aU
 aU
 aU
 aU
@@ -3330,7 +3280,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -3399,7 +3349,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -3698,7 +3648,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -3810,7 +3760,7 @@ aN
 aN
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -3822,7 +3772,7 @@ aN
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -3889,7 +3839,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -3905,7 +3855,7 @@ xL
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -3990,7 +3940,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aU
 aU
@@ -4419,7 +4369,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aU
 aU
@@ -4462,7 +4412,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -4534,7 +4484,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -4598,7 +4548,7 @@ aX
 aX
 aX
 aX
-aE
+aX
 aX
 aX
 aX
@@ -4666,7 +4616,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aN
 aN
@@ -4824,7 +4774,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -4947,7 +4897,7 @@ aN
 aN
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -5018,7 +4968,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -5039,7 +4989,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -5121,7 +5071,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 xL
@@ -5163,7 +5113,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -5313,14 +5263,14 @@ aX
 aX
 aX
 xL
-bc
 aX
 aX
 aX
 aX
 aX
 aX
-bc
+aX
+aX
 aX
 aX
 aX
@@ -5393,7 +5343,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -5522,7 +5472,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -5558,7 +5508,7 @@ aU
 aU
 aU
 aU
-aR
+aO
 aO
 aO
 aO
@@ -5573,7 +5523,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -6139,7 +6089,7 @@ xL
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -6403,7 +6353,7 @@ xL
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -6681,7 +6631,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 xL
@@ -6867,7 +6817,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -6897,7 +6847,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -6973,7 +6923,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aU
 aU
@@ -6987,7 +6937,7 @@ aO
 aO
 aO
 aX
-bc
+aX
 aX
 aX
 aX
@@ -7004,7 +6954,7 @@ aN
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -7027,7 +6977,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -7122,7 +7072,7 @@ aU
 aU
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -7265,7 +7215,7 @@ aU
 aO
 aO
 aO
-aR
+aO
 aO
 aX
 aX
@@ -7462,7 +7412,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -7681,7 +7631,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -7790,7 +7740,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -7868,7 +7818,6 @@ aX
 aX
 aX
 aX
-bc
 aX
 aX
 aX
@@ -7891,7 +7840,8 @@ aX
 aX
 aX
 aX
-bc
+aX
+aX
 aX
 aX
 aX
@@ -7968,14 +7918,13 @@ aO
 aO
 aU
 aU
-aV
 aU
 aU
+aU
 aO
 aO
 aO
 aX
-bc
 aX
 aX
 aX
@@ -7990,7 +7939,8 @@ aX
 aX
 aX
 aX
-bc
+aX
+aX
 aN
 aN
 aN
@@ -8119,7 +8069,7 @@ aO
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -8142,10 +8092,10 @@ aX
 aX
 aX
 aX
-bc
 aX
 aX
-aE
+aX
+aX
 aX
 aX
 aX
@@ -8213,11 +8163,11 @@ aO
 aO
 aO
 aO
-aR
 aO
 aO
 aO
-aR
+aO
+aO
 bx
 bx
 bx
@@ -8691,7 +8641,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -8709,7 +8659,7 @@ aN
 aX
 aX
 aX
-aE
+aX
 aX
 aX
 aX
@@ -8855,7 +8805,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -8934,7 +8884,7 @@ aU
 aU
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -9095,7 +9045,7 @@ aU
 aU
 aU
 aU
-aV
+aU
 aU
 aO
 aO
@@ -9104,7 +9054,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -9375,7 +9325,7 @@ aN
 aU
 aU
 aU
-aV
+aU
 aO
 aO
 aO
@@ -9431,7 +9381,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aU
 aU
@@ -9641,7 +9591,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 bx
@@ -9693,7 +9643,7 @@ aU
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aN
@@ -9856,13 +9806,13 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aU
 aU
 aU
 aX
-bc
+aX
 aX
 aX
 aX
@@ -9947,7 +9897,6 @@ aO
 aO
 aO
 aO
-aR
 aO
 aO
 aO
@@ -9962,7 +9911,8 @@ aO
 aO
 aO
 aO
-aR
+aO
+aO
 aO
 aO
 aX
@@ -10060,7 +10010,7 @@ aN
 aN
 aN
 aO
-aR
+aO
 aO
 aO
 aO
@@ -10076,7 +10026,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -10126,7 +10076,6 @@ aN
 aN
 aX
 aX
-bc
 aX
 aX
 aX
@@ -10135,7 +10084,8 @@ aX
 aX
 aX
 aX
-aE
+aX
+aX
 aX
 aX
 aX
@@ -10488,7 +10438,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -10513,7 +10463,7 @@ aN
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -10559,7 +10509,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -10679,7 +10629,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aU
@@ -10703,7 +10653,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aU
 aU
@@ -10720,7 +10670,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 xL
 aX
 aX
@@ -10801,7 +10751,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -10954,14 +10904,14 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
 aO
 aO
 aX
-bc
+aX
 aX
 aX
 aX
@@ -11353,7 +11303,6 @@ aO
 aO
 aO
 aO
-aR
 aO
 aO
 aO
@@ -11364,7 +11313,8 @@ aO
 aO
 aO
 aO
-aR
+aO
+aO
 aO
 aO
 aO
@@ -11487,7 +11437,6 @@ aO
 aO
 aO
 aO
-aR
 aO
 aO
 aO
@@ -11503,7 +11452,6 @@ aO
 aO
 aO
 aO
-aR
 aO
 aO
 aO
@@ -11519,7 +11467,9 @@ aO
 aO
 aO
 aO
-aR
+aO
+aO
+aO
 aO
 aO
 aO
@@ -11550,7 +11500,7 @@ aU
 aU
 aU
 aX
-bc
+aX
 aX
 aX
 aU
@@ -11652,7 +11602,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -11676,7 +11626,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aN
@@ -11775,7 +11725,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -11972,7 +11922,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aU
 aU
 aU
@@ -12092,10 +12042,10 @@ aO
 aO
 aO
 aO
-aR
 aO
 aO
 aO
+aO
 aX
 aX
 aX
@@ -12103,7 +12053,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aN
@@ -12206,7 +12156,7 @@ aN
 aN
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -12272,14 +12222,14 @@ aX
 aX
 aX
 aX
-bx
-bx
+xL
+xL
 aX
 aX
 aX
-bx
+xL
 aX
-bx
+xL
 aX
 xL
 aX
@@ -12413,16 +12363,16 @@ aX
 aX
 aX
 aX
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 bI
 aX
 aX
@@ -12526,7 +12476,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -12555,16 +12505,16 @@ aX
 aX
 aX
 aX
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 aX
@@ -12655,7 +12605,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -12698,15 +12648,15 @@ aX
 aX
 be
 be
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
 aX
-bx
-bx
-bx
+xL
+xL
+xL
 aX
 aX
 aX
@@ -12839,16 +12789,16 @@ bf
 bj
 bn
 bn
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 aX
@@ -12982,15 +12932,15 @@ bg
 bo
 bs
 by
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 aX
@@ -13052,7 +13002,7 @@ aU
 aX
 aX
 aX
-aE
+aX
 aX
 aX
 aX
@@ -13125,14 +13075,14 @@ bp
 bt
 bq
 be
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 aX
@@ -13196,7 +13146,7 @@ aU
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -13234,7 +13184,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -13265,16 +13215,16 @@ aS
 aX
 aX
 aX
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 xL
 xL
 xL
@@ -13408,15 +13358,15 @@ aX
 aX
 aX
 xL
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
 bS
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
 aX
 xL
 xL
@@ -13495,7 +13445,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -13516,7 +13466,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -13550,15 +13500,15 @@ aX
 aX
 bo
 bz
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 xL
 aX
@@ -13616,7 +13566,7 @@ aU
 aN
 aU
 aX
-aE
+aX
 aX
 aX
 aX
@@ -13666,7 +13616,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aN
@@ -13694,13 +13644,13 @@ xL
 bA
 be
 aX
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 aX
@@ -13762,7 +13712,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -13787,7 +13737,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -13834,15 +13784,15 @@ aX
 aX
 xL
 bB
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 aX
@@ -13976,15 +13926,15 @@ bm
 bq
 bv
 bk
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 xL
 aX
@@ -14059,7 +14009,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aU
 aU
 aU
@@ -14082,7 +14032,7 @@ aN
 aN
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -14119,13 +14069,13 @@ br
 bw
 bC
 be
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 xL
@@ -14260,14 +14210,14 @@ be
 be
 be
 be
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aX
 aX
 xL
@@ -14338,7 +14288,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aO
 aO
@@ -14369,7 +14319,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -14401,14 +14351,14 @@ aX
 aX
 aX
 aX
-bx
-bx
+xL
+xL
 aX
-bx
-bx
-bx
+xL
+xL
+xL
 aX
-bx
+xL
 aX
 aX
 aX
@@ -14470,7 +14420,7 @@ aN
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -14637,7 +14587,7 @@ aO
 aU
 aU
 aU
-aV
+aU
 aO
 aO
 aO
@@ -14656,7 +14606,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aN
@@ -14901,7 +14851,7 @@ aX
 aN
 aN
 aX
-bc
+aX
 aX
 aX
 aX
@@ -14926,7 +14876,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -15048,9 +14998,9 @@ aX
 aX
 aX
 aX
-aE
 aX
 aX
+aX
 aO
 aO
 aO
@@ -15070,7 +15020,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aX
@@ -15330,7 +15280,7 @@ aF
 xL
 xL
 aX
-bc
+aX
 aX
 aX
 aX
@@ -15533,7 +15483,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -15823,7 +15773,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -15936,7 +15886,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -16260,7 +16210,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -16361,7 +16311,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -16505,7 +16455,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -16633,14 +16583,14 @@ aO
 aO
 aO
 aO
-aR
-aO
-aO
-aR
 aO
 aO
 aO
 aO
+aO
+aO
+aO
+aO
 aX
 aX
 aX
@@ -16652,7 +16602,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -16808,7 +16758,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -16906,7 +16856,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aU
 aU
 aU
@@ -17084,7 +17034,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -17246,7 +17196,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -17480,7 +17430,7 @@ aU
 aU
 aU
 aU
-aR
+aO
 aO
 aO
 aO
@@ -17613,7 +17563,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -17665,7 +17615,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -17773,7 +17723,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -17889,7 +17839,7 @@ aO
 aO
 aO
 aO
-aR
+aO
 aO
 aO
 aO
@@ -18195,13 +18145,13 @@ aU
 aU
 aO
 aO
-aR
 aO
 aO
 aO
 aO
 aO
 aO
+aO
 aX
 aX
 aX
@@ -18226,7 +18176,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -18354,7 +18304,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX
@@ -18642,7 +18592,7 @@ aX
 aX
 aX
 aX
-bc
+aX
 aX
 aX
 aX

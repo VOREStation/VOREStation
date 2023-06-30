@@ -186,23 +186,28 @@
 			climb_time +=3 SECONDS
 			if(fall_chance < 30)
 				fall_chance = 30
-	L.custom_emote(VISIBLE_MESSAGE, "begins to climb up on \The [src]")
+	L.visible_message(message = "<b>[L]</b> begins to climb up on <b>\The [src]</b>", self_message = "You begin to clumb up on <b>\The [src]</b>", \
+		blind_message = "You hear the sounds of climbing!", runemessage = "Tap Tap")
 	var/oops_time = world.time
 	var/grace_time = 4 SECONDS
 	to_chat(L, SPAN_WARNING("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
 	if(do_after(L,climb_time))
 		if(prob(fall_chance))
-			to_chat(L, SPAN_DANGER("You slipped and fell!"))
 			L.forceMove(above_mob)
+			L.visible_message(message = "<b>[L]</b> falls off <b>\The [src]</b>", self_message = SPAN_DANGER("You slipped off <b>\The [src]</b>"), \
+				blind_message = "you hear a loud thud!", runemessage = "CRASH!")
 		else
 			if(drop_our_held)
 				L.drop_item(get_turf(L))
 			L.forceMove(above_wall)
+			L.visible_message(message = "<b>[L]</b> climbed up on <b>\The [src]</b>",	\
+				self_message = SPAN_NOTICE("You successfully scaled <b>\The [src]</b>"),	\
+				blind_message = "The sounds of climbing cease.", runemessage = "Tap Tap")
 		L.adjust_nutrition(-nutrition_cost)
-
-		to_chat(L, SPAN_NOTICE("You clambered up successfully!"))
 	else if(world.time > (oops_time + grace_time))
 		L.forceMove(above_mob)
+		L.visible_message(message = "<b>[L]</b> falls off <b>\The [src]</b>", self_message = SPAN_DANGER("You slipped off <b>\The [src]</b>"), \
+			blind_message = "you hear a loud thud!", runemessage = "CRASH!")
 
 /mob/living/verb/climb_down()
 	set name = "Climb down wall"
@@ -303,17 +308,27 @@
 		to_chat(src, SPAN_DANGER("\The [climbing_surface] is not suitable for climbing! Even for a master climber, this is risky!"))
 		if(fall_chance < 75 )
 			fall_chance = 75
-	src.custom_emote(VISIBLE_MESSAGE, "begins to climb down along  \The [below_wall]")
+	src.visible_message(message = "<b>[src]</b> climb down <b>\The [below_wall]</b>",	\
+		self_message = "You begin to descend <b>\The [below_wall]</b>", 	\
+		blind_message = "You hear the sounds of climbing!", runemessage = "Tap Tap")
+	below_wall.audible_message(message = "You hear something climbing up <b>\The [below_wall]</b>", runemessage= "Tap Tap")
 	var/oops_time = world.time
 	var/grace_time = 3 SECONDS
 	to_chat(src, SPAN_WARNING("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
 	if(do_after(src,climb_time))
 		if(prob(fall_chance))
-			to_chat(src, SPAN_DANGER("You slipped and fell!"))
 			src.forceMove(front_of_us)
+			src.visible_message(message = "<b>[src]</b> falls off <b>\The [below_wall]</b>", \
+				self_message = SPAN_DANGER("You slipped off <b>\The [below_wall]</b>"), \
+				blind_message = "you hear a loud thud!", runemessage = "CRASH!")
 		else
 			src.forceMove(destination)
-			to_chat(src, SPAN_NOTICE("You descended successfully!"))
+			src.visible_message(message = "<b>[src]</b> climbed down on <b>\The [below_wall]</b>",	\
+				self_message = SPAN_NOTICE("You successfully descended <b>\The [below_wall]</b>"),	\
+				blind_message = "The sounds of climbing cease.", runemessage = "Tap Tap")
 		adjust_nutrition(-nutrition_cost)
 	else if(world.time > (oops_time + grace_time))
 		src.forceMove(front_of_us)
+		src.visible_message(message = "<b>[src]</b> falls off <b>\The [below_wall]</b>", \
+			self_message = SPAN_DANGER("You slipped off <b>\The [below_wall]</b>"), \
+			blind_message = "you hear a loud thud!", runemessage = "CRASH!")

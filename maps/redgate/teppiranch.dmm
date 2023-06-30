@@ -292,7 +292,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)
 "uX" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
 "vv" = (
 /turf/simulated/floor/outdoors/grass/seasonal{
@@ -642,7 +642,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/structure/powered/teppi_ranch)
 "Qc" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/redgate/wilds)
 "Qi" = (
 /obj/machinery/chem_master/condimaster,
