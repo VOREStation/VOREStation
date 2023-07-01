@@ -203,7 +203,7 @@
 	else if(src.density && (user.a_intent == I_HURT)) //If we can't pry it open and it's not a weapon.... Eh, let's attack it anyway.
 		var/obj/item/weapon/W = C
 		user.setClickCooldown(user.get_attack_speed(W))
-		if(W.damtype == BRUTE || W.damtype == BURN)
+		if(istype(W) && (W.damtype == BRUTE || W.damtype == BURN))
 			user.do_attack_animation(src)
 			if(W.force < min_force) //No actual non-weapon item shouls have a force greater than the min_force, but let's include this just in case.
 				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")

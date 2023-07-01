@@ -208,7 +208,7 @@
 
 					var/mattermult = istype(Ob, /obj/item) ? min(2000, 400 * Ob.w_class) : 2000
 
-					Ob.matter[recipe.use_material] = mattermult / produced * required
+					Ob.matter[recipe.matter_material] = mattermult / produced * required
 
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)

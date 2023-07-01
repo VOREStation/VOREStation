@@ -42,7 +42,7 @@
 			pref.alternate_languages.len = (S.num_alternate_languages + pref.extra_languages) // Truncate to allowed length
 
 		// VOREStation Edit Start
-		if(!(pref.preferred_language in pref.alternate_languages) || !pref.preferred_language) // Safety handling for if our preferred language is ever somehow removed from the character's list of langauges, or they don't have one set
+		if((!(pref.preferred_language in pref.alternate_languages) && !(pref.preferred_language == LANGUAGE_GALCOM) && !(pref.preferred_language == S.language)) || !pref.preferred_language) // Safety handling for if our preferred language is ever somehow removed from the character's list of langauges, or they don't have one set
 			pref.preferred_language = S.language // Reset to default, for safety
 		// VOREStation Edit end
 
