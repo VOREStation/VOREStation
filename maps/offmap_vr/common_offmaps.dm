@@ -254,7 +254,7 @@
 	name = "Redgate Submap"
 	desc = "Please do not use this."
 	mappath = null
-	associated_map_datum = null
+	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
 /datum/map_z_level/common_lateload/redgate_destination
 	name = "Redgate Destination"
@@ -269,25 +269,21 @@
 	name = "Teppi Ranch"
 	desc = "An abandoned teppi ranch!"
 	mappath = 'maps/redgate/teppiranch.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
 /datum/map_template/common_lateload/redgate/innland
 	name = "Innland"
 	desc = "Caves and grass and a tavern, woah!"
 	mappath = 'maps/redgate/innland.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
 /datum/map_template/common_lateload/redgate/abandonedisland
 	name = "Abandoned Island"
 	desc = "It seems like it used to be people here!"
 	mappath = 'maps/redgate/abandonedisland.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
 /datum/map_template/common_lateload/redgate/darkadventure
 	name = "Dark Adventure"
 	desc = "This place seems broken!"
 	mappath = 'maps/redgate/darkadventure.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/redgate_destination
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
