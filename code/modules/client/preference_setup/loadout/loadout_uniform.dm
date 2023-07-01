@@ -516,3 +516,73 @@
 /datum/gear/uniform/tropical_outfit/blue
 	display_name = "tropical outfit, miami vice"
 	path = /obj/item/clothing/under/tropical/blue
+
+
+//leotards
+/datum/gear/uniform/leotard
+    display_name = "leotard, black"
+    path = /obj/item/clothing/under/leotard
+
+/datum/gear/uniform/leotardcolor
+    display_name = "leotard, colorable"
+    path = /obj/item/clothing/under/leotardcolor
+
+/datum/gear/uniform/leotardcolor/New()
+    ..()
+    gear_tweaks += gear_tweak_free_color_choice
+
+//skinsuits
+/datum/gear/uniform/skinsuits
+	display_name = "skinsuit selection"
+	path = /obj/item/clothing/under/skinsuit
+
+/datum/gear/uniform/skinsuits/New()
+	..()
+	var/list/skinsuits = list(
+	"skinsuit"=/obj/item/clothing/under/skinsuit,
+	"feminine skinsuit"=/obj/item/clothing/under/skinsuit/fem,
+	"gray skinsuit"=/obj/item/clothing/under/skinsuit/gray,
+	"feminine gray skinsuit"=/obj/item/clothing/under/skinsuit/fem/gray,
+	"leotard skinsuit"=/obj/item/clothing/under/skinsuit/leotard,
+	"feminine leotard skinsuit"=/obj/item/clothing/under/skinsuit/fem/leotard,
+	"gray leotard skinsuit"=/obj/item/clothing/under/skinsuit/leotard/gray,
+	"feminine gray leotard skinsuit"=/obj/item/clothing/under/skinsuit/fem/leotard/gray
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(skinsuits))
+
+//baggy turtlenecks
+/datum/gear/uniform/turtlebaggys
+	display_name = "baggy turtleneck selection"
+	path = /obj/item/clothing/under/turtlebaggy
+
+/datum/gear/uniform/turtlebaggys/New()
+	..()
+	var/list/turtlebaggys = list(
+	"cream baggy turtleneck"=/obj/item/clothing/under/turtlebaggy,
+	"feminine cream baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/cream_fem,
+	"purple baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/purple,
+	"feminine purple baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/purple_fem,
+	"red baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/red,
+	"feminine red baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/red_fem,
+	"blue baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/blue,
+	"feminine blue baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/blue_fem,
+	"green baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/green,
+	"feminine green baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/green_fem,
+	"black baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/black,
+	"feminine black baggy turtleneck"=/obj/item/clothing/under/turtlebaggy/black_fem
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(turtlebaggys))
+
+//half-moon outfit
+/datum/gear/uniform/halfmoon
+    display_name = "half moon outfit"
+    path = /obj/item/clothing/under/half_moon
+
+//fiend clothes
+/datum/gear/uniform/fiendsuit
+    display_name = "fiendish suit"
+    path = /obj/item/clothing/under/fiendsuit
+
+/datum/gear/uniform/fienddress
+    display_name = "fiendish dress"
+    path = /obj/item/clothing/under/fienddress
