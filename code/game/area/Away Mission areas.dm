@@ -36,8 +36,6 @@
 	if(floracountmax)
 		spawn_flora_on_turf()
 
-	message_admins("Away mission spawning done.")
-
 /area/proc/spawn_mob_on_turf()
 	if(!valid_mobs.len)
 		to_world_log("[src] does not have a set valid mobs list!")
