@@ -5858,17 +5858,22 @@
 /area/groundbase/security/briefing)
 "mL" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask,
 /obj/structure/sign/painting/library_secure{
 	pixel_y = -30
 	},
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
-/obj/item/weapon/reagent_containers/glass/rag,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/random/mug,
+/obj/random/mug,
+/obj/random/mug,
+/obj/random/mug,
+/obj/item/weapon/reagent_containers/food/drinks/shaker{
+	pixel_x = 5;
+	pixel_y = 6
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
@@ -7636,6 +7641,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask{
+	pixel_x = -9;
+	pixel_y = 5
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
@@ -11873,10 +11882,15 @@
 /obj/machinery/camera/network/civilian{
 	dir = 8
 	},
-/obj/random/mug,
-/obj/random/mug,
-/obj/random/mug,
-/obj/random/mug,
+/obj/structure/sink/countertop{
+	dir = 8;
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/weapon/reagent_containers/glass/rag{
+	pixel_x = -5;
+	pixel_y = 17
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
 "Bb" = (
