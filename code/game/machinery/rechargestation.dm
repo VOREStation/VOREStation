@@ -84,11 +84,11 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
-	
+
 	//VOREStation Add Start
 	else if(ispAI(occupant))
 		var/mob/living/silicon/pai/P = occupant
-			
+
 		if(P.nutrition < 400)
 			P.nutrition = min(P.nutrition+10, 400)
 			cell.use(7000/450*10)
@@ -110,7 +110,7 @@
 
 			// Also recharge their internal battery.
 			if(H.isSynthetic() && H.nutrition < 500) //VOREStation Edit
-				H.nutrition = min(H.nutrition+(10*(1-max(H.species.synthetic_food_coeff, 0.9))), 500) //VOREStation Edit
+				H.nutrition = min(H.nutrition+(10*(1-min(H.species.synthetic_food_coeff, 0.9))), 500) //VOREStation Edit
 				cell.use(7000/450*10)
 
 			// And clear up radiation
@@ -268,7 +268,7 @@
 		occupant = R
 		update_icon()
 		return 1
-		
+
 	//VOREStation Add Start
 	else if(istype(L, /mob/living/silicon/pai))
 		var/mob/living/silicon/pai/P = L

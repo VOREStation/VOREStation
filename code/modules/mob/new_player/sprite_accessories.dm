@@ -411,6 +411,10 @@
 	name = "Devil Lock"
 	icon_state = "hair_devilock"
 
+/datum/sprite_accessory/hair/diagonalbangs
+	name = "Diagonal Bangs"
+	icon_state = "hair_diagonalbangs"
+
 /datum/sprite_accessory/hair/dirk
 	name = "Dirk"
 	icon_state = "hair_dirk"
@@ -1185,6 +1189,11 @@
 /datum/sprite_accessory/hair/volaju
 	name = "Volaju"
 	icon_state = "hair_volaju"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/volaju_pompless
+	name = "Volaju, pompless"
+	icon_state = "hair_volajupompless"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/wisp

@@ -47,7 +47,11 @@
 		"car",
 		"typeone",
 		"13",
-		"pai-raptor"
+		"pai-raptor",
+		"pai-diredog",
+		"pai-horse_lune",
+		"pai-horse_soleil",
+		"pai-pdragon"
 		)
 	//These vars keep track of whether you have the related software, used for easily updating the UI
 	var/soft_ut = FALSE	//universal translator
