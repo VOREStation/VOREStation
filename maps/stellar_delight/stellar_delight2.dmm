@@ -938,7 +938,7 @@
 	dir = 1;
 	pixel_y = 24
 	},
-/mob/living/simple_mob/otie/red/chubby/cocoa,
+/mob/living/simple_mob/vore/otie/red/chubby/cocoa,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "bP" = (

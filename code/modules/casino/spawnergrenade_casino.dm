@@ -73,7 +73,7 @@
 /obj/item/weapon/grenade/spawnergrenade/casino/otie
 	desc = "It is set to detonate in 5 seconds. It will release a otie won from the casino prize vendor!"
 	name = "Casino Creature Container (Otie)"
-	spawner_type = /mob/living/simple_mob/otie/friendly
+	spawner_type = /mob/living/simple_mob/vore/otie/friendly
 
 /obj/item/weapon/grenade/spawnergrenade/casino/goldcrest
 	desc = "It is set to detonate in 5 seconds. It will release a bird won from the casino prize vendor!"

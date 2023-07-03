@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	name = "chicken"
 	desc = "Hopefully the eggs are good this season."
 	tt_desc = "E Gallus gallus"
-	icon_state = "chicken"
+	icon_state = "chicken_white"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
 

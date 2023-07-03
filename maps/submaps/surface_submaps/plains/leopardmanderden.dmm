@@ -247,7 +247,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "sN" = (
-/mob/living/simple_mob/otie/red/chubby{
+/mob/living/simple_mob/vore/otie/red/chubby{
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. What an absolute unit. It has a collar around one of its ankles that reads 'Tawny'.";
 	name = "Tawny"
 	},
