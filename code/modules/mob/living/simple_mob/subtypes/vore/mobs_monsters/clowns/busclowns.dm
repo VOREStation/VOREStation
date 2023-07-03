@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/anormal
+/mob/living/simple_mob/clowns/big/c_shift/anormal
 	name = "Clown"
 	desc = "A regular, every tuesday Clown."
 	tt_desc = "E Homo sapiens corydon" //this is a clown
@@ -10,7 +10,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/honkmunculus
+/mob/living/simple_mob/clowns/big/c_shift/honkmunculus
 	name = "A Clown?"
 	desc = "That clown has some interesting proportions."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -28,7 +28,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/cluwne
+/mob/living/simple_mob/clowns/big/c_shift/cluwne
 	name = "A Clown?"
 	desc = "Oh no not that thing."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -40,7 +40,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/tunnelclown
+/mob/living/simple_mob/clowns/big/c_shift/tunnelclown
 	name = "A Clown?"
 	desc = "Have you heard about our lord and savior, Honkus Chrust?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -52,7 +52,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/sentinel
+/mob/living/simple_mob/clowns/big/c_shift/sentinel
 	name = "A Clown?"
 	desc = "This guy means business..."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -64,7 +64,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/punished
+/mob/living/simple_mob/clowns/big/c_shift/punished
 	name = "A Clown?"
 	desc = "A clown at peak performance."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -82,7 +82,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/thicc
+/mob/living/simple_mob/clowns/big/c_shift/thicc
 	name = "A Clown..."
 	desc = "I mean, you see it don't you?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -100,7 +100,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/perm
+/mob/living/simple_mob/clowns/big/c_shift/perm
 	name = "A Clown?"
 	desc = "That clown really needs to get that hair under control."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -118,7 +118,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/wide
+/mob/living/simple_mob/clowns/big/c_shift/wide
 	name = "A Clown?"
 	desc = "He looks good from some angles!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -136,7 +136,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/thin
+/mob/living/simple_mob/clowns/big/c_shift/thin
 	name = "A Clown?"
 	desc = "Is he eating enough?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -148,7 +148,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/hulk
+/mob/living/simple_mob/clowns/big/c_shift/hulk
 	name = "A Clown?"
 	desc = "Just look at those muscles."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -168,7 +168,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/longface
+/mob/living/simple_mob/clowns/big/c_shift/longface
 	name = "A Clown?"
 	desc = "Why the long face?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -186,7 +186,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/giggles
+/mob/living/simple_mob/clowns/big/c_shift/giggles
 	name = "A Giggles?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -198,7 +198,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/destroyer
+/mob/living/simple_mob/clowns/big/c_shift/destroyer
 	name = "A Clown?"
 	desc = "That clown looks like he means business."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -239,7 +239,7 @@
 				)
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/chlown
+/mob/living/simple_mob/clowns/big/c_shift/chlown
 	name = "A Clown?"
 	desc = "No."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -257,7 +257,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/scary
+/mob/living/simple_mob/clowns/big/c_shift/scary
 	name = "A Clown?"
 	desc = "Hey that clown looks familiar!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -269,7 +269,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/flesh
+/mob/living/simple_mob/clowns/big/c_shift/flesh
 	name = "A Clown?"
 	desc = "WOOOOO STREAKING WOOOO!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -281,7 +281,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/clowns
+/mob/living/simple_mob/clowns/big/c_shift/clowns
 	name = "Definitely a singular clown"
 	desc = "Is it one clown, or many clowns in not a trenchcoat?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -299,7 +299,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/mutant
+/mob/living/simple_mob/clowns/big/c_shift/mutant
 	name = "A Clown?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -317,7 +317,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/blob
+/mob/living/simple_mob/clowns/big/c_shift/blob
 	name = "A Clown?"
 	desc = "Go to a gym fatty!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -335,7 +335,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/mayor
+/mob/living/simple_mob/clowns/big/c_shift/mayor
 	name = "A clown?"
 	desc = "One speaks in riddles..."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -353,7 +353,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/honkling
+/mob/living/simple_mob/clowns/big/c_shift/honkling
 	name = "A Clown?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown

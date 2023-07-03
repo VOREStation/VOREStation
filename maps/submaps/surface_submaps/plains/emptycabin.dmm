@@ -46,7 +46,7 @@
 /area/submap/EmptyCabin)
 "j" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_mob/otie/friendly/chubby{
+/mob/living/simple_mob/vore/otie/friendly/chubby{
 	desc = "The classic bioengineered longdog. This one still probably won't tolerate you. What an absolute unit";
 	faction = "spiders";
 	max_co2 = 0;

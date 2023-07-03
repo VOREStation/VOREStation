@@ -1,0 +1,10 @@
+//For use with various spawners! Put your selections inside of a list!
+/var/global/list/theme_animal = list()
+/var/global/list/theme_monster = list()
+/var/global/list/theme_alien = list()
+/var/global/list/theme_cold = list()
+/var/global/list/theme_hot = list()
+/var/global/list/theme_aquatic = list()
+/var/global/list/theme_dark = list()
+/var/global/list/theme_forest = list()
+/var/global/list/theme_humanoid = list()

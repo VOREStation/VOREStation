@@ -23,7 +23,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "g" = (
-/mob/living/simple_mob/animal/wolf/phoron,
+/mob/living/simple_mob/vore/wolf/phoron,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "h" = (
@@ -36,7 +36,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "j" = (
-/mob/living/simple_mob/otie/feral{
+/mob/living/simple_mob/vore/otie/feral{
 	faction = "underdark"
 	},
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,

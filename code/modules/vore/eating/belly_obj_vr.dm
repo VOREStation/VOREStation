@@ -461,8 +461,8 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
-	if(istype(M, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
-		var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/p = M
+	if(istype(M, /mob/living/simple_mob/vore/morph/dominated_prey))
+		var/mob/living/simple_mob/vore/morph/dominated_prey/p = M
 		p.undo_prey_takeover(FALSE)
 		return 0
 	for(var/mob/living/L in M.contents)

@@ -114,7 +114,7 @@
 /turf/simulated/floor/wood/sif,
 /area/submap/EmptyCabin)
 "F" = (
-/mob/living/simple_mob/otie/friendly/chubby{
+/mob/living/simple_mob/vore/otie/friendly/chubby{
 	desc = "The classic bioengineered longdog. This one still probably won't tolerate you. What an absolute unit";
 	faction = "spiders";
 	max_co2 = 0;
