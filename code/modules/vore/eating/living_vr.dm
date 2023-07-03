@@ -480,8 +480,8 @@
 	//You're in a belly!
 	if(isbelly(loc))
 		//You've been taken over by a morph
-		if(istype(src, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
-			var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/s = src
+		if(istype(src, /mob/living/simple_mob/vore/morph/dominated_prey))
+			var/mob/living/simple_mob/vore/morph/dominated_prey/s = src
 			s.undo_prey_takeover(TRUE)
 			return
 		var/obj/belly/B = loc

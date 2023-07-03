@@ -47,7 +47,7 @@
 						/mob/living/simple_mob/vore/horse,
 						/mob/living/simple_mob/vore/aggressive/panther,
 						/mob/living/simple_mob/vore/aggressive/giant_snake,
-						/mob/living/simple_mob/animal/wolf,
+						/mob/living/simple_mob/vore/wolf,
 						/mob/living/simple_mob/animal/space/bear;0.5,
 						/mob/living/simple_mob/animal/space/carp,
 						/mob/living/simple_mob/vore/aggressive/mimic,
@@ -55,7 +55,7 @@
 						/mob/living/simple_mob/vore/aggressive/rat/tame,
 						/mob/living/simple_mob/vore/rabbit,
 						/mob/living/simple_mob/vore/weretiger;0.5,
-//						/mob/living/simple_mob/otie;0.5
+//						/mob/living/simple_mob/vore/otie;0.5
 						))
 	return ..()
 
@@ -71,8 +71,8 @@
 						/mob/living/simple_mob/animal/space/alien/drone,
 						/mob/living/simple_mob/animal/space/alien/sentinel,
 						/mob/living/simple_mob/animal/space/alien/queen,
-//						/mob/living/simple_mob/otie/feral,
-//						/mob/living/simple_mob/otie/red,
+//						/mob/living/simple_mob/vore/otie/feral,
+//						/mob/living/simple_mob/vore/otie/red,
 						/mob/living/simple_mob/vore/aggressive/corrupthound))
 	return ..()
 /*
@@ -81,31 +81,31 @@
 	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "sotiecrate"
-	starts_with = list(/mob/living/simple_mob/otie/security)
+	starts_with = list(/mob/living/simple_mob/vore/otie/security)
 
 /obj/structure/largecrate/animal/guardmutant
 	name = "VARMAcorp autoNOMous security solution for hostile environments."
 	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs. This one can survive hostile atmosphere."
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "sotiecrate"
-	starts_with = list(/mob/living/simple_mob/otie/security/phoron)
+	starts_with = list(/mob/living/simple_mob/vore/otie/security/phoron)
 
 /obj/structure/largecrate/animal/otie
 	name = "VARMAcorp adoptable reject (Dangerous!)"
 	desc = "A warning on the side says the creature inside was returned to the supplier after injuring or devouring several unlucky members of the previous adoption family. It was given a second chance with the next customer. Godspeed and good luck with your new pet!"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "otiecrate2"
-	starts_with = list(/mob/living/simple_mob/otie/cotie)
+	starts_with = list(/mob/living/simple_mob/vore/otie/cotie)
 	var/taped = 1
 
 /obj/structure/largecrate/animal/otie/phoron
 	name = "VARMAcorp adaptive beta subject (Experimental)"
 	desc = "VARMAcorp experimental hostile environment adaptive breeding development kit. WARNING, DO NOT RELEASE IN WILD!"
-	starts_with = list(/mob/living/simple_mob/otie/cotie/phoron)
+	starts_with = list(/mob/living/simple_mob/vore/otie/cotie/phoron)
 
 /obj/structure/largecrate/animal/otie/phoron/Initialize()
-	starts_with = list(pick(/mob/living/simple_mob/otie/cotie/phoron;2,
-						/mob/living/simple_mob/otie/red/friendly;0.5))
+	starts_with = list(pick(/mob/living/simple_mob/vore/otie/cotie/phoron;2,
+						/mob/living/simple_mob/vore/otie/red/friendly;0.5))
 	return ..()
 
 /obj/structure/largecrate/animal/otie/attack_hand(mob/living/carbon/human/M as mob)//I just couldn't decide between the icons lmao

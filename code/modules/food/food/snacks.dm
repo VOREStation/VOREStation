@@ -4778,8 +4778,8 @@
 	var/composition_reagent
 	var/composition_reagent_quantity
 
-/mob/living/simple_mob/adultslime
-	composition_reagent = "slimejelly"
+///mob/living/simple_mob/adultslime	//The literal only thing in the game that uses this is commented out, so I comment out this too
+//	composition_reagent = "slimejelly"
 
 /mob/living/carbon/alien/diona
 	composition_reagent = "nutriment"//Dionae are plants, so eating them doesn't give animal protein
