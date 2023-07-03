@@ -7806,7 +7806,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/zoo)
 "un" = (
-/mob/living/simple_mob/animal/wolf{
+/mob/living/simple_mob/vore/wolf{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,

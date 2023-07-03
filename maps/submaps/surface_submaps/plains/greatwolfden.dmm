@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /obj/effect/decal/cleanable/blood/drip,
-/mob/living/simple_mob/animal/wolf/direwolf{
+/mob/living/simple_mob/vore/wolf/direwolf{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
 	desc = "The biggest and baddest wolf around. Seems pretty chill, for a wolf.";
 	faction = "sif";
@@ -189,7 +189,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "uz" = (
-/mob/living/simple_mob/animal/wolf/direwolf{
+/mob/living/simple_mob/vore/wolf/direwolf{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
 	desc = "The biggest and baddest wolf around. Seems pretty chill, for a wolf.";
 	faction = "sif";
@@ -287,7 +287,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "Cd" = (
-/mob/living/simple_mob/otie/feral/chubby{
+/mob/living/simple_mob/vore/otie/feral/chubby{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
 	desc = "The classic bioengineered longdog. No pets. Only bite. What an absolute unit.";
 	faction = "sif";
