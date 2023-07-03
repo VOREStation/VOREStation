@@ -29,7 +29,7 @@
 //The stuff we want to be revivable normally
 /mob/living/simple_mob/animal
 	ic_revivable = TRUE
-/mob/living/simple_mob/otie
+/mob/living/simple_mob/vore/otie
 	ic_revivable = TRUE
 /mob/living/simple_mob/vore
 	ic_revivable = TRUE

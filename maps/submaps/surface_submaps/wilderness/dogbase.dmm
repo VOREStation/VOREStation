@@ -10,7 +10,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "ae" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -101,7 +101,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "eZ" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -310,7 +310,7 @@
 /turf/template_noop,
 /area/template_noop)
 "re" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -388,7 +388,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "wS" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -519,7 +519,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "Dv" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -684,7 +684,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone/leg,
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -694,7 +694,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "OR" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -749,7 +749,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "QB" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;
@@ -851,7 +851,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "Ya" = (
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
 	max_co2 = 0;

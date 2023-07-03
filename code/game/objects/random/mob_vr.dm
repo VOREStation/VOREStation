@@ -184,7 +184,7 @@
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	return pick(
 				prob(50);/mob/living/simple_mob/animal/passive/gaslamp,
-//				prob(50);/mob/living/simple_mob/otie/feral, // Removed until Otie code is unfucked.
+//				prob(50);/mob/living/simple_mob/vore/otie/feral, // Removed until Otie code is unfucked.
 				prob(20);/mob/living/simple_mob/vore/aggressive/dino/virgo3b,
 				prob(1);/mob/living/simple_mob/vore/aggressive/dragon/virgo3b)
 

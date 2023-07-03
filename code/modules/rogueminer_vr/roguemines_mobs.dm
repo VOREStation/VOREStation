@@ -7,7 +7,7 @@
 /mob/living/simple_mob/animal/space/goose/roguemines
 	faction = "roguemines"
 
-/mob/living/simple_mob/animal/wolf/space/roguemines
+/mob/living/simple_mob/vore/wolf/space/roguemines
 	faction = "roguemines"
 
 /mob/living/simple_mob/animal/space/carp/large/roguemines
