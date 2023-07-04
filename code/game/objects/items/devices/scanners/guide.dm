@@ -1,15 +1,15 @@
-/obj/item/device/healthanalyzer
-	var/guide = FALSE
-
 /obj/item/device/healthanalyzer/verb/toggle_guide()
+	name = "Toggle Guidance"
+	desc = "Toggles whether or not \the [src] will provide guidance and instruction in addition to scanning."
 	guide = !guide
 	to_chat(usr, "<span class='notice'>You toggle \the [src]'s guidance system.</span>")
 
 
 /obj/item/device/healthanalyzer/guide
 	name = "Instructional health analyzer"
-	desc = "It shows extra information to medical personel!"
+	desc = "A hand-held body scanner able to distinguish vital signs of the subject. It shows extra information to medical personnel!"
 	guide = TRUE
+	icon_state = "health-g"
 
 /obj/item/device/healthanalyzer/proc/guide(var/mob/living/carbon/human/M, mob/living/user)
 
@@ -23,7 +23,7 @@
 		playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	else
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
-
+		return
 	if(!ishuman(M))
 		return
 
@@ -68,7 +68,7 @@
 	if(infection)
 		dat += "<b>Infection</b> - Give Spaceacilin. If severe, overdose on Spaceacilin and monitor until well.<br>"
 	if((M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1) || M.getBrainLoss() >= 10)
-			dat += "<b>Brain damage</b> - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon)<br>"
+		dat += "<b>Brain damage</b> - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon)<br>"
 	if(M.radiation || M.accumulated_rads)
 		dat += "<b>Radiation</b> - Give Hyroanlin or Arithazine. Monitor for genetic damage.<br>"
 	if(organ && (advscan >= 1 && showadvscan == 1))
