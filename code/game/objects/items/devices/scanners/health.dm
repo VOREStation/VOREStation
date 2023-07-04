@@ -298,6 +298,8 @@
 				dat += "<span class='notice'>Subject is a Xenochimera. Treat accordingly.</span>"
 		// VOREStation Edit End
 	user.show_message(dat, 1)
+	if(guide)
+		guide(M, user)
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
