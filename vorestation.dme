@@ -1248,6 +1248,7 @@
 #include "code\game\objects\items\devices\radio\radio_vr.dm"
 #include "code\game\objects\items\devices\radio\radiopack.dm"
 #include "code\game\objects\items\devices\scanners\gas.dm"
+#include "code\game\objects\items\devices\scanners\guide.dm"
 #include "code\game\objects\items\devices\scanners\halogen.dm"
 #include "code\game\objects\items\devices\scanners\health.dm"
 #include "code\game\objects\items\devices\scanners\mass_spectrometer.dm"
