@@ -14810,6 +14810,9 @@
 	departmentType = 2;
 	pixel_y = 30
 	},
+/obj/item/device/healthanalyzer/guide,
+/obj/item/device/healthanalyzer/guide,
+/obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "Po" = (

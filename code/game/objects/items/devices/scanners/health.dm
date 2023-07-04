@@ -15,11 +15,19 @@
 	var/mode = 1;
 	var/advscan = 0
 	var/showadvscan = 1
+	var/guide = FALSE
 
 /obj/item/device/healthanalyzer/New()
 	if(advscan >= 1)
 		verbs += /obj/item/device/healthanalyzer/proc/toggle_adv
 	..()
+
+/obj/item/device/healthanalyzer/examine(mob/user)
+	. = ..()
+	if(guide)
+		. += "<span class='notice'>Guidance is currently enabled.</span>"
+	else
+		. += "<span class='notice'>Guidance is currently disabled.</span>"
 
 /obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
@@ -298,6 +306,8 @@
 				dat += "<span class='notice'>Subject is a Xenochimera. Treat accordingly.</span>"
 		// VOREStation Edit End
 	user.show_message(dat, 1)
+	if(guide)
+		guide(M, user)
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
