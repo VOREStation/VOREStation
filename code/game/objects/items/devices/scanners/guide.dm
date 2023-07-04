@@ -94,6 +94,6 @@
 	if(dat)
 		peeb +="<span class='notice'><b>GUIDANCE SYSTEM BEGIN</b></span><br>"
 		peeb += dat
-
+		peeb += "<span class='notice'>For more detailed information about patient condition, use the stationary scanner in medbay.</span>"
 
 	user.show_message(peeb, 1)
