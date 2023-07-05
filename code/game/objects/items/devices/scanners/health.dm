@@ -230,7 +230,7 @@
 		dat += "<span class='warning'>Severe brain damage detected. Subject likely to have a traumatic brain injury.</span><br>"
 	else if (M.getBrainLoss() >= 10)
 		dat += "<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span><br>"
-	else if (M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1)
+	else if (M.getBrainLoss() >= 1)
 		dat += "<span class='warning'>Minor brain damage detected.</span><br>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -250,6 +250,26 @@
 		var/fracture_dat = ""	// All the fractures
 		var/infection_dat = ""	// All the infections
 		var/ib_dat = ""			// All the IB
+		var/int_damage_acc = 0  // For internal organs
+		for(var/obj/item/organ/internal/i in H.internal_organs)
+			if(!i || i.robotic >= ORGAN_ROBOT || istype(i, /obj/item/organ/internal/brain))
+				continue 		// not there or robotic or brain which is handled separately
+			if(i.damage || i.status & ORGAN_DEAD)
+				int_damage_acc += (i.damage + ((i.status & ORGAN_DEAD) ? 30 : 0))
+				if(advscan >= 2 && showadvscan == 1)
+					if(advscan >= 3)
+						var/dam_adj
+						if(i.damage >= i.min_broken_damage || i.status & ORGAN_DEAD)
+							dam_adj = "Severe"
+						else if(i.damage >= i.min_bruised_damage)
+							dam_adj = "Moderate"
+						else
+							dam_adj = "Mild"
+						dat += "<span class='warning'>[dam_adj] damage detected to subject's [i.name].</span><br>"
+					else
+						dat += "<span class='warning'>Damage detected to subject's [i.name].</span><br>"
+		if(int_damage_acc >= 1 && (advscan < 2 || !showadvscan))
+			dat += "<span class='warning'>Damage detected to subject's internal organs.</span><br>"
 		for(var/obj/item/organ/external/e in H.organs)
 			if(!e)
 				continue
