@@ -96,6 +96,30 @@
 	name = "POI - Overrun Science Ship"
 	requires_power = 0
 
+/area/submap/debrisfield/phoron_tanker
+	name = "POI - Hijacked Phoron Tanker"
+	var/ic_name = ""
+	requires_power = 0
+	has_gravity = FALSE
+
+
+/area/submap/debrisfield/phoron_tanker/Initialize()
+	. = ..()
+	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/tsc/nanotrasen]
+	ic_name = pick(O.ship_names)
+	name = "NTV [ic_name]"
+	if(!tag)
+		tag = "POI_NT_TANKER_BOAT" //Can't define at compile time, this ensures the area has this if empty
+	if(apc)
+		apc.name = "[name] APC"
+		air_vent_names = list()
+		air_scrub_names = list()
+		air_vent_info = list()
+		air_scrub_info = list()
+		for(var/obj/machinery/alarm/AA in src)
+			AA.name = "[name] Air Alarm"
+
+
 /area/submap/debrisfield/luxury_boat
 	secret_name = 0
 
