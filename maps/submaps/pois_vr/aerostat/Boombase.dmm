@@ -57,7 +57,7 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/BoomBase)
 "ao" = (
-/mob/living/simple_mob/animal/space/jelly,
+/mob/living/simple_mob/vore/jelly,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/BoomBase)
 "ap" = (
@@ -96,7 +96,7 @@
 /area/submap/virgo2/BoomBase)
 "ax" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/animal/space/jelly,
+/mob/living/simple_mob/vore/jelly,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/BoomBase)
 "ay" = (
