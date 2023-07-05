@@ -230,7 +230,7 @@
 		dat += "<span class='warning'>Severe brain damage detected. Subject likely to have a traumatic brain injury.</span><br>"
 	else if (M.getBrainLoss() >= 10)
 		dat += "<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span><br>"
-	else if (M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1)
+	else if (M.getBrainLoss() >= 1)
 		dat += "<span class='warning'>Minor brain damage detected.</span><br>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
