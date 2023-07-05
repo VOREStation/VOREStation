@@ -66,7 +66,7 @@
 	if(M.getOxyLoss())
 		dat += "<b>Suffociation</b> - Give Dexalin or Dexaline Plus. Check for heart or lung damage.<br>"
 	if(infection)
-		dat += "<b>Infection</b> - Give Spaceacilin. If severe, overdose on Spaceacilin and monitor until well.<br>"
+		dat += "<b>Infection</b> - Give Spaceacilin. If severe, use Corophizine or overdose on Spaceacilin and monitor until well.<br>"
 	if((M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1) || M.getBrainLoss() >= 10)
 		dat += "<b>Brain damage</b> - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon)<br>"
 	if(M.radiation || M.accumulated_rads)
