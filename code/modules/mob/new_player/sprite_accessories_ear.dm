@@ -520,7 +520,7 @@
 	extra_overlay = "dragon-horns"
 
 /datum/sprite_accessory/ears/zorgoia
-	name = "Zorgoia"
+	name = "Zorgoia ears"
 	desc = ""
 	icon = 'icons/mob/human_races/sprite_accessories/ears.dmi'
 	icon_state = "zorgoia"
