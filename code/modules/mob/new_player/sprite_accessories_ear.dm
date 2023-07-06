@@ -526,3 +526,5 @@
 	icon_state = "zorgoia"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "zorgoia_inner"
+	extra_overlay2 = "zorgoia_tips"
