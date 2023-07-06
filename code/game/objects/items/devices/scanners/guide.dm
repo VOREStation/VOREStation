@@ -76,19 +76,19 @@
 	if(bleeding_internal)
 		dat += "<b>Internal bleeding</b> - Commence internal vein repair surgery or apply clotting chemicals (i.e. Myelamine).<br>"
 	if(M.getOxyLoss())
-		dat += "<b>Suffociation</b> - Give Dexalin or Dexaline Plus. Check for heart or lung damage.<br>"
+		dat += "<b>Suffociation</b> - Give Dexalin or Dexalin Plus. Check for heart or lung damage.<br>"
 	if(infection)
-		dat += "<b>Infection</b> - Give Spaceacilin. If severe, use Corophizine or overdose on Spaceacilin and monitor until well.<br>"
+		dat += "<b>Infection</b> - Give Spaceacillin. If severe, use Corophizine or overdose on Spaceacillin and monitor until well.<br>"
 	if(M.getBrainLoss() >= 1)
 		dat += "<b>Brain damage</b> - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon).<br>"
 	if(M.radiation || M.accumulated_rads)
-		dat += "<b>Radiation</b> - Give Hyroanlin or Arithazine. Monitor for genetic damage.<br>"
+		dat += "<b>Radiation</b> - Give Hyronalin or Arithrazine. Monitor for genetic damage.<br>"
 	if(organ)
-		dat += "<b>Organ damage</b> - Give Peridaxon. Perform full body scan for targetted organ repair surgery.<br>"
+		dat += "<b>Organ damage</b> - Give Peridaxon. Perform full body scan for targeted organ repair surgery.<br>"
 	if(bloodloss)
 		dat += "<b>Low blood volume</b> - Commence blood transfusion via IV drip or provide blood-restorative chemicals (i.e. Iron)."
 	if(M.getToxLoss())
-		dat += "<b>Toxins</b> - Give Dylovene or Cartholine. Vomitting is normal and helpful. Tends to be a symptom of larger issues, such as infection.<br>"
+		dat += "<b>Toxins</b> - Give Dylovene or Carthatoline. Vomitting is normal and helpful. Tends to be a symptom of larger issues, such as infection.<br>"
 	if(M.getBruteLoss())
 		dat += "<b>Brute trauma</b> - Bandage wounded body part. Give Bicaridine or Vermicetol.<br>"
 	if(M.getFireLoss())
