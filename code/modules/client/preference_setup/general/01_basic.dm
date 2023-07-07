@@ -20,6 +20,7 @@
 	S["bday_month"]				>> pref.bday_month
 	S["bday_day"]				>> pref.bday_day
 	S["last_bday_note"]			>> pref.last_birthday_notification
+	S["bday_announce"]			>> pref.bday_announce
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
 
@@ -33,6 +34,7 @@
 	S["bday_month"]				<< pref.bday_month
 	S["bday_day"]				<< pref.bday_day
 	S["last_bday_note"]			<< pref.last_birthday_notification
+	S["bday_announce"]			<< pref.bday_announce
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
 
@@ -84,7 +86,7 @@
 	. += "<br>"
 	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
-	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a><br>"
+	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "No"]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(config.allow_Metadata)
 		. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
@@ -187,6 +189,10 @@
 		else if((tgui_alert(user, "Would you like to clear the birthday entry?","Clear?",list("No","Yes")) == "Yes") && CanUseTopic(user))
 			pref.bday_month = 0
 			pref.bday_day = 0
+		return TOPIC_REFRESH
+
+	else if(href_list["bday_announce"])
+		pref.bday_announce = !pref.bday_announce
 		return TOPIC_REFRESH
 
 	else if(href_list["spawnpoint"])
