@@ -32,13 +32,13 @@
 	if(messaged_robots)
 		last_message = world.time
 
-/datum/artifact_effect/uncommon/celldrain/DoEffectTouch(mob/living/user)
+/datum/artifact_effect/celldrain/DoEffectTouch(mob/living/user)
 	if(!user)
 		return
 	drain_cells(100)
 
-/datum/artifact_effect/uncommon/celldrain/DoEffectAura()
+/datum/artifact_effect/celldrain/DoEffectAura()
 	drain_cells()
 
-/datum/artifact_effect/uncommon/celldrain/DoEffectPulse()
+/datum/artifact_effect/celldrain/DoEffectPulse()
 	drain_cells(50)
