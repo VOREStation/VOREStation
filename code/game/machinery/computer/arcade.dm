@@ -1337,3 +1337,5 @@
 		O = T
 		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
 		return
+	else
+		..() //You can now actually deconstruct these.

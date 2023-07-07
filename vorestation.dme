@@ -2646,6 +2646,7 @@
 #include "code\modules\materials\materials\metals\steel_vr.dm"
 #include "code\modules\materials\materials\organic\animal_products.dm"
 #include "code\modules\materials\materials\organic\cloth.dm"
+#include "code\modules\materials\materials\organic\grass.dm"
 #include "code\modules\materials\materials\organic\leather.dm"
 #include "code\modules\materials\materials\organic\resin.dm"
 #include "code\modules\materials\materials\organic\wood.dm"
