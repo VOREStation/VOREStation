@@ -41,8 +41,8 @@
 			stacktype = material.stack_type
 
 /obj/item/stack/tile/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weldingtool))
-		var/obj/item/weldingtool/WT = W
+	if (istype(W, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = W
 
 		if(can_weld == FALSE)
 			to_chat("You can't reform these into their original components.")
