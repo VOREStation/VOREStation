@@ -159,7 +159,7 @@
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
 	icon_state = "syndicate"
-	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
+	desc = "A plastic replica of a mercenary combat space suit, you'll look just like a real bloodthirsty mercenary in this! This is a toy, it is not made for use in space!"
 	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
@@ -320,6 +320,12 @@
 	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat") //placeholder -S2-
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
+
+//nerdy shirt
+/obj/item/clothing/suit/nerdshirt
+	name = "nerdy shirt"
+	desc = "A comfy white t-shirt with a picture of a cartoon hedgehog on it. Although clean, it still seems like the wearer should be embarrassed for owning it."
+	icon_state = "nerdshirt"
 
 /*
  * Kimonos
@@ -1050,3 +1056,45 @@
 	body_parts_covered = FEET|LOWER_TORSO|UPPER_TORSO|LEGS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "green_labcoat", slot_l_hand_str = "green_labcoat")
+
+//Cropped hoodies
+/obj/item/clothing/suit/storage/croppedhoodie
+	name = "cropped hoodie"
+	desc = "This style of hoodie is sometimes worn by those who cannot fit, or choose not to hide their delectable bellies under the full, soft confines of a hoodie. The hood is cosmetic, and non-functional."
+	icon_state = "croppedhoodie"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/croppedhoodie/croppier
+    name = "high cropped hoodie"
+    desc = "This style of hoodie is worn by those that wish to display ample amounts of midriff, or never threw out their childhood apparel. The hood is cosmetic, and non-functional."
+    icon_state = "croppierhoodie"
+
+/obj/item/clothing/suit/storage/croppedhoodie/croppierer
+    name = "very high cropped hoodie"
+    desc = "This style of hoodie is worn by those that wish to display ample amounts of underboob, and love the breeze. Comes with a free 'functionally_nude' sticker. The hood is cosmetic, and non-functional."
+    icon_state = "highcrophoodie"
+
+/obj/item/clothing/suit/storage/croppedhoodie/croppiest
+    name = "super cropped hoodie"
+    desc = "This style of hoodie is worn by those that have little respect for the concept of a hoodie. Often seen in nightclubs and your daughter's wardrdobe. The hood is cosmetic, and non-functional."
+    icon_state = "supercroppedhoodie"
+
+//Drive jacket
+/obj/item/clothing/suit/storage/drive
+	name = "relatable jacket"
+	desc = "An all white jacket with a shine. It seems easy to identify with the wearer."
+	icon_state = "drivejacket"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/toggle/moto_jacket
+	name = "motorcycle jacket"
+	desc = "A recreation of one of the famous Sol-based biwheeled driver assemblies. Patches on the back denote an AI-generated 'biker logo'. It looks unintelligible."
+	icon_state = "motojacket"
+	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask) //same as leather jackets
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/punkvest
+    name = "punk vest"
+    desc = "For the spiritual rebels that nevertheless wish to conform to standard goth trends. You're totally showing them your anti-authority spunk."
+    icon_state = "punkvest"
+    body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO

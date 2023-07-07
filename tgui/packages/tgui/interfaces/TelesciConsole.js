@@ -48,11 +48,19 @@ export const TelesciConsoleContent = (props, context) => {
   return (
     <Section
       title="Telepad Controls"
-      buttons={<Button icon="eject" disabled={!insertedGps} onClick={() => act('ejectGPS')} content="Eject GPS" />}>
+      buttons={
+        <Button
+          icon="eject"
+          disabled={!insertedGps}
+          onClick={() => act('ejectGPS')}
+          content="Eject GPS"
+        />
+      }>
       <NoticeBox info>
         {(cooldown && (
           <Box>
-            Telepad is recharging. Please wait <AnimatedNumber value={cooldown} /> seconds.
+            Telepad is recharging. Please wait{' '}
+            <AnimatedNumber value={cooldown} /> seconds.
           </Box>
         )) || <Box>{tempMsg}</Box>}
       </NoticeBox>
@@ -92,9 +100,24 @@ export const TelesciConsoleContent = (props, context) => {
           ))}
         </LabeledList.Item>
         <LabeledList.Item label="Controls">
-          <Button icon="share" iconRotation={-90} onClick={() => act('send')} content="Send" />
-          <Button icon="share" iconRotation={90} onClick={() => act('receive')} content="Receive" />
-          <Button icon="sync" iconRotation={90} onClick={() => act('recal')} content="Recalibrate" />
+          <Button
+            icon="share"
+            iconRotation={-90}
+            onClick={() => act('send')}
+            content="Send"
+          />
+          <Button
+            icon="share"
+            iconRotation={90}
+            onClick={() => act('receive')}
+            content="Receive"
+          />
+          <Button
+            icon="sync"
+            iconRotation={90}
+            onClick={() => act('recal')}
+            content="Recalibrate"
+          />
         </LabeledList.Item>
       </LabeledList>
       {(lastTeleData && (
@@ -103,8 +126,12 @@ export const TelesciConsoleContent = (props, context) => {
             <LabeledList.Item label="Telepad Location">
               {lastTeleData.src_x}, {lastTeleData.src_y}
             </LabeledList.Item>
-            <LabeledList.Item label="Distance">{lastTeleData.distance}m</LabeledList.Item>
-            <LabeledList.Item label="Transit Time">{lastTeleData.time} secs</LabeledList.Item>
+            <LabeledList.Item label="Distance">
+              {lastTeleData.distance}m
+            </LabeledList.Item>
+            <LabeledList.Item label="Transit Time">
+              {lastTeleData.time} secs
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       )) || <Section mt={1}>No teleport data found.</Section>}

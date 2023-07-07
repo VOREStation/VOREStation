@@ -142,6 +142,8 @@
 
 	user.drop_item()
 	if(I)
+		if(istype(I, /obj/item/weapon/holder/micro))
+			log_and_message_admins("placed [I.name]  inside \the [src]", user)
 		I.forceMove(src)
 
 	to_chat(user, "You place \the [I] into the [src].")
@@ -181,6 +183,7 @@
 											// must be awake, not stunned or whatever
 		msg = "[user.name] climbs into the [src]."
 		to_chat(user, "You climb into the [src].")
+		log_and_message_admins("climbed into disposals!", user)
 	else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
 		msg = "[user.name] stuffs [target.name] into the [src]!"
 		to_chat(user, "You stuff [target.name] into the [src]!")
@@ -527,6 +530,8 @@
 	. = ..()
 	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
 		if(prob(75))
+			if(istype(AM, /obj/item/weapon/holder/micro))
+				log_and_message_admins("[AM] was thrown into \the [src]")
 			AM.forceMove(src)
 			visible_message("\The [AM] lands in \the [src].")
 		else
@@ -541,6 +546,8 @@
 			return
 		if(prob(75))
 			I.forceMove(src)
+			if(istype(I, /obj/item/weapon/holder/micro))
+				log_and_message_admins("[I.name] was thrown into \the [src]")
 			for(var/mob/M in viewers(src))
 				M.show_message("\The [I] lands in \the [src].", 3)
 		else

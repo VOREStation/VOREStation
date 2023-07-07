@@ -25,7 +25,7 @@
 
 	faction = "pakkun"
 
-	movement_cooldown = 6
+	movement_cooldown = 2
 	can_be_drop_pred = 1 //They can tongue vore.
 
 	meat_amount = 5
@@ -130,7 +130,7 @@
 /mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
 	if(pred && !extra_posessive && !(LAZYFIND(prey_excludes, target)))
 		LAZYSET(prey_excludes, target, world.time)
-		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(target)), 5 MINUTES)
 	if(ai_holder)
 		ai_holder.remove_target()
 
@@ -155,7 +155,7 @@
         for(var/mob/living/L in living_mobs(0))
             if(!(LAZYFIND(prey_excludes, L)))
                 LAZYSET(prey_excludes, L, world.time)
-                addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(L)), 5 MINUTES)
+                addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(L)), 5 MINUTES)
     else
         ..()
 

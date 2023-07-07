@@ -331,6 +331,7 @@
 	slowdown = -0.15	//Small speedboost, as they've got a bunch of legs. Or something. I dunno.
 	brute_mod = 0.8		//20% brute damage reduction
 	burn_mod =  1.15	//15% burn damage increase. They're spiders. Aerosol can+lighter = dead spiders.
+	throwforce_absorb_threshold = 10
 
 	num_alternate_languages = 3
 	species_language = LANGUAGE_VESPINAE
@@ -422,6 +423,8 @@
 	primitive_form = "Wolpin"
 	color_mult = 1
 	icon_height = 64
+	can_climb = TRUE
+	climbing_delay = 1
 
 	min_age = 18
 	max_age = 200
@@ -459,4 +462,3 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
-

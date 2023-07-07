@@ -311,6 +311,18 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 	name = "Pink Mankini capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/stripper/mankini)
 
+/obj/item/weapon/storage/box/fluff/swimsuit/highclass
+	name = "High Class Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/highclass)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/risque
+	name = "Risque Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/risque)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/streamlined
+	name = "Streamlined Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/streamlined)
+
 //Monkey boxes for the new primals we have
 /obj/item/weapon/storage/box/monkeycubes/sobakacubes
 	name = "sobaka cube box"

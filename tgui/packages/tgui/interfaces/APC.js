@@ -68,8 +68,10 @@ const ApcContent = (props, context) => {
   const { act, data } = useBackend(context);
   const locked = data.locked && !data.siliconUser;
   const normallyLocked = data.normallyLocked;
-  const externalPowerStatus = powerStatusMap[data.externalPower] || powerStatusMap[0];
-  const chargingStatus = powerStatusMap[data.chargingStatus] || powerStatusMap[0];
+  const externalPowerStatus =
+    powerStatusMap[data.externalPower] || powerStatusMap[0];
+  const chargingStatus =
+    powerStatusMap[data.chargingStatus] || powerStatusMap[0];
   const channelArray = data.powerChannels || [];
   // const malfStatus = malfMap[data.malfStatus] || null;
   const adjustedCellChange = data.powerCellStatus / 100;
@@ -133,13 +135,19 @@ const ApcContent = (props, context) => {
                 label={channel.title}
                 buttons={
                   <Fragment>
-                    <Box inline mx={2} color={channel.status >= 2 ? 'good' : 'bad'}>
+                    <Box
+                      inline
+                      mx={2}
+                      color={channel.status >= 2 ? 'good' : 'bad'}>
                       {channel.status >= 2 ? 'On' : 'Off'}
                     </Box>
                     <Button
                       icon="sync"
                       content="Auto"
-                      selected={!locked && (channel.status === 1 || channel.status === 3)}
+                      selected={
+                        !locked &&
+                        (channel.status === 1 || channel.status === 3)
+                      }
                       disabled={locked}
                       onClick={() => act('channel', topicParams.auto)}
                     />
@@ -177,7 +185,13 @@ const ApcContent = (props, context) => {
       <Section
         title="Misc"
         buttons={
-          !!data.siliconUser && <Button icon="lightbulb-o" content="Overload" onClick={() => act('overload')} />
+          !!data.siliconUser && (
+            <Button
+              icon="lightbulb-o"
+              content="Overload"
+              onClick={() => act('overload')}
+            />
+          )
         }>
         <LabeledList>
           <LabeledList.Item
@@ -250,7 +264,12 @@ const GridCheck = (props, context) => {
   return (
     <FullscreenNotice title="System Failure">
       <Box fontSize="1.5rem" bold>
-        <Icon name="exclamation-triangle" verticalAlign="middle" size={3} mr="1rem" />
+        <Icon
+          name="exclamation-triangle"
+          verticalAlign="middle"
+          size={3}
+          mr="1rem"
+        />
       </Box>
       <Box fontSize="1.5rem" bold>
         Power surge detected, grid check in effect...
@@ -262,7 +281,14 @@ const GridCheck = (props, context) => {
 const ApcFailure = (props, context) => {
   const { data, act } = useBackend(context);
 
-  let rebootOptions = <Button icon="repeat" content="Restart Now" color="good" onClick={() => act('reboot')} />;
+  let rebootOptions = (
+    <Button
+      icon="repeat"
+      content="Restart Now"
+      color="good"
+      onClick={() => act('reboot')}
+    />
+  );
 
   if (data.locked && !data.siliconUser) {
     rebootOptions = <Box color="bad">Swipe an ID card for manual reboot.</Box>;
@@ -274,7 +300,9 @@ const ApcFailure = (props, context) => {
         <h1>SYSTEM FAILURE</h1>
       </Box>
       <Box color="average">
-        <h2>I/O regulators malfunction detected! Waiting for system reboot...</h2>
+        <h2>
+          I/O regulators malfunction detected! Waiting for system reboot...
+        </h2>
       </Box>
       <Box color="good">Automatic reboot in {data.failTime} seconds...</Box>
       <Box mt={4}>{rebootOptions}</Box>

@@ -55,6 +55,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/allowmobvore = TRUE
 	var/permit_healbelly = TRUE
 	var/noisy = FALSE
+	var/eating_privacy_global = FALSE //Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
 
 	// These are 'modifier' prefs, do nothing on their own but pair with drop_prey/drop_pred settings.
 	var/drop_vore = TRUE
@@ -70,8 +71,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
 	var/vore_smell = "nothing in particular"
-	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
-	var/appendage_alt_setting = 0	//Decides if appendage user is thrown at target or not.
 
 	var/selective_preference = DM_DEFAULT
 
@@ -173,8 +172,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	vore_smell = json_from_file["vore_smell"]
 	permit_healbelly = json_from_file["permit_healbelly"]
 	noisy = json_from_file["noisy"]
-	appendage_color = json_from_file["appendage_color"]
-	appendage_alt_setting = json_from_file["appendage_alt_setting"]
 	selective_preference = json_from_file["selective_preference"]
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
@@ -192,6 +189,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	nutrition_messages = json_from_file["nutrition_messages"]
 	weight_message_visible = json_from_file["weight_message_visible"]
 	weight_messages = json_from_file["weight_messages"]
+	eating_privacy_global = json_from_file["eating_privacy_global"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -214,10 +212,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		selective_preference = DM_DEFAULT
 	if (isnull(noisy))
 		noisy = FALSE
-	if (isnull(appendage_color))
-		appendage_color = "#e03997"
-	if (isnull(appendage_alt_setting))
-		appendage_alt_setting = 0
 	if(isnull(show_vore_fx))
 		show_vore_fx = TRUE
 	if(isnull(can_be_drop_prey))
@@ -246,6 +240,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		nutrition_message_visible = TRUE
 	if(isnull(weight_message_visible))
 		weight_message_visible = TRUE
+	if(isnull(eating_privacy_global))
+		eating_privacy_global = FALSE
 	if(isnull(nutrition_messages))
 		nutrition_messages = list(
 							"They are starving! You can hear their stomach snarling from across the room!",
@@ -297,8 +293,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
 			"noisy" 				= noisy,
-			"appendage_color"		= appendage_color,
-			"appendage_alt_setting" = appendage_alt_setting,
 			"selective_preference"	= selective_preference,
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
@@ -316,6 +310,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"nutrition_messages"		= nutrition_messages,
 			"weight_message_visible"	= weight_message_visible,
 			"weight_messages"			= weight_messages,
+			"eating_privacy_global"		= eating_privacy_global,
 		)
 
 	//List to JSON

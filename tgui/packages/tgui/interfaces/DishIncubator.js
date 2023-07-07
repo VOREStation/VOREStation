@@ -30,10 +30,22 @@ export const DishIncubator = (props, context) => {
       <Window.Content scrollable>
         <Section
           title="Environmental Conditions"
-          buttons={<Button icon="power-off" selected={on} content={on ? 'On' : 'Off'} onClick={() => act('power')} />}>
+          buttons={
+            <Button
+              icon="power-off"
+              selected={on}
+              content={on ? 'On' : 'Off'}
+              onClick={() => act('power')}
+            />
+          }>
           <Flex spacing={1} mb={1}>
             <Flex.Item grow={1}>
-              <Button fluid icon="radiation" content="Add Radiation" onClick={() => act('rad')} />
+              <Button
+                fluid
+                icon="radiation"
+                content="Add Radiation"
+                onClick={() => act('rad')}
+              />
             </Flex.Item>
             <Flex.Item grow={1}>
               <Button.Confirm
@@ -64,7 +76,9 @@ export const DishIncubator = (props, context) => {
               <ProgressBar
                 minValue={0}
                 maxValue={100}
-                color={radiation >= 50 ? 'bad' : growth >= 25 ? 'average' : 'good'}
+                color={
+                  radiation >= 50 ? 'bad' : growth >= 25 ? 'average' : 'good'
+                }
                 value={radiation}>
                 {formatCommaNumber(radiation * 10000)} &micro;Sv
               </ProgressBar>
@@ -93,21 +107,37 @@ export const DishIncubator = (props, context) => {
                 disabled={!chemicals_inserted}
                 onClick={() => act('ejectchem')}
               />
-              <Button icon="virus" content="Breed Virus" disabled={!can_breed_virus} onClick={() => act('virus')} />
+              <Button
+                icon="virus"
+                content="Breed Virus"
+                disabled={!can_breed_virus}
+                onClick={() => act('virus')}
+              />
             </Fragment>
           }>
           {(chemicals_inserted && (
             <Box>
               <LabeledList>
                 <LabeledList.Item label="Volume">
-                  <ProgressBar minValue={0} maxValue={max_chemical_volume} value={chemical_volume}>
+                  <ProgressBar
+                    minValue={0}
+                    maxValue={max_chemical_volume}
+                    value={chemical_volume}>
                     {chemical_volume}/{max_chemical_volume}
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Breeding Environment" color={can_breed_virus ? 'good' : 'average'}>
-                  {dish_inserted ? (can_breed_virus ? 'Suitable' : 'No hemolytic samples detected') : 'N/A'}
+                <LabeledList.Item
+                  label="Breeding Environment"
+                  color={can_breed_virus ? 'good' : 'average'}>
+                  {dish_inserted
+                    ? can_breed_virus
+                      ? 'Suitable'
+                      : 'No hemolytic samples detected'
+                    : 'N/A'}
                   {blood_already_infected ? (
-                    <Box color="bad">CAUTION: Viral infection detected in blood sample.</Box>
+                    <Box color="bad">
+                      CAUTION: Viral infection detected in blood sample.
+                    </Box>
                   ) : null}
                 </LabeledList.Item>
               </LabeledList>
@@ -117,7 +147,12 @@ export const DishIncubator = (props, context) => {
         <Section
           title="Virus Dish"
           buttons={
-            <Button icon="eject" content="Eject Dish" disabled={!dish_inserted} onClick={() => act('ejectdish')} />
+            <Button
+              icon="eject"
+              content="Eject Dish"
+              disabled={!dish_inserted}
+              onClick={() => act('ejectdish')}
+            />
           }>
           {dish_inserted ? (
             virus ? (
@@ -134,7 +169,9 @@ export const DishIncubator = (props, context) => {
                     value={growth}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Infection Rate">{analysed ? infection_rate : 'Unknown.'}</LabeledList.Item>
+                <LabeledList.Item label="Infection Rate">
+                  {analysed ? infection_rate : 'Unknown.'}
+                </LabeledList.Item>
               </LabeledList>
             ) : (
               <Box color="bad">No virus detected.</Box>

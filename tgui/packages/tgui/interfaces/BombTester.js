@@ -6,7 +6,16 @@ import { Window } from '../layouts';
 export const BombTester = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { simulating, mode, tank1, tank1ref, tank2, tank2ref, canister, sim_canister_output } = data;
+  const {
+    simulating,
+    mode,
+    tank1,
+    tank1ref,
+    tank2,
+    tank2ref,
+    canister,
+    sim_canister_output,
+  } = data;
 
   return (
     <Window width={450} height={400}>
@@ -15,34 +24,48 @@ export const BombTester = (props, context) => {
           <Section title="Virtual Explosive Simulator v2.01">
             <LabeledList>
               <LabeledList.Item label="Mode">
-                <Button onClick={() => act('set_mode', { mode: 1 })} selected={mode === 1}>
+                <Button
+                  onClick={() => act('set_mode', { mode: 1 })}
+                  selected={mode === 1}>
                   Single Tank
                 </Button>
-                <Button onClick={() => act('set_mode', { mode: 2 })} selected={mode === 2}>
+                <Button
+                  onClick={() => act('set_mode', { mode: 2 })}
+                  selected={mode === 2}>
                   Transfer Valve
                 </Button>
-                <Button onClick={() => act('set_mode', { mode: 3 })} selected={mode === 3}>
+                <Button
+                  onClick={() => act('set_mode', { mode: 3 })}
+                  selected={mode === 3}>
                   Canister
                 </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Primary Slot">
                 {(tank1 && (
-                  <Button onClick={() => act('remove_tank', { ref: tank1ref })} icon="eject">
+                  <Button
+                    onClick={() => act('remove_tank', { ref: tank1ref })}
+                    icon="eject">
                     {tank1}
                   </Button>
                 )) || (
-                  <Button onClick={() => act('add_tank', { slot: 1 })} icon="upload">
+                  <Button
+                    onClick={() => act('add_tank', { slot: 1 })}
+                    icon="upload">
                     Insert Tank
                   </Button>
                 )}
               </LabeledList.Item>
               <LabeledList.Item label="Secondary Slot">
                 {(tank2 && (
-                  <Button onClick={() => act('remove_tank', { ref: tank2ref })} icon="eject">
+                  <Button
+                    onClick={() => act('remove_tank', { ref: tank2ref })}
+                    icon="eject">
                     {tank2}
                   </Button>
                 )) || (
-                  <Button onClick={() => act('add_tank', { slot: 2 })} icon="upload">
+                  <Button
+                    onClick={() => act('add_tank', { slot: 2 })}
+                    icon="upload">
                     Insert Tank
                   </Button>
                 )}
@@ -54,7 +77,9 @@ export const BombTester = (props, context) => {
                     Scan
                   </Button>
                 }>
-                {(canister && <Box color="label">{canister}</Box>) || <Box color="bad">No tank connected.</Box>}
+                {(canister && <Box color="label">{canister}</Box>) || (
+                  <Box color="bad">No tank connected.</Box>
+                )}
               </LabeledList.Item>
               {canister && (
                 <LabeledList.Item label="Canister Release Pressure">
@@ -62,12 +87,20 @@ export const BombTester = (props, context) => {
                     minValue={0}
                     value={sim_canister_output}
                     maxValue={1013.25}
-                    onDrag={(e, val) => act('set_can_pressure', { pressure: val })}
+                    onDrag={(e, val) =>
+                      act('set_can_pressure', { pressure: val })
+                    }
                   />
                 </LabeledList.Item>
               )}
             </LabeledList>
-            <Button mt={2} color="red" icon="bomb" fontSize={2} onClick={() => act('start_sim')} fluid>
+            <Button
+              mt={2}
+              color="red"
+              icon="bomb"
+              fontSize={2}
+              onClick={() => act('start_sim')}
+              fluid>
               Begin Simulation
             </Button>
           </Section>
@@ -150,7 +183,9 @@ class BombTesterSimulation extends Component {
 
     return (
       <Section title="Simulation in progress!" fill>
-        <Box position="absolute" style={{ overflow: 'hidden', width: '100%', height: '100%' }}>
+        <Box
+          position="absolute"
+          style={{ overflow: 'hidden', width: '100%', height: '100%' }}>
           <Icon style={newStyle} name="bomb" size={10} color="red" />
         </Box>
       </Section>

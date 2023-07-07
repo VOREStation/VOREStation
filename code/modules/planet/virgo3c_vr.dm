@@ -127,6 +127,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		WEATHER_RAIN			= new /datum/weather/virgo3c/rain(),
 		WEATHER_STORM			= new /datum/weather/virgo3c/storm(),
 		WEATHER_HAIL			= new /datum/weather/virgo3c/hail(),
+		WEATHER_FOG				= new /datum/weather/virgo3c/fog(),
 		WEATHER_BLOOD_MOON		= new /datum/weather/virgo3c/blood_moon(),
 		WEATHER_EMBERFALL		= new /datum/weather/virgo3c/emberfall(),
 		WEATHER_ASH_STORM		= new /datum/weather/virgo3c/ash_storm(),
@@ -162,6 +163,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		)
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
+	imminent_transition_message = "The sky is rapidly clearing up."
 
 /datum/weather/virgo3c/overcast
 	name = "overcast"
@@ -171,6 +173,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_chances = list(
 		WEATHER_CLEAR = 50,
 		WEATHER_OVERCAST = 50,
+		WEATHER_FOG = 5,
 		WEATHER_RAIN = 5,
 		WEATHER_LIGHT_SNOW = 5
 		)
@@ -180,6 +183,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		"Clouds cut off your view of the sky.",
 		"It's very cloudy."
 		)
+	imminent_transition_message = "Benign clouds are quickly gathering."
 
 /datum/weather/virgo3c/light_snow
 	name = "light snow"
@@ -190,6 +194,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_chances = list(
 		WEATHER_LIGHT_SNOW = 25,
 		WEATHER_OVERCAST = 25,
+		WEATHER_FOG = 10,
 		WEATHER_SNOW = 10,
 		WEATHER_RAIN = 5
 		)
@@ -198,6 +203,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		"Small snowflakes begin to fall from above.",
 		"It begins to snow lightly.",
 		)
+	imminent_transition_message = "It appears a light snow is about to start."
 
 /datum/weather/virgo3c/snow
 	name = "moderate snow"
@@ -218,6 +224,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		"It's starting to snow.",
 		"The air feels much colder as snowflakes fall from above."
 	)
+	imminent_transition_message = "A snowfall is starting."
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
@@ -239,6 +246,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		"Strong winds howl around you as a blizzard appears.",
 		"It starts snowing heavily, and it feels extremly cold now."
 	)
+	imminent_transition_message = "Wind is howling. Blizzard is coming."
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
@@ -251,10 +259,13 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	wind_low = 1
 	light_modifier = 0.5
 	effect_message = "<span class='warning'>Rain falls on you.</span>"
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 	transition_chances = list(
 		WEATHER_OVERCAST = 25,
 		WEATHER_RAIN = 25,
+		WEATHER_FOG = 10,
 		WEATHER_STORM = 5,
 		WEATHER_LIGHT_SNOW = 5
 		)
@@ -262,6 +273,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_messages = list(
 		"The sky is dark, and rain falls down upon you."
 	)
+	imminent_transition_message = "Light drips of water are starting to fall from the sky."
 
 /datum/weather/virgo3c/rain/process_effects()
 	..()
@@ -305,6 +317,9 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		"Loud thunder is heard in the distance.",
 		"A bright flash heralds the approach of a storm."
 	)
+	imminent_transition_message = "You can hear distant thunder. Storm is coming."
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 
 	transition_chances = list(
@@ -360,6 +375,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_message = "<span class='warning'>The hail smacks into you!</span>"
 
 	transition_chances = list(
+		WEATHER_FOG = 5,
 		WEATHER_HAIL = 25,
 		WEATHER_RAIN = 75
 		)
@@ -369,6 +385,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		"It begins to hail.",
 		"An intense chill is felt, and chunks of ice start to fall from the sky, towards you."
 	)
+	imminent_transition_message = "Small bits of ice are falling from the sky, growing larger by the second. Hail is starting, get to cover!"
 
 /datum/weather/virgo3c/hail/process_effects()
 	..()
@@ -405,6 +422,31 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			if(show_message)
 				to_chat(H, effect_message)
 
+/datum/weather/virgo3c/fog
+	name = "fog"
+	icon_state = "fog"
+	wind_high = 1
+	wind_low = 0
+	light_modifier = 0.7
+
+	temp_high = 273.15 // 0c
+	temp_low = 	263.15 // -10c
+
+	transition_chances = list(
+		WEATHER_FOG = 50,
+		WEATHER_OVERCAST = 45,
+		WEATHER_LIGHT_SNOW = 5
+		)
+	observed_message = "A fogbank has rolled over the region."
+	transition_messages = list(
+		"Fog rolls in.",
+		"Visibility falls as the air becomes dense.",
+		"The clouds drift lower, as if to smother the forests."
+	)
+	imminent_transition_message = "Clouds are drifting down as the area is getting foggy."
+	outdoor_sounds_type = /datum/looping_sound/weather/wind
+	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
+
 /datum/weather/virgo3c/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
@@ -412,6 +454,8 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_high = 283.15 // 10c
 	temp_low = 273.15  // 0c
 	flight_failure_modifier = 25
+	timer_low_bound = 10
+	timer_high_bound = 15
 	transition_chances = list(
 		WEATHER_BLOOD_MOON = 25,
 		WEATHER_CLEAR = 75
@@ -420,6 +464,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_messages = list(
 		"The sky turns blood red!"
 	)
+	imminent_transition_message = "The sky is turning red. Blood Moon is starting."
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -432,6 +477,8 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_high = 293.15	// 20c
 	temp_low = 283.15	// 10c
 	flight_failure_modifier = 20
+	timer_low_bound = 8
+	timer_high_bound = 10
 	transition_chances = list(
 		WEATHER_ASH_STORM = 100
 		)
@@ -439,6 +486,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_messages = list(
 		"Gentle embers waft down around you like black snow. A wall of dark, glowing ash approaches in the distance..."
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers start to rain down."
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -453,14 +501,17 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	wind_high = 6
 	wind_low = 3
 	flight_failure_modifier = 50
+	timer_low_bound = 4
+	timer_high_bound = 6
 	transition_chances = list(
-		WEATHER_ASH_STORM = 5,
-		WEATHER_CLEAR = 95
+		WEATHER_ASH_STORM = 20,
+		WEATHER_CLEAR = 80
 		)
 	observed_message = "All that can be seen is black smoldering ash."
 	transition_messages = list(
 		"Smoldering clouds of scorching ash billow down around you!"
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers fill the air and wind is picking up too. Ashstorm is coming, get to cover!"
 	// Lets recycle.
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
@@ -498,6 +549,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_messages = list(
 		"Smoldering clouds of scorching ash billow down around you!"
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers fill the air and wind is picking up too."
 	// Lets recycle.
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
@@ -516,6 +568,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_messages = list(
 		"Radioactive soot and ash start to float down around you, contaminating whatever they touch."
 	)
+	imminent_transition_message = "Sky and clouds are growing sickly green... Radiation storm is approaching, get to cover!"
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -552,9 +605,12 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/weather/virgo3c/fallout/temp
 	name = "short-term fallout"
+	timer_low_bound = 1
+	timer_high_bound = 3
 	transition_chances = list(
 		WEATHER_FALLOUT = 10,
 		WEATHER_RAIN = 50,
+		WEATHER_FOG = 35,
 		WEATHER_STORM = 20,
 		WEATHER_OVERCAST = 5
 		)
@@ -573,6 +629,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	transition_messages = list(
 		"Suddenly, colorful confetti starts raining from the sky."
 	)
+	imminent_transition_message = "A rain is starting... A rain of confetti...?"
 
 /turf/unsimulated/wall/planetary/virgo3c
 	name = "impassable rock"

@@ -13,7 +13,7 @@
 	maxHealth = 20 //don't want Fluff to die on a missclick
 	health = 20
 
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 	makes_dirt = 0
 
 	see_in_dark = 5

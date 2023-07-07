@@ -33,7 +33,15 @@ export const RustCoreMonitorContent = (props, context) => {
   const { cores } = data;
 
   return (
-    <Section title="Cores" buttons={<Button icon="pencil-alt" content={'Set Tag'} onClick={() => act('set_tag')} />}>
+    <Section
+      title="Cores"
+      buttons={
+        <Button
+          icon="pencil-alt"
+          content={'Set Tag'}
+          onClick={() => act('set_tag')}
+        />
+      }>
       <Table>
         <Table.Row header>
           <Table.Cell>Name</Table.Cell>

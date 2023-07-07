@@ -6,25 +6,27 @@
 	slot = slot_gloves
 	sort_category = "Gloves and Handwear"
 
-/datum/gear/gloves/blue
-	display_name = "gloves, blue"
-	path = /obj/item/clothing/gloves/blue
+/datum/gear/gloves/selector
+	display_name = "coloured gloves selector"
+	description = "Pick from a range of plain coloured gloves."
+	path = /obj/item/clothing/gloves/black
 
-/datum/gear/gloves/brown
-	display_name = "gloves, brown"
-	path = /obj/item/clothing/gloves/brown
-
-/datum/gear/gloves/light_brown
-	display_name = "gloves, light-brown"
-	path = /obj/item/clothing/gloves/light_brown
-
-/datum/gear/gloves/green
-	display_name = "gloves, green"
-	path = /obj/item/clothing/gloves/green
-
-/datum/gear/gloves/grey
-	display_name = "gloves, grey"
-	path = /obj/item/clothing/gloves/grey
+/datum/gear/gloves/selector/New()
+	..()
+	var/list/selector_uniforms = list(
+		"black"=/obj/item/clothing/gloves/black,
+		"blue"=/obj/item/clothing/gloves/blue,
+		"brown"=/obj/item/clothing/gloves/brown,
+		"light brown"=/obj/item/clothing/gloves/light_brown,
+		"green"=/obj/item/clothing/gloves/green,
+		"grey"=/obj/item/clothing/gloves/grey,
+		"orange"=/obj/item/clothing/gloves/orange,
+		"purple"=/obj/item/clothing/gloves/purple,
+		"rainbow"=/obj/item/clothing/gloves/rainbow,
+		"red"=/obj/item/clothing/gloves/red,
+		"white"=/obj/item/clothing/gloves/white
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/gloves/latex
 	display_name = "gloves, latex"
@@ -35,26 +37,6 @@
 	display_name = "gloves, nitrile"
 	path = /obj/item/clothing/gloves/sterile/nitrile
 	cost = 2
-
-/datum/gear/gloves/orange
-	display_name = "gloves, orange"
-	path = /obj/item/clothing/gloves/orange
-
-/datum/gear/gloves/purple
-	display_name = "gloves, purple"
-	path = /obj/item/clothing/gloves/purple
-
-/datum/gear/gloves/rainbow
-	display_name = "gloves, rainbow"
-	path = /obj/item/clothing/gloves/rainbow
-
-/datum/gear/gloves/red
-	display_name = "gloves, red"
-	path = /obj/item/clothing/gloves/red
-
-/datum/gear/gloves/white
-	display_name = "gloves, white"
-	path = /obj/item/clothing/gloves/white
 
 /datum/gear/gloves/evening
 	display_name = "evening gloves"

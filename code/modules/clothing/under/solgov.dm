@@ -63,6 +63,18 @@
 	icon_state = "greyutility"
 	worn_state = "greyutility"
 
+/obj/item/clothing/under/utility/tan
+	name = "utility uniform"
+	desc = "A comfortable tan utility jumpsuit."
+	icon_state = "tanutility"
+	worn_state = "tanutility"
+
+/obj/item/clothing/under/utility/green
+	name = "utility uniform"
+	desc = "A comfortable green utility jumpsuit."
+	icon_state = "greenutility"
+	worn_state = "greenutility"
+
 //Here's the real ones
 /obj/item/clothing/under/solgov/utility/sifguard
 	name = "\improper SifGuard uniform"

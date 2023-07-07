@@ -6,7 +6,7 @@
 
 /datum/component/resize_guard/RegisterWithParent()
 	// When our parent mob enters any atom, we check resize
-	RegisterSignal(parent, COMSIG_ATOM_ENTERING, .proc/check_resize)
+	RegisterSignal(parent, COMSIG_ATOM_ENTERING, PROC_REF(check_resize))
 
 /datum/component/resize_guard/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATOM_ENTERING)

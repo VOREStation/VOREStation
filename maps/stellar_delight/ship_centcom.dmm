@@ -2394,6 +2394,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/control)
+"hK" = (
+/obj/machinery/item_bank{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "hL" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Special Operations";
@@ -4050,6 +4056,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
+"of" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "oj" = (
 /obj/structure/bed/chair/sofa/bench/left{
 	dir = 4;
@@ -9647,7 +9664,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 10
 	},
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "KJ" = (
@@ -29072,7 +29089,7 @@ vu
 Zy
 Zy
 Zy
-Zy
+of
 Zy
 Zy
 Zy
@@ -33734,7 +33751,7 @@ Ll
 OA
 Xf
 as
-VH
+hK
 VH
 VH
 VH

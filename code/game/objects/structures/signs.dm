@@ -256,12 +256,12 @@
 
 /obj/structure/sign/redcross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "An interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "bluecross"
 
 /obj/structure/sign/greencross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "An interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "bluecross2"
 
 /obj/structure/sign/goldenplaque
@@ -816,6 +816,16 @@
 	name = "\improper Kitchen"
 	desc = "A pictographic direction sign with a knife, plate, and fork, stating the level to find the nearest dining establishment on."
 	icon_state = "level_kitchen"
+
+/obj/structure/sign/directions/shuttle_bay
+	name = "\improper Shuttle Bay"
+	desc = "A direction sign, pointing out the way to the nearest shuttle bay."
+	icon_state = "direction_bay"
+
+/obj/structure/sign/levels/shuttle_bay
+	name = "\improper Shuttle Bay"
+	desc = "A direction sign, stating the level to find the nearest shuttle bay on."
+	icon_state = "level_bay"
 
 /obj/structure/sign/directions/tram
 	name = "\improper Public Transit Station"
@@ -1821,7 +1831,7 @@
 /obj/structure/sign/flag/fivearrows
 	name = "Five Arrows flag"
 	desc = "The red flag of the Five Arrows."
-	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to percieved \
+	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to perceived \
 	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
 	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
 	icon_state = "fivearrows"
@@ -1836,7 +1846,7 @@
 /obj/item/flag/fivearrows
 	name = "Five Arrows flag"
 	desc = "The red flag of the Five Arrows."
-	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to percieved \
+	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to perceived \
 	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
 	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
 	flag_path = "fivearrows"

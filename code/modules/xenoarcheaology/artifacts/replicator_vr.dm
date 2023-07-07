@@ -19,8 +19,8 @@
 	/mob/living/simple_mob/vore/rabbit,
 	/mob/living/simple_mob/animal/goat,
 	/mob/living/simple_mob/animal/sif/tymisian,
-	/mob/living/simple_mob/animal/wolf/direwolf,
-	/mob/living/simple_mob/otie/friendly,
+	/mob/living/simple_mob/vore/wolf/direwolf,
+	/mob/living/simple_mob/vore/otie/friendly,
 	/mob/living/simple_mob/vore/alienanimals/catslug,
 	/mob/living/simple_mob/vore/fennec,
 	/mob/living/simple_mob/vore/xeno_defanged,
@@ -275,7 +275,7 @@
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
 				stored_materials.Add(inserted_mob)
-				src.visible_message("<b>\The [user]</b> inserts \the [inserted_mob] into \the [src].")
+				src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [inserted_mob] into \the [src].</span>")
 				return
 		else
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
@@ -296,7 +296,7 @@
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<b>\The [user]</b> inserts \the [W] into \the [src].")
+	src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")
 
 /obj/machinery/replicator/vore/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -543,7 +543,7 @@
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
 				stored_materials.Add(inserted_mob)
-				src.visible_message("<b>\The [user]</b> inserts \the [inserted_mob] into \the [src].")
+				src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [inserted_mob] into \the [src].</span>")
 				return
 		else
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((They must be connected to the server.))</span>")
@@ -562,7 +562,7 @@
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<b>\The [user]</b> inserts \the [W] into \the [src].")
+	src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")
 
 
 /obj/machinery/replicator/clothing/tgui_interact(mob/user, datum/tgui/ui) //This creates the menu.

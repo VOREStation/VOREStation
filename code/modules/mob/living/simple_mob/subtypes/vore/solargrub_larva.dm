@@ -11,7 +11,7 @@ var/global/list/grub_machine_overlays = list()
 
 	health = 5
 	maxHealth = 5
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 	melee_damage_lower = 1	// This is a tiny worm. It will nibble and thats about it.
 	melee_damage_upper = 1

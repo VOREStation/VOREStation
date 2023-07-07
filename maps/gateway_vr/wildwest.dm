@@ -208,8 +208,8 @@
 			/mob/living/simple_mob/humanoid/merc/melee = 100,
 			/mob/living/simple_mob/humanoid/merc/ranged = 50,
 			/mob/living/simple_mob/humanoid/merc/ranged/space = 5,
-			/mob/living/simple_mob/otie/feral = 10,
-			/mob/living/simple_mob/otie/feral/chubby = 5
+			/mob/living/simple_mob/vore/otie/feral = 10,
+			/mob/living/simple_mob/vore/otie/feral/chubby = 5
 			),
 
 		list(
@@ -224,8 +224,8 @@
 		list(
 			/mob/living/simple_mob/humanoid/pirate = 100,
 			/mob/living/simple_mob/humanoid/pirate/ranged = 50,
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5
 			)
 
 	)

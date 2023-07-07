@@ -59,9 +59,16 @@ window.addEventListener('beforeunload', () => {
 const getBoundingBox = (element) => {
   const pixelRatio = window.devicePixelRatio ?? 1;
   const rect = element.getBoundingClientRect();
+  // prettier-ignore
   return {
-    pos: [rect.left * pixelRatio, rect.top * pixelRatio],
-    size: [(rect.right - rect.left) * pixelRatio, (rect.bottom - rect.top) * pixelRatio],
+    pos: [
+      rect.left * pixelRatio,
+      rect.top * pixelRatio,
+    ],
+    size: [
+      (rect.right - rect.left) * pixelRatio,
+      (rect.bottom - rect.top) * pixelRatio,
+    ],
   };
 };
 
@@ -78,7 +85,10 @@ export class ByondUi extends Component {
   shouldComponentUpdate(nextProps) {
     const { params: prevParams = {}, ...prevRest } = this.props;
     const { params: nextParams = {}, ...nextRest } = nextProps;
-    return shallowDiffers(prevParams, nextParams) || shallowDiffers(prevRest, nextRest);
+    return (
+      shallowDiffers(prevParams, nextParams) ||
+      shallowDiffers(prevRest, nextRest)
+    );
   }
 
   componentDidMount() {

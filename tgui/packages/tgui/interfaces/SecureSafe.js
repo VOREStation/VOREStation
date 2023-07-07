@@ -27,7 +27,10 @@ const NukeKeypad = (props, context) => {
                 height="50px"
                 lineHeight={1.25}
                 disabled={
-                  !!emagged || (!!l_setshort && 1) || (key !== 'R' && !locked) || (code === 'ERROR' && key !== 'R' && 1)
+                  !!emagged ||
+                  (!!l_setshort && 1) ||
+                  (key !== 'R' && !locked) ||
+                  (code === 'ERROR' && key !== 'R' && 1)
                 }
                 onClick={() => act('type', { digit: key })}
               />
@@ -66,7 +69,11 @@ export const SecureSafe = (props, context) => {
           )}
           <Section height="60px">
             <Box textAlign="center" position="center" fontSize="35px">
-              {(code && code) || <Box textColor={locked ? 'red' : 'green'}>{locked ? 'LOCKED' : 'UNLOCKED'}</Box>}
+              {(code && code) || (
+                <Box textColor={locked ? 'red' : 'green'}>
+                  {locked ? 'LOCKED' : 'UNLOCKED'}
+                </Box>
+              )}
             </Box>
           </Section>
           <Flex ml="3px">

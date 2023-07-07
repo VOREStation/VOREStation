@@ -4098,9 +4098,7 @@
 	name = "north bump";
 	pixel_y = 28
 	},
-/mob/living/simple_mob/vore/aggressive/rat{
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
-	},
+/mob/living/simple_mob/vore/aggressive/rat/pet,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "agR" = (
@@ -4616,20 +4614,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "ahN" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/machinery/station_map{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/reinforced,
 /area/hallway/lower/first_west)
 "ahO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -8170,23 +8155,14 @@
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/hallway/lower/first_west)
-"anA" = (
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
 /turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
+"anA" = (
+/obj/structure/redgate,
+/turf/simulated/floor/reinforced,
 /area/hallway/lower/first_west)
 "anB" = (
 /obj/effect/floor_decal/borderfloor{
@@ -8982,7 +8958,6 @@
 /area/tether/surfacebase/surface_one_hall)
 "aoR" = (
 /obj/machinery/light/small,
-/obj/machinery/firework_launcher,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "aoS" = (
@@ -20657,6 +20632,9 @@
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
@@ -37025,8 +37003,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
-/obj/effect/mouse_hole_spawner{
-	dir = 1
+/obj/machinery/station_map{
+	pixel_y = 32
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
@@ -38782,6 +38763,27 @@
 /obj/machinery/door/airlock/atmos,
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
+"uyf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
 "uzs" = (
 /obj/machinery/light{
 	dir = 8
@@ -47011,11 +47013,11 @@ ahl
 ahl
 ahl
 ahl
-aah
-aah
-aah
 ahl
-anA
+ahN
+ahN
+ahN
+ahL
 anP
 adu
 ahl
@@ -47153,10 +47155,10 @@ aah
 aah
 aah
 aah
-aah
-aah
-aah
 ahl
+ahN
+anA
+ahN
 ahL
 acV
 adF
@@ -47295,11 +47297,11 @@ aah
 aah
 aah
 aah
-aah
-aah
-aah
 ahl
 ahN
+ahN
+ahN
+ahL
 anP
 adu
 ahl
@@ -47437,9 +47439,9 @@ aah
 aah
 aah
 aah
-aah
-aah
-aah
+ahl
+ahl
+ahl
 ahl
 kJP
 anP
@@ -47585,7 +47587,7 @@ aah
 ahl
 pDY
 anP
-adu
+uyf
 ahl
 apj
 apj

@@ -26,15 +26,37 @@ export const SuitCycler = (props, context) => {
 
 const SuitCyclerContent = (props, context) => {
   const { act, data } = useBackend(context);
-  const { safeties, occupied, suit, helmet, departments, species, uv_level, max_uv_level, can_repair, damage } = data;
+  const {
+    safeties,
+    occupied,
+    suit,
+    helmet,
+    departments,
+    species,
+    uv_level,
+    max_uv_level,
+    can_repair,
+    damage,
+  } = data;
 
   return (
     <Fragment>
-      <Section title="Storage" buttons={<Button icon="lock" content="Lock" onClick={() => act('lock')} />}>
+      <Section
+        title="Storage"
+        buttons={
+          <Button icon="lock" content="Lock" onClick={() => act('lock')} />
+        }>
         {!!(occupied && safeties) && (
           <NoticeBox>
-            Biological entity detected in suit chamber. Please remove before continuing with operation.
-            <Button fluid icon="eject" color="red" content="Eject Entity" onClick={() => act('eject_guy')} />
+            Biological entity detected in suit chamber. Please remove before
+            continuing with operation.
+            <Button
+              fluid
+              icon="eject"
+              color="red"
+              content="Eject Entity"
+              onClick={() => act('eject_guy')}
+            />
           </NoticeBox>
         )}
         <LabeledList>
@@ -65,7 +87,11 @@ const SuitCyclerContent = (props, context) => {
           {can_repair && damage ? (
             <LabeledList.Item label="Suit Damage">
               {damage}
-              <Button icon="wrench" content="Repair" onClick={() => act('repair_suit')} />
+              <Button
+                icon="wrench"
+                content="Repair"
+                onClick={() => act('repair_suit')}
+              />
             </LabeledList.Item>
           ) : null}
         </LabeledList>
@@ -75,7 +101,7 @@ const SuitCyclerContent = (props, context) => {
           <LabeledList.Item label="Target Paintjob">
             <Dropdown
               noscroll
-              width="100%"
+              width="150px"
               options={departments}
               selected={departments[0]}
               onSelected={(val) => act('department', { department: val })}
@@ -83,7 +109,7 @@ const SuitCyclerContent = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Target Species">
             <Dropdown
-              width="100%"
+              width="150px"
               maxHeight="160px"
               options={species}
               selected={species[0]}
@@ -91,7 +117,12 @@ const SuitCyclerContent = (props, context) => {
             />
           </LabeledList.Item>
         </LabeledList>
-        <Button mt={1} fluid content="Customize" onClick={() => act('apply_paintjob')} />
+        <Button
+          mt={1}
+          fluid
+          content="Customize"
+          onClick={() => act('apply_paintjob')}
+        />
       </Section>
       <Section title="UV Decontamination">
         <LabeledList>
@@ -106,7 +137,13 @@ const SuitCyclerContent = (props, context) => {
             />
           </LabeledList.Item>
           <LabeledList.Item label="Decontaminate">
-            <Button fluid icon="recycle" disabled={occupied && safeties} textAlign="center" onClick={() => act('uv')} />
+            <Button
+              fluid
+              icon="recycle"
+              disabled={occupied && safeties}
+              textAlign="center"
+              onClick={() => act('uv')}
+            />
           </LabeledList.Item>
         </LabeledList>
       </Section>
@@ -115,7 +152,11 @@ const SuitCyclerContent = (props, context) => {
 };
 
 const SuitCyclerUV = (props, context) => {
-  return <NoticeBox>Contents are currently being decontaminated. Please wait.</NoticeBox>;
+  return (
+    <NoticeBox>
+      Contents are currently being decontaminated. Please wait.
+    </NoticeBox>
+  );
 };
 
 const SuitCyclerLocked = (props, context) => {
@@ -126,15 +167,23 @@ const SuitCyclerLocked = (props, context) => {
   return (
     <Section title="Locked" textAlign="center">
       <Box color="bad" bold>
-        The {model_text} suit cycler is currently locked. Please contact your system administrator.
+        The {model_text} suit cycler is currently locked. Please contact your
+        system administrator.
       </Box>
       <Box>
-        <Button icon="unlock" content="[Unlock]" disabled={!userHasAccess} onClick={() => act('lock')} />
+        <Button
+          icon="unlock"
+          content="[Unlock]"
+          disabled={!userHasAccess}
+          onClick={() => act('lock')}
+        />
       </Box>
     </Section>
   );
 };
 
 const SuitCyclerActive = (props, context) => {
-  return <NoticeBox>Contents are currently being painted. Please wait.</NoticeBox>;
+  return (
+    <NoticeBox>Contents are currently being painted. Please wait.</NoticeBox>
+  );
 };

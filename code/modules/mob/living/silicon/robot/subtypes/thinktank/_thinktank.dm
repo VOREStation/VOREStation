@@ -1,5 +1,5 @@
 // Spawner landmarks are used because platforms that are mapped during
-// SSatoms init try to Initialize() twice. I have no idea why and I am 
+// SSatoms init try to Initialize() twice. I have no idea why and I am
 // not paid enough to spend more time trying to debug it.
 /obj/effect/landmark/robot_platform
 	name = "recon platform spawner"
@@ -40,7 +40,7 @@
 	var/tmp/recharge_complete =       FALSE
 	var/tmp/recharger_charge_amount = 10 KILOWATTS
 	var/tmp/recharger_tick_cost =     80 KILOWATTS
-	var/weakref/recharging
+	var/datum/weakref/recharging
 
 	var/list/stored_atoms
 	var/max_stored_atoms = 1
@@ -82,7 +82,7 @@
 	components["armour"] =         new /datum/robot_component/armour/platform(src)
 
 /mob/living/silicon/robot/platform/Destroy()
-	for(var/weakref/drop_ref in stored_atoms)
+	for(var/datum/weakref/drop_ref in stored_atoms)
 		var/atom/movable/drop_atom = drop_ref.resolve()
 		if(istype(drop_atom) && !QDELETED(drop_atom) && drop_atom.loc == src)
 			drop_atom.dropInto(loc)
@@ -110,7 +110,7 @@
 
 		if(length(stored_atoms))
 			var/list/atom_names = list()
-			for(var/weakref/stored_ref in stored_atoms)
+			for(var/datum/weakref/stored_ref in stored_atoms)
 				var/atom/movable/AM = stored_ref.resolve()
 				if(istype(AM))
 					atom_names += "\a [AM]"

@@ -87,7 +87,9 @@
 		death()
 
 	if (src.stat != 2) //Alive.
-		if (src.paralysis || src.stunned || src.weakened || !src.has_power) //Stunned etc.
+		if (src.weakened > 0)	// Do not fullstun on weaken
+			AdjustWeakened(-1)
+		if (src.paralysis || src.stunned || !src.has_power) //Stunned etc.
 			src.set_stat(UNCONSCIOUS)
 			if (src.stunned > 0)
 				AdjustStunned(-1)

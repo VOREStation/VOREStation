@@ -1,8 +1,3 @@
-/datum/gear/head/cap/med
-	display_name = "cap, medical (Medical)"
-	path = /obj/item/clothing/head/soft/med
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
-
 /*/datum/gear/head/cap/sol
 	display_name = "cap, sol"
 	path = /obj/item/clothing/head/soft/sol*/
@@ -33,28 +28,21 @@
 	allowed_roles = list("Head of Security", "Detective")
 
 /datum/gear/head/bearpelt
-	display_name = "brown bear pelt"
+	display_name = "animal pelt selection"
+	description = "Select from a range of (probably, hopefully) synthetic/artificial animal pelts."
 	path = /obj/item/clothing/head/pelt
 
-/datum/gear/head/wolfpelt
-	display_name = "brown wolf pelt"
-	path = /obj/item/clothing/head/pelt/wolfpelt
-
-/datum/gear/head/wolfpeltblack
-	display_name = "black wolf pelt"
-	path = /obj/item/clothing/head/pelt/wolfpeltblack
-
-/datum/gear/head/tigerpelt
-	display_name = "shiny tiger pelt"
-	path = /obj/item/clothing/head/pelt/tigerpelt
-
-/datum/gear/head/tigerpeltsnow
-	display_name = "snow tiger pelt"
-	path = /obj/item/clothing/head/pelt/tigerpeltsnow
-
-/datum/gear/head/tigerpeltpink
-	display_name = "pink tiger pelt"
-	path = /obj/item/clothing/head/pelt/tigerpeltpink
+/datum/gear/head/bearpelt/New()
+	..()
+	var/list/selector_uniforms = list(
+		"bear, brown"=/obj/item/clothing/head/pelt,
+		"wolf, brown"=/obj/item/clothing/head/pelt/wolfpelt,
+		"wolf, black"=/obj/item/clothing/head/pelt/wolfpeltblack,
+		"tiger, plain"=/obj/item/clothing/head/pelt/tigerpelt,
+		"tiger, white"=/obj/item/clothing/head/pelt/tigerpeltsnow,
+		"tiger, pink"=/obj/item/clothing/head/pelt/tigerpeltpink
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/head/magic_hat
 	display_name = "wizard hat, colorable"
@@ -98,3 +86,9 @@ Talon hats
 /datum/gear/head/beret/talon
 	display_name = "beret, Talon"
 	path = /obj/item/clothing/head/beret
+
+// tiny tophat
+
+/datum/gear/head/tiny_tophat
+	display_name = "tiny tophat"
+	path = /obj/item/clothing/head/tinytophat

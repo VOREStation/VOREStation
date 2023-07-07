@@ -1,6 +1,6 @@
 /mob/living/silicon/robot
-	var/sleeper_g
-	var/sleeper_r
+	var/sleeper_g //Set to True only for Medical mechs when patient alive
+	var/sleeper_r //Used in every other case. Currently also for Vorebellies. Ideally vorebellies will use sleeper_o once icons are made
 	var/leaping = 0
 	var/pounce_cooldown = 0
 	var/pounce_cooldown_time = 40
@@ -110,10 +110,29 @@
 	vr_sprite_check()
 	..()
 	if(dogborg == TRUE && stat == CONSCIOUS)
-		if(sleeper_g == TRUE)
-			add_overlay("[module_sprites[icontype]]-sleeper_g")
-		if(sleeper_r == TRUE)
-			add_overlay("[module_sprites[icontype]]-sleeper_r")
+		if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
+			if(sleeper_g == TRUE)
+				add_overlay("[module_sprites[icontype]]-sleeper_g")
+			if(sleeper_r == TRUE)
+				add_overlay("[module_sprites[icontype]]-sleeper_r")
+		else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
+			if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
+				if(vore_selected.overlay_min_prey_size == 0)	//if min size is 0, we dont check for size
+					add_overlay("[module_sprites[icontype]]-sleeper_r")
+				else
+					var/show_belly = FALSE
+					if(vore_selected.override_min_prey_size && (LAZYLEN(vore_selected.contents) > vore_selected.override_min_prey_num))
+						show_belly = TRUE	//Override regardless of content size
+					else
+						for(var/content in vore_selected.contents)	//If ANY in belly are big enough, we set to true
+							if(!istype(content, /mob/living)) continue
+							var/mob/living/prey = content
+							if(prey.size_multiplier >= vore_selected.overlay_min_prey_size)
+								show_belly = TRUE
+								break
+					if(show_belly)
+						add_overlay("[module_sprites[icontype]]-sleeper_r")
+
 		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
 			add_overlay("laser")
 		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
@@ -140,7 +159,7 @@
 	if(wideborg == TRUE)
 		if(icontype == "Drake") // Why, Why can't we have normal nice things
 			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
-		else if(icontype == "Raptor V-4") //Added for raptor sprites
+		else if(icontype == "Raptor V-4" || icontype == "Raptor V-4000") //Added for raptor sprites
 			icon = 'icons/mob/raptorborg/raptor.dmi'
 		else
 			icon = wideborg_dept
@@ -164,9 +183,9 @@
 					amount = water.energy
 				water.use_charge(amount)
 				E.reagents.add_reagent("water", amount)
-				to_chat(src, "You refill the extinguisher using your water reserves.")
+				to_chat(src, "<span class='filter_notice'>You refill the extinguisher using your water reserves.</span>")
 			else
-				to_chat(src, "Insufficient water reserves.")
+				to_chat(src, "<span class='filter_notice'>Insufficient water reserves.</span>")
 
 //RIDING
 /datum/riding/dogborg

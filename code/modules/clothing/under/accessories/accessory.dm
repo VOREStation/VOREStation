@@ -296,7 +296,7 @@
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by high ranking officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
+	desc = "An extremely rare golden medal awarded only by high ranking officials. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
 
 /obj/item/clothing/accessory/medal/gold/casino
 	name = "medal of true lucky winner"
@@ -602,3 +602,51 @@
 /obj/item/clothing/accessory/pride/vore
 	name = "vore pride pin"
 	icon_state = "pride_vore"
+
+// ranger ponchos
+
+/obj/item/clothing/accessory/poncho/roles/ranger
+	name = "red ranger poncho"
+	desc = "A rugged all-weather poncho, perfectly coloured to match a popular line of neck gaiters. You could probably use it as a tent in a pinch!"
+	icon_state = "rangerponcho_red"
+	item_state = "rangerponcho_red"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/tan
+	name = "tan ranger poncho"
+	icon_state = "rangerponcho_tan"
+	item_state = "rangerponcho_tan"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/gray
+	name = "gray ranger poncho"
+	icon_state = "rangerponcho_gray"
+	item_state = "rangerponcho_gray"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/green
+	name = "green ranger poncho"
+	icon_state = "rangerponcho_green"
+	item_state = "rangerponcho_green"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/blue
+	name = "blue ranger poncho"
+	icon_state = "rangerponcho_blue"
+	item_state = "rangerponcho_blue"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/purple
+	name = "purple ranger poncho"
+	icon_state = "rangerponcho_purple"
+	item_state = "rangerponcho_purple"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/orange
+	name = "orange ranger poncho"
+	icon_state = "rangerponcho_orange"
+	item_state = "rangerponcho_orange"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/charcoal
+	name = "charcoal ranger poncho"
+	icon_state = "rangerponcho_charcoal"
+	item_state = "rangerponcho_charcoal"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/snow
+	name = "white ranger poncho"
+	icon_state = "rangerponcho_snow"
+	item_state = "rangerponcho_snow"

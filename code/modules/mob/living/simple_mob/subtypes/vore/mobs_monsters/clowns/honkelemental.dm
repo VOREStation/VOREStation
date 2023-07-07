@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/honkelemental
+/mob/living/simple_mob/clowns/big/c_shift/honkelemental
 	name = "Honk Elemental"
 	desc = "That thing can't be real, right?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -23,7 +23,7 @@
 	speak = list("HONK", "Honk!", "Henk!")
 	emote_see = list("honks")
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/honkelemental/verb/spawn_egg()
+/mob/living/simple_mob/clowns/big/c_shift/honkelemental/verb/spawn_egg()
 	set category = "Abilities"
 	set name = "Spawn Clown Egg"
 	set desc = "Spawns an egg that a player can touch, which will call on ghosts to spawn as clowns."

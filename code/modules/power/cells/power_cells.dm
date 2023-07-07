@@ -1,32 +1,28 @@
 /*
+ * Empty
+ */
+/obj/item/weapon/cell/empty/New()
+	..()
+	charge = 0
+
+/*
  * Crap
  */
 /obj/item/weapon/cell/crap
-	name = "\improper rechargable AA battery"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	name = "\improper rechargable DD battery"
+	desc = "An older, cheap power cell. It's probably been in use for quite some time now."
+	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(TECH_POWER = 0)
 	icon_state = "crap"
 	maxcharge = 500
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
+/obj/item/weapon/cell/crap/update_icon() //No visible charge indicator
+	return
+
 /obj/item/weapon/cell/crap/empty/New()
 	..()
 	charge = 0
-
-/*
- * Security Borg
- */
-/obj/item/weapon/cell/secborg
-	name = "security borg rechargable D battery"
-	origin_tech = list(TECH_POWER = 0)
-	icon_state = "secborg"
-	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
-
-/obj/item/weapon/cell/secborg/empty/New()
-	..()
-	charge = 0
-	update_icon()
 
 /*
  * APC
@@ -89,9 +85,22 @@
 /obj/item/weapon/cell/mech
 	name = "mecha power cell"
 	icon_state = "mech"
+	connector_type = "mech"
 	charge = 15000
 	maxcharge = 15000
 	matter = list(MAT_STEEL = 800, MAT_GLASS = 60)
+
+/obj/item/weapon/cell/mech/lead
+	name = "lead acid battery"
+	desc = "An ancient battery design not commonly seen anymore. It looks like it'd fit inside a mech however..."
+	origin_tech = list(TECH_POWER = 0) //Litteraly an old car battery, doesn't need tech
+	icon_state = "lead"
+	charge = 8000
+	maxcharge = 8000
+	matter = list(MAT_STEEL = 300, MAT_GLASS = 10)
+
+/obj/item/weapon/cell/mech/lead/update_icon() //No visible charge indicator
+	return
 
 /obj/item/weapon/cell/mech/high
 	name = "high-capacity mecha power cell"
@@ -146,6 +155,7 @@
 	origin_tech = list(TECH_POWER = 4, TECH_BIO = 5)
 	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"
+	connector_type = "slime"
 	description_info = "This 'cell' holds a max charge of 10k and self recharges over time."
 	maxcharge = 10000
 	matter = null
@@ -161,7 +171,11 @@
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
 	matter = list(MAT_GLASS = 20)
 	icon_state = "em_light"
+	connector_type = "emergency"
 	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/cell/emergency_light/update_icon() //No visible charge indicator
+	return
 
 /obj/item/weapon/cell/emergency_light/Initialize()
 	. = ..()

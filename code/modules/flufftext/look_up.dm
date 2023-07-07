@@ -17,16 +17,21 @@
 		return
 
 	else // They're outside and hopefully on a planet.
-		var/datum/planet/P = SSplanets.z_to_planet[T.z]
-		if(!P)
+		if(!(T.z in SSplanets.z_to_planet) || !(SSplanets.z_to_planet[T.z]))
 			to_chat(usr, span("warning", "You appear to be outside, but not on a planet... Something is wrong."))
 			return
+		var/datum/planet/P = SSplanets.z_to_planet[T.z]
 
 		var/datum/weather_holder/WH = P.weather_holder
 
 		// Describe the current weather.
 		if(WH.current_weather.observed_message)
 			to_chat(usr, WH.current_weather.observed_message)
+
+		// Describe the current weather.
+		if(WH.imminent_weather)
+			var/datum/weather/coming_weather = WH.allowed_weather_types[WH.imminent_weather]
+			to_chat(usr, coming_weather.imminent_transition_message)
 
 		// If we can see the sky, we'll see things like sun position, phase of the moon, etc.
 		if(!WH.current_weather.sky_visible)

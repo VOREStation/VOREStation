@@ -13,7 +13,7 @@
 	maxHealth = 200
 	health = 200
 
-	movement_cooldown = 2
+	movement_cooldown = -1.5
 	see_in_dark = 10 //SHADEkin
 	has_hands = TRUE //Pawbs
 	seedarkness = FALSE //SHAAAADEkin
@@ -171,7 +171,7 @@
 		)
 	B.emote_lists[DM_ABSORB] = list(
 		"The walls cling to you awfully close... It's almost like you're sinking into them.",
-		"You can feel the walls press in tightly against you, clinging to you posessively!",
+		"You can feel the walls press in tightly against you, clinging to you possessively!",
 		"It almost feels like you're sinking into the soft, doughy flesh!",
 		"You can feel the walls press in around you. Almost molten, so squishy!!"
 		)

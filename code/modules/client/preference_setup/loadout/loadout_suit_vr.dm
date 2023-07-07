@@ -23,7 +23,6 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
 	cost = 2
 
-
 /datum/gear/suit/roles/labcoat_old/New()
 	..()
 	var/list/labcoats = list(
@@ -51,7 +50,7 @@
 
 /datum/gear/suit/old_poncho //This is made from an old sprite which has been here for quite some time. Called old poncho because duplicates
 	display_name = "Colorful poncho"
-	description = "A mexican looking poncho. It look like it fits wolf taurs as well."
+	description = "A Mexican looking poncho. It look like it fits wolf taurs as well."
 	path = /obj/item/clothing/suit/poncho
 
 //Detective alternative
@@ -92,7 +91,6 @@
 	display_name = "chiton"
 	path = /obj/item/clothing/suit/chiton
 
-
 //oversized t-shirt
 /datum/gear/suit/oversize
 	display_name = "oversized t-shirt (colorable)"
@@ -109,7 +107,6 @@ Talon winter coat
 	display_name = "winter coat, Talon"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon
 
-
 /datum/gear/suit/armor/combat/crusader_explo
 	display_name = "knight, explo"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
@@ -118,12 +115,7 @@ Talon winter coat
 /datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
-	allowed_roles = list ("Field Medic")
-
-//Atmos-coloured hazard vest
-	display_name = "hazard vest, atmospherics"
-	path = /obj/item/clothing/suit/storage/hazardvest/atmos
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+	allowed_roles = list ("Paramedic")
 
 //Long fur coat
 /datum/gear/suit/russofurcoat
@@ -131,7 +123,6 @@ Talon winter coat
 	path = /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
 
 //Colorable Hoodie
-
 /datum/gear/suit/hoodie_vr
 	display_name = "hoodie with hood (colorable)"
 	path = /obj/item/clothing/suit/storage/hooded/hoodie
@@ -296,6 +287,25 @@ Talon winter coat
 		"cargo shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/cargo,
 		"mining shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/mining,
 		"research shroud"=/obj/item/clothing/accessory/poncho/roles/cloak/shroud/science
+	)
+	gear_tweaks += new/datum/gear_tweak/path(shrouds)
+
+/datum/gear/suit/roles/cropjackets
+	display_name = "crop jacket selection"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket
+
+/datum/gear/suit/roles/cropjackets/New()
+	..()
+	var/list/shrouds = list(
+		"white crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket,
+		"blue crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/blue,
+		"red crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/red,
+		"green crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/green,
+		"purple crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/purple,
+		"orange crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/orange,
+		"charcoal crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/charcoal,
+		"faded reflec crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/marine,
+		"drab crop jacket"=/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/drab
 	)
 	gear_tweaks += new/datum/gear_tweak/path(shrouds)
 

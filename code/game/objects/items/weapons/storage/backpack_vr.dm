@@ -6,7 +6,7 @@
 	item_state = "saddlebag"
 	icon_state = "saddlebag"
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Saddlebags can hold more, like dufflebags
-	slowdown = 1 //And are slower, too...
+	slowdown = 0.5 //And are slower, too...
 	var/taurtype = /datum/sprite_accessory/tail/taur/horse //Acceptable taur type to be wearing this
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
@@ -35,7 +35,7 @@
 	icon_state = "saddlebag"
 	var/icon_base = "saddlebag"
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Saddlebags can hold more, like dufflebags
-	slowdown = 1 //And are slower, too...
+	slowdown = 0.5 //And are slower, too...
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
 /obj/item/weapon/storage/backpack/saddlebag_common/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)

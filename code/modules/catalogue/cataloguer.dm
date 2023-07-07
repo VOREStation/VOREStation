@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	description_info = "This is a special device used to obtain information about objects and entities in the environment. \
 	To scan something, click on it with the scanner at a distance. \
 	Scanning something requires remaining within a certain radius of the object for a specific period of time, until the \
-	scan is finished. If the scan is inturrupted, it can be resumed from where it was left off, if the same thing is \
+	scan is finished. If the scan is interrupted, it can be resumed from where it was left off, if the same thing is \
 	scanned again."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "cataloguer"
@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/datum/category_item/catalogue/displayed_data = null // Used for viewing a piece of data in the UI.
 	var/busy = FALSE // Set to true when scanning, to stop multiple scans.
 	var/debug = FALSE // If true, can view all catalogue data defined, regardless of unlock status.
-	var/weakref/partial_scanned = null // Weakref of the thing that was last scanned if inturrupted. Used to allow for partial scans to be resumed.
+	var/datum/weakref/partial_scanned = null // Weakref of the thing that was last scanned if inturrupted. Used to allow for partial scans to be resumed.
 	var/partial_scan_time = 0 // How much to make the next scan shorter.
 
 /obj/item/device/cataloguer/advanced
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		to_chat(user, span("warning", "You failed to finish scanning \the [target] with \the [src]."))
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		color_box(box_segments, "#FF0000", 3)
-		partial_scanned = weakref(target)
+		partial_scanned = WEAKREF(target)
 		partial_scan_time += world.time - scan_start_time // This is added to the existing value so two partial scans will add up correctly.
 		sleep(3)
 	busy = FALSE

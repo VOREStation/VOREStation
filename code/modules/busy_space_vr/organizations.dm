@@ -11,12 +11,12 @@
 
 	var/list/ship_prefixes = list()	//Some might have more than one! Like NanoTrasen. Value is the mission they perform, e.g. ("ABC" = "mission desc")
 	var/complex_tasks = FALSE	//enables complex task generation
-	
+
 	//how does it work? simple: if you have complex tasks enabled, it goes; PREFIX + TASK_TYPE + FLIGHT_TYPE
 	//e.g. NDV = Asset Protection + Patrol + Flight
 	//this overrides the standard PREFIX = TASK logic and allows you to use the ship prefix for subfactions (warbands, religions, whatever) within a faction, and define task_types at the faction level
 	//task_types are picked from completely at random in air_traffic.dm, much like flight_types, so be careful not to potentially create combos that make no sense!
-	
+
 	var/list/task_types = list(
 			"logistics",
 			"patrol",
@@ -183,7 +183,8 @@
 			"Cwn Annwn",
 			"Morning Swan",
 			"Black Cat",
-			"Challenger"
+			"Challenger",
+			"Savage Chicken"
 			)
 	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
 
@@ -192,7 +193,7 @@
 	var/org_type = "neutral"		//Valid options are "neutral", "corporate", "government", "system defense", "military, "smuggler", & "pirate"
 	var/sysdef = FALSE			//Are we the space cops?
 	var/autogenerate_destination_names = TRUE //Pad the destination lists with some extra random ones? see the proc below for info on that
-	
+
 	var/slogans = list("This is a placeholder slogan, ding dong!")			//Advertising slogans. Who doesn't want more obnoxiousness on the radio? Picked at random each time the slogan event fires. This has a placeholder so it doesn't runtime on trying to draw from a 0-length list in the event that new corps are added without full support.
 
 /datum/lore/organization/New()
@@ -218,7 +219,7 @@
 			"Finlay","Onasilos","Makropolus","Surt","Boinayel",
 			"Eyeke","Cayahuanca","Hamarik","Abol","Hiisi",
 			"Belisama","Mintome","Neri","Toge","Iolaus",
-			"Koyopa","Independance","Ixbalanque","Magor","Fold",
+			"Koyopa","Independence","Ixbalanque","Magor","Fold",
 			"Santamasa","Noifasui","Kavian","Babylonia","Bran",
 			"Alef","Lete","Chura","Wadirum","Buru",
 			"Umbaasaa","Vytis","Peitruss","Trimobe","Baiduri",
@@ -309,8 +310,8 @@
 	them being the foremost experts on the substance and its uses. In the modern day, NanoTrasen prides \
 	itself on being an early adopter to as many new technologies as possible, often offering the newest \
 	products to their employees. In an effort to combat complaints about being 'guinea pigs', Nanotrasen \
-	also offers one of the most comprehensive medical plans in Commonwealth space, up to and including cloning \
-	and therapy.\
+	also offers one of the most comprehensive medical plans in Commonwealth space, up to and including cloning, \
+	resleeving, and therapy.\
 	<br><br>\
 	NT's most well known products are its phoron based creations, especially those used in Cryotherapy. \
 	It also boasts a prosthetic line, which is provided to its employees as needed, and is used as an incentive \
@@ -403,9 +404,9 @@
 
 	org_type = "corporate"
 	slogans = list(
-			"Hephaestus Arms - When it comes to personal protection, nobody does it better.",
-			"Hephaestus Arms - Peace through Superior Firepower.",
-			"Hephaestus Arms - Don't be caught firing blanks."
+			"+Hephaestus Arms!+ - When it comes to +personal protection+, +nobody+ does it +better+.",
+			"+Hephaestus Arms!+ - Peace through +Superior Firepower+.",
+			"+Hephaestus Arms!+ - Don't be caught +firing blanks+."
 			)
 	ship_prefixes = list("HCV" = "a general operations", "HTV" = "a freight", "HLV" = "a munitions resupply", "HDV" = "an asset protection", "HDV" = "a preemptive deployment")
 	//War God Theme, updated
@@ -503,7 +504,7 @@
 	and everything in between. Their equipment tends to be top-of-the-line, most obviously shown by their incredibly \
 	human-like FBP designs. Vey's rise to stardom came from their introduction of resurrective cloning, although in \
 	recent years they've been forced to diversify as their patents expired and NanoTrasen-made medications became \
-	essential to modern cloning. \
+	essential to modern cloning and resleeving procedures. \
 	<br><br> \
 	For reasons known only to the board, Vey-Med's ship names seem to follow the same naming pattern as the Dionae use."
 	history = ""
@@ -719,7 +720,8 @@
 	slogans = list(
 			"Bishop Cybernetics - only the best in personal augmentation.",
 			"Bishop Cybernetics - why settle for flesh when you can have metal?",
-			"Bishop Cybernetics - make a statement."
+			"Bishop Cybernetics - make a statement.",
+			"Bishop Cybernetics - embrace the purity of the machine."
 			)
 	ship_prefixes = list("BCV" = "a general operations", "BCTV" = "a transportation", "BCSV" = "a research exchange")
 	//famous mechanical engineers
@@ -957,6 +959,7 @@
 	slogans = list(
 			"The FTU. We look out for the little guy.",
 			"There's no Trade like Free Trade.",
+			"There's no Union like the Free Trade Union.",
 			"Join the Free Trade Union. Because anything worth doing, is worth doing for money." //rule of acquisition #13
 			)
 	ship_prefixes = list("FTV" = "a general operations", "FTRP" = "a trade protection", "FTRR" = "a piracy suppression", "FTLV" = "a logistical support", "FTTV" = "a mercantile", "FTDV" = "a market establishment")
@@ -1333,6 +1336,7 @@
 	slogans = list(
 			"Oculum - All News, All The Time.",
 			"Oculum - We Keep An Eye Out.",
+			"Oculum - Nothing But The Truth.",
 			"Oculum - Your Eye On The Galaxy."
 			)
 	ship_prefixes = list("OBV" = "an investigation", "OBV" = "a distribution", "OBV" = "a journalism", "OBV" = "a general operations")
@@ -1354,7 +1358,9 @@
 	slogans = list(
 			"Centauri Provisions Bread Tubes - They're Not Just Edible, They're |Breadible!|",
 			"Centauri Provisions SkrellSnax - Not |Just| For Skrell!",
-			"Centauri Provisions Space Mountain Wind - It'll Take Your |Breath| Away!"
+			"Centauri Provisions Space Mountain Wind - It'll Take Your |Breath| Away!",
+			"Centauri Provisions Syndi-Cakes - A Taste So Good You'll Swear It's |Illegal|!",
+			"Centauri Provisions Tuna Snax - There's Nothing |Fishy| Going On Here!"
 			)
 	ship_prefixes = list("CPTV" = "a transport", "CPCV" = "a catering", "CPRV" = "a resupply", "CPV" = "a general operations")
 	destination_names = list(
@@ -1620,7 +1626,7 @@
 			"Vampir",
 			"Wendigo",
 			"Werewolf",
-			"Wraith"			
+			"Wraith"
 			)
 	destination_names = list (
 			"Chimera HQ, Titan",
@@ -2186,23 +2192,40 @@
 
 	org_type = "pirate"
 	ship_prefixes = list("Ue-Katish pirate" = "a raiding", "Ue-Katish bandit" = "a raiding", "Ue-Katish raider" = "a raiding", "Ue-Katish enforcer" = "an enforcement")
-	ship_names = list(
-			"Keqxuer'xeu's Prize",
-			"Xaeker'qux' Bounty",
-			"Teq'ker'qerr's Mercy",
-			"Ke'teq's Thunder",
-			"Xumxerr's Compass",
-			"Xue'qux' Greed",
-			"Xaexuer's Slave",
-			"Xue'taq's Dagger",
-			"Teqxae's Madness",
-			"Taeqtaq'kea's Pride",
-			"Keqxae'xeu's Saber",
-			"Xueaeq's Disgrace",
-			"Xum'taq'qux' Star",
-			"Ke'xae'xe's Scream",
-			"Keq'keax' Blade"
+	ship_names = list()
+
+/datum/lore/organization/other/uekatish/New()
+	..()
+	var/i = 20 //give us twenty random names
+	var/list/first_names = file2list('config/names/first_name_skrell.txt')
+	var/list/words = list(
+			"Prize",
+			"Bounty",
+			"Treasure",
+			"Pearl",
+			"Star",
+			"Mercy",
+			"Compass",
+			"Greed",
+			"Slave",
+			"Madness",
+			"Pride",
+			"Disgrace",
+			"Judgement",
+			"Wrath",
+			"Hatred",
+			"Vengeance",
+			"Fury",
+			"Thunder",
+			"Scream",
+			"Dagger",
+			"Saber",
+			"Lance",
+			"Blade"
 			)
+	while(i)
+		ship_names.Add("[pick(first_names)] [pick(words)]")
+		i--
 
 /datum/lore/organization/other/marauders
 	name = "Vox Marauders"
@@ -2222,12 +2245,7 @@
 	org_type = "pirate"
 	ship_prefixes = list("vox marauder" = "a marauding", "vox raider" = "a raiding", "vox ravager" = "a raiding", "vox corsair" = "a raiding") //as assigned by control, second part shouldn't even come up
 	//blank out our shipnames for redesignation
-	ship_names = list(
-			)
-	/*
-	destination_names = list(
-			)
-	*/
+	ship_names = list()
 
 /datum/lore/organization/other/marauders/New()
 	..()
@@ -2635,26 +2653,7 @@
 	//the tesh expeditionary fleet's closest analogue in modern terms would be the US Army Corps of Engineers, just with added combat personnel as well
 	ship_prefixes = list("TEF" = "a diplomatic", "TEF" = "a peacekeeping", "TEF" = "an escort", "TEF" = "an exploration", "TEF" = "a survey", "TEF" = "an expeditionary", "TEF" = "a pioneering")
 	//TODO: better ship names? I just took a bunch of random teshnames from the Random Name button and added a word.
-	ship_names = list(
-			"Leniri's Hope",
-			"Tatani's Venture",
-			"Ninai's Voyage",
-			"Miiescha's Claw",
-			"Ishena's Talons",
-			"Lili's Fang",
-			"Taalische's Wing",
-			"Cami's Pride",
-			"Schemisa's Glory",
-			"Shilirashi's Wit",
-			"Sanene's Insight",
-			"Aeimi's Wisdom",
-			"Ischica's Mind",
-			"Recite's Cry",
-			"Leseca's Howl",
-			"Iisi's Fury",
-			"Simascha's Revenge",
-			"Lisascheca's Vengeance"
-			)
+	ship_names = list()
 	destination_names = list(
 			"an Expeditionary Fleet RV point",
 			"an Expeditionary Fleet Resupply Ship",
@@ -2665,14 +2664,59 @@
 			"Expeditionary Fleet HQ"
 			)
 
+/datum/lore/organization/gov/teshari/New()
+	..()
+	var/i = 20 //give us twenty random names
+	var/list/first_names = list(
+			"Leniri's",
+			"Tatani's",
+			"Ninai's",
+			"Miiescha's",
+			"Ishena's",
+			"Taalische's",
+			"Cami's",
+			"Schemisa's",
+			"Shilirashi's",
+			"Sanene's",
+			"Aeimi's",
+			"Ischica's",
+			"Shasche's",
+			"Leseca's",
+			"Iisi's",
+			"Simascha's",
+			"Lisascheca's"
+			)
+	var/list/words = list(
+			"Hope",
+			"Venture",
+			"Voyage",
+			"Talons",
+			"Fang",
+			"Wing",
+			"Pride",
+			"Glory",
+			"Wit",
+			"Insight",
+			"Wisdom",
+			"Mind",
+			"Cry",
+			"Howl",
+			"Fury",
+			"Revenge",
+			"Vengeance"
+			)
+	while(i)
+		ship_names.Add("[pick(first_names)] [pick(words)]")
+		i--
+
 /datum/lore/organization/gov/altevian_hegemony
-	name = "The Altevian Hegemony" 
+	name = "The Altevian Hegemony"
 	short_name = "Altevian Hegemony "
 	acronym = "AH"
 	desc = "The Altevians are a space-faring race of rodents that resemble Earth-like rats. \
 				They do not have a place they call home in terms of a planet, and instead have massive multiple-kilometer-long colony-ships \
-				that are constantly on the move and typically keep operations outside of known populated systems to not eat the resources from others. \
-				Their primary focus is trade and slavage operations and can be expected to be seen around both densely populated and empty systems for their work."
+				that are constantly on the move and typically keep operations outside of known populated systems to minimize potential conflicts over resources. \
+				Their primary focus is trade and salvage operations, and their ships can be expected to be seen around both densely populated and empty systems for their work."
 	history = ""
 	work = "salvage and trade operators"
 	headquarters = "AH-CV Migrant"

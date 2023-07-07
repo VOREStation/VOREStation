@@ -28,7 +28,10 @@ export const CrewManifest = () => {
 };
 
 type Data = {
-  manifest: { elems: { name: string; rank: string; active: string }[]; cat: string }[];
+  manifest: {
+    elems: { name: string; rank: string; active: string }[];
+    cat: string;
+  }[];
 };
 
 export const CrewManifestContent = (props, context) => {
@@ -43,7 +46,11 @@ export const CrewManifestContent = (props, context) => {
           !!cat.elems.length && (
             <Section
               title={
-                <Box backgroundColor={COLORS.manifest[cat.cat.toLowerCase()]} m={-1} pt={1} pb={1}>
+                <Box
+                  backgroundColor={COLORS.manifest[cat.cat.toLowerCase()]}
+                  m={-1}
+                  pt={1}
+                  pb={1}>
                   <Box ml={1} textAlign="center" fontSize={1.4}>
                     {cat.cat}
                   </Box>

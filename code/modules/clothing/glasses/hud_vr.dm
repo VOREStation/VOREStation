@@ -13,6 +13,8 @@
 	var/flash_prot = 0 //0 for none, 1 for flash weapon protection, 2 for welder protection
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	plane_slots = list(slot_glasses)
+	var/ar_toggled = TRUE //Used for toggle_ar_planes() verb
+
 
 /obj/item/clothing/glasses/omnihud/New()
 	..()
@@ -27,6 +29,14 @@
 	if(tgarscreen)
 		SStgui.close_uis(src)
 	..()
+
+/obj/item/clothing/glasses/omnihud/examine()
+	. = ..()
+	if(ar_toggled)
+		. += "\n <span class='notice'>The HUD indicator reads ON.</span>"
+	else
+		. += "\n <span class='notice'>The HUD indicator reads OFF.</span>"
+
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)
 	if(tgarscreen)
@@ -113,6 +123,28 @@
 		else
 			to_chat(usr, "The [src] don't seem to support this functionality.")
 	update_clothing_icon()
+
+/obj/item/clothing/glasses/omnihud/verb/toggle_ar_planes()
+	set name = "Toggle AR Heads-Up Display"
+	set desc = "Toggles the job icon and other non-manually requested displays. Does not disable Crew monitor and similar."
+	set category = "Object"
+	set src in usr
+
+	//We do not check if user can move or not, since this system is inspired to help see chat bubbles during scenes primarily.
+	//Preventing turning off the HUD could get in the way of scene flow.
+	if(ar_toggled)
+		away_planes = enables_planes
+		enables_planes = null
+		to_chat(usr, SPAN_NOTICE("You disabled the Augmented Reality HUD of your [src.name]."))
+	else
+		enables_planes = away_planes
+		away_planes = null
+		to_chat(usr, SPAN_NOTICE("You enabled the Augmented Reality HUD of your [src.name]."))
+	ar_toggled = !ar_toggled
+	usr.update_action_buttons()
+	usr.recalculate_vis()
+
+
 
 /obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
 	return 0 //The base models do nothing.

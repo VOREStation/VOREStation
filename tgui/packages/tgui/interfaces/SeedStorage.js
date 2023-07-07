@@ -32,12 +32,18 @@ export const SeedStorage = (props, context) => {
               </Flex.Item>
               <Flex.Item mt={0.4}>{seed.amount} Remaining</Flex.Item>
               <Flex.Item grow={1}>
-                <Button fluid icon="download" onClick={() => act('vend', { id: seed.id })}>
+                <Button
+                  fluid
+                  icon="download"
+                  onClick={() => act('vend', { id: seed.id })}>
                   Vend
                 </Button>
               </Flex.Item>
               <Flex.Item grow={1}>
-                <Button fluid icon="trash" onClick={() => act('purge', { id: seed.id })}>
+                <Button
+                  fluid
+                  icon="trash"
+                  onClick={() => act('purge', { id: seed.id })}>
                   Purge
                 </Button>
               </Flex.Item>

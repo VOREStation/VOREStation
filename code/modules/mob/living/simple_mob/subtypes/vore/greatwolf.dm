@@ -24,7 +24,7 @@
 	response_help = "pets"
 	response_disarm = "shoves"
 	response_harm = "smacks"
-	movement_cooldown = 2
+	movement_cooldown = -1
 	harm_intent_damage = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -84,7 +84,7 @@
 	Canis Lupus Greatus, or Great Wolf, is a very large predator not beleived to be native to Sif (because it's a wolf, duh), but it has been never been found anywhere else. Despite their size, they are gentle, unless disturbed.\
 	The majority of a great white wolf's long life is spent much the same as ordinary wolves. However, great wolves usually do not trouble themselves with small prey like humans, \
 	usually preferring instead to hunt Saviks and Kururaks, and sometimes, leopardmanders or invasive red dragons. \
-	Though usually docile towards humans and other large sapients, neesless to say, these wolves posesses great strength and a lethal bite. \
+	Though usually docile towards humans and other large sapients, neesless to say, these wolves possess great strength and a lethal bite. \
 	a provoked great wolf can be a danger to even the most hardy of explorers due to its speed, crushing bite, and sometimes, it's appetite. \
 	The great wolves have been hunted to near extinction by poachers due to its extremely valuable hide. They are very rare, as one would expect, and generally cautious around people."
 	value = CATALOGUER_REWARD_HARD
@@ -95,7 +95,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 1.5
+	movement_cooldown = -1.5
 
 /mob/living/simple_mob/vore/greatwolf/MouseDrop_T(mob/living/M, mob/living/user)
 	return
@@ -156,7 +156,7 @@
 		"%pred's %belly lets out a wet squelch as a few rounded shapes appear on its surface for a moment.")
 
 	B.struggle_messages_inside = list(
-		"Your squirming seems to please the canine, though it's hard to tell wether or not it's helping get you out or not.",
+		"Your squirming seems to please the canine, though it's hard to tell whether or not it's helping get you out or not.",
 		"Your struggles only cause %pred's %belly to groan and gurgle softly around you.",
 		"Your movement only causes %pred's %belly to clench down upon you, smothering you briefly in thick gutflesh.",
 		"Your motion causes %pred's %belly to rumble irritably as you sink hands into the thick flesh.",

@@ -80,10 +80,10 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	network = list(NETWORK_THUNDER)
 	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
 	camera_datum_type = /datum/tgui_module/camera/bigscreen
-	
+
 	var/obj/item/device/radio/radio = null
 	var/obj/effect/overlay/vis/pinboard
-	var/weakref/showing
+	var/datum/weakref/showing
 
 	var/enabled = TRUE // on or off
 
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	var/static/icon/mask = icon('icons/obj/entertainment_monitor.dmi', "mask")
 
 	add_overlay("glass")
-	
+
 	pinboard = new()
 	pinboard.icon = icon
 	pinboard.icon_state = "pinboard"
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 		stop_showing()
 	if(stat & NOPOWER)
 		return
-	showing = weakref(thing)
+	showing = WEAKREF(thing)
 	pinboard.vis_contents = list(thing)
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/stop_showing()
@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	pinboard.vis_contents = null
 	showing = null
 
-/obj/machinery/computer/security/telescreen/entertainment/proc/maybe_stop_showing(weakref/thingref)
+/obj/machinery/computer/security/telescreen/entertainment/proc/maybe_stop_showing(datum/weakref/thingref)
 	if(showing == thingref)
 		stop_showing()
 

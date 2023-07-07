@@ -54,6 +54,12 @@
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
+	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
+	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
+	var/visible_belly_minimum_prey = 1 //What LAZYLEN(vore_selected.contents) we require to show the belly. Customizable
+	var/overlay_min_prey_size	= 0 	//Minimum prey size for belly overlay to show. 0 to disable
+	var/override_min_prey_size = FALSE	//If true, exceeding override prey number will override minimum size requirements
+	var/override_min_prey_num	= 1		//We check belly contents against this to override min size
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -161,8 +167,8 @@
 	var/disable_hud = FALSE
 	var/colorization_enabled = FALSE
 	var/belly_fullscreen_color = "#823232"
-
-
+	var/belly_fullscreen_color_secondary = "#428242"
+	var/belly_fullscreen_color_trinary = "#f0f0f0"
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
@@ -224,9 +230,17 @@
 	"belly_fullscreen",
 	"disable_hud",
 	"belly_fullscreen_color",
+	"belly_fullscreen_color_secondary",
+	"belly_fullscreen_color_trinary",
 	"colorization_enabled",
 	"egg_type",
-	"save_digest_mode"
+	"save_digest_mode",
+	"eating_privacy_local",
+	"silicon_belly_overlay_preference",
+	"visible_belly_minimum_prey",
+	"overlay_min_prey_size",
+	"override_min_prey_size",
+	"override_min_prey_num",
 	)
 
 	if (save_digest_mode == 1)
@@ -296,7 +310,7 @@
 
 	// Intended for simple mobs
 	if(!owner.client && autotransferlocation && autotransferchance > 0)
-		addtimer(CALLBACK(src, /obj/belly/.proc/check_autotransfer, thing, autotransferlocation), autotransferwait)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/belly, check_autotransfer), thing, autotransferlocation), autotransferwait)
 
 // Called whenever an atom leaves this belly
 /obj/belly/Exited(atom/movable/thing, atom/OldLoc)
@@ -304,6 +318,9 @@
 	if(isliving(thing) && !isbelly(thing.loc))
 		var/mob/living/L = thing
 		L.clear_fullscreen("belly")
+		L.clear_fullscreen("belly2")
+		L.clear_fullscreen("belly3")
+		L.clear_fullscreen("belly4")
 		if(L.hud_used)
 			if(!L.hud_used.hud_shown)
 				L.toggle_hud_vis()
@@ -324,16 +341,25 @@
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/colorized)
 			F.icon_state = belly_fullscreen
 			F.color = belly_fullscreen_color
-			/* //Allows for 'multilayered' stomachs. Currently not implemented.
-			if(b_multilayered)
-				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly)
-			*/
+			if("[belly_fullscreen]_l1" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly/colorized/overlay)
+				F2.icon_state = "[belly_fullscreen]_l1"
+				F2.color = belly_fullscreen_color_secondary
+			if("[belly_fullscreen]_l2" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F3 = L.overlay_fullscreen("belly3", /obj/screen/fullscreen/belly/colorized/overlay)
+				F3.icon_state = "[belly_fullscreen]_l2"
+				F3.color = belly_fullscreen_color_trinary
+			if("[belly_fullscreen]_nc" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F4 = L.overlay_fullscreen("belly4", /obj/screen/fullscreen/belly/colorized/overlay)
+				F4.icon_state = "[belly_fullscreen]_nc"
 		else
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly)
 			F.icon_state = belly_fullscreen
 	else
 		L.clear_fullscreen("belly")
-		//L.clear_fullscreen("belly2") //Allows for 'multilayered' stomachs. Currently not implemented.
+		L.clear_fullscreen("belly2")
+		L.clear_fullscreen("belly3")
+		L.clear_fullscreen("belly4")
 
 	if(disable_hud)
 		if(L?.hud_used?.hud_shown)
@@ -351,19 +377,31 @@
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/colorized)
 			F.icon_state = belly_fullscreen
 			F.color = belly_fullscreen_color
-			/* //Allows for 'multilayered' stomachs. Currently not implemented.
-			if(b_multilayered)
-				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly)
-			*/
+			if("[belly_fullscreen]_l1" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly/colorized/overlay)
+				F2.icon_state = "[belly_fullscreen]_l1"
+				F2.color = belly_fullscreen_color_secondary
+			if("[belly_fullscreen]_l2" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F3 = L.overlay_fullscreen("belly3", /obj/screen/fullscreen/belly/colorized/overlay)
+				F3.icon_state = "[belly_fullscreen]_l2"
+				F3.color = belly_fullscreen_color_trinary
+			if("[belly_fullscreen]_nc" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F4 = L.overlay_fullscreen("belly4", /obj/screen/fullscreen/belly/colorized/overlay)
+				F4.icon_state = "[belly_fullscreen]_nc"
 		else
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly)
 			F.icon_state = belly_fullscreen
 	else
 		L.clear_fullscreen("belly")
-		//L.clear_fullscreen("belly2") //Allows for 'multilayered' stomachs. Currently not implemented.
+		L.clear_fullscreen("belly2")
+		L.clear_fullscreen("belly3")
+		L.clear_fullscreen("belly4")
 
 /obj/belly/proc/clear_preview(mob/living/L)
 	L.clear_fullscreen("belly")
+	L.clear_fullscreen("belly2")
+	L.clear_fullscreen("belly3")
+	L.clear_fullscreen("belly4")
 
 
 
@@ -391,16 +429,28 @@
 	if(!ishuman(owner))
 		owner.update_icons()
 
+	//Determines privacy
+	var/privacy_range = world.view
+	var/privacy_volume = 100
+	switch(eating_privacy_local) //Third case of if("loud") not defined, as it'd just leave privacy_range and volume untouched
+		if("default")
+			if(owner.eating_privacy_global)
+				privacy_range = 1
+				privacy_volume = 25
+		if("subtle")
+			privacy_range = 1
+			privacy_volume = 25
+
 	//Print notifications/sound if necessary
 	if(!silent && count)
-		owner.visible_message("<font color='green'><b>[owner] [release_verb] everything from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] [release_verb] everything from their [lowertext(name)]!</b></font>", range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, soundfile, vol = privacy_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	return count
 
@@ -411,8 +461,8 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
-	if(istype(M, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
-		var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/p = M
+	if(istype(M, /mob/living/simple_mob/vore/morph/dominated_prey))
+		var/mob/living/simple_mob/vore/morph/dominated_prey/p = M
 		p.undo_prey_takeover(FALSE)
 		return 0
 	for(var/mob/living/L in M.contents)
@@ -459,16 +509,28 @@
 	if(!ishuman(owner))
 		owner.update_icons()
 
+	//Determines privacy
+	var/privacy_range = world.view
+	var/privacy_volume = 100
+	switch(eating_privacy_local) //Third case of if("loud") not defined, as it'd just leave privacy_range and volume untouched
+		if("default")
+			if(owner.eating_privacy_global)
+				privacy_range = 1
+				privacy_volume = 25
+		if("subtle")
+			privacy_range = 1
+			privacy_volume = 25
+
 	//Print notifications/sound if necessary
 	if(!silent)
-		owner.visible_message("<font color='green'><b>[owner] [release_verb] [M] from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] [release_verb] [M] from their [lowertext(name)]!</b></font>",range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, soundfile, vol = privacy_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	//Should fix your view not following you out of mobs sometimes!
 	if(ismob(M))
 		var/mob/ourmob = M
@@ -498,6 +560,8 @@
 
 	if(prey.ckey)
 		GLOB.prey_eaten_roundstat++
+		if(owner.mind)
+			owner.mind.vore_prey_eaten++
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
@@ -1116,6 +1180,7 @@
 		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
+	owner.updateicon()
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)
@@ -1131,7 +1196,7 @@
 		else
 			// Didn't transfer, so wait before retrying
 			// I feel like there's a way to make this timer looping using the normal looping thing, but pass in the ID and cancel it if we aren't looping again
-			addtimer(CALLBACK(src, .proc/check_autotransfer, prey, autotransferlocation), autotransferwait)
+			addtimer(CALLBACK(src, PROC_REF(check_autotransfer), prey, autotransferlocation), autotransferwait)
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
@@ -1179,12 +1244,20 @@
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
 	dupe.belly_fullscreen_color = belly_fullscreen_color
+	dupe.belly_fullscreen_color_secondary = belly_fullscreen_color_secondary
+	dupe.belly_fullscreen_color_trinary = belly_fullscreen_color_trinary
 	dupe.colorization_enabled = colorization_enabled
 	dupe.egg_type = egg_type
 	dupe.emote_time = emote_time
 	dupe.emote_active = emote_active
 	dupe.selective_preference = selective_preference
 	dupe.save_digest_mode = save_digest_mode
+	dupe.eating_privacy_local = eating_privacy_local
+	dupe.silicon_belly_overlay_preference = silicon_belly_overlay_preference
+	dupe.visible_belly_minimum_prey	= visible_belly_minimum_prey
+	dupe.overlay_min_prey_size	= overlay_min_prey_size
+	dupe.override_min_prey_size = override_min_prey_size
+	dupe.override_min_prey_num	= override_min_prey_num
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

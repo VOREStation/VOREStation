@@ -11,8 +11,9 @@
 	micro_target = TRUE
 
 	var/static/non_micro_types = list(
+		/mob/living/simple_mob/vore/squirrel,
 		/mob/living/simple_mob/vore/alienanimals/catslug,
-		/mob/living/simple_mob/vore/hostile/morph,
+		/mob/living/simple_mob/vore/morph,
 		/mob/living/simple_mob/protean_blob,
 		/mob/living/simple_mob/slime
 	)

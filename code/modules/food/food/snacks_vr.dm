@@ -136,7 +136,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
 	name = "kitsune udon"
-	desc = "A purported favorite of kitsunes in ancient japanese myth: udon noodles, fried egg, and tofu."
+	desc = "A purported favorite of kitsunes in ancient Japanese myth: udon noodles, fried egg, and tofu."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "kitsuneudon"
 	trash = /obj/item/trash/asian_bowl
@@ -209,7 +209,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/mammi
 	name = "mämmi"
-	desc = "Traditional finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
+	desc = "Traditional Finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "mammi"
 	trash = /obj/item/trash/plate
@@ -864,7 +864,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratpackturkey
 	name = "Compact Holiday Special Bird"
-	desc = "A great gift for holidays for assorted species. This contains a full freshly cooked turkey. Open and enjoy. Courtesy of altevian packaging"
+	desc = "A great gift for holidays for assorted species. This contains a full freshly cooked turkey. Open and enjoy. Courtesy of altevian packaging."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_pack_turkey"
 	package_open_state = "altevian_pack_turkey-open"
@@ -873,3 +873,43 @@
 	trash = /obj/item/trash/ratpackturkey
 	nutriment_amt = 18
 	nutriment_desc = list("high-quality poultry" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpackramen
+	name = "Big Noodle Package"
+	desc = "A pack containing fully cooked ramen meal, alongside some seafood-and-rice based sides. Utensils included. For those who prefer more traditional meals."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_ramen"
+	package_open_state = "altevian_pack_ramen_standard-open"
+	package_opening_state = "altevian_pack_ramen_standard-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpackramen/standard
+	nutriment_amt = 2
+	nutriment_desc = list("savory noodles" = 4)
+	var/list/bowl_color_options = list("standard" = 6,
+										"lacquer1" = 2,
+										"lacquer2" = 2,
+										"lacquer3" = 2,
+										"fleet" = 6,
+										"trans" = 3,
+										"ace" = 3)
+	var/randomize_bowl_color = TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpackramen/Initialize()
+	. = ..()
+	if(randomize_bowl_color)
+		var/bowl_color = pickweight(bowl_color_options)
+		package_open_state = "altevian_pack_ramen_[bowl_color]-open"
+		package_opening_state = "altevian_pack_ramen_[bowl_color]-opening"
+		trash = text2path("/obj/item/trash/ratpackramen/[bowl_color]")
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco
+	name = "Triple Taco Tuck"
+	desc = "Three mini-tacos, minituarized further via altevian mad science into a convenient container. It comes with a salsa sauce!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_taco"
+	package_open_state = "altevian_pack_taco-open"
+	package_opening_state = "altevian_pack_taco-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpacktaco
+	nutriment_amt = 2
+	nutriment_desc = list("salsa sauce" = 2, "meat chunks" = 4, "cheese" = 3)

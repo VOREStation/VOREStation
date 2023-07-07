@@ -15,10 +15,10 @@
 	poison_chance = 20
 
 // Adds Phoron Wolf
-/mob/living/simple_mob/animal/wolf/phoron
+/mob/living/simple_mob/vore/wolf/phoron
 
 	faction = "underdark"
-	movement_cooldown = 0
+	movement_cooldown = -1.5
 
 	harm_intent_damage = 5
 	melee_damage_lower = 5

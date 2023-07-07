@@ -16,7 +16,7 @@
 //holycrapshitcode
 /turf/simulated/floor/atoll/vertical
 	name = "marble wall"
-	desc = "A sheer face wall, extending up to who-knows-how-high."
+	desc = "A sheer face wall, extending up well overhead."
 	icon_state = "wall"
 	density = 1
 
@@ -25,8 +25,8 @@
 	icon_state = "wall"
 
 /turf/simulated/floor/water/atoll
-	name = "shallow lake"
-	desc = "This water looks pretty shallow and calm. You'd almost feel bad for hopping in and disturbing it's serene flatness."
+	name = "shallow water"
+	desc = "This water looks pretty shallow and calm. You'd almost feel bad for hopping in and disturbing its serene flatness."
 	icon = 'maps/atoll/icons/turfs/water.dmi'
 	icon_state = "shallow"
 	under_state = "shallow"
@@ -45,6 +45,17 @@
 	. = ..()
 	if(prob(25))
 		new /obj/effect/decal/whitecaps(src)
+
+
+/turf/simulated/floor/water/atoll/sunk
+	icon_state = "sunken"
+	under_state = "shallow"
+
+/turf/simulated/floor/water/atoll/sunk/update_icon()
+	..()
+	cut_overlays()
+	var/image/water_sprite = image(icon = 'maps/atoll/icons/turfs/water.dmi', icon_state = "sunken", layer = 3.0)
+	add_overlay(water_sprite)
 
 /turf/simulated/floor/outdoors/grass/heavy/atoll
 	dynamic_lighting = 0

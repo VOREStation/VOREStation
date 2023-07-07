@@ -142,7 +142,7 @@
 	. = TRUE
 	switch(action)
 		if("activate")
-			INVOKE_ASYNC(src, .proc/activate)
+			INVOKE_ASYNC(src, PROC_REF(activate))
 			return TRUE
 		if("detach")
 			if(beaker)

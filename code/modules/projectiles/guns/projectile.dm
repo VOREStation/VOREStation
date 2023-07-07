@@ -17,6 +17,8 @@
 	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
 	var/obj/item/ammo_casing/chambered = null
 
+	reload_time = 1				//Ballistics reload fast, but not instantly
+
 	//For SINGLE_CASING or SPEEDLOADER guns
 	var/max_shells = 0			//the number of casings that will fit inside
 	var/ammo_type = null		//the type of ammo that the gun comes preloaded with
@@ -54,9 +56,9 @@
 		chambered = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
-			
-	var/mob/living/M = loc // TGMC Ammo HUD 
-	if(istype(M)) // TGMC Ammo HUD 
+
+	var/mob/living/M = loc // TGMC Ammo HUD
+	if(istype(M)) // TGMC Ammo HUD
 		M?.hud_used.update_ammo_hud(M, src)
 
 	if (chambered)
@@ -102,9 +104,9 @@
 
 	if(handle_casings != HOLD_CASINGS)
 		chambered = null
-	
-	var/mob/living/M = loc // TGMC Ammo HUD 
-	if(istype(M)) // TGMC Ammo HUD 
+
+	var/mob/living/M = loc // TGMC Ammo HUD
+	if(istype(M)) // TGMC Ammo HUD
 		M?.hud_used.update_ammo_hud(M, src)
 
 
@@ -121,12 +123,13 @@
 				if(ammo_magazine)
 					to_chat(user, "<span class='warning'>[src] already has a magazine loaded.</span>") //already a magazine here
 					return
-				user.remove_from_mob(AM)
-				AM.loc = src
-				ammo_magazine = AM
-				user.visible_message("[user] inserts [AM] into [src].", "<span class='notice'>You insert [AM] into [src].</span>")
-				user.hud_used.update_ammo_hud(user, src)
-				playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
+				if(do_after(user, reload_time * AM.w_class))
+					user.remove_from_mob(AM)
+					AM.loc = src
+					ammo_magazine = AM
+					user.visible_message("[user] inserts [AM] into [src].", "<span class='notice'>You insert [AM] into [src].</span>")
+					user.hud_used.update_ammo_hud(user, src)
+					playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
 					to_chat(user, "<span class='warning'>[src] is full!</span>")
@@ -140,11 +143,12 @@
 						loaded += C
 						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 						count++
-						user.hud_used.update_ammo_hud(user, src) 
-				if(count)
-					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into [src].</span>")
-					user.hud_used.update_ammo_hud(user, src) 
-					playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+						user.hud_used.update_ammo_hud(user, src)
+				if(do_after(user, reload_time * AM.w_class))
+					if(count)
+						user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into [src].</span>")
+						user.hud_used.update_ammo_hud(user, src)
+						playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		AM.update_icon()
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
@@ -154,11 +158,12 @@
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return
 
-		user.remove_from_mob(C)
-		C.loc = src
-		loaded.Insert(1, C) //add to the head of the list
-		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
-		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+		if(do_after(user, reload_time * C.w_class))
+			user.remove_from_mob(C)
+			C.loc = src
+			loaded.Insert(1, C) //add to the head of the list
+			user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
+			playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
 	else if(istype(A, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/storage = A
@@ -179,7 +184,7 @@
 			sleep(1 SECOND)
 
 	update_icon()
-	user.hud_used.update_ammo_hud(user, src) 
+	user.hud_used.update_ammo_hud(user, src)
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
@@ -189,7 +194,7 @@
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
-		user.hud_used.update_ammo_hud(user, src) 
+		user.hud_used.update_ammo_hud(user, src)
 	else if(loaded.len)
 		//presumably, if it can be speed-loaded, it can be speed-unloaded.
 		if(allow_dump && (load_method & SPEEDLOADER))
@@ -208,11 +213,11 @@
 			user.put_in_hands(C)
 			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
-		user.hud_used.update_ammo_hud(user, src) 
+		user.hud_used.update_ammo_hud(user, src)
 	else
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 	update_icon()
-	user.hud_used.update_ammo_hud(user, src) 
+	user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	..()
@@ -243,7 +248,7 @@
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 		update_icon() //make sure to do this after unsetting ammo_magazine
-		user.hud_used.update_ammo_hud(user, src) 
+		user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	. = ..()
@@ -320,7 +325,7 @@
 		for(var/obj/item/ammo_casing/bullet in ammo_magazine.stored_ammo)
 			if(bullet.BB)
 				shots_left++
-		
+
 		if(shots_left > 0)
 			return shots_left
 		else
@@ -332,7 +337,7 @@
 		for(var/obj/item/ammo_casing/bullet in loaded)
 			if(bullet.BB) // Only increment how many shots we have left if we're loaded.
 				shots_left++
-		
+
 		if(shots_left > 0)
 			return shots_left
 		else

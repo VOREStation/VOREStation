@@ -40,7 +40,9 @@ export const OvermapNavigationContent = (props, context) => {
           <LabeledList.Item label="Coordinates">
             {s_x} : {s_y}
           </LabeledList.Item>
-          <LabeledList.Item label="Additional Information">{sector_info}</LabeledList.Item>
+          <LabeledList.Item label="Additional Information">
+            {sector_info}
+          </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section title="Flight Data">

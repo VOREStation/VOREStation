@@ -169,3 +169,10 @@
 /obj/item/clothing/suit/armor/combat/crusader_explo/FM
 	name = "field medic low tech suit"
 	icon_state = "crusader_explo/FM"
+
+// martian miner coat
+/obj/item/clothing/suit/storage/vest/martian_miner
+	name = "martian miner's coat"
+	desc = "A sturdy, rugged coat once favoured by miners on Mars. These coats became strongly associated with early Martian Independence movements as a result, and remain moderately popular amongst members of the Third Ares Confederation."
+	icon_state = "martian_miner"
+	armor = list(melee = 25, bullet = 15, laser = 15, energy = 0, bomb = 25, bio = 0, rad = 0)

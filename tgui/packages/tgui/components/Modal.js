@@ -9,13 +9,8 @@ import { computeBoxClassName, computeBoxProps } from './Box';
 import { Dimmer } from './Dimmer';
 
 export const Modal = (props) => {
-  const {
-    className,
-    children,
-    onEnter, // VOREStation Addition
-    ...rest
-  } = props;
-  // VOREStation Addition Start
+  const { className, children, onEnter, ...rest } = props;
+  // VOREStation Addition start
   let handleKeyDown;
   if (onEnter) {
     handleKeyDown = (e) => {
@@ -25,10 +20,12 @@ export const Modal = (props) => {
       }
     };
   }
-  // VOREStation Addition End
+  // VOREStation Addition end
   return (
-    <Dimmer onKeyDown={handleKeyDown /* VOREStation Edit */}>
-      <div className={classes(['Modal', className, computeBoxClassName(rest)])} {...computeBoxProps(rest)}>
+    <Dimmer onKeyDown={handleKeyDown} /* VOREStation edit */>
+      <div
+        className={classes(['Modal', className, computeBoxClassName(rest)])}
+        {...computeBoxProps(rest)}>
         {children}
       </div>
     </Dimmer>

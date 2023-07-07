@@ -39,7 +39,8 @@
 /obj/structure/prop/vv_edit_var(var_name, var_value)
 	if(var_name == "state")
 		change_state(var_value)
-
+	else
+		..()
 
 //Misc stuff that fits no category
 

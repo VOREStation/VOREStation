@@ -19,18 +19,30 @@ const virusModalBodyOverride = (modal, context) => {
             disabled={!can_print}
             icon="print"
             content="Print"
-            onClick={() => act('print', { type: 'virus_record', vir: virus.record })}
+            onClick={() =>
+              act('print', { type: 'virus_record', vir: virus.record })
+            }
           />
           <Button icon="times" color="red" onClick={() => act('modal_close')} />
         </Fragment>
       }>
       <Box mx="0.5rem">
         <LabeledList>
-          <LabeledList.Item label="Spread">{virus.spread_text} Transmission</LabeledList.Item>
-          <LabeledList.Item label="Possible cure">{virus.antigen}</LabeledList.Item>
-          <LabeledList.Item label="Rate of Progression">{virus.rate}</LabeledList.Item>
-          <LabeledList.Item label="Antibiotic Resistance">{virus.resistance}%</LabeledList.Item>
-          <LabeledList.Item label="Species Affected">{virus.species}</LabeledList.Item>
+          <LabeledList.Item label="Spread">
+            {virus.spread_text} Transmission
+          </LabeledList.Item>
+          <LabeledList.Item label="Possible cure">
+            {virus.antigen}
+          </LabeledList.Item>
+          <LabeledList.Item label="Rate of Progression">
+            {virus.rate}
+          </LabeledList.Item>
+          <LabeledList.Item label="Antibiotic Resistance">
+            {virus.resistance}%
+          </LabeledList.Item>
+          <LabeledList.Item label="Species Affected">
+            {virus.species}
+          </LabeledList.Item>
           <LabeledList.Item label="Symptoms">
             <LabeledList>
               {virus.symptoms.map((s) => (
@@ -76,7 +88,10 @@ export const PathogenicIsolator = (props, context) => {
     <Window height={500} width={520} resizable>
       <ComplexModal maxHeight="100%" maxWidth="95%" />
       <Window.Content scrollable>
-        {(isolating && <NoticeBox warning>The Isolator is currently isolating...</NoticeBox>) || null}
+        {(isolating && (
+          <NoticeBox warning>The Isolator is currently isolating...</NoticeBox>
+        )) ||
+          null}
         <Tabs>
           <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
             Home
@@ -105,7 +120,12 @@ const PathogenicIsolatorTabHome = (props, context) => {
             disabled={!can_print}
             onClick={() => act('print', { type: 'patient_diagnosis' })}
           />
-          <Button icon="eject" content="Eject Syringe" disabled={!syringe_inserted} onClick={() => act('eject')} />
+          <Button
+            icon="eject"
+            content="Eject Syringe"
+            disabled={!syringe_inserted}
+            onClick={() => act('eject')}
+          />
         </Fragment>
       }>
       {(pathogen_pool.length &&
@@ -121,7 +141,9 @@ const PathogenicIsolatorTabHome = (props, context) => {
                   <Button
                     icon="virus"
                     content="Isolate"
-                    onClick={() => act('isolate', { isolate: pathogen.reference })}
+                    onClick={() =>
+                      act('isolate', { isolate: pathogen.reference })
+                    }
                   />
                   <Button
                     icon="search"
@@ -165,7 +187,11 @@ const PathogenicIsolatorTabDatabase = (props, context) => {
       }>
       {(database.length &&
         database.map((entry) => (
-          <Button key={entry.name} fluid icon="search" onClick={() => act('view_entry', { vir: entry.record })}>
+          <Button
+            key={entry.name}
+            fluid
+            icon="search"
+            onClick={() => act('view_entry', { vir: entry.record })}>
             {entry.name}
           </Button>
         ))) || <Box color="average">The viral database is empty.</Box>}

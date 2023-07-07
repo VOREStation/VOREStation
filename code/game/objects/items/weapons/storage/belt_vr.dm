@@ -58,7 +58,7 @@
 	desc = "A deluxe belt with many pouches. It can hold a very wide variety of items, but less items overall than a dedicated belt. Still, it's useful for any explorer who wants to be prepared for anything they might find."
 	icon = 'icons/inventory/belt/item_vr.dmi'
 	icon_state = "pathfinder_belt"
-	item_state = "explorer_belt"
+	item_state = "pathfinder_belt"
 	storage_slots = 7	//two more, bringing it on par with normal belts
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 
@@ -151,4 +151,28 @@
 		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
 		/obj/item/weapon/pickaxe
+		)
+
+/obj/item/weapon/storage/belt/hydro
+	name = "hydroponics belt"
+	desc = "A belt used to hold most hydroponics supplies. Suprisingly, not green."
+	icon = 'icons/inventory/belt/item_vr.dmi'
+	icon_override = 'icons/inventory/belt/mob_vr.dmi'
+	icon_state = "plantbelt"
+	item_state = "plantbelt"
+	storage_slots = 5
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5
+	can_hold = list(
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/reagent_containers/glass/beaker,
+		/obj/item/weapon/reagent_containers/glass/bottle,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/weapon/reagent_containers/spray/plantbgone,
+		/obj/item/weapon/plantspray,
+		/obj/item/weapon/gun/energy/floragun,
+		/obj/item/seeds
 		)

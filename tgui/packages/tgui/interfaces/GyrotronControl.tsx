@@ -12,7 +12,17 @@ export const GyrotronControl = () => (
 );
 
 type Data = {
-  gyros: { name: string; x; y; z; active: BooleanLike; deployed: BooleanLike; ref: string; fire_delay; strength }[];
+  gyros: {
+    name: string;
+    x;
+    y;
+    z;
+    active: BooleanLike;
+    deployed: BooleanLike;
+    ref: string;
+    fire_delay;
+    strength;
+  }[];
 };
 
 export const GyrotronControlContent = (props, context) => {
@@ -23,7 +33,13 @@ export const GyrotronControlContent = (props, context) => {
   return (
     <Section
       title="Gyrotrons"
-      buttons={<Button icon="pencil-alt" content={'Set Tag'} onClick={() => act('set_tag')} />}>
+      buttons={
+        <Button
+          icon="pencil-alt"
+          content={'Set Tag'}
+          onClick={() => act('set_tag')}
+        />
+      }>
       <Table>
         <Table.Row header>
           <Table.Cell>Name</Table.Cell>

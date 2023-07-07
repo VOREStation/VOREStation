@@ -94,7 +94,12 @@ const Story = (props, context) => {
               onDrag={(e, value) => setNumber(value)}>
               {(control) => (
                 <Box onMouseDown={control.handleDragStart}>
-                  <Icon size={4} color="yellow" name="times" rotation={control.displayValue * 4} />
+                  <Icon
+                    size={4}
+                    color="yellow"
+                    name="times"
+                    rotation={control.displayValue * 4}
+                  />
                   {control.inputElement}
                 </Box>
               )}

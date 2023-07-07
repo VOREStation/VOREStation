@@ -20,7 +20,7 @@
 	faction = "space mouse"
 	maxHealth = 20
 	health = 20
-	movement_cooldown = 1
+	movement_cooldown = -1
 
 	see_in_dark = 10
 
@@ -81,7 +81,7 @@
 		movement_cooldown = initial(movement_cooldown)
 /mob/living/simple_mob/vore/alienanimals/dustjumper/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
 	. = ..()
-	movement_cooldown = 50
+	movement_cooldown = 10
 
 /datum/ai_holder/simple_mob/melee/evasive/dustjumper
 	hostile = FALSE

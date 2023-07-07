@@ -107,7 +107,9 @@ export const RankIcon = (props, context) => {
   if (typeof rankObj === 'string') {
     return <Icon inline color={color} name={rankObj} size={2} />;
   } else if (Array.isArray(rankObj)) {
-    return rankObj.map((icon) => <Icon inline key={icon} color={color} name={icon} size={2} />);
+    return rankObj.map((icon) => (
+      <Icon inline key={icon} color={color} name={icon} size={2} />
+    ));
   } else {
     return <Icon inline color={color} name="user" size={2} />;
   }

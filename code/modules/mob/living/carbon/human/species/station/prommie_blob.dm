@@ -8,7 +8,7 @@
 	unity = TRUE
 	water_resist = 100 // Lets not kill the prommies
 	cores = 0
-	movement_cooldown = 3
+	movement_cooldown = 0	
 	//appearance_flags = RADIATION_GLOWS
 	shock_resist = 0 // Lets not be immune to zaps.
 	friendly = list("nuzzles", "glomps", "snuggles", "cuddles", "squishes") // lets be cute :3
@@ -63,6 +63,12 @@
 
 /mob/living/simple_mob/slime/promethean/Destroy()
 	humanform = null
+	drop_l_hand()
+	drop_r_hand()
+	mob_radio.forceMove(loc)
+	mob_radio = null
+	myid.forceMove(loc)
+	myid = null
 	vore_organs = null
 	vore_selected = null
 	set_light(0)
@@ -70,6 +76,8 @@
 
 /mob/living/carbon/human/Destroy()
 	if(stored_blob)
+		stored_blob.l_hand.forceMove(loc)
+		stored_blob.r_hand.forceMove(loc)
 		stored_blob = null
 		qdel(stored_blob)
 	return ..()

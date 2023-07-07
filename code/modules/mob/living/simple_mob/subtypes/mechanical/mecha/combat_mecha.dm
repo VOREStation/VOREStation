@@ -5,7 +5,7 @@
 	name = "combat mecha"
 	desc = "An even bigger stompy mech!!"
 
-	movement_cooldown = 10
+	movement_cooldown = 3
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	melee_attack_delay = 1 SECOND

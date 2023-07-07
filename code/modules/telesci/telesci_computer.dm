@@ -46,10 +46,10 @@
 	. = ..()
 	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)
-		crystals += new /obj/item/weapon/ore/bluespace_crystal/artificial(src) // starting crystals
+		crystals += new /obj/item/weapon/bluespace_crystal/artificial(src) // starting crystals
 
 /obj/machinery/computer/telescience/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/weapon/ore/bluespace_crystal))
+	if(istype(W, /obj/item/weapon/bluespace_crystal))
 		if(crystals.len >= max_crystals)
 			to_chat(user, "<span class='warning'>There are not enough crystal slots.</span>")
 			return
@@ -207,12 +207,14 @@
 			sparks()
 			if(telepad)
 				var/L = get_turf(telepad)
-				var/blocked = list(/mob/living/simple_mob/hostile)
-				var/list/hostiles = typesof(/mob/living/simple_mob/hostile) - blocked
+				var/blocked = list(/mob/living/simple_mob/vore)
+				var/list/hostiles = typesof(/mob/living/simple_mob/vore) - blocked
 				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
 				for(var/i in 1 to rand(1,4))
 					var/chosen = pick(hostiles)
-					var/mob/living/simple_mob/hostile/H = new chosen
+					var/mob/living/simple_mob/vore/H = new chosen
+					if(H.ai_holder)
+						H.ai_holder.hostile = TRUE
 					H.forceMove(L)
 			return
 		if(99)

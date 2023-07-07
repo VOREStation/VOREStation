@@ -273,7 +273,7 @@
 
 /obj/item/ammo_casing/a12g
 	name = "shotgun slug"
-	desc = "A 12 gauge slug."
+	desc = "A 12 gauge slug shell."
 	icon_state = "slshell"
 	caliber = "12g"
 	projectile_type = /obj/item/projectile/bullet/shotgun
@@ -281,9 +281,9 @@
 
 /obj/item/ammo_casing/a12g/pellet
 	name = "shotgun shell"
-	desc = "A 12 gauge shell."
+	desc = "A 12 gauge buckshot shell."
 	icon_state = "gshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
+	projectile_type = /obj/item/projectile/scatter/shotgun //formerly /obj/item/projectile/bullet/pellet/shotgun
 
 /obj/item/ammo_casing/a12g/blank
 	name = "shotgun shell"
@@ -301,7 +301,7 @@
 
 /obj/item/ammo_casing/a12g/beanbag
 	name = "beanbag shell"
-	desc = "A beanbag shell."
+	desc = "A 12 gauge beanbag shell."
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
 	matter = list(MAT_STEEL = 180)

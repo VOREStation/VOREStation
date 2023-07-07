@@ -28,7 +28,11 @@ export const TemporaryNotice = (_properties, context) => {
       <Box display="inline-block" verticalAlign="middle">
         {decode ? decodeHtmlEntities(temp.text) : temp.text}
       </Box>
-      <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
+      <Button
+        icon="times-circle"
+        float="right"
+        onClick={() => act('cleartemp')}
+      />
       <Box clear="both" />
     </NoticeBox>
   );

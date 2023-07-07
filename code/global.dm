@@ -173,7 +173,11 @@ var/static/list/scarySounds = list(
 	'sound/items/Welder2.ogg',
 	'sound/machines/door/old_airlock.ogg',
 	'sound/effects/clownstep1.ogg',
-	'sound/effects/clownstep2.ogg'
+	'sound/effects/clownstep2.ogg',
+	'sound/voice/teppi/roar.ogg',	//VOREStation Add
+	'sound/voice/moth/scream_moth.ogg',	//VOREStation Add
+	'sound/voice/nya.ogg',	//VOREStation Add
+	'sound/voice/succlet_shriek.ogg'	//VOREStation Add
 )
 
 // Bomb cap!

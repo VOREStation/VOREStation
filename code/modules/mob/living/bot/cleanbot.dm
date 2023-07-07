@@ -40,7 +40,7 @@
 		visible_message("Something flies out of [src]. It seems to be acting oddly.")
 		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(loc)
 		// TODO - I have a feeling weakrefs will not work in ignore_list, verify this ~Leshana
-		var/weakref/g = weakref(gib)
+		var/datum/weakref/g = WEAKREF(gib)
 		ignore_list += g
 		spawn(600)
 			ignore_list -= g

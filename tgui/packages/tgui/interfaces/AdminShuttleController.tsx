@@ -42,10 +42,18 @@ export const ShuttleList = (props, context) => {
           {sortBy((f: Shuttle) => f.name)(shuttles).map((shuttle) => (
             <Table.Row key={shuttle.ref}>
               <Table.Cell collapsing>
-                <Button m={0} content="JMP" onClick={() => act('adminobserve', { ref: shuttle.ref })} />
+                <Button
+                  m={0}
+                  content="JMP"
+                  onClick={() => act('adminobserve', { ref: shuttle.ref })}
+                />
               </Table.Cell>
               <Table.Cell collapsing>
-                <Button m={0} content="Fly" onClick={() => act('classicmove', { ref: shuttle.ref })} />
+                <Button
+                  m={0}
+                  content="Fly"
+                  onClick={() => act('classicmove', { ref: shuttle.ref })}
+                />
               </Table.Cell>
               <Table.Cell>{shuttle.name}</Table.Cell>
               <Table.Cell>{shuttle.current_location}</Table.Cell>
@@ -56,13 +64,21 @@ export const ShuttleList = (props, context) => {
       </Section>
       <Section title="Overmap Ships">
         <Table>
-          {sortBy((f: OvermapShip) => f.name?.toLowerCase() || f.name || f.ref)(overmap_ships).map((ship) => (
+          {sortBy((f: OvermapShip) => f.name?.toLowerCase() || f.name || f.ref)(
+            overmap_ships
+          ).map((ship) => (
             <Table.Row key={ship.ref}>
               <Table.Cell collapsing>
-                <Button content="JMP" onClick={() => act('adminobserve', { ref: ship.ref })} />
+                <Button
+                  content="JMP"
+                  onClick={() => act('adminobserve', { ref: ship.ref })}
+                />
               </Table.Cell>
               <Table.Cell collapsing>
-                <Button content="Control" onClick={() => act('overmap_control', { ref: ship.ref })} />
+                <Button
+                  content="Control"
+                  onClick={() => act('overmap_control', { ref: ship.ref })}
+                />
               </Table.Cell>
               <Table.Cell>{ship.name}</Table.Cell>
             </Table.Row>

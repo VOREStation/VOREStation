@@ -147,6 +147,9 @@
 	hostile = FALSE
 	retaliate = TRUE
 
+/datum/ai_holder/simple_mob/retaliate/chill
+	base_wander_delay = 8
+
 // Simple mobs that retaliate and support others in their faction who get attacked.
 /datum/ai_holder/simple_mob/retaliate/cooperative
 	cooperative = TRUE

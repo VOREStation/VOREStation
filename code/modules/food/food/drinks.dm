@@ -13,6 +13,13 @@
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 50
 	var/trash = null
+	var/cant_open = 0
+	var/cant_chance = 0
+
+/obj/item/weapon/reagent_containers/food/drinks/Initialize()
+	. = ..()
+	if (prob(cant_chance))
+		cant_open = 1
 
 /obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
@@ -46,10 +53,14 @@
 		open(user)
 
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
-	playsound(src,"canopen", rand(10,50), 1)
-	GLOB.cans_opened_roundstat++
-	to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
-	flags |= OPENCONTAINER
+	if(!cant_open)
+		playsound(src,"canopen", rand(10,50), 1)
+		GLOB.cans_opened_roundstat++
+		to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
+		flags |= OPENCONTAINER
+	else
+		to_chat(user, "<span class='warning'>...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b></span>")
+		name = "\improper can't of [initial(name)]"	//don't update the name until they try to open it
 
 /obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
@@ -100,6 +111,8 @@
 /obj/item/weapon/reagent_containers/food/drinks/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
+		if(cant_open)
+			. += "<span class='warning'>It doesn't have a ring pull!</span>"
 		if(!reagents?.total_volume)
 			. += "<span class='notice'>It is empty!</span>"
 		else if (reagents.total_volume <= volume * 0.25)

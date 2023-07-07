@@ -13,6 +13,7 @@
 #include "pois/outdoors12.dmm"
 #include "pois/outdoors13.dmm"
 #include "pois/outdoors14.dmm"
+#include "pois/outdoors16.dmm"
 
 #include "pois/cave1.dmm"
 #include "pois/cave2.dmm"
@@ -220,6 +221,7 @@
 	mappath = 'pois/outdoors1.dmm'
 	cost = 10
 	allow_duplicates = TRUE
+
 /datum/map_template/groundbase/outdoor/thing2
 	name = "Outdoors2"
 	mappath = 'pois/outdoors2.dmm'
@@ -266,6 +268,10 @@
 /datum/map_template/groundbase/outdoor/thing15
 	name = "Outdoors15"
 	mappath = 'pois/outdoors15.dmm'
+	allow_duplicates = FALSE
+/datum/map_template/groundbase/outdoor/thing16
+	name = "Outdoors16"
+	mappath = 'pois/outdoors16.dmm'
 	allow_duplicates = FALSE
 
 /datum/map_template/groundbase/maintcaves/cave

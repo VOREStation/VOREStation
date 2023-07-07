@@ -5,7 +5,15 @@ import { Window } from '../layouts';
 export const Holodeck = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { supportedPrograms, restrictedPrograms, currentProgram, isSilicon, safetyDisabled, emagged, gravity } = data;
+  const {
+    supportedPrograms,
+    restrictedPrograms,
+    currentProgram,
+    isSilicon,
+    safetyDisabled,
+    emagged,
+    gravity,
+  } = data;
 
   let programsToShow = supportedPrograms;
 
@@ -45,10 +53,17 @@ export const Holodeck = (props, context) => {
         <Section title="Controls">
           <LabeledList>
             <LabeledList.Item label="Safeties">
-              {safetyDisabled ? <Box color="bad">DISABLED</Box> : <Box color="good">ENABLED</Box>}
+              {safetyDisabled ? (
+                <Box color="bad">DISABLED</Box>
+              ) : (
+                <Box color="good">ENABLED</Box>
+              )}
             </LabeledList.Item>
             <LabeledList.Item label="Gravity">
-              <Button icon="user-astronaut" selected={gravity} onClick={() => act('gravity')}>
+              <Button
+                icon="user-astronaut"
+                selected={gravity}
+                onClick={() => act('gravity')}>
                 {gravity ? 'Enabled' : 'Disabled'}
               </Button>
             </LabeledList.Item>

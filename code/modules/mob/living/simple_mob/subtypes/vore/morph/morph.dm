@@ -1,6 +1,6 @@
 #define MORPH_COOLDOWN 50
 
-/mob/living/simple_mob/vore/hostile/morph
+/mob/living/simple_mob/vore/morph
 	name = "morph"
 	real_name = "morph"
 	desc = "A revolting, pulsating pile of flesh."
@@ -11,7 +11,7 @@
 	icon_dead = "new_morph_dead"
 	icon_rest = null
 	color = "#658a62"
-	movement_cooldown = 1
+	movement_cooldown = -1
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
 	mob_bump_flag = SLIME
@@ -58,25 +58,25 @@
 	var/static/list/blacklist_typecache = typecacheof(list(
 	/obj/screen,
 	/obj/singularity,
-	/mob/living/simple_mob/vore/hostile/morph,
+	/mob/living/simple_mob/vore/morph,
 	/obj/effect))
 
-/mob/living/simple_mob/vore/hostile/morph/Initialize()
+/mob/living/simple_mob/vore/morph/Initialize()
 	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/simple_mob/vore/hostile/morph/proc/take_over_prey
-	if(!istype(src, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
-		verbs += /mob/living/simple_mob/vore/hostile/morph/proc/morph_color
+	verbs += /mob/living/simple_mob/vore/morph/proc/take_over_prey
+	if(!istype(src, /mob/living/simple_mob/vore/morph/dominated_prey))
+		verbs += /mob/living/simple_mob/vore/morph/proc/morph_color
 
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/Destroy()
+/mob/living/simple_mob/vore/morph/Destroy()
 	form = null
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/proc/allowed(atom/movable/A)
+/mob/living/simple_mob/vore/morph/proc/allowed(atom/movable/A)
 	return !is_type_in_typecache(A, blacklist_typecache) && (isobj(A) || ismob(A))
 
-/mob/living/simple_mob/vore/hostile/morph/examine(mob/user)
+/mob/living/simple_mob/vore/morph/examine(mob/user)
 	if(morphed)
 		. = form.examine(user)
 		if(get_dist(user, src) <= 3 && !resting)
@@ -84,7 +84,7 @@
 	else
 		. = ..()
 
-/mob/living/simple_mob/vore/hostile/morph/ShiftClickOn(atom/movable/A)
+/mob/living/simple_mob/vore/morph/ShiftClickOn(atom/movable/A)
 	if(Adjacent(A))
 		if(morph_time <= world.time && !stat)
 			if(A == src)
@@ -97,7 +97,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/vore/hostile/morph/proc/assume(atom/movable/target)
+/mob/living/simple_mob/vore/morph/proc/assume(atom/movable/target)
 	var/mob/living/carbon/human/humantarget = target
 	if(istype(humantarget) && humantarget.resleeve_lock && ckey != humantarget.resleeve_lock)
 		to_chat(src, "<span class='warning'>[target] cannot be impersonated!</span>")
@@ -136,13 +136,13 @@
 	//Morphed is weaker
 	melee_damage_lower = melee_damage_disguised
 	melee_damage_upper = melee_damage_disguised
-	movement_cooldown = 5
+	movement_cooldown = 1
 
 	morph_time = world.time + MORPH_COOLDOWN
 
 	return
 
-/mob/living/simple_mob/vore/hostile/morph/proc/restore(var/silent = FALSE)
+/mob/living/simple_mob/vore/morph/proc/restore(var/silent = FALSE)
 	if(!morphed)
 		to_chat(src, "<span class='warning'>You're already in your normal form!</span>")
 		return
@@ -187,21 +187,21 @@
 
 	morph_time = world.time + MORPH_COOLDOWN
 
-/mob/living/simple_mob/vore/hostile/morph/death(gibbed)
+/mob/living/simple_mob/vore/morph/death(gibbed)
 	if(morphed)
 		visible_message("<span class='warning'>[src] twists and dissolves into a pile of flesh!</span>")
 		restore(TRUE)
 	..()
 
-/mob/living/simple_mob/vore/hostile/morph/will_show_tooltip()
+/mob/living/simple_mob/vore/morph/will_show_tooltip()
 	return (!morphed)
 
-/mob/living/simple_mob/vore/hostile/morph/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
+/mob/living/simple_mob/vore/morph/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(morphed && !ismob(form))
 		return
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/lay_down()
+/mob/living/simple_mob/vore/morph/lay_down()
 	if(morphed)
 		var/temp_state = icon_state
 		..()
@@ -225,18 +225,18 @@
 	else
 		..()
 
-/mob/living/simple_mob/vore/hostile/morph/update_icon()
+/mob/living/simple_mob/vore/morph/update_icon()
 	if(morphed)
 		return
 	return ..()
 
 
-/mob/living/simple_mob/vore/hostile/morph/update_icons()
+/mob/living/simple_mob/vore/morph/update_icons()
 	if(morphed)
 		return
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/update_transform()
+/mob/living/simple_mob/vore/morph/update_transform()
 	if(morphed)
 		var/matrix/M = matrix()
 		M.Scale(icon_scale_x, icon_scale_y)
@@ -245,7 +245,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/vore/hostile/morph/proc/morph_color()
+/mob/living/simple_mob/vore/morph/proc/morph_color()
 	set name = "Pick Color"
 	set category = "Abilities"
 	set desc = "You can set your color!"
@@ -255,7 +255,7 @@
 		chosen_color = newcolor
 
 
-/mob/living/simple_mob/vore/hostile/morph/proc/take_over_prey()
+/mob/living/simple_mob/vore/morph/proc/take_over_prey()
 	set name = "Take Over Prey"
 	set category = "Abilities"
 	set desc = "Take command of your prey's body."
@@ -302,23 +302,23 @@
 					stop_pulling()
 					original_ckey = ckey
 					log_and_message_admins("[key_name_admin(src)] has swapped bodies with [key_name_admin(M)] as a morph at [get_area(src)] - [COORD(src)].")
-					new /mob/living/simple_mob/vore/hostile/morph/dominated_prey(M.vore_selected, M.ckey, src, M)
+					new /mob/living/simple_mob/vore/morph/dominated_prey(M.vore_selected, M.ckey, src, M)
 				else
 					to_chat(src, "<span class='warning'>\The [M] declined your request for control.</span>")
 			else
 				to_chat(src, "<span class='warning'>\The [M] declined your request for control.</span>")
 
-/mob/living/simple_mob/vore/hostile/morph/dominated_prey
+/mob/living/simple_mob/vore/morph/dominated_prey
 	name = "subservient node"
 	color = "#171717"
 	digestable = 0
 	devourable = 0
-	var/mob/living/simple_mob/vore/hostile/morph/parent_morph
+	var/mob/living/simple_mob/vore/morph/parent_morph
 	var/mob/living/carbon/human/prey_body
 	var/prey_ckey
 
 
-/mob/living/simple_mob/vore/hostile/morph/dominated_prey/New(loc, pckey, parent, prey)
+/mob/living/simple_mob/vore/morph/dominated_prey/New(loc, pckey, parent, prey)
 	. = ..()
 	if(pckey)
 		prey_ckey = pckey
@@ -336,17 +336,17 @@
 	else
 		qdel(src)
 
-/mob/living/simple_mob/vore/hostile/morph/dominated_prey/death(gibbed)
+/mob/living/simple_mob/vore/morph/dominated_prey/death(gibbed)
 	. = ..()
 	undo_prey_takeover(FALSE)
 
 
-/mob/living/simple_mob/vore/hostile/morph/dominated_prey/Destroy()
+/mob/living/simple_mob/vore/morph/dominated_prey/Destroy()
 	. = ..()
 	parent_morph = null
 	prey_body = null
 
-/mob/living/simple_mob/vore/hostile/morph/dominated_prey/proc/undo_prey_takeover(ooc_escape)
+/mob/living/simple_mob/vore/morph/dominated_prey/proc/undo_prey_takeover(ooc_escape)
 	if(buckled)
 		buckled.unbuckle_mob()
 	if(prey_body.buckled)

@@ -36,6 +36,7 @@ export const Button = (props) => {
     children,
     onclick,
     onClick,
+    verticalAlignContent,
     ...rest
   } = props;
   const hasContent = !!(content || children);
@@ -69,7 +70,13 @@ export const Button = (props) => {
         circular && 'Button--circular',
         compact && 'Button--compact',
         iconPosition && 'Button--iconPosition--' + iconPosition,
-        color && typeof color === 'string' ? 'Button--color--' + color : 'Button--color--default',
+        verticalAlignContent && 'Button--flex',
+        verticalAlignContent && fluid && 'Button--flex--fluid',
+        verticalAlignContent &&
+          'Button--verticalAlignContent--' + verticalAlignContent,
+        color && typeof color === 'string'
+          ? 'Button--color--' + color
+          : 'Button--color--default',
         className,
         computeBoxClassName(rest),
       ])}
@@ -78,7 +85,6 @@ export const Button = (props) => {
         if (props.captureKeys === false) {
           return;
         }
-
         const keyCode = window.event ? e.which : e.keyCode;
         // Simulate a click when pressing space or enter.
         if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
@@ -95,20 +101,27 @@ export const Button = (props) => {
         }
       }}
       {...computeBoxProps(rest)}>
-      {icon && iconPosition !== 'right' && (
-        <Icon name={icon} color={iconColor} rotation={iconRotation} spin={iconSpin} />
-      )}
-      {content}
-      {children}
-      {icon && iconPosition === 'right' && (
-        <Icon
-          name={icon}
-          color={iconColor}
-          rotation={iconRotation}
-          spin={iconSpin}
-          fontSize={iconSize} // VOREStation Addition
-        />
-      )}
+      <div className="Button__content">
+        {icon && iconPosition !== 'right' && (
+          <Icon
+            name={icon}
+            color={iconColor}
+            rotation={iconRotation}
+            spin={iconSpin}
+          />
+        )}
+        {content}
+        {children}
+        {icon && iconPosition === 'right' && (
+          <Icon
+            name={icon}
+            color={iconColor}
+            rotation={iconRotation}
+            spin={iconSpin}
+            fontSize={iconSize} // VOREStation Addition
+          />
+        )}
+      </div>
     </div>
   );
 
@@ -127,7 +140,14 @@ Button.defaultHooks = pureComponentHooks;
 
 export const ButtonCheckbox = (props) => {
   const { checked, ...rest } = props;
-  return <Button color="transparent" icon={checked ? 'check-square-o' : 'square-o'} selected={checked} {...rest} />;
+  return (
+    <Button
+      color="transparent"
+      icon={checked ? 'check-square-o' : 'square-o'}
+      selected={checked}
+      {...rest}
+    />
+  );
 };
 
 Button.Checkbox = ButtonCheckbox;
@@ -172,7 +192,9 @@ export class ButtonConfirm extends Component {
         content={this.state.clickedOnce ? confirmContent : content}
         icon={this.state.clickedOnce ? confirmIcon : icon}
         color={this.state.clickedOnce ? confirmColor : color}
-        onClick={() => (this.state.clickedOnce ? onClick() : this.setClickedOnce(true))}
+        onClick={() =>
+          this.state.clickedOnce ? onClick() : this.setClickedOnce(true)
+        }
         {...rest}
       />
     );
@@ -239,7 +261,11 @@ export class ButtonInput extends Component {
 
     let buttonContent = (
       <Box
-        className={classes(['Button', fluid && 'Button--fluid', 'Button--color--' + color])}
+        className={classes([
+          'Button',
+          fluid && 'Button--fluid',
+          'Button--color--' + color,
+        ])}
         {...rest}
         onClick={() => this.setInInput(true)}>
         {icon && <Icon name={icon} rotation={iconRotation} spin={iconSpin} />}
@@ -285,3 +311,55 @@ export class ButtonInput extends Component {
 }
 
 Button.Input = ButtonInput;
+
+export class ButtonFile extends Component {
+  constructor() {
+    super();
+    this.inputRef = createRef();
+  }
+
+  async read(files) {
+    const promises = Array.from(files).map((file) => {
+      let reader = new FileReader();
+      return new Promise((resolve) => {
+        reader.onload = () => resolve(reader.result);
+        reader.readAsText(file);
+      });
+    });
+
+    return await Promise.all(promises);
+  }
+
+  render() {
+    const { onSelectFiles, accept, multiple, ...rest } = this.props;
+    const filePicker = (
+      <input
+        hidden
+        type="file"
+        ref={this.inputRef}
+        accept={accept}
+        multiple={multiple}
+        onChange={async () => {
+          const files = this.inputRef.current.files;
+          if (files.length) {
+            const readFiles = await this.read(files);
+            onSelectFiles(multiple ? readFiles : readFiles[0]);
+          }
+        }}
+      />
+    );
+    return (
+      <>
+        <Button
+          {...rest}
+          onClick={() => {
+            this.inputRef.current.click();
+          }}
+        />
+        {filePicker}
+      </>
+    );
+  }
+}
+
+Button.File = ButtonFile;

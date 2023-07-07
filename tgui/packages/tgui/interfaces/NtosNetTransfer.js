@@ -44,17 +44,22 @@ const P2PError = (props, context) => {
 
 const P2PDownload = (props, context) => {
   const { act, data } = useBackend(context);
-  const { download_name, download_progress, download_size, download_netspeed } = data;
+  const { download_name, download_progress, download_size, download_netspeed } =
+    data;
   return (
     <Section title="Download in progress">
       <LabeledList>
-        <LabeledList.Item label="Downloaded File">{download_name}</LabeledList.Item>
+        <LabeledList.Item label="Downloaded File">
+          {download_name}
+        </LabeledList.Item>
         <LabeledList.Item label="Progress">
           <ProgressBar value={download_progress} maxValue={download_size}>
             {download_progress} / {download_size} GQ
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Transfer Speed">{download_netspeed} GQ/s</LabeledList.Item>
+        <LabeledList.Item label="Transfer Speed">
+          {download_netspeed} GQ/s
+        </LabeledList.Item>
         <LabeledList.Item label="Controls">
           <Button icon="ban" onClick={() => act('PRG_reset')}>
             Cancel Download
@@ -71,9 +76,15 @@ const P2PUpload = (props, context) => {
   return (
     <Section title="Server enabled">
       <LabeledList>
-        <LabeledList.Item label="Clients Connected">{upload_clients}</LabeledList.Item>
-        <LabeledList.Item label="Provided file">{upload_filename}</LabeledList.Item>
-        <LabeledList.Item label="Server Password">{upload_haspassword ? 'Enabled' : 'Disabled'}</LabeledList.Item>
+        <LabeledList.Item label="Clients Connected">
+          {upload_clients}
+        </LabeledList.Item>
+        <LabeledList.Item label="Provided file">
+          {upload_filename}
+        </LabeledList.Item>
+        <LabeledList.Item label="Server Password">
+          {upload_haspassword ? 'Enabled' : 'Disabled'}
+        </LabeledList.Item>
         <LabeledList.Item label="Commands">
           <Button icon="lock" onClick={() => act('PRG_setpassword')}>
             Set Password
@@ -103,7 +114,11 @@ const P2PUploadServer = (props, context) => {
       </Button>
       <Section title="Pick file to serve." level={2}>
         {upload_filelist.map((file) => (
-          <Button key={file.uid} fluid icon="upload" onClick={() => act('PRG_uploadfile', { uid: file.uid })}>
+          <Button
+            key={file.uid}
+            fluid
+            icon="upload"
+            onClick={() => act('PRG_uploadfile', { uid: file.uid })}>
             {file.filename} ({file.size}GQ)
           </Button>
         ))}
@@ -129,7 +144,9 @@ const P2PAvailable = (props, context) => {
             <LabeledList.Item label={server.uid} key={server.uid}>
               {!!server.haspassword && <Icon name="lock" mr={1} />}
               {server.filename}&nbsp; ({server.size}GQ)&nbsp;
-              <Button icon="download" onClick={() => act('PRG_downloadfile', { uid: server.uid })}>
+              <Button
+                icon="download"
+                onClick={() => act('PRG_downloadfile', { uid: server.uid })}>
                 Download
               </Button>
             </LabeledList.Item>

@@ -279,6 +279,14 @@ function start_vue() {
 					pretty: "System Messages",
 					tooltip: "Messages from your client, always enabled",
 					required: true
+				},
+				{
+					matches: ".unsorted",
+					becomes: "vc_unsorted",
+					pretty: "Unsorted",
+					tooltip: "Messages that don't have any filters.",
+					required: false,
+					admin: false
 				}
 			],
 		},
@@ -586,6 +594,11 @@ function start_vue() {
 				//Get a category
 				newmessage.category = this.get_category(newmessage.content);
 
+				//Put it in unsorted blocks
+				if (newmessage.category == "vc_unsorted") {
+					newmessage.content = "<span class='unsorted'>" + newmessage.content + "</span>";
+				}
+
 				//Try to crush it with one of the last few
 				if(this.crushing) {
 					let crushwith = this.messages.slice(-(this.crushing));
@@ -663,7 +676,7 @@ function start_vue() {
 				let doc = domparser.parseFromString(message, 'text/html');
 				let evaluating = doc.querySelector('span');
 
-				let category = "nomatch"; //What we use if the classes aren't anything we know.
+				let category = "vc_unsorted"; //What we use if the classes aren't anything we know.
 				if(!evaluating) return category;
 				this.type_table.find( function(type) {
 					if(evaluating.msMatchesSelector(type.matches)) {
@@ -678,13 +691,16 @@ function start_vue() {
 				var textToSave = "<html><head><style>"+this.ext_styles+"</style></head><body>";
 
 				var messagesToSave = this.archived_messages.concat(this.messages);
+				var cats = this.current_categories;
 
 				messagesToSave.forEach( function(message) {
-					textToSave += message.content;
-					if(message.repeats > 1) {
-						textToSave += "(x"+message.repeats+")";
+					if(cats.length == 0 || (cats.indexOf(message.category) >= 0)) { //only in the active tab
+						textToSave += message.content;
+						if(message.repeats > 1) {
+							textToSave += "(x"+message.repeats+")";
+						}
+						textToSave += "<br>\n";
 					}
-					textToSave += "<br>\n";
 				});
 				textToSave += "</body></html>";
 

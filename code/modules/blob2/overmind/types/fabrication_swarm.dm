@@ -2,7 +2,7 @@
 /datum/blob_type/fabrication_swarm
 	name = "iron tide"
 	desc = "A swarm of self replicating construction nanites. Incredibly illegal, but only mildly dangerous."
-	effect_desc = "Slow-spreading, but incredibly resiliant. It has a chance to harden itself against attacks automatically for no resource cost, and uses cheaply-constructed hivebots as soldiers."
+	effect_desc = "Slow-spreading, but incredibly resilient. It has a chance to harden itself against attacks automatically for no resource cost, and uses cheaply-constructed hivebots as soldiers."
 	ai_desc = "defensive"
 	difficulty = BLOB_DIFFICULTY_MEDIUM // Emitters are okay, EMP is great.
 	color = "#666666"

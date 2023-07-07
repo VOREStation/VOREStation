@@ -16,6 +16,7 @@
 	direct			(bool)					If true plays directly to provided atoms instead of from them
 	opacity_check	(bool)					If true, things behind walls/opaque things won't hear the sounds.
 	pref_check		(type)					If set to a /datum/client_preference type, will check if the hearer has that preference active before playing it to them.
+	exclusive		(bool)					If true, only one of this sound is allowed to play. Relies on if started is true or not. If true, it will not start another loop until it is false.
 */
 /datum/looping_sound
 	var/list/atom/output_atoms
@@ -32,16 +33,19 @@
 	var/extra_range
 	var/opacity_check
 	var/pref_check
+	var/exclusive
 
 	var/timerid
+	var/started
 
-/datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
+/datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, disable_direct=FALSE)
 	if(!mid_sounds)
 		WARNING("A looping sound datum was created without sounds to play.")
 		return
 
 	output_atoms = _output_atoms
-	direct = _direct
+	if(disable_direct)
+		direct = FALSE
 
 	if(start_immediately)
 		start()
@@ -51,21 +55,30 @@
 	output_atoms = null
 	return ..()
 
-/datum/looping_sound/proc/start(atom/add_thing)
+/datum/looping_sound/proc/start(atom/add_thing, skip_start_sound = FALSE)
 	if(add_thing)
 		output_atoms |= add_thing
 	if(timerid)
 		return
+	if(skip_start_sound && (!exclusive && !started)) // Skip start sounds optionally, check if we're exclusive AND started already
+		sound_loop()
+		started = TRUE
+		return
+	if(exclusive && started) // Prevents a sound from starting multiple times
+		return // Don't start this loop.
 	on_start()
+	started = TRUE
 
-/datum/looping_sound/proc/stop(atom/remove_thing)
+/datum/looping_sound/proc/stop(atom/remove_thing, skip_stop_sound = FALSE)
 	if(remove_thing)
 		output_atoms -= remove_thing
 	if(!timerid)
 		return
-	on_stop()
+	if(!skip_stop_sound)
+		on_stop()
 	deltimer(timerid)
 	timerid = null
+	started = FALSE
 
 /datum/looping_sound/proc/sound_loop(starttime)
 	if(max_loops && world.time >= starttime + mid_length * max_loops)
@@ -74,7 +87,7 @@
 	if(!chance || prob(chance))
 		play(get_sound(starttime))
 	if(!timerid)
-		timerid = addtimer(CALLBACK(src, .proc/sound_loop, world.time), mid_length, TIMER_STOPPABLE | TIMER_LOOP)
+		timerid = addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), mid_length, TIMER_STOPPABLE | TIMER_LOOP)
 
 /datum/looping_sound/proc/play(soundfile)
 	var/list/atoms_cache = output_atoms
@@ -87,7 +100,7 @@
 		if(direct)
 			if(ismob(thing))
 				var/mob/M = thing
-				if(!M.is_preference_enabled(pref_check))
+				if(pref_check && !M.is_preference_enabled(pref_check))
 					continue
 			SEND_SOUND(thing, S)
 		else
@@ -106,7 +119,7 @@
 	if(start_sound)
 		play(start_sound)
 		start_wait = start_length
-	addtimer(CALLBACK(src, .proc/sound_loop), start_wait)
+	addtimer(CALLBACK(src, PROC_REF(sound_loop)), start_wait)
 
 /datum/looping_sound/proc/on_stop()
 	if(end_sound)

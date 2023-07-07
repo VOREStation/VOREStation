@@ -258,3 +258,32 @@
 
 	species_restricted = list(SPECIES_ALTEVIAN)
 	no_cycle = TRUE
+
+/obj/item/clothing/suit/space/void/salvagecorp_shipbreaker
+	name = "\improper CSC industrial voidsuit"
+	desc = "A heavy-duty Kirillov-Y771 voidsuit intended for use in hazardous shipbreaking, salvage, and industrial operations, manufactured (or more likely refurbished) by the Coyote Salvage Corporation. It's slow and awkward if used outside of microgravity, but it offers good protection for what is technically a civilian-legal voidsuit."
+
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "breaker_suit"
+
+	armor = list("melee" = 50, "bullet" = 15, "laser" = 15, "energy" = 25, "bomb" = 45, "bio" = 100, "rad" = 80)
+	slowdown = 1.5
+	breach_threshold = 14
+	allowed = list(/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+
+/obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker
+	name = "\improper CSC industrial voidsuit helmet"
+	desc = "A dome/bubble style helmet for use with the Kirillov-Y771 voidsuit. It offers surprisingly good protection and visibility, though wearers are still advised to avoid face-on collisions. Sadly, this one doesn't seem to have the (in)famous 0PTIK3WL cross-spectrum imaging visor installed..."
+
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "breaker_helmet"
+
+	armor = list("melee" = 50, "bullet" = 15, "laser" = 15, "energy" = 25, "bomb" = 45, "bio" = 100, "rad" = 80)
+
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
