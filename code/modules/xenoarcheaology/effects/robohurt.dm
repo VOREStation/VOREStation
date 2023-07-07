@@ -8,14 +8,8 @@
 	..()
 	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
 
-<<<<<<< HEAD
 /datum/artifact_effect/robohurt/DoEffectTouch(var/mob/user)
 	if(user)
-=======
-
-/datum/artifact_effect/uncommon/robohurt/DoEffectTouch(mob/living/user)
-	if (user)
->>>>>>> 318bc4daa5b... Fix various anomaly bugs and oversights.  (#8941)
 		if (istype(user, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = user
 			to_chat(R, "<font color='red'>Your systems report severe damage has been inflicted!</font>")
