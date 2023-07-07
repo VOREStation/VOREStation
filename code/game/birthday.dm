@@ -19,7 +19,7 @@
 	if(birthday)	//woo
 		msg = "Today is your birthday! Do you want to increase your character's listed age?"
 		if(client.prefs.bday_announce)
-			command_announcement.Announce("It is [src.real_name]'s birthday! Happy birthday!", "BIRTHDAY!")
+			command_announcement.Announce("It is [src.real_name]'s listed birthday today. Have a productive shift.", "Birthday")
 	else
 		msg = "Your birthday has passed! Do you want to increase your character's listed age?"	//sad, but thus is the life of an adult
 	if(tgui_alert(src, msg,"BIRTHDAY! ([bday_month]/[bday_day])",list("Yes","No")) == "Yes")
