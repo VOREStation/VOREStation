@@ -346,3 +346,13 @@
 	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
 	clip_mask_state = "taur_clip_mask_noodle"
 	icon_sprite_tag = "noodle"
+
+/datum/sprite_accessory/tail/taur/zorgoia
+	name = "Zorgoia (Taur)"
+	icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
+	icon_state = "zorgoia"
+	extra_overlay = "zorgoia_fluff"
+
+/datum/sprite_accessory/tail/taur/zorgoia/fat
+	name = "Zorgoia (Fat Taur)"
+	extra_overlay = "zorgoia_fat"
