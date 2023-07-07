@@ -261,36 +261,24 @@
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
-<<<<<<< HEAD
 	matter = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
-=======
-	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
 	welds_into = /obj/item/stack/material/plasteel
->>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
-<<<<<<< HEAD
 	matter = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
-=======
-	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
 	welds_into = /obj/item/stack/material/plasteel
->>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/white
 	name = "white floor tile"
 	singular_name = "white floor tile"
 	icon_state = "tile_white"
-<<<<<<< HEAD
 	matter = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT / 4)
-=======
-	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
 	welds_into = /obj/item/stack/material/plastic
->>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/yellow
@@ -304,24 +292,16 @@
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
 	icon_state = "tile_steel"
-<<<<<<< HEAD
 	matter = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
-=======
-	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
 	welds_into = /obj/item/stack/material/plasteel
->>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/freezer
 	name = "freezer floor tile"
 	singular_name = "freezer floor tile"
 	icon_state = "tile_freezer"
-<<<<<<< HEAD
 	matter = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT / 4)
-=======
-	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
 	welds_into = /obj/item/stack/material/plastic
->>>>>>> 6b909477bca... the little construction pr (#9002)
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/cyborg
@@ -389,9 +369,5 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/roofing
-<<<<<<< HEAD
-	build_type = /obj/item/stack/tile/roofing
-=======
 	build_type = /obj/item/stack/tile/roofing
 	can_weld = FALSE
->>>>>>> 6b909477bca... the little construction pr (#9002)
