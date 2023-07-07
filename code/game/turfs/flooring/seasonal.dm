@@ -1,8 +1,11 @@
 var/world_time_season
+var/world_time_year
+var/world_time_month
+var/world_time_day
 
 /proc/setup_season()
-	var/month = text2num(time2text(world.timeofday, "MM")) 	// get the current month
-	switch(month)
+	world_time_month = text2num(time2text(world.timeofday, "MM")) 	// get the current month
+	switch(world_time_month)
 		if(1 to 2)
 			world_time_season = "winter"
 		if(3 to 5)
@@ -13,6 +16,8 @@ var/world_time_season
 			world_time_season = "autumn"
 		if(12)
 			world_time_season = "winter"
+	world_time_day = text2num(time2text(world.timeofday, "DD"))
+	world_time_year = text2num(time2text(world.timeofday, "YYYY"))
 
 /turf/simulated/floor/outdoors/grass/seasonal
 	name = "grass"
