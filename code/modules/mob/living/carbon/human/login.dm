@@ -19,6 +19,7 @@
 					client.autohiss_mode = AUTOHISS_BASIC
 				if("Off")
 					client.autohiss_mode = AUTOHISS_OFF
+		consider_birthday()
 	// VOREStation Add
 	if(species) species.handle_login_special(src)
 	return

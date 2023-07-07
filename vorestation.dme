@@ -543,6 +543,7 @@
 #include "code\game\atoms_movable.dm"
 #include "code\game\atoms_movable_vr.dm"
 #include "code\game\base_turf.dm"
+#include "code\game\birthday.dm"
 #include "code\game\periodic_news.dm"
 #include "code\game\response_team.dm"
 #include "code\game\response_team_vr.dm"
