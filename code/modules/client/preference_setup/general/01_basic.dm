@@ -144,7 +144,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["bday_month"])
-		var/new_month = tgui_input_number(user, "Choose your character's birth month (number)", "Birthday Month", pref.bday_month, 0, 12)
+		var/new_month = tgui_input_number(user, "Choose your character's birth month (number)", "Birthday Month", pref.bday_month, 12, 0)
 		if(new_month && CanUseTopic(user))
 			pref.bday_month = new_month
 		else if((tgui_alert(user, "Would you like to clear the birthday entry?","Clear?",list("No","Yes")) == "Yes") && CanUseTopic(user))
@@ -183,7 +183,7 @@
 			if(12)
 				max_days = 31
 
-		var/new_day = tgui_input_number(user, "Choose your character's birth day (number, 1-[max_days])", "Birthday Day", pref.bday_day, 0, max_days)
+		var/new_day = tgui_input_number(user, "Choose your character's birth day (number, 1-[max_days])", "Birthday Day", pref.bday_day, max_days, 0)
 		if(new_day && CanUseTopic(user))
 			pref.bday_day = new_day
 		else if((tgui_alert(user, "Would you like to clear the birthday entry?","Clear?",list("No","Yes")) == "Yes") && CanUseTopic(user))
