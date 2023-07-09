@@ -8,16 +8,15 @@
 /datum/sprite_accessory/tail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/tails_vr.dmi'
+	var/offset_x = 0
+	var/offset_y = 0
+	var/mob_offset_x = 0
+	var/mob_offset_y = 0
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 	var/list/lower_layer_dirs = list(SOUTH)
 	var/icon_loaf = null
-
-/datum/sprite_accessory/tail/New()
-	. = ..()
-	if(clip_mask_icon && clip_mask_state)
-		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
 
 // Species-unique tails
 
@@ -1347,6 +1346,7 @@
 /datum/sprite_accessory/tail/longtail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/taurs_vr.dmi'
+	offset_x = -16
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 

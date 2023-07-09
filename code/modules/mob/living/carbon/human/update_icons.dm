@@ -310,6 +310,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				if(tail_style.clip_mask) //VOREStation Edit.
 					icon_key += tail_style.clip_mask_state
 
+			if(tail_style)
+				pixel_x = tail_style.mob_offset_x
+				pixel_y = tail_style.mob_offset_y
+				default_pixel_x = tail_style.mob_offset_x
+				default_pixel_y = tail_style.mob_offset_y
+
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
@@ -323,10 +329,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		var/apply_extra_transparency_foot = organs_by_name[BP_L_FOOT] && organs_by_name[BP_R_FOOT]
 
 		var/icon/Cutter = null
+		var/icon_x_offset = 0
+		var/icon_y_offset = 0
 
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
 			if(tail_style.clip_mask) //VOREStation Edit.
-				Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask_state)
+				Cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
 
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
 
@@ -335,13 +343,16 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
+				icon_x_offset = tail_style.offset_x
+				icon_y_offset = tail_style.offset_y
+
 		for(var/obj/item/organ/external/part in organs)
 			if(isnull(part) || part.is_stump() || part == chest || part.is_hidden_by_sprite_accessory()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
 			var/icon/temp = part.get_icon(skeleton, !wholeicontransparent)
 
 			if((part.organ_tag in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)) && Cutter)
-				temp.Blend(Cutter, ICON_AND, x = -16)
+				temp.Blend(Cutter, ICON_AND, x = icon_x_offset, y = icon_y_offset)
 
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
@@ -904,7 +915,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!back)
 		return //Why do anything
 
-	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER)
+	var/icon/c_mask = tail_style?.clip_mask					//TODO: Figure out why the fuck it doesnt work with backpacks. Leaving this in for now, even though for some reason it does nothing.
+	if(c_mask)
+		if(istype(back, /obj/item/weapon/storage/backpack/saddlebag))
+			c_mask = null
+
+	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER, clip_mask = c_mask)
 
 	apply_layer(BACK_LAYER)
 
@@ -1327,13 +1343,15 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 		if(istaurtail(tail_style))
 			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
-			working.pixel_x = -16
+			working.pixel_x = tail_style.offset_x
+			working.pixel_y = tail_style.offset_y
 			if(taurtype.can_ride && !riding_datum)
 				riding_datum = new /datum/riding/taur(src)
 				verbs |= /mob/living/carbon/human/proc/taur_mount
 				verbs |= /mob/living/proc/toggle_rider_reins
 		else if(islongtail(tail_style))
-			working.pixel_x = -16
+			working.pixel_x = tail_style.offset_x
+			working.pixel_y = tail_style.offset_y
 		return working
 	return null
 

@@ -15,6 +15,7 @@
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
 	can_ride = TRUE			//whether we're real rideable taur or just in that category
+	offset_x = -16
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
 	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
@@ -1026,3 +1027,16 @@
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
 
+
+/*
+/datum/sprite_accessory/tail/taur/teppi			// Mostly used as example/template/test subject as to how you use the 'big' taur sprites. Pls give it better icons before uncommenting...
+	name = "Teppi (Taur)"
+	icon_state = "teppi_s"
+	clip_mask_icon = 'icons/mob/vore/taurs128x64_vr.dmi'
+	icon = 'icons/mob/vore/taurs128x64_vr.dmi'
+	clip_mask_state = "taur_clip_mask_teppi"
+	icon_sprite_tag = "teppi"
+	offset_x = -32
+	offset_y = -11
+	mob_offset_y = 11
+*/

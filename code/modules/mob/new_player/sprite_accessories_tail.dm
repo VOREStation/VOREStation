@@ -32,8 +32,8 @@
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
-	if(clip_mask_icon && clip_mask_state)
-		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
+	if(clip_mask_state)
+		clip_mask = icon(icon = (clip_mask_icon ? clip_mask_icon : icon), icon_state = clip_mask_state)
 
 // Species-unique tails
 
