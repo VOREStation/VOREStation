@@ -375,8 +375,13 @@
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
 	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
-	load.pixel_x = initial(load.pixel_x)
-	load.pixel_y = initial(load.pixel_y)
+	if(ismob(load))
+		var/mob/L = load
+		L.pixel_x = L.default_pixel_x
+		L.pixel_y = L.default_pixel_y
+	else
+		load.pixel_x = initial(load.pixel_x)
+		load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)
 
 	if(ismob(load))
