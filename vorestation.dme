@@ -2346,7 +2346,7 @@
 #include "code\modules\food\food\sandwich.dm"
 #include "code\modules\food\food\snacks.dm"
 #include "code\modules\food\food\snacks_vr.dm"
-#include "code\modules\food\food\thecake.dm"
+#include "code\modules\food\food\superfoods.dm"
 #include "code\modules\food\food\z_custom_food_vr.dm"
 #include "code\modules\food\food\drinks\bottle.dm"
 #include "code\modules\food\food\drinks\cup.dm"
