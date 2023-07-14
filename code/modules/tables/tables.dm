@@ -429,6 +429,8 @@ var/list/table_icon_cache = list()
 		var/turf/T = get_step(src, direction)
 		if(T)
 			var/obj/structure/table/nextT = locate(/obj/structure/table) in T
+			if(!nextT || !istype(nextT))
+				continue
 			if(istype(nextT, /obj/structure/table/rack) || (istype(nextT, /obj/structure/table/bench) && !istype(src, /obj/structure/table/bench)) ||  (!istype(nextT, /obj/structure/table/bench) && istype(src, /obj/structure/table/bench)))
 				continue
 			if(!(nextT in connections))

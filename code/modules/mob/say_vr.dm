@@ -69,9 +69,6 @@
 		else
 			subtle_mode = "Adjacent Turfs (Default)"
 
-	if(subtle_mode == "Current Belly (Prey)" && !isbelly(src.loc))
-		return
-
 	var/input
 	if(!message)
 		input = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src)
@@ -104,23 +101,29 @@
 				vis_mobs = vis["mobs"]
 				vis_objs = vis["objs"]
 			if("My Table")
-				vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2)
+				vis = get_mobs_and_objs_in_view_fast(get_turf(src),7,2)
 				vis_mobs = vis["mobs"]
 				vis_objs = vis["objs"]
 				var/list/tablelist = list()
+				var/list/newmoblist = list()
+				var/list/newobjlist = list()
 				for(var/obj/structure/table/T in range(src, 1))
 					if(istype(T) && !(T in tablelist) && !istype(T, /obj/structure/table/rack) && !istype(T, /obj/structure/table/bench))
 						tablelist |= T.get_all_connected_tables()
+				if(!(tablelist.len))
+					to_chat(src, "<span class='warning'>No nearby tables detected. Your input has not been sent, but preserved:</span> [input]")
+					return
 				for(var/obj/structure/table/T in tablelist)
 					for(var/mob/M in vis_mobs)
-						var/turf/tableturf = get_turf(T)
-						if(!(tableturf.AdjacentQuick(get_turf(M))))
-							vis_mobs -= M
-				for(var/obj/structure/table/T in tablelist)
+						var/dist = get_dist(T, M)
+						if(dist >= 0 && dist <= 1)
+							newmoblist |= M
 					for(var/obj/O in vis_objs)
-						var/turf/tableturf = get_turf(T)
-						if(!(tableturf.AdjacentQuick(get_turf(O))))
-							vis_objs -= O
+						var/dist = get_dist(T, O)
+						if(dist >= 0 && dist <= 1)
+							newobjlist |= O
+				vis_mobs = newmoblist
+				vis_objs = newobjlist
 			if("Current Belly (Prey)")
 				var/obj/belly/B = get_belly(src)
 				if(!istype(B))
