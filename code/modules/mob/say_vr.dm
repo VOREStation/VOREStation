@@ -65,6 +65,8 @@
 		subtle_mode = tgui_input_list(src, "Select Custom Subtle Mode", "Custom Subtle Mode", list("Adjacent Turfs (Default)", "My Turf", "My Table", "Current Belly (Prey)", "Specific Belly (Pred)", "Specific Person"))
 	if(!subtle_mode)
 		if(mode_selection)
+			if(message)
+				to_chat(src, "<span class='warning'>Subtle mode not selected. Your input has not been sent, but preserved:</span> [message]")
 			return
 		else
 			subtle_mode = "Adjacent Turfs (Default)"
@@ -187,6 +189,9 @@
 					to_chat(src, "<span class='warning'>No valid targets found. Your input has not been sent, but preserved:</span> [input]")
 					return
 				var/target = tgui_input_list(src, "Who do we send our message to?","Select Target", vis_mobs)
+				if(!(target))
+					to_chat(src, "<span class='warning'>No target selected. Your input has not been sent, but preserved:</span> [input]")
+					return
 				vis_mobs = list(target, src)
 
 		for(var/mob/M as anything in vis_mobs)
