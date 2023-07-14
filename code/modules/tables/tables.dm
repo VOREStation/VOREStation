@@ -417,6 +417,25 @@ var/list/table_icon_cache = list()
 		if(carpeted)
 			add_overlay("carpet_flip[type]")
 
+/obj/structure/table/proc/get_all_connected_tables(var/list/connections)
+	if(!connections)
+		connections = list(src)
+	else
+		connections |= src
+	if(istype(src, /obj/structure/table/rack))
+		return connections
+
+	for(var/direction in cardinal)
+		var/turf/T = get_step(src, direction)
+		if(T)
+			var/obj/structure/table/nextT = locate(/obj/structure/table in T)
+			if(istype(nextT, /obj/structure/table/rack) || (istype(nextT, /obj/structure/table/bench) && !istype(src, /obj/structure/table/bench)) ||  (!istype(nextT, /obj/structure/table/bench) && istype(src, /obj/structure/table/bench)))
+				continue
+			if(!(nextT in connections))
+				connections |= nextT.get_all_connected_tables(connections)
+
+	return connections
+
 
 #define CORNER_NONE 0
 #define CORNER_COUNTERCLOCKWISE 1
