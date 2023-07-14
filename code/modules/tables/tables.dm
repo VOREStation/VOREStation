@@ -428,7 +428,7 @@ var/list/table_icon_cache = list()
 	for(var/direction in cardinal)
 		var/turf/T = get_step(src, direction)
 		if(T)
-			var/obj/structure/table/nextT = locate(/obj/structure/table in T)
+			var/obj/structure/table/nextT = locate(/obj/structure/table) in T
 			if(istype(nextT, /obj/structure/table/rack) || (istype(nextT, /obj/structure/table/bench) && !istype(src, /obj/structure/table/bench)) ||  (!istype(nextT, /obj/structure/table/bench) && istype(src, /obj/structure/table/bench)))
 				continue
 			if(!(nextT in connections))
