@@ -2685,6 +2685,14 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "dessabow_mob"
 
+/obj/item/clothing/head/fluff/giantbow/dessa/attack_hand(mob/user)
+
+	if(user.real_name == "Dessa Ton")
+		item_state = "dessabow_mob"
+	else
+		item_state = "giantbow_mob"
+	..()
+
 /obj/item/clothing/head/fluff/giantbow	//Public version
 	name = "Giant Bow"
 	desc = "It's a huge bow! So pretty!"
