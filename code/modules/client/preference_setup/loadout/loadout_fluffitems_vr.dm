@@ -1427,6 +1427,17 @@
 	ckeywhitelist = list("verysoft")
 	character_name = list("Shine-Runner")
 
+/datum/gear/fluff/dessa_hat
+	path = /obj/item/clothing/head/fluff/giantbow/dessa
+	display_name = "Dessa's Giant Bow"
+	slot = slot_head
+	ckeywhitelist = list("verysoft")
+	character_name = list("Dessa Ton")
+
+/datum/gear/fluff/dessa_hat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer
 	path = /obj/item/clothing/accessory/bracer/fluff/xander_sthasha
