@@ -915,9 +915,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!back)
 		return //Why do anything
 
-	var/icon/c_mask = tail_style?.clip_mask					//TODO: Figure out why the fuck it doesnt work with backpacks. Leaving this in for now, even though for some reason it does nothing.
+	var/icon/c_mask = tail_style?.clip_mask
 	if(c_mask)
-		if(istype(back, /obj/item/weapon/storage/backpack/saddlebag))
+		if(istype(back, /obj/item/weapon/storage/backpack/saddlebag) || istype(back, /obj/item/weapon/storage/backpack/saddlebag_common))
 			c_mask = null
 
 	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_back_str, default_icon = INV_BACK_DEF_ICON, default_layer = BACK_LAYER, clip_mask = c_mask)
