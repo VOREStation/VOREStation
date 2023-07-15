@@ -32,8 +32,8 @@
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
-	if(clip_mask_icon && clip_mask_state)
-		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
+	if(clip_mask_state)
+		clip_mask = icon(icon = (clip_mask_icon ? clip_mask_icon : icon), icon_state = clip_mask_state)
 
 // Species-unique tails
 
@@ -1000,3 +1000,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wardtakahashi_vulp_dc_mark"
+
+/datum/sprite_accessory/tail/zorgoia
+	name = "Zorgoia tail, dual-color"
+	desc = ""
+	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
+	icon_state = "zorgoia"
+	extra_overlay = "zorgoia_fluff"
+	extra_overlay2 = "zorgoia_fluff_top"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

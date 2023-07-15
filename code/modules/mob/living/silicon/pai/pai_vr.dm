@@ -13,7 +13,11 @@
 	var/global/list/wide_chassis = list(
 		"rat",
 		"panther",
-		"teppi"
+		"teppi",
+		"pai-diredog",
+		"pai-horse_lune",
+		"pai-horse_soleil",
+		"pai-pdragon"
 		)
 	var/global/list/flying_chassis = list(
 		"pai-parrot",

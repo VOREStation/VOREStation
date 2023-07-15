@@ -74,6 +74,12 @@
 	board_type = new /datum/frame/frame_types/geiger
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
+/obj/item/weapon/circuitboard/electrochromic
+	name = T_BOARD("electrochromic button")
+	build_path = /obj/machinery/button/windowtint
+	board_type = new /datum/frame/frame_types/electrochromic_button
+	matter = list(MAT_STEEL = 50, "glass" = 50)
+
 //Computer
 
 /obj/item/weapon/circuitboard/holopad
