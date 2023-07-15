@@ -2678,3 +2678,20 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "grand_purple_cloak_hat"
 	item_state = "grand_purple_cloak_hat_onmob"
+
+//verysoft:Dessa Ton
+/obj/item/clothing/head/fluff/giantbow/dessa
+	desc = "It's a huge bow! So pretty! This one is fitted specially for Dessa's rediculously large ears."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "dessabow_mob"
+
+/obj/item/clothing/head/fluff/giantbow	//Public version
+	name = "Giant Bow"
+	desc = "It's a huge bow! So pretty!"
+	slot_flags = SLOT_HEAD | SLOT_EARS
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "dessabow"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "giantbow_mob"
