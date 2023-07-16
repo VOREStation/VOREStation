@@ -1,7 +1,8 @@
 /mob
 	var/muffled = FALSE					// Used by muffling belly
 	var/forced_psay = FALSE				// If true will prevent the user from speaking with normal say/emotes, and instead redirect these to a private speech mode with their predator.
-
+	var/autowhisper = FALSE				// Automatically whisper
+	var/autowhisper_mode = null			// Mode to use with autowhisper
 /mob/living
 	var/ooc_notes = null
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
