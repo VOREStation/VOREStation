@@ -1,5 +1,5 @@
 /mob/living/verb/toggle_autowhisper()
-	set name = "Toggle Autowhisper"
+	set name = "Autowhisper Toggle"
 	set desc = "Toggle whether you will automatically whisper/subtle"
 	set category = "IC"
 
@@ -22,7 +22,7 @@
 		to_chat(src, "<span class='notice'>Autowhisper has been [autowhisper ? "enabled. You will now automatically whisper/subtle when using say/me" : "disabled"].</span>")
 
 /mob/living/verb/autowhisper_mode()
-	set name = "Set Autosubtle Mode"
+	set name = "Autowhisper Mode"
 	set desc = "Set the mode your emotes will default to while using Autowhisper"
 	set category = "IC"
 
