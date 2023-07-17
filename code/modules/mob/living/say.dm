@@ -162,6 +162,8 @@ var/list/channel_to_radio_key = new
 	if(forced_psay)
 		psay(message)
 		return
+	if(autowhisper)
+		whispering = 1
 	//VOREStation Addition End
 	//Parse the mode
 	var/message_mode = parse_message_mode(message, "headset")

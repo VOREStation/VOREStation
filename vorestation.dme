@@ -2716,6 +2716,7 @@
 #include "code\modules\mining\ore_redemption_machine\mine_point_items.dm"
 #include "code\modules\mining\ore_redemption_machine\survey_vendor.dm"
 #include "code\modules\mob\animations.dm"
+#include "code\modules\mob\autowhisper.dm"
 #include "code\modules\mob\death.dm"
 #include "code\modules\mob\emote.dm"
 #include "code\modules\mob\gender.dm"
