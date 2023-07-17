@@ -61,7 +61,10 @@
 	if(m_type == 2 && muzzled) return
 
 	var/subtle_mode
-	if(mode_selection)
+	if(autowhisper && autowhisper_mode && !mode_selection)
+		if(autowhisper_mode != "Psay/Pme")	//This isn't actually a custom subtle mode, so we shouldn't use it!
+			subtle_mode = autowhisper_mode
+	if(mode_selection && !subtle_mode)
 		subtle_mode = tgui_input_list(src, "Select Custom Subtle Mode", "Custom Subtle Mode", list("Adjacent Turfs (Default)", "My Turf", "My Table", "Current Belly (Prey)", "Specific Belly (Pred)", "Specific Person"))
 	if(!subtle_mode)
 		if(mode_selection)

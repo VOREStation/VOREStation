@@ -158,6 +158,19 @@
 	healths.screen_loc = ui_health
 	hud_elements |= healths
 
+	autowhisper_display = new /obj/screen()
+	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
+	autowhisper_display.icon_state = "autowhisper"
+	autowhisper_display.name = "autowhisper"
+	autowhisper_display.screen_loc = "EAST-1:28,CENTER-2:13"
+	hud_elements |= autowhisper_display
+
+	var/obj/screen/aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "aw-select"
+	aw.name = "autowhisper mode"
+	aw.screen_loc = "EAST-1:28,CENTER-2:13"
+	hud_elements |= aw
 
 
 	pain = new /obj/screen( null )

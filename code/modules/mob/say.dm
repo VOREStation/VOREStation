@@ -40,6 +40,8 @@
 	//VOREStation Edit Start
 	if(muffled)
 		return me_verb_subtle(message)
+	if(autowhisper)
+		return me_verb_subtle(message)
 	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
 	//VOREStation Edit End
 
