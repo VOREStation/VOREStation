@@ -62,7 +62,7 @@
 
 	var/subtle_mode
 	if(autowhisper && autowhisper_mode)
-		if(!(autowhisper_mode == "Psay/Pme"))	//This isn't actually a custom subtle mode, so we shouldn't use it!
+		if(autowhisper_mode != "Psay/Pme")	//This isn't actually a custom subtle mode, so we shouldn't use it!
 			subtle_mode = autowhisper_mode
 	if(mode_selection && !subtle_mode)
 		subtle_mode = tgui_input_list(src, "Select Custom Subtle Mode", "Custom Subtle Mode", list("Adjacent Turfs (Default)", "My Turf", "My Table", "Current Belly (Prey)", "Specific Belly (Pred)", "Specific Person"))

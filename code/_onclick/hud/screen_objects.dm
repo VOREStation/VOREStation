@@ -454,6 +454,14 @@
 		if("drop")
 			if(usr.client)
 				usr.client.drop_item()
+		if("autowhisper")
+			if(isliving(usr))
+				var/mob/living/u = usr
+				u.toggle_autowhisper()
+		if("autowhisper mode")
+			if(isliving(usr))
+				var/mob/living/u = usr
+				u.autowhisper_mode()
 
 		if("module")
 			if(isrobot(usr))

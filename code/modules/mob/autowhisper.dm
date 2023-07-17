@@ -4,6 +4,9 @@
 	set category = "IC"
 
 	autowhisper = !autowhisper
+	if(autowhisper_display)
+		autowhisper_display.icon_state = "[autowhisper ? "autowhisper1" : "autowhisper"]"
+
 	if(autowhisper_mode == "Psay/Pme")
 		if(isbelly(loc) && absorbed)
 			var/obj/belly/b = loc
