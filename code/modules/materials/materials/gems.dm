@@ -30,7 +30,7 @@
 */
 
 /datum/material/diamond
-	name = "diamond"
+	name = MAT_DIAMOND
 	stack_type = /obj/item/stack/material/diamond
 	flags = MATERIAL_UNMELTABLE
 	cut_delay = 60
@@ -46,7 +46,7 @@
 	supply_conversion_value = 8
 
 /datum/material/quartz
-	name = "quartz"
+	name = MAT_QUARTZ
 	display_name = "quartz"
 	use_name = "quartz"
 	icon_colour = "#e6d7df"
@@ -57,7 +57,7 @@
 	supply_conversion_value = 4
 
 /datum/material/painite
-	name = "painite"
+	name = MAT_PAINITE
 	display_name = "painite"
 	use_name = "painite"
 	icon_colour = "#6b4947"
@@ -70,7 +70,7 @@
 	supply_conversion_value = 4
 
 /datum/material/void_opal
-	name = "void opal"
+	name = MAT_VOPAL
 	display_name = "void opal"
 	use_name = "void opal"
 	icon_colour = "#0f0f0f"
