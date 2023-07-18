@@ -339,6 +339,33 @@
 	aw.screen_loc = "EAST-1:28,CENTER-2:13"
 	hud_elements |= aw
 
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "lang"
+	aw.name = "check known languages"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "pose"
+	aw.name = "set pose"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "up"
+	aw.name = "move upwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "down"
+	aw.name = "move downwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
 
 	if(client)
 		client.screen = list()
