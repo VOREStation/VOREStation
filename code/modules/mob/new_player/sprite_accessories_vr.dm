@@ -81,6 +81,12 @@
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 	icon_state = "hair_twincurl"
 
+/datum/sprite_accessory/hair/twindrillslong
+	name = "Twin Drills Long"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "hair_twincurllong"
+
 /datum/sprite_accessory/hair/crescent_moon
 	name = "Crescent-Moon"
 	icon = 'icons/mob/human_face_vr.dmi'
