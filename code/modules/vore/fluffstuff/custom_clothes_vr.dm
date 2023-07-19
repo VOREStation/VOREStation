@@ -2703,3 +2703,9 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "giantbow_mob"
+
+//Halored: Mercury
+
+/obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	name = "Mercury's Mate Ring"
+	desc = "A band of void opal, given to Mercury by Lumen"

@@ -69,3 +69,6 @@
 
 /obj/item/clothing/gloves/ring/material/tin/New(var/newloc)
 	..(newloc, MAT_TIN)
+
+/obj/item/clothing/gloves/ring/material/void_opal/New(var/newloc)
+	..(newloc, MAT_VOPAL)

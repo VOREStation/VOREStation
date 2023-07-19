@@ -521,6 +521,12 @@
 	ckeywhitelist = list("hunterbirk")
 	character_name = list("Aria Blue")
 
+/datum/gear/fluff/mercury_vopal_ring
+	path = /obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	display_name = "Mercury's Mate Ring"
+	ckeywhitelist = list("haloren")
+	character_name = list("Mercury")
+
 //  I CKEYS
 /datum/gear/fluff/ruda_badge
 	path = /obj/item/clothing/accessory/badge/holo/detective/ruda

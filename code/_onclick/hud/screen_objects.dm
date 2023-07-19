@@ -462,6 +462,28 @@
 			if(isliving(usr))
 				var/mob/living/u = usr
 				u.autowhisper_mode()
+		if("check known languages")
+			usr.check_languages()
+		if("set pose")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/u = usr
+				u.pose()
+			else if (issilicon(usr))
+				var/mob/living/silicon/u = usr
+				u.pose()
+		if("move upwards")
+			usr.up()
+		if("move downwards")
+			usr.down()
+
+		if("use held item on self")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/u = usr
+				var/obj/item/i = u.get_active_hand()
+				if(i)
+					i.attack(usr, usr)
+				else
+					to_chat(usr, "<span class='notice'>You're not holding anything to use.</span>")
 
 		if("module")
 			if(isrobot(usr))

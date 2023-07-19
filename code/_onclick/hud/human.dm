@@ -160,6 +160,15 @@
 		using.alpha = HUD.ui_alpha
 		adding += using
 
+		using = new /obj/screen()
+		using.icon = HUD.ui_style
+		using.icon_state = "use"
+		using.name = "use held item on self"
+		using.screen_loc = ui_swaphand2
+		using.color = HUD.ui_color
+		using.alpha = HUD.ui_alpha
+		adding |= using
+
 		inv_box = new /obj/screen/inventory/hand()
 		inv_box.hud = HUD
 		inv_box.name = "r_hand"
@@ -261,15 +270,52 @@
 	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
 	autowhisper_display.icon_state = "autowhisper"
 	autowhisper_display.name = "autowhisper"
-	autowhisper_display.screen_loc = "EAST-1:28,CENTER-2:13"
+	autowhisper_display.screen_loc = ui_under_health
 	hud_elements |= autowhisper_display
 
 	var/obj/screen/aw = new /obj/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "aw-select"
 	aw.name = "autowhisper mode"
-	aw.screen_loc = "EAST-1:28,CENTER-2:13"
+	aw.screen_loc = ui_under_health
 	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "lang"
+	aw.name = "check known languages"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "pose"
+	aw.name = "set pose"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "up"
+	aw.name = "move upwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "down"
+	aw.name = "move downwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = HUD.ui_style
+	aw.icon_state = "use"
+	aw.name = "use held item on self"
+	aw.screen_loc = ui_swaphand2
+	using.color = HUD.ui_color
+	using.alpha = HUD.ui_alpha
+	adding |= using
 
 	//VOREStation Addition begin
 	shadekin_display = new /obj/screen/shadekin()

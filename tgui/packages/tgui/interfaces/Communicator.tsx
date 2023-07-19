@@ -1158,6 +1158,8 @@ const WeatherTab = (props, context) => {
 
   const { aircontents, weather } = data;
 
+  let deg = '\u00B0';
+
   return (
     <Section title="Weather">
       <Section title="Current Conditions">
@@ -1195,8 +1197,8 @@ const WeatherTab = (props, context) => {
                     {toTitleCase(wr.Weather)}
                   </LabeledList.Item>
                   <LabeledList.Item label="Temperature">
-                    Current: {wr.Temperature.toFixed()}&deg;C | High:{' '}
-                    {wr.High.toFixed()}&deg;C | Low: {wr.Low.toFixed()}&deg;C
+                    Current: {wr.Temperature.toFixed()} {deg}C | High:{' '}
+                    {wr.High.toFixed()} {deg}C | Low: {wr.Low.toFixed()} {deg}C
                   </LabeledList.Item>
                   <LabeledList.Item label="Wind Direction">
                     {wr.WindDir}
