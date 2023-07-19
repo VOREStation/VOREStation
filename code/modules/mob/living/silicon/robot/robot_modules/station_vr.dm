@@ -208,7 +208,12 @@
 					"Borgi" = "borgi-sec",
 					"Otieborg" = "oties",
 					"Drake" = "drakesec",
-					"Raptor V-4" = "secraptor"
+					"Raptor V-4" = "secraptor",
+					"MEKA" = "mekasec",
+					"MEKA v2" = "newmekasec",
+					"NIKO" = "mmekasec",
+					"NIKA" = "fmekasec",
+					"K4T" = "k4tsec"
 					)
 
 /obj/item/weapon/robot_module/robot/security/knine/New(var/mob/living/silicon/robot/R)
@@ -279,7 +284,13 @@
 					"Mediborg model V-2" = "vale",
 					"Borgi" = "borgi-medi",
 					"Drake" = "drakemed",
-					"Raptor V-4" = "medraptor"
+					"Raptor V-4" = "medraptor",
+					"MEKA" = "mekamed",
+					"MEKA v2" = "newmekamed",
+					"NIKA" = "fmekamed",
+					"NIKO" = "mmekamed",
+					"K4T" = "k4tmed",
+					"K4Talt" = "k4tmed_alt1"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/medihound/New(var/mob/living/silicon/robot/R)
@@ -481,7 +492,13 @@
 					"Borgi" = "borgi-jani",
 					"Otieborg" = "otiej",
 					"Drake" = "drakejanit",
-					"Raptor V-4" = "janiraptor"
+					"Raptor V-4" = "janiraptor",
+					"MEKA" = "mekajani",
+					"MEKA v2" = "newmekajani",
+					"NIKO" = "mmekajani",
+					"NIKA" = "fmekajani",
+					"K4T" = "k4tjani",
+					"K4Talt" = "k4tjani_alt1"
 					)
 	can_be_pushed = 0
 
@@ -567,7 +584,11 @@
 					"SciHound" = "scihound",
 					"SciHoundDark" = "scihounddark",
 					"Drake" = "drakesci",
-					"Raptor V-4" = "sciraptor"
+					"Raptor V-4" = "sciraptor",
+					"MEKA" = "mekasci",
+					"NIKO" = "mmekasci",
+					"NIKA" = "fmekasci",
+					"K4T" = "k4tsci"
 					)
 	can_be_pushed = 0
 
@@ -653,7 +674,13 @@
 					"EngiHound" = "engihound",
 					"EngiHoundDark" = "engihounddark",
 					"Drake" = "drakeeng",
-					"Raptor V-4" = "engiraptor"
+					"Raptor V-4" = "engiraptor",
+					"MEKA" = "mekaengi",
+					"MEKA v2" = "newmekaengi",
+					"NIKO" = "mmekaeng",
+					"NIKA" = "fmekaeng",
+					"K4T" = "k4tengi",
+					"K4Talt" = "k4tengi_alt1"
 					)
 	can_be_pushed = 0
 
@@ -804,12 +831,18 @@
 					"ServicehoundV2 Darkmode" = "servedark",
 					"Drake" = "drakemine",
 					"Raptor V-4" = "serviraptor",
-					"Raptor V-4000" = "fancyraptor"
+					"Raptor V-4000" = "fancyraptor",
+					"MEKA" = "mekaserve",
+					"MEKA v2" = "newmekaserve",
+					"NIKO" = "mmekaserv",
+					"NIKA" = "fmekaserv",
+					"K4T" = "k4tserve",
+					"K4Talt" = "k4tserve_alt1"
 					)
 	can_be_pushed = 0
 
 
-// In a nutshell, basicly service/butler robot but in dog form. - Port from CitadelRP
+// In a nutshell, basically service/butler robot but in dog form. - Port from CitadelRP
 /obj/item/weapon/robot_module/robot/clerical/butler/brodog/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/gripper/service(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
@@ -879,7 +912,13 @@
 					"CargoHound" = "cargohound",
 					"CargoHoundDark" = "cargohounddark",
 					"Drake" = "drakemine",
-					"Raptor V-4" = "mineraptor"
+					"Raptor V-4" = "mineraptor",
+					"MEKA" = "mekamine",
+					"MEKA v2" = "newmekamine",
+					"NIKO" = "mmekamine",
+					"NIKA" = "fmekamine",
+					"K4T" = "k4tmine",
+					"K4Talt" = "k4tmine_alt1"
 					)
 	can_be_pushed = 0
 

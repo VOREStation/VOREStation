@@ -161,6 +161,8 @@
 			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
 		else if(icontype == "Raptor V-4" || icontype == "Raptor V-4000") //Added for raptor sprites
 			icon = 'icons/mob/raptorborg/raptor.dmi'
+		else if(icontype == "MEKA" || icontype == "MEKA v2" || icontype == "NIKO" || icontype == "NIKA" || icontype == "K4T" || icontype == "K4Talt") //tallborgs. if anyone can code them not to be a dogborg subtype please do so, but this'll do for now.
+			icon = 'icons/mob/tallborg/tallborg.dmi'
 		else
 			icon = wideborg_dept
 		return
