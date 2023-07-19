@@ -40,7 +40,7 @@
 
 	say_list_type = /datum/say_list/mouse
 
-	var/body_color //brown, gray and white, leave blank for random
+	var/body_color //brown, gray, white and black, leave blank for random
 
 /mob/living/simple_mob/animal/passive/mouse/New()
 	..()
@@ -53,7 +53,7 @@
 	real_name = name
 
 	if(!body_color)
-		body_color = pick( list("brown","gray","white") )
+		body_color = pick( list("brown","gray","white","black") )
 	icon_state = "mouse_[body_color]"
 	item_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"

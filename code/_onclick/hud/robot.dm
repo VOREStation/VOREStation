@@ -11,7 +11,7 @@ var/obj/screen/robot_inventory
 
 	var/list/adding = list()
 	var/list/other = list()
-	
+
 	HUD.adding = adding
 	HUD.other = other
 
@@ -89,6 +89,48 @@ var/obj/screen/robot_inventory
 	healths.name = "health"
 	healths.screen_loc = ui_borg_health
 	other += healths
+
+	autowhisper_display = new /obj/screen()
+	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
+	autowhisper_display.icon_state = "autowhisper"
+	autowhisper_display.name = "autowhisper"
+	autowhisper_display.screen_loc = ui_borg_under_health
+	other |= autowhisper_display
+
+	var/obj/screen/aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "aw-select"
+	aw.name = "autowhisper mode"
+	aw.screen_loc = ui_borg_under_health
+	other |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "lang"
+	aw.name = "check known languages"
+	aw.screen_loc = ui_borg_under_health
+	other |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "pose"
+	aw.name = "set pose"
+	aw.screen_loc = ui_borg_under_health
+	other |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "up"
+	aw.name = "move upwards"
+	aw.screen_loc = ui_borg_under_health
+	other |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "down"
+	aw.name = "move downwards"
+	aw.screen_loc = ui_borg_under_health
+	other |= aw
 
 //Installed Module
 	hands = new /obj/screen()
