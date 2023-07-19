@@ -543,6 +543,14 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(flannel)
 
+/datum/gear/suit/flannelrecolour
+	display_name = "flannel jacket, recolourable"
+	path = /obj/item/clothing/suit/storage/flannel/recolour
+
+/datum/gear/suit/flannelrecolour/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/suit/denim_jacket
 	display_name = "denim jacket and vest selection"
 	description = "Select from a small range of denim jackets and vests."
