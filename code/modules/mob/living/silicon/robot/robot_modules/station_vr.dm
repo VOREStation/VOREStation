@@ -586,6 +586,7 @@
 					"Drake" = "drakesci",
 					"Raptor V-4" = "sciraptor",
 					"MEKA" = "mekasci",
+					"MEKA v2" = "newmekasci",
 					"NIKO" = "mmekasci",
 					"NIKA" = "fmekasci",
 					"K4T" = "k4tsci"
