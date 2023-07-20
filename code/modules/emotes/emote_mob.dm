@@ -31,6 +31,9 @@
 		if(forced_psay)
 			pme(message)
 			return
+		if(autowhisper)
+			return me_verb_subtle(message)
+
 		//VOREStation Addition End
 
 		if(act == "help")

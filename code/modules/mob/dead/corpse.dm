@@ -26,6 +26,12 @@
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, CentCom etc ID
+	var/species = SPECIES_HUMAN	//defaults to generic-ass humans
+	var/random_species = FALSE	//flip to TRUE to randomize species from the list below
+	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_UNATHI,SPECIES_SKRELL)
+	var/list/tail_type = null
+	var/list/ear_type = null
+	var/list/wing_type = null
 	var/corpsesynthtype = 0			// 0 for organic, 1 for drone, 2 for posibrain
 	var/corpsesynthbrand = "Unbranded"
 
@@ -34,6 +40,69 @@
 
 /obj/effect/landmark/mobcorpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+	if(random_species)
+		var/random_pick = pick(random_species_list)
+		M.set_species(random_pick)
+		src.species = random_pick
+	else
+		M.set_species(species)
+	if(tail_type && tail_type.len)
+		if(tail_type[1] in tail_styles_list)
+			M.tail_style = tail_styles_list[tail_type[1]]
+			if(tail_type.len > 1)
+				var/list/color_rgb_list = hex2rgb(tail_type[2])
+				M.r_tail = color_rgb_list[1]
+				M.g_tail = color_rgb_list[2]
+				M.b_tail = color_rgb_list[3]
+				if(tail_type.len > 2)
+					color_rgb_list = hex2rgb(tail_type[3])
+					M.r_tail2 = color_rgb_list[1]
+					M.g_tail2 = color_rgb_list[2]
+					M.b_tail2 = color_rgb_list[3]
+					if(tail_type.len > 3)
+						color_rgb_list = hex2rgb(tail_type[4])
+						M.r_tail3 = color_rgb_list[1]
+						M.g_tail3 = color_rgb_list[2]
+						M.b_tail3 = color_rgb_list[3]
+			M.update_tail_showing()
+	if(ear_type && ear_type.len)
+		if(ear_type[1] in ear_styles_list)
+			M.ear_style = ear_styles_list[ear_type[1]]
+			if(ear_type.len > 1)
+				var/list/color_rgb_list = hex2rgb(ear_type[2])
+				M.r_ears = color_rgb_list[1]
+				M.g_ears = color_rgb_list[2]
+				M.b_ears = color_rgb_list[3]
+				if(ear_type.len > 2)
+					color_rgb_list = hex2rgb(ear_type[3])
+					M.r_ears2 = color_rgb_list[1]
+					M.g_ears2 = color_rgb_list[2]
+					M.b_ears2 = color_rgb_list[3]
+					if(ear_type.len > 3)
+						color_rgb_list = hex2rgb(ear_type[4])
+						M.r_ears3 = color_rgb_list[1]
+						M.g_ears3 = color_rgb_list[2]
+						M.b_ears3 = color_rgb_list[3]
+			M.update_hair()
+	if(wing_type && wing_type.len)
+		if(wing_type[1] in wing_styles_list)
+			M.wing_style = wing_styles_list[wing_type[1]]
+			if(wing_type.len > 1)
+				var/list/color_rgb_list = hex2rgb(wing_type[2])
+				M.r_wing = color_rgb_list[1]
+				M.g_wing = color_rgb_list[2]
+				M.b_wing = color_rgb_list[3]
+				if(wing_type.len > 2)
+					color_rgb_list = hex2rgb(wing_type[3])
+					M.r_wing2 = color_rgb_list[1]
+					M.g_wing2 = color_rgb_list[2]
+					M.b_wing2 = color_rgb_list[3]
+					if(wing_type.len > 3)
+						color_rgb_list = hex2rgb(wing_type[4])
+						M.r_wing3 = color_rgb_list[1]
+						M.g_wing3 = color_rgb_list[2]
+						M.b_wing3 = color_rgb_list[3]
+			M.update_wing_showing()
 	M.real_name = generateCorpseName()
 	M.set_stat(DEAD) //Kills the new mob
 	if(corpsesynthtype > 0)
@@ -48,8 +117,6 @@
 					O.robotize(corpsesynthbrand)
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
-	if(src.corpsesuit)
-		M.equip_to_slot_or_del(new src.corpsesuit(M), slot_wear_suit)
 	if(src.corpseshoes)
 		M.equip_to_slot_or_del(new src.corpseshoes(M), slot_shoes)
 	if(src.corpsegloves)
@@ -60,8 +127,6 @@
 		M.equip_to_slot_or_del(new src.corpseglasses(M), slot_glasses)
 	if(src.corpsemask)
 		M.equip_to_slot_or_del(new src.corpsemask(M), slot_wear_mask)
-	if(src.corpsehelmet)
-		M.equip_to_slot_or_del(new src.corpsehelmet(M), slot_head)
 	if(src.corpsebelt)
 		M.equip_to_slot_or_del(new src.corpsebelt(M), slot_belt)
 	if(src.corpsepocket1)
@@ -90,6 +155,10 @@
 			W.assignment = corpseidjob
 		W.registered_name = M.real_name
 		M.equip_to_slot_or_del(W, slot_wear_id)
+	if(src.corpsehelmet)
+		M.equip_voidhelm_to_slot_or_del_with_refit(new src.corpsehelmet(M), slot_head, src.species)
+	if(src.corpsesuit)
+		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
 	delete_me = 1
 	qdel(src)
 

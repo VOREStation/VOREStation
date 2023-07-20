@@ -160,6 +160,13 @@
 		using.alpha = HUD.ui_alpha
 		adding += using
 
+		using = new /obj/screen/useself()
+		using.icon = HUD.ui_style
+		using.screen_loc = ui_swaphand2
+		using.color = HUD.ui_color
+		using.alpha = HUD.ui_alpha
+		adding |= using
+
 		inv_box = new /obj/screen/inventory/hand()
 		inv_box.hud = HUD
 		inv_box.name = "r_hand"
@@ -256,6 +263,57 @@
 		healths.name = "health"
 		healths.screen_loc = ui_health
 		hud_elements |= healths
+
+	autowhisper_display = new /obj/screen()
+	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
+	autowhisper_display.icon_state = "autowhisper"
+	autowhisper_display.name = "autowhisper"
+	autowhisper_display.screen_loc = ui_under_health
+	hud_elements |= autowhisper_display
+
+	var/obj/screen/aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "aw-select"
+	aw.name = "autowhisper mode"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "lang"
+	aw.name = "check known languages"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "pose"
+	aw.name = "set pose"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "up"
+	aw.name = "move upwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "down"
+	aw.name = "move downwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = HUD.ui_style
+	aw.icon_state = "use"
+	aw.name = "use held item on self"
+	aw.screen_loc = ui_swaphand2
+	using.color = HUD.ui_color
+	using.alpha = HUD.ui_alpha
+	adding |= using
 
 	//VOREStation Addition begin
 	shadekin_display = new /obj/screen/shadekin()
@@ -364,3 +422,15 @@
 /obj/screen/wizard/energy
 	name = "energy"
 	icon_state = "wiz_energy"
+
+/obj/screen/useself
+	name = "use held item on self"
+	icon_state = "use"
+	var/next = 0
+
+/obj/screen/useself/proc/can_use(var/mob/living/carbon/human/h, var/obj/item/i)	//Basically trying to use the item this way skips the cooldown
+	if(world.time >= next)														//And trying to check the cooldown doesn't work because when you click the UI it sets a cooldown
+		next = h.get_attack_speed(i)											//So instead we'll just put a cooldown on the use button and apply the item's cooldown to the player
+		h.setClickCooldown(next)												//Otherwise you can click the button and yourself faster than the normal cooldown. SO WE SET BOTH!!!!
+		next += world.time
+		i.attack(h, h)
