@@ -25,7 +25,7 @@
 		usr.emote_vr(message)
 
 /mob/verb/me_verb_subtle_custom(message as message) // Literally same as above but with mode_selection set to true
-	set name = "Custom Subtle"
+	set name = "Subtle (Custom)"
 	set category = "IC"
 	set desc = "Emote to nearby people, with ability to choose which specific portion of people you wish to target."
 
