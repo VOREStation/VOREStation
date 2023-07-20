@@ -154,6 +154,7 @@
 		add_overlay("wreck-overlay")
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
+	vis_height = 32
 	if(custom_sprite == TRUE)
 		return
 	if(wideborg == TRUE)
@@ -163,6 +164,8 @@
 			icon = 'icons/mob/raptorborg/raptor.dmi'
 		else if(icontype == "MEKA" || icontype == "MEKA v2" || icontype == "NIKO" || icontype == "NIKA" || icontype == "K4T" || icontype == "K4Talt") //tallborgs. if anyone can code them not to be a dogborg subtype please do so, but this'll do for now.
 			icon = 'icons/mob/tallborg/tallborg.dmi'
+			vis_height = 64
+			update_transform()
 		else
 			icon = wideborg_dept
 		return
