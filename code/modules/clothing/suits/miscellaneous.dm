@@ -966,6 +966,11 @@
 	icon_state = "flannel_brown"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 
+/obj/item/clothing/suit/storage/flannel/recolour
+	desc = "A comfy, flannel shirt.  Unleash your inner hipster."
+	icon_state = "flannel_recolour"
+
+
 //Green Uniform
 
 /obj/item/clothing/suit/storage/toggle/greengov
