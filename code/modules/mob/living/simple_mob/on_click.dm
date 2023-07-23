@@ -13,9 +13,13 @@
 
 	switch(a_intent)
 		if(I_HELP)
-			var/mob/living/L = A
-			if(istype(L) && (!has_hands || !L.attempt_to_scoop(src)))
-				custom_emote(1,"[pick(friendly)] \the [A]!")
+			if(isliving(A))
+				var/mob/living/L = A
+				if(istype(L) && (!has_hands || !L.attempt_to_scoop(src)))
+					custom_emote(1,"[pick(friendly)] \the [A]!")
+			if(istype(A,/obj/structure/micro_tunnel))	//Allows simplemobs to click on mouse holes, mice should be allowed to go in mouse holes, and other mobs
+				var/obj/structure/micro_tunnel/t = A	//should be allowed to drag the mice out of the mouse holes!
+				t.tunnel_interact(src)
 
 		if(I_HURT)
 			if(can_special_attack(A) && special_attack_target(A))

@@ -477,13 +477,14 @@
 			usr.down()
 
 		if("use held item on self")
+			var/obj/screen/useself/s = src
 			if(ishuman(usr))
 				var/mob/living/carbon/human/u = usr
 				var/obj/item/i = u.get_active_hand()
 				if(i)
-					i.attack(usr, usr)
+					s.can_use(u,i)
 				else
-					to_chat(usr, "<span class='notice'>You're not holding anything to use.</span>")
+					to_chat(usr, "<span class='notice'>You're not holding anything to use. You need to have something in your active hand to use it.</span>")
 
 		if("module")
 			if(isrobot(usr))
