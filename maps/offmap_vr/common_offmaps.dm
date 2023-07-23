@@ -285,6 +285,12 @@
 	desc = "This place seems broken!"
 	mappath = 'maps/redgate/darkadventure.dmm'
 
+/datum/map_template/common_lateload/redgate/stardog
+	name = "Star Dog"
+	desc = "That's a big dog!"
+	mappath = 'maps/redgate/stardog.dmm'
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
