@@ -183,7 +183,7 @@
 		var/atom/our_entity = holder.entity_refs[name]
 		if(!message)
 			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
-		message = sanitize(message)
+		message = encode_html_emphasis(sanitize(message))
 		if(message && mode == "Speak")
 			our_entity.audible_message("<b>[our_entity.name]</b> [message]")
 		else if(message && mode == "Emote")
@@ -305,7 +305,7 @@
 		L.say(message)
 
 /datum/entity_narrate/proc/narrate_tgui_atom(atom/A, message as text)
-	message = sanitize(message)
+	message = encode_html_emphasis(sanitize(message))
 	if(tgui_narrate_mode && tgui_narrate_privacy)
 		A.visible_message("<i><b>\The [A.name]</b> [message]</i>", range = 1)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)
