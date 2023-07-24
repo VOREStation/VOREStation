@@ -2,13 +2,13 @@
 "a" = (
 /obj/effect/fake_sun,
 /turf/unsimulated/wall/dark,
-/area/redgate/wilds)
+/area/redgate/stardog)
 "b" = (
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "c" = (
 /obj/effect/map_effect/portal/master/side_b{
 	dir = 8;
@@ -17,59 +17,62 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "d" = (
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "e" = (
 /obj/machinery/door/airlock/glass{
 	name = "Redgate Lounge"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "h" = (
 /obj/structure/bed/chair/sofa/corp,
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "i" = (
 /obj/effect/overmap/visitable/ship/simplemob/stardog,
 /turf/unsimulated/wall/dark,
-/area/redgate/wilds)
+/area/redgate/stardog)
+"k" = (
+/turf/unsimulated/wall/dark,
+/area/redgate/stardog)
 "l" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "m" = (
 /obj/effect/map_effect/portal/line/side_a,
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "n" = (
 /obj/machinery/light,
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "o" = (
 /turf/simulated/floor/outdoors/fur/woof,
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "p" = (
 /turf/simulated/floor/flesh,
-/area/redgate/wilds)
+/area/redgate/stardog)
 "q" = (
 /obj/effect/floor_decal/spline/fancy{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "s" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/reinforced,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "t" = (
 /turf/simulated/floor/reinforced,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "u" = (
 /obj/effect/map_effect/portal/master/side_a{
 	dir = 4;
@@ -78,7 +81,7 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "v" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = 32
@@ -87,13 +90,13 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "w" = (
 /obj/structure/bed/chair/sofa/corp{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "x" = (
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 1
@@ -102,14 +105,14 @@
 	dir = 4
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "y" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "z" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = -32
@@ -118,7 +121,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "A" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
@@ -126,7 +129,7 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "B" = (
 /obj/effect/map_effect/portal/master/side_a{
 	portal_id = "stardog_north"
@@ -134,10 +137,10 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "C" = (
 /turf/unsimulated/wall/dark,
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "D" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
@@ -145,7 +148,7 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "E" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = -32
@@ -154,7 +157,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "F" = (
 /obj/effect/map_effect/portal/line/side_a{
 	dir = 8
@@ -162,17 +165,17 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "G" = (
 /turf/simulated/wall,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "H" = (
 /obj/random/vendorfood,
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "I" = (
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "J" = (
 /obj/effect/map_effect/portal/master/side_b{
 	dir = 4;
@@ -181,7 +184,7 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "K" = (
 /obj/effect/map_effect/portal/master/side_a{
 	dir = 8;
@@ -190,7 +193,7 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "L" = (
 /obj/effect/map_effect/portal/line/side_a{
 	dir = 4
@@ -198,7 +201,7 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "M" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
@@ -206,23 +209,23 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "N" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "O" = (
 /obj/structure/bed/chair/sofa/corp/right,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "P" = (
 /obj/structure/table/alien/blue,
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "Q" = (
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 1
@@ -231,21 +234,21 @@
 	dir = 8
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "R" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 32
 	},
 /obj/structure/bed/chair/sofa/corp/left,
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "S" = (
 /turf/simulated/floor/tiled/monotile,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "T" = (
 /obj/random/vendordrink,
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "U" = (
 /obj/effect/map_effect/portal/master/side_b{
 	dir = 1;
@@ -254,11 +257,11 @@
 /turf/simulated/floor/outdoors/fur/woof{
 	tree_chance = 0
 	},
-/area/redgate/wilds)
+/area/redgate/stardog/outside)
 "V" = (
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "W" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = -32
@@ -267,26 +270,26 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "X" = (
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "Y" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 32
 	},
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/lino,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 "Z" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/redgate/structure/powered)
+/area/redgate/stardog/lounge)
 
 (1,1,1) = {"
 C
@@ -391,42 +394,42 @@ C
 C
 C
 C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
 i
 a
 "}
@@ -570,7 +573,7 @@ p
 p
 p
 p
-C
+k
 "}
 (3,1,1) = {"
 C
@@ -712,7 +715,7 @@ p
 p
 p
 p
-C
+k
 "}
 (4,1,1) = {"
 C
@@ -854,7 +857,7 @@ p
 p
 p
 p
-C
+k
 "}
 (5,1,1) = {"
 C
@@ -996,7 +999,7 @@ p
 p
 p
 p
-C
+k
 "}
 (6,1,1) = {"
 C
@@ -1138,7 +1141,7 @@ p
 p
 p
 p
-C
+k
 "}
 (7,1,1) = {"
 C
@@ -1280,7 +1283,7 @@ p
 p
 p
 p
-C
+k
 "}
 (8,1,1) = {"
 C
@@ -1422,7 +1425,7 @@ p
 p
 p
 p
-C
+k
 "}
 (9,1,1) = {"
 C
@@ -1564,7 +1567,7 @@ p
 p
 p
 p
-C
+k
 "}
 (10,1,1) = {"
 C
@@ -1706,7 +1709,7 @@ p
 p
 p
 p
-C
+k
 "}
 (11,1,1) = {"
 C
@@ -1848,7 +1851,7 @@ p
 p
 p
 p
-C
+k
 "}
 (12,1,1) = {"
 C
@@ -1990,7 +1993,7 @@ p
 p
 p
 p
-C
+k
 "}
 (13,1,1) = {"
 C
@@ -2132,7 +2135,7 @@ p
 p
 p
 p
-C
+k
 "}
 (14,1,1) = {"
 C
@@ -2274,7 +2277,7 @@ p
 p
 p
 p
-C
+k
 "}
 (15,1,1) = {"
 C
@@ -2416,7 +2419,7 @@ p
 p
 p
 p
-C
+k
 "}
 (16,1,1) = {"
 C
@@ -2558,7 +2561,7 @@ p
 p
 p
 p
-C
+k
 "}
 (17,1,1) = {"
 C
@@ -2700,7 +2703,7 @@ p
 p
 p
 p
-C
+k
 "}
 (18,1,1) = {"
 C
@@ -2842,7 +2845,7 @@ p
 p
 p
 p
-C
+k
 "}
 (19,1,1) = {"
 C
@@ -2984,7 +2987,7 @@ p
 p
 p
 p
-C
+k
 "}
 (20,1,1) = {"
 C
@@ -3126,7 +3129,7 @@ p
 p
 p
 p
-C
+k
 "}
 (21,1,1) = {"
 C
@@ -3268,7 +3271,7 @@ p
 p
 p
 p
-C
+k
 "}
 (22,1,1) = {"
 C
@@ -3410,7 +3413,7 @@ p
 p
 p
 p
-C
+k
 "}
 (23,1,1) = {"
 C
@@ -3552,7 +3555,7 @@ p
 p
 p
 p
-C
+k
 "}
 (24,1,1) = {"
 C
@@ -3694,7 +3697,7 @@ p
 p
 p
 p
-C
+k
 "}
 (25,1,1) = {"
 C
@@ -3836,7 +3839,7 @@ p
 p
 p
 p
-C
+k
 "}
 (26,1,1) = {"
 C
@@ -3978,7 +3981,7 @@ p
 p
 p
 p
-C
+k
 "}
 (27,1,1) = {"
 C
@@ -4120,7 +4123,7 @@ p
 p
 p
 p
-C
+k
 "}
 (28,1,1) = {"
 C
@@ -4262,7 +4265,7 @@ p
 p
 p
 p
-C
+k
 "}
 (29,1,1) = {"
 C
@@ -4404,7 +4407,7 @@ p
 p
 p
 p
-C
+k
 "}
 (30,1,1) = {"
 C
@@ -4546,7 +4549,7 @@ p
 p
 p
 p
-C
+k
 "}
 (31,1,1) = {"
 C
@@ -4688,7 +4691,7 @@ p
 p
 p
 p
-C
+k
 "}
 (32,1,1) = {"
 C
@@ -4830,7 +4833,7 @@ p
 p
 p
 p
-C
+k
 "}
 (33,1,1) = {"
 C
@@ -4972,7 +4975,7 @@ p
 p
 p
 p
-C
+k
 "}
 (34,1,1) = {"
 C
@@ -5114,7 +5117,7 @@ p
 p
 p
 p
-C
+k
 "}
 (35,1,1) = {"
 C
@@ -5256,7 +5259,7 @@ p
 p
 p
 p
-C
+k
 "}
 (36,1,1) = {"
 C
@@ -5398,7 +5401,7 @@ p
 p
 p
 p
-C
+k
 "}
 (37,1,1) = {"
 C
@@ -5540,7 +5543,7 @@ p
 p
 p
 p
-C
+k
 "}
 (38,1,1) = {"
 C
@@ -5682,7 +5685,7 @@ p
 p
 p
 p
-C
+k
 "}
 (39,1,1) = {"
 C
@@ -5824,7 +5827,7 @@ p
 p
 p
 p
-C
+k
 "}
 (40,1,1) = {"
 C
@@ -5966,7 +5969,7 @@ p
 p
 p
 p
-C
+k
 "}
 (41,1,1) = {"
 C
@@ -6108,7 +6111,7 @@ p
 p
 p
 p
-C
+k
 "}
 (42,1,1) = {"
 C
@@ -6250,7 +6253,7 @@ p
 p
 p
 p
-C
+k
 "}
 (43,1,1) = {"
 C
@@ -6392,7 +6395,7 @@ p
 p
 p
 p
-C
+k
 "}
 (44,1,1) = {"
 C
@@ -6534,7 +6537,7 @@ p
 p
 p
 p
-C
+k
 "}
 (45,1,1) = {"
 C
@@ -6676,7 +6679,7 @@ p
 p
 p
 p
-C
+k
 "}
 (46,1,1) = {"
 C
@@ -6818,7 +6821,7 @@ p
 p
 p
 p
-C
+k
 "}
 (47,1,1) = {"
 C
@@ -6960,7 +6963,7 @@ p
 p
 p
 p
-C
+k
 "}
 (48,1,1) = {"
 C
@@ -7102,7 +7105,7 @@ p
 p
 p
 p
-C
+k
 "}
 (49,1,1) = {"
 C
@@ -7244,7 +7247,7 @@ p
 p
 p
 p
-C
+k
 "}
 (50,1,1) = {"
 C
@@ -7386,7 +7389,7 @@ p
 p
 p
 p
-C
+k
 "}
 (51,1,1) = {"
 C
@@ -7528,7 +7531,7 @@ p
 p
 p
 p
-C
+k
 "}
 (52,1,1) = {"
 C
@@ -7670,7 +7673,7 @@ p
 p
 p
 p
-C
+k
 "}
 (53,1,1) = {"
 C
@@ -7812,7 +7815,7 @@ p
 p
 p
 p
-C
+k
 "}
 (54,1,1) = {"
 C
@@ -7954,7 +7957,7 @@ p
 p
 p
 p
-C
+k
 "}
 (55,1,1) = {"
 C
@@ -8096,7 +8099,7 @@ p
 p
 p
 p
-C
+k
 "}
 (56,1,1) = {"
 C
@@ -8238,7 +8241,7 @@ p
 p
 p
 p
-C
+k
 "}
 (57,1,1) = {"
 C
@@ -8380,7 +8383,7 @@ p
 p
 p
 p
-C
+k
 "}
 (58,1,1) = {"
 C
@@ -8522,7 +8525,7 @@ p
 p
 p
 p
-C
+k
 "}
 (59,1,1) = {"
 C
@@ -8664,7 +8667,7 @@ p
 p
 p
 p
-C
+k
 "}
 (60,1,1) = {"
 C
@@ -8806,7 +8809,7 @@ p
 p
 p
 p
-C
+k
 "}
 (61,1,1) = {"
 C
@@ -8948,7 +8951,7 @@ p
 p
 p
 p
-C
+k
 "}
 (62,1,1) = {"
 C
@@ -9090,7 +9093,7 @@ p
 p
 p
 p
-C
+k
 "}
 (63,1,1) = {"
 C
@@ -9232,7 +9235,7 @@ p
 p
 p
 p
-C
+k
 "}
 (64,1,1) = {"
 C
@@ -9374,7 +9377,7 @@ p
 p
 p
 p
-C
+k
 "}
 (65,1,1) = {"
 C
@@ -9516,7 +9519,7 @@ p
 p
 p
 p
-C
+k
 "}
 (66,1,1) = {"
 C
@@ -9658,7 +9661,7 @@ p
 p
 p
 p
-C
+k
 "}
 (67,1,1) = {"
 C
@@ -9800,7 +9803,7 @@ p
 p
 p
 p
-C
+k
 "}
 (68,1,1) = {"
 B
@@ -9942,7 +9945,7 @@ p
 p
 p
 p
-C
+k
 "}
 (69,1,1) = {"
 m
@@ -10084,7 +10087,7 @@ p
 p
 p
 p
-C
+k
 "}
 (70,1,1) = {"
 m
@@ -10226,7 +10229,7 @@ p
 p
 p
 p
-C
+k
 "}
 (71,1,1) = {"
 m
@@ -10368,7 +10371,7 @@ p
 p
 p
 p
-C
+k
 "}
 (72,1,1) = {"
 m
@@ -10510,7 +10513,7 @@ p
 p
 p
 p
-C
+k
 "}
 (73,1,1) = {"
 C
@@ -10652,7 +10655,7 @@ p
 p
 p
 p
-C
+k
 "}
 (74,1,1) = {"
 C
@@ -10794,7 +10797,7 @@ p
 p
 p
 p
-C
+k
 "}
 (75,1,1) = {"
 C
@@ -10936,7 +10939,7 @@ p
 p
 p
 p
-C
+k
 "}
 (76,1,1) = {"
 C
@@ -11078,7 +11081,7 @@ p
 p
 p
 p
-C
+k
 "}
 (77,1,1) = {"
 C
@@ -11220,7 +11223,7 @@ p
 p
 p
 p
-C
+k
 "}
 (78,1,1) = {"
 C
@@ -11362,7 +11365,7 @@ p
 p
 p
 p
-C
+k
 "}
 (79,1,1) = {"
 C
@@ -11504,7 +11507,7 @@ p
 p
 p
 p
-C
+k
 "}
 (80,1,1) = {"
 C
@@ -11646,7 +11649,7 @@ p
 p
 p
 p
-C
+k
 "}
 (81,1,1) = {"
 C
@@ -11788,7 +11791,7 @@ p
 p
 p
 p
-C
+k
 "}
 (82,1,1) = {"
 C
@@ -11930,7 +11933,7 @@ p
 p
 p
 p
-C
+k
 "}
 (83,1,1) = {"
 C
@@ -12072,7 +12075,7 @@ p
 p
 p
 p
-C
+k
 "}
 (84,1,1) = {"
 C
@@ -12214,7 +12217,7 @@ p
 p
 p
 p
-C
+k
 "}
 (85,1,1) = {"
 C
@@ -12356,7 +12359,7 @@ p
 p
 p
 p
-C
+k
 "}
 (86,1,1) = {"
 C
@@ -12498,7 +12501,7 @@ p
 p
 p
 p
-C
+k
 "}
 (87,1,1) = {"
 C
@@ -12640,7 +12643,7 @@ p
 p
 p
 p
-C
+k
 "}
 (88,1,1) = {"
 C
@@ -12782,7 +12785,7 @@ p
 p
 p
 p
-C
+k
 "}
 (89,1,1) = {"
 C
@@ -12924,7 +12927,7 @@ p
 p
 p
 p
-C
+k
 "}
 (90,1,1) = {"
 C
@@ -13066,7 +13069,7 @@ p
 p
 p
 p
-C
+k
 "}
 (91,1,1) = {"
 C
@@ -13208,7 +13211,7 @@ p
 p
 p
 p
-C
+k
 "}
 (92,1,1) = {"
 C
@@ -13350,7 +13353,7 @@ p
 p
 p
 p
-C
+k
 "}
 (93,1,1) = {"
 C
@@ -13492,7 +13495,7 @@ p
 p
 p
 p
-C
+k
 "}
 (94,1,1) = {"
 C
@@ -13634,7 +13637,7 @@ p
 p
 p
 p
-C
+k
 "}
 (95,1,1) = {"
 C
@@ -13776,7 +13779,7 @@ p
 p
 p
 p
-C
+k
 "}
 (96,1,1) = {"
 C
@@ -13918,7 +13921,7 @@ p
 p
 p
 p
-C
+k
 "}
 (97,1,1) = {"
 C
@@ -14060,7 +14063,7 @@ p
 p
 p
 p
-C
+k
 "}
 (98,1,1) = {"
 C
@@ -14202,7 +14205,7 @@ p
 p
 p
 p
-C
+k
 "}
 (99,1,1) = {"
 C
@@ -14344,7 +14347,7 @@ p
 p
 p
 p
-C
+k
 "}
 (100,1,1) = {"
 C
@@ -14486,7 +14489,7 @@ p
 p
 p
 p
-C
+k
 "}
 (101,1,1) = {"
 C
@@ -14628,7 +14631,7 @@ p
 p
 p
 p
-C
+k
 "}
 (102,1,1) = {"
 C
@@ -14770,7 +14773,7 @@ p
 p
 p
 p
-C
+k
 "}
 (103,1,1) = {"
 C
@@ -14912,7 +14915,7 @@ p
 p
 p
 p
-C
+k
 "}
 (104,1,1) = {"
 C
@@ -15054,7 +15057,7 @@ p
 p
 p
 p
-C
+k
 "}
 (105,1,1) = {"
 C
@@ -15196,7 +15199,7 @@ p
 p
 p
 p
-C
+k
 "}
 (106,1,1) = {"
 C
@@ -15338,7 +15341,7 @@ p
 p
 p
 p
-C
+k
 "}
 (107,1,1) = {"
 C
@@ -15480,7 +15483,7 @@ p
 p
 p
 p
-C
+k
 "}
 (108,1,1) = {"
 C
@@ -15622,7 +15625,7 @@ p
 p
 p
 p
-C
+k
 "}
 (109,1,1) = {"
 C
@@ -15764,7 +15767,7 @@ p
 p
 p
 p
-C
+k
 "}
 (110,1,1) = {"
 C
@@ -15906,7 +15909,7 @@ p
 p
 p
 p
-C
+k
 "}
 (111,1,1) = {"
 C
@@ -16048,7 +16051,7 @@ p
 p
 p
 p
-C
+k
 "}
 (112,1,1) = {"
 C
@@ -16190,7 +16193,7 @@ p
 p
 p
 p
-C
+k
 "}
 (113,1,1) = {"
 C
@@ -16332,7 +16335,7 @@ p
 p
 p
 p
-C
+k
 "}
 (114,1,1) = {"
 C
@@ -16474,7 +16477,7 @@ p
 p
 p
 p
-C
+k
 "}
 (115,1,1) = {"
 C
@@ -16616,7 +16619,7 @@ p
 p
 p
 p
-C
+k
 "}
 (116,1,1) = {"
 C
@@ -16758,7 +16761,7 @@ p
 p
 p
 p
-C
+k
 "}
 (117,1,1) = {"
 C
@@ -16900,7 +16903,7 @@ p
 p
 p
 p
-C
+k
 "}
 (118,1,1) = {"
 C
@@ -17042,7 +17045,7 @@ p
 p
 p
 p
-C
+k
 "}
 (119,1,1) = {"
 C
@@ -17184,7 +17187,7 @@ p
 p
 p
 p
-C
+k
 "}
 (120,1,1) = {"
 C
@@ -17326,7 +17329,7 @@ p
 p
 p
 p
-C
+k
 "}
 (121,1,1) = {"
 C
@@ -17468,7 +17471,7 @@ p
 p
 p
 p
-C
+k
 "}
 (122,1,1) = {"
 C
@@ -17610,7 +17613,7 @@ p
 p
 p
 p
-C
+k
 "}
 (123,1,1) = {"
 C
@@ -17752,7 +17755,7 @@ p
 p
 p
 p
-C
+k
 "}
 (124,1,1) = {"
 C
@@ -17894,7 +17897,7 @@ p
 p
 p
 p
-C
+k
 "}
 (125,1,1) = {"
 C
@@ -18036,7 +18039,7 @@ p
 p
 p
 p
-C
+k
 "}
 (126,1,1) = {"
 C
@@ -18178,7 +18181,7 @@ p
 p
 p
 p
-C
+k
 "}
 (127,1,1) = {"
 C
@@ -18320,7 +18323,7 @@ p
 p
 p
 p
-C
+k
 "}
 (128,1,1) = {"
 C
@@ -18462,7 +18465,7 @@ p
 p
 p
 p
-C
+k
 "}
 (129,1,1) = {"
 C
@@ -18604,7 +18607,7 @@ p
 p
 p
 p
-C
+k
 "}
 (130,1,1) = {"
 C
@@ -18746,7 +18749,7 @@ p
 p
 p
 p
-C
+k
 "}
 (131,1,1) = {"
 C
@@ -18888,7 +18891,7 @@ p
 p
 p
 p
-C
+k
 "}
 (132,1,1) = {"
 C
@@ -19030,7 +19033,7 @@ p
 p
 p
 p
-C
+k
 "}
 (133,1,1) = {"
 C
@@ -19172,7 +19175,7 @@ p
 p
 p
 p
-C
+k
 "}
 (134,1,1) = {"
 C
@@ -19314,7 +19317,7 @@ p
 p
 p
 p
-C
+k
 "}
 (135,1,1) = {"
 C
@@ -19456,7 +19459,7 @@ p
 p
 p
 p
-C
+k
 "}
 (136,1,1) = {"
 C
@@ -19598,7 +19601,7 @@ p
 p
 p
 p
-C
+k
 "}
 (137,1,1) = {"
 C
@@ -19740,7 +19743,7 @@ p
 p
 p
 p
-C
+k
 "}
 (138,1,1) = {"
 C
@@ -19882,7 +19885,7 @@ p
 p
 p
 p
-C
+k
 "}
 (139,1,1) = {"
 C
@@ -20024,7 +20027,7 @@ p
 p
 p
 p
-C
+k
 "}
 (140,1,1) = {"
 C
@@ -20129,42 +20132,42 @@ C
 C
 C
 C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
 "}

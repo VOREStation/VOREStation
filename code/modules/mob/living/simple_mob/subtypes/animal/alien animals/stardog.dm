@@ -85,12 +85,6 @@
 	. = ..()
 	child_om_marker.set_light(5, 1, "#ff8df5")
 
-/mob/living/simple_mob/vore/overmap/stardog/Destroy()
-	for(var/turf/simulated/floor/outdoors/fur/f in world)
-		if(f.host_mob == src)
-			f.host_mob = null
-	..()
-
 /obj/effect/overmap/visitable/ship/simplemob/stardog
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "ship"
@@ -124,7 +118,6 @@
 	turf_layers = list()
 	var/tree_chance = 25
 	var/tree_color = null
-	var/mob/living/simple_mob/vore/overmap/stardog/host_mob
 
 /turf/simulated/floor/outdoors/fur/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
@@ -173,13 +166,14 @@
 	set category = "IC"
 	set src in oview(1)
 
-	usr.visible_message("\The [usr] pets \the [src].")
-	if(host_mob)
-		host_mob.affinity ++
-	else
-		for(var/mob/living/simple_mob/vore/overmap/stardog/s in world)
-			host_mob = s
-			break
+	usr.visible_message("<span class = 'notice'>\The [usr] pets \the [src].</span>", "<span class = 'notice'>You pet \the [src].</span>", runemessage = "pet pat...")
+	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
+
+	if(s && istype(s, /obj/effect/overmap/visitable/ship/simplemob/stardog))
+		var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
+		m.affinity ++
+		if(m.affinity >= 10 && prob(5))
+			m.visible_message("\The [m]'s tail wags happily!")
 
 /decl/flooring/fur
 	name = "fur"
@@ -207,6 +201,9 @@
 	pixel_y = 0
 	shake_animation_degrees = 2
 	sticks = FALSE
+	var/mob_chance = 5
+	var/list/mob_list = list()
+
 
 /obj/structure/flora/tree/fur/choose_icon_state()
 	return "[base_state][rand(1, 2)]"
@@ -217,4 +214,29 @@
 		F.color = color
 		F.update_icon()
 	visible_message("<span class='danger'>\The [src] is felled!</span>")
+	if(prob(mob_chance))
+		var/ourmob = pickweight(mob_list)
+		var/mob/living/simple_mob/s = new ourmob(get_turf(src))
+		s.ai_holder.hostile = FALSE
+		s.ai_holder.retaliate = TRUE
+
 	qdel(src)
+
+/area/redgate/stardog
+	name = "flesh abyss"
+	icon_state = "redblatri"
+
+/area/redgate/stardog/lounge
+	name = "redgate lounge"
+	icon_state = "redwhisqu"
+	requires_power = 0
+
+/area/redgate/stardog/outside
+	name = "star dog"
+	icon_state = "redblacir"
+	semirandom = TRUE
+	valid_mobs = list(list(/mob/living/simple_mob/vore/woof))
+	semirandom_groups = 5
+	semirandom_group_min = 1
+	semirandom_group_max = 10
+	mob_intent = "retaliate"
