@@ -55,6 +55,7 @@
 		)
 
 	movement_cooldown = 0
+	var/affinity = 0
 
 /mob/living/simple_mob/vore/overmap/stardog/Life()
 	. = ..()
@@ -84,6 +85,12 @@
 	. = ..()
 	child_om_marker.set_light(5, 1, "#ff8df5")
 
+/mob/living/simple_mob/vore/overmap/stardog/Destroy()
+	for(var/turf/simulated/floor/outdoors/fur/f in world)
+		if(f.host_mob == src)
+			f.host_mob = null
+	..()
+
 /obj/effect/overmap/visitable/ship/simplemob/stardog
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "ship"
@@ -105,3 +112,109 @@
 	wander = TRUE
 	wander_delay = 1
 	base_wander_delay = 50
+
+/turf/simulated/floor/outdoors/fur
+	name = "fur"
+	desc = "Thick, silky fur!"
+	icon = 'icons/turf/fur.dmi'
+	icon_state = "fur0"
+	edge_blending_priority = 4
+	initial_flooring = /decl/flooring/fur
+	can_dig = FALSE
+	turf_layers = list()
+	var/tree_chance = 25
+	var/tree_color = null
+	var/mob/living/simple_mob/vore/overmap/stardog/host_mob
+
+/turf/simulated/floor/outdoors/fur/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(ishuman(AM))
+		var/mob/living/carbon/human/L = AM
+		L.fur_submerge()
+
+/turf/simulated/floor/outdoors/fur/Exited(atom/movable/AM, atom/new_loc)
+	. = ..()
+	if(ishuman(AM))
+		var/mob/living/carbon/human/L = AM
+		L.fur_submerge()
+
+/mob/living/carbon/human/proc/fur_submerge()
+	if(QDESTROYING(src))
+		return
+
+	remove_layer(MOB_WATER_LAYER)
+
+	if(!istype(loc,/turf/simulated/floor/outdoors/fur) || lying)
+		return
+
+	var/atom/A = loc
+	var/image/I = image(icon = 'icons/turf/fur.dmi', icon_state = "submerged", layer = BODY_LAYER+MOB_WATER_LAYER)
+	I.color = A.color
+	overlays_standing[MOB_WATER_LAYER] = I
+
+	apply_layer(MOB_WATER_LAYER)
+
+/turf/simulated/floor/outdoors/fur/woof
+	color = "#c69c85"
+	tree_color = "#eeb698"
+
+/turf/simulated/floor/outdoors/fur/Initialize()
+	. = ..()
+	if(tree_chance && prob(tree_chance) && !check_density())
+		var/obj/structure/flora/tree/fur/tree = new /obj/structure/flora/tree/fur(src)
+		if(tree_color)
+			tree.color = tree_color
+		else
+			tree.color = color
+
+/turf/simulated/floor/outdoors/fur/verb/pet()
+	set name = "Pet Fur"
+	set desc = "Pet the fur!"
+	set category = "IC"
+	set src in oview(1)
+
+	usr.visible_message("\The [usr] pets \the [src].")
+	if(host_mob)
+		host_mob.affinity ++
+	else
+		for(var/mob/living/simple_mob/vore/overmap/stardog/s in world)
+			host_mob = s
+			break
+
+/decl/flooring/fur
+	name = "fur"
+	desc = "Thick, silky fur!"
+	icon = 'icons/turf/fur.dmi'
+	icon_base = "fur"
+	has_base_range = 15
+
+	can_paint = TRUE
+
+	footstep_sounds = list()
+
+/obj/structure/flora/tree/fur
+	name = "tall fur"
+	desc = "Tall stalks of fur block your path! Someone needs a trim!"
+	icon = 'icons/obj/fur_tree.dmi'
+	icon_state = "tallfur1"
+	base_state = "tallfur"
+	opacity = TRUE
+	product = /obj/item/stack/material/fur
+	product_amount = 10
+	health = 100
+	max_health = 100
+	pixel_x = 0
+	pixel_y = 0
+	shake_animation_degrees = 2
+	sticks = FALSE
+
+/obj/structure/flora/tree/fur/choose_icon_state()
+	return "[base_state][rand(1, 2)]"
+
+/obj/structure/flora/tree/fur/die()
+	if(product && product_amount)
+		var/obj/item/stack/material/fur/F = new product(get_turf(src), product_amount)
+		F.color = color
+		F.update_icon()
+	visible_message("<span class='danger'>\The [src] is felled!</span>")
+	qdel(src)
