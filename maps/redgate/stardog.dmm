@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/effect/fake_sun,
-/turf/unsimulated/wall/dark,
+/turf/simulated/flesh,
 /area/redgate/stardog)
 "b" = (
 /obj/structure/bed/chair/sofa/corp/right{
@@ -29,16 +29,22 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/stardog/lounge)
+"f" = (
+/turf/simulated/floor/outdoors/fur/woof/wall,
+/area/redgate/stardog/outside)
 "h" = (
 /obj/structure/bed/chair/sofa/corp,
 /turf/simulated/floor/lino,
 /area/redgate/stardog/lounge)
 "i" = (
 /obj/effect/overmap/visitable/ship/simplemob/stardog,
-/turf/unsimulated/wall/dark,
+/turf/simulated/flesh,
 /area/redgate/stardog)
+"j" = (
+/turf/simulated/flesh,
+/area/redgate/stardog/outside)
 "k" = (
-/turf/unsimulated/wall/dark,
+/turf/simulated/flesh,
 /area/redgate/stardog)
 "l" = (
 /obj/structure/bed/chair/sofa/corp/left,
@@ -288,112 +294,113 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/trader/capture_crystal/cash,
 /turf/simulated/floor/wood,
 /area/redgate/stardog/lounge)
 
 (1,1,1) = {"
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 L
 L
 L
 L
 u
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 M
 M
 M
 M
 J
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 k
 k
 k
@@ -434,7 +441,7 @@ i
 a
 "}
 (2,1,1) = {"
-C
+f
 o
 o
 o
@@ -484,8 +491,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -535,8 +542,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -576,7 +583,7 @@ p
 k
 "}
 (3,1,1) = {"
-C
+f
 o
 o
 o
@@ -626,8 +633,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -677,8 +684,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -718,7 +725,7 @@ p
 k
 "}
 (4,1,1) = {"
-C
+f
 o
 o
 o
@@ -768,8 +775,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -819,8 +826,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -860,7 +867,7 @@ p
 k
 "}
 (5,1,1) = {"
-C
+f
 o
 o
 o
@@ -910,8 +917,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -961,8 +968,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1002,7 +1009,7 @@ p
 k
 "}
 (6,1,1) = {"
-C
+f
 o
 o
 o
@@ -1052,8 +1059,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1103,8 +1110,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1144,7 +1151,7 @@ p
 k
 "}
 (7,1,1) = {"
-C
+f
 o
 o
 o
@@ -1194,8 +1201,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1245,8 +1252,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1286,7 +1293,7 @@ p
 k
 "}
 (8,1,1) = {"
-C
+f
 o
 o
 o
@@ -1336,8 +1343,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1387,8 +1394,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1428,7 +1435,7 @@ p
 k
 "}
 (9,1,1) = {"
-C
+f
 o
 o
 o
@@ -1478,8 +1485,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1529,8 +1536,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1570,7 +1577,7 @@ p
 k
 "}
 (10,1,1) = {"
-C
+f
 o
 o
 o
@@ -1620,8 +1627,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1671,8 +1678,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1712,7 +1719,7 @@ p
 k
 "}
 (11,1,1) = {"
-C
+f
 o
 o
 o
@@ -1762,8 +1769,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1813,8 +1820,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1854,7 +1861,7 @@ p
 k
 "}
 (12,1,1) = {"
-C
+f
 o
 o
 o
@@ -1904,8 +1911,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -1955,8 +1962,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -1996,7 +2003,7 @@ p
 k
 "}
 (13,1,1) = {"
-C
+f
 o
 o
 o
@@ -2046,8 +2053,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2097,8 +2104,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2138,7 +2145,7 @@ p
 k
 "}
 (14,1,1) = {"
-C
+f
 o
 o
 o
@@ -2188,8 +2195,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2239,8 +2246,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2280,7 +2287,7 @@ p
 k
 "}
 (15,1,1) = {"
-C
+f
 o
 o
 o
@@ -2330,8 +2337,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2381,8 +2388,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2422,7 +2429,7 @@ p
 k
 "}
 (16,1,1) = {"
-C
+f
 o
 o
 o
@@ -2472,8 +2479,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2523,8 +2530,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2564,7 +2571,7 @@ p
 k
 "}
 (17,1,1) = {"
-C
+f
 o
 o
 o
@@ -2614,8 +2621,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2665,8 +2672,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2706,7 +2713,7 @@ p
 k
 "}
 (18,1,1) = {"
-C
+f
 o
 o
 o
@@ -2756,8 +2763,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2807,8 +2814,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2848,7 +2855,7 @@ p
 k
 "}
 (19,1,1) = {"
-C
+f
 o
 o
 o
@@ -2898,8 +2905,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -2949,8 +2956,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -2990,7 +2997,7 @@ p
 k
 "}
 (20,1,1) = {"
-C
+f
 o
 o
 o
@@ -3040,8 +3047,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3091,8 +3098,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3132,7 +3139,7 @@ p
 k
 "}
 (21,1,1) = {"
-C
+f
 o
 o
 o
@@ -3182,8 +3189,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3233,8 +3240,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3274,7 +3281,7 @@ p
 k
 "}
 (22,1,1) = {"
-C
+f
 o
 o
 o
@@ -3324,8 +3331,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3375,8 +3382,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3416,7 +3423,7 @@ p
 k
 "}
 (23,1,1) = {"
-C
+f
 o
 o
 o
@@ -3466,8 +3473,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3517,8 +3524,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3558,7 +3565,7 @@ p
 k
 "}
 (24,1,1) = {"
-C
+f
 o
 o
 o
@@ -3608,8 +3615,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3659,8 +3666,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3700,7 +3707,7 @@ p
 k
 "}
 (25,1,1) = {"
-C
+f
 o
 o
 o
@@ -3750,8 +3757,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3801,8 +3808,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3842,7 +3849,7 @@ p
 k
 "}
 (26,1,1) = {"
-C
+f
 o
 o
 o
@@ -3892,8 +3899,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -3943,8 +3950,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -3984,7 +3991,7 @@ p
 k
 "}
 (27,1,1) = {"
-C
+f
 o
 o
 o
@@ -4034,8 +4041,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4085,8 +4092,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4126,7 +4133,7 @@ p
 k
 "}
 (28,1,1) = {"
-C
+f
 o
 o
 o
@@ -4176,8 +4183,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4227,8 +4234,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4268,7 +4275,7 @@ p
 k
 "}
 (29,1,1) = {"
-C
+f
 o
 o
 o
@@ -4318,8 +4325,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4369,8 +4376,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4410,7 +4417,7 @@ p
 k
 "}
 (30,1,1) = {"
-C
+f
 o
 o
 o
@@ -4460,8 +4467,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4511,8 +4518,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4552,7 +4559,7 @@ p
 k
 "}
 (31,1,1) = {"
-C
+f
 o
 o
 o
@@ -4602,8 +4609,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4653,8 +4660,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4694,7 +4701,7 @@ p
 k
 "}
 (32,1,1) = {"
-C
+f
 o
 o
 o
@@ -4744,8 +4751,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4795,8 +4802,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4836,7 +4843,7 @@ p
 k
 "}
 (33,1,1) = {"
-C
+f
 o
 o
 o
@@ -4886,8 +4893,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -4937,8 +4944,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -4978,7 +4985,7 @@ p
 k
 "}
 (34,1,1) = {"
-C
+f
 o
 o
 o
@@ -5028,8 +5035,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5079,8 +5086,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5120,7 +5127,7 @@ p
 k
 "}
 (35,1,1) = {"
-C
+f
 o
 o
 o
@@ -5170,8 +5177,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5221,8 +5228,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5262,7 +5269,7 @@ p
 k
 "}
 (36,1,1) = {"
-C
+f
 o
 o
 o
@@ -5312,8 +5319,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5363,8 +5370,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5404,7 +5411,7 @@ p
 k
 "}
 (37,1,1) = {"
-C
+f
 o
 o
 o
@@ -5454,8 +5461,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5505,8 +5512,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5546,7 +5553,7 @@ p
 k
 "}
 (38,1,1) = {"
-C
+f
 o
 o
 o
@@ -5596,8 +5603,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5647,8 +5654,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5688,7 +5695,7 @@ p
 k
 "}
 (39,1,1) = {"
-C
+f
 o
 o
 o
@@ -5738,8 +5745,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5789,8 +5796,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5830,7 +5837,7 @@ p
 k
 "}
 (40,1,1) = {"
-C
+f
 o
 o
 o
@@ -5880,8 +5887,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -5931,8 +5938,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -5972,7 +5979,7 @@ p
 k
 "}
 (41,1,1) = {"
-C
+f
 o
 o
 o
@@ -6022,8 +6029,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6073,8 +6080,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6114,7 +6121,7 @@ p
 k
 "}
 (42,1,1) = {"
-C
+f
 o
 o
 o
@@ -6164,8 +6171,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6215,8 +6222,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6256,7 +6263,7 @@ p
 k
 "}
 (43,1,1) = {"
-C
+f
 o
 o
 o
@@ -6306,8 +6313,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6357,8 +6364,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6398,7 +6405,7 @@ p
 k
 "}
 (44,1,1) = {"
-C
+f
 o
 o
 o
@@ -6448,8 +6455,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6499,8 +6506,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6540,7 +6547,7 @@ p
 k
 "}
 (45,1,1) = {"
-C
+f
 o
 o
 o
@@ -6590,8 +6597,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6641,8 +6648,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6682,7 +6689,7 @@ p
 k
 "}
 (46,1,1) = {"
-C
+f
 o
 o
 o
@@ -6732,8 +6739,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6783,8 +6790,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6824,7 +6831,7 @@ p
 k
 "}
 (47,1,1) = {"
-C
+f
 o
 o
 o
@@ -6874,8 +6881,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -6925,8 +6932,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -6966,7 +6973,7 @@ p
 k
 "}
 (48,1,1) = {"
-C
+f
 o
 o
 o
@@ -7016,8 +7023,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -7067,8 +7074,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -7108,7 +7115,7 @@ p
 k
 "}
 (49,1,1) = {"
-C
+f
 o
 o
 o
@@ -7158,8 +7165,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -7209,8 +7216,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -7250,7 +7257,7 @@ p
 k
 "}
 (50,1,1) = {"
-C
+f
 o
 o
 o
@@ -7300,8 +7307,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -7351,8 +7358,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -7392,7 +7399,7 @@ p
 k
 "}
 (51,1,1) = {"
-C
+f
 o
 o
 o
@@ -7442,59 +7449,59 @@ o
 o
 o
 o
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-p
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+k
 p
 p
 p
@@ -7534,7 +7541,7 @@ p
 k
 "}
 (52,1,1) = {"
-C
+f
 o
 o
 o
@@ -7584,59 +7591,59 @@ o
 o
 o
 o
-C
-C
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
+f
+j
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
 p
 p
 p
@@ -7676,7 +7683,7 @@ p
 k
 "}
 (53,1,1) = {"
-C
+f
 o
 o
 o
@@ -7726,9 +7733,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -7818,7 +7825,7 @@ p
 k
 "}
 (54,1,1) = {"
-C
+f
 o
 o
 o
@@ -7868,9 +7875,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -7960,7 +7967,7 @@ p
 k
 "}
 (55,1,1) = {"
-C
+f
 o
 o
 o
@@ -8010,9 +8017,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8102,7 +8109,7 @@ p
 k
 "}
 (56,1,1) = {"
-C
+f
 o
 o
 o
@@ -8152,9 +8159,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8244,7 +8251,7 @@ p
 k
 "}
 (57,1,1) = {"
-C
+f
 o
 o
 o
@@ -8294,9 +8301,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8386,7 +8393,7 @@ p
 k
 "}
 (58,1,1) = {"
-C
+f
 o
 o
 o
@@ -8436,9 +8443,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8528,7 +8535,7 @@ p
 k
 "}
 (59,1,1) = {"
-C
+f
 o
 o
 o
@@ -8578,9 +8585,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8670,7 +8677,7 @@ p
 k
 "}
 (60,1,1) = {"
-C
+f
 o
 o
 o
@@ -8720,9 +8727,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8812,7 +8819,7 @@ p
 k
 "}
 (61,1,1) = {"
-C
+f
 o
 o
 o
@@ -8862,9 +8869,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -8954,7 +8961,7 @@ p
 k
 "}
 (62,1,1) = {"
-C
+f
 o
 o
 o
@@ -9004,9 +9011,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -9096,7 +9103,7 @@ p
 k
 "}
 (63,1,1) = {"
-C
+f
 o
 o
 o
@@ -9146,9 +9153,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -9238,7 +9245,7 @@ p
 k
 "}
 (64,1,1) = {"
-C
+f
 o
 o
 o
@@ -9288,9 +9295,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -9380,7 +9387,7 @@ p
 k
 "}
 (65,1,1) = {"
-C
+f
 o
 o
 o
@@ -9430,9 +9437,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -9522,7 +9529,7 @@ p
 k
 "}
 (66,1,1) = {"
-C
+f
 o
 o
 o
@@ -9572,9 +9579,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -9664,7 +9671,7 @@ p
 k
 "}
 (67,1,1) = {"
-C
+f
 o
 o
 o
@@ -9714,9 +9721,9 @@ o
 o
 o
 o
+f
 C
-C
-p
+k
 p
 p
 p
@@ -9858,7 +9865,7 @@ o
 d
 U
 C
-p
+k
 p
 p
 p
@@ -10000,7 +10007,7 @@ o
 d
 D
 C
-p
+k
 p
 p
 p
@@ -10142,7 +10149,7 @@ o
 d
 D
 C
-p
+k
 p
 p
 p
@@ -10284,7 +10291,7 @@ o
 d
 D
 C
-p
+k
 p
 p
 p
@@ -10426,7 +10433,7 @@ o
 d
 D
 C
-p
+k
 p
 p
 p
@@ -10516,7 +10523,7 @@ p
 k
 "}
 (73,1,1) = {"
-C
+f
 o
 o
 o
@@ -10566,9 +10573,9 @@ o
 o
 o
 o
+f
 C
-C
-p
+k
 p
 p
 p
@@ -10658,7 +10665,7 @@ p
 k
 "}
 (74,1,1) = {"
-C
+f
 o
 o
 o
@@ -10708,9 +10715,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -10800,7 +10807,7 @@ p
 k
 "}
 (75,1,1) = {"
-C
+f
 o
 o
 o
@@ -10850,9 +10857,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -10942,7 +10949,7 @@ p
 k
 "}
 (76,1,1) = {"
-C
+f
 o
 o
 o
@@ -10992,9 +10999,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11084,7 +11091,7 @@ p
 k
 "}
 (77,1,1) = {"
-C
+f
 o
 o
 o
@@ -11134,9 +11141,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11226,7 +11233,7 @@ p
 k
 "}
 (78,1,1) = {"
-C
+f
 o
 o
 o
@@ -11276,9 +11283,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11368,7 +11375,7 @@ p
 k
 "}
 (79,1,1) = {"
-C
+f
 o
 o
 o
@@ -11418,9 +11425,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11510,7 +11517,7 @@ p
 k
 "}
 (80,1,1) = {"
-C
+f
 o
 o
 o
@@ -11560,9 +11567,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11652,7 +11659,7 @@ p
 k
 "}
 (81,1,1) = {"
-C
+f
 o
 o
 o
@@ -11702,9 +11709,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11794,7 +11801,7 @@ p
 k
 "}
 (82,1,1) = {"
-C
+f
 o
 o
 o
@@ -11844,9 +11851,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -11936,7 +11943,7 @@ p
 k
 "}
 (83,1,1) = {"
-C
+f
 o
 o
 o
@@ -11986,9 +11993,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -12078,7 +12085,7 @@ p
 k
 "}
 (84,1,1) = {"
-C
+f
 o
 o
 o
@@ -12128,9 +12135,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -12220,7 +12227,7 @@ p
 k
 "}
 (85,1,1) = {"
-C
+f
 o
 o
 o
@@ -12270,9 +12277,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -12362,7 +12369,7 @@ p
 k
 "}
 (86,1,1) = {"
-C
+f
 o
 o
 o
@@ -12412,9 +12419,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -12504,7 +12511,7 @@ p
 k
 "}
 (87,1,1) = {"
-C
+f
 o
 o
 o
@@ -12554,9 +12561,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -12646,7 +12653,7 @@ p
 k
 "}
 (88,1,1) = {"
-C
+f
 o
 o
 o
@@ -12696,9 +12703,9 @@ o
 o
 o
 o
-C
-C
-p
+f
+j
+k
 p
 p
 p
@@ -12788,7 +12795,7 @@ p
 k
 "}
 (89,1,1) = {"
-C
+f
 o
 o
 o
@@ -12838,59 +12845,59 @@ o
 o
 o
 o
-C
-C
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
-p
+f
+j
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
+k
 p
 p
 p
@@ -12930,7 +12937,7 @@ p
 k
 "}
 (90,1,1) = {"
-C
+f
 o
 o
 o
@@ -12980,59 +12987,59 @@ o
 o
 o
 o
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-p
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+k
 p
 p
 p
@@ -13072,7 +13079,7 @@ p
 k
 "}
 (91,1,1) = {"
-C
+f
 o
 o
 o
@@ -13122,8 +13129,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -13173,8 +13180,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -13214,7 +13221,7 @@ p
 k
 "}
 (92,1,1) = {"
-C
+f
 o
 o
 o
@@ -13264,8 +13271,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -13315,8 +13322,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -13356,7 +13363,7 @@ p
 k
 "}
 (93,1,1) = {"
-C
+f
 o
 o
 o
@@ -13406,8 +13413,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -13457,8 +13464,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -13498,7 +13505,7 @@ p
 k
 "}
 (94,1,1) = {"
-C
+f
 o
 o
 o
@@ -13548,8 +13555,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -13599,8 +13606,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -13640,7 +13647,7 @@ p
 k
 "}
 (95,1,1) = {"
-C
+f
 o
 o
 o
@@ -13690,8 +13697,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -13741,8 +13748,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -13782,7 +13789,7 @@ p
 k
 "}
 (96,1,1) = {"
-C
+f
 o
 o
 o
@@ -13832,8 +13839,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -13883,8 +13890,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -13924,7 +13931,7 @@ p
 k
 "}
 (97,1,1) = {"
-C
+f
 o
 o
 o
@@ -13974,8 +13981,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14025,8 +14032,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14066,7 +14073,7 @@ p
 k
 "}
 (98,1,1) = {"
-C
+f
 o
 o
 o
@@ -14116,8 +14123,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14167,8 +14174,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14208,7 +14215,7 @@ p
 k
 "}
 (99,1,1) = {"
-C
+f
 o
 o
 o
@@ -14258,8 +14265,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14309,8 +14316,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14350,7 +14357,7 @@ p
 k
 "}
 (100,1,1) = {"
-C
+f
 o
 o
 o
@@ -14400,8 +14407,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14451,8 +14458,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14492,7 +14499,7 @@ p
 k
 "}
 (101,1,1) = {"
-C
+f
 o
 o
 o
@@ -14542,8 +14549,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14593,8 +14600,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14634,7 +14641,7 @@ p
 k
 "}
 (102,1,1) = {"
-C
+f
 o
 o
 o
@@ -14684,8 +14691,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14735,8 +14742,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14776,7 +14783,7 @@ p
 k
 "}
 (103,1,1) = {"
-C
+f
 o
 o
 o
@@ -14826,8 +14833,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -14877,8 +14884,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -14918,7 +14925,7 @@ p
 k
 "}
 (104,1,1) = {"
-C
+f
 o
 o
 o
@@ -14968,8 +14975,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15019,8 +15026,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15060,7 +15067,7 @@ p
 k
 "}
 (105,1,1) = {"
-C
+f
 o
 o
 o
@@ -15110,8 +15117,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15161,8 +15168,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15202,7 +15209,7 @@ p
 k
 "}
 (106,1,1) = {"
-C
+f
 o
 o
 o
@@ -15252,8 +15259,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15303,8 +15310,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15344,7 +15351,7 @@ p
 k
 "}
 (107,1,1) = {"
-C
+f
 o
 o
 o
@@ -15394,8 +15401,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15445,8 +15452,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15486,7 +15493,7 @@ p
 k
 "}
 (108,1,1) = {"
-C
+f
 o
 o
 o
@@ -15536,8 +15543,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15587,8 +15594,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15628,7 +15635,7 @@ p
 k
 "}
 (109,1,1) = {"
-C
+f
 o
 o
 o
@@ -15678,8 +15685,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15729,8 +15736,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15770,7 +15777,7 @@ p
 k
 "}
 (110,1,1) = {"
-C
+f
 o
 o
 o
@@ -15820,8 +15827,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -15871,8 +15878,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -15912,7 +15919,7 @@ p
 k
 "}
 (111,1,1) = {"
-C
+f
 o
 o
 o
@@ -15962,8 +15969,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16013,8 +16020,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16054,7 +16061,7 @@ p
 k
 "}
 (112,1,1) = {"
-C
+f
 o
 o
 o
@@ -16104,8 +16111,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16155,8 +16162,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16196,7 +16203,7 @@ p
 k
 "}
 (113,1,1) = {"
-C
+f
 o
 o
 o
@@ -16246,8 +16253,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16297,8 +16304,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16338,7 +16345,7 @@ p
 k
 "}
 (114,1,1) = {"
-C
+f
 o
 o
 o
@@ -16388,8 +16395,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16439,8 +16446,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16480,7 +16487,7 @@ p
 k
 "}
 (115,1,1) = {"
-C
+f
 o
 o
 o
@@ -16530,8 +16537,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16581,8 +16588,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16622,7 +16629,7 @@ p
 k
 "}
 (116,1,1) = {"
-C
+f
 o
 o
 o
@@ -16672,8 +16679,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16723,8 +16730,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16764,7 +16771,7 @@ p
 k
 "}
 (117,1,1) = {"
-C
+f
 o
 o
 o
@@ -16814,8 +16821,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -16865,8 +16872,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -16906,7 +16913,7 @@ p
 k
 "}
 (118,1,1) = {"
-C
+f
 o
 o
 o
@@ -16956,8 +16963,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17007,8 +17014,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17048,7 +17055,7 @@ p
 k
 "}
 (119,1,1) = {"
-C
+f
 o
 o
 o
@@ -17098,8 +17105,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17149,8 +17156,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17190,7 +17197,7 @@ p
 k
 "}
 (120,1,1) = {"
-C
+f
 o
 o
 o
@@ -17240,8 +17247,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17291,8 +17298,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17332,7 +17339,7 @@ p
 k
 "}
 (121,1,1) = {"
-C
+f
 o
 o
 o
@@ -17382,8 +17389,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17433,8 +17440,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17474,7 +17481,7 @@ p
 k
 "}
 (122,1,1) = {"
-C
+f
 o
 o
 o
@@ -17524,8 +17531,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17575,8 +17582,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17616,7 +17623,7 @@ p
 k
 "}
 (123,1,1) = {"
-C
+f
 o
 o
 o
@@ -17666,8 +17673,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17717,8 +17724,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17758,7 +17765,7 @@ p
 k
 "}
 (124,1,1) = {"
-C
+f
 o
 o
 o
@@ -17808,8 +17815,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -17859,8 +17866,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -17900,7 +17907,7 @@ p
 k
 "}
 (125,1,1) = {"
-C
+f
 o
 o
 o
@@ -17950,8 +17957,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18001,8 +18008,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18042,7 +18049,7 @@ p
 k
 "}
 (126,1,1) = {"
-C
+f
 o
 o
 o
@@ -18092,8 +18099,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18143,8 +18150,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18184,7 +18191,7 @@ p
 k
 "}
 (127,1,1) = {"
-C
+f
 o
 o
 o
@@ -18234,8 +18241,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18285,8 +18292,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18326,7 +18333,7 @@ p
 k
 "}
 (128,1,1) = {"
-C
+f
 o
 o
 o
@@ -18376,8 +18383,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18427,8 +18434,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18468,7 +18475,7 @@ p
 k
 "}
 (129,1,1) = {"
-C
+f
 o
 o
 o
@@ -18518,8 +18525,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18569,8 +18576,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18610,7 +18617,7 @@ p
 k
 "}
 (130,1,1) = {"
-C
+f
 o
 o
 o
@@ -18660,8 +18667,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18711,8 +18718,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18752,7 +18759,7 @@ p
 k
 "}
 (131,1,1) = {"
-C
+f
 o
 o
 o
@@ -18802,8 +18809,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18853,8 +18860,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -18894,7 +18901,7 @@ p
 k
 "}
 (132,1,1) = {"
-C
+f
 o
 o
 o
@@ -18944,8 +18951,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -18995,8 +19002,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19036,7 +19043,7 @@ p
 k
 "}
 (133,1,1) = {"
-C
+f
 o
 o
 o
@@ -19086,8 +19093,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19137,8 +19144,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19178,7 +19185,7 @@ p
 k
 "}
 (134,1,1) = {"
-C
+f
 o
 o
 o
@@ -19228,8 +19235,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19279,8 +19286,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19320,7 +19327,7 @@ p
 k
 "}
 (135,1,1) = {"
-C
+f
 o
 o
 o
@@ -19370,8 +19377,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19421,8 +19428,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19462,7 +19469,7 @@ p
 k
 "}
 (136,1,1) = {"
-C
+f
 o
 o
 o
@@ -19512,8 +19519,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19563,8 +19570,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19604,7 +19611,7 @@ p
 k
 "}
 (137,1,1) = {"
-C
+f
 o
 o
 o
@@ -19654,8 +19661,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19705,8 +19712,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19746,7 +19753,7 @@ p
 k
 "}
 (138,1,1) = {"
-C
+f
 o
 o
 o
@@ -19796,8 +19803,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19847,8 +19854,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -19888,7 +19895,7 @@ p
 k
 "}
 (139,1,1) = {"
-C
+f
 o
 o
 o
@@ -19938,8 +19945,8 @@ o
 o
 o
 o
-C
-C
+f
+f
 o
 o
 o
@@ -19989,8 +19996,8 @@ o
 o
 o
 o
-C
-p
+f
+k
 p
 p
 p
@@ -20030,108 +20037,108 @@ p
 k
 "}
 (140,1,1) = {"
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 F
 F
 F
 F
 K
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 A
 A
 A
 A
 c
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
-C
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 k
 k
 k
