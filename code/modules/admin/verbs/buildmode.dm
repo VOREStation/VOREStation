@@ -159,8 +159,9 @@
 							Left Mouse Button + alt on AI mob      = Toggle hostility on mob<br>\
 							Left Mouse Button + shift on AI mob    = Toggle AI (also resets)<br>\
 							Left Mouse Button + ctrl on AI mob 	   = Copy mob faction<br>\
+							Middle Mouse Button + alt on any atom  = Add atom to entity narrate menu <br>\
 							Middle Mouse Button + shift on any     = Set selected mob(s) to wander<br>\
-							Middle Mouse Button + shift on any     = Set selected mob(s) to NOT wander<br>\
+							Middle Mouse Button + ctrl on any      = Set selected mob(s) to NOT wander<br>\
 							Right Mouse Button + ctrl on any mob   = Paste mob faction copied with Left Mouse Button + shift<br>\
 							Right Mouse Button on enemy mob        = Command selected mobs to attack mob<br>\
 							Right Mouse Button on allied mob       = Command selected mobs to follow mob<br>\
@@ -558,6 +559,9 @@
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = FALSE
+				if(pa.Find("alt") && isatom(object))
+					to_chat(user, SPAN_NOTICE("Adding [object] to Entity Narrate List!"))
+					user.client.add_mob_for_narration(object)
 
 
 			if(pa.Find("right"))
