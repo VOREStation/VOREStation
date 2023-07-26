@@ -9,7 +9,14 @@
 	pixel_x = -16
 
 	var/obj/structure/redgate/target
-	var/list/exceptions = list(/obj/structure/ore_box)	//made it a var so that GMs or map makers can selectively allow things to pass through
+	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
+	var/list/exceptions = list(
+		/obj/structure/ore_box
+		)	//made it a var so that GMs or map makers can selectively allow things to pass through
+	var/list/restrictions = list(
+		/mob/living/simple_mob/vore/overmap/stardog,
+		/mob/living/simple_mob/vore/bigdragon
+		)	//There are some things we don't want to come through no matter what.
 
 /obj/structure/redgate/Destroy()
 	if(target)
@@ -27,6 +34,10 @@
 			keycheck = FALSE		//we'll allow it
 		else
 			return
+
+	if(M.type in restrictions)	//Some stuff we don't want to bring EVEN IF it has a key.
+		return
+
 	if(keycheck)		//exceptions probably won't have a ckey
 		if(!M.ckey)		//We only want players, no bringing the weird stuff on the other side back
 			return
@@ -71,8 +82,10 @@
 
 
 /obj/structure/redgate/attack_ghost(var/mob/observer/dead/user)
-	if(target && user?.client?.holder)
-		user.forceMove(get_turf(target))
+
+	if(target)
+		if(!(secret || target.secret) || user?.client?.holder)
+			user.forceMove(get_turf(target))
 	else
 		return ..()
 
