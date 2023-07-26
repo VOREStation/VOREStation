@@ -45,13 +45,19 @@
 	if(!target)
 		toggle_portal()
 
-	var/turf/place = get_turf(target)
-	var/possible_turfs = place.AdjacentTurfs()
-	if(isemptylist(possible_turfs))
+	var/turf/ourturf = find_our_turf(M)		//Find the turf on the opposite side of the target
+	if(!ourturf.check_density(TRUE,TRUE))	//Make sure there isn't a wall there
+		M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
+	else
 		to_chat(M, "<span class='notice'>Something blocks your way.</span>")
-		return
-	var/turf/temptarg = pick(possible_turfs)
-	do_safe_teleport(M, temptarg, 0)
+
+/obj/structure/redgate/proc/find_our_turf(var/atom/movable/AM)	//This finds the turf on the opposite side of the target gate from where you are
+	var/offset_x = x - AM.x										//used for more smooth teleporting
+	var/offset_y = y - AM.y
+
+	var/turf/temptarg = locate((target.x + offset_x),(target.y + offset_y),target.z)
+
+	return temptarg
 
 /obj/structure/redgate/proc/toggle_portal()
 	if(target)

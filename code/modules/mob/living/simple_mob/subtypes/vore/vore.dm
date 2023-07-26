@@ -16,7 +16,6 @@
 		login_prefs()
 
 /mob/living/proc/login_prefs()
-	. = ..()
 
 	ooc_notes = client.prefs.metadata
 	digestable = client.prefs_vr.digestable

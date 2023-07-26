@@ -59,6 +59,7 @@
 	var/affinity = 0
 	var/obj/structure/control_pod/control_node = null
 	var/shipvore = FALSE	//Enable this to allow the star dog to eat spaceships by dragging them onto its sprite.
+	var/admin_override = TRUE	//If true, makes affinity and nutrition irrelevant.
 
 /mob/living/simple_mob/vore/overmap/stardog/attack_hand(mob/living/user)
 	if(!(user.pickup_pref && user.pickup_active))
@@ -94,8 +95,9 @@
 
 /mob/living/simple_mob/vore/overmap/stardog/Life()
 	. = ..()
-	affinity = 9999
-	nutrition = 9999
+	if(admin_override)
+		affinity = 9999
+		nutrition = 9999
 	if(devourable)
 		devourable = FALSE
 		digestable = FALSE
@@ -226,7 +228,7 @@
 	skybox_icon_state = "space_dog"
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
-	glide_size = 1
+	glide_size = 2
 	parent_mob_type = /mob/living/simple_mob/vore/overmap/stardog
 	scanner_desc = "CONFIGURE ME"
 
@@ -251,6 +253,17 @@
 	var/tree_chance = 25
 	var/tree_color = null
 	var/tree_type = /obj/structure/flora/tree/fur
+
+/turf/simulated/floor/outdoors/fur/attackby()
+	return
+
+/turf/simulated/floor/outdoors/fur/attack_hand(mob/user)
+	. = ..()
+	pet()
+
+/turf/simulated/floor/outdoors/fur/ex_act(severity)
+	return
+
 
 /turf/simulated/floor/outdoors/fur/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
@@ -286,6 +299,7 @@
 
 /turf/simulated/floor/outdoors/fur/woof/no_trees
 	icon_state = "furX"
+	tree_chance = 0
 
 /turf/simulated/floor/outdoors/fur/Initialize()
 	. = ..()
@@ -450,7 +464,7 @@
 	return "[base_state][rand(1, 2)]"
 
 /obj/structure/flora/tree/fur/attack_hand(mob/user)
-	to_chat(user, "<span class='notice'>Your hand sinks into \the [src]!</span>")
+	return
 
 /obj/structure/flora/tree/fur/die()
 	if(product && product_amount)
@@ -736,15 +750,19 @@
 	icon_state = "mouth"
 	invisibility = 0
 	anchored = TRUE
-	var/id = "mouth"
-	var/static/list/dog_teleporters = list()
-	var/reciever = FALSE
-	var/obj/effect/dog_teleporter/target
+	pixel_x = -16
+	var/id = "mouth_a"							//same id will be linked
+	var/static/list/dog_teleporters = list()	//List of all the teleporters
+	var/reciever = FALSE						//If true, doesn't teleport, only recieves
+	var/obj/effect/dog_teleporter/target		//Target for teleporting to, automatically set by id
+	var/throw_through = TRUE					//When moved the mob/obj will be thrown south
 
 /obj/effect/dog_teleporter/Initialize()
 	. = ..()
 	dog_teleporters |= src
 	do_setup()
+	if(icon_state == "exit_b")
+		set_light(5, 1, "#ffffff")
 
 /obj/effect/dog_teleporter/proc/do_setup()
 	if(target)
@@ -771,14 +789,53 @@
 		do_setup()
 	if(!target)
 		return
+	var/mob/living/L = null
 	if(isliving(AM))
-		var/mob/living/L = AM
+		L = AM
 		if(!L.devourable || !L.allowmobvore)
 			return
-	AM.forceMove(get_turf(target))
+	if(target.reciever)		//We don't have to worry
+		L.Weaken(3)
+		AM.forceMove(get_turf(target))
+		extra(AM)
+		return
+	var/turf/place = locate(target.x, (target.y - 1), target.z)	//If the target is also a teleporter, let's pick a place to set them down next to the target.
+	L.Weaken(3)													//Setting them ON the target will probably make an infinite loop, and that seems lame.
+	AM.forceMove(place)
+	extra(AM)
+
+/obj/effect/dog_teleporter/proc/extra(atom/movable/AM as mob|obj)
+	var/go = FALSE
+	if(isliving(AM))
+		go = TRUE
+	if(isobj(AM))
+		go = FALSE
+
+	if(!go)
+		return
+
+	visible_message("<span class='danger'>\The [AM] passes through \the [src]!</span>")
+	if(throw_through)	//We will throw the target to the south!
+		var/turf/throwtarg = locate(target.x, (target.y - 5), target.z)
+		spawn(0)
+		AM.throw_at(throwtarg, 10, 1)
 
 /obj/effect/dog_teleporter/reciever
+	name = "exit"
+	desc = "It's too tight to go in there!"
+	icon_state = "exita"
+	pixel_y = -16
 	reciever = TRUE
+
+/obj/effect/dog_teleporter/reciever/invisible
+	invisibility = INVISIBILITY_ABSTRACT
+	reciever = TRUE
+	id = "mouth_a"
+
+/obj/effect/dog_teleporter/reciever/invisible/mouth_return
+	invisibility = INVISIBILITY_ABSTRACT
+	reciever = TRUE
+	id = "mouth_b"
 
 /obj/effect/dog_teleporter/exit
 	name = "exit"
@@ -788,23 +845,13 @@
 	pixel_x = -16
 	pixel_y = -16
 
-/obj/effect/dog_teleporter/exit/Initialize()
-	. = ..()
-
-	set_light(5, 1, "#ffffff")
-
-/obj/effect/dog_teleporter/reciever/mouth
+/obj/effect/dog_teleporter/mouth_return
 	name = "light"
-	desc = "It's too far up to make your way back out!"
+	desc = "You can see the light shining in from above!"
 	icon_state = "exit_b"
-	id = "mouth"
+	id = "mouth_b"
 	pixel_x = -16
 	pixel_y = -16
-
-/obj/effect/dog_teleporter/reciever/mouth/Initialize()
-	. = ..()
-
-	set_light(5, 1, "#ffffff")
 
 /obj/effect/dog_teleporter/reciever/exit
 	name = "exit"
