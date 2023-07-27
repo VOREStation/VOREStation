@@ -11,6 +11,7 @@
 	var/semirandom_group_min = 0
 	var/semirandom_group_max = 10
 	var/mob_intent = "default"	//"default" uses default settings, use "hostile", "retaliate", or "passive" respectively
+	var/ghostjoin = FALSE		//If true, enables ghost join on semirandom spawned mobs
 
 /area/proc/EvalValidSpawnTurfs()
 	//Adds turfs to the valid)turfs list, used for spawning.
@@ -61,11 +62,16 @@
 			var/mob/ourmob = new M(Turf)
 			adjust_mob(ourmob)
 
-/area/proc/adjust_mob(var/mob/living/M)
-	if(!isliving(M))
-		log_admin("[src] spawned [M.type], which is not mob/living, FIXIT")
+/area/proc/adjust_mob(var/mob/living/simple_mob/M)
+	if(!isanimal(M))
+		log_admin("[src] spawned [M.type], which is not a simplemob, FIXIT")
 		return
 	var/datum/ai_holder/AI = M.ai_holder
+	if(ghostjoin)
+		M.ghostjoin = TRUE
+		M.ghostjoin_icon()
+	if(!AI)
+		return
 	switch(mob_intent)
 		if("default")
 			return

@@ -1,3 +1,7 @@
+//I'm sorry for this file, no one should have to deal with this
+//I am in a pain trance and coding is the only thing that can distract me
+//I am a dwarf in a fey mood, but what I make will not be a masterwork, woe
+
 /datum/category_item/catalogue/fauna/stardog
 	name = "Alien Wildlife - Star Dog"
 	desc = "I appears to be a canine of some sort, though absolutely massive in scale and surrounded in radical redspace energies!"
@@ -59,7 +63,12 @@
 	var/affinity = 0
 	var/obj/structure/control_pod/control_node = null
 	var/shipvore = FALSE	//Enable this to allow the star dog to eat spaceships by dragging them onto its sprite.
-	var/admin_override = TRUE	//If true, makes affinity and nutrition irrelevant.
+	var/admin_override = FALSE	//If true, makes affinity and nutrition irrelevant.
+
+/mob/living/simple_mob/vore/overmap/stardog/Login()
+	. = ..()
+	verbs -= /mob/living/simple_mob/proc/set_name
+	verbs -= /mob/living/simple_mob/proc/set_desc
 
 /mob/living/simple_mob/vore/overmap/stardog/attack_hand(mob/living/user)
 	if(!(user.pickup_pref && user.pickup_active))
@@ -102,7 +111,10 @@
 		devourable = FALSE
 		digestable = FALSE
 	if(ckey && control_node)
-		adjust_affinity(-3)
+		if(nutrition <= 200)
+			adjust_affinity(-10)
+		else
+			adjust_affinity(-3)
 		if(!affinity)
 			control_node.eject()
 	if(!ckey && resting)
@@ -167,7 +179,7 @@
 	set desc = "Eat carp or rocks!"
 	set category = "Abilities"
 
-/mob/living/simple_mob/vore/overmap/stardog/verb/transition()
+/mob/living/simple_mob/vore/overmap/stardog/verb/transition()	//Don't ask how it works. I don't know. I didn't think about it. I just thought it would be cool.
 	set name = "Transition"
 	set desc = "Attempt to go to the location you have arrived at, or return to space!"
 	set category = "Abilities"
@@ -335,7 +347,7 @@
 		if(m.affinity >= 10 && prob(5))
 			m.visible_message("\The [m]'s tail wags happily!")
 
-/turf/simulated/floor/outdoors/fur/verb/emote_beyond(message as message)
+/turf/simulated/floor/outdoors/fur/verb/emote_beyond(message as message)	//Now even the stars will know your sin.
 	set name = "Emote Beyond"
 	set desc = "Emote to those beyond the fur!"
 	set category = "IC"
@@ -408,7 +420,7 @@
 	shake_animation_degrees = 2
 	sticks = FALSE
 	var/mob_chance = 5
-	var/static/list/mob_list = list(
+	var/static/list/mob_list = list(	//Just, all the vore mobs. If some of the paths weren't shitty I would just put like `subtypesof(/mob/living/simple_mob/vore)` here. Maybe I'll fix that later, I am dying right now, I hope I will be remembered fondly when I die
 		/mob/living/simple_mob/vore/aggressive/corrupthound,
 		/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi,
 		/mob/living/simple_mob/vore/aggressive/deathclaw,
@@ -480,6 +492,8 @@
 		visible_message("<span class='danger'>\The [s] tumbles out of \the [src]!</span>")
 		s.ai_holder.hostile = FALSE
 		s.ai_holder.retaliate = TRUE
+		s.ghostjoin = TRUE
+		s.ghostjoin_icon()
 
 	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
 	if(s && istype(s,/obj/effect/overmap/visitable/ship/simplemob/stardog))
@@ -508,7 +522,8 @@
 	name = "star dog"
 	icon_state = "redblacir"
 	semirandom = TRUE
-	valid_mobs = list(
+	ghostjoin = TRUE
+	valid_mobs = list(	//Dog map spawns the dogs. It's not hard to understand!
 		list(
 			/mob/living/simple_mob/vore/woof,
 			/mob/living/simple_mob/vore/woof/hostile/ranged,
@@ -541,7 +556,7 @@
 			/mob/living/simple_mob/animal/space/ray = 5,
 			/mob/living/simple_mob/animal/space/shark = 5
 		),
-		list(
+		list(	//The succlets can come too I guess lol
 			/mob/living/simple_mob/vore/alienanimals/succlet = 50,
 			/mob/living/simple_mob/vore/alienanimals/succlet/dark = 50,
 			/mob/living/simple_mob/vore/alienanimals/succlet/moss = 50,
@@ -555,7 +570,7 @@
 	semirandom_group_max = 10
 	mob_intent = "retaliate"
 
-/obj/structure/control_pod
+/obj/structure/control_pod	//god someone is going to try to fuck with this, everyone is going to be angry, I'm so sorry
 	name = "node"
 	desc = "Fleshy!"
 	icon = 'icons/obj/flesh_machines.dmi'
@@ -601,17 +616,17 @@
 	control(user)
 
 /obj/structure/control_pod/proc/control(mob/living/user)
-	if(!host.affinity)
+	if(!host.affinity)	//take care of my dog
 		to_chat(user, "<span class = 'warning'>As you press your hand to \the [src], it resists your advance... A sense of longing ripples through your mind...</span>")
 		return
-	if(controller)
+	if(controller)	//busy
 		to_chat(user, "<span class = 'warning'>\The [controller] is already connected! There's no room for you right now!</span>")
 		return
 	user.visible_message("<span class = 'notice'>\The [user] reaches out to touch \the [src]...</span>","<span class = 'notice'>You reach out to touch \the [src]...</span>")
 	if(!do_after(user, 10 SECONDS, src, exclusive = TRUE))
 		user.visible_message("<span class = 'warning'>\The [user] pulls back from \the [src].</span>","<span class = 'warning'>You pull back from \the [src].</span>")
 		return
-	if(controller)
+	if(controller)	//got busy while you were waiting, get rekt
 		to_chat(user, "<span class = 'warning'>\The [controller] is already connected! There's no room for you right now!</span>")
 		return
 	controller = user
@@ -629,12 +644,18 @@
 	controller.ckey = host.ckey
 	visible_message("<span class = 'warning'>\The [controller] is ejected from \the [src], tumbling free!</span>")
 	log_admin("[controller.ckey] is no longer controlling [host], they have been returned to their body, [controller].")
-	controller = null
 	icon_state = "control_node0"
 	plane = OBJ_PLANE
 	set_light(0)
+	var/our_x = rand(-5,5) + x
+	var/our_y = rand(-5,5) + y
 
-/obj/effect/landmark/stardog
+	var/turf/throwtarg = locate(our_x, our_y, z)	//teehee
+	spawn(0)
+		controller.throw_at(throwtarg, 10, 1)
+		controller = null
+
+/obj/effect/landmark/stardog	//I didn't know how else to decide where the dog will land
 	name = "stardog landing"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "transition"
@@ -644,7 +665,7 @@
 	var/area/a = get_area(src)
 	name = a.name
 
-/obj/machinery/computer/ship/navigation/verb/emote_beyond(message as message)
+/obj/machinery/computer/ship/navigation/verb/emote_beyond(message as message)	//I could have put this into any other file but right here will do
 	set name = "Emote Beyond"
 	set desc = "Emote to those beyond the ship!"
 	set category = "IC"
@@ -705,21 +726,21 @@
 	. = ..()
 	consider_eyes()
 
-/area/redgate/stardog/eyes/proc/consider_eyes()
+/area/redgate/stardog/eyes/proc/consider_eyes()	//CONSIDER THEM PLEASE
 	var/close = FALSE
 	var/list/check = get_area_turfs(/area/redgate/stardog/eyes)
 	for(var/turf/t in check)
 		for(var/thing in t.contents)
-			if(istype(thing, /obj/effect/dog_eye))
+			if(istype(thing, /obj/effect/dog_eye))	//We can have eyes in our eyes, it's fine
 				continue
 			if(isobj(thing) || ismob(thing))
-				close = TRUE
+				close = TRUE	//AAAAAAAAAAAAAAAUUUUUUUUGHHHHHHHHH ITS IN MY EYES HELP
 
 	for(var/obj/effect/dog_eye/e in our_eyes)
 		if(close)
-			e.icon_state = "eye_closed"
+			e.icon_state = "eye_closed"	// u . u
 		else
-			e.icon_state = "eye_open"
+			e.icon_state = "eye_open"	// * w *
 
 /obj/effect/dog_eye
 	name = "eye"
@@ -730,7 +751,7 @@
 
 	pixel_x = -16
 
-/obj/effect/dog_nose
+/obj/effect/dog_nose	//TODO add boop
 	name = "nose"
 	desc = "Good for sniffin' with!"
 	icon = 'icons/obj/flesh_machines.dmi'
@@ -743,7 +764,7 @@
 	if(istype(e,/area/redgate/stardog/eyes))
 		e.our_eyes |= src
 
-/obj/effect/dog_teleporter
+/obj/effect/dog_teleporter	//look, I could have just used a bump teleporter, and I don't have an excuse, also everyone is going to be angry but it hurts too much for me to care right now, hopefully I will finish this before I start caring
 	name = "mouth"
 	desc = "It's waiting to accept treats!"
 	icon = 'icons/obj/flesh_machines.dmi'
@@ -761,7 +782,7 @@
 	. = ..()
 	dog_teleporters |= src
 	do_setup()
-	if(icon_state == "exit_b")
+	if(icon_state == "exit_b")	//♪♫Blinded by the light♪♫
 		set_light(5, 1, "#ffffff")
 
 /obj/effect/dog_teleporter/proc/do_setup()
@@ -778,11 +799,11 @@
 			if(!T.target)
 				T.target = src
 
-/obj/effect/dog_teleporter/Crossed(atom/movable/AM as mob|obj)
+/obj/effect/dog_teleporter/Crossed(atom/movable/AM as mob|obj)	//I am ashamed to admit how long it took to get this to do anything
 	. = ..()
 	lets_go(AM)
 
-/obj/effect/dog_teleporter/proc/lets_go(atom/movable/AM as mob|obj)
+/obj/effect/dog_teleporter/proc/lets_go(atom/movable/AM as mob|obj)	//Wahoo! Here we go!
 	if(reciever)
 		return
 	if(!target)
@@ -818,7 +839,7 @@
 	if(throw_through)	//We will throw the target to the south!
 		var/turf/throwtarg = locate(target.x, (target.y - 5), target.z)
 		spawn(0)
-		AM.throw_at(throwtarg, 10, 1)
+			AM.throw_at(throwtarg, 10, 1)	//reverbfart.ogg
 
 /obj/effect/dog_teleporter/reciever
 	name = "exit"
@@ -853,10 +874,146 @@
 	pixel_x = -16
 	pixel_y = -16
 
-/obj/effect/dog_teleporter/reciever/exit
+/obj/effect/dog_teleporter/reciever/exit	//tee hee
 	name = "exit"
 	desc = "It's too tight to go in there!"
 	icon_state = "exit"
 	id = "exit"
 	pixel_x = -16
 	pixel_y = -16
+
+/turf/simulated/floor/water/digestive_enzymes	//I'm sorry - Medical is going to be really angry. I hope people don't go ';HELP, HELP IN THE FLESH ABYSS!!!' but I know they will
+	name = "digestive enzymes"
+	desc = "A body of some kind of green fluid.  It seems shallow enough to walk through, if needed."
+	icon = 'icons/turf/stomach_vr.dmi'
+	icon_state = "composite"
+	water_icon = 'icons/turf/stomach_vr.dmi'
+	water_state = "enzyme_shallow"
+	under_state = "flesh_floor"
+
+	reagent_type = "Sulphuric acid"	//why not
+	outdoors = FALSE
+	var/mob/living/simple_mob/vore/overmap/stardog/linked_mob
+	var/mobstuff = TRUE		//if false, we don't care about dogs, and that's terrible
+	var/we_process = FALSE	//don't start another process while you're processing, idiot
+
+/turf/simulated/floor/water/digestive_enzymes/Entered(atom/movable/AM)
+	if(digest_stuff(AM) && !we_process)
+		START_PROCESSING(SSturfs, src)
+		we_process = TRUE
+
+/turf/simulated/floor/water/digestive_enzymes/hitby(atom/movable/AM)
+	if(digest_stuff(AM) && !we_process)
+		START_PROCESSING(SSturfs, src)
+		we_process = TRUE
+
+/turf/simulated/floor/water/digestive_enzymes/process()
+	if(!digest_stuff())
+		we_process = FALSE
+		return PROCESS_KILL
+
+/turf/simulated/floor/water/digestive_enzymes/proc/can_digest(atom/movable/AM as mob|obj)
+	. = FALSE
+	if(AM.loc != src)
+		return FALSE
+	if(isobj(AM))
+		var/obj/O = AM
+		if(O.unacidable || O.throwing || O.is_incorporeal())
+			return FALSE
+	if(isitem(AM))
+		var/obj/item/I = AM
+		var/food = FALSE
+		if(istype(I,/obj/item/weapon/reagent_containers/food))
+			food = TRUE
+		if(prob(95))	//Give people a chance to pick them up
+			return TRUE
+		I.visible_message("<span class='warning'>\The [I] sizzles...</span>")
+		var/yum = I.digest_act()	//Glorp
+		if(istype(I , /obj/item/weapon/card))
+			yum = 0		//No, IDs do not have infinite nutrition, thank you
+		if(mobstuff && linked_mob && yum)
+			if(food)
+				yum += 50
+			linked_mob.adjust_nutrition(yum)
+		return TRUE
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(L.unacidable || !L.digestable || L.buckled || L.hovering || L.throwing || L.is_incorporeal())
+			return FALSE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(!H.pl_suit_protected())
+				return TRUE
+			if(H.resting && !H.pl_head_protected())
+				return TRUE
+		else return TRUE
+
+/turf/simulated/floor/water/digestive_enzymes/proc/digest_stuff(atom/movable/AM)	//I'm so sorry
+	. = FALSE
+
+	var/damage = 1
+	if(mobstuff && !linked_mob)	//You might be wondering how we got here. It all started when I decided that I would make a vore level and make some of the turfs affect some mob somewhere in the world. So I used some convenient tools that people who are actually smart made, to make this horrible abomination.
+		var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
+		if(s && istype(s,/obj/effect/overmap/visitable/ship/simplemob/stardog))
+			linked_mob = s.parent	//dogge
+
+	if(linked_mob)	//Please for the love of all that is good, make all this mob shit its own proc, future me
+		damage += clamp(((500 - linked_mob.nutrition) / 100), 1 , 5)
+	var/list/stuff = list()
+	for(var/thing in src)
+		if(can_digest(thing))
+			stuff |= thing
+	if(!stuff.len)
+		return FALSE
+	var/thing = pick(stuff)	//We only think about one thing at a time, otherwise things get wacky
+	. = TRUE
+	if(ishuman(thing))
+		var/mob/living/carbon/human/H = thing
+		if(!H)
+			return
+		visible_message(runemessage = "blub...")
+		if(H.stat == DEAD)
+			H.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
+			for(var/obj/item/W in H)
+				if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
+					var/obj/item/organ/internal/mmi_holder/MMI = W
+					MMI.removed()
+				if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif) || istype(W, /obj/item/organ))
+					continue
+				H.drop_from_inventory(W)
+			if(linked_mob)
+				var/how_much = H.mob_size + H.nutrition
+				if(!H.ckey)
+					how_much = how_much / 10	//Braindead mobs are worth less
+				linked_mob.adjust_nutrition(how_much)
+				H.mind?.vore_death = TRUE
+			spawn(0)
+			qdel(H)	//glorp
+			return
+		if(linked_mob)
+			H.burn_skin(damage)
+			if(linked_mob)
+				var/how_much = (damage * H.size_multiplier) * H.get_digestion_nutrition_modifier() * linked_mob.get_digestion_efficiency_modifier()
+				if(!H.ckey)
+					how_much = how_much / 10	//Braindead mobs are worth less
+				linked_mob.adjust_nutrition(how_much)
+	else if (isliving(thing))
+		var/mob/living/L = thing
+		if(!L)
+			return
+		visible_message(runemessage = "blub...")
+		if(L.stat == DEAD)
+			L.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
+			if(linked_mob)
+				var/how_much = L.mob_size + L.nutrition
+				if(!L.ckey)
+					how_much = how_much / 10	//Braindead mobs are worth less
+				linked_mob.adjust_nutrition(how_much)
+			qdel(L) //gloop
+			return
+		L.adjustFireLoss(damage)
+		if(linked_mob)
+			var/how_much = (damage * L.size_multiplier) * L.get_digestion_nutrition_modifier() * linked_mob.get_digestion_efficiency_modifier()
+			if(!L.ckey)
+				how_much = how_much / 10	//Braindead mobs are worth less
+			linked_mob.adjust_nutrition(how_much)
