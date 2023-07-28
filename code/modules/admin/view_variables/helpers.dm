@@ -48,6 +48,7 @@
 		<option value='?_src_=vars;[HrefToken()];make_skeleton=\ref[src]'>Make 2spooky</option>
 
 		<option value='?_src_=vars;[HrefToken()];direct_control=\ref[src]'>Assume Direct Control</option>
+		<option value='?_src_=vars;[HrefToken()];give_ai=\ref[src]'>Enable/Modify A.I</option>
 		<option value='?_src_=vars;[HrefToken()];drop_everything=\ref[src]'>Drop Everything</option>
 
 		<option value='?_src_=vars;[HrefToken()];regenerateicons=\ref[src]'>Regenerate Icons</option>
