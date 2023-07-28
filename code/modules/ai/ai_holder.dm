@@ -15,12 +15,7 @@
 	var/ai_holder_type = null // Which ai_holder datum to give to the mob when initialized. If null, nothing happens.
 
 /mob/living/Initialize()
-	if(ai_holder_type)
-		ai_holder = new ai_holder_type(src)
-		if(istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = src
-			H.hud_used = new /datum/hud(H)
-			H.create_mob_hud(H.hud_used)
+	initialize_ai_holder()
 	return ..()
 
 /mob/living/Destroy()
@@ -36,6 +31,15 @@
 	if(!stat && !key && ai_holder)
 		ai_holder.manage_processing(AI_PROCESSING)
 	return ..()
+
+//Extracted from mob/living/Initialize() so that we may call it at any time after a mob was created
+/mob/living/proc/initialize_ai_holder()
+	if(ai_holder_type)
+		ai_holder = new ai_holder_type(src)
+		if(istype(src, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			H.hud_used = new /datum/hud(H)
+			H.create_mob_hud(H.hud_used)
 
 /datum/ai_holder
 	var/mob/living/holder = null		// The mob this datum is going to control.
