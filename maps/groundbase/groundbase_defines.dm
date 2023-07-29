@@ -215,7 +215,8 @@
 		list("Teppi Ranch"),
 		list("Innland"),
 		list("Abandoned Island"),
-		list("Dark Adventure")
+		list("Dark Adventure"),
+		list("Star Dog")
 		)
 
 	lateload_gb_north = list(

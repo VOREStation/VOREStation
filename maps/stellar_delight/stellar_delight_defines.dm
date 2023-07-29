@@ -27,7 +27,8 @@
 		"logo2" = 50,
 		"gateway" = 5,
 		"youcanttaketheskyfromme" = 200,
-		"intothedark" = 200
+		"intothedark" = 200,
+		"above3b" = 200
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -171,7 +172,8 @@
 		list("Teppi Ranch"),
 		list("Innland"),
 		list("Abandoned Island"),
-		list("Dark Adventure")
+		list("Dark Adventure"),
+		list("Star Dog")
 		)
 
 	ai_shell_restricted = TRUE

@@ -64,6 +64,7 @@
 	var/obj/structure/control_pod/control_node = null
 	var/shipvore = FALSE	//Enable this to allow the star dog to eat spaceships by dragging them onto its sprite.
 	var/admin_override = FALSE	//If true, makes affinity and nutrition irrelevant.
+	var/list/weather_areas = list()	//We'll call a proc on these areas when we eat, don't worry!
 
 /mob/living/simple_mob/vore/overmap/stardog/Login()
 	. = ..()
@@ -113,8 +114,10 @@
 	if(ckey && control_node)
 		if(nutrition <= 200)
 			adjust_affinity(-10)
-		else
+		else if(nutrition < 500)
 			adjust_affinity(-3)
+		else
+			adjust_affinity(-1)
 		if(!affinity)
 			control_node.eject()
 	if(!ckey && resting)
@@ -151,6 +154,8 @@
 	if(control_node)
 		control_node.host = null
 		control_node = null
+	for(var/anything in weather_areas)
+		weather_areas -= anything
 	return ..()
 
 /mob/living/simple_mob/vore/overmap/stardog/Stat()
@@ -158,12 +163,16 @@
 	if(statpanel("Status"))
 		stat(null, "Affinity: [round(affinity)]")
 
+/mob/living/simple_mob/vore/overmap/stardog/start_pulling(var/atom/movable/AM)
+	if(!istype(loc, /turf/unsimulated/map))	//Don't pull stuff on the overmap
+		..()
+
 /mob/living/simple_mob/vore/overmap/stardog/proc/adjust_affinity(amount)
 	if(amount > 0)
 		var/multiplier = nutrition / 250
 		affinity += (amount * multiplier)
 	if(amount < 0)
-		affinity -= amount
+		affinity += amount
 	if(affinity <= 0)
 		affinity = 0
 
@@ -179,11 +188,45 @@
 	set desc = "Eat carp or rocks!"
 	set category = "Abilities"
 
+	for(var/obj/effect/overmap/event/E in loc)
+		if(istype(E, /obj/effect/overmap/event/carp))
+			adjust_nutrition(250)
+			adjust_affinity(-50)
+			qdel(E)
+			spawn_mob()
+			to_chat(src, "<span class='notice'>You gobble up \the [E]. They're pretty filling, but you don't really like the taste...</span>")
+		else if(istype(E, /obj/effect/overmap/event/dust))
+			adjust_affinity(-100)
+			qdel(E)
+			spawn_treasure(100)
+			spawn_ore(50)
+			to_chat(src, "<span class='notice'>You suck up \the [E]. The dust clings to your mouth and throat!!! You cough and splutter unhappily! It is literally space dirt, and it tastes like it!</span>")
+		else if(istype(E, /obj/effect/overmap/event/meteor))
+			adjust_affinity(-200)
+			qdel(E)
+			spawn_treasure(25)
+			spawn_ore(100)
+			to_chat(src, "<span class='notice'>You swallow \the [E]. The rocks roll down your gullet haphazardly. Some of them knock together and clatter their way down, while others turn to powder. Some of them even have some pretty sharp edges that don't feel very nice! They certainly don't taste very nice, and they weight heavily inside of your belly...</span>")
+		else
+			to_chat(src, "<span class='warning'>You can't eat \the [E].</span>")
+
+/mob/living/simple_mob/vore/overmap/stardog/proc/spawn_mob()
+	for(var/area/redgate/stardog/flesh_abyss/a in weather_areas)
+		if(istype(a, /area/redgate/stardog/flesh_abyss))
+			a.spawn_mob()
+/mob/living/simple_mob/vore/overmap/stardog/proc/spawn_ore(chance)
+	for(var/area/redgate/stardog/flesh_abyss/a in weather_areas)
+		if(istype(a, /area/redgate/stardog/flesh_abyss) && prob(chance))
+			a.spawn_ore()
+/mob/living/simple_mob/vore/overmap/stardog/proc/spawn_treasure(chance)
+	for(var/area/redgate/stardog/flesh_abyss/a in weather_areas)
+		if(istype(a, /area/redgate/stardog/flesh_abyss) && prob(chance))
+			a.spawn_treasure()
+
 /mob/living/simple_mob/vore/overmap/stardog/verb/transition()	//Don't ask how it works. I don't know. I didn't think about it. I just thought it would be cool.
 	set name = "Transition"
 	set desc = "Attempt to go to the location you have arrived at, or return to space!"
 	set category = "Abilities"
-
 	if(nutrition <= 500)
 		to_chat(src, "<span class='warning'>You're too hungry...</span>")
 		return
@@ -196,7 +239,7 @@
 			if(!v.map_z.len)
 				continue
 			for(var/our_z in v.map_z)
-				our_maps |= v.map_z
+				our_maps |= our_z
 		if(!our_maps.len)
 			to_chat(src, "<span class='warning'>There is nowhere nearby to go to! You need to get closer to somewhere you can transition to before you can transition.</span>")
 			return
@@ -208,14 +251,17 @@
 		if(!destinations.len)
 			to_chat(src, "<span class='warning'>There is nowhere nearby to land! You need to get closer to somewhere else that you can transition to before you can transition.</span>")
 			return
-		var/obj/effect/overmap/visitable/our_dest = tgui_input_list(src, "Where would you like to try to go?", "Transition", destinations, timeout = 10 SECONDS)
+		for(var/obj/effect/landmark/stardog/l in destinations)
+		var/obj/effect/overmap/visitable/our_dest = tgui_input_list(src, "Where would you like to try to go?", "Transition", destinations, timeout = 15 SECONDS, strict_modern = TRUE)
 		if(!our_dest)
+			to_chat(src, "<span class='warning'>You decide not to transition.</span>")
 			return
 		to_chat(src, "<span class='notice'>You begin to transition down to \the [our_dest], stay still...</span>")
-		if(!do_after(src, 15 SECONDS, our_dest, exclusive = TRUE))
+		if(!do_after(src, 15 SECONDS, exclusive = TRUE))
 			to_chat(src, "<span class='warning'>You were interrupted.</span>")
 			return
 		visible_message("<span class='warning'>\The [src] disappears!!!</span>")
+		stop_pulling()
 		forceMove(get_turf(our_dest))
 		adjust_nutrition(-1000)
 		visible_message("<span class='warning'>\The [src] steps into the area as if from nowhere!</span>")
@@ -227,13 +273,12 @@
 			return
 
 		visible_message("<span class='warning'>\The [src] disappears!!!</span>")
+		stop_pulling()
 		forceMove(get_turf(get_overmap_sector(z)))
 		adjust_nutrition(-500)
 
 
 /obj/effect/overmap/visitable/ship/simplemob/stardog
-	icon = 'icons/obj/overmap.dmi'
-	icon_state = "ship"
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "ship"
 	skybox_icon = 'icons/skybox/anomaly.dmi'
@@ -510,19 +555,251 @@
 	return
 
 /area/redgate/stardog
+	name = "dog"
+/area/redgate/stardog/flesh_abyss
 	name = "flesh abyss"
 	icon_state = "redblatri"
+	forced_ambience = list('sound/vore/stomach_loop.ogg', 'sound/vore/sunesound/prey/loop.ogg')
+	floracountmax = 0
+	valid_flora = list(
+		/obj/structure/outcrop/coal = 10,
+		/obj/structure/outcrop/diamond = 1,
+		/obj/structure/outcrop/gold = 3,
+		/obj/structure/outcrop/iron = 10,
+		/obj/structure/outcrop/lead = 6,
+		/obj/structure/outcrop/phoron = 10,
+		/obj/structure/outcrop/platinum = 5,
+		/obj/structure/outcrop/silver = 8,
+		/obj/structure/outcrop/uranium = 3,
+		/obj/random/outcrop = 5
+	)
+
+	semirandom = TRUE
+	semirandom_groups = 1
+	semirandom_group_min = 1
+	semirandom_group_max = 3
+	mob_intent = "retaliate"
+	valid_mobs = list(list(/mob/living/simple_mob/vore/alienanimals/teppi = 100))	//REPLACE ME
+
+	var/mob_chance = 10
+	var/treasure_chance = 50
+	var/list/valid_treasure = list()
+	var/treasuremax = 3
+	var/spawnstuff = TRUE
+
+/area/redgate/stardog/flesh_abyss/EvalValidSpawnTurfs()
+	for(var/turf/simulated/floor/flesh/F in src)
+		valid_spawn_turfs |= F
+
+/area/redgate/stardog/flesh_abyss/spawn_flora_on_turf()
+	if(!spawnstuff)
+		return
+	if(!valid_flora.len)
+		to_world_log("[src] does not have a set valid flora list!")
+		return TRUE
+
+	var/obj/F
+	var/turf/Turf
+	var/howmany = rand(0,floracountmax)
+	for(var/floracount = 1 to howmany)
+		F = pickweight(valid_flora)
+		Turf = pick(valid_spawn_turfs)
+		if(!Turf.check_density())
+			new F(Turf)
+
+/area/redgate/stardog/flesh_abyss/spawn_mob_on_turf()
+	if(!spawnstuff)
+		return
+	if(!valid_mobs.len)
+		to_world_log("[src] does not have a set valid mobs list!")
+		return TRUE
+
+	var/mob/M
+	var/turf/Turf
+	if(semirandom)
+		for(var/groupscount = 1 to (semirandom_groups))
+			var/ourgroup = pickweight(valid_mobs)
+			var/goodnum = rand(semirandom_group_min, semirandom_group_max)
+			for(var/mobscount = 1 to (goodnum))
+				M = pickweight(ourgroup)
+				Turf = pick(valid_spawn_turfs)
+				if(!Turf.check_density())
+					var/mob/ourmob = new M(Turf)
+					adjust_mob(ourmob)
+	else
+		for(var/mobscount = 1 to mobcountmax)
+			M = pickweight(valid_mobs)
+			Turf = pick(valid_spawn_turfs)
+			if(!Turf.check_density())
+				var/mob/ourmob = new M(Turf)
+				adjust_mob(ourmob)
+
+/area/redgate/stardog/flesh_abyss/proc/spawn_mob()
+	if(!spawnstuff)
+		return
+	if(!valid_mobs.len)
+		to_world_log("[src] does not have a set valid mobs list!")
+		return
+
+	if(!prob(mob_chance))
+		return
+	var/mob/M
+	var/turf/Turf
+	var/goodnum = rand(semirandom_group_min, semirandom_group_max)
+	for(var/mobscount = 1 to goodnum)
+		M = pickweight(pickweight(valid_mobs))
+		Turf = pick(valid_spawn_turfs)
+		if(!Turf.check_density())
+			var/mob/ourmob = new M(Turf)
+			adjust_mob(ourmob)
+
+/area/redgate/stardog/flesh_abyss/proc/spawn_ore()
+	if(!spawnstuff)
+		return
+	if(!valid_flora.len)
+		to_world_log("[src] does not have a set valid flora list!")
+		return
+
+	var/obj/F
+	var/turf/Turf
+	var/howmany = rand(1,floracountmax)
+	for(var/ore = 1 to howmany)
+		F = pickweight(valid_flora)
+		Turf = pick(valid_spawn_turfs)
+		if(!Turf.check_density())
+			new F(Turf)
+
+/area/redgate/stardog/flesh_abyss/proc/spawn_treasure()
+	if(!spawnstuff)
+		return
+	if(treasure_chance <= 0)
+		return
+	if(!valid_treasure.len)
+		to_world_log("[src] does not have a set valid treasure list!")
+		return
+
+	var/obj/F
+	var/turf/Turf
+	var/howmany = rand(1,treasuremax)
+	for(var/treasure = 1 to howmany)
+		if(prob(treasure_chance))
+			continue
+		F = pick(valid_treasure)
+		Turf = pick(valid_spawn_turfs)
+		if(!Turf.check_density())
+			new F(Turf)
+
+/area/redgate/stardog/flesh_abyss/stomach
+	floracountmax = 3
+	valid_flora = list(
+		/obj/structure/outcrop/coal = 10,
+		/obj/structure/outcrop/diamond = 1,
+		/obj/structure/outcrop/gold = 3,
+		/obj/structure/outcrop/iron = 10,
+		/obj/structure/outcrop/lead = 6,
+		/obj/structure/outcrop/phoron = 10,
+		/obj/structure/outcrop/platinum = 5,
+		/obj/structure/outcrop/silver = 8,
+		/obj/structure/outcrop/uranium = 3,
+		/obj/random/outcrop = 5
+	)
+	semirandom = FALSE
+	semirandom_groups = 1
+	semirandom_group_min = 1
+	semirandom_group_max = 3
+	valid_mobs = list(
+		list(
+			/mob/living/simple_mob/animal/space/carp/event = 100,
+			/mob/living/simple_mob/animal/space/carp/large = 25,
+			/mob/living/simple_mob/animal/space/carp/large/huge = 5,
+			/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 100
+			)
+		)
+	mob_chance = 10
+	treasure_chance = 25
+	valid_treasure = list()
+	treasuremax = 1
+	spawnstuff = TRUE
+
+/area/redgate/stardog/flesh_abyss/s_int
+	floracountmax = 1
+	valid_flora = list(
+		/obj/structure/outcrop/coal = 5,
+		/obj/structure/outcrop/diamond = 2,
+		/obj/structure/outcrop/gold = 3,
+		/obj/structure/outcrop/iron = 7,
+		/obj/structure/outcrop/lead = 3,
+		/obj/structure/outcrop/phoron = 5,
+		/obj/structure/outcrop/platinum = 5,
+		/obj/structure/outcrop/silver = 8,
+		/obj/structure/outcrop/uranium = 3,
+		/obj/random/outcrop = 5
+	)
+	semirandom = FALSE
+	semirandom_groups = 1
+	semirandom_group_min = 1
+	semirandom_group_max = 3
+	valid_mobs = list(
+		list(
+			/mob/living/simple_mob/animal/space/carp/event = 100,
+			/mob/living/simple_mob/animal/space/carp/large = 25,
+			/mob/living/simple_mob/animal/space/carp/large/huge = 5,
+			/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 100
+			)
+		)
+	mob_chance = 5
+	treasure_chance = 33
+	valid_treasure = list()
+	treasuremax = 5
+	spawnstuff = TRUE
+
+/area/redgate/stardog/flesh_abyss/l_int
+	floracountmax = 5
+	valid_flora = list(
+		/obj/structure/outcrop/diamond = 3,
+		/obj/structure/outcrop/gold = 3,
+		/obj/structure/outcrop/iron = 5,
+		/obj/structure/outcrop/phoron = 1,
+		/obj/structure/outcrop/platinum = 5,
+		/obj/structure/outcrop/silver = 8,
+		/obj/structure/outcrop/uranium = 3,
+		/obj/random/outcrop = 1
+	)
+	semirandom = FALSE
+	semirandom_groups = 1
+	semirandom_group_min = 1
+	semirandom_group_max = 1
+	valid_mobs = list(
+		list(
+			/mob/living/simple_mob/animal/space/carp/event = 100,
+			/mob/living/simple_mob/animal/space/carp/large = 25,
+			/mob/living/simple_mob/animal/space/carp/large/huge = 5,
+			/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 100
+			)
+		)
+	mob_chance = 5
+	treasure_chance = 50
+	valid_treasure = list()
+	treasuremax = 5
+	spawnstuff = TRUE
+
+/area/redgate/stardog/flesh_abyss/play_ambience(var/mob/living/L, initial = TRUE)
+	if(!L.is_preference_enabled(/datum/client_preference/digestion_noises))
+		return
+	..()
 
 /area/redgate/stardog/lounge
 	name = "redgate lounge"
 	icon_state = "redwhisqu"
 	requires_power = 0
+	forced_ambience = list()
 
 /area/redgate/stardog/outside
 	name = "star dog"
 	icon_state = "redblacir"
 	semirandom = TRUE
 	ghostjoin = TRUE
+	forced_ambience = list()
 	valid_mobs = list(	//Dog map spawns the dogs. It's not hard to understand!
 		list(
 			/mob/living/simple_mob/vore/woof,
@@ -631,6 +908,7 @@
 		return
 	controller = user
 	visible_message("<span class = 'warning'>\The [src] accepts \the [controller], submerging them beneath the surface of the flesh!</span>")
+	user.stop_pulling()
 	user.forceMove(src)
 	host.ckey = user.ckey
 	log_admin("[host.ckey] has taken contol of \the [host].")
@@ -652,6 +930,7 @@
 
 	var/turf/throwtarg = locate(our_x, our_y, z)	//teehee
 	spawn(0)
+		playsound(src, 'sound/vore/schlorp.ogg', vol = 100, vary = FALSE, volume_channel = VOLUME_CHANNEL_VORE)
 		controller.throw_at(throwtarg, 10, 1)
 		controller = null
 
@@ -664,6 +943,19 @@
 	. = ..()
 	var/area/a = get_area(src)
 	name = a.name
+
+/obj/effect/landmark/area_gatherer
+	name = "stardog area gatherer"
+/obj/effect/landmark/area_gatherer/Initialize()
+	. = ..()
+	LateInitialize()
+
+/obj/effect/landmark/area_gatherer/LateInitialize()	//I am very afraid
+	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
+	var/mob/living/simple_mob/vore/overmap/stardog/dog = s.parent
+	dog.weather_areas |= get_area(src)
+	for(var/thing in dog.weather_areas)
+	qdel(src)
 
 /obj/machinery/computer/ship/navigation/verb/emote_beyond(message as message)	//I could have put this into any other file but right here will do
 	set name = "Emote Beyond"
@@ -751,12 +1043,16 @@
 
 	pixel_x = -16
 
-/obj/effect/dog_nose	//TODO add boop
+/obj/effect/dog_nose
 	name = "nose"
 	desc = "Good for sniffin' with!"
 	icon = 'icons/obj/flesh_machines.dmi'
 	icon_state = "nose"
 	anchored = TRUE
+
+/obj/effect/dog_nose/attack_hand(mob/living/user)
+	. = ..()
+	user.visible_message("<span class='notice'>\The [user] boops the snoot.</span>","<span class='notice'>You boop the snoot.</span>",runemessage = "boop")
 
 /obj/effect/dog_eye/Initialize()
 	. = ..()
@@ -777,6 +1073,7 @@
 	var/reciever = FALSE						//If true, doesn't teleport, only recieves
 	var/obj/effect/dog_teleporter/target		//Target for teleporting to, automatically set by id
 	var/throw_through = TRUE					//When moved the mob/obj will be thrown south
+	var/teleport_sound = 'sound/vore/schlorp.ogg'	//The sound that plays when we use the teleporter. Respects vore sound preferences.
 
 /obj/effect/dog_teleporter/Initialize()
 	. = ..()
@@ -815,13 +1112,18 @@
 		L = AM
 		if(!L.devourable || !L.allowmobvore)
 			return
-	if(target.reciever)		//We don't have to worry
+		L.stop_pulling()
 		L.Weaken(3)
+	if(target.reciever)		//We don't have to worry
+		AM.unbuckle_all_mobs(TRUE)
+		playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		AM.forceMove(get_turf(target))
 		extra(AM)
 		return
 	var/turf/place = locate(target.x, (target.y - 1), target.z)	//If the target is also a teleporter, let's pick a place to set them down next to the target.
 	L.Weaken(3)													//Setting them ON the target will probably make an infinite loop, and that seems lame.
+	AM.unbuckle_all_mobs(TRUE)
+	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	AM.forceMove(place)
 	extra(AM)
 
@@ -840,6 +1142,29 @@
 		var/turf/throwtarg = locate(target.x, (target.y - 5), target.z)
 		spawn(0)
 			AM.throw_at(throwtarg, 10, 1)	//reverbfart.ogg
+
+/obj/effect/dog_teleporter/food_gobbler
+	teleport_sound = 'sound/vore/gulp.ogg'
+
+/obj/effect/dog_teleporter/food_gobbler/Crossed(atom/movable/AM)
+
+	if(istype(AM, /obj/item/weapon/reagent_containers/food))
+		gobble_food(AM)
+	else return	..()
+
+/obj/effect/dog_teleporter/food_gobbler/proc/gobble_food(obj/item/I)
+	if(!isitem(I))
+		return
+	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
+	if(s && istype(s,/obj/effect/overmap/visitable/ship/simplemob/stardog))
+		if(!s.parent)
+			return
+		var/mob/living/simple_mob/vore/overmap/stardog/dog = s.parent
+		dog.adjust_nutrition(I.reagents.total_volume)
+		dog.adjust_affinity(25)
+		playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+		visible_message("<span class='warning'>The dog gobbles up \the [I]!</span>")
+		qdel(I)
 
 /obj/effect/dog_teleporter/reciever
 	name = "exit"
@@ -974,6 +1299,7 @@
 		visible_message(runemessage = "blub...")
 		if(H.stat == DEAD)
 			H.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
+			H.release_vore_contents()
 			for(var/obj/item/W in H)
 				if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 					var/obj/item/organ/internal/mmi_holder/MMI = W
@@ -1004,6 +1330,7 @@
 		visible_message(runemessage = "blub...")
 		if(L.stat == DEAD)
 			L.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
+			L.release_vore_contents()
 			if(linked_mob)
 				var/how_much = L.mob_size + L.nutrition
 				if(!L.ckey)

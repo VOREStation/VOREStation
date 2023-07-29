@@ -17,9 +17,9 @@
 	//Adds turfs to the valid)turfs list, used for spawning.
 	if(mobcountmax || floracountmax || semirandom)
 		for(var/turf/simulated/floor/F in src)
-			valid_spawn_turfs += F
+			valid_spawn_turfs |= F
 		for(var/turf/unsimulated/floor/F in src)
-			valid_spawn_turfs += F
+			valid_spawn_turfs |= F
 
 /area/LateInitialize()
 	..()
@@ -45,17 +45,17 @@
 	var/mob/M
 	var/turf/Turf
 	if(semirandom)
-		for(var/groupscount = 0 to (semirandom_groups - 1))
+		for(var/groupscount = 1 to semirandom_groups)
 			var/ourgroup = pickweight(valid_mobs)
 			var/goodnum = rand(semirandom_group_min, semirandom_group_max)
-			for(var/mobscount = 0 to (goodnum - 1))
+			for(var/mobscount = 1 to goodnum)
 				M = pickweight(ourgroup)
 				Turf = pick(valid_spawn_turfs)
 				valid_spawn_turfs -= Turf
 				var/mob/ourmob = new M(Turf)
 				adjust_mob(ourmob)
 	else
-		for(var/mobscount = 0 to mobcountmax)
+		for(var/mobscount = 1 to mobcountmax)
 			M = pickweight(valid_mobs)
 			Turf = pick(valid_spawn_turfs)
 			valid_spawn_turfs -= Turf
@@ -92,7 +92,7 @@
 
 	var/obj/F
 	var/turf/Turf
-	for(var/floracount = 0 to floracountmax)
+	for(var/floracount = 1 to floracountmax)
 		F = pick(valid_flora)
 		Turf = pick(valid_spawn_turfs)
 		valid_spawn_turfs -= Turf
