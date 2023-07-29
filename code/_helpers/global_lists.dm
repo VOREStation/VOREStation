@@ -14,6 +14,7 @@ var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently t
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/landmarks_list = list()				//list of all landmarks created
+var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
