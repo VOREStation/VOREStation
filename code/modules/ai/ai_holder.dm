@@ -15,7 +15,8 @@
 	var/ai_holder_type = null // Which ai_holder datum to give to the mob when initialized. If null, nothing happens.
 
 /mob/living/Initialize()
-	initialize_ai_holder()
+	if(!ai_holder)
+		initialize_ai_holder()
 	return ..()
 
 /mob/living/Destroy()
@@ -34,8 +35,15 @@
 
 //Extracted from mob/living/Initialize() so that we may call it at any time after a mob was created
 /mob/living/proc/initialize_ai_holder()
+	if(ai_holder)	//Making double sure we clean up and properly GC the original ai_holder
+		var/old_holder = ai_holder
+		ai_holder = null
+		qdel(old_holder)
 	if(ai_holder_type)
 		ai_holder = new ai_holder_type(src)
+		if(!ai_holder)
+			log_debug("[src] could not initialize ai_holder of type [ai_holder_type]")
+			return
 		if(istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			H.hud_used = new /datum/hud(H)
