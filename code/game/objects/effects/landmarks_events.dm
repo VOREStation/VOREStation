@@ -11,7 +11,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	var/isTeamwork = FALSE //Whether to notify creator or whole team.
 	var/isRepeating = FALSE
 	var/coordinates = ""
-	var/cooldown = 0 //in seconds
+	var/cooldown = 0 //Given in seconds in set_vars() but stored in ticks
 	var/last_trigger = 0
 	var/isLoud = FALSE
 	var/isNarrate = FALSE
@@ -19,10 +19,12 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 /obj/effect/landmark/event_trigger/New()
 	..()
 	coordinates = "(X:[loc.x];Y:[loc.y];Z:[loc.z])"
-	invisibility = 100
 
 /obj/effect/landmark/event_trigger/proc/set_vars(mob/M)
-	name = sanitize(tgui_input_text(M, "Input Name for the trigger", "Naming", "Event Trigger"))
+	var/new_name = sanitize(tgui_input_text(M, "Input Name for the trigger", "Naming", "Event Trigger"))
+	if(!new_name)
+		return
+	name = new_name
 	creator_ckey = M.ckey
 	if(!event_triggers[creator_ckey])
 		event_triggers[creator_ckey] = list()
@@ -44,7 +46,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	..()
 
 /obj/effect/landmark/event_trigger/Crossed(var/atom/movable/AM)
-	if(isobserver(AM) || !isliving(AM))
+	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
 	if(!L.ckey) return FALSE
@@ -82,9 +84,8 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 
 /obj/effect/landmark/event_trigger/auto_narrate
 	var/message
-	var/isVis_or_isAud = 0	//0 for vis, 1 for aud
+	var/isPersonal_orVis_orAud = 0	//0 for personal, 1 for vis, 2 for aud
 	var/message_range	//Leave at 0 for world.view
-	var/isPersonal = FALSE	//Overrides isVis/isAud, to_chats the player
 	var/isWarning = FALSE 	//For personal messages
 	isNarrate = TRUE
 
@@ -95,11 +96,11 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 /obj/effect/landmark/event_trigger/auto_narrate/set_vars(mob/M)
 	..()
 	message = encode_html_emphasis(sanitize(tgui_input_text(M, "What should the automatic narration say?", "Message"), encode = FALSE))
-	isPersonal = (tgui_alert(M, "Should it send directly to the player, or send to the turf?", "Target", list("Player", "Turf")) == "Player" ? TRUE : FALSE)
-	if(isPersonal)
+	isPersonal_orVis_orAud = (tgui_alert(M, "Should it send directly to the player, or send to the turf?", "Target", list("Player", "Turf")) == "Player" ? 0 : 1)
+	if(isPersonal_orVis_orAud == 0)
 		isWarning = (tgui_alert(M, "Should it be a normal message or a big scary red text?", "Scary Red", list("Big Red", "Normal")) == "Big Red" ? TRUE : FALSE)
 	else
-		isVis_or_isAud = (tgui_alert(M, "Should it be visible or audible?", "Mode", list("Visible", "Audible")) == "Audible" ? 1 : 0)
+		isPersonal_orVis_orAud = (tgui_alert(M, "Should it be visible or audible?", "Mode", list("Visible", "Audible")) == "Audible" ? 2 : 1)
 		var/range = tgui_input_number(M, "Give narration range! Input value over 10 to use world.view", "Range",default = 11, min_value = 0)
 		if(range <= 10)
 			message_range = range
@@ -113,17 +114,16 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	if(!.)
 		return
 	var/mob/living/L = .
-	if(isPersonal)
-		if(isWarning)
-			to_chat(L, SPAN_DANGER(message))
-		else
-			to_chat(L, message)
-	else
-		var/turf/T = get_turf(src)
-		switch(isVis_or_isAud)
-			if(0)
-				T.visible_message(message, range = message_range, runemessage = message)
-			if(1)
-				T.audible_message(message, hearing_distance = message_range, runemessage= message)
+	var/turf/T = get_turf(src)
+	switch(isPersonal_orVis_orAud)
+		if(0)
+			if(isWarning)
+				to_chat(L, SPAN_DANGER(message))
+			else
+				to_chat(L, message)
+		if(1)
+			T.visible_message(message, range = message_range, runemessage = message)
+		if(2)
+			T.audible_message(message, hearing_distance = message_range, runemessage= message)
 	if(!isRepeating)
 		qdel(src)

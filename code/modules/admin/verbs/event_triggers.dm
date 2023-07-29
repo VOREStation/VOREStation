@@ -18,7 +18,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 		"Manage Other's Triggers",
 		"Cancel"
 	), "Cancel" )
-	if(mode == "Cancel") return
+	if(!mode || mode == "Cancel") return
 
 	feedback_add_details("admin_verb","EventTriggerManage")
 	switch(mode)
@@ -40,7 +40,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 			personal_list |= list("Cancel", "Delete All")
 			var/choice = tgui_input_list(src, "Select a landmark to choose between teleporting to it or deleting it, select delete all to clear them.", \
 			"Manage Personal Triggers", personal_list)
-			if(choice == "Cancel")
+			if(!choice || choice == "Cancel")
 				return
 			if(choice == "Delete All")
 				var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK", "CONFIRM", list("Go Back", "Delete all my event triggers"), autofocus = FALSE)
@@ -75,17 +75,21 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 			others_list |= list("Cancel", "Delete All")
 			var/choice = tgui_input_list(src, "Select a landmark to choose between teleporting to it or deleting it, select delete all to clear them.", \
 			"Manage Personal Triggers", others_list)
-			if(choice == "Cancel")
+			if(!choice || choice == "Cancel")
 				return
 			if(choice == "Delete All")
 				if(other_ckey && GLOB.directory[other_ckey])
 					var/client/C = GLOB.directory[other_ckey]
 					var/mob/M = C.statobj
 					if(M.client && M.client.inactivity < 30 MINUTES)
-						to_chat(src, SPAN_WARNING("[M] has only been inactive for [M.client.inactivity / (1 MINUTE)] minutes.\n \
-						If you want to delete their event triggers, ask them in asay or discord to do it themselves or wait 30 minutes"))
-						log_and_message_admins("[src.ckey] tried to delete all of [other_ckey]'s event triggers, but [other_ckey] is active.")
-						return
+						if(tgui_alert(src, "[M] has only been inactive for [M.client.inactivity / (1 MINUTE)] minutes.\n \
+							If you want to delete their event triggers, ask them in asay or discord to do it themselves or wait 30 minutes. \n \
+							Only proceed if you are absolutely certain.", "Force Delete", list("Confirm", "Cancel")) == "Confirm")
+							for(var/obj/effect/landmark/event_trigger/ET in others_list)
+								ET.delete_me = TRUE
+								qdel(ET)
+							log_and_message_admins("[src.ckey] deleted all of [other_ckey]'s event triggers while [other_ckey] was active")
+							return
 				var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK", "CONFIRM", list("Go Back", "Delete all my event triggers"), autofocus = FALSE)
 				if(confirm == "Go Back")
 					return
@@ -109,10 +113,13 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 						var/client/C = GLOB.directory[other_ckey]
 						var/mob/M = C.statobj
 						if(M.client && M.client.inactivity < 30 MINUTES)
-							to_chat(src, SPAN_WARNING("[M] has only been inactive for [M.client.inactivity / (1 MINUTE)] minutes.\n \
-							If you want to delete their event triggers, ask them in asay or discord to do it themselves or wait 30 minutes"))
-							log_and_message_admins("[src.ckey] tried to delete event trigger [ET.name], but [other_ckey] is active.")
-							return
+							if(tgui_alert(src, "[M] has only been inactive for [M.client.inactivity / (1 MINUTE)] minutes.\n \
+								If you want to delete their event triggers, ask them in asay or discord to do it themselves or wait 30 minutes. \n \
+								Only proceed if you are absolutely certain.", "Force Delete", list("Confirm", "Cancel")) == "Confirm")
+								ET.delete_me = TRUE
+								qdel(ET)
+								log_and_message_admins("[src.ckey] tried to delete event trigger [ET.name] while [other_ckey] is active.")
+								return
 					var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK FROM DELETING [ET.name]", "CONFIRM", list("Go Back", "Delete it!"), autofocus = FALSE)
 					if(confirm == "Go Back")
 						return
