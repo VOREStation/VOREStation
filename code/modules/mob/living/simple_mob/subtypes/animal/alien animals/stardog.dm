@@ -108,7 +108,7 @@
 	if(admin_override)
 		affinity = 9999
 		nutrition = 9999
-	if(devourable)
+	if(devourable)	//This will cause problems probably so please do not eat the dog
 		devourable = FALSE
 		digestable = FALSE
 	if(ckey && control_node)
@@ -188,27 +188,75 @@
 	set desc = "Eat carp or rocks!"
 	set category = "Abilities"
 
-	for(var/obj/effect/overmap/event/E in loc)
-		if(istype(E, /obj/effect/overmap/event/carp))
-			adjust_nutrition(250)
-			adjust_affinity(-50)
-			qdel(E)
-			spawn_mob()
-			to_chat(src, "<span class='notice'>You gobble up \the [E]. They're pretty filling, but you don't really like the taste...</span>")
-		else if(istype(E, /obj/effect/overmap/event/dust))
-			adjust_affinity(-100)
-			qdel(E)
-			spawn_treasure(100)
-			spawn_ore(50)
-			to_chat(src, "<span class='notice'>You suck up \the [E]. The dust clings to your mouth and throat!!! You cough and splutter unhappily! It is literally space dirt, and it tastes like it!</span>")
-		else if(istype(E, /obj/effect/overmap/event/meteor))
-			adjust_affinity(-200)
-			qdel(E)
-			spawn_treasure(25)
-			spawn_ore(100)
-			to_chat(src, "<span class='notice'>You swallow \the [E]. The rocks roll down your gullet haphazardly. Some of them knock together and clatter their way down, while others turn to powder. Some of them even have some pretty sharp edges that don't feel very nice! They certainly don't taste very nice, and they weight heavily inside of your belly...</span>")
+	var/obj/effect/overmap/event/E
+	var/nut = 0
+	var/aff = 0
+	var/mob = FALSE
+	var/ore = 0
+	var/tre = 0
+	var/msg = "REPLACE ME"
+	var/heal = FALSE
+
+	for(var/obj/effect/overmap/event/e in loc)
+		if(istype(e, /obj/effect/overmap/event/carp))
+			E = e
+			nut = 250
+			aff = -50
+			mob = TRUE
+			var/list/msglist = list(
+				"You lap up \the [E]. They're pretty filling, but you don't really like the taste...",
+				"You lap up \the [E]. You can feel them wiggle all the way down... They don't taste very good, but you feel energized afterward.",
+				"You lap up \the [E]. They flee away from you, attempting to scatter in all directions, but you're faster! They leave an unpleasant taste on your tongue, but your belly doesn't seem to mind them."
+			)
+			msg = pick(msglist)
+		else if(istype(e, /obj/effect/overmap/event/dust))
+			E = e
+			aff = -100
+			tre = 15
+			ore = 25
+			msg = "You lap up \the [E]. The dust clings to your mouth and throat!!! You cough and splutter unhappily! It is literally space dirt, and it tastes like it!"
+		else if(istype(e, /obj/effect/overmap/event/meteor))
+			E = e
+			aff = -200
+			tre = 5
+			ore = 100
+			msg = "You lap up \the [E]. The rocks roll down your gullet haphazardly. Some of them knock together and clatter their way down, while others turn to powder. Some of them even have some pretty sharp edges that don't feel very nice! They certainly don't taste very nice, and they weight heavily inside of your belly..."
+		else if(istype(e, /obj/effect/overmap/event/electric))
+			E = e
+			aff = 15
+			msg = "You try to eat \the [E], but you find that no matter how much of it you lick or homn upon, yet more remains! It makes your mouth tingle, and your fur stand on end! It's kind of fun, but it doesn't taste like anything, and you definitely don't feel any more full."
+		else if(istype(e, /obj/effect/overmap/event/ion))
+			E = e
+			aff = 20
+			msg = "When you approach \the [E], you find that the dog's will pulls away from your own a little bit. It seems to really like the shimmering clouds, and it feels really good to nestle up among them. Like taking a relaxing dip into a regenerative spring. Any aches and pains that the dog was experiencing seem to fade away, leaving it feeling refreshed!"
+			heal = TRUE
 		else
-			to_chat(src, "<span class='warning'>You can't eat \the [E].</span>")
+			to_chat(src, "<span class='warning'>You can't eat \the [e].</span>")
+			return
+
+	if(!E)
+		to_chat(src, "<span class='warning'>There isn't anything to eat here.</span>")
+		return
+
+	to_chat(src, "<span class='notice'>You begin to eat \the [E]...</span>")
+
+	if(!do_after(src, 20 SECONDS, E, exclusive = TRUE))
+		return
+	to_chat(src, "<span class='notice'>[msg]</span>")
+	if(nut || aff)
+		adjust_nutrition(nut)
+		adjust_affinity(aff)
+	if(mob)
+		spawn_mob()
+		to_chat(src, "<span class='notice'>You can feel something moving inside of you...</span>")
+	if(ore)
+		spawn_ore(ore)
+	if(tre)
+		spawn_treasure(tre)
+	if(heal)
+		adjustFireLoss(-999)
+		adjustBruteLoss(-999)
+	qdel(E)
 
 /mob/living/simple_mob/vore/overmap/stardog/proc/spawn_mob()
 	for(var/area/redgate/stardog/flesh_abyss/a in weather_areas)
@@ -583,7 +631,31 @@
 
 	var/mob_chance = 10
 	var/treasure_chance = 50
-	var/list/valid_treasure = list()
+	var/list/valid_treasure = list(
+		/obj/item/weapon/cell/infinite = 5,
+		/obj/item/weapon/cell/device/weapon/recharge/alien = 5,
+		/obj/item/device/nif/authentic = 1,
+		/obj/item/toy/bosunwhistle = 50,
+		/obj/random/mouseray = 50,
+		/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random = 10,
+		/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced = 5,
+		/obj/item/clothing/mask/gas/voice = 25,
+		/obj/item/device/perfect_tele = 15,
+		/obj/item/weapon/gun/energy/sizegun = 50,
+		/obj/item/device/slow_sizegun = 50,
+		/obj/item/capture_crystal/master = 5,
+		/obj/item/capture_crystal/ultra = 15,
+		/obj/item/capture_crystal/great = 25,
+		/obj/item/capture_crystal/random = 50,
+		/obj/random/pizzabox = 10,	//The dog intercepted your pizza voucher delivery, what a scamp
+		/obj/item/weapon/bluespace_harpoon = 15,
+		/obj/random/awayloot = 5,
+		/obj/random/cash = 15,
+		/obj/random/cash/big = 10,
+		/obj/random/cash/huge = 5,
+		/obj/random/maintenance/clean = 10,
+		/obj/random/maintenance/misc = 10
+		)
 	var/treasuremax = 3
 	var/spawnstuff = TRUE
 
@@ -684,7 +756,7 @@
 	for(var/treasure = 1 to howmany)
 		if(prob(treasure_chance))
 			continue
-		F = pick(valid_treasure)
+		F = pickweight(valid_treasure)
 		Turf = pick(valid_spawn_turfs)
 		if(!Turf.check_density())
 			new F(Turf)
@@ -717,7 +789,6 @@
 		)
 	mob_chance = 10
 	treasure_chance = 25
-	valid_treasure = list()
 	treasuremax = 1
 	spawnstuff = TRUE
 
@@ -749,7 +820,6 @@
 		)
 	mob_chance = 5
 	treasure_chance = 33
-	valid_treasure = list()
 	treasuremax = 5
 	spawnstuff = TRUE
 
@@ -779,7 +849,6 @@
 		)
 	mob_chance = 5
 	treasure_chance = 50
-	valid_treasure = list()
 	treasuremax = 5
 	spawnstuff = TRUE
 
