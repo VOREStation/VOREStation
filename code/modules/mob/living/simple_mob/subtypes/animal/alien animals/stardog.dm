@@ -651,8 +651,7 @@
 	semirandom_group_min = 1
 	semirandom_group_max = 3
 	mob_intent = "retaliate"
-	valid_mobs = list(list(/mob/living/simple_mob/vore/alienanimals/teppi = 100))	//REPLACE ME
-	no_spoilers = TRUE
+	valid_mobs = list(list(/mob/living/simple_mob/vore/alienanimals/abyss_lurker = 100))
 
 	var/mob_chance = 10
 	var/treasure_chance = 50
@@ -1505,7 +1504,7 @@
 	for(var/atom/movable/A in contents)
 		if(A.anchored)
 			continue
-		if(!isitem(A) || !isliving(A))
+		if(!isitem(A) && !isliving(A))
 			continue
 		if(A.loc != src) //Don't move things that aren't here
 			continue

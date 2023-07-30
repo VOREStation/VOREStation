@@ -275,6 +275,10 @@
 	},
 /turf/simulated/floor/lino,
 /area/redgate/stardog/lounge)
+"BO" = (
+/obj/effect/map_effect/interval/effect_emitter/steam/less_frequent,
+/turf/simulated/floor/water/digestive_enzymes,
+/area/redgate/stardog/flesh_abyss/stomach)
 "Cv" = (
 /obj/effect/dog_teleporter/exit,
 /turf/simulated/floor/flesh,
@@ -472,6 +476,10 @@
 "Wj" = (
 /turf/unsimulated/floor/dark,
 /area/redgate/stardog/flesh_abyss)
+"Wu" = (
+/obj/effect/map_effect/interval/effect_emitter/steam/less_frequent,
+/turf/simulated/floor/water/digestive_enzymes,
+/area/redgate/stardog/flesh_abyss/s_int)
 "WB" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 6
@@ -1790,7 +1798,7 @@ KL
 KF
 KF
 KF
-KF
+BO
 KF
 KF
 KF
@@ -4206,7 +4214,7 @@ KL
 KF
 KF
 KF
-KF
+BO
 KF
 KF
 KF
@@ -5187,7 +5195,7 @@ Ll
 Ll
 KF
 KF
-KF
+BO
 KF
 KL
 KL
@@ -5337,7 +5345,7 @@ KL
 KF
 KF
 KF
-KF
+BO
 KF
 KL
 KL
@@ -6331,7 +6339,7 @@ KF
 KF
 KF
 KF
-KF
+BO
 KF
 KF
 KF
@@ -12850,7 +12858,7 @@ Zh
 mo
 sW
 sW
-sW
+Wu
 sW
 sW
 mo
