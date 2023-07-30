@@ -60,6 +60,8 @@
 
 	movement_cooldown = 5
 	copy_prefs_to_mob = FALSE
+	player_msg = "The dog accepts you into itself, allowing you to dictate what will happen. The dog occasionally thinks unknowable thoughts, though you can understand some of its needs and desires. The dog shares its experience with you. You can navigate space, 'transition' to certain locations, and you can dine upon some of the space weather. The dog doesn't seem to know how any of this works exactly, this is just how things are for the dog, they come as naturally to the dog as blinking."
+
 	var/affinity = 0
 	var/obj/structure/control_pod/control_node = null
 	var/shipvore = FALSE	//Enable this to allow the star dog to eat spaceships by dragging them onto its sprite.
@@ -146,6 +148,11 @@
 		child_om_marker.set_light(0)
 		movement_cooldown = 0
 
+/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+	to_chat(src, "<span class='warning'>You can't do that.</span>")	//The dog can move back and forth between the overmap.
+	return															//If it can do normal vore mechanics, it can carry players to the OM,
+																	//and release them there. I think that's probably a bad idea.
+
 /mob/living/simple_mob/vore/overmap/stardog/Initialize()
 	. = ..()
 	child_om_marker.set_light(5, 1, "#ff8df5")
@@ -175,6 +182,8 @@
 		affinity += amount
 	if(affinity <= 0)
 		affinity = 0
+	if(affinity > 1000)
+		affinity = 1000
 
 /mob/living/simple_mob/vore/overmap/stardog/verb/eject()
 	set name = "Eject"
@@ -196,6 +205,7 @@
 	var/tre = 0
 	var/msg = "REPLACE ME"
 	var/heal = FALSE
+	var/delet = TRUE
 
 	for(var/obj/effect/overmap/event/e in loc)
 		if(istype(e, /obj/effect/overmap/event/carp))
@@ -214,22 +224,35 @@
 			aff = -100
 			tre = 15
 			ore = 25
-			msg = "You lap up \the [E]. The dust clings to your mouth and throat!!! You cough and splutter unhappily! It is literally space dirt, and it tastes like it!"
+			var/list/msglist = list(
+				"You lap up \the [E]. The dust clings to your mouth and throat!!! You cough and splutter unhappily! It is literally space dirt, and it tastes like it!",
+				"You lap up \the [E]. The bitter taste of the dust sticks to your tongue and takes a lot of work to get off! It's really frustrating!",
+				"You lap up \the [E]. Not only does it taste horrible and feel worse going down, some of it gets in your eyes!"
+			)
+			msg = pick(msglist)
 		else if(istype(e, /obj/effect/overmap/event/meteor))
 			E = e
 			aff = -200
 			tre = 5
 			ore = 100
-			msg = "You lap up \the [E]. The rocks roll down your gullet haphazardly. Some of them knock together and clatter their way down, while others turn to powder. Some of them even have some pretty sharp edges that don't feel very nice! They certainly don't taste very nice, and they weight heavily inside of your belly..."
+			var/list/msglist = list(
+				"You lap up \the [E]. The rocks roll down your gullet haphazardly. Some of them knock together and clatter their way down, while others turn to powder. Some of them even have some pretty sharp edges that don't feel very nice! They certainly don't taste very nice, and they weight heavily inside of your belly...",
+				"You lap up \the [E]. When they land inside you can feel the weight of them settle in. They make your insides kind of queasy...",
+				"You lap up \the [E]. They taste like rocks, and make you think of all the better things you could be eating..."
+			)
+
+			msg = pick(msglist)
 		else if(istype(e, /obj/effect/overmap/event/electric))
 			E = e
 			aff = 15
 			msg = "You try to eat \the [E], but you find that no matter how much of it you lick or homn upon, yet more remains! It makes your mouth tingle, and your fur stand on end! It's kind of fun, but it doesn't taste like anything, and you definitely don't feel any more full."
+			delet = FALSE
 		else if(istype(e, /obj/effect/overmap/event/ion))
 			E = e
 			aff = 20
 			msg = "When you approach \the [E], you find that the dog's will pulls away from your own a little bit. It seems to really like the shimmering clouds, and it feels really good to nestle up among them. Like taking a relaxing dip into a regenerative spring. Any aches and pains that the dog was experiencing seem to fade away, leaving it feeling refreshed!"
 			heal = TRUE
+			delet = FALSE
 		else
 			to_chat(src, "<span class='warning'>You can't eat \the [e].</span>")
 			return
@@ -256,7 +279,8 @@
 	if(heal)
 		adjustFireLoss(-999)
 		adjustBruteLoss(-999)
-	qdel(E)
+	if(delet)
+		qdel(E)
 
 /mob/living/simple_mob/vore/overmap/stardog/proc/spawn_mob()
 	for(var/area/redgate/stardog/flesh_abyss/a in weather_areas)
@@ -628,6 +652,7 @@
 	semirandom_group_max = 3
 	mob_intent = "retaliate"
 	valid_mobs = list(list(/mob/living/simple_mob/vore/alienanimals/teppi = 100))	//REPLACE ME
+	no_spoilers = TRUE
 
 	var/mob_chance = 10
 	var/treasure_chance = 50
@@ -852,6 +877,12 @@
 	treasuremax = 5
 	spawnstuff = TRUE
 
+/area/redgate/stardog/flesh_abyss/node
+	enter_message = "<span class='notice'>Radical energy hangs as a haze in the air around the control node. It's much less hot here than other places within the dog, but the air is thick with alien whispers and desires that you can hardly comprehend.</span>"
+	icon_state = "yelwhisqu"
+	spawnstuff = FALSE
+	requires_power = 0
+
 /area/redgate/stardog/flesh_abyss/play_ambience(var/mob/living/L, initial = TRUE)
 	if(!L.is_preference_enabled(/datum/client_preference/digestion_noises))
 		return
@@ -918,7 +949,7 @@
 
 /obj/structure/control_pod	//god someone is going to try to fuck with this, everyone is going to be angry, I'm so sorry
 	name = "node"
-	desc = "Fleshy!"
+	desc = "A smooth node of nerves and flesh. It seems almost to radiate whispers of alien thought and emotion."
 	icon = 'icons/obj/flesh_machines.dmi'
 	icon_state = "control_node0"
 
@@ -956,9 +987,6 @@
 		if(!host)
 			to_chat(user, "<span class = 'warning'>It doesn't respond...</span>")
 			return
-	if(controller)
-		to_chat(user, "<span class = 'warning'>\The [controller] is already connected! There's no room for you right now!</span>")
-		return
 	control(user)
 
 /obj/structure/control_pod/proc/control(mob/living/user)
@@ -966,14 +994,14 @@
 		to_chat(user, "<span class = 'warning'>As you press your hand to \the [src], it resists your advance... A sense of longing ripples through your mind...</span>")
 		return
 	if(controller)	//busy
-		to_chat(user, "<span class = 'warning'>\The [controller] is already connected! There's no room for you right now!</span>")
+		to_chat(user, "<span class = 'warning'>You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!</span>")
 		return
 	user.visible_message("<span class = 'notice'>\The [user] reaches out to touch \the [src]...</span>","<span class = 'notice'>You reach out to touch \the [src]...</span>")
 	if(!do_after(user, 10 SECONDS, src, exclusive = TRUE))
 		user.visible_message("<span class = 'warning'>\The [user] pulls back from \the [src].</span>","<span class = 'warning'>You pull back from \the [src].</span>")
 		return
 	if(controller)	//got busy while you were waiting, get rekt
-		to_chat(user, "<span class = 'warning'>\The [controller] is already connected! There's no room for you right now!</span>")
+		to_chat(user, "<span class = 'warning'>You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!</span>")
 		return
 	controller = user
 	visible_message("<span class = 'warning'>\The [src] accepts \the [controller], submerging them beneath the surface of the flesh!</span>")
@@ -1025,6 +1053,22 @@
 	dog.weather_areas |= get_area(src)
 	for(var/thing in dog.weather_areas)
 	qdel(src)
+
+/obj/machinery/computer/ship/navigation/telescreen/dog_eye
+	name = "visual nexus"
+	desc = "A glowing bundle of nerves across which you can see what the dog sees."
+	icon = 'icons/obj/flesh_machines.dmi'
+	icon_state = "screen_eye"
+	pixel_x = -16
+	pixel_y = -16
+	clicksound = 'sound/vore/squish1.ogg'
+
+/obj/machinery/computer/ship/navigation/telescreen/dog_eye/attackby(I, user)
+	return
+
+/obj/machinery/computer/ship/navigation/telescreen/dog_eye/update_icon()
+	. = ..()
+	icon_state = "screen_eye"
 
 /obj/machinery/computer/ship/navigation/verb/emote_beyond(message as message)	//I could have put this into any other file but right here will do
 	set name = "Emote Beyond"
@@ -1123,6 +1167,16 @@
 	. = ..()
 	user.visible_message("<span class='notice'>\The [user] boops the snoot.</span>","<span class='notice'>You boop the snoot.</span>",runemessage = "boop")
 
+/obj/effect/dog_nose/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
+	sneef(AM)
+
+/obj/effect/dog_nose/proc/sneef(mob/living/L)
+	if(!isliving(L))
+		return
+	if(L.client)
+		to_chat(L, "<span class='notice'>A hot breath rushes up from under your feet, before the air rushes back down into the dog's nose as the dog sniffs you! SNEEF SNEEF!!!</span>")
+
 /obj/effect/dog_eye/Initialize()
 	. = ..()
 	var/area/redgate/stardog/eyes/e = get_area(src)
@@ -1143,6 +1197,7 @@
 	var/obj/effect/dog_teleporter/target		//Target for teleporting to, automatically set by id
 	var/throw_through = TRUE					//When moved the mob/obj will be thrown south
 	var/teleport_sound = 'sound/vore/schlorp.ogg'	//The sound that plays when we use the teleporter. Respects vore sound preferences.
+	var/teleport_message = ""
 
 /obj/effect/dog_teleporter/Initialize()
 	. = ..()
@@ -1199,6 +1254,9 @@
 /obj/effect/dog_teleporter/proc/extra(atom/movable/AM as mob|obj)
 	var/go = FALSE
 	if(isliving(AM))
+		var/mob/living/L = AM
+		if(teleport_message && L.client)
+			to_chat(src, "[teleport_message]")
 		go = TRUE
 	if(isobj(AM))
 		go = FALSE
@@ -1214,6 +1272,7 @@
 
 /obj/effect/dog_teleporter/food_gobbler
 	teleport_sound = 'sound/vore/gulp.ogg'
+	teleport_message = "<span class='notice'>The tundering drum of the dog's heart beat throbs all around you, while the sweltering heat of its body soaks into you. It's soft and wet as a symphony of gurgles and glorps fills the steamy air!</span>"
 
 /obj/effect/dog_teleporter/food_gobbler/Crossed(atom/movable/AM)
 
@@ -1233,6 +1292,8 @@
 		dog.adjust_affinity(25)
 		playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		visible_message("<span class='warning'>The dog gobbles up \the [I]!</span>")
+		if(dog.client)
+			to_chat(dog, "<span class='notice'>[I.thrower ? "\The [I.thrower]" : "Someone"] feeds \the [I] to you!</span>")
 		qdel(I)
 
 /obj/effect/dog_teleporter/reciever
@@ -1275,6 +1336,8 @@
 	id = "exit"
 	pixel_x = -16
 	pixel_y = -16
+	layer = ABOVE_TURF_LAYER
+	plane = TURF_PLANE
 
 /turf/simulated/floor/water/digestive_enzymes	//I'm sorry - Medical is going to be really angry. I hope people don't go ';HELP, HELP IN THE FLESH ABYSS!!!' but I know they will
 	name = "digestive enzymes"
@@ -1310,12 +1373,10 @@
 	. = FALSE
 	if(AM.loc != src)
 		return FALSE
-	if(isobj(AM))
-		var/obj/O = AM
-		if(O.unacidable || O.throwing || O.is_incorporeal())
-			return FALSE
 	if(isitem(AM))
 		var/obj/item/I = AM
+		if(I.unacidable || I.throwing || I.is_incorporeal())
+			return FALSE
 		var/food = FALSE
 		if(istype(I,/obj/item/weapon/reagent_containers/food))
 			food = TRUE
@@ -1413,3 +1474,157 @@
 			if(!L.ckey)
 				how_much = how_much / 10	//Braindead mobs are worth less
 			linked_mob.adjust_nutrition(how_much)
+
+/turf/simulated/floor/flesh/mover
+	icon_state = "flesh_floor_mover"
+	var/movechance = 5
+	var/we_process = FALSE
+	var/move_dir = 2
+
+/turf/simulated/floor/flesh/mover/Initialize(mapload)
+	. = ..()
+	move_dir = dir
+	dir = SOUTH
+
+/turf/simulated/floor/flesh/mover/Entered(atom/movable/AM)
+	if(!we_process)
+		START_PROCESSING(SSturfs, src)
+
+/turf/simulated/floor/flesh/mover/hitby(atom/movable/AM)
+	if(!we_process)
+		START_PROCESSING(SSturfs, src)
+
+/turf/simulated/floor/flesh/mover/process()	//Mostly stolen from conveyor2.dm
+	if(movechance <= 0)
+		we_process = FALSE
+		return PROCESS_KILL
+	we_process = TRUE
+	if(!prob(movechance))	//Let's kind of control the speed that this happens at
+		return
+	var/items_moved = 0
+	for(var/atom/movable/A in contents)
+		if(A.anchored)
+			continue
+		if(!isitem(A) || !isliving(A))
+			continue
+		if(A.loc != src) //Don't move things that aren't here
+			continue
+		step(A,move_dir)
+		items_moved++
+
+		if(items_moved >= 10)
+			break
+
+	if(!items_moved)	//If we didn't move anything let's shut it down
+		we_process = FALSE
+		return PROCESS_KILL
+
+/obj/structure/auto_flesh_door	//It's like a simple door, but it opens and closes automatically now and then!
+	name = "flesh valve"
+	density = TRUE
+	opacity = TRUE
+	anchored = TRUE
+	can_atmos_pass = ATMOS_PASS_DENSITY
+
+	icon = 'icons/turf/stomach_vr.dmi'
+	icon_state = "fleshdoor"
+
+	var/state = 0 //closed, 1 == open
+	var/isSwitchingStates = 0
+	var/countdown = 0
+	var/knock_sound = 'sound/effects/attackblob.ogg'
+	var/list/open_sounds = list(
+		'sound/vore/sunesound/prey/squish_01.ogg',
+		'sound/vore/sunesound/prey/squish_02.ogg',
+		'sound/vore/sunesound/prey/squish_03.ogg',
+		'sound/vore/sunesound/prey/squish_04.ogg',
+		'sound/vore/sunesound/prey/stomachmove.ogg'
+		)
+
+/obj/structure/auto_flesh_door/Initialize()
+	. = ..()
+	countdown = rand(50,250)
+	START_PROCESSING(SSobj, src)
+	update_icon()
+
+/obj/structure/auto_flesh_door/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	update_nearby_tiles()
+	return ..()
+
+/obj/structure/auto_flesh_door/process()
+	if(countdown <= 0)
+		SwitchState()
+	else
+		countdown --
+	if(!state)
+		for(var/mob/living/L in src.loc.contents)
+			if(isliving(L))
+				L.Weaken(3)
+				if(prob(5))
+					to_chat(L, "<span class='warning'>\The [src] throbs heavily around you...</span>")
+
+/obj/structure/auto_flesh_door/attack_hand(mob/user as mob)
+	. = ..()
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!Adjacent(user))
+		return
+	else if(user.a_intent == I_HELP)
+		visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		playsound(src, knock_sound, 50, 0, 3)
+		countdown -= 10
+	else
+		visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
+		playsound(src, knock_sound, 50, 0, 3)
+		countdown -= 25
+
+/obj/structure/auto_flesh_door/CanPass(atom/movable/mover, turf/target)
+	return !density
+
+/obj/structure/auto_flesh_door/proc/SwitchState()
+	if(state)
+		Close()
+	else
+		Open()
+
+/obj/structure/auto_flesh_door/proc/Open()
+	isSwitchingStates = 1
+	var/oursound = pick(open_sounds)
+	playsound(src, oursound, 100, 1, preference = /datum/client_preference/digestion_noises , volume_channel = VOLUME_CHANNEL_VORE)
+	flick("flesh-opening",src)
+	sleep(8)
+	density = FALSE
+	set_opacity(0)
+	state = 1
+	update_icon()
+	isSwitchingStates = 0
+	update_nearby_tiles()
+	countdown = rand(10,20)
+	layer = OBJ_LAYER
+	plane = OBJ_PLANE
+
+/obj/structure/auto_flesh_door/proc/Close()
+	isSwitchingStates = 1
+	var/oursound = pick(open_sounds)
+	playsound(src, oursound, 100, 1, preference = /datum/client_preference/digestion_noises , volume_channel = VOLUME_CHANNEL_VORE)
+	flick("flesh-closing",src)
+	sleep(8)
+	density = TRUE
+	set_opacity(1)
+	state = 0
+	update_icon()
+	isSwitchingStates = 0
+	update_nearby_tiles()
+	countdown = rand(50,250)
+	layer = ABOVE_MOB_LAYER
+	plane = ABOVE_MOB_PLANE
+	for(var/mob/living/L in src.loc.contents)
+		if(isliving(L))
+			L.Weaken(3)
+			L.visible_message("<span class='danger'>\The [src] closes up on \the [L]!</span>","<span class='danger'>The weight of \the [src] closes in on you, squeezing you on all sides so tightly that you can hardly move! It throbs against you as the way is sealed, with you stuck in the middle!!!</span>")
+
+/obj/structure/auto_flesh_door/update_icon()
+	if(state)
+		icon_state = "flesh-open"
+	else
+		icon_state = "flesh-closed"
