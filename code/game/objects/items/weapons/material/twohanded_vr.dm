@@ -39,7 +39,7 @@
 	default_material = MAT_WOOD
 	name = "staff"
 	desc = "A sturdy length of metal or wood. A common traveler's aid mostly used for support or probing unstable ground, but also a fairly effective weapon in a pinch."
-	description_info = "When wielded with two hands, staves can be used to parry incoming attacks. Being on disarm intent also grants them an added chance to stun or knock down opponents, and increases your chances of parrying an attack."
+	description_info = "When wielded with two hands, staves can be used to parry incoming melee attacks. Being on disarm intent also grants them an added chance to stun or knock down opponents, and increases your chances of parrying an attack."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "mat_staff"
 	base_icon = "mat_staff"
@@ -61,6 +61,8 @@
 
 /obj/item/weapon/material/twohanded/staff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	var/parry_chance
+	if(istype(damage_source, /obj/item/projectile))	//can't block ranged attacks, only melee!
+		return 0
 	if(src.wielded == 1)
 		if(user.a_intent == I_DISARM)
 			parry_chance = base_parry_chance * disarm_defense
