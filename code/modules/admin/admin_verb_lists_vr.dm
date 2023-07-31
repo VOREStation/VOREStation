@@ -171,7 +171,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/remove_mob_for_narration,	//VOREStation Add
 	/client/proc/narrate_mob,	//VOREStation Add
 	/client/proc/narrate_mob_args, //VOREStation Add
-	/client/proc/getPlayerStatus //VORESTation Add
+	/client/proc/getPlayerStatus, //VORESTation Add
+	/client/proc/manage_event_triggers
 
 	)
 

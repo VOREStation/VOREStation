@@ -157,6 +157,29 @@
 		if(usr.client)
 			usr.client.cmd_assume_direct_control(M)
 
+	else if(href_list["give_ai"])
+		if(!check_rights(0))	return
+
+		var/mob/M = locate(href_list["give_ai"])
+		if(!istype(M, /mob/living))
+			to_chat(usr, span_notice("This can only be used on instances of type /mob/living"))
+			return
+		var/mob/living/L = M
+		if(L.client || L.teleop)
+			to_chat(usr, span_warning("This cannot be used on player mobs!"))
+			return
+
+		if(L.ai_holder)	//Cleaning up the original ai
+			var/ai_holder_old = L.ai_holder
+			L.ai_holder = null
+			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
+		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+		L.initialize_ai_holder()
+		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
+		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+			L.AdjustSleeping(-100)
+
 	else if(href_list["make_skeleton"])
 		if(!check_rights(R_FUN))	return
 

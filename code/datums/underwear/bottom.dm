@@ -10,6 +10,10 @@
 /datum/category_item/underwear/bottom/briefs/is_default(var/gender)
 	return gender != FEMALE
 
+/datum/category_item/underwear/bottom/briefs_hyper
+	name = "HYPER Briefs"
+	icon_state = "hyper_briefs"
+
 /datum/category_item/underwear/bottom/boxers_loveheart
 	name = "Boxers, Loveheart"
 	icon_state = "boxers_loveheart"
@@ -18,6 +22,10 @@
 	name = "Boxers"
 	icon_state = "boxers"
 	has_color = TRUE
+
+/datum/category_item/underwear/bottom/boxers_hyper
+	name = "HYPER Boxers"
+	icon_state = "hyper_boxers"
 
 /datum/category_item/underwear/bottom/boxers_green_and_blue
 	name = "Boxers, green & blue striped"
