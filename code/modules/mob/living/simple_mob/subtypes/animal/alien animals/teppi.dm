@@ -124,7 +124,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	attack_sound = 'sound/voice/teppi/roar.ogg' // make a better one idiot
 	friendly = list("snoofs", "nuzzles", "nibbles", "smooshes on")
 
-	ai_holder_type = /datum/ai_holder/simple_mob/teppi
+	ai_holder_type = /datum/ai_holder/simple_mob/vore/micro_hunter
 
 	mob_size = MOB_LARGE
 
@@ -160,6 +160,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	vore_default_contamination_flavor = "Wet"
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
+	vore_bump_chance = 5
+	vore_pounce_chance = 35
+	vore_pounce_falloff = 0
+	vore_standing_too = TRUE
 
 /mob/living/simple_mob/vore/alienanimals/teppi/init_vore()
 	..()

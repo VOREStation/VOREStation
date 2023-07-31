@@ -6,6 +6,9 @@
 	var/mauling = FALSE						// Attacks unconscious mobs
 	var/unconscious_vore = FALSE			//VOREStation Add - allows a mob to go for unconcious targets IF their vore prefs align
 	var/handle_corpse = FALSE				// Allows AI to acknowledge corpses (e.g. nurse spiders)
+	var/vore_hostile = FALSE				// The same as hostile, but with vore pref checks
+	var/micro_hunt = FALSE					// Will target mobs at or under the micro_hunt_size size, requires vore_hostile to be true
+	var/micro_hunt_size = 0.25
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -312,3 +315,16 @@
 /datum/ai_holder/proc/lose_taunt()
 	ai_log("lose_taunt() : Resetting preferred_target.", AI_LOG_INFO)
 	preferred_target = null
+
+/datum/ai_holder/proc/vore_check(mob/living/L)
+	if(!holder.vore_selected)	//We probably don't have a belly so don't even try
+		return FALSE
+	if(!isliving(L))	//We only want mob/living
+		return FALSE
+	if(!L.devourable || !L.allowmobvore)	//Check their prefs
+		return FALSE
+	if(micro_hunt && !(L.get_effective_size(TRUE) <= micro_hunt_size))	//Are they small enough to get?
+		to_world("[holder]'s micro hunt failed against [L]: micro_hunt = [micro_hunt]: [L] effective_size = [L.get_effective_size(TRUE)]: Hunting sizes under [micro_hunt_size]")
+		return FALSE
+	to_world("micro hunt passed")
+	return TRUE // Let's go!
