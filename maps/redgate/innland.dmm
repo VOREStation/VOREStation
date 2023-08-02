@@ -290,7 +290,7 @@
 "dg" = (
 /obj/structure/sink/kitchen{
 	name = "sink";
-	pixel_y = 28
+	pixel_y = 20
 	},
 /turf/simulated/floor/plating,
 /area/redgate/structure/powered)
@@ -345,6 +345,9 @@
 /obj/item/weapon/grenade/chem_grenade/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/redgate/structure/powered)
 "dt" = (
@@ -911,6 +914,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/telecomms/relay/preset/station,
 /turf/simulated/floor/carpet/purcarpet,
 /area/redgate/structure/powered)
 "lb" = (
