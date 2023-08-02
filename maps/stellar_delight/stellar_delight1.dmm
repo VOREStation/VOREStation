@@ -4994,6 +4994,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/vending/nifsoft_shop,
+/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube,
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/port)
 "jK" = (
@@ -9786,6 +9787,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube,
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/port)
 "uh" = (
@@ -15812,6 +15814,7 @@
 /area/chapel/main)
 "HL" = (
 /obj/machinery/vending/nifsoft_shop,
+/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube,
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "HN" = (
@@ -22822,6 +22825,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
+/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube,
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "Wz" = (
