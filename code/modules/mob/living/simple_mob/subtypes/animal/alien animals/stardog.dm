@@ -651,7 +651,7 @@
 	semirandom_group_min = 1
 	semirandom_group_max = 3
 	mob_intent = "retaliate"
-	valid_mobs = list(list(/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 100))
+	valid_mobs = list(list(/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 100, /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 500))
 
 	var/mob_chance = 10
 	var/treasure_chance = 50
@@ -1271,7 +1271,7 @@
 
 /obj/effect/dog_teleporter/food_gobbler
 	teleport_sound = 'sound/vore/gulp.ogg'
-	teleport_message = "<span class='notice'>The tundering drum of the dog's heart beat throbs all around you, while the sweltering heat of its body soaks into you. It's soft and wet as a symphony of gurgles and glorps fills the steamy air!</span>"
+	teleport_message = "<span class='notice'>The thundering drum of the dog's heart beat throbs all around you, while the sweltering heat of its body soaks into you. It's soft and wet as a symphony of gurgles and glorps fills the steamy air!</span>"
 
 /obj/effect/dog_teleporter/food_gobbler/Crossed(atom/movable/AM)
 

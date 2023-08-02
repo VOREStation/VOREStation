@@ -324,7 +324,5 @@
 	if(!L.devourable || !L.allowmobvore)	//Check their prefs
 		return FALSE
 	if(micro_hunt && !(L.get_effective_size(TRUE) <= micro_hunt_size))	//Are they small enough to get?
-		to_world("[holder]'s micro hunt failed against [L]: micro_hunt = [micro_hunt]: [L] effective_size = [L.get_effective_size(TRUE)]: Hunting sizes under [micro_hunt_size]")
 		return FALSE
-	to_world("micro hunt passed")
 	return TRUE // Let's go!
