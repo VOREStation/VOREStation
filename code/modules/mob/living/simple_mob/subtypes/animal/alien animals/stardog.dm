@@ -654,7 +654,7 @@
 	valid_mobs = list(
 		list(
 			/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 100,
-			/mob/living/simple_mob/vore/vore_hostile/filter = 100,
+			/mob/living/simple_mob/vore/vore_hostile/leaper = 100,
 			/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 10
 			)
 			)
@@ -815,7 +815,7 @@
 	valid_mobs = list(
 		list(
 		/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 10,
-		/mob/living/simple_mob/vore/vore_hostile/filter = 20,
+		/mob/living/simple_mob/vore/vore_hostile/leaper = 20,
 		/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 100
 		)
 		)
