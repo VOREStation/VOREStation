@@ -453,7 +453,7 @@
 	sprites = list(
 					"Standard" = "ert",
 					"Classic" = "ertold",
-					"Borgi" = "borgi",
+				//	"Borgi" = "borgi",
 					"MEKA" = "mekaninja",
 					"MEKA v2" = "newmekaninja",
 					"NIKA" = "fmekaninja",
