@@ -11,7 +11,7 @@
 "aP" = (
 /obj/effect/dog_teleporter/reciever/invisible,
 /turf/simulated/floor/flesh,
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "bl" = (
 /turf/simulated/floor/flesh,
 /area/redgate/stardog/flesh_abyss/l_int)
@@ -55,7 +55,7 @@
 "cZ" = (
 /obj/effect/dog_teleporter/mouth_return,
 /turf/simulated/floor/flesh,
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "el" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
@@ -69,9 +69,14 @@
 /obj/random/vendordrink,
 /turf/simulated/floor/wood,
 /area/redgate/stardog/lounge)
+"fF" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 8
+	},
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "gb" = (
-/turf/simulated/floor/flesh/mover,
-/area/redgate/stardog/flesh_abyss)
+/turf/simulated/floor/flesh,
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "gG" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
@@ -81,11 +86,6 @@
 "hg" = (
 /turf/simulated/floor/flesh/mover,
 /area/redgate/stardog/flesh_abyss/l_int)
-"hJ" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 8
-	},
-/area/redgate/stardog/flesh_abyss)
 "hP" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 6
@@ -109,16 +109,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/redgate/stardog/lounge)
-"iJ" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 1
-	},
-/area/redgate/stardog/flesh_abyss)
-"ja" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 6
-	},
-/area/redgate/stardog/flesh_abyss)
 "jf" = (
 /obj/structure/bed/chair/sofa/corp{
 	dir = 1
@@ -180,15 +170,18 @@
 "oZ" = (
 /turf/simulated/floor/outdoors/fur/woof/no_trees,
 /area/redgate/stardog/eyes)
-"pi" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 5
-	},
-/area/redgate/stardog/flesh_abyss)
+"pn" = (
+/turf/simulated/floor/flesh/mover,
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "pp" = (
 /obj/effect/landmark/area_gatherer,
 /turf/simulated/flesh,
 /area/redgate/stardog/flesh_abyss/s_int)
+"pI" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 1
+	},
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "qF" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 8
@@ -200,7 +193,7 @@
 	dir = 4;
 	movechance = 1
 	},
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "sr" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 32
@@ -227,6 +220,11 @@
 /obj/item/weapon/pickaxe/hand,
 /turf/simulated/floor/flesh,
 /area/redgate/stardog/flesh_abyss/stomach)
+"uC" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 4
+	},
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "uQ" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/reinforced,
@@ -237,6 +235,9 @@
 	},
 /turf/simulated/floor/outdoors/fur/woof/no_trees,
 /area/redgate/stardog/outside)
+"wg" = (
+/turf/simulated/floor/flesh/mover,
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "wL" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 1
@@ -245,6 +246,11 @@
 "xy" = (
 /turf/simulated/floor/outdoors/fur/woof/wall,
 /area/redgate/stardog/outside)
+"xZ" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 4
+	},
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "yi" = (
 /obj/effect/landmark/area_gatherer,
 /turf/simulated/flesh,
@@ -260,14 +266,9 @@
 "yM" = (
 /turf/simulated/floor/wood,
 /area/redgate/stardog/lounge)
-"zl" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 4
-	},
-/area/redgate/stardog/flesh_abyss)
 "AS" = (
 /turf/simulated/floor/water/digestive_enzymes,
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "Br" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /obj/machinery/light/small{
@@ -282,7 +283,7 @@
 "Cv" = (
 /obj/effect/dog_teleporter/exit,
 /turf/simulated/floor/flesh,
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "Cw" = (
 /turf/simulated/floor/flesh,
 /area/redgate/stardog/flesh_abyss/node)
@@ -305,6 +306,11 @@
 /obj/effect/fake_sun,
 /turf/simulated/flesh,
 /area/redgate/stardog/flesh_abyss)
+"Fb" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 5
+	},
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "Fu" = (
 /obj/effect/map_effect/portal/line/side_a{
 	dir = 4
@@ -326,7 +332,7 @@
 /turf/simulated/floor/flesh/mover{
 	dir = 9
 	},
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "GW" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 8
@@ -355,6 +361,9 @@
 	dir = 1
 	},
 /area/redgate/stardog/flesh_abyss/l_int)
+"Ki" = (
+/turf/simulated/floor/flesh,
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "Kk" = (
 /obj/effect/landmark/area_gatherer,
 /turf/simulated/flesh,
@@ -377,6 +386,13 @@
 "Ll" = (
 /turf/simulated/flesh,
 /area/redgate/stardog/flesh_abyss/stomach)
+"LH" = (
+/obj/structure/auto_flesh_door,
+/turf/simulated/floor/flesh/mover{
+	dir = 4;
+	movechance = 1
+	},
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "MH" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 5
@@ -407,6 +423,11 @@
 	},
 /turf/simulated/floor/outdoors/fur/woof/no_trees,
 /area/redgate/stardog/outside)
+"Os" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 6
+	},
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "Pe" = (
 /obj/effect/map_effect/portal/master/side_a{
 	portal_id = "stardog_north"
@@ -472,7 +493,7 @@
 	dir = 1;
 	movechance = 1
 	},
-/area/redgate/stardog/flesh_abyss)
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "Wj" = (
 /turf/unsimulated/floor/dark,
 /area/redgate/stardog/flesh_abyss)
@@ -503,6 +524,11 @@
 "Xv" = (
 /turf/simulated/floor/outdoors/fur/woof,
 /area/redgate/stardog/outside)
+"Yt" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 6
+	},
+/area/redgate/stardog/flesh_abyss/digestive_tract)
 "YF" = (
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = -32
@@ -1214,15 +1240,15 @@ Zh
 Zh
 Zh
 Zh
-cB
-cB
-cB
-cB
-cB
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -1357,14 +1383,14 @@ Zh
 Zh
 cZ
 aP
-cB
-cB
-cB
-cB
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -1502,11 +1528,11 @@ Zh
 Zh
 Zh
 Zh
-cB
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -1646,9 +1672,9 @@ Ll
 KL
 KL
 KL
-cB
-cB
-cB
+gb
+gb
+gb
 KL
 KL
 KL
@@ -1788,9 +1814,9 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
+gb
+gb
+gb
 KL
 KL
 KL
@@ -1800,7 +1826,7 @@ KF
 KF
 BO
 KF
-KF
+AS
 KF
 KF
 Ll
@@ -1930,9 +1956,9 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
+gb
+gb
+gb
 KL
 KL
 KL
@@ -1941,8 +1967,8 @@ KL
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 Ll
@@ -2073,9 +2099,9 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
+gb
+gb
+gb
 KL
 KL
 KL
@@ -2083,8 +2109,8 @@ KL
 KL
 KL
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 Ll
@@ -2215,18 +2241,18 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
 KL
 KL
 KL
 KL
 KL
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 Ll
@@ -2357,18 +2383,18 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
 KL
 KL
 KL
 KL
 KL
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 Ll
@@ -2499,10 +2525,10 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -2510,7 +2536,7 @@ KL
 KL
 KL
 KF
-KF
+AS
 KF
 KF
 Ll
@@ -2641,10 +2667,10 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -2784,10 +2810,10 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
-cB
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -2927,9 +2953,9 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
+gb
+gb
+gb
 KL
 KL
 KL
@@ -3069,9 +3095,9 @@ KL
 KL
 KL
 KL
-cB
-cB
-cB
+gb
+gb
+gb
 KL
 KL
 KL
@@ -3212,8 +3238,8 @@ KL
 KL
 KL
 KL
-cB
-cB
+gb
+gb
 KL
 KL
 KL
@@ -3354,8 +3380,8 @@ KL
 KL
 KL
 KL
-cB
-cB
+gb
+gb
 KL
 KL
 KL
@@ -3496,8 +3522,8 @@ KL
 KL
 KL
 KL
-KL
-cB
+gb
+gb
 KL
 KL
 KL
@@ -3638,8 +3664,8 @@ KL
 KL
 KL
 KL
-KL
-cB
+gb
+gb
 KL
 KL
 KL
@@ -3780,15 +3806,15 @@ Ll
 KL
 KL
 KL
-KL
-cB
+gb
+gb
 KL
 KL
 KL
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -3922,16 +3948,16 @@ Ll
 KL
 KL
 KL
+gb
+gb
+gb
 KL
-cB
-cB
-KL
 KL
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -4065,16 +4091,16 @@ KL
 KL
 KL
 KL
+gb
+gb
 KL
-cB
-KL
 KL
 KF
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -4207,8 +4233,8 @@ KL
 KL
 KL
 KL
-KL
-cB
+gb
+gb
 KL
 KL
 KF
@@ -4216,8 +4242,8 @@ KF
 KF
 BO
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -4349,18 +4375,18 @@ KL
 KL
 KL
 KL
+gb
+gb
+gb
 KL
-cB
-cB
-KL
 KL
 KF
 KF
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -4492,9 +4518,9 @@ KL
 KL
 KL
 KL
+gb
+gb
 KL
-cB
-KL
 KL
 KF
 KF
@@ -4502,7 +4528,7 @@ KF
 KF
 KF
 KF
-KF
+AS
 KF
 KF
 KF
@@ -4635,8 +4661,8 @@ KL
 KL
 KL
 KL
-cB
-cB
+gb
+gb
 KL
 KL
 KL
@@ -4778,8 +4804,8 @@ KL
 KL
 KL
 KL
-cB
-cB
+gb
+gb
 KL
 KL
 KL
@@ -4921,8 +4947,8 @@ KL
 KL
 KL
 KL
-cB
-cB
+gb
+gb
 KL
 KL
 KL
@@ -5064,8 +5090,8 @@ KF
 KF
 KL
 KL
-cB
-cB
+gb
+gb
 KL
 KL
 KL
@@ -5207,11 +5233,11 @@ KF
 KF
 KL
 KL
-cB
-KL
-KL
-KL
-KL
+gb
+gb
+gb
+gb
+gb
 KL
 KL
 KL
@@ -5353,14 +5379,14 @@ KL
 KL
 KL
 KL
-KL
-KL
-KL
-KL
-KL
 gb
-ja
-zl
+gb
+gb
+gb
+gb
+pn
+Os
+uC
 Ll
 Ll
 Zh
@@ -5478,8 +5504,8 @@ Ll
 Ll
 Ll
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -5501,8 +5527,8 @@ KL
 KL
 KL
 Ll
-gb
-zl
+pn
+uC
 KL
 Ll
 Zh
@@ -5621,8 +5647,8 @@ Ll
 Ll
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -5644,7 +5670,7 @@ KL
 KL
 Ll
 Ll
-sk
+LH
 Ll
 Ll
 Zh
@@ -5764,8 +5790,8 @@ Ll
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -5786,7 +5812,7 @@ KL
 KL
 Ll
 Xi
-zl
+uC
 Xi
 Ll
 Zh
@@ -5907,8 +5933,8 @@ KF
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -6050,8 +6076,8 @@ KF
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -6193,8 +6219,8 @@ KF
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 KF
 KF
@@ -6336,8 +6362,8 @@ KF
 KF
 KF
 KF
-KF
-KF
+AS
+AS
 KF
 BO
 KF
@@ -6479,7 +6505,7 @@ KF
 KF
 KF
 KF
-KF
+AS
 KF
 KF
 KF
@@ -7187,9 +7213,9 @@ Zh
 Zh
 Ll
 Ll
-zl
+xZ
 Vh
-iJ
+pI
 wL
 wL
 wL
@@ -7328,8 +7354,8 @@ Zh
 Zh
 Zh
 Ll
-zl
-pi
+xZ
+Fb
 Ll
 Ll
 Ll
@@ -7348,8 +7374,8 @@ Ll
 Ll
 Ll
 mo
-sW
-sW
+AS
+AS
 mo
 Zh
 "}
@@ -7470,8 +7496,8 @@ Zh
 Zh
 Zh
 Ll
-zl
-iJ
+xZ
+pI
 Ll
 Ll
 Ll
@@ -7489,9 +7515,9 @@ Ll
 Ll
 Ll
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 Zh
 "}
@@ -7611,8 +7637,8 @@ cB
 Zh
 Zh
 Zh
-zl
-iJ
+xZ
+pI
 mo
 mo
 mo
@@ -7631,9 +7657,9 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 Zh
 "}
@@ -7753,7 +7779,7 @@ cB
 cB
 Zh
 Zh
-zl
+xZ
 mo
 mo
 mo
@@ -7761,21 +7787,21 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
 ac
 mo
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 Zh
 "}
@@ -7895,26 +7921,26 @@ cB
 cB
 Zh
 Zh
-ja
-zl
+Yt
+xZ
 mo
 mo
 QK
 QK
-sW
-sW
-sW
-sW
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
 QK
 QK
 QK
-ja
-zl
+Yt
+xZ
 mo
 mo
 mq
@@ -8037,8 +8063,8 @@ cB
 cB
 Zh
 Zh
-gb
-gb
+wg
+wg
 QK
 QK
 HJ
@@ -8055,9 +8081,9 @@ mo
 QK
 QK
 QK
-gb
-ja
-zl
+wg
+Yt
+xZ
 mo
 mq
 mo
@@ -8198,8 +8224,8 @@ mo
 mo
 mo
 mo
-zl
-zl
+xZ
+xZ
 mq
 mq
 mo
@@ -8329,15 +8355,15 @@ mo
 mo
 ac
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mo
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
 mo
 mo
 ac
@@ -8468,18 +8494,18 @@ mo
 mo
 mo
 mo
-zl
-iJ
+xZ
+pI
 AS
 AS
-sW
-sW
+AS
+AS
 mo
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
 mo
 mo
 ac
@@ -8609,20 +8635,20 @@ mo
 mo
 mo
 mo
-zl
-iJ
+xZ
+pI
 mo
-sW
-sW
-sW
-mo
-mo
-sW
-sW
+AS
+AS
+AS
 mo
 mo
-sW
-sW
+AS
+AS
+mo
+mo
+AS
+AS
 mo
 hP
 ac
@@ -8751,20 +8777,20 @@ mo
 mo
 ac
 MH
-pi
+Fb
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
-sW
-TF
+AS
+fF
 mo
 QK
 ac
@@ -8893,20 +8919,20 @@ mo
 ac
 ac
 MH
-iJ
+pI
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
-hJ
-hJ
+fF
+fF
 mo
 mo
 ac
@@ -9038,18 +9064,18 @@ ac
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 TF
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
-hJ
-hJ
-iJ
+fF
+fF
+pI
 Xb
 ac
 MH
@@ -9180,17 +9206,17 @@ ac
 mo
 mo
 mo
-sW
+AS
 TF
 TF
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mo
-hJ
+fF
 GK
 Xb
 Xb
@@ -9322,14 +9348,14 @@ ac
 mq
 mo
 mo
-hJ
-hJ
+fF
+fF
 mo
 mo
 mo
 ac
-sW
-sW
+AS
+AS
 mo
 mo
 mo
@@ -9464,14 +9490,14 @@ ac
 mo
 mo
 mo
-hJ
-hJ
-iJ
+fF
+fF
+pI
 Xb
 Xb
 Xb
 MH
-sW
+AS
 mo
 mo
 mo
@@ -9607,7 +9633,7 @@ mo
 mo
 mo
 mo
-hJ
+fF
 GK
 Xb
 Xb
@@ -9615,9 +9641,9 @@ Xb
 Xb
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
 mo
@@ -9742,7 +9768,7 @@ cB
 Zh
 cB
 Zc
-gb
+wg
 hP
 ac
 mo
@@ -9757,11 +9783,11 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
 mq
 mq
 mo
@@ -9886,7 +9912,7 @@ cB
 Zh
 mo
 QK
-zl
+xZ
 mo
 mo
 mo
@@ -9899,12 +9925,12 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
+AS
 mo
 mo
 Zh
@@ -10028,7 +10054,7 @@ Zh
 mo
 mo
 mo
-zl
+xZ
 MH
 mq
 mo
@@ -10170,7 +10196,7 @@ Zh
 mo
 mo
 mo
-zl
+xZ
 MH
 mq
 mo
@@ -10312,13 +10338,13 @@ Zh
 mo
 mo
 ac
-zl
+xZ
 MH
 mo
 mo
 mo
 TF
-sW
+AS
 mo
 mo
 ac
@@ -10459,8 +10485,8 @@ Xb
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 ac
@@ -10593,16 +10619,16 @@ cB
 cB
 cB
 Zc
-zl
-zl
-iJ
+xZ
+xZ
+pI
 mo
 mo
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
 ac
@@ -10735,16 +10761,16 @@ Zh
 Zh
 Zh
 Zh
-zl
-zl
+xZ
+xZ
 mo
 mo
 mo
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 hP
 ac
@@ -10884,9 +10910,9 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 hP
 hP
@@ -11025,10 +11051,10 @@ hP
 ac
 mo
 mo
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
 mo
 hP
 hP
@@ -11167,9 +11193,9 @@ hP
 hP
 QK
 QK
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
 mq
@@ -11310,7 +11336,7 @@ QK
 QK
 HJ
 QK
-sW
+AS
 mo
 mo
 mo
@@ -11324,7 +11350,7 @@ mo
 mo
 mo
 mo
-sW
+AS
 ac
 mq
 Zh
@@ -11454,8 +11480,8 @@ HJ
 TF
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mo
@@ -11464,10 +11490,10 @@ mq
 mo
 mo
 mo
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
 mo
 Zh
 "}
@@ -11595,19 +11621,19 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
 mo
 mq
 mq
 mo
 mo
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
 mo
 mo
 mo
@@ -11737,17 +11763,17 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
 mq
 mq
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
 mo
@@ -11887,13 +11913,13 @@ mo
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 Zh
 "}
@@ -12029,13 +12055,13 @@ mo
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
 mo
 Zh
 "}
@@ -12171,13 +12197,13 @@ Xb
 Xb
 mo
 mo
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
 mo
-sW
+AS
 mo
 Zh
 "}
@@ -12313,13 +12339,13 @@ Im
 Im
 mo
 mo
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
 mo
-sW
+AS
 mo
 Zh
 "}
@@ -12461,7 +12487,7 @@ mo
 mo
 mo
 mo
-sW
+AS
 mo
 Zh
 "}
@@ -12579,7 +12605,7 @@ sW
 sW
 sW
 mo
-sW
+AS
 ac
 Xb
 mo
@@ -12598,12 +12624,12 @@ TF
 Xb
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 Zh
 "}
@@ -12721,8 +12747,8 @@ sW
 sW
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mo
@@ -12740,12 +12766,12 @@ TF
 Im
 Xb
 mo
-sW
-sW
+AS
+AS
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 Zh
 "}
@@ -12863,8 +12889,8 @@ sW
 sW
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mq
@@ -12882,11 +12908,11 @@ TF
 TF
 Im
 mo
-sW
+AS
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 Zh
@@ -13005,8 +13031,8 @@ sW
 sW
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mq
@@ -13027,8 +13053,8 @@ mq
 mq
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 Zh
@@ -13146,8 +13172,8 @@ sW
 mq
 mo
 mo
-sW
-sW
+AS
+AS
 mo
 mo
 mo
@@ -13170,7 +13196,7 @@ mo
 mo
 ac
 MH
-sW
+AS
 mo
 mo
 Zh
@@ -13295,8 +13321,8 @@ mo
 mo
 mq
 TF
-sW
-sW
+AS
+AS
 mo
 mo
 mo
@@ -13436,11 +13462,11 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
-sW
-sW
+AS
+AS
+AS
+AS
+AS
 Xb
 Xb
 mo
@@ -13580,9 +13606,9 @@ mo
 mo
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
 mo
@@ -13880,8 +13906,8 @@ mo
 mo
 mo
 mq
-cB
-cB
+Ki
+Ki
 Zh
 Zh
 "}
@@ -14022,9 +14048,9 @@ mo
 mo
 QK
 QK
-gb
-ja
-zl
+wg
+Yt
+xZ
 Zh
 "}
 (96,1,1) = {"
@@ -14165,8 +14191,8 @@ mo
 HJ
 TF
 Zh
-gb
-zl
+wg
+xZ
 Zh
 "}
 (97,1,1) = {"
@@ -14295,7 +14321,7 @@ ac
 mq
 mo
 mo
-sW
+AS
 TF
 mo
 mo
@@ -14308,7 +14334,7 @@ TF
 TF
 Zh
 Zh
-zl
+xZ
 Zh
 "}
 (98,1,1) = {"
@@ -14437,9 +14463,9 @@ ac
 ac
 mo
 mo
-sW
-sW
-sW
+AS
+AS
+AS
 mo
 mo
 mo
@@ -14450,7 +14476,7 @@ TF
 TF
 Zh
 Zh
-zl
+xZ
 Zh
 "}
 (99,1,1) = {"
@@ -14576,11 +14602,11 @@ Im
 Xb
 mo
 ac
-sW
+AS
 mo
 mo
-sW
-sW
+AS
+AS
 mq
 mo
 mo
@@ -14588,11 +14614,11 @@ mo
 ac
 mo
 mo
-sW
+AS
 mo
 Zh
-zl
-pi
+xZ
+Fb
 Zh
 "}
 (100,1,1) = {"
@@ -14714,14 +14740,14 @@ mo
 mo
 mo
 mo
-sW
+AS
 TF
 mo
-sW
-sW
+AS
+AS
 mo
 mo
-sW
+AS
 TF
 mo
 mo
@@ -14730,11 +14756,11 @@ mq
 ac
 mo
 mo
-sW
+AS
 mo
 Zh
-zl
-pi
+xZ
+Fb
 Zh
 "}
 (101,1,1) = {"
@@ -14856,10 +14882,10 @@ mo
 mo
 mo
 mo
-sW
-sW
+AS
+AS
 mo
-sW
+AS
 ac
 mo
 mo
@@ -14875,8 +14901,8 @@ mo
 TF
 mq
 Zh
-zl
-pi
+xZ
+Fb
 Zh
 "}
 (102,1,1) = {"
@@ -14997,8 +15023,8 @@ hP
 ac
 mo
 mo
-sW
-sW
+AS
+AS
 TF
 mo
 ac
@@ -15017,8 +15043,8 @@ QK
 TF
 mq
 Zh
-zl
-iJ
+xZ
+pI
 Zh
 "}
 (103,1,1) = {"
@@ -15159,7 +15185,7 @@ HJ
 TF
 mo
 Zh
-zl
+xZ
 Zh
 Zh
 "}
@@ -15300,8 +15326,8 @@ mq
 mq
 mo
 mo
-zl
-iJ
+xZ
+pI
 Zh
 Zh
 "}
@@ -15442,7 +15468,7 @@ mo
 mo
 mo
 Zh
-zl
+xZ
 Zh
 Zh
 Zh
@@ -15574,17 +15600,17 @@ mo
 mo
 mo
 Zh
-zl
-iJ
-iJ
-iJ
+xZ
+pI
+pI
+pI
 Zh
 Zh
 Zh
 Zh
-zl
-iJ
-iJ
+xZ
+pI
+pI
 Zh
 Zh
 Zh
@@ -15715,16 +15741,16 @@ ex
 ex
 ex
 Zh
-zl
-iJ
+xZ
+pI
 Zh
 Zh
-hJ
-iJ
-iJ
-iJ
-iJ
-iJ
+fF
+pI
+pI
+pI
+pI
+pI
 Zh
 Zh
 Zh
@@ -15857,7 +15883,7 @@ ex
 ex
 ex
 Zh
-zl
+xZ
 Zh
 Zh
 Zh
@@ -16141,7 +16167,7 @@ ex
 ex
 bl
 bl
-cf
+Yt
 cf
 hg
 hg
@@ -17840,8 +17866,8 @@ ex
 bl
 bl
 bl
-cB
-cB
+gb
+gb
 ex
 ex
 ex
@@ -17982,9 +18008,9 @@ ex
 ex
 ex
 bl
-cB
-cB
-cB
+gb
+gb
+gb
 ex
 ex
 ex
@@ -18124,8 +18150,8 @@ bl
 bl
 ex
 ex
-cB
-cB
+gb
+gb
 Cv
 ex
 ex

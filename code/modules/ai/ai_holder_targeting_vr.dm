@@ -9,6 +9,7 @@
 	retaliate = TRUE
 	vore_hostile = TRUE
 	forgive_resting = TRUE
+	cooperative = FALSE
 
 /datum/ai_holder/simple_mob/vore/micro_hunter
 	micro_hunt = TRUE

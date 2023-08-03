@@ -648,10 +648,16 @@
 
 	semirandom = TRUE
 	semirandom_groups = 1
-	semirandom_group_min = 1
-	semirandom_group_max = 3
+	semirandom_group_min = 5
+	semirandom_group_max = 15
 	mob_intent = "retaliate"
-	valid_mobs = list(list(/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 100, /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 500))
+	valid_mobs = list(
+		list(
+			/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 100,
+			/mob/living/simple_mob/vore/vore_hostile/filter = 100,
+			/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 10
+			)
+			)
 
 	var/mob_chance = 10
 	var/treasure_chance = 50
@@ -682,10 +688,16 @@
 		)
 	var/treasuremax = 3
 	var/spawnstuff = TRUE
+	var/include_enzyme = FALSE
 
 /area/redgate/stardog/flesh_abyss/EvalValidSpawnTurfs()
-	for(var/turf/simulated/floor/flesh/F in src)
-		valid_spawn_turfs |= F
+	for(var/turf/simulated/floor/F in src)
+		if(istype(F, /turf/simulated/floor/flesh))
+			valid_spawn_turfs |= F
+
+		if(include_enzyme)
+			if(istype(F, /turf/simulated/floor/water/digestive_enzymes))
+				valid_spawn_turfs |= F
 
 /area/redgate/stardog/flesh_abyss/spawn_flora_on_turf()
 	if(!spawnstuff)
@@ -785,6 +797,29 @@
 		if(!Turf.check_density())
 			new F(Turf)
 
+/area/redgate/stardog/flesh_abyss/no_spawn
+	icon_state = "blublacir"
+	semirandom_groups = 0
+	semirandom_group_min = 0
+	semirandom_group_max = 0
+
+	valid_mobs = null
+	spawnstuff = FALSE
+
+/area/redgate/stardog/flesh_abyss/digestive_tract
+	icon_state = "greblacir"
+	semirandom_groups = 1
+	semirandom_group_min = 1
+	semirandom_group_max = 10
+	include_enzyme = TRUE
+	valid_mobs = list(
+		list(
+		/mob/living/simple_mob/vore/vore_hostile/abyss_lurker = 10,
+		/mob/living/simple_mob/vore/vore_hostile/filter = 20,
+		/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 100
+		)
+		)
+
 /area/redgate/stardog/flesh_abyss/stomach
 	floracountmax = 3
 	valid_flora = list(
@@ -877,10 +912,10 @@
 	spawnstuff = TRUE
 
 /area/redgate/stardog/flesh_abyss/node
-	enter_message = "<span class='notice'>Radical energy hangs as a haze in the air around the control node. It's much less hot here than other places within the dog, but the air is thick with alien whispers and desires that you can hardly comprehend.</span>"
+	enter_message = "<span class='notice'>Radical energy hangs as a haze in the air. It's much less hot here than other places within the dog, but the air is thick with alien whispers and desires that you can hardly comprehend.</span>"
 	icon_state = "yelwhisqu"
-	spawnstuff = FALSE
 	requires_power = 0
+	spawnstuff = FALSE
 
 /area/redgate/stardog/flesh_abyss/play_ambience(var/mob/living/L, initial = TRUE)
 	if(!L.is_preference_enabled(/datum/client_preference/digestion_noises))
