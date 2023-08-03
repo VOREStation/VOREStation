@@ -383,6 +383,7 @@
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
 	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
+	src.modules += new /obj/item/device/sleevemate(src) // ChaosStation Change - Gives traumahounds sleevemate.
 	src.emag 	= new /obj/item/weapon/dogborg/pounce(src) //Pounce, also, lets not give them polyacid spray
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
