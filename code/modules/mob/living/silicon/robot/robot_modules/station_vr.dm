@@ -304,6 +304,7 @@
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src) //This is kinda important for rescuing people without making it worse for everyone
 	src.modules += new /obj/item/weapon/gripper/medical(src) //Let them do literally anything in medbay other than patch external damage and lick people
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src) //dropper is nice to have for so much actually
+	src.modules += new /obj/item/roller_holder(src) //It's all about that (prefs) respect!
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
@@ -391,6 +392,7 @@
 	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/device/sleevemate(src) // ChaosStation Change - Gives traumahounds sleevemate.
+	src.modules += new /obj/item/roller_holder(src) //It's all about that (prefs)  respect!
 	src.emag 	= new /obj/item/weapon/dogborg/pounce(src) //Pounce, also, lets not give them polyacid spray
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
