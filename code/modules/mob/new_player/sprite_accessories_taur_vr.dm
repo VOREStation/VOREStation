@@ -1028,7 +1028,7 @@
 	extra_overlay = "fatnaga_markings"
 
 
-/*
+// ChaosStation change - Uncommenting for playtesting
 /datum/sprite_accessory/tail/taur/teppi			// Mostly used as example/template/test subject as to how you use the 'big' taur sprites. Pls give it better icons before uncommenting...
 	name = "Teppi (Taur)"
 	icon_state = "teppi_s"
@@ -1039,4 +1039,3 @@
 	offset_x = -32
 	offset_y = -11
 	mob_offset_y = 11
-*/
