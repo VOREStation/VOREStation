@@ -453,7 +453,12 @@
 	sprites = list(
 					"Standard" = "ert",
 					"Classic" = "ertold",
-					"Borgi" = "borgi"
+					"Borgi" = "borgi",
+					"MEKA" = "mekaninja",
+					"MEKA v2" = "newmekaninja",
+					"NIKA" = "fmekaninja",
+					"NIKO" = "mmekaninja",
+					"K4T" = "k4tninja"
 					)
 
 /obj/item/weapon/robot_module/robot/security/ert/New(var/mob/living/silicon/robot/R)
