@@ -360,7 +360,13 @@
 					"Traumahound" = "traumavale",
 					"Drake" = "draketrauma",
 					"Borgi" = "borgi-trauma",
-					"Raptor V-4" = "traumaraptor"
+					"Raptor V-4" = "traumaraptor",
+					"MEKA" = "mekamed",
+					"MEKA v2" = "newmekamed",
+					"NIKA" = "fmekamed",
+					"NIKO" = "mmekamed",
+					"K4T" = "k4tmed",
+					"K4Talt" = "k4tmed_alt1"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/traumahound/New(var/mob/living/silicon/robot/R)
