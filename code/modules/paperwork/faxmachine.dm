@@ -38,6 +38,29 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	tgui_interact(user)
 
+/obj/machinery/photocopier/faxmachine/verb/remove_card()
+	set name = "Remove ID card"
+	set category = "Object"
+	set src in oview(1)
+
+	var/mob/living/L = usr
+
+	if(!L || !isturf(L.loc) || !isliving(L))
+		return
+	if(!ishuman(L) && !issilicon(L))
+		return
+	if(L.stat || L.restrained())
+		return
+
+	if(!scan)
+		to_chat(L, span_notice("There is no I.D card to remove!"))
+		return
+	scan.forceMove(loc)
+	if(ishuman(usr) && !usr.get_active_hand())
+		usr.put_in_hands(scan)
+		scan = null
+	authenticated = null
+
 /obj/machinery/photocopier/faxmachine/verb/request_roles()
 	set name = "Staff Request Form"
 	set category = "Object"
