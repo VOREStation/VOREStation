@@ -1,7 +1,8 @@
 /* eslint react/no-danger: "off" */
+import { KEY_ENTER } from '../../common/keycodes';
 import { BooleanLike } from '../../common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Divider, Dropdown, Flex, Icon, LabeledList, Section, Tabs } from '../components';
+import { Box, Button, Divider, Dropdown, Flex, Icon, Input, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
 const Level = {
@@ -92,6 +93,8 @@ export const TicketsPanel = (props, context) => {
     'levelFilter',
     2
   );
+
+  const [ticketChat, setTicketChat] = useLocalState(context, 'ticketChat', '');
 
   let filtered_tickets = getFilteredTickets(tickets, stateFilter, levelFilter);
   return (
@@ -217,16 +220,55 @@ export const TicketsPanel = (props, context) => {
                       }}
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Log">
-                    {Object.keys(selected_ticket.log).map((L) => (
-                      <Box
-                        dangerouslySetInnerHTML={{
-                          __html: selected_ticket.log[L],
-                        }}
-                      />
-                    ))}
-                  </LabeledList.Item>
+                  <LabeledList.Item label="Log" />
                 </LabeledList>
+                <Divider />
+                <Flex direction="column">
+                  <Flex.Item maxWidth={'500px'}>
+                    {Object.keys(selected_ticket.log)
+                      .slice(0)
+                      .map((L) => (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: selected_ticket.log[L],
+                          }}
+                        />
+                      ))}
+                  </Flex.Item>
+                  <Divider />
+                  <Flex.Item>
+                    <Flex>
+                      <Flex.Item grow>
+                        <Input
+                          autoFocus
+                          autoSelect
+                          fluid
+                          placeholder="Enter a message..."
+                          value={ticketChat}
+                          onInput={(e, value) => setTicketChat(value)}
+                          onKeyDown={(event) => {
+                            const keyCode = window.event
+                              ? event.which
+                              : event.keyCode;
+                            if (keyCode === KEY_ENTER) {
+                              act('send_msg', { msg: ticketChat });
+                              setTicketChat('');
+                            }
+                          }}
+                        />
+                      </Flex.Item>
+                      <Flex.Item>
+                        <Button
+                          content="Send"
+                          onClick={() => {
+                            act('send_msg', { msg: ticketChat });
+                            setTicketChat('');
+                          }}
+                        />
+                      </Flex.Item>
+                    </Flex>
+                  </Flex.Item>
+                </Flex>
               </Section>
             )) || (
               <Section

@@ -101,27 +101,25 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	if(C.current_ticket)
 		C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
+		C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		C.current_ticket.AddInteraction("Client disconnected.")
+		C.current_ticket.initiator.mob.clear_alert("open ticket")
 		C.current_ticket.initiator = null
 		C.current_ticket = null
 
 //Get a ticket given a ckey
 /datum/tickets/proc/CKey2ActiveTicket(ckey)
-	if(!usr.client.holder || !has_mentor_powers(usr.client))
-		message_admins("[usr] has attempted to look up a ticket with CKEY [ckey] without sufficent privileges.")
-		return
-
 	for(var/datum/ticket/T as anything in active_tickets)
 		if(T.initiator_ckey == ckey)
 			return T
 
 //Get a ticket by ticket id
 /datum/tickets/proc/ID2Ticket(id)
-	if(!usr.client.holder || !has_mentor_powers(usr.client))
+	if(!usr?.client.holder || !has_mentor_powers(usr?.client))
 		message_admins("[usr] has attempted to look up a ticket with ID [id] without sufficent privileges.")
 		return
 
@@ -180,7 +178,6 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 //call this on its own to create a ticket, don't manually assign current_mentorhelp
 //msg is the title of the ticket: usually the ahelp text
 /datum/mentor_help/New(msg, client/C)
-
 	initiator_ckey = C.ckey
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_mentorhelp)	//This is a bug
@@ -188,15 +185,12 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		initiator.current_mentorhelp.AddInteraction("Ticket erroneously left open by code")
 		initiator.current_mentorhelp.Resolve()
 	initiator.current_mentorhelp = src
-
 	statclick = new(null, src)
 	_interactions = list()
-
 	log_admin("Mentorhelp: [key_name(C)]: [msg]")
 	MessageNoRecipient(msg)
 	//show it to the person adminhelping too
 	to_chat(C, "<i><span class='mentor'>Mentor-PM to-<b>Mentors</b>: [name]</span></i>")
-
 	GLOB.mhelp_tickets.active_tickets += src */
 
 /**
@@ -252,6 +246,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin discord.</span>")		//VOREStation Edit
+	//send2adminchat() //VOREStation Add
 
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
@@ -264,6 +259,12 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		)
 
 	GLOB.tickets.active_tickets += src
+
+	// Open a new chat with the user
+	//var/datum/ticket_chat/TC = new()
+	//TC.T = src
+	//TC.tgui_interact(C.mob)
+	C.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 /datum/ticket/Destroy()
 	RemoveActive()
@@ -306,18 +307,16 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 /datum/ticket/proc/LinkedReplyName(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	return "<A HREF='?_src_=holder;ticket=[ref_src];ticket_action=reply'>[initiator_key_name]</A>"
+	return "<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken()];ticket_action=reply'>[initiator_key_name]</A>"
 
 //private
 /datum/ticket/proc/TicketHref(msg, ref_src, action = "ticket")
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	return "<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken(TRUE)];ticket_action=[action]'>[msg]</A>"
+	return "<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken()];ticket_action=[action]'>[msg]</A>"
 
 /*
-
-	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken(TRUE)];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
-
+	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
 	 */
 
 //message from the initiator without a target, all admins will see this
@@ -350,14 +349,12 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	switch(state)
 		if(AHELP_RESOLVED)
 			feedback_dec("mhelp_resolve")
-
 	AddInteraction("<font color='purple'>Reopened by [usr.ckey]</font>")
 	if(initiator)
 		to_chat(initiator, "<span class='filter_adminlog'><font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [usr.ckey].</font></span>")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [usr.ckey].</span>"
 	message_mentors(msg)
 	log_admin(msg)
-
 	*/
 
 //Reopen a closed ticket
@@ -391,7 +388,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	message_admins(msg)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
-	TicketPanel()	//can only be done from here, so refresh it
+	//TicketPanel()	//can only be done from here, so refresh it
 
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
@@ -434,6 +431,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 				"color" = COLOR_WEBHOOK_BAD
 			)
 		)
+	initiator?.mob?.clear_alert("open ticket")
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/ticket/proc/Resolve(silent = FALSE)
@@ -464,6 +462,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 					"color" = COLOR_WEBHOOK_GOOD
 				)
 			)
+	initiator?.mob?.clear_alert("open ticket")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/ticket/proc/Reject(key_name = key_name_admin(usr))
@@ -525,6 +524,10 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
+	if(handler == key_name(usr, FALSE, TRUE))
+		to_chat("<font color='red'>You are already handling this ticket.</font>")
+		return
+
 	var/msg = "<font color='red'>Your AdminHelp is being handled by [key_name(usr,FALSE,FALSE)] please be patient.</font>"
 
 	if(initiator)
@@ -552,7 +555,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		var/msg = "Ticket [TicketHref("#[id]")] titled [name] by [key_name_admin(usr)]"
 		message_admins(msg)
 		log_admin(msg)
-	TicketPanel()	//we have to be here to do this
+	//TicketPanel()	//we have to be here to do this
 
 //Kick ticket to next level
 /datum/ticket/proc/Escalate()
@@ -751,7 +754,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 							if(found.mind && found.mind.special_role)
 								is_antag = 1
 							founds += "Name: [found.name]([found.real_name]) Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
-							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;adminmoreinfo=\ref[found]'>?</A>|<A HREF='?_src_=holder;adminplayerobservefollow=\ref[found]'>F</A>)</font> "
+							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[found]'>?</A>|<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[found]'>F</A>)</font> "
 							continue
 		msg += "[original_word] "
 	if(irc)

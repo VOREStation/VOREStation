@@ -43,7 +43,7 @@
 	else if(href_list["tickets"])
 		GLOB.tickets.BrowseTickets(text2num(href_list["tickets"]))
 
-	mentor_commands(href, href_list, src)
+	// mentor_commands(href, href_list, src) // Skip this because client is already admin & contents already handled of code above
 
 	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
