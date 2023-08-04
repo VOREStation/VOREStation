@@ -217,8 +217,10 @@ This device records all warnings given and teleport events for admin review in c
 
 	//No, you can't teleport if there's a jammer.
 	if(is_jammed(src) || is_jammed(destination))
-		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
-		return FALSE
+		var/area/our_area = get_area(src)
+		if(!our_area.no_comms)	//I don't actually want this to block teleporters, just comms
+			to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
+			return FALSE
 
 	//No, you can't port to or from away missions. Stupidly complicated check.
 	var/turf/uT = get_turf(user)

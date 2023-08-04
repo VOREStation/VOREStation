@@ -17,6 +17,12 @@
 	desc = "This slick flesh ripples and squishes under your touch"
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_base = "flesh_floor"
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/mud1.ogg',
+		'sound/effects/footstep/mud2.ogg',
+		'sound/effects/footstep/mud3.ogg',
+		'sound/effects/footstep/mud4.ogg'
+		))
 
 /decl/flooring/grass/outdoors
 	flags = 0

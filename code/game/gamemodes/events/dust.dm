@@ -52,6 +52,8 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
 				endx = world.maxx-TRANSITIONEDGE
 
+		if(!affecting_z.len)
+			return
 		var/randomz = pick(affecting_z)
 		var/turf/startloc = locate(startx, starty, randomz)
 		var/turf/endloc = locate(endx, endy, randomz)

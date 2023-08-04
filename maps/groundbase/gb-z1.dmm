@@ -9116,6 +9116,20 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
+"uq" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/landmark/stardog,
+/turf/simulated/floor{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/setunnel)
 "ur" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/green,
 /obj/machinery/meter,
@@ -15960,6 +15974,12 @@
 /obj/random/vendorall,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
+"KJ" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/stunnel)
 "KK" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/subspace/crystal,
@@ -17152,6 +17172,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
@@ -19536,6 +19557,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or2)
+"Tt" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/swtunnel)
 "Tu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -24935,7 +24962,7 @@ ce
 ce
 ce
 ce
-dM
+Tt
 dM
 dM
 dM
@@ -33890,7 +33917,7 @@ Lt
 Lt
 Lt
 Lt
-nS
+KJ
 nS
 SH
 Bk
@@ -40239,7 +40266,7 @@ Bk
 Bk
 ce
 ce
-VL
+uq
 jF
 jF
 jF

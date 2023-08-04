@@ -89,6 +89,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Lateload Z level \"[mapname]\" is not a valid map!")
 				continue
+			admin_notice("Lateload: [MT]", R_DEBUG)
 			MT.load_new_z(centered = FALSE)
 			CHECK_TICK
 
@@ -111,6 +112,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
+				admin_notice("Gateway: [MT]", R_DEBUG)
 				MT.load_new_z(centered = FALSE)
 
 	if(LAZYLEN(also_load)) //Just copied from gateway picking, this is so we can have a kind of OM map version of the same concept.
@@ -132,6 +134,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
+				admin_notice("OM Adventure: [MT]", R_DEBUG)
 				MT.load_new_z(centered = FALSE)
 
 	if(LAZYLEN(redgate_load))
@@ -153,6 +156,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
+				admin_notice("Redgate: [MT]", R_DEBUG)
 				MT.load_new_z(centered = FALSE)
 
 

@@ -190,7 +190,6 @@
 		list(list("Honleth Highlands A", "Honleth Highlands B")),
 		list("Arynthi Lake Underground A","Arynthi Lake A"),
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
-		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
 		)
 
@@ -202,7 +201,9 @@
 		list("Teppi Ranch"),
 		list("Innland"),
 		list("Abandoned Island"),
-		list("Dark Adventure")
+		list("Dark Adventure"),
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Star Dog")
 		)
 
 	ai_shell_restricted = TRUE

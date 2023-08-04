@@ -785,6 +785,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "bA" = (
@@ -2457,6 +2458,10 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/exploration)
+"ey" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portfore)
 "ez" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/sterile/latex,
@@ -5214,6 +5219,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
 "kn" = (
@@ -10649,6 +10655,7 @@
 /area/security/security_lockerroom)
 "wf" = (
 /obj/machinery/alarm/angled,
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/security_port)
 "wg" = (
@@ -11180,6 +11187,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "xs" = (
@@ -18650,6 +18658,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
+"NO" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/exploration)
 "NP" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck1/portaft)
@@ -19826,6 +19838,7 @@
 	color = "#42038a";
 	icon_state = "1-4"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "QA" = (
@@ -30543,7 +30556,7 @@ BP
 Cc
 gw
 xw
-vT
+NO
 DX
 ra
 bD
@@ -31479,7 +31492,7 @@ dS
 kx
 Zz
 Bb
-cB
+ey
 cB
 cB
 Dj

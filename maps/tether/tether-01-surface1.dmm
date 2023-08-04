@@ -30996,6 +30996,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "bcA" = (
@@ -32059,6 +32060,10 @@
 /obj/item/clothing/mask/gas,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lowmedbaymaint)
+"cvv" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "cwS" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -32853,6 +32858,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
+"eRJ" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "eUS" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -38546,6 +38555,10 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/weaponsrange)
+"tTx" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/solars)
 "tTC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -38749,6 +38762,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "uxF" = (
@@ -45759,7 +45773,7 @@ anx
 anx
 acJ
 ahl
-rJv
+tTx
 aws
 abN
 aeR
@@ -50483,7 +50497,7 @@ aTp
 aIh
 aIh
 aIh
-aTZ
+eRJ
 aTZ
 aVI
 aTZ
@@ -53440,7 +53454,7 @@ aCJ
 aFs
 aCJ
 aCJ
-aCJ
+cvv
 agM
 oGO
 aJe
