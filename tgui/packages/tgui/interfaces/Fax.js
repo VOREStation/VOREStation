@@ -7,21 +7,26 @@ import { LoginScreen } from './common/LoginScreen';
 export const Fax = (props, context) => {
   const { data } = useBackend(context);
 
-  const { authenticated } = data;
+  const { authenticated, copyItem } = data;
+
+  let variableHeight = 340;
+  if (copyItem) {
+    variableHeight = 358;
+  }
 
   if (!authenticated) {
     return (
       <Window width={600} height={250} resizable>
         <Window.Content>
           <RemoveItem />
-          <LoginScreen />
+          <LoginScreen machineType="Fax" />
         </Window.Content>
       </Window>
     );
   }
 
   return (
-    <Window width={600} height={250} resizable>
+    <Window width={600} height={variableHeight} resizable>
       <Window.Content>
         <RemoveItem />
         <LoginInfo />
@@ -34,7 +39,8 @@ export const Fax = (props, context) => {
 export const FaxContent = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { bossName, copyItem, cooldown, destination } = data;
+  const { bossName, copyItem, cooldown, destination, adminDepartments } = data;
+  const staffRequestDepartment = new Set(adminDepartments);
 
   return (
     <Section>
@@ -48,6 +54,7 @@ export const FaxContent = (props, context) => {
           {bossName} Quantum Entanglement Network
         </LabeledList.Item>
       </LabeledList>
+
       {(copyItem && (
         <Box mt={1}>
           <LabeledList>
@@ -70,6 +77,7 @@ export const FaxContent = (props, context) => {
           />
         </Box>
       )) || <Box mt={1}>Please insert item to transmit.</Box>}
+      <AutomatedStaffRequest />
     </Section>
   );
 };
@@ -93,4 +101,41 @@ const RemoveItem = (props, context) => {
       />
     </Box>
   );
+};
+
+const AutomatedStaffRequest = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const { adminDepartments, destination, copyItem } = data;
+  const staffRequestDepartment = new Set(adminDepartments);
+
+  let flexiblePadding = '1rem';
+  if (copyItem) {
+    flexiblePadding = '1.5rem';
+  }
+
+  if (!copyItem || (copyItem && staffRequestDepartment.has(destination))) {
+    return (
+      <Box mt="1.5rem">
+        <b>Or submit an automated staff request.</b> <br /> <br />
+        <i>
+          The automated staff request form automatically populates the company
+          job board ((sends to discord, but does not ping.)) without requiring
+          intervention from central command clerks and officers. <br />
+          It also works without requiring a written request to be composed.
+        </i>
+        <br />
+        <Box mt="1.5rem">
+          <Button
+            icon="share-square"
+            onClick={() => act('send_automated_staff_request')}
+            content="Send Automated Staff Request"
+            fluid
+          />
+        </Box>
+      </Box>
+    );
+  } else {
+    return null;
+  }
 };

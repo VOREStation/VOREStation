@@ -5,6 +5,9 @@ import { FullscreenNotice } from './FullscreenNotice';
 /**
  * Displays a login screen that users can interact with
  * using an ID card in their hand.
+ * Special elements can be invoked by defining machineType prop
+ * possible string arguments are defined in SpecialMachineInteraction in loginScreen.js
+ *
  * Required data fields:
  * * `scan` — The name of the currently inserted ID
  * * `isAI` — Whether the user is an AI. If true, shows "Login as AI"
@@ -26,6 +29,7 @@ import { FullscreenNotice } from './FullscreenNotice';
 export const LoginScreen = (_properties, context) => {
   const { act, data } = useBackend(context);
   const { scan, isAI, isRobot } = data;
+  const { machineType } = _properties;
   return (
     <FullscreenNotice title="Welcome">
       <Box fontSize="1.5rem" bold>
@@ -51,6 +55,7 @@ export const LoginScreen = (_properties, context) => {
           })
         }
       />
+
       {!!isAI && (
         <Button
           icon="sign-in-alt"
@@ -73,6 +78,37 @@ export const LoginScreen = (_properties, context) => {
           }
         />
       )}
+      <Box>
+        <SpecialMachineInteraction specialType={machineType} />
+      </Box>
     </FullscreenNotice>
   );
+};
+
+/**
+ * Special login screen elements that we want to appear for specific machines.
+ * Props: "specialType", arguemnt: string
+ * specialType definitions are defined in LoginScreen.js SpecialMachineInteraction
+ * currently supported: "Fax"
+ */
+export const SpecialMachineInteraction = (_properties, context) => {
+  const { act } = useBackend(context);
+  const { specialType } = _properties;
+  if (!specialType) {
+    return null;
+  } else if (specialType === 'Fax') {
+    return (
+      <Button
+        position="relative"
+        content="Send Automated Fax Request"
+        bottom="152px"
+        left="188px"
+        icon="share-square"
+        onClick={() => act('send_automated_staff_request')}
+        tooltip={
+          "Automated Fax Requests do not require staff to post on discord, but won't ping the related roles."
+        }
+      />
+    );
+  }
 };
