@@ -729,3 +729,21 @@
 				result |= get_all_prey_recursive(P, client_check)
 
 	return result
+
+/proc/random_color(saturated)	//Returns a random color. If saturated is true, it will avoid pure white or pure black
+	var/r = rand(1,255)
+	var/g = rand(1,255)
+	var/b = rand(1,255)
+
+	if(saturated)	//Let's make sure we don't get too close to pure black or pure white, as they won't look good with grayscale sprites
+		if(r + g + b < 50)
+			r = r + rand(5,20)
+			g = g + rand(5,20)
+			b = b + rand(5,20)
+		else if (r + g + b > 700)
+			r = r - rand(5,50)
+			g = g - rand(5,50)
+			b = b - rand(5,50)
+
+	var/color = rgb(r, g, b)
+	return color

@@ -64,7 +64,6 @@
 
 	var/affinity = 0
 	var/obj/structure/control_pod/control_node = null
-	var/shipvore = FALSE	//Enable this to allow the star dog to eat spaceships by dragging them onto its sprite.
 	var/admin_override = FALSE	//If true, makes affinity and nutrition irrelevant.
 	var/list/weather_areas = list()	//We'll call a proc on these areas when we eat, don't worry!
 

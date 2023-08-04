@@ -1,20 +1,3 @@
-/atom/proc/random_color()
-	var/r = rand(1,255)
-	var/g = rand(1,255)
-	var/b = rand(1,255)
-
-	if(r + g + b < 50)	//Let's make sure we don't get too close to pure black or pure white, as they won't look good with grayscale sprites
-		r = r + rand(5,20)
-		g = g + rand(5,20)
-		b = b + rand(5,20)
-	else if (r + g + b > 700)
-		r = r - rand(5,50)
-		g = g - rand(5,50)
-		b = b - rand(5,50)
-
-	var/color = rgb(r, g, b)
-	return color
-
 //Mobs who's primary purpose is to go eat people who have their vore prefs turned on. They're retaliate mobs to everyone else.
 /mob/living/simple_mob/vore/vore_hostile
 	name = "peeb"
@@ -342,7 +325,7 @@
 
 /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/Initialize()
 	. = ..()
-	color = random_color()
+	color = random_color(TRUE)
 
 /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/death()
 	. = ..()

@@ -9,8 +9,8 @@
 /obj/effect/overmap/visitable/ship/MouseDrop(atom/over)
 	if(!isliving(over) || !Adjacent(over) || !Adjacent(usr))
 		return
-	if(istype(over, /mob/living/simple_mob/vore/overmap/stardog))
-		var/mob/living/simple_mob/vore/overmap/stardog/sdog = over
+	if(istype(over, /mob/living/simple_mob/vore/overmap))
+		var/mob/living/simple_mob/vore/overmap/sdog = over
 		if(!sdog.shipvore)
 			return
 	var/mob/living/L = over

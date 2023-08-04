@@ -137,6 +137,7 @@
 	var/scanner_desc
 	var/obj/effect/overmap/visitable/simplemob/child_om_marker
 	var/om_child_type
+	var/shipvore = FALSE	//Enable this to allow the mob to eat spaceships by dragging them onto its sprite.
 
 /mob/living/simple_mob/vore/overmap/New(mapload, new_child)
 	if(new_child)
