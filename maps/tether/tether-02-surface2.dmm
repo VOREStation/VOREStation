@@ -20074,6 +20074,7 @@
 /obj/effect/decal/cleanable/cobweb{
 	icon_state = "cobweb2"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aIN" = (
@@ -28842,6 +28843,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bak" = (
@@ -33401,6 +33403,10 @@
 /obj/effect/mouse_hole_spawner,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"ien" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/lower/north)
 "ilH" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/reset,
@@ -34805,6 +34811,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"tYW" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/rnd)
 "tZD" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -42906,7 +42917,7 @@ axR
 axR
 axR
 awY
-aql
+tYW
 aql
 aIP
 aJn
@@ -44588,7 +44599,7 @@ ann
 ann
 ann
 ann
-auA
+ien
 auy
 ajE
 aAA

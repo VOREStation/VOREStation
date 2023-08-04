@@ -14486,6 +14486,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/storage/emergency_storage/emergency4)
 "bqK" = (
@@ -20040,6 +20041,7 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "explo"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/cargo)
 "gMR" = (
@@ -22368,6 +22370,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
+"iOU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "medbus";
+	name = "medbus"
+	},
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/tiled,
+/area/shuttle/medivac/general)
 "iOW" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
@@ -28129,6 +28143,10 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
+"oRj" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/station/eng_lower)
 "oRC" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -30304,6 +30322,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
+"rSD" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "secbus";
+	name = "secbus"
+	},
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/tiled,
+/area/shuttle/securiship/general)
 "rSX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -44110,7 +44140,7 @@ mKL
 nrg
 ack
 ach
-ack
+oRj
 jou
 mEA
 bVP
@@ -50098,7 +50128,7 @@ udG
 bnG
 kEt
 kEt
-kEt
+iOU
 gqN
 smd
 weP
@@ -52795,7 +52825,7 @@ tOr
 iEn
 wLR
 iEn
-iEn
+rSD
 iVi
 fNX
 xMQ

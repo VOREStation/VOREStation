@@ -1,171 +1,133 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ab" = (
-/turf/simulated/mineral/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ac" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ad" = (
 /obj/machinery/light/small,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "ae" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "af" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ag" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ah" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ai" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "aj" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ak" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "al" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "am" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "an" = (
 /obj/machinery/camera/network/civilian{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ao" = (
 /obj/random/mob/semirandom_mob_spawner/vore/hostile,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ap" = (
 /obj/random/awayloot,
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "aq" = (
 /obj/machinery/camera/network/civilian{
 	dir = 5
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "ar" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "as" = (
-/turf/simulated/mineral/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/ignore_cavegen/cave{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "ba" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/chemical_dispenser/bar_alc/full,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "bX" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -180,12 +142,12 @@
 /obj/structure/catwalk,
 /obj/structure/bonfire,
 /turf/simulated/floor/plating,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "cb" = (
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "de" = (
 /obj/structure/closet/walllocker{
 	dir = 1;
@@ -196,14 +158,14 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "dn" = (
 /obj/machinery/turretid/stun{
 	ailock = 1;
 	check_arrest = 0;
 	check_down = 0;
 	check_records = 0;
-	control_area = /area/gateway/eggnogtown/houserhomestead/basement;
+	control_area = /area/redgate/eggnogtown/houserhomestead/basement;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	lethal_is_configurable = 0;
 	name = "DEATH RAY CONTROL";
@@ -213,13 +175,13 @@
 /turf/simulated/floor/plating{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "eo" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "eK" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 8
@@ -227,14 +189,14 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "eY" = (
 /obj/structure/table/borosilicate,
 /obj/random/awayloot,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "fV" = (
 /obj/structure/closet/walllocker{
 	dir = 1;
@@ -244,7 +206,7 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "gf" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 1
@@ -252,50 +214,58 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "gA" = (
 /turf/simulated/floor/beach/water{
 	name = "hot spring";
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "gE" = (
 /obj/structure/bed/chair/bay/comfy/black,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "gF" = (
 /obj/machinery/porta_turret,
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "gP" = (
 /obj/structure/closet,
 /obj/random/awayloot,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
+"hh" = (
+/obj/random/vendorfood{
+	dir = 1
+	},
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "hM" = (
 /obj/structure/curtain,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "iu" = (
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "iB" = (
 /obj/structure/stairs/spawner/east,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "iV" = (
 /obj/structure/closet/walllocker{
 	pixel_y = 26
@@ -304,10 +274,10 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "kA" = (
 /turf/simulated/wall/iron,
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "kF" = (
 /obj/structure/closet/walllocker{
 	dir = 1;
@@ -317,36 +287,36 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "kK" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/freezer{
 	name = "Automatic Door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "kS" = (
 /obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "lo" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "lq" = (
 /turf/unsimulated/mineral{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "lz" = (
 /turf/unsimulated/wall/planetary/normal{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "lX" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp,
@@ -354,7 +324,7 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "ma" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -363,23 +333,23 @@
 	name = "hot spring";
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "mf" = (
 /obj/structure/simple_door/silver,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "nh" = (
 /obj/structure/bed/chair/sofa/corner/black,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "nD" = (
 /obj/structure/table/glass,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "pn" = (
 /obj/structure/bed/chair/bay/comfy/red{
 	dir = 1
@@ -387,7 +357,7 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "qb" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -395,13 +365,13 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "qr" = (
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "qv" = (
 /obj/structure/musician/piano{
 	dir = 4
@@ -409,12 +379,12 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "rj" = (
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "rZ" = (
 /obj/structure/bed/chair/bay/comfy/red{
 	dir = 4
@@ -422,20 +392,20 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "sc" = (
 /obj/random/mob/semirandom_mob_spawner/vore/passive,
 /turf/simulated/floor/beach/water{
 	name = "hot spring";
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "sj" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/reinforced{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "sm" = (
 /obj/structure/bed/chair/bay/chair/padded/red/bignest,
 /obj/machinery/light_switch{
@@ -445,7 +415,7 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "sq" = (
 /obj/machinery/vending/boozeomat{
 	dir = 4;
@@ -454,33 +424,33 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "su" = (
 /obj/structure/table/bench/padded,
 /turf/simulated/floor/carpet/bcarpet{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "tf" = (
 /turf/simulated/floor/carpet/bcarpet{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "tI" = (
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "uh" = (
 /turf/simulated/wall/wood,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "up" = (
 /obj/structure/railing,
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "uG" = (
 /obj/structure/table/bench/wooden,
 /obj/machinery/light/small{
@@ -489,7 +459,7 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "uM" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -497,18 +467,18 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "vg" = (
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "vv" = (
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "vJ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -516,21 +486,21 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "vR" = (
 /obj/structure/table/steel,
 /obj/random/awayloot,
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "vW" = (
 /obj/structure/table/borosilicate,
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "ws" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -539,13 +509,13 @@
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "wu" = (
 /obj/structure/bed/chair/bay/chair/padded/red/smallnest,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "xk" = (
 /obj/structure/bed/chair/comfy/red{
 	dir = 4
@@ -553,30 +523,30 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "xA" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "xH" = (
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "yM" = (
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "zz" = (
 /obj/structure/railing,
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Aw" = (
 /obj/structure/bed/chair/sofa/corner/black{
 	dir = 8
@@ -584,15 +554,15 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "AJ" = (
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Ce" = (
 /turf/simulated/wall/iron,
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Ds" = (
 /obj/structure/closet/walllocker{
 	pixel_y = 26
@@ -601,7 +571,7 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "DZ" = (
 /obj/structure/railing,
 /obj/structure/table/wooden_reinforced,
@@ -610,13 +580,19 @@
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
+"FJ" = (
+/obj/random/vendordrink,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "Gq" = (
 /obj/structure/bed/chair/bay/comfy/red,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Gs" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/light_switch{
@@ -627,24 +603,24 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "GR" = (
 /turf/simulated/wall/iron,
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "Hk" = (
 /obj/item/weapon/bedsheet/mimedouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "HV" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/freezer{
 	name = "Automatic Door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "Jv" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/weapon/material/ashtray,
@@ -653,7 +629,7 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Jz" = (
 /obj/machinery/vending/boozeomat{
 	req_access = list()
@@ -661,7 +637,7 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Ki" = (
 /obj/structure/railing{
 	dir = 4
@@ -669,10 +645,10 @@
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Kk" = (
 /turf/simulated/wall/iron,
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "KY" = (
 /obj/structure/bed/chair/sofa/black{
 	dir = 8
@@ -680,24 +656,22 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Mb" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "MG" = (
 /obj/move_trader_landmark{
 	dir = 8;
 	trader_type = /obj/trader/general
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
-	nitrogen = 82.1472;
-	oxygen = 21.8366;
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "Oa" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
@@ -705,7 +679,7 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Ot" = (
 /obj/structure/bed/chair/bay/comfy/red{
 	dir = 8
@@ -713,7 +687,7 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Ou" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -724,7 +698,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "Oy" = (
 /obj/structure/bed/chair/comfy/red{
 	dir = 4
@@ -732,7 +706,7 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "OL" = (
 /obj/structure/bed/chair/comfy/red{
 	dir = 8
@@ -740,41 +714,41 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "Pb" = (
 /obj/item/weapon/bedsheet/piratedouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Pc" = (
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "QL" = (
 /obj/effect/map_effect/interval/effect_emitter/steam,
 /turf/simulated/floor/beach/water{
 	name = "hot spring";
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/underground)
+/area/redgate/eggnogtown/underground)
 "Rv" = (
 /obj/structure/railing,
 /obj/structure/bonfire,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Tx" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "TN" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -785,13 +759,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "TU" = (
 /obj/machinery/light/flamp,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "UJ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -799,13 +773,13 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "UX" = (
 /obj/structure/table/bench/padded,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Va" = (
 /obj/structure/table/steel,
 /obj/machinery/chemical_dispenser/bar_soft/full{
@@ -814,20 +788,20 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "We" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "Wr" = (
 /obj/structure/table/borosilicate,
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "Xm" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -837,14 +811,14 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "Xs" = (
 /obj/structure/table/steel,
 /obj/fiftyspawner/log,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "XC" = (
 /obj/structure/bed/chair/sofa{
 	dir = 8
@@ -852,7 +826,7 @@
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/hotspring)
+/area/redgate/eggnogtown/hotspring)
 "XJ" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -860,7 +834,7 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "XV" = (
 /obj/structure/table/steel,
 /obj/machinery/chemical_dispenser/bar_alc/full{
@@ -869,13 +843,13 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "YF" = (
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "YH" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -887,7 +861,7 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "YK" = (
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/glasses/mug,
@@ -899,13 +873,13 @@
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/houserhomestead/basement)
+/area/redgate/eggnogtown/houserhomestead/basement)
 "YM" = (
 /obj/structure/curtain/black,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 "YO" = (
 /obj/structure/closet/walllocker{
 	pixel_y = 26
@@ -915,7 +889,7 @@
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
-/area/gateway/eggnogtown/hotsprings)
+/area/redgate/eggnogtown/hotsprings)
 "ZR" = (
 /obj/structure/bed/chair/sofa/left/black{
 	dir = 1
@@ -923,7 +897,7 @@
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
-/area/gateway/eggnogtown/vibeout)
+/area/redgate/eggnogtown/vibeout)
 
 (1,1,1) = {"
 lq
@@ -3542,13 +3516,13 @@ ab
 ab
 ab
 Kk
-cb
+FJ
 cb
 Kk
 Kk
 Kk
 cb
-cb
+hh
 Kk
 ab
 ab
@@ -6955,7 +6929,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 ab
 ab
@@ -7098,7 +7072,7 @@ aa
 aa
 aa
 aa
-ab
+aa
 ab
 ab
 ab
