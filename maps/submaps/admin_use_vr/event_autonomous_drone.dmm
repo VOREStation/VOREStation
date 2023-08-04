@@ -1,0 +1,717 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"au" = (
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/engineering)
+"ba" = (
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"cG" = (
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "autonomloadinghatch";
+	name = "Open Loading Bay";
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/submap/event_autonomous_drone/cargo)
+"cL" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel,
+/obj/machinery/power/port_gen/pacman/mrs,
+/obj/structure/cable{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"cU" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"dq" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"eW" = (
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	pixel_y = -26
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"gz" = (
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 6
+	},
+/obj/structure/cable{
+	dir = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"gI" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"gO" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"jA" = (
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"lB" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"mU" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/door/window/southright{
+	req_one_access = list()
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/door/window/southright{
+	dir = 4;
+	req_one_access = list()
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"nW" = (
+/turf/template_noop,
+/area/space)
+"ph" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"pM" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"pO" = (
+/obj/machinery/power/terminal,
+/obj/machinery/atmospherics/binary/pump/fuel/on{
+	dir = 4
+	},
+/obj/structure/cable{
+	dir = 8
+	},
+/obj/structure/fuel_port{
+	pixel_y = 28
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"pT" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"qt" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = null;
+	pixel_y = 27
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"rs" = (
+/obj/machinery/computer/shuttle_control/explore/event_autonomous_drone{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"rE" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"su" = (
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/cargo)
+"sP" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = -29
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"tC" = (
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
+	pixel_x = 7;
+	pixel_y = 26
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"tF" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"tM" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"xS" = (
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"zf" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"zm" = (
+/obj/machinery/light_switch{
+	pixel_y = -26
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"zw" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/submap/event_autonomous_drone/engineering)
+"Af" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/hatch,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Az" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/submap/event_autonomous_drone/engineering)
+"BF" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "event_autonomousdrone_docker";
+	pixel_x = 5;
+	pixel_y = 25
+	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/obj/effect/overmap/visitable/ship/landable/event_autonomous_drone,
+/obj/effect/shuttle_landmark/shuttle_initializer/event_autonomous_drone,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"BT" = (
+/obj/machinery/computer/ship/engines{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Cb" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"CX" = (
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/submap/event_autonomous_drone/command)
+"Dx" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shuttle{
+	id = "autonomloadinghatch"
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"Dz" = (
+/obj/machinery/computer/ship/helm{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Hs" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Je" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	id_tag = "event_autonomousdrone_docker"
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"LT" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 9
+	},
+/obj/machinery/power/apc/alarms_hidden{
+	pixel_y = -26
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"NF" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 5
+	},
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/command)
+"OV" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel,
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/engineering)
+"QJ" = (
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 2
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"QR" = (
+/obj/machinery/power/smes/buildable{
+	charge = 500000
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"QU" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Rk" = (
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/submap/event_autonomous_drone/cargo)
+"RG" = (
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/alarms_hidden{
+	pixel_y = -26
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"Sc" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	id_tag = "event_autonomousdrone_docker"
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light/small,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Sk" = (
+/obj/machinery/power/apc/alarms_hidden{
+	pixel_y = -26
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Sl" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/command)
+"SO" = (
+/obj/machinery/firealarm/angled{
+	dir = 4;
+	pixel_x = 17
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"Ta" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 10
+	},
+/obj/machinery/power/port_gen/pacman/mrs,
+/obj/structure/cable{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"Uh" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/submap/event_autonomous_drone/command)
+"VM" = (
+/obj/machinery/shipsensors{
+	dir = 8;
+	pixel_x = 1
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/engineering)
+"VQ" = (
+/obj/machinery/firealarm/angled{
+	pixel_y = 18
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"VU" = (
+/obj/machinery/button/remote/blast_door{
+	id = "autonomloadinghatch";
+	name = "Open Loading Bay";
+	pixel_x = 1;
+	pixel_y = 27
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"Ws" = (
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/command)
+"Xr" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+"Xx" = (
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/computer/ship/sensors{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"XA" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/turf/simulated/shuttle/wall/dark,
+/area/submap/event_autonomous_drone/engineering)
+"XB" = (
+/obj/machinery/firealarm/angled{
+	pixel_y = 18
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/obj/structure/cable{
+	dir = 8;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/submap/event_autonomous_drone/engineering)
+"Yg" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/submap/event_autonomous_drone/command)
+"ZD" = (
+/obj/machinery/door/blast/shuttle{
+	id = "autonomloadinghatch"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/shuttle/floor,
+/area/submap/event_autonomous_drone/cargo)
+
+(1,1,1) = {"
+au
+au
+au
+au
+nW
+nW
+nW
+CX
+tC
+Ws
+Ws
+VM
+nW
+nW
+"}
+(2,1,1) = {"
+au
+cU
+cU
+au
+su
+su
+su
+Ws
+BF
+Sc
+Ws
+Ws
+Ws
+Ws
+"}
+(3,1,1) = {"
+au
+rE
+LT
+au
+dq
+ba
+ba
+Ws
+qt
+Je
+Ws
+mU
+Sk
+Ws
+"}
+(4,1,1) = {"
+au
+pO
+QR
+au
+VQ
+ba
+pT
+CX
+jA
+Ws
+CX
+Yg
+lB
+Ws
+"}
+(5,1,1) = {"
+au
+ph
+eW
+au
+ba
+ba
+RG
+Ws
+Hs
+QJ
+sP
+gO
+Xx
+Ws
+"}
+(6,1,1) = {"
+au
+XB
+gz
+pM
+Xr
+Xr
+Cb
+Af
+tF
+tF
+QU
+tM
+Dz
+Ws
+"}
+(7,1,1) = {"
+au
+Ta
+cL
+au
+ba
+ba
+zm
+Ws
+rs
+zf
+BT
+gI
+SO
+NF
+"}
+(8,1,1) = {"
+Az
+XA
+OV
+au
+ba
+ba
+ba
+Ws
+Ws
+Ws
+Sl
+Ws
+Ws
+Uh
+"}
+(9,1,1) = {"
+zw
+nW
+zw
+au
+ba
+ba
+ba
+su
+nW
+nW
+zw
+nW
+nW
+zw
+"}
+(10,1,1) = {"
+nW
+nW
+nW
+su
+VU
+ba
+xS
+su
+nW
+nW
+nW
+nW
+nW
+nW
+"}
+(11,1,1) = {"
+nW
+nW
+nW
+Rk
+ZD
+Dx
+Dx
+cG
+nW
+nW
+nW
+nW
+nW
+nW
+"}
+(12,1,1) = {"
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+"}
+(13,1,1) = {"
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+"}
