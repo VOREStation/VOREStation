@@ -49,6 +49,7 @@
 	if(!ourturf.check_density(TRUE,TRUE))	//Make sure there isn't a wall there
 		M.unbuckle_all_mobs(TRUE)
 		M.stop_pulling()
+		playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
 		M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
 	else
 		to_chat(M, "<span class='notice'>Something blocks your way.</span>")

@@ -56,6 +56,13 @@
 /obj/effect/dog_teleporter/mouth_return,
 /turf/simulated/floor/flesh,
 /area/redgate/stardog/flesh_abyss/no_spawn)
+"dX" = (
+/obj/structure/auto_flesh_door,
+/turf/simulated/floor/flesh/mover{
+	dir = 4;
+	movechance = 1
+	},
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "el" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
@@ -167,12 +174,14 @@
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/lino,
 /area/redgate/stardog/lounge)
+"oU" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 4
+	},
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "oZ" = (
 /turf/simulated/floor/outdoors/fur/woof/no_trees,
 /area/redgate/stardog/eyes)
-"pn" = (
-/turf/simulated/floor/flesh/mover,
-/area/redgate/stardog/flesh_abyss/no_spawn)
 "pp" = (
 /obj/effect/landmark/area_gatherer,
 /turf/simulated/flesh,
@@ -220,11 +229,6 @@
 /obj/item/weapon/pickaxe/hand,
 /turf/simulated/floor/flesh,
 /area/redgate/stardog/flesh_abyss/stomach)
-"uC" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 4
-	},
-/area/redgate/stardog/flesh_abyss/no_spawn)
 "uQ" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/reinforced,
@@ -238,6 +242,11 @@
 "wg" = (
 /turf/simulated/floor/flesh/mover,
 /area/redgate/stardog/flesh_abyss/digestive_tract)
+"ww" = (
+/turf/simulated/floor/flesh/mover{
+	dir = 6
+	},
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "wL" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 1
@@ -386,13 +395,6 @@
 "Ll" = (
 /turf/simulated/flesh,
 /area/redgate/stardog/flesh_abyss/stomach)
-"LH" = (
-/obj/structure/auto_flesh_door,
-/turf/simulated/floor/flesh/mover{
-	dir = 4;
-	movechance = 1
-	},
-/area/redgate/stardog/flesh_abyss/no_spawn)
 "MH" = (
 /turf/simulated/floor/flesh/mover{
 	dir = 5
@@ -404,6 +406,7 @@
 /area/redgate/stardog/outside)
 "Nh" = (
 /obj/machinery/light,
+/obj/machinery/telecomms/relay/preset/station,
 /turf/simulated/floor/wood,
 /area/redgate/stardog/lounge)
 "Oa" = (
@@ -423,11 +426,6 @@
 	},
 /turf/simulated/floor/outdoors/fur/woof/no_trees,
 /area/redgate/stardog/outside)
-"Os" = (
-/turf/simulated/floor/flesh/mover{
-	dir = 6
-	},
-/area/redgate/stardog/flesh_abyss/no_spawn)
 "Pe" = (
 /obj/effect/map_effect/portal/master/side_a{
 	portal_id = "stardog_north"
@@ -521,6 +519,9 @@
 	dir = 4
 	},
 /area/redgate/stardog/flesh_abyss/stomach)
+"Xt" = (
+/turf/simulated/floor/flesh/mover,
+/area/redgate/stardog/flesh_abyss/no_spawn)
 "Xv" = (
 /turf/simulated/floor/outdoors/fur/woof,
 /area/redgate/stardog/outside)
@@ -5384,9 +5385,9 @@ gb
 gb
 gb
 gb
-pn
-Os
-uC
+Xt
+ww
+oU
 Ll
 Ll
 Zh
@@ -5527,8 +5528,8 @@ KL
 KL
 KL
 Ll
-pn
-uC
+Xt
+oU
 KL
 Ll
 Zh
@@ -5670,7 +5671,7 @@ KL
 KL
 Ll
 Ll
-LH
+dX
 Ll
 Ll
 Zh
@@ -5812,7 +5813,7 @@ KL
 KL
 Ll
 Xi
-uC
+oU
 Xi
 Ll
 Zh

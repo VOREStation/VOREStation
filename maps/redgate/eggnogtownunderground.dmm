@@ -240,6 +240,14 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/hotspring)
+"hh" = (
+/obj/random/vendorfood{
+	dir = 1
+	},
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "hM" = (
 /obj/structure/curtain,
 /turf/simulated/floor/wood{
@@ -573,6 +581,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"FJ" = (
+/obj/random/vendordrink,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "Gq" = (
 /obj/structure/bed/chair/bay/comfy/red,
 /turf/simulated/floor/plating/eris/under{
@@ -3502,13 +3516,13 @@ ab
 ab
 ab
 Kk
-cb
+FJ
 cb
 Kk
 Kk
 Kk
 cb
-cb
+hh
 Kk
 ab
 ab

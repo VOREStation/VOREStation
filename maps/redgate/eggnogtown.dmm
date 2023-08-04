@@ -493,10 +493,6 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/storage)
-"bA" = (
-/obj/machinery/vending/fitness,
-/turf/simulated/floor/wood,
-/area/redgate/eggnogtown/bar)
 "bH" = (
 /obj/random/maintenance,
 /obj/random/maintenance,
@@ -2157,10 +2153,6 @@
 "wt" = (
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/eggnogtown/greenhouse)
-"wu" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/wood,
-/area/redgate/eggnogtown/bar)
 "wx" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -2265,7 +2257,7 @@
 	},
 /area/redgate/eggnogtown/cavehome)
 "ym" = (
-/obj/machinery/vending/snack,
+/obj/random/vendorfood,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/bar)
 "ys" = (
@@ -2720,7 +2712,7 @@
 /turf/simulated/wall/wood,
 /area/redgate/eggnogtown/dining)
 "Fj" = (
-/obj/machinery/vending/cola/soft,
+/obj/random/vendordrink,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/bar)
 "Fk" = (
@@ -13098,7 +13090,7 @@ Xp
 Xp
 Xp
 fb
-bA
+ym
 Pi
 Hw
 av
@@ -13240,7 +13232,7 @@ Xp
 Xp
 Xp
 fb
-wu
+Fj
 Hw
 Hw
 Hw

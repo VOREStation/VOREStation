@@ -37,11 +37,17 @@
 	icon_living = "abyss_lurker"
 	icon_dead = "abyss_lurker-dead"
 	icon_rest = "abyss_lurker"
+	vis_height = 64
 
 	faction = "macrobacteria"
 	maxHealth = 600
 	health = 600
 	movement_cooldown = 3
+
+	harm_intent_damage = 1
+	melee_damage_lower = 1
+	melee_damage_upper = 1
+
 	meat_amount = 5
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	catalogue_data = list(/datum/category_item/catalogue/fauna/abyss_lurker)
@@ -50,6 +56,7 @@
 
 	pixel_x = -16
 	default_pixel_x = -16
+
 
 	mob_size = MOB_LARGE
 	mob_bump_flag = HEAVY
@@ -84,10 +91,10 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "interior"
-	B.desc = "soft"
+	B.desc = "It's hot and overwhelmingly tight! The interior of the pale creature groans with the effort of squeezing you. Everything is hot and churning and eager to grind and smother you in thick fluids. The weight of the creature's body pressing in at you makes it hard to move at all, while you are squeezed to the very core of the creature! There seems almost not to even be an organ for this so much as the creature has folded around you, trying to incorporate your matter into its body with vigor!"
 	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
 	B.belly_fullscreen = "yet_another_tumby"
-	B.digest_brute = 2
+	B.digest_brute = 3
 	B.digest_burn = 2
 	B.digestchance = 0
 	B.absorbchance = 0
@@ -137,10 +144,16 @@
 	icon_living = "filter"
 	icon_dead = "filter-dead"
 	icon_rest = "filter"
+	vis_height = 64
 
 	faction = "macrobacteria"
 	maxHealth = 600
 	health = 600
+
+	harm_intent_damage = 1
+	melee_damage_lower = 1
+	melee_damage_upper = 1
+
 	movement_cooldown = 1
 	meat_amount = 5
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
@@ -159,7 +172,7 @@
 
 	has_eye_glow = TRUE
 
-	attacktext = list("flashes", "slaps", "smothers", "grapples")
+	attacktext = list("pushes", "slaps", "whips", "grapples")
 	attack_sound = 'sound/effects/attackblob.ogg'
 
 	ai_holder_type = /datum/ai_holder/simple_mob/vore
@@ -196,7 +209,7 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "interior"
-	B.desc = "soft"
+	B.desc = "The flesh of the tall creature's stomach folds over you in doughy waves, squeezing you into the tightest shape it can manage with idle flexes churning down on you. Your limbs often find themselves lost between folds and tugged this way or that, held in a skin tight press that is not painful, but is hard to pull away from. You can see a strange, glittering pink and purple light glimmering through the flesh of the monster all around you, like your very own sea of stars. The walls rush in to fill all the space, squeezing you from head to toe no matter how you might wiggle, the weight of the semi-transparent interior flesh keeping you neatly secured deep inside while wringing the fight out of you."
 	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
 	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 2
@@ -206,7 +219,7 @@
 	B.escapechance = 25
 	B.colorization_enabled = TRUE
 	B.belly_fullscreen_color = "#591579"
-	B.escape_stun = 5
+	B.escape_stun = 3
 
 // The leaping attack.
 /mob/living/simple_mob/vore/vore_hostile/leaper/do_special_attack(atom/A)	//Mostly copied from hunter.dm
@@ -259,6 +272,7 @@
 	icon_living = "cube"
 	icon_dead = " "
 	icon_rest = "cube"
+	vis_height = 64
 
 	faction = "macrobacteria"
 	maxHealth = 500
@@ -284,7 +298,7 @@
 	mob_push_flags = HEAVY
 	mob_size = MOB_LARGE
 
-	attacktext = list("flashes", "slaps", "smothers", "grapples")
+	attacktext = list("splashes against", "slaps", "smothers", "engulfs")
 	attack_sound = 'sound/effects/attackblob.ogg'
 
 	ai_holder_type = /datum/ai_holder/simple_mob/vore
@@ -311,7 +325,7 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "interior"
-	B.desc = "wobl"
+	B.desc = "An incredibly thick oozing slime surrounds you, filling in all the space around your form! It's hard to catch a breath here as the jiggling gel that makes up the body of the creature swiftly fills in the hole you made in its surface by entering. The gel is semi-transparent, and you can see your surroundings though its surface, and similarly you can be seen floating in the gel from the outside. When the cube moves, your whole body is wobbled along with it. There are clouds of still processing material floating all around you as the corrosive substance works on breaking everything down."
 	B.mode_flags = DM_FLAG_NUMBING
 	B.belly_fullscreen = "yet_another_tumby"
 	B.colorization_enabled = TRUE
@@ -324,7 +338,7 @@
 	B.escapechance = 10
 	B.escapetime = 10 SECONDS
 	B.selective_preference = DM_DIGEST
-	B.escape_stun = 5
+	B.escape_stun = 3
 
 /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/Initialize()
 	. = ..()

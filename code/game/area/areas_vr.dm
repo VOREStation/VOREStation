@@ -8,6 +8,8 @@
 	// Size of the area in open turfs, only calculated for indoors areas.
 	var/areasize = 0
 
+	var/no_comms = FALSE	//When true, blocks radios from working in the area
+
 /area/Entered(var/atom/movable/AM, oldLoc)
 	. = ..()
 	if(enter_message && isliving(AM))

@@ -519,7 +519,12 @@
 
 	can_paint = TRUE
 
-	footstep_sounds = list()
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/carpet1.ogg',
+		'sound/effects/footstep/carpet2.ogg',
+		'sound/effects/footstep/carpet3.ogg',
+		'sound/effects/footstep/carpet4.ogg',
+		'sound/effects/footstep/carpet5.ogg'))
 
 /obj/structure/flora/tree/fur
 	name = "tall fur"
@@ -686,6 +691,9 @@
 		/obj/random/maintenance/clean = 10,
 		/obj/random/maintenance/misc = 10
 		)
+	no_comms = TRUE
+	ghostjoin = TRUE
+	sound_env = SOUND_ENVIRONMENT_CAVE
 	var/treasuremax = 3
 	var/spawnstuff = TRUE
 	var/include_enzyme = FALSE
@@ -819,6 +827,7 @@
 		/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube = 100
 		)
 		)
+	ghostjoin = TRUE
 
 /area/redgate/stardog/flesh_abyss/stomach
 	floracountmax = 3
@@ -850,6 +859,7 @@
 	treasure_chance = 25
 	treasuremax = 1
 	spawnstuff = TRUE
+	ghostjoin = FALSE
 
 /area/redgate/stardog/flesh_abyss/s_int
 	floracountmax = 1
@@ -881,6 +891,7 @@
 	treasure_chance = 33
 	treasuremax = 5
 	spawnstuff = TRUE
+	ghostjoin = FALSE
 
 /area/redgate/stardog/flesh_abyss/l_int
 	floracountmax = 5
@@ -910,6 +921,7 @@
 	treasure_chance = 50
 	treasuremax = 5
 	spawnstuff = TRUE
+	ghostjoin = FALSE
 
 /area/redgate/stardog/flesh_abyss/node
 	enter_message = "<span class='notice'>Radical energy hangs as a haze in the air. It's much less hot here than other places within the dog, but the air is thick with alien whispers and desires that you can hardly comprehend.</span>"
@@ -926,14 +938,36 @@
 	name = "redgate lounge"
 	icon_state = "redwhisqu"
 	requires_power = 0
-	forced_ambience = list()
+	ambience = list(
+		'sound/ambience/star_dog/dougcockpit.ogg',
+		'sound/ambience/otherworldly/otherworldly1.ogg',
+		'sound/ambience/otherworldly/otherworldly2.ogg',
+		'sound/ambience/otherworldly/otherworldly3.ogg',
+		'sound/ambience/boy.ogg',
+		'sound/ambience/expoutpost/expoutpost1.ogg',
+		'sound/ambience/expoutpost/expoutpost2.ogg',
+		'sound/ambience/expoutpost/expoutpost3.ogg',
+		'sound/ambience/expoutpost/expoutpost4.ogg',
+		'sound/ambience/tech_ruins/tech_ruins1.ogg',
+		'sound/ambience/tech_ruins/tech_ruins2.ogg',
+		'sound/ambience/tech_ruins/tech_ruins3.ogg',
+		'sound/ambience/signal.ogg'
+		)
 
 /area/redgate/stardog/outside
 	name = "star dog"
 	icon_state = "redblacir"
 	semirandom = TRUE
 	ghostjoin = TRUE
-	forced_ambience = list()
+	ambience = list(
+		'sound/ambience/star_dog/dark-cold-main-menu-loop-mild-mountain-sickness-marb7e.ogg',
+		'sound/ambience/star_dog/ominous-ambience.ogg',
+		'sound/ambience/star_dog/long_awoo.ogg',
+		'sound/ambience/star_dog/woof.ogg',
+		'sound/ambience/star_dog/woof2.ogg'
+		)
+	sound_env = SOUND_ENVIRONMENT_DIZZY
+
 	valid_mobs = list(	//Dog map spawns the dogs. It's not hard to understand!
 		list(
 			/mob/living/simple_mob/vore/woof,
@@ -1232,6 +1266,7 @@
 	var/throw_through = TRUE					//When moved the mob/obj will be thrown south
 	var/teleport_sound = 'sound/vore/schlorp.ogg'	//The sound that plays when we use the teleporter. Respects vore sound preferences.
 	var/teleport_message = ""
+	var/check_keys = FALSE
 
 /obj/effect/dog_teleporter/Initialize()
 	. = ..()
@@ -1258,6 +1293,14 @@
 	. = ..()
 	lets_go(AM)
 
+/obj/effect/dog_teleporter/attack_hand(mob/living/user)
+	. = ..()
+	lets_go(user)
+
+/obj/effect/dog_teleporter/attack_generic(mob/user)
+	. = ..()
+	lets_go(user)
+
 /obj/effect/dog_teleporter/proc/lets_go(atom/movable/AM as mob|obj)	//Wahoo! Here we go!
 	if(reciever)
 		return
@@ -1269,6 +1312,8 @@
 	if(isliving(AM))
 		L = AM
 		if(!L.devourable || !L.allowmobvore)
+			return
+		if(check_keys && !L.ckey)
 			return
 		L.stop_pulling()
 		L.Weaken(3)
@@ -1354,6 +1399,7 @@
 	id = "exit"
 	pixel_x = -16
 	pixel_y = -16
+	check_keys = TRUE
 
 /obj/effect/dog_teleporter/mouth_return
 	name = "light"
@@ -1362,6 +1408,7 @@
 	id = "mouth_b"
 	pixel_x = -16
 	pixel_y = -16
+	check_keys = TRUE
 
 /obj/effect/dog_teleporter/reciever/exit	//tee hee
 	name = "exit"
@@ -1574,6 +1621,7 @@
 		'sound/vore/sunesound/prey/squish_04.ogg',
 		'sound/vore/sunesound/prey/stomachmove.ogg'
 		)
+	var/faction = "macrobacteria"
 
 /obj/structure/auto_flesh_door/Initialize()
 	. = ..()
@@ -1598,11 +1646,29 @@
 				if(prob(5))
 					to_chat(L, "<span class='warning'>\The [src] throbs heavily around you...</span>")
 
+/obj/structure/auto_flesh_door/attack_generic(mob/user, damage, attack_verb)
+	. = ..()
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!Adjacent(user))
+		return
+	else if(user.faction == faction)
+		SwitchState()
+	else if(user.a_intent == I_HELP)
+		visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		playsound(src, knock_sound, 50, 0, 3)
+		countdown -= 10
+	else
+		visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
+		playsound(src, knock_sound, 50, 0, 3)
+		countdown -= 25
+
 /obj/structure/auto_flesh_door/attack_hand(mob/user as mob)
 	. = ..()
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
+	else if(user.faction == faction)
+		SwitchState()
 	else if(user.a_intent == I_HELP)
 		visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
 		playsound(src, knock_sound, 50, 0, 3)
