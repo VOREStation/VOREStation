@@ -21,6 +21,16 @@
 /obj/structure/prop/rock/small/alt
 	icon_state = "lavarocks2"
 
+// Warm rocks used as atoms retention fields outside!
+
+/obj/structure/prop/warmrocks
+	name = "warm rocks"
+	desc = "A number of small rocks that are warm to the touch."
+	icon = 'icons/obj/flora/rocks.dmi'
+	icon_state = "warmrocks"
+	density = FALSE
+	can_atmos_pass = ATMOS_PASS_NO
+
 //Water-trim versions for placing in water
 
 /obj/structure/prop/rock/water
