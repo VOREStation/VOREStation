@@ -51,10 +51,10 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return
 	if(L.stat || L.restrained())
 		return
-
 	if(!scan)
 		to_chat(L, span_notice("There is no I.D card to remove!"))
 		return
+
 	scan.forceMove(loc)
 	if(ishuman(usr) && !usr.get_active_hand())
 		usr.put_in_hands(scan)
@@ -154,6 +154,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	data["rank"] = rank
 	data["isAI"] = isAI(user)
 	data["isRobot"] = isrobot(user)
+	data["adminDepartments"] = admin_departments
 
 	data["bossName"] = using_map.boss_name
 	data["copyItem"] = copyitem
@@ -211,6 +212,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				usr.put_in_hands(copyitem)
 				to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
 				copyitem = null
+		if("send_automated_staff_request")
+			request_roles()
 
 	if(!authenticated)
 		return
