@@ -1317,6 +1317,7 @@
 			return
 		L.stop_pulling()
 		L.Weaken(3)
+		GLOB.prey_eaten_roundstat++
 	if(target.reciever)		//We don't have to worry
 		AM.unbuckle_all_mobs(TRUE)
 		AM.forceMove(get_turf(target))
@@ -1333,6 +1334,7 @@
 	if(isobserver(AM))
 		return
 	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(target, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(teleport_message && L.client)
@@ -1375,6 +1377,7 @@
 		if(dog.client)
 			to_chat(dog, "<span class='notice'>[I.thrower ? "\The [I.thrower]" : "Someone"] feeds \the [I] to you!</span>")
 		qdel(I)
+		GLOB.items_digested_roundstat++
 
 /obj/effect/dog_teleporter/reciever
 	name = "exit"
@@ -1527,6 +1530,7 @@
 					how_much = how_much / 10	//Braindead mobs are worth less
 				linked_mob.adjust_nutrition(how_much)
 				H.mind?.vore_death = TRUE
+				GLOB.prey_digested_roundstat++
 			spawn(0)
 			qdel(H)	//glorp
 			return
