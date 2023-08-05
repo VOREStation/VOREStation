@@ -235,6 +235,7 @@
 /datum/map_z_level/common_lateload/redgate_destination
 	name = "Redgate Destination"
 	z = Z_LEVEL_REDGATE
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 
 /datum/map_template/common_lateload/redgate/on_map_loaded(z)
 	. = ..()

@@ -256,6 +256,7 @@
 	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 
 	extra_z_levels = list(Z_LEVEL_SPACE_ROCKS)
+	var/mob_announce_cooldown = 0
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
 /obj/effect/overmap/visitable/sector/virgo3b/Initialize()
@@ -273,6 +274,11 @@
 	announce_atc(AM,going = TRUE)
 
 /obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
+	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
+		if(world.time < mob_announce_cooldown)
+			return
+		else
+			mob_announce_cooldown = world.time + 5 MINUTES
 	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
 	//For landables, we need to see if their shuttle is cloaked
 	if(istype(AM, /obj/effect/overmap/visitable/ship/landable))
