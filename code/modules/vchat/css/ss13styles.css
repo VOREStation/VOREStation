@@ -76,6 +76,7 @@ body.inverted {
 .ooc .everyone			{color: #002eb8;}
 .inverted .ooc .everyone {color: #004ed8;} /* Dark mode */
 .looc				    {color: #3A9696;}
+.rlooc					{color: #3ABB96;} /* CHOMPEdit */
 .ooc .elevated			{color: #2e78d9;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
