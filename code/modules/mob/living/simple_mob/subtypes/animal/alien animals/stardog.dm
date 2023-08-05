@@ -1333,6 +1333,7 @@
 	if(isobserver(AM))
 		return
 	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(target, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(teleport_message && L.client)
