@@ -65,15 +65,34 @@
 		var/description_holders = client.description_holders
 		stat(null,"[description_holders["icon"]]    <font size='5'>[description_holders["name"]]</font>") //The name, written in big letters.
 		stat(null,"[description_holders["desc"]]") //the default examine text.
+
+
+		var/color_i = "#084B8A"
+		var/color_f = "#298A08"
+		var/color_a = "#8A0808"
+/*
+		The infowindow colours are set in code\modules\vchat\js\vchat.js file
+		Unfortunately, I cannot think of a way to do this elegantly where there's this central define that we can easily track.
+		As of 2023/08/05 13:10, the lightmode colour for vchat tabBackgroundColor is "none", this is also defined in interface\skin.dmf .
+		The darkmode colour for vchat tabBackgroundColor is "#272727".
+		Since it's possible that one day we'll have option to modify the user's preferred tabBackgroundColor
+		I will assume the lightmode colour will be left untouched - therefore, we are checking for none.
+*/
+		if(!(winget(src, "infowindow", "background-color") == "none"))
+			color_i = "#709ec9d8"
+			color_f = "#76d357"
+			color_a = "#c94d4d"
+
+
 		if(description_holders["info"])
-			stat(null,"<font color='#084B8A'><b>[description_holders["info"]]</b></font>") //Blue, informative text.
+			stat(null,"<font color=[color_i]><b>[description_holders["info"]]</b></font>") //Blue, informative text.
 		if(description_holders["interactions"])
 			for(var/line in description_holders["interactions"])
-				stat(null, "<font color='#084B8A'><b>[line]</b></font>")
+				stat(null, "<font color=[color_i]><b>[line]</b></font>")
 		if(description_holders["fluff"])
-			stat(null,"<font color='#298A08'><b>[description_holders["fluff"]]</b></font>") //Yellow, fluff-related text.
+			stat(null,"<font color=[color_f]><b>[description_holders["fluff"]]</b></font>") //Yellow, fluff-related text.
 		if(description_holders["antag"])
-			stat(null,"<font color='#8A0808'><b>[description_holders["antag"]]</b></font>") //Red, malicious antag-related text
+			stat(null,"<font color=[color_a]><b>[description_holders["antag"]]</b></font>") //Red, malicious antag-related text
 
 //override examinate verb to update description holders when things are examined
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
