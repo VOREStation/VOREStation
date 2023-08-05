@@ -1093,6 +1093,33 @@
 	if(pixel_x <= (default_pixel_x + 16))
 		pixel_x++
 		is_shifted = TRUE
+
+/mob/verb/planeup()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(plane >= MOB_PLANE + 3)	//Don't bother going too high!
+		return
+	if(layer == MOB_LAYER)	//Become higher
+		layer = ABOVE_MOB_LAYER
+	plane += 1		//Increase the plane
+	if(plane == MOB_PLANE)	//Return to normal
+		layer = MOB_LAYER
+	is_shifted = TRUE
+
+/mob/verb/planedown()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(plane <= MOB_PLANE - 3)	//Don't bother going too low!
+		return
+	if(layer == MOB_LAYER)	//Become lower
+		layer = BELOW_MOB_LAYER
+	plane -= 1		//Decrease the plane
+	if(plane == MOB_PLANE)	//Return to normal
+		layer = MOB_LAYER
+	is_shifted = TRUE
+
 // End VOREstation edit
 
 /mob/proc/adjustEarDamage()
