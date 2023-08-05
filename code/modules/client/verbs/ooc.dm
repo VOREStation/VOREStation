@@ -53,7 +53,7 @@
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
-		//VOREStation Block Edit Start
+
 		if(holder.rights & R_EVENT) //Retired Admins
 			ooc_style = "event_manager"
 		if(holder.rights & R_ADMIN && !(holder.rights & R_BAN)) //Game Masters
@@ -62,7 +62,7 @@
 			ooc_style = "developer"
 		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
-		//VOREStation Block Edit End
+
 
 	for(var/client/target in GLOB.clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
@@ -149,12 +149,12 @@
 		display_name = holder.fakekey
 	if(mob.stat != DEAD)
 		display_name = mob.name
-	//VOREStation Add - Resleeving shenanigan prevention
+
 	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(H.original_player && H.original_player != H.ckey) //In a body not their own
 			display_name = "[H.mind.name] (as [H.name])"
-	//VOREStation Add End
+
 
 	// Everyone in normal viewing range of the LOOC
 	for(var/mob/viewer in m_viewers)
@@ -182,7 +182,7 @@
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
-		to_chat(target, "<span class='rlooc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>") //CHOMPEdit
+		to_chat(target, "<span class='rlooc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
 
 /mob/proc/get_looc_source()
 	return src

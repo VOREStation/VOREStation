@@ -177,7 +177,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".filter_ooc, .ooc:not(.looc)",
+					matches: ".ooc, .filter_ooc",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
 					tooltip: "The bluewall of global OOC messages",
@@ -267,11 +267,19 @@ function start_vue() {
 					admin: true
 				},
 				{
-					matches: ".ooc.looc, .ooc, .looc", //Dumb game
+					matches: ".looc",
 					becomes: "vc_looc",
 					pretty: "Local OOC",
 					tooltip: "Local OOC messages, always enabled",
 					required: true
+				},
+				{
+					matches: ".rlooc",
+					becomes: "vc_rlooc",
+					pretty: "Remote LOOC",
+					tooltip: "Remote LOOC messages",
+					required: false,
+					admin: true
 				},
 				{
 					matches: ".boldannounce, .filter_system",
