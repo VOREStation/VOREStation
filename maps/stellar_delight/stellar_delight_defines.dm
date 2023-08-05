@@ -174,6 +174,7 @@
 //		list("Dark Adventure"),
 //		list("Eggnog Town Underground","Eggnog Town"),
 		list("Star Dog")
+//		list("Hotsprings")
 		)
 
 	ai_shell_restricted = TRUE

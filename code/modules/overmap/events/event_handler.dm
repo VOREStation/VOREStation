@@ -80,7 +80,7 @@ GLOBAL_DATUM_INIT(overmap_event_handler, /decl/overmap_event_handler, new)
 		E.startWhen = 0
 		E.endWhen = INFINITY
 		// TODO - Leshana - Note: event.setup() is called before these are set!
-		E.affecting_z = ship.map_z
+		E.affecting_z = ship.map_z.Copy()
 		E.victim = ship
 		LAZYADD(ship_events[ship], E)
 
