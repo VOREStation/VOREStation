@@ -16,8 +16,8 @@ em						{font-style: normal;font-weight: bold;}
 
 /* OOC */
 .ooc					{font-weight: bold;}
-.looc					{color: #3A9696;}
-.rlooc					{color: #3ABB96;} //CHOMPEdit
+.looc					{color: #3A9696; font-weight: bold}
+.rlooc					{color: #3ABB96; font-weight: bold}} //CHOMPEdit
 .ooc img.text_tag		{width: 32px; height: 10px;}
 
 .ooc .everyone			{color: #002eb8;}
