@@ -161,3 +161,47 @@
 	As soon as you read this, get yourself out of here and come find us. We left you enough money to make the trip in the usual spot. We'll be in the registry once we arrive. We're waiting for you.<BR><BR>
 
 	Yours, Medley</i>"}
+
+/area/redgate/hotsprings
+	name = "hotsprings"
+	requires_power = 0
+
+/area/redgate/hotsprings/outdoors
+	name = "snowfields"
+	icon_state = "hotsprings_outside"
+
+/area/redgate/hotsprings/redgate
+	name = "redgate facility"
+	icon_state = "hotsprings_redgate"
+
+/area/redgate/hotsprings/westcave
+	name = "hotspring caves"
+	icon_state = "hotsprings_westcave"
+
+/area/redgate/hotsprings/eastcave
+	name = "icy caverns"
+	icon_state = "hotsprings_eastcave"
+
+/area/redgate/hotsprings/house
+	name = "snowy cabin"
+	icon_state = "hotsprings_house"
+
+/area/redgate/hotsprings/house/dorm1
+	name = "hotsprings dorm 1"
+	icon_state = "hotsprings_dorm1"
+
+/area/redgate/hotsprings/house/dorm2
+	name = "hotsprings dorm 2"
+	icon_state = "hotsprings_dorm2"
+
+/area/redgate/hotsprings/house/hotspringhouse
+	name = "small cabin"
+	icon_state = "hotsprings_hotspringhouse"
+
+/area/redgate/hotsprings/house/lovercave
+	name = "cosy cave"
+	icon_state = "hotsprings_lovercave"
+
+/area/redgate/hotsprings/house/succcave
+	name = "tiny cave"
+	icon_state = "hotsprings_succcave"
