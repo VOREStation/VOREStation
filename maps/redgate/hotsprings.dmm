@@ -197,7 +197,7 @@
 "Nf" = (/obj/structure/railing/grey,/obj/effect/floor_decal/shuttles/right,/turf/simulated/floor/tiled/steel{nitrogen = 93.7835; outdoors = 1; oxygen = 20.7263; temperature = 243.15},/area/redgate/hotsprings/outdoors)
 "Nl" = (/obj/fiftyspawner/log,/turf/simulated/floor/outdoors/dirt{nitrogen = 93.7835; outdoors = -1; oxygen = 20.7263; temperature = 243.15},/area/redgate/hotsprings/westcave)
 "Nw" = (/obj/structure/table/rack/shelf,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,/turf/simulated/floor/outdoors/dirt{nitrogen = 93.7835; outdoors = -1; oxygen = 20.7263; temperature = 243.15},/area/redgate/hotsprings/westcave)
-"ND" = (/obj/structure/barricade/planks{material = wood},/turf/simulated/floor/outdoors/dirt{nitrogen = 93.7835; outdoors = -1; oxygen = 20.7263; temperature = 243.15},/area/redgate/hotsprings/eastcave)
+"ND" = (/obj/structure/barricade/planks,/turf/simulated/floor/outdoors/dirt{nitrogen = 93.7835; outdoors = -1; oxygen = 20.7263; temperature = 243.15},/area/redgate/hotsprings/eastcave)
 "NI" = (/obj/structure/table/standard,/obj/machinery/microwave{pixel_y = 5},/turf/simulated/floor/tiled/steel,/area/redgate/hotsprings/redgate)
 "NR" = (/obj/structure/railing/grey{dir = 8},/turf/simulated/floor/tiled/steel{nitrogen = 93.7835; outdoors = 1; oxygen = 20.7263; temperature = 243.15},/area/redgate/hotsprings/outdoors)
 "NY" = (/turf/simulated/wall/wood,/area/redgate/hotsprings/house/dorm1)
