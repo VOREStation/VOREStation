@@ -969,9 +969,7 @@
 
 	valid_mobs = list(	//Dog map spawns the dogs. It's not hard to understand!
 		list(
-			/mob/living/simple_mob/vore/woof,
-			/mob/living/simple_mob/vore/woof/hostile/ranged,
-			/mob/living/simple_mob/vore/woof/hostile/terrible
+			/mob/living/simple_mob/vore/woof
 			) = 100,
 		list(
 			/mob/living/simple_mob/vore/wolf,
@@ -1205,6 +1203,8 @@
 		for(var/thing in t.contents)
 			if(istype(thing, /obj/effect/dog_eye))	//We can have eyes in our eyes, it's fine
 				continue
+			if(isobserver(thing))	//Ghosts aren't real
+				continue
 			if(isobj(thing) || ismob(thing))
 				close = TRUE	//AAAAAAAAAAAAAAAUUUUUUUUGHHHHHHHHH ITS IN MY EYES HELP
 
@@ -1266,6 +1266,7 @@
 	var/teleport_sound = 'sound/vore/schlorp.ogg'	//The sound that plays when we use the teleporter. Respects vore sound preferences.
 	var/teleport_message = ""
 	var/check_keys = FALSE
+	var/check_prefs = TRUE
 
 /obj/effect/dog_teleporter/Initialize()
 	. = ..()
@@ -1310,27 +1311,30 @@
 	var/mob/living/L = null
 	if(isliving(AM))
 		L = AM
-		if(!L.devourable || !L.allowmobvore)
+		if(check_prefs && (!L.devourable || !L.allowmobvore))
 			return
 		if(check_keys && !L.ckey)
 			return
 		L.stop_pulling()
 		L.Weaken(3)
+		GLOB.prey_eaten_roundstat++
 	if(target.reciever)		//We don't have to worry
 		AM.unbuckle_all_mobs(TRUE)
-		playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		AM.forceMove(get_turf(target))
 		extra(AM)
 		return
 	var/turf/place = locate(target.x, (target.y - 1), target.z)	//If the target is also a teleporter, let's pick a place to set them down next to the target.
-	L.Weaken(3)													//Setting them ON the target will probably make an infinite loop, and that seems lame.
+																//Setting them ON the target will probably make an infinite loop, and that seems lame.
 	AM.unbuckle_all_mobs(TRUE)
-	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	AM.forceMove(place)
 	extra(AM)
 
 /obj/effect/dog_teleporter/proc/extra(atom/movable/AM as mob|obj)
 	var/go = FALSE
+	if(isobserver(AM))
+		return
+	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(target, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(teleport_message && L.client)
@@ -1373,6 +1377,7 @@
 		if(dog.client)
 			to_chat(dog, "<span class='notice'>[I.thrower ? "\The [I.thrower]" : "Someone"] feeds \the [I] to you!</span>")
 		qdel(I)
+		GLOB.items_digested_roundstat++
 
 /obj/effect/dog_teleporter/reciever
 	name = "exit"
@@ -1399,6 +1404,7 @@
 	pixel_x = -16
 	pixel_y = -16
 	check_keys = TRUE
+	check_prefs = FALSE	//We don't have to worry about it on the way out
 
 /obj/effect/dog_teleporter/mouth_return
 	name = "light"
@@ -1408,6 +1414,7 @@
 	pixel_x = -16
 	pixel_y = -16
 	check_keys = TRUE
+	check_prefs = FALSE	//We don't have to worry about it on the way out
 
 /obj/effect/dog_teleporter/reciever/exit	//tee hee
 	name = "exit"
@@ -1523,6 +1530,7 @@
 					how_much = how_much / 10	//Braindead mobs are worth less
 				linked_mob.adjust_nutrition(how_much)
 				H.mind?.vore_death = TRUE
+				GLOB.prey_digested_roundstat++
 			spawn(0)
 			qdel(H)	//glorp
 			return

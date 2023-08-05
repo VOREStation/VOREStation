@@ -168,7 +168,7 @@
 	vore_ignores_undigestable = 0
 	vore_default_mode = DM_SELECT
 	vore_icons = SA_ICON_LIVING
-	vore_stomach_name = "Stomach"
+	vore_stomach_name = "stomach"
 	vore_default_item_mode = IM_DIGEST
 	vore_pounce_chance = 75
 	vore_pounce_cooldown = 10
@@ -191,7 +191,7 @@
 /mob/living/simple_mob/vore/vore_hostile/leaper/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
-	B.name = "interior"
+	B.name = "stomach"
 	B.desc = "The flesh of the tall creature's stomach folds over you in doughy waves, squeezing you into the tightest shape it can manage with idle flexes churning down on you. Your limbs often find themselves lost between folds and tugged this way or that, held in a skin tight press that is not painful, but is hard to pull away from. You can see a strange, glittering pink and purple light glimmering through the flesh of the monster all around you, like your very own sea of stars. The walls rush in to fill all the space, squeezing you from head to toe no matter how you might wiggle, the weight of the semi-transparent interior flesh keeping you neatly secured deep inside while wringing the fight out of you."
 	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
 	B.belly_fullscreen = "yet_another_tumby"
