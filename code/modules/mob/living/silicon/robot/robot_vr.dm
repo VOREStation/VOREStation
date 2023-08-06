@@ -12,8 +12,7 @@
 	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
-	var/sitting = FALSE
-	var/bellyup = FALSE
+	var/rest_style = "Default"
 	does_spin = FALSE
 	var/wideborg_dept = 'icons/mob/widerobot_vr.dmi'
 	var/vr_icons = list(
@@ -89,24 +88,21 @@
 
 /mob/living/silicon/robot/lay_down()
 	 . = ..()
-	 updateicon()
+	 update_icon()
 
-/mob/living/silicon/robot/proc/rest_style()
+/mob/living/silicon/robot/verb/rest_style()
 	set name = "Switch Rest Style"
-	set category = "IC"
 	set desc = "Select your resting pose."
-	sitting = FALSE
-	bellyup = FALSE
-	var/choice = tgui_alert(src, "Select resting pose", "Resting Pose", list("Resting", "Sitting", "Belly up"))
-	switch(choice)
-		if("Resting")
-			return 0
-		if("Sitting")
-			sitting = TRUE
-		if("Belly up")
-			bellyup = TRUE
+	set category = "IC"
 
-/mob/living/silicon/robot/updateicon()
+	if(!sprite_datum || !sprite_datum.has_rest_sprites || sprite_datum.rest_sprite_options.len <= 1)
+		return
+
+	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
+	if(!rest_style)
+		rest_style = "Default"
+/*
+/mob/living/silicon/robot/update_icon()
 	vr_sprite_check()
 	..()
 	if(dogborg == TRUE && stat == CONSCIOUS)
@@ -175,7 +171,7 @@
 		icon = 'icons/mob/robots_vr.dmi'
 	else if(!(icon_state in vr_icons))
 		icon = original_icon
-
+*/
 /mob/living/silicon/robot/proc/ex_reserve_refill()
 	set name = "Refill Extinguisher"
 	set category = "Object"

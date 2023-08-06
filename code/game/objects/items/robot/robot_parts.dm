@@ -73,9 +73,9 @@
 
 /obj/item/robot_parts/robot_suit/New()
 	..()
-	src.updateicon()
+	src.update_icon()
 
-/obj/item/robot_parts/robot_suit/proc/updateicon()
+/obj/item/robot_parts/robot_suit/update_icon()
 	cut_overlays()
 	if(src.l_arm)
 		add_overlay("l_arm+o")
@@ -117,28 +117,28 @@
 		user.drop_item()
 		W.loc = src
 		src.l_leg = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
 		if(src.r_leg)	return
 		user.drop_item()
 		W.loc = src
 		src.r_leg = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
 		if(src.l_arm)	return
 		user.drop_item()
 		W.loc = src
 		src.l_arm = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
 		if(src.r_arm)	return
 		user.drop_item()
 		W.loc = src
 		src.r_arm = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
 		if(src.chest)	return
@@ -146,7 +146,7 @@
 			user.drop_item()
 			W.loc = src
 			src.chest = W
-			src.updateicon()
+			src.update_icon()
 		else if(!W:wires)
 			to_chat(user, "<span class='warning'>You need to attach wires to it first!</span>")
 		else
@@ -158,7 +158,7 @@
 			user.drop_item()
 			W.loc = src
 			src.head = W
-			src.updateicon()
+			src.update_icon()
 		else
 			to_chat(user, "<span class='warning'>You need to attach a flash to it first!</span>")
 

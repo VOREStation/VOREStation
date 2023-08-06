@@ -23,12 +23,27 @@ var/global/list/robot_modules = list(
 	icon_state = "std_module"
 	w_class = ITEMSIZE_NO_CONTAINER
 	item_state = "std_mod"
+	var/pto_type = null
 	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
-	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_AKHANI = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0, LANGUAGE_TERMINUS = 1, LANGUAGE_ZADDAT = 0)
+	var/languages = list(LANGUAGE_SOL_COMMON= 1,
+					LANGUAGE_TRADEBAND	= 1,
+					LANGUAGE_UNATHI		= 0,
+					LANGUAGE_SIIK		= 0,
+					LANGUAGE_SKRELLIAN	= 0,
+					LANGUAGE_GUTTER		= 0,
+					LANGUAGE_SCHECHI	= 0,
+					LANGUAGE_SIGN		= 0,
+					LANGUAGE_BIRDSONG	= 0,
+					LANGUAGE_SAGARU		= 0,
+					LANGUAGE_CANILUNZT	= 0,
+					LANGUAGE_ECUREUILIAN= 0,
+					LANGUAGE_DAEMON		= 0,
+					LANGUAGE_ENOCHIAN	= 0,
+					LANGUAGE_DRUDAKAR	= 0)
 	var/sprites = list()
-	var/can_be_pushed = 1
+	var/can_be_pushed = 0
 	var/no_slip = 0
 	var/list/modules = list()
 	var/list/datum/matter_synth/synths = list()
@@ -60,10 +75,8 @@ var/global/list/robot_modules = list(
 			channels = R.mainframe.aiRadio.channels
 		R.radio.recalculateChannels()
 
-	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
-
-	R.set_module_sprites(sprites)
-	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
+	R.set_default_module_icon()
+	R.choose_icon(SSrobot_sprites.get_module_sprites_len(R.modtype) + 1)
 
 	for(var/obj/item/I in modules)
 		I.canremove = FALSE
@@ -76,7 +89,7 @@ var/global/list/robot_modules = list(
 
 	if(R.radio)
 		R.radio.recalculateChannels()
-	R.choose_icon(0, R.set_module_sprites(list("Default" = "robot")))
+	R.choose_icon(0)
 
 /obj/item/weapon/robot_module/Destroy()
 	for(var/module in modules)
@@ -185,27 +198,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/standard
 	name = "standard robot module"
-	sprites = list(
-					"M-USE NanoTrasen" = "robot",
-					"Cabeiri" = "eyebot-standard",
-					"Haruka" = "marinaSD",
-					"Usagi" = "tallflower",
-					"Telemachus" = "toiletbot",
-					"WTOperator" = "sleekstandard",
-					"WTOmni" = "omoikane",
-					"XI-GUS" = "spider",
-					"XI-ALP" = "heavyStandard",
-					"Basic" = "robot_old",
-					"Android" = "droid",
-					"Drone" = "drone-standard",
-					"Insekt" = "insekt-Default",
-					"Usagi-II" = "tall2standard",
-					"Pyralis" = "Glitterfly-Standard",
-					"Decapod" = "decapod-Standard",
-					"Pneuma" = "pneuma-Standard",
-					"Tower" = "drider-Standard"
-					)
-
+	pto_type = PTO_CIVILIAN
 
 /obj/item/weapon/robot_module/robot/standard/New()
 	..()
@@ -219,7 +212,6 @@ var/global/list/robot_modules = list(
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
-	can_be_pushed = 0
 
 /obj/item/weapon/robot_module/robot/medical/surgeon
 	name = "surgeon robot module"
@@ -500,7 +492,6 @@ var/global/list/robot_modules = list(
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
-	can_be_pushed = 0
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
 
 /obj/item/weapon/robot_module/robot/security/general
@@ -556,24 +547,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/janitor
 	name = "janitorial robot module"
 	channels = list("Service" = 1)
-	sprites = list(
-					"M-USE NanoTrasen" = "robotJani",
-					"Arachne" = "crawler",
-					"Cabeiri" = "eyebot-janitor",
-					"Haruka" = "marinaJN",
-					"Telemachus" = "toiletbotjanitor",
-					"WTOperator" = "sleekjanitor",
-					"XI-ALP" = "heavyRes",
-					"Basic" = "JanBot2",
-					"Mopbot"  = "janitorrobot",
-					"Mop Gear Rex" = "mopgearrex",
-					"Drone" = "drone-janitor",
-					"Usagi-II" = "tall2janitor",
-					"Pyralis" = "Glitterfly-Janitor",
-					"Decapod" = "decapod-Janitor",
-					"Pneuma" = "pneuma-Janitor",
-					"Tower" = "drider-Janitor"
-					)
+	pto_type = PTO_CIVILIAN
 
 /obj/item/weapon/robot_module/robot/janitor/general/New()
 	..()
@@ -601,18 +575,22 @@ var/global/list/robot_modules = list(
 		)
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
+					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_UNATHI		= 1,
 					LANGUAGE_SIIK		= 1,
-					LANGUAGE_AKHANI		= 1,
 					LANGUAGE_SKRELLIAN	= 1,
 					LANGUAGE_ROOTLOCAL	= 0,
-					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_GUTTER		= 1,
 					LANGUAGE_SCHECHI	= 1,
-					LANGUAGE_EAL		= 1,
-					LANGUAGE_TERMINUS	= 1,
 					LANGUAGE_SIGN		= 0,
-					LANGUAGE_ZADDAT		= 1,
+					LANGUAGE_BIRDSONG	= 1,
+					LANGUAGE_SAGARU		= 1,
+					LANGUAGE_CANILUNZT	= 1,
+					LANGUAGE_ECUREUILIAN= 1,
+					LANGUAGE_DAEMON		= 1,
+					LANGUAGE_ENOCHIAN	= 1,
+					LANGUAGE_DRUDAKAR	= 1,
+					LANGUAGE_TAVAN		= 1
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/butler
@@ -723,25 +701,8 @@ var/global/list/robot_modules = list(
 	name = "miner robot module"
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
-	sprites = list(
-					"NM-USE NanoTrasen" = "robotMine",
-					"Cabeiri" = "eyebot-miner",
-					"Haruka" = "marinaMN",
-					"Telemachus" = "toiletbotminer",
-					"WTOperator" = "sleekminer",
-					"XI-GUS" = "spidermining",
-					"XI-ALP" = "heavyMiner",
-					"Basic" = "Miner_old",
-					"Advanced Droid" = "droid-miner",
-					"Treadhead" = "Miner",
-					"Drone" = "drone-miner",
-					"Usagi-II" = "tall2miner",
-					"Pyralis" = "Glitterfly-Miner",
-					"Decapod" = "decapod-Miner",
-					"Pneuma" = "pneuma-Miner",
-					"Tower" = "drider-Miner"
-				)
 	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
+	pto_type = PTO_CARGO
 
 /obj/item/weapon/robot_module/robot/miner/general/New()
 	..()
@@ -763,23 +724,8 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/research
 	name = "research module"
 	channels = list("Science" = 1)
-	sprites = list(
-					"L'Ouef" = "peaceborg",
-					"Cabeiri" = "eyebot-science",
-					"Haruka" = "marinaSCI",
-					"WTDove" = "whitespider",
-					"WTOperator" = "sleekscience",
-					"Droid" = "droid-science",
-					"Drone" = "drone-science",
-					"Handy" = "handy-science",
-					"Insekt" = "insekt-Sci",
-					"Usagi-II" = "tall2peace",
-					"Pyralis" = "Glitterfly-Research",
-					"Decapod" = "decapod-Research",
-					"Pneuma" = "pneuma-Research",
-					"Tower" = "drider-Research"
-					)
 	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
+	pto_type = PTO_SCIENCE
 
 /obj/item/weapon/robot_module/robot/research/general/New()
 	..()
@@ -807,6 +753,9 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/weapon/pickaxe/excavationdrill(src)
 	//src.modules += new /obj/item/device/cataloguer(src) //VOREStation Removal
+
+
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
 
 	src.emag = new /obj/item/weapon/hand_tele(src)
 

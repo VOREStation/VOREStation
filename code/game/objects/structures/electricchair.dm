@@ -58,7 +58,7 @@
 		return
 	A.use_power_oneoff(5000, EQUIP)
 	var/light = A.power_light
-	A.updateicon()
+	A.update_icon()
 
 	flick("echair1", src)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -74,5 +74,5 @@
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
 
 	A.power_light = light
-	A.updateicon()
+	A.update_icon()
 	return

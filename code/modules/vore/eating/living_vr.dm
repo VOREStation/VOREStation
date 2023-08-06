@@ -661,7 +661,7 @@
 	else
 		belly.nom_mob(prey, user)
 
-	user.updateicon()
+	user.update_icon()
 
 	// Inform Admins
 	if(pred == user)

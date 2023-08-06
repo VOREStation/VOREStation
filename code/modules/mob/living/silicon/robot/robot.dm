@@ -29,10 +29,9 @@
 
 //Icon stuff
 
-	var/icontype 				//Persistent icontype tracking allows for cleaner icon updates
-	var/module_sprites[0] 		//Used to store the associations between sprite names and sprite index.
-	var/icon_selected = 1		//If icon selection has been completed yet
-	var/icon_selection_tries = 0//Remaining attempts to select icon before a selection is forced
+	var/datum/robot_sprite/sprite_datum 				// Sprite datum, holding all our sprite data
+	var/icon_selected = 1								// If icon selection has been completed yet
+	var/icon_selection_tries = 0						// Remaining attempts to select icon before a selection is forced
 
 //Hud stuff
 
@@ -114,10 +113,7 @@
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
 	ident = rand(1, 999)
-	module_sprites["Basic"] = "robot"
-	icontype = "Basic"
 	updatename(modtype)
-	updateicon()
 
 	radio = new /obj/item/device/radio/borg(src)
 //	communicator = new /obj/item/device/communicator/integrated(src)
@@ -165,6 +161,10 @@
 	hud_list[IMPCHEM_HUD]     = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPCHEM)
 	hud_list[IMPTRACK_HUD]    = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPTRACK)
 	hud_list[SPECIALROLE_HUD] = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_SPECIAL)
+
+/mob/living/silicon/robot/LateInitialize()
+	. = ..()
+	update_icon()
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
@@ -247,6 +247,8 @@
 	wires = null
 	return ..()
 
+// CONTINUE CODING HERE
+/*
 /mob/living/silicon/robot/proc/set_module_sprites(var/list/new_sprites)
 	if(new_sprites && new_sprites.len)
 		module_sprites = new_sprites.Copy()
@@ -257,9 +259,9 @@
 		else
 			icontype = module_sprites[1]
 			icon_state = module_sprites[icontype]
-	updateicon()
+	update_icon()
 	return module_sprites
-
+*/
 /mob/living/silicon/robot/proc/pick_module()
 	if(module)
 		return
@@ -271,10 +273,10 @@
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
 			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
-			modules += emergency_module_types
+			modules |= emergency_module_types
 		for(var/module_name in whitelisted_module_types)
 			if(is_borg_whitelisted(src, module_name))
-				modules += module_name
+				modules |= module_name
 	//VOREStatation Edit End: shell restrictions
 	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
 
@@ -359,7 +361,7 @@
 			sprite_name = newname
 
 		updatename()
-		updateicon()
+		update_icon()
 
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
@@ -379,7 +381,7 @@
 	lights_on = !lights_on
 	to_chat(usr, "<span class='filter_notice'>You [lights_on ? "enable" : "disable"] your integrated light.</span>")
 	handle_light()
-	updateicon() //VOREStation Add - Since dogborgs have sprites for this
+	update_icon()
 
 /mob/living/silicon/robot/verb/self_diagnosis_verb()
 	set category = "Robot Commands"
@@ -557,7 +559,7 @@
 			if(cell)
 				to_chat(user, "<span class='filter_notice'>You close the cover.</span>")
 				opened = 0
-				updateicon()
+				update_icon()
 			else if(wiresexposed && wires.is_all_cut())
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
@@ -572,7 +574,7 @@
 				C.r_leg = new/obj/item/robot_parts/r_leg(C)
 				C.l_arm = new/obj/item/robot_parts/l_arm(C)
 				C.r_arm = new/obj/item/robot_parts/r_arm(C)
-				C.updateicon()
+				C.update_icon()
 				new/obj/item/robot_parts/chest(loc)
 				qdel(src)
 			else
@@ -606,7 +608,7 @@
 			else
 				to_chat(user, "<span class='filter_notice'>You open the cover.</span>")
 				opened = 1
-				updateicon()
+				update_icon()
 
 	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
@@ -639,14 +641,14 @@
 		wiresexposed = !wiresexposed
 		to_chat(user, "<span class='filter_notice'>The wires have been [wiresexposed ? "exposed" : "unexposed"]</span>")
 		playsound(src, W.usesound, 50, 1)
-		updateicon()
+		update_icon()
 
 	else if(W.is_screwdriver() && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			to_chat(user, "<span class='filter_notice'>Unable to locate a radio.</span>")
-		updateicon()
+		update_icon()
 
 	else if(W.is_wrench() && opened && !cell)
 		if(bolt)
@@ -678,7 +680,7 @@
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='filter_notice'>You [ locked ? "lock" : "unlock"] [src]'s interface.</span>")
-				updateicon()
+				update_icon()
 			else
 				to_chat(user, "<span class='filter_notice'><font color='red'>Access denied.</font></span>")
 
@@ -755,7 +757,7 @@
 			cell = null
 			cell_component.wrapped = null
 			cell_component.installed = 0
-			updateicon()
+			update_icon()
 		else if(cell_component.installed == -1)
 			cell_component.installed = 0
 			var/obj/item/broken_device = cell_component.wrapped
@@ -838,21 +840,84 @@
 			return 1
 	return 0
 
-/mob/living/silicon/robot/updateicon()
+/mob/living/silicon/robot/update_icon()
+	if(!sprite_datum)
+		return
+
 	cut_overlays()
+
+	icon			= sprite_datum.sprite_icon
+	icon_state		= sprite_datum.sprite_icon_state
+
+	vis_height		= sprite_datum.vis_height
+	if(default_pixel_x != sprite_datum.pixel_x)
+		default_pixel_x	= sprite_datum.pixel_x
+		pixel_x = sprite_datum.pixel_x
+		old_x = sprite_datum.pixel_x
+
 	if(stat == CONSCIOUS)
-		if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
-			add_overlay("eyes-[module_sprites[icontype]]")
+		var/show_belly = FALSE
+		if(sprite_datum.has_vore_belly_sprites)
+			if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
+				if(sleeper_g || sleeper_r)
+					show_belly = TRUE
+			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
+				if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
+					if(vore_selected.overlay_min_prey_size == 0)	//if min size is 0, we dont check for size
+						show_belly = TRUE
+					else
+						if(vore_selected.override_min_prey_size && (LAZYLEN(vore_selected.contents) > vore_selected.override_min_prey_num))
+							show_belly = TRUE	//Override regardless of content size
+						else
+							for(var/content in vore_selected.contents)	//If ANY in belly are big enough, we set to true
+								if(!istype(content, /mob/living)) continue
+								var/mob/living/prey = content
+								if(prey.size_multiplier >= vore_selected.overlay_min_prey_size)
+									show_belly = TRUE
+									break
+		if(show_belly)
+			add_overlay(sprite_datum.get_belly_overlay(src))
+
+		sprite_datum.handle_extra_icon_updates(src)			// Various equipment-based sprites go here.
+
+		if(resting && sprite_datum.has_rest_sprites)
+			cut_overlays() // Hide that gut for it has no ground sprite yo.
+			icon_state = sprite_datum.get_rest_sprite(src)
+			if(show_belly && sprite_datum.has_vore_belly_sprites && sprite_datum.has_vore_belly_resting_sprites)	// Or DOES IT?
+				add_overlay(sprite_datum.get_belly_resting_overlay(src))
+
+		if(sprite_datum.has_eye_sprites)
+			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
+				if(eyes_overlay)
+					add_overlay(eyes_overlay)
+
+		if(lights_on && sprite_datum.has_eye_light_sprites)
+			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+				var/eyes_overlay = sprite_datum.get_eye_light_overlay(src)
+				if(eyes_overlay)
+					add_overlay(eyes_overlay)
+/*
+		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
+			add_overlay("laser")
+		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
+			add_overlay("taser")
+		if(lights_on)
+			add_overlay("eyes-[module_sprites[icontype]]-lights")
+		else
+			icon_state = "[module_sprites[icontype]]"
+*/
+	if(stat == DEAD && sprite_datum.has_dead_sprite)
+		cut_overlays()
+		icon_state = sprite_datum.get_dead_sprite(src)
+		if(sprite_datum.has_dead_sprite_overlay)
+			add_overlay(sprite_datum.get_dead_sprite_overlay(src))
 
 	if(opened)
-		var/panelprefix = custom_sprite ? "[src.ckey]-[src.sprite_name]" : "ov"
-		if(wiresexposed)
-			add_overlay("[panelprefix]-openpanel +w")
-		else if(cell)
-			add_overlay("[panelprefix]-openpanel +c")
-		else
-			add_overlay("[panelprefix]-openpanel -c")
-
+		var/open_overlay = sprite_datum.get_open_sprite(src)
+		if(open_overlay)
+			add_overlay(open_overlay)
+/*
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
 		if(shield && shield.active)
@@ -863,6 +928,7 @@
 			icon_state = "[module_sprites[icontype]]-roll"
 		else
 			icon_state = module_sprites[icontype]
+*/
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
@@ -1034,33 +1100,44 @@
 
 	return
 
-/mob/living/silicon/robot/proc/choose_icon(var/triesleft, var/list/module_sprites)
-	if(!module_sprites.len)
-		to_chat(src, "Something is badly wrong with the sprite selection. Harass a coder.")
+/mob/living/silicon/robot/proc/choose_icon(var/triesleft)
+	if(!SSrobot_sprites)
+		to_chat(src, "Robot Sprites have not been initialized yet. How are you choosing a sprite? Harass a coder.")
+		return
+
+	var/list/module_sprites = SSrobot_sprites.get_module_sprites(modtype)
+	if(!module_sprites || !module_sprites.len)
+		to_chat(src, "Your module appears to have no sprite options. Harass a coder.")
 		return
 
 	icon_selected = 0
-	src.icon_selection_tries = triesleft
+	icon_selection_tries = triesleft
 	if(module_sprites.len == 1 || !client)
-		if(!(icontype in module_sprites))
-			icontype = module_sprites[1]
+		if(!(sprite_datum in module_sprites))
+			sprite_datum = module_sprites[1]
 	else
-		icontype = tgui_input_list(usr, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
-		if(!icontype)
-			icontype = module_sprites[1]
-		if(notransform)				//VOREStation edit start: sprite animation
+		var/selection = tgui_input_list(src, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
+		sprite_datum = selection
+		if(notransform)
 			to_chat(src, "Your current transformation has not finished yet!")
-			choose_icon(icon_selection_tries, module_sprites)
+			choose_icon(icon_selection_tries)
 			return
 		else
 			transform_with_anim()	//VOREStation edit end: sprite animation
-
+/*
 	if(icontype == "Custom")
 		icon = CUSTOM_ITEM_SYNTH
 	else // This is to fix an issue where someone with a custom borg sprite chooses a non-custom sprite and turns invisible.
 		vr_sprite_check() //VOREStation Edit
-	icon_state = module_sprites[icontype]
-	updateicon()
+*/
+	var/tempheight = vis_height
+	update_icon()
+	// This is bad but I dunno other way to 'reset' our resize offset based on vis_height changes other than resizing to normal and back.
+	if(tempheight != vis_height)
+		var/tempsize = size_multiplier
+		resize(1)
+		resize(tempsize)
+
 
 	if (module_sprites.len > 1 && triesleft >= 1 && client)
 		icon_selection_tries--
@@ -1072,6 +1149,13 @@
 	icon_selected = 1
 	icon_selection_tries = 0
 	to_chat(src, "<span class='filter_notice'>Your icon has been set. You now require a module reset to change it.</span>")
+
+/mob/living/silicon/robot/proc/set_default_module_icon()
+	if(!SSrobot_sprites)
+		return
+
+	sprite_datum = SSrobot_sprites.get_default_module_sprite(modtype)
+	update_icon()
 
 /mob/living/silicon/robot/proc/sensor_mode() //Medical/Security HUD controller for borgs
 	set name = "Toggle Sensor Augmentation" //VOREStation Add
@@ -1217,7 +1301,7 @@
 				to_chat(src, "<b>Obey these laws:</b>")
 				laws.show_laws(src)
 				to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>")
-				updateicon()
+				update_icon()
 		else
 			to_chat(user, "<span class='filter_warning'>You fail to hack [src]'s interface.</span>")
 			to_chat(src, "<span class='filter_warning'>Hack attempt detected.</span>")

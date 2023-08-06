@@ -1003,9 +1003,6 @@
 
 	return 0
 
-/mob/proc/updateicon()
-	return
-
 // Please always use this proc, never just set the var directly.
 /mob/proc/set_stat(var/new_stat)
 	. = (stat != new_stat)

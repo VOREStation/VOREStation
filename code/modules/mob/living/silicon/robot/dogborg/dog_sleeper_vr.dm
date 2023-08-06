@@ -481,7 +481,7 @@
 	if(cleaning || (length(contents) > 10) || (decompiler && (length(contents) > 5)) || (analyzer && (length(contents) > 1)))
 		hound.sleeper_r = TRUE
 		hound.sleeper_g = FALSE
-		hound.updateicon()
+		hound.update_icon()
 		return
 
 	//Well, we HAD one, what happened to them?
@@ -504,7 +504,7 @@
 			hound.sleeper_r = TRUE
 			patient_laststat = patient.stat
 		//Update icon
-		hound.updateicon()
+		hound.update_icon()
 		//Return original patient
 		return(patient)
 
@@ -529,7 +529,7 @@
 				hound.sleeper_r = TRUE
 				patient_laststat = patient.stat
 			//Update icon and return new patient
-			hound.updateicon()
+			hound.update_icon()
 			return(C)
 
 	//Couldn't find anyone, and not cleaning
@@ -539,7 +539,7 @@
 
 	patient_laststat = null
 	patient = null
-	hound.updateicon()
+	hound.update_icon()
 	return
 
 //Gurgleborg process

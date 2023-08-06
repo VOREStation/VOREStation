@@ -1,44 +1,5 @@
 /obj/item/weapon/robot_module
-	languages = list(LANGUAGE_SOL_COMMON= 1,
-					LANGUAGE_TRADEBAND	= 1,
-					LANGUAGE_UNATHI		= 0,
-					LANGUAGE_SIIK		= 0,
-					LANGUAGE_SKRELLIAN	= 0,
-					LANGUAGE_GUTTER		= 0,
-					LANGUAGE_SCHECHI	= 0,
-					LANGUAGE_SIGN		= 0,
-					LANGUAGE_BIRDSONG	= 0,
-					LANGUAGE_SAGARU		= 0,
-					LANGUAGE_CANILUNZT	= 0,
-					LANGUAGE_ECUREUILIAN= 0,
-					LANGUAGE_DAEMON		= 0,
-					LANGUAGE_ENOCHIAN	= 0,
-					LANGUAGE_DRUDAKAR	= 0
-					)
 	var/vr_sprites = list()
-	var/pto_type = null
-
-/obj/item/weapon/robot_module/robot/clerical
-	languages = list(
-					LANGUAGE_SOL_COMMON	= 1,
-					LANGUAGE_TRADEBAND	= 1,
-					LANGUAGE_UNATHI		= 1,
-					LANGUAGE_SIIK		= 1,
-					LANGUAGE_SKRELLIAN	= 1,
-					LANGUAGE_ROOTLOCAL	= 0,
-					LANGUAGE_GUTTER		= 1,
-					LANGUAGE_SCHECHI	= 1,
-					LANGUAGE_EAL		= 1,
-					LANGUAGE_SIGN		= 0,
-					LANGUAGE_BIRDSONG	= 1,
-					LANGUAGE_SAGARU		= 1,
-					LANGUAGE_CANILUNZT	= 1,
-					LANGUAGE_ECUREUILIAN= 1,
-					LANGUAGE_DAEMON		= 1,
-					LANGUAGE_ENOCHIAN	= 1,
-					LANGUAGE_DRUDAKAR	= 1,
-					LANGUAGE_TAVAN		= 1
-					)
 
 /hook/startup/proc/robot_modules_vr()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/robot/medical/medihound
@@ -56,10 +17,6 @@
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
 /obj/item/weapon/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
-	return
-
-/obj/item/weapon/robot_module/proc/vr_add_sprites() // Adds sprites from this file into list of avialible ones for global modules
-	sprites += vr_sprites
 	return
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
@@ -116,19 +73,6 @@
 						"Feminine Humanoid" = "uptall-service"
 					 )
 
-/obj/item/weapon/robot_module/robot/janitor
-	pto_type = PTO_CIVILIAN
-
-/obj/item/weapon/robot_module/robot/janitor/general
-	vr_sprites = list(
-						"Handy" = "handy-janitor",
-						"Acheron" = "mechoid-Janitor",
-						"Shellguard Noble" = "Noble-CLN",
-						"ZOOM-BA" = "zoomba-janitor",
-						"W02M" = "worm-janitor",
-						"Feminine Humanoid" = "uptall-janitor"
-					 )
-
 /obj/item/weapon/robot_module/robot/security
 	pto_type = PTO_SECURITY
 
@@ -150,31 +94,6 @@
 						"Feminine Humanoid" = "uptall-security"
 					 )
 
-/obj/item/weapon/robot_module/robot/miner
-	pto_type = PTO_CARGO
-
-/obj/item/weapon/robot_module/robot/miner/general
-	vr_sprites = list(
-						"Handy" = "handy-miner",
-						"Acheron" = "mechoid-Miner",
-						"Shellguard Noble" = "Noble-DIG",
-						"ZOOM-BA" = "zoomba-miner",
-						"W02M" = "worm-miner",
-						"Feminine Humanoid" = "uptall-miner"
-					 )
-
-/obj/item/weapon/robot_module/robot/standard
-	pto_type = PTO_CIVILIAN
-	vr_sprites = list(
-						"Handy" = "handy-standard",
-						"Acheron" = "mechoid-Standard",
-						"Shellguard Noble" = "Noble-STD",
-						"ZOOM-BA" = "zoomba-standard",
-						"W02M" = "worm-standard",
-						"Feminine Humanoid" = "uptall-standard",
-						"Feminine Humanoid, Variant 2" = "uptall-standard2"
-					 )
-
 /obj/item/weapon/robot_module/robot/engineering
 	pto_type = PTO_ENGINEERING
 
@@ -185,18 +104,6 @@
 						"ZOOM-BA" = "zoomba-engineering",
 						"W02M" = "worm-engineering",
 						"Feminine Humanoid" = "uptall-engineering"
-					 )
-
-/obj/item/weapon/robot_module/robot/research
-	pto_type = PTO_SCIENCE
-
-/obj/item/weapon/robot_module/robot/research/general
-	vr_sprites = list(
-						"Acheron" = "mechoid-Science",
-						"ZOOM-BA" = "zoomba-research",
-						"XI-GUS" = "spiderscience",
-						"W02M" = "worm-janitor",
-						"Feminine Humanoid" = "uptall-science"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/knine
@@ -254,7 +161,6 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/security/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -351,7 +257,6 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/medical/traumahound
@@ -435,7 +340,6 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/security/ert
@@ -481,25 +385,10 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/janitor/scrubpup
 	name = "Custodial Hound module"
-	sprites = list(
-					"Custodial Hound" = "scrubpup",
-					"Janihound model V-2" = "J9",
-					"Borgi" = "borgi-jani",
-					"Otieborg" = "otiej",
-					"Drake" = "drakejanit",
-					"Raptor V-4" = "janiraptor",
-					"MEKA" = "mekajani",
-					"MEKA v2" = "newmekajani",
-					"NIKO" = "mmekajani",
-					"NIKA" = "fmekajani",
-					"K4T" = "k4tjani",
-					"K4Talt" = "k4tjani_alt1"
-					)
 	can_be_pushed = 0
 
 /obj/item/weapon/robot_module/robot/janitor/scrubpup/New(var/mob/living/silicon/robot/R)
@@ -573,24 +462,10 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/research/sciencehound
 	name = "Research Hound Module"
-	sprites = list(
-					"Research Hound" = "science",
-					"Borgi" = "borgi-sci",
-					"SciHound" = "scihound",
-					"SciHoundDark" = "scihounddark",
-					"Drake" = "drakesci",
-					"Raptor V-4" = "sciraptor",
-					"MEKA" = "mekasci",
-					"MEKA v2" = "newmekasci",
-					"NIKO" = "mmekasci",
-					"NIKA" = "fmekasci",
-					"K4T" = "k4tsci"
-					)
 	can_be_pushed = 0
 
 /obj/item/weapon/robot_module/robot/research/sciencehound/New(var/mob/living/silicon/robot/R)
@@ -663,7 +538,6 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/engineering/engiedog
@@ -819,7 +693,6 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 // Uses modified K9 sprites.
@@ -903,24 +776,10 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 /obj/item/weapon/robot_module/robot/miner/kmine
 	name = "Supply Hound Module"
-	sprites = list(
-					"KMine" = "kmine",
-					"CargoHound" = "cargohound",
-					"CargoHoundDark" = "cargohounddark",
-					"Drake" = "drakemine",
-					"Raptor V-4" = "mineraptor",
-					"MEKA" = "mekamine",
-					"MEKA v2" = "newmekamine",
-					"NIKO" = "mmekamine",
-					"NIKA" = "fmekamine",
-					"K4T" = "k4tmine",
-					"K4Talt" = "k4tmine_alt1"
-					)
 	can_be_pushed = 0
 
 /obj/item/weapon/robot_module/robot/miner/kmine/New(var/mob/living/silicon/robot/R)
@@ -967,7 +826,6 @@
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
 	R.verbs |= /mob/living/proc/shred_limb
-	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 
 	..()
 
@@ -984,7 +842,6 @@
 	R.verbs -= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs -= /mob/living/proc/toggle_rider_reins
 	R.verbs -= /mob/living/proc/shred_limb
-	R.verbs -= /mob/living/silicon/robot/proc/rest_style
 	..()
 
 
@@ -1017,7 +874,7 @@
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor/brewer(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
-	R.verbs += /mob/living/silicon/robot/proc/reskin_booze
+	//R.verbs += /mob/living/silicon/robot/proc/reskin_booze
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
 	M.stored_matter = 30

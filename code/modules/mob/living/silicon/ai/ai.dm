@@ -276,7 +276,7 @@ var/list/ai_verbs_default = list(
 			selected_sprite = new/datum/ai_icon("Custom", "[src.ckey]-ai", "4", "[ckey]-ai-crash", "#FFFFFF", "#FFFFFF", "#FFFFFF")
 		else
 			selected_sprite = default_ai_icon
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
 	set popup_menu = 0
@@ -351,7 +351,7 @@ var/list/ai_verbs_default = list(
 	if (!custom_sprite)
 		var/new_sprite = tgui_input_list(usr, "Select an icon!", "AI", ai_icons)
 		if(new_sprite) selected_sprite = new_sprite
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/ai/var/message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_announcement()
@@ -884,7 +884,7 @@ var/list/ai_verbs_default = list(
 		return
 	..()
 
-/mob/living/silicon/ai/updateicon()
+/mob/living/silicon/ai/update_icon()
 	if(!selected_sprite) selected_sprite = default_ai_icon
 
 	if(stat == DEAD)

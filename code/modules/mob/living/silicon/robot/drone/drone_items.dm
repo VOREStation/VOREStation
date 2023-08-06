@@ -402,7 +402,7 @@
 
 				A.cell.add_fingerprint(user)
 				A.cell.update_icon()
-				A.updateicon()
+				A.update_icon()
 				A.cell.loc = src
 				A.cell = null
 

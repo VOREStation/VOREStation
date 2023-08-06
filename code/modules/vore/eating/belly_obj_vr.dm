@@ -1180,7 +1180,7 @@
 		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
-	owner.updateicon()
+	owner.update_icon()
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)

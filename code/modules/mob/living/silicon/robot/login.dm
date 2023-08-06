@@ -10,5 +10,5 @@
 
 	// Forces synths to select an icon relevant to their module
 	if(!icon_selected)
-		choose_icon(icon_selection_tries, module_sprites)
+		choose_icon(icon_selection_tries)
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE) //VOREStation Add - ROBOT VISION IS AUGMENTED

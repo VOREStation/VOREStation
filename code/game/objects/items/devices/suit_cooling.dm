@@ -113,13 +113,13 @@
 
 	on = 1
 	START_PROCESSING(SSobj, src)
-	updateicon()
+	update_icon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off(var/failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
 	STOP_PROCESSING(SSobj, src)
-	updateicon()
+	update_icon()
 
 /obj/item/device/suit_cooling_unit/attack_self(var/mob/user)
 	if(cover_open && cell)
@@ -133,7 +133,7 @@
 
 		to_chat(user, "You remove \the [src.cell].")
 		src.cell = null
-		updateicon()
+		update_icon()
 		return
 
 	toggle(user)
@@ -154,7 +154,7 @@
 			cover_open = 1
 			to_chat(user, "You unscrew the panel.")
 		playsound(src, W.usesound, 50, 1)
-		updateicon()
+		update_icon()
 		return
 
 	if (istype(W, /obj/item/weapon/cell))
@@ -166,12 +166,12 @@
 				W.loc = src
 				cell = W
 				to_chat(user, "You insert the [cell].")
-		updateicon()
+		update_icon()
 		return
 
 	return ..()
 
-/obj/item/device/suit_cooling_unit/proc/updateicon()
+/obj/item/device/suit_cooling_unit/update_icon()
 	cut_overlays()
 	if(cover_open)
 		if(cell)
@@ -228,7 +228,7 @@
 	cell = /obj/item/weapon/cell
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/device/suit_cooling_unit/emergency/updateicon()
+/obj/item/device/suit_cooling_unit/emergency/update_icon()
 	return
 
 /obj/item/device/suit_cooling_unit/emergency/get_cell()
