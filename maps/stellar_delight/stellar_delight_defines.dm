@@ -168,13 +168,13 @@
 		)
 
 	lateload_redgate = list(
-//		list("Teppi Ranch"),
-//		list("Innland"),
-//		list("Abandoned Island"),
-//		list("Dark Adventure"),
-//		list("Eggnog Town Underground","Eggnog Town"),
-		list("Star Dog")
-//		list("Hotsprings")
+		list("Teppi Ranch"),
+		list("Innland"),
+		list("Abandoned Island"),
+		list("Dark Adventure"),
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Star Dog"),
+		list("Hotsprings")
 		)
 
 	ai_shell_restricted = TRUE
