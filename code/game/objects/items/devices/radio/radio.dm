@@ -490,7 +490,12 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	else if(subspace_transmission)
 		var/list/jamming = is_jammed(src)
 		if(jamming)
-			var/distance = jamming["distance"]
+			var/distance = 0
+			var/area/our_area = get_area(src)
+			if(our_area.no_comms)
+				distance = 99
+			else
+				distance = jamming["distance"]
 			to_chat(M, "<span class='danger'>\icon[src][bicon(src)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
 			return FALSE
 

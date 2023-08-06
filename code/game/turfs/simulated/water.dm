@@ -4,6 +4,7 @@
 	desc = "A body of water.  It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "seashallow" // So it shows up in the map editor as water.
+	var/water_icon = 'icons/turf/outdoors.dmi'
 	var/water_state = "water_shallow"
 	var/under_state = "rock"
 	edge_blending_priority = -1
@@ -31,7 +32,7 @@
 	..() // To get the edges.
 
 	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
-	var/image/water_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = water_state, layer = WATER_LAYER)
+	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
 	add_overlay(water_sprite)
 
 /turf/simulated/floor/water/get_edge_icon_state()

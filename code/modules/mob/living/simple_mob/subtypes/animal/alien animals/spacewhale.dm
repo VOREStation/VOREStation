@@ -19,55 +19,12 @@
 
 	om_child_type = /obj/effect/overmap/visitable/simplemob/spacewhale
 
-	maxHealth = 100000
-	health = 100000
-	movement_cooldown = 10
-
-	see_in_dark = 10
-
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "punches"
-
-	harm_intent_damage = 1
-	melee_damage_lower = 50
-	melee_damage_upper = 100
-	attack_sharp = FALSE
 	attacktext = list("chomped", "bashed", "monched", "bumped")
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/spacewhale
-
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
-	maxbodytemp = 900
-
-	loot_list = list(/obj/random/underdark/uncertain)
-
-	armor = list(
-			"melee" = 1000,
-			"bullet" = 1000,
-			"laser" = 1000,
-			"energy" = 1000,
-			"bomb" = 1000,
-			"bio" = 1000,
-			"rad" = 1000)
-
-	armor_soak = list(
-		"melee" = 1000,
-		"bullet" = 1000,
-		"laser" = 1000,
-		"energy" = 1000,
-		"bomb" = 1000,
-		"bio" = 1000,
-		"rad" = 1000
-		)
 
 	speak_emote = list("rumbles")
 

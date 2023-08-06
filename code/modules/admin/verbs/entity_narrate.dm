@@ -57,7 +57,7 @@
 			add_mob_for_narration(L) //Recursively calling ourselves until cancelled or a unique name is given.
 			return
 		holder.entity_names += unique_name
-		holder.entity_refs[unique_name] = L
+		holder.entity_refs[unique_name] = WEAKREF(L)
 		log_and_message_admins("added [L.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
 
 	//Covering functionality for turfs and objs. We need static type to access the name var
@@ -70,7 +70,7 @@
 			add_mob_for_narration(A)
 			return
 		holder.entity_names += unique_name
-		holder.entity_refs[unique_name] = A
+		holder.entity_refs[unique_name] = WEAKREF(A)
 		log_and_message_admins("added [A.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
 
 //Proc for keeping our ref list relevant, deleting mobs that are no longer relevant for our event
@@ -164,8 +164,14 @@
 
 	//Separate definition for mob/living and /obj due to .say() code allowing us to engage with languages, stuttering etc
 	//We also need this so we can check for .client
-	if(istype(holder.entity_refs[name], /mob/living))
-		var/mob/living/our_entity = holder.entity_refs[name]
+	var/datum/weakref/wref = holder.entity_refs[name]
+	var/selection = wref.resolve()
+	if(!selection)
+		to_chat(usr, SPAN_NOTICE("[name] has invalid reference, deleting"))
+		holder.entity_names -= name
+		holder.entity_refs -= name
+	if(istype(selection, /mob/living))
+		var/mob/living/our_entity = selection
 		if(our_entity.client) //Making sure we can't speak for players
 			log_and_message_admins("used entity-narrate to speak through [our_entity.ckey]'s mob", usr)
 		if(!message)
@@ -179,11 +185,11 @@
 
 	//This does cost us some code duplication, but I think it's worth it.
 	//furthermore, objs/turfs require the usr to specify the verb when speaking, otherwise it looks like an emote.
-	else if(istype(holder.entity_refs[name], /atom))
-		var/atom/our_entity = holder.entity_refs[name]
+	else if(istype(selection, /atom))
+		var/atom/our_entity = selection
 		if(!message)
 			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
-		message = sanitize(message)
+		message = encode_html_emphasis(sanitize(message))
 		if(message && mode == "Speak")
 			our_entity.audible_message("<b>[our_entity.name]</b> [message]")
 		else if(message && mode == "Emote")
@@ -251,7 +257,16 @@
 					tgui_selected_id_multi = list() //Using the same var for ease of implementation. Thus, we must reset to empty each time.
 					tgui_selected_id_multi += params["id_selected"]
 					tgui_selected_id = params["id_selected"]
-					tgui_selected_refs = entity_refs[tgui_selected_id]
+					var/datum/weakref/wref = entity_refs[tgui_selected_id]
+					tgui_selected_refs = wref.resolve()
+					if(!tgui_selected_refs)
+						to_chat(usr, SPAN_NOTICE("[tgui_selected_id] has invalid reference, deleting"))
+						entity_names -= tgui_selected_id
+						entity_refs -= tgui_selected_id
+						tgui_selected_id = ""
+						tgui_selected_type = ""
+						tgui_selected_name = ""
+						tgui_selected_refs = null
 					if(istype(tgui_selected_refs, /mob/living))
 						var/mob/living/L = tgui_selected_refs
 						if(L.client)
@@ -273,7 +288,14 @@
 				var/message = params["message"] //Sanitizing before speaking it
 				if(tgui_selection_mode)
 					for(var/entity in tgui_selected_id_multi)
-						var/ref = entity_refs[entity]
+						var/datum/weakref/wref = entity_refs[entity]
+						var/ref = wref.resolve()
+						if(!ref)
+							to_chat(usr, SPAN_NOTICE("[entity] has invalid reference, deleting"))
+							entity_names -= entity
+							entity_refs -= entity
+							tgui_selected_id_multi -= entity
+							continue
 						if(istype(ref, /mob/living))
 							var/mob/living/L = ref
 							if(L.client)
@@ -283,7 +305,17 @@
 							var/atom/A = ref
 							narrate_tgui_atom(A, message)
 				else
-					var/ref = entity_refs[tgui_selected_id]
+					var/datum/weakref/wref = entity_refs[tgui_selected_id]
+					var/ref = wref.resolve()
+					if(!ref)
+						to_chat(usr, SPAN_NOTICE("[tgui_selected_id] has invalid reference, deleting"))
+						entity_names -= tgui_selected_id
+						entity_refs -= tgui_selected_id
+						tgui_selected_id = ""
+						tgui_selected_type = ""
+						tgui_selected_name = ""
+						tgui_selected_refs = null
+						return
 					if(istype(ref, /mob/living))
 						var/mob/living/L = ref
 						if(L.client)
@@ -305,7 +337,7 @@
 		L.say(message)
 
 /datum/entity_narrate/proc/narrate_tgui_atom(atom/A, message as text)
-	message = sanitize(message)
+	message = encode_html_emphasis(sanitize(message))
 	if(tgui_narrate_mode && tgui_narrate_privacy)
 		A.visible_message("<i><b>\The [A.name]</b> [message]</i>", range = 1)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)

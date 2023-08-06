@@ -31,6 +31,7 @@
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
+	var/escape_stun = 0						// AI controlled mobs with a number here will be weakened by the provided var when someone escapes, to prevent endless nom loops
 	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
 	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
 	var/save_digest_mode = TRUE				// Whether this belly's digest mode persists across rounds
@@ -535,6 +536,9 @@
 	if(ismob(M))
 		var/mob/ourmob = M
 		ourmob.reset_view(null)
+
+	if(!owner.ckey && escape_stun)
+		owner.Weaken(escape_stun)
 
 	return 1
 

@@ -23087,6 +23087,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 6
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/topairlock)
 "aLX" = (
@@ -39026,6 +39027,19 @@
 /obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
+"eYm" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "fag" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus";
@@ -56554,7 +56568,7 @@ xOa
 aXa
 aXa
 kcC
-sJY
+eYm
 sJY
 fEX
 gCZ
