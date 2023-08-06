@@ -1064,6 +1064,10 @@
 	outdoors = 1
 	},
 /area/tether_away/beach/resort/kitchen)
+"sq" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/beach/sand/desert/outdoors,
+/area/tether_away/beach)
 "ss" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1190,6 +1194,10 @@
 /turf/simulated/mineral/floor/cave{
 	name = "dirt"
 	},
+/area/tether_away/beach/cavebase)
+"vk" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/grass,
 /area/tether_away/beach/cavebase)
 "vU" = (
 /obj/structure/table/woodentable,
@@ -1835,6 +1843,10 @@
 "Nv" = (
 /turf/simulated/floor/beach/sand/outdoors,
 /area/tether_away/beach/resort)
+"Nw" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/grass,
+/area/tether_away/beach/jungle)
 "ND" = (
 /obj/structure/table/glass,
 /obj/machinery/vending/wallmed1/public{
@@ -2213,6 +2225,10 @@
 /turf/simulated/floor/water/deep/pool{
 	outdoors = 1
 	},
+/area/tether_away/beach/resort)
+"Yn" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/beach/sand/outdoors,
 /area/tether_away/beach/resort)
 "Yq" = (
 /obj/structure/cable/cyan{
@@ -4092,7 +4108,7 @@ ae
 au
 ae
 au
-ae
+Nw
 ae
 au
 ae
@@ -4482,7 +4498,7 @@ rp
 xy
 Xd
 Xd
-LQ
+vk
 LQ
 xb
 pw
@@ -4539,7 +4555,7 @@ bq
 bq
 bq
 bq
-tr
+sq
 aj
 ak
 am
@@ -17296,7 +17312,7 @@ Nv
 Nv
 Nv
 Nv
-Nv
+Yn
 Nv
 Nv
 Nv

@@ -30,6 +30,14 @@ var vchat_opts = {
 	vchatTabsVer: 1.0 //Version of vchat tabs save 'file'
 };
 
+/***********
+* If you are changing either tabBackgroundColor in dark or lightmode,
+* lease keep this synchronized with code\modules\examine\examine.dm
+* I cannot think of a elegant way to ensure it tracks these settings properly.
+* As long as LIGHTMODE stays as "none", stuff should not break.
+* Thank you!
+************/
+
 var DARKMODE_COLORS = {
 	buttonBgColor: "#40628a",
 	buttonTextColor: "#FFFFFF",

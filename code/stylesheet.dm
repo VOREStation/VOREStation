@@ -15,9 +15,9 @@ em						{font-style: normal;font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}
 
 /* OOC */
-.ooc					{font-weight: bold;}
-.looc					{color: #3A9696; font-weight: bold}
-.rlooc					{color: #3ABB96; font-weight: bold}
+.ooc					      {font-weight: bold;}
+.looc					      {color: #3A9696; font-weight: bold}
+.rlooc					    {color: #3ABB96; font-weight: bold}
 .ooc img.text_tag		{width: 32px; height: 10px;}
 
 .ooc .everyone			{color: #002eb8;}
