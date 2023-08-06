@@ -38,6 +38,7 @@
 		<option value='?_src_=vars;[HrefToken()];mob_player_panel=\ref[src]'>Show player panel</option>
 		<option>---</option>
 		<option value='?_src_=vars;[HrefToken()];give_modifier=\ref[src]'>Give Modifier</option>
+		<option value='?_src_=vars;[HrefToken()];give_wound_internal=\ref[src]'>Give Internal Bleeding</option>
 		<option value='?_src_=vars;[HrefToken()];give_spell=\ref[src]'>Give Spell</option>
 		<option value='?_src_=vars;[HrefToken()];give_disease2=\ref[src]'>Give Disease</option>
 		<option value='?_src_=vars;[HrefToken()];give_disease=\ref[src]'>Give TG-style Disease</option>
