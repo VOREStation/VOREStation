@@ -76,3 +76,7 @@
 	name = "steam emitter"
 	icon_state = "smoke_emitter"
 	effect_system_type = /datum/effect/effect/system/steam_spread
+
+/obj/effect/map_effect/interval/effect_emitter/steam/less_frequent
+	interval_lower_bound = 10 SECONDS
+	interval_upper_bound = 30 SECONDS

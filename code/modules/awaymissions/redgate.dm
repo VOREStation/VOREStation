@@ -9,7 +9,14 @@
 	pixel_x = -16
 
 	var/obj/structure/redgate/target
-	var/list/exceptions = list(/obj/structure/ore_box)	//made it a var so that GMs or map makers can selectively allow things to pass through
+	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
+	var/list/exceptions = list(
+		/obj/structure/ore_box
+		)	//made it a var so that GMs or map makers can selectively allow things to pass through
+	var/list/restrictions = list(
+		/mob/living/simple_mob/vore/overmap/stardog,
+		/mob/living/simple_mob/vore/bigdragon
+		)	//There are some things we don't want to come through no matter what.
 
 /obj/structure/redgate/Destroy()
 	if(target)
@@ -27,6 +34,10 @@
 			keycheck = FALSE		//we'll allow it
 		else
 			return
+
+	if(M.type in restrictions)	//Some stuff we don't want to bring EVEN IF it has a key.
+		return
+
 	if(keycheck)		//exceptions probably won't have a ckey
 		if(!M.ckey)		//We only want players, no bringing the weird stuff on the other side back
 			return
@@ -34,13 +45,22 @@
 	if(!target)
 		toggle_portal()
 
-	var/turf/place = get_turf(target)
-	var/possible_turfs = place.AdjacentTurfs()
-	if(isemptylist(possible_turfs))
+	var/turf/ourturf = find_our_turf(M)		//Find the turf on the opposite side of the target
+	if(!ourturf.check_density(TRUE,TRUE))	//Make sure there isn't a wall there
+		M.unbuckle_all_mobs(TRUE)
+		M.stop_pulling()
+		playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
+		M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
+	else
 		to_chat(M, "<span class='notice'>Something blocks your way.</span>")
-		return
-	var/turf/temptarg = pick(possible_turfs)
-	do_safe_teleport(M, temptarg, 0)
+
+/obj/structure/redgate/proc/find_our_turf(var/atom/movable/AM)	//This finds the turf on the opposite side of the target gate from where you are
+	var/offset_x = x - AM.x										//used for more smooth teleporting
+	var/offset_y = y - AM.y
+
+	var/turf/temptarg = locate((target.x + offset_x),(target.y + offset_y),target.z)
+
+	return temptarg
 
 /obj/structure/redgate/proc/toggle_portal()
 	if(target)
@@ -71,8 +91,10 @@
 
 
 /obj/structure/redgate/attack_ghost(var/mob/observer/dead/user)
-	if(target && user?.client?.holder)
-		user.forceMove(get_turf(target))
+
+	if(target)
+		if(!(secret || target.secret) || user?.client?.holder)
+			user.forceMove(get_turf(target))
 	else
 		return ..()
 
@@ -139,3 +161,47 @@
 	As soon as you read this, get yourself out of here and come find us. We left you enough money to make the trip in the usual spot. We'll be in the registry once we arrive. We're waiting for you.<BR><BR>
 
 	Yours, Medley</i>"}
+
+/area/redgate/hotsprings
+	name = "hotsprings"
+	requires_power = 0
+
+/area/redgate/hotsprings/outdoors
+	name = "snowfields"
+	icon_state = "hotsprings_outside"
+
+/area/redgate/hotsprings/redgate
+	name = "redgate facility"
+	icon_state = "hotsprings_redgate"
+
+/area/redgate/hotsprings/westcave
+	name = "hotspring caves"
+	icon_state = "hotsprings_westcave"
+
+/area/redgate/hotsprings/eastcave
+	name = "icy caverns"
+	icon_state = "hotsprings_eastcave"
+
+/area/redgate/hotsprings/house
+	name = "snowy cabin"
+	icon_state = "hotsprings_house"
+
+/area/redgate/hotsprings/house/dorm1
+	name = "hotsprings dorm 1"
+	icon_state = "hotsprings_dorm1"
+
+/area/redgate/hotsprings/house/dorm2
+	name = "hotsprings dorm 2"
+	icon_state = "hotsprings_dorm2"
+
+/area/redgate/hotsprings/house/hotspringhouse
+	name = "small cabin"
+	icon_state = "hotsprings_hotspringhouse"
+
+/area/redgate/hotsprings/house/lovercave
+	name = "cosy cave"
+	icon_state = "hotsprings_lovercave"
+
+/area/redgate/hotsprings/house/succcave
+	name = "tiny cave"
+	icon_state = "hotsprings_succcave"

@@ -30,6 +30,14 @@ var vchat_opts = {
 	vchatTabsVer: 1.0 //Version of vchat tabs save 'file'
 };
 
+/***********
+* If you are changing either tabBackgroundColor in dark or lightmode,
+* lease keep this synchronized with code\modules\examine\examine.dm
+* I cannot think of a elegant way to ensure it tracks these settings properly.
+* As long as LIGHTMODE stays as "none", stuff should not break.
+* Thank you!
+************/
+
 var DARKMODE_COLORS = {
 	buttonBgColor: "#40628a",
 	buttonTextColor: "#FFFFFF",
@@ -177,7 +185,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".filter_ooc, .ooc:not(.looc)",
+					matches: ".ooc, .filter_ooc",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
 					tooltip: "The bluewall of global OOC messages",
@@ -267,11 +275,19 @@ function start_vue() {
 					admin: true
 				},
 				{
-					matches: ".ooc.looc, .ooc, .looc", //Dumb game
+					matches: ".looc",
 					becomes: "vc_looc",
 					pretty: "Local OOC",
 					tooltip: "Local OOC messages, always enabled",
 					required: true
+				},
+				{
+					matches: ".rlooc",
+					becomes: "vc_rlooc",
+					pretty: "Remote LOOC",
+					tooltip: "Remote LOOC messages",
+					required: false,
+					admin: true
 				},
 				{
 					matches: ".boldannounce, .filter_system",

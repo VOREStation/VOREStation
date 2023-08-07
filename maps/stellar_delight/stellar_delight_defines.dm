@@ -27,7 +27,8 @@
 		"logo2" = 50,
 		"gateway" = 5,
 		"youcanttaketheskyfromme" = 200,
-		"intothedark" = 200
+		"intothedark" = 200,
+		"above3b" = 200
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -159,7 +160,6 @@
 		list(list("Honleth Highlands A", "Honleth Highlands B")),
 		list("Arynthi Lake Underground A","Arynthi Lake A"),
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
-		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
 		)
 
@@ -171,7 +171,10 @@
 		list("Teppi Ranch"),
 		list("Innland"),
 		list("Abandoned Island"),
-		list("Dark Adventure")
+		list("Dark Adventure"),
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Star Dog"),
+		list("Hotsprings")
 		)
 
 	ai_shell_restricted = TRUE

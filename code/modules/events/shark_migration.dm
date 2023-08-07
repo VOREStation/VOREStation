@@ -49,6 +49,8 @@
 	// Okay we did *not* have any landmarks, so lets do our best!
 	var/i = 1
 	while (i <= num_groups)
+		if(!affecting_z.len)
+			return
 		var/Z = pick(affecting_z)
 		var/group_size = rand(group_size_min, group_size_max)
 		var/turf/map_center = locate(round(world.maxx/2), round(world.maxy/2), Z)

@@ -45,6 +45,8 @@
 /datum/event/meteor_wave/proc/send_wave()
 	var/pick_side = prob(80) ? start_side : (prob(50) ? turn(start_side, 90) : turn(start_side, -90))
 
+	if(!affecting_z.len)
+		return
 	spawn() spawn_meteors(get_wave_size(), get_meteors(), pick_side, pick(affecting_z))
 	next_meteor += rand(next_meteor_lower, next_meteor_upper) / severity
 	waves--
@@ -135,7 +137,7 @@
 		. = round(. * 0.5)
 	if(speed > SHIP_SPEED_FAST) //Sanic stahp
 		. *= 2
-	
+
 	//Smol ship evasion
 	if(victim.vessel_size < SHIP_SIZE_LARGE && speed < SHIP_SPEED_FAST)
 		var/skill_needed = SKILL_PROF
