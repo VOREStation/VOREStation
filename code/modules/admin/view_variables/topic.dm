@@ -92,6 +92,44 @@
 		src.admin_give_modifier(M)
 		href_list["datumrefresh"] = href_list["give_modifier"]
 
+	else if(href_list["give_wound_internal"])
+		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG|R_EVENT))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["give_wound_internal"])
+		if(!istype(H))
+			to_chat(usr, span_notice("This can only be used on instances of type /mob/living/carbon/human"))
+			return
+
+		var/severity = tgui_input_number(usr, "How much damage should the bleeding internal wound cause? \
+		Bleed timer directly correlates with this. 0 cancels. Input is rounded to nearest integer.",
+		"Wound Severity", 0, min_value = 0, round_value = TRUE )
+		if(!severity) return
+
+		var/obj/item/organ/external/chosen_organ = tgui_input_list(usr, "Choose an external organ to inflict IB on!", "Organ Choice", H.organs)
+		if(!chosen_organ || !istype(chosen_organ))
+			to_chat(usr, span_notice("The chosen organ is of inappropriate type or no longer exists."))
+			return
+
+		var/datum/wound/internal_bleeding/I = new /datum/wound/internal_bleeding(severity)
+		if(!I || !istype(I))
+			to_chat(usr, span_notice("Could not initialize internal wound"))
+			log_debug("[usr] attempted to create an internal bleeding wound on [H]'s [chosen_organ] of [severity] damage \
+			and wound initialization failed")
+
+		chosen_organ.wounds += I
+		chosen_organ.update_wounds()
+		chosen_organ.update_damages()
+		H.bad_external_organs += chosen_organ
+		H.handle_organs()
+
+		if(H.client)
+			H.custom_pain("You feel a throbbing pain inside your [chosen_organ]", severity, force=TRUE)
+			log_and_message_admins("created an Internal Bleeding wound on [H.ckey]'s mob [H] on [chosen_organ] of [severity] damage", usr)
+
+		href_list["datumrefresh"] = href_list["give_wound_internal"]
+
+
 	else if(href_list["give_disease2"])
 		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
