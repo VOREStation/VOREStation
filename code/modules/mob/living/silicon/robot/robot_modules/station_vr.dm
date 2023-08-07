@@ -51,19 +51,6 @@
 						"Feminine Humanoid" = "uptall-service"
 					 )
 
-/obj/item/weapon/robot_module/robot/security
-	pto_type = PTO_SECURITY
-
-/obj/item/weapon/robot_module/robot/security/general
-	vr_sprites = list(
-						"Handy" = "handy-sec",
-						"Acheron" = "mechoid-Security",
-						"Shellguard Noble" = "Noble-SEC",
-						"ZOOM-BA" = "zoomba-security",
-						"W02M" = "worm-security",
-						"Feminine Humanoid" = "uptall-security"
-					 )
-
 /obj/item/weapon/robot_module/robot/security/combat
 	vr_sprites = list(
 						"Acheron" = "mechoid-Combat",
@@ -74,20 +61,6 @@
 
 /obj/item/weapon/robot_module/robot/security/knine
 	name = "k9 robot module"
-	sprites = list(
-					"K9 hound" = "k9",
-					"K9 Alternative" = "k92",
-					"Secborg model V-2" = "secborg",
-					"Borgi" = "borgi-sec",
-					"Otieborg" = "oties",
-					"Drake" = "drakesec",
-					"Raptor V-4" = "secraptor",
-					"MEKA" = "mekasec",
-					"MEKA v2" = "newmekasec",
-					"NIKO" = "mmekasec",
-					"NIKA" = "fmekasec",
-					"K4T" = "k4tsec"
-					)
 
 /obj/item/weapon/robot_module/robot/security/knine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!

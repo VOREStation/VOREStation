@@ -3036,6 +3036,7 @@
 #include "code\modules\mob\living\silicon\robot\sprites\medical.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\mining.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\science.dm"
+#include "code\modules\mob\living\silicon\robot\sprites\security.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\standard.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\gravekeeper.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\lost_drone.dm"

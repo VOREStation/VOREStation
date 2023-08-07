@@ -432,29 +432,10 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
+	pto_type = PTO_SECURITY
 
 /obj/item/weapon/robot_module/robot/security/general
-	sprites = list(
-					"M-USE NanoTrasen" = "robotSecy",
-					"Cabeiri" = "eyebot-security",
-					"Cerberus" = "bloodhound",
-					"Cerberus - Treaded" = "treadhound",
-					"Haruka" = "marinaSC",
-					"Usagi" = "tallred",
-					"Telemachus" = "toiletbotsecurity",
-					"WTOperator" = "sleeksecurity",
-					"XI-GUS" = "spidersec",
-					"XI-ALP" = "heavySec",
-					"Basic" = "secborg",
-					"Black Knight" = "securityrobot",
-					"Drone" = "drone-sec",
-					"Insekt" = "insekt-Sec",
-					"Usagi-II" = "tall2security",
-					"Pyralis" = "Glitterfly-Security",
-					"Decapod" = "decapod-Security",
-					"Pneuma" = "pneuma-Security",
-					"Tower" = "drider-Security"
-					)
+	name = "security robot module"
 
 /obj/item/weapon/robot_module/robot/security/general/New()
 	..()

@@ -897,16 +897,7 @@
 				var/eyes_overlay = sprite_datum.get_eye_light_overlay(src)
 				if(eyes_overlay)
 					add_overlay(eyes_overlay)
-/*
-		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
-			add_overlay("laser")
-		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
-			add_overlay("taser")
-		if(lights_on)
-			add_overlay("eyes-[module_sprites[icontype]]-lights")
-		else
-			icon_state = "[module_sprites[icontype]]"
-*/
+
 	if(stat == DEAD && sprite_datum.has_dead_sprite)
 		cut_overlays()
 		icon_state = sprite_datum.get_dead_sprite(src)

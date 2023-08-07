@@ -100,77 +100,7 @@
 	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
 	if(!rest_style)
 		rest_style = "Default"
-/*
-/mob/living/silicon/robot/update_icon()
-	vr_sprite_check()
-	..()
-	if(dogborg == TRUE && stat == CONSCIOUS)
-		if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
-			if(sleeper_g == TRUE)
-				add_overlay("[module_sprites[icontype]]-sleeper_g")
-			if(sleeper_r == TRUE)
-				add_overlay("[module_sprites[icontype]]-sleeper_r")
-		else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
-			if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
-				if(vore_selected.overlay_min_prey_size == 0)	//if min size is 0, we dont check for size
-					add_overlay("[module_sprites[icontype]]-sleeper_r")
-				else
-					var/show_belly = FALSE
-					if(vore_selected.override_min_prey_size && (LAZYLEN(vore_selected.contents) > vore_selected.override_min_prey_num))
-						show_belly = TRUE	//Override regardless of content size
-					else
-						for(var/content in vore_selected.contents)	//If ANY in belly are big enough, we set to true
-							if(!istype(content, /mob/living)) continue
-							var/mob/living/prey = content
-							if(prey.size_multiplier >= vore_selected.overlay_min_prey_size)
-								show_belly = TRUE
-								break
-					if(show_belly)
-						add_overlay("[module_sprites[icontype]]-sleeper_r")
 
-		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
-			add_overlay("laser")
-		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
-			add_overlay("taser")
-		if(lights_on)
-			add_overlay("eyes-[module_sprites[icontype]]-lights")
-		if(resting)
-			cut_overlays() // Hide that gut for it has no ground sprite yo.
-			if(sitting)
-				icon_state = "[module_sprites[icontype]]-sit"
-			if(bellyup)
-				icon_state = "[module_sprites[icontype]]-bellyup"
-			else if(!sitting && !bellyup)
-				icon_state = "[module_sprites[icontype]]-rest"
-		else
-			icon_state = "[module_sprites[icontype]]"
-	if(dogborg == TRUE && stat == DEAD)
-		icon_state = "[module_sprites[icontype]]-wreck"
-		add_overlay("wreck-overlay")
-
-/mob/living/silicon/robot/proc/vr_sprite_check()
-	vis_height = 32
-	if(custom_sprite == TRUE)
-		return
-	if(wideborg == TRUE)
-		if(icontype == "Drake") // Why, Why can't we have normal nice things
-			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
-		else if(icontype == "Raptor V-4" || icontype == "Raptor V-4000") //Added for raptor sprites
-			icon = 'icons/mob/raptorborg/raptor.dmi'
-		else if(icontype == "MEKA" || icontype == "MEKA v2" || icontype == "NIKO" || icontype == "NIKA" || icontype == "K4T" || icontype == "K4Talt") //tallborgs. if anyone can code them not to be a dogborg subtype please do so, but this'll do for now.
-			icon = 'icons/mob/tallborg/tallborg.dmi'
-			vis_height = 64
-			update_transform()
-		else
-			icon = wideborg_dept
-		return
-	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
-		original_icon = icon
-	if((icon_state in vr_icons) && (icon == 'icons/mob/robots.dmi'))
-		icon = 'icons/mob/robots_vr.dmi'
-	else if(!(icon_state in vr_icons))
-		icon = original_icon
-*/
 /mob/living/silicon/robot/proc/ex_reserve_refill()
 	set name = "Refill Extinguisher"
 	set category = "Object"
