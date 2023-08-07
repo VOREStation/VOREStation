@@ -1,6 +1,5 @@
 /mob/living/silicon/robot
-	var/sleeper_g //Set to True only for Medical mechs when patient alive
-	var/sleeper_r //Used in every other case. Currently also for Vorebellies. Ideally vorebellies will use sleeper_o once icons are made
+	var/sleeper_state = 0 // 0 for empty, 1 for normal, 2 for mediborg-healthy
 	var/leaping = 0
 	var/pounce_cooldown = 0
 	var/pounce_cooldown_time = 40

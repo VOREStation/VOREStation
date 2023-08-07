@@ -27,28 +27,6 @@
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
 
-/obj/item/weapon/robot_module/robot/medical
-	pto_type = PTO_MEDICAL
-
-/obj/item/weapon/robot_module/robot/medical/surgeon
-	vr_sprites = list(
-						"Acheron" = "mechoid-Medical",
-						"Shellguard Noble" = "Noble-MED",
-						"ZOOM-BA" = "zoomba-medical",
-						"W02M" = "worm-surgeon",
-						"Feminine Humanoid" = "uptall-medical"
-					 )
-
-/obj/item/weapon/robot_module/robot/medical/crisis
-	vr_sprites = list(
-						"Handy" = "handy-med",
-						"Acheron" = "mechoid-Medical",
-						"Shellguard Noble" = "Noble-MED",
-						"ZOOM-BA" = "zoomba-crisis",
-						"W02M" = "worm-crisis",
-						"Feminine Humanoid" = "uptall-crisis"
-					 )
-
 /obj/item/weapon/robot_module/robot/clerical
 	pto_type = PTO_CIVILIAN
 
@@ -92,18 +70,6 @@
 						"ZOOM-BA" = "zoomba-combat",
 						"W02M" = "worm-combat",
 						"Feminine Humanoid" = "uptall-security"
-					 )
-
-/obj/item/weapon/robot_module/robot/engineering
-	pto_type = PTO_ENGINEERING
-
-/obj/item/weapon/robot_module/robot/engineering/general
-	vr_sprites = list(
-						"Acheron" = "mechoid-Engineering",
-						"Shellguard Noble" = "Noble-ENG",
-						"ZOOM-BA" = "zoomba-engineering",
-						"W02M" = "worm-engineering",
-						"Feminine Humanoid" = "uptall-engineering"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/knine
@@ -184,20 +150,6 @@
 
 /obj/item/weapon/robot_module/robot/medical/medihound
 	name = "MediHound module"
-	sprites = list(
-					"Medical Hound" = "medihound",
-					"Dark Medical Hound (Static)" = "medihounddark",
-					"Mediborg model V-2" = "vale",
-					"Borgi" = "borgi-medi",
-					"Drake" = "drakemed",
-					"Raptor V-4" = "medraptor",
-					"MEKA" = "mekamed",
-					"MEKA v2" = "newmekamed",
-					"NIKA" = "fmekamed",
-					"NIKO" = "mmekamed",
-					"K4T" = "k4tmed",
-					"K4Talt" = "k4tmed_alt1"
-					)
 
 /obj/item/weapon/robot_module/robot/medical/medihound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
@@ -261,12 +213,6 @@
 
 /obj/item/weapon/robot_module/robot/medical/traumahound
 	name = "traumahound robot module"
-	sprites = list(
-					"Traumahound" = "traumavale",
-					"Drake" = "draketrauma",
-					"Borgi" = "borgi-trauma",
-					"Raptor V-4" = "traumaraptor"
-					)
 
 /obj/item/weapon/robot_module/robot/medical/traumahound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/healthanalyzer(src)
@@ -304,7 +250,7 @@
 	H.water = water
 	src.modules += H
 
-	var/obj/item/device/dogborg/sleeper/compactor/trauma/B = new /obj/item/device/dogborg/sleeper/compactor/trauma(src) //So they can nom people and heal them
+	var/obj/item/device/dogborg/sleeper/trauma/B = new /obj/item/device/dogborg/sleeper/trauma(src) //So they can nom people and heal them
 	B.water = water
 	src.modules += B
 
@@ -542,21 +488,6 @@
 
 /obj/item/weapon/robot_module/robot/engineering/engiedog
 	name = "Construction Hound module"
-	sprites = list(
-					"Pupdozer" = "pupdozer",
-					"Borgi" = "borgi-eng",
-					"V2 Engidog" = "thottbot",
-					"EngiHound" = "engihound",
-					"EngiHoundDark" = "engihounddark",
-					"Drake" = "drakeeng",
-					"Raptor V-4" = "engiraptor",
-					"MEKA" = "mekaengi",
-					"MEKA v2" = "newmekaengi",
-					"NIKO" = "mmekaeng",
-					"NIKA" = "fmekaeng",
-					"K4T" = "k4tengi",
-					"K4Talt" = "k4tengi_alt1"
-					)
 	can_be_pushed = 0
 
 /obj/item/weapon/robot_module/robot/engineering/engiedog/New(var/mob/living/silicon/robot/R)

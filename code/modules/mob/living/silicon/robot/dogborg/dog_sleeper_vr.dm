@@ -479,8 +479,7 @@
 
 	//Cleaning looks better with red on, even with nobody in it
 	if(cleaning || (length(contents) > 10) || (decompiler && (length(contents) > 5)) || (analyzer && (length(contents) > 1)))
-		hound.sleeper_r = TRUE
-		hound.sleeper_g = FALSE
+		hound.sleeper_state = 1
 		hound.update_icon()
 		return
 
@@ -488,20 +487,14 @@
 	if(patient in contents)
 		if(medsensor)
 			if(patient_laststat != patient.stat)
-				if(cleaning)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
-					patient_laststat = patient.stat
-				else if(patient.stat & DEAD)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
+				if(cleaning || (patient.stat & DEAD))
+					hound.sleeper_state = 1
 					patient_laststat = patient.stat
 				else
-					hound.sleeper_r = FALSE
-					hound.sleeper_g = TRUE
+					hound.sleeper_state = 2
 					patient_laststat = patient.stat
 		else
-			hound.sleeper_r = TRUE
+			hound.sleeper_state = 1
 			patient_laststat = patient.stat
 		//Update icon
 		hound.update_icon()
@@ -513,20 +506,14 @@
 		for(var/mob/living/carbon/human/C in contents)
 			patient = C
 			if(medsensor)
-				if(cleaning)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
-					patient_laststat = patient.stat
-				else if(patient.stat & DEAD)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
+				if(cleaning || (patient.stat & DEAD))
+					hound.sleeper_state = 1
 					patient_laststat = patient.stat
 				else
-					hound.sleeper_r = FALSE
-					hound.sleeper_g = TRUE
+					hound.sleeper_state = 2
 					patient_laststat = patient.stat
 			else
-				hound.sleeper_r = TRUE
+				hound.sleeper_state = 1
 				patient_laststat = patient.stat
 			//Update icon and return new patient
 			hound.update_icon()
@@ -534,8 +521,7 @@
 
 	//Couldn't find anyone, and not cleaning
 	if(!cleaning && !patient)
-		hound.sleeper_r = FALSE
-		hound.sleeper_g = FALSE
+		hound.sleeper_state = 0
 
 	patient_laststat = null
 	patient = null
@@ -779,7 +765,6 @@
 	name = "Brew Belly"
 	desc = "A mounted drunk tank unit with fuel processor."
 	icon_state = "brewer"
-	injection_chems = null
 
 /obj/item/device/dogborg/sleeper/K9/ert
 	name = "ERT Belly"
@@ -787,11 +772,10 @@
 	icon_state = "sleeperert"
 	injection_chems = list("inaprovaline", "paracetamol") // short list
 
-/obj/item/device/dogborg/sleeper/compactor/trauma //Trauma borg belly
+/obj/item/device/dogborg/sleeper/trauma //Trauma borg belly
 	name = "Recovery Belly"
 	desc = "A downgraded model of the medihound sleeper."
 	icon_state = "sleeper"
 	injection_chems = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
-	max_item_count = 1
 
 #undef SLEEPER_INJECT_COST

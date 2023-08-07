@@ -212,30 +212,11 @@ var/global/list/robot_modules = list(
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
+	pto_type = PTO_MEDICAL
 
 /obj/item/weapon/robot_module/robot/medical/surgeon
 	name = "surgeon robot module"
-	sprites = list(
-					"M-USE NanoTrasen" = "robotMedi",
-					"Cabeiri" = "eyebot-medical",
-					"Haruka" = "marinaMD",
-					"Minako" = "arachne",
-					"Usagi" = "tallwhite",
-					"Telemachus" = "toiletbotsurgeon",
-					"WTOperator" = "sleekcmo",
-					"XI-ALP" = "heavyMed",
-					"Basic" = "Medbot",
-					"Advanced Droid" = "droid-medical",
-					"Needles" = "medicalrobot",
-					"Drone" = "drone-surgery",
-					"Handy" = "handy-med",
-					"Insekt" = "insekt-Med",
-					"Usagi-II" = "tall2medical",
-					"Pyralis" = "Glitterfly-Surgeon",
-					"Decapod" = "decapod-Surgeon",
-					"Pneuma" = "pneuma-Surgeon",
-					"Tower" = "drider-Surgeon"
-					)
+
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
 	..()
@@ -297,27 +278,6 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/medical/crisis
 	name = "crisis robot module"
-	sprites = list(
-					"M-USE NanoTrasen" = "robotMedi",
-					"Cabeiri" = "eyebot-medical",
-					"Haruka" = "marinaMD",
-					"Minako" = "arachne",
-					"Usagi" = "tallwhite",
-					"Telemachus" = "toiletbotmedical",
-					"WTOperator" = "sleekmedic",
-					"XI-ALP" = "heavyMed",
-					"Basic" = "Medbot",
-					"Advanced Droid" = "droid-medical",
-					"Needles" = "medicalrobot",
-					"Drone - Medical" = "drone-medical",
-					"Drone - Chemistry" = "drone-chemistry",
-					"Insekt" = "insekt-Med",
-					"Usagi-II" = "tall2medical",
-					"Pyralis" = "Glitterfly-Crisis",
-					"Decapod" = "decapod-Crisis",
-					"Pneuma" = "pneuma-Crisis",
-					"Tower" = "drider-Crisis"
-					)
 
 /obj/item/weapon/robot_module/robot/medical/crisis/New()
 	..()
@@ -376,28 +336,7 @@ var/global/list/robot_modules = list(
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/mob/living/silicon/proc/subsystem_power_monitor)
-	sprites = list(
-					"M-USE NanoTrasen" = "robotEngi",
-					"Cabeiri" = "eyebot-engineering",
-					"Haruka" = "marinaENG",
-					"Usagi" = "tallyellow",
-					"Telemachus" = "toiletbotengineering",
-					"WTOperator" = "sleekce",
-					"XI-GUS" = "spidereng",
-					"XI-ALP" = "heavyEng",
-					"Basic" = "Engineering",
-					"Antique" = "engineerrobot",
-					"Landmate" = "landmate",
-					"Landmate - Treaded" = "engiborg+tread",
-					"Drone" = "drone-engineer",
-					"Treadwell" = "treadwell",
-					"Handy" = "handy-engineer",
-					"Usagi-II" = "tall2engineer",
-					"Pyralis" = "Glitterfly-Engineering",
-					"Decapod" = "decapod-Engineering",
-					"Pneuma" = "pneuma-Engineering",
-					"Tower" = "drider-Engineering"
-					)
+	pto_type = PTO_ENGINEERING
 
 /obj/item/weapon/robot_module/robot/engineering/general/New()
 	..()

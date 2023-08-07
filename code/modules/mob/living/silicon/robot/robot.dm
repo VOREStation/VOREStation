@@ -859,7 +859,7 @@
 		var/show_belly = FALSE
 		if(sprite_datum.has_vore_belly_sprites)
 			if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
-				if(sleeper_g || sleeper_r)
+				if(sleeper_state)
 					show_belly = TRUE
 			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
 				if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
