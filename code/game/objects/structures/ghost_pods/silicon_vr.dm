@@ -21,7 +21,7 @@
 		from the pod is not a crewmember.</span>")
 		R.ckey = M.ckey
 		visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
-		R.Namepick()
+		R.namepick()
 		log_and_message_admins("successfully opened \a [src] and got a Stray Drone.")
 		used = TRUE
 		return TRUE

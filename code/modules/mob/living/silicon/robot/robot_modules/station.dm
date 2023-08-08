@@ -512,34 +512,13 @@ var/global/list/robot_modules = list(
 					LANGUAGE_DRUDAKAR	= 1,
 					LANGUAGE_TAVAN		= 1
 					)
+	pto_type = PTO_CIVILIAN
 
 /obj/item/weapon/robot_module/robot/clerical/butler
 	channels = list("Service" = 1)
 
 /obj/item/weapon/robot_module/robot/clerical/butler/general
-	sprites = list(
-					"M-USE NanoTrasen" = "robotServ",
-					"Cabeiri" = "eyebot-standard",
-					"Haruka" = "marinaSV",
-					"Michiru" = "maidbot",
-					"Usagi" = "tallgreen",
-					"Telemachus" = "toiletbot",
-					"WTOperator" = "sleekservice",
-					"WTOmni" = "omoikane",
-					"XI-GUS" = "spider",
-					"XI-ALP" = "heavyServ",
-					"Standard" = "Service2",
-					"Waitress" = "Service",
-					"Bro" = "Brobot",
-					"Rich" = "maximillion",
-					"Drone - Service" = "drone-service",
-					"Drone - Hydro" = "drone-hydro",
-					"Usagi-II" = "tall2service",
-					"Pyralis" = "Glitterfly-Service",
-					"Decapod" = "decapod-Service",
-					"Pneuma" = "pneuma-Service",
-					"Tower" = "drider-Service"
-				  	)
+	name = "service robot module"
 
 /obj/item/weapon/robot_module/robot/clerical/butler/general/New()
 	..()
@@ -577,27 +556,6 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/clerical/general
 	name = "clerical robot module"
-	sprites = list(
-					"M-USE NanoTrasen" = "robotCler",
-					"Cabeiri" = "eyebot-standard",
-					"Haruka" = "marinaSV",
-					"Usagi" = "tallgreen",
-					"Telemachus" = "toiletbot",
-					"WTOperator" = "sleekclerical",
-					"WTOmni" = "omoikane",
-					"XI-GUS" = "spidercom",
-					"XI-ALP" = "heavyServ",
-					"Waitress" = "Service",
-					"Bro" = "Brobot",
-					"Rich" = "maximillion",
-					"Default" = "Service2",
-					"Drone" = "drone-blu",
-					"Usagi-II" = "tall2service",
-					"Pyralis" = "Glitterfly-Clerical",
-					"Decapod" = "decapod-Clerical",
-					"Pneuma" = "pneuma-Clerical",
-					"Tower" = "drider-Clerical"
-					)
 
 /obj/item/weapon/robot_module/robot/clerical/general/New()
 	..()
@@ -709,12 +667,6 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/security/combat
 	name = "combat robot module"
 	hide_on_manifest = TRUE
-	sprites = list(
-					"Haruka" = "marinaCB",
-					"Combat Android" = "droid-combat",
-					"Insekt" = "insekt-Combat",
-					"Decapod" = "decapod-Combat"
-					)
 
 /obj/item/weapon/robot_module/robot/security/combat/New()
 	..()
@@ -726,6 +678,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/combat/mobility(src)
 	src.modules += new /obj/item/device/ticket_printer(src)	//VOREStation Add
 	src.emag = new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
+
+	src.modules += new /obj/item/device/dogborg/sleeper/K9/ert(src)
 
 
 /* Drones */

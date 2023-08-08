@@ -15,6 +15,7 @@
 	var/list/rest_sprite_options
 	var/has_dead_sprite = FALSE
 	var/has_dead_sprite_overlay = FALSE
+	var/has_extra_customization = FALSE
 	var/vis_height = 32
 	var/pixel_x = 0
 
@@ -65,6 +66,9 @@
 	if(has_custom_open_sprites)
 		. = "[sprite_icon_state]-[.]"
 
+	return
+
+/datum/robot_sprite/proc/handle_extra_customization(var/mob/living/silicon/robot/ourborg)
 	return
 
 // Dogborgs and not-dogborgs that use dogborg stuff. Oh no.

@@ -1,6 +1,3 @@
-/obj/item/weapon/robot_module
-	var/vr_sprites = list()
-
 /hook/startup/proc/robot_modules_vr()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/robot/medical/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/robot/security/knine
@@ -26,38 +23,6 @@
 /obj/item/weapon/robot_module/robot/medical/crisis/vr_new() //Crisis Bot
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
-
-/obj/item/weapon/robot_module/robot/clerical
-	pto_type = PTO_CIVILIAN
-
-/obj/item/weapon/robot_module/robot/clerical/butler/general
-	vr_sprites = list(
-						"Handy - Service" = "handy-service",
-						"Handy - Hydro" = "handy-hydro",
-						"Acheron" = "mechoid-Service",
-						"Shellguard Noble" = "Noble-SRV",
-						"ZOOM-BA" = "zoomba-service",
-						"W02M" = "worm-service",
-						"Feminine Humanoid" = "uptall-service"
-					 )
-
-/obj/item/weapon/robot_module/robot/clerical/general
-	vr_sprites = list(
-						"Handy" = "handy-clerk",
-						"Acheron" = "mechoid-Service",
-						"Shellguard Noble" = "Noble-SRV",
-						"ZOOM-BA" = "zoomba-clerical",
-						"W02M" = "worm-service",
-						"Feminine Humanoid" = "uptall-service"
-					 )
-
-/obj/item/weapon/robot_module/robot/security/combat
-	vr_sprites = list(
-						"Acheron" = "mechoid-Combat",
-						"ZOOM-BA" = "zoomba-combat",
-						"W02M" = "worm-combat",
-						"Feminine Humanoid" = "uptall-security"
-					 )
 
 /obj/item/weapon/robot_module/robot/security/knine
 	name = "k9 robot module"
@@ -263,11 +228,6 @@
 
 /obj/item/weapon/robot_module/robot/security/ert
 	name = "Emergency Responce module"
-	sprites = list(
-					"Standard" = "ert",
-					"Classic" = "ertold",
-					"Borgi" = "borgi"
-					)
 
 /obj/item/weapon/robot_module/robot/security/ert/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
@@ -602,21 +562,6 @@
 // Uses modified K9 sprites.
 /obj/item/weapon/robot_module/robot/clerical/butler/brodog
 	name = "service-hound module"
-	sprites = list(
-					"Blackhound" = "k50",
-					"Pinkhound" = "k69",
-					"ServicehoundV2" = "serve2",
-					"ServicehoundV2 Darkmode" = "servedark",
-					"Drake" = "drakemine",
-					"Raptor V-4" = "serviraptor",
-					"Raptor V-4000" = "fancyraptor",
-					"MEKA" = "mekaserve",
-					"MEKA v2" = "newmekaserve",
-					"NIKO" = "mmekaserv",
-					"NIKA" = "fmekaserv",
-					"K4T" = "k4tserve",
-					"K4Talt" = "k4tserve_alt1"
-					)
 	can_be_pushed = 0
 
 
@@ -752,15 +697,6 @@
 /obj/item/weapon/robot_module/robot/clerical/butler/booze
 	name = "BoozeHound robot module"
 	can_be_pushed = 0
-	sprites = list(
-				"Beer Buddy" = "boozeborg",
-				"Brilliant Blue" = "boozeborg(blue)",
-				"Caffine Dispenser" = "boozeborg(coffee)",
-				"Gamer Juice Maker" = "boozeborg(green)",
-				"Liqour Licker" = "boozeborg(orange)",
-				"The Grapist" = "boozeborg(purple)",
-				"Vampire's Aid" = "boozeborg(red)"
-				)
 
 /obj/item/weapon/robot_module/robot/clerical/butler/booze/New(var/mob/living/silicon/robot/R)
 	..()

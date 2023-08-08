@@ -79,13 +79,13 @@
 	has_custom_open_sprites = TRUE
 
 // Wide/dogborg sprites
-
+/*
 /datum/robot_sprite/dogborg/medical
 	module_type = list("Crisis", "Surgeon")
 	sprite_icon = 'icons/mob/robot/medical_wide.dmi'
 
 		// None yet
-
+*/
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/medical
@@ -189,10 +189,20 @@
 	module_type = "Surgeon"
 	sprite_icon = 'icons/mob/robot/surgical_wide.dmi'
 
+	var/has_sleeper_light_indicator = FALSE
+
+/datum/robot_sprite/dogborg/surgical/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
+	if(has_sleeper_light_indicator)
+		if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
+		else return "[sprite_icon_state]-sleeper_r"
+	else
+		return ..()
+
 /datum/robot_sprite/dogborg/surgical/vale
 	name = "Traumahound"
 	sprite_icon_state = "vale"
 	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/surgical/borgi
 	name = "Borgi"
@@ -273,32 +283,32 @@
 	module_type = "Crisis"
 	sprite_icon = 'icons/mob/robot/crisis_wide.dmi'
 
+	var/has_sleeper_light_indicator = FALSE
+
+/datum/robot_sprite/dogborg/crisis/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
+	if(has_sleeper_light_indicator)
+		if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
+		else return "[sprite_icon_state]-sleeper_r"
+	else
+		return ..()
+
 /datum/robot_sprite/dogborg/crisis/hound
 	name = "CargoHound"
 	sprite_icon_state = "hound"
 	has_eye_light_sprites = TRUE
-
-/datum/robot_sprite/dogborg/crisis/hound/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
-	if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
-	else return "[sprite_icon_state]-sleeper_r"
+	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/hounddark
 	name = "CargoHoundDark"
 	sprite_icon_state = "hounddark"
 	has_eye_light_sprites = TRUE
-
-/datum/robot_sprite/dogborg/crisis/hounddark/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
-	if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
-	else return "[sprite_icon_state]-sleeper_r"
+	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/vale
 	name = "KMine"
 	sprite_icon_state = "vale"
 	has_eye_light_sprites = TRUE
-
-/datum/robot_sprite/dogborg/crisis/vale/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
-	if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
-	else return "[sprite_icon_state]-sleeper_r"
+	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/borgi
 	name = "Borgi"

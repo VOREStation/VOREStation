@@ -32,6 +32,7 @@
 	var/datum/robot_sprite/sprite_datum 				// Sprite datum, holding all our sprite data
 	var/icon_selected = 1								// If icon selection has been completed yet
 	var/icon_selection_tries = 0						// Remaining attempts to select icon before a selection is forced
+	var/list/sprite_extra_customization = list()
 
 //Hud stuff
 
@@ -347,8 +348,10 @@
 		if (meta_info)
 			ooc_notes = meta_info
 
-/mob/living/silicon/robot/verb/Namepick()
+/mob/living/silicon/robot/verb/namepick()
+	set name = "Pick Name"
 	set category = "Robot Commands"
+
 	if(custom_name)
 		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
 		return 0
@@ -362,6 +365,17 @@
 
 		updatename()
 		update_icon()
+
+/mob/living/silicon/robot/verb/extra_customization()
+	set name = "Customize Appearance"
+	set category = "Robot Commands"
+	set desc = "Customize your appearance (assuming your chosen sprite allows)."
+
+	if(!sprite_datum || !sprite_datum.has_extra_customization)
+		to_chat(src, "<span class='warning'>Your sprite cannot be customized.</span>")
+		return
+
+	sprite_datum.handle_extra_customization(src)
 
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
@@ -908,18 +922,6 @@
 		var/open_overlay = sprite_datum.get_open_sprite(src)
 		if(open_overlay)
 			add_overlay(open_overlay)
-/*
-	if(has_active_type(/obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = locate() in src
-		if(shield && shield.active)
-			add_overlay("[module_sprites[icontype]]-shield")
-
-	if(modtype == "Combat")
-		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
-			icon_state = "[module_sprites[icontype]]-roll"
-		else
-			icon_state = module_sprites[icontype]
-*/
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)

@@ -123,7 +123,7 @@ var/list/mob_hat_cache = list()
 		var/datum/robot_component/C = components[V]
 		C.max_damage = 10
 
-	verbs -= /mob/living/silicon/robot/verb/Namepick
+	verbs -= /mob/living/silicon/robot/verb/namepick
 
 	if(can_pick_shell)
 		var/random = pick(shell_types)
