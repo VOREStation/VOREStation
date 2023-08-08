@@ -32,6 +32,12 @@
 	..()
 	laws = give_random_lawset()
 
+/mob/living/silicon/robot/lost/randomlaws/vore
+
+/mob/living/silicon/robot/lost/randomlaws/vore/init()
+	..()
+	laws = give_random_lawset_vore(100)
+
 // Returns a random ai_laws datum.
 /mob/living/silicon/proc/give_random_lawset()
 	// Decide what kind of laws we want to draw from.
