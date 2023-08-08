@@ -20,7 +20,7 @@
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16
 
-	whitelist_ckey = "heroman3003"
+	whitelist_ckey = "argonne"
 	whitelist_charname = "RUSS"
 
 /datum/robot_sprite/fluff/argonne/security
