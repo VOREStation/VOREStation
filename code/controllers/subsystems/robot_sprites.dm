@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(robot_sprites)
 	for(var/spath in all_paths)
 		var/datum/robot_sprite/RS = new spath()
 
-		if(!(RS.name) || !(RS.module_type))			// We're a technical kinda datum
+		if(!RS.name || !RS.module_type)			// We're a technical kinda datum
 			qdel(RS)
 			continue
 
@@ -47,26 +47,38 @@ SUBSYSTEM_DEF(robot_sprites)
 						cyborg_sprites_by_module[M] = list()
 					cyborg_sprites_by_module[M] |= RS
 		else
-			if(!(RS.module_type in cyborg_sprites_by_module))
-				cyborg_sprites_by_module += RS.module_type
-				cyborg_sprites_by_module[RS.module_type] = list()
-			cyborg_sprites_by_module[RS.module_type] |= RS
+			if(RS.is_whitelisted)
+				if(!(RS.module_type in whitelisted_sprites_by_module))
+					whitelisted_sprites_by_module += RS.module_type
+					whitelisted_sprites_by_module[RS.module_type] = list()
+				whitelisted_sprites_by_module[RS.module_type] |= RS
+			else
+				if(!(RS.module_type in cyborg_sprites_by_module))
+					cyborg_sprites_by_module += RS.module_type
+					cyborg_sprites_by_module[RS.module_type] = list()
+				cyborg_sprites_by_module[RS.module_type] |= RS
 
-/datum/controller/subsystem/robot_sprites/proc/get_module_sprites(var/module)
+/datum/controller/subsystem/robot_sprites/proc/get_module_sprites(var/module, var/mob/living/silicon/robot/wlcheck)
 	. = list()
 
 	if(!module || !(module in cyborg_sprites_by_module))
 		return
 
+	if(wlcheck && istype(wlcheck))
+		. |= get_whitelisted_sprites(wlcheck.ckey, wlcheck.sprite_name, module)
+
 	. |= cyborg_sprites_by_module[module]
 
 	return
 
-/datum/controller/subsystem/robot_sprites/proc/get_module_sprites_len(var/module)
-	if(!module || !(module in cyborg_sprites_by_module))
+/datum/controller/subsystem/robot_sprites/proc/get_module_sprites_len(var/module, var/mob/living/silicon/robot/wlcheck)
+	if(!module || (!(module in cyborg_sprites_by_module) && !(module in whitelisted_sprites_by_module)))
 		return 0
 
 	var/list/sprite_list = cyborg_sprites_by_module[module]
+
+	if(wlcheck && istype(wlcheck))
+		sprite_list |= get_whitelisted_sprites(wlcheck.ckey, wlcheck.sprite_name, module)
 
 	if(!islist(sprite_list))
 		return 0

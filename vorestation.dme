@@ -3035,6 +3035,7 @@
 #include "code\modules\mob\living\silicon\robot\sprites\combat.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\engineering.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\event.dm"
+#include "code\modules\mob\living\silicon\robot\sprites\fluff.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\janitor.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\medical.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\mining.dm"

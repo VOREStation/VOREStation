@@ -6,6 +6,7 @@
 	var/sprite_icon
 	var/sprite_icon_state
 	var/sprite_hud_icon_state
+
 	var/has_eye_sprites = TRUE
 	var/has_eye_light_sprites = FALSE
 	var/has_custom_open_sprites = FALSE
@@ -72,6 +73,8 @@
 	return
 
 // Dogborgs and not-dogborgs that use dogborg stuff. Oh no.
+// Not really necessary to be used by any specific sprite actually, even newly added dogborgs.
+// Mostly a combination of all features dogborgs had prior to conversion to datums for convinience of conversion itself.
 
 /datum/robot_sprite/dogborg
 	has_vore_belly_sprites = TRUE
@@ -98,3 +101,13 @@
 /datum/robot_sprite/dogborg/tall
 	has_dead_sprite_overlay = FALSE
 	vis_height = 64
+
+
+// Default module sprite
+
+/datum/robot_sprite/default
+	name = DEFAULT_ROBOT_SPRITE_NAME
+	module_type = "Default"
+	sprite_icon = 'icons/mob/robot/default.dmi'
+	sprite_icon_state = "default"
+	default_sprite = TRUE

@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(robot_custom_icons)
 	return 1
 
 /mob/living/silicon/robot/proc/set_custom_sprite()
-	if(!sprite_name)
+	if(!sprite_name || !(sprite_name in GLOB.robot_custom_icons))
 		return
 	var/sprite_owner = GLOB.robot_custom_icons[sprite_name]
 	if(sprite_owner && sprite_owner == ckey)

@@ -856,6 +856,10 @@
 
 /mob/living/silicon/robot/update_icon()
 	if(!sprite_datum)
+		if(SSrobot_sprites)								// Grab default if subsystem is ready
+			sprite_datum = SSrobot_sprites.get_default_module_sprite(modtype)
+		if(!sprite_datum)								// If its not ready or fails to get us a sprite, use the default of our own
+			sprite_datum = new /datum/robot_sprite/default(src)
 		return
 
 	cut_overlays()
@@ -1098,7 +1102,7 @@
 		to_chat(src, "Robot Sprites have not been initialized yet. How are you choosing a sprite? Harass a coder.")
 		return
 
-	var/list/module_sprites = SSrobot_sprites.get_module_sprites(modtype)
+	var/list/module_sprites = SSrobot_sprites.get_module_sprites(modtype, src)
 	if(!module_sprites || !module_sprites.len)
 		to_chat(src, "Your module appears to have no sprite options. Harass a coder.")
 		return
