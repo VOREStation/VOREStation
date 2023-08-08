@@ -79,8 +79,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 
 // Called after the AI transfers over.
 /mob/living/silicon/robot/proc/post_deploy()
-	if(!custom_sprite) // Check for custom sprite.
-		set_custom_sprite()
+	return
 
 /mob/living/silicon/robot/proc/undeploy(message)
 	if(!deployed || !mind || !mainframe)

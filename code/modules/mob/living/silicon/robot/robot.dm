@@ -333,9 +333,6 @@
 	if (camera)
 		camera.c_tag = changed_name
 
-	if(!custom_sprite) //Check for custom sprite
-		set_custom_sprite()
-
 	//Flavour text.
 	if(client)
 		var/module_flavour = client.prefs.flavour_texts_robot[modtype]
@@ -1120,13 +1117,8 @@
 			choose_icon(icon_selection_tries)
 			return
 		else
-			transform_with_anim()	//VOREStation edit end: sprite animation
-/*
-	if(icontype == "Custom")
-		icon = CUSTOM_ITEM_SYNTH
-	else // This is to fix an issue where someone with a custom borg sprite chooses a non-custom sprite and turns invisible.
-		vr_sprite_check() //VOREStation Edit
-*/
+			transform_with_anim()
+
 	var/tempheight = vis_height
 	update_icon()
 	// This is bad but I dunno other way to 'reset' our resize offset based on vis_height changes other than resizing to normal and back.

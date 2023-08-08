@@ -1,3 +1,4 @@
+// Deprecated as of the sprite datumization, kept only for ai custom icons (even though we dont yet have any)
 
 //list(ckey = real_name,)
 //Since the ckey is used as the icon_state, the current system will only permit a single custom robot sprite per ckey.
