@@ -1,9 +1,6 @@
 /obj/item/weapon/robot_module/robot/stray
 	name = "stray robot module"
 	hide_on_manifest = 1
-	sprites = list(
-					"Stray" = "stray"
-				)
 
 /obj/item/weapon/robot_module/robot/stray/New(var/mob/living/silicon/robot/R)
 	..()

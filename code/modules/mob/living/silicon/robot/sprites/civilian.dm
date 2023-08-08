@@ -47,6 +47,7 @@
 /datum/robot_sprite/civilian/bro
 	name = "Bro"
 	sprite_icon_state = "bro"
+	sprite_hud_icon_state = "brobot"
 	has_eye_sprites = FALSE
 
 /datum/robot_sprite/civilian/maximillion
@@ -126,6 +127,7 @@
 /datum/robot_sprite/service/drone_hydro
 	name = "Drone - Hydro"
 	sprite_icon_state = "drone-hydro"
+	sprite_hud_icon_state = "hydroponics"
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/service/glitterfly
@@ -155,6 +157,7 @@
 /datum/robot_sprite/service/handy_hydro
 	name = "Handy - Hydro"
 	sprite_icon_state = "handy-hydro"
+	sprite_hud_icon_state = "hydroponics"
 
 /datum/robot_sprite/service/zoomba
 	name = "ZOOM-BA"
@@ -199,6 +202,7 @@
 	name = "Boozehound"
 	sprite_icon = 'icons/mob/robot/service_wide_booze.dmi'
 	sprite_icon_state = "booze"
+	sprite_hud_icon_state = "boozehound"
 	rest_sprite_options = list("Default")
 	has_extra_customization = TRUE
 

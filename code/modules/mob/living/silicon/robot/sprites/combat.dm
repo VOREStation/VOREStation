@@ -103,11 +103,13 @@
 /datum/robot_sprite/dogborg/tall/combat/hound
 	name = "Combat Hound"
 	sprite_icon_state = "hound"
+	sprite_hud_icon_state = "ert"
 	rest_sprite_options = list("Default")
 
 /datum/robot_sprite/dogborg/tall/combat/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "ert"
 	rest_sprite_options = list("Default")
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE

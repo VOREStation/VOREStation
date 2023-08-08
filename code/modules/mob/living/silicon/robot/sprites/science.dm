@@ -101,11 +101,13 @@
 /datum/robot_sprite/dogborg/science/vale
 	name = "Research Hound"
 	sprite_icon_state = "vale"
+	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/science/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "sci-borg"
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
@@ -113,11 +115,13 @@
 /datum/robot_sprite/dogborg/science/hound
 	name = "SciHound"
 	sprite_icon_state = "hound"
+	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/science/darkhound
 	name = "SciHoundDark"
 	sprite_icon_state = "darkhound"
+	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/science/drake

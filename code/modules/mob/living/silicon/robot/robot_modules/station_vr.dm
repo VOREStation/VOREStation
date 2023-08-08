@@ -1,17 +1,3 @@
-/hook/startup/proc/robot_modules_vr()
-	robot_modules["Medihound"] = /obj/item/weapon/robot_module/robot/medical/medihound
-	robot_modules["K9"] = /obj/item/weapon/robot_module/robot/security/knine
-	robot_modules["ERT"] = /obj/item/weapon/robot_module/robot/security/ert
-	robot_modules["Janihound"] = /obj/item/weapon/robot_module/robot/janitor/scrubpup
-	robot_modules["Sci-borg"] = /obj/item/weapon/robot_module/robot/research/sciencehound
-	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engineering/engiedog
-	robot_modules["Service-Hound"] = /obj/item/weapon/robot_module/robot/clerical/butler/brodog
-	robot_modules["BoozeHound"] = /obj/item/weapon/robot_module/robot/clerical/butler/booze
-	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/miner/kmine
-	robot_modules["Stray"] = /obj/item/weapon/robot_module/robot/stray
-	robot_modules["TraumaHound"] = /obj/item/weapon/robot_module/robot/medical/traumahound
-	return 1
-
 //Just add a new proc with the robot_module type if you wish to run some other vore code
 /obj/item/weapon/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
 	return

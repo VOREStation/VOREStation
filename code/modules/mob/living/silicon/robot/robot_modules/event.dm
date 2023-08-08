@@ -4,9 +4,6 @@
 /obj/item/weapon/robot_module/robot/lost
 	name = "lost robot module"
 	hide_on_manifest = TRUE
-	sprites = list(
-					"Drone" = "drone-lost"
-				)
 
 /obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
 	..()
@@ -42,10 +39,6 @@
 /obj/item/weapon/robot_module/robot/gravekeeper
 	name = "gravekeeper robot module"
 	hide_on_manifest = TRUE
-	sprites = list(
-					"Drone" = "drone-gravekeeper",
-					"Sleek" = "sleek-gravekeeper"
-				)
 
 /obj/item/weapon/robot_module/robot/gravekeeper/New(var/mob/living/silicon/robot/R)
 	..()

@@ -201,12 +201,14 @@
 /datum/robot_sprite/dogborg/surgical/vale
 	name = "Traumahound"
 	sprite_icon_state = "vale"
+	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/surgical/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "medihound"
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
@@ -293,26 +295,30 @@
 		return ..()
 
 /datum/robot_sprite/dogborg/crisis/hound
-	name = "CargoHound"
+	name = "Medical Hound"
 	sprite_icon_state = "hound"
+	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/hounddark
-	name = "CargoHoundDark"
+	name = "Dark Medical Hound"
 	sprite_icon_state = "hounddark"
+	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/vale
-	name = "KMine"
+	name = "Mediborg Model V-2"
 	sprite_icon_state = "vale"
+	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "medihound"
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE

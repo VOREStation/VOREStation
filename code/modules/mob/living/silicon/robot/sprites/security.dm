@@ -128,6 +128,7 @@
 /datum/robot_sprite/dogborg/security/k9
 	name = "K9"
 	sprite_icon_state = "k9"
+	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_laser_sprite = TRUE
 	has_taser_sprite = TRUE
@@ -135,6 +136,7 @@
 /datum/robot_sprite/dogborg/security/k92
 	name = "K9 Alt"
 	sprite_icon_state = "k92"
+	sprite_hud_icon_state = "k9"
 	has_eye_sprites = FALSE
 	has_laser_sprite = TRUE
 	has_taser_sprite = TRUE
@@ -142,6 +144,7 @@
 /datum/robot_sprite/dogborg/security/vale
 	name = "Secborg Model V-2"
 	sprite_icon_state = "vale"
+	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_laser_sprite = TRUE
 	has_taser_sprite = TRUE
@@ -149,6 +152,7 @@
 /datum/robot_sprite/dogborg/security/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "k9"
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
@@ -156,6 +160,7 @@
 /datum/robot_sprite/dogborg/security/otie
 	name = "Otieborg"
 	sprite_icon_state = "otie"
+	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_laser_sprite = TRUE
 	has_taser_sprite = TRUE

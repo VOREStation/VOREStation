@@ -112,16 +112,19 @@
 /datum/robot_sprite/dogborg/janitor/scrubpup
 	name = "Custodial Hound"
 	sprite_icon_state = "scrubpup"
+	sprite_hud_icon_state = "janihound"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/janitor/vale
 	name = "Janihound Model V-2"
 	sprite_icon_state = "vale"
+	sprite_hud_icon_state = "janihound"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/janitor/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "janihound"
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
@@ -129,6 +132,7 @@
 /datum/robot_sprite/dogborg/janitor/otie
 	name = "Otieborg"
 	sprite_icon_state = "otie"
+	sprite_hud_icon_state = "janihound"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/janitor/drake

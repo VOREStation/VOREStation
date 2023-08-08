@@ -292,7 +292,7 @@
 	transform_with_anim()	//VOREStation edit: sprite animation
 	new module_type(src)
 
-	hands.icon_state = lowertext(modtype)
+	hands.icon_state = get_hud_module_icon()
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
 	updatename()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
@@ -749,7 +749,7 @@
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
 	modtype = initial(modtype)
-	hands.icon_state = initial(hands.icon_state)
+	hands.icon_state = get_hud_module_icon()
 
 	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
@@ -1136,7 +1136,7 @@
 		icon_selection_tries--
 		var/choice = tgui_alert(usr, "Look at your icon - is this what you want?", "Icon Choice", list("Yes","No"))
 		if(choice == "No")
-			choose_icon(icon_selection_tries, module_sprites)
+			choose_icon(icon_selection_tries)
 			return
 
 	icon_selected = 1

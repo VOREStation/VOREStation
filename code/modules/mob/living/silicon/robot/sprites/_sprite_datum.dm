@@ -80,7 +80,6 @@
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16
-	//This is a secret tool that will help us later
 
 /datum/robot_sprite/dogborg/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))

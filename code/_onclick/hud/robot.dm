@@ -282,5 +282,12 @@ var/obj/screen/robot_inventory
 
 /mob/living/silicon/robot/update_hud()
 	if(modtype)
-		hands.icon_state = lowertext(modtype)
+		hands.icon_state = get_hud_module_icon()
 	..()
+
+/mob/living/silicon/robot/proc/get_hud_module_icon()
+	if(sprite_datum && sprite_datum.sprite_hud_icon_state)
+		return sprite_datum.sprite_hud_icon_state
+	if(modtype)
+		return lowertext(modtype)
+	return "nomod"

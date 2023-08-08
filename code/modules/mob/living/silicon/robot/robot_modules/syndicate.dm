@@ -18,15 +18,6 @@
 					LANGUAGE_TERMINUS = 1,
 					LANGUAGE_ZADDAT = 0
 					)
-	sprites = list(
-					"Cerberus" = "syndie_bloodhound",
-					"Cerberus - Treaded" = "syndie_treadhound",
-					"Ares" = "squats",
-					"Telemachus" = "toiletbotantag",
-					"WTOperator" = "hosborg",
-					"XI-GUS" = "spidersyndi",
-					"XI-ALP" = "syndi-heavy"
-				)
 	var/id
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
@@ -57,12 +48,6 @@
 // Gets a big shield and a gun that shoots really fast to scare the opposing force.
 /obj/item/weapon/robot_module/robot/syndicate/protector
 	name = "protector robot module"
-	sprites = list(
-		"Cerberus - Treaded" = "syndie_treadhound",
-		"Cerberus" = "syndie_bloodhound",
-		"Ares" = "squats",
-		"XI-ALP" = "syndi-heavy"
-		)
 
 /obj/item/weapon/robot_module/robot/syndicate/protector/New(var/mob/living/silicon/robot/R)
 	..()
@@ -74,10 +59,6 @@
 // 95% engi-borg and 15% roboticist.
 /obj/item/weapon/robot_module/robot/syndicate/mechanist
 	name = "mechanist robot module"
-	sprites = list(
-		"XI-GUS" = "spidersyndi",
-		"WTOperator" = "sleekhos"
-		)
 
 /obj/item/weapon/robot_module/robot/syndicate/mechanist/New(var/mob/living/silicon/robot/R)
 	..()
@@ -143,9 +124,6 @@
 // Mediborg optimized for on-the-field healing, but can also do surgery if needed.
 /obj/item/weapon/robot_module/robot/syndicate/combat_medic
 	name = "combat medic robot module"
-	sprites = list(
-		"Telemachus" = "toiletbotantag"
-		)
 
 /obj/item/weapon/robot_module/robot/syndicate/combat_medic/New(var/mob/living/silicon/robot/R)
 	..()

@@ -139,8 +139,7 @@ var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J
 var/list/robot_module_types = list(
 	"Standard", "Engineering", "Surgeon",  "Crisis",
 	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
-	"Research", "Medihound", "K9", "Janihound", "Sci-borg", "Pupdozer",
-	"Service-Hound", "BoozeHound", "KMine", "TraumaHound"
+	"Research"
 )
 // List of modules added during code red
 var/list/emergency_module_types = list(
@@ -148,7 +147,7 @@ var/list/emergency_module_types = list(
 )
 // List of modules available to AI shells
 var/list/shell_module_types = list(
-	"Standard", "Service", "Clerical", "Service-Hound", "BoozeHound"
+	"Standard", "Service", "Clerical"
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(

@@ -42,7 +42,6 @@ var/global/list/robot_modules = list(
 					LANGUAGE_DAEMON		= 0,
 					LANGUAGE_ENOCHIAN	= 0,
 					LANGUAGE_DRUDAKAR	= 0)
-	var/sprites = list()
 	var/can_be_pushed = 0
 	var/no_slip = 0
 	var/list/modules = list()
@@ -77,6 +76,9 @@ var/global/list/robot_modules = list(
 
 	R.set_default_module_icon()
 	R.choose_icon(SSrobot_sprites.get_module_sprites_len(R.modtype) + 1)
+	if(!R.client)
+		R.icon_selected = FALSE			// It wasnt a player selecting icon? Let them do it later!
+
 
 	for(var/obj/item/I in modules)
 		I.canremove = FALSE

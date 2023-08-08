@@ -123,29 +123,34 @@
 /datum/robot_sprite/dogborg/engineering/pupdozer
 	name = "Pupdozer"
 	sprite_icon_state = "pupdozer"
+	sprite_hud_icon_state = "pupdozer"
 	rest_sprite_options = list("Default")
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/engineering/borgi
 	name = "Borgi"
 	sprite_icon_state = "borgi"
+	sprite_hud_icon_state = "pupdozer"
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 
 /datum/robot_sprite/dogborg/engineering/vale
-	name = "KMine"
+	name = "V2 Engidog"
 	sprite_icon_state = "vale"
+	sprite_hud_icon_state = "pupdozer"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/engineering/hound
-	name = "CargoHound"
+	name = "EngiHound"
 	sprite_icon_state = "hound"
+	sprite_hud_icon_state = "pupdozer"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/engineering/hounddark
-	name = "CargoHoundDark"
+	name = "EngiHoundDark"
 	sprite_icon_state = "hounddark"
+	sprite_hud_icon_state = "pupdozer"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/engineering/drake
