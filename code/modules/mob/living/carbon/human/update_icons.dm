@@ -287,7 +287,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "#000000"
 
 			for(var/M in part.markings)
-				icon_key += "[M][part.markings[M]["color"]]"
+				if (part.markings[M]["on"])
+					icon_key += "[M][part.markings[M]["color"]]"
 
 			// VOREStation Edit Start
 			if(part.nail_polish)

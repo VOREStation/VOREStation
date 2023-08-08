@@ -107,7 +107,7 @@
 			default_slot = slot
 			nif_path = nif_durability = nif_savedata = null //VOREStation Add - Don't copy NIF
 			S["default_slot"] << slot
-			
+
 	else
 		S["default_slot"] << default_slot
 

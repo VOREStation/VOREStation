@@ -408,7 +408,7 @@
 		var/list/markings_data[0]
 		markings = target.get_prioritised_markings()
 		for (var/marking in markings)
-			markings_data[++markings_data.len] = list("marking_name" = marking, "marking_color" = markings[marking])
+			markings_data[++markings_data.len] = list("marking_name" = marking, "marking_color" = markings[marking]["color"] ? markings[marking]["color"] : "#000000") //too tired to add in another submenu for bodyparts here
 		data["markings"] = markings_data
 		// VOREStation Add End
 
