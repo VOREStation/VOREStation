@@ -1,15 +1,3 @@
-//Just add a new proc with the robot_module type if you wish to run some other vore code
-/obj/item/weapon/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
-	return
-
-/obj/item/weapon/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
-	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
-	. = ..() //Any Global vore modules will come from here
-
-/obj/item/weapon/robot_module/robot/medical/crisis/vr_new() //Crisis Bot
-	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
-	. = ..() //Any Global vore modules will come from here
-
 /obj/item/weapon/robot_module/robot/security/knine
 	name = "k9 robot module"
 
@@ -17,7 +5,7 @@
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
 	src.modules += new /obj/item/weapon/dogborg/jaws/big(src) //In case there's some kind of hostile mob.
 	src.modules += new /obj/item/weapon/melee/baton/robot(src) //Since the pounce module refused to work, they get a stunbaton instead.
-	src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop people on the nose.
+	//src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop people on the nose.
 	src.modules += new /obj/item/taperoll/police(src) //Block out crime scenes.
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
 	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
@@ -37,20 +25,6 @@
 	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	B.water = water
 	src.modules += B
-
-	R.icon 		 = 'icons/mob/widerobot_sec_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_sec_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/security/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -77,7 +51,7 @@
 
 /obj/item/weapon/robot_module/robot/medical/medihound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
-	src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop the crew.
+	//src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop the crew.
 	src.modules += new /obj/item/device/healthanalyzer(src) // See who's hurt specificially.
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)//For holding the chemicals when the chemist is nice, made it the large variant in 2022
@@ -119,97 +93,18 @@
 	var/obj/item/device/dogborg/sleeper/B = new /obj/item/device/dogborg/sleeper(src) //So they can nom people and heal them
 	B.water = water
 	src.modules += B
-
-	R.icon = 'icons/mob/widerobot_med_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_med_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x  	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/medical/traumahound
 	name = "traumahound robot module"
 
 /obj/item/weapon/robot_module/robot/medical/traumahound/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
-	src.modules += new /obj/item/weapon/autopsy_scanner(src)
-	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/cautery/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/bonegel/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/FixOVein/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/surgicaldrill/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/bioregen/cyborg(src) //let them succ
-	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
-	src.modules += new /obj/item/weapon/gripper/medical(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
-	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
-	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
-	src.emag 	= new /obj/item/weapon/dogborg/pounce(src) //Pounce, also, lets not give them polyacid spray
-
-	var/datum/matter_synth/water = new /datum/matter_synth(500)
-	water.name = "Water reserves"
-	water.recharge_rate = 0
-	R.water_res = water
-	synths += water
 
 	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
-	T.water = water
+	//T.water = water
 	src.modules += T
-
-	var/obj/item/weapon/reagent_containers/borghypo/hound/trauma/H = new /obj/item/weapon/reagent_containers/borghypo/hound/trauma(src) //surgeon chems
-	H.water = water
-	src.modules += H
-
-	var/obj/item/device/dogborg/sleeper/trauma/B = new /obj/item/device/dogborg/sleeper/trauma(src) //So they can nom people and heal them
-	B.water = water
-	src.modules += B
-
-	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000) //this is so they can do brute/burn surgeries and fix assisted/prosthetic organs
-	synths += medicine
-
-	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
-	var/obj/item/stack/medical/advanced/bruise_pack/S = new /obj/item/stack/medical/advanced/bruise_pack(src)
-	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
-	N.uses_charge = 1
-	N.charge_costs = list(1000)
-	N.synths = list(medicine)
-	S.uses_charge = 1
-	S.charge_costs = list(1000)
-	S.synths = list(medicine)
-	O.uses_charge = 1
-	O.charge_costs = list(1000)
-	O.synths = list(medicine)
-	src.modules += N
-	src.modules += S
-	src.modules += O
-
-	R.icon = 'icons/mob/widerobot_trauma_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_trauma_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x  	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/security/ert
@@ -236,20 +131,6 @@
 	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9/ert(src)
 	B.water = water
 	src.modules += B
-
-	R.icon 		 = 'icons/mob/widerobot_ert_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_ert_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/janitor/scrubpup
@@ -258,7 +139,7 @@
 
 /obj/item/weapon/robot_module/robot/janitor/scrubpup/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	//src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/pupscrubber(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
@@ -313,20 +194,6 @@
 	G.recipes = list()
 	G.recipes += new/datum/stack_recipe("glass sheet", /obj/item/stack/material/glass, 1, 1, 20)
 	src.modules += G
-
-	R.icon 		 = 'icons/mob/widerobot_jan_vr.dmi'
-	R.wideborg_dept  = 'icons/mob/widerobot_jan_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/research/sciencehound
@@ -335,7 +202,7 @@
 
 /obj/item/weapon/robot_module/robot/research/sciencehound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	//src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/weapon/gripper/research(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
@@ -389,20 +256,6 @@
 	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
 	C.synths = list(wire)
 	src.modules += C
-
-	R.icon 		 = 'icons/mob/widerobot_sci_vr.dmi'
-	R.wideborg_dept  = 'icons/mob/widerobot_sci_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/engineering/engiedog
@@ -424,7 +277,7 @@
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/pickaxe(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	//src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
 	// The RPD does the exact same thing, this just take space.
@@ -529,27 +382,12 @@
 	var/obj/item/stack/material/cyborg/plasteel/PS = new (src)
 	PS.synths = list(plasteel)
 	src.modules += PS
-
-	R.icon 		 = 'icons/mob/widerobot_eng_vr.dmi'
-	R.wideborg_dept  = 'icons/mob/widerobot_eng_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 // Uses modified K9 sprites.
 /obj/item/weapon/robot_module/robot/clerical/butler/brodog
 	name = "service-hound module"
 	can_be_pushed = 0
-
 
 // In a nutshell, basically service/butler robot but in dog form. - Port from CitadelRP
 /obj/item/weapon/robot_module/robot/clerical/butler/brodog/New(var/mob/living/silicon/robot/R)
@@ -564,7 +402,7 @@
 	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
 	src.modules += new /obj/item/device/multitool(src) //to freeze trays
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	//src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500) // buffy fix, was 0
@@ -597,20 +435,6 @@
 	B.water = water
 	src.modules += B
 */
-
-	R.icon 		 = 'icons/mob/widerobot_ser_vr.dmi'
-	R.wideborg_dept  = 'icons/mob/widerobot_ser_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/miner/kmine
@@ -648,37 +472,7 @@
 	B.water = water
 	src.modules += B
 
-	R.icon = 'icons/mob/widerobot_car_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_car_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x  	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs |= /mob/living/proc/toggle_rider_reins
-	R.verbs |= /mob/living/proc/shred_limb
-
 	..()
-
-/obj/item/weapon/robot_module/Reset(var/mob/living/silicon/robot/R)
-	R.pixel_x = initial(pixel_x)
-	R.pixel_y = initial(pixel_y)
-	R.icon = initial(R.icon)
-	R.dogborg = FALSE
-	R.wideborg = FALSE
-	R.ui_style_vr = FALSE
-	R.default_pixel_x = initial(pixel_x)
-	R.scrubbing = FALSE
-	R.verbs -= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs -= /mob/living/silicon/robot/proc/robot_mount
-	R.verbs -= /mob/living/proc/toggle_rider_reins
-	R.verbs -= /mob/living/proc/shred_limb
-	..()
-
 
 /obj/item/weapon/robot_module/robot/clerical/butler/booze
 	name = "BoozeHound robot module"
@@ -697,7 +491,7 @@
 	src.modules += new /obj/item/device/multitool(src) //to freeze trays
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/weapon/tray/robotray
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	//src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor/brewer(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
 	//R.verbs += /mob/living/silicon/robot/proc/reskin_booze
@@ -714,17 +508,6 @@
 
 	src.modules += new /obj/item/weapon/tray/robotray(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/service(src)
-
-	R.icon 		 = 'icons/mob/widerobot_colors_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_colors_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
-	R.dogborg = TRUE
-	R.wideborg = TRUE
-	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
 	..()
 
 /obj/item/weapon/robot_module/robot/clerical/butler/booze/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)

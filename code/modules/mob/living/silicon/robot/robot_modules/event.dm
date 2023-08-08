@@ -27,7 +27,7 @@
 	src.modules += new /obj/item/device/robotanalyzer(src)
 
 	// Potato
-	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
+	src.emag += new /obj/item/weapon/gun/energy/retro/mounted(src)
 
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += wire
@@ -63,7 +63,7 @@
 	src.modules += new /obj/item/weapon/gripper/gravekeeper(src)
 
 	// For really persistent looters
-	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
+	src.emag += new /obj/item/weapon/gun/energy/retro/mounted(src)
 
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(25000)
 	synths += wood

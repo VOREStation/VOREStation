@@ -1,80 +1,5 @@
 /mob/living/silicon/robot
-	var/sleeper_state = 0 // 0 for empty, 1 for normal, 2 for mediborg-healthy
-	var/leaping = 0
-	var/pounce_cooldown = 0
-	var/pounce_cooldown_time = 40
-	var/leap_at
-	var/dogborg = FALSE //Dogborg special features (overlays etc.)
-	var/wideborg = FALSE //When the borg simply doesn't use standard 32p size.
-	var/scrubbing = FALSE //Floor cleaning enabled
 	var/datum/matter_synth/water_res = null
-	var/notransform
-	var/original_icon = 'icons/mob/robots.dmi'
-	var/ui_style_vr = FALSE //Do we use our hud icons?
-	var/rest_style = "Default"
-	does_spin = FALSE
-	var/wideborg_dept = 'icons/mob/widerobot_vr.dmi'
-	var/vr_icons = list(
-					   "handy-hydro",
-					   "handy-service",
-					   "handy-clerk",
-					   "handy-janitor",
-					   "handy-miner",
-					   "handy-standard",
-					   "handy-sec",
-					   "mechoid-Standard",
-					   "mechoid-Medical",
-					   "mechoid-Security",
-					   "mechoid-Science",
-					   "mechoid-Engineering",
-					   "mechoid-Miner",
-					   "mechoid-Service",
-					   "mechoid-Janitor",
-					   "mechoid-Combat",
-					   "mechoid-Combat-roll",
-					   "mechoid-Combat-shield",
-					   "Noble-CLN",
-					   "Noble-SRV",
-					   "Noble-DIG",
-					   "Noble-MED",
-					   "Noble-SEC",
-					   "Noble-ENG",
-					   "Noble-STD",
-					   "zoomba-standard",
-					   "zoomba-clerical",
-					   "zoomba-engineering",
-					   "zoomba-janitor",
-					   "zoomba-medical",
-					   "zoomba-crisis",
-					   "zoomba-miner",
-					   "zoomba-research",
-					   "zoomba-security",
-					   "zoomba-service",
-					   "zoomba-combat",
-					   "zoomba-combat-roll",
-					   "zoomba-combat-shield",
-					   "spiderscience",
-					   "uptall-standard",
-					   "uptall-standard2",
-					   "uptall-medical",
-					   "uptall-janitor",
-					   "uptall-crisis",
-					   "uptall-service",
-					   "uptall-engineering",
-					   "uptall-miner",
-					   "uptall-security",
-					   "uptall-science",
-					   "worm-standard",
-					   "worm-engineering",
-					   "worm-janitor",
-					   "worm-crisis",
-					   "worm-miner",
-					   "worm-security",
-					   "worm-combat",
-					   "worm-surgeon",
-					   "worm-service"
-					   )					//List of all used sprites that are in robots_vr.dmi
-
 
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in living_mobs(1))
 	set name = "Robot Nom"
@@ -84,38 +9,6 @@
 	if (stat != CONSCIOUS)
 		return
 	return feed_grabbed_to_self(src,T)
-
-/mob/living/silicon/robot/lay_down()
-	 . = ..()
-	 update_icon()
-
-/mob/living/silicon/robot/verb/rest_style()
-	set name = "Switch Rest Style"
-	set desc = "Select your resting pose."
-	set category = "IC"
-
-	if(!sprite_datum || !sprite_datum.has_rest_sprites || sprite_datum.rest_sprite_options.len <= 1)
-		return
-
-	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
-	if(!rest_style)
-		rest_style = "Default"
-
-/mob/living/silicon/robot/proc/ex_reserve_refill()
-	set name = "Refill Extinguisher"
-	set category = "Object"
-	var/datum/matter_synth/water = water_res
-	for(var/obj/item/weapon/extinguisher/E in module.modules)
-		if(E.reagents.total_volume < E.max_water)
-			if(water && water.energy > 0)
-				var/amount = E.max_water - E.reagents.total_volume
-				if(water.energy < amount)
-					amount = water.energy
-				water.use_charge(amount)
-				E.reagents.add_reagent("water", amount)
-				to_chat(src, "<span class='filter_notice'>You refill the extinguisher using your water reserves.</span>")
-			else
-				to_chat(src, "<span class='filter_notice'>Insufficient water reserves.</span>")
 
 //RIDING
 /datum/riding/dogborg
@@ -166,8 +59,6 @@
 /mob/living/silicon/robot/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
-	if(!dogborg)
-		return FALSE
 	if(lying)
 		return FALSE
 	if(!ishuman(M))

@@ -100,21 +100,21 @@
 			H.forcesay(hit_appends)
 
 //Boop //New and improved, now a simple reagent sniffer.
-/obj/item/device/dogborg/boop_module
+/obj/item/device/boop_module
 	name = "boop module"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "nose"
-	desc = "The BOOP module, a simple reagent and atmosphere sniffer."
+	desc = "The BOOP module, a simple reagent and atmosphere scanner."
 	force = 0
 	throwforce = 0
 	attack_verb = list("nuzzled", "nosed", "booped")
 	w_class = ITEMSIZE_TINY
 
-/obj/item/device/dogborg/boop_module/New()
+/obj/item/device/boop_module/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 
-/obj/item/device/dogborg/boop_module/attack_self(mob/user)
+/obj/item/device/boop_module/attack_self(mob/user)
 	if (!( istype(user.loc, /turf) ))
 		return
 
@@ -124,9 +124,9 @@
 	var/total_moles = environment.total_moles
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.visible_message("<span class='notice'>[user] sniffs the air.</span>", "<span class='notice'>You sniff the air...</span>")
+	user.visible_message("<span class='notice'>[user] scans the air.</span>", "<span class='notice'>You scan the air...</span>")
 
-	to_chat(user, "<span class='notice'><B>Smells like:</B></span>")
+	to_chat(user, "<span class='notice'><B>Scan results:</B></span>")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 	else
@@ -136,7 +136,7 @@
 			to_chat(user, "<span class='notice'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>")
 		to_chat(user, "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>")
 
-/obj/item/device/dogborg/boop_module/afterattack(obj/O, mob/user as mob, proximity)
+/obj/item/device/boop_module/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if (user.stat)
@@ -145,7 +145,7 @@
 		return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.visible_message("<span class='notice'>[user] sniffs at \the [O.name].</span>", "<span class='notice'>You sniff \the [O.name]...</span>")
+	user.visible_message("<span class='notice'>[user] scan at \the [O.name].</span>", "<span class='notice'>You scan \the [O.name]...</span>")
 
 	if(!isnull(O.reagents))
 		var/dat = ""
@@ -156,9 +156,9 @@
 		if(dat)
 			to_chat(user, "<span class='notice'>Your BOOP module indicates: [dat]</span>")
 		else
-			to_chat(user, "<span class='notice'>No active chemical agents smelled in [O].</span>")
+			to_chat(user, "<span class='notice'>No active chemical agents detected in [O].</span>")
 	else
-		to_chat(user, "<span class='notice'>No significant chemical agents smelled in [O].</span>")
+		to_chat(user, "<span class='notice'>No significant chemical agents detected in [O].</span>")
 
 	return
 

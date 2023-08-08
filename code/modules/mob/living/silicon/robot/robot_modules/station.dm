@@ -46,7 +46,7 @@ var/global/list/robot_modules = list(
 	var/no_slip = 0
 	var/list/modules = list()
 	var/list/datum/matter_synth/synths = list()
-	var/obj/item/emag = null
+	var/list/emag = list()
 	var/obj/item/borg/upgrade/jetpack = null
 	var/obj/item/borg/upgrade/advhealth = null
 	var/list/subsystems = list()
@@ -93,6 +93,8 @@ var/global/list/robot_modules = list(
 		R.radio.recalculateChannels()
 	R.choose_icon(0)
 
+	R.scrubbing = FALSE
+
 /obj/item/weapon/robot_module/Destroy()
 	for(var/module in modules)
 		qdel(module)
@@ -100,9 +102,8 @@ var/global/list/robot_modules = list(
 		qdel(synth)
 	modules.Cut()
 	synths.Cut()
-	qdel(emag)
+	emag.Cut()
 	qdel(jetpack)
-	emag = null
 	jetpack = null
 	return ..()
 
@@ -111,7 +112,8 @@ var/global/list/robot_modules = list(
 		for(var/obj/O in modules)
 			O.emp_act(severity)
 	if(emag)
-		emag.emp_act(severity)
+		for(var/obj/O in emag)
+			O.emp_act(severity)
 	if(synths)
 		for(var/datum/matter_synth/S in synths)
 			S.emp_act(severity)
@@ -192,11 +194,11 @@ var/global/list/robot_modules = list(
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/weapon/robot_module/robot/New()
 	..()
-	src.modules += new /obj/item/device/flash/robot(src)
-	src.modules += new /obj/item/weapon/tool/crowbar/cyborg(src)
-	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/gps/robot(src)
-	vr_new() // Vorestation Edit: For modules in robot_modules_vr.dm
+	src.modules += new /obj/item/device/boop_module(src)
+	src.modules += new /obj/item/device/flash/robot(src)
+	src.modules += new /obj/item/weapon/extinguisher(src)
+	src.modules += new /obj/item/weapon/tool/crowbar/cyborg(src)
 
 /obj/item/weapon/robot_module/robot/standard
 	name = "standard robot module"
@@ -204,10 +206,10 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/standard/New()
 	..()
-	src.modules += new /obj/item/weapon/melee/baton/loaded(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
-	src.emag = new /obj/item/weapon/melee/energy/sword(src)
+	src.modules += new /obj/item/weapon/melee/baton/loaded(src)
+	src.emag += new /obj/item/weapon/melee/energy/sword(src)
 
 /obj/item/weapon/robot_module/robot/medical
 	name = "medical robot module"
@@ -223,6 +225,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
 	..()
 	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/device/sleevemate(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
 	src.modules += new /obj/item/weapon/autopsy_scanner(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
@@ -240,9 +243,13 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
 	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
-	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
-	src.emag.reagents.add_reagent("pacid", 250)
-	src.emag.name = "Polyacid spray"
+
+	var/obj/item/weapon/reagent_containers/spray/PS = new /obj/item/weapon/reagent_containers/spray(src)
+	src.emag += PS
+	PS.reagents.add_reagent("pacid", 250)
+	PS.name = "Polyacid spray"
+
+	src.emag += new /obj/item/weapon/dogborg/pounce(src) //Pounce, also, lets not give them polyacid spray
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
 	synths += medicine
@@ -263,6 +270,8 @@ var/global/list/robot_modules = list(
 	src.modules += B
 	src.modules += O
 
+	src.modules += new /obj/item/device/dogborg/sleeper/trauma(src)
+
 /obj/item/weapon/robot_module/robot/medical/surgeon/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
 	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
@@ -272,8 +281,8 @@ var/global/list/robot_modules = list(
 		S.desc = initial(S.desc)
 		S.update_icon()
 
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/spray/PS = src.emag
+	var/obj/item/weapon/reagent_containers/spray/PS = locate() in src.emag
+	if(PS)
 		PS.reagents.add_reagent("pacid", 2 * amount)
 
 	..()
@@ -284,6 +293,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/medical/crisis/New()
 	..()
 	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/device/sleevemate(src)
 	src.modules += new /obj/item/device/reagent_scanner/adv(src)
 	src.modules += new /obj/item/roller_holder(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/crisis(src)
@@ -294,9 +304,10 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/medical(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src) //VOREStation Add - This is kinda important for rescuing people without making it worse for everyone
-	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
-	src.emag.reagents.add_reagent("pacid", 250)
-	src.emag.name = "Polyacid spray"
+	var/obj/item/weapon/reagent_containers/spray/PS = new /obj/item/weapon/reagent_containers/spray(src)
+	src.emag += PS
+	PS.reagents.add_reagent("pacid", 250)
+	PS.name = "Polyacid spray"
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
 	synths += medicine
@@ -326,8 +337,8 @@ var/global/list/robot_modules = list(
 		S.desc = initial(S.desc)
 		S.update_icon()
 
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/spray/PS = src.emag
+	var/obj/item/weapon/reagent_containers/spray/PS = locate() in src.emag
+	if(PS)
 		PS.reagents.add_reagent("pacid", 2 * amount)
 
 	..()
@@ -359,7 +370,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/pipe_dispenser(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
-	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
+	src.emag += new /obj/item/weapon/melee/baton/robot/arm(src)
 	src.modules += new /obj/item/device/geiger(src)
 	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
@@ -449,7 +460,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/spray/pepper(src)
 	src.modules += new /obj/item/weapon/gripper/security(src)
 	src.modules += new /obj/item/device/ticket_printer(src)	//VOREStation Add
-	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src)
+	src.emag += new /obj/item/weapon/gun/energy/laser/mounted(src)
 
 /obj/item/weapon/robot_module/robot/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/flash/F = locate() in src.modules
@@ -478,16 +489,18 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/mop(src)
 	src.modules += new /obj/item/pupscrubber(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
-	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
-	src.emag.reagents.add_reagent("lube", 250)
-	src.emag.name = "Lube spray"
+	var/obj/item/weapon/reagent_containers/spray/LS = new /obj/item/weapon/reagent_containers/spray(src)
+	src.emag += LS
+	LS.reagents.add_reagent("lube", 250)
+	LS.name = "Lube spray"
 
 /obj/item/weapon/robot_module/robot/janitor/general/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/spray/S = src.emag
-		S.reagents.add_reagent("lube", 2 * amount)
+
+	var/obj/item/weapon/reagent_containers/spray/LS = locate() in src.emag
+	if(LS)
+		LS.reagents.add_reagent("lube", 2 * amount)
 
 /obj/item/weapon/robot_module/robot/clerical
 	name = "service robot module"
@@ -547,14 +560,23 @@ var/global/list/robot_modules = list(
 
 	src.modules += new /obj/item/weapon/tray/robotray(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/service(src)
-	src.emag = new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(src)
+	var/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/PB = new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(src)
+	src.emag += PB
 
 	var/datum/reagents/R = new/datum/reagents(50)
-	src.emag.reagents = R
-	R.my_atom = src.emag
+	PB.reagents = R
+	R.my_atom = PB
 	R.add_reagent("beer2", 50)
-	src.emag.name = "Auntie Hong's Final Sip"
-	src.emag.desc = "A bottle of very special mix of alcohol and poison. Some may argue that there's alcohol to die for, but Auntie Hong took it to next level."
+	PB.name = "Auntie Hong's Final Sip"
+	PB.desc = "A bottle of very special mix of alcohol and poison. Some may argue that there's alcohol to die for, but Auntie Hong took it to next level."
+
+/obj/item/weapon/robot_module/robot/clerical/butler/general/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
+	E.reagents.add_reagent("enzyme", 2 * amount)
+
+	var/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/PB = locate() in src.emag
+	if(PB)
+		PB.reagents.add_reagent("beer2", 2 * amount)
 
 /obj/item/weapon/robot_module/robot/clerical/general
 	name = "clerical robot module"
@@ -567,15 +589,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/hand_labeler(src)
 	src.modules += new /obj/item/weapon/stamp(src)
 	src.modules += new /obj/item/weapon/stamp/denied(src)
-	src.emag = new /obj/item/weapon/stamp/chameleon(src)
-	src.emag = new /obj/item/weapon/pen/chameleon(src)
-
-/obj/item/weapon/robot_module/general/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
-	E.reagents.add_reagent("enzyme", 2 * amount)
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/B = src.emag
-		B.reagents.add_reagent("beer2", 2 * amount)
+	src.emag += new /obj/item/weapon/stamp/chameleon(src)
+	src.emag += new /obj/item/weapon/pen/chameleon(src)
 
 /obj/item/weapon/robot_module/robot/miner
 	name = "miner robot module"
@@ -595,7 +610,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	// New Emag gear for the minebots!
-	src.emag = new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
+	src.emag += new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
 
 	// No reason for these, upgrade modules replace them.
 	//src.emag = new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
@@ -637,7 +652,7 @@ var/global/list/robot_modules = list(
 
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
 
-	src.emag = new /obj/item/weapon/hand_tele(src)
+	src.emag += new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
 	synths += nanite
@@ -679,7 +694,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
 	src.modules += new /obj/item/device/ticket_printer(src)	//VOREStation Add
-	src.emag = new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
+	src.emag += new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
 
 	src.modules += new /obj/item/device/dogborg/sleeper/K9/ert(src)
 
@@ -714,8 +729,9 @@ var/global/list/robot_modules = list(
 	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += robot.internals
 
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
-	src.emag.name = "Plasma Cutter"
+	var/obj/item/weapon/pickaxe/plasmacutter/borg/PC = new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
+	src.emag += PC
+	PC.name = "Plasma Cutter"
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
@@ -798,4 +814,4 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/weapon/storage/bag/ore(src)
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
-	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
+	src.emag += new /obj/item/weapon/pickaxe/diamonddrill(src)

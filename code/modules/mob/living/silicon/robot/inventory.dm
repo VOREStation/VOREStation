@@ -224,7 +224,7 @@
 	return
 
 /mob/living/silicon/robot/proc/activate_module(var/obj/item/O)
-	if(!(locate(O) in src.module.modules) && O != src.module.emag)
+	if(!(locate(O) in src.module.modules) && !(locate(O) in src.module.emag))
 		return
 	if(activated(O))
 		to_chat(src, "<span class='notice'>Already activated</span>")

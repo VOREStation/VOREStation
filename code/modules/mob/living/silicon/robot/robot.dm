@@ -33,6 +33,9 @@
 	var/icon_selected = 1								// If icon selection has been completed yet
 	var/icon_selection_tries = 0						// Remaining attempts to select icon before a selection is forced
 	var/list/sprite_extra_customization = list()
+	var/rest_style = "Default"
+	var/notransform
+	does_spin = FALSE
 
 //Hud stuff
 
@@ -57,6 +60,9 @@
 	var/obj/machinery/camera/camera = null
 
 	var/cell_emp_mult = 2
+
+	var/sleeper_state = 0 // 0 for empty, 1 for normal, 2 for mediborg-healthy
+	var/scrubbing = FALSE //Floor cleaning enabled
 
 	// Components are basically robot organs.
 	var/list/components = list()
@@ -97,7 +103,10 @@
 
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
-		/mob/living/silicon/robot/proc/robot_checklaws
+		/mob/living/silicon/robot/proc/robot_checklaws,
+		/mob/living/silicon/robot/proc/robot_mount,
+		/mob/living/proc/toggle_rider_reins,
+		/mob/living/proc/shred_limb
 	)
 
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
@@ -951,16 +960,14 @@
 		else
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
 	if (emagged || emag_items)
-		if(activated(module.emag))
-			dat += text("[module.emag]: <B>Activated</B><BR>")
-		else
-			dat += text("[module.emag]: <A HREF=?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
-/*
-		if(activated(obj))
-			dat += text("[obj]: \[<B>Activated</B> | <A HREF=?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>")
-		else
-			dat += text("[obj]: \[<A HREF=?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>")
-*/
+		for (var/obj in module.emag)
+			if (!obj)
+				dat += text("<B>Resource depleted</B><BR>")
+			else if(activated(obj))
+				dat += text("[obj]: <B>Activated</B><BR>")
+			else
+				dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
+
 	src << browse(dat, "window=robotmod")
 
 
@@ -987,7 +994,7 @@
 		if (!istype(O))
 			return 1
 
-		if(!((O in src.module.modules) || (O == src.module.emag)))
+		if(!((O in src.module.modules) || (O in src.module.emag)))
 			return 1
 
 		if(activated(O))
@@ -1324,3 +1331,26 @@
 
 /mob/living/silicon/robot/get_cell()
 	return cell
+
+/mob/living/silicon/robot/lay_down()
+	 . = ..()
+	 update_icon()
+
+/mob/living/silicon/robot/verb/rest_style()
+	set name = "Switch Rest Style"
+	set desc = "Select your resting pose."
+	set category = "IC"
+
+	if(!sprite_datum || !sprite_datum.has_rest_sprites || sprite_datum.rest_sprite_options.len < 1)
+		to_chat(src, "<span class='notice'>Your current appearance doesn't have any resting styles!</span>")
+		rest_style = "Default"
+		return
+
+	if(sprite_datum.rest_sprite_options.len == 1)
+		to_chat(src, "<span class='notice'>Your current appearance only has a single resting style!</span>")
+		rest_style = "Default"
+		return
+
+	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
+	if(!rest_style)
+		rest_style = "Default"
