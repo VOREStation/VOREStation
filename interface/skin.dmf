@@ -1291,6 +1291,30 @@ window "outputwindow"
 		enable-http-images = true
 		max-lines = 0
 
+window "prefs_markings_subwindow"
+	elem "prefs_markings_subwindow"
+		type = MAIN
+		pos = 281,0
+		size = 400x400
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "Marking Selection Editing"
+		statusbar = false
+		can-minimize = false
+		outer-size = 416x439
+		inner-size = 400x400
+	elem "prefs_markings_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 400x400
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
+		saved-params = ""
+
 window "rpane"
 	elem "rpane"
 		type = MAIN

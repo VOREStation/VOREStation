@@ -37,6 +37,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_wing3 = 30	// Wing tertiary color
 	var/g_wing3 = 30	// Wing tertiary color
 	var/b_wing3 = 30	// Wing tertiary color
+	var/datum/browser/markings_subwindow = null
 
 // Sanitize ear/wing/tail styles
 /datum/preferences/proc/sanitize_body_styles()
@@ -74,6 +75,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed))) //VOREStation Edit: Custom Species
 			continue
 		.[instance.name] = instance
+
+/datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000")
+	var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[marking]
+	var/list/new_marking = marking_value||mark_datum.body_parts
+	for (var/NM in new_marking)
+		if (marking_value && !islist(new_marking[NM])) continue
+		new_marking[NM] = list("on" = (!change_on && marking_value) ? marking_value[NM]["on"] : on, "color" = (!change_color && marking_value) ? marking_value[NM]["color"] : color)
+	if (change_color)
+		new_marking["color"] = color
+	return new_marking
 
 /datum/category_item/player_setup_item/general/body
 	name = "Body"
@@ -236,6 +247,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.rlimb_data) pref.rlimb_data = list()
 	if(!pref.body_markings) pref.body_markings = list()
 	else pref.body_markings &= body_marking_styles_list
+	for (var/M in pref.body_markings) //VOREStation Edit
+		if (!islist(pref.body_markings[M]))
+			var/col = istext(pref.body_markings[M]) ? pref.body_markings[M] : "#000000"
+			pref.body_markings[M] = pref.mass_edit_marking_list(M,color=col)
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "000"
 
@@ -387,12 +402,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	for(var/M in pref.body_markings)
 		priority += 1
 		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
-		var/mark_color = "[pref.body_markings[M]]"
+		//var/mark_color = "[pref.body_markings[M]]" //VOREStation Edit
 
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
-				O.markings[M] = list("color" = mark_color, "datum" = mark_datum, "priority" = priority)
+				O.markings[M] = list("color" = pref.body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = pref.body_markings[M][BP]["on"])
 	character.markings_len = priority
 
 	var/list/last_descriptors = list()
@@ -609,7 +624,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
 	. += "<table>"
 	for(var/M in pref.body_markings)
-		. += "<tr><td>[M]</td><td>[pref.body_markings.len > 1 ? "<a href='?src=\ref[src];marking_up=[M]'>&#708;</a> <a href='?src=\ref[src];marking_down=[M]'>&#709;</a> <a href='?src=\ref[src];marking_move=[M]'>mv</a> " : ""]<a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Color</a>[color_square(hex = pref.body_markings[M])]</td></tr>"
+		. += "<tr><td>[M]</td><td>[pref.body_markings.len > 1 ? "<a href='?src=\ref[src];marking_up=[M]'>&#708;</a> <a href='?src=\ref[src];marking_down=[M]'>&#709;</a> <a href='?src=\ref[src];marking_move=[M]'>mv</a> " : ""]<a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Color</a>[color_square(hex = pref.body_markings[M]["color"] ? pref.body_markings[M]["color"] : "#000000")] - <a href='?src=\ref[src];marking_submenu=[M]'>Customize</a></td></tr>"
 
 	. += "</table>"
 	. += "<br>"
@@ -850,7 +865,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		*/ //VOREStation Removal End
 		var/new_marking = tgui_input_list(user, "Choose a body marking:", "Character Preference", usable_markings)
 		if(new_marking && CanUseTopic(user))
-			pref.body_markings[new_marking] = "#000000" //New markings start black
+			pref.body_markings[new_marking] = pref.mass_edit_marking_list(new_marking) //New markings start black
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["marking_up"])
@@ -886,15 +901,68 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["marking_remove"])
 		var/M = href_list["marking_remove"]
+		winshow(user, "prefs_markings_subwindow", FALSE)
 		pref.body_markings -= M
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["marking_color"])
 		var/M = href_list["marking_color"]
-		var/mark_color = input(user, "Choose the [M] color: ", "Character Preference", pref.body_markings[M]) as color|null
+		if (isnull(pref.body_markings[M]["color"]))
+			if (tgui_alert(user, "You currently have customized marking colors. This will reset each bodypart's color. Are you sure you want to continue?","Reset Bodypart Colors",list("Yes","No")) == "No")
+				return TOPIC_NOACTION
+		var/mark_color = input(user, "Choose the [M] color: ", "Character Preference", pref.body_markings[M]["color"]) as color|null
 		if(mark_color && CanUseTopic(user))
-			pref.body_markings[M] = "[mark_color]"
+			pref.body_markings[M] = pref.mass_edit_marking_list(M,FALSE,TRUE,pref.body_markings[M],color="[mark_color]")
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["marking_submenu"])
+		var/M = href_list["marking_submenu"]
+		markings_subwindow(user, M)
+		return TOPIC_NOACTION
+
+	else if (href_list["toggle_all_marking_selection"])
+		var/toggle = text2num(href_list["toggle"])
+		var/marking = href_list["toggle_all_marking_selection"]
+		if (pref.body_markings.Find(marking) == 0)
+			winshow(user, "prefs_markings_subwindow", FALSE)
+			return TOPIC_NOACTION
+		pref.body_markings[marking] = pref.mass_edit_marking_list(marking,TRUE,FALSE,pref.body_markings[marking],on=toggle)
+		markings_subwindow(user, marking)
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["color_all_marking_selection"])
+		var/marking = href_list["color_all_marking_selection"]
+		if (pref.body_markings.Find(marking) == 0)
+			winshow(user, "prefs_markings_subwindow", FALSE)
+			return TOPIC_NOACTION
+		var/mark_color = input(user, "Choose the [marking] color: ", "Character Preference", pref.body_markings[marking]["color"]) as color|null
+		if(mark_color && CanUseTopic(user))
+			pref.body_markings[marking] = pref.mass_edit_marking_list(marking,FALSE,TRUE,pref.body_markings[marking],color="[mark_color]")
+			markings_subwindow(user, marking)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["zone_marking_color"])
+		var/marking = href_list["zone_marking_color"]
+		if (pref.body_markings.Find(marking) == 0)
+			winshow(user, "prefs_markings_subwindow", FALSE)
+			return TOPIC_NOACTION
+		var/zone = href_list["zone"]
+		pref.body_markings[marking]["color"] = null //turn off the color button outside the submenu
+		var/mark_color = input(user, "Choose the [marking] color: ", "Character Preference", pref.body_markings[marking]["color"]) as color|null
+		if(mark_color && CanUseTopic(user))
+			pref.body_markings[marking][zone]["color"] = "[mark_color]"
+			markings_subwindow(user, marking)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["zone_marking_toggle"])
+		var/marking = href_list["zone_marking_toggle"]
+		if (pref.body_markings.Find(marking) == 0)
+			winshow(user, "prefs_markings_subwindow", FALSE)
+			return TOPIC_NOACTION
+		var/zone = href_list["zone"]
+		pref.body_markings[marking][zone]["on"] = text2num(href_list["toggle"])
+		markings_subwindow(user, marking)
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["reset_limbs"])
 		reset_limbs()
@@ -1319,3 +1387,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "</center></body>"
 
 	user << browse(dat, "window=species;size=700x400")
+
+/datum/category_item/player_setup_item/general/body/proc/markings_subwindow(mob/user, marking)
+	var/static/list/part_to_string = list(BP_HEAD = "Head", BP_TORSO = "Upper Body", BP_GROIN = "Lower Body", BP_R_ARM = "Right Arm", BP_L_ARM = "Left Arm", BP_R_HAND = "Right Hand", BP_L_HAND = "Left Hand", BP_R_LEG = "Right Leg", BP_L_LEG = "Left Leg", BP_R_FOOT = "Right Foot", BP_L_FOOT = "Left Foot")
+	var/dat = "<html><body><center><h2>Editing '[marking]'</h2><br>"
+	dat += "<a href='?src=\ref[src];toggle_all_marking_selection=[marking];toggle=1'>Enable All</a> "
+	dat += "<a href='?src=\ref[src];toggle_all_marking_selection=[marking];toggle=0'>Disable All</a> "
+	dat += "<a href='?src=\ref[src];color_all_marking_selection=[marking]'>Change Color of All</a><br></center>"
+	dat += "<br>"
+	for (var/bodypart in pref.body_markings[marking])
+		if (!islist(pref.body_markings[marking][bodypart])) continue
+		dat += "[part_to_string[bodypart]]: [color_square(hex = pref.body_markings[marking][bodypart]["color"])] "
+		dat += "<a href='?src=\ref[src];zone_marking_color=[marking];zone=[bodypart]'>Change</a> "
+		dat += "<a href='?src=\ref[src];zone_marking_toggle=[marking];zone=[bodypart];toggle=[!pref.body_markings[marking][bodypart]["on"]]'>[pref.body_markings[marking][bodypart]["on"] ? "Toggle Off" : "Toggle On"]</a><br>"
+
+	dat += "</body></html>"
+	winshow(user, "prefs_markings_subwindow", TRUE)
+	pref.markings_subwindow = new(user, "prefs_markings_browser", "Marking Editor", 400, 400)
+	pref.markings_subwindow.set_content(dat)
+	pref.markings_subwindow.open(FALSE)
+	onclose(user, "prefs_markings_subwindow", src)
