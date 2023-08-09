@@ -332,7 +332,7 @@
 
 /datum/robot_sprite/clerical/drone
 	name = "Drone"
-	sprite_icon_state = "drone-crisis"
+	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/clerical/glitterfly
