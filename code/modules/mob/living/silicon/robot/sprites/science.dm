@@ -134,7 +134,7 @@
 
 /datum/robot_sprite/dogborg/science/darkhound
 	name = "SciHoundDark"
-	sprite_icon_state = "darkhound"
+	sprite_icon_state = "hounddark"
 	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE
 

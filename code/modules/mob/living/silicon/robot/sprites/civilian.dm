@@ -229,7 +229,10 @@
 /datum/robot_sprite/dogborg/service/booze/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
 		ourborg.rest_style = "Default"
-	return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-rest"
+	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
+		return ..()
+	else
+		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-rest"
 
 /datum/robot_sprite/dogborg/service/booze/handle_extra_customization(var/mob/living/silicon/robot/ourborg)
 	var/choice = tgui_input_list(ourborg, "Choose your drink!", "Drink Choice", booze_options)
