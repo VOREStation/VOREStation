@@ -251,11 +251,13 @@
 /datum/robot_sprite/dogborg/tall/service/raptor
 	name = "Raptor V-4"
 	sprite_icon_state = "raptor"
+	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/service/fancyraptor
 	name = "Raptor V-4000"
 	sprite_icon_state = "fancyraptor"
+	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/service/meka

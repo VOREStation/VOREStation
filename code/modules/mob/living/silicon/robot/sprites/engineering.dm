@@ -166,6 +166,7 @@
 /datum/robot_sprite/dogborg/tall/engineering/raptor
 	name = "Raptor V-4"
 	sprite_icon_state = "raptor"
+	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/engineering/meka

@@ -162,7 +162,7 @@
 
 /obj/structure/door_assembly/attack_robot(mob/living/silicon/robot/user)
 	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/weapon/robot_module/robot/engineering)) \
-	|| istype(user.module,/obj/item/weapon/robot_module/drone))) //Only dron (and engiborg) needs this.
+	|| istype(user.module,/obj/item/weapon/robot_module/drone))) //Only drone (and engiborg) needs this.
 		rename_door(user)
 
 /obj/structure/door_assembly/attackby(obj/item/W as obj, mob/user as mob)

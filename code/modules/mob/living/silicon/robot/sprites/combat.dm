@@ -87,12 +87,32 @@
 /datum/robot_sprite/dogborg/tall/combat
 	module_type = "Combat"
 	sprite_icon = 'icons/mob/robot/combat_large.dmi'
+	has_custom_equipment_sprites = TRUE
 
 	var/has_gun_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	if(has_gun_sprite && (istype(ourborg.module_active, /obj/item/weapon/gun/energy/laser/mounted) || istype(ourborg.module_active, /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun) || istype(ourborg.module_active, /obj/item/weapon/gun/energy/lasercannon/mounted)))
 		ourborg.add_overlay("[sprite_icon_state]-gun")
+
+/datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+	if(!has_custom_equipment_sprites)
+		return
+
+	..()
+
+	var/obj/item/weapon/combat_borgblade/CBB = locate() in module.modules
+	if(CBB)
+		CBB.name = "sword tail"
+		CBB.desc = "A glowing dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
+	var/obj/item/weapon/borg_combat_shocker/BCS = locate() in module.modules
+	if(BCS)
+		BCS.name = "combat jaws"
+		BCS.desc = "Shockingly chompy!"
+		BCS.icon_state = "ertjaws"
+		BCS.hitsound = 'sound/weapons/bite.ogg'
+		BCS.attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+		BCS.dogborg = TRUE
 
 /datum/robot_sprite/dogborg/tall/combat/derg
 	name = "ERT"

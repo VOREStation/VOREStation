@@ -98,6 +98,20 @@
 	module_type = "Research"
 	sprite_icon = 'icons/mob/robot/science_wide.dmi'
 
+/datum/robot_sprite/dogborg/science/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+	if(!has_custom_equipment_sprites)
+		return
+
+	..()
+
+	var/obj/item/weapon/shockpaddles/robot/jumper/J = locate() in module.modules
+	if(J)
+		J.name = "jumper paws"
+		J.desc = "Zappy paws. For rebooting a full body prostetic."
+		J.icon = 'icons/mob/dogborg_vr.dmi'
+		J.icon_state = "defibpaddles0"
+		J.attack_verb = list("batted", "pawed", "bopped", "whapped")
+
 /datum/robot_sprite/dogborg/science/vale
 	name = "Research Hound"
 	sprite_icon_state = "vale"
@@ -134,9 +148,24 @@
 	module_type = "Research"
 	sprite_icon = 'icons/mob/robot/science_large.dmi'
 
+/datum/robot_sprite/dogborg/tall/science/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+	if(!has_custom_equipment_sprites)
+		return
+
+	..()
+
+	var/obj/item/weapon/shockpaddles/robot/jumper/J = locate() in module.modules
+	if(J)
+		J.name = "jumper paws"
+		J.desc = "Zappy paws. For rebooting a full body prostetic."
+		J.icon = 'icons/mob/dogborg_vr.dmi'
+		J.icon_state = "defibpaddles0"
+		J.attack_verb = list("batted", "pawed", "bopped", "whapped")
+
 /datum/robot_sprite/dogborg/tall/science/raptor
 	name = "Raptor V-4"
 	sprite_icon_state = "raptor"
+	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/science/meka

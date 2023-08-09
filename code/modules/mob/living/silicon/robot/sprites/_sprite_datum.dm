@@ -17,6 +17,7 @@
 	var/has_dead_sprite = FALSE
 	var/has_dead_sprite_overlay = FALSE
 	var/has_extra_customization = FALSE
+	var/has_custom_equipment_sprites = FALSE
 	var/vis_height = 32
 	var/pixel_x = 0
 
@@ -72,6 +73,9 @@
 /datum/robot_sprite/proc/handle_extra_customization(var/mob/living/silicon/robot/ourborg)
 	return
 
+/datum/robot_sprite/proc/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+	return
+
 // Dogborgs and not-dogborgs that use dogborg stuff. Oh no.
 // Not really necessary to be used by any specific sprite actually, even newly added dogborgs.
 // Mostly a combination of all features dogborgs had prior to conversion to datums for convinience of conversion itself.
@@ -82,6 +86,7 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
+	has_custom_equipment_sprites = TRUE
 	pixel_x = -16
 
 /datum/robot_sprite/dogborg/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
@@ -98,8 +103,23 @@
 /datum/robot_sprite/dogborg/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
 	return "[sprite_icon_state]-sleeper"
 
+/datum/robot_sprite/dogborg/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+	if(!has_custom_equipment_sprites)
+		return
+
+	var/obj/item/weapon/tool/crowbar/cyborg/C = locate() in module.modules
+	if(C)
+		C.name = "puppy jaws"
+		C.desc = "The jaws of a small dog. Still strong enough to pry things."
+		C.icon = 'icons/mob/dogborg_vr.dmi'
+		C.icon_state = "smalljaws_textless"
+		C.hitsound = 'sound/weapons/bite.ogg'
+		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+
+
 /datum/robot_sprite/dogborg/tall
 	has_dead_sprite_overlay = FALSE
+	has_custom_equipment_sprites = FALSE
 	vis_height = 64
 
 

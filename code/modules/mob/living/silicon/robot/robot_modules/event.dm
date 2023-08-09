@@ -5,7 +5,7 @@
 	name = "lost robot module"
 	hide_on_manifest = TRUE
 
-/obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/lost/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// Sec
 	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
@@ -14,6 +14,7 @@
 
 	// Med
 	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/lost(src)
 
 	// Engi
@@ -36,11 +37,14 @@
 	C.synths = list(wire)
 	src.modules += C
 
+	src.modules += new /obj/item/device/dogborg/sleeper(src)
+	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+
 /obj/item/weapon/robot_module/robot/gravekeeper
 	name = "gravekeeper robot module"
 	hide_on_manifest = TRUE
 
-/obj/item/weapon/robot_module/robot/gravekeeper/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// For fending off animals and looters
 	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)

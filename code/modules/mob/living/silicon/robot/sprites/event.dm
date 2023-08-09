@@ -28,6 +28,20 @@
 	module_type = "Lost"
 	sprite_icon = 'icons/mob/robot/lost_wide.dmi'
 
+/datum/robot_sprite/dogborg/lost/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+	if(!has_custom_equipment_sprites)
+		return
+
+	..()
+
+	var/obj/item/weapon/shockpaddles/robot/SP = locate() in module.modules
+	if(SP)
+		SP.name = "paws of life"
+		SP.desc = "Zappy paws. For fixing cardiac arrest."
+		SP.icon = 'icons/mob/dogborg_vr.dmi'
+		SP.icon_state = "defibpaddles0"
+		SP.attack_verb = list("batted", "pawed", "bopped", "whapped")
+
 /datum/robot_sprite/dogborg/lost/stray
 	name = "Stray"
 	sprite_icon_state = "stray"

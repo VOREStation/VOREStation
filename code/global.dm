@@ -143,7 +143,7 @@ var/list/robot_module_types = list(
 )
 // List of modules added during code red
 var/list/emergency_module_types = list(
-	"Combat", "ERT"
+	"Combat"
 )
 // List of modules available to AI shells
 var/list/shell_module_types = list(
@@ -151,7 +151,7 @@ var/list/shell_module_types = list(
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(
-	"Lost", "Stray"
+	"Lost"
 )
 
 // Some scary sounds.
