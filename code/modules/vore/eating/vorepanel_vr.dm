@@ -149,14 +149,14 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		inside["contents"] = inside_contents
 	data["inside"] = inside
 
-	var/is_dogborg = FALSE
+	var/is_cyborg = FALSE
 	var/is_vore_simple_mob = FALSE
 	if(isrobot(host))
-		is_dogborg = TRUE
+		is_cyborg = TRUE
 	else if(istype(host, /mob/living/simple_mob/vore))	//So far, this does nothing. But, creating this for future belly work
 		is_vore_simple_mob = TRUE
 	data["host_mobtype"] = list(
-		"is_dogborg" = is_dogborg,
+		"is_cyborg" = is_cyborg,
 		"is_vore_simple_mob" = is_vore_simple_mob
 	)
 

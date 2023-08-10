@@ -13,7 +13,7 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane", "anti_toxin", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
+	var/list/injection_chems = list("inaprovaline", "bicaridine", "kelotane", "anti_toxin", "dexalin", "tricordrazine", "spaceacillin", "tramadol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
@@ -736,20 +736,23 @@
 	delivery = TRUE
 	recycles = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
+/obj/item/device/dogborg/sleeper/supply //Miner borg belly
 	name = "Supply Satchel"
 	desc = "A mounted survival unit with fuel processor."
 	icon_state = "sleeperc"
 	injection_chems = list("glucose","inaprovaline","tricordrazine")
 	max_item_count = 10
 	recycles = FALSE
+	medsensor = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/brewer
+/obj/item/device/dogborg/sleeper/brewer
 	name = "Brew Belly"
 	desc = "A mounted drunk tank unit with fuel processor."
 	icon_state = "brewer"
+	injection_chems = null //So they don't have all the same chems as the medihound!
 	max_item_count = 10
 	recycles = FALSE
+	medsensor = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor/generic
 	name = "Internal Cache"
@@ -768,6 +771,6 @@
 	name = "Recovery Belly"
 	desc = "A downgraded model of the medihound sleeper."
 	icon_state = "sleeper"
-	injection_chems = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
+	injection_chems = list("inaprovaline", "dexalin", "tricordrazine", "spaceacillin", "oxycodone")
 
 #undef SLEEPER_INJECT_COST

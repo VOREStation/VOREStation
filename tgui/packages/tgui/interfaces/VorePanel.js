@@ -524,7 +524,7 @@ const VoreSelectedBellyOptions = (props, context) => {
   const { act, data } = useBackend(context);
 
   const { host_mobtype } = data;
-  const { is_dogborg, is_vore_simple_mob } = host_mobtype;
+  const { is_cyborg, is_vore_simple_mob } = host_mobtype;
   const { belly } = props;
   const {
     can_taste,
@@ -732,7 +732,7 @@ const VoreSelectedBellyOptions = (props, context) => {
 const VoreSelectedMobTypeBellyButtons = (props, context) => {
   const { act, data } = useBackend(context);
   const { host_mobtype } = data;
-  const { is_dogborg, is_vore_simple_mob } = host_mobtype;
+  const { is_cyborg, is_vore_simple_mob } = host_mobtype;
   const { belly } = props;
   const {
     silicon_belly_overlay_preference,
@@ -742,9 +742,9 @@ const VoreSelectedMobTypeBellyButtons = (props, context) => {
     override_min_prey_num,
   } = belly;
 
-  if (is_dogborg) {
+  if (is_cyborg) {
     return (
-      <Section title={'Dogborg Controls'} width={'80%'}>
+      <Section title={'Cyborg Controls'} width={'80%'}>
         <LabeledList>
           <LabeledList.Item label="Toggle Belly Overlay Mode">
             <Button
