@@ -149,15 +149,14 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		inside["contents"] = inside_contents
 	data["inside"] = inside
 
-	var/is_dogborg = FALSE
+	var/is_cyborg = FALSE
 	var/is_vore_simple_mob = FALSE
 	if(isrobot(host))
-		var/mob/living/silicon/robot/R = host
-		is_dogborg = R.dogborg
+		is_cyborg = TRUE
 	else if(istype(host, /mob/living/simple_mob/vore))	//So far, this does nothing. But, creating this for future belly work
 		is_vore_simple_mob = TRUE
 	data["host_mobtype"] = list(
-		"is_dogborg" = is_dogborg,
+		"is_cyborg" = is_cyborg,
 		"is_vore_simple_mob" = is_vore_simple_mob
 	)
 
@@ -1147,7 +1146,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(belly_choice == null)
 				return FALSE
 			host.vore_selected.silicon_belly_overlay_preference = belly_choice
-			host.updateicon()
+			host.update_icon()
 			. = TRUE
 		if("b_min_belly_number_flat")
 			var/new_min_belly = tgui_input_number(user, "Choose the amount of prey your belly must contain \
@@ -1157,7 +1156,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				return FALSE
 			var/new_new_min_belly = CLAMP(new_min_belly, 1, 100)	//Clamping at 100 rather than infinity. Should be close to infinity tho.
 			host.vore_selected.visible_belly_minimum_prey = new_new_min_belly
-			host.updateicon()
+			host.update_icon()
 			. = TRUE
 		if("b_min_belly_prey_size")
 			var/new_belly_size = tgui_input_number(user, "Choose the required size prey must be to trigger belly overlay, \
@@ -1169,11 +1168,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			else
 				var/new_new_belly_size = CLAMP(new_belly_size, 25, 200)
 				host.vore_selected.overlay_min_prey_size = (new_new_belly_size/100)
-			host.updateicon()
+			host.update_icon()
 			. = TRUE
 		if("b_override_min_belly_prey_size")
 			host.vore_selected.override_min_prey_size = !host.vore_selected.override_min_prey_size
-			host.updateicon()
+			host.update_icon()
 			. = TRUE
 		if("b_min_belly_number_override")
 			var/new_min_prey = tgui_input_number(user, "Choose the amount of prey your belly must contain to override min prey size \
@@ -1183,7 +1182,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				return FALSE
 			var/new_new_min_prey = CLAMP(new_min_prey, 1, 100)	//Clamping at 100 rather than infinity. Should be close to infinity tho.
 			host.vore_selected.override_min_prey_num = new_new_min_prey
-			host.updateicon()
+			host.update_icon()
 			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore

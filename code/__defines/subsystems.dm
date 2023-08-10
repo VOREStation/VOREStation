@@ -52,43 +52,44 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
-#define INIT_ORDER_WEBHOOKS		50
-#define INIT_ORDER_SQLITE		40
-#define INIT_ORDER_GARBAGE		39
-#define INIT_ORDER_MEDIA_TRACKS	38 // Gotta get that lobby music up, yo
-#define INIT_ORDER_INPUT		37
-#define INIT_ORDER_CHEMISTRY	35
-#define INIT_ORDER_VIS			32
-#define INIT_ORDER_MAPPING		25
-#define INIT_ORDER_SOUNDS		23
-#define INIT_ORDER_INSTRUMENTS	22
-#define INIT_ORDER_DECALS		20
-#define INIT_ORDER_PLANTS		19 // Must initialize before atoms.
-#define INIT_ORDER_PLANETS		18
-#define INIT_ORDER_JOB			17
-#define INIT_ORDER_ALARM		16 // Must initialize before atoms.
-#define INIT_ORDER_TRANSCORE	15 // VOREStation Edit
-#define INIT_ORDER_ATOMS		14 // VOREStation Edit
-#define INIT_ORDER_MACHINES		10
-#define INIT_ORDER_SHUTTLES		3
-#define INIT_ORDER_TIMER		1
-#define INIT_ORDER_DEFAULT		0
-#define INIT_ORDER_LIGHTING		0
-#define INIT_ORDER_AIR			-1
-#define INIT_ORDER_ASSETS		-3
-#define INIT_ORDER_HOLOMAPS		-5
-#define INIT_ORDER_NIGHTSHIFT	-6
-#define INIT_ORDER_OVERLAY		-7
-#define INIT_ORDER_XENOARCH		-20
-#define INIT_ORDER_CIRCUIT		-21
-#define INIT_ORDER_AI			-22
-#define INIT_ORDER_AI_FAST		-23
-#define INIT_ORDER_GAME_MASTER	-24
-#define INIT_ORDER_PERSISTENCE	-25
-#define INIT_ORDER_SKYBOX		-30 //Visual only, irrelevant to gameplay, but needs to be late enough to have overmap populated fully
-#define INIT_ORDER_TICKER		-50
-#define INIT_ORDER_MAPRENAME	-60 //Initiating after Ticker to ensure everything is loaded and everything we rely on us working
-#define INIT_ORDER_CHAT			-100 //Should be last to ensure chat remains smooth during init.
+#define INIT_ORDER_WEBHOOKS			50
+#define INIT_ORDER_SQLITE			40
+#define INIT_ORDER_GARBAGE			39
+#define INIT_ORDER_MEDIA_TRACKS		38 // Gotta get that lobby music up, yo
+#define INIT_ORDER_INPUT			37
+#define INIT_ORDER_CHEMISTRY		35
+#define INIT_ORDER_ROBOT_SPRITES	34
+#define INIT_ORDER_VIS				32
+#define INIT_ORDER_MAPPING			25
+#define INIT_ORDER_SOUNDS			23
+#define INIT_ORDER_INSTRUMENTS		22
+#define INIT_ORDER_DECALS			20
+#define INIT_ORDER_PLANTS			19 // Must initialize before atoms.
+#define INIT_ORDER_PLANETS			18
+#define INIT_ORDER_JOB				17
+#define INIT_ORDER_ALARM			16 // Must initialize before atoms.
+#define INIT_ORDER_TRANSCORE		15
+#define INIT_ORDER_ATOMS			14
+#define INIT_ORDER_MACHINES			10
+#define INIT_ORDER_SHUTTLES			3
+#define INIT_ORDER_TIMER			1
+#define INIT_ORDER_DEFAULT			0
+#define INIT_ORDER_LIGHTING			0
+#define INIT_ORDER_AIR				-1
+#define INIT_ORDER_ASSETS			-3
+#define INIT_ORDER_HOLOMAPS			-5
+#define INIT_ORDER_NIGHTSHIFT		-6
+#define INIT_ORDER_OVERLAY			-7
+#define INIT_ORDER_XENOARCH			-20
+#define INIT_ORDER_CIRCUIT			-21
+#define INIT_ORDER_AI				-22
+#define INIT_ORDER_AI_FAST			-23
+#define INIT_ORDER_GAME_MASTER		-24
+#define INIT_ORDER_PERSISTENCE		-25
+#define INIT_ORDER_SKYBOX			-30 //Visual only, irrelevant to gameplay, but needs to be late enough to have overmap populated fully
+#define INIT_ORDER_TICKER			-50
+#define INIT_ORDER_MAPRENAME		-60 //Initiating after Ticker to ensure everything is loaded and everything we rely on us working
+#define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
 
 

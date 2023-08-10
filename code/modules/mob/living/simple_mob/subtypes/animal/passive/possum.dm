@@ -168,7 +168,7 @@
 				poss_ai.play_dead_until = world.time + rand(1 MINUTE, 2 MINUTES)
 		update_icon()
 
-/mob/living/simple_mob/animal/passive/opossum/updateicon()
+/mob/living/simple_mob/animal/passive/opossum/update_icon()
 	update_icon()
 
 /mob/living/simple_mob/animal/passive/opossum/update_icon()

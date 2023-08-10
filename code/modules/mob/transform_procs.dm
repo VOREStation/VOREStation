@@ -50,7 +50,7 @@
 		return
 	for(var/t in organs)
 		qdel(t)
-	
+
 	//VOREStation Edit Start - Hologram examine flavor
 	var/mob/living/silicon/ai/O = ..(move)
 	if(O)
@@ -195,7 +195,7 @@
 		O.fuzzy = B.fuzzy								//VOREStation Addition: add size prefs to borgs
 
 	callHook("borgify", list(O))
-	O.Namepick()
+	O.namepick()
 
 	spawn(0)	// Mobs still instantly del themselves, thus we need to spawn or O will never be returned
 		qdel(src)
