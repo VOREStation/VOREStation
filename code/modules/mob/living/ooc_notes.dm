@@ -72,7 +72,7 @@
 			</head>"}
 
 	dat += {"<body>
-			<b><font size='3px'>[src.name]'s OOC notes</font><br>"}
+			<b><font size='3px'>[src.name]'s OOC notes</font></b><br>"}
 	if(user == src)
 		dat += {"
 				<table>
