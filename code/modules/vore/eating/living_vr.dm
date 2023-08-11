@@ -1066,6 +1066,20 @@
 		display_voreprefs(usr)
 	if(href_list["ooc_notes"])
 		src.Examine_OOC()
+	if(href_list["edit_ooc_notes"])
+		if(usr == src)
+			set_metainfo()
+	if(href_list["edit_ooc_note_likes"])
+		if(usr == src)
+			set_metainfo_likes()
+	if(href_list["edit_ooc_note_dislikes"])
+		if(usr == src)
+			set_metainfo_dislikes()
+	if(href_list["save_ooc_panel"])
+		if(usr == src)
+			save_ooc_panel()
+
+
 	return ..()
 
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument

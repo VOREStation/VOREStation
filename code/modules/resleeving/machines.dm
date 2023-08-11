@@ -111,6 +111,8 @@
 
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
+	H.ooc_notes_likes = current_project.body_ooclikes
+	H.ooc_notes_dislikes = current_project.body_oocdislikes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult, FALSE)
 	H.appearance_flags = current_project.aflags
@@ -332,6 +334,8 @@
 
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
+	H.ooc_notes_likes = current_project.body_ooclikes
+	H.ooc_notes_dislikes = current_project.body_oocdislikes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult)
 	H.appearance_flags = current_project.aflags
@@ -580,6 +584,9 @@
 	MR.mind_ref.transfer_to(occupant) //Does mind+ckey+client.
 	occupant.identifying_gender = MR.id_gender
 	occupant.ooc_notes = MR.mind_oocnotes
+	occupant.ooc_notes_likes = MR.mind_ooclikes
+	occupant.ooc_notes_dislikes = MR.mind_oocdislikes
+
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 	if(MR.one_time)
 		var/how_long = round((world.time - MR.last_update)/10/60)

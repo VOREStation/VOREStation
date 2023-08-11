@@ -149,6 +149,9 @@
 	// Vorestation Edit: Meta Info for pAI
 	if (client.prefs)
 		ooc_notes = client.prefs.metadata
+		ooc_notes_likes = client.prefs.metadata_likes
+		ooc_notes_dislikes = client.prefs.metadata_dislikes
+
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add
 
 // this function shows the information about being silenced as a pAI in the Status panel

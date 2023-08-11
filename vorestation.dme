@@ -2806,6 +2806,7 @@
 #include "code\modules\mob\living\living_vr.dm"
 #include "code\modules\mob\living\login.dm"
 #include "code\modules\mob\living\logout.dm"
+#include "code\modules\mob\living\ooc_notes.dm"
 #include "code\modules\mob\living\organs.dm"
 #include "code\modules\mob\living\riding.dm"
 #include "code\modules\mob\living\say.dm"
