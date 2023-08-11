@@ -504,7 +504,7 @@
 		var/mob/living/silicon/pred = loc.loc //Thing holding the belly!
 		var/obj/item/device/dogborg/sleeper/belly = loc //The belly!
 
-		var/confirm = tgui_alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", list("Okay", "Cancel"))
+		var/confirm = tgui_alert(src, "You're in a cyborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != belly)
 			return
 		//Actual escaping
@@ -661,7 +661,7 @@
 	else
 		belly.nom_mob(prey, user)
 
-	user.updateicon()
+	user.update_icon()
 
 	// Inform Admins
 	if(pred == user)
@@ -1057,15 +1057,32 @@
 
 /mob/living/examine(mob/user, infix, suffix)
 	. = ..()
+	if(custom_link)
+		. += "Custom link: [custom_link]"
 	if(ooc_notes)
 		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
 	. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
 	if(href_list["ooc_notes"])
 		src.Examine_OOC()
+	if(href_list["edit_ooc_notes"])
+		if(usr == src)
+			set_metainfo()
+	if(href_list["edit_ooc_note_likes"])
+		if(usr == src)
+			set_metainfo_likes()
+	if(href_list["edit_ooc_note_dislikes"])
+		if(usr == src)
+			set_metainfo_dislikes()
+	if(href_list["save_ooc_panel"])
+		if(usr == src)
+			save_ooc_panel()
+
+
 	return ..()
 
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument

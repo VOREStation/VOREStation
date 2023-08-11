@@ -58,7 +58,7 @@ In short:
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
-		A.updateicon()
+		A.update_icon()
 
 /datum/universal_state/hell/OverlayAndAmbientSet()
 	spawn(0)

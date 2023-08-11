@@ -13,7 +13,7 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane", "anti_toxin", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
+	var/list/injection_chems = list("inaprovaline", "bicaridine", "kelotane", "anti_toxin", "dexalin", "tricordrazine", "spaceacillin", "tramadol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
@@ -36,7 +36,6 @@
 	var/datum/matter_synth/glass = null
 	var/datum/matter_synth/wood = null
 	var/datum/matter_synth/plastic = null
-	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
 	var/digest_multiplier = 1
@@ -132,7 +131,7 @@
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashman] slips inside.</span>")
-				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
@@ -163,7 +162,7 @@
 				update_patient()
 				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] lights up as [H.name] slips inside.</span>", "<span class='notice'>Your [src] lights up as [H] slips inside. Life support functions engaged.</span>")
-				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 
 /obj/item/device/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
@@ -479,32 +478,25 @@
 
 	//Cleaning looks better with red on, even with nobody in it
 	if(cleaning || (length(contents) > 10) || (decompiler && (length(contents) > 5)) || (analyzer && (length(contents) > 1)))
-		hound.sleeper_r = TRUE
-		hound.sleeper_g = FALSE
-		hound.updateicon()
+		hound.sleeper_state = 1
+		hound.update_icon()
 		return
 
 	//Well, we HAD one, what happened to them?
 	if(patient in contents)
 		if(medsensor)
 			if(patient_laststat != patient.stat)
-				if(cleaning)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
-					patient_laststat = patient.stat
-				else if(patient.stat & DEAD)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
+				if(cleaning || (patient.stat & DEAD))
+					hound.sleeper_state = 1
 					patient_laststat = patient.stat
 				else
-					hound.sleeper_r = FALSE
-					hound.sleeper_g = TRUE
+					hound.sleeper_state = 2
 					patient_laststat = patient.stat
 		else
-			hound.sleeper_r = TRUE
+			hound.sleeper_state = 1
 			patient_laststat = patient.stat
 		//Update icon
-		hound.updateicon()
+		hound.update_icon()
 		//Return original patient
 		return(patient)
 
@@ -513,33 +505,26 @@
 		for(var/mob/living/carbon/human/C in contents)
 			patient = C
 			if(medsensor)
-				if(cleaning)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
-					patient_laststat = patient.stat
-				else if(patient.stat & DEAD)
-					hound.sleeper_r = TRUE
-					hound.sleeper_g = FALSE
+				if(cleaning || (patient.stat & DEAD))
+					hound.sleeper_state = 1
 					patient_laststat = patient.stat
 				else
-					hound.sleeper_r = FALSE
-					hound.sleeper_g = TRUE
+					hound.sleeper_state = 2
 					patient_laststat = patient.stat
 			else
-				hound.sleeper_r = TRUE
+				hound.sleeper_state = 1
 				patient_laststat = patient.stat
 			//Update icon and return new patient
-			hound.updateicon()
+			hound.update_icon()
 			return(C)
 
 	//Couldn't find anyone, and not cleaning
 	if(!cleaning && !patient)
-		hound.sleeper_r = FALSE
-		hound.sleeper_g = FALSE
+		hound.sleeper_state = 0
 
 	patient_laststat = null
 	patient = null
-	hound.updateicon()
+	hound.update_icon()
 	return
 
 //Gurgleborg process
@@ -591,7 +576,6 @@
 	if(air_master.current_cycle%3==1 && length(touchable_items))
 
 		//Burn all the mobs or add them to the exclusion list
-		var/volume = 0
 		for(var/mob/living/T in (touchable_items))
 			touchable_items -= T //Exclude mobs from loose item picking.
 			if((T.status_flags & GODMODE) || !T.digestable)
@@ -605,11 +589,9 @@
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
 				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
-				if(water)
-					water.add_charge(damage_gain)
 				if(T.stat == DEAD)
 					if(ishuman(T))
-						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 					to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 					to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
 					var/deathsound = pick(
@@ -640,15 +622,6 @@
 								items_preserved |= brain
 						else
 							T.drop_from_inventory(I, src)
-					if(ishuman(T))
-						var/mob/living/carbon/human/Prey = T
-						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
-						if(water)
-							water.add_charge(volume)
-					if(T.reagents)
-						volume = T.reagents.total_volume
-						if(water)
-							water.add_charge(volume)
 					if(T.ckey)
 						GLOB.prey_digested_roundstat++
 					if(patient == T)
@@ -664,8 +637,6 @@
 			//Handle the target being anything but a /mob/living
 			var/obj/item/T = target
 			if(istype(T))
-				if(T.reagents)
-					volume = T.reagents.total_volume
 				var/digested = T.digest_act(item_storage = src)
 				if(!digested)
 					items_preserved |= T
@@ -675,8 +646,6 @@
 						for(var/tech in tech_item.origin_tech)
 							files.UpdateTech(tech, tech_item.origin_tech[tech])
 							synced = FALSE
-					if(volume && water)
-						water.add_charge(volume)
 					if(recycles && T.matter)
 						for(var/material in T.matter)
 							var/total_material = T.matter[material]
@@ -767,19 +736,30 @@
 	delivery = TRUE
 	recycles = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
+/obj/item/device/dogborg/sleeper/supply //Miner borg belly
 	name = "Supply Satchel"
 	desc = "A mounted survival unit with fuel processor."
 	icon_state = "sleeperc"
 	injection_chems = list("glucose","inaprovaline","tricordrazine")
 	max_item_count = 10
 	recycles = FALSE
+	medsensor = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/brewer
+/obj/item/device/dogborg/sleeper/brewer
 	name = "Brew Belly"
 	desc = "A mounted drunk tank unit with fuel processor."
 	icon_state = "brewer"
-	injection_chems = null
+	injection_chems = null //So they don't have all the same chems as the medihound!
+	max_item_count = 10
+	recycles = FALSE
+	medsensor = FALSE
+
+/obj/item/device/dogborg/sleeper/compactor/generic
+	name = "Internal Cache"
+	desc = "An internal storage of no particularly specific purpose.."
+	icon_state = "sleeperd"
+	max_item_count = 10
+	recycles = FALSE
 
 /obj/item/device/dogborg/sleeper/K9/ert
 	name = "ERT Belly"
@@ -787,11 +767,10 @@
 	icon_state = "sleeperert"
 	injection_chems = list("inaprovaline", "paracetamol") // short list
 
-/obj/item/device/dogborg/sleeper/compactor/trauma //Trauma borg belly
+/obj/item/device/dogborg/sleeper/trauma //Trauma borg belly
 	name = "Recovery Belly"
 	desc = "A downgraded model of the medihound sleeper."
 	icon_state = "sleeper"
-	injection_chems = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
-	max_item_count = 1
+	injection_chems = list("inaprovaline", "dexalin", "tricordrazine", "spaceacillin", "oxycodone")
 
 #undef SLEEPER_INJECT_COST

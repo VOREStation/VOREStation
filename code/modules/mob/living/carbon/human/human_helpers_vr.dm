@@ -31,7 +31,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 		var/obj/item/organ/external/O = organs_by_name[BP]
 		if(O)
 			success = TRUE
-			O.markings[mark_datum.name] = list("color" = mark_color, "datum" = mark_datum, "priority" = markings_len + 1)
+			O.markings[mark_datum.name] = list("color" = mark_color, "datum" = mark_datum, "priority" = markings_len + 1, "on" = TRUE)
 	if (success)
 		markings_len += 1
 		update_dna()
@@ -93,18 +93,32 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 			for (var/marking in O.markings)
 				var/priority = num2text(O.markings[marking]["priority"])
 				if (markings[priority])
-					markings[priority] |= list("[marking]" = O.markings[marking]["color"]) //yes I know technically you could have a limb that was attached that has the same marking as another limb with a different color but I'm too tired
+					if (markings[priority][marking])
+						markings[priority][marking] |= list(O.organ_tag = list("on" = O.markings[marking]["on"], "color" = O.markings[marking]["color"]))
+					else
+						markings[priority] |= list("[marking]" = list(O.organ_tag = list("on" = O.markings[marking]["on"], "color" = O.markings[marking]["color"]))) //yes I know technically you could have a limb that was attached that has the same marking as another limb with a different color but I'm too tired
 				else
 					priorities |= O.markings[marking]["priority"]
-					markings[priority] = list("[marking]" = O.markings[marking]["color"])
+					markings[priority] = list("[marking]" = list(O.organ_tag = list("on" = O.markings[marking]["on"], "color" = O.markings[marking]["color"])))
 	var/list/sorted = list()
 	while (priorities.len > 0)
 		var/priority = min(priorities)
 		priorities.Remove(priority)
 		priority = num2text(priority)
 		for (var/marking in markings[priority])
-			if (!(marking in sorted))
+			if (isnull(sorted[marking]))
 				sorted[marking] = markings[priority][marking]
+			else
+				sorted[marking] |= markings[priority][marking]
+	for (var/marking in sorted)
+		var/should_add_color = TRUE
+		var/last_color = null
+		for (var/bp in sorted[marking])
+			if (!isnull(last_color) && sorted[marking][bp]["color"] != last_color)
+				should_add_color = FALSE
+			last_color = sorted[marking][bp]["color"]
+		if (should_add_color)
+			sorted[marking]["color"] = last_color||"#000000"
 	del(markings)
 	del(priorities)
 	markings_len = sorted.len

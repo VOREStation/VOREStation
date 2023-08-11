@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	if(!QDELETED(camera))
 		camera.c_tag = real_name	//update the camera name too
 	notify_ai(ROBOT_NOTIFICATION_AI_SHELL)
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/robot/proc/revert_shell()
 	if(!shell)
@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	GLOB.available_ai_shells -= src
 	if(!QDELETED(camera))
 		camera.c_tag = real_name
-	updateicon()
+	update_icon()
 
 // This should be called before the AI client/mind is actually moved.
 /mob/living/silicon/robot/proc/deploy_init(mob/living/silicon/ai/AI)
@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	// Have the borg have eyes when active.
 	mainframe = AI
 	deployed = TRUE
-	updateicon()
+	update_icon()
 
 	// Laws.
 	connected_ai = mainframe // So they share laws.
@@ -79,8 +79,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 
 // Called after the AI transfers over.
 /mob/living/silicon/robot/proc/post_deploy()
-	if(!custom_sprite) // Check for custom sprite.
-		set_custom_sprite()
+	return
 
 /mob/living/silicon/robot/proc/undeploy(message)
 	if(!deployed || !mind || !mainframe)
@@ -91,7 +90,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 		to_chat(src, span("notice", message))
 	mind.transfer_to(mainframe)
 	deployed = FALSE
-	updateicon()
+	update_icon()
 	mainframe.teleop = null
 	mainframe.deployed_shell = null
 	SetName("[modtype] AI Shell [num2text(ident)]")

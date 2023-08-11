@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/proc/updateicon()
+/obj/machinery/power/generator/update_icon()
 	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
 	cut_overlays()
 	if (circ1)
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		genlev = 1
 	if(genlev != lastgenlev)
 		lastgenlev = genlev
-		updateicon()
+		update_icon()
 	add_avail(effective_gen)
 
 /obj/machinery/power/generator/attack_ai(mob/user)
@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		reconnect()
 		lastgenlev = 0
 		effective_gen = 0
-		updateicon()
+		update_icon()
 	else
 		..()
 
@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 
 /obj/machinery/power/generator/power_change()
 	..()
-	updateicon()
+	update_icon()
 
 
 /obj/machinery/power/generator/verb/rotate_clockwise()

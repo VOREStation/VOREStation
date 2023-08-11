@@ -82,6 +82,8 @@ var/global/list/limb_icon_cache = list()
 /obj/item/organ/external/proc/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
 
 	for(var/M in markings)
+		if (!markings[M]["on"])
+			continue
 		var/datum/sprite_accessory/marking/mark = markings[M]["datum"]
 		if(mark.organ_override)
 			var/icon/mark_s = new/icon("icon" = mark.icon, "icon_state" = "[mark.icon_state]-[organ_tag]")
@@ -90,6 +92,8 @@ var/global/list/limb_icon_cache = list()
 			mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 			icon_cache_key = "[M][markings[M]["color"]]"
 			for(var/MM in markings)
+				if (!markings[MM]["on"])
+					continue
 				var/datum/sprite_accessory/marking/mark_style = markings[MM]["datum"]
 				if(mark_style.organ_override)
 					continue
@@ -143,6 +147,8 @@ var/global/list/limb_icon_cache = list()
 			//Body markings, actually does not include head this time. Done separately above.
 			if(!istype(src,/obj/item/organ/external/head))
 				for(var/M in markings)
+					if (!markings[M]["on"])
+						continue
 					var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 					var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 					mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
@@ -173,6 +179,8 @@ var/global/list/limb_icon_cache = list()
 		apply_colouration(mob_icon)
 		if(owner && owner.synth_markings)
 			for(var/M in markings)
+				if (!markings[M]["on"])
+					continue
 				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 				mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit

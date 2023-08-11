@@ -23,6 +23,8 @@
 	S["bday_announce"]			>> pref.bday_announce
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
+	S["OOC_Notes_Likes"]		>> pref.metadata_likes
+	S["OOC_Notes_Disikes"]		>> pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
 	S["real_name"]				<< pref.real_name
@@ -37,6 +39,8 @@
 	S["bday_announce"]			<< pref.bday_announce
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
+	S["OOC_Notes_Likes"]		<< pref.metadata_likes
+	S["OOC_Notes_Disikes"]		<< pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))

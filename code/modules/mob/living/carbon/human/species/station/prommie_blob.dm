@@ -8,7 +8,7 @@
 	unity = TRUE
 	water_resist = 100 // Lets not kill the prommies
 	cores = 0
-	movement_cooldown = 0	
+	movement_cooldown = 0
 	//appearance_flags = RADIATION_GLOWS
 	shock_resist = 0 // Lets not be immune to zaps.
 	friendly = list("nuzzles", "glomps", "snuggles", "cuddles", "squishes") // lets be cute :3
@@ -392,6 +392,8 @@
 	blob.transforming = TRUE
 	blob.ckey = ckey
 	blob.ooc_notes = ooc_notes
+	blob.ooc_notes_likes = ooc_notes_likes
+	blob.ooc_notes_dislikes = ooc_notes_dislikes
 	blob.transforming = FALSE
 	blob.name = name
 	blob.nutrition = nutrition
@@ -464,6 +466,8 @@
 	transforming = TRUE
 	ckey = blob.ckey
 	ooc_notes = blob.ooc_notes // Updating notes incase they change them in blob form.
+	ooc_notes_likes = blob.ooc_notes_likes
+	ooc_notes_dislikes = blob.ooc_notes_dislikes
 	transforming = FALSE
 	blob.name = "Promethean Blob"
 	var/obj/item/hat = blob.hat

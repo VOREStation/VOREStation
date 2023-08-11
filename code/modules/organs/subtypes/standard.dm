@@ -386,6 +386,8 @@
 
 	//Head markings
 	for(var/M in markings)
+		if (!markings[M]["on"])
+			continue
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)

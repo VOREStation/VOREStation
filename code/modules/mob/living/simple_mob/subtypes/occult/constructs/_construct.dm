@@ -103,7 +103,7 @@
 	real_name = name
 	for(var/spell in construct_spells)
 		src.add_spell(new spell, "const_spell_ready")
-	updateicon()
+	update_icon()
 
 /*
 /mob/living/simple_mob/construct/update_icon()
