@@ -124,7 +124,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	attack_sound = 'sound/voice/teppi/roar.ogg' // make a better one idiot
 	friendly = list("snoofs", "nuzzles", "nibbles", "smooshes on")
 
-	ai_holder_type = /datum/ai_holder/simple_mob/vore/micro_hunter
+	ai_holder_type = /datum/ai_holder/simple_mob/teppi
 
 	mob_size = MOB_LARGE
 
