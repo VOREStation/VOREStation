@@ -130,6 +130,7 @@ var/list/preferences_datums = list()
 
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
+	var/custom_link = null
 
 	var/list/body_descriptors = list()
 
