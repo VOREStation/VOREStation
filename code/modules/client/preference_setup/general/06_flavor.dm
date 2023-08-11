@@ -48,6 +48,8 @@
 	character.flavor_texts["legs"]		= pref.flavor_texts["legs"]
 	character.flavor_texts["feet"]		= pref.flavor_texts["feet"]
 	character.ooc_notes 				= pref.metadata //VOREStation Add
+	character.ooc_notes_likes			= pref.metadata_likes
+	character.ooc_notes_dislikes		= pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/flavor/content(var/mob/user)
 	. += "<b>Flavor:</b><br>"

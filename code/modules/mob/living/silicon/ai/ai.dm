@@ -212,6 +212,8 @@ var/list/ai_verbs_default = list(
 		var/meta_info = client.prefs.metadata
 		if (meta_info)
 			ooc_notes = meta_info
+			ooc_notes_likes = client.prefs.metadata_likes
+			ooc_notes_dislikes = client.prefs.metadata_dislikes
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()

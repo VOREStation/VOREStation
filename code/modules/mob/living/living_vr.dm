@@ -27,11 +27,46 @@
 	set desc = "Sets OOC notes about yourself or your RP preferences or status."
 	set category = "OOC"
 
-	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently, only for this round.", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
+	if(usr != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
 	if(new_metadata && CanUseTopic(usr))
 		ooc_notes = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC notes updated.</span>")
+		client.prefs.metadata = new_metadata
+		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
+		ooc_notes_window(usr)
+
+/mob/living/proc/set_metainfo_likes()
+	if(usr != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC panel!", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(usr))
+		ooc_notes_likes = new_metadata
+		client.prefs.metadata_likes = new_metadata
+		to_chat(usr, "<span class='filter_notice'>OOC note likes have been updated. Don't forget to save!</span>")
+		log_admin("[key_name(usr)] updated their OOC note likes mid-round.")
+		ooc_notes_window(usr)
+
+/mob/living/proc/set_metainfo_dislikes()
+	if(usr != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC panel!", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(usr))
+		ooc_notes_dislikes = new_metadata
+		client.prefs.metadata_dislikes = new_metadata
+		to_chat(usr, "<span class='filter_notice'>OOC note dislikes have been updated. Don't forget to save!</span>")
+		log_admin("[key_name(usr)] updated their OOC note dislikes mid-round.")
+		ooc_notes_window(usr)
+/mob/living/proc/save_ooc_panel()
+	if(usr != src)
+		return
+	if(client.prefs.real_name != real_name)
+		to_chat(usr, "<span class='danger'>Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving.</span>")
+		return
+	if(client.prefs.save_character())
+		to_chat(usr, "<span class='filter_notice'>Character preferences saved.</span>")
+
 
 /mob/living/verb/set_voice_freq()
 	set name = "Set Voice Frequency"

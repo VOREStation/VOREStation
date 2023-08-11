@@ -344,6 +344,8 @@
 		var/meta_info = client.prefs.metadata
 		if (meta_info)
 			ooc_notes = meta_info
+			ooc_notes_likes = client.prefs.metadata_likes
+			ooc_notes_dislikes = client.prefs.metadata_dislikes
 
 /mob/living/silicon/robot/verb/Namepick()
 	set category = "Robot Commands"
