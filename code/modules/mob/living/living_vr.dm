@@ -58,6 +58,7 @@
 		to_chat(usr, "<span class='filter_notice'>OOC note dislikes have been updated. Don't forget to save!</span>")
 		log_admin("[key_name(usr)] updated their OOC note dislikes mid-round.")
 		ooc_notes_window(usr)
+
 /mob/living/proc/save_ooc_panel()
 	if(usr != src)
 		return
@@ -67,6 +68,22 @@
 	if(client.prefs.save_character())
 		to_chat(usr, "<span class='filter_notice'>Character preferences saved.</span>")
 
+/mob/living/verb/set_custom_link()
+	set name = "Set Custom Link"
+	set desc = "Set a custom link to show up with your examine text."
+	set category = "IC"
+
+	if(usr != src)
+		return
+	var/new_link = strip_html_simple(tgui_input_text(usr, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+	if(new_link && CanUseTopic(usr))
+		if(length(new_link) > 100)
+			to_chat(usr, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>")
+			return
+
+		custom_link = new_link
+		to_chat(usr, "<span class = 'notice'>Link set: [custom_link]</span>")
+		log_admin("[usr]/[usr.ckey] set their custom link to [custom_link]")
 
 /mob/living/verb/set_voice_freq()
 	set name = "Set Voice Frequency"
