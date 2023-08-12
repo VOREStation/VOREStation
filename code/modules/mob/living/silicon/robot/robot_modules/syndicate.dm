@@ -55,6 +55,9 @@
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
 	src.modules += new /obj/item/weapon/melee/baton/robot(src)
 
+	src.modules += new /obj/item/device/dogborg/sleeper/K9/syndie(src)
+	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+
 // 95% engi-borg and 15% roboticist.
 /obj/item/weapon/robot_module/robot/syndicate/mechanist
 	name = "mechanist robot module"
@@ -117,6 +120,12 @@
 	RG.synths = list(metal, glass)
 	src.modules += RG
 
+	var/obj/item/device/dogborg/sleeper/compactor/syndie/MD = new /obj/item/device/dogborg/sleeper/compactor/syndie(src)
+	MD.metal = metal
+	MD.glass = glass
+	src.modules += MD
+
+	src.modules += new /obj/item/weapon/dogborg/pounce(src)
 
 
 
@@ -169,6 +178,9 @@
 	src.modules += O
 	src.modules += B
 	src.modules += S
+
+	src.modules += new /obj/item/device/dogborg/sleeper/syndie(src)
+	src.modules += new /obj/item/weapon/dogborg/pounce(src)
 
 /obj/item/weapon/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 

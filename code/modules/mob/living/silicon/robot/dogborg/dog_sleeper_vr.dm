@@ -2,8 +2,8 @@
 
 //Sleeper
 /obj/item/device/dogborg/sleeper
-	name = "Medbelly"
-	desc = "Equipment for medical hound. A mounted sleeper that stabilizes patients and can inject reagents in the borg's reserves."
+	name = "Sleeper Belly"
+	desc = "A mounted sleeper that stabilizes patients and can inject reagents in the borg's reserves."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "sleeper"
 	w_class = ITEMSIZE_TINY
@@ -17,6 +17,7 @@
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
+	var/stabilizer = TRUE
 	var/compactor = FALSE
 	var/analyzer = FALSE
 	var/decompiler = FALSE
@@ -678,7 +679,7 @@
 		clean_cycle()
 		return
 
-	if(patient && !compactor) //We're caring for the patient. Medical emergency! Or endo scene.
+	if(patient && stabilizer) //We're caring for the patient. Medical emergency! Or endo scene.
 		update_patient()
 		if(patient.health < 0)
 			patient.adjustOxyLoss(-1) //Heal some oxygen damage if they're in critical condition
@@ -696,24 +697,26 @@
 
 /obj/item/device/dogborg/sleeper/K9 //The K9 portabrig
 	name = "Brig-Belly"
-	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
+	desc = "A mounted portable-brig that holds criminals for processing or 'processing'."
 	icon_state = "sleeperb"
 	injection_chems = null //So they don't have all the same chems as the medihound!
+	stabilizer = TRUE
 	medsensor = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor //Janihound gut.
 	name = "Garbage Processor"
-	desc = "A mounted garbage compactor unit with fuel processor."
+	desc = "A mounted garbage compactor unit with fuel processor, capable of processing any kind of contaminant."
 	icon_state = "compactor"
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	compactor = TRUE
 	recycles = TRUE
 	max_item_count = 25
+	stabilizer = FALSE
 	medsensor = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
 	name = "Digestive Analyzer"
-	desc = "A mounted destructive analyzer unit with fuel processor."
+	desc = "A mounted destructive analyzer unit with fuel processor, for 'deep scientific analysis'."
 	icon_state = "analyzer"
 	max_item_count = 10
 	startdrain = 100
@@ -722,12 +725,12 @@
 
 /obj/item/device/dogborg/sleeper/compactor/decompiler
 	name = "Matter Decompiler"
-	desc = "A mounted matter decompiling unit with fuel processor."
+	desc = "A mounted matter decompiling unit with fuel processor, for recycling anything and everyone."
 	icon_state = "decompiler"
 	max_item_count = 10
 	decompiler = TRUE
 	recycles = TRUE
-
+/*
 /obj/item/device/dogborg/sleeper/compactor/delivery //Unfinished and unimplemented, still testing.
 	name = "Cargo Belly"
 	desc = "A mounted cargo bay unit for tagged deliveries."
@@ -735,23 +738,25 @@
 	max_item_count = 20
 	delivery = TRUE
 	recycles = FALSE
-
-/obj/item/device/dogborg/sleeper/supply //Miner borg belly
-	name = "Supply Satchel"
-	desc = "A mounted survival unit with fuel processor."
+*/
+/obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
+	name = "Supply Storage"
+	desc = "A mounted survival unit with fuel processor, helpful with both deliveries and assisting injured miners."
 	icon_state = "sleeperc"
 	injection_chems = list("glucose","inaprovaline","tricordrazine")
 	max_item_count = 10
 	recycles = FALSE
+	stabilizer = TRUE
 	medsensor = FALSE
 
-/obj/item/device/dogborg/sleeper/brewer
+/obj/item/device/dogborg/sleeper/compactor/brewer
 	name = "Brew Belly"
-	desc = "A mounted drunk tank unit with fuel processor."
+	desc = "A mounted drunk tank unit with fuel processor, for putting away particularly rowdy patrons."
 	icon_state = "brewer"
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	max_item_count = 10
 	recycles = FALSE
+	stabilizer = TRUE
 	medsensor = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor/generic
@@ -762,15 +767,45 @@
 	recycles = FALSE
 
 /obj/item/device/dogborg/sleeper/K9/ert
-	name = "ERT Belly"
+	name = "Emergency Storage"
 	desc = "A mounted 'emergency containment cell'."
 	icon_state = "sleeperert"
-	injection_chems = list("inaprovaline", "paracetamol") // short list
+	injection_chems = list("inaprovaline", "tramadol") // short list
 
 /obj/item/device/dogborg/sleeper/trauma //Trauma borg belly
 	name = "Recovery Belly"
-	desc = "A downgraded model of the medihound sleeper."
+	desc = "A downgraded model of the sleeper belly, intended primarily for post-surgery recovery."
 	icon_state = "sleeper"
 	injection_chems = list("inaprovaline", "dexalin", "tricordrazine", "spaceacillin", "oxycodone")
+
+/obj/item/device/dogborg/sleeper/lost
+	name = "Multipurpose Belly"
+	desc = "A multipurpose belly, capable of functioning as both sleeper and processor."
+	icon_state = "sleeperlost"
+	injection_chems = list("tricordrazine", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+	compactor = TRUE
+	max_item_count = 25
+	stabilizer = TRUE
+	medsensor = TRUE
+
+/obj/item/device/dogborg/sleeper/syndie
+	name = "Combat Triage Belly"
+	desc = "A mounted sleeper that stabilizes patients and can inject reagents in the borg's reserves. This one is for more extreme combat scenarios."
+	icon_state = "sleepersyndiemed"
+	injection_chems = list("healing_nanites", "hyperzine", "tramadol", "oxycodone", "spaceacillin", "peridaxon", "osteodaxon", "myelamine", "synthblood")
+	digest_multiplier = 2
+
+/obj/item/device/dogborg/sleeper/K9/syndie
+	name = "Cell-Belly"
+	desc = "A mounted portable cell that holds anyone you wish for processing or 'processing'."
+	icon_state = "sleepersyndiebrig"
+	digest_multiplier = 3
+
+/obj/item/device/dogborg/sleeper/compactor/syndie
+	name = "Advanced Matter Decompiler"
+	desc = "A mounted matter decompiling unit with fuel processor, for recycling anything and everyone in your way."
+	icon_state = "sleepersyndieeng"
+	max_item_count = 35
+	digest_multiplier = 3
 
 #undef SLEEPER_INJECT_COST
