@@ -5,6 +5,8 @@
 
 	a_intent = I_HURT
 
+	low_sorting_priority = TRUE
+
 	var/generate_species = SPECIES_HUMAN
 	var/generate_dead = FALSE
 
