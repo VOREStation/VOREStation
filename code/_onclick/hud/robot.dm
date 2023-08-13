@@ -249,11 +249,13 @@ var/obj/screen/robot_inventory
 		//be emagged before they actually select a module. - or some situation can cause them to get a new module
 		// - or some situation might cause them to get de-emagged or something.
 		if(r.emagged || r.emag_items)
-			if(!(r.module.emag in r.module.modules))
-				r.module.modules.Add(r.module.emag)
+			for(var/obj/O in r.module.emag)
+				if(!(O in r.module.modules))
+					r.module.modules.Add(r.module.emag)
 		else
-			if(r.module.emag in r.module.modules)
-				r.module.modules.Remove(r.module.emag)
+			for(var/obj/O in r.module.emag)
+				if(O in r.module.modules)
+					r.module.modules.Remove(r.module.emag)
 
 		for(var/atom/movable/A in r.module.modules)
 			if( (A != r.module_state_1) && (A != r.module_state_2) && (A != r.module_state_3) )

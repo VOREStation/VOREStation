@@ -67,7 +67,7 @@
 	var/obj/item/weapon/gun/energy/phasegun/mounted/cyborg/phasegun = new(src)
 	modules += phasegun
 
-	emag = new /obj/item/weapon/chainsaw(src)
+	emag += new /obj/item/weapon/chainsaw(src)
 
 /obj/item/weapon/robot_module/robot/platform/explorer/respawn_consumable(var/mob/living/silicon/robot/R, rate)
 	. = ..()
@@ -93,7 +93,7 @@
 	modules += new /obj/item/weapon/packageWrap(src)
 	modules += new /obj/item/weapon/pen/multi(src)
 	modules += new /obj/item/device/destTagger(src)
-	emag = new /obj/item/weapon/stamp/denied
+	emag += new /obj/item/weapon/stamp/denied
 
 /obj/item/weapon/robot_module/robot/platform/cargo/respawn_consumable(mob/living/silicon/robot/R, rate)
 	. = ..()
