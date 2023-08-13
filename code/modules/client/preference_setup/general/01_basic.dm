@@ -209,11 +209,26 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])
-		var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata), multiline = TRUE, prevent_enter = TRUE)) //VOREStation Edit
+//		var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata), multiline = TRUE, prevent_enter = TRUE)) //VOREStation Edit
+		if(CanUseTopic(user))
+			ooc_notes_window(user)
+//			pref.metadata = new_metadata
+			return TOPIC_HANDLED
+	else if(href_list["edit_ooc_notes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
-			return TOPIC_REFRESH
-
+			ooc_notes_window(usr)
+	else if(href_list["edit_ooc_note_likes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata_likes), multiline = TRUE,  prevent_enter = TRUE))
+		if(new_metadata && CanUseTopic(user))
+			pref.metadata_likes = new_metadata
+			ooc_notes_window(usr)
+	else if(href_list["edit_ooc_note_dislikes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata_dislikes), multiline = TRUE,  prevent_enter = TRUE))
+		if(new_metadata && CanUseTopic(user))
+			pref.metadata_dislikes = new_metadata
+			ooc_notes_window(usr)
 	return ..()
 
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
@@ -228,3 +243,130 @@
 	possible_genders = possible_genders.Copy()
 	possible_genders |= NEUTER
 	return possible_genders
+
+/datum/category_item/player_setup_item/general/basic/proc/ooc_notes_window(mob/user)
+	//I tried to get it to accept things like emojis and all that, but, it wouldn't do! It would be cool if it did.
+	var/notes = replacetext(html_decode(pref.metadata), "\n", "<BR>")
+	var/likes = replacetext(html_decode(pref.metadata_likes), "\n", "<BR>")
+	var/dislikes = replacetext(html_decode(pref.metadata_dislikes), "\n", "<BR>")
+	var/dat = {"
+	<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
+	<html>
+		<head>
+			<style>
+				body {
+					margin-top:5px;
+					font-family:Verdana;
+					color:white;
+					font-size:13px;
+					background-image:url('ooc_notes.png');
+					background-repeat:repeat-x;
+					background-color:#272727;
+					background-position:center top;
+				}
+				table {
+					font-size:13px;
+					margin-left:-2px;
+				}
+				h2 {
+					font-size:15px;
+				}
+				.collapsible {
+					background-color: #263d20;
+					color: white;
+					padding: 5px;
+					width: 100%;
+					border: none;
+					text-align: left;
+					outline: none;
+					font-size: 20px;
+				}
+				.collapsible_b {
+					background-color: #3f1a1a;
+					color: white;
+					padding: 5px;
+					width: 100%;
+					border: none;
+					text-align: left;
+					outline: none;
+					font-size: 20px;
+				}
+
+				.content {
+					padding: 5;
+					width: 100%;
+					background-color: #363636;
+				}
+
+				.button {
+					background-color: #40628a;
+					text-align: center;
+				}
+				td.button {
+					border: 1px solid #161616;
+					background-color: #40628a;
+					text-align: center;
+				}
+				a.button {
+					color:white;
+					text-decoration: none;
+				}
+
+				</style>
+			</head>"}
+
+	dat += {"<body>
+			<b><font size='3px'>[pref.real_name]'s OOC notes</font></b><br>"}
+	dat += {"
+			<br>
+			<table>
+				<td class="button">
+					<a href='byond://?src=\ref[src];edit_ooc_notes=1' class='button'>Edit</a>
+				</td>
+			</table>
+			"}
+
+	dat += {"
+		<br>
+		<p>[notes]</p>
+		<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<body>
+
+		<div class="collapsible"><b>Likes</b></div>"}
+	dat += {"
+			<table>
+				<td class="button">
+					<a href='byond://?src=\ref[src];edit_ooc_note_likes=1' class='button'>Edit</a>
+				</td>
+			</table>
+			"}
+
+	dat += {"
+		<div class="content">
+		  <p>[likes]</p>
+		</div>"}
+	dat += {"
+	<br>
+	<div class="collapsible_b"><b>Dislikes</b></div>"}
+	dat += {"
+			<table>
+				<td class="button">
+					<a href='byond://?src=\ref[src];edit_ooc_note_dislikes=1' class='button'>Edit</a>
+				</td>
+			</table>
+			"}
+
+	dat += {"
+		<div class="content">
+		  <p>[dislikes]</p>
+		</div>
+			</body>
+		</html>
+		<br><br>
+		<p><b>This only updates your character save file, to update your notes in the round use the Set OOC Metainfo verb!</b></p>
+		"}
+
+	user << browse("<html><head><title>OOC Notes: [pref.real_name]</title></head>[dat]</html>", "window=[pref.real_name]mvp;size=500x600;can_resize=1;can_minimize=0")
+
+	onclose(usr, "[pref.real_name]")
