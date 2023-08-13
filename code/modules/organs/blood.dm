@@ -210,10 +210,12 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!amt)
 		return 0
 
+	amt = amt * (src.mob_size/MOB_MEDIUM)
+
 	if(amt > vessel.get_reagent_amount("blood"))
 		amt = vessel.get_reagent_amount("blood") - 1	// Bit of a safety net; it's impossible to add blood if there's not blood already in the vessel.
 
-	return vessel.remove_reagent("blood",amt * (src.mob_size/MOB_MEDIUM))
+	return vessel.remove_reagent("blood",amt)
 
 /****************************************************
 				BLOOD TRANSFERS
