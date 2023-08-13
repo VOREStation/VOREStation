@@ -12,7 +12,16 @@
 var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 														"a_synth_flesh_mono_hole",
 														"a_anim_belly",
-														"multi_layer_test_tummy")
+														"multi_layer_test_tummy",
+														"gematically_angular",
+														"entrance_to_a_tumby",
+														"passage_to_a_tumby",
+														"destination_tumby",
+														"destination_tumby_fluidless",
+														"post_tumby_passage",
+														"post_tumby_passage_fluidless",
+														"not_quite_tumby",
+														"could_it_be_a_tumby")
 
 /mob/living
 	var/datum/vore_look/vorePanel
