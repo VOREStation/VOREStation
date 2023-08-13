@@ -6646,7 +6646,6 @@
 /area/centcom/specops)
 "wo" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -15147,7 +15146,6 @@
 /area/centcom/main_hall)
 "XI" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/simulated/floor/lino,
