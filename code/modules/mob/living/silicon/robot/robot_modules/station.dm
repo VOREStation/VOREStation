@@ -636,7 +636,7 @@ var/global/list/robot_modules = list(
 	PB.name = "Auntie Hong's Final Sip"
 	PB.desc = "A bottle of very special mix of alcohol and poison. Some may argue that there's alcohol to die for, but Auntie Hong took it to next level."
 
-	src.modules += new /obj/item/device/dogborg/sleeper/brewer(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/brewer(src)
 
 	src.emag += new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
@@ -684,7 +684,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.emag += new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
 
-	src.modules += new /obj/item/device/dogborg/sleeper/supply(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/supply(src)
 	src.emag += new /obj/item/weapon/dogborg/pounce(src)
 
 /obj/item/weapon/robot_module/robot/research

@@ -82,6 +82,7 @@
 	//var/list/laws = list()
 	var/viewalerts = 0
 	var/modtype = "Default"
+	var/sprite_type = null
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
@@ -1105,6 +1106,7 @@
 	return
 
 /mob/living/silicon/robot/proc/choose_icon(var/triesleft)
+	var/robot_species = null
 	if(!SSrobot_sprites)
 		to_chat(src, "Robot Sprites have not been initialized yet. How are you choosing a sprite? Harass a coder.")
 		return
@@ -1122,6 +1124,8 @@
 	else
 		var/selection = tgui_input_list(src, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
 		sprite_datum = selection
+		if(!istype(src,/mob/living/silicon/robot/drone))
+			robot_species = sprite_datum.name
 		if(notransform)
 			to_chat(src, "Your current transformation has not finished yet!")
 			choose_icon(icon_selection_tries)
@@ -1147,6 +1151,7 @@
 
 	icon_selected = 1
 	icon_selection_tries = 0
+	sprite_type = robot_species
 	to_chat(src, "<span class='filter_notice'>Your icon has been set. You now require a module reset to change it.</span>")
 
 /mob/living/silicon/robot/proc/set_default_module_icon()

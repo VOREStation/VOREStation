@@ -154,7 +154,7 @@
 "cX" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/hos,/turf/simulated/shuttle/floor/black,/area/awaymission/zoo/tradeship)
 "cY" = (/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/carpet,/area/awaymission/zoo/tradeship)
 "cZ" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/glasses/square,/turf/simulated/floor/carpet,/area/awaymission/zoo/tradeship)
-"da" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/computer/security/telescreen/entertainment{icon_state = "frame"; pixel_x = 32},/turf/simulated/floor/carpet,/area/awaymission/zoo/tradeship)
+"da" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/computer/security/telescreen/entertainment{pixel_x = 32},/turf/simulated/floor/carpet,/area/awaymission/zoo/tradeship)
 "db" = (/obj/structure/table/steel_reinforced,/turf/simulated/shuttle/floor/black,/area/awaymission/zoo/tradeship)
 "dc" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/awaymission/zoo/tradeship)
 "dd" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/shuttle/floor/black,/area/awaymission/zoo/tradeship)

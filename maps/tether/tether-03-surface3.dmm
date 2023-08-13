@@ -9032,7 +9032,6 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Looks like it's set to history channel, the show is talking about modern aliens.  I wonder what else is on?";
-	icon_state = "frame";
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -12871,7 +12870,6 @@
 /obj/structure/table/standard,
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Look's like it's set to the info station... I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
@@ -12984,7 +12982,6 @@
 "avg" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /obj/structure/table/woodentable,
@@ -22043,7 +22040,6 @@
 /area/rnd/robotics/mechbay)
 "aJS" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = -64
 	},
 /obj/machinery/computer/arcade/battle,
@@ -35617,7 +35613,6 @@
 "biO" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Looks like it's set to Free-Anur-Entertanment, I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /obj/machinery/vending/coffee,
@@ -35883,7 +35878,6 @@
 /obj/structure/table/bench/sifwooden/padded,
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Looks like it's set to history channel, the show is talking about modern aliens.  I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = -32
 	},
 /turf/simulated/floor/tiled,
@@ -43117,7 +43111,6 @@
 "scL" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Looks like it's set to Free-Anur-Entertanment, I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /obj/machinery/vending/cigarette,
@@ -44427,7 +44420,6 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Look's like it's set to the info station... I wonder what else is on?";
-	icon_state = "frame";
 	pixel_x = 32;
 	pixel_y = -64
 	},

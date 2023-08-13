@@ -263,6 +263,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	if(!cid && !ip && !ckey)
 		return
 
+	if(cid && !isnum(cid) && !(cid == ""))
+		log_and_message_admins("[key_name(owner)] - bancheck with invalid cid! ([cid])")
+
+	if(ip && !findtext(ip, new/regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$")) && !(ip == ""))
+		log_and_message_admins("[key_name(owner)] - bancheck with invalid ip! ([ip])")
+
 	var/list/ban = world.IsBanned(key = ckey, address = ip, computer_id = cid)
 	if(ban)
 		log_and_message_admins("[key_name(owner)] has a cookie from a banned account! (Cookie: [ckey], [ip], [cid])")

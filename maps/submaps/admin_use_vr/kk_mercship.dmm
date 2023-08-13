@@ -10419,7 +10419,6 @@
 /area/ship/manta/magazine)
 "Sq" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = -32
 	},
 /obj/machinery/light/no_nightshift{

@@ -12,7 +12,16 @@
 var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 														"a_synth_flesh_mono_hole",
 														"a_anim_belly",
-														"multi_layer_test_tummy")
+														"multi_layer_test_tummy",
+														"gematically_angular",
+														"entrance_to_a_tumby",
+														"passage_to_a_tumby",
+														"destination_tumby",
+														"destination_tumby_fluidless",
+														"post_tumby_passage",
+														"post_tumby_passage_fluidless",
+														"not_quite_tumby",
+														"could_it_be_a_tumby")
 
 /mob/living
 	var/datum/vore_look/vorePanel
@@ -1391,12 +1400,6 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected.colorization_enabled = !host.vore_selected.colorization_enabled
 			host.vore_selected.belly_fullscreen = "dark" //This prevents you from selecting a belly that is not meant to be colored and then turning colorization on.
 			. = TRUE
-		/*
-		if("b_multilayered") //Allows for 'multilayered' stomachs. Currently not implemented. Add to TGUI.
-			host.vore_selected.multilayered = !host.vore_selected.multilayered 				//Add to stomach vars.
-			host.vore_selected.belly_fullscreen = "dark"
-			. = TRUE
-		*/
 		if("b_preview_belly")
 			host.vore_selected.vore_preview(host) //Gives them the stomach overlay. It fades away after ~2 seconds as human/life.dm removes the overlay if not in a gut.
 			. = TRUE
@@ -1409,12 +1412,12 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				host.vore_selected.belly_fullscreen_color = newcolor
 			. = TRUE
 		if("b_fullscreen_color_secondary")
-			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_secondary) as color|null
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color_secondary = newcolor
 			. = TRUE
 		if("b_fullscreen_color_trinary")
-			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_trinary) as color|null
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color_trinary = newcolor
 			. = TRUE

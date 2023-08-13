@@ -7139,7 +7139,6 @@
 /area/centcom/command)
 "ou" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/unsimulated/floor{
@@ -13145,7 +13144,6 @@
 /area/centcom/security)
 "zm" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -14425,7 +14423,6 @@
 	})
 "Bv" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
