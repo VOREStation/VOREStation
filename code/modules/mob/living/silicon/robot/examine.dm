@@ -1,5 +1,5 @@
 /mob/living/silicon/robot/examine(mob/user)
-	var/custom_infix = custom_name ? ", [modtype][sprite_type] [braintype]" : ""
+	var/custom_infix = custom_name ? ", [modtype][sprite_type ? " [sprite_type]" : ""] [braintype]" : ""
 	. = ..(user, infix = custom_infix)
 
 	if (src.getBruteLoss())
