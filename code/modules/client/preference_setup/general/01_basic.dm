@@ -316,6 +316,7 @@
 			</head>"}
 
 	dat += {"<body>
+			<p><b>Save your changes in the character setup!</b></p>
 			<b><font size='3px'>[pref.real_name]'s OOC notes</font></b><br>"}
 	dat += {"
 			<br>
