@@ -14,7 +14,7 @@
 	sprite_icon_state = "bloodhound"
 
 /datum/robot_sprite/protector/treadhound
-	name = "Cerberus - Treaded"
+	name = "Cerberus-Treaded"
 	sprite_icon_state = "treadhound"
 
 /datum/robot_sprite/protector/squats

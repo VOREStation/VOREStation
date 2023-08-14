@@ -51,11 +51,11 @@
 	sprite_icon_state = "landmate"
 
 /datum/robot_sprite/engineering/landmatetread
-	name = "Landmate - Treaded"
+	name = "Landmate-Treaded"
 	sprite_icon_state = "landmatetread"
 
 /datum/robot_sprite/engineering/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
@@ -136,19 +136,19 @@
 	has_dead_sprite_overlay = FALSE
 
 /datum/robot_sprite/dogborg/engineering/vale
-	name = "V2 Engidog"
+	name = "Hound V2"
 	sprite_icon_state = "vale"
 	sprite_hud_icon_state = "pupdozer"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/engineering/hound
-	name = "EngiHound"
+	name = "Hound"
 	sprite_icon_state = "hound"
 	sprite_hud_icon_state = "pupdozer"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/engineering/hounddark
-	name = "EngiHoundDark"
+	name = "Hound Dark"
 	sprite_icon_state = "hounddark"
 	sprite_hud_icon_state = "pupdozer"
 	has_eye_light_sprites = TRUE
@@ -207,7 +207,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/engineering/k4t_alt1
-	name = "K4Talt"
+	name = "K4T Alt"
 	sprite_icon_state = "k4t_alt1"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
