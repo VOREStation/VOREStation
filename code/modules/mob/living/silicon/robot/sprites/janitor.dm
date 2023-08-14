@@ -48,7 +48,7 @@
 	sprite_icon_state = "mopgearrex"
 
 /datum/robot_sprite/janitor/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
@@ -110,13 +110,13 @@
 	sprite_icon = 'icons/mob/robot/janitor_wide.dmi'
 
 /datum/robot_sprite/dogborg/janitor/scrubpup
-	name = "Custodial Hound"
+	name = "Scrubpup"
 	sprite_icon_state = "scrubpup"
 	sprite_hud_icon_state = "janihound"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/janitor/vale
-	name = "Janihound Model V-2"
+	name = "Hound V2"
 	sprite_icon_state = "vale"
 	sprite_hud_icon_state = "janihound"
 	has_eye_light_sprites = TRUE
@@ -192,7 +192,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/mining/k4t_alt1
-	name = "K4Talt"
+	name = "K4T Alt"
 	sprite_icon_state = "k4t_alt1"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE

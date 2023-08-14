@@ -47,7 +47,7 @@
 	sprite_icon_state = "treadhead"
 
 /datum/robot_sprite/mining/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
@@ -114,12 +114,12 @@
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/mining/hound
-	name = "CargoHound"
+	name = "Cargohound"
 	sprite_icon_state = "hound"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/mining/hounddark
-	name = "CargoHoundDark"
+	name = "Cargohound Dark"
 	sprite_icon_state = "hounddark"
 	has_eye_light_sprites = TRUE
 
@@ -177,7 +177,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/mining/k4t_alt1
-	name = "K4Talt"
+	name = "K4T Alt"
 	sprite_icon_state = "k4t_alt1"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE

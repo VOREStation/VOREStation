@@ -121,7 +121,7 @@
 	has_gun_sprite = TRUE
 
 /datum/robot_sprite/dogborg/tall/combat/hound
-	name = "Combat Hound"
+	name = "Hound"
 	sprite_icon_state = "hound"
 	sprite_hud_icon_state = "ert"
 	rest_sprite_options = list("Default")

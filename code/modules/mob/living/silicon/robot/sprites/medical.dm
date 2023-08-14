@@ -130,7 +130,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/medical/k4t_alt1
-	name = "K4Talt"
+	name = "K4T Alt"
 	sprite_icon_state = "k4t_alt1"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
@@ -155,7 +155,7 @@
 	sprite_icon_state = "sleek"
 
 /datum/robot_sprite/surgical/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
@@ -275,12 +275,12 @@
 	sprite_icon_state = "sleek"
 
 /datum/robot_sprite/crisis/drone
-	name = "Drone - Medical"
+	name = "AG Model-Med"
 	sprite_icon_state = "drone-crisis"
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/crisis/drone_chem
-	name = "Drone - Chemistry"
+	name = "AG Model-Chem"
 	sprite_icon_state = "drone-chem"
 	has_custom_open_sprites = TRUE
 
@@ -338,21 +338,21 @@
 		SP.attack_verb = list("batted", "pawed", "bopped", "whapped")
 
 /datum/robot_sprite/dogborg/crisis/hound
-	name = "Medical Hound"
+	name = "Medihound"
 	sprite_icon_state = "hound"
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/hounddark
-	name = "Dark Medical Hound"
+	name = "Medihound Dark"
 	sprite_icon_state = "hounddark"
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
 /datum/robot_sprite/dogborg/crisis/vale
-	name = "Mediborg Model V-2"
+	name = "Medihound V2"
 	sprite_icon_state = "vale"
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
