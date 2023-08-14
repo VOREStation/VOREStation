@@ -188,7 +188,7 @@
 			that is thought to be responsible for the near-collapse of the biosphere of the planet. \
 			With societies organised around hierarchal caste systems (such as the Royal Zorren) or freedom and strength (such as the Free Tribe Zorren), \
 			they now slowly recover from their previous hubris and aim to revitalize their planet. While many Zorren live in pre-industrial conditions by necessity, \
-			they are an interstellar species known for their pride and stubbornness, doggedly holding out on a Deathworld of their own creation. \
+			they are an interstellar species known for their pride and stubbornness and doggedly hold out on a Deathworld of their own creation. \
 			As local species, they hold moderate sway on local corporations and are hired by NT and other companies, although they find \"Outlander\" culture deeply weird."
 	wikilink="https://wiki.vore-station.net/Zorren"
 
