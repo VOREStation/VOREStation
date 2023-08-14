@@ -270,7 +270,7 @@
 	autowhisper_display.name = "autowhisper"
 	autowhisper_display.screen_loc = ui_under_health
 	hud_elements |= autowhisper_display
-	other |= autowhisper_display
+	adding |= autowhisper_display
 
 	var/obj/screen/aw = new /obj/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
@@ -278,7 +278,7 @@
 	aw.name = "autowhisper mode"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
-	other |= aw
+	adding |= aw
 
 	aw = new /obj/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
@@ -286,7 +286,7 @@
 	aw.name = "check known languages"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
-	other |= aw
+	adding |= aw
 
 	aw = new /obj/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
@@ -294,7 +294,7 @@
 	aw.name = "set pose"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
-	other |= aw
+	adding |= aw
 
 	aw = new /obj/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
@@ -302,7 +302,7 @@
 	aw.name = "move upwards"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
-	other |= aw
+	adding |= aw
 
 	aw = new /obj/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
@@ -310,7 +310,7 @@
 	aw.name = "move downwards"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
-	other |= aw
+	adding |= aw
 
 	aw = new /obj/screen()
 	aw.icon = HUD.ui_style
