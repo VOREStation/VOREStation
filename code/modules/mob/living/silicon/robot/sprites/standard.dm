@@ -48,7 +48,7 @@
 	sprite_icon_state = "droid"
 
 /datum/robot_sprite/standard/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 

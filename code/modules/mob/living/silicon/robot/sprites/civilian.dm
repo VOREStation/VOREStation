@@ -120,12 +120,12 @@
 	sprite_icon_state = "spider"
 
 /datum/robot_sprite/service/drone
-	name = "Drone - Service"
+	name = "AG Model-Serv"
 	sprite_icon_state = "drone-crisis"
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/service/drone_hydro
-	name = "Drone - Hydro"
+	name = "AG Model-Hydro"
 	sprite_icon_state = "drone-hydro"
 	sprite_hud_icon_state = "hydroponics"
 	has_custom_open_sprites = TRUE
@@ -151,11 +151,11 @@
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/service/handy
-	name = "Handy - Service"
+	name = "Handy-Serv"
 	sprite_icon_state = "handy"
 
 /datum/robot_sprite/service/handy_hydro
-	name = "Handy - Hydro"
+	name = "Handy-Hydro"
 	sprite_icon_state = "handy-hydro"
 	sprite_hud_icon_state = "hydroponics"
 
@@ -183,13 +183,13 @@
 	has_vore_belly_sprites = FALSE
 
 /datum/robot_sprite/dogborg/service/vale
-	name = "ServicehoundV2"
+	name = "Hound V2"
 	sprite_icon_state = "vale"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 
 /datum/robot_sprite/dogborg/service/valedark
-	name = "ServicehoundV2 Darkmode"
+	name = "Hound V2 Darkmode"
 	sprite_icon_state = "valedark"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
@@ -304,7 +304,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/service/k4t_alt1
-	name = "K4Talt"
+	name = "K4T Alt"
 	sprite_icon_state = "k4t_alt1"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
@@ -334,7 +334,7 @@
 	sprite_icon_state = "spider"
 
 /datum/robot_sprite/clerical/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 

@@ -18,7 +18,7 @@
 	sprite_icon_state = "bloodhound"
 
 /datum/robot_sprite/security/treadhound
-	name = "Cerberus - Treaded"
+	name = "Cerberus-Treaded"
 	sprite_icon_state = "treadhound"
 
 /datum/robot_sprite/security/marina
@@ -54,6 +54,11 @@
 	name = "Black Knight"
 	sprite_icon_state = "oldbot"
 	has_eye_sprites = FALSE
+
+/datum/robot_sprite/security/drone
+	name = "AG Model"
+	sprite_icon_state = "drone"
+	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/security/insekt
 	name = "Insekt"
@@ -142,7 +147,7 @@
 	has_taser_sprite = TRUE
 
 /datum/robot_sprite/dogborg/security/vale
-	name = "Secborg Model V-2"
+	name = "Hound V2"
 	sprite_icon_state = "vale"
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE

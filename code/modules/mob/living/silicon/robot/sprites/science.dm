@@ -34,7 +34,7 @@
 	sprite_icon_state = "droid"
 
 /datum/robot_sprite/science/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
@@ -113,7 +113,7 @@
 		J.attack_verb = list("batted", "pawed", "bopped", "whapped")
 
 /datum/robot_sprite/dogborg/science/vale
-	name = "Research Hound"
+	name = "Hound V2"
 	sprite_icon_state = "vale"
 	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE
@@ -127,13 +127,13 @@
 	has_dead_sprite_overlay = FALSE
 
 /datum/robot_sprite/dogborg/science/hound
-	name = "SciHound"
+	name = "Hound"
 	sprite_icon_state = "hound"
 	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/science/darkhound
-	name = "SciHoundDark"
+	name = "Hound Dark"
 	sprite_icon_state = "hounddark"
 	sprite_hud_icon_state = "sci-borg"
 	has_eye_light_sprites = TRUE

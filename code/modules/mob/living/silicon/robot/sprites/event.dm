@@ -18,7 +18,7 @@
 				ourborg.add_overlay("[sprite_icon_state]-shield")
 
 /datum/robot_sprite/lost/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_shield_sprite = TRUE
 
@@ -66,7 +66,7 @@
 				ourborg.add_overlay("[sprite_icon_state]-shield")
 
 /datum/robot_sprite/gravekeeper/drone
-	name = "Drone"
+	name = "AG Model"
 	sprite_icon_state = "drone"
 	has_shield_sprite = TRUE
 
