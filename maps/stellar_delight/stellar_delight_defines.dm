@@ -154,13 +154,13 @@
 		)
 
 	lateload_gateway = list(
-		list("Carp Farm"),
-		list("Snow Field"),
-		list("Listening Post"),
-		list(list("Honleth Highlands A", "Honleth Highlands B")),
-		list("Arynthi Lake Underground A","Arynthi Lake A"),
-		list("Arynthi Lake Underground B","Arynthi Lake B"),
-		list("Wild West")
+		list("Gateway - Carp Farm"),
+		list("Gateway - Snow Field"),
+		list("Gateway - Listening Post"),
+		list(list("Gateway - Honleth Highlands A", "Gateway - Honleth Highlands B")),
+		list("Gateway - Arynthi Lake Underground A","Gateway - Arynthi Lake A"),
+		list("Gateway - Arynthi Lake Underground B","Gateway - Arynthi Lake B"),
+		list("Gateway - Wild West")
 		)
 
 	lateload_overmap = list(
@@ -168,13 +168,13 @@
 		)
 
 	lateload_redgate = list(
-		list("Teppi Ranch"),
-		list("Innland"),
-		list("Abandoned Island"),
-		list("Dark Adventure"),
-		list("Eggnog Town Underground","Eggnog Town"),
-		list("Star Dog"),
-		list("Hotsprings")
+		list("Redgate - Teppi Ranch"),
+		list("Redgate - Innland"),
+//		list("Redgate - Abandoned Island"),	//This will come back later
+		list("Redgate - Dark Adventure"),
+		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
+		list("Redgate - Star Dog"),
+		list("Redgate - Hotsprings")
 		)
 
 	ai_shell_restricted = TRUE
