@@ -35,7 +35,7 @@
 	T.amount = starting_funds
 	if(!source_db)
 		//set a random date, time and location some time over the past few decades
-		T.date = "[num2text(rand(1,28))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 23[rand(12,19)]"		// VOREStation Edit: lore-compliant dates
+		T.date = "[num2text(rand(1,28))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 23[rand(12,19)]"
 		T.time = "[rand(0,24)]:[rand(11,59)]"
 		T.source_terminal = "NTGalaxyNet Terminal #[rand(111,1111)]"
 

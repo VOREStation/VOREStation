@@ -340,6 +340,8 @@
 				to_chat(usr,"<span class = 'notice'>You begin moving...</span>")
 				if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
 					return
+				if(QDELETED(src))
+					return
 				var/obj/our_choice = choice
 
 				var/list/new_contained_mobs = list()
