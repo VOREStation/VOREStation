@@ -236,7 +236,7 @@
 		return
 	if(target.anchored)
 		return
-	if(target in user)
+	if(!isturf(target.loc)) //no wrapping things inside other things, just breaks things, put it on the ground first.
 		return
 	if(user in target) //no wrapping closets that you are inside - it's not physically possible
 		return
@@ -366,7 +366,7 @@
 	switch(action)
 		if("set_tag")
 			var/new_tag = params["tag"]
-			if(!(new_tag in GLOB.tagger_locations))	
+			if(!(new_tag in GLOB.tagger_locations))
 				return FALSE
 			currTag = new_tag
 			. = TRUE

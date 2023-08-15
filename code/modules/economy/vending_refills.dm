@@ -5,10 +5,15 @@
 	icon_state = "rc_generic"
 	item_state = "syringe_kit"
 	var/refill_type
+	var/exact_type = TRUE
 
 /obj/item/weapon/refill_cartridge/proc/can_refill(obj/machinery/vending/V as obj)
-	if(V.type == refill_type)
-		return TRUE
+	if(exact_type)
+		if(V.type == refill_type)
+			return TRUE
+	else
+		if(istype(V, refill_type))
+			return TRUE
 	return FALSE
 
 /obj/item/weapon/refill_cartridge/multitype
@@ -129,9 +134,7 @@
 
 /obj/item/weapon/refill_cartridge/autoname/drink/cola
 	refill_type = /obj/machinery/vending/cola
-
-/obj/item/weapon/refill_cartridge/autoname/drink/cola_soft
-	refill_type = /obj/machinery/vending/cola/soft
+	exact_type = FALSE
 
 /obj/item/weapon/refill_cartridge/autoname/drink/sovietsoda
 	refill_type = /obj/machinery/vending/sovietsoda
