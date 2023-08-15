@@ -12,7 +12,7 @@
 		if(V.type == refill_type)
 			return TRUE
 	else
-		if(istype(V, refill_type)
+		if(istype(V, refill_type))
 			return TRUE
 	return FALSE
 
