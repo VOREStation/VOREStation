@@ -45,6 +45,8 @@
 	var/vore_eyes = FALSE				// For mobs with fullness specific eye overlays.
 	var/life_disabled = 0				// For performance reasons
 
+	var/vore_attack_override = FALSE	// Enable on mobs you want to have special behaviour on melee grab attack.
+
 	var/mount_offset_x = 5				// Horizontal riding offset.
 	var/mount_offset_y = 8				// Vertical riding offset
 

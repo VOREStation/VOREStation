@@ -58,7 +58,7 @@
 /datum/supply_pack/hospitality/pizza
 	name = "Surprise pack of five pizzas"
 	contains = list(
-			/obj/random/pizzabox = 5,
+			/obj/random/pizzabox/supplypack = 5,
 			/obj/item/weapon/material/knife/plastic
 			)
 	cost = 15

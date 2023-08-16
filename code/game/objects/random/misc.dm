@@ -548,6 +548,9 @@
 				/obj/item/pizzabox/vegetable,
 				/obj/item/pizzabox/pineapple)
 
+/obj/random/pizzabox/supplypack
+	drop_get_turf = FALSE
+
 /obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
