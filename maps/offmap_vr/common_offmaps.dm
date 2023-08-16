@@ -135,64 +135,64 @@
 */
 #include "../gateway_vr/zoo.dm"
 /datum/map_template/common_lateload/gateway/zoo
-	name = "Zoo"
+	name = "Gateway - Zoo"
 	desc = "Gigantic space zoo"
-	mappath = 'maps/gateway_vr/zoo.dmm'
+	mappath = 'maps/gateway_vr/zoo_b.dmm'
 
 #include "../gateway_vr/carpfarm.dm"
 /datum/map_template/common_lateload/gateway/carpfarm
-	name = "Carp Farm"
+	name = "Gateway - Carp Farm"
 	desc = "Asteroid base surrounded by carp"
 	mappath = 'maps/gateway_vr/carpfarm.dmm'
 
 #include "../gateway_vr/snowfield.dm"
 /datum/map_template/common_lateload/gateway/snowfield
-	name = "Snow Field"
+	name = "Gateway - Snow Field"
 	desc = "An old base in middle of snowy wasteland"
 	mappath = 'maps/gateway_vr/snowfield.dmm'
 
 #include "../gateway_vr/listeningpost.dm"
 /datum/map_template/common_lateload/gateway/listeningpost
-	name = "Listening Post"
+	name = "Gateway - Listening Post"
 	desc = "Asteroid-bound mercenary listening post"
 	mappath = 'maps/gateway_vr/listeningpost.dmm'
 
 #include "../gateway_vr/variable/honlethhighlands.dm"
 /datum/map_template/common_lateload/gateway/honlethhighlands_a
-	name = "Honleth Highlands A"
+	name = "Gateway - Honleth Highlands A"
 	desc = "The cold surface of some planet."
 	mappath = 'maps/gateway_vr/variable/honlethhighlands_a.dmm'
 
 /datum/map_template/common_lateload/gateway/honlethhighlands_b
-	name = "Honleth Highlands B"
+	name = "Gateway - Honleth Highlands B"
 	desc = "The cold surface of some planet."
 	mappath = 'maps/gateway_vr/variable/honlethhighlands_b.dmm'
 
 
 #include "../gateway_vr/variable/arynthilake.dm"
 /datum/map_template/common_lateload/gateway/arynthilake
-	name = "Arynthi Lake A"
+	name = "Gateway - Arynthi Lake A"
 	desc = "A grassy surface with some abandoned structures."
 	mappath = 'maps/gateway_vr/variable/arynthilake_a.dmm'
 
 /datum/map_template/common_lateload/gateway/arynthilakeunderground
-	name = "Arynthi Lake Underground A"
+	name = "Gateway - Arynthi Lake Underground A"
 	desc = "A grassy surface with some abandoned structures."
 	mappath = 'maps/gateway_vr/variable/arynthilakeunderground_a.dmm'
 
 /datum/map_template/common_lateload/gateway/arynthilake_b
-	name = "Arynthi Lake B"
+	name = "Gateway - Arynthi Lake B"
 	desc = "A grassy surface with some abandoned structures."
 	mappath = 'maps/gateway_vr/variable/arynthilake_b.dmm'
 
 /datum/map_template/common_lateload/gateway/arynthilakeunderground_b
-	name = "Arynthi Lake Underground B"
+	name = "Gateway - Arynthi Lake Underground B"
 	desc = "A grassy surface with some abandoned structures."
 	mappath = 'maps/gateway_vr/variable/arynthilakeunderground_b.dmm'
 
 #include "../gateway_vr/wildwest.dm"
 /datum/map_template/common_lateload/gateway/wildwest
-	name = "Wild West"
+	name = "Gateway - Wild West"
 	desc = "A classic."
 	mappath = 'maps/gateway_vr/wildwest.dmm'
 
@@ -243,44 +243,43 @@
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_REDGATE, 64, 64)
 
 /datum/map_template/common_lateload/redgate/teppi_ranch
-	name = "Teppi Ranch"
+	name = "Redgate - Teppi Ranch"
 	desc = "An abandoned teppi ranch!"
 	mappath = 'maps/redgate/teppiranch.dmm'
 
 /datum/map_template/common_lateload/redgate/innland
-	name = "Innland"
+	name = "Redgate - Innland"
 	desc = "Caves and grass and a tavern, woah!"
 	mappath = 'maps/redgate/innland.dmm'
 
 /datum/map_template/common_lateload/redgate/abandonedisland
-	name = "Abandoned Island"
+	name = "Redgate - Abandoned Island"
 	desc = "It seems like it used to be people here!"
 	mappath = 'maps/redgate/abandonedisland.dmm'
 
 /datum/map_template/common_lateload/redgate/darkadventure
-	name = "Dark Adventure"
+	name = "Redgate - Dark Adventure"
 	desc = "This place seems broken!"
 	mappath = 'maps/redgate/darkadventure.dmm'
 
-
 /datum/map_template/common_lateload/redgate/stardog
-	name = "Star Dog"
+	name = "Redgate - Star Dog"
 	desc = "That's a big dog!"
 	mappath = 'maps/redgate/stardog.dmm'
 
 #include "../redgate/eggnogtown.dm"
 /datum/map_template/common_lateload/redgate/eggnogtown
-	name = "Eggnog Town"
+	name = "Redgate - Eggnog Town"
 	desc = "A comfortable snowy town."
 	mappath = 'maps/redgate/eggnogtown.dmm'
 
 /datum/map_template/common_lateload/redgate/eggnogtownunderground
-	name = "Eggnog Town Underground"
+	name = "Redgate - Eggnog Town Underground"
 	desc = "A comfortable snowy town."
 	mappath = 'maps/redgate/eggnogtownunderground.dmm'
 
 /datum/map_template/common_lateload/redgate/hotsprings
-	name = "Hotsprings"
+	name = "Redgate - Hotsprings"
 	desc = "This place is rather cosy for somewhere so abandoned!"
 	mappath = 'maps/redgate/hotsprings.dmm'
 

@@ -149,7 +149,6 @@
 /area/awaymission/zoo/pirateship)
 "aw" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
 	dir = 9
 	},
 /turf/simulated/floor/plating,
@@ -447,9 +446,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo/pirateship)
 "bt" = (
-/obj/structure/sink{
-	dir = 2
-	},
+/obj/structure/sink,
 /obj/effect/floor_decal/corner/beige{
 	dir = 5
 	},
@@ -575,22 +572,20 @@
 /area/awaymission/zoo/tradeship)
 "bK" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/black,
 /area/awaymission/zoo/tradeship)
 "bL" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
 	dir = 4
 	},
 /turf/simulated/floor/airless,
 /area/awaymission/zoo/tradeship)
 "bM" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_r";
-	dir = 4
+	dir = 4;
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /area/awaymission/zoo/tradeship)
@@ -681,9 +676,7 @@
 /turf/simulated/floor/carpet,
 /area/awaymission/zoo/tradeship)
 "cg" = (
-/obj/machinery/sleep_console{
-	dir = 8
-	},
+/obj/machinery/sleep_console,
 /turf/simulated/shuttle/floor/black,
 /area/awaymission/zoo/tradeship)
 "ch" = (
@@ -852,10 +845,7 @@
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/box/masks{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/weapon/storage/box/masks,
 /obj/item/weapon/storage/box/gloves{
 	pixel_x = 3;
 	pixel_y = 4
@@ -876,13 +866,6 @@
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/structure/closet/medical_wall{
 	pixel_y = 32
-	},
-/turf/simulated/shuttle/floor/black,
-/area/awaymission/zoo/tradeship)
-"cH" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
 	},
 /turf/simulated/shuttle/floor/black,
 /area/awaymission/zoo/tradeship)
@@ -945,7 +928,6 @@
 /area/awaymission/zoo/pirateship)
 "cS" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -955,7 +937,6 @@
 /area/awaymission/zoo/pirateship)
 "cT" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
 	dir = 4
 	},
 /turf/space,
@@ -1031,9 +1012,7 @@
 /area/awaymission/zoo/tradeship)
 "dd" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/black,
 /area/awaymission/zoo/tradeship)
@@ -1052,8 +1031,8 @@
 /area/awaymission/zoo/tradeship)
 "dg" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_l";
-	dir = 4
+	dir = 4;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /area/awaymission/zoo/tradeship)
@@ -1112,7 +1091,6 @@
 /area/awaymission/zoo/tradeship)
 "dq" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/black,
@@ -1295,7 +1273,6 @@
 /obj/item/clothing/gloves/sterile,
 /obj/item/clothing/mask/surgical,
 /obj/item/weapon/surgical/retractor{
-	pixel_x = 0;
 	pixel_y = 6
 	},
 /obj/item/weapon/surgical/scalpel,
@@ -1467,7 +1444,6 @@
 "ep" = (
 /obj/machinery/door/window{
 	base_state = "right";
-	dir = 4;
 	icon_state = "right"
 	},
 /turf/simulated/floor/plating,
@@ -1507,7 +1483,6 @@
 /area/awaymission/zoo/tradeship)
 "eu" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -1517,7 +1492,6 @@
 /area/awaymission/zoo/tradeship)
 "ev" = (
 /obj/structure/mirror{
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /turf/simulated/shuttle/floor/black,
@@ -1571,7 +1545,6 @@
 "eC" = (
 /obj/machinery/door/window{
 	base_state = "right";
-	dir = 4;
 	icon_state = "right"
 	},
 /obj/item/weapon/reagent_containers/food/snacks/xenomeat,
@@ -1846,7 +1819,6 @@
 /obj/machinery/button/remote/blast_door{
 	id = "trade";
 	name = "Shop Shutters";
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/simulated/shuttle/floor/black,
@@ -1921,7 +1893,6 @@
 /area/awaymission/zoo/tradeship)
 "fG" = (
 /obj/machinery/atmospherics/pipe/tank/air{
-	dir = 2;
 	start_pressure = 740.5
 	},
 /turf/simulated/shuttle/floor/black,
@@ -2038,9 +2009,7 @@
 "ga" = (
 /obj/structure/closet/crate/solar,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/black,
 /area/awaymission/zoo/tradeship)
@@ -2136,7 +2105,6 @@
 /area/awaymission/zoo/tradeship)
 "gn" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -2347,7 +2315,6 @@
 /area/awaymission/zoo/pirateship)
 "gW" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -2368,9 +2335,7 @@
 	pixel_y = 3
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -2390,7 +2355,6 @@
 "hb" = (
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2400,14 +2364,12 @@
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2460,7 +2422,6 @@
 "hh" = (
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2470,7 +2431,6 @@
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2480,7 +2440,6 @@
 "hi" = (
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2494,7 +2453,6 @@
 "hj" = (
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2504,7 +2462,6 @@
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2528,19 +2485,16 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2570,7 +2524,6 @@
 "ht" = (
 /obj/structure/closet/secure_closet/medical_wall{
 	pixel_x = -32;
-	pixel_y = 0;
 	req_access = list(150)
 	},
 /obj/item/stack/medical/splint,
@@ -2636,13 +2589,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2687,13 +2638,11 @@
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -2704,9 +2653,7 @@
 	pixel_x = -25
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -2738,7 +2685,6 @@
 "hN" = (
 /obj/machinery/flasher{
 	id = "syndieflash";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /obj/machinery/light/small{
@@ -2751,7 +2697,6 @@
 	desc = "Talk through this. Evilly";
 	frequency = 1213;
 	name = "Syndicate Intercom";
-	pixel_x = 0;
 	pixel_y = -32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -2802,9 +2747,7 @@
 /area/awaymission/zoo/syndieship)
 "hW" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -2848,8 +2791,7 @@
 /obj/machinery/button/flasher{
 	id = "syndieflash";
 	name = "Flasher";
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -2883,9 +2825,7 @@
 	pixel_y = 9
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -2940,9 +2880,7 @@
 /area/awaymission/zoo/syndieship)
 "im" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/machinery/sleeper{
 	dir = 8
@@ -2999,9 +2937,7 @@
 /obj/structure/table/standard,
 /obj/item/clothing/gloves/yellow,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -3165,9 +3101,7 @@
 /obj/structure/table/rack,
 /obj/item/device/multitool,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -3227,9 +3161,7 @@
 "iK" = (
 /obj/item/weapon/weldingtool,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -3270,13 +3202,10 @@
 "iP" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /obj/structure/closet/secure_closet/medical_wall{
 	pixel_x = 32;
-	pixel_y = 0;
 	req_access = list(150)
 	},
 /obj/item/weapon/tank/anesthetic,
@@ -3348,13 +3277,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3364,13 +3291,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3390,13 +3315,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3410,13 +3333,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3432,7 +3353,6 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3446,7 +3366,6 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3460,13 +3379,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3480,13 +3397,11 @@
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -3506,7 +3421,6 @@
 /area/awaymission/zoo)
 "jm" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 9
 	},
 /obj/structure/flora/ausbushes/grassybush,
@@ -3621,7 +3535,6 @@
 /area/awaymission/zoo)
 "jB" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 9
 	},
 /turf/simulated/floor/grass,
@@ -3642,7 +3555,6 @@
 /area/awaymission/zoo)
 "jF" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 10
 	},
 /turf/simulated/floor/grass,
@@ -3704,7 +3616,6 @@
 /area/awaymission/zoo)
 "jP" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 10
 	},
 /obj/structure/flora/ausbushes/grassybush,
@@ -3913,11 +3824,6 @@
 /obj/item/clothing/mask/gas/owl_mask,
 /turf/simulated/floor/holofloor/carpet,
 /area/awaymission/zoo)
-"kv" = (
-/obj/structure/table/rack,
-/obj/item/toy/waterflower,
-/turf/simulated/floor/holofloor/carpet,
-/area/awaymission/zoo)
 "kw" = (
 /obj/structure/table/rack,
 /obj/item/toy/sword,
@@ -3941,7 +3847,6 @@
 /area/awaymission/zoo)
 "kz" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 9
 	},
 /turf/simulated/floor/beach/water{
@@ -4022,9 +3927,7 @@
 "kO" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/white,
 /area/awaymission/zoo)
@@ -4034,7 +3937,6 @@
 /area/awaymission/zoo)
 "kQ" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -4164,8 +4066,6 @@
 /area/awaymission/zoo)
 "ll" = (
 /obj/machinery/door/airlock/glass{
-	icon_state = "door_closed";
-	locked = 0;
 	name = "Exhibit Airlock"
 	},
 /turf/simulated/floor/tiled/white,
@@ -4182,8 +4082,6 @@
 /area/awaymission/zoo)
 "lo" = (
 /obj/machinery/door/airlock/glass{
-	icon_state = "door_closed";
-	locked = 0;
 	name = "Exhibit Airlock"
 	},
 /turf/simulated/floor/holofloor/carpet,
@@ -4211,7 +4109,6 @@
 "lt" = (
 /obj/structure/table/marble,
 /obj/machinery/cash_register{
-	icon_state = "register_idle";
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/lino,
@@ -4242,14 +4139,14 @@
 /area/awaymission/zoo)
 "ly" = (
 /obj/effect/floor_decal/spline/plain{
-	icon_state = "spline_plain_full";
-	dir = 1
+	dir = 1;
+	icon_state = "spline_plain_full"
 	},
 /obj/structure/showcase{
-	name = "Statue";
 	desc = "It looks almost lifelike.";
 	icon = 'icons/obj/statue.dmi';
-	icon_state = "monkey"
+	icon_state = "monkey";
+	name = "Statue"
 	},
 /turf/simulated/floor/grass,
 /area/awaymission/zoo)
@@ -4263,8 +4160,6 @@
 /area/awaymission/zoo)
 "lA" = (
 /obj/machinery/door/airlock/glass{
-	icon_state = "door_closed";
-	locked = 0;
 	name = "Exhibit Airlock"
 	},
 /turf/simulated/floor/wood,
@@ -4285,7 +4180,6 @@
 "lD" = (
 /obj/structure/table/marble,
 /obj/machinery/cash_register{
-	icon_state = "register_idle";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
@@ -4296,7 +4190,6 @@
 /area/awaymission/zoo)
 "lF" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 10
 	},
 /turf/simulated/floor/beach/water{
@@ -4358,7 +4251,6 @@
 /area/awaymission/zoo)
 "lP" = (
 /obj/structure/table/rack,
-/obj/item/toy/crossbow,
 /turf/simulated/floor/holofloor/carpet,
 /area/awaymission/zoo)
 "lQ" = (
@@ -4396,7 +4288,6 @@
 /obj/item/weapon/storage/backpack/clown,
 /obj/item/clothing/shoes/rainbow,
 /obj/item/clothing/under/color/rainbow,
-/obj/item/clothing/under/seromi/undercoat/standard/rainbow,
 /obj/item/clothing/gloves/rainbow,
 /obj/item/clothing/head/soft/rainbow,
 /turf/simulated/floor/holofloor/carpet,
@@ -4420,9 +4311,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo)
 "lZ" = (
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 2
-	},
+/obj/effect/floor_decal/spline/fancy/wood,
 /turf/simulated/floor/beach/water{
 	icon_state = "seadeep"
 	},
@@ -4502,8 +4391,6 @@
 /area/awaymission/zoo)
 "mm" = (
 /obj/machinery/door/airlock/glass{
-	icon_state = "door_closed";
-	locked = 0;
 	name = "Exhibit Airlock"
 	},
 /turf/simulated/floor/holofloor/lino,
@@ -4533,19 +4420,16 @@
 "mr" = (
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4633,19 +4517,16 @@
 "my" = (
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4655,7 +4536,6 @@
 "mz" = (
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4669,13 +4549,11 @@
 "mA" = (
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4750,13 +4628,11 @@
 "mL" = (
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4766,7 +4642,6 @@
 "mM" = (
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4780,13 +4655,11 @@
 "mN" = (
 /obj/structure/window/phoronreinforced{
 	dir = 4;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4856,13 +4729,11 @@
 "mW" = (
 /obj/structure/window/phoronreinforced{
 	dir = 8;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
 /obj/structure/window/phoronreinforced{
 	dir = 1;
-	icon_state = "phoronrwindow";
 	maxhealth = 10000;
 	name = "robust borosilicate window"
 	},
@@ -4989,10 +4860,10 @@
 "nq" = (
 /obj/structure/bed/chair,
 /obj/structure/showcase{
-	name = "Statue";
 	desc = "It looks almost lifelike.";
 	icon = 'icons/obj/statue.dmi';
-	icon_state = "Human_male"
+	icon_state = "Human_male";
+	name = "Statue"
 	},
 /turf/simulated/floor/lino,
 /area/awaymission/zoo)
@@ -5087,8 +4958,8 @@
 /area/awaymission/zoo)
 "nG" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beachcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "beachcorner"
 	},
 /area/awaymission/zoo)
 "nH" = (
@@ -5104,8 +4975,7 @@
 /area/awaymission/zoo)
 "nK" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beachcorner";
-	dir = 2
+	icon_state = "beachcorner"
 	},
 /area/awaymission/zoo)
 "nL" = (
@@ -5295,14 +5165,14 @@
 /area/awaymission/zoo)
 "og" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 10
+	dir = 10;
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "oh" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 6
+	dir = 6;
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "oi" = (
@@ -5385,8 +5255,7 @@
 /area/awaymission/zoo)
 "ou" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 2
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "ov" = (
@@ -5628,7 +5497,6 @@
 "pd" = (
 /obj/structure/flora/ausbushes/genericbush,
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 10
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -5839,7 +5707,6 @@
 "pH" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 9
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -5872,7 +5739,6 @@
 /area/awaymission/zoo)
 "pM" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 9
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -5885,8 +5751,7 @@
 /area/awaymission/zoo)
 "pO" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -5901,8 +5766,7 @@
 /area/awaymission/zoo)
 "pP" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -5911,8 +5775,7 @@
 /area/awaymission/zoo)
 "pQ" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -5956,8 +5819,7 @@
 /area/awaymission/zoo)
 "pW" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet{
 	dir = 8
@@ -5966,15 +5828,13 @@
 /area/awaymission/zoo)
 "pX" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /turf/simulated/floor/lino,
 /area/awaymission/zoo)
 "pY" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet{
 	dir = 4
@@ -6011,26 +5871,25 @@
 /area/awaymission/zoo)
 "qe" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 9
+	dir = 9;
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "qf" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 1
+	dir = 1;
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "qg" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 5
+	dir = 5;
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "qh" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet{
 	dir = 8
@@ -6043,16 +5902,14 @@
 /area/awaymission/zoo)
 "qi" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet,
 /turf/simulated/floor/lino,
 /area/awaymission/zoo)
 "qj" = (
 /obj/effect/floor_decal/carpet{
-	icon_state = "carpet";
-	dir = 2
+	icon_state = "carpet"
 	},
 /obj/effect/floor_decal/carpet,
 /obj/effect/floor_decal/carpet{
@@ -6084,14 +5941,14 @@
 /area/awaymission/zoo)
 "qn" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beachcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "beachcorner"
 	},
 /area/awaymission/zoo)
 "qo" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beachcorner";
-	dir = 8
+	dir = 8;
+	icon_state = "beachcorner"
 	},
 /area/awaymission/zoo)
 "qp" = (
@@ -6219,7 +6076,6 @@
 /area/awaymission/zoo)
 "qE" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 9
 	},
 /obj/structure/flora/ausbushes/ppflowers,
@@ -6383,7 +6239,6 @@
 /area/awaymission/zoo)
 "rg" = (
 /obj/effect/floor_decal/spline/fancy/wood{
-	icon_state = "spline_fancy";
 	dir = 10
 	},
 /obj/structure/flora/ausbushes/ppflowers,
@@ -6442,15 +6297,12 @@
 /turf/simulated/floor,
 /area/awaymission/zoo)
 "rr" = (
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 2
-	},
+/obj/effect/floor_decal/spline/fancy/wood,
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/grass,
 /area/awaymission/zoo)
 "rs" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -6861,12 +6713,6 @@
 "sg" = (
 /obj/effect/overlay/palmtree_l,
 /turf/simulated/floor/holofloor/grass,
-/area/awaymission/zoo)
-"sh" = (
-/mob/living/simple_mob/hostile/samak{
-	faction = "zoo"
-	},
-/turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "si" = (
 /obj/effect/floor_decal/spline/plain{
@@ -7682,12 +7528,6 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
-"ua" = (
-/mob/living/simple_mob/fox{
-	faction = "zoo"
-	},
-/turf/simulated/floor/holofloor/snow,
-/area/awaymission/zoo)
 "ub" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -8069,8 +7909,8 @@
 /area/awaymission/zoo)
 "uW" = (
 /turf/simulated/floor/holofloor/beach/water{
-	icon_state = "beach";
-	dir = 8
+	dir = 8;
+	icon_state = "beach"
 	},
 /area/awaymission/zoo)
 "uX" = (
@@ -8220,12 +8060,6 @@
 /obj/item/stack/tile/grass,
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
-"vn" = (
-/mob/living/simple_mob/hostile/shantak{
-	faction = "zoo"
-	},
-/turf/simulated/floor/holofloor/snow,
-/area/awaymission/zoo)
 "vo" = (
 /mob/living/carbon/human/monkey{
 	faction = "zoo"
@@ -8234,25 +8068,8 @@
 	icon_state = "dgrass2"
 	},
 /area/awaymission/zoo)
-"vp" = (
-/mob/living/simple_mob/hostile/shantak{
-	color = "";
-	faction = "zoo";
-	health = 100;
-	maxHealth = 100;
-	name = "alpha shantak"
-	},
-/turf/simulated/floor/holofloor/snow,
-/area/awaymission/zoo)
 "vq" = (
 /mob/living/simple_mob/animal/space/tree{
-	faction = "zoo"
-	},
-/turf/simulated/floor/holofloor/snow,
-/area/awaymission/zoo)
-"vr" = (
-/obj/structure/flora/bush,
-/mob/living/simple_mob/hostile/shantak{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -8381,10 +8198,7 @@
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/box/masks{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/weapon/storage/box/masks,
 /obj/item/weapon/storage/box/gloves{
 	pixel_x = 3;
 	pixel_y = 4
@@ -8416,9 +8230,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/zoo)
 "vN" = (
-/obj/machinery/sleep_console{
-	dir = 8
-	},
+/obj/machinery/sleep_console,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/zoo)
 "vO" = (
@@ -8444,7 +8256,6 @@
 /obj/item/clothing/gloves/sterile,
 /obj/item/clothing/mask/surgical,
 /obj/item/weapon/surgical/retractor{
-	pixel_x = 0;
 	pixel_y = 6
 	},
 /obj/item/weapon/surgical/scalpel,
@@ -8536,10 +8347,6 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "wh" = (
-/obj/machinery/power/smes/magical{
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit.";
-	name = "power storage unit"
-	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/zoo)
@@ -8712,8 +8519,7 @@
 /obj/machinery/door/airlock/security{
 	icon_state = "door_locked";
 	locked = 1;
-	name = "Security";
-	req_one_access = list(1)
+	name = "Security"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/zoo)
@@ -8841,7 +8647,6 @@
 "xf" = (
 /obj/machinery/door/window/brigdoor/northleft,
 /obj/structure/window/reinforced{
-	dir = 2;
 	health = 1e+006
 	},
 /obj/structure/window/reinforced{
@@ -8858,7 +8663,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 2;
 	health = 1e+006
 	},
 /obj/structure/table/rack,
@@ -8868,7 +8672,6 @@
 "xh" = (
 /obj/machinery/door/window/brigdoor/northleft,
 /obj/structure/window/reinforced{
-	dir = 2;
 	health = 1e+006
 	},
 /obj/structure/window/reinforced{
@@ -8885,7 +8688,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 2;
 	health = 1e+006
 	},
 /obj/structure/table/rack,
@@ -8909,8 +8711,7 @@
 "xl" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/solar/fake,
 /turf/simulated/floor/airless{
@@ -8934,8 +8735,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -8963,8 +8763,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/airless,
 /area/awaymission/zoo/solars)
@@ -9000,8 +8799,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/airless,
 /area/awaymission/zoo/solars)
@@ -9009,8 +8807,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9053,8 +8850,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/airless,
 /area/awaymission/zoo/solars)
@@ -9080,8 +8876,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/airless,
 /area/awaymission/zoo/solars)
@@ -20210,7 +20005,7 @@ hq
 hq
 hq
 gP
-kg
+kh
 jM
 jM
 kg
@@ -20517,7 +20312,7 @@ hq
 hq
 hq
 jQ
-kg
+kh
 jM
 jM
 kg
@@ -21131,7 +20926,7 @@ hq
 hq
 hq
 jS
-kg
+kh
 jM
 jM
 kg
@@ -21438,7 +21233,7 @@ hq
 hq
 hq
 gP
-kg
+kh
 jM
 jM
 kg
@@ -35560,7 +35355,7 @@ hq
 hq
 hq
 jR
-kv
+lP
 kW
 kW
 kW
@@ -44826,7 +44621,7 @@ qK
 qK
 qZ
 qK
-sh
+qK
 rJ
 qK
 qK
@@ -44897,9 +44692,9 @@ qY
 qK
 qK
 qZ
-vn
-vn
-vr
+qK
+qK
+rJ
 qK
 qK
 qK
@@ -45204,9 +44999,9 @@ qK
 qK
 qK
 qK
-vn
-vp
-vn
+qK
+qK
+qK
 qK
 qK
 qK
@@ -45511,9 +45306,9 @@ qK
 qK
 qK
 qK
-vn
-vn
-vn
+qK
+qK
+qK
 qK
 qK
 qK
@@ -46665,7 +46460,7 @@ qK
 qK
 qK
 qK
-sh
+qK
 qK
 qK
 qK
@@ -51616,7 +51411,7 @@ qK
 qK
 qK
 qY
-ua
+qK
 qK
 qK
 qK
@@ -51920,7 +51715,7 @@ qK
 qK
 rJ
 ra
-ua
+qK
 qK
 rJ
 qZ
@@ -53326,7 +53121,7 @@ bn
 bJ
 bJ
 bJ
-cH
+eI
 bn
 bn
 bJ
@@ -53932,7 +53727,7 @@ aa
 bn
 bn
 ch
-cH
+eI
 df
 bJ
 dT
@@ -53945,7 +53740,7 @@ bn
 fI
 bJ
 bJ
-cH
+eI
 gD
 bn
 bn
