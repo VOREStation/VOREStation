@@ -10,77 +10,43 @@
 	<html>
 		<head>
 			<style>
-				body {
-					margin-top:5px;
-					font-family:Verdana;
-					color:white;
-					font-size:13px;
-					background-image:url('ooc_notes.png');
-					background-repeat:repeat-x;
-					background-color:#272727;
-					background-position:center top;
-				}
-				table {
-					font-size:13px;
-					margin-left:-2px;
-				}
-				h2 {
-					font-size:15px;
-				}
 				.collapsible {
 					background-color: #263d20;
 					color: white;
-					padding: 5px;
 					width: 100%;
-					border: none;
 					text-align: left;
-					outline: none;
 					font-size: 20px;
 				}
 				.collapsible_b {
 					background-color: #3f1a1a;
 					color: white;
-					padding: 5px;
 					width: 100%;
-					border: none;
 					text-align: left;
-					outline: none;
 					font-size: 20px;
 				}
-
 				.content {
 					padding: 5;
 					width: 100%;
 					background-color: #363636;
 				}
 
-				.button {
-					background-color: #40628a;
-					text-align: center;
-				}
-				td.button {
-					border: 1px solid #161616;
-					background-color: #40628a;
-					text-align: center;
-				}
-				a.button {
-					color:white;
-					text-decoration: none;
-				}
-
 				</style>
 			</head>"}
 
-	dat += {"<body>
-			<b><font size='3px'>[src.name]'s OOC notes</font></b><br>"}
+	dat += {"<body><table>"}
 	if(user == src)
 		dat += {"
-				<table>
-					<td class="button">
-						<a href='byond://?src=\ref[src];save_ooc_panel=1' class='button'>Save Character Preferences</a>
-					</td>
-				</table>
-				"}
+			<td class="button">
+				<a href='byond://?src=\ref[src];save_ooc_panel=1' class='button'>Save Character Preferences</a>
+			</td>
+			"}
+	dat += {"
+			<td class="button">
+				<a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1' class='button'>Print to chat</a>
+			</td>
+			</table>
+			"}
+
 	if(user == src)
 		dat += {"
 				<br>
@@ -95,10 +61,10 @@
 		<br>
 		<p>[notes]</p>
 		<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<body>
+		<meta name="viewport" content="width=device-width, initial-scale=1">"}
 
-		<div class="collapsible"><b>Likes</b></div>"}
+	if(likes || user == src)
+		dat += {"<div class="collapsible"><b><center>Likes</center></b></div>"}
 	if(user == src)
 		dat += {"
 				<table>
@@ -113,9 +79,10 @@
 			<div class="content">
 			  <p>[likes]</p>
 			</div>"}
-	dat += {"
-	<br>
-	<div class="collapsible_b"><b>Dislikes</b></div>"}
+	if(dislikes || user == src)
+		dat += {"
+		<br>
+		<div class="collapsible_b"><b><center>Dislikes</center></b></div>"}
 	if(user == src)
 		dat += {"
 				<table>
@@ -134,6 +101,12 @@
 			</html>
 			"}
 
-	user << browse("<html><head><title>OOC Notes: [src]</title></head>[dat]</html>", "window=[src.name]mvp;size=500x600;can_resize=1;can_minimize=1")
+//	user << browse("<html><head><title>OOC Notes: [src]</title></head>[dat]</html>", "window=[src.name]ooc_notes;size=500x600;can_resize=1;can_minimize=1")
 
-	onclose(usr, "[src.name]")
+//	onclose(usr, "[src.name]")
+
+	winshow(user, "ooc_notes", TRUE)
+	var/datum/browser/popup = new(user, "ooc_notes_panel", "OOC Notes: [src.name]", 500, 600)
+	popup.set_content(dat)
+	popup.open(FALSE) // Skip registring onclose on the browser pane
+	onclose(user, "ooc_notes", src) // We want to register on the window itself
