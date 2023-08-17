@@ -132,7 +132,7 @@
 
 	speaker.verbs |= /mob/proc/adjust_hive_range	//VOREStation Add - If you don't have the verb you should.
 
-	if(!speaker_mask) speaker_mask = speaker.name
+	if(!speaker_mask) speaker_mask = speaker.real_name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""
 	//VOREStation Edit Start
 	if(speaker.hive_lang_range == -1)
