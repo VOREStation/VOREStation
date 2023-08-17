@@ -323,7 +323,7 @@
 	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom heat Discomfort: </b>"
+	. += "<b>Custom Heat Discomfort: </b>"
 	. += "<a href='?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_heat=1'>Reset</A>)"
 	. += "<br>"

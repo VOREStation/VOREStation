@@ -87,6 +87,7 @@
 	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
 	. += "<b>Nickname:</b> "
 	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
+	. += "(<a href='?src=\ref[src];reset_nickname=1'>Clear</A>)"
 	. += "<br>"
 	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
@@ -126,6 +127,12 @@
 			else
 				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
+
+	else if(href_list["reset_nickname"])
+		var/nick_choice = tgui_alert(usr, "Wipe your Nickname? This will completely remove any chosen nickname(s).","Wipe Nickname",list("Yes","No"))
+		if(nick_choice == "Yes")
+			pref.nickname = null
+		return TOPIC_REFRESH
 
 	else if(href_list["bio_gender"])
 		var/new_gender = tgui_input_list(user, "Choose your character's biological sex:", "Character Preference", get_genders(), pref.biological_gender)
