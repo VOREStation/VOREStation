@@ -101,12 +101,14 @@
 			</html>
 			"}
 
-//	user << browse("<html><head><title>OOC Notes: [src]</title></head>[dat]</html>", "window=[src.name]ooc_notes;size=500x600;can_resize=1;can_minimize=1")
+	var/key = "ooc_notes[src.real_name]"	//Generate a unique key so we can make unique clones of windows, that way we can have more than one
+	if(src.ckey)
+		key = "[key][src.ckey]"				//Add a ckey if they have one, in case their name is the same
 
-//	onclose(usr, "[src.name]")
+	winclone(user, "ooc_notes", key)		//Allows us to have more than one OOC notes panel open
 
-	winshow(user, "ooc_notes", TRUE)
-	var/datum/browser/popup = new(user, "ooc_notes_panel", "OOC Notes: [src.name]", 500, 600)
-	popup.set_content(dat)
+	winshow(user, key, TRUE)				//Register our window
+	var/datum/browser/popup = new(user, key, "OOC Notes: [src.name]", 500, 600)		//Create the window
+	popup.set_content(dat)	//Populate window contents
 	popup.open(FALSE) // Skip registring onclose on the browser pane
-	onclose(user, "ooc_notes", src) // We want to register on the window itself
+	onclose(user, key, src) // We want to register on the window itself

@@ -84,8 +84,6 @@
 		to_chat(usr, "<span class='filter_notice'>Character preferences saved.</span>")
 
 /mob/living/proc/print_ooc_notes_to_chat()
-	if(usr != src)
-		return
 	if(!ooc_notes)
 		return
 	var/msg = ooc_notes
