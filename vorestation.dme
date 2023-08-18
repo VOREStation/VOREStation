@@ -1201,6 +1201,7 @@
 #include "code\game\objects\items\devices\debugger.dm"
 #include "code\game\objects\items\devices\defib.dm"
 #include "code\game\objects\items\devices\denecrotizer_vr.dm"
+#include "code\game\objects\items\devices\e_beacon.dm"
 #include "code\game\objects\items\devices\flash.dm"
 #include "code\game\objects\items\devices\flash_vr.dm"
 #include "code\game\objects\items\devices\flashlight.dm"
