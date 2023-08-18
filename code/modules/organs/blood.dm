@@ -219,8 +219,6 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!amt)
 		return 0
 
-	amt = amt * (src.mob_size/MOB_MEDIUM)
-
 	var/current_blood = vessel.get_reagent_amount("blood")
 	if(current_blood < BLOOD_MINIMUM_STOP_PROCESS)
 		return 0 //We stop processing under 3 units of blood because apparently weird shit can make it overflowrandomly.
@@ -271,7 +269,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!should_have_organ(O_HEART))
 		return null
 
-	if(vessel.get_reagent_amount("blood") < amount || vessel.get_reagent_amount("blood") < BLOOD_MINIMUM_STOP_PROCESS)
+	if(vessel.get_reagent_amount("blood") < max(amount, BLOOD_MINIMUM_STOP_PROCESS))
 		return null
 
 	. = ..()
