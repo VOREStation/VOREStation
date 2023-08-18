@@ -36,8 +36,21 @@
 		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 		ooc_notes_window(usr)
+		set_metainfo_likes(FALSE)
+		set_metainfo_dislikes(FALSE)
 
-/mob/living/proc/set_metainfo_likes()
+/mob/living/verb/set_metainfo_panel()
+	if(usr != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(usr))
+		ooc_notes = new_metadata
+		client.prefs.metadata = new_metadata
+		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
+		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
+		ooc_notes_window(usr)
+
+/mob/living/proc/set_metainfo_likes(var/reopen = TRUE)
 	if(usr != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE,  prevent_enter = TRUE))
@@ -46,9 +59,10 @@
 		client.prefs.metadata_likes = new_metadata
 		to_chat(usr, "<span class='filter_notice'>OOC note likes have been updated. Don't forget to save!</span>")
 		log_admin("[key_name(usr)] updated their OOC note likes mid-round.")
-		ooc_notes_window(usr)
+		if(reopen)
+			ooc_notes_window(usr)
 
-/mob/living/proc/set_metainfo_dislikes()
+/mob/living/proc/set_metainfo_dislikes(var/reopen = TRUE)
 	if(usr != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE,  prevent_enter = TRUE))
@@ -57,7 +71,8 @@
 		client.prefs.metadata_dislikes = new_metadata
 		to_chat(usr, "<span class='filter_notice'>OOC note dislikes have been updated. Don't forget to save!</span>")
 		log_admin("[key_name(usr)] updated their OOC note dislikes mid-round.")
-		ooc_notes_window(usr)
+		if(reopen)
+			ooc_notes_window(usr)
 
 /mob/living/proc/save_ooc_panel()
 	if(usr != src)
@@ -67,6 +82,16 @@
 		return
 	if(client.prefs.save_character())
 		to_chat(usr, "<span class='filter_notice'>Character preferences saved.</span>")
+
+/mob/living/proc/print_ooc_notes_to_chat()
+	if(!ooc_notes)
+		return
+	var/msg = ooc_notes
+	if(ooc_notes_likes)
+		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
+	if(ooc_notes_dislikes)
+		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
+	to_chat(usr, "<span class='filter_notice'>[src]'s Metainfo:<br>[msg]</span>")
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"

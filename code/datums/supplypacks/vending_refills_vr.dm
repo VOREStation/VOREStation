@@ -58,11 +58,6 @@
 	name = "Robust Softdrinks Vendor Refill Cartridge"
 	cost = 10
 
-/datum/supply_pack/vending_refills/cola_soft
-	contains = list(/obj/item/weapon/refill_cartridge/autoname/drink/cola_soft)
-	name = "Soft Robustdrinks Vendor Refill Cartridge"
-	cost = 10
-
 /datum/supply_pack/vending_refills/sovietsoda
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/drink/sovietsoda)
 	name = "BODA Vendor Refill Cartridge"
@@ -124,7 +119,6 @@
 					/obj/item/weapon/refill_cartridge/autoname/food/sovietvend,
 					/obj/item/weapon/refill_cartridge/autoname/drink/coffee,
 					/obj/item/weapon/refill_cartridge/autoname/drink/cola,
-					/obj/item/weapon/refill_cartridge/autoname/drink/cola_soft,
 					/obj/item/weapon/refill_cartridge/autoname/drink/sovietsoda,
 					/obj/item/weapon/refill_cartridge/autoname/drink/bepis,
 					/obj/item/weapon/refill_cartridge/autoname/cigarette,

@@ -34,7 +34,7 @@
 		if(I_GRAB)
 			if(has_hands)
 				A.attack_hand(src)
-			else if(isliving(A) && src.client)
+			else if(isliving(A) && src.client && !vore_attack_override)
 				animal_nom(A)
 			else
 				attack_target(A)

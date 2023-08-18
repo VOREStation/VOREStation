@@ -145,7 +145,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/wilds)
 "bx" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/mud,
 /area/redgate/wilds)
 "by" = (
 /obj/fiftyspawner/phoron,
@@ -269,6 +269,10 @@
 "xM" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/floor/outdoors/grass/seasonal,
+/area/redgate/wilds)
+"yR" = (
+/obj/effect/fake_sun,
+/turf/simulated/floor/water/deep,
 /area/redgate/wilds)
 "zB" = (
 /obj/random/mob/semirandom_mob_spawner/fish/b,
@@ -611,7 +615,7 @@ ba
 ba
 ba
 ba
-ba
+yR
 ba
 "}
 (3,1,1) = {"
@@ -4803,7 +4807,7 @@ SJ
 aO
 aO
 aX
-aX
+xL
 xL
 aX
 aX
@@ -4947,7 +4951,7 @@ aO
 aX
 aX
 xL
-aX
+xL
 xL
 xL
 aX
@@ -5090,7 +5094,7 @@ aO
 aO
 xL
 xL
-aX
+xL
 xL
 aX
 aX
@@ -5232,7 +5236,7 @@ aO
 aO
 aX
 aX
-aX
+xL
 xL
 xL
 aX
@@ -6228,7 +6232,7 @@ aO
 aO
 aO
 xL
-aX
+xL
 aX
 aX
 aX
@@ -9290,7 +9294,7 @@ aY
 aO
 aN
 aN
-aN
+aO
 aO
 aO
 xL
@@ -9432,8 +9436,8 @@ aY
 aO
 aO
 aO
-aN
-aN
+aO
+aO
 aO
 xL
 aO
@@ -9574,7 +9578,7 @@ aO
 aO
 aO
 aN
-aN
+aO
 aO
 aO
 xL
@@ -17239,7 +17243,7 @@ aZ
 aZ
 aY
 aY
-bx
+xL
 aO
 aO
 aO
@@ -17807,8 +17811,8 @@ aZ
 aZ
 aZ
 aY
-bx
-bx
+xL
+xL
 aO
 aO
 aN
@@ -17949,8 +17953,8 @@ aZ
 aZ
 aY
 aY
-bx
-bx
+xL
+xL
 aO
 aO
 aN
@@ -18091,8 +18095,8 @@ aZ
 aZ
 aZ
 aY
-bx
-bx
+xL
+xL
 aO
 aO
 aO
@@ -18233,8 +18237,8 @@ aZ
 aZ
 aZ
 aY
-bx
-bx
+xL
+xL
 aO
 aO
 aO
@@ -18375,9 +18379,9 @@ aZ
 aZ
 aZ
 aY
-bx
-bx
-bx
+xL
+xL
+xL
 aO
 aO
 aO
@@ -18517,10 +18521,10 @@ aZ
 aZ
 aZ
 bd
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
 aO
 aO
 aO
@@ -18659,14 +18663,14 @@ aZ
 aZ
 aZ
 aY
-bx
-bx
-bx
-bx
-bx
-bx
-bx
-bx
+xL
+xL
+xL
+xL
+xL
+xL
+xL
+xL
 aO
 aO
 aO
@@ -18801,8 +18805,8 @@ aZ
 aZ
 aZ
 aZ
-bx
-bx
+xL
+xL
 aY
 aY
 aY

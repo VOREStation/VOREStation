@@ -58,11 +58,14 @@
 		. += "<span class='danger'>You are banned from using character records.</span><br>"
 	else
 		. += "Medical Records:<br>"
-		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br><br>"
+		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
+		. += " (<a href='?src=\ref[src];reset_medrecord=1'>Reset</A>)<br><br>"
 		. += "Employment Records:<br>"
-		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br><br>"
+		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
+		. += "(<a href='?src=\ref[src];reset_emprecord=1'>Reset</A>)<br><br>"
 		. += "Security Records:<br>"
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
+		. += "(<a href='?src=\ref[src];reset_secrecord=1'>Reset</A>)"
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["econ_status"])
@@ -147,6 +150,24 @@
 		var/sec_medical = strip_html_simple(tgui_input_text(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
 		if(sec_medical && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.sec_record = sec_medical
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_medrecord"])
+		var/resetmed_choice = tgui_alert(usr, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		if(resetmed_choice == "Yes")
+			pref.med_record = null
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_emprecord"])
+		var/resetemp_choice = tgui_alert(usr, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		if(resetemp_choice == "Yes")
+			pref.gen_record = null
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_secrecord"])
+		var/resetsec_choice = tgui_alert(usr, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		if(resetsec_choice == "Yes")
+			pref.sec_record = null
 		return TOPIC_REFRESH
 
 	return ..()

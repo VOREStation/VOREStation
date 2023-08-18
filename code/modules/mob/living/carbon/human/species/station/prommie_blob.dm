@@ -65,9 +65,9 @@
 	humanform = null
 	drop_l_hand()
 	drop_r_hand()
-	mob_radio.forceMove(loc)
+	drop_from_inventory(mob_radio, loc)
 	mob_radio = null
-	myid.forceMove(loc)
+	drop_from_inventory(myid, loc)
 	myid = null
 	vore_organs = null
 	vore_selected = null
@@ -76,8 +76,8 @@
 
 /mob/living/carbon/human/Destroy()
 	if(stored_blob)
-		stored_blob.l_hand.forceMove(loc)
-		stored_blob.r_hand.forceMove(loc)
+		stored_blob.drop_l_hand()
+		stored_blob.drop_r_hand()
 		stored_blob = null
 		qdel(stored_blob)
 	return ..()

@@ -1060,7 +1060,7 @@
 	if(custom_link)
 		. += "Custom link: [custom_link]"
 	if(ooc_notes)
-		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
+		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 	. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 
@@ -1071,7 +1071,7 @@
 		src.Examine_OOC()
 	if(href_list["edit_ooc_notes"])
 		if(usr == src)
-			set_metainfo()
+			set_metainfo_panel()
 	if(href_list["edit_ooc_note_likes"])
 		if(usr == src)
 			set_metainfo_likes()
@@ -1081,8 +1081,8 @@
 	if(href_list["save_ooc_panel"])
 		if(usr == src)
 			save_ooc_panel()
-
-
+	if(href_list["print_ooc_notes_to_chat"])
+		print_ooc_notes_to_chat()
 	return ..()
 
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument

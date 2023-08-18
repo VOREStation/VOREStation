@@ -1281,6 +1281,12 @@
 	character_name = list("Lucky")
 	allowed_roles = list("Chaplain")
 
+/datum/gear/fluff/lovec_gasmask
+	path = /obj/item/clothing/mask/gas/explorer
+	display_name = "Explorer's Gas Mask"
+	ckeywhitelist = list("thenewmeta")
+	character_name = list("Lovec")
+
 /datum/gear/fluff/monty_balaclava
 	path = /obj/item/clothing/mask/balaclava
 	display_name = "Monty's Balaclava"
