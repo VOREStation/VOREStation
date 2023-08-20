@@ -915,6 +915,8 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/pilotslug)
 	say_list_type = /datum/say_list/catslug/custom/pilotslug
 
+	can_wear_hat = TRUE
+
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug/Initialize()
 	. = ..()
 	if(prob(25))
