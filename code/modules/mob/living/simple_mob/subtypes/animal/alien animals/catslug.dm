@@ -217,8 +217,9 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Login()	//If someone plays as us let's just be a passive mob in case accidents happen if the player D/Cs
 	. = ..()
-	ai_holder.hostile = FALSE
-	ai_holder.wander = FALSE
+	if(ai_holder)
+		ai_holder.hostile = FALSE
+		ai_holder.wander = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color()
 	set name = "Pick Color"
@@ -230,7 +231,7 @@
 	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
 	if(newcolor)
 		color = newcolor
-	picked_color = TRUE
+		picked_color = TRUE
 	update_icon()
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug/proc/consider_awakening()

@@ -39,7 +39,7 @@
 		set_metainfo_likes(FALSE)
 		set_metainfo_dislikes(FALSE)
 
-/mob/living/verb/set_metainfo_panel()
+/mob/living/proc/set_metainfo_panel()
 	if(usr != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
