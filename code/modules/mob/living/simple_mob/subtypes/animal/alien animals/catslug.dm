@@ -55,6 +55,9 @@
 
 	has_langs = list(LANGUAGE_SIGN)
 
+	var/obj/item/clothing/head/hat = null // Scughat.
+	var/can_wear_hat = TRUE				  // Some have inbuilt hats
+
 	var/picked_color = FALSE
 
 	can_enter_vent_with = list(
@@ -135,8 +138,16 @@
 	verbs += /mob/living/proc/hide
 	verbs += /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color
 
+/mob/living/simple_mob/vore/alienanimals/catslug/Destroy()
+	if(hat)
+		drop_hat()
+	return ..()
+
 /mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/weapon/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
-	if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks))
+	if(istype(O, /obj/item/clothing/head)) // Handle hat simulator.
+		give_hat(O, user)
+		return
+	else if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks))
 		return ..()
 	if(resting)
 		to_chat(user, "<span class='notice'>\The [src] is napping, and doesn't respond to \the [O].</span>")
@@ -170,6 +181,9 @@
 	if(stat == DEAD)
 		return ..()
 	if(M.a_intent != I_HELP)
+		if(M.a_intent == I_GRAB && hat)
+			remove_hat(M)
+			return
 		return ..()
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	if(resting)
@@ -214,6 +228,52 @@
 			ai_holder.set_stance(STANCE_FIGHT)
 	else
 		return ..()
+
+/mob/living/simple_mob/vore/alienanimals/catslug/update_icon()
+	..()
+
+	if(hat)
+		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
+		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
+		I.pixel_y = -7
+		I.color = hat.color
+		I.appearance_flags = RESET_COLOR | KEEP_APART
+		I.blend_mode = BLEND_OVERLAY
+		add_overlay(I)
+
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+	if(!istype(new_hat))
+		to_chat(user, span("warning", "\The [new_hat] isn't a hat."))
+		return
+	if(hat)
+		to_chat(user, span("warning", "\The [src] is already wearing \a [hat]."))
+		return
+	else if(!can_wear_hat)
+		to_chat(user, span("warning", "\The [src] is unable to wear \a [hat]."))
+	else
+		user.drop_item(new_hat)
+		hat = new_hat
+		new_hat.forceMove(src)
+		to_chat(user, span("notice", "You place \a [new_hat] on \the [src]. How adorable!"))
+		update_icon()
+		return
+
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/remove_hat(var/mob/living/user)
+	if(!hat)
+		to_chat(user, "<span class='warning'>\The [src] doesn't have a hat to remove.</span>")
+	else
+		hat.forceMove(get_turf(src))
+		user.put_in_hands(hat)
+		to_chat(user, "<span class='warning'>You take away \the [src]'s [hat.name]. How mean.</span>")
+		hat = null
+		update_icon()
+
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/drop_hat()
+	if(!hat)
+		return
+	hat.forceMove(get_turf(src))
+	hat = null
+	update_icon()
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Login()	//If someone plays as us let's just be a passive mob in case accidents happen if the player D/Cs
 	. = ..()
@@ -292,6 +352,7 @@
 	digestable = 0
 	humanoid_hands = 1	//These should all be ones requiring admin-intervention to play as, so they can get decent tool-usage, as a treat.
 	var/siemens_coefficient = 1 		//Referenced later by others.
+	can_wear_hat = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize()
 	. = ..()
@@ -907,6 +968,7 @@
 	var/image/eye_image
 	var/is_impostor = FALSE
 	var/kill_cooldown
+	can_wear_hat = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/impostor
 	is_impostor = TRUE
