@@ -5,9 +5,13 @@
 	icon_state = "fakesun"
 	invisibility = INVISIBILITY_ABSTRACT
 	var/atom/movable/sun_visuals/sun
+	var/atom/movable/weather_visuals/visuals
 	var/family = null	//Allows multipe maps that are THEORETICALLY connected to use the same settings when not in a connected Z stack
 	var/shared_settings	//Automatically set if using the family var
 	var/static/world_suns = list()	//List of all the fake_suns in the world, used for checking for family members
+
+	var/do_sun = TRUE
+	var/do_weather = FALSE
 
 	var/list/possible_light_setups = list(
 		list(
@@ -81,6 +85,9 @@
 
 	)
 
+	var/weather_visuals_icon = 'icons/effects/weather.dmi'
+	var/weather_visuals_icon_state = null
+
 /obj/effect/fake_sun/New(loc, ...)
 	. = ..()
 	world_suns += src
@@ -125,11 +132,20 @@
 
 	sun = new(null)
 
+	visuals = new(null)
+	visuals.icon = weather_visuals_icon
+	visuals.icon_state = weather_visuals_icon_state
+
 	sun.set_color(choice["color"])
 	sun.set_alpha(round(CLAMP01(choice["brightness"])*255,1))
 
-	for(var/turf/T as anything in turfs_to_use)
-		sun.apply_to_turf(T)
+	if(do_sun)
+		for(var/turf/T as anything in turfs_to_use)
+			sun.apply_to_turf(T)
+
+	if(do_weather)
+		for(var/turf/T as anything in turfs_to_use)
+			T.vis_contents += visuals
 
 /obj/effect/fake_sun/warm
 	name = "warm fake sun"
