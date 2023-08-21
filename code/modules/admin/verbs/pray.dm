@@ -6,7 +6,7 @@
 		to_chat(usr, "<font color='red'>Speech is currently admin-disabled.</font>")
 		return
 
-	var/raw_msg = sanitize(tgui_input_text(usr, "Prayers are sent to staff, but do do not open tickets or go to discord. If you have a technical difficulty or an event/spice idea/hook - please ahelp instead. Thank you!", "Pray", null, MAX_MESSAGE_LEN))
+	var/raw_msg = sanitize(tgui_input_text(usr, "Prayers are sent to staff but do not open tickets or go to Discord. If you have a technical difficulty or an event/spice idea/hook - please ahelp instead. Thank you!", "Pray", null, MAX_MESSAGE_LEN))
 	if(!raw_msg)	return
 
 	if(usr.client)
