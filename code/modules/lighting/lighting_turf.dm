@@ -96,12 +96,8 @@
 
 ///Setter for the byond luminosity var
 /turf/proc/set_luminosity(new_luminosity, force)
-	// SSplanets handles outdoor turfs
-	if(force)
-		luminosity = new_luminosity
-		return
-	if(is_outdoors() || outdoors_adjacent)
-		if((z in SSplanets.z_to_planet) || (z in fake_sunlight_zs))
+	if((is_outdoors() && !force) || outdoors_adjacent)
+		if((z in SSplanets.z_to_planet) || (z in fake_sunlight_zs)) //These are both systems that handle the lighting on their own, so let's not interfere
 			return
 
 	luminosity = new_luminosity
