@@ -17,7 +17,7 @@
 				return
 
 	var/icon/cross = icon('icons/obj/storage.dmi',"bible")
-	var/msg = "<font color='blue'>\icon[cross][bicon(cross)] <b><font color=purple>PRAY: </font>[key_name(src, 1)] [ADMIN_QUE(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] ([admin_jump_link(src, src)]) [ADMIN_CA(src)] [ADMIN_SC(src)] [ADMIN_SMITE(src)]:</b> [raw_msg]</font>"
+	var/msg = "<span class='filter_pray'><font color='blue'>\icon[cross][bicon(cross)] <b><font color=purple>PRAY: </font>[key_name(src, 1)] [ADMIN_QUE(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] ([admin_jump_link(src, src)]) [ADMIN_CA(src)] [ADMIN_SC(src)] [ADMIN_SMITE(src)]:</b> [raw_msg]</font></span>"
 
 	for(var/client/C in GLOB.admins)
 		if(R_ADMIN|R_EVENT & C.holder.rights)
