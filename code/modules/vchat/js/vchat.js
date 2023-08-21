@@ -185,6 +185,14 @@ function start_vue() {
 					admin: false
 				},
 				{
+					matches: ".filter_pray",
+					becomes: "vc_pray",
+					pretty: "Pray",
+					tooltip: "Prayer messages",
+					required: false,
+					admin: false
+				},
+				{
 					matches: ".ooc, .filter_ooc",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
