@@ -1,3 +1,5 @@
+var/static/list/fake_sunlight_zs = list()
+
 /obj/effect/fake_sun
 	name = "fake sun"
 	desc = "Deletes itself, but first updates all the lighting on outdoor turfs."
@@ -140,6 +142,7 @@
 	sun.set_alpha(round(CLAMP01(choice["brightness"])*255,1))
 
 	if(do_sun)
+		fake_sunlight_zs |= z
 		for(var/turf/T as anything in turfs_to_use)
 			sun.apply_to_turf(T)
 
