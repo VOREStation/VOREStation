@@ -181,7 +181,7 @@
 //an even greedier pallete-swap
 
 /mob/living/simple_mob/vore/pakkun/sand
-	name = "Sand pakkun"
+	name = "sand pakkun"
 	desc = "A small, yellow, bipedal reptile. Its head and jaws are rather large in proportion to its body."
 	icon_dead = "pakkunyellow-dead"
 	icon_living = "pakkunyellow"
@@ -197,7 +197,7 @@
 //use this one sparingly because it is absolutely turbolethal to anyone who has digestion turned on.
 
 /mob/living/simple_mob/vore/pakkun/fire
-	name = "Fire pakkun"
+	name = "fire pakkun"
 	desc = "A small, red, bipedal reptile. Its head and jaws are rather large in proportion to its body."
 	icon_dead = "pakkunred-dead"
 	icon_living = "pakkunred"
@@ -209,7 +209,7 @@
 // this one's like a standard blue pakkun in terms of eating behaviour, but wanders a lot more quickly
 
 /mob/living/simple_mob/vore/pakkun/purple
-	name = "Amethyst pakkun"
+	name = "amethyst pakkun"
 	desc = "A small, purple, bipedal reptile. Its head and jaws are rather large in proportion to its body."
 	icon_dead = "pakkunpurp-dead"
 	icon_living = "pakkunpurp"
