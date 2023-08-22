@@ -44,24 +44,43 @@
 
 	/// For packaged/canned food sounds
 	var/opening_sound = null
+	/// Sound of eating.
+	var/eating_sound = 'sound/items/eatfood.ogg'
+
+	/// Yems.
+	food_can_insert_micro = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
-		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)		//VOREStation Edit: Undoes global nutrition nerf
+		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)
 
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
 	if(!usr) // what
 		usr = M
+
+	if(food_inserted_micros && food_inserted_micros.len)
+		if(M.can_be_drop_pred && M.food_vore && M.vore_selected)
+			for(var/mob/living/F in food_inserted_micros)
+				if(!F.can_be_drop_prey || !F.food_vore)
+					continue
+
+				var/do_nom = FALSE
+
+				if(!reagents.total_volume)
+					do_nom = TRUE
+				else
+					var/nom_chance = (bitecount/(bitecount + (bitesize / reagents.total_volume) + 1))*100
+					if(prob(nom_chance))
+						do_nom = TRUE
+
+				if(do_nom)
+					F.forceMove(M.vore_selected)
+					food_inserted_micros -= F
+
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
-		// Embedded-in-food smol vore
-		for(var/obj/item/weapon/holder/holder in src)
-			if(holder.held_mob?.devourable)
-				holder.held_mob.forceMove(M.vore_selected)
-				holder.held_mob = null
-				qdel(holder)
 
 		usr.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
@@ -114,7 +133,6 @@
 					return
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
-			//VOREStation Edit Begin
 			if (fullness <= 50)
 				to_chat(M, "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>")
 			if (fullness > 50 && fullness <= 150)
@@ -136,7 +154,6 @@
 			if (fullness > 6000) // There has to be a limit eventually.
 				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
 				return 0
-			//VOREStation Edit End
 
 		else if(user.a_intent == I_HURT)
 			return ..()
@@ -208,7 +225,7 @@
 			forceMove(belly_target)
 			return 1
 		else if(reagents)								//Handle ingestion of the reagent.
-			playsound(M,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(M, eating_sound, rand(10,50), 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
@@ -223,6 +240,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
+		if(food_inserted_micros && food_inserted_micros.len)
+			. += "<span class='notice'>It has [english_list(food_inserted_micros)] stuck in it.</span>"
 		if(coating)
 			. += "<span class='notice'>It's coated in [coating.name]!</span>"
 		if(bitecount==0)
@@ -245,13 +264,40 @@
 		U.load_food(user, src)
 		return
 
+	if(food_can_insert_micro && istype(W, /obj/item/weapon/holder))
+		if(!(istype(W, /obj/item/weapon/holder/micro) || istype(W, /obj/item/weapon/holder/mouse)))
+			. = ..()
+			return
+
+		if(package || canned)
+			to_chat(user, "<span class='warning'>You cannot stuff anything into \the [src] without opening it first.</span>")
+			return
+
+		var/obj/item/weapon/holder/H = W
+
+		if(!food_inserted_micros)
+			food_inserted_micros = list()
+
+		var/mob/living/M = H.held_mob
+
+		M.forceMove(src)
+		H.held_mob = null
+		user.drop_from_inventory(H)
+		qdel(H)
+
+		food_inserted_micros += M
+
+		to_chat(user, "<span class='warning'>You stuff [M] into \the [src].</span>")
+		to_chat(M, "<span class='warning'>[user] stuffs you into \the [src].</span>")
+		return
+
 	if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
 		var/can_slice_here = isturf(src.loc) && ((locate(/obj/structure/table) in src.loc) || (locate(/obj/machinery/optable) in src.loc) || (locate(/obj/item/weapon/tray) in src.loc))
 		var/hide_item = !has_edge(W) || !can_slice_here
 
 		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W))
+			if (W.w_class >= src.w_class || is_robot_module(W) || istype(W, /obj/item/weapon/holder))
 				return
 
 			to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
@@ -276,8 +322,31 @@
 			for(var/i=1 to (slices_num-slices_lost))
 				var/obj/slice = new slice_path (src.loc)
 				reagents.trans_to_obj(slice, reagents_per_slice)
+				if(food_inserted_micros && food_inserted_micros.len && istype(slice, /obj/item/weapon/reagent_containers/food/snacks))
+					var/obj/item/weapon/reagent_containers/food/snacks/S = slice
+					for(var/mob/living/F in food_inserted_micros)
+						F.forceMove(S)
+						if(!S.food_inserted_micros)
+							S.food_inserted_micros = list()
+						S.food_inserted_micros += F
+						food_inserted_micros -= F
+
 			qdel(src)
 			return
+
+/obj/item/weapon/reagent_containers/food/snacks/MouseDrop_T(mob/living/M, mob/user)
+	if(!user.stat && istype(M) && (M == user) && Adjacent(M) && (M.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		if(!food_inserted_micros)
+			food_inserted_micros = list()
+
+		M.forceMove(src)
+
+		food_inserted_micros += M
+
+		to_chat(user, "<span class='warning'>You climb into \the [src].</span>")
+		return
+
+	return ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/is_sliceable()
 	return (slices_num && slice_path && slices_num > 0)
@@ -286,6 +355,8 @@
 	if(contents)
 		for(var/atom/movable/something in contents)
 			something.dropInto(loc)
+			if(food_inserted_micros && (something in food_inserted_micros))
+				food_inserted_micros -= something
 	. = ..()
 
 	return
