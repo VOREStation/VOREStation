@@ -277,6 +277,7 @@
 	var/head_offset = 0
 	var/eye_icon = "eyes_s"
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
+	var/eye_icon_override = FALSE		// if true, we dont reset our icon back to default
 	force = 3
 	throwforce = 7
 	var/eyes_over_markings = FALSE //VOREStation edit
