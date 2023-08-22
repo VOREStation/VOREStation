@@ -3847,10 +3847,10 @@
 /area/redgate/city/house4)
 "fis" = (
 /obj/structure/table/woodentable,
-/obj/random,
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
+/obj/random/pouch,
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/city/house9)
 "fjj" = (
