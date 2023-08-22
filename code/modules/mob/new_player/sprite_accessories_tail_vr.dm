@@ -346,6 +346,26 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ringtail_mark"
 
+/datum/sprite_accessory/tail/ringtailwag
+	name = "ringtail (vwag)"
+	desc = ""
+	icon_state = "wah"
+	ani_state = "wah_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wah-stripes"
+	extra_overlay_w = "wah-stripes_w"
+
+/datum/sprite_accessory/tail/raccoon
+	name = "raccoon tail (vwag)"
+	desc = ""
+	icon_state = "raccoon"
+	ani_state = "raccoon_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "raccoon-stripes"
+	extra_overlay_w = "raccoon-stripes_w"
+
 /datum/sprite_accessory/tail/holly
 	name = "tigress tail (Holly)"
 	desc = ""
