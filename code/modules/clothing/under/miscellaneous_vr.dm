@@ -605,14 +605,14 @@
 	icon_state = "cdress_fire"
 
 /obj/item/clothing/under/dress/cbridesmaid
-	name = "fancy dress, recolorable"
+	name = "fancy dress"
 	desc = "A cute, flirty dress. Good for weddings and fancy parties, or if you just want to look fashionable. Perfect for recoloring!"
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cbridesmaid"
 
 /obj/item/clothing/under/dress/cswoopdress
-	name = "swoop dress, recolorable"
+	name = "swoop dress"
 	desc = "A fancy gown for those who like to show leg. Perfect for recoloring!"
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cswoopdress"
