@@ -179,3 +179,8 @@
 	name = "cropped hoodie"
 	desc = "It's not that this is a size too small, you just like showing off your tum. I guess."
 	icon_state = "choodie_crop"
+
+/obj/item/clothing/suit/storage/hooded/toggle/colorable/shortsleeve
+	name = "shortsleeve hoodie"
+	desc = "For the times you can't decide between having sleeves and not having them."
+	icon_state = "choodie_shortsleeve"
