@@ -375,5 +375,6 @@
 	if(choice)
 		E.eye_icon_location = robohead.monitor_icon
 		E.eye_icon = states[choice]
+		E.eye_icon_override = TRUE
 		to_chat(src,"<span class='warning'>You set your monitor to display [choice]!</span>")
 		update_icons_body()
