@@ -188,6 +188,19 @@
 		qdel(overlay_layer)
 		overlay_layer = null
 
+/obj/machinery/light/lamppost
+	icon = 'icons/obj/lighting32x64.dmi'
+	icon_state = "lamppost1"
+	base_state = "lamppost"
+	desc = "A tall lampost that extends over an area"
+	light_type = /obj/item/weapon/light/bulb
+	shows_alerts = FALSE
+	anchored = TRUE
+	plane = ABOVE_MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+	construct_type = null
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
+	overlay_above_everything = TRUE
 
 /*
 /obj/machinery/light_construct/bigfloorlamp

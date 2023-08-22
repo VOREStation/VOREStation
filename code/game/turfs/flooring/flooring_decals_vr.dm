@@ -464,3 +464,8 @@
 	color = "#a70000"
 /obj/effect/floor_decal/industrial/warning/color/tile/red
 	color = "#a70000"
+
+//Road markings
+
+/obj/effect/floor_decal/road/center
+	icon_state = "center_lines"
