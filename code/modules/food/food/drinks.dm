@@ -16,6 +16,9 @@
 	var/cant_open = 0
 	var/cant_chance = 0
 
+	/// Yims
+	food_can_insert_micro = TRUE
+
 /obj/item/weapon/reagent_containers/food/drinks/Initialize()
 	. = ..()
 	if (prob(cant_chance))
@@ -30,9 +33,82 @@
 			price_tag = null
 	return
 
-/obj/item/weapon/reagent_containers/food/drinks/proc/On_Consume(var/mob/M, var/mob/user, var/changed = FALSE)
+/obj/item/weapon/reagent_containers/food/drinks/Destroy()
+	if(food_inserted_micros)
+		for(var/mob/M in food_inserted_micros)
+			M.dropInto(loc)
+			food_inserted_micros -= M
+	. = ..()
+
+	return
+
+/obj/item/weapon/reagent_containers/food/drinks/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(food_can_insert_micro && istype(W, /obj/item/weapon/holder))
+		if(!(istype(W, /obj/item/weapon/holder/micro) || istype(W, /obj/item/weapon/holder/mouse)))
+			. = ..()
+			return
+
+		if(!is_open_container())
+			to_chat(user, "<span class='warning'>You cannot drop anything into \the [src] without opening it first.</span>")
+			return
+
+		var/obj/item/weapon/holder/H = W
+
+		if(!food_inserted_micros)
+			food_inserted_micros = list()
+
+		var/mob/living/M = H.held_mob
+
+		M.forceMove(src)
+		H.held_mob = null
+		user.drop_from_inventory(H)
+		qdel(H)
+
+		food_inserted_micros += M
+
+		to_chat(user, "<span class='warning'>You drop [M] into \the [src].</span>")
+		to_chat(M, "<span class='warning'>[user] drops you into \the [src].</span>")
+		return
+
+	return ..()
+
+/obj/item/weapon/reagent_containers/food/drinks/MouseDrop_T(mob/living/M, mob/user)
+	if(!user.stat && istype(M) && (M == user) && Adjacent(M) && (M.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		if(!food_inserted_micros)
+			food_inserted_micros = list()
+
+		M.forceMove(src)
+
+		food_inserted_micros += M
+
+		to_chat(user, "<span class='warning'>You climb into \the [src].</span>")
+		return
+
+	return ..()
+
+/obj/item/weapon/reagent_containers/food/drinks/proc/On_Consume(var/mob/living/M, var/mob/user, var/changed = FALSE)
 	if(!user)
 		user = M
+
+	if(food_inserted_micros && food_inserted_micros.len)
+		if(M.can_be_drop_pred && M.food_vore && M.vore_selected)
+			for(var/mob/living/F in food_inserted_micros)
+				if(!F.can_be_drop_prey || !F.food_vore)
+					continue
+
+				var/do_nom = FALSE
+
+				if(!reagents.total_volume)
+					do_nom = TRUE
+				else
+					var/nom_chance = (1 - (reagents.total_volume / volume))*100
+					if(prob(nom_chance))
+						do_nom = TRUE
+
+				if(do_nom)
+					F.forceMove(M.vore_selected)
+					food_inserted_micros -= F
+
 	if(!reagents.total_volume && changed)
 		M.visible_message("<span class='notice'>[M] finishes drinking \the [src].</span>","<span class='notice'>You finish drinking \the [src].</span>")
 		if(trash)
@@ -113,6 +189,8 @@
 	if(Adjacent(user))
 		if(cant_open)
 			. += "<span class='warning'>It doesn't have a ring pull!</span>"
+		if(food_inserted_micros && food_inserted_micros.len)
+			. += "<span class='notice'>It has [english_list(food_inserted_micros)] [!reagents?.total_volume ? "sitting" : "floating"] in it.</span>"
 		if(!reagents?.total_volume)
 			. += "<span class='notice'>It is empty!</span>"
 		else if (reagents.total_volume <= volume * 0.25)

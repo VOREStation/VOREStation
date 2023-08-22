@@ -38,6 +38,7 @@
 	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/throw_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/food_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
 	var/allow_spontaneous_tf = FALSE	// Obviously.
@@ -284,6 +285,7 @@
 	P.drop_vore = src.drop_vore
 	P.slip_vore = src.slip_vore
 	P.throw_vore = src.throw_vore
+	P.food_vore = src.food_vore
 	P.stumble_vore = src.stumble_vore
 	P.eating_privacy_global = src.eating_privacy_global
 
@@ -333,6 +335,7 @@
 	slip_vore = P.slip_vore
 	throw_vore = P.throw_vore
 	stumble_vore = P.stumble_vore
+	food_vore = P.food_vore
 	eating_privacy_global = P.eating_privacy_global
 
 	nutrition_message_visible = P.nutrition_message_visible
@@ -1108,6 +1111,7 @@
 	dispvoreprefs += "<b>Slip Vore:</b> [slip_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Throw vore:</b> [throw_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Stumble Vore:</b> [stumble_vore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Food Vore:</b> [food_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"

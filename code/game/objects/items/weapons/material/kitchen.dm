@@ -19,11 +19,22 @@
 	var/loaded // Name for currently loaded food object.
 	var/loaded_color // Color for currently loaded food object.
 
+	var/list/food_inserted_micros
+
 /obj/item/weapon/material/kitchen/utensil/Initialize()
 	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 	create_reagents(scoop_volume)
+
+/obj/item/weapon/material/kitchen/utensil/Destroy()
+	if(food_inserted_micros)
+		for(var/mob/M in food_inserted_micros)
+			M.dropInto(loc)
+			food_inserted_micros -= M
+	. = ..()
+
+	return
 
 /obj/item/weapon/material/kitchen/utensil/update_icon()
 	. = ..()
@@ -49,6 +60,26 @@
 	loading.bitecount++
 	loading.reagents.trans_to_obj(src, min(loading.reagents.total_volume, scoop_volume))
 	loaded_color = loading.filling_color
+
+	if(loading.food_inserted_micros && loading.food_inserted_micros.len)
+		if(!food_inserted_micros)
+			food_inserted_micros = list()
+
+		for(var/mob/living/F in loading.food_inserted_micros)
+			var/do_transfer = FALSE
+
+			if(!loading.reagents.total_volume)
+				do_transfer = TRUE
+			else
+				var/transfer_chance = (loading.bitecount/(loading.bitecount + (loading.bitesize / loading.reagents.total_volume) + 1))*100
+				if(prob(transfer_chance))
+					do_transfer = TRUE
+
+			if(do_transfer)
+				F.forceMove(src)
+				loading.food_inserted_micros -= F
+				src.food_inserted_micros += F
+
 	if (loading.reagents.total_volume <= 0)
 		qdel(loading)
 	update_icon()
@@ -67,6 +98,13 @@
 
 	if (loaded && reagents.total_volume > 0)
 		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
+		if(food_inserted_micros && food_inserted_micros.len)
+			for(var/mob/living/F in food_inserted_micros)
+				food_inserted_micros -= F
+				if(!F.can_be_drop_prey || !F.food_vore)
+					F.forceMove(get_turf(src))
+				else
+					F.forceMove(M.vore_selected)
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return
@@ -90,6 +128,12 @@
 		reagents.clear_reagents()
 		cut_overlays()
 	return
+
+/obj/item/weapon/material/kitchen/utensil/container_resist(mob/living/M)
+	if(food_inserted_micros)
+		food_inserted_micros -= M
+	M.forceMove(get_turf(src))
+	to_chat(M, "<span class='warning'>You climb off of \the [src].</span>")
 
 /obj/item/weapon/material/kitchen/utensil/fork
 	name = "fork"
