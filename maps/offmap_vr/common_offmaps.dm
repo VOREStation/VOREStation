@@ -283,6 +283,11 @@
 	desc = "This place is rather cosy for somewhere so abandoned!"
 	mappath = 'maps/redgate/hotsprings.dmm'
 
+/datum/map_template/common_lateload/redgate/cybercity
+	name = "Redgate - Rain City"
+	desc = "A strange city on lockdown."
+	mappath = 'maps/redgate/cybercity.dmm'
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
