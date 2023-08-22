@@ -232,3 +232,12 @@ Talon jumpsuit
 /datum/gear/uniform/cbridesmaid/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+// recolorable orange swoop dress
+/datum/gear/uniform/cswoopdress
+	display_name = "swoop dress, recolorable"
+	path = /obj/item/clothing/under/dress/cswoopdress
+
+/datum/gear/uniform/cswoopdress/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
