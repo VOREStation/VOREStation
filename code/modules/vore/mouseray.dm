@@ -219,6 +219,8 @@
 	//For primarily copying vore preference settings from a carbon mob to a simplemob
 	//It can be used for other things, but be advised, if you're using it to put a simplemob into a carbon mob, you're gonna be overriding a bunch of prefs
 	new_mob.ooc_notes = ooc_notes
+	new_mob.ooc_notes_likes = ooc_notes_likes
+	new_mob.ooc_notes_dislikes = ooc_notes_dislikes
 	new_mob.digestable = digestable
 	new_mob.devourable = devourable
 	new_mob.absorbable = absorbable
@@ -237,6 +239,7 @@
 	new_mob.stumble_vore = stumble_vore
 	new_mob.slip_vore = slip_vore
 	new_mob.throw_vore = throw_vore
+	new_mob.food_vore = food_vore
 	new_mob.resizable = resizable
 	new_mob.show_vore_fx = show_vore_fx
 	new_mob.step_mechanics_pref = step_mechanics_pref

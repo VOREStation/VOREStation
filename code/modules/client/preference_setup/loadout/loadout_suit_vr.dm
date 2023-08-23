@@ -319,7 +319,8 @@ Talon winter coat
 	var/list/choodies = list(
 		"normal hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable,
 		"sleeveless hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/sleeveless,
-		"cropped hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/cropped
+		"cropped hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/cropped,
+		"shortsleeve hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/shortsleeve
 	)
 	gear_tweaks += gear_tweak_free_color_choice
 	gear_tweaks += new/datum/gear_tweak/path(choodies)

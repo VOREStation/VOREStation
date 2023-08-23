@@ -260,7 +260,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			if (species.selects_bodytype != SELECTS_BODYTYPE_FALSE)
 				var/headtype = GLOB.all_species[species.base_species]?.has_limbs[BP_HEAD]
 				var/obj/item/organ/external/head/headtypepath = headtype["path"]
-				if (headtypepath)
+				if (headtypepath && !head.eye_icon_override)
 					head.eye_icon = initial(headtypepath.eye_icon)
 					head.eye_icon_location = initial(headtypepath.eye_icon_location)
 			icon_key += "[head.eye_icon]"
@@ -287,7 +287,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "#000000"
 
 			for(var/M in part.markings)
-				icon_key += "[M][part.markings[M]["color"]]"
+				if (part.markings[M]["on"])
+					icon_key += "[M][part.markings[M]["color"]]"
 
 			// VOREStation Edit Start
 			if(part.nail_polish)

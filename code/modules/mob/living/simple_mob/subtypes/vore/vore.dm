@@ -18,6 +18,8 @@
 /mob/living/proc/login_prefs()
 
 	ooc_notes = client.prefs.metadata
+	ooc_notes_likes = client.prefs.metadata_likes
+	ooc_notes_dislikes = client.prefs.metadata_dislikes
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable
 	absorbable = client.prefs_vr.absorbable
@@ -25,6 +27,7 @@
 	can_be_drop_prey = client.prefs_vr.can_be_drop_prey
 	can_be_drop_pred = client.prefs_vr.can_be_drop_pred
 	throw_vore = client.prefs_vr.throw_vore
+	food_vore = client.prefs_vr.food_vore
 	allow_inbelly_spawning = client.prefs_vr.allow_inbelly_spawning
 	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
 	digest_leave_remains = client.prefs_vr.digest_leave_remains

@@ -35,7 +35,8 @@
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] has placed a map template ([template.name]).</span>")
 		else
 			to_chat(usr, "Failed to place map")
-	usr.client.images -= preview
+	if(usr)
+		usr.client.images -= preview
 
 /client/proc/map_template_load_on_new_z()
 	set category = "Debug"

@@ -140,7 +140,17 @@
 	icon_base = "slab"
 	build_type = /obj/item/stack/tile/floor/sidewalk/slab
 
-/obj/item/stack/tile/floor/sidewalk/slab
+/obj/item/stack/tile/floor/sidewalk/slab/
+
+/turf/simulated/floor/outdoors/sidewalk/slab/city
+	icon_state = "cityslab"
+	initial_flooring = /decl/flooring/outdoors/sidewalk/slab/city
+
+/decl/flooring/outdoors/sidewalk/slab/city
+	icon_base = "cityslab"
+	build_type = /obj/item/stack/tile/floor/sidewalk/slab/city
+
+/obj/item/stack/tile/floor/sidewalk/slab/city
 
 /obj/item/stack/tile/floor/concrete //Proper concrete tile.
 	name = "concrete tile"

@@ -123,14 +123,14 @@ var/list/mob_hat_cache = list()
 		var/datum/robot_component/C = components[V]
 		C.max_damage = 10
 
-	verbs -= /mob/living/silicon/robot/verb/Namepick
-	
+	verbs -= /mob/living/silicon/robot/verb/namepick
+
 	if(can_pick_shell)
 		var/random = pick(shell_types)
 		icon_state = shell_types[random]
 		shell_accessories = list("[icon_state]-eyes-blue")
-	
-	updateicon()
+
+	update_icon()
 	updatename()
 
 /mob/living/silicon/robot/drone/init()
@@ -161,7 +161,7 @@ var/list/mob_hat_cache = list()
 	real_name = "[initial(name)] ([serial_number])"
 	name = real_name
 
-/mob/living/silicon/robot/drone/updateicon()
+/mob/living/silicon/robot/drone/update_icon()
 	cut_overlays()
 
 	if(islist(shell_accessories))
@@ -177,9 +177,9 @@ var/list/mob_hat_cache = list()
 	if(!can_pick_shell)
 		to_chat(src, "<span class='warning'>You already selected a shell or this drone type isn't customizable.</span>")
 		return
-	
+
 	var/list/choices = shell_types.Copy()
-	
+
 	if(can_blitz)
 		choices["Blitz"] = "blitzshell"
 
@@ -199,9 +199,9 @@ var/list/mob_hat_cache = list()
 			var/armor_color = tgui_input_list(src, "Select plating color:", "Eye Color", list("blue", "red", "orange", "green", "brown"))
 			if(armor_color)
 				LAZYADD(shell_accessories, "[icon_state]-shell-[armor_color]")
-	
+
 	can_pick_shell = FALSE
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return
@@ -214,7 +214,7 @@ var/list/mob_hat_cache = list()
 		return
 	hat = new_hat
 	new_hat.loc = src
-	updateicon()
+	update_icon()
 
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
 /mob/living/silicon/robot/drone/attackby(var/obj/item/weapon/W, var/mob/user)

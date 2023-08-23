@@ -126,10 +126,11 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-	var/list/body_markings = list() // "name" = "#rgbcolor"
+	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
 
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
+	var/custom_link = null
 
 	var/list/body_descriptors = list()
 
@@ -145,6 +146,8 @@ var/list/preferences_datums = list()
 
 	// OOC Metadata:
 	var/metadata = ""
+	var/metadata_likes = ""
+	var/metadata_dislikes = ""
 	var/list/ignored_players = list()
 
 	var/client/client = null

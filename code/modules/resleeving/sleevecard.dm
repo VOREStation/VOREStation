@@ -36,7 +36,7 @@
 				var/mob/living/silicon/pai/infomorph/our_infomorph = pai
 				our_infomorph.emagged = TRUE
 				to_chat(our_infomorph, "<span class ='warning'>You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master.</span>")
-		
+
 /obj/item/device/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
 	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key=db_key)
 
@@ -45,6 +45,8 @@
 	MR.mind_ref.active = 1 //Well, it's about to be.
 	MR.mind_ref.transfer_to(infomorph) //Does mind+ckey+client.
 	infomorph.ooc_notes = MR.mind_oocnotes
+	infomorph.ooc_notes_likes = MR.mind_ooclikes
+	infomorph.ooc_notes_dislikes = MR.mind_oocdislikes
 	infomorph.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
 	//Don't set 'real_name' because then we get a nice (as sleevecard) thing.

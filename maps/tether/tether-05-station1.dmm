@@ -5872,7 +5872,6 @@
 "ams" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Looks like it's set to the science channel, the show is talking about modern aliens.  I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /obj/machinery/vending/cola,
@@ -20879,7 +20878,6 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Looks like it's set to the science channel, the show is talking about modern aliens.  I wonder what else is on?";
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
@@ -27081,7 +27079,6 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Oh, hey look it's a shopping channel! Are... Are they selling acid resistant underwear? I wonder what else is on?";
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled,
@@ -34646,7 +34643,6 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
 	desc = "Oh, hey look it's a shopping channel! Are... Are they selling acid resistant underwear? I wonder what else is on?";
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled,

@@ -1,7 +1,7 @@
 /mob/living/silicon/robot/platform/update_icon()
-	updateicon()
+	update_icon()
 
-/mob/living/silicon/robot/platform/updateicon()
+/mob/living/silicon/robot/platform/update_icon()
 
 	cut_overlays()
 	underlays.Cut()
@@ -106,4 +106,4 @@
 			else
 				. = FALSE
 	if(.)
-		updateicon()
+		update_icon()

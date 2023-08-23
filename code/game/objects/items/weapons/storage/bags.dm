@@ -469,8 +469,8 @@
 // -----------------------------
 //    Food Bag (Service Hound)
 // -----------------------------
-/obj/item/weapon/storage/bag/dogborg
-	name = "dog bag"
+/obj/item/weapon/storage/bag/serviceborg
+	name = "service bag"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "foodbag"
 	desc = "An intergrated bag for storing things of all kinds."

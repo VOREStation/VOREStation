@@ -169,7 +169,7 @@ var/list/runechat_image_cache = list()
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target.runechat_holder(src)
 	RegisterSignal(message_loc, COMSIG_PARENT_QDELETING, PROC_REF(qdel_self))
-	if(owned_by.seen_messages)
+	if(owned_by && owned_by.seen_messages)
 		var/idx = 1
 		var/combined_height = approx_lines
 		for(var/datum/chatmessage/m as anything in owned_by.seen_messages[message_loc])

@@ -23,6 +23,8 @@
 	S["bday_announce"]			>> pref.bday_announce
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
+	S["OOC_Notes_Likes"]		>> pref.metadata_likes
+	S["OOC_Notes_Disikes"]		>> pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
 	S["real_name"]				<< pref.real_name
@@ -37,6 +39,8 @@
 	S["bday_announce"]			<< pref.bday_announce
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
+	S["OOC_Notes_Likes"]		<< pref.metadata_likes
+	S["OOC_Notes_Disikes"]		<< pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
@@ -83,13 +87,14 @@
 	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
 	. += "<b>Nickname:</b> "
 	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
+	. += "(<a href='?src=\ref[src];reset_nickname=1'>Clear</A>)"
 	. += "<br>"
 	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "No"]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(config.allow_Metadata)
-		. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
+		. += "<b>OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a></b><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -122,6 +127,12 @@
 			else
 				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
+
+	else if(href_list["reset_nickname"])
+		var/nick_choice = tgui_alert(usr, "Wipe your Nickname? This will completely remove any chosen nickname(s).","Wipe Nickname",list("Yes","No"))
+		if(nick_choice == "Yes")
+			pref.nickname = null
+		return TOPIC_REFRESH
 
 	else if(href_list["bio_gender"])
 		var/new_gender = tgui_input_list(user, "Choose your character's biological sex:", "Character Preference", get_genders(), pref.biological_gender)
@@ -204,12 +215,18 @@
 		pref.spawnpoint = choice
 		return TOPIC_REFRESH
 
-	else if(href_list["metadata"])
-		var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata), multiline = TRUE, prevent_enter = TRUE)) //VOREStation Edit
+	else if(href_list["edit_ooc_notes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
-			return TOPIC_REFRESH
-
+	else if(href_list["edit_ooc_note_likes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata_likes), multiline = TRUE,  prevent_enter = TRUE))
+		if(new_metadata && CanUseTopic(user))
+			pref.metadata_likes = new_metadata
+	else if(href_list["edit_ooc_note_dislikes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata_dislikes), multiline = TRUE,  prevent_enter = TRUE))
+		if(new_metadata && CanUseTopic(user))
+			pref.metadata_dislikes = new_metadata
 	return ..()
 
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()

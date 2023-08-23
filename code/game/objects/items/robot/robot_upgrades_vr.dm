@@ -64,9 +64,9 @@
 /obj/item/borg/upgrade/bellysizeupgrade/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	if(!R.module || R.dogborg == FALSE)//can work
+	if(!R.module)//can work
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
-		to_chat(usr, "There's no mounting point for the module! Try upgrading another model.")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 
 	var/obj/item/device/dogborg/sleeper/T = locate() in R.module

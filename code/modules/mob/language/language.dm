@@ -130,9 +130,9 @@
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
-	speaker.verbs |= /mob/proc/adjust_hive_range	//VOREStation Add - If you don't have the verb you should.
+	speaker.verbs |= /mob/proc/adjust_hive_range
 
-	if(!speaker_mask) speaker_mask = speaker.name
+	if(!speaker_mask) speaker_mask = speaker.real_name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""
 	//VOREStation Edit Start
 	if(speaker.hive_lang_range == -1)

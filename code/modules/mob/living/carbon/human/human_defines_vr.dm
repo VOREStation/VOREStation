@@ -9,6 +9,7 @@
 	var/wings_hidden = FALSE
 	var/tail_hidden = FALSE
 	var/markings_len = 0 //mostly an arbitrary number
+	var/low_sorting_priority = FALSE
 
 /mob/living/carbon/human/proc/shadekin_get_energy()
 	var/datum/species/shadekin/SK = species

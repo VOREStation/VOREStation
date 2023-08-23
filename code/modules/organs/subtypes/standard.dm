@@ -277,6 +277,7 @@
 	var/head_offset = 0
 	var/eye_icon = "eyes_s"
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
+	var/eye_icon_override = FALSE		// if true, we dont reset our icon back to default
 	force = 3
 	throwforce = 7
 	var/eyes_over_markings = FALSE //VOREStation edit
@@ -386,6 +387,8 @@
 
 	//Head markings
 	for(var/M in markings)
+		if (!markings[M]["on"])
+			continue
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)

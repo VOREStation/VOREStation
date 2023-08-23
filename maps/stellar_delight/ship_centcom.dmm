@@ -2724,7 +2724,6 @@
 /area/centcom/command)
 "iU" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -8398,7 +8397,6 @@
 /area/centcom/living)
 "HH" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/simulated/floor/lino,
@@ -14104,7 +14102,6 @@
 /area/centcom/main_hall)
 "VK" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
