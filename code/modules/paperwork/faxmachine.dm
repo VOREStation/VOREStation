@@ -353,7 +353,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
 	var/msg = "<span class='notice'><b><font color='[font_colour]'>[faxname]: </font>[get_options_bar(sender, 2,1,1)]"
 	msg += "(<a href='?_src_=holder;[HrefToken()];FaxReply=\ref[sender];originfax=\ref[src];replyorigin=[reply_type]'>REPLY</a>)</b>: "
-	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a></span>"
+	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[sent]'>view message</a></span>"
 
 	for(var/client/C in GLOB.admins)
 		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
