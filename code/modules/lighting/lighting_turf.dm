@@ -104,7 +104,7 @@
 
 ///Checks planets and fake_suns to see if our turf should be handled by either
 /turf/proc/check_for_sun()
-	if((z in SSplanets.z_to_planet) || (z in fake_sunlight_zs))
+	if((SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) || (z in fake_sunlight_zs))
 		return TRUE
 	return FALSE
 

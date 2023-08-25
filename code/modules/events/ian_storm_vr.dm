@@ -16,6 +16,9 @@
 				continue
 			if(!(T.z in using_map.station_levels))
 				continue
+			var/area/A = get_area(T)
+			if(A.flags & RAD_SHIELDED || A.flags & BLUE_SHIELDED)
+				continue
 			place_ian(T)
 
 /datum/event/ianstorm/proc/place_ian(var/turf/T)
