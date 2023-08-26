@@ -563,7 +563,7 @@
 			if("Cancel")
 				return
 			if("Show selected Prize")
-				if(!selected_collar || QDELETED(selected_collar))
+				if(QDELETED(selected_collar))
 					if(selected_collar)
 						collar_list -= selected_collar
 						sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
