@@ -563,11 +563,12 @@
 			if("Cancel")
 				return
 			if("Show selected Prize")
-				if(QDELETED(selected_collar))
-					collar_list -= selected_collar
-					sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
+				if(!selected_collar || QDELETED(selected_collar))
+					if(selected_collar)
+						collar_list -= selected_collar
+						sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
+						selected_collar = null
 					to_chat(user, "<span class='warning'>No collar is currently selected or the currently selected one has been destroyed or disabled.</span>")
-					selected_collar = null
 					return
 				to_chat(user, "<span class='warning'>Sentient Prize information</span>")
 				to_chat(user, "<span class='notice'>Name: [selected_collar.sentientprizename]</span>")
