@@ -133,6 +133,7 @@
 	var/ball_desc = "a small metal ball"
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "roulette_ball"
+	w_class = ITEMSIZE_TINY
 
 	var/cheatball = FALSE
 
