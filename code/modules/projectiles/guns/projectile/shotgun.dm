@@ -233,4 +233,4 @@
 	load_method = SINGLE_CASING
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
-	
+
