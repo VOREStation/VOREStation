@@ -6,7 +6,7 @@
 		if(UNIX) lib = "libprof.so"
 		else CRASH("unsupported platform")
 
-	var/init = call_ext(lib, "init")()
+	var/init = LIBCALL(lib, "init")()
 	if("0" != init) CRASH("[lib] init error: [init]")
 
 #define RECOMMENDED_VERSION 513

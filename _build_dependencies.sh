@@ -4,8 +4,8 @@ export SPACEMAN_DMM_VERSION=suite-1.7
 # For NanoUI + TGUI
 export NODE_VERSION=16
 # Byond Major
-export BYOND_MAJOR=514
+export BYOND_MAJOR=515
 # Byond Minor
-export BYOND_MINOR=1589
+export BYOND_MINOR=1610
 # Macro Count
 export MACRO_COUNT=4
