@@ -79,7 +79,7 @@ var/global/list/robot_modules = list(
 	if(!R.client)
 		R.icon_selected = FALSE			// It wasnt a player selecting icon? Let them do it later!
 
-	create_equipment()
+	create_equipment(R)
 
 	for(var/obj/item/I in modules)
 		I.canremove = FALSE
