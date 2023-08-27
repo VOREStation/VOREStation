@@ -1,6 +1,12 @@
 /client/var/datum/ticket/current_ticket	//the current ticket the (usually) not-admin client is dealing with
 /client/var/datum/ticket/selected_ticket //the current ticket being viewed in the Tickets Panel (usually) admin/mentor client
 
+/proc/ResolveHolderKind(mob/user)
+	if(user.client.holder)
+		return "holder"
+	if(user.client.mentorholder)
+		return "mentorholder"
+
 //
 //TICKET MANAGER
 //
@@ -301,19 +307,19 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		. += " (<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken(TRUE)];ticket_action=resolve'>RSLVE</A>)"
 		. += " (<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken(TRUE)];ticket_action=handleissue'>HANDLE</A>)"
 	else
-		. = " (<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken(TRUE)];ticket_action=resolve'>RSLVE</A>)"
+		. = " (<A HREF='?_src_=[ResolveHolderKind(usr)];ticket=[ref_src];[HrefToken(TRUE)];ticket_action=resolve'>RSLVE</A>)"
 
 //private
 /datum/ticket/proc/LinkedReplyName(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	return "<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken()];ticket_action=reply'>[initiator_key_name]</A>"
+	return "<A HREF='?_src_=[ResolveHolderKind(usr)];ticket=[ref_src];[HrefToken()];ticket_action=reply'>[initiator_key_name]</A>"
 
 //private
 /datum/ticket/proc/TicketHref(msg, ref_src, action = "ticket")
 	if(!ref_src)
 		ref_src = "\ref[src]"
-	return "<A HREF='?_src_=holder;ticket=[ref_src];[HrefToken()];ticket_action=[action]'>[msg]</A>"
+	return "<A HREF='?_src_=[ResolveHolderKind(usr)];ticket=[ref_src];[HrefToken()];ticket_action=[action]'>[msg]</A>"
 
 /*
 	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
@@ -590,7 +596,10 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		if("reject")
 			Reject()
 		if("reply")
-			usr.client.cmd_ahelp_reply(initiator)
+			if(ResolveHolderKind(usr) == "mentorholder")
+				usr.client.cmd_mhelp_reply(initiator)
+			else
+				usr.client.cmd_ahelp_reply(initiator)
 		if("icissue")
 			ICIssue()
 		if("close")

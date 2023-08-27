@@ -150,7 +150,10 @@
 			else
 				T.level = 1
 			T.HandleIssue()
-			usr.client.cmd_admin_pm(player, ticket_text, T)
+			if(ResolveHolderKind(usr) == "mentorholder")
+				usr.client.cmd_mentor_pm(player, ticket_text, T)
+			else
+				usr.client.cmd_admin_pm(player, ticket_text, T)
 			. = TRUE
 		if("pick_ticket")
 			var/datum/ticket/T = ID2Ticket(params["ticket_id"])
@@ -170,7 +173,11 @@
 			if(!params["msg"])
 				return
 
-			usr.client.cmd_admin_pm(usr.client.selected_ticket.initiator, sanitize(params["msg"]), usr.client.selected_ticket)
+			if(ResolveHolderKind(usr) == "mentorholder")
+				usr.client.cmd_mentor_pm(usr.client.selected_ticket.initiator, sanitize(params["msg"]), usr.client.selected_ticket)
+			else
+				usr.client.cmd_admin_pm(usr.client.selected_ticket.initiator, sanitize(params["msg"]), usr.client.selected_ticket)
+
 			. = TRUE
 
 /datum/tickets/tgui_fallback(payload)
@@ -248,7 +255,10 @@
 
 			var/datum/ticket/T = locate(params["ticket_ref"])
 
-			usr.client.cmd_admin_pm(T.initiator, sanitize(params["msg"]), T)
+			if(ResolveHolderKind(usr) == "mentorholder")
+				usr.client.cmd_mentor_pm(T.initiator, sanitize(params["msg"]), T)
+			else
+				usr.client.cmd_admin_pm(T.initiator, sanitize(params["msg"]), T)
 			. = TRUE
 
 /datum/ticket/tgui_fallback(payload)
