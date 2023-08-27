@@ -200,7 +200,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber,
-/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact{
+	random_start_ammo = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -475,7 +477,9 @@
 	icon_state = "1-2"
 	},
 /obj/effect/landmark/corpse/vintage/marine,
-/obj/item/weapon/gun/energy/laser/old,
+/obj/item/weapon/gun/energy/laser/old{
+	random_start_ammo = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -565,7 +569,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/gun/energy/laser/old,
+/obj/item/weapon/gun/energy/laser/old{
+	random_start_ammo = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -666,7 +672,9 @@
 	pixel_y = 21
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact{
+	random_start_ammo = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -755,8 +763,10 @@
 	dir = 1;
 	pixel_y = -28
 	},
-/obj/item/weapon/gun/energy/laser/old,
 /obj/item/weapon/material/shard/shrapnel,
+/obj/item/weapon/gun/energy/laser/old{
+	random_start_ammo = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -969,7 +979,9 @@
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/closet/walllocker/emerglocker/south,
-/obj/item/weapon/gun/energy/laser/old,
+/obj/item/weapon/gun/energy/laser/old{
+	random_start_ammo = 1
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
