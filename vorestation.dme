@@ -449,7 +449,6 @@
 #include "code\datums\repositories\repository.dm"
 #include "code\datums\repositories\unique.dm"
 #include "code\datums\roundstats\_defines_local.dm"
-#include "code\datums\roundstats\departmentgoal.dm"
 #include "code\datums\roundstats\roundstats.dm"
 #include "code\datums\supplypacks\atmospherics.dm"
 #include "code\datums\supplypacks\contraband.dm"

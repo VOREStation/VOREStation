@@ -26,6 +26,7 @@
 	var/shot_counter = TRUE // does this gun tell you how many shots it has?
 
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
+	var/random_start_ammo = FALSE	//if TRUE, the weapon will spawn with randomly-determined ammo
 
 /obj/item/weapon/gun/energy/New()
 	..()
@@ -37,7 +38,9 @@
 			power_supply = new cell_type(src)
 		else
 			power_supply = null
-
+	//random starting power! gives us a random number of shots in the battery between 0 and the max possible
+	if(random_start_ammo && cell_type)
+		power_supply.charge = charge_cost*rand(0,power_supply.maxcharge/charge_cost)
 	update_icon()
 
 /obj/item/weapon/gun/energy/Destroy()

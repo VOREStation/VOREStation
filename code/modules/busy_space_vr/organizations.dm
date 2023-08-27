@@ -2224,7 +2224,7 @@
 			"Blade"
 			)
 	while(i)
-		ship_names.Add("[pick(first_names)] [pick(words)]")
+		ship_names.Add("[pick(first_names)]'s [pick(words)]")
 		i--
 
 /datum/lore/organization/other/marauders
