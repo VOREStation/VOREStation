@@ -5377,7 +5377,6 @@
 /area/redgate/city/streets)
 "hiy" = (
 /obj/structure/table/woodentable,
-/obj/random_multi/single_item,
 /turf/simulated/floor/wood,
 /area/redgate/city/house7)
 "hkP" = (
