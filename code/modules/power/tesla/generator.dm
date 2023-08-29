@@ -9,6 +9,6 @@
 	. = ..()
 	. += "<span class='notice'>It is [anchored ? "secured" : "not secured"]!</span>"
 
-/obj/machinery/the_singularitygen/tesla/tesla_act(power, explosive = FALSE)
+/obj/machinery/the_singularitygen/tesla/tesla_act(power, ignore_los, explosive = FALSE)
 	if(explosive)
 		energy += power

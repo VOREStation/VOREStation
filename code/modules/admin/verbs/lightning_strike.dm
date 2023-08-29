@@ -72,14 +72,14 @@
 		return
 
 	if(ground) // All is well.
-		ground.tesla_act(LIGHTNING_POWER, FALSE)
+		ground.tesla_act(LIGHTNING_POWER, FALSE, FALSE)
 		return
 
 	else if(coil) // Otherwise lets bounce off the tesla coil.
-		coil.tesla_act(LIGHTNING_POWER, TRUE)
+		coil.tesla_act(LIGHTNING_POWER, FALSE, TRUE)
 
 	else // Striking the turf directly.
-		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE)
+		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE, ignore_los = FALSE)
 
 	// Some extra effects.
 	// Some apply to those within zap range, others if they were a bit farther away.

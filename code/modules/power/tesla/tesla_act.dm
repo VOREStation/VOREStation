@@ -5,10 +5,10 @@
 /obj
 	var/being_shocked = FALSE
 
-/obj/proc/tesla_act(var/power)
+/obj/proc/tesla_act(var/power, var/los)
 	being_shocked = TRUE
 	var/power_bounced = power / 2
-	tesla_zap(src, 3, power_bounced)
+	tesla_zap(src, 3, power_bounced, ignore_los = los)
 	//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
 	//schedule_task_with_source_in(10, src, PROC_REF(reset_shocked))
 	spawn(10) reset_shocked()
@@ -22,12 +22,12 @@
 	..()
 	adjust_integrity(-power/400)
 
-/obj/machinery/nuclearbomb/tesla_act(power, explosive)
+/obj/machinery/nuclearbomb/tesla_act(power, ignore_los, explosive)
 	..()
 	if(explosive)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
-/obj/machinery/tesla_act(power, explosive = FALSE)
+/obj/machinery/tesla_act(power, ignore_los, explosive = FALSE)
 	..()
 	if(prob(85) && explosive)
 		explosion(loc, 0, 2, 4, /*flame_range = 2,*/ adminlog = FALSE/*, smoke = FALSE*/) // VOREStation Edit - No devastation range
@@ -42,7 +42,7 @@
 	..()
 	qdel(src) //to prevent bomb testing camera from exploding over and over forever
 
-/obj/machinery/light/tesla_act(power, explosive = FALSE)
+/obj/machinery/light/tesla_act(power, ignore_los, explosive = FALSE)
 	if(explosive)
 		explosion(loc, 0, 0, 0/*, flame_range = 5*/, adminlog = FALSE)
 		qdel(src)

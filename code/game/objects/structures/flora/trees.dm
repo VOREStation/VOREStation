@@ -124,7 +124,7 @@
 	if(Proj.get_structure_damage())
 		adjust_health(-Proj.get_structure_damage(), TRUE)
 
-/obj/structure/flora/tree/tesla_act(power, explosive)
+/obj/structure/flora/tree/tesla_act(power, ignore_los, explosive)
 	adjust_health(-power / 100, TRUE) // Kills most trees in one lightning strike.
 	..()
 
@@ -295,4 +295,3 @@
 		set_light(bulbs, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
 		add_overlay(mutable_appearance(icon, "[base_state][bulbs]_glow"))
 		add_overlay(emissive_appearance(icon, "[base_state][bulbs]_glow"))
-	
