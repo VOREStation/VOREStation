@@ -641,9 +641,6 @@ var/global/list/robot_modules = list(
 	src.emag += new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
 /obj/item/weapon/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
-	E.reagents.add_reagent("enzyme", 2 * amount)
-
 	var/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/PB = locate() in src.emag
 	if(PB)
 		PB.reagents.add_reagent("beer2", 2 * amount)
