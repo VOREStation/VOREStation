@@ -1644,6 +1644,7 @@
 #include "code\game\turfs\simulated\floor_types_eris.dm"
 #include "code\game\turfs\simulated\floor_types_vr.dm"
 #include "code\game\turfs\simulated\lava.dm"
+#include "code\game\turfs\simulated\underwater.dm"
 #include "code\game\turfs\simulated\wall_attacks.dm"
 #include "code\game\turfs\simulated\wall_icon.dm"
 #include "code\game\turfs\simulated\wall_types.dm"
