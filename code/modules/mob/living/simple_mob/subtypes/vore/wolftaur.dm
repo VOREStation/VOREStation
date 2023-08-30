@@ -46,7 +46,7 @@
 		icon_dead = "[icon_living]-dead"
 		update_icon()
 	var/oursize = rand(100, 140) / 100
- 	resize(oursize)
+	resize(oursize)
 
 // Activate Noms!
 /mob/living/simple_mob/vore/wolftaur
