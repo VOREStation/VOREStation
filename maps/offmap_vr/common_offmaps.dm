@@ -288,6 +288,18 @@
 	desc = "A strange city on lockdown."
 	mappath = 'maps/redgate/cybercity.dmm'
 
+/datum/map_template/common_lateload/redgate/islands
+	name = "Redgate - Islands"
+	desc = "A series of islands out in the ocean."
+	mappath = 'maps/redgate/islands.dmm'
+
+/datum/map_template/common_lateload/redgate/islands_underwater
+	name = "Redgate - Islands Underwater"
+	desc = "A series of islands out in the ocean."
+	mappath = 'maps/redgate/islands_underwater.dmm'
+
+/obj/effect/landmark/map_data/islands
+	height = 2
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
