@@ -1,7 +1,6 @@
 /mob/living/silicon/robot/syndicate
 	lawupdate = 0
 	scrambledcodes = 1
-	icon_state = "syndie_bloodhound"
 	modtype = "Syndicate"
 	lawchannel = "State"
 	braintype = "Drone"

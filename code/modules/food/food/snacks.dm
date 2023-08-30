@@ -1867,6 +1867,7 @@
 	H.set_species(monkey_type)
 	H.real_name = H.species.get_random_name()
 	H.name = H.real_name
+	H.low_sorting_priority = TRUE
 	if(ismob(loc))
 		var/mob/M = loc
 		M.unEquip(src)

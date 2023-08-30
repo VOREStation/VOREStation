@@ -7,7 +7,7 @@
 #define COLOR_MAROON           "#800000"
 #define COLOR_PURPLE           "#800080"
 #define COLOR_VIOLET           "#9933ff"
-#define COLOR_OLIVE            "#52613b" // VOREStation Edit
+#define COLOR_OLIVE            "#52613b"
 #define COLOR_BROWN_ORANGE     "#824b28"
 #define COLOR_DARK_ORANGE      "#b95a00"
 #define COLOR_GRAY40           "#666666"
