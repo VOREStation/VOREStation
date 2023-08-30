@@ -12,6 +12,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	icon_state = "fax"
 	insert_anim = "faxsend"
 	req_one_access = list()
+	density = 0
 
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
