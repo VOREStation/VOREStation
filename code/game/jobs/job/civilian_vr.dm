@@ -259,7 +259,7 @@
 	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
 						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
 						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian,
-						"Artist" = /datum/alt_title/artist)
+						"Artist" = /datum/alt_title/artist, "Fitness Instructor" = /datum/alt_title/fitnessinstructor)
 
 // Entertainer Alt Titles
 /datum/alt_title/actor
@@ -301,3 +301,7 @@
 /datum/alt_title/artist
 	title = "Artist"
 	title_blurb = "An Artist's calling is to create beautiful arts! Whatever form may they take, create and have people astonished with your creativity."
+
+/datum/alt_title/fitnessinstructor
+	title = "Fitness Instructor"
+	title_blurb = "A Fitness Instructor dedicates themselves to improving the health of the crew through physical activity, and boy, do they need the help."
