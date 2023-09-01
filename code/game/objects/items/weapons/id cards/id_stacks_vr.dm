@@ -191,6 +191,10 @@
 	name = "Entertainer's ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-brown")
 
+/obj/item/weapon/card/id/civilian/entrepreneur
+	name = "Entrepreneur's ID"
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-gold")
+
 /obj/item/weapon/card/id/civilian/clown
 	name = "Clown's ID"
 	initial_sprite_stack = list("base-stamp", "top-rainbow", "stamp-n")

@@ -3785,6 +3785,13 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portfore)
+"hP" = (
+/obj/structure/bed/chair/bay/comfy/brown{
+	dir = 1
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/carpet,
+/area/crew_quarters/recreation_area)
 "hQ" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -3866,6 +3873,15 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
+"ia" = (
+/obj/machinery/computer/ship/navigation/telescreen{
+	pixel_x = -32;
+	pixel_y = -32
+	},
+/obj/structure/table/bench/steel,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/crew_quarters/recreation_area)
 "ib" = (
 /obj/machinery/power/grounding_rod,
 /obj/structure/cable/yellow{
@@ -3880,6 +3896,11 @@
 /obj/effect/landmark/start/visitor,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
+"id" = (
+/obj/structure/table/bench/steel,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/crew_quarters/recreation_area)
 "ie" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck2/portsolars)
@@ -14219,7 +14240,7 @@
 	input_tag = "cooling_in";
 	name = "Engine Cooling Control";
 	output_tag = "cooling_out";
-	sensors = list("burn_chamber"="Burn Chamber");
+	sensors = list("burn_chamber" = "Burn Chamber");
 	throwpass = 1
 	},
 /turf/simulated/floor,
@@ -14755,7 +14776,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
 	},
 /obj/machinery/power/apc/angled{
 	dir = 1
@@ -18491,7 +18512,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
@@ -19423,14 +19444,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
-"QJ" = (
-/obj/machinery/computer/ship/navigation/telescreen{
-	pixel_x = -32;
-	pixel_y = -32
-	},
-/obj/structure/table/bench/steel,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/crew_quarters/recreation_area)
 "QK" = (
 /obj/machinery/atmospherics/omni/mixer{
 	name = "Air Mixer";
@@ -19662,10 +19675,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
-"Ri" = (
-/obj/structure/table/bench/steel,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/crew_quarters/recreation_area)
 "Rj" = (
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 4
@@ -32383,7 +32392,7 @@ De
 QZ
 Ho
 aE
-QJ
+ia
 WR
 nt
 Rq
@@ -33092,7 +33101,7 @@ Dl
 UX
 UX
 UX
-vS
+hP
 mt
 mt
 mt
@@ -33660,7 +33669,7 @@ Dl
 UX
 UX
 UX
-vS
+hP
 mt
 mt
 mt
@@ -34229,7 +34238,7 @@ cC
 iO
 mt
 lO
-Ri
+id
 sH
 nt
 Rq

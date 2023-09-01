@@ -19,3 +19,6 @@
 
 /decl/hierarchy/outfit/job/assistant/entertainer
 	id_type = /obj/item/weapon/card/id/civilian/entertainer
+
+/decl/hierarchy/outfit/job/assistant/entrepreneur
+	id_type = /obj/item/weapon/card/id/civilian/entrepreneur
