@@ -22,6 +22,7 @@
 	var/produced_power
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
+	var/unsafe_dissipation = FALSE
 
 /obj/singularity/energy_ball/New(loc, starting_energy = 50, is_miniball = FALSE)
 	..()
@@ -42,6 +43,9 @@
 
 	for(var/obj/singularity/energy_ball/EB as anything in orbiting_balls)
 		qdel(EB)
+
+	if(unsafe_dissipation)
+		explosion(loc, 1, 3, 6)
 
 	. = ..()
 
@@ -93,6 +97,7 @@
 	if (energy <= 0)
 		log_game("TESLA([x],[y],[z]) Collapsed entirely.")
 		investigate_log("collapsed.", I_SINGULO)
+		unsafe_dissipation = TRUE
 		qdel(src)
 		return TRUE
 
