@@ -59,6 +59,12 @@
 
 	return
 
+/obj/item/weapon/clipboard/afterattack(turf/T as turf)
+	for(var/obj/item/weapon/paper/P in T)
+		P.loc = src
+		toppaper = P
+		update_icon()
+
 /obj/item/weapon/clipboard/attack_self(mob/user as mob)
 	var/dat = "<title>Clipboard</title>"
 	if(haspen)
