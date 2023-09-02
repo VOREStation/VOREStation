@@ -3,6 +3,7 @@
 	desc = "For the union!"
 	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
 	icon_state = "coil0"
+	var/icontype = "coil"
 	anchored = FALSE
 	density = TRUE
 
@@ -51,9 +52,9 @@
 
 /obj/machinery/power/tesla_coil/update_icon()
 	if(panel_open)
-		icon_state = "coil_open[anchored]"
+		icon_state = "[icontype]_open[anchored]"
 	else
-		icon_state = "coil[anchored]"
+		icon_state = "[icontype][anchored]"
 
 /obj/machinery/power/tesla_coil/attackby(obj/item/W, mob/user, params)
 	src.add_fingerprint(user)
@@ -79,17 +80,18 @@
 /obj/machinery/power/tesla_coil/tesla_act(var/power)
 	if(anchored && !panel_open)
 		being_shocked = TRUE
-		//don't lose arc power when it's not connected to anything
-		//please place tesla coils all around the station to maximize effectiveness
-		var/power_produced = powernet ? power / power_loss : power
-		add_avail(power_produced*input_power_multiplier)
-		flick("coilhit", src)
-		playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-		tesla_zap(src, 5, power_produced)
+		coil_act(power)
 		//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
 		spawn(10) reset_shocked()
 	else
 		..()
+
+/obj/machinery/power/tesla_coil/proc/coil_act(var/power)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)
+	flick("[icontype]hit", src)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	tesla_zap(src, 5, power_produced)
 
 /obj/machinery/power/tesla_coil/proc/zap()
 	if((last_zap + zap_cooldown) > world.time || !powernet)
@@ -101,6 +103,128 @@
 	draw_power(power)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 10, power/(coeff/2))
+
+/obj/machinery/power/tesla_coil/relay
+	name = "tesla relay coil"
+	desc = "For the union!"
+	icon_state = "relay0"
+	icontype = "relay"
+
+	circuit = /obj/item/weapon/circuitboard/tesla_coil
+
+	power_loss = 1
+	input_power_multiplier = 0
+
+	var/relay_efficiency = 0.85
+
+/obj/machinery/power/tesla_coil/relay/RefreshParts()
+	..()
+	var/relay_multiplier
+	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+		relay_multiplier += C.rating
+	relay_efficiency = initial(relay_efficiency) + (0.05 * relay_multiplier)
+
+/obj/machinery/power/tesla_coil/relay/coil_act(var/power)
+	var/power_relayed = power * relay_efficiency
+	flick("[icontype]hit", src)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	tesla_zap(src, 5, power_relayed)
+
+/obj/machinery/power/tesla_coil/splitter
+	name = "tesla prism coil"
+	desc = "For the union!"
+	icon_state = "prism0"
+	icontype = "prism"
+
+	circuit = /obj/item/weapon/circuitboard/tesla_coil
+
+	var/split_count = 1
+
+/obj/machinery/power/tesla_coil/splitter/RefreshParts()
+	..()
+	split_count = 0
+	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+		split_count += C.rating
+
+/obj/machinery/power/tesla_coil/splitter/coil_act(var/power)
+	var/power_per_bolt = power / (split_count + 1)
+	var/power_produced = power_per_bolt / power_loss
+	add_avail(power_produced*input_power_multiplier)
+	flick("[icontype]hit", src)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	for(var/i = 0, i < split_count, i++)
+		tesla_zap(src, 5, power_per_bolt)
+
+/obj/machinery/power/tesla_coil/amplifier
+	name = "tesla amplifier coil"
+	desc = "For the union!"
+	icon_state = "amp0"
+	icontype = "amp"
+
+	circuit = /obj/item/weapon/circuitboard/tesla_coil
+
+	var/amp_eff = 2
+
+/obj/machinery/power/tesla_coil/amplifier/RefreshParts()
+	..()
+	var/amp_eff = 1
+	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+		amp_eff += C.rating
+
+/obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)
+	flick("[icontype]hit", src)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	tesla_zap(src, 5, power_produced)
+
+/obj/machinery/power/tesla_coil/recaster
+	name = "tesla recaster coil"
+	desc = "For the union!"
+	icon_state = "recaster0"
+	icontype = "recaster"
+
+	circuit = /obj/item/weapon/circuitboard/tesla_coil
+
+	power_loss = 4
+	var/zap_range = 6
+
+/obj/machinery/power/tesla_coil/recaster/RefreshParts()
+	..()
+	var/zap_range = 5
+	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+		zap_range += C.rating
+
+/obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)
+	flick("[icontype]hit", src)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
+	tesla_zap(src, zap_range, power_produced)
+
+/obj/machinery/power/tesla_coil/limiter
+	name = "tesla limiter coil"
+	desc = "For the union!"
+	icon_state = "limiter0"
+	icontype = "limiter"
+
+	circuit = /obj/item/weapon/circuitboard/tesla_coil
+
+	var/zap_range = 4
+
+/obj/machinery/power/tesla_coil/limiter/RefreshParts()
+	..()
+	var/zap_range = 5
+	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+		zap_range -= C.rating
+	zap_range = min(1, zap_range)
+
+/obj/machinery/power/tesla_coil/limiter/coil_act(var/power)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)
+	flick("[icontype]hit", src)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
+	tesla_zap(src, zap_range, power_produced)
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
