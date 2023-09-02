@@ -202,29 +202,28 @@
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
 	tesla_zap(src, zap_range, power_produced)
 
-/obj/machinery/power/tesla_coil/limiter
-	name = "tesla limiter coil"
+/obj/machinery/power/tesla_coil/collector
+	name = "tesla collector coil"
 	desc = "For the union!"
-	icon_state = "limiter0"
-	icontype = "limiter"
+	icon_state = "collector0"
+	icontype = "collector"
 
 	circuit = /obj/item/weapon/circuitboard/tesla_coil
 
-	var/zap_range = 4
+	var/collect_eff = 0.8
 
-/obj/machinery/power/tesla_coil/limiter/RefreshParts()
+/obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
-	var/zap_range = 5
+	var/collect_mod = 0
 	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
-		zap_range -= C.rating
-	zap_range = min(1, zap_range)
+		collect_mod += C.rating
+	collect_eff = 0.75 + collect_mod*0.05
 
-/obj/machinery/power/tesla_coil/limiter/coil_act(var/power)
-	var/power_produced = power / power_loss
+/obj/machinery/power/tesla_coil/collector/coil_act(var/power)
+	var/power_produced = power * collect_eff
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
-	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
-	tesla_zap(src, zap_range, power_produced)
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"

@@ -35,7 +35,7 @@
 
 /obj/item/weapon/circuitboard/tesla_coil/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_multitool())
-		var/result = tgui_input_list(user, "What do you want to reconfigure the board to?", "Multitool-Circuitboard interface", list("Standard", "Relay", "Prism", "Amplifier", "Recaster", "Limiter"))
+		var/result = tgui_input_list(user, "What do you want to reconfigure the board to?", "Multitool-Circuitboard interface", list("Standard", "Relay", "Prism", "Amplifier", "Recaster", "Collector"))
 		switch(result)
 			if("Standard")
 				name = T_BOARD("tesla coil")
@@ -52,7 +52,7 @@
 			if("Recaster")
 				name = T_BOARD("tesla recaster coil")
 				build_path = /obj/machinery/power/tesla_coil/recaster
-			if("Limiter")
-				name = T_BOARD("tesla limiter coil")
-				build_path = /obj/machinery/power/tesla_coil/limiter
+			if("Collector")
+				name = T_BOARD("tesla collector coil")
+				build_path = /obj/machinery/power/tesla_coil/collector
 	return
