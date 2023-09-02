@@ -115,14 +115,14 @@
 	power_loss = 1
 	input_power_multiplier = 0
 
-	var/relay_efficiency = 0.85
+	var/relay_efficiency = 0.9
 
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
 	..()
 	var/relay_multiplier
 	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
 		relay_multiplier += C.rating
-	relay_efficiency = initial(relay_efficiency) + (0.05 * relay_multiplier)
+	relay_efficiency = 0.85 + (0.05 * relay_multiplier)
 
 /obj/machinery/power/tesla_coil/relay/coil_act(var/power)
 	var/power_relayed = power * relay_efficiency
@@ -186,7 +186,6 @@
 
 	circuit = /obj/item/weapon/circuitboard/tesla_coil
 
-	power_loss = 4
 	var/zap_range = 6
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
@@ -196,11 +195,12 @@
 		zap_range += C.rating
 
 /obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
-	var/power_produced = power / power_loss
+	var/power_relayed = power / power_loss
+	var/power_produced = power / (power_loss * 2)
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
-	tesla_zap(src, zap_range, power_produced)
+	tesla_zap(src, zap_range, power_relayed)
 
 /obj/machinery/power/tesla_coil/collector
 	name = "tesla collector coil"
