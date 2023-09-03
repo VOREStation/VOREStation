@@ -366,7 +366,9 @@
 		if(choice == "No, wait")
 			return
 		else if(mind.assigned_role)
-			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby? This will properly remove you from manifest, as well as prevent resleeving.","Quit This Round",list("Quit Round","Cancel"))
+			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby?\
+			This will properly remove you from manifest, as well as prevent resleeving. BEWARE: Pressing 'NO' will STILL return you to lobby!",
+			"Quit This Round",list("Quit Round","No"))
 			if(extra_check == "Quit Round")
 				//Update any existing objectives involving this mob.
 				for(var/datum/objective/O in all_objectives)
