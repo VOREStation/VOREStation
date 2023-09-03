@@ -1026,6 +1026,7 @@
 	name = "Naga (Taur, Fat, dual color)"
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
+	suit_sprites = null
 
 /datum/sprite_accessory/tail/taur/fox
 	name = "Fox (Taur, 3-color)"

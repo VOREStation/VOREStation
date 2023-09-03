@@ -117,6 +117,48 @@
 
 	meat_amount = 15
 
+	knockdown_chance = 15
+
+/mob/living/simple_mob/animal/space/carp/large/huge/vorny
+	name = "great white carp"
+	desc = "A very rare breed of carp- and a very hungry one."
+	icon = 'icons/mob/64x64.dmi'
+	icon_dead = "megacarp_dead"
+	icon_living = "megacarp"
+	icon_state = "megacarp"
+
+	maxHealth = 230
+	health = 230
+	movement_cooldown = 3
+
+	melee_damage_lower = 1 // Minimal damage to make the knockdown work.
+	melee_damage_upper = 1
+
+	pixel_y = -16
+	default_pixel_y = -16
+	icon_expected_width = 64
+	icon_expected_height = 64
+
+	meat_amount = 15
+
+	knockdown_chance = 50
+	ai_holder_type = /datum/ai_holder/simple_mob/vore
+
+/mob/living/simple_mob/animal/space/carp/large/huge/vorny/init_vore()
+	..()
+	var/obj/belly/B = vore_selected
+	B.name = "stomach"
+	B.desc = "You've been swallowed whole and alive by a massive white carp! The stomach around you is oppressively tight, squeezing and grinding wrinkled walls across your body, making it hard to make any movement at all. The chamber is flooded with fluids that completely overwhelm you."
+	B.mode_flags = DM_FLAG_THICKBELLY
+	B.belly_fullscreen = "yet_another_tumby"
+	B.digest_brute = 2
+	B.digest_burn = 2
+	B.digest_oxy = 1
+	B.digestchance = 100
+	B.absorbchance = 0
+	B.escapechance = 3
+	B.selective_preference = DM_DIGEST
+	B.escape_stun = 10
 
 /mob/living/simple_mob/animal/space/carp/holographic
 	name = "holographic carp"

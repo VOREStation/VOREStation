@@ -752,6 +752,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/vore/aggressive/rat) = 100,
 		list(/mob/living/simple_mob/vore/bee) = 100,
 		list(/mob/living/simple_mob/vore/catgirl) = 100,
+		list(/mob/living/simple_mob/vore/wolftaur) = 100,
 		list(/mob/living/simple_mob/vore/cookiegirl) = 100,
 		list(/mob/living/simple_mob/vore/fennec) = 100,
 		list(/mob/living/simple_mob/vore/fennix) = 50,
