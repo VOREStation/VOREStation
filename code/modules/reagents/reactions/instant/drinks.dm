@@ -768,7 +768,7 @@
 	name = "Decaf Mint Tea"
 	id = "decafminttea"
 	result = "decafminttea"
-	required_reagents = list("decaftea" = 5, "mint" = 1)
+	required_reagents = list("teadecaf" = 5, "mint" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/lemontea
@@ -782,7 +782,7 @@
 	name = "Decaf Lemon Tea"
 	id = "decaflemontea"
 	result = "decaflemontea"
-	required_reagents = list("decaftea" = 5, "lemonjuice" = 1)
+	required_reagents = list("teadecaf" = 5, "lemonjuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/limetea
@@ -796,7 +796,7 @@
 	name = "Decaf Lime Tea"
 	id = "decaflimetea"
 	result = "decaflimetea"
-	required_reagents = list("decaftea" = 5, "limejuice" = 1)
+	required_reagents = list("teadecaf" = 5, "limejuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/orangetea
@@ -810,7 +810,7 @@
 	name = "Decaf Orange Tea"
 	id = "decaforangetea"
 	result = "decaforangetea"
-	required_reagents = list("decaftea" = 5, "orangejuice" = 1)
+	required_reagents = list("teadecaf" = 5, "orangejuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/berrytea
@@ -824,7 +824,7 @@
 	name = "Decaf Berry Tea"
 	id = "decafberrytea"
 	result = "decafberrytea"
-	required_reagents = list("decaftea" = 5, "berryjuice" = 1)
+	required_reagents = list("teadecaf" = 5, "berryjuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/sakebomb
