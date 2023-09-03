@@ -406,7 +406,6 @@
 				to_chat(src,"<span class='notice'>Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!</span>")
 
 	// Beyond this point, you're going to respawn
-	to_chat(usr, config.respawn_message)
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -425,7 +424,9 @@
 		qdel(M)
 		return
 
+	M.has_respawned = TRUE //When we returned to main menu, send respawn message
 	M.key = key
+
 	if(M.mind)
 		M.mind.reset()
 	return
