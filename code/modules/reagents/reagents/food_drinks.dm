@@ -419,7 +419,7 @@
 
 /datum/reagent/nutriment/decaf_tea
 	name = "Decaf Tea Powder"
-	id = "decafteapowder"
+	id = "decaftea"
 	description = "A dark, tart powder made from black tea leaves, treated to remove caffeine content."
 	taste_description = "tartness"
 	taste_mult = 1.3
