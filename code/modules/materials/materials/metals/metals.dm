@@ -19,6 +19,12 @@
 	stack_origin_tech = list(TECH_MATERIAL = 8)
 	supply_conversion_value = 9
 
+/datum/material/durasteel/generate_recipes()
+	..()
+	recipes += list(
+		new /datum/stack_recipe("durasteel hull sheet", /obj/item/stack/material/durasteel/hull, 2, 1, 5, time = 20, one_per_turf = 0, on_floor = 1, recycle_material = "[name]")
+	)
+
 /datum/material/titanium
 	name = MAT_TITANIUM
 	stack_type = /obj/item/stack/material/titanium
@@ -27,6 +33,12 @@
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
+
+/datum/material/titanium/generate_recipes()
+	..()
+	recipes += list(
+		new /datum/stack_recipe("titanium hull sheet", /obj/item/stack/material/titanium/hull, 2, 1, 5, time = 20, one_per_turf = 0, on_floor = 1, recycle_material = "[name]")
+	)
 
 /datum/material/iron
 	name = "iron"

@@ -2,6 +2,7 @@
 	name = MAT_PLASTITANIUMHULL
 	stack_type = /obj/item/stack/material/plastitanium/hull
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	icon_colour = "#585658"
 	explosion_resistance = 50
@@ -14,6 +15,7 @@
 	name = MAT_GOLDHULL
 	stack_type = /obj/item/stack/material/gold/hull
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	explosion_resistance = 50
 	composite_material = list(MAT_GOLD = SHEET_MATERIAL_AMOUNT)

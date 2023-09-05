@@ -2,6 +2,7 @@
 	name = "resin"
 	icon_colour = "#35343a"
 	icon_base = "resin"
+	table_icon_base = "stone"
 	dooropen_noise = 'sound/effects/attackblob.ogg'
 	door_icon_base = "resin"
 	icon_reinf = "reinf_mesh"
