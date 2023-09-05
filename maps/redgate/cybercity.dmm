@@ -69,7 +69,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "ajj" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_y = 29
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -10089,7 +10089,7 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/city/restaurant)
 "nlZ" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_x = 30
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -15257,7 +15257,7 @@
 /turf/simulated/floor/carpet,
 /area/redgate/city/morgue)
 "tPW" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_y = -30
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
