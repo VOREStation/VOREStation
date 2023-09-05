@@ -1798,7 +1798,10 @@
 	},
 /area/redgate/train/overboard)
 "EL" = (
-/mob/living/simple_mob/vore/alienanimals/catslug,
+/mob/living/simple_mob/vore/alienanimals/catslug{
+	color = "#6b0024";
+	name = "stowaway"
+	},
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
 	nitrogen = 82.1472;
