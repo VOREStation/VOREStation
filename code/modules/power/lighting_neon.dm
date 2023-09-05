@@ -146,11 +146,11 @@
 	desc = "A bright neon wall sign."
 	light_type = /obj/item/weapon/light/bulb/neon/blue
 
-/obj/machinery/light/small/neon/redcross
-	icon_state = "RedCross1"
-	base_state = "RedCross"
+/obj/machinery/light/small/neon/cross
+	icon_state = "GreenCross1"
+	base_state = "GreenCross"
 	desc = "A bright neon wall sign."
-	light_type = /obj/item/weapon/light/bulb/neon/red
+	light_type = /obj/item/weapon/light/bulb/neon/green
 
 /obj/machinery/light/small/neon/bar
 	icon_state = "Bar1"
