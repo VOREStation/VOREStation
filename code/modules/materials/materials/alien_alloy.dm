@@ -15,6 +15,7 @@
 /datum/material/alienalloy/elevatorium
 	name = "elevatorium"
 	display_name = "elevator panelling"
+	table_icon_base = "stone"
 	icon_colour = "#666666"
 
 /datum/material/alienalloy/dungeonium
@@ -35,5 +36,5 @@
 	name = "alium"
 	display_name = "alien"
 	icon_base = "alien"
-	table_icon_base = "stone"
+	table_icon_base = "alien"
 	icon_colour = "#FFFFFF"
