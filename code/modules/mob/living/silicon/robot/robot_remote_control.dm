@@ -115,7 +115,8 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 /mob/living/silicon/robot/attack_ai(mob/user)
 	if(shell && config.allow_ai_shells && (!connected_ai || connected_ai == user))
 		var/mob/living/silicon/ai/AI = user
-		AI.deploy_to_shell(src)
+		if(istype(AI))		// Just in case we're clicked by a borg
+			AI.deploy_to_shell(src)
 	else
 		return ..()
 

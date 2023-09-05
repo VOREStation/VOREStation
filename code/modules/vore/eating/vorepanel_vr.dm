@@ -313,6 +313,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		"slip_vore" = host.slip_vore,
 		"stumble_vore" = host.stumble_vore,
 		"throw_vore" = host.throw_vore,
+		"food_vore" = host.food_vore,
 		"nutrition_message_visible" = host.nutrition_message_visible,
 		"nutrition_messages" = host.nutrition_messages,
 		"weight_message_visible" = host.weight_message_visible,
@@ -574,6 +575,10 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			return TRUE
 		if("toggle_throw_vore")
 			host.throw_vore = !host.throw_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_food_vore")
+			host.food_vore = !host.food_vore
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_selective_mode_pref")

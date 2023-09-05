@@ -548,16 +548,12 @@
 				h_user.put_in_l_hand(B)
 			else if (h_user.l_store == src)
 				h_user.drop_from_inventory(src)
-				B.loc = h_user
-				B.hud_layerise()
-				h_user.l_store = B
-				//h_user.update_inv_pockets() //Doesn't do anything
+				if(!h_user.equip_to_slot_if_possible(B, slot_l_store))
+					h_user.drop_from_inventory(B)
 			else if (h_user.r_store == src)
 				h_user.drop_from_inventory(src)
-				B.loc = h_user
-				B.hud_layerise()
-				h_user.r_store = B
-				//h_user.update_inv_pockets() //Doesn't do anything
+				if(!h_user.equip_to_slot_if_possible(B, slot_r_store))
+					h_user.drop_from_inventory(B)
 			else if (h_user.head == src)
 				h_user.u_equip(src)
 				h_user.put_in_hands(B)

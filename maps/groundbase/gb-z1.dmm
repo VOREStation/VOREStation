@@ -3392,9 +3392,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "hv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
+/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "hw" = (
@@ -6529,6 +6527,13 @@
 /obj/effect/landmark/start/bartender,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"of" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/apparel)
 "og" = (
 /obj/effect/landmark/start/miner,
 /obj/structure/cable/yellow{
@@ -33003,7 +33008,7 @@ vi
 Yx
 hr
 pi
-Pb
+hv
 vP
 ye
 CD
@@ -33287,7 +33292,7 @@ Ba
 mL
 hr
 zT
-hv
+of
 sg
 BS
 Pb
@@ -33429,7 +33434,7 @@ hr
 hr
 hr
 bL
-Pb
+hv
 rG
 BS
 zj
@@ -33713,7 +33718,7 @@ qE
 qE
 dk
 Vb
-Pb
+hv
 ll
 ye
 CD

@@ -96,11 +96,17 @@
 
 ///Setter for the byond luminosity var
 /turf/proc/set_luminosity(new_luminosity, force)
-	// SSplanets handles outdoor turfs
 	if((is_outdoors() && !force) || outdoors_adjacent)
-		return
+		if(check_for_sun()) //If another system handles our lighting, don't interfere
+			return
 
 	luminosity = new_luminosity
+
+///Checks planets and fake_suns to see if our turf should be handled by either
+/turf/proc/check_for_sun()
+	if((SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) || (z in fake_sunlight_zs))
+		return TRUE
+	return FALSE
 
 ///Calculate on which directions this turfs block view.
 /turf/proc/recalculate_directional_opacity()

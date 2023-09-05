@@ -15,6 +15,8 @@
 	var/atom/movable/weather_visuals/visuals = null
 	var/atom/movable/weather_visuals/special/special_visuals = null
 
+	var/firework_override = FALSE
+
 /datum/weather_holder/New(var/source)
 	..()
 	our_planet = source
@@ -134,6 +136,7 @@
 
 /datum/weather_holder/proc/update_icon_effects()
 	visuals.icon_state = current_weather.icon_state
+	visuals.icon = current_weather.icon
 
 /datum/weather_holder/proc/update_temperature()
 	temperature = LERP(current_weather.temp_low, current_weather.temp_high, our_planet.sun_position)

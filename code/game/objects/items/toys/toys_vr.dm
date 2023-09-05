@@ -371,6 +371,17 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "basset"
 
+/obj/item/toy/plushie/shark
+	name = "shark plushie"
+	desc = "A plushie depicting a somewhat cartoonish shark. The tag calls it a 'hákarl', noting that it was made by an obscure furniture manufacturer in old Scandinavia."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "blahaj"
+	item_state = "blahaj"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+		)
+
 /*
  * Pet rocks
  */

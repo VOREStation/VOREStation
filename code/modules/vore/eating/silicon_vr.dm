@@ -105,4 +105,4 @@
 			. += "[flavor_text]"
 
 		if(master.ooc_notes)
-			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>"
+			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[master];print_ooc_notes_to_chat=1'>\[Print\]</a>"

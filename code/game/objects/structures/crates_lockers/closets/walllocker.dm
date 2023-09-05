@@ -315,6 +315,25 @@
 	pixel_x = 32
 	dir = EAST
 
+/obj/structure/closet/walllocker_double/casino
+	closet_appearance = /decl/closet_appearance/wall_double/casino
+
+/obj/structure/closet/walllocker_double/casino/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker_double/casino/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker_double/casino/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker_double/casino/east
+	pixel_x = 32
+	dir = EAST
+
 /obj/structure/closet/walllocker_double/cargo
 	desc = "A wall mounted cabinet. This one is in cargo colors."
 	closet_appearance = /decl/closet_appearance/wall_double/cargo

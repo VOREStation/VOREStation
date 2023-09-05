@@ -35,13 +35,25 @@
 	sprite_icon = 'icons/mob/robot/mechanist.dmi'
 	sprite_hud_icon_state = "malf"
 
-/datum/robot_sprite/protector/spider
+/datum/robot_sprite/mechanist/spider
 	name = "XI-GUS"
 	sprite_icon_state = "spider"
 
-/datum/robot_sprite/protector/sleek
+/datum/robot_sprite/mechanist/sleek
 	name = "WTOperator"
 	sprite_icon_state = "sleek"
+
+// Wide/dogborg sprites
+
+/datum/robot_sprite/dogborg/mechanist
+	module_type = "Mechanist"
+	sprite_icon = 'icons/mob/robot/mechanist_wide.dmi'
+
+/datum/robot_sprite/dogborg/mechanist/pupdozer
+	name = "Pupdozer"
+	sprite_icon_state = "pupdozer"
+	has_eye_light_sprites = TRUE
+	rest_sprite_options = list("Default")
 
 
 // Combat Medic
@@ -87,7 +99,7 @@
 		SP.attack_verb = list("batted", "pawed", "bopped", "whapped")
 
 /datum/robot_sprite/dogborg/combat_medic/vale
-	name = "Stray"
+	name = "Hound V2"
 	sprite_icon_state = "vale"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE

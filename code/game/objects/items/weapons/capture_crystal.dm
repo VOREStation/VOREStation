@@ -44,7 +44,7 @@
 		if(isanimal(bound_mob))
 			. += "<span class = 'notice'>[bound_mob.health / bound_mob.maxHealth * 100]%</span>"
 		if(bound_mob.ooc_notes)
-			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a>"
+			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 		. += "<span class='deptradio'><a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.

@@ -12,6 +12,9 @@
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
 
+	var/food_can_insert_micro = FALSE
+	var/list/food_inserted_micros
+
 /obj/item/weapon/reagent_containers/food/verb/change_name()
 	set name = "Rename Food"
 	set category = "Object"
@@ -51,6 +54,12 @@
 
 		pixel_x = (CELLSIZE * (0.5 + cell_x)) - center_of_mass["x"]
 		pixel_y = (CELLSIZE * (0.5 + cell_y)) - center_of_mass["y"]
+
+/obj/item/weapon/reagent_containers/food/container_resist(mob/living/M)
+	if(food_inserted_micros)
+		food_inserted_micros -= M
+	M.forceMove(get_turf(src))
+	to_chat(M, "<span class='warning'>You climb out of \the [src].</span>")
 
 #undef CELLS
 #undef CELLSIZE

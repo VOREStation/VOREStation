@@ -190,3 +190,7 @@
 	if(get_dist(holder, A) < run_if_this_close)
 		holder.IMove(get_step_away(holder, A))
 		holder.face_atom(A)
+
+/datum/ai_holder/simple_mob/passive/speedy
+	base_wander_delay = 1
+

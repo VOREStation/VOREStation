@@ -65,7 +65,8 @@
 						/obj/item/toy/plushie/borgplushie/drake/mine,
 						/obj/item/toy/plushie/borgplushie/drake/jani,
 						/obj/item/toy/plushie/borgplushie/drake/trauma,
-						/obj/item/toy/plushie/otter
+						/obj/item/toy/plushie/otter,
+						/obj/item/toy/plushie/shark
 						)
 
 /obj/machinery/clawmachine/update_icon()
