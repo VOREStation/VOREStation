@@ -75,6 +75,11 @@
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
 
+/obj/item/weapon/folder/afterattack(turf/T as turf)
+	for(var/obj/item/weapon/paper/P in T)
+		P.loc = src
+		update_icon()
+
 /obj/item/weapon/folder/attack_self(mob/user as mob)
 	var/dat = "<title>[name]</title>"
 

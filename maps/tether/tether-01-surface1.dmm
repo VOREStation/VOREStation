@@ -17307,6 +17307,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
+"aCc" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/grey/border,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "aCd" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -18213,6 +18219,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"aDK" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "aDL" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -18286,6 +18304,13 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/locker/laundry_arrival)
+"aDT" = (
+/obj/structure/table/bench/standard,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/grey/border,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "aDU" = (
 /obj/machinery/disposal/deliveryChute{
 	dir = 1
@@ -18718,6 +18743,14 @@
 "aEM" = (
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
+"aEN" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/grey/border,
+/obj/machinery/light/small,
+/obj/structure/table/bench/standard,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "aEO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -31132,13 +31165,6 @@
 /obj/structure/table/bench/standard,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
-"bcM" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/grey/border,
-/obj/machinery/light/small,
-/obj/structure/table/bench/standard,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "bcN" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -37957,12 +37983,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
-"sch" = (
-/obj/structure/table/bench/standard,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/grey/border,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "svZ" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -38670,17 +38690,6 @@
 "uiK" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/weaponsrange)
-"uke" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/grey/border{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "uku" = (
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 10
@@ -55461,7 +55470,7 @@ aSX
 aTG
 aSo
 arm
-bcT
+aCc
 aVf
 aUs
 aUu
@@ -55471,7 +55480,7 @@ aWZ
 bcj
 bcF
 gzO
-bcM
+aEN
 aUm
 aUm
 aUm
@@ -56318,7 +56327,7 @@ aUP
 rnt
 aUP
 aUP
-sch
+aDT
 gQH
 baU
 baU
@@ -56456,7 +56465,7 @@ aah
 aUm
 lei
 wVm
-uke
+aDK
 jAq
 glu
 bcJ

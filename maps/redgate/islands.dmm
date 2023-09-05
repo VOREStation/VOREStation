@@ -572,8 +572,8 @@
 /turf/simulated/floor/water/deep/ocean/diving,
 /area/redgate/islands/ocean)
 "px" = (
-/obj/structure/fake_stairs/west/bottom,
-/obj/structure/fake_stairs/west/bottom{
+/obj/structure/inactive_stairs/west/bottom,
+/obj/structure/inactive_stairs/west/bottom{
 	pixel_y = 16
 	},
 /turf/simulated/floor/tiled{
@@ -852,8 +852,8 @@
 /turf/simulated/floor/outdoors/grass/heavy,
 /area/redgate/islands/ocean)
 "zg" = (
-/obj/structure/fake_stairs/west/top,
-/obj/structure/fake_stairs/west/top{
+/obj/structure/inactive_stairs/west/top,
+/obj/structure/inactive_stairs/west/top{
 	pixel_y = 16
 	},
 /turf/simulated/floor/tiled{

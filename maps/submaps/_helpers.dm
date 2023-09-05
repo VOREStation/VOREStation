@@ -133,3 +133,55 @@
 	name = "stairs"
 	dir = WEST
 	stepoff_dir = EAST
+
+//Inactive stairs are completely cosmetic versions of fake_stairs
+/obj/structure/inactive_stairs
+	name = "use a subtype! - stairs"
+	icon = 'icons/obj/structures/multiz.dmi'
+	icon_state = "stair"
+	density = 0
+	opacity = 0
+	anchored = 1
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
+	appearance_flags = PIXEL_SCALE|KEEP_TOGETHER
+
+/obj/structure/inactive_stairs/north/top
+	name = "stairs"
+	dir = NORTH
+	color = "#B0B0B0"
+	pixel_y = -32
+
+/obj/structure/inactive_stairs/north/bottom
+	name = "stairs"
+	dir = NORTH
+	pixel_y = -32
+
+/obj/structure/inactive_stairs/south/top
+	name = "stairs"
+	dir = SOUTH
+	color = "#B0B0B0"
+
+/obj/structure/inactive_stairs/south/bottom
+	name = "stairs"
+	dir = SOUTH
+
+/obj/structure/inactive_stairs/east/top
+	name = "stairs"
+	dir = EAST
+	color = "#B0B0B0"
+	pixel_x = -32
+
+/obj/structure/inactive_stairs/east/bottom
+	name = "stairs"
+	dir = EAST
+	pixel_x = -32
+
+/obj/structure/inactive_stairs/west/top
+	name = "stairs"
+	dir = WEST
+	color = "#B0B0B0"
+
+/obj/structure/inactive_stairs/west/bottom
+	name = "stairs"
+	dir = WEST

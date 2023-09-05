@@ -44,7 +44,7 @@ field_generator power level display
 	. = ..()
 	switch(state)
 		if(0)
-			. += "<span class='warning'>It is not secured in place at all!</span>"
+			. += "<span class='warning'>It is not secured in place!</span>"
 		if(1)
 			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
 		if(2)
