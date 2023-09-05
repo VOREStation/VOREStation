@@ -8156,7 +8156,11 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "kPJ" = (
-/mob/living/simple_mob/vore/fennec/huge,
+/mob/living/simple_mob/vore/fennec/huge{
+	autodoom = 0;
+	vore_bump_chance = 25;
+	vore_pounce_chance = 50
+	},
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "kQn" = (
