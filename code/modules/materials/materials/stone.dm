@@ -2,6 +2,7 @@
 	name = "sandstone"
 	stack_type = /obj/item/stack/material/sandstone
 	icon_base = "stone"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_stone"
 	icon_colour = "#D9C179"
 	shard_type = SHARD_STONE_PIECE

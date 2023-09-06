@@ -103,7 +103,7 @@
 				new /datum/stack_recipe("cyan corner tile", /obj/item/stack/tile/floor/eris/steel/cyancorner, 1, 4, 20, recycle_material = "[name]"),
 				new /datum/stack_recipe("violet corner tile", /obj/item/stack/tile/floor/eris/steel/violetcorener, 1, 4, 20, recycle_material = "[name]"),
 			)),
-			
+
 		)),
 			//Eris Floor tiles- Dark
 		new /datum/stack_recipe_list("eris floors-dark", list(
@@ -145,5 +145,6 @@
 		new /datum/stack_recipe("big floor lamp fixture frame", /obj/machinery/light_construct/bigfloorlamp, 3, recycle_material = "[name]"),
 		new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("desk bell", /obj/item/weapon/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
-		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]")
+		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("steel hull sheet", /obj/item/stack/material/steel/hull, 2, 1, 5, time = 20, one_per_turf = 0, on_floor = 1, recycle_material = "[name]")
 	)

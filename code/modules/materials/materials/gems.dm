@@ -3,6 +3,7 @@
 	stack_type = /obj/item/stack/material/phoron
 	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
 	icon_base = "stone"
+	table_icon_base = "stone"
 	icon_colour = "#FC2BC5"
 	shard_type = SHARD_SHARD
 	hardness = 30
@@ -44,6 +45,8 @@
 	hardness = 100
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 	supply_conversion_value = 8
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 /datum/material/quartz
 	name = MAT_QUARTZ
@@ -55,6 +58,8 @@
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
 	supply_conversion_value = 4
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 /datum/material/painite
 	name = MAT_PAINITE
@@ -68,6 +73,8 @@
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
 	supply_conversion_value = 4
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 /datum/material/void_opal
 	name = MAT_VOPAL
@@ -86,6 +93,8 @@
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
 	supply_conversion_value = 30	// These are hilariously rare.
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 // Particle Smasher and other exotic materials.
 /datum/material/valhollide
@@ -108,6 +117,8 @@
 	stack_origin_tech = list(TECH_MATERIAL = 7, TECH_PHORON = 5, TECH_BLUESPACE = 5)
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 /datum/material/verdantium
 	name = MAT_VERDANTIUM
@@ -129,6 +140,8 @@
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
 	supply_conversion_value = 8
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 /datum/material/morphium
 	name = MAT_MORPHIUM
@@ -150,5 +163,7 @@
 	radiation_resistance = 10
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 4, TECH_BLUESPACE = 4)
 	supply_conversion_value = 13
+	icon_base = "stone"
+	table_icon_base = "stone"
 
 

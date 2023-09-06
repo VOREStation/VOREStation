@@ -8,6 +8,7 @@
 
 /obj/item/stack/material/durasteel/hull
 	name = MAT_DURASTEELHULL
+	default_type = MAT_DURASTEELHULL
 
 /obj/item/stack/material/titanium/hull
 	name = MAT_TITANIUMHULL
