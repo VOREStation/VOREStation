@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 export const SmartVend = (props, context) => {
   const { act, config, data } = useBackend(context);
   return (
-    <Window width={440} height={550} resizable>
+    <Window width={500} height={550} resizable>
       <Window.Content scrollable>
         <Section title="Storage">
           {(data.secure && (
@@ -59,6 +59,26 @@ export const SmartVend = (props, context) => {
                         act('Release', {
                           index: value.index,
                           amount: 5,
+                        })
+                      }
+                    />
+                    <Button
+                      content="25"
+                      disabled={value.amount < 25}
+                      onClick={() =>
+                        act('Release', {
+                          index: value.index,
+                          amount: 25,
+                        })
+                      }
+                    />
+                    <Button
+                      content="50"
+                      disabled={value.amount < 50}
+                      onClick={() =>
+                        act('Release', {
+                          index: value.index,
+                          amount: 50,
                         })
                       }
                     />
