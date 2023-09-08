@@ -160,7 +160,8 @@ h1.alert, h2.alert		{color: #000000;}
 .skrell					{color: #00B0B3;}
 .skrellfar				{color: #70FCFF;}
 .soghun					{color: #50BA6C;}
-.solcom					{color: #3333CE;} /* VOREStation Edit */
+.solcom					{color: #3333CE;}
+.inverted .solcom		{color: #6da6f0;}
 .changeling				{color: #800080;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
@@ -181,6 +182,7 @@ h1.alert, h2.alert		{color: #000000;}
 .interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
+.teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
 
 .black					{color: #000000;}
 .darkgray				{color: #808080;}

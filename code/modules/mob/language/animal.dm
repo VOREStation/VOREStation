@@ -30,4 +30,5 @@
 	flags = WHITELISTED
 	machine_understands = 0
 	space_chance = 100
-	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
+	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh", "groah", "gyooh", "giouh", "puff", "huff", "ghom", "gyuh", "rrrr", "ghh", "uuah", "groh", "gyaah")
+	colour = "teppi"
