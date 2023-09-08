@@ -1337,6 +1337,18 @@ window "rpane"
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
+	elem "patreon"
+		type = BUTTON
+		pos = 488,0
+		size = 60x16
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = '#005813'
+		text-color = #FFFFFF
+		saved-params = "is-checked"
+		text = "Patreon"
+		command = "patreon"
+		group = "rpanemode"
 	elem "discord"
 		type = BUTTON
 		pos = 428,0

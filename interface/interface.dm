@@ -80,6 +80,19 @@
 		to_chat(src, "<span class='danger'>The Discord URL is not set in the server configuration.</span>")
 	return
 
+/client/verb/patreon()
+	set name = "Patreon"
+	set desc = "Visit the patreon"
+	set hidden = 1
+
+	if(config.patreonurl)
+		if(tgui_alert(usr, "This will open the Patreon in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+			return
+		src << link(config.patreonurl)
+	else
+		to_chat(src, "<span class='danger'>The Patreon URL is not set in the server configuration.</span>")
+	return
+
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"

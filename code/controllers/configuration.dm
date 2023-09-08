@@ -128,6 +128,7 @@ var/list/gamemode_cache = list()
 	var/static/discordurl
 	var/static/rulesurl
 	var/static/mapurl
+	var/static/patreonurl
 
 	//Alert level description
 	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
@@ -551,6 +552,9 @@ var/list/gamemode_cache = list()
 
 				if ("discordurl")
 					config.discordurl = value
+
+				if ("patreonurl")
+					config.patreonurl = value
 
 				if ("guest_jobban")
 					config.guest_jobban = 1
