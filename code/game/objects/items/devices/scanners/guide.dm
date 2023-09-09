@@ -86,7 +86,7 @@
 	if(organ)
 		dat += "<b>Organ damage</b> - Give Peridaxon. Perform full body scan for targeted organ repair surgery.<br>"
 	if(bloodloss)
-		dat += "<b>Low blood volume</b> - Commence blood transfusion via IV drip or provide blood-restorative chemicals (i.e. Iron)."
+		dat += "<b>Low blood volume</b> - Commence blood transfusion via IV drip or provide blood-restorative chemicals (e.g.: Copper for zorren and skrell, iron for the rest)."
 	if(M.getToxLoss())
 		dat += "<b>Toxins</b> - Give Dylovene or Carthatoline. Vomitting is normal and helpful. Tends to be a symptom of larger issues, such as infection.<br>"
 	if(M.getBruteLoss())
