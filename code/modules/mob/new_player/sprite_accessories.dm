@@ -1440,6 +1440,38 @@
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
+//its bird time mfers - Nevrean Hairs
+
+/datum/sprite_accessory/hair/feather_fan
+	name = "feather fan (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "feather_fan"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_plume_down
+	name = "feather plume down (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "feather_plume_down"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_plume_up
+	name = "feather plume up (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "feather_plume_up"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_plume_small
+	name = "feather plume small (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "feather_plume_small"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_halfmoon
+	name = "feather halfmoon (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "feather_halfmoon"
+	flags = HAIR_TIEABLE
+
 /*
 shaved
 	name = "Shaved"
