@@ -71,6 +71,7 @@
 	stack_type = /obj/item/stack/material/wood/hard
 	icon_colour = "#42291a"
 	icon_base = "stone"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_stone"
 	integrity = 65	//a bit stronger than regular wood
 	hardness = 20

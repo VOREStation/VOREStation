@@ -69,7 +69,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "ajj" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_y = 29
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -8156,7 +8156,11 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "kPJ" = (
-/mob/living/simple_mob/vore/fennec/huge,
+/mob/living/simple_mob/vore/fennec/huge{
+	autodoom = 0;
+	vore_bump_chance = 25;
+	vore_pounce_chance = 50
+	},
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "kQn" = (
@@ -10089,7 +10093,7 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/city/restaurant)
 "nlZ" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_x = 30
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -15257,7 +15261,7 @@
 /turf/simulated/floor/carpet,
 /area/redgate/city/morgue)
 "tPW" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_y = -30
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
