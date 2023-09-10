@@ -301,12 +301,22 @@
 
 /obj/item/weapon/reagent_containers/pill/iron
 	name = "Iron (30u)" //VOREStation Edit
-	desc = "Used to aid in blood regeneration after bleeding."
+	desc = "Used to aid in blood regeneration after bleeding for red-blooded crew."
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/iron/Initialize()
 	. = ..()
 	reagents.add_reagent("iron", 30) //VOREStation Edit
+	color = reagents.get_color()
+
+/obj/item/weapon/reagent_containers/pill/copper
+	name = "Copper (30u)"
+	desc = "Used to aid in blood regeneration after bleeding for blue-blooded crew."
+	icon_state = "pill1"
+
+/obj/item/weapon/reagent_containers/pill/iron/Initialize()
+	. = ..()
+	reagents.add_reagent("copper", 30)
 	color = reagents.get_color()
 
 //Not-quite-medicine
