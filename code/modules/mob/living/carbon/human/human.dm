@@ -508,7 +508,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/list/medical_hud_text = list()
-								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]"
+								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]	<b>Blood Basis:</b> [R.fields["blood_reagent"]]"
 								medical_hud_text += "<b>Species:</b> [R.fields["species"]]"
 								medical_hud_text += "<b>DNA:</b> [R.fields["b_dna"]]"
 								medical_hud_text += "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
