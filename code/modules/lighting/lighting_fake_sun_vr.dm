@@ -206,3 +206,14 @@ var/static/list/fake_sunlight_zs = list()
 			"color" = "#27024B"
 		)
 	)
+
+/obj/effect/fake_sun/underwater
+	do_weather = TRUE
+	weather_visuals_icon = 'icons/effects/weather.dmi'
+	weather_visuals_icon_state = "underwater"
+	possible_light_setups = list(
+		list(
+			"brightness" = 1,
+			"color" = "#1c49ff"
+		)
+	)

@@ -80,7 +80,7 @@
 	color = "#6E3B08"
 
 /datum/reagent/copper/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_SKRELL)
+	if(alien == IS_SKRELL || alien == IS_ZORREN)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
 /datum/reagent/ethanol
@@ -247,7 +247,7 @@
 	color = "#353535"
 
 /datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA && alien != IS_SKRELL)
+	if(alien != IS_DIONA && alien != IS_SKRELL && alien != IS_ZORREN)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
 /datum/reagent/lithium

@@ -69,7 +69,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "ajj" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_y = 29
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -473,10 +473,6 @@
 "aLg" = (
 /turf/simulated/wall/tgmc/window/darkwall,
 /area/redgate/city/police)
-"aLw" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/redgate/city/house7)
 "aLy" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/under/sexymime,
@@ -2551,7 +2547,11 @@
 /area/redgate/city/house14)
 "dBp" = (
 /obj/structure/table/rack,
-/mob/living/simple_mob/vore/aggressive/mimic,
+/mob/living/simple_mob/vore/aggressive/mimic{
+	health = 75;
+	melee_damage_lower = 4;
+	melee_damage_upper = 7
+	},
 /turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/redgate/city/warehouse)
 "dBW" = (
@@ -6543,7 +6543,9 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/house4)
 "iKi" = (
-/mob/living/simple_mob/vore/alienanimals/skeleton/alt,
+/mob/living/simple_mob/vore/alienanimals/skeleton/alt{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	},
 /turf/simulated/floor/plating,
 /area/redgate/city/dump)
 "iLu" = (
@@ -8154,7 +8156,11 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "kPJ" = (
-/mob/living/simple_mob/vore/fennec/huge,
+/mob/living/simple_mob/vore/fennec/huge{
+	autodoom = 0;
+	vore_bump_chance = 25;
+	vore_pounce_chance = 50
+	},
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "kQn" = (
@@ -10087,7 +10093,7 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/city/restaurant)
 "nlZ" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_x = 30
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -11071,7 +11077,9 @@
 /turf/simulated/floor/outdoors/grass,
 /area/redgate/city/streets)
 "oCK" = (
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple_mob/animal/passive/mouse/rat{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	},
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "oDk" = (
@@ -12808,7 +12816,9 @@
 /turf/simulated/wall/tgmc/window/darkwall,
 /area/redgate/city/house8)
 "qJn" = (
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple_mob/animal/passive/mouse/rat{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
 /area/redgate/city/streets)
 "qJF" = (
@@ -15251,7 +15261,7 @@
 /turf/simulated/floor/carpet,
 /area/redgate/city/morgue)
 "tPW" = (
-/obj/machinery/light/small/neon/redcross{
+/obj/machinery/light/small/neon/cross{
 	pixel_y = -30
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
@@ -37684,8 +37694,8 @@ weI
 weI
 rEQ
 hiy
-aLw
-aLw
+hiy
+hiy
 weI
 qfb
 qfb

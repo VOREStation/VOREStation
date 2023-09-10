@@ -175,7 +175,9 @@
 		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
 		list("Redgate - Star Dog"),
 		list("Redgate - Hotsprings"),
-		list("Redgate - Rain City")
+		list("Redgate - Rain City"),
+		list("Redgate - Islands Underwater","Redgate - Islands"),
+		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level")
 		)
 
 	ai_shell_restricted = TRUE

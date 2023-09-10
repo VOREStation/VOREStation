@@ -288,6 +288,33 @@
 	desc = "A strange city on lockdown."
 	mappath = 'maps/redgate/cybercity.dmm'
 
+/datum/map_template/common_lateload/redgate/islands
+	name = "Redgate - Islands"
+	desc = "A series of islands out in the ocean."
+	mappath = 'maps/redgate/islands.dmm'
+
+/datum/map_template/common_lateload/redgate/islands_underwater
+	name = "Redgate - Islands Underwater"
+	desc = "A series of islands out in the ocean."
+	mappath = 'maps/redgate/islands_underwater.dmm'
+
+/obj/effect/landmark/map_data/islands
+	height = 2
+
+/datum/map_template/common_lateload/redgate/train
+	name = "Redgate - Moving Train"
+	desc = "A long train travelling to who-knows-where."
+	mappath = 'maps/redgate/train.dmm'
+
+/datum/map_template/common_lateload/redgate/train_upper
+	name = "Redgate - Moving Train Upper Level"
+	desc = "A long train travelling to who-knows-where."
+	mappath = 'maps/redgate/train_upper.dmm'
+
+/obj/effect/landmark/map_data/train
+	height = 2
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like

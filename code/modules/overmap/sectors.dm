@@ -12,7 +12,7 @@
 	var/known = TRUE
 	/// Name prior to being scanned if !known
 	var/unknown_name = "unknown sector"
-	var/real_name
+	var/real_name // Used for late-load overmap ship distress beacons and scan_data for lateload/vvar'd scannable overmap objects
 	var/real_desc
 	/// Icon_state prior to being scanned if !known
 	var/unknown_state = "field"
@@ -155,24 +155,12 @@
 /obj/effect/overmap/visitable/get_scan_data()
 	if(!known)
 		known = TRUE
-		if(real_name)
-			name = real_name
-		else
-			name = initial(name)
-		if(real_icon_state) //Only true when GMs/Admins play with the object
-			if(real_icon)  //Only true if GMs/Admins want a non-standard icon from outside 'icons/obj/overmap.dmi'
-				icon = real_icon
-			icon_state = real_icon_state
-		else
-			icon_state = initial(icon_state)
-		if(real_color)
-			color = real_color
-		else
-			color = initial(color)
-		if(real_desc)
-			desc = real_desc
-		else
-			desc = initial(desc)
+		name = (real_name ? real_name : initial(name))
+		color = (real_color ? real_color : initial(color))
+		desc = (real_desc ? real_desc : initial(desc))
+		if(real_icon)  //Only true if GMs/Admins want a non-standard icon from outside 'icons/obj/overmap.dmi'
+			icon = real_icon
+		icon_state = (real_icon_state ? real_icon_state : initial(icon_state))
 	return ..()
 
 /obj/effect/overmap/visitable/proc/get_space_zlevels()
@@ -254,7 +242,7 @@
 
 	admin_chat_message(message = "Overmap panic button hit on z[z] ([name]) by '[user?.ckey || "Unknown"]'", color = "#FF2222") //VOREStation Add
 	var/message = "This is an automated distress signal from a MIL-DTL-93352-compliant beacon transmitting on [PUB_FREQ*0.1]kHz. \
-	This beacon was launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	This beacon was launched from '[real_name ? real_name : initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Per the Interplanetary Convention on Space SAR, those receiving this message must attempt rescue, \
 	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
 
@@ -275,7 +263,7 @@
 	return "\[X:[x], Y:[y]\]"
 
 /obj/effect/overmap/visitable/proc/distress_update()
-	var/message = "This is the final message from the distress beacon launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	var/message = "This is the final message from the distress beacon launched from '[real_name ? real_name : initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)

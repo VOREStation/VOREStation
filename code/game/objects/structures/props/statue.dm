@@ -21,6 +21,15 @@
 /obj/structure/prop/statue/statue5
 	icon_state = "artwork_statue_5"
 
+//sunken ship mast
+
+/obj/structure/prop/statue/sunkensail
+	name = "sail mast"
+	desc = "A long since collapsed mast with a sail draped over it."
+	icon = 'icons/obj/props/decor64x64.dmi'
+	icon_state = "sunkensail"
+	density = FALSE
+
 //TGMC Ship Mast
 
 /obj/structure/prop/statue/stump_plaque

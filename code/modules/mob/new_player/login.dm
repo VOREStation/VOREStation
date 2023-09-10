@@ -31,6 +31,10 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	if(join_motd)
 		to_chat(src, "<div class=\"motd\">[join_motd]</div>")
 
+	if(has_respawned)
+		to_chat(usr, config.respawn_message)
+		has_respawned = FALSE
+
 	if(!mind)
 		mind = new /datum/mind(key)
 		mind.active = 1
@@ -53,7 +57,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 
 /mob/new_player/proc/version_warnings()
 	var/problems // string to store message to present to player as a problem
-	
+
 	// TODO: Move this to a config file at some point maybe? What would the structure of that look like?
 	switch(client.byond_build)
 		// http://www.byond.com/forum/post/2711510
@@ -62,7 +66,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 		// http://www.byond.com/forum/post/2711748
 		if(1562 to 1563)
 			problems = "frequent known crashes related to animations"
-		
+
 		// Don't have a thread, just a lot of player reports.
 		if(1564 to 1565) // Fixed in 1566 which isn't released as of this commit
 			if(world.byond_build == 1564)

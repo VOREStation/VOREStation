@@ -35,6 +35,8 @@
 		"catgirlbrown"
 	)
 
+	faction = "catgirl"
+
 /mob/living/simple_mob/vore/catgirl/New()
 	..()
 	if(random_skin)

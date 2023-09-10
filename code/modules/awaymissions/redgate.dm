@@ -538,4 +538,354 @@
 	name = "house"
 	icon_state = "green"
 
+// Islands areas
 
+/area/redgate/islands
+	name = "Islands"
+	icon_state = "red"
+	requires_power = 0
+
+/area/redgate/islands/ocean
+	name = "Islands - Ocean"
+	icon_state = "purple"
+	forced_ambience = list('sound/effects/ocean.ogg')
+
+/area/redgate/islands/volcano
+	name = "Islands - Volcano"
+	icon_state = "red"
+
+/area/redgate/islands/cave
+	name = "Islands - Cave"
+	icon_state = "yellow"
+
+/area/redgate/islands/gear
+	name = "Islands - Rig Gear Room"
+	icon_state = "bluenew"
+
+/area/redgate/islands/control
+	name = "Islands - Rig Control Room"
+	icon_state = "bluenew"
+
+/area/redgate/islands/telecomms
+	name = "Islands - Telecomms"
+	icon_state = "red"
+
+/area/redgate/islands/ladder
+	name = "Islands - Ladder"
+	icon_state = "red"
+
+/area/redgate/islands/redgate
+	name = "Islands - Redgate"
+	icon_state = "red"
+
+/area/redgate/islands/oxygen
+	name = "Islands - Oxygen Shed"
+	icon_state = "bluenew"
+
+/area/redgate/islands/fishing
+	name = "Islands - Fishing Shed"
+	icon_state = "red"
+
+/area/redgate/islands/livingroom
+	name = "Islands - Living Room"
+	icon_state = "red"
+
+/area/redgate/islands/diningroom
+	name = "Islands - Dining Room"
+	icon_state = "bluenew"
+
+/area/redgate/islands/dorm1
+	name = "Islands - House Dorm 1"
+	icon_state = "yellow"
+
+/area/redgate/islands/dorm2
+	name = "Islands - House Dorm 2"
+	icon_state = "yellow"
+
+/area/redgate/islands/bathroom
+	name = "Islands - Bathroom"
+	icon_state = "red"
+
+/area/redgate/islands/kitchen
+	name = "Islands - Kitchen"
+	icon_state = "red"
+
+/area/redgate/islands/office
+	name = "Islands - Office"
+	icon_state = "bluenew"
+
+/area/redgate/islands/secretladder
+	name = "Islands - Secret Ladder"
+	icon_state = "red"
+
+/area/redgate/islands/alienship
+	name = "Islands - Alien Ship"
+	icon_state = "bluenew"
+
+/area/redgate/islands/underwater
+	name = "Islands - Under The Sea"
+	icon_state = "bluenew"
+	forced_ambience = list('sound/effects/underwater.ogg')
+
+/area/redgate/islands/storeroom
+	name = "Islands - Store Room"
+	icon_state = "red"
+
+/area/redgate/islands/kegs
+	name = "Islands - Kegs"
+	icon_state = "yellow"
+
+/area/redgate/islands/bar
+	name = "Islands - Bar"
+	icon_state = "green"
+
+/area/redgate/islands/backroom
+	name = "Islands - Bar Backroom"
+	icon_state = "yellow"
+
+/area/redgate/islands/piratecave
+	name = "Islands - Smuggling Caves"
+	icon_state = "red"
+
+/area/redgate/islands/gambling
+	name = "Islands - Games Room"
+	icon_state = "yellow"
+
+/area/redgate/islands/sparerooms
+	name = "Islands - Spare Rooms"
+	icon_state = "yellow"
+
+/area/redgate/islands/gamblingbackroom
+	name = "Islands - Gambling Backroom"
+	icon_state = "purple"
+
+/area/redgate/islands/lavabase
+	name = "Islands - Lava Base"
+	icon_state = "red"
+
+/area/redgate/islands/lavadorm
+	name = "Islands - Lava Dorm"
+	icon_state = "purple"
+
+/area/redgate/islands/robotics
+	name = "Islands - Robotics Lab"
+	icon_state = "yellow"
+
+/area/redgate/islands/lavagear
+	name = "Islands - Lava Base Equipment"
+	icon_state = "green"
+
+/area/redgate/islands/underwatercave
+	name = "Islands - Underwater cave"
+	icon_state = "yellow"
+
+/area/redgate/islands/ruins
+	name = "Islands - Golden Ruins"
+	icon_state = "yellow"
+
+/area/redgate/islands/cult
+	name = "Islands - Sunken Ruins"
+	icon_state = "red"
+
+/area/redgate/islands/divingbay
+	name = "Islands - Diving Bay"
+	icon_state = "green"
+
+/area/redgate/islands/shower
+	name = "Islands - Shower Room"
+	icon_state = "purple"
+
+/area/redgate/islands/righall
+	name = "Islands - Rig Bowels"
+	icon_state = "red"
+
+/area/redgate/islands/rig1
+	name = "Islands - Rig Dorm 1"
+	icon_state = "yellow"
+
+/area/redgate/islands/rig2
+	name = "Islands - Rig Dorm 2"
+	icon_state = "yellow"
+
+/area/redgate/islands/meeting
+	name = "Islands - Rig Briefing Room"
+	icon_state = "purple"
+
+/area/redgate/islands/mess
+	name = "Islands - Rig Mess"
+	icon_state = "red"
+
+//train areas
+
+/area/redgate/train
+	name = "Train"
+	icon_state = "red"
+	requires_power = 0
+
+/area/redgate/train/overboard
+	name = "Outside of the Train"
+	icon_state = "red"
+
+/area/redgate/train/connection
+	name = "Train Connection"
+	icon_state = "bluenew"
+
+/area/redgate/train/cab
+	name = "Train Cab"
+	icon_state = "yellow"
+
+/area/redgate/train/meeting
+	name = "Train Meeting Room"
+	icon_state = "green"
+
+/area/redgate/train/storage
+	name = "Train Storage"
+	icon_state = "green"
+
+/area/redgate/train/viewing
+	name = "Train Viewing Carriage"
+	icon_state = "green"
+
+/area/redgate/train/seating
+	name = "Train Seating"
+	icon_state = "green"
+
+/area/redgate/train/tableseating
+	name = "Train Table Seating"
+	icon_state = "green"
+
+/area/redgate/train/bar
+	name = "Train Bar"
+	icon_state = "green"
+
+/area/redgate/train/arena
+	name = "Train Arena"
+	icon_state = "green"
+
+/area/redgate/train/redgate
+	name = "Train Redgate"
+	icon_state = "purple"
+
+/area/redgate/train/casino
+	name = "Train Casino"
+	icon_state = "green"
+
+/area/redgate/train/animals
+	name = "Train Animal Transport"
+	icon_state = "green"
+
+/area/redgate/train/teppi
+	name = "Train Teppi Transport"
+	icon_state = "green"
+
+/area/redgate/train/fuel
+	name = "Train Fuel Transport"
+	icon_state = "green"
+
+/area/redgate/train/wood
+	name = "Train Wood Transport"
+	icon_state = "green"
+
+/area/redgate/train/rear
+	name = "Train Rear Carriage"
+	icon_state = "green"
+
+/area/redgate/train/balcony
+	name = "Train Balcony"
+	icon_state = "yellow"
+
+/area/redgate/train/roof
+	name = "Train Roof"
+	icon_state = "green"
+
+/area/redgate/train/staff
+	name = "Train Staffroom"
+	icon_state = "green"
+
+/area/redgate/train/helipad
+	name = "Train Helipad"
+	icon_state = "green"
+
+/area/redgate/train/medbay
+	name = "Train Medical"
+	icon_state = "green"
+
+/area/redgate/train/gym
+	name = "Train Gym"
+	icon_state = "green"
+
+/area/redgate/train/pool
+	name = "Train Pool"
+	icon_state = "green"
+
+/area/redgate/train/chef
+	name = "Train Chef Room"
+	icon_state = "yellow"
+
+/area/redgate/train/freezer
+	name = "Train Freezer"
+	icon_state = "green"
+
+/area/redgate/train/kitchen
+	name = "Train Kitchen"
+	icon_state = "purple"
+
+/area/redgate/train/dining
+	name = "Train Dining Room"
+	icon_state = "green"
+
+/area/redgate/train/sleeper1
+	name = "Train Sleeper Carriage One"
+	icon_state = "green"
+
+/area/redgate/train/sleeper2
+	name = "Train Sleeper Carriage Two"
+	icon_state = "green"
+
+/area/redgate/train/dorm1
+	name = "Train Dorm 1"
+	icon_state = "purple"
+
+/area/redgate/train/dorm2
+	name = "Train Dorm 2"
+	icon_state = "yellow"
+
+/area/redgate/train/dorm3
+	name = "Train Dorm 3"
+	icon_state = "purple"
+
+/area/redgate/train/dorm4
+	name = "Train Dorm 4"
+	icon_state = "purple"
+
+/area/redgate/train/dorm5
+	name = "Train Dorm 5"
+	icon_state = "yellow"
+
+/area/redgate/train/dorm6
+	name = "Train Dorm 6"
+	icon_state = "purple"
+
+/area/redgate/train/seclobby
+	name = "Train Security Lobby"
+	icon_state = "green"
+
+/area/redgate/train/security
+	name = "Train Security"
+	icon_state = "purple"
+
+/area/redgate/train/gear
+	name = "Train Security Gear"
+	icon_state = "yellow"
+
+/area/redgate/train/command
+	name = "Train Command"
+	icon_state = "green"
+
+/area/redgate/train/vault
+	name = "Train Vault"
+	icon_state = "yellow"
+
+/area/redgate/train/captain
+	name = "Train Captain's Quarters"
+	icon_state = "purple"

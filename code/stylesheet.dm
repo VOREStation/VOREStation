@@ -123,6 +123,7 @@ h1.alert, h2.alert		{color: #000000;}
 .interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
+.teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
 

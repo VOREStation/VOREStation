@@ -30,7 +30,6 @@
 
 	var/integrity = 80
 
-
 /obj/machinery/power/emitter/verb/rotate_clockwise()
 	set name = "Rotate Emitter Clockwise"
 	set category = "Object"
@@ -40,6 +39,17 @@
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
+	return 1
+
+/obj/machinery/power/emitter/verb/rotate_counterclockwise()
+	set name = "Rotate Emitter Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is fastened to the floor!")
+		return 0
+	src.set_dir(turn(src.dir, 90))
 	return 1
 
 /obj/machinery/power/emitter/Initialize()
@@ -274,7 +284,7 @@
 	. = ..()
 	switch(state)
 		if(0)
-			. += "<span class='warning'>It is not secured in place at all!</span>"
+			. += "<span class='warning'>It is not secured in place!</span>"
 		if(1)
 			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
 		if(2)
