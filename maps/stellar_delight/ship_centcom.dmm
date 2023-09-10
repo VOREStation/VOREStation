@@ -402,8 +402,8 @@
 /area/centcom/specops)
 "bc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)

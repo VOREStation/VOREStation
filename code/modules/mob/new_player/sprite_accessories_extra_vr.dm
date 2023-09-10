@@ -995,3 +995,100 @@
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 
+/datum/sprite_accessory/marking/vr/nevrean_beak //that's right, its bird rework time
+	name = "nevrean beak"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "nevrean_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/parrot_beak
+	name = "parrot beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "parrot_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/thin_beak //kiwis and hummingbirds
+	name = "thin beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "thin_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/finch_beak
+	name = "finch beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "finch_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/pelican_beak
+	name = "pelican beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "pelican_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/pelican_beak_pouch //recolor the pouch
+	name = "pelican beak pouch (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "pelican_beak_pouch"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/toucan_beak
+	name = "toucan beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "toucan_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/toucan_beak_tip //recolor the tip
+	name = "toucan beak tip (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "toucan_beak_tip"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/raptor_beak_small
+	name = "bird of prey beak, small (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "raptor_beak_small"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/raptor_beak_large
+	name = "bird of prey beak, large (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "raptor_beak_large"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_heartface
+	name = "heart face (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "heartface"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_fullhead
+	name = "full head recolor (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "full_head_nev"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_tophead
+	name = "top of the head recolor (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "top_head_nev"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_cheeks //the face ones
+	name = "bird face cheeks (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "cheeks_nev"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)

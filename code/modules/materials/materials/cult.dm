@@ -2,6 +2,7 @@
 	name = "cult"
 	display_name = "disturbing stone"
 	icon_base = "cult"
+	table_icon_base = "stone"
 	icon_colour = "#402821"
 	icon_reinf = "reinf_cult"
 	shard_type = SHARD_STONE_PIECE

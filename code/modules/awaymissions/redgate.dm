@@ -715,4 +715,177 @@
 	name = "Islands - Rig Mess"
 	icon_state = "red"
 
+//train areas
 
+/area/redgate/train
+	name = "Train"
+	icon_state = "red"
+	requires_power = 0
+
+/area/redgate/train/overboard
+	name = "Outside of the Train"
+	icon_state = "red"
+
+/area/redgate/train/connection
+	name = "Train Connection"
+	icon_state = "bluenew"
+
+/area/redgate/train/cab
+	name = "Train Cab"
+	icon_state = "yellow"
+
+/area/redgate/train/meeting
+	name = "Train Meeting Room"
+	icon_state = "green"
+
+/area/redgate/train/storage
+	name = "Train Storage"
+	icon_state = "green"
+
+/area/redgate/train/viewing
+	name = "Train Viewing Carriage"
+	icon_state = "green"
+
+/area/redgate/train/seating
+	name = "Train Seating"
+	icon_state = "green"
+
+/area/redgate/train/tableseating
+	name = "Train Table Seating"
+	icon_state = "green"
+
+/area/redgate/train/bar
+	name = "Train Bar"
+	icon_state = "green"
+
+/area/redgate/train/arena
+	name = "Train Arena"
+	icon_state = "green"
+
+/area/redgate/train/redgate
+	name = "Train Redgate"
+	icon_state = "purple"
+
+/area/redgate/train/casino
+	name = "Train Casino"
+	icon_state = "green"
+
+/area/redgate/train/animals
+	name = "Train Animal Transport"
+	icon_state = "green"
+
+/area/redgate/train/teppi
+	name = "Train Teppi Transport"
+	icon_state = "green"
+
+/area/redgate/train/fuel
+	name = "Train Fuel Transport"
+	icon_state = "green"
+
+/area/redgate/train/wood
+	name = "Train Wood Transport"
+	icon_state = "green"
+
+/area/redgate/train/rear
+	name = "Train Rear Carriage"
+	icon_state = "green"
+
+/area/redgate/train/balcony
+	name = "Train Balcony"
+	icon_state = "yellow"
+
+/area/redgate/train/roof
+	name = "Train Roof"
+	icon_state = "green"
+
+/area/redgate/train/staff
+	name = "Train Staffroom"
+	icon_state = "green"
+
+/area/redgate/train/helipad
+	name = "Train Helipad"
+	icon_state = "green"
+
+/area/redgate/train/medbay
+	name = "Train Medical"
+	icon_state = "green"
+
+/area/redgate/train/gym
+	name = "Train Gym"
+	icon_state = "green"
+
+/area/redgate/train/pool
+	name = "Train Pool"
+	icon_state = "green"
+
+/area/redgate/train/chef
+	name = "Train Chef Room"
+	icon_state = "yellow"
+
+/area/redgate/train/freezer
+	name = "Train Freezer"
+	icon_state = "green"
+
+/area/redgate/train/kitchen
+	name = "Train Kitchen"
+	icon_state = "purple"
+
+/area/redgate/train/dining
+	name = "Train Dining Room"
+	icon_state = "green"
+
+/area/redgate/train/sleeper1
+	name = "Train Sleeper Carriage One"
+	icon_state = "green"
+
+/area/redgate/train/sleeper2
+	name = "Train Sleeper Carriage Two"
+	icon_state = "green"
+
+/area/redgate/train/dorm1
+	name = "Train Dorm 1"
+	icon_state = "purple"
+
+/area/redgate/train/dorm2
+	name = "Train Dorm 2"
+	icon_state = "yellow"
+
+/area/redgate/train/dorm3
+	name = "Train Dorm 3"
+	icon_state = "purple"
+
+/area/redgate/train/dorm4
+	name = "Train Dorm 4"
+	icon_state = "purple"
+
+/area/redgate/train/dorm5
+	name = "Train Dorm 5"
+	icon_state = "yellow"
+
+/area/redgate/train/dorm6
+	name = "Train Dorm 6"
+	icon_state = "purple"
+
+/area/redgate/train/seclobby
+	name = "Train Security Lobby"
+	icon_state = "green"
+
+/area/redgate/train/security
+	name = "Train Security"
+	icon_state = "purple"
+
+/area/redgate/train/gear
+	name = "Train Security Gear"
+	icon_state = "yellow"
+
+/area/redgate/train/command
+	name = "Train Command"
+	icon_state = "green"
+
+/area/redgate/train/vault
+	name = "Train Vault"
+	icon_state = "yellow"
+
+/area/redgate/train/captain
+	name = "Train Captain's Quarters"
+	icon_state = "purple"

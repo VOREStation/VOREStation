@@ -215,7 +215,7 @@
 				prob(1);/obj/item/weapon/storage/pill_bottle/dermaline,
 				prob(1);/obj/item/weapon/storage/pill_bottle/dexalin_plus,
 				prob(1);/obj/item/weapon/storage/pill_bottle/bicaridine,
-				prob(1);/obj/item/weapon/storage/pill_bottle/iron)
+				prob(1);/obj/item/weapon/storage/pill_bottle/blood_regen)
 
 /obj/random/medical/lite
 	name = "Random Medicine"
@@ -1105,3 +1105,32 @@
 				/obj/item/weapon/storage/box/donkpockets/honk,
 				/obj/item/weapon/storage/box/donkpockets/gondola,
 				/obj/item/weapon/storage/box/donkpockets/berry)
+
+/obj/random/bluespace
+	name = "Random Bluespace Item"
+	desc = "This is a random Bluespace item."
+	icon_state = "bluespace"
+
+/obj/random/bluespace/item_to_spawn()
+	return pick(
+		prob(20);/obj/item/weapon/gun/energy/sizegun,
+		prob(20);/obj/item/device/slow_sizegun,
+		prob(20);/obj/item/clothing/accessory/collar/shock/bluespace,
+		prob(4);/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
+		prob(4);/obj/item/device/bodysnatcher,
+		prob(10);/obj/item/clothing/under/hyperfiber,
+		prob(10);/obj/item/clothing/under/hyperfiber/bluespace,
+		prob(20);/obj/item/weapon/implant/sizecontrol,
+		prob(2);/obj/item/weapon/storage/bag/ore/holding,
+		prob(2);/obj/item/weapon/storage/backpack/holding,
+		prob(2);/obj/item/weapon/storage/backpack/holding/duffle,
+		prob(2);/obj/item/weapon/storage/bag/trash/holding,
+		prob(2);/obj/item/weapon/storage/pouch/holding,
+		prob(2);/obj/item/weapon/storage/belt/medical/holding,
+		prob(2);/obj/item/weapon/storage/belt/utility/holding,
+		prob(2);/obj/item/device/perfect_tele,
+		prob(8);/obj/item/capture_crystal/random,
+		prob(10);/obj/item/weapon/bluespace_harpoon,
+		prob(10);/obj/item/weapon/bluespace_crystal,
+		prob(1);/obj/item/clothing/glasses/graviton
+	)

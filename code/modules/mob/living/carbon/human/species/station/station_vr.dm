@@ -201,6 +201,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 	blood_color = "#240bc4"
+	reagent_tag = IS_ZORREN
 	color_mult = 1
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)

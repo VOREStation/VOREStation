@@ -4,6 +4,7 @@
 	integrity = 250
 	explosion_resistance = 10
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	icon_colour = "#666677"
 	flags = MATERIAL_UNMELTABLE
@@ -17,6 +18,7 @@
 	stack_type = /obj/item/stack/material/plasteel/hull
 	integrity = 600
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	icon_colour = "#777788"
 	explosion_resistance = 40
@@ -30,6 +32,7 @@
 	name = MAT_DURASTEELHULL
 	stack_type = /obj/item/stack/material/durasteel/hull
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	icon_colour = "#45829a"
 	explosion_resistance = 90
@@ -44,6 +47,7 @@
 	name = MAT_TITANIUMHULL
 	stack_type = /obj/item/stack/material/titanium/hull
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	flags = MATERIAL_UNMELTABLE
 	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT)
@@ -55,6 +59,7 @@
 	name = MAT_MORPHIUMHULL
 	stack_type = /obj/item/stack/material/morphium/hull
 	icon_base = "hull"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	flags = MATERIAL_UNMELTABLE
 	composite_material = list(MAT_MORPHIUM = SHEET_MATERIAL_AMOUNT)

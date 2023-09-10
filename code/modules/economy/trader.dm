@@ -326,6 +326,7 @@
 		/obj/item/device/chameleon = 25,
 		/obj/item/weapon/gun/energy/sizegun = 25,
 		/obj/item/device/slow_sizegun = 25,
+		/obj/item/clothing/accessory/collar/shock/bluespace = 25,
 		/obj/item/weapon/implant/sizecontrol = 25,
 		/obj/item/clothing/under/hyperfiber/bluespace = 25,
 		/obj/item/device/nif/authentic = 1,
@@ -352,6 +353,7 @@
 		/obj/item/device/chameleon = 20,
 		/obj/item/weapon/gun/energy/sizegun = 10,
 		/obj/item/device/slow_sizegun = 10,
+		/obj/item/clothing/accessory/collar/shock/bluespace = 10,
 		/obj/item/weapon/implant/sizecontrol = 10,
 		/obj/item/clothing/under/hyperfiber/bluespace = 10,
 		/obj/item/device/nif/authentic = 100,
@@ -376,6 +378,7 @@
 		/obj/item/capture_crystal/random = 2,
 		/obj/item/weapon/gun/energy/sizegun = 2,
 		/obj/item/device/slow_sizegun = 2,
+		/obj/item/clothing/accessory/collar/shock/bluespace = 2,
 		/obj/item/weapon/implant/sizecontrol = 2,
 		/obj/item/clothing/under/hyperfiber/bluespace = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 10

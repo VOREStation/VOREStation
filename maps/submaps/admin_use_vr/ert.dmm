@@ -3339,8 +3339,8 @@
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
 /obj/item/weapon/storage/pill_bottle/sleevingcure/full,
 /obj/item/weapon/storage/box/syringes,
 /obj/item/weapon/storage/box/syringes{
