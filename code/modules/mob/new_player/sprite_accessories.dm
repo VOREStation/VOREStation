@@ -1445,30 +1445,35 @@
 /datum/sprite_accessory/hair/feather_fan
 	name = "feather fan (nev)"
 	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "feather_fan"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/feather_plume_down
 	name = "feather plume down (nev)"
 	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "feather_plume_down"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/feather_plume_up
 	name = "feather plume up (nev)"
 	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "feather_plume_up"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/feather_plume_small
 	name = "feather plume small (nev)"
 	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "feather_plume_small"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/feather_halfmoon
 	name = "feather halfmoon (nev)"
 	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "feather_halfmoon"
 	flags = HAIR_TIEABLE
 
