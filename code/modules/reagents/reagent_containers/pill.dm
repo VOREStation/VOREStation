@@ -314,7 +314,7 @@
 	desc = "Used to aid in blood regeneration after bleeding for blue-blooded crew."
 	icon_state = "pill1"
 
-/obj/item/weapon/reagent_containers/pill/iron/Initialize()
+/obj/item/weapon/reagent_containers/pill/copper/Initialize()
 	. = ..()
 	reagents.add_reagent("copper", 30)
 	color = reagents.get_color()
