@@ -272,3 +272,17 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 /obj/effect/step_trigger/death/fly_off
 	deathmessage = "You get caught up in the slipstream of the train and quickly dragged down into the tracks. Your body is brutally smashed into the electrified rails and then sucked right under a carriage. No one is finding that mess, thankfully."
 	deathalert = "tried to fly away from the train but was died horribly in the process."
+
+//warning
+
+/obj/effect/step_trigger/warning
+	var/warningmessage = "Warning!"
+	icon_state = "warnmarker"
+
+/obj/effect/step_trigger/warning/Trigger(var/atom/movable/A)
+	if(isliving(A))
+		to_chat(A, "<span class='warning'>[warningmessage]</span>")
+
+/obj/effect/step_trigger/warning/train_edge
+	warningmessage = "The wind billowing alongside the train is extremely strong here! Any movement could easily pull you down beneath the carriages, return to the train immediately!"
+
