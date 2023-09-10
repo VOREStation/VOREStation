@@ -215,7 +215,7 @@
 				prob(1);/obj/item/weapon/storage/pill_bottle/dermaline,
 				prob(1);/obj/item/weapon/storage/pill_bottle/dexalin_plus,
 				prob(1);/obj/item/weapon/storage/pill_bottle/bicaridine,
-				prob(1);/obj/item/weapon/storage/pill_bottle/iron)
+				prob(1);/obj/item/weapon/storage/pill_bottle/blood_regen)
 
 /obj/random/medical/lite
 	name = "Random Medicine"
