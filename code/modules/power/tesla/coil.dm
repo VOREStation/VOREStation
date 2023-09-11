@@ -25,9 +25,9 @@
 /obj/machinery/power/tesla_coil/examine()
 	. = ..()
 	if(anchored)
-		. += "<span class='warning'>It is not secured!</span>"
-	else
 		. += "<span class='notice'>It has been securely bolted down and is ready for operation.</span>"
+	else
+		. += "<span class='warning'>It is not secured!</span>"
 
 /obj/machinery/power/tesla_coil/New()
 	..()
@@ -240,9 +240,9 @@
 /obj/machinery/power/grounding_rod/examine()
 	. = ..()
 	if(anchored)
-		. += "<span class='warning'>It is not secured!</span>"
-	else
 		. += "<span class='notice'>It has been securely bolted down and is ready for operation.</span>"
+	else
+		. += "<span class='warning'>It is not secured!</span>"
 
 /obj/machinery/power/grounding_rod/pre_mapped
 	anchored = TRUE
