@@ -153,6 +153,11 @@ var/list/gear_datums = list()
 	. += "<tr><td colspan=3><hr></td></tr>"
 	. += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
+	var/jobs = list()
+	for(var/job_title in (pref.job_civilian_high|pref.job_medsci_high|pref.job_engsec_high|pref.job_talon_high))
+		var/datum/job/J = SSjob.get_job_titles_in_department(job_title.departments)
+		if(J)
+			dd_insertObjectList(jobs, J)
 	for(var/gear_name in LC.gear)
 		var/datum/gear/G = LC.gear[gear_name]
 		//VOREStation Edit Start
@@ -165,7 +170,23 @@ var/list/gear_datums = list()
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
-		. += "<td><font size=2><i>[G.description]</i></font></td></tr>"
+		. += "<td><font size=2><i>[G.description]</i></font>"
+		var/allowed = 1
+		if(allowed && G.allowed_roles)
+			var/good_job = 0
+			var/bad_job = 0
+			. += "<br><i>"
+			var/list/jobchecks = list()
+			for(var/datum/job/J in jobs)
+				if(J.title in G.allowed_roles)
+					jobchecks += "<font color=55cc55>[J.title]</font>"
+					good_job = 1
+				else
+					jobchecks += "<font color=cc5555>[J.title]</font>"
+					bad_job = 1
+			allowed = good_job || !bad_job
+			. += "[english_list(jobchecks)]</i>"
+		. += "</td></tr>"
 		if(ticked)
 			. += "<tr><td colspan=3>"
 			for(var/datum/gear_tweak/tweak in G.gear_tweaks)
