@@ -13,9 +13,9 @@
 /obj/machinery/the_singularitygen/examine()
 	. = ..()
 	if(anchored)
-		. += "<span class='warning'>It is not secured!</span>"
-	else
 		. += "<span class='notice'>It has been securely bolted down and is ready for operation.</span>"
+	else
+		. += "<span class='warning'>It is not secured!</span>"
 
 /obj/machinery/the_singularitygen/process()
 	var/turf/T = get_turf(src)
