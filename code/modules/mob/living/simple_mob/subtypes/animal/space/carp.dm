@@ -197,3 +197,53 @@
 /mob/living/simple_mob/animal/space/carp/holographic/death()
 	..()
 	derez()
+
+// a slow-moving carp with the appearance of a sea mine and behaviour of a sea mine
+/mob/living/simple_mob/animal/space/carp/puffer
+	name = "puffercarp"
+	desc = "A bloated, inflated carp covered in spines."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/carp/puffer)
+	icon_state = "puffercarp"
+	icon_living = "puffercarp"
+	icon_dead = "puffercarp_dead"
+	icon_gib = "generic_gib"
+	movement_cooldown = 15
+	var/ready_to_blow = TRUE
+
+/datum/category_item/catalogue/fauna/carp/puffer
+	name = "Voidborne Fauna - Space Carp: puffer variant"
+	desc = "An unusual subspecies of space carp with a novel defensive \
+	and reproductive strategy - once the puffercarp is ready to spread spores \
+	it begins to produce a highly volatile compound within its gas bladders, \
+	which in addition to providing them with a means of propulsion through space \
+	as per most space carp species, affords the puffercarp with a somewhat unique \
+	defence mechanism - namely, that they have a tendency to detonate at the slightest \
+	provocation. As a result, other voidborne predators have a tendency to \
+	keep clear, but even if this doesn't work the resulting explosion serves to scatter \
+	their spores over a massive area - this improved seeding strategy results in the \
+	propagation of the species despite the fact that it means each adult carp can \
+	only reproduce exactly once. \
+	<br><br>\
+	As a result, unlike other carp species, it is extremely rare to see a puffercarp \
+	grow to any notable size, and most appear to be somewhat stunted in growth compared \
+	to other space carp, their gas bloating being the only thing that brings them close to \
+	the normal scale of an adult carp."
+	value = CATALOGUER_REWARD_HARD //if you can hang around close enough to this thing without setting it off, you deserve it
+
+/mob/living/simple_mob/animal/space/carp/puffer/proc/kaboom()
+	if(ready_to_blow)
+		ready_to_blow = FALSE
+		gib()
+		var/turf/T = get_turf(src)
+		explosion(T, -1, -1, 4, 4)
+
+
+/mob/living/simple_mob/animal/space/carp/puffer/apply_melee_effects() //it gets close enough to attack? EXPLODE
+	kaboom()
+
+/mob/living/simple_mob/animal/space/carp/puffer/adjustFireLoss(var/amount) //you make it hot? EXPLODE
+	if(amount>0)
+		kaboom()
+
+/mob/living/simple_mob/animal/space/carp/puffer/ex_act() //explode? YOU BETTER BELIEVE THAT'S AN EXPLODE
+	kaboom()
