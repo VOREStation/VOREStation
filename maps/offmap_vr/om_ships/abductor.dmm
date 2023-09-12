@@ -53,18 +53,12 @@
 /area/abductor/interior)
 "eV" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -166,8 +160,6 @@
 /area/abductor/interior)
 "kT" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/porta_turret/alien/abductor,
@@ -235,8 +227,6 @@
 /area/abductor/interior)
 "pC" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -277,8 +267,6 @@
 /area/abductor/interior)
 "rg" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -426,8 +414,6 @@
 /area/abductor/interior)
 "yB" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -440,23 +426,15 @@
 /area/abductor/interior)
 "zu" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -491,8 +469,6 @@
 /area/abductor/interior)
 "EA" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -648,8 +624,6 @@
 	req_one_access = list(777)
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -723,8 +697,6 @@
 	req_one_access = list(777)
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -855,7 +827,6 @@
 "VT" = (
 /obj/machinery/power/shield_generator/charged,
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -867,7 +838,6 @@
 /area/abductor/interior)
 "WB" = (
 /obj/structure/cable{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/machinery/power/rtg/abductor/built/abductor,
@@ -912,7 +882,6 @@
 /area/abductor/interior)
 "YA" = (
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/power/rtg/abductor/built/abductor,
