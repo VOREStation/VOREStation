@@ -702,14 +702,12 @@
 "cz" = (
 /obj/machinery/power/port_gen/pacman/super,
 /obj/structure/cable/yellow{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating/external,
 /area/awaymission/snow_outpost/outside)
 "cA" = (
 /obj/structure/cable/yellow{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating/external,
@@ -1961,7 +1959,6 @@
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable{
 	icon_state = "0-2";
-	d2 = 2
 	},
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/outside)
@@ -1979,8 +1976,6 @@
 /area/awaymission/snow_outpost/outside)
 "gI" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
@@ -2008,16 +2003,12 @@
 /area/awaymission/snow_outpost/outside)
 "gL" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/outside)
 "gM" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0
 	},
@@ -2026,7 +2017,6 @@
 "gN" = (
 /obj/machinery/computer/communications,
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor,

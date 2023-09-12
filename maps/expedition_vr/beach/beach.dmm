@@ -19,8 +19,6 @@
 "af" = (
 /obj/structure/grille,
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
@@ -323,8 +321,6 @@
 /area/tether_away/beach/jungle)
 "bT" = (
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -431,13 +427,9 @@
 /area/tether_away/beach/resort/lockermed)
 "eV" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -520,8 +512,6 @@
 /area/tether_away/beach/water)
 "gU" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/wood,
@@ -543,8 +533,6 @@
 /area/tether_away/beach/resort)
 "hq" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/item/weapon/stool/padded{
@@ -580,7 +568,6 @@
 	dir = 8
 	},
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -599,8 +586,6 @@
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/wood,
@@ -620,8 +605,6 @@
 /area/tether_away/beach/resort/janibar)
 "jc" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -640,8 +623,6 @@
 /area/tether_away/beach/resort)
 "jQ" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -666,14 +647,12 @@
 	pixel_x = -27
 	},
 /obj/structure/cable/cyan{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/kafel_full/white,
 /area/tether_away/beach/resort/lockermed)
 "ku" = (
 /obj/structure/cable/cyan{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable/offmap_spawn/empty,
@@ -689,8 +668,6 @@
 /area/tether_away/beach/resort)
 "kO" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -709,16 +686,12 @@
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/dorm2)
 "kT" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -732,7 +705,6 @@
 	wall_mounted = 1
 	},
 /obj/structure/cable/cyan{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/alarms_hidden{
@@ -767,7 +739,6 @@
 	pixel_x = -27
 	},
 /obj/structure/cable/cyan{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/wood,
@@ -789,7 +760,6 @@
 	pixel_y = 26
 	},
 /obj/structure/cable/cyan{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/wood,
@@ -825,7 +795,6 @@
 "mM" = (
 /obj/machinery/power/solar_control,
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/light/small{
@@ -835,18 +804,12 @@
 /area/tether_away/beach/powershed)
 "mS" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -862,7 +825,6 @@
 /area/tether_away/beach/resort/dorm4)
 "nm" = (
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/tracker,
@@ -903,8 +865,6 @@
 /area/tether_away/beach/jungle)
 "oF" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/item/weapon/stool/padded{
@@ -932,23 +892,15 @@
 /area/tether_away/beach/cavebase)
 "py" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -963,8 +915,6 @@
 /area/tether_away/beach/resort)
 "pC" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/light_switch{
@@ -977,18 +927,12 @@
 /area/tether_away/beach/resort/dorm4)
 "pF" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1014,13 +958,9 @@
 /area/tether_away/beach/jungle)
 "qi" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1050,8 +990,6 @@
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/wood,
@@ -1102,8 +1040,6 @@
 /area/tether_away/beach/resort/janibar)
 "to" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/light_switch{
@@ -1118,18 +1054,12 @@
 /area/tether_away/beach)
 "ts" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1161,8 +1091,6 @@
 /area/tether_away/beach/resort)
 "uL" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/light_switch{
@@ -1214,8 +1142,6 @@
 /area/tether_away/beach/resort)
 "wM" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light/small{
@@ -1287,8 +1213,6 @@
 "zb" = (
 /obj/structure/table/woodentable,
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/wood,
@@ -1307,8 +1231,6 @@
 /area/tether_away/beach/powershed)
 "zP" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
@@ -1328,8 +1250,6 @@
 /area/tether_away/beach/resort/kitchen)
 "zZ" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -1446,8 +1366,6 @@
 /area/tether_away/beach/resort)
 "Cr" = (
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1486,7 +1404,6 @@
 /area/tether_away/beach/jungle)
 "DA" = (
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/item/solar_assembly,
@@ -1505,8 +1422,6 @@
 	name = "Love Shack 2"
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -1541,7 +1456,6 @@
 	pixel_x = 22
 	},
 /obj/structure/cable/cyan{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/wood,
@@ -1568,8 +1482,6 @@
 /area/tether_away/beach/resort)
 "Fm" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1588,16 +1500,12 @@
 	name = "Love Shack 3"
 	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/dorm3)
 "Gr" = (
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/kafel_full/white,
@@ -1647,8 +1555,6 @@
 	name = "Love Shack 1"
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -1659,8 +1565,6 @@
 /area/tether_away/beach/resort)
 "Ja" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/wood,
@@ -1676,8 +1580,6 @@
 "Jn" = (
 /obj/machinery/door/airlock/sandstone,
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -1688,8 +1590,6 @@
 /area/tether_away/beach/water)
 "JU" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1742,8 +1642,6 @@
 	name = "Love Shack 4"
 	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -1786,18 +1684,12 @@
 /area/tether_away/beach/water)
 "Mp" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1806,13 +1698,9 @@
 /area/tether_away/beach/resort)
 "ME" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1832,8 +1720,6 @@
 /area/tether_away/beach/resort/dorm2)
 "Nt" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1931,8 +1817,6 @@
 /area/tether_away/beach/resort/dorm2)
 "Rh" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1941,7 +1825,6 @@
 /area/tether_away/beach/resort)
 "Rm" = (
 /obj/structure/cable/cyan{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/alarms_hidden{
@@ -1966,13 +1849,9 @@
 /area/tether_away/beach/resort/dorm4)
 "Rx" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -1997,7 +1876,6 @@
 	pixel_x = 22
 	},
 /obj/structure/cable/cyan{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/wood,
@@ -2009,8 +1887,6 @@
 /area/tether_away/beach/water)
 "RX" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -2049,8 +1925,6 @@
 	req_one_access = list()
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -2088,8 +1962,6 @@
 /area/tether_away/beach/resort)
 "Uk" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -2109,8 +1981,6 @@
 /area/tether_away/beach/resort/janibar)
 "UQ" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
@@ -2176,8 +2046,6 @@
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/wood,
@@ -2204,8 +2072,6 @@
 /area/tether_away/beach/resort/kitchen)
 "XZ" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor{
@@ -2232,8 +2098,6 @@
 /area/tether_away/beach/resort)
 "Yq" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -2257,8 +2121,6 @@
 /area/tether_away/beach/jungle)
 "YR" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/light_switch{
@@ -2277,18 +2139,12 @@
 /area/tether_away/beach/cavebase)
 "ZA" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -2300,13 +2156,9 @@
 /area/tether_away/beach/cavebase)
 "ZX" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{

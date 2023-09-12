@@ -128,7 +128,6 @@
 "mw" = (
 /obj/machinery/power/rtg/abductor,
 /obj/structure/cable/green{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/danger,
@@ -265,8 +264,6 @@
 /area/gateway/arynthilake/engine)
 "FH" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/danger,
@@ -407,12 +404,9 @@
 /area/gateway/arynthilake/engine)
 "Zl" = (
 /obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
 	icon_state = "16-0"
 	},
 /obj/structure/cable/green{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/eris/steel/danger,

@@ -201,7 +201,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
@@ -373,8 +372,6 @@
 /area/gateway/honlethhighlands/town/engineering)
 "cA" = (
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -382,8 +379,6 @@
 "cD" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -448,8 +443,6 @@
 /area/gateway/honlethhighlands/town/bar)
 "dQ" = (
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -542,8 +535,6 @@
 /area/gateway/honlethhighlands/gate)
 "fT" = (
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -552,8 +543,6 @@
 /area/gateway/honlethhighlands/town)
 "gm" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -638,8 +627,6 @@
 "hE" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -650,8 +637,6 @@
 /area/gateway/honlethhighlands/town/garden)
 "hN" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -704,13 +689,9 @@
 /area/gateway/honlethhighlands/gate)
 "jK" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/random/mob/semirandom_mob_spawner/humanoid,
@@ -780,7 +761,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/lino,
@@ -812,7 +792,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/structure/table/rack/shelf/steel,
@@ -981,8 +960,6 @@
 /area/gateway/honlethhighlands/gate)
 "ow" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/lino,
@@ -1106,8 +1083,6 @@
 /area/gateway/honlethhighlands/caves)
 "qm" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating,
@@ -1203,15 +1178,12 @@
 /obj/machinery/reagentgrinder,
 /obj/item/weapon/reagent_containers/dropper,
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/kitchen)
 "rB" = (
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/power/port_gen/pacman{
@@ -1271,8 +1243,6 @@
 "rX" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -1298,8 +1268,6 @@
 "th" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -1316,8 +1284,6 @@
 /area/gateway/honlethhighlands/town/command)
 "tk" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -1329,7 +1295,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
@@ -1352,8 +1317,6 @@
 "tT" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -1365,8 +1328,6 @@
 /area/gateway/honlethhighlands/beach)
 "tX" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -1386,16 +1347,12 @@
 /area/gateway/honlethhighlands/town/bar)
 "uI" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/command)
 "uN" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/lino,
@@ -1409,8 +1366,6 @@
 /area/gateway/honlethhighlands/town/bar)
 "uQ" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/alarm/alarms_hidden{
@@ -1454,18 +1409,12 @@
 /area/gateway/honlethhighlands/town/bar)
 "vU" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -1493,8 +1442,6 @@
 /area/gateway/honlethhighlands)
 "wr" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1502,8 +1449,6 @@
 "wx" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -1541,8 +1486,6 @@
 "wL" = (
 /obj/machinery/appliance/cooker/grill,
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/lino,
@@ -1555,8 +1498,6 @@
 "wR" = (
 /obj/structure/table/marble,
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/lino,
@@ -1584,8 +1525,6 @@
 /area/gateway/honlethhighlands/gate)
 "xz" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -1663,8 +1602,6 @@
 /area/gateway/honlethhighlands/town/garden)
 "zh" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -1690,8 +1627,6 @@
 /area/gateway/honlethhighlands/gate)
 "zv" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -1735,8 +1670,6 @@
 /area/gateway/honlethhighlands/town/bar)
 "Ai" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/wall/r_wall{
@@ -1749,8 +1682,6 @@
 /area/gateway/honlethhighlands/town/bar)
 "Ao" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/random/mob/semirandom_mob_spawner/humanoid,
@@ -1865,8 +1796,6 @@
 /area/gateway/honlethhighlands/gate)
 "Cy" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/wall/r_wall{
@@ -1883,18 +1812,12 @@
 /area/gateway/honlethhighlands/gate)
 "CM" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1916,8 +1839,6 @@
 /area/gateway/honlethhighlands/town/supply)
 "De" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/light,
@@ -1934,8 +1855,6 @@
 /area/gateway/honlethhighlands/town/supply)
 "Di" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/table/steel_reinforced,
@@ -1949,8 +1868,6 @@
 /area/gateway/honlethhighlands/town/xenobio)
 "Dm" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -2001,7 +1918,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/item/weapon/stool/padded{
@@ -2079,8 +1995,6 @@
 /area/gateway/honlethhighlands/beach)
 "Gn" = (
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -2108,18 +2022,12 @@
 /area/gateway/honlethhighlands/caves)
 "GY" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -2128,8 +2036,6 @@
 /area/gateway/honlethhighlands/town)
 "Hd" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -2248,7 +2154,6 @@
 /area/gateway/honlethhighlands/town/supply)
 "Kk" = (
 /obj/structure/cable/ender{
-	d2 = 2;
 	icon_state = "0-2";
 	id = "togateway"
 	},
@@ -2261,7 +2166,6 @@
 "Kt" = (
 /obj/structure/cable/heavyduty,
 /obj/structure/cable/pink{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating{
@@ -2317,8 +2221,6 @@
 /area/gateway/honlethhighlands/town)
 "LJ" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -2327,8 +2229,6 @@
 /area/gateway/honlethhighlands/town)
 "LY" = (
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -2354,7 +2254,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/effect/floor_decal/techfloor{
@@ -2367,7 +2266,6 @@
 /area/gateway/honlethhighlands/gate)
 "MR" = (
 /obj/structure/cable/ender{
-	d2 = 8;
 	icon_state = "0-8";
 	id = "togateway"
 	},
@@ -2405,8 +2303,6 @@
 "NS" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -2428,7 +2324,6 @@
 	icon_state = "0-4"
 	},
 /obj/structure/cable/pink{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating{
@@ -2464,8 +2359,6 @@
 "Pb" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -2544,8 +2437,6 @@
 /area/gateway/honlethhighlands/gate)
 "Qz" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/random/mob/semirandom_mob_spawner/humanoid,
@@ -2556,7 +2447,6 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled,
@@ -2583,8 +2473,6 @@
 /area/gateway/honlethhighlands/town/bar)
 "Rg" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/table/steel_reinforced,
@@ -2644,7 +2532,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/structure/table/rack/steel,
@@ -2657,8 +2544,6 @@
 /area/gateway/honlethhighlands/town/supply)
 "SP" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -2736,13 +2621,9 @@
 /area/gateway/honlethhighlands/town/bar)
 "US" = (
 /obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{
@@ -2771,8 +2652,6 @@
 /area/gateway/honlethhighlands/gate)
 "Vi" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -2873,7 +2752,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/pink{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/random/mob/semirandom_mob_spawner/humanoid,
@@ -2908,8 +2786,6 @@
 /area/gateway/honlethhighlands/town/command)
 "WC" = (
 /obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -2946,8 +2822,6 @@
 /area/gateway/honlethhighlands)
 "XS" = (
 /obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors{

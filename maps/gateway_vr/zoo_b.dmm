@@ -1085,8 +1085,6 @@
 /area/awaymission/zoo/syndieship)
 "io" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
