@@ -180,6 +180,14 @@
 	name = "\improper Third Floor Hallway"
 	icon_state = "dk_yellow"
 
+/area/tether/surfacebase/surface_three_hall/west
+	name = "\improper Third Floor Hallway - West"
+	icon_state = "dk_yellow"
+
+/area/tether/surfacebase/surface_three_hall/nwest
+	name = "\improper Third Floor Hallway - Northwest"
+	icon_state = "dk_yellow"
+
 /area/tether/surfacebase/north_stairs_one
 	name = "\improper North Stairwell First Floor"
 	icon_state = "dk_yellow"
