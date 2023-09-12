@@ -59,10 +59,20 @@
 			data["default_flavor_text"] = M.flavor_text
 			if(new_path && istype(M, /mob/living))
 				var/mob/living/L = M
+
+				// AI Stuff
 				ai_type = (L.ai_holder_type ? L.ai_holder_type : /datum/ai_holder/simple_mob/inert)
 				faction = (L.faction ? L.faction : "neutral")
 				intent  = (L.a_intent ? L.a_intent : I_HELP)
 				new_path = FALSE
+
+				data["max_health"] = L.maxHealth
+				data["health"] = L.health
+				if(istype(L, /mob/living/simple_mob))
+					var/mob/living/simple_mob/S = L
+					data["melee_damage_lower"] = S.melee_damage_lower ? S.melee_damage_lower : 0
+					data["melee_damage_upper"] = S.melee_damage_upper ? S.melee_damage_upper : 0
+					qdel(S)
 				qdel(L)
 		qdel(M)
 		data["ai_type"] = ai_type
@@ -133,9 +143,19 @@
 					M.name = sanitize(name)
 					M.desc = sanitize(params["desc"])
 					M.flavor_text = sanitize(params["flavor_text"])
-					if(use_custom_ai)
-						if(istype(M, /mob/living))
-							var/mob/living/L = M
+					if(istype(M, /mob/living))
+						var/mob/living/L = M
+						if(isnum(params["max_health"]))
+							L.maxHealth = params["max_health"]
+						if(isnum(params["health"]))
+							L.health = params["health"]
+						if(istype(M, /mob/living/simple_mob))
+							var/mob/living/simple_mob/S = L
+							if(isnum(params["melee_damage_lower"]))
+								S.melee_damage_lower = params["melee_damage_lower"]
+							if(isnum(params["melee_damage_upper"]))
+								S.melee_damage_upper = params["melee_damage_upper"]
+						if(use_custom_ai)
 							L.ai_holder_type = ai_type
 							L.faction = faction
 							L.a_intent = intent
