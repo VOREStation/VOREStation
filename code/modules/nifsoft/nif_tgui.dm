@@ -98,6 +98,8 @@
  * Standard TGUI stub to open the NIF.js template.
  */
 /obj/item/device/nif/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	if(!ishuman(user))
+		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NIF", name)
