@@ -44,6 +44,7 @@ var/list/preferences_datums = list()
 	var/bday_announce = FALSE			//Public announcement for birthdays
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
+	var/blood_reagents = "iron"				//blood restoration reagents
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type

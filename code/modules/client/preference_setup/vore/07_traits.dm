@@ -5,6 +5,8 @@
 #define ORGANICS	1
 #define SYNTHETICS	2
 
+var/global/list/valid_bloodreagents = list("iron","copper","phoron","silver","gold","slimejelly")	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
+
 /datum/preferences
 	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
 	var/custom_base		// What to base the custom species on
@@ -115,6 +117,7 @@
 	S["neu_traits"]		>> pref.neu_traits
 	S["neg_traits"]		>> pref.neg_traits
 	S["blood_color"]	>> pref.blood_color
+	S["blood_reagents"]		>> pref.blood_reagents
 
 	S["traits_cheating"]	>> pref.traits_cheating
 	S["max_traits"]		>> pref.max_traits
@@ -135,6 +138,7 @@
 	S["neu_traits"]		<< pref.neu_traits
 	S["neg_traits"]		<< pref.neg_traits
 	S["blood_color"]	<< pref.blood_color
+	S["blood_reagents"]		<< pref.blood_reagents
 
 	S["traits_cheating"]	<< pref.traits_cheating
 	S["max_traits"]		<< pref.max_traits
@@ -154,6 +158,7 @@
 	if(!pref.neg_traits) pref.neg_traits = list()
 
 	pref.blood_color = sanitize_hexcolor(pref.blood_color, default="#A10808")
+	pref.blood_reagents	= sanitize_text(pref.blood_reagents, initial(pref.blood_reagents))
 
 	if(!pref.traits_cheating)
 		var/datum/species/S = GLOB.all_species[pref.species]
@@ -253,6 +258,7 @@
 
 	//Any additional non-trait settings can be applied here
 	new_S.blood_color = pref.blood_color
+	new_S.blood_reagents = pref.blood_reagents
 
 	if(pref.species == SPECIES_CUSTOM)
 		//Statistics for this would be nice
@@ -305,6 +311,8 @@
 	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
+	. += "<b>Blood Reagent: </b>"	//Wanna be copper-based? Go ahead.
+	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br>"
 
 	. += "<b>Custom Say: </b>"
@@ -361,6 +369,12 @@
 		if(choice == "Reset")
 			pref.blood_color = "#A10808"
 		return TOPIC_REFRESH
+
+	else if(href_list["blood_reagents"])
+		var/new_blood_reagents = tgui_input_list(user, "Choose your character's blood restoration reagent:", "Character Preference", valid_bloodreagents)
+		if(new_blood_reagents && CanUseTopic(user))
+			pref.blood_reagents = new_blood_reagents
+			return TOPIC_REFRESH
 
 	else if(href_list["clicked_pos_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_pos_trait"])
