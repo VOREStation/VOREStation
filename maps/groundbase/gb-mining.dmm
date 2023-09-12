@@ -11,13 +11,13 @@
 /area/groundbase/mining/unexplored)
 "x" = (
 /obj/effect/step_trigger/teleporter/from_mining,
-/turf/simulated/mineral/floor/ignore_mapgen,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/groundbase/mining/unexplored)
 "I" = (
 /turf/simulated/mineral/cave,
 /area/groundbase/mining/unexplored)
 "Z" = (
-/turf/simulated/mineral/floor/ignore_mapgen,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/groundbase/mining/unexplored)
 
 (1,1,1) = {"
