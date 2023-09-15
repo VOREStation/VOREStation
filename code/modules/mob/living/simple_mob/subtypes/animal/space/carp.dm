@@ -202,7 +202,7 @@
 /mob/living/simple_mob/animal/space/carp/puffer
 	name = "puffercarp"
 	desc = "A bloated, inflated carp covered in spines."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/carp/puffer)
+	catalogue_data = list(/datum/category_item/catalogue/fauna/carp, /datum/category_item/catalogue/fauna/carp/puffer)
 	icon_state = "puffercarp"
 	icon_living = "puffercarp"
 	icon_dead = "puffercarp_dead"
@@ -216,18 +216,20 @@
 	and reproductive strategy - once the puffercarp is ready to spread spores \
 	it begins to produce a highly volatile compound within its gas bladders, \
 	which in addition to providing them with a means of propulsion through space \
-	as per most space carp species, affords the puffercarp with a somewhat unique \
-	defence mechanism - namely, that they have a tendency to detonate at the slightest \
-	provocation. As a result, other voidborne predators have a tendency to \
-	keep clear, but even if this doesn't work the resulting explosion serves to scatter \
-	their spores over a massive area - this improved seeding strategy results in the \
-	propagation of the species despite the fact that it means each adult carp can \
-	only reproduce exactly once. \
+	as per most space carp species, affords the puffercarp with a somewhat unique trait \
+	- namely, that they are able to ignite and detonate their gas bladders \
+	at will, and will do so aggressively when threatened. The bladders also tend to ignite \
+	when struck by thermal or electrical discharges, or even sympathetic detonation from \
+	other explosives - including other nearby puffercarp. As a result, most voidborne \
+	predators have a tendency to keep clear, but even if this deterrent doesn't work the resulting \
+	explosion serves to scatter their spores over a massive area - this improved seeding \
+	strategy compared to regular carp results in the propagation of the species despite the \
+	fact that it means each adult carp can only reproduce exactly once. \
 	<br><br>\
-	As a result, unlike other carp species, it is extremely rare to see a puffercarp \
-	grow to any notable size, and most appear to be somewhat stunted in growth compared \
-	to other space carp, their gas bloating being the only thing that brings them close to \
-	the normal scale of an adult carp."
+	Due to their premature mortality it is extremely rare to see a puffercarp grow to any notable \
+	size, often appearing to be somewhat stunted in growth compared to other subspecies, \
+	their gas bloating being the only thing that brings them close to \
+	the normal scale of an adult carp. "
 	value = CATALOGUER_REWARD_HARD //if you can hang around close enough to this thing without setting it off, you deserve it
 
 /mob/living/simple_mob/animal/space/carp/puffer/proc/kaboom()
