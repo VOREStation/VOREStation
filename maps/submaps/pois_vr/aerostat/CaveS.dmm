@@ -73,7 +73,6 @@
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable{
 	icon_state = "0-2";
-	d2 = 2
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
@@ -95,8 +94,6 @@
 /area/submap/virgo2/CaveS)
 "B" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
@@ -117,16 +114,12 @@
 /area/submap/virgo2/CaveS)
 "E" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "F" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0
 	},
@@ -135,7 +128,6 @@
 "G" = (
 /obj/machinery/computer/communications,
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor,

@@ -46,10 +46,6 @@
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/viewing)
 "aV" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1;
-	icon_state = "shuttle_chair"
-	},
 /obj/machinery/vending/snack,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/bar)
@@ -2797,10 +2793,6 @@
 /turf/simulated/shuttle/floor/purple,
 /area/redgate/train/casino)
 "RV" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1;
-	icon_state = "shuttle_chair"
-	},
 /obj/machinery/vending/cola,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/bar)

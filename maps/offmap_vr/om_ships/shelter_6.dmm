@@ -536,8 +536,6 @@
 /area/shuttle/tabiranth)
 "aC" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/telecomms/relay{
@@ -962,13 +960,9 @@
 /area/shuttle/tabiranth)
 "aW" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -982,7 +976,6 @@
 	pixel_x = -28
 	},
 /obj/structure/cable/cyan{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/white,
@@ -998,8 +991,6 @@
 /area/shuttle/tabiranth)
 "aZ" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -1022,8 +1013,6 @@
 /area/shuttle/tabiranth)
 "bd" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/item/device/perfect_tele_beacon/stationary{
@@ -1101,8 +1090,6 @@
 /area/shuttle/tabiranth)
 "bm" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/power/terminal{
@@ -1266,8 +1253,6 @@
 /area/shuttle/tabiranth)
 "bA" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/alien/blue{

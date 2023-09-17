@@ -390,6 +390,16 @@
 	to_chat(src, span_notice("You have toggled TGUI input lock: [prefs.tgui_input_lock ? "ON" : "OFF"] \n \
 	This setting determines whether pressing enter on TGUI input sends the input, or creates a newline."))
 
+/client/verb/toggle_chat_timestamps()
+	set name = "Toggle Chat Timestamps"
+	set category = "Preferences"
+	set desc = "Toggles whether or not messages in chat will display timestamps. Enabling this will not add timestamps to messages that have already been sent."
+
+	prefs.chat_timestamp = !prefs.chat_timestamp	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, span_notice("You have toggled chat timestamps: [prefs.chat_timestamp ? "ON" : "OFF"]."))
+
 /client/verb/toggle_status_indicators()
 	set name = "Toggle Status Indicators"
 	set category = "Preferences"

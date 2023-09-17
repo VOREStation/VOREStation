@@ -2539,6 +2539,10 @@
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/redgate/train/kitchen)
+"Mh" = (
+/obj/machinery/telecomms/relay/preset/station,
+/turf/simulated/shuttle/floor/yellow,
+/area/redgate/train/vault)
 "Mi" = (
 /obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/kafel_full,
@@ -17279,7 +17283,7 @@ dA
 sy
 ZP
 Ph
-sy
+Mh
 ea
 Jp
 Sx

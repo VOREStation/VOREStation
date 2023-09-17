@@ -525,6 +525,18 @@
 		tape.stick(src, user)
 		return
 
+	if(istype(P, /obj/item/weapon/clipboard))
+		var/obj/item/weapon/clipboard/CB = P
+		src.loc = CB
+		CB.toppaper = src
+		CB.update_icon()
+		to_chat(user, "<span class='notice'>You clip the [src] onto \the [CB].</span>")
+
+	if(istype(P, /obj/item/weapon/folder))
+		src.loc = P
+		P.update_icon()
+		to_chat(user, "<span class='notice'>You tuck the [src] into \the [P].</span>")
+
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
 		if (istype(P, /obj/item/weapon/paper/carbon))
 			var/obj/item/weapon/paper/carbon/C = P

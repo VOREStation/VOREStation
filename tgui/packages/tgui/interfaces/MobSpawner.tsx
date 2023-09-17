@@ -15,6 +15,11 @@ type Data = {
   faction: string;
   intent: string;
 
+  max_health: number;
+  health: number;
+  melee_damage_lower: number;
+  melee_damage_upper: number;
+
   default_speak_emotes: string[];
 
   loc_lock: BooleanLike;
@@ -71,6 +76,22 @@ const GeneralMobSettings = (props, context) => {
   );
   const [faction] = useLocalState(context, 'setMobFaction', data.faction);
   const [intent] = useLocalState(context, 'setIntent', data.intent);
+  const [maxHealth, setMaxHealth] = useLocalState(
+    context,
+    'maxHealth',
+    data.max_health
+  );
+  const [health, setHealth] = useLocalState(context, 'health', data.health);
+  const [meleeDamageLower, setMeleeDamageLower] = useLocalState(
+    context,
+    'meleeDamageLower',
+    data.melee_damage_lower
+  );
+  const [meleeDamageUpper, setMeleeDamageUpper] = useLocalState(
+    context,
+    'meleeDamageUpper',
+    data.melee_damage_upper
+  );
   const [desc, setDesc] = useLocalState(context, 'desc', data.default_desc);
   const [flavorText, setFlavorText] = useLocalState(
     context,
@@ -207,6 +228,45 @@ const GeneralMobSettings = (props, context) => {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
+            <Section title="Health & Damage">
+              <LabeledList>
+                {(maxHealth && (
+                  <>
+                    <LabeledList.Item label="Max Health">
+                      <NumberInput
+                        value={maxHealth}
+                        onChange={(e, val) => setMaxHealth(val)}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Health">
+                      <NumberInput
+                        value={health}
+                        onChange={(e, val) => setHealth(val)}
+                      />
+                    </LabeledList.Item>
+                    <br />
+                  </>
+                )) ||
+                  "Note: Only available for '/mob/living'"}
+                {(meleeDamageLower && (
+                  <>
+                    <LabeledList.Item label="Melee Damage (Lower)">
+                      <NumberInput
+                        value={meleeDamageLower}
+                        onChange={(e, val) => setMeleeDamageLower(val)}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Melee Damage (Upper)">
+                      <NumberInput
+                        value={meleeDamageUpper}
+                        onChange={(e, val) => setMeleeDamageUpper(val)}
+                      />
+                    </LabeledList.Item>
+                  </>
+                )) ||
+                  "Note: Only available for '/mob/living/simple_mob'"}
+              </LabeledList>
+            </Section>
           </Flex.Item>
         </Flex>
       </Section>
@@ -239,6 +299,10 @@ const GeneralMobSettings = (props, context) => {
             amount: amount,
             name: name || data.default_path_name,
             desc: desc || data.default_desc,
+            max_health: maxHealth || data.max_health,
+            health: health || data.health,
+            melee_damage_lower: meleeDamageLower || data.melee_damage_lower,
+            melee_damage_upper: meleeDamageUpper || data.melee_damage_upper,
             flavor_text: flavorText || data.default_flavor_text,
             size_multiplier: sizeMultiplier * 0.01,
             x: data.loc_lock ? data.loc_x : x,

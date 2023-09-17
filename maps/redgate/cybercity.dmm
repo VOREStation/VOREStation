@@ -5900,7 +5900,7 @@
 /obj/machinery/door/airlock/maintenance/int{
 	name = "back entrance"
 	},
-/turf/simulated/wall/tgmc/darkwall,
+/turf/simulated/floor/tiled/eris/white,
 /area/redgate/city/warehouse)
 "hUq" = (
 /obj/structure/table/woodentable,
