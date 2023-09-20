@@ -33,6 +33,7 @@ var/list/preferences_datums = list()
 	var/tgui_large_buttons = TRUE
 	var/tgui_swapped_buttons = FALSE
 	var/chat_timestamp = FALSE
+	var/throwmode_loud = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
