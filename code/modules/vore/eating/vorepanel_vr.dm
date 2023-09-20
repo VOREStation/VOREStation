@@ -23,20 +23,27 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 														"not_quite_tumby",
 														"could_it_be_a_tumby")
 
-/mob/living
+/mob
 	var/datum/vore_look/vorePanel
 
-/mob/living/proc/insidePanel()
+/mob/proc/insidePanel()
 	set name = "Vore Panel"
 	set category = "IC"
 
+	if(SSticker.current_state == GAME_STATE_INIT)
+		return
+
+	if(!isliving(src))
+		init_vore()
+
 	if(!vorePanel)
-		log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
+		if(!isnewplayer(src))
+			log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
 		vorePanel = new(src)
 
 	vorePanel.tgui_interact(src)
 
-/mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
+/mob/proc/updateVRPanel() //Panel popup update call from belly events.
 	if(vorePanel)
 		SStgui.update_uis(vorePanel)
 
@@ -44,11 +51,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 // Callback Handler for the Inside form
 //
 /datum/vore_look
-	var/mob/living/host // Note, we do this in case we ever want to allow people to view others vore panels
+	var/mob/host // Note, we do this in case we ever want to allow people to view others vore panels
 	var/unsaved_changes = FALSE
 	var/show_pictures = TRUE
 
-/datum/vore_look/New(mob/living/new_host)
+/datum/vore_look/New(mob/new_host)
 	if(istype(new_host))
 		host = new_host
 	. = ..()
@@ -393,7 +400,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			return set_attr(usr, params)
 
 		if("saveprefs")
-			if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
+			if(isnewplayer(host))
+				var/choice = tgui_alert(usr, "Warning: Saving your vore panel while in the lobby will save it to the CURRENTLY LOADED character slot, and potentially overwrite it. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
+			else if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
 				var/choice = tgui_alert(usr, "Warning: Saving your vore panel while playing what is very-likely not your normal character will overwrite whatever character you have loaded in character setup. Maybe this is your 'playing a simple mob' slot, though. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
 				if(choice != "Yes, save.")
 					return TRUE

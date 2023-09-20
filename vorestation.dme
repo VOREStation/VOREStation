@@ -4097,6 +4097,7 @@
 #include "code\modules\vore\eating\inbelly_spawn.dm"
 #include "code\modules\vore\eating\leave_remains_vr.dm"
 #include "code\modules\vore\eating\living_vr.dm"
+#include "code\modules\vore\eating\mob_vr.dm"
 #include "code\modules\vore\eating\silicon_vr.dm"
 #include "code\modules\vore\eating\simple_animal_vr.dm"
 #include "code\modules\vore\eating\slipvore_vr.dm"
