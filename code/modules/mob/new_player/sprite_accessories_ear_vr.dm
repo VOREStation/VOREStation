@@ -1040,3 +1040,11 @@
 	extra_overlay = "feather_fan_ears-outer"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+//Dino frills
+/datum/sprite_accessory/ears/dino_frills
+	name = "triceratops frills"
+	icon_state = "triceratops_frill"
+	extra_overlay = "triceratops_frill_spikes"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
