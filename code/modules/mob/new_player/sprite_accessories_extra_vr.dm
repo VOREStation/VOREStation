@@ -1092,3 +1092,54 @@
 	icon_state = "cheeks_nev"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+
+// Dino stuff
+/datum/sprite_accessory/marking/vr_dino_horn
+	name = "dino horn"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "dino_horn"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_dino_plates
+	name = "stegosaurus plates"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "stegoplates"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/vr_triceratops_beak
+	name = "triceratops beak"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "triceratops_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_triceratops_horn
+	name = "triceratops horn"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "triceratops_horn"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_triceratops_frills
+	name = "triceratops frills"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "triceratops_frill"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_triceratops_spiky_frills
+	name = "triceratops frill spike addon (used w/ tricerotop frills)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "triceratops_frill_spikes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_backsail
+	name = "backsail"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "backsail"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
