@@ -373,11 +373,4 @@
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 
-/obj/item/device/healthanalyzer/scroll //reports all of the above, as well as name and quantity of nonmed reagents in stomach
-	name = "scroll of divination"
-	desc = "An unusual scroll that appears to report all of the details of a person's health when waved near them. Oddly, it seems to have a little metal chip up near the handles..."
-	advscan = 3
-	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
-	icon_state = "health_scroll"
-
 #undef DEFIB_TIME_LIMIT //VOREStation addition
