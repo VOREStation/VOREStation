@@ -153,29 +153,3 @@
 		return
 	else
 		..()
-
-/obj/machinery/appliance/cooker/oven/yeoldoven
-	name = "oven"
-	desc = "Old fashioned cookies are ready, dear."
-	icon_state = "yeoldovenopen"
-
-/obj/machinery/appliance/cooker/oven/yeoldoven/update_icon()
-	if(!open)
-		if(!stat)
-			icon_state = "yeoldovenclosed_on"
-			if(cooking == TRUE)
-				icon_state = "yeoldovenclosed_cooking"
-				if(oven_loop)
-					oven_loop.start(src)
-			else
-				icon_state = "yeoldovenclosed_on"
-				if(oven_loop)
-					oven_loop.stop(src)
-		else
-			icon_state = "yeoldovenclosed_off"
-			if(oven_loop)
-				oven_loop.stop(src)
-	else
-		icon_state = "yeoldovenopen"
-		if(oven_loop)
-			oven_loop.stop(src)

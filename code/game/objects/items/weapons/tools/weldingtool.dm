@@ -434,13 +434,6 @@
 	origin_tech = list(TECH_PHORON = 5 ,TECH_ENGINEERING = 5)
 	always_process = TRUE
 
-/obj/item/weapon/weldingtool/alien/magic
-	name = "bellows of flame"
-	desc = "A set of bellows that have a yellow gem on the spout, they emit flames when pressed. Oddly seems to have a faint phoron smell to it..."
-	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_welder)
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "bellows"
-
 /obj/item/weapon/weldingtool/alien/process()
 	if(get_fuel() <= get_max_fuel())
 		reagents.add_reagent("fuel", 1)

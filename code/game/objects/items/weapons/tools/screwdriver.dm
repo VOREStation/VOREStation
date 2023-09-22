@@ -87,13 +87,6 @@
 	toolspeed = 0.1
 	random_color = FALSE
 
-/obj/item/weapon/tool/screwdriver/alien/magic
-	name = "vintage screwdriver of revolving"
-	desc = "A vintage screwdriver that spins as fast as a drill with little aid, it has a red gem on the handle. It oddly sounds like a drill too..."
-	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver)
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "screwdriver_old"
-
 /obj/item/weapon/tool/screwdriver/hybrid
 	name = "strange screwdriver"
 	desc = "A strange conglomerate of a screwdriver."

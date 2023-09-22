@@ -73,13 +73,6 @@
 	toolspeed = 0.1
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 
-/obj/item/weapon/tool/wrench/alien/magic
-	name = "pliers of molding"
-	desc = "A set of pliers that seems to mold to the shape of their target, housing a pink gem. Oddly seems to have a slightly slimey texture at the metal..."
-	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wrench)
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "pliers"
-
 /obj/item/weapon/tool/wrench/power
 	name = "hand drill"
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."

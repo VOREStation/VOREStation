@@ -80,12 +80,6 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
-/obj/item/weapon/tool/wirecutters/alien/magic
-	name = "secateurs of organisation"
-	desc = "Extremely sharp secateurs, fitted with a glowing blue gem, said to be magically enhanced for speed. There seems to be a little whirring sound coming from beneath that gem..."
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "cutters_magic"
-
 /obj/item/weapon/tool/wirecutters/cyborg
 	name = "wirecutters"
 	desc = "This cuts wires.  With science."

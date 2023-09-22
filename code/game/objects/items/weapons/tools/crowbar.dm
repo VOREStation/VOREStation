@@ -54,12 +54,6 @@
 	toolspeed = 0.1
 	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 4)
 
-/obj/item/weapon/tool/crowbar/alien/magic
-	name = "sentient crowbar"
-	desc = "A crowbar with a green gem set in it and a green ribbon tied to it, it floats lightly by itself and appears to be able to pry on its own. It almost feels like there is some sort of anti gravity generator running in it..."
-	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar)
-	icon_state = "crowbar_sentient"
-
 /obj/item/weapon/tool/crowbar/hybrid
 	name = "strange crowbar"
 	desc = "A crowbar whose head seems to phase in and out of view."
