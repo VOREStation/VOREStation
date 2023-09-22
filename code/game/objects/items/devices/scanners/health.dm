@@ -304,14 +304,15 @@
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
+			var/blood_reagent = H.species.blood_reagents
 			if(blood_volume <= H.species.blood_volume*H.species.blood_level_danger)
-				dat += "<span class='danger'><i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]</i></span><br>"
+				dat += "<span class='danger'><i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i></span><br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_warning)
-				dat += "<span class='danger'><i>Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]</i></span><br>"
+				dat += "<span class='danger'><i>Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i></span><br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_safe)
-				dat += "<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span><br>"
+				dat += "<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</span><br>"
 			else
-				dat += "<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span><br>"
+				dat += "<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</span><br>"
 		dat += "<span class='notice'>Subject's pulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span><br>" // VORE Edit: Missed a linebreak here.
 		if(istype(H.species, /datum/species/xenochimera)) // VOREStation Edit Start: Visible feedback for medmains on Xenochimera.
 			if(H.stat == DEAD && H.revive_ready == REVIVING_READY && !H.hasnutriment())
@@ -372,5 +373,11 @@
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 
+/obj/item/device/healthanalyzer/scroll //reports all of the above, as well as name and quantity of nonmed reagents in stomach
+	name = "scroll of divination"
+	desc = "An unusual scroll that appears to report all of the details of a person's health when waved near them. Oddly, it seems to have a little metal chip up near the handles..."
+	advscan = 3
+	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
+	icon_state = "health_scroll"
 
 #undef DEFIB_TIME_LIMIT //VOREStation addition
