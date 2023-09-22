@@ -71,7 +71,7 @@
 		bubbling = 1
 		update_icon()
 		to_chat(user, SPAN_NOTICE("The alembic begins boiling the [potion_reagent] in the [base_reagent]."))
-		sleep 30
+		sleep(30)
 		bubbling = 0
 		to_chat(user, SPAN_NOTICE("The alembic finishes brewing the potion!"))
 		spawn_potion()
