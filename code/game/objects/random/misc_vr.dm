@@ -339,5 +339,6 @@
 				prob(3);/obj/item/weapon/bone/skull,
 				prob(20);/obj/item/weapon/material/twohanded/staff,
 				prob(3);/obj/item/weapon/gun/energy/hooklauncher/ring,
-				prob(3);/obj/item/toy/eight_ball
+				prob(3);/obj/item/toy/eight_ball,
+				prob(3);/obj/item/device/perfect_tele/magic
 				)

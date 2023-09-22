@@ -460,3 +460,70 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
 		)
 
+// teleporter
+
+/obj/item/device/perfect_tele/magic
+	name = "teleportation tome"
+	desc = "A large tome that can be used to teleport to special pages that can be removed from it. The spine seems to have some sort buzzing tech inside..."
+	icon = 'icons/obj/props/fantasy.dmi'
+	icon_state = "teleporter"
+	beacons_left = 3
+	cell_type = /obj/item/weapon/cell/device
+	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
+
+/obj/item/device/perfect_tele_beacon/magic
+	name = "teleportation page"
+	desc = "A single page from a tome, with a glowing blue symbol on it. It seems like the symbol is raised as though there were something running beneath it..."
+	icon = 'icons/obj/props/fantasy.dmi'
+	icon_state = "page"
+
+/obj/item/device/perfect_tele/magic/attack_self(mob/user, var/radial_menu_anchor = src)
+	if(loc_network)
+		for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
+			if(nb.tele_network == loc_network)
+				beacons[nb.tele_name] = nb
+		loc_network = null //Consumed
+
+	if(!(user.ckey in warned_users))
+		warned_users |= user.ckey
+		tgui_alert_async(user,{"
+This device can be easily used to break ERP preferences due to the nature of teleporting and tele-vore.
+Make sure you carefully examine someone's OOC prefs before teleporting them if you are going to use this device for ERP purposes.
+This device records all warnings given and teleport events for admin review in case of pref-breaking, so just don't do it.
+"},"OOC Warning")
+	var/choice = show_radial_menu(user, radial_menu_anchor, radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
+
+	if(!choice)
+		return
+
+	else if(choice == "New Beacon")
+		if(beacons_left <= 0)
+			to_chat(user, "<span class='warning'>The tome can't support any more pages!</span>")
+			return
+
+		var/new_name = html_encode(tgui_input_text(user,"New pages's name (2-20 char):","[src]",null,20))
+		if(!check_menu(user))
+			return
+
+		if(length(new_name) > 20 || length(new_name) < 2)
+			to_chat(user, "<span class='warning'>Entered name length invalid (must be longer than 2, no more than than 20).</span>")
+			return
+
+		if(new_name in beacons)
+			to_chat(user, "<span class='warning'>No duplicate names, please. '[new_name]' exists already.</span>")
+			return
+
+		var/obj/item/device/perfect_tele_beacon/magic/nb = new(get_turf(src))
+		nb.tele_name = new_name
+		nb.tele_hand = src
+		nb.creator = user.ckey
+		beacons[new_name] = nb
+		beacons_left--
+		if(isliving(user))
+			var/mob/living/L = user
+			L.put_in_any_hand_if_possible(nb)
+		rebuild_radial_images()
+
+	else
+		destination = beacons[choice]
+		rebuild_radial_images()

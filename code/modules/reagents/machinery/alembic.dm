@@ -298,15 +298,18 @@
 	desc = "A mixture of concentrated acids, be careful not to spill it! A base ingredient of many potions."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "aqua_regia"
+	w_class = ITEMSIZE_TINY
 
 /obj/item/weapon/potion_base/ichor
 	name = "ichor"
 	desc = "A thick and heavy red reagent said to be tinged with the blood of gods. A base ingredient of many potions."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "ichor"
+	w_class = ITEMSIZE_TINY
 
 /obj/item/weapon/potion_base/alkahest
 	name = "alkahest"
 	desc = "Also known as the universal solvent, said to be capable of dissolving metal rapidly. A base ingredient of many potions."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "alkahest"
+	w_class = ITEMSIZE_TINY
