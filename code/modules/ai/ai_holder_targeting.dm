@@ -9,6 +9,7 @@
 	var/vore_hostile = FALSE				// The same as hostile, but with vore pref checks
 	var/micro_hunt = FALSE					// Will target mobs at or under the micro_hunt_size size, requires vore_hostile to be true
 	var/micro_hunt_size = 0.25
+	var/belly_attack = TRUE					//Mobs attack if they are in a belly!
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -123,7 +124,9 @@
 	ai_log("can_attack() : Entering.", AI_LOG_TRACE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE
-
+	if(!belly_attack)
+		if(isbelly(holder.loc))
+			return FALSE
 	if(isliving(the_target))
 		var/mob/living/L = the_target
 		if(ishuman(L) || issilicon(L))
@@ -266,6 +269,9 @@
 	if(!hostile && !retaliate) // Not allowed to defend ourselves.
 		ai_log("react_to_attack() : Was attacked by [attacker], but we are not allowed to attack back.", AI_LOG_TRACE)
 		return FALSE
+	if(!belly_attack)
+		if(isbelly(holder.loc))
+			return FALSE
 	if(holder.IIsAlly(attacker)) // I'll overlook it THIS time...
 		ai_log("react_to_attack() : Was attacked by [attacker], but they were an ally.", AI_LOG_TRACE)
 		return FALSE

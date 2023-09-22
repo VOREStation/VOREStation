@@ -17,6 +17,9 @@
 	if(holder.instasis()) // In a stasis field.
 		ai_log("can_act() : In a stasis field.", AI_LOG_TRACE)
 		return FALSE
+	if(!belly_attack)
+		if(isbelly(holder.loc))
+			return FALSE
 	return TRUE
 
 // Test if we should switch to STANCE_DISABLE.
