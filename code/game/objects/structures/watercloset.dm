@@ -124,6 +124,61 @@
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 
+/obj/structure/toilet/wooden
+	name = "wooden toilet"
+	desc = "It's basically a hole in a box with a bucket inside. This one seems remarkably clean."
+	icon_state = "toilet3"
+	open = 1
+
+/obj/structure/toilet/wooden/attack_hand(mob/living/user as mob)
+	return //No lid
+
+/obj/structure/toilet/wooden/attackby(obj/item/I as obj, mob/living/user as mob) //simpler interactions
+	if(istype(I, /obj/item/weapon/grab))
+		user.setClickCooldown(user.get_attack_speed(I))
+		var/obj/item/weapon/grab/G = I
+
+		if(isliving(G.affecting))
+			var/mob/living/GM = G.affecting
+
+			if(G.state>1)
+				if(!GM.loc == get_turf(src))
+					to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
+					return
+				if(open && !swirlie)
+					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+					swirlie = GM
+					if(do_after(user, 30, GM))
+						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+						if(!GM.internal)
+							GM.adjustOxyLoss(5)
+					swirlie = null
+				else
+					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+					GM.adjustBruteLoss(5)
+			else
+				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+
+	if(cistern && !istype(user,/mob/living/silicon/robot)) //STOP PUTTING YOUR MODULES IN THE TOILET.
+		if(I.w_class > 3)
+			to_chat(user, "<span class='notice'>\The [I] does not fit.</span>")
+			return
+		if(w_items + I.w_class > 5)
+			to_chat(user, "<span class='notice'>The cistern is full.</span>")
+			return
+		user.drop_item()
+		I.loc = src
+		w_items += I.w_class
+		to_chat(user, "You carefully place \the [I] into the cistern.")
+		return
+
+/obj/structure/toilet/wooden/New()
+	open = 1 //just to make sure it works
+	icon_state = "toilet3"
+	return
+
+/obj/structure/toilet/wooden/update_icon()
+	return
 
 /obj/structure/urinal
 	name = "urinal"

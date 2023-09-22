@@ -187,6 +187,12 @@
 	if(target_size < 0.1)
 		target_size = 0.1
 
+/obj/item/clothing/gloves/bluespace/magic
+	name = "bracer of resilience"
+	desc = "A bracer that is said to make one resistent to size changing magic."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_state = "bs_magic"
+
 //Same as Nanotrasen Security Uniforms
 /obj/item/clothing/under/ert
 	armor = list(melee = 5, bullet = 10, laser = 10, energy = 5, bomb = 5, bio = 0, rad = 0)

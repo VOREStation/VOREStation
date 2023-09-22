@@ -668,3 +668,204 @@
 		if(istype(M, circuit)) // Yes, we remove circuit twice. Yes, it's necessary. Yes, it's stupid.
 			workingList -= M
 	return workingList
+
+/obj/machinery/microwave/cookingpot
+	name = "cooking pot"
+	icon_state = "cookingpot"
+	desc = "An old fashioned cooking pot above some logs."
+
+/obj/machinery/microwave/cookingpot/start()
+	src.visible_message("<span class='notice'>The cooking pot starts cooking.</span>", "<span class='notice'>You hear a fire roar.</span>")
+	src.operating = TRUE
+	src.icon_state = "cookingpot1"
+	SStgui.update_uis(src)
+
+/obj/machinery/microwave/cookingpot/abort()
+	operating = FALSE // Turn it off again aferwards
+	if(icon_state == "cookingpot1")
+		icon_state = "cookingpot"
+	SStgui.update_uis(src)
+
+
+/obj/machinery/microwave/cookingpot/stop()
+	operating = FALSE // Turn it off again aferwards
+	if(icon_state == "cookingpot1")
+		icon_state = "cookingpot"
+	SStgui.update_uis(src)
+
+/obj/machinery/microwave/cookingpot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(src.broken > 0)
+		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
+			user.visible_message( \
+				"<b>\The [user]</b> starts to fix part of the cooking pot.", \
+				"<span class='notice'>You start to fix part of the cooking pot.</span>" \
+			)
+			playsound(src, O.usesound, 50, 1)
+			if (do_after(user,20 * O.toolspeed))
+				user.visible_message( \
+					"<b>\The [user]</b> fixes part of the cooking pot.", \
+					"<span class='notice'>You have fixed part of the cooking pot.</span>" \
+				)
+				src.broken = 1 // Fix it a bit
+		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
+			user.visible_message( \
+				"<b>\The [user]</b> starts to fix part of the cooking pot.", \
+				"<span class='notice'>You start to fix part of the cooking pot.</span>" \
+			)
+			if (do_after(user,20 * O.toolspeed))
+				user.visible_message( \
+					"<b>\The [user]</b> fixes the cooking pot.", \
+					"<span class='notice'>You have fixed the cooking pot.</span>" \
+				)
+				src.icon_state = "cookingpot"
+				src.broken = 0 // Fix it!
+				src.dirty = 0 // just to be sure
+				src.flags = OPENCONTAINER | NOREACT
+		else
+			to_chat(user, "<span class='warning'>It's broken!</span>")
+			return 1
+
+	else if(src.dirty==100) // The microwave is all dirty so can't be used!
+		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner) || istype(O, /obj/item/weapon/soap)) // If they're trying to clean it then let them
+			user.visible_message( \
+				"<b>\The [user]</b> starts to clean the cooking pot.", \
+				"<span class='notice'>You start to clean the cooking pot.</span>" \
+			)
+			if (do_after(user,20))
+				user.visible_message( \
+					"<span class='notice'>\The [user] has cleaned the cooking pot.</span>", \
+					"<span class='notice'>You have cleaned the cooking pot.</span>" \
+				)
+				src.dirty = 0 // It's clean!
+				src.broken = 0 // just to be sure
+				src.icon_state = "cookingpot"
+				src.flags = OPENCONTAINER | NOREACT
+				SStgui.update_uis(src)
+		else //Otherwise bad luck!!
+			to_chat(user, "<span class='warning'>It's dirty!</span>")
+			return 1
+	else if(is_type_in_list(O,acceptable_items))
+		var/list/workingList = cookingContents()
+		if(workingList.len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
+			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
+			return 1
+		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
+			var/obj/item/stack/S = O
+			new O.type (src)
+			S.use(1)
+			user.visible_message( \
+				"<span class='notice'>\The [user] has added one of [O] to \the [src].</span>", \
+				"<span class='notice'>You add one of [O] to \the [src].</span>")
+			return
+		else
+		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete - Man whoever you are, it's been years. o7
+			user.drop_from_inventory(O,src)
+			user.visible_message( \
+				"<span class='notice'>\The [user] has added \the [O] to \the [src].</span>", \
+				"<span class='notice'>You add \the [O] to \the [src].</span>")
+			SStgui.update_uis(src)
+			return
+	else if (istype(O,/obj/item/weapon/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
+		var/obj/item/weapon/storage/bag/plants/bag = O
+		var/failed = 1
+		for(var/obj/item/G in O.contents)
+			if(!G.reagents || !G.reagents.total_volume)
+				continue
+			failed = 0
+			if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
+				to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
+				return 0
+			else
+				bag.remove_from_storage(G, src)
+				contents += G
+				if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
+					break
+
+		if(failed)
+			to_chat(user, "Nothing in the plant bag is usable.")
+			return 0
+
+		if(!O.contents.len)
+			to_chat(user, "You empty \the [O] into \the [src].")
+		else
+			to_chat(user, "You fill \the [src] from \the [O].")
+
+		SStgui.update_uis(src)
+		return 0
+
+	else if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
+			istype(O,/obj/item/weapon/reagent_containers/food/drinks) || \
+			istype(O,/obj/item/weapon/reagent_containers/food/condiment) \
+		)
+		if (!O.reagents)
+			return 1
+		for (var/datum/reagent/R in O.reagents.reagent_list)
+			if (!(R.id in acceptable_reagents))
+				to_chat(user, "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>")
+				return 1
+		return
+	else if(istype(O,/obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = O
+		to_chat(user, "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>")
+		return 1
+	else if(O.is_screwdriver())
+		default_deconstruction_screwdriver(user, O)
+		return
+	else if(O.is_crowbar())
+		if(default_deconstruction_crowbar(user, O))
+			return
+		else
+			user.visible_message( \
+				"<span class='notice'>\The [user] begins [src.anchored ? "unsecuring" : "securing"] the cooking pot.</span>", \
+				"<span class='notice'>You attempt to [src.anchored ? "unsecure" : "secure"] the cooking pot.</span>"
+				)
+			if (do_after(user,20/O.toolspeed))
+				user.visible_message( \
+				"<span class='notice'>\The [user] [src.anchored ? "unsecures" : "secures"] the cooking pot.</span>", \
+				"<span class='notice'>You [src.anchored ? "unsecure" : "secure"] the cooking pot.</span>"
+				)
+				src.anchored = !src.anchored
+			else
+				to_chat(user, "<span class='notice'>You decide not to do that.</span>")
+	else if(default_part_replacement(user, O))
+		return
+	else if(istype(O, /obj/item/device/paicard))
+		if(!paicard)
+			insertpai(user, O)
+	else
+		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [O].</span>")
+	..()
+	SStgui.update_uis(src)
+
+/obj/machinery/microwave/cookingpot/broke()
+	src.icon_state = "cookingpotb" // Make it look all busted up and shit
+	src.visible_message("<span class='warning'>The cooking pot breaks!</span>") //Let them know they're stupid
+	src.broken = 2 // Make it broken so it can't be used util fixed
+	src.flags = null //So you can't add condiments
+	src.operating = 0 // Turn it off again aferwards
+	SStgui.update_uis(src)
+	soundloop.stop()
+	src.ejectpai() // If it broke, time to yeet the PAI.
+
+/obj/machinery/microwave/cookingpot/dispose(var/message = 1)
+	for (var/atom/movable/A in cookingContents())
+		A.forceMove(loc)
+	if (src.reagents.total_volume)
+		src.dirty++
+	src.reagents.clear_reagents()
+	if(message)
+		to_chat(usr, "<span class='notice'>You dispose of the cooking pot contents.</span>")
+	SStgui.update_uis(src)
+
+/obj/machinery/microwave/cookingpot/muck_start()
+	playsound(src, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
+	src.icon_state = "cookingpotbloody1" // Make it look dirty!!
+
+/obj/machinery/microwave/cookingpot/muck_finish()
+	src.visible_message("<span class='warning'>The cooking pot gets covered in muck!</span>")
+	src.dirty = 100 // Make it dirty so it can't be used util cleaned
+	src.flags = null //So you can't add condiments
+	src.icon_state = "cookingpotbloody0" // Make it look dirty too
+	src.operating = 0 // Turn it off again aferwards
+	SStgui.update_uis(src)
+	soundloop.stop()

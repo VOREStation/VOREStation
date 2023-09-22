@@ -385,3 +385,57 @@
 	if(!anchored)
 		to_chat(user,"<span class='notice'> The bed isn't secured.</span>")
 		return
+
+// Bath
+
+/obj/structure/bed/bath
+	name = "wash tub"
+	desc = "A wooden tub that can be filled with water for washing yourself."
+	icon_state = "bath"
+	base_icon = "bath"
+	flags = OPENCONTAINER
+	var/amount_per_transfer_from_this = 5
+
+/obj/structure/bed/bath/update_icon()
+	if(reagents.total_volume < 1)
+		icon_state = "bath"
+	else if(reagents.total_volume < 50)
+		icon_state = "bath1"
+	else if(reagents.total_volume < 150)
+		icon_state = "bath2"
+	else if(reagents.total_volume < 301)
+		icon_state = "bath3"
+	return // Doesn't care about material or anything else.
+
+/obj/structure/bed/bath/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/soap)) //VOREStation Edit - "Allows soap and rags to be used on mopbuckets"
+		if(reagents.total_volume < 1)
+			to_chat(user, "<span class='warning'>\The [src] is out of water!</span>")
+		else
+			reagents.trans_to_obj(I, 5)
+			to_chat(user, "<span class='notice'>You wet \the [I] in \the [src].</span>")
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
+	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+		update_icon()
+		return
+	else if(istype(I, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
+		var/mob/living/affecting = G.affecting
+		if(has_buckled_mobs()) //Handles trying to buckle someone else to a chair when someone else is on it
+			to_chat(user, "<span class='notice'>\The [src] already has someone buckled to it.</span>")
+			return
+		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
+		if(do_after(user, 20, G.affecting))
+			affecting.loc = loc
+			spawn(0)
+				if(buckle_mob(affecting))
+					affecting.visible_message(\
+						"<span class='danger'>[affecting.name] is buckled to [src] by [user.name]!</span>",\
+						"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
+						"<span class='notice'>You hear metal clanking.</span>")
+			qdel(I)
+
+
+/obj/structure/bed/bath/New()
+	create_reagents(300)
+	..()

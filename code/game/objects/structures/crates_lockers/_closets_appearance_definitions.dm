@@ -1441,6 +1441,10 @@
 	decals = null
 	color = COLOR_OFF_WHITE
 
+/decl/closet_appearance/wall_double/wooden
+	decals = null
+	color = WOOD_COLOR_RICH
+
 /decl/closet_appearance/wall_double/medical
 	decals = null
 	color = COLOR_OFF_WHITE

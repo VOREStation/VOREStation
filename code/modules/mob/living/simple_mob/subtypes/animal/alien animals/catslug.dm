@@ -954,6 +954,77 @@
 /datum/say_list/catslug/custom/pilotslug
 	speak = list("In the pipe, five my five.","Kick the tires and light the fires!","Bogeys on my tail!","GOOSE!","I'm really good at the stick.","I'm not doing nothing.","Heh.","Can you keep up?","Can't keep the sky from me.")
 
+//Royal slug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/royalslug
+	name = "Ruler Purrton"
+	desc = "A golden-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one is adorned with a crown and red cloak, very fancy."
+	tt_desc = "Mollusca Felis Royallis"
+	icon_state = "catslugking"
+	icon_living = "catslugking"
+	icon_rest = "catslugking_rest"
+	icon_dead = "catslugking_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/royalslug)
+	say_list_type = /datum/say_list/catslug/custom/royalslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/royalslug
+	name = "Alien Wildlife - Catslug - Ruler Purrton"
+	desc = "Found in a castle beyond the redgate, Ruler Purrton\
+	is a catslug who spends their days presiding over this low \
+	technology town, living a life of luxury. Always seen with \
+	their trademark crown and cloak, this litter critter seems \
+	to just exude raw confidence and superiority. \
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/royalslug
+	speak = list("Let them eat cake. Lots and lots of cake.", "Fetch my good cloak.", "I myself prefer my ancient eggs for breakfast!", "Have you come to pay tribute?", "How dare you intrude?", "Bring me the finest of fine finery.", "HARK!", "With great power comes great dinner.")
+
+//crypt slug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/cryptslug
+	name = "Keeper Sluguloth"
+	desc = "A dark-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one is adorned with a dark cloak that obscures most of it's body."
+	tt_desc = "Mollusca Felis Necrosis"
+	icon_state = "cryptslug"
+	icon_living = "cryptslug"
+	icon_rest = "cryptslug_rest"
+	icon_dead = "cryptslug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/cryptslug)
+	say_list_type = /datum/say_list/catslug/custom/cryptslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/cryptslug
+	name = "Alien Wildlife - Catslug - Keeper Sluguloth"
+	desc = "Found in a deep beneath a town beyond the redgate, Sluguloth\
+	is a catslug who spends their days lurking within dark dungeons \
+	alongside monstrous beings of all sorts. Always seen within \
+	their dark cloak, obscuring them, this litter critter seems \
+	to just exude pure menance and up-to-no-goodness. \
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/cryptslug
+	speak = list("I have a lot of nasty friends.", "Do not test me.", "I shall rise again!", "How dare you step foot in my domain?", "Dare you indluge in dark desires?", "I am become death, one day.", "Foul creature!", "I used to think my life was a tragedy, but now I realize it's kind of okay actually.")
+
+
 //=============================
 //Admin-spawn only catslugs end
 //=============================
