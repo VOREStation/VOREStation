@@ -148,33 +148,3 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chaitea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
 		)
-
-/obj/machinery/chemical_dispenser/kettle //reskin of coffee dispenser
-	name = "kettle"
-	desc = "A kettle used for making hot drinks."
-	icon_state = "kettle"
-	ui_title = "kettle"
-	accept_drinking = 1
-
-/obj/machinery/chemical_dispenser/kettle/full
-	spawn_cartridges = list(
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chaitea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
-		)
-

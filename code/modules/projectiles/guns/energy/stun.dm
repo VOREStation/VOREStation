@@ -210,14 +210,3 @@
 	item_state = "stunrevolver"
 	w_class = ITEMSIZE_SMALL //small pistol is small
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-
-/*
- * magic orb
- */
-
-/obj/item/weapon/gun/energy/taser/magic
-	name = "orb of lightning"
-	desc = "An orb filled with electrical energy, it looks oddly like a toy plasma orb..."
-	description_fluff = ""
-	icon_state = "orb"
-

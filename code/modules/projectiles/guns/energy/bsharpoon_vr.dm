@@ -232,21 +232,3 @@
 				flick("harpoon-1-change",src)
 				icon_state = "harpoon-2"
 		transforming = 0
-
-/obj/item/weapon/bluespace_harpoon/wand
-	name = "teleportation wand"
-	desc = "An odd wand that weighs more than it looks like it should. It has a wire protruding from it and a glass-like tip, suggesting there may be more tech behind this than magic."
-
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "harpoonwand-2"
-
-/obj/item/weapon/bluespace_harpoon/wand/update_icon()
-	if(transforming)
-		switch(mode)
-			if(0)
-				flick("harpoonwand-2-change", src)
-				icon_state = "harpoonwand-1"
-			if(1)
-				flick("harpoonwand-1-change",src)
-				icon_state = "harpoonwand-2"
-		transforming = 0

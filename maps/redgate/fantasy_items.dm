@@ -389,3 +389,74 @@
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
+
+// Magic bluespace stuff
+
+
+/obj/item/clothing/gloves/bluespace/magic
+	name = "bracer of resilience"
+	desc = "A bracer that is said to make one resistent to size changing magic."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_state = "bs_magic"
+
+//harpoon
+
+/obj/item/weapon/bluespace_harpoon/wand
+	name = "teleportation wand"
+	desc = "An odd wand that weighs more than it looks like it should. It has a wire protruding from it and a glass-like tip, suggesting there may be more tech behind this than magic."
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "harpoonwand-2"
+
+/obj/item/weapon/bluespace_harpoon/wand/update_icon()
+	if(transforming)
+		switch(mode)
+			if(0)
+				flick("harpoonwand-2-change", src)
+				icon_state = "harpoonwand-1"
+			if(1)
+				flick("harpoonwand-1-change",src)
+				icon_state = "harpoonwand-2"
+		transforming = 0
+
+/*
+ * magic orb
+ */
+
+/obj/item/weapon/gun/energy/taser/magic
+	name = "orb of lightning"
+	desc = "An orb filled with electrical energy, it looks oddly like a toy plasma orb..."
+	description_fluff = ""
+	icon_state = "orb"
+
+//Kettle
+
+/obj/machinery/chemical_dispenser/kettle //reskin of coffee dispenser
+	name = "kettle"
+	desc = "A kettle used for making hot drinks."
+	icon_state = "kettle"
+	ui_title = "kettle"
+	accept_drinking = 1
+
+/obj/machinery/chemical_dispenser/kettle/full
+	spawn_cartridges = list(
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chaitea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
+		)
+
