@@ -35,7 +35,7 @@
 "al" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /turf/simulated/floor/wood/alt/parquet,
@@ -56,7 +56,7 @@
 "aq" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/condiment/vinegar,
 /obj/item/weapon/reagent_containers/food/condiment/vinegar,
@@ -131,7 +131,7 @@
 "aQ" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/shield/primitive,
 /obj/machinery/light/small/torch{
@@ -162,7 +162,7 @@
 "aZ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/durian,
 /turf/simulated/floor/wood/alt/parquet,
@@ -183,7 +183,7 @@
 "bn" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/pickaxe/hand,
 /turf/simulated/floor/wood,
@@ -207,7 +207,7 @@
 "bw" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread,
 /turf/simulated/floor/wood/alt,
@@ -233,7 +233,7 @@
 "bC" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/shield/riot{
 	color = "#A1662F"
@@ -305,7 +305,7 @@
 "cc" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/wheat,
 /obj/fruitspawner/wheat,
@@ -341,7 +341,7 @@
 "cl" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/rapier,
 /turf/simulated/floor/wood/alt,
@@ -482,7 +482,7 @@
 "df" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
@@ -518,7 +518,7 @@
 "dm" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
@@ -556,7 +556,7 @@
 "dx" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/machinery/light/small/torch{
 	dir = 4
@@ -566,7 +566,7 @@
 "dF" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /obj/machinery/light/small/torch{
@@ -597,7 +597,7 @@
 "dM" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist,
 /turf/simulated/floor/wood,
@@ -655,7 +655,7 @@
 "ej" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/toy/cultsword,
 /turf/simulated/floor/concrete,
@@ -722,7 +722,7 @@
 "eD" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/ears/earring/dangle/gold,
 /obj/item/clothing/ears/earring/dangle/gold,
@@ -789,7 +789,7 @@
 "eT" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
@@ -838,7 +838,7 @@
 "ff" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/gun/launcher/crossbow,
 /obj/machinery/light/small/torch{
@@ -968,7 +968,7 @@
 "fY" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/device/flashlight/lantern,
 /obj/item/device/flashlight/lantern,
@@ -1231,7 +1231,7 @@
 "hZ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/soap,
 /obj/item/weapon/towel/random,
@@ -1278,7 +1278,7 @@
 "in" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt,
@@ -1368,7 +1368,7 @@
 "iQ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/twohanded/fireaxe/foam,
 /obj/item/weapon/material/twohanded/fireaxe/foam,
@@ -1384,7 +1384,7 @@
 "iV" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/longsword,
 /obj/structure/prop/fantasy/pinkbanner{
@@ -1478,7 +1478,7 @@
 "jv" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread,
 /turf/simulated/floor/wood/alt,
@@ -1495,7 +1495,7 @@
 "jz" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/accessory/holster/machete/rapier/swords,
 /turf/simulated/floor/concrete,
@@ -1529,7 +1529,7 @@
 "jM" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/rag,
 /turf/simulated/floor/wood/alt/panel,
@@ -1637,7 +1637,7 @@
 "kx" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wood/alt,
@@ -1692,7 +1692,7 @@
 "kO" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/pint_mug,
 /obj/item/weapon/reagent_containers/glass/pint_mug,
@@ -1925,7 +1925,7 @@
 "ma" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/shovel,
 /turf/simulated/floor/concrete,
@@ -1940,7 +1940,7 @@
 "me" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/coin,
 /turf/simulated/floor/wood,
@@ -1961,7 +1961,7 @@
 "mm" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/potato,
 /obj/fruitspawner/potato,
@@ -1992,7 +1992,7 @@
 "mo" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
@@ -2164,7 +2164,7 @@
 "nn" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/storage/bag/ore,
 /turf/simulated/floor/wood,
@@ -2198,7 +2198,7 @@
 "nz" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/toy/snappop,
 /obj/item/toy/snappop,
@@ -2260,7 +2260,7 @@
 "nP" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /obj/machinery/light/small/torch{
@@ -2325,7 +2325,7 @@
 "oh" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/rhubarb,
 /obj/fruitspawner/rhubarb,
@@ -2544,7 +2544,7 @@
 "pg" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
@@ -2575,7 +2575,7 @@
 "pp" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/lettuce,
 /obj/fruitspawner/lettuce,
@@ -2703,7 +2703,7 @@
 "qd" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/toy/plushie/generic{
 	name = "gelatinous cube plushie"
@@ -2778,7 +2778,7 @@
 "qF" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/cabbage,
 /obj/fruitspawner/cabbage,
@@ -3057,7 +3057,7 @@
 "sj" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -3094,7 +3094,7 @@
 "ss" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/stack/material/gold,
 /turf/simulated/floor/wood/alt,
@@ -3112,7 +3112,7 @@
 "sw" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/bloodrose,
 /obj/fruitspawner/bloodrose,
@@ -3143,7 +3143,7 @@
 "sN" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/material/refined,
 /turf/simulated/floor/wood/alt,
@@ -3179,7 +3179,7 @@
 "tc" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/knife/tacknife,
 /obj/item/weapon/material/knife/tacknife,
@@ -3245,7 +3245,7 @@
 "tw" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/toy/colorballoon,
 /obj/item/toy/colorballoon,
@@ -3271,7 +3271,7 @@
 "tC" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/celery,
 /obj/fruitspawner/celery,
@@ -3398,7 +3398,7 @@
 "ul" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/toy/cultsword,
 /obj/item/toy/cultsword,
@@ -3507,7 +3507,7 @@
 "uR" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/katana,
 /turf/simulated/floor/wood/alt/panel,
@@ -3552,7 +3552,7 @@
 "vb" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread,
 /turf/simulated/floor/wood/alt,
@@ -3578,7 +3578,7 @@
 "vl" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/gloves/ring/material/silver,
 /obj/machinery/light/small/torch{
@@ -3589,7 +3589,7 @@
 "vm" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/melee/chainofcommand{
 	name = "iron whip"
@@ -3616,7 +3616,7 @@
 "vq" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/twohanded/spear/foam,
 /obj/item/weapon/material/twohanded/spear/foam,
@@ -4052,7 +4052,7 @@
 "xU" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife,
 /obj/structure/prop/fantasy/pinkbanner{
@@ -4069,7 +4069,7 @@
 "xX" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
@@ -4098,7 +4098,7 @@
 "yd" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/eggplant,
 /obj/fruitspawner/eggplant,
@@ -4117,7 +4117,7 @@
 "yi" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/soap_common,
 /obj/random/soap_common,
@@ -4150,7 +4150,7 @@
 "yy" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
@@ -4172,7 +4172,7 @@
 "yC" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /obj/item/weapon/towel/random,
@@ -4226,7 +4226,7 @@
 "yT" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
@@ -4238,7 +4238,7 @@
 "yV" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/longsword,
 /obj/structure/prop/fantasy/redbanner{
@@ -4495,7 +4495,7 @@
 "AD" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/head/woodcirclet,
 /turf/simulated/floor/wood/alt,
@@ -4567,7 +4567,7 @@
 "Ba" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread,
 /obj/machinery/light/small/torch{
@@ -4597,7 +4597,7 @@
 "Bh" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion_base,
 /turf/simulated/floor/wood/alt,
@@ -4639,7 +4639,7 @@
 "Bz" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/knife/tacknife/boot,
 /turf/simulated/floor/concrete,
@@ -4694,7 +4694,7 @@
 "BT" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/foam,
 /obj/item/weapon/material/sword/foam,
@@ -4812,7 +4812,7 @@
 "CI" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/knife/stone/wood,
 /turf/simulated/floor/wood/alt,
@@ -4951,7 +4951,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
@@ -5066,7 +5066,7 @@
 "Eo" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/potato,
 /obj/fruitspawner/potato,
@@ -5084,7 +5084,7 @@
 "Er" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/carrot,
 /obj/fruitspawner/carrot,
@@ -5186,7 +5186,7 @@
 "Fe" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/poppies,
 /obj/fruitspawner/poppies,
@@ -5200,7 +5200,7 @@
 "Fg" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
@@ -5243,7 +5243,7 @@
 "Fq" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/telriis,
 /obj/fruitspawner/telriis,
@@ -5272,7 +5272,7 @@
 "FB" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/pickaxe/four_pick,
 /turf/simulated/floor/wood,
@@ -5333,7 +5333,7 @@
 "Gb" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/pickaxe,
 /turf/simulated/floor/wood,
@@ -5455,7 +5455,7 @@
 "GJ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion,
 /turf/simulated/floor/wood/alt,
@@ -5499,7 +5499,7 @@
 "Ha" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/melee/classic_baton,
 /obj/item/weapon/melee/classic_baton,
@@ -5517,7 +5517,7 @@
 "Hd" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
@@ -5567,7 +5567,7 @@
 "Hy" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/ore/iron,
 /turf/simulated/floor/wood,
@@ -5689,7 +5689,7 @@
 "Ik" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
@@ -6000,7 +6000,7 @@
 "JY" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
@@ -6012,7 +6012,7 @@
 "Ka" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/sabre,
 /turf/simulated/floor/concrete,
@@ -6045,7 +6045,7 @@
 "Kk" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fruitspawner/cabbage,
 /obj/fruitspawner/cabbage,
@@ -6188,7 +6188,7 @@
 "Ln" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/sword/longsword,
 /turf/simulated/floor/wood/alt/parquet,
@@ -6423,7 +6423,7 @@
 "MN" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/twohanded/longsword,
 /turf/simulated/floor/wood/alt/panel,
@@ -6564,7 +6564,7 @@
 "NJ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /turf/simulated/floor/concrete,
@@ -6625,7 +6625,7 @@
 "Od" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/pickaxe/five_pick,
 /turf/simulated/floor/wood,
@@ -6704,7 +6704,7 @@
 "OI" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fiftyspawner/sifwood,
 /turf/simulated/floor/wood/alt,
@@ -6741,7 +6741,7 @@
 "OQ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/twohanded/longsword,
 /turf/simulated/floor/concrete,
@@ -6779,7 +6779,7 @@
 "Pb" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt,
@@ -6811,7 +6811,7 @@
 "Ph" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
@@ -6836,7 +6836,7 @@
 "Ps" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/shovel/wood,
 /turf/simulated/floor/wood/alt,
@@ -6896,7 +6896,7 @@
 "PH" = (
 /obj/structure/table/rack{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife,
 /obj/structure/prop/fantasy/redbanner{
@@ -6915,7 +6915,7 @@
 "PJ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/funnelcake,
 /obj/item/weapon/reagent_containers/food/snacks/funnelcake,
@@ -6948,7 +6948,7 @@
 "PQ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/plushie,
 /turf/simulated/floor/wood/alt,
@@ -7007,7 +7007,7 @@
 "Qb" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/fantasy_item,
 /turf/simulated/floor/wood/alt,
@@ -7064,7 +7064,7 @@
 "Qu" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread,
 /turf/simulated/floor/wood/alt,
@@ -7103,7 +7103,7 @@
 "QF" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/device/flashlight/lantern,
 /obj/item/device/flashlight/lantern,
@@ -7277,7 +7277,7 @@
 "RF" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/flatbread,
 /obj/item/weapon/reagent_containers/food/snacks/flatbread,
@@ -7511,7 +7511,7 @@
 "Tj" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/fiftyspawner/hardwood,
 /turf/simulated/floor/wood/alt,
@@ -7564,7 +7564,7 @@
 "TG" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/concrete,
@@ -8047,7 +8047,7 @@
 "WP" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/toy/stickhorse,
 /turf/simulated/floor/wood/alt,
@@ -8082,7 +8082,7 @@
 "WU" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/food/snacks/bun,
 /obj/item/weapon/reagent_containers/food/snacks/bun,
@@ -8099,7 +8099,7 @@
 "WW" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/gloves/ring/material/gold,
 /turf/simulated/floor/wood/alt,
@@ -8153,7 +8153,7 @@
 "Xr" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /turf/simulated/floor/concrete,
@@ -8211,7 +8211,7 @@
 "XF" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt/parquet,
@@ -8495,7 +8495,7 @@
 "ZE" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/ore/coal,
 /obj/item/weapon/ore/coal,
@@ -8535,7 +8535,7 @@
 "ZS" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/potion_material/golden_scale,
 /turf/simulated/floor/wood/alt,
@@ -8547,7 +8547,7 @@
 "ZZ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/toy/snowglobe/snowvillage,
 /turf/simulated/floor/wood/alt/parquet,

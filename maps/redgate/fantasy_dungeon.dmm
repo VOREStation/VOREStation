@@ -199,7 +199,7 @@
 "ev" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/coin/iron,
 /turf/simulated/floor/concrete,
@@ -304,7 +304,7 @@
 "gH" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/wmarble,
@@ -677,7 +677,7 @@
 "oO" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -926,7 +926,7 @@
 "uu" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
@@ -999,7 +999,7 @@
 "vL" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wmarble,
@@ -1037,7 +1037,7 @@
 "wn" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -1213,7 +1213,7 @@
 "zB" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
@@ -1363,7 +1363,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wmarble,
@@ -1436,7 +1436,7 @@
 "Dd" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion,
 /turf/simulated/floor/wood/alt,
@@ -1478,7 +1478,7 @@
 "DZ" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/item/clothing/under/swimsuit/risque,
 /turf/simulated/floor/wmarble,
@@ -1530,7 +1530,7 @@
 "ER" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion,
 /turf/simulated/floor/wmarble,
@@ -1875,7 +1875,7 @@
 "Ly" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wmarble,
@@ -2077,7 +2077,7 @@
 "PG" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /obj/random/potion_ingredient,
 /turf/simulated/floor/bmarble,
@@ -2489,7 +2489,7 @@
 "Zq" = (
 /obj/structure/table/rack/shelf{
 	color = "#A1662F";
-	material = "wood"
+	material = MAT_WOOD
 	},
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/caves)
