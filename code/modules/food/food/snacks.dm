@@ -2476,13 +2476,12 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#AFC4B5"
 	center_of_mass = list("x"=16, "y"=8)
-	nutriment_amt = 8
 	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
 	bitesize = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent("vegetable_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/nettlesoup
 	name = "Nettle soup"
@@ -2573,13 +2572,11 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#D92929"
 	center_of_mass = list("x"=16, "y"=7)
-	nutriment_amt = 5
-	nutriment_desc = list("soup" = 5)
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tomatosoup/Initialize()
 	. = ..()
-	reagents.add_reagent("tomatojuice", 10)
+	reagents.add_reagent("tomato_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/mushroomsoup
 	name = "chantrelle soup"
@@ -2588,9 +2585,11 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#E386BF"
 	center_of_mass = list("x"=17, "y"=10)
-	nutriment_amt = 8
-	nutriment_desc = list("mushroom" = 8, "milk" = 2)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/mushroomsoup/Initialize()
+	. = ..()
+	reagents.add_reagent("mushroom_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/beetsoup
 	name = "beet soup"
@@ -2599,13 +2598,12 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#FAC9FF"
 	center_of_mass = list("x"=15, "y"=8)
-	nutriment_amt = 8
-	nutriment_desc = list("tomato" = 4, "beet" = 4)
-	bitesize = 2
+	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/beetsoup/Initialize()
 	. = ..()
 	name = pick(list("borsch","bortsch","borstch","borsh","borshch","borscht"))
+	reagents.add_reagent("beet_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/onion
 	name = "onion soup"
@@ -2614,9 +2612,11 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#E0C367"
 	center_of_mass = list("x"=16, "y"=7)
-	nutriment_amt = 5
-	nutriment_desc = list("onion" = 2, "soup" = 2)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/soup/onion/Initialize()
+	. = ..()
+	reagents.add_reagent("onion_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
 	name = "chicken noodle soup"
@@ -2624,16 +2624,11 @@
 	desc = "A bright bowl of yellow broth with cuts of meat, noodles and carrots."
 	icon_state = "chickennoodlesoup"
 	filling_color = "#ead90c"
-	nutriment_amt = 6
-	nutriment_desc = list("warm soup" = 6)
-	center_of_mass = list("x"=16, "y"=5)
-	bitesize = 6
+	bitesize = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("water", 5)
-
+	reagents.add_reagent("chicken_noodle_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/stew
 	name = "Stew"
@@ -6960,7 +6955,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/tomato/Initialize()
 	.=..()
-	reagents.add_reagent("tomatojuice", 12)
+	reagents.add_reagent("tomato_soup", 12)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/spinach
 	name = "spinach"
