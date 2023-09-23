@@ -219,10 +219,3 @@
 /obj/item/device/slow_sizegun/proc/color_box(list/box_segments, new_color, new_time)
 	for(var/i in box_segments)
 		animate(i, color = new_color, time = new_time)
-
-/obj/item/device/slow_sizegun/magic
-	name = "wand of growth and shrinking"
-	desc = "A wand said to be able to shrink or grow it's targets, it's encrusted with glowing gems and a... trigger?"
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun-magic-0"
-	base_icon_state = "sizegun-magic"

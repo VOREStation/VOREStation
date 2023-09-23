@@ -527,3 +527,12 @@ This device records all warnings given and teleport events for admin review in c
 	else
 		destination = beacons[choice]
 		rebuild_radial_images()
+
+//sizegun
+
+/obj/item/device/slow_sizegun/magic
+	name = "wand of growth and shrinking"
+	desc = "A wand said to be able to shrink or grow it's targets, it's encrusted with glowing gems and a... trigger?"
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "sizegun-magic-0"
+	base_icon_state = "sizegun-magic"
