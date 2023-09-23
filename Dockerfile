@@ -1,4 +1,23 @@
-FROM tgstation/byond:513.1533 as base
+FROM i386/ubuntu:xenial as base
+
+ARG BYOND_MAJOR=514
+ARG BYOND_MINOR=1589
+
+RUN apt-get update \
+    && apt-get install -y \
+    curl \
+    unzip \
+    make \
+    libstdc++6 \
+    && curl "https://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
+    && unzip byond.zip \
+    && cd byond \
+    && sed -i 's|install:|&\n\tmkdir -p $(MAN_DIR)/man6|' Makefile \
+    && make install \
+    && chmod 644 /usr/local/byond/man/man6/* \
+    && apt-get purge -y --auto-remove curl unzip make \
+    && cd .. \
+    && rm -rf byond byond.zip /var/lib/apt/lists/*
 
 FROM base as rust_g
 
@@ -16,7 +35,7 @@ RUN apt-get install -y --no-install-recommends \
     gcc-multilib \
     && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-host i686-unknown-linux-gnu \
     && git init \
-    && git remote add origin https://github.com/tgstation/rust-g
+    && git remote add origin https://github.com/VOREStation/rust-g
 
 COPY _build_dependencies.sh .
 
@@ -52,8 +71,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /root/.byond/bin
 
-COPY --from=rust_g /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
 COPY --from=build /vorestation/ ./
+COPY --from=rust_g /rust_g/target/release/librust_g.so ./librust_g.so
 
 #VOLUME [ "/vorestation/config", "/vorestation/data" ]
 

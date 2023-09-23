@@ -32,3 +32,17 @@
 /obj/structure/table/rack/gun_rack/steel/New()
 	material = get_material_by_name(MAT_STEEL)
 	..()
+
+/obj/structure/table/rack/wood
+	color = "#A1662F"
+
+/obj/structure/table/rack/wood/New()
+	material = get_material_by_name(MAT_WOOD)
+	..()
+
+/obj/structure/table/rack/shelf/wood
+	color = "#A1662F"
+
+/obj/structure/table/rack/shelf/wood/New()
+	material = get_material_by_name(MAT_WOOD)
+	..()

@@ -366,3 +366,12 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "feather2_tricolor-1"
 	extra_overlay2 = "feather2_tricolor-2"
+
+// dino wings
+/datum/sprite_accessory/wing/pterodactyl_wings
+	name = "pterodactyl wings"
+	desc = ""
+	icon_state = "pterodactyl_wing_frame"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "pterodactyl_wing_membrane"
