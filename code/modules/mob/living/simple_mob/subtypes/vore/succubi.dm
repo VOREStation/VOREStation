@@ -17,7 +17,7 @@
 	attacktext = list("swatted","bapped")
 
 	say_list_type = /datum/say_list/succubus
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/edible
 
 	var/random_skin = 1
 	var/list/skins = list(

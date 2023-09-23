@@ -66,6 +66,7 @@
 
 /datum/ai_holder/simple_mob/retaliate/wolftaur
 	base_wander_delay = 8
+	belly_attack = FALSE
 
 /mob/living/simple_mob/vore/wolftaur/init_vore()
 	..()

@@ -18,6 +18,7 @@
 	can_flee = TRUE
 	violent_breakthrough = FALSE
 	base_wander_delay = 8 //vorestation edit, to make pets slow.
+	belly_attack = FALSE //They already don't fight back, so this ensures that catgirls and similar are still edible when they are spawned as retaliate or aggressive by semi-random mob spawners.
 
 // Won't wander away as quickly, ideal for event-spawned mobs like carp or drones.
 /datum/ai_holder/simple_mob/event
@@ -149,6 +150,9 @@
 
 /datum/ai_holder/simple_mob/retaliate/chill
 	base_wander_delay = 8
+
+/datum/ai_holder/simple_mob/retaliate/edible
+	belly_attack = FALSE
 
 // Simple mobs that retaliate and support others in their faction who get attacked.
 /datum/ai_holder/simple_mob/retaliate/cooperative
