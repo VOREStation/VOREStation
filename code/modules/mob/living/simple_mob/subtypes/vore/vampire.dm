@@ -18,7 +18,7 @@
 	attacktext = list("bites","sucks","drinks from")
 
 	say_list_type = /datum/say_list/count
-	ai_holder_type = /datum/ai_holder/simple_mob/vore
+	ai_holder_type = /datum/ai_holder/simple_mob/vore/edible
 
 	var/random_skin = 1
 	var/list/skins = list(
