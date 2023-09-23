@@ -223,3 +223,17 @@ var/list/flesh_overlay_cache = list()
 /turf/simulated/wall/wood
 	icon_state = "wood"
 	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/stonebricks
+	icon_state = "stonebrick"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/stonebricks/Initialize(mapload)
+		. = ..(mapload, "concrete")
+
+/turf/simulated/wall/stonelogs
+	icon_state = "stonelogs"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+
+/turf/simulated/wall/stonelogs/Initialize(mapload)
+			. = ..(mapload, "concrete",MAT_LOG)

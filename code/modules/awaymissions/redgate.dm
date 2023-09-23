@@ -889,3 +889,175 @@
 /area/redgate/train/captain
 	name = "Train Captain's Quarters"
 	icon_state = "purple"
+
+
+// fantasy areas
+
+/area/redgate/fantasy
+	name = "Fantasy"
+	icon_state = "red"
+	requires_power = 0
+
+/area/redgate/fantasy/streets
+	name = "Fantasy outside"
+	icon_state = "red"
+
+/area/redgate/fantasy/tavern
+	name = "Fantasy tavern"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/shop
+	name = "Fantasy shop"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/alchemist
+	name = "Fantasy alchemist"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/castle
+	name = "Fantasy castle"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/blacksmith
+	name = "Fantasy blacksmith"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/hedgemaze
+	name = "Fantasy hedgemaze"
+	icon_state = "green"
+
+/area/redgate/fantasy/butcher
+	name = "Fantasy butcher"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/jewler
+	name = "Fantasy jewler"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/restaurant
+	name = "Fantasy restaurant"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/cafe
+	name = "Fantasy cafe"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/house
+	name = "Fantasy house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/gambling
+	name = "Fantasy gambling den"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/washhouse
+	name = "Fantasy wash house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/aliens
+	name = "Fantasy alien house"
+	icon_state = "purple"
+
+/area/redgate/fantasy/walls
+	name = "Fantasy green"
+	icon_state = "green"
+
+/area/redgate/fantasy/guardhouse
+	name = "Fantasy guard house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/mininghouse
+	name = "Fantasy mining house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/farmhouse
+	name = "Fantasy farm house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/church
+	name = "Fantasy church"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/churchhouse
+	name = "Fantasy church house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/arena
+	name = "Fantasy arena"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/redgate
+	name = "Fantasy redgate"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/paladinhouse
+	name = "Fantasy paladin house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/druid
+	name = "Fantasy druid house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/bard
+	name = "Fantasy bard house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/rogue
+	name = "Fantasy rogue house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/grocery
+	name = "Fantasy grocery store"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/bakery
+	name = "Fantasy bakery"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/barbarian
+	name = "Fantasy barbarian house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/ranger
+	name = "Fantasy ranger house"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/ratbasement
+	name = "Fantasy rat infested basement"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/underground
+	name = "Fantasy underground"
+	icon_state = "red"
+
+/area/redgate/fantasy/dungeon
+	name = "Fantasy dungeon"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/underwater
+	name = "Fantasy underwater"
+	icon_state = "bluenew"
+
+/area/redgate/fantasy/crypt
+	name = "Fantasy crypt"
+	icon_state = "green"
+
+/area/redgate/fantasy/caves
+	name = "Fantasy caves"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/alienbasement
+	name = "Fantasy alien basement"
+	icon_state = "yellow"
+
+/area/redgate/fantasy/dark
+	name = "Fantasy dark"
+	icon_state = "green"
+
+/area/redgate/fantasy/mines
+	name = "Fantasy house"
+	icon_state = "green"
+
+
+
+

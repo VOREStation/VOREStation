@@ -724,6 +724,15 @@
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
+//Chest
+/obj/structure/closet/crate/chest
+	name = "chest"
+	desc = "A fancy chest made from wood and lined with red velvet."
+	icon = 'icons/obj/closets/chest.dmi'
+	closet_appearance = null
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
 //Mining Cart
 /obj/structure/closet/crate/miningcar
 	name = "mining cart"

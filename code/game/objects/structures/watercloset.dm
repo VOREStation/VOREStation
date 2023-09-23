@@ -124,7 +124,6 @@
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 
-
 /obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal."

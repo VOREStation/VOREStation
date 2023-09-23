@@ -377,3 +377,12 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
+
+/obj/item/weapon/reagent_containers/glass/pint_mug
+	desc = "A rustic pint mug designed for drinking ale."
+	name = "pint mug"
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "pint_mug"
+	matter = list(MAT_WOOD = 50)
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'

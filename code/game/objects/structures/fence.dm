@@ -170,6 +170,41 @@
 		return FALSE
 	return TRUE
 
+/obj/structure/fence/wood
+	cuttable = FALSE
+	name = "fence"
+	desc = "A wooden fence. Not as effective as a wall, but generally it keeps people out."
+	description_info = "Projectiles can freely pass fences."
+	density = TRUE
+	anchored = TRUE
+
+	icon = 'icons/obj/fence.dmi'
+	icon_state = "wood_straight"
+
+/obj/structure/fence/wood/end
+	icon_state = "wood_end"
+
+/obj/structure/fence/wood/corner
+	icon_state = "wood_corner"
+
+/obj/structure/fence/hedge
+	cuttable = FALSE
+	name = "hedge"
+	desc = "A large hedge. Not as effective as a wall, but generally it keeps people out."
+	description_info = "Projectiles can freely pass fences."
+	density = TRUE
+	anchored = TRUE
+	opacity = 1
+
+	icon = 'icons/obj/fence.dmi'
+	icon_state = "hedge_straight"
+
+/obj/structure/fence/hedge/end
+	icon_state = "hedge_end"
+
+/obj/structure/fence/hedge/corner
+	icon_state = "hedge_corner"
+
 #undef CUT_TIME
 #undef CLIMB_TIME
 
