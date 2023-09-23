@@ -8,6 +8,8 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 3
 	melee_damage_upper = 7
+	maxHealth = 150
+	health = 150
 
 	response_help = "caresses"
 	response_disarm = "wafts"
@@ -71,15 +73,27 @@
 /mob/living/simple_mob/vore/vampire/count
 	random_skin = 0
 	icon_state = "count"
+	icon_living = "count"
+	icon_rest = "countasleep"
+	icon_dead = "count-dead"
 
 /mob/living/simple_mob/vore/vampire/countess
 	random_skin = 0
 	icon_state = "countess"
+	icon_living = "countess"
+	icon_rest = "countessasleep"
+	icon_dead = "countess-dead"
 
 /mob/living/simple_mob/vore/vampire/count_nude
 	random_skin = 0
 	icon_state = "countnude"
+	icon_living = "countnude"
+	icon_rest = "countnudeasleep"
+	icon_dead = "countnude-dead"
 
 /mob/living/simple_mob/vore/vampire/countess_nude
 	random_skin = 0
 	icon_state = "countessnude"
+	icon_living = "countessnude"
+	icon_rest = "countessnudeasleep"
+	icon_dead = "countessnude-dead"

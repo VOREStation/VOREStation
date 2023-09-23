@@ -5,6 +5,9 @@
 
 	icon_state = "bat"
 	icon = 'icons/mob/vore.dmi'
+	icon_living = "bat"
+	icon_rest = "batasleep"
+	icon_dead = "bat-dead"
 
 	harm_intent_damage = 5
 	melee_damage_lower = 2
