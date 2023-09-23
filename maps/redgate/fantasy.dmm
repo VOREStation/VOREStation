@@ -33,10 +33,7 @@
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "al" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
@@ -54,10 +51,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "aq" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/condiment/vinegar,
 /obj/item/weapon/reagent_containers/food/condiment/vinegar,
 /obj/item/weapon/reagent_containers/food/condiment/vinegar,
@@ -129,10 +123,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/druid)
 "aQ" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/shield/primitive,
 /obj/machinery/light/small/torch{
 	dir = 8
@@ -160,10 +151,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "aZ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/durian,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
@@ -181,10 +169,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "bn" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/pickaxe/hand,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -205,10 +190,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "bw" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
@@ -231,10 +213,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "bC" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/shield/riot{
 	color = "#A1662F"
 	},
@@ -303,10 +282,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/fantasy/aliens)
 "cc" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/wheat,
 /obj/fruitspawner/wheat,
 /turf/simulated/floor/wood/alt/parquet,
@@ -339,10 +315,7 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "cl" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/sword/rapier,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
@@ -480,10 +453,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/fantasy/aliens)
 "df" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
 /turf/simulated/floor/wood,
@@ -516,10 +486,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "dm" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "dn" = (
@@ -554,20 +521,14 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "dx" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "dF" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /obj/machinery/light/small/torch{
 	dir = 8
@@ -595,10 +556,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "dM" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
@@ -653,10 +611,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "ej" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/toy/cultsword,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
@@ -720,10 +675,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "eD" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/ears/earring/dangle/gold,
 /obj/item/clothing/ears/earring/dangle/gold,
 /turf/simulated/floor/wood/alt,
@@ -787,10 +739,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/bard)
 "eT" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
 /turf/simulated/floor/wood/alt/parquet,
@@ -836,10 +785,7 @@
 /turf/simulated/floor/carpet/brown,
 /area/redgate/fantasy/farmhouse)
 "ff" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/gun/launcher/crossbow,
 /obj/machinery/light/small/torch{
 	dir = 4
@@ -966,10 +912,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/bard)
 "fY" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/device/flashlight/lantern,
 /obj/item/device/flashlight/lantern,
 /obj/item/device/flashlight/lantern,
@@ -1229,10 +1172,7 @@
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "hZ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/soap,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt,
@@ -1276,10 +1216,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "in" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
@@ -1366,10 +1303,7 @@
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "iQ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/twohanded/fireaxe/foam,
 /obj/item/weapon/material/twohanded/fireaxe/foam,
 /turf/simulated/floor/wood/alt,
@@ -1382,10 +1316,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "iV" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/sword/longsword,
 /obj/structure/prop/fantasy/pinkbanner{
 	pixel_y = 32
@@ -1476,10 +1407,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "jv" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
@@ -1493,10 +1421,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "jz" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/accessory/holster/machete/rapier/swords,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
@@ -1527,10 +1452,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "jM" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/rag,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
@@ -1635,10 +1557,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/guardhouse)
 "kx" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
@@ -1690,10 +1609,7 @@
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "kO" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/pint_mug,
 /obj/item/weapon/reagent_containers/glass/pint_mug,
 /obj/item/weapon/reagent_containers/glass/pint_mug,
@@ -1923,10 +1839,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/washhouse)
 "ma" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/shovel,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/blacksmith)
@@ -1938,10 +1851,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "me" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/coin,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
@@ -1959,10 +1869,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "mm" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/potato,
 /obj/fruitspawner/potato,
 /obj/fruitspawner/potato,
@@ -1990,10 +1897,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "mo" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
@@ -2162,10 +2066,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "nn" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/storage/bag/ore,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -2196,10 +2097,7 @@
 /turf/simulated/floor/carpet/purple,
 /area/redgate/fantasy/washhouse)
 "nz" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/toy/snappop,
 /obj/item/toy/snappop,
 /obj/item/toy/snappop,
@@ -2258,10 +2156,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/churchhouse)
 "nP" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /obj/machinery/light/small/torch{
 	dir = 4
@@ -2323,10 +2218,7 @@
 /turf/simulated/wall/stonelogs,
 /area/redgate/fantasy/blacksmith)
 "oh" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/rhubarb,
 /obj/fruitspawner/rhubarb,
 /turf/simulated/floor/wood/alt/parquet,
@@ -2542,10 +2434,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/fantasy/aliens)
 "pg" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /turf/simulated/floor/wood/alt/parquet,
@@ -2573,10 +2462,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "pp" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/lettuce,
 /obj/fruitspawner/lettuce,
 /turf/simulated/floor/wood/alt/parquet,
@@ -2701,10 +2587,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "qd" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/toy/plushie/generic{
 	name = "gelatinous cube plushie"
 	},
@@ -2776,10 +2659,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "qF" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/cabbage,
 /obj/fruitspawner/cabbage,
 /turf/simulated/floor/wood/alt,
@@ -3055,10 +2935,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/barbarian)
 "sj" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "sk" = (
@@ -3092,10 +2969,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "ss" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/stack/material/gold,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
@@ -3110,10 +2984,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/fantasy/aliens)
 "sw" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/fruitspawner/bloodrose,
 /obj/fruitspawner/bloodrose,
 /obj/fruitspawner/bloodrose,
@@ -3141,10 +3012,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "sN" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/random/material/refined,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
@@ -3177,10 +3045,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "tc" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/knife/tacknife,
 /obj/item/weapon/material/knife/tacknife,
 /turf/simulated/floor/wood/alt,
@@ -3243,10 +3108,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "tw" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/toy/colorballoon,
 /obj/item/toy/colorballoon,
 /obj/item/toy/colorballoon,
@@ -3269,10 +3131,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/castle)
 "tC" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/celery,
 /obj/fruitspawner/celery,
 /turf/simulated/floor/wood/alt/parquet,
@@ -3396,10 +3255,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees,
 /area/redgate/fantasy/hedgemaze)
 "ul" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/toy/cultsword,
 /obj/item/toy/cultsword,
 /obj/item/toy/cultsword,
@@ -3505,10 +3361,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "uR" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/sword/katana,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
@@ -3550,10 +3403,7 @@
 /turf/simulated/wall/wood,
 /area/redgate/fantasy/cafe)
 "vb" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
@@ -3576,10 +3426,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "vl" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/gloves/ring/material/silver,
 /obj/machinery/light/small/torch{
 	dir = 8
@@ -3587,10 +3434,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "vm" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/melee/chainofcommand{
 	name = "iron whip"
 	},
@@ -3614,10 +3458,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "vq" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/twohanded/spear/foam,
 /obj/item/weapon/material/twohanded/spear/foam,
 /turf/simulated/floor/wood/alt,
@@ -4050,10 +3891,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "xU" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife,
 /obj/structure/prop/fantasy/pinkbanner{
 	pixel_y = 32
@@ -4067,10 +3905,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "xX" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
 /turf/simulated/floor/wood/alt/parquet,
@@ -4096,10 +3931,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "yd" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/eggplant,
 /obj/fruitspawner/eggplant,
 /turf/simulated/floor/wood/alt/parquet,
@@ -4115,10 +3947,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "yi" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/soap_common,
 /obj/random/soap_common,
 /turf/simulated/floor/wood/alt/panel,
@@ -4148,10 +3977,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "yy" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
@@ -4170,10 +3996,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/churchhouse)
 "yC" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /obj/item/weapon/towel/random,
 /obj/machinery/light/small/torch{
@@ -4224,10 +4047,7 @@
 /turf/simulated/floor/carpet/purple,
 /area/redgate/fantasy/bard)
 "yT" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
@@ -4236,10 +4056,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "yV" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/sword/longsword,
 /obj/structure/prop/fantasy/redbanner{
 	pixel_y = 32
@@ -4493,10 +4310,7 @@
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "AD" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/head/woodcirclet,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
@@ -4565,10 +4379,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Ba" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread,
 /obj/machinery/light/small/torch{
 	dir = 4
@@ -4595,10 +4406,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/fantasy/aliens)
 "Bh" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion_base,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
@@ -4637,10 +4445,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "Bz" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/knife/tacknife/boot,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/blacksmith)
@@ -4692,10 +4497,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "BT" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/sword/foam,
 /obj/item/weapon/material/sword/foam,
 /turf/simulated/floor/wood/alt,
@@ -4810,10 +4612,7 @@
 /turf/simulated/wall/stonebricks,
 /area/redgate/fantasy/streets)
 "CI" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/knife/stone/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
@@ -4949,10 +4748,7 @@
 /area/redgate/fantasy/mininghouse)
 "Dz" = (
 /obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "DE" = (
@@ -5064,10 +4860,7 @@
 /turf/simulated/wall/stonebricks,
 /area/redgate/fantasy/castle)
 "Eo" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/potato,
 /obj/fruitspawner/potato,
 /turf/simulated/floor/wood/alt/parquet,
@@ -5082,10 +4875,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Er" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/carrot,
 /obj/fruitspawner/carrot,
 /turf/simulated/floor/wood/alt/parquet,
@@ -5184,10 +4974,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "Fe" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/fruitspawner/poppies,
 /obj/fruitspawner/poppies,
 /obj/fruitspawner/poppies,
@@ -5198,10 +4985,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/churchhouse)
 "Fg" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -5241,10 +5025,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "Fq" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/fruitspawner/telriis,
 /obj/fruitspawner/telriis,
 /obj/fruitspawner/telriis,
@@ -5270,10 +5051,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
 "FB" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/pickaxe/four_pick,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -5331,10 +5109,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "Gb" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/pickaxe,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -5453,10 +5228,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "GJ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
@@ -5497,10 +5269,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "Ha" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/melee/classic_baton,
 /obj/item/weapon/melee/classic_baton,
 /obj/item/weapon/melee/classic_baton,
@@ -5515,10 +5284,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Hd" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
@@ -5565,10 +5331,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Hy" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/ore/iron,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -5687,10 +5450,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Ik" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "In" = (
@@ -5998,10 +5758,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "JY" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
@@ -6010,10 +5767,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "Ka" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/sword/sabre,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
@@ -6043,10 +5797,7 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees,
 /area/redgate/fantasy/streets)
 "Kk" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fruitspawner/cabbage,
 /obj/fruitspawner/cabbage,
 /turf/simulated/floor/wood/alt/parquet,
@@ -6186,10 +5937,7 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "Ln" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/sword/longsword,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
@@ -6421,10 +6169,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "MN" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/twohanded/longsword,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
@@ -6562,10 +6307,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "NJ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
@@ -6623,10 +6365,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "Od" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/pickaxe/five_pick,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -6702,10 +6441,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
 "OI" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fiftyspawner/sifwood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
@@ -6739,10 +6475,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "OQ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/material/twohanded/longsword,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
@@ -6777,10 +6510,7 @@
 /turf/simulated/wall/wood,
 /area/redgate/fantasy/redgate)
 "Pb" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
@@ -6809,10 +6539,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "Ph" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
 /obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
 /turf/simulated/floor/wood,
@@ -6834,10 +6561,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/fantasy/aliens)
 "Ps" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/shovel/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
@@ -6894,10 +6618,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "PH" = (
-/obj/structure/table/rack{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/wood,
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife,
 /obj/structure/prop/fantasy/redbanner{
 	pixel_y = 32
@@ -6913,10 +6634,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/fantasy/aliens)
 "PJ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/funnelcake,
 /obj/item/weapon/reagent_containers/food/snacks/funnelcake,
 /turf/simulated/floor/wood/alt/parquet,
@@ -6946,10 +6664,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "PQ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/plushie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
@@ -7005,10 +6720,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
 "Qb" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/fantasy_item,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
@@ -7062,10 +6774,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "Qu" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
@@ -7101,10 +6810,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "QF" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/device/flashlight/lantern,
 /obj/item/device/flashlight/lantern,
 /turf/simulated/floor/wood/alt,
@@ -7275,10 +6981,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "RF" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/flatbread,
 /obj/item/weapon/reagent_containers/food/snacks/flatbread,
 /turf/simulated/floor/wood/alt/parquet,
@@ -7509,10 +7212,7 @@
 /turf/simulated/floor/carpet,
 /area/redgate/fantasy/castle)
 "Tj" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/fiftyspawner/hardwood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
@@ -7562,10 +7262,7 @@
 /turf/simulated/floor/outdoors/sidewalk/side,
 /area/redgate/fantasy/streets)
 "TG" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
@@ -8045,10 +7742,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "WP" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/toy/stickhorse,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
@@ -8080,10 +7774,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "WU" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/food/snacks/bun,
 /obj/item/weapon/reagent_containers/food/snacks/bun,
 /obj/item/weapon/reagent_containers/food/snacks/bun,
@@ -8097,10 +7788,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "WW" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/gloves/ring/material/gold,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
@@ -8151,10 +7839,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "Xr" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/gun/launcher/crossbow/bow,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
@@ -8209,10 +7894,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "XF" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
@@ -8493,10 +8175,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "ZE" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/ore/coal,
 /obj/item/weapon/ore/coal,
 /turf/simulated/floor/wood,
@@ -8533,10 +8212,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "ZS" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/potion_material/golden_scale,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
@@ -8545,10 +8221,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "ZZ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/toy/snowglobe/snowvillage,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)

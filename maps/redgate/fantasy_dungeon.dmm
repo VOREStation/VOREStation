@@ -197,10 +197,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/fantasy/mines)
 "ev" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/coin/iron,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -302,10 +299,7 @@
 /turf/simulated/mineral/icey,
 /area/redgate/fantasy/mines)
 "gH" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -675,10 +669,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/caves)
 "oO" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "oP" = (
@@ -924,10 +915,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/caves)
 "uu" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -997,10 +985,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/fantasy/alienbasement)
 "vL" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/towel/random,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -1035,10 +1020,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "wn" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "wq" = (
@@ -1211,10 +1193,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/crypt)
 "zB" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/weapon/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -1361,10 +1340,7 @@
 /area/redgate/fantasy/alienbasement)
 "BM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -1434,10 +1410,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/fantasy/alienbasement)
 "Dd" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/caves)
@@ -1476,10 +1449,7 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/redgate/fantasy/caves)
 "DZ" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/item/clothing/under/swimsuit/risque,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -1528,10 +1498,7 @@
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "ER" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -1873,10 +1840,7 @@
 /turf/simulated/floor/bmarble,
 /area/redgate/fantasy/dungeon)
 "Ly" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
@@ -2075,10 +2039,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "PG" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/bmarble,
 /area/redgate/fantasy/dungeon)
@@ -2487,10 +2448,7 @@
 /turf/simulated/flesh,
 /area/redgate/fantasy/dungeon)
 "Zq" = (
-/obj/structure/table/rack/shelf{
-	color = "#A1662F";
-	material = MAT_WOOD
-	},
+/obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/caves)
 "ZA" = (
