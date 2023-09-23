@@ -88,40 +88,70 @@
 	desc = "What the hell is this outfit!?"
 	icon_state = "wolftaurclown"
 	random_skin = 0
+	icon_living = "wolftaurclown"
+	icon_rest = "wolftaurclown_rest"
+	icon_dead = "wolftaurclown-dead"
 
 /mob/living/simple_mob/vore/wolftaur/white
 	icon_state = "wolftaurwhite"
 	random_skin = 0
+	icon_living = "wolftaurwhite"
+	icon_rest = "wolftaurwhite_rest"
+	icon_dead = "wolftaurwhite-dead"
 
 /mob/living/simple_mob/vore/wolftaur/whiteclothed
 	icon_state = "wolftaurwhitec"
 	random_skin = 0
+	icon_living = "wolftaurwhitec"
+	icon_rest = "wolftaurwhitec_rest"
+	icon_dead = "wolftaurwhitec-dead"
 
 /mob/living/simple_mob/vore/wolftaur/brown
 	icon_state = "wolftaurbrown"
 	random_skin = 0
+	icon_living = "wolftaurbrown"
+	icon_rest = "wolftaurbrown_rest"
+	icon_dead = "wolftaurbrown-dead"
 
 /mob/living/simple_mob/vore/wolftaur/brownclothed
 	icon_state = "wolftaurbrownc"
 	random_skin = 0
+	icon_living = "wolftaurbrownc"
+	icon_rest = "wolftaurbrownc_rest"
+	icon_dead = "wolftaurbrownc-dead"
 
 /mob/living/simple_mob/vore/wolftaur/black
 	icon_state = "wolftaurblack"
 	random_skin = 0
+	icon_living = "wolftaurblack"
+	icon_rest = "wolftaurblack_rest"
+	icon_dead = "wolftaurblack-dead"
 
 /mob/living/simple_mob/vore/wolftaur/blackclothed
 	icon_state = "wolftaurblackc"
 	random_skin = 0
+	icon_living = "wolftaurblackc"
+	icon_rest = "wolftaurblackc_rest"
+	icon_dead = "wolftaurblackc-dead"
 
 /mob/living/simple_mob/vore/wolftaur/red
 	icon_state = "wolftaurwood"
 	random_skin = 0
+	icon_living = "wolftaurwood"
+	icon_rest = "wolftaurwood_rest"
+	icon_dead = "wolftaurwood-dead"
 
 /mob/living/simple_mob/vore/wolftaur/redclothed
 	icon_state = "wolftaurwoodc"
 	random_skin = 0
+	icon_living = "wolftaurwoodc"
+	icon_rest = "wolftaurwoodc_rest"
+	icon_dead = "wolftaurwoodc-dead"
 
 /mob/living/simple_mob/vore/wolftaur/dark
 	icon_state = "wolftaurdark"
 	random_skin = 0
+	icon_living = "wolftaurdark"
+	icon_rest = "wolftaurdark_rest"
+	icon_dead = "wolftaurdark-dead"
 
