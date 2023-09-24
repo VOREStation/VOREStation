@@ -265,6 +265,42 @@
 /obj/structure/window/basic/full,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
+"bT" = (
+/obj/structure/table/steel,
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/obj/item/weapon/paper{
+	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
+	name = "Leave weapons here!"
+	},
+/turf/simulated/floor/wood/alt/panel,
+/area/redgate/fantasy/redgate)
 "bY" = (
 /obj/structure/flora/lily3,
 /turf/simulated/floor/water,
@@ -4273,6 +4309,7 @@
 "Aq" = (
 /obj/structure/closet/cabinet,
 /obj/item/weapon/moneybag,
+/obj/item/weapon/simple_key/dungeon,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "As" = (
@@ -12862,7 +12899,7 @@ PU
 PP
 PP
 wr
-PP
+bT
 Pa
 PP
 Xp

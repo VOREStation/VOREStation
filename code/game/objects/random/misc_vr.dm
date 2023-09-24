@@ -342,3 +342,27 @@
 				prob(3);/obj/item/toy/eight_ball,
 				prob(3);/obj/item/device/perfect_tele/magic
 				)
+
+/obj/random/fantasy_item/better
+	name = "better random fantasy item"
+	desc = "A random fantasy item."
+	icon_state = "fantasy2"
+	spawn_nothing_percentage = 0
+
+/obj/random/fantasy_item/better/item_to_spawn()
+	return pick(prob(10);/obj/item/device/healthanalyzer/scroll,
+				prob(10);/obj/item/weapon/gun/energy/taser/magic,
+				prob(10);/obj/item/weapon/bluespace_harpoon/wand,
+				prob(10);/obj/item/device/slow_sizegun/magic,
+				prob(10);/obj/item/clothing/gloves/bluespace/magic,
+				prob(10);/obj/item/weapon/tool/wirecutters/alien/magic,
+				prob(10);/obj/item/weapon/tool/crowbar/alien/magic,
+				prob(10);/obj/item/weapon/tool/screwdriver/alien/magic,
+				prob(10);/obj/item/weapon/weldingtool/alien/magic,
+				prob(10);/obj/item/weapon/tool/wrench/alien/magic,
+				prob(10);/obj/item/weapon/surgical/bone_clamp/alien/magic,
+				prob(10);/obj/item/weapon/material/twohanded/staff,
+				prob(10);/obj/item/weapon/gun/energy/hooklauncher/ring,
+				prob(10);/obj/item/device/perfect_tele/magic,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
+				)

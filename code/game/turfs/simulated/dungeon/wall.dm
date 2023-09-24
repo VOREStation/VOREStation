@@ -15,6 +15,23 @@
 /turf/simulated/wall/dungeon/take_damage()	//These things are suppose to be unbreakable
 	return
 
+/turf/simulated/wall/update_icon()
+	if(!material)
+		return
+
+	if(!damage_overlays[1]) //list hasn't been populated
+		generate_overlays()
+
+	cut_overlays()
+	var/image/I
+
+	if(!density)
+		I = image(wall_masks, "rockvault")
+		I.color = material.icon_colour
+		add_overlay(I)
+		return
+	..()
+
 /turf/simulated/wall/solidrock //for more stylish anti-cheese.
 	description_info = "Probably not going to be able to drill or bomb your way through this, best to try and find a way around."
 	var/rock_side = "rock_side"
