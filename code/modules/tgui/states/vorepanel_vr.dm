@@ -13,6 +13,6 @@ GLOBAL_DATUM_INIT(tgui_vorepanel_state, /datum/tgui_state/vorepanel_state, new)
 		return STATUS_CLOSE
 	if(!user.client)
 		return STATUS_CLOSE
-	if(user.stat == DEAD)
+	if(!isnewplayer(user) && user.stat == DEAD)
 		return STATUS_DISABLED
 	return STATUS_INTERACTIVE

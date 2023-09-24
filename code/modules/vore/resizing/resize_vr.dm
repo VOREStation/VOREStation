@@ -1,9 +1,11 @@
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
-/mob/living
-	var/holder_default
+/mob
 	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
 	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
+
+/mob/living
+	var/holder_default
 	var/pickup_active = TRUE			// Toggle whether your help intent picks up micros or pets them
 
 // Define holder_type on types we want to be scoop-able

@@ -252,10 +252,11 @@
 /obj/belly/Initialize()
 	. = ..()
 	//If not, we're probably just in a prefs list or something.
-	if(isliving(loc))
+	if(ismob(loc))
 		owner = loc
 		owner.vore_organs |= src
-		START_PROCESSING(SSbellies, src)
+		if(isliving(loc))
+			START_PROCESSING(SSbellies, src)
 
 /obj/belly/Destroy()
 	STOP_PROCESSING(SSbellies, src)
