@@ -558,7 +558,7 @@
 /mob/living/bot/Login()
 	no_vore = FALSE // ROBOT VORE
 	init_vore() // ROBOT VORE
-	verbs |= /mob/living/proc/insidePanel
+	verbs |= /mob/proc/insidePanel
 
 	return ..()
 
@@ -566,7 +566,7 @@
 	no_vore = TRUE // ROBOT VORE
 	release_vore_contents()
 	init_vore() // ROBOT VORE
-	verbs -= /mob/living/proc/insidePanel
+	verbs -= /mob/proc/insidePanel
 	no_vore = TRUE
 	devourable = FALSE
 	feeding = FALSE

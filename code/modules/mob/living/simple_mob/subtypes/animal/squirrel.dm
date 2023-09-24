@@ -40,7 +40,7 @@
 	attacktext = list("nipped", "squeaked at")
 	friendly = list("nuzzles", "nibbles", "leans on")
 
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/edible
 
 	has_langs = list(LANGUAGE_ANIMAL)
 	say_list_type = /datum/say_list/squirrel

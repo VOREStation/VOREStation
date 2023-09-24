@@ -8,6 +8,8 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 3
 	melee_damage_upper = 7
+	maxHealth = 150
+	health = 150
 
 	response_help = "caresses"
 	response_disarm = "wafts"
@@ -16,7 +18,7 @@
 	attacktext = list("bites","sucks","drinks from")
 
 	say_list_type = /datum/say_list/count
-	ai_holder_type = /datum/ai_holder/simple_mob/vore
+	ai_holder_type = /datum/ai_holder/simple_mob/vore/edible
 
 	var/random_skin = 1
 	var/list/skins = list(
@@ -71,15 +73,44 @@
 /mob/living/simple_mob/vore/vampire/count
 	random_skin = 0
 	icon_state = "count"
+	icon_living = "count"
+	icon_rest = "countasleep"
+	icon_dead = "count-dead"
 
 /mob/living/simple_mob/vore/vampire/countess
 	random_skin = 0
 	icon_state = "countess"
+	icon_living = "countess"
+	icon_rest = "countessasleep"
+	icon_dead = "countess-dead"
 
 /mob/living/simple_mob/vore/vampire/count_nude
 	random_skin = 0
 	icon_state = "countnude"
+	icon_living = "countnude"
+	icon_rest = "countnudeasleep"
+	icon_dead = "countnude-dead"
 
 /mob/living/simple_mob/vore/vampire/countess_nude
 	random_skin = 0
 	icon_state = "countessnude"
+	icon_living = "countessnude"
+	icon_rest = "countessnudeasleep"
+	icon_dead = "countessnude-dead"
+
+/mob/living/simple_mob/vore/vampire/queen
+	random_skin = 0
+	icon_state = "countessqueen"
+	icon_living = "countessqueen"
+	icon_rest = "countessqueenasleep"
+	icon_dead = "countessqueen-dead"
+	harm_intent_damage = 10
+	melee_damage_lower = 5
+	melee_damage_upper = 9
+	maxHealth = 350
+	health = 350
+	vore_pounce_chance = 75
+
+/mob/living/simple_mob/vore/vampire/queen/New()
+	resize(2)
+	..()

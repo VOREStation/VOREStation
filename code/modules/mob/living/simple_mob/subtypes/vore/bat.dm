@@ -5,6 +5,9 @@
 
 	icon_state = "bat"
 	icon = 'icons/mob/vore.dmi'
+	icon_living = "bat"
+	icon_rest = "batasleep"
+	icon_dead = "bat-dead"
 
 	harm_intent_damage = 5
 	melee_damage_lower = 2
@@ -17,7 +20,7 @@
 	attacktext = list("bites","scratches")
 
 	say_list_type = /datum/say_list/bat
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/edible
 
 	faction = "vampire"
 
