@@ -536,3 +536,19 @@ This device records all warnings given and teleport events for admin review in c
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun-magic-0"
 	base_icon_state = "sizegun-magic"
+
+//locked door
+
+/obj/structure/simple_door/dungeon/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "cult")
+
+/obj/structure/simple_door/dungeon/locked
+	locked = TRUE
+	breakable = FALSE
+	lock_id = "dungeon"
+
+/obj/item/weapon/simple_key/dungeon
+	name = "old key"
+	desc = "A plain, old-timey key, as one might use to unlock a door."
+	icon_state = "dungeon"
+	key_id = "dungeon"

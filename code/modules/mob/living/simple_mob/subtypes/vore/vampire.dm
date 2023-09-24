@@ -97,3 +97,20 @@
 	icon_living = "countessnude"
 	icon_rest = "countessnudeasleep"
 	icon_dead = "countessnude-dead"
+
+/mob/living/simple_mob/vore/vampire/queen
+	random_skin = 0
+	icon_state = "countessqueen"
+	icon_living = "countessqueen"
+	icon_rest = "countessqueenasleep"
+	icon_dead = "countessqueen-dead"
+	harm_intent_damage = 10
+	melee_damage_lower = 5
+	melee_damage_upper = 9
+	maxHealth = 350
+	health = 350
+	vore_pounce_chance = 75
+
+/mob/living/simple_mob/vore/vampire/queen/New()
+	resize(2)
+	..()

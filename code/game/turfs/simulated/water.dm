@@ -210,3 +210,27 @@ var/list/shoreline_icon_cache = list()
 		poisonlevel *= 1 - L.get_water_protection()
 		if(poisonlevel > 0)
 			L.adjustToxLoss(poisonlevel)
+
+/turf/simulated/floor/water/blood
+	name = "blood"
+	desc = "A body of blood.  It seems shallow enough to walk through, if needed."
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "bloodshallow"
+	water_icon = 'icons/turf/outdoors.dmi'
+	water_state = "bloodshallow"
+	under_state = "rock"
+	reagent_type = "blood"
+
+/turf/simulated/floor/water/blood/get_edge_icon_state()
+	return "bloodshallow"
+
+/turf/simulated/floor/water/blood/Entered(atom/movable/AM, atom/oldloc)
+	if(istype(AM, /mob/living))
+		var/mob/living/L = AM
+		L.update_water()
+		if(L.check_submerged() <= 0)
+			return
+		if(!istype(oldloc, /turf/simulated/floor/water))
+			to_chat(L, "<span class='warning'>You get drenched in blood from entering \the [src]!</span>")
+	AM.water_act(5)
+	..()
