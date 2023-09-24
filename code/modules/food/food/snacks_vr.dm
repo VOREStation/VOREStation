@@ -132,7 +132,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup/Initialize()
 	. = ..()
 	bitesize = 2
-
+	reagents.add_reagent("hot_n_sour_soup", 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
 	name = "kitsune udon"
@@ -595,12 +595,11 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#E0C367"
 	center_of_mass = list("x"=16, "y"=7)
-	nutriment_amt = 5
-	nutriment_desc = list("onion" = 2, "soup" = 2)
+	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/onionsoup/Initialize()
 	. = ..()
-	bitesize = 3
+	reagents.add_reagent("onion_soup", 10)
 
 //Fennec foods
 /obj/item/weapon/storage/box/wings/bucket
