@@ -22,7 +22,7 @@
 
 /obj/item/clothing/proc/describe_slowdown()
 	switch(slowdown)
-		if(-1)
+		if(-INFINITY to -0.1)
 			return "It looks like it might actually make you faster!"
 		if(0 || null)
 			return "It doesn't look like it'll impede your mobility."
