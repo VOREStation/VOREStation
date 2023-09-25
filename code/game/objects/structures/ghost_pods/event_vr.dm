@@ -53,7 +53,9 @@
 								  "Snapdragon" =/mob/living/simple_mob/vore/pakkun/snapdragon,
 								  "Sand pakkun" = /mob/living/simple_mob/vore/pakkun/sand,
 								  "Fire pakkun" = /mob/living/simple_mob/vore/pakkun/fire,
-								  "Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple
+								  "Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple,
+								  "Raptor" = /mob/living/simple_mob/vore/raptor,
+								  "Giant Bat" = /mob/living/simple_mob/vore/bat
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
