@@ -1075,7 +1075,7 @@
 	name = "Flag"
 	desc = "Steal the enemy flag and take it to your base in order to score! First team to three captures wins! Or was it five? Eh, check with the referee I guess."
 	description_info = "When you're carrying your flag, use it on your team's flag base to return it; if you're carrying the enemy flag, use it on your team's flag base to score a point!"
-	slowdown = -0.5 //big flag is harder to run with, encourages teamwork
+	slowdown = 1 //big flag is harder to run with, encourages teamwork
 	icon = 'icons/obj/flags.dmi'
 	icon_state = "flag"
 	var/laser_team = "neutral"
@@ -1084,7 +1084,15 @@
 	var/start_pos
 
 /obj/item/weapon/laserdome_flag/Initialize()
+	. = ..()
 	start_pos = src.loc	//save our starting location for later
+
+/*
+//TODO - make this not trigger when the flag is returned to its original location
+/obj/item/weapon/laserdome_flag/dropped()
+	. = ..()
+	global_announcer.autosay("[src] dropped!","Laserdome Announcer") //TODO- make this only on the laserdome zlevel/entertainment channel
+*/
 
 /obj/item/weapon/laserdome_flag/attack_hand(mob/user as mob)
 	. = ..()
@@ -1110,16 +1118,16 @@
 	else
 		flag_verbed = "taken"
 
-	//finally, announce (TODO- make this only on the laserdome zlevel)
-	global_announcer.autosay("[src] [flag_verbed] by [grabbing_team] Team!","Laserdome Announcer")
+	//finally, announce (TODO- make this only on the laserdome zlevel/entertainment channel)
+	global_announcer.autosay("[src] [flag_verbed] by [grabbing_team] team!","Laserdome Announcer")
 
 /obj/item/weapon/laserdome_flag/red
-	name = "Red Flag"
+	name = "Red flag"
 	icon_state = "red_flag"
 	laser_team = "red"
 
 /obj/item/weapon/laserdome_flag/blue
-	name = "Blue Flag"
+	name = "Blue flag"
 	icon_state = "blue_flag"
 	laser_team = "blue"
 
@@ -1132,13 +1140,14 @@
 /obj/structure/flag_base/attackby(obj/F as obj, mob/user as mob)
 	. = ..()
 
+	//TODO- require the team's flag to be present before they can score?
 	if(istype(F,/obj/item/weapon/laserdome_flag))
 		var/obj/item/weapon/laserdome_flag/flag = F
 		if(flag.laser_team != base_team)
-			global_announcer.autosay("[base_team] team scored!","Laserdome Announcer")
+			global_announcer.autosay("[base_team] team scored!","Laserdome Announcer") //TODO- make this only on the laserdome zlevel/entertainment channel
 			user.drop_from_inventory(flag)
 			flag.loc = flag.start_pos	//teleport the captured flag back to its base location
 		else if(flag.laser_team == base_team)
-			global_announcer.autosay("[base_team] flag returned!","Laserdome Announcer")
+			global_announcer.autosay("[base_team] flag returned!","Laserdome Announcer") //TODO- make this only on the laserdome zlevel/entertainment channel
 			user.drop_from_inventory(flag)
 			flag.loc = src.loc			//place our flag neatly back on its pedestal
