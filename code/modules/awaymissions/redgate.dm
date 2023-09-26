@@ -1058,6 +1058,87 @@
 	name = "Fantasy house"
 	icon_state = "green"
 
+//HIIIIGHWAY TO THE! LASER-DOME!
+/area/redgate/laserdome/arrival
+	name = "Laserdome Safe Zone"
+	icon_state = "green"
+	dynamic_lighting = 0
+	requires_power = 0
 
+/area/redgate/laserdome/arena
+	name = "Laserdome Arena"
+	icon_state = "red"
+	dynamic_lighting = 0
+	requires_power = 0
 
+/obj/item/weapon/laserdome_flag
+	name = "Flag"
+	desc = "Steal the enemy flag and take it to your base in order to score! First team to three captures wins! Or was it five? Eh, check with the referee I guess."
+	description_info = "When you're carrying your flag, use it on your team's flag base to return it; if you're carrying the enemy flag, use it on your team's flag base to score a point!"
+	slowdown = -0.5 //big flag is harder to run with, encourages teamwork
+	icon = 'icons/obj/flags.dmi'
+	icon_state = "flag"
+	var/laser_team = "neutral"
+	w_class = ITEMSIZE_NO_CONTAINER //no stashing the flag in a bag for you, bucko!
+	//TODO: make it so people can't leave the laserdome whilst carrying these flags, to stop partypoopers leaving the round with them
+	var/start_pos
 
+/obj/item/weapon/laserdome_flag/Initialize()
+	start_pos = src.loc	//save our starting location for later
+
+/obj/item/weapon/laserdome_flag/attack_hand(mob/user as mob)
+	. = ..()
+	var/mob/living/carbon/human/M = loc
+	var/grabbing_team
+	var/flag_verbed
+
+	//if they're not a carbon, we don't care
+	if(!istype(M))
+		return
+
+	//get their uniform
+	if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+		grabbing_team = "red"
+	else if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
+		grabbing_team = "blue"
+	else
+		return	//if they're not on a team, stop!
+
+	//set the verb based on matching (or mismatching) outfits
+	if(grabbing_team == laser_team)
+		flag_verbed = "recovered"
+	else
+		flag_verbed = "taken"
+
+	//finally, announce (TODO- make this only on the laserdome zlevel)
+	global_announcer.autosay("[src] [flag_verbed] by [grabbing_team] Team!","Laserdome Announcer")
+
+/obj/item/weapon/laserdome_flag/red
+	name = "Red Flag"
+	icon_state = "red_flag"
+	laser_team = "red"
+
+/obj/item/weapon/laserdome_flag/blue
+	name = "Blue Flag"
+	icon_state = "blue_flag"
+	laser_team = "blue"
+
+/obj/structure/flag_base
+	name = "Flag base"
+	icon = 'icons/obj/flags.dmi'
+	icon_state = "flag_base"
+	var/base_team
+
+/obj/structure/flag_base/attackby(obj/F as obj, mob/user as mob)
+	. = ..()
+
+	if(istype(F,/obj/item/weapon/laserdome_flag))
+		var/obj/item/weapon/laserdome_flag/flag = F
+		if(flag.laser_team != base_team)
+			global_announcer.autosay("[base_team] team scored!","Laserdome Announcer")
+			user.drop_from_inventory(flag)
+			flag.loc = flag.start_pos	//teleport the captured flag back to its base location
+		else if(flag.laser_team == base_team)
+			global_announcer.autosay("[base_team] flag returned!","Laserdome Announcer")
+			user.drop_from_inventory(flag)
+			flag.loc = src.loc			//place our flag neatly back on its pedestal
