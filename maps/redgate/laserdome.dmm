@@ -4,6 +4,11 @@
 /obj/effect/floor_decal/corner/red/full{
 	dir = 1
 	},
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arrival)
 "asC" = (
@@ -50,6 +55,12 @@
 "dyA" = (
 /obj/effect/floor_decal/corner/yellow/full{
 	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena)
+"dEW" = (
+/obj/machinery/telecomms/relay/preset/station{
+	name = "laserdome telecomms relay"
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena)
@@ -157,6 +168,11 @@
 "isg" = (
 /obj/structure/closet/lasertag/blue,
 /obj/effect/floor_decal/corner/blue/full,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arrival)
 "jnH" = (
@@ -301,6 +317,11 @@
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 8
 	},
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arrival)
 "qyW" = (
@@ -381,6 +402,11 @@
 	dir = 9
 	},
 /obj/structure/closet/lasertag/blue,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arrival)
 "vAY" = (
@@ -419,6 +445,11 @@
 	dir = 6
 	},
 /obj/structure/closet/lasertag/red,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arrival)
 "wmn" = (
@@ -460,6 +491,11 @@
 /obj/effect/floor_decal/corner/red/full{
 	dir = 4
 	},
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arrival)
 "xMG" = (
@@ -759,7 +795,7 @@ vHZ
 vHZ
 vHZ
 vHZ
-vHZ
+dEW
 vHZ
 "}
 (3,1,1) = {"
@@ -14467,7 +14503,7 @@ mii
 mii
 mii
 mii
-ymc
+xLH
 ymc
 ymc
 ymc
@@ -14610,7 +14646,7 @@ rYc
 rYc
 vHZ
 ewz
-ymc
+xLH
 ymc
 ymc
 ymc

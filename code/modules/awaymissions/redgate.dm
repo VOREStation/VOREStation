@@ -11,7 +11,8 @@
 	var/obj/structure/redgate/target
 	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
 	var/list/exceptions = list(
-		/obj/structure/ore_box
+		/obj/structure/ore_box,
+		/obj/item/weapon/laserdome_flag
 		)	//made it a var so that GMs or map makers can selectively allow things to pass through
 	var/list/restrictions = list(
 		/mob/living/simple_mob/vore/overmap/stardog,
@@ -1080,7 +1081,6 @@
 	icon_state = "flag"
 	var/laser_team = "neutral"
 	w_class = ITEMSIZE_NO_CONTAINER //no stashing the flag in a bag for you, bucko!
-	//TODO: make it so people can't leave the laserdome whilst carrying these flags, to stop partypoopers leaving the round with them
 	var/start_pos
 
 /obj/item/weapon/laserdome_flag/Initialize()
@@ -1091,7 +1091,7 @@
 //TODO - make this not trigger when the flag is returned to its original location
 /obj/item/weapon/laserdome_flag/dropped()
 	. = ..()
-	global_announcer.autosay("[src] dropped!","Laserdome Announcer") //TODO- make this only on the laserdome zlevel/entertainment channel
+	global_announcer.autosay("[src] dropped!","Laserdome Announcer","Entertainment")
 */
 
 /obj/item/weapon/laserdome_flag/attack_hand(mob/user as mob)
@@ -1112,14 +1112,15 @@
 	else
 		return	//if they're not on a team, stop!
 
-	//set the verb based on matching (or mismatching) outfits
+	//set the verb based on matching (or mismatching) outfits, and teleport the flag back to base if it was touched by the owning team
 	if(grabbing_team == laser_team)
 		flag_verbed = "recovered"
+		user.drop_from_inventory(src)
+		src.loc = src.start_pos
 	else
 		flag_verbed = "taken"
 
-	//finally, announce (TODO- make this only on the laserdome zlevel/entertainment channel)
-	global_announcer.autosay("[src] [flag_verbed] by [grabbing_team] team!","Laserdome Announcer")
+	global_announcer.autosay("[src] [flag_verbed] by [grabbing_team] team!","Laserdome Announcer","Entertainment")
 
 /obj/item/weapon/laserdome_flag/red
 	name = "Red flag"
@@ -1144,10 +1145,10 @@
 	if(istype(F,/obj/item/weapon/laserdome_flag))
 		var/obj/item/weapon/laserdome_flag/flag = F
 		if(flag.laser_team != base_team)
-			global_announcer.autosay("[base_team] team scored!","Laserdome Announcer") //TODO- make this only on the laserdome zlevel/entertainment channel
+			global_announcer.autosay("[base_team] team scored!","Laserdome Announcer","Entertainment")
 			user.drop_from_inventory(flag)
 			flag.loc = flag.start_pos	//teleport the captured flag back to its base location
 		else if(flag.laser_team == base_team)
-			global_announcer.autosay("[base_team] flag returned!","Laserdome Announcer") //TODO- make this only on the laserdome zlevel/entertainment channel
+			global_announcer.autosay("[base_team] flag returned!","Laserdome Announcer","Entertainment")
 			user.drop_from_inventory(flag)
 			flag.loc = src.loc			//place our flag neatly back on its pedestal
