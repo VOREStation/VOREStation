@@ -36,6 +36,7 @@
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 	var/initial_icon = "raptorpurple"
+	var/wg_state = 0
 
 	var/random_skin = 1
 	var/list/skins = list(
@@ -107,11 +108,24 @@
 		"The constant, rhythmic kneading and massaging starts to take its toll along with the muggy heat, making you feel weaker and weaker!",
 		"The raptor happily wanders around while digesting its meal, almost like it is trying to show off the hanging gut you've given it. Not like it made much of a difference on his already borderline obese form anyway~")
 
+/mob/living/simple_mob/vore/raptor/adjust_nutrition()
+	..()
+	consider_wg()
+
+/mob/living/simple_mob/vore/raptor/proc/consider_wg()
+  var/past_state = wg_state
+  if(nutrition >= 900)
+    wg_state = 1
+  else
+    wg_state = 0
+  if(past_state != wg_state)
+    update_icon()
+
 /mob/living/simple_mob/vore/raptor/update_icon()
-	if(nutrition >= 450)
+	if(wg_state == 1)
 		icon_living = "[initial_icon]_fat"
 		icon_state = icon_living
-	else if(nutrition < 450)
+	else
 		icon_living = "[initial_icon]"
 		icon_state = icon_living
 	. = ..()
@@ -133,3 +147,4 @@
 			remove_eyes()
 			add_eyes()
 	update_transform()
+
