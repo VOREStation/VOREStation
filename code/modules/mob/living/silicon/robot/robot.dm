@@ -884,35 +884,56 @@
 		old_x = sprite_datum.pixel_x
 
 	if(stat == CONSCIOUS)
-		var/show_belly = FALSE
+		var/belly_size = 0
 		if(sprite_datum.has_vore_belly_sprites)
 			if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
 				if(sleeper_state)
-					show_belly = TRUE
+					belly_size = sprite_datum.max_belly_size
 			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
 				if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
-					if(vore_selected.overlay_min_prey_size == 0)	//if min size is 0, we dont check for size
-						show_belly = TRUE
-					else
-						if(vore_selected.override_min_prey_size && (LAZYLEN(vore_selected.contents) > vore_selected.override_min_prey_num))
-							show_belly = TRUE	//Override regardless of content size
+					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
+						if(istype(borgfood, /mob/living))
+							var/mob/living/prey = borgfood //typecast to living
+							belly_size += prey.size_multiplier / size_multiplier //Smaller prey are less filling to larger bellies
+						else if(istype(borgfood, /obj/item))
+							var/obj/item/junkfood = borgfood //typecast to item
+							var/fullness_to_add = 0
+							switch(junkfood.w_class)
+								if(ITEMSIZE_TINY)
+									fullness_to_add = ITEMSIZE_COST_TINY
+								if(ITEMSIZE_SMALL)
+									fullness_to_add = ITEMSIZE_COST_SMALL
+								if(ITEMSIZE_NORMAL)
+									fullness_to_add = ITEMSIZE_COST_NORMAL
+								if(ITEMSIZE_LARGE)
+									fullness_to_add = ITEMSIZE_COST_LARGE
+								if(ITEMSIZE_HUGE)
+									fullness_to_add = ITEMSIZE_COST_HUGE
+								else
+									fullness_to_add = ITEMSIZE_COST_NO_CONTAINER
+							belly_size += (fullness_to_add / 32) //* vore_selected.overlay_item_multiplier //Enable this later when vorepanel is reworked.
 						else
-							for(var/content in vore_selected.contents)	//If ANY in belly are big enough, we set to true
-								if(!istype(content, /mob/living)) continue
-								var/mob/living/prey = content
-								if(prey.size_multiplier >= vore_selected.overlay_min_prey_size)
-									show_belly = TRUE
-									break
-		if(show_belly)
-			add_overlay(sprite_datum.get_belly_overlay(src))
+							belly_size += 1 //if it's not a person, nor an item... lets just go with 1
+
+					//belly_size *= vore_selected.overlay_size_mult //Enable this after vore panel rework
+					if(belly_size < vore_selected.overlay_min_prey_size) //If it's not full enough, dont show belly
+						belly_size = 0
+					if(belly_size > 1)
+						belly_size = round(belly_size, 1)
+					else
+						belly_size = CEILING(belly_size, 1)
+					belly_size = clamp(belly_size, 0, sprite_datum.max_belly_size) //Value from 0 to however many bellysizes the borg has
+
+		if(belly_size > 0) //Borgs probably only have 1 belly size. but here's support for larger ones if that changes.
+			if(resting && sprite_datum.has_vore_belly_resting_sprites)
+				add_overlay(sprite_datum.get_belly_resting_overlay(src, belly_size))
+			else
+				add_overlay(sprite_datum.get_belly_overlay(src, belly_size))
 
 		sprite_datum.handle_extra_icon_updates(src)			// Various equipment-based sprites go here.
 
 		if(resting && sprite_datum.has_rest_sprites)
-			cut_overlays() // Hide that gut for it has no ground sprite yo.
 			icon_state = sprite_datum.get_rest_sprite(src)
-			if(show_belly && sprite_datum.has_vore_belly_sprites && sprite_datum.has_vore_belly_resting_sprites)	// Or DOES IT?
-				add_overlay(sprite_datum.get_belly_resting_overlay(src))
 
 		if(sprite_datum.has_eye_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
