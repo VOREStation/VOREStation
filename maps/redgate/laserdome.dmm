@@ -80,6 +80,10 @@
 "bqk" = (
 /turf/simulated/wall/tgmc/darkwall/deco3,
 /area/redgate/laserdome/arena/capture_the_flag)
+"brB" = (
+/obj/structure/flag_decor/blue,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/arena/capture_the_flag)
 "btL" = (
 /obj/effect/floor_decal/corner/yellow/full{
 	dir = 8
@@ -97,6 +101,10 @@
 /obj/effect/floor_decal/corner/red,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"cdW" = (
+/obj/structure/flag_decor/blue,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/arena/hyperball)
 "cBY" = (
 /obj/effect/floor_decal/corner/yellow/full{
 	dir = 1
@@ -118,9 +126,24 @@
 "cXB" = (
 /turf/simulated/wall/tgmc/darkwall/deco0,
 /area/redgate/laserdome/arena/capture_the_flag)
+"cXM" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 8;
+	name = "to_ctf_blue";
+	portal_id = "ctf_blue"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "cXZ" = (
 /turf/space,
 /area/redgate/laserdome/arena/capture_the_flag)
+"cYd" = (
+/obj/structure/flag_decor/red,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/arena/hyperball)
 "dhX" = (
 /turf/space,
 /area/redgate/laserdome/space)
@@ -181,6 +204,17 @@
 "ewz" = (
 /turf/simulated/wall/tgmc/darkwall/deco3,
 /area/redgate/laserdome/arena/hyperball)
+"eBw" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 8;
+	name = "to_hyper_blue";
+	portal_id = "hyper_blue"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "eND" = (
 /obj/structure/hyperball_pedestal,
 /obj/item/weapon/laserdome_hyperball,
@@ -201,6 +235,17 @@
 "fbv" = (
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
+"fmx" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_b{
+	dir = 4;
+	name = "from_lobby_to_hyper_blue";
+	portal_id = "hyper_blue"
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
@@ -241,6 +286,17 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"fLm" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 4;
+	name = "to_ctf_red";
+	portal_id = "ctf_red"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "fLE" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 8
@@ -285,7 +341,12 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "gqb" = (
 /obj/effect/floor_decal/corner/red{
-	dir = 1
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 4;
+	name = "to_hyper_red";
+	portal_id = "hyper_red"
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
@@ -373,6 +434,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"hiZ" = (
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "huU" = (
 /obj/structure/closet/lasertag/red,
 /obj/item/device/encryptionkey/ent,
@@ -398,6 +465,29 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"ieY" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_b{
+	dir = 8;
+	name = "from_lobby_to_ctf_red";
+	portal_id = "ctf_red"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
+"ijm" = (
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
+"ilv" = (
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "img" = (
 /obj/effect/floor_decal/corner/red/diagonal{
 	dir = 1
@@ -416,8 +506,21 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"iEA" = (
+/obj/effect/floor_decal/corner/blue,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "iHw" = (
 /turf/simulated/wall/tgmc/darkwall/deco1,
+/area/redgate/laserdome/arena/capture_the_flag)
+"iII" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 10
+	},
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "iJf" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
@@ -494,6 +597,26 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"kFg" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_b{
+	dir = 8;
+	name = "from_lobby_to_hyper_red";
+	portal_id = "hyper_red"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
+"kGu" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
 "kOV" = (
 /obj/machinery/recharger/wallcharger,
 /turf/simulated/wall/tgmc/darkwall,
@@ -518,6 +641,12 @@
 /obj/item/device/encryptionkey/ent,
 /obj/item/device/encryptionkey/ent,
 /obj/effect/floor_decal/corner/blue/full,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"lpp" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "lON" = (
@@ -553,11 +682,23 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "myA" = (
-/obj/effect/floor_decal/corner/red{
+/obj/effect/floor_decal/corner/blue{
+	dir = 10
+	},
+/obj/effect/map_effect/portal/line/side_a{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"mIW" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 10
+	},
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
 "mKB" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/effect/floor_decal/corner/red/diagonal{
@@ -568,6 +709,12 @@
 "mUp" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
+"mYx" = (
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
@@ -594,7 +741,12 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "nXX" = (
-/obj/effect/floor_decal/corner/blue,
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "oes" = (
@@ -715,6 +867,18 @@
 /obj/structure/hyperball_goal/red,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"qAM" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"qBt" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "qRv" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 1
@@ -739,6 +903,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"roP" = (
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
 "rpn" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 10
@@ -749,16 +919,16 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 6
 	},
-/obj/item/weapon/laserdome_flag/red,
 /obj/structure/flag_base/red,
+/obj/structure/flag_decor/red,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "rCO" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 9
 	},
-/obj/item/weapon/laserdome_flag/blue,
 /obj/structure/flag_base/blue,
+/obj/structure/flag_decor/blue,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "rMi" = (
@@ -773,11 +943,26 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"sao" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/obj/effect/map_effect/portal/master/side_b{
+	dir = 4;
+	name = "from_lobby_to_ctf_blue";
+	portal_id = "ctf_blue"
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
 "sGj" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
+"sMY" = (
+/obj/structure/flag_decor/red,
+/turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/capture_the_flag)
 "sOY" = (
 /obj/effect/floor_decal/industrial/hatch/red,
@@ -851,6 +1036,15 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"uqX" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
 "uzE" = (
 /obj/machinery/recharger/wallcharger,
 /turf/simulated/wall/tgmc/darkwall,
@@ -904,6 +1098,10 @@
 /obj/item/device/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"vsH" = (
+/obj/structure/flag_decor/blue,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/lobby)
 "vsY" = (
 /obj/structure/hyperball_goal/blue,
 /turf/simulated/floor/tiled/milspec/raised,
@@ -950,6 +1148,12 @@
 /obj/effect/floor_decal/corner/yellow/full,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
+"wkM" = (
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
 "wls" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 5
@@ -994,10 +1198,8 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "wZd" = (
-/obj/effect/floor_decal/corner/blue{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/flag_decor/red,
+/turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/lobby)
 "xaG" = (
 /obj/structure/table/bench/steel,
@@ -4639,9 +4841,9 @@ vHZ
 vHZ
 vHZ
 asC
-fGM
-xPN
-ogK
+fmx
+ijm
+mIW
 asC
 vHZ
 vHZ
@@ -4736,9 +4938,9 @@ vHZ
 vHZ
 vHZ
 vkq
-ggB
-nxb
-jKh
+sao
+roP
+iII
 vkq
 vHZ
 vHZ
@@ -4922,11 +5124,11 @@ vHZ
 vHZ
 vHZ
 asC
-asC
+cdW
 fGM
 xPN
 ogK
-asC
+cdW
 asC
 vHZ
 vHZ
@@ -5019,11 +5221,11 @@ vHZ
 vHZ
 vHZ
 vkq
-vkq
+brB
 ggB
 nxb
 jKh
-vkq
+brB
 vkq
 vHZ
 vHZ
@@ -5772,15 +5974,15 @@ asC
 asC
 fGM
 ogK
+cdW
 asC
-asC
 oes
 oes
 oes
 oes
 oes
 asC
-asC
+cdW
 fGM
 ogK
 asC
@@ -5869,15 +6071,15 @@ vkq
 vkq
 ggB
 jKh
+brB
 vkq
-vkq
 kOV
 kOV
 kOV
 kOV
 kOV
 vkq
-vkq
+brB
 ggB
 jKh
 vkq
@@ -8314,7 +8516,7 @@ vHZ
 vHZ
 asC
 asC
-asC
+cdW
 fbv
 ogq
 oqT
@@ -8350,7 +8552,7 @@ asC
 fMC
 hLJ
 wFI
-asC
+cdW
 asC
 asC
 vHZ
@@ -8411,7 +8613,7 @@ vHZ
 vHZ
 vkq
 vkq
-vkq
+brB
 qsu
 bBP
 qWR
@@ -8447,7 +8649,7 @@ vkq
 wDy
 fsE
 ayr
-vkq
+brB
 vkq
 vkq
 vHZ
@@ -8889,16 +9091,7 @@ asC
 asC
 asC
 ktO
-asC
-asC
-asC
-asC
-asC
-asC
-fGM
-ogK
-asC
-asC
+cdW
 asC
 asC
 asC
@@ -8909,9 +9102,18 @@ ogK
 asC
 asC
 asC
+cdW
 asC
 asC
 asC
+fGM
+ogK
+asC
+asC
+asC
+asC
+asC
+cdW
 xnk
 asC
 asC
@@ -8986,16 +9188,7 @@ vkq
 vkq
 vkq
 xvS
-vkq
-vkq
-vkq
-vkq
-vkq
-vkq
-ggB
-jKh
-vkq
-vkq
+brB
 vkq
 vkq
 vkq
@@ -9006,9 +9199,18 @@ jKh
 vkq
 vkq
 vkq
+brB
 vkq
 vkq
 vkq
+ggB
+jKh
+vkq
+vkq
+vkq
+vkq
+vkq
+brB
 anv
 vkq
 vkq
@@ -9492,22 +9694,22 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 uzE
 uzE
 uzE
 uzE
 uzE
+vsH
 uzE
 uzE
+uzE
+uzE
+uzE
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -9525,23 +9727,23 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 uzE
 uzE
+uzE
+uzE
+uzE
+vsH
 uzE
 uzE
 uzE
 uzE
 uzE
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -9634,16 +9836,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 diP
+oua
+oua
+oua
+oua
 oua
 oua
 oua
@@ -9654,6 +9852,10 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -9663,6 +9865,10 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -9673,17 +9879,13 @@ oua
 oua
 oua
 oua
+oua
+oua
+oua
+oua
 vXs
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -9776,16 +9978,12 @@ cDf
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 ymc
+xMG
+xMG
+xMG
+xMG
 xMG
 xMG
 xMG
@@ -9796,6 +9994,10 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -9805,6 +10007,10 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -9815,17 +10021,13 @@ xMG
 xMG
 xMG
 xMG
+xMG
+xMG
+xMG
+xMG
 nNn
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -9918,26 +10120,26 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 ymc
 xMG
-nXX
+iEA
 tWF
-wZd
+tWF
+tWF
+tWF
+tWF
+qAM
 xMG
 nNn
 xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -9947,27 +10149,27 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
 xLH
 ymc
 xMG
-nXX
+iEA
 tWF
-wZd
+tWF
+tWF
+tWF
+tWF
+qAM
 xMG
 nNn
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -10060,56 +10262,56 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-xLH
-xLH
 xLH
 ymc
 xMG
 nNn
-xLH
-ymc
-xMG
-nNn
-xLH
-xLH
-xLH
-xLH
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xLH
-xLH
-xLH
-xLH
-ymc
-xMG
-nNn
-xLH
+uzE
+uzE
+vsH
+uzE
+uzE
 ymc
 xMG
 nNn
 xLH
 xLH
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+ymc
+xMG
+nNn
+uzE
+uzE
+vsH
+uzE
+uzE
+ymc
+xMG
+nNn
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -10202,18 +10404,14 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+eBw
+hiZ
+myA
 xLH
 xLH
 xLH
-ymc
-xMG
-nNn
+xLH
 xLH
 ymc
 xMG
@@ -10222,6 +10420,10 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -10231,6 +10433,10 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -10239,19 +10445,15 @@ ymc
 xMG
 nNn
 xLH
-ymc
-xMG
-nNn
 xLH
 xLH
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+cXM
+hiZ
+myA
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -10344,35 +10546,7 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
-xLH
-xLH
-ymc
-xMG
-nNn
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
 xLH
 xLH
 xLH
@@ -10387,13 +10561,41 @@ nNn
 xLH
 xLH
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+vsH
+xLH
+xLH
+vsH
+xLH
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xLH
+vsH
+xLH
+xLH
+vsH
+xLH
+xLH
+xLH
+ymc
+xMG
+nNn
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -10486,12 +10688,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 vry
 kvk
@@ -10529,13 +10731,13 @@ oua
 kvk
 kYz
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -10628,12 +10830,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 uqG
 yet
@@ -10671,13 +10873,13 @@ xMG
 yet
 fqR
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -10770,12 +10972,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 pCi
 xaG
@@ -10813,13 +11015,13 @@ xMG
 grT
 gew
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -10912,12 +11114,12 @@ ewz
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 uzE
 jSG
@@ -10955,13 +11157,13 @@ xMG
 wmn
 uzE
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11054,12 +11256,12 @@ ewz
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 uzE
 jSG
@@ -11097,13 +11299,13 @@ xMG
 wmn
 uzE
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11196,12 +11398,12 @@ ewz
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 uzE
 jSG
@@ -11239,13 +11441,13 @@ xMG
 wmn
 uzE
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11338,12 +11540,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 pYa
 pOe
@@ -11381,13 +11583,13 @@ xMG
 ksX
 dHo
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11480,12 +11682,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 bdI
 yet
@@ -11523,13 +11725,13 @@ xMG
 yet
 hhi
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11622,12 +11824,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 xLH
 huU
 gEn
@@ -11665,13 +11867,13 @@ qba
 gEn
 gSu
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11764,35 +11966,7 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
-xLH
-xLH
-gVb
-xMG
-inM
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
 xLH
 xLH
 xLH
@@ -11807,13 +11981,41 @@ inM
 xLH
 xLH
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+wZd
+xLH
+xLH
+wZd
+xLH
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xLH
+wZd
+xLH
+xLH
+wZd
+xLH
+xLH
+xLH
+gVb
+xMG
+inM
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -11906,18 +12108,14 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+gqb
+ilv
+nXX
 xLH
 xLH
 xLH
-gVb
-xMG
-inM
+xLH
 xLH
 gVb
 xMG
@@ -11926,6 +12124,10 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -11935,6 +12137,10 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -11943,19 +12149,15 @@ gVb
 xMG
 inM
 xLH
-gVb
-xMG
-inM
 xLH
 xLH
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+fLm
+ilv
+nXX
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -12048,56 +12250,56 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-xLH
-xLH
 xLH
 gVb
 xMG
 inM
-xLH
-gVb
-xMG
-inM
-xLH
-xLH
-xLH
-xLH
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xMG
-xLH
-xLH
-xLH
-xLH
-gVb
-xMG
-inM
-xLH
+uzE
+uzE
+wZd
+uzE
+uzE
 gVb
 xMG
 inM
 xLH
 xLH
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
+xLH
+xLH
+xLH
+xLH
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xMG
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+xLH
+gVb
+xMG
+inM
+uzE
+uzE
+wZd
+uzE
+uzE
+gVb
+xMG
+inM
+xLH
+xLH
 vHZ
 vHZ
 vHZ
@@ -12190,26 +12392,26 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 gVb
 xMG
-myA
+qBt
 wVf
-gqb
+wVf
+wVf
+wVf
+wVf
+lpp
 xMG
 inM
 xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -12219,27 +12421,27 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
 xLH
 gVb
 xMG
-myA
+qBt
 wVf
-gqb
+wVf
+wVf
+wVf
+wVf
+lpp
 xMG
 inM
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -12332,16 +12534,12 @@ cDf
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 gVb
+xMG
+xMG
+xMG
+xMG
 xMG
 xMG
 xMG
@@ -12352,6 +12550,10 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -12361,6 +12563,10 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -12371,17 +12577,13 @@ xMG
 xMG
 xMG
 xMG
+xMG
+xMG
+xMG
+xMG
 inM
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -12474,16 +12676,12 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 ucr
+qba
+qba
+qba
+qba
 qba
 qba
 qba
@@ -12494,6 +12692,10 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 xMG
 xMG
 xMG
@@ -12503,6 +12705,10 @@ xMG
 xMG
 xMG
 xMG
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -12513,17 +12719,13 @@ qba
 qba
 qba
 qba
+qba
+qba
+qba
+qba
 rWF
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -12616,22 +12818,22 @@ asC
 vHZ
 vHZ
 vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
 xLH
 uzE
 uzE
 uzE
 uzE
 uzE
+wZd
 uzE
 uzE
+uzE
+uzE
+uzE
+xLH
+xLH
+xLH
+xLH
 xLH
 xLH
 xLH
@@ -12649,23 +12851,23 @@ xLH
 xLH
 xLH
 xLH
+xLH
+xLH
+xLH
+xLH
 uzE
 uzE
+uzE
+uzE
+uzE
+wZd
 uzE
 uzE
 uzE
 uzE
 uzE
 xLH
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
-vHZ
+xLH
 vHZ
 vHZ
 vHZ
@@ -13149,16 +13351,7 @@ asC
 asC
 asC
 ogD
-asC
-asC
-asC
-asC
-asC
-asC
-lUp
-vAY
-asC
-asC
+cYd
 asC
 asC
 asC
@@ -13169,9 +13362,18 @@ vAY
 asC
 asC
 asC
+cYd
 asC
 asC
 asC
+lUp
+vAY
+asC
+asC
+asC
+asC
+asC
+cYd
 ogD
 asC
 asC
@@ -13246,16 +13448,7 @@ vkq
 vkq
 vkq
 vbY
-vkq
-vkq
-vkq
-vkq
-vkq
-vkq
-val
-vnE
-vkq
-vkq
+sMY
 vkq
 vkq
 vkq
@@ -13266,9 +13459,18 @@ vnE
 vkq
 vkq
 vkq
+sMY
 vkq
 vkq
 vkq
+val
+vnE
+vkq
+vkq
+vkq
+vkq
+vkq
+sMY
 vbY
 vkq
 vkq
@@ -13710,7 +13912,7 @@ vHZ
 vHZ
 asC
 asC
-asC
+cYd
 mUp
 vEc
 sXa
@@ -13746,7 +13948,7 @@ asC
 kdf
 xIt
 tUV
-asC
+cYd
 asC
 asC
 vHZ
@@ -13807,7 +14009,7 @@ vHZ
 vHZ
 vkq
 vkq
-vkq
+sMY
 dxx
 iXo
 mcC
@@ -13843,7 +14045,7 @@ vkq
 tKw
 img
 uBq
-vkq
+sMY
 vkq
 vkq
 vHZ
@@ -16280,15 +16482,15 @@ asC
 asC
 lUp
 vAY
+cYd
 asC
-asC
 oes
 oes
 oes
 oes
 oes
 asC
-asC
+cYd
 lUp
 vAY
 asC
@@ -16377,15 +16579,15 @@ vkq
 vkq
 val
 vnE
+sMY
 vkq
-vkq
 kOV
 kOV
 kOV
 kOV
 kOV
 vkq
-vkq
+sMY
 val
 vnE
 vkq
@@ -17134,11 +17336,11 @@ vHZ
 vHZ
 vHZ
 asC
-asC
+cYd
 lUp
 xPN
 vAY
-asC
+cYd
 asC
 vHZ
 vHZ
@@ -17231,11 +17433,11 @@ vHZ
 vHZ
 vHZ
 vkq
-vkq
+sMY
 val
 nxb
 vnE
-vkq
+sMY
 vkq
 vHZ
 vHZ
@@ -17419,9 +17621,9 @@ vHZ
 vHZ
 vHZ
 asC
-lUp
-xPN
-vAY
+kFg
+mYx
+kGu
 asC
 vHZ
 vHZ
@@ -17516,9 +17718,9 @@ vHZ
 vHZ
 vHZ
 vkq
-val
-nxb
-vnE
+ieY
+wkM
+uqX
 vkq
 vHZ
 vHZ
