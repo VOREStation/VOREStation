@@ -11,8 +11,7 @@
 	var/obj/structure/redgate/target
 	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
 	var/list/exceptions = list(
-		/obj/structure/ore_box,
-		/obj/item/weapon/laserdome_flag
+		/obj/structure/ore_box
 		)	//made it a var so that GMs or map makers can selectively allow things to pass through
 	var/list/restrictions = list(
 		/mob/living/simple_mob/vore/overmap/stardog,
@@ -38,6 +37,11 @@
 
 	if(M.type in restrictions)	//Some stuff we don't want to bring EVEN IF it has a key.
 		return
+
+	for(var/obj/O in M.contents)
+		if(O.redgate_allowed == FALSE)
+			to_chat(M, "<span class='warning'>The redgate refuses to allow you to pass whilst you possess \the [O].</span>")
+			return
 
 	if(keycheck)		//exceptions probably won't have a ckey
 		if(!M.ckey)		//We only want players, no bringing the weird stuff on the other side back
@@ -1075,12 +1079,13 @@
 /obj/item/weapon/laserdome_flag
 	name = "Flag"
 	desc = "Steal the enemy flag and take it to your base in order to score! First team to three captures wins! Or was it five? Eh, check with the referee I guess."
-	description_info = "When you're carrying your flag, use it on your team's flag base to return it; if you're carrying the enemy flag, use it on your team's flag base to score a point!"
+	description_info = "Simply pick up your team's flag to return it to your base. If you're carrying the enemy flag, use it on your team's flag base to score a point!"
 	slowdown = 1 //big flag is harder to run with, encourages teamwork
 	icon = 'icons/obj/flags.dmi'
 	icon_state = "flag"
 	var/laser_team = "neutral"
 	w_class = ITEMSIZE_NO_CONTAINER //no stashing the flag in a bag for you, bucko!
+	redgate_allowed = FALSE //no running off the map with the flags either
 	var/start_pos
 
 /obj/item/weapon/laserdome_flag/Initialize()
@@ -1123,17 +1128,17 @@
 	global_announcer.autosay("[src] [flag_verbed] by [grabbing_team] team!","Laserdome Announcer","Entertainment")
 
 /obj/item/weapon/laserdome_flag/red
-	name = "Red flag"
+	name = "\improper Red flag"
 	icon_state = "red_flag"
 	laser_team = "red"
 
 /obj/item/weapon/laserdome_flag/blue
-	name = "Blue flag"
+	name = "\improper Blue flag"
 	icon_state = "blue_flag"
 	laser_team = "blue"
 
 /obj/structure/flag_base
-	name = "Flag base"
+	name = "\improper Flag base"
 	icon = 'icons/obj/flags.dmi'
 	icon_state = "flag_base"
 	var/base_team
