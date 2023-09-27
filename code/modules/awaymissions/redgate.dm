@@ -1094,8 +1094,8 @@
 /obj/item/weapon/laserdome_flag
 	name = "Flag"
 	desc = "Steal the enemy flag and take it to your base in order to score! First team to three captures wins! Or was it five? Eh, check with the referee I guess."
-	description_info = "Simply pick up your team's flag to return it to your base. If you're carrying the enemy flag, use it on your team's flag base to score a point!"
-	slowdown = 1 //big flag is harder to run with, encourages teamwork
+	description_info = "Simply pick up your team's flag to return it to your base after a short delay. If you're carrying the enemy flag, use it on your team's flag base to score a point!"
+	slowdown = 1 //big flag is harder to run with, encourages teamwork and lets the opposing team catch up. would be nice if this was a forced slowdown that ignores hardy.
 	icon = 'icons/obj/flags.dmi'
 	icon_state = "flag"
 	var/laser_team = "neutral"
@@ -1210,10 +1210,10 @@
 			flag.loc = src.loc			//place our flag neatly back on its pedestal
 
 /obj/item/weapon/laserdome_hyperball
-	name = "\improper HYPERball"
+	name = "\improper HYPERball"	//*always* refer to it as "the hyperball", not just "the ball". corporate insists.
 	desc = "Because regular balls aren't exciting enough, the future needs the HYPERball!"
-	description_info = "Take the ball and dunk it into the opposing team's goal to score a point! But don't dunk it into your own goal, or you lose a point!"
-	slowdown = -0.5	//carrying the ball actually speeds you up a little bit?
+	description_info = "Take the ball and dunk it into the opposing team's goal to score! You can either throw it into the goal or dunk it directly; the latter is worth more points, but it's more challenging as you need to be next to the goal in order to dunk."
+	slowdown = -0.5	//carrying the ball actually speeds you up a little bit? given you need to get past enemy defense and dunk. also makes it easier to get the ball away from your base if you intercept.
 	icon = 'icons/obj/flags.dmi'
 	icon_state = "hyperball"
 	w_class = ITEMSIZE_NO_CONTAINER	//no shoving it in your backpack to hide it
@@ -1244,9 +1244,11 @@
 		return	//if they're not on a team, stop!
 
 	user.visible_message("<span class='warning'>[user] has taken \the [src]!</span>")
+	//cache our grabber and their team, for throw interactions with the goals later
 	last_holder = M
 	last_team = grabbing_team
-	global_announcer.autosay("[capitalize(grabbing_team)] team on offense!","Laserdome Announcer","Entertainment")	//*always* refer to it as "the hyperball", not just "the ball". corporate insists.
+	//finally, call out which team has the ball
+	global_announcer.autosay("[capitalize(grabbing_team)] team on offense!","Laserdome Announcer","Entertainment")
 
 /*
 //TODO- make this not trigger when the ball is thrown or dunked, only when it's actually dropped
@@ -1266,13 +1268,13 @@
 /obj/structure/hyperball_goal
 	name = "HYPERball goal"
 	desc = "A dangerous-looking hole, with an energy net that stops anything but a hyperball from passing through."
-	description_info = "Dunk the hyperball here to score! Just don't get an own goal."
+	description_info = "Dunk the hyperball here to score! Just don't get an own goal. Alternately, throw the ball in for less points. There's a chance you'll miss, or an enemy team member might get in the way, but it can be easier than getting close enough for a dunk."
 	icon = 'icons/obj/flags.dmi'
 	icon_state = "hyperball_goal"
 	anchored = TRUE
 	var/goal_team
 	var/score = 0
-	var/score_limit = 21	//3 hand-dunks, or 7 throws
+	var/score_limit = 21	//3 hand-dunks (hard), or 7 throws (easy)
 	var/dunk_points = 7
 	var/range_dunk_points = 3
 	var/range_dunk_chance = 75
