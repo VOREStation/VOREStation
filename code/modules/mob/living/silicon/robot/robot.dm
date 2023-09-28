@@ -922,10 +922,7 @@
 							belly_size += 1 //if it's not a person, nor an item... lets just go with 1
 
 					belly_size *= vore_selected.belly_overall_mult //Enable this after vore panel rework
-					if(belly_size > 1)
-						belly_size = round(belly_size, 1)
-					else
-						belly_size = CEILING(belly_size, 1)
+					belly_size = round(belly_size, 1)
 					belly_size = clamp(belly_size, 0, sprite_datum.max_belly_size) //Value from 0 to however many bellysizes the borg has
 
 		if(belly_size > 0) //Borgs probably only have 1 belly size. but here's support for larger ones if that changes.
