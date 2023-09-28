@@ -547,10 +547,9 @@ const VoreSelectedBellyOptions = (props, context) => {
     save_digest_mode,
     eating_privacy_local,
     silicon_belly_overlay_preference,
-    visible_belly_minimum_prey,
-    overlay_min_prey_size,
-    override_min_prey_size,
-    override_min_prey_num,
+    belly_mob_mult,
+    belly_item_mult,
+    belly_overall_mult,
   } = belly;
 
   return (
@@ -736,10 +735,9 @@ const VoreSelectedMobTypeBellyButtons = (props, context) => {
   const { belly } = props;
   const {
     silicon_belly_overlay_preference,
-    visible_belly_minimum_prey,
-    overlay_min_prey_size,
-    override_min_prey_size,
-    override_min_prey_num,
+    belly_mob_mult,
+    belly_item_mult,
+    belly_overall_mult,
   } = belly;
 
   if (is_cyborg) {
@@ -754,44 +752,30 @@ const VoreSelectedMobTypeBellyButtons = (props, context) => {
               content={capitalize(silicon_belly_overlay_preference)}
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Minimum Prey num for VoreBelly">
+          <LabeledList.Item label="Mob Vorebelly Size Mult">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_belly_mob_mult' })
+              }
+              content={belly_mob_mult}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Item Vorebelly Size Mult">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_belly_item_multi' })
+              }
+              content={belly_item_mult}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Belly Size Multiplier">
             <Button
               onClick={() =>
                 act('set_attribute', {
-                  attribute: 'b_min_belly_number_flat',
+                  attribute: 'b_belly_overall_mult',
                 })
               }
-              content={visible_belly_minimum_prey}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label="Minimum Prey Size for Vorebelly">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_min_belly_prey_size' })
-              }
-              content={overlay_min_prey_size * 100 + '%'}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label="Toggle Number Override">
-            <Button
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_override_min_belly_prey_size',
-                })
-              }
-              icon={override_min_prey_size ? 'toggle-on' : 'toggle-off'}
-              selected={override_min_prey_size}
-              content={override_min_prey_size ? 'On' : 'Off'}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label="Minimum Prey Number Override">
-            <Button
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_min_belly_number_override',
-                })
-              }
-              content={override_min_prey_num}
+              content={belly_overall_mult}
             />
           </LabeledList.Item>
         </LabeledList>

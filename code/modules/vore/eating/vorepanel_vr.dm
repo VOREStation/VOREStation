@@ -228,10 +228,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			"colorization_enabled" = selected.colorization_enabled,
 			"eating_privacy_local" = selected.eating_privacy_local,
 			"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
-			"visible_belly_minimum_prey"	= selected.visible_belly_minimum_prey,
-			"overlay_min_prey_size"	= selected.overlay_min_prey_size,
-			"override_min_prey_size" = selected.override_min_prey_size,
-			"override_min_prey_num"	= selected.override_min_prey_num,
+			"belly_mob_mult" = selected.belly_mob_mult,
+			"belly_item_mult" = selected.belly_item_mult,
+			"belly_overall_mult" = selected.belly_overall_mult,
 
 		)
 
@@ -1165,48 +1164,39 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected.eating_privacy_local = privacy_choice
 			. = TRUE
 		if("b_silicon_belly")
-			var/belly_choice = tgui_alert(usr, "Choose whether you'd like your belly overlay to show from sleepers \
-			or from normal vore bellies. NOTE: This ONLY applies to silicons, not human mobs!", "Belly Overlay Preference",
-			list("Sleeper", "Vorebelly"))
+			var/belly_choice = tgui_alert(usr, "Choose whether you'd like your belly overlay to show from sleepers, \
+			normal vore bellies, or an average of the two. NOTE: This ONLY applies to silicons, not human mobs!", "Belly Overlay \
+			Preference",
+			list("Sleeper", "Vorebelly", "Both"))
 			if(belly_choice == null)
 				return FALSE
 			host.vore_selected.silicon_belly_overlay_preference = belly_choice
 			host.update_icon()
 			. = TRUE
-		if("b_min_belly_number_flat")
-			var/new_min_belly = tgui_input_number(user, "Choose the amount of prey your belly must contain \
-			at absolute minimum (should be lower or equal to minimum prey override if prey override is ON)",
-			"Set minimum prey amount", host.vore_selected.visible_belly_minimum_prey, max_value = 100, min_value = 1)
-			if(new_min_belly == null)
+		if("b_belly_mob_mult")
+			var/new_prey_mult = tgui_input_number(user, "Choose the multiplier for mobs contributing to belly size, ranging from 0 to 5. Set to 0 to disable mobs contributing to belly size",
+			"Set Prey Multiplier", host.vore_selected.belly_mob_mult, max_value = 5, min_value = 0)
+			if(new_prey_mult == null)
 				return FALSE
-			var/new_new_min_belly = CLAMP(new_min_belly, 1, 100)	//Clamping at 100 rather than infinity. Should be close to infinity tho.
-			host.vore_selected.visible_belly_minimum_prey = new_new_min_belly
+			host.vore_selected.belly_mob_mult = CLAMP(new_prey_mult, 0, 5) //Max at 5 because in no world will a borg have more than 5 bellies
 			host.update_icon()
 			. = TRUE
-		if("b_min_belly_prey_size")
-			var/new_belly_size = tgui_input_number(user, "Choose the required size prey must be to trigger belly overlay, \
-			ranging from 25% to 200%. Set to 0 to disable size checks", "Set Belly Examine Size.", max_value = 200, min_value = 0)
-			if(new_belly_size == null)
+		if("b_belly_item_mult")
+			var/new_item_mult = tgui_input_number(user, "Choose the multiplier for items contributing to belly size, \
+			ranging from 0 to 10. (Item size affects how much they contribute as well) Set to 0 to disable size checks", "Set Item Multiplier", host.vore_selected.belly_item_mult, max_value = 10, min_value = 0)
+			if(new_item_mult == null)
 				return FALSE
-			else if(new_belly_size == 0)
-				host.vore_selected.overlay_min_prey_size = 0
 			else
-				var/new_new_belly_size = CLAMP(new_belly_size, 25, 200)
-				host.vore_selected.overlay_min_prey_size = (new_new_belly_size/100)
+				host.vore_selected.belly_item_mult = CLAMP(new_item_mult, 0, 10) //Max at 10 because items contribute less than mobs, in general
 			host.update_icon()
 			. = TRUE
-		if("b_override_min_belly_prey_size")
-			host.vore_selected.override_min_prey_size = !host.vore_selected.override_min_prey_size
-			host.update_icon()
-			. = TRUE
-		if("b_min_belly_number_override")
-			var/new_min_prey = tgui_input_number(user, "Choose the amount of prey your belly must contain to override min prey size \
-			to show belly overlay ignoring prey size requirement. Toggle Prey Override MUST be ON to work",
-			"Set minimum prey amount", host.vore_selected.override_min_prey_num, max_value = 100, min_value = 1)
-			if(new_min_prey == null)
+		if("b_belly_overall_mult")
+			var/new_overall_mult = tgui_input_number(user, "Choose the overall multiplier to be applied to belly contents after specific multipliers, ranging from 0 to 5. Set to 0 to disable showing belly sprites at all.",
+			"Set minimum prey amount", host.vore_selected.belly_overall_mult, max_value = 5, min_value = 0)
+			if(new_overall_mult == null)
 				return FALSE
-			var/new_new_min_prey = CLAMP(new_min_prey, 1, 100)	//Clamping at 100 rather than infinity. Should be close to infinity tho.
-			host.vore_selected.override_min_prey_num = new_new_min_prey
+			else
+				host.vore_selected.belly_overall_mult = CLAMP(new_overall_mult, 0, 5) // Max at 5 because... no reason to go higher at that point
 			host.update_icon()
 			. = TRUE
 		if("b_fancy_sound")

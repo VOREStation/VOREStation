@@ -885,17 +885,23 @@
 
 	if(stat == CONSCIOUS)
 		var/belly_size = 0
-		if(sprite_datum.has_vore_belly_sprites)
+		if(sprite_datum.has_vore_belly_sprites && vore_selected.belly_overall_mult != 0)
 			if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
 				if(sleeper_state)
 					belly_size = sprite_datum.max_belly_size
-			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
-				if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
+			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly" || vore_selected.silicon_belly_overlay_preference == "Both")
+				if(sleeper_state)
+					belly_size += 1
+				if(LAZYLEN(vore_selected.contents) > 0)
 					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
 						if(istype(borgfood, /mob/living))
+							if(vore_selected.belly_item_mult <= 0) //If mobs dont contribute, dont calculate further
+								continue
 							var/mob/living/prey = borgfood //typecast to living
-							belly_size += prey.size_multiplier / size_multiplier //Smaller prey are less filling to larger bellies
+							belly_size += (prey.size_multiplier / size_multiplier) / vore_selected.belly_mob_mult //Smaller prey are less filling to larger bellies
 						else if(istype(borgfood, /obj/item))
+							if(vore_selected.belly_item_mult <= 0) //If items dont contribute, dont calculate further
+								continue
 							var/obj/item/junkfood = borgfood //typecast to item
 							var/fullness_to_add = 0
 							switch(junkfood.w_class)
@@ -915,9 +921,7 @@
 						else
 							belly_size += 1 //if it's not a person, nor an item... lets just go with 1
 
-					//belly_size *= vore_selected.overlay_size_mult //Enable this after vore panel rework
-					if(belly_size < vore_selected.overlay_min_prey_size) //If it's not full enough, dont show belly
-						belly_size = 0
+					belly_size *= vore_selected.belly_overall_mult //Enable this after vore panel rework
 					if(belly_size > 1)
 						belly_size = round(belly_size, 1)
 					else
