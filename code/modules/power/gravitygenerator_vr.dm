@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/station/Initialize()
 	. = ..()
 	setup_parts()
-	middle.add_overlay("activated")	
+	middle.add_overlay("activated")
 
 //
 // Generator an admin can spawn
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/attackby(obj/item/I, mob/user, params)
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
-			if(I.is_screwdriver())
+			if(I.has_tool_quality(TOOL_SCREWDRIVER))
 				to_chat(user, "<span class='notice'>You secure the screws of the framework.</span>")
 				playsound(src, I.usesound, 75, 1)
 				broken_state++
@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				return
 		if(GRAV_NEEDS_WELDING)
 			if(I.has_tool_quality(TOOL_WELDER))
-				var/obj/item/weapon/weldingtool/W = I
+				var/obj/item/weapon/weldingtool/W = I.get_welder()
 				if(W.remove_fuel(0,user))
 					to_chat(user, "<span class='notice'>You mend the damaged framework.</span>")
 					broken_state++
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 					to_chat(user, "<span class='warning'>You need 10 sheets of plasteel!</span>")
 				return
 		if(GRAV_NEEDS_WRENCH)
-			if(I.is_wrench())
+			if(I.has_tool_quality(TOOL_WRENCH))
 				to_chat(user, "<span class='notice'>You secure the plating to the framework.</span>")
 				playsound(src, I.usesound, 75, 1)
 				set_fix()
@@ -408,7 +408,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/proc/update_list()
 	levels.Cut()
 	var/my_z = get_z(src)
-	
+
 	//Actually doing it special this time instead of letting using_map decide
 	if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/S = get_overmap_sector(my_z)
@@ -418,7 +418,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 			levels = GetConnectedZlevels(my_z)
 	else
 		levels = GetConnectedZlevels(my_z)
-		
+
 	for(var/z in levels)
 		if(!GLOB.gravity_generators["[z]"])
 			GLOB.gravity_generators["[z]"] = list()

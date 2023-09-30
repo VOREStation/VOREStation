@@ -158,7 +158,7 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(active)
 			to_chat(user, "Turn off [src] first.")
 			return
@@ -183,8 +183,8 @@
 		update_icon() // VOREStation Add
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(active)
 			to_chat(user, "Turn off [src] first.")
 			return

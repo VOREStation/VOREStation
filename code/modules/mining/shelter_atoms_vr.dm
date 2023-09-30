@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	pixel_y = -32
 
 /obj/item/device/gps/computer/attackby(obj/item/I, mob/living/user)
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
 		if(do_after(user,4 SECONDS,src))
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	qdel(src)
 
 /obj/structure/fans/attackby(obj/item/I, mob/living/user)
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
 		if(do_after(user,4 SECONDS,src))

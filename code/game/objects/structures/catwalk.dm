@@ -87,12 +87,12 @@
 	qdel(src)
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	if(C.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = C.get_welder()
 		if(WT.isOn() && WT.remove_fuel(0, user))
 			deconstruct(user)
 			return
-	if(C.is_crowbar() && plated_tile)
+	if(C.has_tool_quality(TOOL_CROWBAR) && plated_tile)
 		hatch_open = !hatch_open
 		if(hatch_open)
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 2)

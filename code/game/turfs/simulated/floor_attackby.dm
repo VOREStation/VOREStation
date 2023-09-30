@@ -129,8 +129,8 @@
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Plating repairs and removal
-		else if(istype(C, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/welder = C
+		else if(C.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/welder = C.get_welder()
 			if(welder.isOn())
 				// Needs repairs
 				if(broken || burnt)
@@ -160,7 +160,7 @@
 						do_remove_plating(C, user, base_type)
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		if(broken || burnt)
 			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
 			make_plating()
@@ -174,14 +174,14 @@
 			return 0
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(W.is_screwdriver() && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)
 			return 0
 		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(W.is_wrench() && (flooring.flags & TURF_REMOVE_WRENCH))
+	else if(W.has_tool_quality(TOOL_WRENCH) && (flooring.flags & TURF_REMOVE_WRENCH))
 		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
@@ -215,8 +215,8 @@
 	return TRUE
 
 /turf/simulated/floor/proc/do_remove_plating(obj/item/weapon/W, mob/user, base_type)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(5,user))
 			to_chat(user, "<span class='warning'>You don't have enough fuel in [WT] finish cutting through [src].</span>")
 			return

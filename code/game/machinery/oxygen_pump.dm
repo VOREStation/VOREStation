@@ -128,7 +128,7 @@
 	return 1
 
 /obj/machinery/oxygen_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		stat ^= MAINT
 		user.visible_message("<span class='notice'>\The [user] [(stat & MAINT) ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [(stat & MAINT) ? "open" : "close"] \the [src].</span>")
 		icon_state = (stat & MAINT) ? icon_state_open : icon_state_closed

@@ -357,12 +357,12 @@
 		overloaded = 0
 
 /obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
-	if(panel_open && (O?.is_multitool() || O?.is_wirecutter()))
+	if(panel_open && (O?.has_tool_quality(TOOL_MULTITOOL) || O?.has_tool_quality(TOOL_WIRECUTTER)))
 		wires.Interact(user)
 		return TRUE
 	if(default_deconstruction_screwdriver(user, O))
 		return
-	if(O?.is_crowbar() || O?.is_wrench() || istype(O, /obj/item/weapon/storage/part_replacer))
+	if(O?.has_tool_quality(TOOL_CROWBAR) || O?.has_tool_quality(TOOL_WRENCH) || istype(O, /obj/item/weapon/storage/part_replacer))
 		if(offline_for)
 			to_chat(user, "<span class='warning'>Wait until \the [src] cools down from emergency shutdown first!</span>")
 			return

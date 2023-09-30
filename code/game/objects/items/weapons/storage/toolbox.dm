@@ -97,9 +97,9 @@
 /obj/item/weapon/storage/toolbox/syndicate/powertools
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow,
-		/obj/item/weapon/tool/screwdriver/power,
+		/obj/item/weapon/tool/transforming/powerdrill,
 		/obj/item/weapon/weldingtool/experimental,
-		/obj/item/weapon/tool/crowbar/power,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/device/multitool,
 		/obj/item/stack/cable_coil/random_belt,
 		/obj/item/device/analyzer

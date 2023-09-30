@@ -14,7 +14,7 @@
 	return
 
 /obj/structure/salvageable/attackby(obj/item/I, mob/user)
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, I.usesound, 50, 1)
 		var/actual_time = I.toolspeed * 170
 		user.visible_message( \

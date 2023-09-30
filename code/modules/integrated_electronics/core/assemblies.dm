@@ -271,7 +271,7 @@
 			visible_message("<b>\The [user]</b> waves \the [src] around [target].")
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
-	if(can_anchor && I.is_wrench())
+	if(can_anchor && I.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		to_chat(user, span("notice", "You've [anchored ? "" : "un"]secured \the [src] to \the [get_turf(src)]."))
 		if(anchored)
@@ -290,14 +290,14 @@
 			tgui_interact(user)
 			return TRUE
 
-	else if(I.is_crowbar())
+	else if(I.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
 		update_icon()
 		return TRUE
 
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.is_screwdriver())
+	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(opened)
 			tgui_interact(user)
 			return TRUE
@@ -397,4 +397,4 @@
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
 /obj/item/device/electronic_assembly/proc/is_valid_tool(var/obj/item/I)
-	return I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/weapon/cell/device) || istype(I, /obj/item/device/integrated_electronics)
+	return I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/weapon/cell/device) || istype(I, /obj/item/device/integrated_electronics)

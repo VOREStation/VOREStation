@@ -146,7 +146,7 @@
 	to_chat(user, "<span class='notice'>You switch \the [src] [on ? "on" : "off"].</span>")
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (W.is_screwdriver())
+	if (W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(cover_open)
 			cover_open = 0
 			to_chat(user, "You screw the panel into place.")
@@ -237,7 +237,7 @@
 	return cell
 
 /obj/item/device/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (W.is_screwdriver())
+	if (W.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='warning'>This cooler's cell is permanently installed!</span>")
 		return
 

@@ -153,8 +153,8 @@
 
 /obj/item/weapon/storage/belt/utility/chief/full
 	starts_with = list(
-		/obj/item/weapon/tool/screwdriver/power,
-		/obj/item/weapon/tool/crowbar/power,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/weapon/weldingtool/experimental,
 		/obj/item/device/multitool,
 		/obj/item/stack/cable_coil/random_belt,
