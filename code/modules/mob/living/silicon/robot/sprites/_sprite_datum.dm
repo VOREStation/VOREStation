@@ -72,7 +72,6 @@
 			return "[sprite_icon_state]-bellyup"
 		else
 			return "[sprite_icon_state]-rest"
-	return
 
 /datum/robot_sprite/proc/get_dead_sprite(var/mob/living/silicon/robot/ourborg)
 	return "[sprite_icon_state]-wreck"
