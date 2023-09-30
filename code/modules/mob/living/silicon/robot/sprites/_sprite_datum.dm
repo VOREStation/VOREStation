@@ -49,7 +49,6 @@
 			return "[get_belly_overlay(ourborg, size)]-bellyup"
 		else
 			return "[get_belly_overlay(ourborg, size)]-rest"
-	return
 
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
