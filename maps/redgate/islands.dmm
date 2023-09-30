@@ -1178,7 +1178,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/islands/ocean)
 "JP" = (
-/obj/item/poi/brokenoldreactor,
+/obj/structure/prop/alien/dispenser/twoway,
 /turf/simulated/shuttle/floor/alienplating/blue/half,
 /area/redgate/islands/alienship)
 "Kk" = (
@@ -1334,6 +1334,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/islands/kitchen)
+"Nz" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alienplating/blue/half,
+/area/redgate/islands/alienship)
 "NB" = (
 /turf/simulated/wall/iron,
 /area/redgate/islands/telecomms)
@@ -3069,7 +3073,7 @@ ea
 Wc
 Wc
 BJ
-JP
+Nz
 iv
 lo
 AC
