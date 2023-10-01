@@ -329,7 +329,7 @@
 
 /datum/map_template/common_lateload/redgate/laserdome
 	name = "Redgate - Laserdome"
-	desc = "A classic (if rather large!) laser tag arena."
+	desc = "A large orbital station with recreational facilities, namely a pair of laser tag arenas."
 	mappath = 'maps/redgate/laserdome.dmm'
 
 //////////////////////////////////////////////////////////////////////////////////////

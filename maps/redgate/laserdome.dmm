@@ -41,15 +41,8 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "aul" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "awn" = (
@@ -67,17 +60,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "aLY" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "aSF" = (
@@ -349,12 +335,16 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "eUU" = (
 /obj/effect/floor_decal/corner/red/full,
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
 /obj/item/clothing/suit/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "eXJ" = (
@@ -388,15 +378,8 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "fga" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
 /obj/effect/floor_decal/corner/blue/full,
-/obj/structure/closet/lasertag/blue,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "fhw" = (
@@ -533,17 +516,10 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
 "gEn" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 4
 	},
-/obj/structure/closet/lasertag/blue,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "gIH" = (
@@ -554,15 +530,8 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "gKy" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/blue,
 /obj/effect/floor_decal/corner/blue/full,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "gMp" = (
@@ -733,7 +702,11 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "inv" = (
 /obj/effect/floor_decal/corner/blue/full,
-/mob/living/carbon/human/dummy/mannequin/autoequip,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
 /obj/item/clothing/suit/redtag,
@@ -780,12 +753,16 @@
 /area/redgate/laserdome/arena/hyperball)
 "iJM" = (
 /obj/effect/floor_decal/corner/red/full,
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
 /obj/item/clothing/suit/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "iVw" = (
@@ -860,12 +837,16 @@
 /obj/effect/floor_decal/corner/red/full{
 	dir = 1
 	},
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
 /obj/item/clothing/suit/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "jZT" = (
@@ -912,15 +893,8 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "kvk" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "kFg" = (
@@ -975,46 +949,36 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "kYn" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 4
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "lbT" = (
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 8
 	},
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/red,
 /obj/item/clothing/suit/redtag,
 /obj/item/clothing/gloves/red,
 /obj/item/clothing/head/redtag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "lcP" = (
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
 "ldQ" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 1
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "lgv" = (
@@ -1155,17 +1119,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "ngN" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 1
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "nlK" = (
@@ -1320,17 +1277,10 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/hbl_prep)
 "oIG" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red{
 	dir = 5
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "oRz" = (
@@ -1341,12 +1291,16 @@
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
 /obj/item/clothing/suit/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "oWY" = (
@@ -1411,17 +1365,10 @@
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/laserdome/arena/hbl_prep)
 "pBv" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/blue,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 4
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "pCi" = (
@@ -1646,17 +1593,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "shp" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red{
 	dir = 10
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "sox" = (
@@ -1764,17 +1704,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "tjc" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
-/obj/structure/closet/lasertag/blue,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "tuG" = (
@@ -1807,17 +1740,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "tRw" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/blue,
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "tUV" = (
@@ -1830,12 +1756,16 @@
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 4
 	},
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
 /obj/item/clothing/suit/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "tZO" = (
@@ -1845,17 +1775,10 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/lobby/restaurant)
 "ubP" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "ucr" = (
@@ -1958,26 +1881,23 @@
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
 	},
-/mob/living/carbon/human/dummy/mannequin/autoequip,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/under/color/blue,
 /obj/item/clothing/suit/bluetag,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "uPT" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/blue,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "val" = (
@@ -2085,17 +2005,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "vNP" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 8
 	},
-/obj/structure/closet/lasertag/blue,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "vNV" = (
@@ -2181,17 +2094,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "wED" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/blue,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 8
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "wFp" = (
@@ -2238,17 +2144,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/spaceview_lounge)
 "wXJ" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
 /obj/effect/floor_decal/corner/blue{
 	dir = 5
 	},
-/obj/structure/closet/lasertag/blue,
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "wYM" = (
@@ -2329,17 +2228,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "yet" = (
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/structure/closet/lasertag/red,
 /obj/effect/floor_decal/corner/red/full{
 	dir = 4
 	},
-/obj/item/clothing/gloves/bluespace,
-/obj/item/clothing/gloves/bluespace,
+/obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "yeu" = (
