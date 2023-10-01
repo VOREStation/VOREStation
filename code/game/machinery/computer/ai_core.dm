@@ -15,14 +15,14 @@
 
 	switch(state)
 		if(0)
-			if(P.is_wrench())
+			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
 					anchored = TRUE
 					state = 1
-			if(istype(P, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = P
+			if(P.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = P.get_welder()
 				if(!WT.isOn())
 					to_chat(user, "The welder must be on for this task.")
 					return
@@ -33,7 +33,7 @@
 					new /obj/item/stack/material/plasteel( loc, 4)
 					qdel(src)
 		if(1)
-			if(P.is_wrench())
+			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
@@ -46,12 +46,12 @@
 				circuit = P
 				user.drop_item()
 				P.loc = src
-			if(P.is_screwdriver() && circuit)
+			if(P.has_tool_quality(TOOL_SCREWDRIVER) && circuit)
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You screw the circuit board into place.</span>")
 				state = 2
 				icon_state = "2"
-			if(P.is_crowbar() && circuit)
+			if(P.has_tool_quality(TOOL_CROWBAR) && circuit)
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
 				state = 1
@@ -59,7 +59,7 @@
 				circuit.loc = loc
 				circuit = null
 		if(2)
-			if(P.is_screwdriver() && circuit)
+			if(P.has_tool_quality(TOOL_SCREWDRIVER) && circuit)
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
 				state = 1
@@ -78,7 +78,7 @@
 						to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
 				return
 		if(3)
-			if(P.is_wirecutter())
+			if(P.has_tool_quality(TOOL_WIRECUTTER))
 				if (brain)
 					to_chat(user, "Get that brain out of there first")
 				else
@@ -145,7 +145,7 @@
 				to_chat(usr, "Added [P].")
 				icon_state = "3b"
 
-			if(P.is_crowbar() && brain)
+			if(P.has_tool_quality(TOOL_CROWBAR) && brain)
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You remove the brain.</span>")
 				brain.loc = loc
@@ -153,7 +153,7 @@
 				icon_state = "3"
 
 		if(4)
-			if(P.is_crowbar())
+			if(P.has_tool_quality(TOOL_CROWBAR))
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You remove the glass panel.</span>")
 				state = 3
@@ -164,7 +164,7 @@
 				new /obj/item/stack/material/glass/reinforced( loc, 2 )
 				return
 
-			if(P.is_screwdriver())
+			if(P.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
 				if(!brain)
@@ -232,7 +232,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		else
 			to_chat(user, "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence.")
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(anchored)
 			user.visible_message("<b>\The [user]</b> starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)

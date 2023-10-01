@@ -118,7 +118,7 @@
 		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
 		toggle_pairing()
 
-	else if(I.is_screwdriver() && cell)
+	else if(I.has_tool_quality(TOOL_SCREWDRIVER) && cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")
 			playsound(src, I.usesound, 50, 1)

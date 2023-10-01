@@ -22,7 +22,7 @@
 		to_chat(user, "The maintenance panel is open.")
 
 /obj/machinery/disperser/attackby(obj/item/I, mob/user)
-	if(I && I.is_wrench())
+	if(I && I.has_tool_quality(TOOL_WRENCH))
 		if(panel_open)
 			user.visible_message("<b>\The [user]</b> rotates \the [src] with \the [I].",
 				"<span class='notice'>You rotate \the [src] with \the [I].</span>")

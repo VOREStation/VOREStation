@@ -16,7 +16,7 @@
 
 /obj/item/weapon/dice/attackby(obj/item/weapon/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool) || istype(W, /obj/item/weapon/flame/lighter))
+	if(W.has_tool_quality(TOOL_WELDER) || istype(W, /obj/item/weapon/flame/lighter))
 		if(cheater)
 			to_chat(user, "<span class='warning'>Wait, this [name] is already weighted!</span>")
 		else if(tamper_proof)

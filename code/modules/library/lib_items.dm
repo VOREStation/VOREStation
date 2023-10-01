@@ -38,11 +38,11 @@
 			return
 		else
 			name = ("bookcase ([newname])")
-	else if(O.is_wrench())
+	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 100, 1)
 		to_chat(user, (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>"))
 		anchored = !anchored
-	else if(O.is_screwdriver())
+	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 75, 1)
 		to_chat(user, "<span class='notice'>You begin dismantling \the [src].</span>")
 		if(do_after(user,25 * O.toolspeed))
@@ -281,7 +281,7 @@ Book Cart End
 							return
 					scanner.computer.inventory.Add(src)
 					to_chat(user, "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
-	else if(istype(W, /obj/item/weapon/material/knife) || W.is_wirecutter())
+	else if(istype(W, /obj/item/weapon/material/knife) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(carved)	return
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
 		if(do_after(user, 30))

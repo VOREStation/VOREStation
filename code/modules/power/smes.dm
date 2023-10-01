@@ -287,8 +287,8 @@ GLOBAL_LIST_EMPTY(smeses)
 		to_chat(user, "<span class='filter_notice'><span class='warning'>You need to open access hatch on [src] first!</span></span>")
 		return FALSE
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(!WT.isOn())
 			to_chat(user, "<span class='filter_notice'>Turn on \the [WT] first!</span>")
 			return FALSE
@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(smeses)
 			connect_to_network()
 		return FALSE
 
-	else if(W.is_wirecutter() && !building_terminal)
+	else if(W.has_tool_quality(TOOL_WIRECUTTER) && !building_terminal)
 		building_terminal = TRUE
 		var/obj/machinery/power/terminal/term
 		for(var/obj/machinery/power/terminal/T in get_turf(user))

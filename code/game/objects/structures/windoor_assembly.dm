@@ -87,8 +87,8 @@
 
 	switch(state)
 		if("01")
-			if(istype(W, /obj/item/weapon/weldingtool) && !anchored )
-				var/obj/item/weapon/weldingtool/WT = W
+			if(W.has_tool_quality(TOOL_WELDER) && !anchored)
+				var/obj/item/weapon/weldingtool/WT = W.get_welder()
 				if (WT.remove_fuel(0,user))
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
 					playsound(src, WT.usesound, 50, 1)
@@ -106,7 +106,7 @@
 					return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
-			if(W.is_wrench() && !anchored)
+			if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
@@ -117,7 +117,7 @@
 					step = 0
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-			else if(W.is_wrench() && anchored)
+			else if(W.has_tool_quality(TOOL_WRENCH) && anchored)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
@@ -143,7 +143,7 @@
 		if("02")
 
 			//Removing wire from the assembly. Step 5 undone.
-			if(W.is_wirecutter() && !src.electronics)
+			if(W.has_tool_quality(TOOL_WIRECUTTER) && !src.electronics)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
@@ -172,7 +172,7 @@
 					W.loc = src.loc
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
-			else if(W.is_screwdriver() && src.electronics)
+			else if(W.has_tool_quality(TOOL_SCREWDRIVER) && src.electronics)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
@@ -185,7 +185,7 @@
 					ae.loc = src.loc
 
 			//Crowbar to complete the assembly, Step 7 complete.
-			else if(W.is_crowbar())
+			else if(W.has_tool_quality(TOOL_CROWBAR))
 				if(!src.electronics)
 					to_chat(usr,"<span class='warning'>The assembly is missing electronics.</span>")
 					return

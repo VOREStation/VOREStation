@@ -296,7 +296,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	else if(D.is_wirecutter())
+	else if(D.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")
 		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket)
 		user.drop_from_inventory(src)

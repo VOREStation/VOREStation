@@ -131,12 +131,12 @@
 
 /obj/item/device/radio/intercom/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(W.is_screwdriver())  // Opening the intercom up.
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))  // Opening the intercom up.
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		playsound(src, W.usesound, 50, 1)
 		update_icon()
-	else if(wiresexposed && W.is_wirecutter())
+	else if(wiresexposed && W.has_tool_quality(TOOL_WIRECUTTER))
 		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
 		playsound(src, W.usesound, 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
@@ -173,7 +173,7 @@
 /obj/item/device/radio/intercom/update_icon()
 	var/area/A = get_area(src)
 	on = A?.powered(EQUIP)
-	
+
 	cut_overlays()
 
 	if(!on)

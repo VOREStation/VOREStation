@@ -145,7 +145,7 @@
 				update_icon()
 			else
 				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
-		else if(W.is_screwdriver() && bcell)
+		else if(W.has_tool_quality(TOOL_SCREWDRIVER) && bcell)
 			bcell.update_icon()
 			bcell.forceMove(get_turf(loc))
 			bcell = null

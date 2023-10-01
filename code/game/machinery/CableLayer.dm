@@ -34,7 +34,7 @@
 			to_chat(user, "You load [result] lengths of cable into [src].")
 		return
 
-	if(O.is_wirecutter())
+	if(O.has_tool_quality(TOOL_WIRECUTTER))
 		if(cable && cable.get_amount())
 			var/m = round(input(usr, "Please specify the length of cable to cut", "Cut cable", min(cable.get_amount(), 30)) as num, 1)
 			m = min(m, cable.get_amount())

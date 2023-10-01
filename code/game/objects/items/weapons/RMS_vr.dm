@@ -248,7 +248,7 @@
 	return 1
 
 /obj/item/weapon/rms/attackby(obj/item/W, mob/user)
-	if(W.is_multitool())
+	if(W.has_tool_quality(TOOL_MULTITOOL))
 		overcharge = !overcharge
 	if(overcharge)
 		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer quietly whirrs...</span>")

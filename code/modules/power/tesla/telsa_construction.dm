@@ -34,7 +34,7 @@
 // SPECIAL BOARDS BELOW
 
 /obj/item/weapon/circuitboard/tesla_coil/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_multitool())
+	if(I.has_tool_quality(TOOL_MULTITOOL))
 		var/result = tgui_input_list(user, "What do you want to reconfigure the board to?", "Multitool-Circuitboard interface", list("Standard", "Relay", "Prism", "Amplifier", "Recaster", "Collector"))
 		switch(result)
 			if("Standard")

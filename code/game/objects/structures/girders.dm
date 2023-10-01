@@ -146,7 +146,7 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.is_wrench() && state == 0)
+	if(W.has_tool_quality(TOOL_WRENCH) && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
@@ -172,7 +172,7 @@
 		to_chat(user, "<span class='notice'>You drill through the girder!</span>")
 		dismantle()
 
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(state == 2)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>Now unsecuring support struts...</span>")
@@ -185,7 +185,7 @@
 			reinforcing = !reinforcing
 			to_chat(user, "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>")
 
-	else if(W.is_wirecutter() && state == 1)
+	else if(W.has_tool_quality(TOOL_WIRECUTTER) && state == 1)
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now removing support struts...</span>")
 		if(do_after(user,40 * W.toolspeed))
@@ -195,7 +195,7 @@
 			reinf_material = null
 			reset_girder()
 
-	else if(W.is_crowbar() && state == 0 && anchored)
+	else if(W.has_tool_quality(TOOL_CROWBAR) && state == 0 && anchored)
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
 		if(do_after(user, 40 * W.toolspeed))
@@ -339,7 +339,7 @@
 	qdel(src)
 
 /obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
 		if(do_after(user,40 * W.toolspeed))
@@ -419,4 +419,3 @@
 
 /obj/structure/girder/eris
 	wall_type = /turf/simulated/wall/eris
-	

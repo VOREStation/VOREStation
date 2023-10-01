@@ -72,34 +72,40 @@
 	toolspeed = 0.5
 
 /obj/item/weapon/tool/crowbar/power
-	name = "jaws of life"
-	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
-	icon_state = "jaws_pry"
-	item_state = "jawsoflife"
-	matter = list(MAT_METAL=150, MAT_SILVER=50)
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	name = "power pryer"
+	desc = "You shouldn't see this."
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.25
-	var/obj/item/weapon/tool/wirecutters/power/counterpart = null
 
-/obj/item/weapon/tool/crowbar/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-	if(!counterpart && no_counterpart)
-		counterpart = new(src, FALSE)
-		counterpart.counterpart = src
+/*
+ * Prybar
+ */
 
-/obj/item/weapon/tool/crowbar/power/Destroy()
-	if(counterpart)
-		counterpart.counterpart = null // So it can qdel cleanly.
-		QDEL_NULL(counterpart)
-	return ..()
+/obj/item/weapon/tool/prybar
+	name = "pry bar"
+	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency. It comes in a variety of configurations - collect them all!"
+	icon = 'icons/obj/tools_vr.dmi'
+	icon_state = "prybar"
+	item_state = "crowbar"
+	slot_flags = SLOT_BELT
+	force = 4
+	throwforce = 5
+	pry = 1
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(MAT_STEEL = 30)
+	attack_verb = list("whapped", "smacked", "swatted", "thwacked", "hit")
+	usesound = 'sound/items/crowbar.ogg'
+	toolspeed = 1
+	var/random_color = TRUE
 
-/obj/item/weapon/tool/crowbar/power/attack_self(mob/user)
-	playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
-	user.drop_item(src)
-	counterpart.forceMove(get_turf(src))
-	counterpart.persist_storable = persist_storable
-	src.forceMove(counterpart)
-	user.put_in_active_hand(counterpart)
-	to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
+/obj/item/weapon/tool/prybar/red
+	icon_state = "prybar_red"
+	item_state = "crowbar_red"
+	random_color = FALSE
+
+/obj/item/weapon/tool/prybar/New()
+	if(random_color)
+		icon_state = "prybar[pick("","_green","_aubergine","_blue")]"
+	. = ..()

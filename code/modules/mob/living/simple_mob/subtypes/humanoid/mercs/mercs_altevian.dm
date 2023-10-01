@@ -62,7 +62,7 @@
 	attacktext = list("whacked", "slammed", "bashed", "clonked", "bonked")
 	attack_sound = 'sound/weapons/smash.ogg'
 
-	loot_list = list(/obj/item/weapon/melee/altevian_wrench = 100)
+	loot_list = list(/obj/item/weapon/tool/transforming/altevian = 100)
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged
 	desc = "Altevian Naval Salvage Guard, adorned in the top of the line Heartbreaker suit. Armed with a small energy gun."

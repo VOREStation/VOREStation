@@ -485,7 +485,7 @@ var/list/organ_cache = list()
 			return TRUE
 
 		if(robotic >= ORGAN_ROBOT)
-			if(O.is_screwdriver())
+			if(O.has_tool_quality(TOOL_SCREWDRIVER))
 				return TRUE
 
 		else

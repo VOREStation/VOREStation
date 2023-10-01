@@ -29,7 +29,7 @@
 
 		if(0)
 			// State 0
-			if(W.is_wrench() && isturf(src.loc))
+			if(W.has_tool_quality(TOOL_WRENCH) && isturf(src.loc))
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "You wrench the assembly into place.")
 				anchored = TRUE
@@ -40,14 +40,14 @@
 
 		if(1)
 			// State 1
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(W.has_tool_quality(TOOL_WELDER))
 				if(weld(W, user))
 					to_chat(user, "You weld the assembly securely into place.")
 					anchored = TRUE
 					state = 2
 				return
 
-			else if(W.is_wrench())
+			else if(W.has_tool_quality(TOOL_WRENCH))
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "You unattach the assembly from its place.")
 				anchored = FALSE
@@ -66,7 +66,7 @@
 					to_chat(user, "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>")
 				return
 
-			else if(istype(W, /obj/item/weapon/weldingtool))
+			else if(W.has_tool_quality(TOOL_WELDER))
 
 				if(weld(W, user))
 					to_chat(user, "You unweld the assembly from its place.")
@@ -77,7 +77,7 @@
 
 		if(3)
 			// State 3
-			if(W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 50, 1)
 
 				var/input = sanitize(tgui_input_text(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: "+using_map.station_short+",Security,Secret ", "Set Network", camera_network ? camera_network : NETWORK_DEFAULT))
@@ -115,7 +115,7 @@
 							break
 				return
 
-			else if(W.is_wirecutter())
+			else if(W.has_tool_quality(TOOL_WIRECUTTER))
 
 				new/obj/item/stack/cable_coil(get_turf(src), 2)
 				playsound(src, W.usesound, 50, 1)
@@ -132,7 +132,7 @@
 		return
 
 	// Taking out upgrades
-	else if(W.is_crowbar() && upgrades.len)
+	else if(W.has_tool_quality(TOOL_CROWBAR) && upgrades.len)
 		var/obj/U = locate(/obj) in upgrades
 		if(U)
 			to_chat(user, "You unattach an upgrade from the assembly.")
@@ -154,6 +154,7 @@
 		..()
 
 /obj/item/weapon/camera_assembly/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
+	WT = WT.get_welder()
 
 	if(busy)
 		return 0

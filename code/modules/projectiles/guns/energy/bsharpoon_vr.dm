@@ -42,7 +42,7 @@
 	if(!istype(user))
 		return
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!scanmod)
 			to_chat(user, "<span class='warning'>There's no scanner module installed!</span>")
 			return

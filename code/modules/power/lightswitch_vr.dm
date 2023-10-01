@@ -83,9 +83,9 @@
 
 /obj/structure/construction/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.has_tool_quality(TOOL_WELDER))
 		if(stage == FRAME_UNFASTENED)
-			var/obj/item/weapon/weldingtool/WT = W
+			var/obj/item/weapon/weldingtool/WT = W.get_welder()
 			if(!WT.remove_fuel(0, user))
 				to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
 				return
@@ -106,7 +106,7 @@
 			to_chat(user, "You have to remove the wires first.")
 		return
 
-	else if(W.is_wirecutter())
+	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if (stage == FRAME_WIRED)
 			stage = FRAME_FASTENED
 			user.update_examine_panel(src)
@@ -129,7 +129,7 @@
 				update_icon()
 		return
 
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if (stage == FRAME_UNFASTENED)
 			stage = FRAME_FASTENED
 			user.update_examine_panel(src)

@@ -69,7 +69,7 @@
 	return ..()
 
 /obj/structure/fence/attackby(obj/item/W, mob/user)
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!cuttable)
 			to_chat(user, span("warning", "This section of the fence can't be cut."))
 			return
