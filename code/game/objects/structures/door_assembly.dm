@@ -170,8 +170,8 @@
 		rename_door(user)
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if (WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
 			if(istext(glass))
@@ -200,7 +200,7 @@
 			to_chat(user, "<span class='notice'>You need more welding fuel.</span>")
 			return
 
-	else if(W.is_wrench() && state == 0)
+	else if(W.has_tool_quality(TOOL_WRENCH) && state == 0)
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring the airlock assembly from the floor.", "You starts unsecuring the airlock assembly from the floor.")
@@ -223,7 +223,7 @@
 				src.state = 1
 				to_chat(user, "<span class='notice'>You wire the airlock.</span>")
 
-	else if(W.is_wirecutter() && state == 1 )
+	else if(W.has_tool_quality(TOOL_WIRECUTTER) && state == 1 )
 		playsound(src, W.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
@@ -245,7 +245,7 @@
 			src.state = 2
 			src.electronics = W
 
-	else if(W.is_crowbar() && state == 2 )
+	else if(W.has_tool_quality(TOOL_CROWBAR) && state == 2 )
 		//This should never happen, but just in case I guess
 		if (!electronics)
 			to_chat(user, "<span class='notice'>There was nothing to remove.</span>")
@@ -287,7 +287,7 @@
 								to_chat(user, "<span class='notice'>You installed [material_display_name(material_name)] plating into the airlock assembly.</span>")
 								glass = material_name
 
-	else if(W.is_screwdriver() && state == 2 )
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && state == 2 )
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now finishing the airlock.</span>")
 

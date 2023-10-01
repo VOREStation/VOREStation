@@ -178,7 +178,7 @@
 	modded = FALSE
 
 /obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (W.is_wrench()) //can't wrench it shut, it's always open
+	if (W.has_tool_quality(TOOL_WRENCH)) //can't wrench it shut, it's always open
 		return
 	return ..()
 //VOREStation Add End
@@ -202,7 +202,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if (W.is_wrench())
+	if (W.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = modded ? 0 : 1
@@ -360,7 +360,7 @@
 	return 1
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		src.add_fingerprint(user)
 		if(bottle)
 			playsound(src, I.usesound, 50, 1)
@@ -385,7 +385,7 @@
 				playsound(src, I.usesound, 50, 1)
 		return
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(cupholder)
 			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You take the cup dispenser off.</span>")

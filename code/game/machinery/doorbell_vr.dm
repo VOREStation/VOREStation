@@ -136,7 +136,7 @@
 		var/obj/item/device/multitool/M = W
 		M.connectable = src
 		to_chat(user, "<span class='caution'>You save the data in \the [M]'s buffer.</span>")
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>You start to unwrench \the [src].</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 15) && !QDELETED(src))

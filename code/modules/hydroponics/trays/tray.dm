@@ -489,7 +489,7 @@
 	if(O.is_open_container())
 		return 0
 
-	if(O.is_wirecutter() || istype(O, /obj/item/weapon/surgical/scalpel))
+	if(O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/weapon/surgical/scalpel))
 
 		if(!seed)
 			to_chat(user, "<span class='filter_notice'>There is nothing to take a sample from in \the [src].</span>")
@@ -584,7 +584,7 @@
 		qdel(O)
 		check_health()
 
-	else if(mechanical && O.is_wrench())
+	else if(mechanical && O.has_tool_quality(TOOL_WRENCH))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)

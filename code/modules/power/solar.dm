@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 /obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
 
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message("<span class='notice'>[user] begins to take the glass off the solar panel.</span>")
 		if(do_after(user, 50))
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return 0  //if there's no SSsun.sun or the panel is not linked to a solar control computer, no need to proceed
 	if(!powernet || powernet != control.powernet)
 		return 0 // We aren't connected to the controller
-	if(obscured) 
+	if(obscured)
 		return 0 //get no light from the SSsun.sun, so don't generate power
 	return GLOB.solar_gen_rate * sunfrac
 
@@ -207,13 +207,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if (!isturf(loc))
 		return 0
 	if(!anchored)
-		if(W.is_wrench())
+		if(W.has_tool_quality(TOOL_WRENCH))
 			anchored = TRUE
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
 	else
-		if(W.is_wrench())
+		if(W.has_tool_quality(TOOL_WRENCH))
 			anchored = FALSE
 			user.visible_message("<span class='notice'>[user] unwrenches the solar assembly from it's place.</span>")
 			playsound(src, W.usesound, 75, 1)
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
 			return 1
 	else
-		if(W.is_crowbar())
+		if(W.has_tool_quality(TOOL_CROWBAR))
 			new /obj/item/weapon/tracker_electronics(src.loc)
 			tracker = 0
 			user.visible_message("<span class='notice'>[user] takes out the electronics from the solar assembly.</span>")
@@ -412,7 +412,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	return data
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)

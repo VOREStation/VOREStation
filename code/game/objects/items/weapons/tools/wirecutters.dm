@@ -98,35 +98,8 @@
 	reach = 2
 
 /obj/item/weapon/tool/wirecutters/power
-	name = "jaws of life"
-	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
-	icon_state = "jaws_cutter"
-	item_state = "jawsoflife"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-	matter = list(MAT_METAL=150, MAT_SILVER=50)
+	name = "power cutters"
+	desc = "You shouldn't see this."
 	usesound = 'sound/items/jaws_cut.ogg'
 	force = 15
 	toolspeed = 0.25
-	random_color = FALSE
-	var/obj/item/weapon/tool/crowbar/power/counterpart = null
-
-/obj/item/weapon/tool/wirecutters/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-	if(!counterpart && no_counterpart)
-		counterpart = new(src, FALSE)
-		counterpart.counterpart = src
-
-/obj/item/weapon/tool/wirecutters/power/Destroy()
-	if(counterpart)
-		counterpart.counterpart = null // So it can qdel cleanly.
-		QDEL_NULL(counterpart)
-	return ..()
-
-/obj/item/weapon/tool/wirecutters/power/attack_self(mob/user)
-	playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
-	user.drop_item(src)
-	counterpart.forceMove(get_turf(src))
-	counterpart.persist_storable = persist_storable
-	src.forceMove(counterpart)
-	user.put_in_active_hand(counterpart)
-	to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")

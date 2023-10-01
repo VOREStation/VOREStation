@@ -74,37 +74,10 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 
 /obj/item/weapon/tool/wrench/power
-	name = "hand drill"
-	desc = "A simple powered hand drill. It's fitted with a bolt bit."
-	icon_state = "drill_bolt"
-	item_state = "drill"
+	name = "power wrench"
+	desc = "You shouldn't see this."
 	usesound = 'sound/items/drill_use.ogg'
-	matter = list(MAT_STEEL = 150, MAT_SILVER = 50)
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	force = 8
-	w_class = ITEMSIZE_SMALL
 	throwforce = 8
 	attack_verb = list("drilled", "screwed", "jabbed")
 	toolspeed = 0.25
-	var/obj/item/weapon/tool/screwdriver/power/counterpart = null
-
-/obj/item/weapon/tool/wrench/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-	if(!counterpart && no_counterpart)
-		counterpart = new(src, FALSE)
-		counterpart.counterpart = src
-
-/obj/item/weapon/tool/wrench/power/Destroy()
-	if(counterpart)
-		counterpart.counterpart = null // So it can qdel cleanly.
-		QDEL_NULL(counterpart)
-	return ..()
-
-/obj/item/weapon/tool/wrench/power/attack_self(mob/user)
-	playsound(src,'sound/items/change_drill.ogg',50,1)
-	user.drop_item(src)
-	counterpart.forceMove(get_turf(src))
-	counterpart.persist_storable = persist_storable
-	src.forceMove(counterpart)
-	user.put_in_active_hand(counterpart)
-	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")

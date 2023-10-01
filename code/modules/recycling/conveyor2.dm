@@ -289,9 +289,9 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(istype(I, /obj/item/weapon/weldingtool))
+	if(I.has_tool_quality(TOOL_WELDER))
 		if(panel_open)
-			var/obj/item/weapon/weldingtool/WT = I
+			var/obj/item/weapon/weldingtool/WT = I.get_welder()
 			if(!WT.remove_fuel(0, user))
 				to_chat(user, "The welding tool must be on to complete this task.")
 				return

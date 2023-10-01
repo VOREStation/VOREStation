@@ -546,16 +546,16 @@
 		M.install(src, user)
 		return
 
-	if (istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
-		if (src == user)
+	if(W.has_tool_quality(TOOL_WELDER) && user.a_intent != I_HURT)
+		if(src == user)
 			to_chat(user, "<span class='warning'>You lack the reach to be able to repair yourself.</span>")
 			return
 
-		if (!getBruteLoss())
+		if(!getBruteLoss())
 			to_chat(user, "<span class='filter_notice'>Nothing to fix here!</span>")
 			return
-		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		if(WT.remove_fuel(0))
 			user.setClickCooldown(user.get_attack_speed(WT))
 			adjustBruteLoss(-30)
 			updatehealth()
@@ -567,7 +567,7 @@
 			return
 
 	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
-		if (!getFireLoss())
+		if(!getFireLoss())
 			to_chat(user, "<span class='filter_notice'>Nothing to fix here!</span>")
 			return
 		var/obj/item/stack/cable_coil/coil = W
@@ -578,7 +578,7 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message("<span class='filter_notice'><font color='red'>[user] has fixed some of the burnt wires on [src]!</font></span>", 1)
 
-	else if (W.is_crowbar() && user.a_intent != I_HURT)	// crowbar means open or close the cover
+	else if(W.has_tool_quality(TOOL_CROWBAR) && user.a_intent != I_HURT)	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				to_chat(user, "<span class='filter_notice'>You close the cover.</span>")
@@ -655,26 +655,26 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (W.is_wirecutter() || istype(W, /obj/item/device/multitool))
+	else if (W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			wires.Interact(user)
 		else
 			to_chat(user, "<span class='filter_notice'>You can't reach the wiring.</span>")
 
-	else if(W.is_screwdriver() && opened && !cell)	// haxing
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "<span class='filter_notice'>The wires have been [wiresexposed ? "exposed" : "unexposed"]</span>")
 		playsound(src, W.usesound, 50, 1)
 		update_icon()
 
-	else if(W.is_screwdriver() && opened && cell)	// radio
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			to_chat(user, "<span class='filter_notice'>Unable to locate a radio.</span>")
 		update_icon()
 
-	else if(W.is_wrench() && opened && !cell)
+	else if(W.has_tool_quality(TOOL_WRENCH) && opened && !cell)
 		if(bolt)
 			to_chat(user,"<span class='filter_notice'>You begin removing \the [bolt].</span>")
 

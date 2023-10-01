@@ -72,7 +72,7 @@
 //		sd_SetLuminosity(0)
 
 /obj/machinery/sparker/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		add_fingerprint(user)
 		disable = !disable
 		playsound(src, W.usesound, 50, 1)

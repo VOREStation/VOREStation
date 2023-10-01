@@ -10,12 +10,12 @@
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
-	
+
 	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_power = 1
 	light_on = FALSE
-	
+
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/high
 	var/state = 0
@@ -90,7 +90,7 @@
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
-	else if(I.is_screwdriver())
+	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")

@@ -129,7 +129,7 @@
 					return
 
 		if(7)
-			if(W.is_wrench() || W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You begin your finishing touches on \the [src].</span>")
 				if(do_after(user, 20) && build_stage == 7)
@@ -179,7 +179,7 @@
 				return
 
 		if(2)
-			if(W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You close up \the [src].</span>")
 				var/obj/vehicle/train/trolley/trailer/product = new(src)
@@ -260,7 +260,7 @@
 				return
 
 		if(6)
-			if(W.is_wrench() || W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You begin your finishing touches on \the [src].</span>")
 				if(do_after(user, 20) && build_stage == 6)
@@ -360,7 +360,7 @@
 					return
 
 		if(7)
-			if(W.is_wrench() || W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You begin your finishing touches on \the [src].</span>")
 				if(do_after(user, 20) && build_stage == 7)

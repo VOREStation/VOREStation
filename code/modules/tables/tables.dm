@@ -99,7 +99,7 @@ var/list/table_icon_cache = list()
 
 /obj/structure/table/attackby(obj/item/weapon/W, mob/user)
 
-	if(reinforced && W.is_screwdriver())
+	if(reinforced && W.has_tool_quality(TOOL_SCREWDRIVER))
 		remove_reinforced(W, user)
 		if(!reinforced)
 			update_desc()
@@ -107,7 +107,7 @@ var/list/table_icon_cache = list()
 			update_material()
 		return 1
 
-	if(carpeted && W.is_crowbar())
+	if(carpeted && W.has_tool_quality(TOOL_CROWBAR))
 		user.visible_message("<b>\The [user]</b> removes the carpet from \the [src].",
 		                              "<span class='notice'>You remove the carpet from \the [src].</span>")
 		new carpeted_type(loc)
@@ -127,7 +127,7 @@ var/list/table_icon_cache = list()
 		else
 			to_chat(user, "<span class='warning'>You don't have enough carpet!</span>")
 
-	if(!reinforced && !carpeted && material && W.is_wrench())
+	if(!reinforced && !carpeted && material && W.has_tool_quality(TOOL_WRENCH))
 		remove_material(W, user)
 		if(!material)
 			update_connections(1)
@@ -138,12 +138,12 @@ var/list/table_icon_cache = list()
 			update_material()
 		return 1
 
-	if(!carpeted && !reinforced && !material && W.is_wrench())
+	if(!carpeted && !reinforced && !material && W.has_tool_quality(TOOL_WRENCH))
 		dismantle(W, user)
 		return 1
 
-	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/F = W
+	if(health < maxhealth && W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/F = W.get_welder()
 		if(F.welding)
 			to_chat(user, "<span class='notice'>You begin reparing damage to \the [src].</span>")
 			playsound(src, F.usesound, 50, 1)

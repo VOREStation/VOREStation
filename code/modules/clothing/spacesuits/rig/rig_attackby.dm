@@ -7,7 +7,7 @@
 			return
 
 	// Pass repair items on to the chestpiece.
-	if(chest && (istype(W,/obj/item/stack/material) || istype(W, /obj/item/weapon/weldingtool)))
+	if(chest && (istype(W,/obj/item/stack/material) || W.has_tool_quality(TOOL_WELDER)))
 		return chest.attackby(W,user)
 
 	// Lock or unlock the access panel.
@@ -30,7 +30,7 @@
 		to_chat(user, "You [locked ? "lock" : "unlock"] \the [src] access panel.")
 		return
 
-	else if(W.is_crowbar())
+	else if(W.has_tool_quality(TOOL_CROWBAR))
 		if(!open && locked)
 			to_chat(user, "The access panel is locked shut.")
 			return
@@ -41,7 +41,7 @@
 
 	if(open)
 		// Hacking.
-		if(W.is_wirecutter() || istype(W, /obj/item/device/multitool))
+		if(W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool))
 			if(open)
 				wires.Interact(user)
 			else
@@ -102,7 +102,7 @@
 			src.cell = W
 			return
 
-		else if(W.is_wrench())
+		else if(W.has_tool_quality(TOOL_WRENCH))
 
 			if(!air_supply)
 				to_chat(user, "There is no tank to remove.")
@@ -116,7 +116,7 @@
 			air_supply = null
 			return
 
-		else if(W.is_screwdriver())
+		else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 
 			var/list/current_mounts = list()
 			if(cell) current_mounts   += "cell"

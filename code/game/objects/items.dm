@@ -1018,3 +1018,6 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 /obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
 	return
+
+/obj/item/proc/get_welder()
+	return

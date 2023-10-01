@@ -17,7 +17,7 @@
 	if(!T.is_plating())
 		return
 
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(usr, "<font color='blue'>These cables are too tough to be cut with those [W.name].</font>")
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))

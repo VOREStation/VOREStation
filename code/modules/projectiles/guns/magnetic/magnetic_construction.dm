@@ -33,8 +33,8 @@
 		increment_construction_stage()
 		return
 
-	if(istype(thing, /obj/item/weapon/weldingtool) && construction_stage == 4)
-		var/obj/item/weapon/weldingtool/welder = thing
+	if(thing.has_tool_quality(TOOL_WELDER) && construction_stage == 4)
+		var/obj/item/weapon/weldingtool/welder = thing.get_welder()
 
 		if(!welder.isOn())
 			to_chat(user, "<span class='warning'>Turn it on first!</span>")
@@ -66,7 +66,7 @@
 		increment_construction_stage()
 		return
 
-	if(thing.is_screwdriver() && construction_stage >= 9)
+	if(thing.has_tool_quality(TOOL_SCREWDRIVER) && construction_stage >= 9)
 		user.visible_message("<b>\The [user]</b> secures \the [src] and finishes it off.")
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		var/obj/item/weapon/gun/magnetic/coilgun = new(loc)

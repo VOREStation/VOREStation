@@ -86,7 +86,7 @@
 		return
 
 	// Dismantling the half wall
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		for(var/obj/structure/S in loc)
 			if(istype(S, /obj/structure/window))
 				to_chat(user, "<span class='notice'>There is still a window on the low wall!</span>")

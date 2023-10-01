@@ -244,7 +244,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		user.drop_from_inventory(O)
 		O.forceMove(src)
 		scan = O
-	else if(O.is_multitool() && panel_open)
+	else if(O.has_tool_quality(TOOL_MULTITOOL) && panel_open)
 		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")

@@ -39,7 +39,6 @@
 		/obj/item/weapon/makeover,
 		/obj/item/pizzavoucher //VOREStation edit
 		)
-	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	slot_flags = SLOT_ID
 
 	var/obj/item/weapon/card/id/front_id = null
