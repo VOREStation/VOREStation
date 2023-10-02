@@ -189,15 +189,14 @@
 	module_type = "Surgeon"
 	sprite_icon = 'icons/mob/robot/surgical_wide.dmi'
 
-	var/has_sleeper_light_indicator = FALSE
-
+/* //Handled by the normal belly code now.
 /datum/robot_sprite/dogborg/surgical/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
 	if(has_sleeper_light_indicator)
 		if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
 		else return "[sprite_icon_state]-sleeper_r"
 	else
 		return ..()
-
+*/
 /datum/robot_sprite/dogborg/surgical/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
@@ -314,15 +313,14 @@
 	module_type = "Crisis"
 	sprite_icon = 'icons/mob/robot/crisis_wide.dmi'
 
-	var/has_sleeper_light_indicator = FALSE
-
+/* //Handled by the normal belly code now.
 /datum/robot_sprite/dogborg/crisis/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
 	if(has_sleeper_light_indicator)
 		if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
 		else return "[sprite_icon_state]-sleeper_r"
 	else
 		return ..()
-
+*/
 /datum/robot_sprite/dogborg/crisis/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
