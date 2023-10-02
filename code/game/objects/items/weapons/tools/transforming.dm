@@ -107,7 +107,7 @@
 
 /obj/item/weapon/tool/transforming/altevian
 	name = "Hull Systems Omni-Tool"
-	desc = "A big and bulky tool, used by altevians for exterior operations. Can take shape of any regular tool, scaled up to a comically large size."
+	desc = "A big and bulky tool, used by Altevians for engineering duties. It's able to do the job of any regular tool while scaled up to a comically large size. It seems nanites are in play to help with adjusting the tip and handling some of the heavy lifting when in use."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "altevian-wrench"
 	item_icons = list(

@@ -92,7 +92,7 @@
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/altevian_outfit
-	description = "A uniform commonly seen from altevians during their work. The material on this uniform seems to be made of durable thread that can handle the stress of most matters of labor."
+	description = "A uniform commonly seen worn by altevians. The material on this uniform is made of a durable thread that can handle the stress of most forms of labor."
 	display_name = "altevian duty jumpsuit selection (Altevian)"
 	whitelisted = SPECIES_ALTEVIAN
 	sort_category = "Xenowear"
@@ -105,7 +105,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
 /datum/gear/accessory/altevian_aquila
-	description = "An emblem commonly seen worn by the altevians for their work operations."
+	description = "An emblem found across all altevian vessels. The unique metals and jewels denote ranks for them back home. Otherwise, it's just a pretty rat skull emblem with a set of crystals for their eyes and fangs."
 	display_name = "royal altevian navy emblem selection"
 	whitelisted = SPECIES_ALTEVIAN
 	sort_category = "Xenowear"

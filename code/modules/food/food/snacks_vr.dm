@@ -828,7 +828,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratfruitcake
 	name = "Premade Fruit Block"
-	desc = "A block of processed material that is infused with a mix of fruits and matter of such."
+	desc = "A block of processed material that is infused with a mix of fruits and other nutrients."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_fruitcake"
 	package_open_state = "altevian_fruitcake-open"
@@ -839,7 +839,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratpackburger
 	name = "Altevian Prepackaged Meal - Burger"
-	desc = "A unique twist on what most know as MREs. This seems to be made with using bluespace tech and other methods of preserving an items freshness that it's like someone just ordered this from a restaurant just minutes ago. This one seems to be of burger and fries!"
+	desc = "A unique twist on what most know as MREs. This seems to be made with using a specialized compression technology that possibly utilizes Bluespace alongside it. Whatever it is, it seems to keep the freshness of whatever is inside to restaurant quality. This one is a combo of a burger and fries!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_pack_burger"
 	package_open_state = "altevian_pack_burger-open"
@@ -851,7 +851,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratpackcheese
 	name = "Generations Novelty Packaged Wedge"
-	desc = "Using the popular method of packaging that altevians use, they seemed to also use it for other methods. This one appears to have no real markings on it, save for its different coloring, and an image of the altevian emblem."
+	desc = "A unique twist on what most know as MREs. This seems to be made with using a specialized compression technology that possibly utilizes Bluespace alongside it. Whatever it is, it seems to keep the freshness of whatever is inside to restaurant quality. This one appears to have no real markings on it, save for its different coloring, and an image of the altevian emblem."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_pack_cheese"
 	package_open_state = "altevian_pack_cheese-open"
@@ -863,7 +863,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratpackturkey
 	name = "Compact Holiday Special Bird"
-	desc = "A great gift for holidays for assorted species. This contains a full freshly cooked turkey. Open and enjoy. Courtesy of altevian packaging."
+	desc = "A great gift for that special celebration or holiday for assorted species. This package contains a full freshly cooked turkey. Open and enjoy. Courtesy of altevian packaging."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_pack_turkey"
 	package_open_state = "altevian_pack_turkey-open"
@@ -875,7 +875,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratpackramen
 	name = "Big Noodle Package"
-	desc = "A pack containing fully cooked ramen meal, alongside some seafood-and-rice based sides. Utensils included. For those who prefer more traditional meals."
+	desc = "A compression sealed package containing a fully cooked ramen meal. It comes with some seafood-and-rice based sides. Utensils included."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_pack_ramen"
 	package_open_state = "altevian_pack_ramen_standard-open"
@@ -903,7 +903,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ratpacktaco
 	name = "Triple Taco Tuck"
-	desc = "Three mini-tacos, minituarized further via altevian mad science into a convenient container. It comes with a salsa sauce!"
+	desc = "A compression sealed package containing three mini-tacos, miniaturized further via altevian mad science into a convenient container."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "altevian_pack_taco"
 	package_open_state = "altevian_pack_taco-open"

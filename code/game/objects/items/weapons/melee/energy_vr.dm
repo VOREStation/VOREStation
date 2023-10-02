@@ -9,7 +9,7 @@
 
 /obj/item/weapon/melee/energy/sword/altevian
 	name = "plasma blade cutter"
-	desc = "A device used as both defense and operational purposes to cut through most metals. This is usually seen on engineers from the altevian hegemony when working salvaging derelicts."
+	desc = "A device that's seen use as both a defense, and standard cutter to melt through most metals. It's normally seen on engineers from the Altevian Hegemony when salvaging derelicts."
 	icon_state = "altevian-cutter"
 	item_state = "altevian-cutter"
 	icon = 'icons/obj/weapons_vr.dmi'
