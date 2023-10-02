@@ -105,7 +105,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
 /datum/gear/accessory/altevian_aquila
-	description = "An emblem found across all altevian vessels. The unique metals and jewels denote ranks for them back home. Otherwise, it's just a pretty rat skull emblem with a set of crystals for their eyes and fangs."
+	description = "An emblem found across all altevian vessels. The specific metals and jewels denote ranks. Otherwise, it's just a pretty rat skull emblem with a set of crystals for their eyes and fangs."
 	display_name = "royal altevian navy emblem selection"
 	whitelisted = SPECIES_ALTEVIAN
 	sort_category = "Xenowear"

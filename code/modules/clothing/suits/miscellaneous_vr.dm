@@ -151,7 +151,7 @@
 // Altevian admiralty stuff
 /obj/item/clothing/suit/captunic/capjacket/altevian_admiral				// Subtype of capjacket because A) it makes sense and B) conviniently matching stats
 	name = "altevian officer's suit"
-	desc = "A formal jacket worn by the bridge and command crew from the Altevian Hegemony. The material is of high quality silk, and provides maximum comfort and breathing room for those that are working for hours on end all the time."
+	desc = "A formal jacket worn by the bridge and command crew from the Altevian Hegemony. The material is of high quality silk, and provides maximum comfort and breathing room."
 	icon_state = "altevian-admiral"
 
 	species_restricted = list(SPECIES_ALTEVIAN)

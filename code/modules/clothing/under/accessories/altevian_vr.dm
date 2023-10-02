@@ -46,7 +46,7 @@
 
 /obj/item/clothing/accessory/scarf/altevian
 	name = "Blue Comfortable Scarf"
-	desc = "A soft silk like scarf made of synthetic material. It's soft to the touch and feels like actual silk."
+	desc = "A soft silk like scarf made of synthetic material. It's soft to the touch."
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "altevian-scarf-blue"
@@ -87,7 +87,7 @@
 
 /obj/item/clothing/accessory/altevian_badge/aquila
 	name = "Royal Altevian Navy Emblem"
-	desc = "An emblem found across all altevian vessels. The unique metals and jewels denote ranks for them back home. Otherwise, it's just a pretty rat skull emblem with a set of crystals for their eyes and fangs."
+	desc = "An emblem found across all altevian vessels. The specific metals and jewels denote ranks. Otherwise, it's just a pretty rat skull emblem with a set of crystals for their eyes and fangs."
 	icon_state = "altevian_aquila"
 
 /obj/item/clothing/accessory/altevian_badge/aquila/silver

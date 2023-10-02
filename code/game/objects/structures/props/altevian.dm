@@ -1,6 +1,6 @@
 /obj/structure/prop/altevian_generator_wrecked
 	name = "Phoronic Conversion System"
-	desc = "A reactor system similar to the PACMAN generators seen throughout the stars. This one is a specific model created by the altevians. It seems this reactor has a way to maximize the fuel usage one would see with this kind of process. \
+	desc = "A reactor system similar to the PACMAN generators seen throughout the stars. This one is a specific model created by the altevians. It seems the designers have found a way to significantly improve fuel efficiency compared to more common portable generators. \
 			However, due to its construction and size it is nearly impossible to break apart. It still can be moved if need be with special tools. This one appears to be totally wrecked though."
 	icon = 'icons/obj/props/decor64x64.dmi'
 	icon_state = "alteviangenwrecked"
