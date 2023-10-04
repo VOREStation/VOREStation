@@ -193,7 +193,7 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "af" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	desc = "A large machine releasing a constant gust of air.";
 	icon = 'icons/obj/survival_pod.dmi';
 	icon_state = "fans";
@@ -1081,7 +1081,8 @@
 "bl" = (
 /obj/machinery/power/smes/buildable/hybrid{
 	input_level = 200000;
-	output_level = 200000
+	output_level = 200000;
+	recharge_rate = 20000
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
