@@ -143,7 +143,7 @@ Talon jumpsuit
 
 //Altevian Uniforms
 /datum/gear/uniform/altevian
-	description = "An extremely comfortable set of clothing that's made to help people handle their day to day work around the fleets with little to no discomfort."
+	description = "A comfortable set of clothing for people to handle their day to day work around the fleets with little to no discomfort."
 	display_name = "altevian uniform selection"
 
 /datum/gear/uniform/altevian/New()

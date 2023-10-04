@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/altevian
 	name = "Magneto-Electric Energy Projector"
-	desc = "A hand-held version of an energy weapon for the Altevian Hegemony. This one seems to be made for more proper civilian use with its reduced charge capacity, but ease of handling."
+	desc = "A hand-held version of an energy weapon for the Altevian Hegemony. This one is the civilian grade version that has a reduced charge capacity. However, it is a lot easier to use."
 	icon_state = "meep"
 	item_state = "meep"
 	fire_delay = 8
@@ -10,11 +10,11 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 1000)
 	projectile_type = /obj/item/projectile/beam/meeplaser
-	charge_cost = 450
+	charge_cost = 400
 
 /obj/item/weapon/gun/energy/altevian/large
 	name = "Proto-Reactive Beam Thruster"
-	desc = "A standard issue energy rifle seen for defensive purposes for a space faring rodent species. The beams are tuned for proper suppression."
+	desc = "The main energy rifle that the Altevian Hegemony uses for its military operations."
 	icon_state = "altevian-pdw"
 	item_state = "altevian-pdw"
 	slot_flags = SLOT_BELT
@@ -28,7 +28,7 @@
 /obj/item/projectile/beam/meeplaser
 	name = "meep beam"
 	icon_state = "meep"
-	damage = 15
+	damage = 25
 	light_color = "#77A6E1"
 	hud_state = "laser_disabler"
 
@@ -38,7 +38,7 @@
 
 /obj/item/projectile/beam/meeplaser/strong
 	name = "repeater beam"
-	damage = 35
+	damage = 40
 
 /obj/effect/projectile/muzzle/meeplaser
 	icon_state = "muzzle_meep"

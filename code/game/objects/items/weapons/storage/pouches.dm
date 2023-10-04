@@ -76,6 +76,8 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -95,9 +97,9 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
-		/obj/item/device/integrated_electronics/debugger, 
-		/obj/item/weapon/shovel/spade, 
-		/obj/item/stack/nanopaste, 
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
 		/obj/item/device/geiger
 	) //Vorestation Add - make it the same as the tool-belt why was it not like this to start with wtf
 
@@ -156,7 +158,7 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/taperoll/medical,
 		/obj/item/weapon/storage/box/freezer,
-		/obj/item/clothing/mask/chewable/candy/lolli,    
+		/obj/item/clothing/mask/chewable/candy/lolli,
 	) //Vorestation add - added a bunch of misc medical stuff
 	max_storage_space = ITEMSIZE_COST_SMALL*3 //Vorestation Add - makes it slightly smaller since its a lot of stuff with pocket access
 	remove_delay = 5 //Vorestation Add - .5 second delay, get the medical things faster because there is no reason to use this otherwise. still gotta stop moving to take things out.

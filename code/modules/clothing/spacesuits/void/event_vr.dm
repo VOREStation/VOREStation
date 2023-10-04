@@ -234,7 +234,7 @@
 
 /obj/item/clothing/suit/space/void/altevian_heartbreaker
 	name = "\improper heartbreaker voidsuit"
-	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can function in an area with gravity, it'll put a strain on even the most athletic of individuals."
+	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can still be worn in an area with gravity, it'll put a strain on even the most athletic of individuals."
 
 	icon = 'icons/inventory/suit/item_vr_altevian.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr_altevian.dmi'
@@ -248,7 +248,7 @@
 
 /obj/item/clothing/head/helmet/space/void/altevian_heartbreaker
 	name = "\improper heartbreaker helmet"
-	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can function in an area with gravity, it'll put a strain on even the most athletic of individuals."
+	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can still be worn in an area with gravity, it'll put a strain on even the most athletic of individuals."
 
 	icon = 'icons/inventory/head/item_vr_altevian.dmi'
 	default_worn_icon = 'icons/inventory/head/mob_vr_altevian.dmi'
