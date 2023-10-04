@@ -1,6 +1,6 @@
 /mob/living/simple_mob/humanoid/merc/altevian
 	name = "altevian naval officer"
-	desc = "Altevian Naval Slicer, adorned in the top of the line Heartbreaker suit. Armed with a handheld cutter."
+	desc = "An Altevian Naval Slicer, adorned in the top of the line Heartbreaker suit. Armed with a handheld cutter."
 	tt_desc = "E Rattus sapiens"
 	icon = 'icons/mob/altevian_mercs_vr.dmi'
 	icon_state = "merc_melee_cutter"
@@ -50,7 +50,7 @@
 	stand_down_sound = 'sound/weapons/TargetOff.ogg'
 
 /mob/living/simple_mob/humanoid/merc/altevian/sapper
-	desc = "Altevian Naval Sapper, adorned in the top of the line Heartbreaker suit. Armed with a giant fokken wrench."
+	desc = "An Altevian Naval Sapper, adorned in the top of the line Heartbreaker suit. Armed with a giant fokken wrench."
 	icon_state = "merc_melee_wrench"
 	icon_living = "merc_melee_wrench"
 
@@ -65,7 +65,7 @@
 	loot_list = list(/obj/item/weapon/tool/transforming/altevian = 100)
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged
-	desc = "Altevian Naval Salvage Guard, adorned in the top of the line Heartbreaker suit. Armed with a small energy gun."
+	desc = "An Altevian Naval Salvage Guard, adorned in the top of the line Heartbreaker suit. Armed with a small energy gun."
 	icon_state = "merc_gun_smol"
 	icon_living = "merc_gun_smol"
 
@@ -86,7 +86,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged/strong
-	desc = "Altevian Naval Salvage Shield, adorned in the top of the line Heartbreaker suit. Armed with a large energy gun."
+	desc = "An Altevian Naval Salvage Shield, adorned in the top of the line Heartbreaker suit. Armed with a large energy gun."
 	icon_state = "merc_gun_big"
 	icon_living = "merc_gun_big"
 
@@ -101,7 +101,7 @@
 	projectilesound = 'sound/weapons/Laser.ogg'
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged/ballistic
-	desc = "Altevian Naval Shipbreaker, adorned in the top of the line Heartbreaker suit. Armed with a bolter gun."
+	desc = "An Altevian Naval Shipbreaker, adorned in the top of the line Heartbreaker suit. Armed with a bolter gun."
 	icon_state = "merc_gun_ballistic"
 	icon_living = "merc_gun_ballistic"
 

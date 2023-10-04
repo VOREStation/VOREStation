@@ -62,7 +62,10 @@ var/global/list/home_system_choices = list(
 	"Abundance in All Things Serene, Beta-Carnelium Ventrum",
 	"Jorhul, Barkalis",
 	"Shelf Flotilla",
-	"Ue-Orsi Flotilla"
+	"Ue-Orsi Flotilla",
+	"AH-CV Prosperity",
+	"AH-CV Migrant",
+	"Altevian Colony Ship"
 	)
 
 var/global/list/faction_choices = list(
