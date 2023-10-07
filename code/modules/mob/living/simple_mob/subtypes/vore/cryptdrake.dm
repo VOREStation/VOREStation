@@ -1,7 +1,6 @@
 /mob/living/simple_mob/vore/cryptdrake
 	name = "crypt drake"
 	desc = "A massive drake-like creature with dark purple scales and a seemingly exposed skull."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/greatwolf)
 	tt_desc = "Draconis necrotis"
 	icon = 'icons/mob/vore128x64.dmi'
 	icon_dead = "cryptdrake-dead"
