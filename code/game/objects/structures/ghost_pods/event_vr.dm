@@ -55,7 +55,12 @@
 								  "Fire pakkun" = /mob/living/simple_mob/vore/pakkun/fire,
 								  "Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple,
 								  "Raptor" = /mob/living/simple_mob/vore/raptor,
-								  "Giant Bat" = /mob/living/simple_mob/vore/bat
+								  "Giant Bat" = /mob/living/simple_mob/vore/bat,
+								  "Scel (Orange)" = /mob/living/simple_mob/vore/scel/orange,
+								  "Scel (Blue)" = /mob/living/simple_mob/vore/scel/blue,
+								  "Scel (Purple)" = /mob/living/simple_mob/vore/scel/purple,
+								  "Scel (Red)" = /mob/living/simple_mob/vore/scel/red,
+								  "Scel (Green)" = /mob/living/simple_mob/vore/scel/green
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)

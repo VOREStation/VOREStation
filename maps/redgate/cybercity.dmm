@@ -8256,7 +8256,7 @@
 /obj/structure/closet/crate/secure{
 	req_one_access = list(101)
 	},
-/obj/item/weapon/melee/altevian_wrench,
+/obj/item/weapon/tool/transforming/altevian,
 /obj/random/junk,
 /obj/random/grenade/less_lethal,
 /obj/item/clothing/mask/altevian_breath,

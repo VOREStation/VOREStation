@@ -763,6 +763,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/vore/vampire) = 50,
 		list(/mob/living/simple_mob/vore/vampire/queen) = 1,
 		list(/mob/living/simple_mob/vore/bat) = 50,
+		list(/mob/living/simple_mob/vore/scel) = 10,
 		list(
 			/mob/living/simple_mob/vore/lamia,
 			/mob/living/simple_mob/vore/lamia/albino,

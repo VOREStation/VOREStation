@@ -289,45 +289,51 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(I.has_tool_quality(TOOL_WELDER))
-		if(panel_open)
-			var/obj/item/weapon/weldingtool/WT = I.get_welder()
-			if(!WT.remove_fuel(0, user))
-				to_chat(user, "The welding tool must be on to complete this task.")
-				return
-			playsound(src, WT.usesound, 50, 1)
-			if(do_after(user, 20 * WT.toolspeed))
-				if(!src || !WT.isOn()) return
-				to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
-				new /obj/item/stack/material/steel( src.loc, 2 )
-				qdel(src)
-				return
+	if(!panel_open) //It's probably better to just check this once instead of each time
+		return
 
-	if(istype(I, /obj/item/device/multitool))
-		if(panel_open)
-			var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
-			if(!input)
-				to_chat(user, "No input found. Please hang up and try your call again.")
-				return
-			id = input
-			conveyors = list() // Clear list so they aren't double added.
-			for(var/obj/machinery/conveyor/C in machines)
-				if(C.id == id)
-					conveyors += C
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = I.get_welder()
+		if(!WT.remove_fuel(0, user))
+			to_chat(user, "The welding tool must be on to complete this task.")
+			return
+		playsound(src, WT.usesound, 50, 1)
+		if(do_after(user, 20 * WT.toolspeed))
+			if(!src || !WT.isOn()) return
+			to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
+			new /obj/item/stack/material/steel( src.loc, 2 )
+			qdel(src)
 			return
 
-	if(istype(I, /obj/item/weapon/tool/wrench))
-		if(panel_open)
-			if(oneway == 1)
-				to_chat(user, "You set the switch to two way operation.")
-				oneway = 0
-				playsound(src, I.usesound, 50, 1)
-				return
-			else
-				to_chat(user, "You set the switch to one way operation.")
-				oneway = 1
-				playsound(src, I.usesound, 50, 1)
-				return
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
+		if(!input)
+			to_chat(user, "No input found. Please hang up and try your call again.")
+			return
+		id = input
+		conveyors = list() // Clear list so they aren't double added.
+		for(var/obj/machinery/conveyor/C in machines)
+			if(C.id == id)
+				conveyors += C
+		return
+
+	if(I.has_tool_quality(TOOL_WRENCH))
+		if(oneway == 1)
+			to_chat(user, "You set the switch to two way operation.")
+			oneway = 0
+			playsound(src, I.usesound, 50, 1)
+			return
+		else
+			to_chat(user, "You set the switch to one way operation.")
+			oneway = 1
+			playsound(src, I.usesound, 50, 1)
+			return
+
+	//Ports making conveyors fast from CHOMPstation
+	if(I.has_tool_quality(TOOL_WIRECUTTER))
+		toggle_speed()
+		to_chat(user, "You adjust the speed of the conveyor switch")
+		return
 
 /obj/machinery/conveyor_switch/oneway
 	oneway = 1
