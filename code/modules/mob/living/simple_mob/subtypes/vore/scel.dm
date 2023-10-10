@@ -71,7 +71,7 @@
 	vore_escape_chance = 5
 	vore_pounce_chance = 100
 	vore_active = 1
-	vore_icons = 2
+	vore_icons = 1
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	vore_capacity = 2
 	swallowTime = 50
@@ -89,6 +89,7 @@
 	verbs |= /mob/living/proc/glow_toggle
 	verbs |= /mob/living/proc/glow_color
 	verbs |= /mob/living/proc/long_vore
+	verbs |= /mob/living/proc/target_lunge
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/scel/init_vore()
@@ -143,6 +144,8 @@
 
 /mob/living/simple_mob/vore/scel/do_special_attack(atom/A)
 	. = TRUE
+	if(ckey)
+		return
 	if(prob(50))
 		lunge(A)
 	else

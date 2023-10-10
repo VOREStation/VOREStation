@@ -1460,3 +1460,72 @@
 	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
 	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
 	zaptype = /obj/item/projectile/beam/appendage
+
+/mob/living/proc/target_lunge() //The leaper leap, but usable as an ability
+	set name = "Lunge At Prey"
+	set category = "Abilities"
+	set desc = "Dive atop your prey and gobble them up!"
+
+	var/leap_warmup = 1 SECOND //Easy to modify
+	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
+
+	last_special = world.time + 10 //Anti-spam.
+
+	if (!istype(src, /mob/living))
+		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		return
+
+	else
+		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+		for(var/mob/living/L in range(5, src))
+			if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+				continue
+			if(L == src) //no eating yourself. 1984.
+				continue
+			if(L.devourable && L.throw_vore && (L.can_be_drop_pred || L.can_be_drop_prey))
+				targets += L
+
+		if(!(targets.len))
+			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			return
+
+		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+		if(!target)
+			return
+
+		if(!istype(target, /mob/living)) //Safety.
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			return
+
+		if (get_dist(src,target) >= 6)
+			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			return
+
+		visible_message(span("warning","\The [src] rears back, ready to lunge!"))
+		to_chat(target, span("danger","\The [src] focuses on you!"))
+		// Telegraph, since getting stunned suddenly feels bad.
+		do_windup_animation(target, leap_warmup)
+		sleep(leap_warmup) // For the telegraphing.
+
+		if(target.z != z)	//Make sure you haven't disappeared to somewhere we can't go
+			return FALSE
+
+		// Do the actual leap.
+		status_flags |= LEAPING // Lets us pass over everything.
+		visible_message(span("critical","\The [src] leaps at \the [target]!"))
+		throw_at(get_step(target, get_turf(src)), 7, 1, src)
+		playsound(src, leap_sound, 75, 1)
+
+		sleep(5) // For the throw to complete.
+
+		if(status_flags & LEAPING)
+			status_flags &= ~LEAPING // Revert special passage ability.
+
+		if(Adjacent(target))	//We leapt at them but we didn't manage to hit them, let's see if we're next to them
+			target.Weaken(2)	//get knocked down, idiot
