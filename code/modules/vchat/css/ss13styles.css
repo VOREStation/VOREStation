@@ -102,6 +102,7 @@ body.inverted {
 .deadsay				{color: #530FAD;}
 .inverted .deadsay		{color: #732FCD;} /* Dark mode */
 .radio					{color: #008000;}
+.inverted .radio		{color: #00a800;} /* Dark mode */
 .deptradio				{color: #ff00ff;}	/* when all other department colors fail */
 .newscaster				{color: #750000;}
 
@@ -129,7 +130,13 @@ body.inverted {
 .inverted .emote			{color: #FFFFFF;}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
-.nif					{} /* VOREStation Add */
+/* VOREStation Add Start */
+.nif					{}
+.psay					{color: #800080;font-style: italic;}
+.inverted .psay			{color: #e300e4;font-style: italic;}
+.pemote					{color: #800080;font-style: italic;}
+.inverted .pemote		{color: #e300e4;font-style: italic;}
+/* VOREStation Add End */
 
 /* Game Messages */
 

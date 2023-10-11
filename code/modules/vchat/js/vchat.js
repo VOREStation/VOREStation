@@ -209,6 +209,14 @@ function start_vue() {
 					required: false,
 					admin: false
 				},
+				{
+					matches: ".psay, .pemote",
+					becomes: "vc_pmessage",
+					pretty: "Pred/Prey Messages",
+					tooltip: "Messages from / to absorbed or dominated prey",
+					required: false,
+					admin: false
+				},
 				//VOREStation Add End
 				{
 					matches: ".mentor_channel, .mentor",

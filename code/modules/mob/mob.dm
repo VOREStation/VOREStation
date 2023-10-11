@@ -1149,11 +1149,20 @@
 
 /mob/proc/throw_mode_off()
 	src.in_throw_mode = 0
+	if(client)
+		if(a_intent == I_HELP || client.prefs.throwmode_loud)
+			src.visible_message("<span class='notice'>[src] relaxes from their ready stance.</span>","<span class='notice'>You relax from your ready stance.</span>")
 	if(src.throw_icon) //in case we don't have the HUD and we use the hotkey
 		src.throw_icon.icon_state = "act_throw_off"
 
 /mob/proc/throw_mode_on()
 	src.in_throw_mode = 1
+	if(client)
+		if(a_intent == I_HELP || client.prefs.throwmode_loud)
+			if(src.get_active_hand())
+				src.visible_message("<span class='warning'>[src] winds up to throw [get_active_hand()]!</span>","<span class='notice'>You wind up to throw [get_active_hand()].</span>")
+			else
+				src.visible_message("<span class='warning'>[src] looks ready to catch anything thrown at them!</span>","<span class='notice'>You get ready to catch anything thrown at you.</span>")
 	if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"
 
