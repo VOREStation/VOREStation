@@ -145,7 +145,7 @@ function start_vue() {
 			//The table to map game css classes to our vchat categories
 			type_table: [
 				{
-					matches: ".filter_say, .say, .emote, .emote_subtle", //VOREStation Edit
+					matches: ".filter_say, .say, .emote, .emotesubtle", //VOREStation Edit
 					becomes: "vc_localchat",
 					pretty: "Local Chat",
 					tooltip: "In-character local messages (say, emote, etc)",

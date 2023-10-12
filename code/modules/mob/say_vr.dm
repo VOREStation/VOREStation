@@ -82,7 +82,7 @@
 
 	if(input)
 		log_subtle(message,src)
-		message = "<span class='emote_subtle'><B>[src]</B> <I>[input]</I></span>"
+		message = "<span class='emotesubtle'><B>[src]</B> <I>[input]</I></span>"
 		if(!(subtle_mode == "Adjacent Turfs (Default)"))
 			message = "<B>(T) </B>" + message
 	else
