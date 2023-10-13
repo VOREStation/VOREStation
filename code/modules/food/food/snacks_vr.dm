@@ -912,3 +912,26 @@
 	trash = /obj/item/trash/ratpacktaco
 	nutriment_amt = 2
 	nutriment_desc = list("salsa sauce" = 2, "meat chunks" = 4, "cheese" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/jaffacake
+	name = "Jaffa Cake"
+	desc = "A delicious miniature cake with a soft sponge base, topped with orange jelly and covered with a thin layer of chocolate."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "jaffacake"
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("chocolate" = 2, "orange" = 4, "cake" = 3)
+
+/obj/item/weapon/storage/box/jaffacake //This is kinda like the donut box.
+	name = "Desatti Jaffa Cakes"
+	desc = "A box full of desatti brand jaffa cakes, with twelve in a pack!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "jaffacake_pack"
+	var/icon_base = "jaffacake_pack"
+	var/startswith = 12
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/jaffacake)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/jaffacake = 12
+	)
+	foldable = null
