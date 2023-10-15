@@ -876,17 +876,26 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		if("Health Check")
 			var/mob/living/carbon/human/H = target
 			var/target_health = round((H.health/H.getMaxHealth())*100)
+			var/condition
+			var/condition_consequences
 			to_chat(usr, "<span class= 'warning'>\The [target] is at [target_health]% health.</span>")
-			if(H.weakened)
-				to_chat(usr, "<span class= 'warning'>\The [target] is currently weakened, this does not stop them from hearing emotes or emoting themselves.</span>")
-			if(H.blinded && H.paralysis)
-				to_chat(usr, "<span class= 'warning'>\The [target] is currently blinded and paralysed, they will not be able to hear emotes or emote themselves.</span>")
-			else if(H.blinded)
-				to_chat(usr, "<span class= 'warning'>\The [target] is currently blind, they will not be able to see emotes.</span>")
-			else if(H.paralysis)
-				to_chat(usr, "<span class= 'warning'>\The [target] is currently paralysed, they will not be able to emote themselves.</span>")
+			if(H.blinded)
+				condition += "blinded"
+				condition_consequences += "hear emotes"
+			if(H.paralysis)
+				if(condition)
+					condition += " and "
+					condition_consequences += " or "
+				condition += "paralysed"
+				condition_consequences += "make emotes"
 			if(H.sleeping)
-				to_chat(usr, "<span class= 'warning'>\The [target] is currently sleeping, they will not be able to hear emotes or emote themselves.</span>")
+				if(condition)
+					condition += " and "
+					condition_consequences += " or "
+				condition += "sleeping"
+				condition_consequences += "hear or do anything"
+			if(condition)
+				to_chat(usr, "<span class= 'warning'>\The [target] is currently [condition], they will not be able to [condition_consequences].</span>")
 			return
 
 
