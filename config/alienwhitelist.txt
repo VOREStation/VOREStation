@@ -171,6 +171,7 @@ trifireblade - Protean
 trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
+umbraferros - Xenochimera
 umbrenos - Black-Eyed Shadekin
 varonis - Protean
 varonis - Xenochimera
