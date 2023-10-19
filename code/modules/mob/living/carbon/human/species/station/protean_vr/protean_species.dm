@@ -13,6 +13,7 @@
 
 	selects_bodytype = SELECTS_BODYTYPE_SHAPESHIFTER
 	base_species = SPECIES_HUMAN
+	digi_allowed = TRUE
 
 	blood_color = "#505050" //This is the same as the 80,80,80 below, but in hex
 	flesh_color = "#505050"

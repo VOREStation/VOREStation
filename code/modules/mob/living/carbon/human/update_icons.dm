@@ -311,6 +311,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				if(tail_style.clip_mask) //VOREStation Edit.
 					icon_key += tail_style.clip_mask_state
 
+			if(digitigrade && (part.organ_tag == BP_R_LEG  || part.organ_tag == BP_L_LEG || part.organ_tag == BP_R_FOOT || part.organ_tag == BP_L_FOOT))
+				icon_key += "_digi"
+
 			if(tail_style)
 				pixel_x = tail_style.mob_offset_x
 				pixel_y = tail_style.mob_offset_y
@@ -789,6 +792,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(istype(foot) && foot.is_hidden_by_sprite_accessory(clothing_only = TRUE)) //If either foot is hidden by the tail, don't render footwear.
 			return
 
+	var/obj/item/clothing/shoes/shoe = shoes
+	var/shoe_sprite
+
+	if(istype(shoe) && !isnull(shoe.update_icon_define))
+		shoe_sprite = shoe.update_icon_define
+	else
+		shoe_sprite = INV_FEET_DEF_ICON
+
 	//Allow for shoe layer toggle nonsense
 	var/shoe_layer = SHOES_LAYER
 	if(istype(shoes, /obj/item/clothing/shoes))
@@ -797,7 +808,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			shoe_layer = SHOES_LAYER_ALT
 
 	//NB: the use of a var for the layer on this one
-	overlays_standing[shoe_layer] = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = INV_FEET_DEF_ICON, default_layer = shoe_layer)
+	overlays_standing[shoe_layer] = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
 
 	apply_layer(SHOES_LAYER)
 	apply_layer(SHOES_LAYER_ALT)
