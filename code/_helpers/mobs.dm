@@ -316,20 +316,10 @@ Proc for attack log creation, because really why not
 		. = getCompoundIcon(desired)
 		cached_character_icons[cachekey] = .
 
+//VOREStation Add Start
 /proc/not_has_ooc_text(mob/user)
 	if (config.allow_Metadata && (!user.client?.prefs?.metadata || length(user.client.prefs.metadata) < 15))
 		to_chat(user, "<span class='warning'>Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
 		return TRUE
 	return FALSE
-
-/proc/not_has_flavor_text(mob/user)
-	if (config.require_flavor && (!user.client?.prefs?.flavor_texts["general"] || length(user.client.prefs.flavor_texts["general"]) < 30))
-		to_chat(user, "<span class='warning'>Please set your general flavor text to give a basic description of your character. Set it using the 'Set Flavor text' button on the 'General' tab in character setup, and choosing 'General' category.</span>")
-		return TRUE
-	return FALSE
-
-/proc/not_has_flavor_text_robot(mob/user)
-	if (config.require_flavor && (!user.client?.prefs?.flavour_texts_robot["Default"] || length(user.client.prefs.flavour_texts_robot["Default"]) < 30))
-		to_chat(user, "<span class='warning'>Please set your default robot flavor text to give a basic description of your character. Set it using the 'Set Robot Flavor text' button on the 'General' tab in character setup, and choosing 'Default' category.</span>")
-		return TRUE
-	return FALSE
+//VOREStation Add End

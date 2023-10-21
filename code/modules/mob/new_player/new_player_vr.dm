@@ -11,11 +11,6 @@
 		to_chat(src,"<span class='warning'>Please set your general flavor text to give a basic description of your character. Set it using the 'Set Flavor text' button on the 'General' tab in character setup, and choosing 'General' category.</span>")
 		pass = FALSE
 
-	//No Robot Flavor Text
-	if (config.require_flavor && (J.mob_type & JOB_SILICON) && (!client?.prefs?.flavour_texts_robot["Default"] || length(client.prefs.flavour_texts_robot["Default"]) < 30))
-		to_chat(src,"<span class='warning'>Please set your default robot flavor text to give a basic description of your character. Set it using the 'Set Robot Flavor text' button on the 'General' tab in character setup, and choosing 'Default' category.</span>")
-		pass = FALSE
-
 	//No OOC notes
 	if (config.allow_Metadata && (!client?.prefs?.metadata || length(client.prefs.metadata) < 15))
 		to_chat(src,"<span class='warning'>Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
