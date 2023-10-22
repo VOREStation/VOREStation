@@ -85,6 +85,7 @@ lavenderrs - Teppi
 lazzar - Black-Eyed Shadekin
 lianvee - Black-Eyed Shadekin
 lillianfyre - Xenochimera
+liquidfirefly - Protean
 lizehrd - Xenochimera
 looptyloo - Protean
 lordlag - Black-Eyed Shadekin
@@ -171,6 +172,7 @@ trifireblade - Protean
 trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
+umbraferros - Xenochimera
 umbrenos - Black-Eyed Shadekin
 varonis - Protean
 varonis - Xenochimera
