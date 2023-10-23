@@ -113,6 +113,13 @@ var/list/_client_preferences_by_type
 	enabled_description = "Visible"
 	disabled_description = "Hidden"
 	enabled_by_default = FALSE
+
+/datum/client_preference/ghost_see_whisubtle
+	description = "See subtles/whispers as ghost"
+	key = "GHOST_SEE_WHISUBTLE"
+	enabled_description = "Visible"
+	disabled_description = "Hidden"
+	enabled_by_default = TRUE
 //VOREStation Add End
 /datum/client_preference/weather_sounds
 	description ="Weather sounds"
@@ -373,7 +380,7 @@ var/list/_client_preferences_by_type
 	key = "RECEIVE_TIPS"
 	enabled_description = "Enabled"
 	disabled_description = "Disabled"
- 
+
 /datum/client_preference/pain_frequency
 	description = "Pain Messages Cooldown"
 	key = "PAIN_FREQUENCY"
