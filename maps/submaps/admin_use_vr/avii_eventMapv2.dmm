@@ -8811,7 +8811,7 @@
 /area/rnd/research)
 "VC" = (
 /obj/machinery/door/airlock/angled_bay/standard/color/common{
-	name = s
+	name = "Dorm 1"
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
