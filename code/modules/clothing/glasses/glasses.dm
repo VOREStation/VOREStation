@@ -34,6 +34,7 @@ BLIND     // can't see anything
 		SPECIES_TESHARI = 'icons/inventory/eyes/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi'
 		)
+	var/glasses_layer_above = FALSE
 
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
