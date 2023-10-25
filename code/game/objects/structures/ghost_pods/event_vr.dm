@@ -73,6 +73,10 @@
 		reset_ghostpod()
 		return
 
+	//No OOC notes
+	if (not_has_ooc_text(M))
+		return
+
 	while(finalized == "No" && M.client)
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
@@ -122,6 +126,11 @@
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/create_occupant(var/mob/M)
 	..()
+
+	//No OOC notes
+	if (not_has_ooc_text(M))
+		return
+
 	var/mob/living/simple_mob/vore/morph/newMorph = new /mob/living/simple_mob/vore/morph(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(newMorph)
