@@ -1115,11 +1115,11 @@
 	name = "Shrimps and Bananas"
 	desc = "A pack of foam bananas and shrimps, the shrimps apparently don't taste of seafood! Branded as Desatti Catering."
 	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "winegum_pack"
-	var/icon_base = "winegum_pack"
+	icon_state = "shrimpbanana_pack"
+	var/icon_base = "shrimpbanana_pack"
 	var/startswith = 20
 	max_storage_space = ITEMSIZE_COST_TINY * 20
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/winegum)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/foam_banana,/obj/item/weapon/reagent_containers/food/snacks/foam_shrimp)
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/snacks/foam_banana = 10,
 		/obj/item/weapon/reagent_containers/food/snacks/foam_shrimp = 10
