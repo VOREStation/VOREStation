@@ -381,3 +381,26 @@
 	..()
 	for(var/i = 0 to 7)
 		new /obj/item/weapon/disk/nifsoft/mining(src)
+
+// Mass Alteration Disk //
+/obj/item/weapon/disk/nifsoft/sizechange
+	name = "NIFSoft Uploader - Mass Alteration"
+	desc = "Contains free NIFSofts for special purposes.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
+
+	icon_state = "mining"
+	stored_organic = /datum/nifsoft/sizechange
+	stored_synthetic = /datum/nifsoft/sizechange
+
+/obj/item/weapon/storage/box/nifsofts_sizechange
+	name = "mass alteration nifsoft uploaders"
+	desc = "A box of free nifsofts for special purposes."
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_mining"
+
+/obj/item/weapon/storage/box/nifsofts_sizechange/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/sizechange(src)
