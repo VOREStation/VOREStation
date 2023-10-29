@@ -500,7 +500,8 @@
 	for(var/mob/M as anything in vis_mobs)
 		if(isnewplayer(M))
 			continue
-		if(isobserver(M) && !L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+		if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+		!L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else
@@ -1171,7 +1172,8 @@
 	for(var/mob/M as anything in vis_mobs)
 		if(isnewplayer(M))
 			continue
-		if(isobserver(M) && !L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+		if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+		!L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else

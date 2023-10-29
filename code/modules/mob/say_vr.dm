@@ -200,7 +200,8 @@
 		for(var/mob/M as anything in vis_mobs)
 			if(isnewplayer(M))
 				continue
-			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+			if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+			!is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
 			else
@@ -341,7 +342,8 @@
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
+			else if(isobserver(G) &&  G.is_preference_enabled(/datum/client_preference/ghost_ears && \
+			G.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle)))
 				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
 					to_chat(G, "<span class='psay'>\The [M] thinks, \"[message]\"</span>")
 		log_say(message,M)
@@ -438,7 +440,8 @@
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
+			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears && \
+			G.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle)))
 				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
 					to_chat(G, "<span class='pemote'>\The [M] [message]</span>")
 		log_say(message,M)

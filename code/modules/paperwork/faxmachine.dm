@@ -220,9 +220,18 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return
 
 	switch(action)
+		if("rename")
+			if(copyitem)
+				var/new_name = tgui_input_text(usr, "Enter new paper title", "This will show up in the preview for staff chat on discord when sending \
+				to central.", copyitem.name, MAX_NAME_LEN)
+				if(!new_name)
+					return
+				copyitem.name = new_name
 		if("send")
 			if(copyitem)
 				if (destination in admin_departments)
+					if(check_if_default_title_and_rename())
+						return
 					send_admin_fax(usr, destination)
 				else
 					sendfax(destination)
@@ -238,6 +247,40 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				destination = lastdestination
 
 	return TRUE
+
+
+/obj/machinery/photocopier/faxmachine/proc/check_if_default_title_and_rename()
+/*
+Returns TRUE only on "Cancel" or invalid newname, else returns null/false
+Extracted to its own procedure for easier logic handling with paper bundles.
+*/
+	var/question_text = "Your fax is set to its default name. It's advisable to rename it to something self-explanatory to"
+
+	if(istype(copyitem, /obj/item/weapon/paper_bundle))
+		var/obj/item/weapon/paper_bundle/B = copyitem
+		if(B.name != initial(B.name))
+			var/atom/page1 = B.pages[1]	//atom is enough for us to ensure it has name var. would've used ?. opertor, but linter doesnt like.
+			var/atom/page2 = B.pages[2]
+			if((istype(page1) && B.name == page1.name) || (istype(page2) && B.name == page2.name) )
+				question_text = "Your fax is set to use the title of its first or second page. It's advisable to rename it to something \
+				summarizing the entire bundle succintly to"
+			else
+				return FALSE
+	else if(copyitem.name != initial(copyitem.name))
+		return FALSE
+
+	var/choice = tgui_alert(usr, "[question_text] improve response time from staff when sending to discord. \
+	Renaming it changes its preview in staff chat.", \
+	"Default name detected", list("Change Title","Continue", "Cancel"))
+	if(choice == "Cancel")
+		return TRUE
+	else if(choice == "Change Title")
+		var/new_name = tgui_input_text(usr, "Enter new fax title", "This will show up in the preview for staff chat on discord when sending \
+		to central.", copyitem.name, MAX_NAME_LEN)
+		if(!new_name)
+			return TRUE
+		copyitem.name = new_name
+
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/card/id) && !scan)

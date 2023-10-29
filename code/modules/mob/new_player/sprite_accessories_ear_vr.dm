@@ -846,7 +846,24 @@
 	name = "Antlers (large)"
 	desc = ""
 	icon = 'icons/mob/vore/ears_32x64.dmi'
-	icon_state = "antlers_large"
+	icon_state = "antlers-large"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_wide
+	name = "Antlers (wide)"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers-wide"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_wide_e
+	name = "Antlers (wide) with ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers-wide"
+	extra_overlay = "deer"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 

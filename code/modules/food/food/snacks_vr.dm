@@ -913,6 +913,9 @@
 	nutriment_amt = 2
 	nutriment_desc = list("salsa sauce" = 2, "meat chunks" = 4, "cheese" = 3)
 
+
+//desatti snacks
+
 /obj/item/weapon/reagent_containers/food/snacks/jaffacake
 	name = "Jaffa Cake"
 	desc = "A delicious miniature cake with a soft sponge base, topped with orange jelly and covered with a thin layer of chocolate."
@@ -933,5 +936,192 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/jaffacake)
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/snacks/jaffacake = 12
+	)
+	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/winegum
+	name = "wine gum"
+	desc = "A small firm and chewy sweet filled with artificial flavour."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "winegum_red"
+	w_class = ITEMSIZE_TINY
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("sugar" = 5, "berry" = 2)
+
+
+/obj/item/weapon/reagent_containers/food/snacks/winegum/orange
+	icon_state = "winegum_orange"
+	nutriment_desc = list("sugar" = 5, "orange" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/winegum/black
+	icon_state = "winegum_black"
+	nutriment_desc = list("sugar" = 5, "berry" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/winegum/green
+	icon_state = "winegum_green"
+	nutriment_desc = list("sugar" = 5, "lime" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/winegum/yellow
+	icon_state = "winegum_yellow"
+	nutriment_desc = list("sugar" = 5, "lemon" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/winegum/white
+	icon_state = "winegum_white"
+	nutriment_desc = list("sugar" = 5, "pineapplejuice" = 2)
+
+/obj/item/weapon/storage/box/winegum //This is kinda like the donut box.
+	name = "Desatti Wine Gums"
+	desc = "A pack of wine gums, randomly assorted shapes and fruity flavours!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "winegum_pack"
+	var/icon_base = "winegum_pack"
+	var/startswith = 20
+	max_storage_space = ITEMSIZE_COST_TINY * 20
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/winegum)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/winegum = 3,
+		/obj/item/weapon/reagent_containers/food/snacks/winegum/orange = 4,
+		/obj/item/weapon/reagent_containers/food/snacks/winegum/black = 3,
+		/obj/item/weapon/reagent_containers/food/snacks/winegum/green = 3,
+		/obj/item/weapon/reagent_containers/food/snacks/winegum/yellow = 3,
+		/obj/item/weapon/reagent_containers/food/snacks/winegum/white = 4
+	)
+	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/pasty
+	name = "Terran Pasty"
+	icon_state = "pasty"
+	desc = "A pre-packaged terran pasty with Desatti Catering branding. Claims to contain lamb, potato and onion in a pastry casing!"
+	package_trash = /obj/item/trash/pasty
+	package_open_state = "pasty_open"
+	nutriment_amt = 4
+	nutriment_desc = list("pastry" = 5, "meat" = 5, "onion" = 2, "potato" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/saucer
+	name = "Sherbert Saucer"
+	desc = "A small saucer shaped piece of rice paper filled with sugar."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "saucer_pink"
+	w_class = ITEMSIZE_TINY
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("sugar" = 5)
+	var/list/color_options = list("saucer_pink","saucer_blue","saucer_orange","saucer_green","saucer_yellow")
+
+/obj/item/weapon/reagent_containers/food/snacks/saucer/Initialize()
+	. = ..()
+	icon_state = pick(color_options)
+
+/obj/item/weapon/storage/box/saucer //This is kinda like the donut box.
+	name = "Desatti Sherbert Saucers"
+	desc = "A pack of sherbert saucers, delicious pure sugar barely held together in packets of rice paper!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "saucer_pack"
+	var/icon_base = "saucer_pack"
+	var/startswith = 20
+	max_storage_space = ITEMSIZE_COST_TINY * 20
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/saucer)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/saucer = 20,
+	)
+	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/custardcream
+	name = "Custard Cream"
+	desc = "A small sandwich biscuit with a layer of custard flavoured cream as the filling and a pleasant design on the top and bottom."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "custard_cream"
+	nutriment_amt = 1
+	bitesize = 1
+	nutriment_desc = list("biscuit" = 5, "cream" = 3, "custard" = 3)
+
+/obj/item/weapon/storage/box/custardcream //This is kinda like the donut box.
+	name = "Desatti Custard Creams"
+	desc = "A box full of desatti brand custard cream biscuits!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "custard_cream_pack"
+	var/icon_base = "custard_cream_pack"
+	var/startswith = 12
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/custardcream)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/custardcream = 12
+	)
+	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/bourbon
+	name = "Bourbon Biscuit"
+	desc = "A long chocolate sandwich biscuit with a layer of chocolate flavoured cream as the filling and the word 'bourbon' on top."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "bourbon"
+	nutriment_amt = 1
+	bitesize = 1
+	nutriment_desc = list("biscuit" = 5, "cream" = 3, "chocolate" = 5)
+
+/obj/item/weapon/storage/box/bourbon //This is kinda like the donut box.
+	name = "Desatti Bourbons"
+	desc = "A box full of desatti brand chocolate bourbon biscuits!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "bourbon_pack"
+	var/icon_base = "bourbon_pack"
+	var/startswith = 12
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/bourbon)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bourbon = 12
+	)
+	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/sausageroll
+	name = "Sausage Roll"
+	icon_state = "sausageroll"
+	desc = "A pre-packaged sausage roll with Desatti Catering branding. Claims to contain real meat covered in pastry!"
+	package_trash = /obj/item/trash/sausageroll
+	package_open_state = "sausageroll_open"
+	nutriment_amt = 3
+	nutriment_desc = list("pastry" = 5, "meat" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg
+	name = "Scotch Egg"
+	icon_state = "scotchegg"
+	desc = "A pre-packaged scotch egg with Desatti Catering branding. Claims to contain a boiled egg covered in meat and coated with breadcrumbs!"
+	package_trash = /obj/item/trash/scotchegg
+	package_open_state = "scotchegg_open"
+	nutriment_amt = 3
+	nutriment_desc = list("egg" = 5, "meat" = 5, "bread" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/foam_banana
+	name = "Foam Banana"
+	desc = "A small vaguely banana shaped sweet with a foam-like texture."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "foam_banana"
+	w_class = ITEMSIZE_TINY
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("sugar" = 5, "banana" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/foam_shrimp
+	name = "Foam Shrimp"
+	desc = "A small vaguely shrimp shaped sweet with a foam-like texture."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "foam_shrimp"
+	w_class = ITEMSIZE_TINY
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("sugar" = 5, "strawberry" = 3)
+
+/obj/item/weapon/storage/box/shrimpsandbananas //This is kinda like the donut box.
+	name = "Shrimps and Bananas"
+	desc = "A pack of foam bananas and shrimps, the shrimps apparently don't taste of seafood! Branded as Desatti Catering."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "shrimpbanana_pack"
+	var/icon_base = "shrimpbanana_pack"
+	var/startswith = 20
+	max_storage_space = ITEMSIZE_COST_TINY * 20
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/foam_banana,/obj/item/weapon/reagent_containers/food/snacks/foam_shrimp)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/foam_banana = 10,
+		/obj/item/weapon/reagent_containers/food/snacks/foam_shrimp = 10
 	)
 	foldable = null
