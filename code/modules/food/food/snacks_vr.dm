@@ -925,6 +925,10 @@
 	bitesize = 2
 	nutriment_desc = list("chocolate" = 2, "orange" = 4, "cake" = 3)
 
+/obj/item/weapon/reagent_containers/food/snacks/bourbon/Initialize()
+	. = ..()
+	reagents.add_reagent("coco", 2)
+
 /obj/item/weapon/storage/box/jaffacake //This is kinda like the donut box.
 	name = "Desatti Jaffa Cakes"
 	desc = "A box full of desatti brand jaffa cakes, with twelve in a pack!"
@@ -997,6 +1001,10 @@
 	package_open_state = "pasty_open"
 	nutriment_amt = 4
 	nutriment_desc = list("pastry" = 5, "meat" = 5, "onion" = 2, "potato" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/pasty/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/saucer
 	name = "Sherbert Saucer"
@@ -1073,6 +1081,10 @@
 	)
 	foldable = null
 
+/obj/item/weapon/reagent_containers/food/snacks/bourbon/Initialize()
+	. = ..()
+	reagents.add_reagent("coco", 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/packaged/sausageroll
 	name = "Sausage Roll"
 	icon_state = "sausageroll"
@@ -1082,6 +1094,10 @@
 	nutriment_amt = 3
 	nutriment_desc = list("pastry" = 5, "meat" = 5)
 
+/obj/item/weapon/reagent_containers/food/snacks/packaged/sausageroll/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg
 	name = "Scotch Egg"
 	icon_state = "scotchegg"
@@ -1090,6 +1106,10 @@
 	package_open_state = "scotchegg_open"
 	nutriment_amt = 3
 	nutriment_desc = list("egg" = 5, "meat" = 5, "bread" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/foam_banana
 	name = "Foam Banana"
@@ -1125,3 +1145,45 @@
 		/obj/item/weapon/reagent_containers/food/snacks/foam_shrimp = 10
 	)
 	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/rhubarbcustard
+	name = "Rhubarb and Custard Sweet"
+	desc = "A small pink and yellow boiled sweet."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "rhubarbcustard_1"
+	w_class = ITEMSIZE_TINY
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("sugar" = 5, "rhubarb" = 2, "custard" = 2)
+	var/list/color_options = list("rhubarbcustard_1","rhubarbcustard_2")
+
+/obj/item/weapon/reagent_containers/food/snacks/rhubarbcustard/Initialize()
+	. = ..()
+	icon_state = pick(color_options)
+
+/obj/item/weapon/storage/box/rhubarbcustard //This is kinda like the donut box.
+	name = "Desatti Rhubarb and Custards"
+	desc = "A pack of rhubarb and custard boiled sweets, the taste combination might sound usual, but they insist it's actually kind of okay!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "rhubarbcustard_pack"
+	var/icon_base = "rhubarbcustard_pack"
+	var/startswith = 15
+	max_storage_space = ITEMSIZE_COST_TINY * 15
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/rhubarbcustard)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/rhubarbcustard = 15,
+	)
+	foldable = null
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/porkpie
+	name = "Pork Pie"
+	icon_state = "porkpie"
+	desc = "A pre-packaged pork pie with Desatti Catering branding. Claims to contain real meat covered in pastry!"
+	package_trash = /obj/item/trash/porkpie
+	package_open_state = "porkpie_open"
+	nutriment_amt = 3
+	nutriment_desc = list("pastry" = 5, "meat" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged/porkpie/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)

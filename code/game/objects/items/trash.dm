@@ -445,6 +445,10 @@
 	name = "scotch egg packaging"
 	icon_state = "scotchegg"
 
+/obj/item/trash/porkpie
+	name = "pork pie packaging"
+	icon_state = "porkpie"
+
 //Candy Bars (1-10)
 /obj/item/trash/candy/cb01
 	name = "\improper Tau Ceti Bar wrapper"
