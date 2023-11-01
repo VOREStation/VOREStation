@@ -85,18 +85,19 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define EARS_LAYER				23		//Both ear-slot items (combined image)
 #define EYES_LAYER				24		//Mob's eyes (used for glowing eyes)
 #define FACEMASK_LAYER			25		//Mask-slot item
-#define HEAD_LAYER				26		//Head-slot item
-#define HANDCUFF_LAYER			27		//Handcuffs, if the human is handcuffed, in a secret inv slot
-#define LEGCUFF_LAYER			28		//Same as handcuffs, for legcuffs
-#define L_HAND_LAYER			29		//Left-hand item
-#define R_HAND_LAYER			30		//Right-hand item
-#define WING_LAYER				31		//Wings or protrusions over the suit.
-#define TAIL_UPPER_LAYER_ALT	32		//Modified tail-sprite layer. Tend to be larger.
-#define MODIFIER_EFFECTS_LAYER	33		//Effects drawn by modifiers
-#define FIRE_LAYER				34		//'Mob on fire' overlay layer
-#define MOB_WATER_LAYER			35		//'Mob submerged' overlay layer
-#define TARGETED_LAYER			36		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			36		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+#define GLASSES_LAYER_ALT		26		//So some glasses can appear on top of hair and things
+#define HEAD_LAYER				27		//Head-slot item
+#define HANDCUFF_LAYER			28		//Handcuffs, if the human is handcuffed, in a secret inv slot
+#define LEGCUFF_LAYER			29		//Same as handcuffs, for legcuffs
+#define L_HAND_LAYER			30		//Left-hand item
+#define R_HAND_LAYER			31		//Right-hand item
+#define WING_LAYER				32		//Wings or protrusions over the suit.
+#define TAIL_UPPER_LAYER_ALT	33		//Modified tail-sprite layer. Tend to be larger.
+#define MODIFIER_EFFECTS_LAYER	34		//Effects drawn by modifiers
+#define FIRE_LAYER				35		//'Mob on fire' overlay layer
+#define MOB_WATER_LAYER			36		//'Mob submerged' overlay layer
+#define TARGETED_LAYER			37		//'Aimed at' overlay layer
+#define TOTAL_LAYERS			37		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -743,13 +744,20 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(GLASSES_LAYER)
+	remove_layer(GLASSES_LAYER_ALT)
 
 	if(!glasses)
 		return //Not wearing glasses, no need to update anything.
 
-	overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_EYES_DEF_ICON, default_layer = GLASSES_LAYER)
+	var/glasses_layer = GLASSES_LAYER
+	if(istype(glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/our_glasses = glasses
+		if(our_glasses.glasses_layer_above)
+			glasses_layer = GLASSES_LAYER_ALT
 
-	apply_layer(GLASSES_LAYER)
+	overlays_standing[glasses_layer] = glasses.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_EYES_DEF_ICON, default_layer = glasses_layer)
+
+	apply_layer(glasses_layer)
 
 /mob/living/carbon/human/update_inv_ears()
 	if(QDESTROYING(src))

@@ -1442,15 +1442,9 @@
 
 /datum/gear/fluff/harmony_id
 	path = /obj/item/weapon/card/id/event/polymorphic/itg
-	display_name = "Harmony's ITG-ID card"
+	display_name = "ITG-ID card"
 	ckeywhitelist = list("verysoft")
-	character_name = list("Harmony")
-
-/datum/gear/fluff/shinerunner_id
-	path = /obj/item/weapon/card/id/event/polymorphic/itg
-	display_name = "Shine-Runner's ITG-ID card"
-	ckeywhitelist = list("verysoft")
-	character_name = list("Shine-Runner")
+	character_name = null
 
 /datum/gear/fluff/dessa_hat
 	path = /obj/item/clothing/head/fluff/giantbow/dessa
@@ -1462,6 +1456,13 @@
 /datum/gear/fluff/dessa_hat/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/fluff/casey_glasses
+	path = /obj/item/clothing/glasses/big_round
+	display_name = "Big Round Glasses"
+	slot = slot_glasses
+	ckeywhitelist = list("verysoft")
+	character_name = null
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer

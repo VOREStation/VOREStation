@@ -726,6 +726,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 	var/list/available_options = list("Examine", "Eject", "Move", "Transfer")
 	if(ishuman(target))
 		available_options += "Transform"
+		available_options += "Health Check"
 	if(isliving(target))
 		var/mob/living/datarget = target
 		if(datarget.client)
@@ -872,12 +873,36 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 					b.absorb_living(ourtarget)
 				if("Cancel")
 					return
+		if("Health Check")
+			var/mob/living/carbon/human/H = target
+			var/target_health = round((H.health/H.getMaxHealth())*100)
+			var/condition
+			var/condition_consequences
+			to_chat(usr, "<span class= 'warning'>\The [target] is at [target_health]% health.</span>")
+			if(H.blinded)
+				condition += "blinded"
+				condition_consequences += "hear emotes"
+			if(H.paralysis)
+				if(condition)
+					condition += " and "
+					condition_consequences += " or "
+				condition += "paralysed"
+				condition_consequences += "make emotes"
+			if(H.sleeping)
+				if(condition)
+					condition += " and "
+					condition_consequences += " or "
+				condition += "sleeping"
+				condition_consequences += "hear or do anything"
+			if(condition)
+				to_chat(usr, "<span class= 'warning'>\The [target] is currently [condition], they will not be able to [condition_consequences].</span>")
+			return
+
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
 		tgui_alert_async(usr, "No belly selected to modify.")
 		return FALSE
-
 	var/attr = params["attribute"]
 	switch(attr)
 		if("b_name")

@@ -88,6 +88,21 @@
 
 	feedback_add_details("admin_verb","TWhisubtleVis") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_ghost_privacyvision()
+	set name = "Toggle Ghost Private Eyes/ears"
+	set category = "Preferences"
+	set desc = "Toggles your ability to see subtles/whispers. Overrides admin status. Respects Ghost Privacy"
+
+	var/pref_path = /datum/client_preference/ghost_see_whisubtle
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "As a ghost, you will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear subtles/whispers made by players.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TGhostSeeWhisSubtle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_capture_crystal()
 	set name = "Toggle Catchable"
 	set category = "Preferences"

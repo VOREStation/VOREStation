@@ -69,8 +69,9 @@
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
-		if(client.prefs.chat_timestamp)
-			to_chat(src,"[time] [msg]")
+		if(client && client.prefs.chat_timestamp)
+			msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)(.*</span>)", ""), "$1[time] $2")
+			to_chat(src,msg)
 		else if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
 		else

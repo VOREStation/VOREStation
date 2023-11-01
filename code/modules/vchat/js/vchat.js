@@ -145,7 +145,7 @@ function start_vue() {
 			//The table to map game css classes to our vchat categories
 			type_table: [
 				{
-					matches: ".filter_say, .say, .emote, .emote_subtle", //VOREStation Edit
+					matches: ".filter_say, .say, .emote, .emotesubtle", //VOREStation Edit
 					becomes: "vc_localchat",
 					pretty: "Local Chat",
 					tooltip: "In-character local messages (say, emote, etc)",
@@ -206,6 +206,14 @@ function start_vue() {
 					becomes: "vc_nif",
 					pretty: "NIF Messages",
 					tooltip: "Messages from the NIF itself and people inside",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".psay, .pemote",
+					becomes: "vc_pmessage",
+					pretty: "Pred/Prey Messages",
+					tooltip: "Messages from / to absorbed or dominated prey",
 					required: false,
 					admin: false
 				},

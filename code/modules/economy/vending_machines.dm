@@ -980,6 +980,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/oort = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/sun_snax = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry = 6,
+					/obj/item/weapon/storage/box/jaffacake = 8,
 					/obj/item/weapon/storage/box/gum = 8,
 					/obj/item/weapon/storage/box/admints = 8
 					)
@@ -993,6 +994,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/oort = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/sun_snax = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry = 8,
+					/obj/item/weapon/storage/box/jaffacake = 5,
 					/obj/item/weapon/storage/box/gum = 2,
 					/obj/item/weapon/storage/box/admints = 2
 					)

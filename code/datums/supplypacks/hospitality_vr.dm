@@ -88,3 +88,35 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Chinese takeout crate"
+
+/datum/supply_pack/randomised/hospitality/jaffacake
+	contains = list(
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake,
+		/obj/item/weapon/storage/box/jaffacake
+		)
+	name = "Desatti jaffa cake crate"
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Desatti jaffa cake crate"
+
+/datum/supply_pack/randomised/hospitality/sweets
+	num_contained = 5
+	contains = list(
+			/obj/item/weapon/storage/box/jaffacake,
+			/obj/item/weapon/storage/box/winegum,
+			/obj/item/weapon/storage/box/saucer,
+			/obj/item/weapon/storage/box/shrimpsandbananas,
+			/obj/item/weapon/storage/box/rhubarbcustard
+			)
+	name = "Sweets crate"
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Sweets crate"

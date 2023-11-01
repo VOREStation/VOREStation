@@ -13,6 +13,7 @@ aruis - Diona
 aruis - Protean
 aruis - Xenochimera
 ashburndracki - Protean
+athena14 - Xenochimera
 auraribbon - Black-Eyed Shadekin
 azmodan412 - Xenochimera
 beyondmylife - Protean
@@ -40,6 +41,7 @@ digi5 - Black-Eyed Shadekin
 digitalsquirrel95 - Black-Eyed Shadekin
 digitalsquirrel95 - Protean
 draycu - Vox
+durandaal - Teppi
 essbie - Black-Eyed Shadekin
 exgame - Vox
 falloutdog3 - Black-Eyed Shadekin
@@ -84,6 +86,7 @@ lavenderrs - Teppi
 lazzar - Black-Eyed Shadekin
 lianvee - Black-Eyed Shadekin
 lillianfyre - Xenochimera
+liquidfirefly - Protean
 lizehrd - Xenochimera
 looptyloo - Protean
 lordlag - Black-Eyed Shadekin
@@ -170,6 +173,7 @@ trifireblade - Protean
 trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
+umbraferros - Xenochimera
 umbrenos - Black-Eyed Shadekin
 varonis - Protean
 varonis - Xenochimera
