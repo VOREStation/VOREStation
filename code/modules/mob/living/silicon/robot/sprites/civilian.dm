@@ -1,4 +1,4 @@
-// Clerical and Service modules have a lot of shared sprites so they're in same file
+	// Clerical and Service modules have a lot of shared sprites so they're in same file
 // (some of those sprites are also shared with Standard, but ive already done it as its own thing, so some duplicates are fine)
 
 // Both Service and Clerical
@@ -368,6 +368,11 @@
 /datum/robot_sprite/dogborg/clerical
 	module_type = "Clerical"
 	sprite_icon = 'icons/mob/robot/clerical_wide.dmi'
+
+/datum/robot_sprite/dogborg/clerical/vale
+	name = "Hound V2"
+	sprite_icon_state = "vale"
+	has_eye_light_sprites = TRUE
 
 /datum/robot_sprite/dogborg/clerical/otie
 	name = "Otieborg"
