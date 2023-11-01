@@ -220,11 +220,11 @@
 	else
 		ourborg.icon_state = booze_options[ourborg.sprite_extra_customization["boozehound"]]
 
-/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
 	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
 		return ..()
 	else
-		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-sleeper"
+		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-sleeper-[size]"
 
 /datum/robot_sprite/dogborg/service/booze/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
@@ -364,13 +364,16 @@
 	has_dead_sprite = TRUE
 
 // Wide/dogborg sprites
-/*
+
 /datum/robot_sprite/dogborg/clerical
 	module_type = "Clerical"
 	sprite_icon = 'icons/mob/robot/clerical_wide.dmi'
 
-		// None yet
-*/
+/datum/robot_sprite/dogborg/clerical/otie
+	name = "Otieborg"
+	sprite_icon_state = "otie"
+	has_eye_light_sprites = TRUE
+
 // Tall sprites
 /*
 /datum/robot_sprite/dogborg/tall/clerical
