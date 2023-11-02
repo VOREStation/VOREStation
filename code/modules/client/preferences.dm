@@ -82,6 +82,7 @@ var/list/preferences_datums = list()
 	var/g_synth							//Same as above
 	var/b_synth							//Same as above
 	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
+	var/digitigrade = 0
 
 		//Some faction information.
 	var/home_system = "Unset"           //Current home or residence.

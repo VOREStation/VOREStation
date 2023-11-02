@@ -8,6 +8,7 @@
 	name_plural = "Custom"
 	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
 	base_species = SPECIES_HUMAN
+	digi_allowed = TRUE
 
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 

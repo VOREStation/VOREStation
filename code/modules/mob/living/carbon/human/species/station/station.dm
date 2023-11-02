@@ -73,6 +73,7 @@
 	health_hud_intensity = 2.5
 	chem_strength_alcohol = 0.75
 	throwforce_absorb_threshold = 10
+	digi_allowed = TRUE
 
 	min_age = 32
 	max_age = 260
@@ -198,6 +199,7 @@
 	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 	chem_strength_alcohol = 1.25
+	digi_allowed = TRUE
 
 	min_age = 17
 	max_age = 80
