@@ -81,6 +81,17 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
 
+	var/digitigrade = 0
+
+	// preferentially take digitigrade value from owner if available, THEN DNA.
+	// this allows limbs to be set properly when being printed in the bioprinter without an owner
+	// this also allows the preview mannequin to update properly because customisation topic calls don't call a DNA check
+	var/check_digi = istype(src,/obj/item/organ/external/leg) || istype(src,/obj/item/organ/external/foot)
+	if(owner)
+		digitigrade = check_digi && owner.digitigrade
+	else if(dna)
+		digitigrade = check_digi && dna.digitigrade
+
 	for(var/M in markings)
 		if (!markings[M]["on"])
 			continue
@@ -139,8 +150,12 @@ var/global/list/limb_icon_cache = list()
 				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 				should_apply_transparency = TRUE
 				apply_colouration(mob_icon)
+			else if(is_hidden_by_markings())
+				mob_icon = new /icon('icons/mob/human_races/r_blank.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+				should_apply_transparency = TRUE
 			else
-				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
+				//Use digi icon if digitigrade, otherwise use regular icon. Ternary operator is based.
+				mob_icon = new /icon(digitigrade ? species.icodigi : species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
 				should_apply_transparency = TRUE
 				apply_colouration(mob_icon)
 
