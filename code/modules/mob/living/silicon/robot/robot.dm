@@ -928,7 +928,7 @@
 		if(belly_size > 0) //Borgs probably only have 1 belly size. but here's support for larger ones if that changes.
 			if(resting && sprite_datum.has_vore_belly_resting_sprites)
 				add_overlay(sprite_datum.get_belly_resting_overlay(src, belly_size))
-			else
+			else if(!resting)
 				add_overlay(sprite_datum.get_belly_overlay(src, belly_size))
 
 		sprite_datum.handle_extra_icon_updates(src)			// Various equipment-based sprites go here.
