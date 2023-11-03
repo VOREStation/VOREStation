@@ -273,6 +273,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
+"aI" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "aJ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -288,6 +300,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
+"aL" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "aM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -295,6 +313,17 @@
 /turf/simulated/floor,
 /area/stellardelight/deck2/central)
 "aN" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
+"aO" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -305,8 +334,9 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/open,
-/area/stellardelight/deck2/starboard)
+/area/stellardelight/deck2/fore)
 "aP" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
@@ -329,9 +359,58 @@
 "aQ" = (
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/stellardelight/deck3/commandhall)
+"aR" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "aS" = (
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/forestarrooma)
+"aT" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/blue{
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
+"aU" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/port)
+"aV" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
 "aX" = (
 /obj/structure/sign/deck3{
 	pixel_x = 32
@@ -341,11 +420,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
-"ba" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/landmark/vines,
-/turf/simulated/open,
-/area/stellardelight/deck2/fore)
 "bb" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -888,17 +962,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportrooma)
-"db" = (
-/obj/structure/lattice,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/stellardelight/deck2/starboard)
 "df" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -6032,13 +6095,6 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/stellardelight/deck2/port)
-"wc" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/landmark/vermin,
-/turf/simulated/open,
-/area/stellardelight/deck2/starboard)
 "wd" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/oxygen,
@@ -7841,13 +7897,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
-"Cb" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/effect/landmark/vermin,
-/turf/simulated/open,
-/area/stellardelight/deck2/fore)
 "Cc" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/hatch{
@@ -9525,13 +9574,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
-"ID" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/landmark/vines,
-/turf/simulated/open,
-/area/stellardelight/deck2/fore)
 "IG" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -10679,13 +10721,6 @@
 /obj/random/maintenance,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
-"Mv" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/effect/landmark/vines,
-/turf/simulated/open,
-/area/stellardelight/deck2/fore)
 "Mw" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 1
@@ -10905,13 +10940,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
-"Nd" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/effect/landmark/vines,
-/turf/simulated/open,
-/area/stellardelight/deck2/port)
 "Ne" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -11569,13 +11597,6 @@
 "OX" = (
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
-"OY" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/landmark/vines,
-/turf/simulated/open,
-/area/stellardelight/deck2/starboard)
 "Pa" = (
 /obj/structure/lattice,
 /turf/simulated/open,
@@ -13769,16 +13790,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/starboardcent)
-"Xe" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/stellardelight/deck2/fore)
 "Xf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/open,
@@ -22020,7 +22031,7 @@ CS
 oW
 oW
 oW
-Nd
+QF
 oW
 oW
 oW
@@ -22162,7 +22173,7 @@ Yw
 uf
 uf
 uf
-Mk
+aU
 uf
 uf
 uf
@@ -22842,7 +22853,7 @@ qF
 qF
 qF
 qF
-Cb
+aL
 qF
 qF
 qF
@@ -22851,7 +22862,7 @@ Cp
 qF
 qF
 qF
-Mv
+aL
 qF
 qF
 qF
@@ -22984,7 +22995,7 @@ qi
 qi
 qi
 qi
-Xe
+aN
 qi
 qi
 qi
@@ -22993,7 +23004,7 @@ kO
 qi
 qi
 qi
-Xe
+aR
 qi
 qi
 qi
@@ -23829,8 +23840,8 @@ qp
 NF
 qp
 Qp
-ba
-Ie
+Hf
+aI
 tV
 cb
 gy
@@ -25824,7 +25835,7 @@ sd
 sd
 sd
 sd
-wy
+aO
 sd
 sd
 sd
@@ -25840,7 +25851,7 @@ sd
 sd
 Rj
 FL
-aN
+aT
 FL
 FL
 OI
@@ -25966,7 +25977,7 @@ qF
 qF
 qF
 qF
-ID
+KF
 qF
 qF
 qF
@@ -25982,7 +25993,7 @@ qF
 hC
 aJ
 ow
-wc
+ZC
 ow
 yP
 Ks
@@ -26715,7 +26726,7 @@ mS
 mS
 mS
 mS
-db
+aV
 mS
 mS
 Rz
@@ -26857,7 +26868,7 @@ ow
 ow
 ow
 ow
-OY
+ZC
 yP
 ow
 ZM
