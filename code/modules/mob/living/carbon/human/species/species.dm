@@ -61,6 +61,9 @@
 	var/min_age = 17
 	var/max_age = 70
 
+	var/icodigi = 'icons/mob/human_races/r_digi.dmi'
+	var/digi_allowed = FALSE
+
 	// Language/culture vars.
 	var/default_language = LANGUAGE_GALCOM					// Default language is used when 'say' is used without modifiers.
 	var/language = LANGUAGE_GALCOM							// Default racial language, if any.

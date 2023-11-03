@@ -758,10 +758,10 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
-	src.modules += new /obj/item/weapon/combat_borgblade
+	src.modules += new /obj/item/weapon/combat_borgblade(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
-	src.modules += new /obj/item/weapon/borg_combat_shocker
+	src.modules += new /obj/item/weapon/borg_combat_shocker(src)
 	src.modules += new /obj/item/device/ticket_printer(src)
 	src.emag += new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
 
