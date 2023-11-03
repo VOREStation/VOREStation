@@ -379,7 +379,7 @@
 	else if(istype(target,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = target
 		if(A.opened)
-			if(A.cell)
+			if(A.cell && is_type_in_list(A.cell, can_hold))
 
 				wrapped = A.cell
 
@@ -396,7 +396,7 @@
 	else if(istype(target,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/A = target
 		if(A.opened)
-			if(A.cell)
+			if(A.cell && is_type_in_list(A.cell, can_hold))
 
 				wrapped = A.cell
 
