@@ -856,6 +856,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 						l.adjust_nutrition(thismuch)
 					ourtarget.death()		// To make sure all on-death procs get properly called
 					if(ourtarget)
+						if(ourtarget.is_preference_enabled(/datum/client_preference/digestion_noises))
+							if(!b.fancy_vore)
+								SEND_SOUND(ourtarget, sound(get_sfx("classic_death_sounds")))
+							else
+								SEND_SOUND(ourtarget, sound(get_sfx("fancy_death_prey")))
 						b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
