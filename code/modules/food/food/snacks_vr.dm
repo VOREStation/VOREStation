@@ -33,6 +33,7 @@
 	trash = /obj/item/trash/snack_bowl
 	nutriment_amt = 6
 	nutriment_desc = list("meat" = 2, "vegetables" = 2, "seasoning" = 5)
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/goulash/Initialize()
 	. = ..()
@@ -128,6 +129,7 @@
 	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
 	nutriment_desc = list("spicyness" = 4, "sourness" = 4, "tofu" = 1)
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup/Initialize()
 	. = ..()
@@ -142,6 +144,7 @@
 	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
 	nutriment_desc = list("fried egg" = 2, "egg noodles" = 4)
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon/Initialize()
 	. = ..()
@@ -583,6 +586,7 @@
 	nutriment_amt = 8
 	nutriment_desc = list("soy" = 8)
 	bitesize = 4
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/milosoup/Initialize()
 	. = ..()
@@ -596,6 +600,7 @@
 	filling_color = "#E0C367"
 	center_of_mass = list("x"=16, "y"=7)
 	bitesize = 3
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/onionsoup/Initialize()
 	. = ..()
@@ -808,6 +813,7 @@
 	trash = /obj/item/trash/ratjuice
 	nutriment_amt = 2
 	nutriment_desc = list("essence of steak" = 6)
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/ratliquid/Initialize()
 	. = ..()
