@@ -107,7 +107,6 @@
 	M.real_name = generateCorpseName()
 	M.set_stat(DEAD) //Kills the new mob
 	if(corpsesynthtype > 0)
-		to_world("Synth")
 		if(!corpsesynthbrand)
 			corpsesynthbrand = "Unbranded"
 		for(var/obj/item/organ/external/O in M.organs)

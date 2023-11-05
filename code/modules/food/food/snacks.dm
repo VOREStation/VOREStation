@@ -2422,6 +2422,7 @@
 	filling_color = "#785210"
 	center_of_mass = list("x"=16, "y"=8)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/meatballsoup/Initialize()
 	. = ..()
@@ -2434,6 +2435,7 @@
 	icon_state = "slimesoup" //nonexistant? - 3/1/2020 FIXED. roro's live on. - 7/14/2020 - The fuck are you smoking, roro's is stupid, name it slimesoup so it's clear wtf it is.
 	filling_color = "#C4DBA0"
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup/Initialize()
 	. = ..()
@@ -2447,6 +2449,7 @@
 	filling_color = "#FF0000"
 	center_of_mass = list("x"=16, "y"=7)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/bloodsoup/Initialize()
 	. = ..()
@@ -2463,6 +2466,7 @@
 	nutriment_amt = 4
 	nutriment_desc = list("salt" = 1, "the worst joke" = 3)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/clownstears/Initialize()
 	. = ..()
@@ -2478,6 +2482,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup/Initialize()
 	. = ..()
@@ -2493,6 +2498,7 @@
 	nutriment_amt = 8
 	nutriment_desc = list("salad" = 4, "egg" = 2, "potato" = 2)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/nettlesoup/Initialize()
 	. = ..()
@@ -2509,6 +2515,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("backwash" = 1)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/mysterysoup/Initialize()
 	. = ..()
@@ -2557,6 +2564,7 @@
 	filling_color = "#D1F4FF"
 	center_of_mass = list("x"=16, "y"=11)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/wishsoup/Initialize()
 	. = ..()
@@ -2573,6 +2581,7 @@
 	filling_color = "#D92929"
 	center_of_mass = list("x"=16, "y"=7)
 	bitesize = 3
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/tomatosoup/Initialize()
 	. = ..()
@@ -2586,6 +2595,7 @@
 	filling_color = "#E386BF"
 	center_of_mass = list("x"=17, "y"=10)
 	bitesize = 3
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/mushroomsoup/Initialize()
 	. = ..()
@@ -2599,6 +2609,7 @@
 	filling_color = "#FAC9FF"
 	center_of_mass = list("x"=15, "y"=8)
 	bitesize = 3
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/beetsoup/Initialize()
 	. = ..()
@@ -2613,6 +2624,7 @@
 	filling_color = "#E0C367"
 	center_of_mass = list("x"=16, "y"=7)
 	bitesize = 3
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/onion/Initialize()
 	. = ..()
@@ -2641,6 +2653,7 @@
 	drop_sound = 'sound/items/drop/shovel.ogg'
 	pickup_sound = 'sound/items/pickup/shovel.ogg'
 	bitesize = 10
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/stew/Initialize()
 	. = ..()
@@ -2659,6 +2672,7 @@
 	nutriment_desc = list("hearty stew" = 6)
 	center_of_mass = list("x"=16, "y"=5)
 	bitesize = 6
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/bearstew/Initialize()
 	. = ..()
@@ -2679,6 +2693,7 @@
 	nutriment_amt = 3
 	nutriment_desc = list("chilli peppers" = 3)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/hotchili/Initialize()
 	. = ..()
@@ -2696,6 +2711,7 @@
 	nutriment_amt = 3
 	nutriment_desc = list("ice peppers" = 3)
 	bitesize = 5
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/coldchili/Initialize()
 	. = ..()
@@ -2715,6 +2731,7 @@
 	nutriment_desc = list("dark, hearty chili" = 3)
 	center_of_mass = list("x"=15, "y"=9)
 	bitesize = 6
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/bearchili/Initialize()
 	. = ..()
@@ -4262,6 +4279,7 @@
 	nutriment_amt = 20
 	nutriment_desc = list("chalk" = 6)
 	bitesize = 4
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood/Initialize()
 	. = ..()
@@ -4276,6 +4294,7 @@
 	survivalfood = TRUE
 	center_of_mass = list("x"=16, "y"=15)
 	bitesize = 4
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
 	. = ..()
@@ -4291,6 +4310,7 @@
 	survivalfood = TRUE
 	center_of_mass = list("x"=16, "y"=15)
 	bitesize = 4
+	eating_sound = 'sound/items/drink.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidvitamin/Initialize()
 	. = ..()
