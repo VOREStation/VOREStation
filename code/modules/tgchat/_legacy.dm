@@ -1,19 +1,5 @@
 /// Old VChat Code Stuff
 
-//This is used to convert icons to base64 <image> strings, because byond stores icons in base64 in savefiles.
-GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of icons for the browser output
-
-//Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
-// exporting it as text, and then parsing the base64 from that.
-// (This relies on byond automatically storing icons in savefiles as base64)
-/proc/icon2base64(var/icon/icon, var/iconKey = "misc")
-	if (!isicon(icon)) return FALSE
-
-	GLOB.iconCache[iconKey] << icon
-	var/iconData = GLOB.iconCache.ExportText(iconKey)
-	var/list/partial = splittext(iconData, "{")
-	return replacetext(copytext(partial[2], 3, -5), "\n", "")
-
 /proc/expire_bicon_cache(key)
 	if(GLOB.bicon_cache[key])
 		GLOB.bicon_cache -= key
