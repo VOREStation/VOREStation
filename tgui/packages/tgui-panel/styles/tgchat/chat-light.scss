@@ -292,6 +292,30 @@ em {
   font-weight: bold;
 }
 
+.ooc img.text_tag {
+  width: 32px;
+  height: 10px;
+}
+
+/*BIG IMG.icon 			{width: 32px; height: 32px;}*/
+img.icon {
+  vertical-align: middle;
+  max-height: 1em;
+}
+img.icon.bigicon {
+  max-height: 32px;
+}
+
+.looc {
+  color: #3a9696;
+  font-weight: bold;
+}
+
+.rlooc {
+  color: #3abb96;
+  font-weight: bold;
+}
+
 .adminobserverooc {
   color: #0099cc;
   font-weight: bold;
@@ -321,6 +345,19 @@ em {
 .infoplain,
 .oocplain,
 .warningplain {
+}
+
+.nif {
+}
+
+.psay {
+  color: #800080;
+  font-style: italic;
+}
+
+.pemote {
+  color: #800080;
+  font-style: italic;
 }
 
 .deadsay {
@@ -366,12 +403,16 @@ em {
   color: #fb5613;
 }
 
-.suppradio {
+.supradio {
   color: #a8732b;
 }
 
-.servradio {
+.srvradio {
   color: #6eaa2c;
+}
+
+.expradio {
+  color: #555555;
 }
 
 .syndradio {
@@ -386,7 +427,7 @@ em {
   color: #686868;
 }
 
-.aiprivradio {
+.airadio {
   color: #ff00ff;
 }
 

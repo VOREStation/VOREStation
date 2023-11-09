@@ -345,7 +345,7 @@
 	if(!text_tag_cache[tagname])
 		var/icon/tag = icon(text_tag_icons, tagname)
 		text_tag_cache[tagname] = bicon(tag, TRUE, "text_tag")
-	if(C.tgui_panel.is_ready())
+	if(!C.tgui_panel.is_ready())
 		return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 	return text_tag_cache[tagname]
 

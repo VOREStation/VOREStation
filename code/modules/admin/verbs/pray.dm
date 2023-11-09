@@ -22,9 +22,9 @@
 	for(var/client/C in GLOB.admins)
 		if(R_ADMIN|R_EVENT & C.holder.rights)
 			if(C.is_preference_enabled(/datum/client_preference/admin/show_chat_prayers))
-				to_chat(C,msg)
+				to_chat(C, msg, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
 				C << 'sound/effects/ding.ogg'
-	to_chat(usr, "Your prayers have been received by the gods.")
+	to_chat(usr, "Your prayers have been received by the gods.", confidential = TRUE)
 
 	feedback_add_details("admin_verb","PR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_pray(raw_msg, src)
