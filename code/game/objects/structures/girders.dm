@@ -292,6 +292,7 @@
 
 /obj/structure/girder/proc/dismantle()
 	girder_material.place_dismantled_product(get_turf(src))
+	girder_material.place_dismantled_product(get_turf(src)) //VOREstation Edit: Conservation of mass
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)

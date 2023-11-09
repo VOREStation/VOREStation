@@ -85,7 +85,8 @@
 	if(!is_plating()) // Flooring -> Plating
 		swap_decals()
 		if(flooring.build_type && place_product)
-			new flooring.build_type(src)
+			for(var/i=0, i < flooring.build_cost, i++) //VOREstation Edit: conservation of mass
+				new flooring.build_type(src)
 		var/newtype = flooring.get_plating_type()
 		if(newtype) // Has a custom plating type to become
 			set_flooring(get_flooring_data(newtype))

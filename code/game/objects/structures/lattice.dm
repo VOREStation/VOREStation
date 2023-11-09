@@ -65,6 +65,7 @@
 			if(WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
 			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(src.loc) //VOREstation Edit: Return the same amount of rods used to build this.
 			qdel(src)
 		return
 	if(istype(C, /obj/item/stack/rods))

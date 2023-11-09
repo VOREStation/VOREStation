@@ -65,9 +65,11 @@
 	switch(severity)
 		if(1)
 			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(src.loc) //VOREstation Edit: Conservation of mass
 			qdel(src)
 		if(2)
 			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(src.loc) //VOREstation Edit: Conservation of mass
 			qdel(src)
 
 /obj/structure/catwalk/attack_robot(var/mob/user)
