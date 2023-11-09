@@ -111,6 +111,7 @@ class ChatRenderer {
     this.rootNode = null;
     this.queue = [];
     this.messages = [];
+    this.archivedMessages = [];
     this.visibleMessages = [];
     this.page = null;
     this.events = new EventEmitter();
@@ -459,6 +460,7 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
+      this.archivedMessages.push(message); // TODO: Actually having a better message archiving maybe for exports?
       if (canPageAcceptType(this.page, message.type)) {
         fragment.appendChild(node);
         this.visibleMessages.push(message);
@@ -568,7 +570,8 @@ class ChatRenderer {
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
     let messagesHtml = '';
-    for (let message of this.visibleMessages) {
+    // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
+    for (let message of this.archivedMessages) {
       if (message.node) {
         messagesHtml += message.node.outerHTML + '\n';
       }

@@ -9,7 +9,7 @@
  *
  * @return {string}
  */
-export const createUuid = () => {
+export const createUuid = (): string => {
   let d = new Date().getTime();
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (d + Math.random() * 16) % 16 | 0;
