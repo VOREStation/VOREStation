@@ -351,7 +351,7 @@
 		if ("Form")
 			var/list/content = print_form()
 			if(!content)
-				to_chat(usr, "<span class='warning'>No form found in central network for this category. Central is advising employees to upload new forms whenever possible.</span>")
+				to_chat(usr, "<span class='warning'>No form for this category found in central network. Central is advising employees to upload new forms whenever possible.</span>")
 				return
 			T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
 			new /obj/item/weapon/paper(T, content[1], content[2])
