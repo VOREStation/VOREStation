@@ -363,7 +363,7 @@
 	var/list/supply_paper_forms = list("SUP-2001: Delivery of Goods", "SUP-2002: Delivery of Resources", "SUP-2003: Material Stock")
 	var/list/science_paper_forms = list("SCI-3003: Cyborg / Robot Inspection", "SCI-3004: Cyborg / Robot Upgrades", "SCI-3009: Xenoflora Genetics Report")
 	var/list/medical_paper_forms = list("MED-4001: Death Certificate", "MED-4002: Prescription", "MED-4003: Against Medical Advice", "MED-4004: Cyborgification Contract", "MED-4005: Mental Health Patient Intake", "MED-4006: NIF Surgery", "MED-4007: Psychiatric Evaluation")
-	var/list/engineering_paper_forms = list()
+	var/list/engineering_paper_forms = list("ENG-5001: Building Permit")
 	var/list/service_paper_forms = list()
 	var/list/exploration_paper_forms = list()
 	var/list/event_paper_forms = list()
@@ -548,6 +548,9 @@
 			content = @{"[grid][row][cell][b]Patient Name:[/b][cell][field][br][row][cell][cell][br][row][cell][b]Patient Occupation:[/b][cell][field][br][row][cell][cell][br][row][cell][b]Psychiatrist:[/b][cell][field][/grid][br][hr][br][b][u]Concerns:[/u][/b][br][br][field][br][br][b][u]Evaluation:[/u][/b][br][br][field][br][br][b][u]Conclusion:[/u][/b][br][br][field][br][br][hr][b][u]Comments:[/u][/b][br][br][field][br][br][hr][grid][row][cell][list][b]Psychiatrist Signature:[/b][/list][cell][br][row][cell][list] - [large][field][/large][/list][cell][/grid]"}
 			revision = "Revision: 1.3"
 		//Engineering forms, ENG-5
+		if("ENG-5001")
+			content = @{"[grid][row][cell][b]Location:[/b] [cell][field][br][row][cell][b]Purpose:[/b] [cell][field][/grid][br][hr][br]I, [[u][field][/u]] certify that I have reviewed and approved of provided blueprints. I have verified that design will be structurally sound and fall within building guidelines. I and any others participating in its construction will ensure that the blueprint will be followed.[br][br][br][b]Blueprint:[/b] [field][br][br][hr][grid][row][cell][list][b]Constructing Engineer signature:[/b][/list][cell][list][list][list][list][list][b]Chief Engineer signature:[/b][/list][/list][/list][/list][/list][cell][br][row][cell][list] - [field][/list][cell][list][list][list][list][list]- [large][field][/large][/list][/list][/list][/list][/list][cell][/grid]"}
+			revision = "Revision 1.1"
 		//Service forms, SER-6
 		//Explorer forms, EXP-7
 		//Event forms, EVNT-8
