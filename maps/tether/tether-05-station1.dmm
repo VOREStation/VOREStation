@@ -133,6 +133,22 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor,
 /area/tether/exploration/hallway)
+"aap" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Telecomms Access";
+	req_access = list(61);
+	req_one_access = list()
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techfloor,
+/area/tcommsat/entrance{
+	name = "\improper Telecomms Entrance"
+	})
 "aaq" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/station/exploration)
@@ -12607,7 +12623,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -21737,21 +21753,6 @@
 /obj/structure/sign/department/eng,
 /turf/simulated/wall/r_wall,
 /area/hallway/station/docks)
-"jmn" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/highsecurity{
-	name = "Telecomms Access";
-	req_one_access = list(10,12,16,17,61)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/techfloor,
-/area/tcommsat/entrance{
-	name = "\improper Telecomms Entrance"
-	})
 "jms" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/mining,
@@ -23210,7 +23211,6 @@
 /area/gateway/prep_room)
 "kHf" = (
 /obj/machinery/conveyor_switch/oneway{
-	//convdir = -1;		//Incompatable with new behavior -Reo;
 	id = "QMLoad2"
 	},
 /obj/machinery/light{
@@ -28372,24 +28372,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
-"qSM" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/dock_two)
 "qTD" = (
 /obj/item/weapon/bedsheet/brown,
 /obj/structure/bed/padded,
@@ -47053,7 +47035,7 @@ aaa
 aaa
 fLT
 cOV
-qSM
+rQq
 vcG
 fLT
 aaa
@@ -47195,7 +47177,7 @@ xIm
 jRT
 fLT
 kbq
-qSM
+rQq
 jGw
 fLT
 aaa
@@ -49041,7 +49023,7 @@ aaa
 aaa
 fLT
 lNz
-qSM
+rQq
 qZs
 fLT
 aaa
@@ -49574,7 +49556,7 @@ hkR
 lGY
 nJx
 acR
-jmn
+aap
 acZ
 adg
 adr
