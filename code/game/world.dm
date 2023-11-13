@@ -11,7 +11,9 @@
 
 #define RECOMMENDED_VERSION 513
 /world/New()
+	#ifdef TRACY
 	prof_init()
+	#endif
 	world_startup_time = world.timeofday
 	rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
 	to_world_log("Map Loading Complete")
