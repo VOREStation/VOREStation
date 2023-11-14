@@ -266,7 +266,7 @@
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC"
 
-	var/new_flavortext = strip_html_simple(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", null, multiline = TRUE))
+	var/new_flavortext = strip_html_simple(tgui_input_text(usr, "Please enter your new flavour text.", "Flavour text", flavor_text, multiline = TRUE))
 	if(new_flavortext)
 		flavor_text = new_flavortext
 
