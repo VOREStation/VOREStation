@@ -749,6 +749,54 @@
 	M.SetLosebreath(10)
 	M.adjustOxyLoss(removed * overdose_mod)
 
+/datum/reagent/paralyzant
+	name = "Paralyzant"
+	id = "paralyzant"
+	description = "A potent muscle relaxant. Disables subjects without knocking them completely unconscious."
+	taste_description = "bitterness"
+	reagent_state = SOLID
+	color = "#000067"
+	metabolism = REM * 0.5
+	ingest_met = REM * 1.5
+	overdose = REAGENTS_OVERDOSE / 3	//use INCREDIBLY carefully!
+	overdose_mod = 3
+
+/datum/reagent/paralyzant/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+
+	var/threshold = 1 * M.species.chem_strength_tox
+	if(alien == IS_SKRELL)
+		threshold = 1.2
+
+	if(alien == IS_SLIME)
+		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+
+	var/effective_dose = dose
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(effective_dose == metabolism)
+		M.AdjustParalysis(1)
+	else if(effective_dose < 2 * threshold)
+		M.AdjustParalysis(5)
+		M.eye_blurry = max(M.eye_blurry, 10)
+	else
+		if(alien == IS_SLIME)
+			if(prob(30))
+				M.ear_deaf = max(M.ear_deaf, 4)
+			M.eye_blurry = max(M.eye_blurry, 60)
+			M.AdjustParalysis(5)
+
+	if(effective_dose > 1 * threshold)
+		M.adjustToxLoss(removed)
+
+/datum/reagent/paralyzant/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	//As it turns out having your muscles stop working makes it hard to breathe
+	M.SetLosebreath(10)
+	M.adjustOxyLoss(removed * overdose_mod)
+
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
 	id = "beer2"

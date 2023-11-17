@@ -370,6 +370,13 @@
 	required_reagents = list("ethanol" = 1, "chlorine" = 3, "water" = 1)
 	result_amount = 1
 
+/decl/chemical_reaction/instant/paralyzant
+	name = "Paralyzant"
+	id = "paralyzant"
+	result = "paralyzant"
+	required_reagents = list("ethanol" = 1, "hydrogen" = 2, "chlorine" = 2)
+	result_amount = 1
+
 /decl/chemical_reaction/instant/potassium_chloride
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
