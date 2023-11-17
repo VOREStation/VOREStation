@@ -1188,7 +1188,7 @@
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	suit_type = "probably not magical"
-	icon_state = "nikki"
+	icon_state = "nikkicape"
 	w_class = ITEMSIZE_SMALL // It is after all only a necklace
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0) // this isn't armor, it's a dorky frickin cape
 	siemens_coefficient = 0.9

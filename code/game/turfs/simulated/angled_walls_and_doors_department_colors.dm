@@ -1,57 +1,57 @@
 /turf/simulated/wall/bay/steel
-	desc = "It has a steel stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a steel stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#3d5e80"
 /turf/simulated/wall/bay/red
-	desc = "It has a red stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a red stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#8c1d11"
 /turf/simulated/wall/bay/brown
-	desc = "It has a brown stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a brown stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#785134"
 /turf/simulated/wall/bay/purple
-	desc = "It has a purple stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a purple stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#5a19a8"
 /turf/simulated/wall/bay/blue
-	desc = "It has a blue stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a blue stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#2e2aa1"
 /turf/simulated/wall/bay/orange
-	desc = "It has a orange stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a orange stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#e6ab22"
 /turf/simulated/wall/bay/white
-	desc = "It has a white stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a white stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#ffffff"
 /turf/simulated/wall/bay/black
-	desc = "It has a black stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a black stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#2e2e2e"
 /turf/simulated/wall/bay/green
-	desc = "It has a green stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a green stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#00ab03"
 /////R-Wall
 /turf/simulated/wall/bay/r_wall/steel
-	desc = "It has a steel stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a steel stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#3d5e80"
 /turf/simulated/wall/bay/r_wall/red
-	desc = "It has a red stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a red stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#8c1d11"
 /turf/simulated/wall/bay/r_wall/brown
-	desc = "It has a brown stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a brown stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#785134"
 /turf/simulated/wall/bay/r_wall/purple
-	desc = "It has a purple stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a purple stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#5a19a8"
 /turf/simulated/wall/bay/r_wall/blue
-	desc = "It has a blue stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a blue stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#2e2aa1"
 /turf/simulated/wall/bay/r_wall/orange
-	desc = "It has a orange stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a orange stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#e6ab22"
 /turf/simulated/wall/bay/r_wall/white
-	desc = "It has a white stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a white stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#ffffff"
 /turf/simulated/wall/bay/r_wall/black
-	desc = "It has a black stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a black stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#2e2e2e"
 /turf/simulated/wall/bay/r_wall/green
-	desc = "It has a green stripe! A huge chunk of metal used to seperate rooms."
+	desc = "It has a green stripe! A huge chunk of metal used to separate rooms."
 	stripe_color = "#00ab03"
 /////Low wall
 /obj/structure/low_wall/bay/steel

@@ -13,7 +13,11 @@
 	var/global/list/wide_chassis = list(
 		"rat",
 		"panther",
-		"teppi"
+		"teppi",
+		"pai-diredog",
+		"pai-horse_lune",
+		"pai-horse_soleil",
+		"pai-pdragon"
 		)
 	var/global/list/flying_chassis = list(
 		"pai-parrot",
@@ -47,7 +51,11 @@
 		"car",
 		"typeone",
 		"13",
-		"pai-raptor"
+		"pai-raptor",
+		"pai-diredog",
+		"pai-horse_lune",
+		"pai-horse_soleil",
+		"pai-pdragon"
 		)
 	//These vars keep track of whether you have the related software, used for easily updating the UI
 	var/soft_ut = FALSE	//universal translator
@@ -505,7 +513,8 @@
 		if (istype(G, /mob/new_player))
 			continue
 		else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-			if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
+			if((is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder) && \
+			G.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle))
 				to_chat(G, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows

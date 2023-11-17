@@ -179,7 +179,7 @@
 /area/tether_away/alienship)
 "aK" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tool/crowbar/power,
+/obj/item/weapon/tool/transforming/jawsoflife,
 /obj/item/weapon/tool/wrench,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
@@ -196,7 +196,7 @@
 "aM" = (
 /obj/structure/closet/crate,
 /obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/screwdriver/power,
+/obj/item/weapon/tool/transforming/powerdrill,
 /obj/item/weapon/tool/wirecutters,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)

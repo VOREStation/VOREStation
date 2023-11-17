@@ -119,14 +119,26 @@
 /mob/living/carbon/human/zaddat/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_ZADDAT)
 
+/mob/living/carbon/human/monkey
+	low_sorting_priority = TRUE
+
 /mob/living/carbon/human/monkey/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY)
+
+/mob/living/carbon/human/farwa
+	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/farwa/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_TAJ)
 
+/mob/living/carbon/human/neaera
+	low_sorting_priority = TRUE
+
 /mob/living/carbon/human/neaera/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_SKRELL)
+
+/mob/living/carbon/human/stok
+	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/stok/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_UNATHI)

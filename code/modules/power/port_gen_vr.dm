@@ -412,3 +412,89 @@
 	circuit = /obj/item/weapon/circuitboard/machine/reg_c
 	default_power_gen = 500000 //Half power
 	nutrition_drain = 0.5	//for half cost - EQUIVALENT EXCHANGE >:O
+
+
+// Big altevian version of pacman. has a lot of copypaste from regular kind, but less flexible.
+/obj/machinery/power/port_gen/large_altevian
+	name = "Phoronic Conversion System"
+	desc = "A reactor system similar to the PACMAN generators seen throughout the stars. This one is a specific model created by the altevians. It seems this reactor has a way to maximize the fuel usage one would see with this kind of process. \
+			However, due to its construction and size it is nearly impossible to break apart. It still can be moved if need be with special tools."
+	icon = 'icons/obj/props/decor64x64.dmi'
+	icon_state = "alteviangen"
+	bound_width = 64
+	bound_height = 64
+	anchored = TRUE
+	power_gen = 250000
+
+	var/sheet_name = "Phoron Sheets"
+	var/sheet_path = /obj/item/stack/material/phoron
+	var/sheets = 0			//How many sheets of material are loaded in the generator
+	var/sheet_left = 0		//How much is left of the current sheet
+	var/time_per_sheet = 120		//fuel efficiency - how long 1 sheet lasts at power level 1
+	var/max_sheets = 100 		//max capacity of the hopper
+
+/obj/machinery/power/port_gen/large_altevian/Initialize()
+	.=..()
+	if(anchored)
+		connect_to_network()
+
+/obj/machinery/power/port_gen/large_altevian/Destroy()
+	DropFuel()
+	return ..()
+
+/obj/machinery/power/port_gen/large_altevian/examine(mob/user)
+	. = ..()
+	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
+
+/obj/machinery/power/port_gen/large_altevian/HasFuel()
+	var/needed_sheets = power_output / time_per_sheet
+	if(sheets >= needed_sheets - sheet_left)
+		return 1
+	return 0
+
+/obj/machinery/power/port_gen/large_altevian/DropFuel()
+	if(sheets)
+		var/obj/item/stack/material/S = new sheet_path(loc, sheets)
+		sheets -= S.get_amount()
+
+/obj/machinery/power/port_gen/large_altevian/UseFuel()
+	var/needed_sheets = power_output / time_per_sheet
+	if (needed_sheets > sheet_left)
+		sheets--
+		sheet_left = (1 + sheet_left) - needed_sheets
+	else
+		sheet_left -= needed_sheets
+
+/obj/machinery/power/port_gen/large_altevian/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(istype(O, sheet_path))
+		var/obj/item/stack/addstack = O
+		var/amount = min((max_sheets - sheets), addstack.get_amount())
+		if(amount < 1)
+			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
+			return
+		to_chat(user, "<span class='notice'>You add [amount] sheet\s to the [src.name].</span>")
+		sheets += amount
+		addstack.use(amount)
+		update_icon()
+		return
+	return ..()
+
+/obj/machinery/power/port_gen/large_altevian/attack_hand(mob/user as mob)
+	..()
+	if (!anchored)
+		return
+	TogglePower()
+
+/obj/machinery/power/port_gen/large_altevian/attack_ai(mob/user as mob)
+	TogglePower()
+
+/obj/machinery/power/port_gen/large_altevian/update_icon()
+	..()
+
+	cut_overlays()
+	if(sheets > 75)
+		add_overlay("alteviangen-fuel-100")
+	else if(sheets > 25)
+		add_overlay("alteviangen-fuel-66")
+	else if(sheets > 0)
+		add_overlay("alteviangen-fuel-33")

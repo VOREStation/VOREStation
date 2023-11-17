@@ -15,6 +15,7 @@
 #define Z_LEVEL_OFFMAP1						14
 #define Z_LEVEL_GATEWAY						15
 #define Z_LEVEL_OM_ADVENTURE				16
+#define Z_LEVEL_REDGATE						17
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -26,7 +27,8 @@
 		"logo2" = 50,
 		"gateway" = 5,
 		"youcanttaketheskyfromme" = 200,
-		"intothedark" = 200
+		"intothedark" = 200,
+		"above3b" = 200
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -152,18 +154,31 @@
 		)
 
 	lateload_gateway = list(
-		list("Carp Farm"),
-		list("Snow Field"),
-		list("Listening Post"),
-		list(list("Honleth Highlands A", "Honleth Highlands B")),
-		list("Arynthi Lake Underground A","Arynthi Lake A"),
-		list("Arynthi Lake Underground B","Arynthi Lake B"),
-		list("Eggnog Town Underground","Eggnog Town"),
-		list("Wild West")
+		list("Gateway - Carp Farm"),
+		list("Gateway - Snow Field"),
+		list("Gateway - Listening Post"),
+		list(list("Gateway - Honleth Highlands A", "Gateway - Honleth Highlands B")),
+		list("Gateway - Arynthi Lake Underground A","Gateway - Arynthi Lake A"),
+		list("Gateway - Arynthi Lake Underground B","Gateway - Arynthi Lake B"),
+		list("Gateway - Wild West")
 		)
 
 	lateload_overmap = list(
 		list("Grass Cave")
+		)
+
+	lateload_redgate = list(
+		list("Redgate - Teppi Ranch"),
+		list("Redgate - Innland"),
+//		list("Redgate - Abandoned Island"),	//This will come back later
+		list("Redgate - Dark Adventure"),
+		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
+		list("Redgate - Star Dog"),
+		list("Redgate - Hotsprings"),
+		list("Redgate - Rain City"),
+		list("Redgate - Islands Underwater","Redgate - Islands"),
+		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
+		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town")
 		)
 
 	ai_shell_restricted = TRUE

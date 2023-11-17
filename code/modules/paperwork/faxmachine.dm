@@ -1,16 +1,18 @@
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply") // Vorestation Edit
+var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply")
 var/list/alldepartments = list()
+var/global/last_fax_role_request
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine
 	name = "fax machine"
-	desc = "Sent papers and pictures far away! Or to your co-worker's office a few doors down."
+	desc = "Send papers and pictures far away! Or to your co-worker's office a few doors down."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "fax"
 	insert_anim = "faxsend"
-	req_one_access = list(access_lawyer, access_heads, access_armory, access_qm)
+	req_one_access = list()
+	density = 0
 
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
@@ -37,6 +39,109 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	tgui_interact(user)
 
+/obj/machinery/photocopier/faxmachine/verb/remove_card()
+	set name = "Remove ID card"
+	set category = "Object"
+	set src in oview(1)
+
+	var/mob/living/L = usr
+
+	if(!L || !isturf(L.loc) || !isliving(L))
+		return
+	if(!ishuman(L) && !issilicon(L))
+		return
+	if(L.stat || L.restrained())
+		return
+	if(!scan)
+		to_chat(L, span_notice("There is no I.D card to remove!"))
+		return
+
+	scan.forceMove(loc)
+	if(ishuman(usr) && !usr.get_active_hand())
+		usr.put_in_hands(scan)
+		scan = null
+	authenticated = null
+
+/obj/machinery/photocopier/faxmachine/verb/request_roles()
+	set name = "Staff Request Form"
+	set category = "Object"
+	set src in oview(1)
+
+	var/mob/living/L = usr
+
+	if(!L || !isturf(L.loc) || !isliving(L))
+		return
+	if(!ishuman(L) && !issilicon(L))
+		return
+	if(L.stat || L.restrained())
+		return
+	if(last_fax_role_request && (world.time - last_fax_role_request < 5 MINUTES))
+		to_chat(L, "<span class='warning'>The global automated relays are still recalibrating. Try again later or relay your request in written form for processing.</span>")
+		return
+
+	var/confirmation = tgui_alert(L, "Are you sure you want to send automated crew request?", "Confirmation", list("Yes", "No", "Cancel"))
+	if(confirmation != "Yes")
+		return
+
+	var/list/jobs = list()
+	for(var/datum/department/dept as anything in SSjob.get_all_department_datums())
+		if(!dept.assignable || dept.centcom_only)
+			continue
+		for(var/job in SSjob.get_job_titles_in_department(dept.name))
+			var/datum/job/J = SSjob.get_job(job)
+			if(J.requestable)
+				jobs |= job
+
+	var/role = tgui_input_list(L, "Pick the job to request.", "Job Request", jobs)
+	if(!role)
+		return
+
+	var/datum/job/job_to_request = SSjob.get_job(role)
+	var/reason = "Unspecified"
+	var/list/possible_reasons = list("Unspecified", "General duties", "Emergency situation")
+	possible_reasons += job_to_request.get_request_reasons()
+	reason = tgui_input_list(L, "Pick request reason.", "Request reason", possible_reasons)
+
+	var/final_conf = tgui_alert(L, "You are about to request [role]. Are you sure?", "Confirmation", list("Yes", "No", "Cancel"))
+	if(final_conf != "Yes")
+		return
+
+	var/datum/department/ping_dept = SSjob.get_ping_role(role)
+	if(!ping_dept)
+		to_chat(L, "<span class='warning'>Selected job cannot be requested for \[ERRORDEPTNOTFOUND] reason. Please report this to system administrator.</span>")
+		return
+	var/message_color = "#FFFFFF"
+	var/ping_name = null
+	switch(ping_dept.name)
+		if(DEPARTMENT_COMMAND)
+			ping_name = "Command"
+		if(DEPARTMENT_SECURITY)
+			ping_name = "Security"
+		if(DEPARTMENT_ENGINEERING)
+			ping_name = "Engineering"
+		if(DEPARTMENT_MEDICAL)
+			ping_name = "Medical"
+		if(DEPARTMENT_RESEARCH)
+			ping_name = "Research"
+		if(DEPARTMENT_CARGO)
+			ping_name = "Supply"
+		if(DEPARTMENT_CIVILIAN)
+			ping_name = "Service"
+		if(DEPARTMENT_PLANET)
+			ping_name = "Expedition"
+		if(DEPARTMENT_SYNTHETIC)
+			ping_name = "Silicon"
+		//if(DEPARTMENT_TALON)
+		//	ping_name = "Offmap"
+	if(!ping_name)
+		to_chat(L, "<span class='warning'>Selected job cannot be requested for \[ERRORUNKNOWNDEPT] reason. Please report this to system administrator.</span>")
+		return
+	message_color = ping_dept.color
+
+	message_chat_rolerequest(message_color, ping_name, reason, role)
+	last_fax_role_request = world.time
+	to_chat(L, "<span class='notice'>Your request was transmitted.</span>")
+
 /obj/machinery/photocopier/faxmachine/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -50,6 +155,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	data["rank"] = rank
 	data["isAI"] = isAI(user)
 	data["isRobot"] = isrobot(user)
+	data["adminDepartments"] = admin_departments
 
 	data["bossName"] = using_map.boss_name
 	data["copyItem"] = copyitem
@@ -107,14 +213,25 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				usr.put_in_hands(copyitem)
 				to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
 				copyitem = null
+		if("send_automated_staff_request")
+			request_roles()
 
 	if(!authenticated)
 		return
 
 	switch(action)
+		if("rename")
+			if(copyitem)
+				var/new_name = tgui_input_text(usr, "Enter new paper title", "This will show up in the preview for staff chat on discord when sending \
+				to central.", copyitem.name, MAX_NAME_LEN)
+				if(!new_name)
+					return
+				copyitem.name = new_name
 		if("send")
 			if(copyitem)
 				if (destination in admin_departments)
+					if(check_if_default_title_and_rename())
+						return
 					send_admin_fax(usr, destination)
 				else
 					sendfax(destination)
@@ -131,12 +248,46 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	return TRUE
 
+
+/obj/machinery/photocopier/faxmachine/proc/check_if_default_title_and_rename()
+/*
+Returns TRUE only on "Cancel" or invalid newname, else returns null/false
+Extracted to its own procedure for easier logic handling with paper bundles.
+*/
+	var/question_text = "Your fax is set to its default name. It's advisable to rename it to something self-explanatory to"
+
+	if(istype(copyitem, /obj/item/weapon/paper_bundle))
+		var/obj/item/weapon/paper_bundle/B = copyitem
+		if(B.name != initial(B.name))
+			var/atom/page1 = B.pages[1]	//atom is enough for us to ensure it has name var. would've used ?. opertor, but linter doesnt like.
+			var/atom/page2 = B.pages[2]
+			if((istype(page1) && B.name == page1.name) || (istype(page2) && B.name == page2.name) )
+				question_text = "Your fax is set to use the title of its first or second page. It's advisable to rename it to something \
+				summarizing the entire bundle succintly to"
+			else
+				return FALSE
+	else if(copyitem.name != initial(copyitem.name))
+		return FALSE
+
+	var/choice = tgui_alert(usr, "[question_text] improve response time from staff when sending to discord. \
+	Renaming it changes its preview in staff chat.", \
+	"Default name detected", list("Change Title","Continue", "Cancel"))
+	if(choice == "Cancel")
+		return TRUE
+	else if(choice == "Change Title")
+		var/new_name = tgui_input_text(usr, "Enter new fax title", "This will show up in the preview for staff chat on discord when sending \
+		to central.", copyitem.name, MAX_NAME_LEN)
+		if(!new_name)
+			return TRUE
+		copyitem.name = new_name
+
+
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/card/id) && !scan)
 		user.drop_from_inventory(O)
 		O.forceMove(src)
 		scan = O
-	else if(O.is_multitool() && panel_open)
+	else if(O.has_tool_quality(TOOL_MULTITOOL) && panel_open)
 		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")
@@ -216,8 +367,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	// Sadly, we can't use a switch statement here due to not using a constant value for the current map's centcom name.
 	if(destination == using_map.boss_name)
 		message_admins(sender, "[uppertext(using_map.boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
-	else if(destination == "Virgo-Prime Governmental Authority") // Vorestation Edit
-		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0") // Vorestation Edit
+	else if(destination == "Virgo-Prime Governmental Authority")
+		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
 	else if(destination == "Supply")
 		message_admins(sender, "[uppertext(using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else
@@ -246,17 +397,15 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
 	var/msg = "<span class='notice'><b><font color='[font_colour]'>[faxname]: </font>[get_options_bar(sender, 2,1,1)]"
 	msg += "(<a href='?_src_=holder;[HrefToken()];FaxReply=\ref[sender];originfax=\ref[src];replyorigin=[reply_type]'>REPLY</a>)</b>: "
-	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a></span>"
+	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[sent]'>view message</a></span>"
 
 	for(var/client/C in GLOB.admins)
 		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
 			to_chat(C,msg)
 			C << 'sound/machines/printer.ogg'
 
-	// VoreStation Edit Start
 	var/faxid = export_fax(sent)
-	message_chat_admins(sender, faxname, sent, faxid, font_colour)
-	// VoreStation Edit End
+	message_chat_admins(sender, faxname, sent, faxid, font_colour) //Sends to admin chat
 
 	// Webhooks don't parse the HTML on the paper, so we gotta strip them out so it's still readable.
 	var/summary = make_summary(sent)
@@ -277,3 +426,80 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			"body" = summary
 		)
 	)
+
+/*
+								#####						####
+								##### Webhook Functionality ####
+								#####						####
+*/
+
+/datum/configuration
+	var/chat_webhook_url = ""		// URL of the webhook for sending announcements/faxes to discord chat.
+	var/chat_webhook_key = ""		// Shared secret for authenticating to the chat webhook
+	var/fax_export_dir = "data/faxes"	// Directory in which to write exported fax HTML files.
+
+
+/**
+ * Write the fax to disk as (potentially multiple) HTML files.
+ * If the fax is a paper_bundle, do so recursively for each page.
+ * returns a random unique faxid.
+ */
+/obj/machinery/photocopier/faxmachine/proc/export_fax(fax)
+	var faxid = "[num2text(world.realtime,12)]_[rand(10000)]"
+	if (istype(fax, /obj/item/weapon/paper))
+		var/obj/item/weapon/paper/P = fax
+		var/text = "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>";
+		file("[config.fax_export_dir]/fax_[faxid].html") << text;
+	else if (istype(fax, /obj/item/weapon/photo))
+		var/obj/item/weapon/photo/H = fax
+		fcopy(H.img, "[config.fax_export_dir]/photo_[faxid].png")
+		var/text = "<html><head><title>[H.name]</title></head>" \
+			+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
+			+ "<img src='photo_[faxid].png'>" \
+			+ "[H.scribble ? "<br>Written on the back:<br><i>[H.scribble]</i>" : ""]"\
+			+ "</body></html>"
+		file("[config.fax_export_dir]/fax_[faxid].html") << text
+	else if (istype(fax, /obj/item/weapon/paper_bundle))
+		var/obj/item/weapon/paper_bundle/B = fax
+		var/data = ""
+		for (var/page = 1, page <= B.pages.len, page++)
+			var/obj/pageobj = B.pages[page]
+			var/page_faxid = export_fax(pageobj)
+			data += "<a href='fax_[page_faxid].html'>Page [page] - [pageobj.name]</a><br>"
+		var/text = "<html><head><title>[B.name]</title></head><body>[data]</body></html>"
+		file("[config.fax_export_dir]/fax_[faxid].html") << text
+	return faxid
+
+
+
+/**
+ * Call the chat webhook to transmit a notification of an admin fax to the admin chat.
+ */
+/obj/machinery/photocopier/faxmachine/proc/message_chat_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/faxid, font_colour="#006100")
+	if (config.chat_webhook_url)
+		spawn(0)
+			var/query_string = "type=fax"
+			query_string += "&key=[url_encode(config.chat_webhook_key)]"
+			query_string += "&faxid=[url_encode(faxid)]"
+			query_string += "&color=[url_encode(font_colour)]"
+			query_string += "&faxname=[url_encode(faxname)]"
+			query_string += "&sendername=[url_encode(sender.name)]"
+			query_string += "&sentname=[url_encode(sent.name)]"
+			world.Export("[config.chat_webhook_url]?[query_string]")
+
+
+
+
+/**
+ * Call the chat webhook to transmit a notification of a job request
+ */
+/obj/machinery/photocopier/faxmachine/proc/message_chat_rolerequest(var/font_colour="#006100", var/role_to_ping, var/reason, var/jobname)
+	if(config.chat_webhook_url)
+		spawn(0)
+			var/query_string = "type=rolerequest"
+			query_string += "&key=[url_encode(config.chat_webhook_key)]"
+			query_string += "&ping=[url_encode(role_to_ping)]"
+			query_string += "&color=[url_encode(font_colour)]"
+			query_string += "&reason=[url_encode(reason)]"
+			query_string += "&job=[url_encode(jobname)]"
+			world.Export("[config.chat_webhook_url]?[query_string]")

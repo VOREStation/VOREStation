@@ -55,23 +55,26 @@
 
 /obj/structure/lattice/attackby(obj/item/C as obj, mob/user as mob)
 
-	if (istype(C, /obj/item/stack/tile/floor))
+	if(istype(C, /obj/item/stack/tile/floor))
 		var/turf/T = get_turf(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	if(C.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = C.get_welder()
 		if(WT.welding == 1)
 			if(WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
 			new /obj/item/stack/rods(src.loc)
 			qdel(src)
 		return
-	if (istype(C, /obj/item/stack/rods))
+	if(istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
-		if(R.use(2))
+		if(R.get_amount() < 2)
+			to_chat(user, "<span class='notice'>You need at least two rods to form a catwalk here.</span>")
+		else
 			to_chat(user, "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>")
 			if(do_after(user, 5 SECONDS))
+				R.use(2) //2023-02-27 bugfix to prevent rods being used without catwalk creation
 				src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)

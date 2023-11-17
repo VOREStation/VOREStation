@@ -65,7 +65,8 @@
 						/obj/item/toy/plushie/borgplushie/drake/mine,
 						/obj/item/toy/plushie/borgplushie/drake/jani,
 						/obj/item/toy/plushie/borgplushie/drake/trauma,
-						/obj/item/toy/plushie/otter
+						/obj/item/toy/plushie/otter,
+						/obj/item/toy/plushie/shark
 						)
 
 /obj/machinery/clawmachine/update_icon()
@@ -99,7 +100,7 @@
 	if(busy)
 		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
 		return
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")

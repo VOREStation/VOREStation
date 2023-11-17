@@ -4,6 +4,11 @@ var/global/list/active_radio_jammers = list()
 	var/turf/Tr = get_turf(radio)
 	if(!Tr) return 0 //Nullspace radios don't get jammed.
 
+	var/area/our_area = get_area(Tr)
+
+	if(our_area.no_comms)
+		return TRUE
+
 	for(var/obj/item/device/radio_jammer/J as anything in active_radio_jammers)
 		var/turf/Tj = get_turf(J)
 
@@ -111,4 +116,3 @@ var/global/list/active_radio_jammers = list()
 		cut_overlays()
 		add_overlay("jammer_overlay_[overlay_percent]")
 		last_overlay_percent = overlay_percent
-

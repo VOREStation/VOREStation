@@ -831,13 +831,6 @@ I said no!
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
 
-/datum/recipe/chickennoodlesoup
-	fruit = list("carrot" = 1)
-	reagents = list("water" = 10)
-	items = list( /obj/item/weapon/reagent_containers/food/snacks/spagetti, /obj/item/weapon/reagent_containers/food/snacks/rawcutlet)
-	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
-	result = /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
-
 /datum/recipe/chilicheesefries
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/fries,

@@ -431,8 +431,11 @@
 		msg += "[flavor_text]"
 
 	// VOREStation Start
+	if(custom_link)
+		msg += "Custom link: [custom_link]"
+
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
+		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 	msg += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 	// VOREStation End
 	msg += "*---------*</span>"

@@ -490,7 +490,12 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	else if(subspace_transmission)
 		var/list/jamming = is_jammed(src)
 		if(jamming)
-			var/distance = jamming["distance"]
+			var/distance = 0
+			var/area/our_area = get_area(src)
+			if(our_area.no_comms)
+				distance = 99
+			else
+				distance = jamming["distance"]
 			to_chat(M, "<span class='danger'>\icon[src][bicon(src)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
 			return FALSE
 
@@ -609,7 +614,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	user.set_machine(src)
-	if (!W.is_screwdriver())
+	if (!W.has_tool_quality(TOOL_SCREWDRIVER))
 		return
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
@@ -661,10 +666,10 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if (!(W.is_screwdriver() || istype(W, /obj/item/device/encryptionkey)))
+	if (!(W.has_tool_quality(TOOL_SCREWDRIVER) || istype(W, /obj/item/device/encryptionkey)))
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(keyslot)
 
 

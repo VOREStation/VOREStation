@@ -525,6 +525,22 @@
 		tape.stick(src, user)
 		return
 
+	if(istype(P, /obj/item/weapon/clipboard))
+		var/obj/item/weapon/clipboard/CB = P
+		if(src.loc == user)
+			user.drop_from_inventory(src)
+		src.loc = CB
+		CB.toppaper = src
+		CB.update_icon()
+		to_chat(user, "<span class='notice'>You clip the [src] onto \the [CB].</span>")
+
+	if(istype(P, /obj/item/weapon/folder))
+		if(src.loc == user)
+			user.drop_from_inventory(src)
+		src.loc = P
+		P.update_icon()
+		to_chat(user, "<span class='notice'>You tuck the [src] into \the [P].</span>")
+
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo))
 		if (istype(P, /obj/item/weapon/paper/carbon))
 			var/obj/item/weapon/paper/carbon/C = P
@@ -533,9 +549,9 @@
 				add_fingerprint(user)
 				return
 		var/obj/item/weapon/paper_bundle/B = new(src.loc)
-		if (name != "paper")
+		if (name != initial(name))
 			B.name = name
-		else if (P.name != "paper" && P.name != "photo")
+		else if (P.name != initial(P.name))
 			B.name = P.name
 		user.drop_from_inventory(P)
 		if (istype(user, /mob/living/carbon/human))
@@ -548,16 +564,12 @@
 				h_user.put_in_l_hand(B)
 			else if (h_user.l_store == src)
 				h_user.drop_from_inventory(src)
-				B.loc = h_user
-				B.hud_layerise()
-				h_user.l_store = B
-				//h_user.update_inv_pockets() //Doesn't do anything
+				if(!h_user.equip_to_slot_if_possible(B, slot_l_store))
+					h_user.drop_from_inventory(B)
 			else if (h_user.r_store == src)
 				h_user.drop_from_inventory(src)
-				B.loc = h_user
-				B.hud_layerise()
-				h_user.r_store = B
-				//h_user.update_inv_pockets() //Doesn't do anything
+				if(!h_user.equip_to_slot_if_possible(B, slot_r_store))
+					h_user.drop_from_inventory(B)
 			else if (h_user.head == src)
 				h_user.u_equip(src)
 				h_user.put_in_hands(B)

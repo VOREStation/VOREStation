@@ -15,6 +15,7 @@
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
 	can_ride = TRUE			//whether we're real rideable taur or just in that category
+	offset_x = -16
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
 	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
@@ -487,6 +488,30 @@
 	ani_state = "fatsynthfeline_s"
 	extra_overlay_w = "fatsynthfeline_markings"
 	extra_overlay2_w = "fatsynthfeline_glow"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi
+	name = "Synthetic chassis - agile (Taur)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi_fat
+	name = "Synthetic chassis - agile (Taur, Fat)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_fat_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi_wag
+	name = "Synthetic chassis - agile (Taur, Fat vwag)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	ani_state = "synthtaur1_s"
+	extra_overlay_w = "synthtaur1_fat_markings"
+	extra_overlay2_w = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
 
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
@@ -1001,4 +1026,30 @@
 	name = "Naga (Taur, Fat, dual color)"
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
+	suit_sprites = null
 
+/datum/sprite_accessory/tail/taur/fox
+	name = "Fox (Taur, 3-color)"
+	icon_state = "fox"
+	extra_overlay = "fox_markings"
+	extra_overlay2 = "fox_markings2"
+	can_loaf = TRUE
+	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
+	loaf_offset = 4
+
+/datum/sprite_accessory/tail/taur/kitsune
+	name = "Kitsune (Taur)"
+	icon_state = "kitsune"
+
+/*
+/datum/sprite_accessory/tail/taur/teppi			// Mostly used as example/template/test subject as to how you use the 'big' taur sprites. Pls give it better icons before uncommenting...
+	name = "Teppi (Taur)"
+	icon_state = "teppi_s"
+	clip_mask_icon = 'icons/mob/vore/taurs128x64_vr.dmi'
+	icon = 'icons/mob/vore/taurs128x64_vr.dmi'
+	clip_mask_state = "taur_clip_mask_teppi"
+	icon_sprite_tag = "teppi"
+	offset_x = -32
+	offset_y = -11
+	mob_offset_y = 11
+*/

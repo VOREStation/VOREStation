@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mobs_monsters/clowns/big
+/mob/living/simple_mob/clowns/big
 	tt_desc = "E Homo sapiens corydon horrificus" //this clown is stronk
 	faction = "clown"
 
@@ -18,8 +18,6 @@
 
 	loot_list = list(/obj/item/weapon/bikehorn = 100)
 
-
-/mob/living/simple_mob/mobs_monsters/clowns/big
 	min_oxy = 0
 	max_oxy = 500
 	min_tox = 0

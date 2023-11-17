@@ -99,6 +99,7 @@
 		CASINO_PRIZE("Cowboy costume", /obj/item/weapon/storage/box/casino/costume_cowboy, 1, 500, "clothing"),
 		CASINO_PRIZE("Golden Collar", /obj/item/clothing/accessory/collar/gold, 1, 250, "clothing"),
 		CASINO_PRIZE("Decorative Casino Sentient Prize Collar", /obj/item/clothing/accessory/collar/casinosentientprize_fake, 1, 100, "clothing"),
+		CASINO_PRIZE("Bluespace Collar", /obj/item/clothing/accessory/collar/shock/bluespace, 1, 1000, "clothing"),
 	)
 	item_list["Donk Soft"] = list(
 		CASINO_PRIZE("Donk-Soft shotgun", /obj/item/weapon/gun/projectile/shotgun/pump/toy, 1, 1000, "misc"),
@@ -282,7 +283,7 @@
 				if("event")
 					restriction_check = category_event
 				else
-					to_chat(usr, "<span class='warning'>Prize checkout error has occured, purchase cancelled.</span>")
+					to_chat(usr, "<span class='warning'>Prize checkout error has occurred, purchase cancelled.</span>")
 					return FALSE
 
 			if(restriction_check < 1)

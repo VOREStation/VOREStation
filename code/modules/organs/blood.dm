@@ -1,3 +1,4 @@
+#define BLOOD_MINIMUM_STOP_PROCESS 2.1 // Define to avoid hitting 0 blood.
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
@@ -14,8 +15,12 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 /mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
 /mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
 
-//Initializes blood vessels
-/mob/living/carbon/human/proc/make_blood()
+/***Initializes blood vessels
+ * Called code/modules/mob/living/carbon/human/human.dm#L1259 set_species procedure with 0 args
+ * Also called by inject_blood as fallback with amt = injected_amount
+ * MUST be followed by calling fixblood() allways.
+***/
+/mob/living/carbon/human/proc/make_blood(var/amt = 0)
 
 	if(vessel)
 		return
@@ -29,7 +34,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!should_have_organ(O_HEART)) //We want the var for safety but we can do without the actual blood.
 		return
 
-	vessel.add_reagent("blood",species.blood_volume)
+	if(!amt)
+		vessel.add_reagent("blood",species.blood_volume)
+	else
+		vessel.add_reagent("blood", clamp(amt, 1, species.blood_volume))
+
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
@@ -210,10 +219,14 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!amt)
 		return 0
 
-	if(amt > vessel.get_reagent_amount("blood"))
-		amt = vessel.get_reagent_amount("blood") - 1	// Bit of a safety net; it's impossible to add blood if there's not blood already in the vessel.
+	var/current_blood = vessel.get_reagent_amount("blood")
+	if(current_blood < BLOOD_MINIMUM_STOP_PROCESS)
+		return 0 //We stop processing under 3 units of blood because apparently weird shit can make it overflowrandomly.
 
-	return vessel.remove_reagent("blood",amt * (src.mob_size/MOB_MEDIUM))
+	if(amt > current_blood)
+		amt = current_blood - 2	// Bit of a safety net; it's impossible to add blood if there's not blood already in the vessel.
+
+	return vessel.remove_reagent("blood",amt)
 
 /****************************************************
 				BLOOD TRANSFERS
@@ -256,11 +269,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!should_have_organ(O_HEART))
 		return null
 
-	if(vessel.get_reagent_amount("blood") < amount)
+	if(vessel.get_reagent_amount("blood") < max(amount, BLOOD_MINIMUM_STOP_PROCESS))
 		return null
 
 	. = ..()
-	vessel.remove_reagent("blood",amount) // Removes blood if human
+	remove_blood(amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
@@ -288,8 +301,28 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 	var/datum/reagent/blood/our = get_blood(vessel)
 
-	if (!injected || !our)
+	if (!injected)
 		return
+	if(!our)
+		log_debug("[src] has no blood reagent, proceeding with fallback reinitialization.")
+		var/vessel_old = vessel
+		vessel = null
+		qdel(vessel_old)
+		make_blood(amount)
+		if(!vessel)
+			log_debug("Failed to re-initialize blood datums on [src]!")
+			return
+		if(vessel.total_volume < species.blood_volume)
+			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
+		else if(vessel.total_volume > species.blood_volume)
+			vessel.maximum_volume = species.blood_volume
+		fixblood()
+		our = get_blood(vessel)
+		if(!our)
+			log_debug("Failed to re-initialize blood datums on [src]!")
+			return
+
+
 	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
 		reagents.add_reagent("toxin",amount * 0.5)
 		reagents.update_total()

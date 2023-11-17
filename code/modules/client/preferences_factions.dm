@@ -25,7 +25,6 @@ var/global/list/citizenship_choices = list(
 	"Third Ares Confederation",
 	"Teshari Expeditionary Fleet",
 	"Altevian Hegemony",
-	"Kitsuhana Heavy Industries",
 	"Kosaky Fleets"
 	)
 
@@ -39,7 +38,6 @@ var/global/list/home_system_choices = list(
 	"Titan, Sol",
 	"Toledo, New Ohio",
 	"The Pact, Myria",
-	"Kitsuhana Prime",
 	"Kishar, Alpha Centauri",
 	"Anshar, Alpha Centauri",
 	"Heaven Complex, Alpha Centauri",
@@ -64,7 +62,10 @@ var/global/list/home_system_choices = list(
 	"Abundance in All Things Serene, Beta-Carnelium Ventrum",
 	"Jorhul, Barkalis",
 	"Shelf Flotilla",
-	"Ue-Orsi Flotilla"
+	"Ue-Orsi Flotilla",
+	"AH-CV Prosperity",
+	"AH-CV Migrant",
+	"Altevian Colony Ship"
 	)
 
 var/global/list/faction_choices = list(
@@ -92,7 +93,6 @@ var/global/list/faction_choices = list(
 	"Gilthari Exports",
 	"Coyote Salvage Corp.",
 	"Chimera Genetics Corp.",
-	"Kitsuhana Heavy Industries",
 	"Independent Pilots Association",
 	"Local System Defense Force",
 	"United Solar Defense Force",

@@ -29,7 +29,7 @@
 
 
 #define span_emote(str) ("<span class='emote'>" + str + "</span>")
-#define span_emote_subtle(str) ("<span class='emote_subtle'>" + str + "</span>")
+#define span_emote_subtle(str) ("<span class='emotesubtle'>" + str + "</span>")
 
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_moderate(str) ("<span class='moderate'>" + str + "</span>")
@@ -73,6 +73,7 @@
 #define span_interface(str) ("<span class='interface'>" + str + "</span>")
 #define span_spacer(str) ("<span class='spacer'>" + str + "</span>")
 #define span_blob(str) ("<span class='blob'>" + str + "</span>")
+#define span_teppi(str) ("<span class='teppi'>" + str + "</span>")
 
 #define span_debug_error(str) ("<span class='debug_error'>" + str + "</span>")
 #define span_debug_warning(str) ("<span class='debug_warning'>" + str + "</span>")

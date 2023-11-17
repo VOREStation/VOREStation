@@ -162,7 +162,6 @@ var/list/admin_verbs_fun = list(
 	/datum/admins/proc/call_supply_drop,
 	/datum/admins/proc/call_drop_pod,
 	/client/proc/smite,
-	/client/proc/smite_vr, //VOREStation Add,
 	/client/proc/admin_lightning_strike,
 	/client/proc/resize, //VOREStation Add,
 	/client/proc/cmd_admin_droppod_deploy,
@@ -171,7 +170,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/remove_mob_for_narration,	//VOREStation Add
 	/client/proc/narrate_mob,	//VOREStation Add
 	/client/proc/narrate_mob_args, //VOREStation Add
-	/client/proc/getPlayerStatus //VORESTation Add
+	/client/proc/getPlayerStatus, //VORESTation Add
+	/client/proc/manage_event_triggers
 
 	)
 

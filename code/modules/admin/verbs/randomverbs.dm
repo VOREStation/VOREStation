@@ -113,11 +113,14 @@
 		return
 
 	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
-	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
-		msg = sanitize(msg)
 
 	if (!msg)
 		return
+	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
+		msg = sanitize(msg)
+	if (!msg)		// We check both before and after, just in case sanitization ended us up with empty message.
+		return
+
 	to_world("[msg]")
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins("<font color='blue'><B> GlobalNarrate: [key_name_admin(usr)] : [msg]<BR></B></font>", 1)

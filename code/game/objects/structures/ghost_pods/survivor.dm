@@ -41,6 +41,15 @@
 
 	handle_clothing_setup()
 
+/obj/structure/ghost_pod/manual/survivor/trigger()
+	. = ..()
+	desc += "\n The Pod's stasis is broken!"
+	visible_message(message = SPAN_WARNING("\The [src] hisses and blinks in a myriad of lights as its stasis ceases! \n \
+	What or whoever lays beneath may yet stir once more, but their wounds may be too grevious... "),
+	blind_message = SPAN_WARNING("You hear hissing from [src]!"),
+	runemessage = "HISS")
+
+
 /obj/structure/ghost_pod/manual/survivor/proc/handle_clothing_setup()
 	clothing_possibilities = list()
 

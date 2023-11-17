@@ -15,12 +15,8 @@
 	var/ai_holder_type = null // Which ai_holder datum to give to the mob when initialized. If null, nothing happens.
 
 /mob/living/Initialize()
-	if(ai_holder_type)
-		ai_holder = new ai_holder_type(src)
-		if(istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = src
-			H.hud_used = new /datum/hud(H)
-			H.create_mob_hud(H.hud_used)
+	if(!ai_holder)
+		initialize_ai_holder()
 	return ..()
 
 /mob/living/Destroy()
@@ -36,6 +32,22 @@
 	if(!stat && !key && ai_holder)
 		ai_holder.manage_processing(AI_PROCESSING)
 	return ..()
+
+//Extracted from mob/living/Initialize() so that we may call it at any time after a mob was created
+/mob/living/proc/initialize_ai_holder()
+	if(ai_holder)	//Making double sure we clean up and properly GC the original ai_holder
+		var/old_holder = ai_holder
+		ai_holder = null
+		qdel(old_holder)
+	if(ai_holder_type)
+		ai_holder = new ai_holder_type(src)
+		if(!ai_holder)
+			log_debug("[src] could not initialize ai_holder of type [ai_holder_type]")
+			return
+		if(istype(src, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			H.hud_used = new /datum/hud(H)
+			H.create_mob_hud(H.hud_used)
 
 /datum/ai_holder
 	var/mob/living/holder = null		// The mob this datum is going to control.
@@ -447,7 +459,7 @@
 			if(speak_chance) // In the long loop since otherwise it wont shut up.
 				handle_idle_speaking()
 
-			if(hostile)
+			if(hostile || vore_hostile)
 				ai_log("handle_stance_strategical() : STANCE_IDLE, going to find_target().", AI_LOG_TRACE)
 				find_target()
 
@@ -470,11 +482,11 @@
 				walk_to_target()
 		if(STANCE_MOVE)
 			if(hostile && find_target()) // This will switch its stance.
-				ai_log("handle_stance_strategical() : STANCE_MOVE, found target and was inturrupted.", AI_LOG_TRACE)
+				ai_log("handle_stance_strategical() : STANCE_MOVE, found target and was interrupted.", AI_LOG_TRACE)
 				return
 		if(STANCE_FOLLOW)
 			if(hostile && find_target()) // This will switch its stance.
-				ai_log("handle_stance_strategical() : STANCE_FOLLOW, found target and was inturrupted.", AI_LOG_TRACE)
+				ai_log("handle_stance_strategical() : STANCE_FOLLOW, found target and was interrupted.", AI_LOG_TRACE)
 				return
 			else if(leader)
 				ai_log("handle_stance_strategical() : STANCE_FOLLOW, going to calculate_path([leader]).", AI_LOG_TRACE)

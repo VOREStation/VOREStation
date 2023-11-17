@@ -411,6 +411,10 @@
 	name = "Devil Lock"
 	icon_state = "hair_devilock"
 
+/datum/sprite_accessory/hair/diagonalbangs
+	name = "Diagonal Bangs"
+	icon_state = "hair_diagonalbangs"
+
 /datum/sprite_accessory/hair/dirk
 	name = "Dirk"
 	icon_state = "hair_dirk"
@@ -1187,6 +1191,11 @@
 	icon_state = "hair_volaju"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/volaju_pompless
+	name = "Volaju, pompless"
+	icon_state = "hair_volajupompless"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/wisp
 	name = "Wisp"
 	icon_state = "hair_wisp"
@@ -1203,7 +1212,7 @@
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/una_hood
-	name = "Cobra Hood"
+	name = "Cobra Hood (small)"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "soghun_hood"
@@ -1430,6 +1439,43 @@
 	icon_state = "shadekin_long"
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
+
+//its bird time mfers - Nevrean Hairs
+
+/datum/sprite_accessory/hair/feather_fan
+	name = "feather fan (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "feather_fan"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_plume_down
+	name = "feather plume down (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "feather_plume_down"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_plume_up
+	name = "feather plume up (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "feather_plume_up"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_plume_small
+	name = "feather plume small (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "feather_plume_small"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/feather_halfmoon
+	name = "feather halfmoon (nev)"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "feather_halfmoon"
+	flags = HAIR_TIEABLE
 
 /*
 shaved

@@ -71,11 +71,11 @@ var/global/list/rad_collectors = list()
 		W.loc = src
 		update_icons()
 		return 1
-	else if(W.is_crowbar())
+	else if(W.has_tool_quality(TOOL_CROWBAR))
 		if(P && !src.locked)
 			eject()
 			return 1
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(P)
 			to_chat(user, "<font color='blue'>Remove the phoron tank first.</font>")
 			return 1

@@ -31,7 +31,7 @@
 	update_icon()
 
 /obj/item/ammo_casing/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!BB)
 			to_chat(user, "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>")
 			return

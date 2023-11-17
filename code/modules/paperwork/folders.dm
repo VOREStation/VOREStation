@@ -75,6 +75,12 @@
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
 
+/obj/item/weapon/folder/afterattack(turf/T as turf, mob/user as mob)
+	for(var/obj/item/weapon/paper/P in T)
+		P.loc = src
+		update_icon()
+		to_chat(user, "<span class='notice'>You tuck the [P] into \the [src].</span>")
+
 /obj/item/weapon/folder/attack_self(mob/user as mob)
 	var/dat = "<title>[name]</title>"
 

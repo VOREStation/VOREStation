@@ -39,3 +39,12 @@
 
 /obj/item/weapon/storage/box/freezer
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/blood, /obj/item/weapon/reagent_containers/glass, /obj/item/weapon/reagent_containers/food)
+
+/obj/item/weapon/storage/box/altevian_ammo
+	name = "SAM .48 ammo box"
+	desc = "A box of ratty ammo."
+	icon_state = "secbox"
+	starts_with = list(/obj/item/ammo_magazine/sam48 = 3)
+	max_storage_space = ITEMSIZE_COST_NORMAL * 3
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'

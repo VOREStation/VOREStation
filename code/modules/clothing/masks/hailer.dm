@@ -102,7 +102,7 @@
 		return
 
 /obj/item/clothing/mask/gas/sechailer/attackby(obj/item/I, mob/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(aggressiveness)
 			if(1)
 				to_chat(user, "<span class='notice'>You set the aggressiveness restrictor to the second position.</span>")
@@ -122,11 +122,11 @@
 				phrase = 1
 			if(5)
 				to_chat(user, "<span class='warning'>You adjust the restrictor but nothing happens, probably because its broken.</span>")
-	if(I.is_wirecutter())
+	if(I.has_tool_quality(TOOL_WIRECUTTER))
 		if(aggressiveness != 5)
 			to_chat(user, "<span class='warning'>You broke it!</span>")
 			aggressiveness = 5
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		if(!hailer)
 			to_chat(user, "<span class='warning'>This mask has an integrated hailer, you can't remove it!</span>")
 		else

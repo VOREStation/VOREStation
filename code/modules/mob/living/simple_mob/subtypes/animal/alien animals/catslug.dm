@@ -43,6 +43,8 @@
 	mob_size = MOB_SMALL
 	friendly = list("hugs")
 	see_in_dark = 8
+	can_climb = TRUE
+	climbing_delay = 2.0
 
 	ID_provided = TRUE
 
@@ -52,6 +54,9 @@
 	player_msg = "You have escaped the foul weather, into this much more pleasant place. You are an intelligent creature capable of more than most think. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds! <br>- - - - -<br> <span class='notice'>Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.</span>"
 
 	has_langs = list(LANGUAGE_SIGN)
+
+	var/obj/item/clothing/head/hat = null // Scughat.
+	var/can_wear_hat = TRUE				  // Some have inbuilt hats
 
 	var/picked_color = FALSE
 
@@ -126,6 +131,7 @@
 	retaliate = TRUE
 	speak_chance = 0.5
 	wander = TRUE
+	belly_attack = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Initialize()
 	. = ..()
@@ -133,8 +139,16 @@
 	verbs += /mob/living/proc/hide
 	verbs += /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color
 
+/mob/living/simple_mob/vore/alienanimals/catslug/Destroy()
+	if(hat)
+		drop_hat()
+	return ..()
+
 /mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/weapon/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
-	if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks))
+	if(istype(O, /obj/item/clothing/head)) // Handle hat simulator.
+		give_hat(O, user)
+		return
+	else if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks))
 		return ..()
 	if(resting)
 		to_chat(user, "<span class='notice'>\The [src] is napping, and doesn't respond to \the [O].</span>")
@@ -168,6 +182,9 @@
 	if(stat == DEAD)
 		return ..()
 	if(M.a_intent != I_HELP)
+		if(M.a_intent == I_GRAB && hat)
+			remove_hat(M)
+			return
 		return ..()
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	if(resting)
@@ -213,10 +230,57 @@
 	else
 		return ..()
 
+/mob/living/simple_mob/vore/alienanimals/catslug/update_icon()
+	..()
+
+	if(hat)
+		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
+		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
+		I.pixel_y = -7
+		I.color = hat.color
+		I.appearance_flags = RESET_COLOR | KEEP_APART
+		I.blend_mode = BLEND_OVERLAY
+		add_overlay(I)
+
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+	if(!istype(new_hat))
+		to_chat(user, span("warning", "\The [new_hat] isn't a hat."))
+		return
+	if(hat)
+		to_chat(user, span("warning", "\The [src] is already wearing \a [hat]."))
+		return
+	else if(!can_wear_hat)
+		to_chat(user, span("warning", "\The [src] is unable to wear \a [hat]."))
+	else
+		user.drop_item(new_hat)
+		hat = new_hat
+		new_hat.forceMove(src)
+		to_chat(user, span("notice", "You place \a [new_hat] on \the [src]. How adorable!"))
+		update_icon()
+		return
+
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/remove_hat(var/mob/living/user)
+	if(!hat)
+		to_chat(user, "<span class='warning'>\The [src] doesn't have a hat to remove.</span>")
+	else
+		hat.forceMove(get_turf(src))
+		user.put_in_hands(hat)
+		to_chat(user, "<span class='warning'>You take away \the [src]'s [hat.name]. How mean.</span>")
+		hat = null
+		update_icon()
+
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/drop_hat()
+	if(!hat)
+		return
+	hat.forceMove(get_turf(src))
+	hat = null
+	update_icon()
+
 /mob/living/simple_mob/vore/alienanimals/catslug/Login()	//If someone plays as us let's just be a passive mob in case accidents happen if the player D/Cs
 	. = ..()
-	ai_holder.hostile = FALSE
-	ai_holder.wander = FALSE
+	if(ai_holder)
+		ai_holder.hostile = FALSE
+		ai_holder.wander = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color()
 	set name = "Pick Color"
@@ -228,7 +292,7 @@
 	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
 	if(newcolor)
 		color = newcolor
-	picked_color = TRUE
+		picked_color = TRUE
 	update_icon()
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug/proc/consider_awakening()
@@ -290,6 +354,7 @@
 	digestable = 0
 	humanoid_hands = 1	//These should all be ones requiring admin-intervention to play as, so they can get decent tool-usage, as a treat.
 	var/siemens_coefficient = 1 		//Referenced later by others.
+	can_wear_hat = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize()
 	. = ..()
@@ -851,6 +916,8 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/pilotslug)
 	say_list_type = /datum/say_list/catslug/custom/pilotslug
 
+	can_wear_hat = TRUE
+
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug/Initialize()
 	. = ..()
 	if(prob(25))
@@ -888,6 +955,77 @@
 /datum/say_list/catslug/custom/pilotslug
 	speak = list("In the pipe, five my five.","Kick the tires and light the fires!","Bogeys on my tail!","GOOSE!","I'm really good at the stick.","I'm not doing nothing.","Heh.","Can you keep up?","Can't keep the sky from me.")
 
+//Royal slug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/royalslug
+	name = "Ruler Purrton"
+	desc = "A golden-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one is adorned with a crown and red cloak, very fancy."
+	tt_desc = "Mollusca Felis Royallis"
+	icon_state = "catslugking"
+	icon_living = "catslugking"
+	icon_rest = "catslugking_rest"
+	icon_dead = "catslugking_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/royalslug)
+	say_list_type = /datum/say_list/catslug/custom/royalslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/royalslug
+	name = "Alien Wildlife - Catslug - Ruler Purrton"
+	desc = "Found in a castle beyond the redgate, Ruler Purrton\
+	is a catslug who spends their days presiding over this low \
+	technology town, living a life of luxury. Always seen with \
+	their trademark crown and cloak, this litter critter seems \
+	to just exude raw confidence and superiority. \
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/royalslug
+	speak = list("Let them eat cake. Lots and lots of cake.", "Fetch my good cloak.", "I myself prefer my ancient eggs for breakfast!", "Have you come to pay tribute?", "How dare you intrude?", "Bring me the finest of fine finery.", "HARK!", "With great power comes great dinner.")
+
+//crypt slug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/cryptslug
+	name = "Keeper Sluguloth"
+	desc = "A dark-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one is adorned with a dark cloak that obscures most of it's body."
+	tt_desc = "Mollusca Felis Necrosis"
+	icon_state = "cryptslug"
+	icon_living = "cryptslug"
+	icon_rest = "cryptslug_rest"
+	icon_dead = "cryptslug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/cryptslug)
+	say_list_type = /datum/say_list/catslug/custom/cryptslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/cryptslug
+	name = "Alien Wildlife - Catslug - Keeper Sluguloth"
+	desc = "Found in a deep beneath a town beyond the redgate, Sluguloth\
+	is a catslug who spends their days lurking within dark dungeons \
+	alongside monstrous beings of all sorts. Always seen within \
+	their dark cloak, obscuring them, this litter critter seems \
+	to just exude pure menance and up-to-no-goodness. \
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/cryptslug
+	speak = list("I have a lot of nasty friends.", "Do not test me.", "I shall rise again!", "How dare you step foot in my domain?", "Dare you indluge in dark desires?", "I am become death, one day.", "Foul creature!", "I used to think my life was a tragedy, but now I realize it's kind of okay actually.")
+
+
 //=============================
 //Admin-spawn only catslugs end
 //=============================
@@ -905,6 +1043,7 @@
 	var/image/eye_image
 	var/is_impostor = FALSE
 	var/kill_cooldown
+	can_wear_hat = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/impostor
 	is_impostor = TRUE

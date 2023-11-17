@@ -275,33 +275,47 @@
 	desc = "Fueled by your inner inadequacy!"
 	description_fluff = "Provided by NanoMed, SweatMAX promises solutions to all of your problems. Premium gains at premium prices. Resale of SweatMAX products is a violation of NanoTrasen guidelines."
 	icon_state = "fitness"
-	//VOREStation Edit Start
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 16,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 16,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/vanilla = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/banana = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/chocolate = 16,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/strawberry = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/fruitbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
-					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
 					/obj/item/weapon/towel/random = 8,
 					/obj/item/toy/tennis = 4)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 1,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/vanilla = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/banana = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/chocolate = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein_powder/strawberry = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/fruitbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 5,
 					/obj/item/weapon/reagent_containers/pill/diet = 25,
-					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
 					/obj/item/weapon/towel/random = 20,
 					/obj/item/toy/tennis = 15)
-	//VOREStation Edit End
 
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2, /obj/item/toy/baseball = 2) // VOREStation Add - Slurpable blobs.
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4,
+						/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2,
+						/obj/item/toy/baseball = 2) // VOREStation Add - Slurpable blobs.
 
 /obj/machinery/vending/cart
 	name = "PTech"
@@ -329,6 +343,8 @@
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 10,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 10,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/professionals = 10,
 					/obj/item/weapon/storage/rollingpapers = 10,
 					/obj/item/weapon/storage/rollingpapers/blunt = 10,
 					/obj/item/weapon/storage/chewables/tobacco = 5,
@@ -349,15 +365,15 @@
 					/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico = 2,
 					/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico = 5)
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
-	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/professionals = 5)
+	premium = list(/obj/item/weapon/storage/fancy/cigar = 5)
 	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 12,
 					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 20,
 					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 14,
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 17,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 22,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 18,
+					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 24,
+					/obj/item/weapon/storage/fancy/cigarettes/professionals = 27,
 					/obj/item/weapon/storage/rollingpapers = 10,
 					/obj/item/weapon/storage/rollingpapers/blunt = 20,
 					/obj/item/weapon/storage/chewables/tobacco = 10,
@@ -785,6 +801,7 @@
 					/obj/item/toy/plushie/nukeplushie = 1,
 					/obj/item/toy/plushie/otter = 1,
 					/obj/item/toy/plushie/vox = 1,
+					/obj/item/toy/plushie/shark = 1,
 					/obj/item/toy/mistletoe = 1)
 					//VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
@@ -827,6 +844,7 @@
 					/obj/item/toy/plushie/nukeplushie = 50,
 					/obj/item/toy/plushie/otter = 50,
 					/obj/item/toy/plushie/vox = 50,
+					/obj/item/toy/plushie/shark = 50,
 					/obj/item/toy/mistletoe = 50)
 					//VOREStation Add End
 
@@ -962,6 +980,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/oort = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/sun_snax = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry = 6,
+					/obj/item/weapon/storage/box/jaffacake = 8,
 					/obj/item/weapon/storage/box/gum = 8,
 					/obj/item/weapon/storage/box/admints = 8
 					)
@@ -975,6 +994,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/oort = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/sun_snax = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry = 8,
+					/obj/item/weapon/storage/box/jaffacake = 5,
 					/obj/item/weapon/storage/box/gum = 2,
 					/obj/item/weapon/storage/box/admints = 2
 					)

@@ -46,11 +46,15 @@
 		var/cidquery = ""
 		if(address)
 			failedip = 0
-			ipquery = " OR ip = '[address]' "
+			ipquery = " OR ip = '[sanitizeSQL(address)]' "
 
 		if(computer_id)
 			failedcid = 0
-			cidquery = " OR computerid = '[computer_id]' "
+			if(isnum(text2num(computer_id)))
+				cidquery = " OR computerid = '[computer_id]' "
+			else
+				log_misc("Key [ckeytext] cid not checked. Non-Numeric: [computer_id]")
+				failedcid = 1
 
 		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
@@ -81,4 +85,3 @@
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
 #endif
-

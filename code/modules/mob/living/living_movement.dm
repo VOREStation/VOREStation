@@ -3,6 +3,9 @@
 		var/mob/moving_mob = mover
 		if ((other_mobs && moving_mob.other_mobs))
 			return TRUE
+		if(is_shifted && (abs(pixel_x) >= 8 || abs(pixel_y) >= 8))
+			// they're wallflowering, let 'em through
+			return TRUE
 	if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
 		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
@@ -273,6 +276,8 @@ default behaviour is:
 		is_shifted = FALSE
 		pixel_x = default_pixel_x
 		pixel_y = default_pixel_y
+		layer = MOB_LAYER
+		plane = MOB_PLANE
 	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.

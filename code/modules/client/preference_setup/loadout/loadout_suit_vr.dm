@@ -23,7 +23,6 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
 	cost = 2
 
-
 /datum/gear/suit/roles/labcoat_old/New()
 	..()
 	var/list/labcoats = list(
@@ -51,7 +50,7 @@
 
 /datum/gear/suit/old_poncho //This is made from an old sprite which has been here for quite some time. Called old poncho because duplicates
 	display_name = "Colorful poncho"
-	description = "A mexican looking poncho. It look like it fits wolf taurs as well."
+	description = "A Mexican looking poncho. It look like it fits wolf taurs as well."
 	path = /obj/item/clothing/suit/poncho
 
 //Detective alternative
@@ -92,7 +91,6 @@
 	display_name = "chiton"
 	path = /obj/item/clothing/suit/chiton
 
-
 //oversized t-shirt
 /datum/gear/suit/oversize
 	display_name = "oversized t-shirt (colorable)"
@@ -109,7 +107,6 @@ Talon winter coat
 	display_name = "winter coat, Talon"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon
 
-
 /datum/gear/suit/armor/combat/crusader_explo
 	display_name = "knight, explo"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
@@ -118,12 +115,7 @@ Talon winter coat
 /datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
-	allowed_roles = list ("Field Medic")
-
-//Atmos-coloured hazard vest
-	display_name = "hazard vest, atmospherics"
-	path = /obj/item/clothing/suit/storage/hazardvest/atmos
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+	allowed_roles = list ("Paramedic")
 
 //Long fur coat
 /datum/gear/suit/russofurcoat
@@ -131,7 +123,6 @@ Talon winter coat
 	path = /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
 
 //Colorable Hoodie
-
 /datum/gear/suit/hoodie_vr
 	display_name = "hoodie with hood (colorable)"
 	path = /obj/item/clothing/suit/storage/hooded/hoodie
@@ -328,7 +319,8 @@ Talon winter coat
 	var/list/choodies = list(
 		"normal hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable,
 		"sleeveless hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/sleeveless,
-		"cropped hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/cropped
+		"cropped hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/cropped,
+		"shortsleeve hoodie"=/obj/item/clothing/suit/storage/hooded/toggle/colorable/shortsleeve
 	)
 	gear_tweaks += gear_tweak_free_color_choice
 	gear_tweaks += new/datum/gear_tweak/path(choodies)

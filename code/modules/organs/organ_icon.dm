@@ -81,7 +81,20 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
 
+	var/digitigrade = 0
+
+	// preferentially take digitigrade value from owner if available, THEN DNA.
+	// this allows limbs to be set properly when being printed in the bioprinter without an owner
+	// this also allows the preview mannequin to update properly because customisation topic calls don't call a DNA check
+	var/check_digi = istype(src,/obj/item/organ/external/leg) || istype(src,/obj/item/organ/external/foot)
+	if(owner)
+		digitigrade = check_digi && owner.digitigrade
+	else if(dna)
+		digitigrade = check_digi && dna.digitigrade
+
 	for(var/M in markings)
+		if (!markings[M]["on"])
+			continue
 		var/datum/sprite_accessory/marking/mark = markings[M]["datum"]
 		if(mark.organ_override)
 			var/icon/mark_s = new/icon("icon" = mark.icon, "icon_state" = "[mark.icon_state]-[organ_tag]")
@@ -90,6 +103,8 @@ var/global/list/limb_icon_cache = list()
 			mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 			icon_cache_key = "[M][markings[M]["color"]]"
 			for(var/MM in markings)
+				if (!markings[MM]["on"])
+					continue
 				var/datum/sprite_accessory/marking/mark_style = markings[MM]["datum"]
 				if(mark_style.organ_override)
 					continue
@@ -135,14 +150,20 @@ var/global/list/limb_icon_cache = list()
 				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 				should_apply_transparency = TRUE
 				apply_colouration(mob_icon)
+			else if(is_hidden_by_markings())
+				mob_icon = new /icon('icons/mob/human_races/r_blank.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+				should_apply_transparency = TRUE
 			else
-				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
+				//Use digi icon if digitigrade, otherwise use regular icon. Ternary operator is based.
+				mob_icon = new /icon(digitigrade ? species.icodigi : species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
 				should_apply_transparency = TRUE
 				apply_colouration(mob_icon)
 
 			//Body markings, actually does not include head this time. Done separately above.
 			if(!istype(src,/obj/item/organ/external/head))
 				for(var/M in markings)
+					if (!markings[M]["on"])
+						continue
 					var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 					var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 					mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
@@ -173,6 +194,8 @@ var/global/list/limb_icon_cache = list()
 		apply_colouration(mob_icon)
 		if(owner && owner.synth_markings)
 			for(var/M in markings)
+				if (!markings[M]["on"])
+					continue
 				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 				mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit

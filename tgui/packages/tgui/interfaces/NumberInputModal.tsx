@@ -86,6 +86,7 @@ const InputArea = (props, context) => {
       </Stack.Item>
       <Stack.Item grow>
         <RestrictedInput
+          allowFloats
           autoFocus
           autoSelect
           fluid

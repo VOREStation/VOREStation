@@ -56,7 +56,7 @@
 
 	src.add_fingerprint(user)
 	if(mode<=0) // It's off
-		if(I.is_screwdriver())
+		if(I.has_tool_quality(TOOL_SCREWDRIVER))
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -70,11 +70,11 @@
 				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I, /obj/item/weapon/weldingtool) && mode==-1)
+		else if(I.has_tool_quality(TOOL_WELDER) && mode==-1)
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
-			var/obj/item/weapon/weldingtool/W = I
+			var/obj/item/weapon/weldingtool/W = I.get_welder()
 			if(W.remove_fuel(0,user))
 				playsound(src, W.usesound, 100, 1)
 				to_chat(user, "You start slicing the floorweld off the disposal unit.")
@@ -142,6 +142,8 @@
 
 	user.drop_item()
 	if(I)
+		if(istype(I, /obj/item/weapon/holder/micro))
+			log_and_message_admins("placed [I.name]  inside \the [src]", user)
 		I.forceMove(src)
 
 	to_chat(user, "You place \the [I] into the [src].")
@@ -181,6 +183,7 @@
 											// must be awake, not stunned or whatever
 		msg = "[user.name] climbs into the [src]."
 		to_chat(user, "You climb into the [src].")
+		log_and_message_admins("climbed into disposals!", user)
 	else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
 		msg = "[user.name] stuffs [target.name] into the [src]!"
 		to_chat(user, "You stuff [target.name] into the [src]!")
@@ -527,6 +530,8 @@
 	. = ..()
 	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
 		if(prob(75))
+			if(istype(AM, /obj/item/weapon/holder/micro))
+				log_and_message_admins("[AM] was thrown into \the [src]")
 			AM.forceMove(src)
 			visible_message("\The [AM] lands in \the [src].")
 		else
@@ -541,6 +546,8 @@
 			return
 		if(prob(75))
 			I.forceMove(src)
+			if(istype(I, /obj/item/weapon/holder/micro))
+				log_and_message_admins("[I.name] was thrown into \the [src]")
 			for(var/mob/M in viewers(src))
 				M.show_message("\The [I] lands in \the [src].", 3)
 		else
@@ -832,13 +839,13 @@
 // change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
 	invisibility = intact ? 101: 0	// hide if floor is intact
-	updateicon()
+	update_icon()
 
 // update actual icon_state depending on visibility
 // if invisible, append "f" to icon_state to show faded version
 // this will be revealed if a T-scanner is used
 // if visible, use regular icon_state
-/obj/structure/disposalpipe/proc/updateicon()
+/obj/structure/disposalpipe/update_icon()
 /*	if(invisibility)	//we hide things with alpha now, no need for transparent icons
 		icon_state = "[base_icon_state]f"
 	else
@@ -973,8 +980,8 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 50, 1)
@@ -1448,8 +1455,8 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 100, 1)
@@ -1569,7 +1576,7 @@
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(mode==0)
 			mode=1
 			to_chat(user, "You remove the screws around the power connection.")
@@ -1580,8 +1587,8 @@
 			to_chat(user, "You attach the screws around the power connection.")
 			playsound(src, I.usesound, 50, 1)
 			return
-	else if(istype(I, /obj/item/weapon/weldingtool) && mode==1)
-		var/obj/item/weapon/weldingtool/W = I
+	else if(I.has_tool_quality(TOOL_WELDER) && mode==1)
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "You start slicing the floorweld off the disposal outlet.")

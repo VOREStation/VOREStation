@@ -239,8 +239,8 @@ update_flag
 	..()
 
 /obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool)) //Vorestart: Deconstructable Canisters
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER)) //Vorestart: Deconstructable Canisters
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "The welding tool must be on to complete this task.")
 			return
@@ -255,7 +255,7 @@ update_flag
 			qdel(src)
 			return
 	//Voreend
-	if(!W.is_wrench() && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
+	if(!W.has_tool_quality(TOOL_WRENCH) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
 		visible_message("<span class='warning'>\The [user] hits \the [src] with \a [W]!</span>")
 		src.health -= W.force
 		src.add_fingerprint(user)

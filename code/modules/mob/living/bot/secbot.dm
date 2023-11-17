@@ -436,8 +436,8 @@
 
 /obj/item/weapon/secbot_assembly/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool) && !build_step)
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER) && !build_step)
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(WT.remove_fuel(0, user))
 			build_step = 1
 			add_overlay("hs_hole")

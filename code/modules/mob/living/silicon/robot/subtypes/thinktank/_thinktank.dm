@@ -69,7 +69,7 @@
 	if(!mmi)
 		mmi = new /obj/item/device/mmi/digital/robot(src)
 	SetName("inactive [initial(name)]")
-	updateicon()
+	update_icon()
 
 // Copypasting from root proc to avoid calling ..() and accidentally creating duplicate armour etc.
 /mob/living/silicon/robot/platform/initialize_components()

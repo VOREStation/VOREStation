@@ -197,9 +197,9 @@
 	item_state = "brittrenchcoat"
 
 //For general use
-/obj/item/clothing/suit/storage/vest/hoscoat/nazi_greatcoat
+/obj/item/clothing/suit/storage/vest/hoscoat/ancient_greatcoat
 	name = "Greatcoat"
-	desc = "Perfect attire for kicking down the doors of suspected dissidents; this coat gives off an imposing look, while offering a luxuriously plush fur liner."
+	desc = "This coat gives off an imposing look, while offering a luxuriously plush fur liner."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "greatcoat"
@@ -218,6 +218,7 @@
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	item_state = "russofurcoat"
 
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	flags_inv = HIDETIE|HIDEHOLSTER
 
@@ -2058,7 +2059,7 @@ Departamental Swimsuits, for general use
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
-	icon_state = "nikki"
+	icon_state = "nikkicape"
 
 /obj/item/clothing/head/fluff/nikki
 	// I have never tryharded so much just to accomplish something so stupid as "Vore By Hat" in my entire life, and I apologize to each and every one of you.
@@ -2677,3 +2678,51 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "grand_purple_cloak_hat"
 	item_state = "grand_purple_cloak_hat_onmob"
+
+//verysoft:Dessa Ton
+/obj/item/clothing/head/fluff/giantbow/dessa
+	desc = "It's a huge bow! So pretty! This one is fitted specially for Dessa's rediculously large ears."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "dessabow_mob"
+
+/obj/item/clothing/head/fluff/giantbow/dessa/attack_hand(mob/user)
+
+	if(user.real_name == "Dessa Ton")
+		item_state = "dessabow_mob"
+	else
+		item_state = "giantbow_mob"
+	..()
+
+/obj/item/clothing/head/fluff/giantbow	//Public version
+	name = "Giant Bow"
+	desc = "It's a huge bow! So pretty!"
+	slot_flags = SLOT_HEAD | SLOT_EARS
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "dessabow"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "giantbow_mob"
+
+//Halored: Mercury
+
+/obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	name = "Mercury's Mate Ring"
+	desc = "A band of void opal, given to Mercury by Lumen"
+
+//satinisle: Parriz Tavakdavi
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/parrizjacket
+	name = "pink crop bomber"
+	desc = "A pink crop bomber jacket that is just barely able to zip up at the front. It has a small Virgo Orbital Research Establishment patch on each shoulder."
+	icon_state = "parriz_jacket"
+
+//verysoft: Casey Brown
+/obj/item/clothing/glasses/big_round
+	name = "big round blue glasses"
+	desc = "A set of glasses! They are big, round, and very reflective, catching the light and obscuring the eyes!"
+	icon = 'icons/inventory/eyes/item_vr.dmi'
+	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
+	icon_state = "bigroundglasses"
+	slot_flags = SLOT_EYES | SLOT_EARS
+	glasses_layer_above = TRUE

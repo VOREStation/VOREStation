@@ -1,6 +1,6 @@
 import { BooleanLike } from '../../common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
+import { Button, Divider, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -9,6 +9,16 @@ type Data = {
   default_path_name: string;
   default_desc: string;
   default_flavor_text: string;
+
+  use_custom_ai: BooleanLike;
+  ai_type: string;
+  faction: string;
+  intent: string;
+
+  max_health: number;
+  health: number;
+  melee_damage_lower: number;
+  melee_damage_upper: number;
 
   default_speak_emotes: string[];
 
@@ -57,6 +67,30 @@ const GeneralMobSettings = (props, context) => {
     context,
     'name',
     data.default_path_name
+  );
+  const [ai_type] = useLocalState(context, 'aiType', data.ai_type);
+  const [use_custom_ai] = useLocalState(
+    context,
+    'toggleCustomAi',
+    data.use_custom_ai
+  );
+  const [faction] = useLocalState(context, 'setMobFaction', data.faction);
+  const [intent] = useLocalState(context, 'setIntent', data.intent);
+  const [maxHealth, setMaxHealth] = useLocalState(
+    context,
+    'maxHealth',
+    data.max_health
+  );
+  const [health, setHealth] = useLocalState(context, 'health', data.health);
+  const [meleeDamageLower, setMeleeDamageLower] = useLocalState(
+    context,
+    'meleeDamageLower',
+    data.melee_damage_lower
+  );
+  const [meleeDamageUpper, setMeleeDamageUpper] = useLocalState(
+    context,
+    'meleeDamageUpper',
+    data.melee_damage_upper
   );
   const [desc, setDesc] = useLocalState(context, 'desc', data.default_desc);
   const [flavorText, setFlavorText] = useLocalState(
@@ -114,43 +148,127 @@ const GeneralMobSettings = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Positional Settings">
-        <LabeledList>
-          <LabeledList.Item label="Spawn (X/Y/Z) Coords">
-            <NumberInput
-              value={data.loc_lock ? data.loc_x : x}
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setX(val)}
-            />
-            <NumberInput
-              value={data.loc_lock ? data.loc_y : y}
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setY(val)}
-            />
-            <NumberInput
-              value={data.loc_lock ? data.loc_z : z}
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setZ(val)}
-            />
-            <Button.Checkbox
-              content="Lock coords to self"
-              checked={data.loc_lock}
-              onClick={() => act('loc_lock')}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label="Spawn Radius (WIP)">
-            <NumberInput
-              value={radius}
-              disabled
-              minValue={0}
-              maxValue={256}
-              onChange={(e, val) => setRadius(val)}
-            />
-          </LabeledList.Item>
-        </LabeledList>
+      <Section title="General Settings">
+        <Flex horizontal>
+          <Flex.Item FlexGrow>
+            <Section title="Positional Settings">
+              <LabeledList>
+                <LabeledList.Item label="Spawn (X/Y/Z) Coords">
+                  <NumberInput
+                    value={data.loc_lock ? data.loc_x : x}
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setX(val)}
+                  />
+                  <NumberInput
+                    value={data.loc_lock ? data.loc_y : y}
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setY(val)}
+                  />
+                  <NumberInput
+                    value={data.loc_lock ? data.loc_z : z}
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setZ(val)}
+                  />
+                  <Button.Checkbox
+                    content="Lock coords to self"
+                    checked={data.loc_lock}
+                    onClick={() => act('loc_lock')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Spawn Radius (WIP)">
+                  <NumberInput
+                    value={radius}
+                    disabled
+                    minValue={0}
+                    maxValue={256}
+                    onChange={(e, val) => setRadius(val)}
+                  />
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Flex.Item>
+          <Flex.Item>
+            <Divider vertical />
+          </Flex.Item>
+          <Flex.Item FlexGrow>
+            <Section
+              title="AI settings"
+              buttons={
+                <Button
+                  selected={use_custom_ai}
+                  fill
+                  content="Use Custom AI"
+                  onClick={() => act('toggle_custom_ai')}
+                />
+              }>
+              <LabeledList>
+                <LabeledList.Item>
+                  <Button
+                    fluid
+                    content={ai_type || 'Choose AI Type'}
+                    onClick={(val) => act('set_ai_path')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item>
+                  <Button
+                    fluid
+                    content={faction || 'Set Faction'}
+                    onClick={(val) => act('set_faction')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item>
+                  <Button
+                    fluid
+                    content={intent || 'Set Intent'}
+                    onClick={(val) => act('set_intent')}
+                  />
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+            <Section title="Health & Damage">
+              <LabeledList>
+                {(maxHealth && (
+                  <>
+                    <LabeledList.Item label="Max Health">
+                      <NumberInput
+                        value={maxHealth}
+                        onChange={(e, val) => setMaxHealth(val)}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Health">
+                      <NumberInput
+                        value={health}
+                        onChange={(e, val) => setHealth(val)}
+                      />
+                    </LabeledList.Item>
+                    <br />
+                  </>
+                )) ||
+                  "Note: Only available for '/mob/living'"}
+                {(meleeDamageLower && (
+                  <>
+                    <LabeledList.Item label="Melee Damage (Lower)">
+                      <NumberInput
+                        value={meleeDamageLower}
+                        onChange={(e, val) => setMeleeDamageLower(val)}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Melee Damage (Upper)">
+                      <NumberInput
+                        value={meleeDamageUpper}
+                        onChange={(e, val) => setMeleeDamageUpper(val)}
+                      />
+                    </LabeledList.Item>
+                  </>
+                )) ||
+                  "Note: Only available for '/mob/living/simple_mob'"}
+              </LabeledList>
+            </Section>
+          </Flex.Item>
+        </Flex>
       </Section>
       <Section title="Descriptions">
         <Flex>
@@ -181,6 +299,10 @@ const GeneralMobSettings = (props, context) => {
             amount: amount,
             name: name || data.default_path_name,
             desc: desc || data.default_desc,
+            max_health: maxHealth || data.max_health,
+            health: health || data.health,
+            melee_damage_lower: meleeDamageLower || data.melee_damage_lower,
+            melee_damage_upper: meleeDamageUpper || data.melee_damage_upper,
             flavor_text: flavorText || data.default_flavor_text,
             size_multiplier: sizeMultiplier * 0.01,
             x: data.loc_lock ? data.loc_x : x,

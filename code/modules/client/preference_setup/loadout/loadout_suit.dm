@@ -31,52 +31,38 @@
 	path = /obj/item/clothing/suit/jacket/puffer/vest
 
 /datum/gear/suit/bomber
-	display_name = "bomber jacket"
+	display_name = "bomber jacket selection"
+	description = "Pick from a small selection of bomber jackets."
 	path = /obj/item/clothing/suit/storage/toggle/bomber
 
-/datum/gear/suit/bomber_alt
-	display_name = "bomber jacket, alt"
-	path = /obj/item/clothing/suit/storage/bomber/alt
-
-/datum/gear/suit/bomber_retro
-	display_name = "bomber jacket, retro"
-	path = /obj/item/clothing/suit/storage/toggle/bomber/retro
+/datum/gear/suit/bomber/New()
+	..()
+	var/list/selector_uniforms = list(
+		"classic"=/obj/item/clothing/suit/storage/toggle/bomber,
+		"classic alternative"=/obj/item/clothing/suit/storage/bomber/alt,
+		"retro"=/obj/item/clothing/suit/storage/toggle/bomber/retro
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/suit/leather_jacket
-	display_name = "leather jacket, black"
+	display_name = "leather jacket and vest selection"
+	description = "Pick from a wide variety of leather vests and jackets."
 	path = /obj/item/clothing/suit/storage/toggle/leather_jacket
 
-/datum/gear/suit/leather_jacket_sleeveless
-	display_name = "leather vest, black"
-	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
-
-/datum/gear/suit/leather_jacket_alt
-	display_name = "leather jacket 2, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket_alt
-
-/datum/gear/suit/leather_jacket_nt
-	display_name = "leather jacket, corporate, black"
-	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
-
-/datum/gear/suit/leather_jacket_nt/sleeveless
-	display_name = "leather vest, corporate, black"
-	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless
-
-/datum/gear/suit/brown_jacket
-	display_name = "leather jacket, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket
-
-/datum/gear/suit/brown_jacket_sleeveless
-	display_name = "leather vest, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
-
-/datum/gear/suit/brown_jacket_nt
-	display_name = "leather jacket, corporate, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
-
-/datum/gear/suit/brown_jacket_nt/sleeveless
-	display_name = "leather vest, corporate, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless
+/datum/gear/suit/leather_jacket/New()
+	..()
+	var/list/selector_uniforms = list(
+		"black jacket"=/obj/item/clothing/suit/storage/toggle/leather_jacket,
+		"black vest"=/obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless,
+		"black jacket, alternative"=/obj/item/clothing/suit/storage/leather_jacket_alt,
+		"black jacket, corporate"=/obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen,
+		"black vest, corporate"=/obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless,
+		"brown jacket"=/obj/item/clothing/suit/storage/toggle/brown_jacket,
+		"brown vest"=/obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless,
+		"brown jacket, corporate"=/obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen,
+		"brown vest, corporate"=/obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/suit/mil
 	display_name = "military jacket selection"
@@ -202,17 +188,19 @@
 	path = /obj/item/clothing/suit/cyberpunk
 	cost = 2
 
-/datum/gear/suit/puffycoat/blue
-	display_name = "puffy coat, blue"
+/datum/gear/suit/puffycoat
+	display_name = "puffy coat selection"
+	description = "Pick from a few different colours of puffy coat."
 	path = /obj/item/clothing/suit/storage/puffyblue
 
-/datum/gear/suit/puffycoat/red
-	display_name = "puffy coat, red"
-	path = /obj/item/clothing/suit/storage/puffyred
-
-/datum/gear/suit/puffycoat/purple
-	display_name = "puffy coat, purple"
-	path = /obj/item/clothing/suit/storage/puffypurple
+/datum/gear/suit/puffycoat/New()
+	..()
+	var/list/selector_uniforms = list(
+		"blue"=/obj/item/clothing/suit/storage/puffyblue,
+		"red"=/obj/item/clothing/suit/storage/puffyred,
+		"purple"=/obj/item/clothing/suit/storage/puffypurple
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/suit/poncho
 	display_name = "poncho selection"
@@ -555,21 +543,28 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(flannel)
 
+/datum/gear/suit/flannelrecolour
+	display_name = "flannel jacket, recolourable"
+	path = /obj/item/clothing/suit/storage/flannel/recolour
+
+/datum/gear/suit/flannelrecolour/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/suit/denim_jacket
-	display_name = "denim jacket"
+	display_name = "denim jacket and vest selection"
+	description = "Select from a small range of denim jackets and vests."
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket
 
-/datum/gear/suit/denim_jacket/corporate
-	display_name = "denim jacket, corporate"
-	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen
-
-/datum/gear/suit/denim_vest
-	display_name = "denim vest"
-	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless
-
-/datum/gear/suit/denim_vest/corporate
-	display_name = "denim vest, corporate"
-	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
+/datum/gear/suit/denim_jacket/New()
+	..()
+	var/list/selector_uniforms = list(
+		"denim jacket"=/obj/item/clothing/suit/storage/toggle/denim_jacket,
+		"denim jacket, corporate"=/obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen,
+		"denim vest"=/obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless,
+		"denim vest, corporate"=/obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/suit/miscellaneous/dep_jacket
 	display_name = "department jacket selection"
@@ -687,3 +682,55 @@
 	"Earth kimono" = /obj/item/clothing/suit/kimono/earth
 	)
 	gear_tweaks += new/datum/gear_tweak/path(kimonos)
+
+//cropped hoodies
+/datum/gear/suit/roles/croppedhoodies
+	display_name = "cropped hoodie selection"
+	path = /obj/item/clothing/suit/storage/croppedhoodie
+
+/datum/gear/suit/roles/croppedhoodies/New()
+	..()
+	var/list/croppedhoodies = list(
+		"cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie,
+		"high cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie/croppier,
+		"very high cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie/croppierer,
+		"super high cropped hoodie"=/obj/item/clothing/suit/storage/croppedhoodie/croppiest
+	)
+	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += new/datum/gear_tweak/path(croppedhoodies)
+
+/datum/gear/suit/drive
+    display_name = "relatable jacket"
+    path = /obj/item/clothing/suit/storage/drive
+
+/datum/gear/suit/motojacket
+    display_name = "motorcycle jacket"
+    path = /obj/item/clothing/suit/storage/toggle/moto_jacket
+
+/datum/gear/suit/punkvest
+    display_name = "punk vest"
+    path = /obj/item/clothing/suit/storage/punkvest
+
+/datum/gear/suit/raincoat
+    display_name = "raincoat"
+    path = /obj/item/clothing/suit/storage/hooded/raincoat
+
+//hooded cloaks
+/datum/gear/suit/roles/hoodedcloaks
+	display_name = "hooded cloak selection"
+	path = /obj/item/clothing/suit/storage/hooded/cloak
+
+/datum/gear/suit/roles/hoodedcloaks/New()
+	..()
+	var/list/hoodedcloaks = list(
+		"hooded maroon cloak"=/obj/item/clothing/suit/storage/hooded/cloak,
+		"hooded winter cloak"=/obj/item/clothing/suit/storage/hooded/cloak/winter,
+		"hooded asymmetric cloak"=/obj/item/clothing/suit/storage/hooded/cloak/asymmetric,
+		"hooded fancy cloak"=/obj/item/clothing/suit/storage/hooded/cloak/fancy
+	)
+	gear_tweaks += new/datum/gear_tweak/path(hoodedcloaks)
+
+//nerdy shirt
+/datum/gear/suit/nerdshirt
+    display_name = "nerdy shirt"
+    path = /obj/item/clothing/suit/nerdshirt

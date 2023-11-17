@@ -30,13 +30,13 @@
 		. += "There is a small display that reads \"[convert_k2c(target_temp)]C\"."
 
 /obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(default_deconstruction_screwdriver(user,I))
 			return
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		if(default_deconstruction_crowbar(user,I))
 			return
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		visible_message("<span class='notice'>\The [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 		playsound(src, I.usesound, 75, 1)

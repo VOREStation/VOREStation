@@ -8,16 +8,15 @@
 /datum/sprite_accessory/tail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/tails_vr.dmi'
+	var/offset_x = 0
+	var/offset_y = 0
+	var/mob_offset_x = 0
+	var/mob_offset_y = 0
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 	var/list/lower_layer_dirs = list(SOUTH)
 	var/icon_loaf = null
-
-/datum/sprite_accessory/tail/New()
-	. = ..()
-	if(clip_mask_icon && clip_mask_state)
-		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
 
 // Species-unique tails
 
@@ -346,6 +345,26 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ringtail_mark"
+
+/datum/sprite_accessory/tail/ringtailwag
+	name = "ringtail (vwag)"
+	desc = ""
+	icon_state = "wah"
+	ani_state = "wah_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wah-stripes"
+	extra_overlay_w = "wah-stripes_w"
+
+/datum/sprite_accessory/tail/raccoon
+	name = "raccoon tail (vwag)"
+	desc = ""
+	icon_state = "raccoon"
+	ani_state = "raccoon_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "raccoon-stripes"
+	extra_overlay_w = "raccoon-stripes_w"
 
 /datum/sprite_accessory/tail/holly
 	name = "tigress tail (Holly)"
@@ -1347,6 +1366,7 @@
 /datum/sprite_accessory/tail/longtail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/taurs_vr.dmi'
+	offset_x = -16
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
@@ -1414,3 +1434,37 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sharktail_tipmarkings"
+
+/datum/sprite_accessory/tail/narrow_tail
+	name = "feathered narrow tail, colorable"
+	desc = ""
+	icon_state = "narrowtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/narrow_tail2
+	name = "feathered narrow tail, 2 colors"
+	desc = ""
+	icon_state = "narrowtail_2color"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "narrowtail_2color-1"
+
+
+// Dino Tails
+
+/datum/sprite_accessory/tail/clubtail
+	name = "dino clubtail, colorable"
+	desc = ""
+	icon_state = "clubtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "clubtail-1"
+
+/datum/sprite_accessory/tail/spiketail
+	name = "dino spiketail, colorable"
+	desc = ""
+	icon_state = "spiketail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "spiketail-1"

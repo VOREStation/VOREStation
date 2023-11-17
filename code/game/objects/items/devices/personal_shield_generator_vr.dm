@@ -179,7 +179,7 @@
 			to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
 			update_icon()
 
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(bcell)
 			if(istype(bcell, /obj/item/weapon/cell/device/shield_generator)) //No stealing self charging batteries!
 				var/choice = tgui_alert(user, "A popup appears on the device 'REMOVING THE INTERNAL CELL WILL DESTROY THE BATTERY. DO YOU WISH TO CONTINUE?'...Well, do you?", "Selection List", list("Cancel", "Remove"))

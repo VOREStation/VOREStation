@@ -85,7 +85,8 @@
 			/obj/item/toy/plushie/foxbear,
 			/obj/item/toy/plushie/nukeplushie,
 			/obj/item/toy/plushie/otter,
-			/obj/item/toy/plushie/vox)
+			/obj/item/toy/plushie/vox,
+			/obj/item/toy/plushie/shark)
 			//VOREStation Add End
 	name = "Plushies Crate"
 	cost = 15

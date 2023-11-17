@@ -596,3 +596,23 @@
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "striped_clown_uniform"
+
+/obj/item/clothing/under/dress/cdress_fire
+	name = "flame dress"
+	desc = "A small black dress with a flames print on it. Perfect for recoloring!"
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "cdress_fire"
+
+/obj/item/clothing/under/dress/cbridesmaid
+	name = "fancy dress"
+	desc = "A cute, flirty dress. Good for weddings and fancy parties, or if you just want to look fashionable. Perfect for recoloring!"
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "cbridesmaid"
+
+/obj/item/clothing/under/dress/cswoopdress
+	name = "swoop dress"
+	desc = "A fancy gown for those who like to show leg. Perfect for recoloring!"
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "cswoopdress"

@@ -31,6 +31,7 @@
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
+	var/escape_stun = 0						// AI controlled mobs with a number here will be weakened by the provided var when someone escapes, to prevent endless nom loops
 	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
 	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
 	var/save_digest_mode = TRUE				// Whether this belly's digest mode persists across rounds
@@ -55,6 +56,10 @@
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
+	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
+	var/belly_mob_mult = 1		//Multiplier for how filling mob types are in borg bellies
+	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
+	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -162,8 +167,8 @@
 	var/disable_hud = FALSE
 	var/colorization_enabled = FALSE
 	var/belly_fullscreen_color = "#823232"
-
-
+	var/belly_fullscreen_color_secondary = "#428242"
+	var/belly_fullscreen_color_trinary = "#f0f0f0"
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
@@ -225,10 +230,16 @@
 	"belly_fullscreen",
 	"disable_hud",
 	"belly_fullscreen_color",
+	"belly_fullscreen_color_secondary",
+	"belly_fullscreen_color_trinary",
 	"colorization_enabled",
 	"egg_type",
 	"save_digest_mode",
-	"eating_privacy_local"
+	"eating_privacy_local",
+	"silicon_belly_overlay_preference",
+	"belly_mob_mult",
+	"belly_item_mult",
+	"belly_overall_mult",
 	)
 
 	if (save_digest_mode == 1)
@@ -239,10 +250,11 @@
 /obj/belly/Initialize()
 	. = ..()
 	//If not, we're probably just in a prefs list or something.
-	if(isliving(loc))
+	if(ismob(loc))
 		owner = loc
 		owner.vore_organs |= src
-		START_PROCESSING(SSbellies, src)
+		if(isliving(loc))
+			START_PROCESSING(SSbellies, src)
 
 /obj/belly/Destroy()
 	STOP_PROCESSING(SSbellies, src)
@@ -306,6 +318,9 @@
 	if(isliving(thing) && !isbelly(thing.loc))
 		var/mob/living/L = thing
 		L.clear_fullscreen("belly")
+		L.clear_fullscreen("belly2")
+		L.clear_fullscreen("belly3")
+		L.clear_fullscreen("belly4")
 		if(L.hud_used)
 			if(!L.hud_used.hud_shown)
 				L.toggle_hud_vis()
@@ -326,16 +341,31 @@
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/colorized)
 			F.icon_state = belly_fullscreen
 			F.color = belly_fullscreen_color
-			/* //Allows for 'multilayered' stomachs. Currently not implemented.
-			if(b_multilayered)
-				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly)
-			*/
+			if("[belly_fullscreen]_l1" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly/colorized/overlay)
+				F2.icon_state = "[belly_fullscreen]_l1"
+				F2.color = belly_fullscreen_color_secondary
+			else
+				L.clear_fullscreen("belly2")
+			if("[belly_fullscreen]_l2" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F3 = L.overlay_fullscreen("belly3", /obj/screen/fullscreen/belly/colorized/overlay)
+				F3.icon_state = "[belly_fullscreen]_l2"
+				F3.color = belly_fullscreen_color_trinary
+			else
+				L.clear_fullscreen("belly3")
+			if("[belly_fullscreen]_nc" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F4 = L.overlay_fullscreen("belly4", /obj/screen/fullscreen/belly/colorized/overlay)
+				F4.icon_state = "[belly_fullscreen]_nc"
+			else
+				L.clear_fullscreen("belly4")
 		else
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly)
 			F.icon_state = belly_fullscreen
 	else
 		L.clear_fullscreen("belly")
-		//L.clear_fullscreen("belly2") //Allows for 'multilayered' stomachs. Currently not implemented.
+		L.clear_fullscreen("belly2")
+		L.clear_fullscreen("belly3")
+		L.clear_fullscreen("belly4")
 
 	if(disable_hud)
 		if(L?.hud_used?.hud_shown)
@@ -353,19 +383,31 @@
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/colorized)
 			F.icon_state = belly_fullscreen
 			F.color = belly_fullscreen_color
-			/* //Allows for 'multilayered' stomachs. Currently not implemented.
-			if(b_multilayered)
-				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly)
-			*/
+			if("[belly_fullscreen]_l1" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly/colorized/overlay)
+				F2.icon_state = "[belly_fullscreen]_l1"
+				F2.color = belly_fullscreen_color_secondary
+			if("[belly_fullscreen]_l2" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F3 = L.overlay_fullscreen("belly3", /obj/screen/fullscreen/belly/colorized/overlay)
+				F3.icon_state = "[belly_fullscreen]_l2"
+				F3.color = belly_fullscreen_color_trinary
+			if("[belly_fullscreen]_nc" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
+				var/obj/screen/fullscreen/F4 = L.overlay_fullscreen("belly4", /obj/screen/fullscreen/belly/colorized/overlay)
+				F4.icon_state = "[belly_fullscreen]_nc"
 		else
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly)
 			F.icon_state = belly_fullscreen
 	else
 		L.clear_fullscreen("belly")
-		//L.clear_fullscreen("belly2") //Allows for 'multilayered' stomachs. Currently not implemented.
+		L.clear_fullscreen("belly2")
+		L.clear_fullscreen("belly3")
+		L.clear_fullscreen("belly4")
 
 /obj/belly/proc/clear_preview(mob/living/L)
 	L.clear_fullscreen("belly")
+	L.clear_fullscreen("belly2")
+	L.clear_fullscreen("belly3")
+	L.clear_fullscreen("belly4")
 
 
 
@@ -425,8 +467,8 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
-	if(istype(M, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
-		var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/p = M
+	if(istype(M, /mob/living/simple_mob/vore/morph/dominated_prey))
+		var/mob/living/simple_mob/vore/morph/dominated_prey/p = M
 		p.undo_prey_takeover(FALSE)
 		return 0
 	for(var/mob/living/L in M.contents)
@@ -499,6 +541,9 @@
 	if(ismob(M))
 		var/mob/ourmob = M
 		ourmob.reset_view(null)
+
+	if(!owner.ckey && escape_stun)
+		owner.Weaken(escape_stun)
 
 	return 1
 
@@ -1144,6 +1189,7 @@
 		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
+	owner.update_icon()
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)
@@ -1207,6 +1253,8 @@
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
 	dupe.belly_fullscreen_color = belly_fullscreen_color
+	dupe.belly_fullscreen_color_secondary = belly_fullscreen_color_secondary
+	dupe.belly_fullscreen_color_trinary = belly_fullscreen_color_trinary
 	dupe.colorization_enabled = colorization_enabled
 	dupe.egg_type = egg_type
 	dupe.emote_time = emote_time
@@ -1214,6 +1262,10 @@
 	dupe.selective_preference = selective_preference
 	dupe.save_digest_mode = save_digest_mode
 	dupe.eating_privacy_local = eating_privacy_local
+	dupe.silicon_belly_overlay_preference = silicon_belly_overlay_preference
+	dupe.belly_mob_mult = belly_mob_mult
+	dupe.belly_item_mult = belly_item_mult
+	dupe.belly_overall_mult	= belly_overall_mult
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

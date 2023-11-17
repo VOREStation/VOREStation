@@ -785,6 +785,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "bA" = (
@@ -1051,10 +1052,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/civilian)
 "ca" = (
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/structure/closet/walllocker_double/engineering/north,
+/obj/structure/closet/walllocker_double/engineering/west,
+/obj/item/stack/material/plasteel{
+	amount = 10
+	},
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/rglass,
+/obj/fiftyspawner/rods,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "cb" = (
@@ -1069,21 +1078,9 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
 "cc" = (
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/rods,
-/obj/fiftyspawner/rglass,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 5
 	},
-/obj/structure/closet/walllocker_double/engineering/north,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "cd" = (
@@ -2461,6 +2458,10 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/exploration)
+"ey" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portfore)
 "ez" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/sterile/latex,
@@ -3035,7 +3036,9 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/oreprocessing)
 "fL" = (
-/obj/machinery/firealarm/angled,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "fM" = (
@@ -3996,11 +3999,8 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm3)
 "hL" = (
-/obj/effect/floor_decal/steeldecal/steel_decals3,
-/obj/effect/floor_decal/steeldecal/steel_decals3{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/redgate,
+/turf/simulated/floor/tiled/eris/dark/danger,
 /area/stellardelight/deck1/port)
 "hM" = (
 /obj/structure/cable/green{
@@ -4110,19 +4110,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "hX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/structure/closet/walllocker_double/engineering/west,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "hY" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled{
-	dir = 4;
-	id = "GatewayShutterW"
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/gateway)
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/stellardelight/deck1/port)
 "hZ" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4309,6 +4305,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "iq" = (
@@ -5225,6 +5222,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
 "kn" = (
@@ -5414,6 +5412,9 @@
 	name = "Station Intercom (General)";
 	pixel_y = 21
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "kN" = (
@@ -5585,11 +5586,11 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm6)
 "ll" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/gateway)
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/stellardelight/deck1/port)
 "lm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7412,11 +7413,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "oW" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
+	},
+/obj/machinery/firealarm/angled{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
@@ -8058,6 +8059,9 @@
 "qo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/closet/emcloset,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/port)
 "qp" = (
@@ -8368,16 +8372,6 @@
 "ra" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck1/exploration)
-"rb" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "GatewayShutterW";
-	name = "EVA Shutter";
-	pixel_x = 23;
-	req_one_access = list(18,19,43,67)
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/port)
 "rc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -9980,24 +9974,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
-"uD" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/port)
 "uF" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -10688,6 +10664,7 @@
 /area/security/security_lockerroom)
 "wf" = (
 /obj/machinery/alarm/angled,
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/security_port)
 "wg" = (
@@ -11219,6 +11196,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "xs" = (
@@ -14400,6 +14378,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Ev" = (
@@ -14542,6 +14523,9 @@
 	dir = 8
 	},
 /obj/machinery/recharge_station,
+/obj/machinery/alarm/angled{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "EM" = (
@@ -17019,6 +17003,7 @@
 /area/crew_quarters/toilet)
 "Kj" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "Kk" = (
@@ -17665,6 +17650,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "LE" = (
@@ -17819,7 +17805,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/alarm/angled,
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	name = "Resleeving";
@@ -18307,9 +18292,6 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "MZ" = (
@@ -18685,6 +18667,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
+"NO" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/exploration)
 "NP" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck1/portaft)
@@ -19861,6 +19847,7 @@
 	color = "#42038a";
 	icon_state = "1-4"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "QA" = (
@@ -20697,6 +20684,7 @@
 /obj/machinery/alarm/angled{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "Sf" = (
@@ -22083,14 +22071,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/maintenance/stellardelight/substation/research)
 "UY" = (
-/obj/machinery/suit_cycler/engineering{
-	req_access = null
+/obj/machinery/status_display{
+	pixel_y = 32
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/gateway)
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/stellardelight/deck1/port)
 "UZ" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -23378,6 +23363,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "XF" = (
@@ -30579,7 +30565,7 @@ BP
 Cc
 gw
 xw
-vT
+NO
 DX
 ra
 bD
@@ -31515,7 +31501,7 @@ dS
 kx
 Zz
 Bb
-cB
+ey
 cB
 cB
 Dj
@@ -33220,9 +33206,9 @@ KV
 KV
 KV
 EO
-hL
-rb
-hL
+YT
+YT
+YT
 YT
 WF
 Pt
@@ -33362,10 +33348,10 @@ MA
 Zt
 gj
 Ku
-hY
 Ku
 hY
-Ku
+hY
+hY
 LV
 EN
 EN
@@ -33504,11 +33490,11 @@ WB
 DY
 ZE
 Ku
-ca
-UY
-nD
 Ku
-uD
+UY
+hL
+hY
+Rk
 YT
 at
 KL
@@ -33646,10 +33632,10 @@ Ku
 Ku
 Ku
 Ku
-cc
+Ku
+Ku
 ll
-nD
-YM
+hY
 Rk
 rw
 Ep
@@ -33787,11 +33773,11 @@ Ku
 Kt
 Ca
 vQ
-nD
+ca
 hX
-nD
-nD
-YM
+Ku
+Ku
+Ku
 Rk
 kU
 ER
@@ -33930,7 +33916,7 @@ LD
 Se
 XE
 Kj
-hX
+cc
 nD
 uM
 YM

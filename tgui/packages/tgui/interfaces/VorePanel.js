@@ -521,8 +521,10 @@ const VoreSelectedBellyDescriptions = (props, context) => {
 };
 
 const VoreSelectedBellyOptions = (props, context) => {
-  const { act } = useBackend(context);
+  const { act, data } = useBackend(context);
 
+  const { host_mobtype } = data;
+  const { is_cyborg, is_vore_simple_mob } = host_mobtype;
   const { belly } = props;
   const {
     can_taste,
@@ -544,6 +546,10 @@ const VoreSelectedBellyOptions = (props, context) => {
     selective_preference,
     save_digest_mode,
     eating_privacy_local,
+    silicon_belly_overlay_preference,
+    belly_mob_mult,
+    belly_item_mult,
+    belly_overall_mult,
   } = belly;
 
   return (
@@ -641,6 +647,7 @@ const VoreSelectedBellyOptions = (props, context) => {
             />
           </LabeledList.Item>
         </LabeledList>
+        <VoreSelectedMobTypeBellyButtons belly={belly} />
       </Flex.Item>
       <Flex.Item basis="49%" grow={1}>
         <LabeledList>
@@ -721,6 +728,76 @@ const VoreSelectedBellyOptions = (props, context) => {
   );
 };
 
+const VoreSelectedMobTypeBellyButtons = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { host_mobtype } = data;
+  const { is_cyborg, is_vore_simple_mob } = host_mobtype;
+  const { belly } = props;
+  const {
+    silicon_belly_overlay_preference,
+    belly_mob_mult,
+    belly_item_mult,
+    belly_overall_mult,
+  } = belly;
+
+  if (is_cyborg) {
+    return (
+      <Section title={'Cyborg Controls'} width={'80%'}>
+        <LabeledList>
+          <LabeledList.Item label="Toggle Belly Overlay Mode">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_silicon_belly' })
+              }
+              content={capitalize(silicon_belly_overlay_preference)}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Mob Vorebelly Size Mult">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_belly_mob_mult' })
+              }
+              content={belly_mob_mult}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Item Vorebelly Size Mult">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_belly_item_multi' })
+              }
+              content={belly_item_mult}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Belly Size Multiplier">
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_belly_overall_mult',
+                })
+              }
+              content={belly_overall_mult}
+            />
+          </LabeledList.Item>
+        </LabeledList>
+      </Section>
+    );
+  } else if (is_vore_simple_mob) {
+    return (
+      // For now, we're only returning empty. TODO: Simple mob belly controls
+      <LabeledList>
+        <LabeledList.Item />
+      </LabeledList>
+    );
+  } else {
+    return (
+      // Returning Empty element
+      <LabeledList>
+        <LabeledList.Item />
+      </LabeledList>
+    );
+  }
+};
+
 const VoreSelectedBellySounds = (props, context) => {
   const { act } = useBackend(context);
 
@@ -794,6 +871,8 @@ const VoreSelectedBellyVisuals = (props, context) => {
     possible_fullscreens,
     disable_hud,
     belly_fullscreen_color,
+    belly_fullscreen_color_secondary,
+    belly_fullscreen_color_trinary,
     mapRef,
     colorization_enabled,
   } = belly;
@@ -815,7 +894,37 @@ const VoreSelectedBellyVisuals = (props, context) => {
                 val: null,
               })
             }>
-            Select Color
+            Select Primary Color
+          </Button>
+          <Box
+            backgroundColor={belly_fullscreen_color_secondary}
+            width="20px"
+            height="20px"
+          />
+          <Button
+            icon="eye-dropper"
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_fullscreen_color_secondary',
+                val: null,
+              })
+            }>
+            Select Secondary Color
+          </Button>
+          <Box
+            backgroundColor={belly_fullscreen_color_trinary}
+            width="20px"
+            height="20px"
+          />
+          <Button
+            icon="eye-dropper"
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_fullscreen_color_trinary',
+                val: null,
+              })
+            }>
+            Select Trinary Color
           </Button>
           <LabeledList.Item label="Enable Coloration">
             <Button
@@ -1105,6 +1214,7 @@ const VoreUserPreferences = (props, context) => {
     stumble_vore,
     slip_vore,
     throw_vore,
+    food_vore,
     nutrition_message_visible,
     weight_message_visible,
     eating_privacy_global,
@@ -1281,6 +1391,21 @@ const VoreUserPreferences = (props, context) => {
       content: {
         enabled: 'Throw Vore Enabled',
         disabled: 'Throw Vore Disabled',
+      },
+    },
+    toggle_food_vore: {
+      action: 'toggle_food_vore',
+      test: food_vore,
+      tooltip: {
+        main:
+          'Allows for food related spontaneous vore to occur. ' +
+          ' Note, you still need spontaneous vore pred and/or prey enabled.',
+        enable: 'Click here to allow for food vore.',
+        disable: 'Click here to disable food vore.',
+      },
+      content: {
+        enabled: 'Food Vore Enabled',
+        disabled: 'Food Vore Disabled',
       },
     },
     inbelly_spawning: {
@@ -1503,21 +1628,24 @@ const VoreUserPreferences = (props, context) => {
           <VoreUserPreferenceItem spec={preferences.toggle_throw_vore} />
         </Flex.Item>
         <Flex.Item basis="32%">
-          <VoreUserPreferenceItem spec={preferences.inbelly_spawning} />
+          <VoreUserPreferenceItem spec={preferences.toggle_food_vore} />
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
+          <VoreUserPreferenceItem spec={preferences.inbelly_spawning} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.noisy} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.resize} />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem
             spec={preferences.steppref}
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%" grow={1}>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.vore_fx}
             tooltipPosition="top"
@@ -1529,13 +1657,13 @@ const VoreUserPreferences = (props, context) => {
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem
             spec={preferences.pickuppref}
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%" grow={1}>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
         </Flex.Item>
         <Flex.Item basis="32%">

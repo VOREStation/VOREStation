@@ -472,7 +472,7 @@
 		var/mob/living/carbon/human/H = owner
 		if(!H.should_have_organ(O_HEART))
 			return 1
-		if(H.vessel.remove_reagent("blood", amount))
+		if(H.remove_blood(amount))
 			return 1
 	return 0
 

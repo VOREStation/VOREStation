@@ -177,7 +177,7 @@ var/list/possible_cable_coil_colours = list(
 	if(!T.is_plating())
 		return
 
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		var/obj/item/stack/cable_coil/CC
 		if(d1 == UP || d2 == UP)
 			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")

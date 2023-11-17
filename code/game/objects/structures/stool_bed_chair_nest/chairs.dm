@@ -80,6 +80,20 @@
 
 	src.set_dir(turn(src.dir, 270))
 
+/obj/structure/bed/chair/verb/rotate_counterclockwise()
+	set name = "Rotate Chair Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(!usr || !isturf(usr.loc))
+		return
+	if(usr.stat || usr.restrained())
+		return
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+
+	src.set_dir(turn(src.dir, 90))
+
 /obj/structure/bed/chair/shuttle
 	name = "chair"
 	icon_state = "shuttlechair"
@@ -193,7 +207,7 @@
 	return
 
 /obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || W.is_wirecutter())
+	if(istype(W,/obj/item/stack) || W.has_tool_quality(TOOL_WIRECUTTER))
 		return
 	..()
 
@@ -259,7 +273,7 @@
 	return
 
 /obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || W.is_wirecutter())
+	if(istype(W,/obj/item/stack) || W.has_tool_quality(TOOL_WIRECUTTER))
 		return
 	..()
 

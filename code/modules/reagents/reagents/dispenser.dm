@@ -79,10 +79,6 @@
 	taste_description = "pennies"
 	color = "#6E3B08"
 
-/datum/reagent/copper/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_SKRELL)
-		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
-
 /datum/reagent/ethanol
 	name = "Ethanol" //Parent class for all alcoholic reagents.
 	id = "ethanol"
@@ -245,10 +241,6 @@
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#353535"
-
-/datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA && alien != IS_SKRELL)
-		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
 /datum/reagent/lithium
 	name = "Lithium"

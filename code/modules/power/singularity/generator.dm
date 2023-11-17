@@ -12,7 +12,10 @@
 
 /obj/machinery/the_singularitygen/examine()
 	. = ..()
-	. += "<span class='notice'>It is [anchored ? "secured" : "not secured"]!</span>"
+	if(anchored)
+		. += "<span class='notice'>It has been securely bolted down and is ready for operation.</span>"
+	else
+		. += "<span class='warning'>It is not secured!</span>"
 
 /obj/machinery/the_singularitygen/process()
 	var/turf/T = get_turf(src)
@@ -21,7 +24,7 @@
 		if(src) qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 75, 1)
 		if(anchored)
@@ -33,7 +36,7 @@
 				"You unsecure the [src.name] from the floor.", \
 				"You hear a ratchet.")
 		return
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		playsound(src, W.usesound, 50, 1)
 		visible_message("<b>\The [user]</b> adjusts \the [src]'s mechanisms.")

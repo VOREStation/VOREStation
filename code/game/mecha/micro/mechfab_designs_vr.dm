@@ -185,11 +185,3 @@
 	id = "weasel_head"
 	build_path = /obj/item/mecha_parts/micro/part/weasel_head
 	materials = list(MAT_STEEL = 7000, MAT_GLASS = 2500)
-
-/datum/design/item/mecha/medigun
-	name = "BL-3/P directed restoration system"
-	desc = "A portable medical system used to treat external injuries from afar."
-	id = "mech_medigun"
-	req_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 5, TECH_BIO = 6)
-	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_DIAMOND = 1500, MAT_PHORON = 4000)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/medigun

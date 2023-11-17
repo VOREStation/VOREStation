@@ -8,20 +8,42 @@
 #define BELLIES_DESC_MAX 4096
 #define FLAVOR_MAX 400
 
-/mob/living
+//INSERT COLORIZE-ONLY STOMACHS HERE
+var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
+														"a_synth_flesh_mono_hole",
+														"a_anim_belly",
+														"multi_layer_test_tummy",
+														"gematically_angular",
+														"entrance_to_a_tumby",
+														"passage_to_a_tumby",
+														"destination_tumby",
+														"destination_tumby_fluidless",
+														"post_tumby_passage",
+														"post_tumby_passage_fluidless",
+														"not_quite_tumby",
+														"could_it_be_a_tumby")
+
+/mob
 	var/datum/vore_look/vorePanel
 
-/mob/living/proc/insidePanel()
+/mob/proc/insidePanel()
 	set name = "Vore Panel"
 	set category = "IC"
 
+	if(SSticker.current_state == GAME_STATE_INIT)
+		return
+
+	if(!isliving(src))
+		init_vore()
+
 	if(!vorePanel)
-		log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
+		if(!isnewplayer(src))
+			log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
 		vorePanel = new(src)
 
 	vorePanel.tgui_interact(src)
 
-/mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
+/mob/proc/updateVRPanel() //Panel popup update call from belly events.
 	if(vorePanel)
 		SStgui.update_uis(vorePanel)
 
@@ -29,11 +51,11 @@
 // Callback Handler for the Inside form
 //
 /datum/vore_look
-	var/mob/living/host // Note, we do this in case we ever want to allow people to view others vore panels
+	var/mob/host // Note, we do this in case we ever want to allow people to view others vore panels
 	var/unsaved_changes = FALSE
 	var/show_pictures = TRUE
 
-/datum/vore_look/New(mob/living/new_host)
+/datum/vore_look/New(mob/new_host)
 	if(istype(new_host))
 		host = new_host
 	. = ..()
@@ -143,6 +165,17 @@
 		inside["contents"] = inside_contents
 	data["inside"] = inside
 
+	var/is_cyborg = FALSE
+	var/is_vore_simple_mob = FALSE
+	if(isrobot(host))
+		is_cyborg = TRUE
+	else if(istype(host, /mob/living/simple_mob/vore))	//So far, this does nothing. But, creating this for future belly work
+		is_vore_simple_mob = TRUE
+	data["host_mobtype"] = list(
+		"is_cyborg" = is_cyborg,
+		"is_vore_simple_mob" = is_vore_simple_mob
+	)
+
 	var/list/our_bellies = list()
 	for(var/obj/belly/B as anything in host.vore_organs)
 		our_bellies.Add(list(list(
@@ -190,8 +223,15 @@
 			"weight_ex" = host.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
 			"belly_fullscreen_color" = selected.belly_fullscreen_color,
+			"belly_fullscreen_color_secondary" = selected.belly_fullscreen_color_secondary,
+			"belly_fullscreen_color_trinary" = selected.belly_fullscreen_color_trinary,
 			"colorization_enabled" = selected.colorization_enabled,
-			"eating_privacy_local" = selected.eating_privacy_local
+			"eating_privacy_local" = selected.eating_privacy_local,
+			"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
+			"belly_mob_mult" = selected.belly_mob_mult,
+			"belly_item_mult" = selected.belly_item_mult,
+			"belly_overall_mult" = selected.belly_overall_mult,
+
 		)
 
 		var/list/addons = list()
@@ -223,6 +263,8 @@
 		selected_list["disable_hud"] = selected.disable_hud
 		selected_list["colorization_enabled"] = selected.colorization_enabled
 		selected_list["belly_fullscreen_color"] = selected.belly_fullscreen_color
+		selected_list["belly_fullscreen_color_secondary"] = selected.belly_fullscreen_color_secondary
+		selected_list["belly_fullscreen_color_trinary"] = selected.belly_fullscreen_color_trinary
 
 		if(selected.colorization_enabled)
 			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_colorized_vore.dmi') //Makes any icons inside of here selectable.
@@ -234,10 +276,7 @@
 			//Why? I have no flipping clue. As you can see above, vore_colorized is included in the assets but isn't working. It makes no sense.
 			//I can only imagine this is a BYOND/TGUI issue with the cache. If you can figure out how to fix this and make it so you only need to
 			//include things in full_colorized_vore, that would be great. For now, this is the only workaround that I could get to work.
-			selected_list["possible_fullscreens"] -= "a_synth_flesh_mono"
-			selected_list["possible_fullscreens"] -= "a_synth_flesh_mono_hole"
-			selected_list["possible_fullscreens"] -= "a_anim_belly"
-			//INSERT COLORIZE-ONLY STOMACHS HERE
+			selected_list["possible_fullscreens"] -= belly_colorable_only_fullscreens
 
 		var/list/selected_contents = list()
 		for(var/O in selected)
@@ -280,11 +319,12 @@
 		"slip_vore" = host.slip_vore,
 		"stumble_vore" = host.stumble_vore,
 		"throw_vore" = host.throw_vore,
+		"food_vore" = host.food_vore,
 		"nutrition_message_visible" = host.nutrition_message_visible,
 		"nutrition_messages" = host.nutrition_messages,
 		"weight_message_visible" = host.weight_message_visible,
 		"weight_messages" = host.weight_messages,
-		"eating_privacy_global" = host.eating_privacy_global
+		"eating_privacy_global" = host.eating_privacy_global,
 	)
 
 	return data
@@ -359,7 +399,11 @@
 			return set_attr(usr, params)
 
 		if("saveprefs")
-			if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
+			if(isnewplayer(host))
+				var/choice = tgui_alert(usr, "Warning: Saving your vore panel while in the lobby will save it to the CURRENTLY LOADED character slot, and potentially overwrite it. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
+			else if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
 				var/choice = tgui_alert(usr, "Warning: Saving your vore panel while playing what is very-likely not your normal character will overwrite whatever character you have loaded in character setup. Maybe this is your 'playing a simple mob' slot, though. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
 				if(choice != "Yes, save.")
 					return TRUE
@@ -516,7 +560,9 @@
 				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
 			if(!host.show_vore_fx)
 				host.clear_fullscreen("belly")
-				//host.clear_fullscreen("belly2") //For multilayered stomachs. Not currently implemented.
+				host.clear_fullscreen("belly2")
+				host.clear_fullscreen("belly3")
+				host.clear_fullscreen("belly4")
 				if(!host.hud_used.hud_shown)
 					host.toggle_hud_vis()
 			unsaved_changes = TRUE
@@ -539,6 +585,10 @@
 			return TRUE
 		if("toggle_throw_vore")
 			host.throw_vore = !host.throw_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_food_vore")
+			host.food_vore = !host.food_vore
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_selective_mode_pref")
@@ -676,6 +726,7 @@
 	var/list/available_options = list("Examine", "Eject", "Move", "Transfer")
 	if(ishuman(target))
 		available_options += "Transform"
+		available_options += "Health Check"
 	if(isliving(target))
 		var/mob/living/datarget = target
 		if(datarget.client)
@@ -723,7 +774,7 @@
 			if(!viable_candidates.len)
 				to_chat(user, "<span class='notice'>There are no viable candidates around you!</span>")
 				return TRUE
-			belly_owner = tgui_input_list(user, "Who do you want to recieve the target?", "Select Predator", viable_candidates)
+			belly_owner = tgui_input_list(user, "Who do you want to receive the target?", "Select Predator", viable_candidates)
 
 			if(!belly_owner || !(belly_owner in range(1, host)))
 				return TRUE
@@ -805,6 +856,11 @@
 						l.adjust_nutrition(thismuch)
 					ourtarget.death()		// To make sure all on-death procs get properly called
 					if(ourtarget)
+						if(ourtarget.is_preference_enabled(/datum/client_preference/digestion_noises))
+							if(!b.fancy_vore)
+								SEND_SOUND(ourtarget, sound(get_sfx("classic_death_sounds")))
+							else
+								SEND_SOUND(ourtarget, sound(get_sfx("fancy_death_prey")))
 						b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
@@ -822,12 +878,36 @@
 					b.absorb_living(ourtarget)
 				if("Cancel")
 					return
+		if("Health Check")
+			var/mob/living/carbon/human/H = target
+			var/target_health = round((H.health/H.getMaxHealth())*100)
+			var/condition
+			var/condition_consequences
+			to_chat(usr, "<span class= 'warning'>\The [target] is at [target_health]% health.</span>")
+			if(H.blinded)
+				condition += "blinded"
+				condition_consequences += "hear emotes"
+			if(H.paralysis)
+				if(condition)
+					condition += " and "
+					condition_consequences += " or "
+				condition += "paralysed"
+				condition_consequences += "make emotes"
+			if(H.sleeping)
+				if(condition)
+					condition += " and "
+					condition_consequences += " or "
+				condition += "sleeping"
+				condition_consequences += "hear or do anything"
+			if(condition)
+				to_chat(usr, "<span class= 'warning'>\The [target] is currently [condition], they will not be able to [condition_consequences].</span>")
+			return
+
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
 		tgui_alert_async(usr, "No belly selected to modify.")
 		return FALSE
-
 	var/attr = params["attribute"]
 	switch(attr)
 		if("b_name")
@@ -1113,6 +1193,42 @@
 				return FALSE
 			host.vore_selected.eating_privacy_local = privacy_choice
 			. = TRUE
+		if("b_silicon_belly")
+			var/belly_choice = tgui_alert(usr, "Choose whether you'd like your belly overlay to show from sleepers, \
+			normal vore bellies, or an average of the two. NOTE: This ONLY applies to silicons, not human mobs!", "Belly Overlay \
+			Preference",
+			list("Sleeper", "Vorebelly", "Both"))
+			if(belly_choice == null)
+				return FALSE
+			host.vore_selected.silicon_belly_overlay_preference = belly_choice
+			host.update_icon()
+			. = TRUE
+		if("b_belly_mob_mult")
+			var/new_prey_mult = tgui_input_number(user, "Choose the multiplier for mobs contributing to belly size, ranging from 0 to 5. Set to 0 to disable mobs contributing to belly size",
+			"Set Prey Multiplier", host.vore_selected.belly_mob_mult, max_value = 5, min_value = 0)
+			if(new_prey_mult == null)
+				return FALSE
+			host.vore_selected.belly_mob_mult = CLAMP(new_prey_mult, 0, 5) //Max at 5 because in no world will a borg have more than 5 bellies
+			host.update_icon()
+			. = TRUE
+		if("b_belly_item_mult")
+			var/new_item_mult = tgui_input_number(user, "Choose the multiplier for items contributing to belly size, \
+			ranging from 0 to 10. (Item size affects how much they contribute as well) Set to 0 to disable size checks", "Set Item Multiplier", host.vore_selected.belly_item_mult, max_value = 10, min_value = 0)
+			if(new_item_mult == null)
+				return FALSE
+			else
+				host.vore_selected.belly_item_mult = CLAMP(new_item_mult, 0, 10) //Max at 10 because items contribute less than mobs, in general
+			host.update_icon()
+			. = TRUE
+		if("b_belly_overall_mult")
+			var/new_overall_mult = tgui_input_number(user, "Choose the overall multiplier to be applied to belly contents after specific multipliers, ranging from 0 to 5. Set to 0 to disable showing belly sprites at all.",
+			"Set minimum prey amount", host.vore_selected.belly_overall_mult, max_value = 5, min_value = 0)
+			if(new_overall_mult == null)
+				return FALSE
+			else
+				host.vore_selected.belly_overall_mult = CLAMP(new_overall_mult, 0, 5) // Max at 5 because... no reason to go higher at that point
+			host.update_icon()
+			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore
 			host.vore_selected.vore_sound = "Gulp"
@@ -1192,7 +1308,7 @@
 				host.vore_selected.shrink_grow_size = (new_grow*0.01)
 			. = TRUE
 		if("b_nutritionpercent")
-			var/new_nutrition = tgui_input_number(user, "Choose the nutrition gain percentage you will recieve per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", host.vore_selected.nutrition_percent, 100, 0.01)
+			var/new_nutrition = tgui_input_number(user, "Choose the nutrition gain percentage you will receive per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", host.vore_selected.nutrition_percent, 100, 0.01)
 			if(new_nutrition == null)
 				return FALSE
 			var/new_new_nutrition = CLAMP(new_nutrition, 0.01, 100)
@@ -1320,12 +1436,6 @@
 			host.vore_selected.colorization_enabled = !host.vore_selected.colorization_enabled
 			host.vore_selected.belly_fullscreen = "dark" //This prevents you from selecting a belly that is not meant to be colored and then turning colorization on.
 			. = TRUE
-		/*
-		if("b_multilayered") //Allows for 'multilayered' stomachs. Currently not implemented. Add to TGUI.
-			host.vore_selected.multilayered = !host.vore_selected.multilayered 				//Add to stomach vars.
-			host.vore_selected.belly_fullscreen = "dark"
-			. = TRUE
-		*/
 		if("b_preview_belly")
 			host.vore_selected.vore_preview(host) //Gives them the stomach overlay. It fades away after ~2 seconds as human/life.dm removes the overlay if not in a gut.
 			. = TRUE
@@ -1336,6 +1446,16 @@
 			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color = newcolor
+			. = TRUE
+		if("b_fullscreen_color_secondary")
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_secondary) as color|null
+			if(newcolor)
+				host.vore_selected.belly_fullscreen_color_secondary = newcolor
+			. = TRUE
+		if("b_fullscreen_color_trinary")
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_trinary) as color|null
+			if(newcolor)
+				host.vore_selected.belly_fullscreen_color_trinary = newcolor
 			. = TRUE
 		if("b_save_digest_mode")
 			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode

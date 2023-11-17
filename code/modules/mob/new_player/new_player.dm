@@ -6,6 +6,7 @@
 	var/totalPlayers = 0		//Player counts for the Lobby tab
 	var/totalPlayersReady = 0
 	var/show_hidden_jobs = 0	//Show jobs that are set to "Never" in preferences
+	var/has_respawned = FALSE	//Determines if we're using RESPAWN_MESSAGE
 	var/datum/browser/panel
 	universal_speak = 1
 
@@ -21,6 +22,7 @@
 
 /mob/new_player/New()
 	mob_list += src
+	verbs |= /mob/proc/insidePanel
 	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
 /mob/new_player/verb/new_player_panel()

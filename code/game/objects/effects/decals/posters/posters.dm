@@ -126,8 +126,25 @@
 	var/roll_type = /obj/item/poster
 	var/ruined = FALSE
 
-// This stuff needs to go in new() for the the flick() to look right while it's being placed
-/obj/structure/sign/poster/New(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
+/obj/structure/sign/poster/Initialize(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
+	. = ..()
+
+	if(ispath(src.poster_decl))
+		src.poster_decl = get_poster_decl(src.poster_decl, TRUE)
+	else if(istype(P))
+		src.poster_decl = P.poster_decl
+		roll_type = P.type
+	else if(ispath(P))
+		src.poster_decl = get_poster_decl(P, TRUE)
+	else
+		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+		while (istype(src.poster_decl, /decl/poster/lewd))
+			src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+
+	name = "[initial(name)] - [poster_decl.name]"
+	desc = "[initial(desc)] [poster_decl.desc]"
+	icon_state = poster_decl.icon_state
+
 	if(placement_dir)
 		dir = placement_dir
 
@@ -146,30 +163,9 @@
 			pixel_y = 0
 
 	flick("poster_being_set", src)
-	return ..()
-
-
-/obj/structure/sign/poster/Initialize(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
-	if(ispath(src.poster_decl))
-		src.poster_decl = get_poster_decl(src.poster_decl, TRUE)
-	else if(istype(P))
-		src.poster_decl = P.poster_decl
-		roll_type = P.type
-	else if(ispath(P))
-		src.poster_decl = get_poster_decl(P, TRUE)
-	else
-		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
-		while (istype(src.poster_decl, /decl/poster/lewd))
-			src.poster_decl = get_poster_decl(/decl/poster, FALSE)
-
-	name = "[initial(name)] - [poster_decl.name]"
-	desc = "[initial(desc)] [poster_decl.desc]"
-	icon_state = poster_decl.icon_state
-
-	return ..()
 
 /obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, W.usesound, 100, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")

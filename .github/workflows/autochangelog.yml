@@ -36,7 +36,7 @@ jobs:
           python tools/GenerateChangelog/ss13_genchangelog.py \
             html/changelog.html \
             html/changelogs
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Automatic changelog generation for ${{ github.events.pull_request.number }}
           branch: ${{ github.events.pull_request.base }}

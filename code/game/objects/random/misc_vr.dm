@@ -235,3 +235,134 @@
 				prob(5);/obj/item/organ/internal/stomach,
 				prob(5);/obj/item/organ/internal/voicebox,
 				)
+
+/obj/random/potion
+	name = "random potion"
+	desc = "A random potion."
+	icon_state = "potion"
+	spawn_nothing_percentage = 0
+
+/obj/random/potion/item_to_spawn()
+	return pick(prob(20);/obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/greater_healing,
+				prob(20);/obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist,
+				prob(20);/obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
+				prob(20);/obj/item/weapon/reagent_containers/glass/bottle/potion/water,
+				prob(8);/obj/item/weapon/reagent_containers/glass/bottle/potion/regeneration,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/panacea,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/magic,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/lightness,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/SOP,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/shrink,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/growth,
+				prob(20);/obj/item/weapon/reagent_containers/glass/bottle/potion/pain,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/faerie,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/relaxation,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/speed,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/attractiveness,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/girljuice,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/boyjuice,
+				prob(4);/obj/item/weapon/reagent_containers/glass/bottle/potion/badpolymorph,
+				prob(2);/obj/item/weapon/reagent_containers/glass/bottle/potion/bonerepair,
+				prob(1);/obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
+				)
+
+/obj/random/potion_ingredient
+	name = "random potion ingredient"
+	desc = "A random potion."
+	icon_state = "ingredient"
+	spawn_nothing_percentage = 0
+
+/obj/random/potion_ingredient/item_to_spawn()
+	return pick(prob(10);/obj/item/weapon/potion_material/blood_ruby,
+				prob(2);/obj/item/weapon/potion_material/ruby_eye,
+				prob(10);/obj/item/weapon/potion_material/golden_scale,
+				prob(10);/obj/item/weapon/potion_material/frozen_dew,
+				prob(10);/obj/item/weapon/potion_material/living_coral,
+				prob(4);/obj/item/weapon/potion_material/rare_horn,
+				prob(5);/obj/item/weapon/potion_material/moldy_bread,
+				prob(5);/obj/item/weapon/potion_material/glowing_gem,
+				prob(5);/obj/item/weapon/potion_material/giant_toe,
+				prob(2);/obj/item/weapon/potion_material/flesh_of_the_stars,
+				prob(2);/obj/item/weapon/potion_material/spinning_poppy,
+				prob(2);/obj/item/weapon/potion_material/salt_mage,
+				prob(10);/obj/item/weapon/potion_material/golden_grapes,
+				prob(5);/obj/item/weapon/potion_material/fairy_house,
+				prob(5);/obj/item/weapon/potion_material/thorny_bulb,
+				prob(5);/obj/item/weapon/potion_material/ancient_egg,
+				prob(5);/obj/item/weapon/potion_material/crown_stem,
+				prob(2);/obj/item/weapon/potion_material/red_ingot,
+				prob(2);/obj/item/weapon/potion_material/soft_diamond,
+				prob(2);/obj/item/weapon/potion_material/solid_mist,
+				prob(1);/obj/item/weapon/potion_material/spider_leg,
+				prob(1);/obj/item/weapon/potion_material/folded_dark
+				)
+
+/obj/random/potion_base
+	name = "random potion base"
+	desc = "A random potion base."
+	icon_state = "base"
+	spawn_nothing_percentage = 0
+
+/obj/random/potion_base/item_to_spawn()
+	return pick(prob(10);/obj/item/weapon/potion_base/aqua_regia,
+				prob(10);/obj/item/weapon/potion_base/ichor,
+				prob(10);/obj/item/weapon/potion_base/alkahest
+				)
+
+/obj/random/fantasy_item
+	name = "random fantasy item"
+	desc = "A random fantasy item."
+	icon_state = "fantasy"
+	spawn_nothing_percentage = 0
+
+/obj/random/fantasy_item/item_to_spawn()
+	return pick(prob(3);/obj/item/device/healthanalyzer/scroll,
+				prob(10);/obj/item/weapon/gun/energy/taser/magic,
+				prob(5);/obj/item/weapon/bluespace_harpoon/wand,
+				prob(10);/obj/item/device/slow_sizegun/magic,
+				prob(10);/obj/item/clothing/gloves/bluespace/magic,
+				prob(30);/obj/item/weapon/coin/gold,
+				prob(30);/obj/item/weapon/coin/silver,
+				prob(30);/obj/item/weapon/coin/platinum,
+				prob(20);/obj/item/weapon/material/sword/rapier,
+				prob(20);/obj/item/weapon/material/sword/longsword,
+				prob(20);/obj/item/clothing/head/helmet/bucket/wood,
+				prob(3);/obj/item/weapon/tool/wirecutters/alien/magic,
+				prob(3);/obj/item/weapon/tool/crowbar/alien/magic,
+				prob(3);/obj/item/weapon/tool/screwdriver/alien/magic,
+				prob(3);/obj/item/weapon/weldingtool/alien/magic,
+				prob(3);/obj/item/weapon/tool/wrench/alien/magic,
+				prob(3);/obj/item/weapon/surgical/bone_clamp/alien/magic,
+				prob(10);/obj/item/stack/material/gold,
+				prob(10);/obj/item/stack/material/silver,
+				prob(3);/obj/item/weapon/bone/skull,
+				prob(20);/obj/item/weapon/material/twohanded/staff,
+				prob(3);/obj/item/weapon/gun/energy/hooklauncher/ring,
+				prob(3);/obj/item/toy/eight_ball,
+				prob(3);/obj/item/device/perfect_tele/magic
+				)
+
+/obj/random/fantasy_item/better
+	name = "better random fantasy item"
+	desc = "A random fantasy item."
+	icon_state = "fantasy2"
+	spawn_nothing_percentage = 0
+
+/obj/random/fantasy_item/better/item_to_spawn()
+	return pick(prob(10);/obj/item/device/healthanalyzer/scroll,
+				prob(10);/obj/item/weapon/gun/energy/taser/magic,
+				prob(10);/obj/item/weapon/bluespace_harpoon/wand,
+				prob(10);/obj/item/device/slow_sizegun/magic,
+				prob(10);/obj/item/clothing/gloves/bluespace/magic,
+				prob(10);/obj/item/weapon/tool/wirecutters/alien/magic,
+				prob(10);/obj/item/weapon/tool/crowbar/alien/magic,
+				prob(10);/obj/item/weapon/tool/screwdriver/alien/magic,
+				prob(10);/obj/item/weapon/weldingtool/alien/magic,
+				prob(10);/obj/item/weapon/tool/wrench/alien/magic,
+				prob(10);/obj/item/weapon/surgical/bone_clamp/alien/magic,
+				prob(10);/obj/item/weapon/material/twohanded/staff,
+				prob(10);/obj/item/weapon/gun/energy/hooklauncher/ring,
+				prob(10);/obj/item/device/perfect_tele/magic,
+				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
+				)

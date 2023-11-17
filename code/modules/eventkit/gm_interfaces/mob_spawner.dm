@@ -2,6 +2,13 @@
 	// The path of the mob to be spawned
 	var/path
 
+	//The ai type path to be assigned to the mob
+	var/use_custom_ai = FALSE
+	var/ai_type = ""
+	var/faction = ""
+	var/intent = ""
+	var/new_path = TRUE	//Sets default ai vars based on path. Tracked explicitly because tgui_act wouldn't make it work, used in tgui_data thusly
+
 	// Defines if the location of the spawned mob should be bound of the users position
 	var/loc_lock = FALSE
 
@@ -28,26 +35,50 @@
 	data["initial_y"] = usr.y;
 	data["initial_z"] = usr.z;
 
+
 	return data
 
 /datum/eventkit/mob_spawner/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["loc_lock"] = loc_lock;
+	data["loc_lock"] = loc_lock
 	if(loc_lock)
-		data["loc_x"] = usr.x;
-		data["loc_y"] = usr.y;
-		data["loc_z"] = usr.z;
+		data["loc_x"] = usr.x
+		data["loc_y"] = usr.y
+		data["loc_z"] = usr.z
 
 	data["path"] = path;
+	data["use_custom_ai"] = use_custom_ai
+
 
 	if(path)
-		var/mob/M = new path();
+		var/mob/M = new path()
 		if(M)
-			data["default_path_name"] = M.name;
-			data["default_desc"] = M.desc;
-			data["default_flavor_text"] = M.flavor_text;
-			qdel(M);
+			data["default_path_name"] = M.name
+			data["default_desc"] = M.desc
+			data["default_flavor_text"] = M.flavor_text
+			if(new_path && istype(M, /mob/living))
+				var/mob/living/L = M
+
+				// AI Stuff
+				ai_type = (L.ai_holder_type ? L.ai_holder_type : /datum/ai_holder/simple_mob/inert)
+				faction = (L.faction ? L.faction : "neutral")
+				intent  = (L.a_intent ? L.a_intent : I_HELP)
+				new_path = FALSE
+
+				data["max_health"] = L.maxHealth
+				data["health"] = L.health
+				if(istype(L, /mob/living/simple_mob))
+					var/mob/living/simple_mob/S = L
+					data["melee_damage_lower"] = S.melee_damage_lower ? S.melee_damage_lower : 0
+					data["melee_damage_upper"] = S.melee_damage_upper ? S.melee_damage_upper : 0
+					qdel(S)
+				qdel(L)
+		qdel(M)
+		data["ai_type"] = ai_type
+		data["faction"] = faction
+		data["intent"]	= intent
+
 
 	return data
 
@@ -63,7 +94,20 @@
 			var/newPath = tgui_input_list(usr, "Please select the new path of the mob you want to spawn.", items = choices)
 
 			path = newPath
-
+			new_path = TRUE
+			return TRUE
+		if("toggle_custom_ai")
+			use_custom_ai = !use_custom_ai
+			return TRUE
+		if("set_faction")
+			faction = sanitize(tgui_input_text(usr, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral")))
+			return TRUE
+		if("set_intent")
+			intent = tgui_input_list(usr, "Please select preferred intent", "Select Intent", list(I_HELP, I_HURT), (intent ? intent : I_HELP))
+			return TRUE
+		if("set_ai_path")
+			ai_type = tgui_input_list(usr, "Select AI path. Not all subtypes are compatible!", "AI type", \
+			typesof(/datum/ai_holder/), (ai_type ? ai_type : /datum/ai_holder/simple_mob/inert))
 			return TRUE
 		if("loc_lock")
 			loc_lock = !loc_lock
@@ -99,6 +143,28 @@
 					M.name = sanitize(name)
 					M.desc = sanitize(params["desc"])
 					M.flavor_text = sanitize(params["flavor_text"])
+					if(istype(M, /mob/living))
+						var/mob/living/L = M
+						if(isnum(params["max_health"]))
+							L.maxHealth = params["max_health"]
+						if(isnum(params["health"]))
+							L.health = params["health"]
+						if(istype(M, /mob/living/simple_mob))
+							var/mob/living/simple_mob/S = L
+							if(isnum(params["melee_damage_lower"]))
+								S.melee_damage_lower = params["melee_damage_lower"]
+							if(isnum(params["melee_damage_upper"]))
+								S.melee_damage_upper = params["melee_damage_upper"]
+						if(use_custom_ai)
+							L.ai_holder_type = ai_type
+							L.faction = faction
+							L.a_intent = intent
+							L.initialize_ai_holder()
+							L.AdjustSleeping(-100)
+						else
+							to_chat(usr, span_notice("You can only set AI for subtypes of mob/living!"))
+
+
 
 					/*
 					WIP: Radius around selected coords

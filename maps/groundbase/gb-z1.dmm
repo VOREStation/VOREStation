@@ -1892,26 +1892,25 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "ee" = (
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
-	},
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/reagent_containers/syringe,
-/obj/item/device/mass_spectrometer/adv,
-/obj/item/weapon/reagent_containers/spray/luminol,
-/obj/item/device/reagent_scanner,
-/obj/item/device/uv_light,
-/obj/item/weapon/forensics/sample_kit/powder,
-/obj/item/weapon/forensics/sample_kit,
-/obj/item/weapon/storage/box/swabs{
-	layer = 5
-	},
-/obj/structure/table/steel_reinforced,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/security/detective)
+/obj/item/weapon/shovel,
+/obj/item/weapon/shovel,
+/obj/item/weapon/shovel,
+/obj/item/weapon/shovel,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/pickaxe,
+/obj/structure/closet/walllocker_double/cargo/east,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/mining)
 "ef" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/industrial/danger{
@@ -2742,6 +2741,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/techstorage)
+"fV" = (
+/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/structure/closet/walllocker_double/misc_civ{
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "fW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
 /turf/simulated/wall/r_wall,
@@ -2953,8 +2962,8 @@
 "gu" = (
 /obj/machinery/button/remote/airlock{
 	id = "z1stall4";
-	specialfunctions = 4;
-	pixel_y = 26
+	pixel_y = 26;
+	specialfunctions = 4
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -3317,6 +3326,16 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level1/centsquare)
+"hm" = (
+/obj/item/weapon/deck/cah,
+/obj/item/weapon/deck/cah/black,
+/obj/item/weapon/deck/cards,
+/obj/item/weapon/deck/wizoff,
+/obj/structure/closet/walllocker_double/misc_civ{
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "hn" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -3373,9 +3392,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "hv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
+/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "hw" = (
@@ -4040,6 +4057,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halls)
+"iW" = (
+/obj/random/instrument,
+/obj/random/instrument,
+/obj/item/instrument/guitar,
+/obj/structure/closet/walllocker_double/misc_civ{
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "iX" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -4104,11 +4130,6 @@
 /obj/fiftyspawner/steel,
 /obj/fiftyspawner/steel,
 /obj/fiftyspawner/steel,
-/obj/structure/closet/walllocker_double/north{
-	dir = 4;
-	pixel_x = 32;
-	pixel_y = 0
-	},
 /obj/fiftyspawner/wood,
 /obj/item/stack/material/glass/phoronrglass{
 	amount = 20
@@ -4125,6 +4146,7 @@
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
+/obj/structure/closet/walllocker_double/engineering/east,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "jg" = (
@@ -4195,25 +4217,26 @@
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "jp" = (
-/obj/structure/closet/walllocker_double{
-	dir = 1;
-	pixel_y = -28
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/device/mass_spectrometer/adv,
+/obj/item/weapon/reagent_containers/spray/luminol,
+/obj/item/device/reagent_scanner,
+/obj/item/device/uv_light,
+/obj/item/weapon/forensics/sample_kit/powder,
+/obj/item/weapon/forensics/sample_kit,
+/obj/item/weapon/storage/box/swabs{
+	layer = 5
 	},
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/cell/high{
-	charge = 100;
-	maxcharge = 15000
+/obj/structure/table/steel_reinforced,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/item/weapon/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/structure/closet/walllocker_double/command/hos{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/security/equipment)
+/area/groundbase/security/detective)
 "jq" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/cell/device/weapon{
@@ -5136,39 +5159,43 @@
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/chamber)
 "lk" = (
-/obj/structure/table/steel,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/holowarrant,
-/obj/item/device/holowarrant,
-/obj/item/device/holowarrant,
-/obj/item/device/holowarrant,
-/obj/item/device/retail_scanner/security,
-/obj/structure/closet/walllocker_double{
-	dir = 8;
-	pixel_x = -28
+/obj/item/weapon/pipe_dispenser,
+/obj/item/device/pipe_painter,
+/obj/item/weapon/stock_parts/console_screen,
+/obj/item/weapon/stock_parts/scanning_module,
+/obj/item/weapon/stock_parts/scanning_module,
+/obj/item/weapon/stock_parts/capacitor,
+/obj/item/weapon/stock_parts/capacitor,
+/obj/item/weapon/stock_parts/micro_laser,
+/obj/item/weapon/stock_parts/matter_bin,
+/obj/item/weapon/stock_parts/manipulator,
+/obj/item/weapon/stock_parts/manipulator,
+/obj/item/weapon/storage/toolbox/electrical{
+	pixel_x = 1;
+	pixel_y = -1
 	},
-/obj/item/device/retail_scanner/security,
-/obj/item/clothing/accessory/badge/holo/cord,
-/obj/item/clothing/accessory/badge/holo/cord,
-/obj/item/clothing/accessory/badge/holo,
-/obj/item/clothing/accessory/badge/holo,
-/obj/item/clothing/accessory/badge/holo,
-/obj/item/clothing/accessory/badge/holo,
-/obj/item/clothing/accessory/badge/holo,
-/obj/item/clothing/accessory/badge/holo,
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/security/equipment)
+/obj/item/clothing/gloves/yellow,
+/obj/item/device/multitool,
+/obj/item/weapon/computer_hardware/hard_drive/portable,
+/obj/item/weapon/computer_hardware/hard_drive/portable,
+/obj/item/weapon/computer_hardware/nano_printer,
+/obj/item/weapon/computer_hardware/tesla_link,
+/obj/item/weapon/computer_hardware/processor_unit/small,
+/obj/item/weapon/computer_hardware/processor_unit,
+/obj/item/weapon/computer_hardware/processor_unit,
+/obj/item/weapon/computer_hardware/processor_unit,
+/obj/item/weapon/computer_hardware/network_card/wired,
+/obj/item/weapon/computer_hardware/network_card,
+/obj/item/weapon/computer_hardware/network_card,
+/obj/item/weapon/computer_hardware/hard_drive/micro,
+/obj/item/weapon/computer_hardware/hard_drive,
+/obj/item/weapon/computer_hardware/hard_drive,
+/obj/item/weapon/computer_hardware/battery_module/nano,
+/obj/item/weapon/computer_hardware/battery_module,
+/obj/item/weapon/computer_hardware/battery_module,
+/obj/structure/closet/walllocker_double/engineering/west,
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/techstorage)
 "ll" = (
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
@@ -5829,17 +5856,22 @@
 /area/groundbase/security/briefing)
 "mL" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask,
 /obj/structure/sign/painting/library_secure{
 	pixel_y = -30
 	},
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
-/obj/item/weapon/reagent_containers/glass/rag,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/random/mug,
+/obj/random/mug,
+/obj/random/mug,
+/obj/random/mug,
+/obj/item/weapon/reagent_containers/food/drinks/shaker{
+	pixel_x = 5;
+	pixel_y = 6
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
@@ -6083,6 +6115,39 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
+"np" = (
+/obj/structure/table/steel,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/device/flashlight,
+/obj/item/device/flashlight,
+/obj/item/device/flashlight,
+/obj/item/device/flashlight,
+/obj/item/device/flashlight,
+/obj/item/device/flashlight,
+/obj/item/device/holowarrant,
+/obj/item/device/holowarrant,
+/obj/item/device/holowarrant,
+/obj/item/device/holowarrant,
+/obj/item/device/retail_scanner/security,
+/obj/item/device/retail_scanner/security,
+/obj/item/clothing/accessory/badge/holo/cord,
+/obj/item/clothing/accessory/badge/holo/cord,
+/obj/item/clothing/accessory/badge/holo,
+/obj/item/clothing/accessory/badge/holo,
+/obj/item/clothing/accessory/badge/holo,
+/obj/item/clothing/accessory/badge/holo,
+/obj/item/clothing/accessory/badge/holo,
+/obj/item/clothing/accessory/badge/holo,
+/obj/structure/closet/walllocker_double/security/west{
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/equipment)
 "nq" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -6170,6 +6235,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
+"nz" = (
+/obj/structure/redgate,
+/turf/simulated/floor/reinforced,
+/area/groundbase/civilian/toolstorage)
 "nA" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/clothing/suit/armor/vest/wolftaur{
@@ -6204,6 +6273,25 @@
 /obj/machinery/power/emitter,
 /turf/simulated/floor/plating,
 /area/groundbase/engineering/storage)
+"nE" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/security/south{
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/equipment)
 "nF" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/rcd,
@@ -6439,6 +6527,13 @@
 /obj/effect/landmark/start/bartender,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"of" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/apparel)
 "og" = (
 /obj/effect/landmark/start/miner,
 /obj/structure/cable/yellow{
@@ -7552,6 +7647,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask{
+	pixel_x = -9;
+	pixel_y = 5
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
 "qY" = (
@@ -8284,6 +8383,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"sF" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/groundbase/civilian/toolstorage)
 "sH" = (
 /obj/effect/floor_decal/techfloor/orange,
 /obj/effect/landmark{
@@ -9016,6 +9121,20 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
+"uq" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/landmark/stardog,
+/turf/simulated/floor{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/setunnel)
 "ur" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/green,
 /obj/machinery/meter,
@@ -9875,6 +9994,13 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level1/centsquare)
+"wy" = (
+/obj/machinery/door/airlock/glass{
+	name = "redgate"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/toolstorage)
 "wA" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
@@ -9914,16 +10040,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
-"wH" = (
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/wizoff,
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "wI" = (
 /obj/item/weapon/storage/backpack/parachute{
 	pixel_x = 4;
@@ -11785,10 +11901,15 @@
 /obj/machinery/camera/network/civilian{
 	dir = 8
 	},
-/obj/random/mug,
-/obj/random/mug,
-/obj/random/mug,
-/obj/random/mug,
+/obj/structure/sink/countertop{
+	dir = 8;
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/weapon/reagent_containers/glass/rag{
+	pixel_x = -5;
+	pixel_y = 17
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
 "Bb" = (
@@ -13198,8 +13319,6 @@
 	department = "Chief Engineer's Office"
 	},
 /obj/structure/cable/orange{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/orange{
@@ -13797,8 +13916,8 @@
 "FT" = (
 /obj/machinery/button/remote/airlock{
 	id = "z1stall5";
-	specialfunctions = 4;
-	pixel_y = 26
+	pixel_y = 26;
+	specialfunctions = 4
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -14074,6 +14193,9 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"GB" = (
+/turf/simulated/floor/reinforced,
+/area/groundbase/civilian/toolstorage)
 "GC" = (
 /obj/item/weapon/circuitboard/telecomms/processor,
 /obj/item/weapon/circuitboard/telecomms/processor,
@@ -15019,7 +15141,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -15687,16 +15809,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
-"Kk" = (
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "Kl" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/circuitboard/algae_farm{
@@ -15865,6 +15977,12 @@
 /obj/random/vendorall,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
+"KJ" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/stunnel)
 "KK" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/subspace/crystal,
@@ -16722,29 +16840,6 @@
 "MK" = (
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level1/eastspur)
-"ML" = (
-/obj/structure/closet/walllocker_double/west{
-	dir = 4;
-	pixel_x = 32
-	},
-/obj/item/weapon/shovel,
-/obj/item/weapon/shovel,
-/obj/item/weapon/shovel,
-/obj/item/weapon/shovel,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/turf/simulated/floor/tiled,
-/area/groundbase/cargo/mining)
 "MM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -16833,7 +16928,6 @@
 	dir = 8
 	},
 /obj/structure/cable/yellow{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/structure/flora/pottedplant/unusual,
@@ -16915,15 +17009,27 @@
 /area/security/range)
 "Ng" = (
 /obj/structure/table/marble,
-/obj/item/device/retail_scanner/civilian,
+/obj/item/device/retail_scanner/civilian{
+	pixel_x = -8
+	},
 /obj/machinery/button/remote/blast_door{
 	id = "Bar";
 	name = "Bar shutters";
 	pixel_x = -3;
 	pixel_y = 26
 	},
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/weapon/reagent_containers/food/drinks/shaker{
+	pixel_x = -10;
+	pixel_y = 11
+	},
+/obj/item/weapon/reagent_containers/glass/rag{
+	pixel_x = -9
+	},
+/obj/structure/sink/countertop{
+	dir = 8;
+	pixel_x = 7;
+	pixel_y = 5
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "Nh" = (
@@ -17068,6 +17174,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/effect/landmark/stardog,
 /turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
@@ -17303,48 +17410,6 @@
 /obj/effect/landmark/start/hos,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
-"Of" = (
-/obj/structure/closet/walllocker_double/north{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = 0
-	},
-/obj/item/weapon/pipe_dispenser,
-/obj/item/device/pipe_painter,
-/obj/item/weapon/stock_parts/console_screen,
-/obj/item/weapon/stock_parts/scanning_module,
-/obj/item/weapon/stock_parts/scanning_module,
-/obj/item/weapon/stock_parts/capacitor,
-/obj/item/weapon/stock_parts/capacitor,
-/obj/item/weapon/stock_parts/micro_laser,
-/obj/item/weapon/stock_parts/matter_bin,
-/obj/item/weapon/stock_parts/manipulator,
-/obj/item/weapon/stock_parts/manipulator,
-/obj/item/weapon/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/clothing/gloves/yellow,
-/obj/item/device/multitool,
-/obj/item/weapon/computer_hardware/hard_drive/portable,
-/obj/item/weapon/computer_hardware/hard_drive/portable,
-/obj/item/weapon/computer_hardware/nano_printer,
-/obj/item/weapon/computer_hardware/tesla_link,
-/obj/item/weapon/computer_hardware/processor_unit/small,
-/obj/item/weapon/computer_hardware/processor_unit,
-/obj/item/weapon/computer_hardware/processor_unit,
-/obj/item/weapon/computer_hardware/processor_unit,
-/obj/item/weapon/computer_hardware/network_card/wired,
-/obj/item/weapon/computer_hardware/network_card,
-/obj/item/weapon/computer_hardware/network_card,
-/obj/item/weapon/computer_hardware/hard_drive/micro,
-/obj/item/weapon/computer_hardware/hard_drive,
-/obj/item/weapon/computer_hardware/hard_drive,
-/obj/item/weapon/computer_hardware/battery_module/nano,
-/obj/item/weapon/computer_hardware/battery_module,
-/obj/item/weapon/computer_hardware/battery_module,
-/turf/simulated/floor/tiled,
-/area/groundbase/engineering/techstorage)
 "Og" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -19289,15 +19354,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/chamber)
-"SU" = (
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
-	},
-/obj/random/instrument,
-/obj/random/instrument,
-/obj/item/instrument/guitar,
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "SV" = (
 /obj/effect/map_effect/portal/line/side_a,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -19503,6 +19559,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or2)
+"Tt" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/swtunnel)
 "Tu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -24902,7 +24964,7 @@ ce
 ce
 ce
 ce
-dM
+Tt
 dM
 dM
 dM
@@ -25316,7 +25378,7 @@ hC
 yg
 TR
 ZN
-lk
+np
 qQ
 MR
 jX
@@ -25887,7 +25949,7 @@ CC
 aX
 CC
 CC
-jp
+nE
 hC
 hC
 hC
@@ -30684,10 +30746,10 @@ PP
 xJ
 EN
 lE
-Eb
-Eb
-Eb
-HQ
+GB
+GB
+GB
+sF
 Eb
 Eb
 Eb
@@ -30826,14 +30888,14 @@ XS
 WC
 KQ
 lE
-Eb
-Eb
-Eb
-Nv
-Nv
-Eb
-Eb
-tP
+GB
+nz
+GB
+wy
+Vs
+Vs
+Vs
+JY
 eR
 eR
 eR
@@ -30968,11 +31030,11 @@ XS
 WC
 uz
 lE
+GB
+GB
+GB
+sF
 Eb
-Eb
-Nv
-Nv
-Nv
 Eb
 Eb
 tP
@@ -30987,7 +31049,7 @@ eR
 AZ
 AZ
 yb
-ee
+jp
 Uz
 No
 Ut
@@ -31110,10 +31172,10 @@ nO
 Li
 CZ
 lE
-Eb
-Eb
-Nv
-Eb
+Dt
+Dt
+Dt
+Dt
 Eb
 Eb
 Eb
@@ -31253,7 +31315,7 @@ lE
 lE
 lE
 Eb
-Eb
+HQ
 Eb
 Eb
 Eb
@@ -32943,7 +33005,7 @@ vi
 Yx
 hr
 pi
-Pb
+hv
 vP
 ye
 CD
@@ -33227,7 +33289,7 @@ Ba
 mL
 hr
 zT
-hv
+of
 sg
 BS
 Pb
@@ -33369,7 +33431,7 @@ hr
 hr
 hr
 bL
-Pb
+hv
 rG
 BS
 zj
@@ -33653,7 +33715,7 @@ qE
 qE
 dk
 Vb
-Pb
+hv
 ll
 ye
 CD
@@ -33857,7 +33919,7 @@ Lt
 Lt
 Lt
 Lt
-nS
+KJ
 nS
 SH
 Bk
@@ -33902,7 +33964,7 @@ og
 DL
 DL
 DL
-ML
+ee
 pF
 qE
 qE
@@ -34927,7 +34989,7 @@ Dx
 QC
 iO
 DQ
-Kk
+fV
 PQ
 uN
 WM
@@ -35069,7 +35131,7 @@ QC
 cl
 sh
 DQ
-wH
+hm
 PQ
 Ii
 sq
@@ -35211,7 +35273,7 @@ iy
 nG
 cu
 DQ
-SU
+iW
 PQ
 uN
 wQ
@@ -36386,7 +36448,7 @@ dD
 rj
 cg
 Uq
-Of
+lk
 hz
 aw
 jc
@@ -40206,7 +40268,7 @@ Bk
 Bk
 ce
 ce
-VL
+uq
 jF
 jF
 jF

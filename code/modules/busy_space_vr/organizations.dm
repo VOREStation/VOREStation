@@ -219,7 +219,7 @@
 			"Finlay","Onasilos","Makropolus","Surt","Boinayel",
 			"Eyeke","Cayahuanca","Hamarik","Abol","Hiisi",
 			"Belisama","Mintome","Neri","Toge","Iolaus",
-			"Koyopa","Independance","Ixbalanque","Magor","Fold",
+			"Koyopa","Independence","Ixbalanque","Magor","Fold",
 			"Santamasa","Noifasui","Kavian","Babylonia","Bran",
 			"Alef","Lete","Chura","Wadirum","Buru",
 			"Umbaasaa","Vytis","Peitruss","Trimobe","Baiduri",
@@ -2224,7 +2224,7 @@
 			"Blade"
 			)
 	while(i)
-		ship_names.Add("[pick(first_names)] [pick(words)]")
+		ship_names.Add("[pick(first_names)]'s [pick(words)]")
 		i--
 
 /datum/lore/organization/other/marauders

@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			return
 
 	//Hacking init.
-	if(istype(I, /obj/item/device/multitool) || I.is_wirecutter())
+	if(istype(I, /obj/item/device/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			updateUsrDialog()
 
 			return
-	else if(I.is_screwdriver())
+	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)

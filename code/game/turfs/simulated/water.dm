@@ -4,6 +4,7 @@
 	desc = "A body of water.  It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "seashallow" // So it shows up in the map editor as water.
+	var/water_icon = 'icons/turf/outdoors.dmi'
 	var/water_state = "water_shallow"
 	var/under_state = "rock"
 	edge_blending_priority = -1
@@ -31,7 +32,7 @@
 	..() // To get the edges.
 
 	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
-	var/image/water_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = water_state, layer = WATER_LAYER)
+	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
 	add_overlay(water_sprite)
 
 /turf/simulated/floor/water/get_edge_icon_state()
@@ -209,3 +210,27 @@ var/list/shoreline_icon_cache = list()
 		poisonlevel *= 1 - L.get_water_protection()
 		if(poisonlevel > 0)
 			L.adjustToxLoss(poisonlevel)
+
+/turf/simulated/floor/water/blood
+	name = "blood"
+	desc = "A body of blood.  It seems shallow enough to walk through, if needed."
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "bloodshallow"
+	water_icon = 'icons/turf/outdoors.dmi'
+	water_state = "bloodshallow"
+	under_state = "rock"
+	reagent_type = "blood"
+
+/turf/simulated/floor/water/blood/get_edge_icon_state()
+	return "bloodshallow"
+
+/turf/simulated/floor/water/blood/Entered(atom/movable/AM, atom/oldloc)
+	if(istype(AM, /mob/living))
+		var/mob/living/L = AM
+		L.update_water()
+		if(L.check_submerged() <= 0)
+			return
+		if(!istype(oldloc, /turf/simulated/floor/water))
+			to_chat(L, "<span class='warning'>You get drenched in blood from entering \the [src]!</span>")
+	AM.water_act(5)
+	..()

@@ -271,7 +271,7 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(opened)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
@@ -291,8 +291,8 @@
 			return 0
 		if(istype(W,/obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(W.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/WT = W.get_welder()
 			if(!WT.remove_fuel(0,user))
 				if(!WT.isOn())
 					return
@@ -326,8 +326,8 @@
 	else if(seal_tool)
 		if(istype(W, seal_tool))
 			var/obj/item/weapon/S = W
-			if(istype(S, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = S
+			if(S.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = S.get_welder()
 				if(!WT.remove_fuel(0,user))
 					if(!WT.isOn())
 						return

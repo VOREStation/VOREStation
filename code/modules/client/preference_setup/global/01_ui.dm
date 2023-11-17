@@ -18,6 +18,8 @@
 	S["tgui_large_buttons"]		>> pref.tgui_large_buttons
 	S["tgui_swapped_buttons"]	>> pref.tgui_swapped_buttons
 	S["obfuscate_job"]			>> pref.obfuscate_job
+	S["chat_timestamp"]			>> pref.chat_timestamp
+	S["throwmode_loud"]			>> pref.throwmode_loud
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
 	S["UI_style"]				<< pref.UI_style
@@ -35,6 +37,8 @@
 	S["tgui_large_buttons"]		<< pref.tgui_large_buttons
 	S["tgui_swapped_buttons"]	<< pref.tgui_swapped_buttons
 	S["obfuscate_job"]			<< pref.obfuscate_job
+	S["chat_timestamp"]			<< pref.chat_timestamp
+	S["throwmode_loud"]			<< pref.throwmode_loud
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style			= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
@@ -52,6 +56,8 @@
 	pref.tgui_large_buttons	= sanitize_integer(pref.tgui_large_buttons, 0, 1, initial(pref.tgui_large_buttons))
 	pref.tgui_swapped_buttons	= sanitize_integer(pref.tgui_swapped_buttons, 0, 1, initial(pref.tgui_swapped_buttons))
 	pref.obfuscate_job		= sanitize_integer(pref.obfuscate_job, 0, 1, initial(pref.obfuscate_job))
+	pref.chat_timestamp		= sanitize_integer(pref.chat_timestamp, 0, 1, initial(pref.chat_timestamp))
+	pref.throwmode_loud		= sanitize_integer(pref.throwmode_loud, 0, 1, initial(pref.throwmode_loud))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
@@ -69,6 +75,8 @@
 	. += "<b>TGUI Large Buttons:</b> <a href='?src=\ref[src];tgui_large_buttons=1'><b>[(pref.tgui_large_buttons) ? "Enabled (default)" : "Disabled"]</b></a><br>"
 	. += "<b>TGUI Swapped Buttons:</b> <a href='?src=\ref[src];tgui_swapped_buttons=1'><b>[(pref.tgui_swapped_buttons) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	. += "<b>Obfuscate Job:</b> <a href='?src=\ref[src];obfuscate_job=1'><b>[(pref.obfuscate_job) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += "<b>Chat Timestamps:</b> <a href='?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += "<b>Throw Mode Messages:</b> <a href='?src=\ref[src];throwmode_loudness=1'><b>[(pref.throwmode_loud) ? "Loud" : "Quiet (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += "<b>OOC Color:</b>"
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -156,6 +164,14 @@
 
 	else if(href_list["obfuscate_job"])
 		pref.obfuscate_job = !pref.obfuscate_job
+		return TOPIC_REFRESH
+		
+	else if(href_list["chat_timestamps"])
+		pref.chat_timestamp = !pref.chat_timestamp
+		return TOPIC_REFRESH
+
+	else if(href_list["throwmode_loudness"])
+		pref.throwmode_loud = !pref.throwmode_loud
 		return TOPIC_REFRESH
 
 	else if(href_list["reset"])

@@ -55,7 +55,7 @@
 				L.set_dir(dir)
 
 /obj/structure/bed/chair/wheelchair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench() || W.is_wirecutter() || istype(W,/obj/item/stack))
+	if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_WIRECUTTER) || istype(W,/obj/item/stack))
 		return
 	..()
 

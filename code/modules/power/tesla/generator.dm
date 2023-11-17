@@ -5,10 +5,6 @@
 	icon_state = "TheSingGen"
 	creation_type = /obj/singularity/energy_ball
 
-/obj/machinery/the_singularitygen/tesla/examine()
-	. = ..()
-	. += "<span class='notice'>It is [anchored ? "secured" : "not secured"]!</span>"
-
 /obj/machinery/the_singularitygen/tesla/tesla_act(power, explosive = FALSE)
 	if(explosive)
 		energy += power

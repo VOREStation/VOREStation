@@ -1,8 +1,11 @@
 var/world_time_season
+var/world_time_year
+var/world_time_month
+var/world_time_day
 
 /proc/setup_season()
-	var/month = text2num(time2text(world.timeofday, "MM")) 	// get the current month
-	switch(month)
+	world_time_month = text2num(time2text(world.timeofday, "MM")) 	// get the current month
+	switch(world_time_month)
 		if(1 to 2)
 			world_time_season = "winter"
 		if(3 to 5)
@@ -13,6 +16,8 @@ var/world_time_season
 			world_time_season = "autumn"
 		if(12)
 			world_time_season = "winter"
+	world_time_day = text2num(time2text(world.timeofday, "DD"))
+	world_time_year = text2num(time2text(world.timeofday, "YYYY"))
 
 /turf/simulated/floor/outdoors/grass/seasonal
 	name = "grass"
@@ -52,9 +57,9 @@ var/world_time_season
 				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20,
 				/mob/living/simple_mob/vore/bee = 20,
 				/mob/living/simple_mob/vore/horse/big = 5,
-				/mob/living/simple_mob/animal/wolf = 5,
-				/mob/living/simple_mob/animal/wolf/direwolf = 1,
-				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1,
+				/mob/living/simple_mob/vore/wolf = 5,
+				/mob/living/simple_mob/vore/wolf/direwolf = 1,
+				/mob/living/simple_mob/vore/wolf/direwolf/dog = 1,
 				/mob/living/simple_mob/vore/squirrel = 20
 			)
 			grass_types = list(
@@ -91,7 +96,7 @@ var/world_time_season
 				/mob/living/simple_mob/vore/horse/big = 5,
 				/mob/living/simple_mob/vore/pakkun = 2,
 				/mob/living/simple_mob/vore/fennix = 1,
-				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1,
+				/mob/living/simple_mob/vore/wolf/direwolf/dog = 1,
 				/mob/living/simple_mob/animal/passive/bird/parrot = 1,
 				/mob/living/simple_mob/vore/squirrel = 20
 			)
@@ -115,9 +120,9 @@ var/world_time_season
 				/mob/living/simple_mob/vore/horse/big = 10,
 				/mob/living/simple_mob/vore/alienanimals/dustjumper = 20,
 				/mob/living/simple_mob/vore/horse/big = 1,
-				/mob/living/simple_mob/animal/wolf = 1,
-				/mob/living/simple_mob/animal/wolf/direwolf = 1,
-				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1,
+				/mob/living/simple_mob/vore/wolf = 1,
+				/mob/living/simple_mob/vore/wolf/direwolf = 1,
+				/mob/living/simple_mob/vore/wolf/direwolf/dog = 1,
 				/mob/living/simple_mob/vore/squirrel = 20
 			)
 			grass_types = list(
@@ -138,13 +143,13 @@ var/world_time_season
 			animal_types = list(
 				/mob/living/simple_mob/vore/rabbit/white = 40,
 				/mob/living/simple_mob/vore/redpanda = 10,
-				/mob/living/simple_mob/animal/wolf = 10,
-				/mob/living/simple_mob/animal/wolf/direwolf = 1,
-				/mob/living/simple_mob/animal/wolf/direwolf/dog = 1,
-				/mob/living/simple_mob/otie/friendly = 2,
-				/mob/living/simple_mob/otie/friendly/chubby = 1,
-				/mob/living/simple_mob/otie/red/friendly = 1,
-				/mob/living/simple_mob/otie/red/chubby = 1,
+				/mob/living/simple_mob/vore/wolf = 10,
+				/mob/living/simple_mob/vore/wolf/direwolf = 1,
+				/mob/living/simple_mob/vore/wolf/direwolf/dog = 1,
+				/mob/living/simple_mob/vore/otie/friendly = 2,
+				/mob/living/simple_mob/vore/otie/friendly/chubby = 1,
+				/mob/living/simple_mob/vore/otie/red/friendly = 1,
+				/mob/living/simple_mob/vore/otie/red/chubby = 1,
 				/mob/living/simple_mob/vore/squirrel = 20
 			)
 			if(prob(snow_chance))

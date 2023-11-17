@@ -188,8 +188,9 @@ var/list/name_to_material
 
 	// Icons
 	var/icon_colour                                      // Colour applied to products of this material.
-	var/icon_base = "metal"                              // Wall and table base icon tag. See header.
+	var/icon_base = "metal"                              // Wall base icon tag. See header.
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
+	var/table_icon_base = "metal"						 // Table base icon tag. See header.
 	var/icon_reinf = "reinf_metal"                       // Overlay used
 	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
 	var/pass_stack_colors = FALSE                        // Will stacks made from this material pass their colors onto objects?
@@ -352,6 +353,7 @@ var/list/name_to_material
 	// If is_brittle() returns true, these are only good for a single strike.
 	recipes = list(
 		new /datum/stack_recipe("[display_name] baseball bat", /obj/item/weapon/material/twohanded/baseballbat, 10, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] staff", /obj/item/weapon/material/twohanded/staff, 10, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] ashtray", /obj/item/weapon/material/ashtray, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] spoon", /obj/item/weapon/material/kitchen/utensil/spoon/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] armor plate", /obj/item/weapon/material/armor_plating, 1, time = 20, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),

@@ -259,12 +259,12 @@
 
 			return
 
-		if(repairing && istype(I, /obj/item/weapon/weldingtool))
+		if(repairing && I.has_tool_quality(TOOL_WELDER))
 			if(!density)
 				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 				return
 
-			var/obj/item/weapon/weldingtool/welder = I
+			var/obj/item/weapon/weldingtool/welder = I.get_welder()
 			if(welder.remove_fuel(0,user))
 				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [get_material_name()] into place.</span>")
 				playsound(src, welder.usesound, 50, 1)
@@ -275,7 +275,7 @@
 					repairing = 0
 			return
 
-		if(repairing && I.is_crowbar())
+		if(repairing && I.has_tool_quality(TOOL_CROWBAR))
 			var/datum/material/mat = get_material()
 			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc, repairing)
 			repairing = 0

@@ -10,7 +10,7 @@
  */
 /obj/effect/alien
 	name = "alien thing"
-	desc = "theres something alien about this"
+	desc = "there's something alien about this"
 	icon = 'icons/mob/alien.dmi'
 
 /*
@@ -192,8 +192,8 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

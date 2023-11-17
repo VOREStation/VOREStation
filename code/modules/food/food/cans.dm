@@ -200,7 +200,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/kvass
 	name = "\improper Kvass"
 	desc = "A true Slavic soda."
-	description_fluff = "A classic slavic beverage which many space-faring slavs still enjoy to this day. Fun fact, it is actually considered a weak beer by non-russians."
+	description_fluff = "A classic Slavic beverage which many space-faring Slavs still enjoy to this day. Fun fact, it is actually considered a weak beer by non-Russians."
 	icon_state = "kvass"
 	center_of_mass = list("x"=16, "y"=10)
 
@@ -210,8 +210,8 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/kompot
 	name = "\improper Kompot"
-	desc = "A taste of russia in the summertime - canned for you consumption."
-	description_fluff = "A sweet and fruity beverage that was traditionally used to preserve frutis in harsh Russian winters that is now available for widespread comsumption."
+	desc = "A taste of Russia in the summertime - canned for you consumption."
+	description_fluff = "A sweet and fruity beverage that was traditionally used to preserve fruits in harsh Russian winters that is now available for widespread consumption."
 	icon_state = "kompot"
 	center_of_mass = list("x"=16, "y"=10)
 
@@ -305,7 +305,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola
 	name = "\improper Lunar Lemon"
-	desc = "Feel back at home on the Lunar Colonies with this classic berverage straight from the source!"
+	desc = "Feel back at home on the Lunar Colonies with this classic beverage straight from the source!"
 	icon_state = "lemoncoke"
 	center_of_mass = list("x"=16, "y"=8)
 
@@ -325,7 +325,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_cola
 	name = "\improper Gravity Grape"
-	desc = "Get down with Newton's favorite corbonated science experiment!"
+	desc = "Get down with Newton's favorite carbonated science experiment!"
 	icon_state = "grapesoda"
 	center_of_mass = list("x"=16, "y"=8)
 
@@ -382,10 +382,10 @@
 	name = "\improper Café Del Consumir"
 	desc = "A can of deliciously sweet iced coffee that originates from Earth."
 	description_fluff = "Café Del Consumir originates from a small coffee brewery in México \
-	that still opperates to this day. Café Del Consumir prides itself on being true to form \
-	and retaining its original recipe. They've been producing and selling thier product across \
+	that still operates to this day. Café Del Consumir prides itself on being true to form \
+	and retaining its original recipe. They've been producing and selling their product across \
 	the galaxy for decades without fail. NanoTrasen has attempted to by out the small company for \
-	years now, howerver all attempts they've made have failed."
+	years now, however all attempts they've made have failed."
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "coffeecan"
 	center_of_mass = list("x"=16, "y"=10)

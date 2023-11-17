@@ -11,7 +11,7 @@
 	qdel(src)
 
 /obj/structure/sign/attackby(obj/item/tool, mob/user)	//deconstruction
-	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
+	if(tool.has_tool_quality(TOOL_SCREWDRIVER) && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
 		playsound(src, tool.usesound, 50, 1)
 		unfasten(user)
 	else ..()
@@ -36,7 +36,7 @@
 	var/original_type
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
-	if(tool.is_screwdriver() && isturf(user.loc))
+	if(tool.has_tool_quality(TOOL_SCREWDRIVER) && isturf(user.loc))
 		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
 		if(direction == "Cancel") return
 		var/target_type = original_type || /obj/structure/sign
@@ -1831,7 +1831,7 @@
 /obj/structure/sign/flag/fivearrows
 	name = "Five Arrows flag"
 	desc = "The red flag of the Five Arrows."
-	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to percieved \
+	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to perceived \
 	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
 	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
 	icon_state = "fivearrows"
@@ -1846,7 +1846,7 @@
 /obj/item/flag/fivearrows
 	name = "Five Arrows flag"
 	desc = "The red flag of the Five Arrows."
-	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to percieved \
+	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to perceived \
 	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
 	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
 	flag_path = "fivearrows"

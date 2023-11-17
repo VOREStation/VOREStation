@@ -41,8 +41,8 @@
 		qdel(src)
 		return
 
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 		if(W.isOn())
 			if(W.get_fuel() >= 2)
 				var/obj/item/inside = locate() in src

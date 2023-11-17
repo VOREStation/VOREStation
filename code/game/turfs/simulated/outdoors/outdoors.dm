@@ -179,3 +179,10 @@ var/list/turf_edge_cache = list()
 			if(prob(66))
 				return
 	demote()
+
+/turf/simulated/floor/outdoors/road
+	name = "road"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete_dark"
+	desc = "Some sort of material composite road."
+	edge_blending_priority = -1

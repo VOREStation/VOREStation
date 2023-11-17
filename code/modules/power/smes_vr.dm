@@ -6,7 +6,7 @@
 	var/overlay_icon = 'icons/obj/power_vr.dmi'
 
 /obj/machinery/power/smes/buildable/hybrid/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(W.is_screwdriver() || W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user,"<span class='warning'>\The [src] full of weird alien technology that's best not messed with.</span>")
 		return 0
 

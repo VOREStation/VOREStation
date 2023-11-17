@@ -432,6 +432,23 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+
+/obj/item/trash/pasty
+	name = "pasty packaging"
+	icon_state = "pasty"
+
+/obj/item/trash/sausageroll
+	name = "sausage roll packaging"
+	icon_state = "sausageroll"
+
+/obj/item/trash/scotchegg
+	name = "scotch egg packaging"
+	icon_state = "scotchegg"
+
+/obj/item/trash/porkpie
+	name = "pork pie packaging"
+	icon_state = "porkpie"
+
 //Candy Bars (1-10)
 /obj/item/trash/candy/cb01
 	name = "\improper Tau Ceti Bar wrapper"

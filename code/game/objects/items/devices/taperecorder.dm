@@ -409,7 +409,7 @@
 
 
 /obj/item/device/tape/attackby(obj/item/I, mob/user, params)
-	if(ruined && I.is_screwdriver())
+	if(ruined && I.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 120 * I.toolspeed, target = src))

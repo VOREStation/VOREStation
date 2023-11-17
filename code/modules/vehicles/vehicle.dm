@@ -92,19 +92,19 @@
 	if(istype(W, /obj/item/weapon/hand_labeler))
 		return
 	if(mechanical)
-		if(W.is_screwdriver())
+		if(W.has_tool_quality(TOOL_SCREWDRIVER))
 			if(!locked)
 				open = !open
 				update_icon()
 				to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 				playsound(src, W.usesound, 50, 1)
-		else if(W.is_crowbar() && cell && open)
+		else if(W.has_tool_quality(TOOL_CROWBAR) && cell && open)
 			remove_cell(user)
 
 		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 			insert_cell(W, user)
-		else if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/T = W
+		else if(W.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/T = W.get_welder()
 			if(T.welding)
 				if(health < maxhealth)
 					if(open)
@@ -375,8 +375,13 @@
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
 	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
-	load.pixel_x = initial(load.pixel_x)
-	load.pixel_y = initial(load.pixel_y)
+	if(ismob(load))
+		var/mob/L = load
+		L.pixel_x = L.default_pixel_x
+		L.pixel_y = L.default_pixel_y
+	else
+		load.pixel_x = initial(load.pixel_x)
+		load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)
 
 	if(ismob(load))

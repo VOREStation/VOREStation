@@ -13,7 +13,7 @@
 	var/static/non_micro_types = list(
 		/mob/living/simple_mob/vore/squirrel,
 		/mob/living/simple_mob/vore/alienanimals/catslug,
-		/mob/living/simple_mob/vore/hostile/morph,
+		/mob/living/simple_mob/vore/morph,
 		/mob/living/simple_mob/protean_blob,
 		/mob/living/simple_mob/slime
 	)
@@ -55,9 +55,56 @@
 		if(8)
 			pixel_x = -32
 
+/obj/structure/micro_tunnel/proc/find_destinations()
+	var/list/destinations = list()
+	var/turf/myturf = get_turf(src.loc)
+	var/datum/planet/planet
+	for(var/datum/planet/P in SSplanets.planets)
+		if(myturf.z in P.expected_z_levels)
+			planet = P
+		else
+	for(var/obj/structure/micro_tunnel/t in world)
+		if(t == src)
+			continue
+		if(magic || t.magic)
+			destinations |= t
+			continue
+		if(t.z == z)
+			destinations |= t
+			continue
+		var/turf/targetturf = get_turf(t.loc)
+		if(planet)
+			if(targetturf.z in planet.expected_z_levels)
+				destinations |= t
+				continue
+			else
+		var/above = GetAbove(myturf)
+		if(above && t.z == z + 1)
+			destinations |= t
+			continue
+		var/below = GetBelow(myturf)
+		if(below && t.z == z - 1)
+			destinations |= t
+	return destinations
+
 /obj/structure/micro_tunnel/attack_hand(mob/living/user)
-	if(!isliving(user))
+	tunnel_interact(user)
+	return ..()
+
+/obj/structure/micro_tunnel/attack_generic(mob/user, damage, attack_verb)
+	tunnel_interact(user)
+	return ..()
+
+/obj/structure/micro_tunnel/attack_robot(mob/living/user)
+	var/turf/hole = get_turf(src)	//Borgs can click stuff from far away, let's make sure they're next to the hole
+	var/turf/borg = get_turf(user)
+	if(hole.AdjacentQuick(borg))
+		tunnel_interact(user)
 		return ..()
+
+/obj/structure/micro_tunnel/proc/tunnel_interact(mob/living/user)
+	if(!isliving(user))
+		return
 	if(user.loc == src)
 		var/list/our_options = list("Exit", "Move")
 
@@ -83,35 +130,7 @@
 					to_chat(user, "<span class = 'warning'>You can't do that unless you're in \the [src].</span>")
 					return
 
-				var/list/destinations = list()
-				var/turf/myturf = get_turf(src.loc)
-				var/datum/planet/planet
-				for(var/datum/planet/P in SSplanets.planets)
-					if(myturf.z in P.expected_z_levels)
-						planet = P
-					else
-				for(var/obj/structure/micro_tunnel/t in world)
-					if(t == src)
-						continue
-					if(magic || t.magic)
-						destinations |= t
-						continue
-					if(t.z == z)
-						destinations |= t
-						continue
-					var/turf/targetturf = get_turf(t.loc)
-					if(planet)
-						if(targetturf.z in planet.expected_z_levels)
-							destinations |= t
-							continue
-						else
-					var/above = GetAbove(myturf)
-					if(above && t.z == z + 1)
-						destinations |= t
-						continue
-					var/below = GetBelow(myturf)
-					if(below && t.z == z - 1)
-						destinations |= t
+				var/list/destinations = find_destinations()
 
 				if(!destinations.len)
 					to_chat(user, "<span class = 'warning'>There are no other tunnels connected to this one!</span>")
@@ -212,10 +231,6 @@
 
 	return FALSE
 
-/obj/structure/micro_tunnel/attack_generic(mob/user, damage, attack_verb)
-	attack_hand(user)
-	return ..()
-
 /obj/structure/micro_tunnel/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
 	if(M != user)
@@ -301,6 +316,9 @@
 					to_chat(usr, "<span class = 'warning'>You can't do that unless you're in \the [src].</span>")
 					return
 				var/list/destinations = list()
+				if(istype(src,/obj/structure/micro_tunnel))	//If we're in a tunnel let's also get the tunnel's destinations
+					var/obj/structure/micro_tunnel/t = src
+					destinations = t.find_destinations()
 				var/turf/myturf = get_turf(src.loc)
 				for(var/obj/o in range(1,myturf))
 					if(!istype(o,/obj))
@@ -321,6 +339,8 @@
 					return
 				to_chat(usr,"<span class = 'notice'>You begin moving...</span>")
 				if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
+					return
+				if(QDELETED(src))
 					return
 				var/obj/our_choice = choice
 

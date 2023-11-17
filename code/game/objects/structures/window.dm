@@ -223,8 +223,8 @@
 	if(!istype(W)) return//I really wish I did not need this
 
 	// Fixing.
-	if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER) && user.a_intent == I_HELP)
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(health < maxhealth)
 			if(WT.remove_fuel(1 ,user))
 				to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
@@ -265,7 +265,7 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(reinf && state >= 1)
 			state = 3 - state
 			update_nearby_icons()
@@ -285,11 +285,11 @@
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "<span class='notice'>You have [anchored ? "" : "un"]fastened the window [anchored ? "to" : "from"] the floor.</span>")
-	else if(W.is_crowbar() && reinf && state <= 1)
+	else if(W.has_tool_quality(TOOL_CROWBAR) && reinf && state <= 1)
 		state = 1 - state
 		playsound(src, W.usesound, 75, 1)
 		to_chat(user, "<span class='notice'>You have pried the window [state ? "into" : "out of"] the frame.</span>")
-	else if(W.is_wrench() && !anchored && (!state || !reinf))
+	else if(W.has_tool_quality(TOOL_WRENCH) && !anchored && (!state || !reinf))
 		if(!glasstype)
 			to_chat(user, "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>")
 		else
@@ -609,13 +609,15 @@
 		if(istype(MT.connectable, /obj/machinery/button/windowtint))
 			var/obj/machinery/button/windowtint/buffered_button = MT.connectable
 			src.id = buffered_button.id
-			to_chat(user, "<span class='notice'>\The [src] is linked to \the [buffered_button].</span>")
+			to_chat(user, "<span class='notice'>\The [src] is linked to \the [buffered_button] with ID '[id]'.</span>")
 			return TRUE
-		// Otherwise fall back to asking them
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter the ID for the window.", src.name, null, MAX_NAME_LEN), MAX_NAME_LEN)
-		if (!t && user.get_active_hand() != W && in_range(src, user))
+		// Otherwise fall back to asking them... and remind them what the current ID is.
+		if(id)
+			to_chat(user, "The window's current ID is [id].")
+		var/t = sanitizeSafe(input(user, "Enter the new ID for the window.", src.name, null), MAX_NAME_LEN)
+		if(t && in_range(src, user))
 			src.id = t
-			to_chat(user, "<span class='notice'>The new ID of \the [src] is [id]</span>")
+			to_chat(user, "<span class='notice'>The new ID of \the [src] is '[id]'.</span>")
 			return TRUE
 	. = ..()
 
@@ -635,6 +637,7 @@
 	icon_state = "light0"
 	desc = "A remote control switch for polarized windows."
 	var/range = 7
+	circuit = /obj/item/weapon/circuitboard/electrochromic
 
 /obj/machinery/button/windowtint/attack_hand(mob/user as mob)
 	if(..())
@@ -663,17 +666,21 @@
 	icon_state = "light[active]"
 
 /obj/machinery/button/windowtint/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/multitool))
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	else if(alarm_deconstruction_wirecutters(user, W))
+		return
+	else if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/MT = W
 		if(!id)
 			// If no ID is set yet (newly built button?) let them select an ID for first-time use!
 			var/t = sanitizeSafe(tgui_input_text(user, "Enter an ID for \the [src].", src.name, null, MAX_NAME_LEN), MAX_NAME_LEN)
-			if (t && user.get_active_hand() != W && in_range(src, user))
+			if (t && in_range(src, user))
 				src.id = t
-				to_chat(user, "<span class='notice'>The new ID of \the [src] is [id]</span>")
+				to_chat(user, "<span class='notice'>The new ID of \the [src] is '[id]'. To reset this, rebuild the control.</span>")
 		if(id)
 			// It already has an ID (or they just set one), buffer it for copying to windows.
-			to_chat(user, "<span class='notice'>You store \the [src] in \the [MT]'s buffer!</span>")
+			to_chat(user, "<span class='notice'>You store \the [src] ID ('[id]') in \the [MT]'s buffer!</span>")
 			MT.connectable = src
 			MT.update_icon()
 		return TRUE

@@ -54,6 +54,8 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -124,6 +126,8 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -153,8 +157,8 @@
 
 /obj/item/weapon/storage/belt/utility/chief/full
 	starts_with = list(
-		/obj/item/weapon/tool/screwdriver/power,
-		/obj/item/weapon/tool/crowbar/power,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/weapon/weldingtool/experimental,
 		/obj/item/device/multitool,
 		/obj/item/stack/cable_coil/random_belt,
@@ -169,11 +173,13 @@
 	storage_slots = 14 //twice the amount as a normal belt
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14
 	can_hold = list(
-	/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -507,6 +513,7 @@
 		/obj/item/weapon/anodevice,
 		/obj/item/clothing/glasses,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
 		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
 		/obj/item/device/ano_scanner,

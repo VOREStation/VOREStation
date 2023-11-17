@@ -138,15 +138,28 @@
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 
 /mob/proc/on_hear_say(var/message)
-	to_chat(src, "<span class='game say'>[message]</span>")
-	if(teleop)
+	var/time = say_timestamp()
+	if(client)
+		if(client.prefs.chat_timestamp)
+			to_chat(src, "<span class='game say'>[time] [message]</span>")
+		else
+			to_chat(src, "<span class='game say'>[message]</span>")
+	else if(teleop)
 		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
+	else
+		to_chat(src, "<span class='game say'>[message]</span>")
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
-	to_chat(src, "<span class='game say'>[time] [message]</span>")
-	if(teleop)
-		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][time] [message]</span>")
+	if(client)
+		if(client.prefs.chat_timestamp)
+			to_chat(src, "<span class='game say'>[time] [message]</span>")
+		else
+			to_chat(src, "<span class='game say'>[message]</span>")
+	else if(teleop)
+		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
+	else
+		to_chat(src, "<span class='game say'>[message]</span>")
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
@@ -199,7 +212,7 @@
 		on_hear_radio(part_a, part_b, speaker_name, track, part_c, message, part_d, part_e)
 
 /proc/say_timestamp()
-	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
+	return "<span class='say_quote'>\[[time2text(world.timeofday, "hh:mm")]\]</span>"
 
 /mob/proc/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"

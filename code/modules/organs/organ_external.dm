@@ -45,6 +45,8 @@
 	var/body_hair                      // Icon blend for body hair if any.
 	var/mob/living/applied_pressure
 	var/list/markings = list()         // Markings (body_markings) to apply to the icon
+	var/skip_robo_icon = FALSE 			//to force it to use the normal species icon
+	var/digi_prosthetic = FALSE 		//is it a prosthetic that can be digitigrade
 
 	// Wound and structural data.
 	var/wound_update_accuracy = 1      // how often wounds should be updated, a higher number means less often
@@ -201,6 +203,12 @@
 		O = O.parent
 	return 0
 
+//new function to check for markings
+/obj/item/organ/external/proc/is_hidden_by_markings()
+	for(var/M in markings)
+		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+		if(istype(mark_style,/datum/sprite_accessory/marking) && (organ_tag in mark_style.hide_body_parts))
+			return 1
 
 /obj/item/organ/external/proc/dislocate()
 	if(dislocated == -1)
@@ -750,7 +758,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 				W.open_wound(0.1 * wound_update_accuracy)
 
-			owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
+			owner.remove_blood( wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 			if(prob(1 * wound_update_accuracy))
 				owner.custom_pain("You feel a stabbing pain in your [name]!", 50)
 

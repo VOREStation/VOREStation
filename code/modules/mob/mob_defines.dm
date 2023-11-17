@@ -31,6 +31,7 @@
 	var/obj/screen/ling/chems/ling_chem_display = null
 	var/obj/screen/wizard/energy/wiz_energy_display = null
 	var/obj/screen/wizard/instability/wiz_instability_display = null
+	var/obj/screen/autowhisper_display = null
 
 	var/datum/plane_holder/plane_holder = null
 	var/list/vis_enabled = null		// List of vision planes that should be graphically visible (list of their VIS_ indexes).

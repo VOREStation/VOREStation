@@ -35,7 +35,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 900
-	movement_cooldown = 1
+	movement_cooldown = -0.5 // Should mean that the little blurb about being quicker in blobform rings true. May need further adjusting.
 
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
@@ -381,6 +381,8 @@ var/global/list/disallowed_protean_accessories = list(
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
 	blob.ooc_notes = ooc_notes
+	blob.ooc_notes_likes = ooc_notes_likes
+	blob.ooc_notes_dislikes = ooc_notes_dislikes
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -463,6 +465,8 @@ var/global/list/disallowed_protean_accessories = list(
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
 	ooc_notes = blob.ooc_notes // Lets give the protean any updated notes from blob form.
+	ooc_notes_likes = blob.ooc_notes_likes
+	ooc_notes_dislikes = blob.ooc_notes_dislikes
 	temporary_form = null
 
 	//Transfer vore organs

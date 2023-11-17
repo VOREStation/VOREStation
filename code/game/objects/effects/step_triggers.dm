@@ -248,3 +248,41 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 	else
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return
+
+//Death
+
+/obj/effect/step_trigger/death
+	var/deathmessage = "You die a horrible, brutal and very sudden death."
+	var/deathalert = "has stepped on a death trigger."
+
+/obj/effect/step_trigger/death/Trigger(var/atom/movable/A)
+	if(isliving(A))
+		to_chat(A, "<span class='danger'>[deathmessage]</span>")
+		log_and_message_admins("[A] [deathalert]")
+		qdel(A)
+
+/obj/effect/step_trigger/death/train_lost
+	deathmessage = "You fly down the tunnel of the train at high speed for a few moments before impact kills you with sheer concussive force."
+	deathalert = "fell off the side of the train and died horribly."
+
+/obj/effect/step_trigger/death/train_crush
+	deathmessage = "You get horribly crushed by the train, there's pretty much nothing left of you."
+	deathalert = "fell under the train and was crushed horribly."
+
+/obj/effect/step_trigger/death/fly_off
+	deathmessage = "You get caught up in the slipstream of the train and quickly dragged down into the tracks. Your body is brutally smashed into the electrified rails and then sucked right under a carriage. No one is finding that mess, thankfully."
+	deathalert = "tried to fly away from the train but was died horribly in the process."
+
+//warning
+
+/obj/effect/step_trigger/warning
+	var/warningmessage = "Warning!"
+	icon_state = "warnmarker"
+
+/obj/effect/step_trigger/warning/Trigger(var/atom/movable/A)
+	if(isliving(A))
+		to_chat(A, "<span class='warning'>[warningmessage]</span>")
+
+/obj/effect/step_trigger/warning/train_edge
+	warningmessage = "The wind billowing alongside the train is extremely strong here! Any movement could easily pull you down beneath the carriages, return to the train immediately!"
+

@@ -128,7 +128,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/sprinter
 	case_type = /obj/item/weapon/implantcase/sprinter
-	
+
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/armblade
 	case_type = /obj/item/weapon/implantcase/armblade
 
@@ -146,7 +146,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"
-	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."
+	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold separately."
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/chameleon/full,
 		/obj/item/weapon/gun/energy/chameleon
@@ -328,7 +328,6 @@
 	description_antag = "This case will likely contain a charged fuel rod gun, and a few fuel rods to go with it. It can only hold the fuel rod gun, fuel rods, batteries, a screwdriver, and stock machine parts."
 	force = 12 //Anti-rad lined i.e. Lead, probably gonna hurt a bit if you get bashed with it.
 	can_hold = list(/obj/item/weapon/gun/magnetic/fuelrod, /obj/item/weapon/fuel_assembly, /obj/item/weapon/cell, /obj/item/weapon/stock_parts, /obj/item/weapon/tool/screwdriver)
-	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	starts_with = list(
 		/obj/item/weapon/gun/magnetic/fuelrod,
 		/obj/item/weapon/fuel_assembly/deuterium,

@@ -112,6 +112,9 @@
 
 	var/protean_drop_whitelist = FALSE
 
+	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
+	var/climbing_delay = 1 //If rock_climbing, lower better.
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)
@@ -358,11 +361,11 @@
 	user.position_hud_item(src,slot)
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
-	if((slot_flags & slot))
+	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
 		if(equip_sound)
-			playsound(src, equip_sound, 20)
+			playsound(src, equip_sound, 20, preference = /datum/client_preference/pickup_sounds)
 		else
-			playsound(src, drop_sound, 20)
+			playsound(src, drop_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		playsound(src, pickup_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	return
@@ -1014,4 +1017,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 	return
 
 /obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
+	return
+
+/obj/item/proc/get_welder()
 	return

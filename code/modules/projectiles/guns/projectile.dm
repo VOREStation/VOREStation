@@ -35,15 +35,23 @@
 	//var/list/icon_keys = list()		//keys
 	//var/list/ammo_states = list()	//values
 
+	var/random_start_ammo = FALSE	//randomize amount of starting ammo
+
 /obj/item/weapon/gun/projectile/New(loc, var/starts_loaded = 1)
 	..()
 	if(starts_loaded)
 		if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
 			for(var/i in 1 to max_shells)
 				loaded += new ammo_type(src)
+				if(random_start_ammo)
+					loaded.Cut(0,rand(0,max_shells))
 		if(ispath(magazine_type) && (load_method & MAGAZINE))
 			ammo_magazine = new magazine_type(src)
 			allowed_magazines += /obj/item/ammo_magazine/smart
+			if(random_start_ammo)
+				var/ammo_cut = rand(0,ammo_magazine.max_ammo)
+				ammo_magazine.contents.Cut(0,ammo_cut)
+				ammo_magazine.stored_ammo.Cut(0,ammo_cut)
 	update_icon()
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()

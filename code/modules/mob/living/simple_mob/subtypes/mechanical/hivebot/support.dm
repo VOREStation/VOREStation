@@ -89,3 +89,24 @@
 
 /decl/mob_organ_names/hivebotsupport
 	hit_zones = list("central chassis", "positioning servo", "head", "sensor suite", "manipulator arm", "battle analytics mount", "weapons array", "front right leg", "front left leg", "rear left leg", "rear right leg")
+
+/mob/living/simple_mob/mechanical/hivebot/support/harry
+	name = "Harry the hivelessbot"
+	desc = "A severely corroded hivebot, covered in barnacles and seaweed."
+	maxHealth = 5 // 1 health
+	health = 5
+	ai_holder_type = /datum/ai_holder/simple_mob/passive/speedy
+	say_list_type = /datum/say_list/hivebot/harry
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	faction = "Station"
+	water_resist = 1 //Harry lives under the sea!
+
+/mob/living/simple_mob/mechanical/hivebot/support/harry/death()
+	..()
+	visible_message(span("Connection... terminated... Sweet Release... obtained.","\The [src] blows apart!"))
+	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
+	qdel(src)

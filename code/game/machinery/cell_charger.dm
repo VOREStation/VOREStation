@@ -74,7 +74,7 @@
 			user.visible_message("[user] inserts [charging] into [src].", "You insert [charging] into [src].")
 			chargelevel = -1
 		update_icon()
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return

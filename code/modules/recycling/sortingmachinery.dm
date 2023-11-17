@@ -236,7 +236,7 @@
 		return
 	if(target.anchored)
 		return
-	if(target in user)
+	if(!isturf(target.loc)) //no wrapping things inside other things, just breaks things, put it on the ground first.
 		return
 	if(user in target) //no wrapping closets that you are inside - it's not physically possible
 		return
@@ -366,7 +366,7 @@
 	switch(action)
 		if("set_tag")
 			var/new_tag = params["tag"]
-			if(!(new_tag in GLOB.tagger_locations))	
+			if(!(new_tag in GLOB.tagger_locations))
 				return FALSE
 			currTag = new_tag
 			. = TRUE
@@ -437,13 +437,13 @@
 	if(!I || !user)
 		return
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		c_mode = !c_mode
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [c_mode ? "remove" : "attach"] the screws around the power connection.")
 		return
-	if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
-		var/obj/item/weapon/weldingtool/W = I
+	if(I.has_tool_quality(TOOL_WELDER) && c_mode==1)
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 		if(!W.remove_fuel(0,user))
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return

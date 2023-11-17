@@ -41,7 +41,7 @@
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
 		/obj/item/weapon/storage/pill_bottle/inaprovaline,
-		/obj/item/weapon/storage/pill_bottle/iron,
+		/obj/item/weapon/storage/pill_bottle/blood_regen,
 		/obj/item/weapon/storage/pill_bottle/dexalin
 	)
 
@@ -145,6 +145,12 @@
 
 /obj/item/weapon/storage/pill_bottle/iron
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/iron = 14)
+
+/obj/item/weapon/storage/pill_bottle/blood_regen
+	name = "pill bottle (blood regeneration)"
+	desc = "Contains iron and copper pills for treating bloodloss by employed species."
+	starts_with = list(/obj/item/weapon/reagent_containers/pill/iron = 9,
+	/obj/item/weapon/reagent_containers/pill/copper = 5)
 
 /obj/item/weapon/storage/pill_bottle/adminordrazine
 	name = "pill bottle (Adminordrazine)"
@@ -265,7 +271,8 @@
 	starts_with = list(
 			/obj/item/weapon/reagent_containers/pill/inaprovaline = 3,
 			/obj/item/weapon/reagent_containers/pill/antitox = 3,
-			/obj/item/weapon/reagent_containers/pill/iron = 2,
+			/obj/item/weapon/reagent_containers/pill/iron = 1,
+			/obj/item/weapon/reagent_containers/pill/copper = 1,
 			/obj/item/weapon/reagent_containers/pill/tramadol = 2,
 			/obj/item/weapon/reagent_containers/pill/hyronalin = 3,
 			/obj/item/weapon/reagent_containers/pill/spaceacillin

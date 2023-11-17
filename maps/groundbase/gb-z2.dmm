@@ -210,8 +210,21 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "aw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/structure/closet/walllocker_double/cargo/west,
 /turf/simulated/floor/tiled,
-/area/groundbase/science/hall)
+/area/groundbase/cargo/office)
 "ax" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/weapon/towel/random,
@@ -273,6 +286,30 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
+"aG" = (
+/obj/item/device/camera{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/device/camera,
+/obj/item/device/camera_film{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/device/camera_film{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/device/taperecorder,
+/obj/structure/closet/walllocker_double/misc_civ{
+	dir = 8;
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "aH" = (
 /obj/structure/table/glass,
 /obj/item/device/antibody_scanner,
@@ -291,6 +328,70 @@
 "aJ" = (
 /obj/structure/sign/painting/public{
 	pixel_y = 30
+	},
+/turf/simulated/floor/tiled{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
+"aK" = (
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/structure/closet/walllocker_double/misc_civ{
+	dir = 4;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
+"aL" = (
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/tape_roll,
+/obj/item/weapon/tape_roll,
+/obj/item/weapon/storage/box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/box{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/closet/walllocker_double/misc_civ{
+	dir = 4;
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled{
 	edge_blending_priority = -1;
@@ -475,6 +576,42 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
+"bd" = (
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/structure/easel,
+/obj/structure/closet/walllocker_double/misc_civ{
+	dir = 8;
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "be" = (
 /obj/structure/table/fancyblack,
 /obj/item/weapon/paper_bin{
@@ -547,6 +684,22 @@
 "bl" = (
 /turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
+"bm" = (
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/structure/closet/walllocker_double/misc_civ{
+	dir = 4;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "bn" = (
 /obj/machinery/door/airlock{
 	id_tag = null;
@@ -574,6 +727,22 @@
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
+"bq" = (
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/item/stack/material/plasteel{
+	amount = 10
+	},
+/obj/structure/closet/walllocker_double/science/north,
+/turf/simulated/floor/tiled/steel,
+/area/groundbase/science/robotics)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -589,6 +758,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"bt" = (
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/closet/walllocker_double/science/west,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/circuits)
 "bu" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Kitchen";
@@ -611,6 +787,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/psych)
+"bw" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/item/device/defib_kit/jumper_kit,
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/storage/box/bodybags{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/weapon/book/manual/robotics_cyborgs,
+/obj/structure/closet/walllocker_double/science/east,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/robotics)
 "bx" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -697,6 +885,24 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
+"bH" = (
+/obj/item/weapon/circuitboard/aicore{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/weapon/circuitboard/teleporter,
+/obj/random/paicard{
+	pixel_x = 4
+	},
+/obj/item/device/taperecorder{
+	pixel_x = -3
+	},
+/obj/structure/closet/walllocker_double/command/rd{
+	dir = 4;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/rd)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -1043,18 +1249,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
-"cN" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/closet/walllocker_double/east,
-/obj/item/device/defib_kit/jumper_kit,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/bodybags{
-	pixel_x = -3;
-	pixel_y = -2
-	},
-/obj/item/weapon/book/manual/robotics_cyborgs,
-/turf/simulated/floor/tiled,
-/area/groundbase/science/robotics)
 "cO" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2313,7 +2507,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -3121,12 +3315,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
-"iH" = (
-/turf/simulated/floor{
-	edge_blending_priority = -1;
-	outdoors = 1
-	},
-/area/groundbase/level2/westspur)
 "iI" = (
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/civilian/hydroponics/out)
@@ -4727,26 +4915,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/groundbase/science/robotics)
-"nl" = (
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/glass,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
-/obj/structure/closet/walllocker_double/east{
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/steel,
 /area/groundbase/science/robotics)
 "nm" = (
 /obj/machinery/door/firedoor/glass,
@@ -7747,32 +7915,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
-"vT" = (
-/obj/structure/closet/walllocker_double{
-	dir = 4;
-	pixel_x = 27
-	},
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/turf/simulated/floor/tiled{
-	edge_blending_priority = -1;
-	outdoors = 0
-	},
-/area/groundbase/level2/nw)
 "vU" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -8140,22 +8282,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
-"xc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/closet/walllocker_double/cargo/west,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/turf/simulated/floor/tiled,
-/area/groundbase/cargo/office)
 "xd" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /obj/structure/cable/yellow{
@@ -9309,21 +9435,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
-"Ay" = (
-/obj/structure/closet/walllocker_double/east,
-/obj/item/weapon/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/weapon/circuitboard/teleporter,
-/obj/random/paicard{
-	pixel_x = 4
-	},
-/obj/item/device/taperecorder{
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/science/rd)
 "AA" = (
 /obj/effect/floor_decal/chapel,
 /turf/simulated/floor/tiled/dark,
@@ -9742,6 +9853,12 @@
 	outdoors = 0
 	},
 /area/groundbase/cargo/office)
+"BJ" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
+/area/groundbase/level2/se)
 "BK" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 22
@@ -11571,22 +11688,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
-"GO" = (
-/obj/structure/closet/walllocker_double{
-	dir = 4;
-	pixel_x = 27
-	},
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/turf/simulated/floor/tiled{
-	edge_blending_priority = -1;
-	outdoors = 0
-	},
-/area/groundbase/level2/nw)
 "GP" = (
 /obj/structure/bed/chair/sofa/pew/left{
 	dir = 1
@@ -13031,30 +13132,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
-"KC" = (
-/obj/structure/closet/walllocker_double{
-	dir = 8;
-	pixel_x = -28
-	},
-/obj/item/device/camera{
-	pixel_x = 3;
-	pixel_y = -4
-	},
-/obj/item/device/camera,
-/obj/item/device/camera_film{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/device/camera_film{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/item/device/taperecorder,
-/turf/simulated/floor/tiled{
-	edge_blending_priority = -1;
-	outdoors = 0
-	},
-/area/groundbase/level2/nw)
 "KD" = (
 /obj/structure/bookcase,
 /obj/item/weapon/book/manual/security_space_law,
@@ -14739,6 +14816,9 @@
 	departmentType = 2;
 	pixel_y = 30
 	},
+/obj/item/device/healthanalyzer/guide,
+/obj/item/device/healthanalyzer/guide,
+/obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "Po" = (
@@ -15247,42 +15327,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
-"QK" = (
-/obj/structure/closet/walllocker_double{
-	dir = 8;
-	pixel_x = -28
-	},
-/obj/item/canvas,
-/obj/item/canvas,
-/obj/item/canvas,
-/obj/item/canvas,
-/obj/item/canvas,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_twentythree,
-/obj/item/canvas/twentythree_twentythree,
-/obj/item/canvas/twentythree_twentythree,
-/obj/item/canvas/twentythree_twentythree,
-/obj/item/canvas/twentythree_twentythree,
-/obj/structure/easel,
-/turf/simulated/floor/tiled{
-	edge_blending_priority = -1;
-	outdoors = 0
-	},
-/area/groundbase/level2/nw)
 "QL" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16006,44 +16050,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/groundbase/civilian/library)
-"SJ" = (
-/obj/structure/closet/walllocker_double{
-	dir = 4;
-	pixel_x = 27
-	},
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/tape_roll,
-/obj/item/weapon/tape_roll,
-/obj/item/weapon/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/simulated/floor/tiled{
-	edge_blending_priority = -1;
-	outdoors = 0
-	},
-/area/groundbase/level2/nw)
 "SK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -17376,6 +17382,12 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level2/se)
+"WI" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "WK" = (
 /obj/structure/bed/chair/sofa/corp/right,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -17587,17 +17599,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
-"Xv" = (
-/obj/structure/closet/walllocker_double/north{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = 0
-	},
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/groundbase/science/circuits)
 "Xw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -18928,7 +18929,7 @@ Kl
 Kl
 xE
 xE
-KW
+WI
 xE
 xE
 xE
@@ -20374,9 +20375,9 @@ yW
 Ja
 tZ
 Pz
-KC
+aG
 ro
-QK
+bd
 bY
 bY
 bY
@@ -21510,9 +21511,9 @@ OZ
 Cw
 ay
 oB
-vT
-SJ
-GO
+aK
+aL
+bm
 bY
 eN
 eN
@@ -23257,7 +23258,7 @@ Gi
 Rh
 hh
 GJ
-Xv
+bt
 th
 my
 dm
@@ -23838,7 +23839,7 @@ aB
 PR
 lw
 Vr
-aw
+Vr
 Bl
 ag
 ag
@@ -24695,7 +24696,7 @@ XX
 xv
 Fx
 Fx
-Ay
+bH
 ja
 Xn
 XX
@@ -25669,7 +25670,7 @@ Fm
 bg
 EK
 Wn
-nl
+bq
 nF
 Tj
 qk
@@ -25813,7 +25814,7 @@ Dm
 Wn
 Lo
 wP
-cN
+bw
 Fz
 Dh
 rI
@@ -26913,11 +26914,11 @@ Yo
 In
 bY
 bY
-iH
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -27056,10 +27057,10 @@ Wl
 bY
 bY
 bY
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -27198,10 +27199,10 @@ Wl
 bY
 OI
 OI
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -27340,10 +27341,10 @@ bY
 bY
 OI
 OI
-eN
-eN
-eN
-eN
+OI
+OI
+OI
+OI
 eN
 eN
 eN
@@ -29285,7 +29286,7 @@ Ln
 Gf
 LG
 Lj
-xc
+aw
 iV
 Xg
 sP
@@ -35450,7 +35451,7 @@ fk
 fk
 oF
 oF
-oF
+BJ
 fk
 fk
 fk

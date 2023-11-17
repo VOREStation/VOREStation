@@ -36,6 +36,8 @@
 	var/b_synth							//Same as above
 	var/synth_markings = 0				//Enables/disables markings on synth parts.
 
+	var/digitigrade = 0 // 0 = no digi, 1 = default, 2+ = digi styles... (Not used yet)
+
 	//var/size_multiplier = 1 //multiplier for the mob's icon size //VOREStation Edit (Moved to /mob/living)
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
@@ -43,6 +45,9 @@
 	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
+	var/bday_month = 0	//Character birth month
+	var/bday_day = 0	//Character birthday day
+
 	var/b_type = "A+"	//Player's bloodtype
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
 
