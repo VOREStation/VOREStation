@@ -476,6 +476,16 @@
 	else
 		stat(null, text("No Cell Inserted!"))
 
+// function to toggle VTEC once installed
+/mob/living/silicon/robot/proc/toggle_vtec()
+    set name = "Toggle VTEC"
+    set category = "Abilities"
+    if(speed == -1)
+        to_chat(src, "<span class='filter_notice'>VTEC module disbaled.</span>")
+        speed = 0
+    else
+        to_chat(src, "<span class='filter_notice'>VTEC module enabled.</span>")
+        speed = -1
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()
@@ -895,7 +905,7 @@
 				if(LAZYLEN(vore_selected.contents) > 0)
 					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
 						if(istype(borgfood, /mob/living))
-							if(vore_selected.belly_item_mult <= 0) //If mobs dont contribute, dont calculate further
+							if(vore_selected.belly_mob_mult <= 0) //If mobs dont contribute, dont calculate further
 								continue
 							var/mob/living/prey = borgfood //typecast to living
 							belly_size += (prey.size_multiplier / size_multiplier) / vore_selected.belly_mob_mult //Smaller prey are less filling to larger bellies
