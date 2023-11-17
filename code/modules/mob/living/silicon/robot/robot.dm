@@ -481,7 +481,7 @@
     set name = "Toggle VTEC"
     set category = "Abilities"
     if(speed == -1)
-        to_chat(src, "<span class='filter_notice'>VTEC module disbaled.</span>")
+        to_chat(src, "<span class='filter_notice'>VTEC module disabled.</span>")
         speed = 0
     else
         to_chat(src, "<span class='filter_notice'>VTEC module enabled.</span>")
