@@ -90,6 +90,43 @@
 		T.upgraded_capacity = TRUE
 	return 1
 
+//adds the capability to ingest items to the sleeper modules as optional upgrade
+/obj/item/borg/upgrade/bellycapupgrade
+	name = "robohound capability expansion module"
+	desc = "Used to enable a robohound's sleeper to ingest items. This only affects sleepers, and has no effect on compactor bellies. Can only be applied once."
+	icon_state = "cyborg_upgrade2"
+	item_state = "cyborg_upgrade"
+	require_module = 1
+
+/obj/item/borg/upgrade/bellycapupgrade/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	if(!R.module)//can work
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
+
+	var/obj/item/device/dogborg/sleeper/T = locate() in R.module
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
+		to_chat(usr, "<span class='warning'>This robot has had its processor removed!</span>")
+		return 0
+
+	if(T.compactor)// == TRUE, the belly unit is a compactor and no sleeper unit already
+		to_chat(R, "Maximum capability achieved for this hardpoint!")
+		to_chat(usr, "There's no room for another capability upgrade!")
+		return 0
+	else
+		var/X = T.max_item_count*2 //double the capacity from 1 to 2 to allow sleepers to store some items, at most 4 with both upgrades
+		T.max_item_count = X	//I couldn't do T = maxitem*2 for some reason.
+		to_chat(R, "Internal capability upgraded.")
+		to_chat(usr, "Internal capability upgraded.")
+		T.compactor = TRUE
+	return 1
+
 //Advanced RPED
 /obj/item/borg/upgrade/advrped
 	name = "Advanced Rapid Part Exchange Device"
