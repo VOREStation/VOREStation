@@ -118,8 +118,9 @@
 			for(var/mob/new_player/player in player_list)
 				refJob = player.client.prefs.get_highest_job()
 				if(player.client.prefs.obfuscate_job)
-					refJob.title = "REDACTED"
-				stat("[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
+					stat("[player.key]", (player.ready)?("Ready!"):(null))
+				else
+					stat("[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
