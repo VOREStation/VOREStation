@@ -17,6 +17,7 @@
 	S["tgui_input_lock"]		>> pref.tgui_input_lock
 	S["tgui_large_buttons"]		>> pref.tgui_large_buttons
 	S["tgui_swapped_buttons"]	>> pref.tgui_swapped_buttons
+	S["obfuscate_key"]			>> pref.obfuscate_key
 	S["obfuscate_job"]			>> pref.obfuscate_job
 	S["chat_timestamp"]			>> pref.chat_timestamp
 	S["throwmode_loud"]			>> pref.throwmode_loud
@@ -36,6 +37,7 @@
 	S["tgui_input_lock"]		<< pref.tgui_input_lock
 	S["tgui_large_buttons"]		<< pref.tgui_large_buttons
 	S["tgui_swapped_buttons"]	<< pref.tgui_swapped_buttons
+	S["obfuscate_key"]			<< pref.obfuscate_key
 	S["obfuscate_job"]			<< pref.obfuscate_job
 	S["chat_timestamp"]			<< pref.chat_timestamp
 	S["throwmode_loud"]			<< pref.throwmode_loud
@@ -55,6 +57,7 @@
 	pref.tgui_input_lock	= sanitize_integer(pref.tgui_input_lock, 0, 1, initial(pref.tgui_input_lock))
 	pref.tgui_large_buttons	= sanitize_integer(pref.tgui_large_buttons, 0, 1, initial(pref.tgui_large_buttons))
 	pref.tgui_swapped_buttons	= sanitize_integer(pref.tgui_swapped_buttons, 0, 1, initial(pref.tgui_swapped_buttons))
+	pref.obfuscate_key		= sanitize_integer(pref.obfuscate_key, 0, 1, initial(pref.obfuscate_key))
 	pref.obfuscate_job		= sanitize_integer(pref.obfuscate_job, 0, 1, initial(pref.obfuscate_job))
 	pref.chat_timestamp		= sanitize_integer(pref.chat_timestamp, 0, 1, initial(pref.chat_timestamp))
 	pref.throwmode_loud		= sanitize_integer(pref.throwmode_loud, 0, 1, initial(pref.throwmode_loud))
@@ -74,6 +77,7 @@
 	. += "<b>TGUI Input Lock:</b> <a href='?src=\ref[src];tgui_input_lock=1'><b>[(pref.tgui_input_lock) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	. += "<b>TGUI Large Buttons:</b> <a href='?src=\ref[src];tgui_large_buttons=1'><b>[(pref.tgui_large_buttons) ? "Enabled (default)" : "Disabled"]</b></a><br>"
 	. += "<b>TGUI Swapped Buttons:</b> <a href='?src=\ref[src];tgui_swapped_buttons=1'><b>[(pref.tgui_swapped_buttons) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += "<b>Obfuscate Ckey:</b> <a href='?src=\ref[src];obfuscate_key=1'><b>[(pref.obfuscate_key) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	. += "<b>Obfuscate Job:</b> <a href='?src=\ref[src];obfuscate_job=1'><b>[(pref.obfuscate_job) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	. += "<b>Chat Timestamps:</b> <a href='?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	. += "<b>Throw Mode Messages:</b> <a href='?src=\ref[src];throwmode_loudness=1'><b>[(pref.throwmode_loud) ? "Loud" : "Quiet (default)"]</b></a><br>"
@@ -162,10 +166,14 @@
 		pref.tgui_swapped_buttons = !pref.tgui_swapped_buttons
 		return TOPIC_REFRESH
 
+	else if(href_list["obfuscate_key"])
+		pref.obfuscate_key = !pref.obfuscate_key
+		return TOPIC_REFRESH
+
 	else if(href_list["obfuscate_job"])
 		pref.obfuscate_job = !pref.obfuscate_job
 		return TOPIC_REFRESH
-		
+
 	else if(href_list["chat_timestamps"])
 		pref.chat_timestamp = !pref.chat_timestamp
 		return TOPIC_REFRESH
