@@ -919,6 +919,30 @@
 	nutriment_amt = 2
 	nutriment_desc = list("salsa sauce" = 2, "meat chunks" = 4, "cheese" = 3)
 
+/obj/item/weapon/reagent_containers/food/snacks/ratpackcake
+	name = "Instant Sweet Celebration"
+	desc = "A compressed sweet treat in one easy container. The label states that it's a slice of vanilla cake."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_cake"
+	package_open_state = "altevian_pack_cake-open"
+	package_opening_state = "altevian_pack_cake-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpackcake
+	nutriment_amt = 2
+	nutriment_desc = list("nice mix of vanilla and sugar" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpackmeat
+	name = "unmarked compression package"
+	desc = "This package looks familiar to the compression packs commonly seen from the Altevians. However, it looks to be unfinished or a possible test product that somehow ended up in your hands."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_meat"
+	package_open_state = "altevian_pack_meat-open"
+	package_opening_state = "altevian_pack_meat-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpackmeat
+	nutriment_amt = 2
+	nutriment_desc = list("synthetic meat" = 6)
+
 
 //desatti snacks
 
