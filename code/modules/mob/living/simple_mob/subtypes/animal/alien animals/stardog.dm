@@ -489,7 +489,7 @@
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
 	log_subtle(message,L)
-	message = "<span class='emote_subtle'><B>[L]</B> <I>[message]</I></span>"
+	message = "<span class='emotesubtle'><B>[L]</B> <I>[message]</I></span>"
 	message = "<B>(From the back of \the [m]) </B>" + message
 	message = encode_html_emphasis(message)
 
@@ -1161,7 +1161,7 @@
 		return
 
 	log_subtle(message,L)
-	message = "<span class='emote_subtle'><B>[L]</B> <I>[message]</I></span>"
+	message = "<span class='emotesubtle'><B>[L]</B> <I>[message]</I></span>"
 	message = "<B>(From within \the [s]) </B>" + message
 	message = encode_html_emphasis(message)
 

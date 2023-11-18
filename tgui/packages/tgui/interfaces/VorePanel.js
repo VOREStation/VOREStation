@@ -763,7 +763,7 @@ const VoreSelectedMobTypeBellyButtons = (props, context) => {
           <LabeledList.Item label="Item Vorebelly Size Mult">
             <Button
               onClick={() =>
-                act('set_attribute', { attribute: 'b_belly_item_multi' })
+                act('set_attribute', { attribute: 'b_belly_item_mult' })
               }
               content={belly_item_mult}
             />
