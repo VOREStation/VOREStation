@@ -23,6 +23,7 @@
 	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
 	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
 	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+	center_offset = 0
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"

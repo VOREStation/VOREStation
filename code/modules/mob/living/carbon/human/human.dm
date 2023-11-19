@@ -1247,6 +1247,8 @@
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor //VOREStation Add
 
+	center_offset = species.center_offset
+
 	if(LAZYLEN(descriptors))
 		descriptors = null
 

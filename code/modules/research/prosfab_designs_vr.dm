@@ -21,6 +21,12 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 	build_path = /obj/item/borg/upgrade/bellysizeupgrade
 
+/datum/design/item/prosfab/robot_upgrade/bellycapupgrade
+	name = "Robohound Capability Expansion Module"
+	id = "borg_hound_capability_module"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 6000)
+	build_path = /obj/item/borg/upgrade/bellycapupgrade
 
 /*
 	Some job related borg upgrade modules, adding useful items for puppers.

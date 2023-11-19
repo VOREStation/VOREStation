@@ -1010,15 +1010,18 @@
 		if(!isnull(M.icon_scale_y_percent))
 			. *= M.icon_scale_y_percent
 
-/mob/living/update_transform()
+/mob/living/update_transform(var/instant = FALSE)
 	// First, get the correct size.
 	var/desired_scale_x = size_multiplier * icon_scale_x //VOREStation edit
 	var/desired_scale_y = size_multiplier * icon_scale_y //VOREStation edit
+	var/cent_offset = center_offset
 
 	// Now for the regular stuff.
+	if(fuzzy || offset_override || dir == EAST || dir == WEST)
+		cent_offset = 0
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
-	M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
+	M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1))
 	src.transform = M //VOREStation edit
 	handle_status_indicators()
 
@@ -1301,3 +1304,8 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"
 	screen_loc = ui_smallquad
+
+/mob/living/set_dir(var/new_dir)
+	. = ..()
+	if(size_multiplier != 1 || icon_scale_x != 1 && center_offset > 0)
+		update_transform(TRUE)
