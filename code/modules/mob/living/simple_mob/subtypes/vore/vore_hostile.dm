@@ -319,7 +319,7 @@
 	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 10
-	B.escapetime = 10 SECONDS
+	B.escapetime = 5 SECONDS
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 3
 
