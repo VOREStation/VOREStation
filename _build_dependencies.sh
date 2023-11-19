@@ -6,6 +6,6 @@ export NODE_VERSION=16
 # Byond Major
 export BYOND_MAJOR=515
 # Byond Minor
-export BYOND_MINOR=1610
+export BYOND_MINOR=1620
 # Macro Count
 export MACRO_COUNT=4

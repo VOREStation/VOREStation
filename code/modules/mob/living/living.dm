@@ -1294,7 +1294,7 @@
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
 	var/mob/owner = user
 	if(owner.client?.prefs)
-		INVOKE_ASYNC(owner.client.prefs, /datum/preferences/proc/ShowChoices, owner)
+		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)
 
 /**
  * Screen object for vore panel
