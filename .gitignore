@@ -11,9 +11,11 @@ vchat.db*
 *.before
 *.pyc
 *.pid
-data
-data/
 cfg/
+
+#Ignore everything in datafolder and subdirectories
+/data/**/*
+/tmp/**/*
 
 #Visual studio stuff
 *.vscode/*

@@ -1,13 +1,4 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-
-/datum/asset/simple/tgui
-	// keep_local_name = TRUE
-	assets = list(
-		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
-		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
-	)
-
-
 /datum/asset/simple/headers
 	assets = list(
 		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
@@ -154,11 +145,6 @@
 // 		/datum/asset/simple/fontawesome
 // 	)
 
-/datum/asset/simple/jquery
-	assets = list(
-		"jquery.min.js"            = 'code/modules/tooltip/jquery.min.js',
-	)
-
 // /datum/asset/simple/goonchat
 // 	assets = list(
 // 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
@@ -166,24 +152,6 @@
 // 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
 // 		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
 // 	)
-
-/datum/asset/simple/fontawesome
-	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
-		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
-	)
-
-/datum/asset/simple/tgfont
-	assets = list(
-		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
-		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
-		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
-	)
-
 
 // /datum/asset/spritesheet/goonchat
 // 	name = "chat"
