@@ -28,14 +28,25 @@ var/list/preferences_datums = list()
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
+	var/tgui_input_mode = FALSE			// All the Input Boxes (Text,Number,List,Alert)
+	var/tgui_input_lock = FALSE
+	var/tgui_large_buttons = TRUE
+	var/tgui_swapped_buttons = FALSE
+	var/chat_timestamp = FALSE
+	var/throwmode_loud = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/nickname						//our character's nickname
 	var/age = 30						//age of character
+	var/bday_month = 0					//Birthday month
+	var/bday_day = 0					//Birthday day
+	var/last_birthday_notification = 0	//The last year we were notified about our birthday
+	var/bday_announce = FALSE			//Public announcement for birthdays
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
+	var/blood_reagents = "iron"				//blood restoration reagents
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
@@ -60,7 +71,8 @@ var/list/preferences_datums = list()
 	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
-	var/list/language_prefixes = list() //Kanguage prefix keys
+	var/list/language_prefixes = list() //Language prefix keys
+	var/list/language_custom_keys = list() //Language custom call keys
 	var/list/gear						//Left in for Legacy reasons, will no longer save.
 	var/list/gear_list = list()			//Custom/fluff item loadouts.
 	var/gear_slot = 1					//The current gear save slot
@@ -70,10 +82,12 @@ var/list/preferences_datums = list()
 	var/g_synth							//Same as above
 	var/b_synth							//Same as above
 	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
+	var/digitigrade = 0
 
 		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
+	var/home_system = "Unset"           //Current home or residence.
+	var/birthplace = "Unset"           //Location of birth.
+	var/citizenship = "None"            //Government or similar entity with which you hold citizenship.
 	var/faction = "None"                //General associated faction.
 	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.
@@ -116,10 +130,11 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-	var/list/body_markings = list() // "name" = "#rgbcolor"
+	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
 
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
+	var/custom_link = null
 
 	var/list/body_descriptors = list()
 
@@ -135,6 +150,8 @@ var/list/preferences_datums = list()
 
 	// OOC Metadata:
 	var/metadata = ""
+	var/metadata_likes = ""
+	var/metadata_dislikes = ""
 	var/list/ignored_players = list()
 
 	var/client/client = null
@@ -406,6 +423,7 @@ var/list/preferences_datums = list()
 	var/name
 	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
+	var/default //VOREStation edit
 	for(var/i=1, i<= config.character_slots, i++)
 		S.cd = "/character[i]"
 		S["real_name"] >> name
@@ -416,19 +434,21 @@ var/list/preferences_datums = list()
 			name = "►[i] - [name]"
 		else
 			name = "[i] - [name]"
+		if (i == default_slot) //VOREStation edit
+			default = "[name][nickname ? " ([nickname])" : ""]"
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	selecting_slots = TRUE
-	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist)
+	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist, default)
 	selecting_slots = FALSE
 	if(!choice)
 		return
-	
+
 	var/slotnum = charlist[choice]
 	if(!slotnum)
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
-	
+
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()
@@ -463,12 +483,12 @@ var/list/preferences_datums = list()
 	selecting_slots = FALSE
 	if(!choice)
 		return
-	
+
 	var/slotnum = charlist[choice]
 	if(!slotnum)
 		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
-	
+
 	overwrite_character(slotnum)
 	sanitize_preferences()
 	ShowChoices(user)

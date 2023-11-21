@@ -1,7 +1,7 @@
 /datum/instrument/fun
 	name = "Generic Fun Instrument"
 	category = "Fun"
-	abstract_type = /datum/instrument/fun
+	instrument_type = /datum/instrument/fun
 
 /datum/instrument/fun/honk
 	name = "!!HONK!!"

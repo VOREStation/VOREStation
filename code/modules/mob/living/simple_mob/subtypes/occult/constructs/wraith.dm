@@ -20,7 +20,7 @@
 	attacktext = list("slashed")
 	friendly = list("pinches")
 	organ_names = /decl/mob_organ_names/wraith
-	movement_cooldown = 0
+	movement_cooldown = -1
 	attack_sound = 'sound/weapons/rapidslice.ogg'
 	construct_spells = list(/spell/targeted/ethereal_jaunt/shift,
 							/spell/targeted/ambush_mode

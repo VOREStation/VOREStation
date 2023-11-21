@@ -850,12 +850,12 @@
 	plane = PLANE_PLAYER_HUD_ITEMS
 	layer = 0.1
 	alpha = 200
-	var/weakref/held_item
+	var/datum/weakref/held_item
 
 /atom/movable/storage_slot/New(newloc, obj/item/held_item)
 	ASSERT(held_item)
 	name += held_item.name
-	src.held_item = weakref(held_item)
+	src.held_item = WEAKREF(held_item)
 
 /atom/movable/storage_slot/Destroy()
 	held_item = null
@@ -877,8 +877,8 @@
 	if(target != user) return // If the user didn't drag themselves, exit
 	if(user.incapacitated() || user.buckled) return // If user is incapacitated or buckled, exit
 	if(get_holder_of_type(src, /mob/living/carbon/human) == user) return // No jumping into your own equipment
-	if(ishuman(user) && user.get_effective_size() > 0.25) return // Only micro characters
-	if(ismouse(user) && user.get_effective_size() > 1) return // Only normal sized mice or less
+	if(ishuman(user) && user.get_effective_size(TRUE) > 0.25) return // Only micro characters
+	if(ismouse(user) && user.get_effective_size(TRUE) > 1) return // Only normal sized mice or less
 
 	// Create a dummy holder with user's size to test insertion
 	var/obj/item/weapon/holder/D = new/obj/item/weapon/holder

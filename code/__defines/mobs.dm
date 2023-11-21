@@ -136,8 +136,9 @@
 #define CLASS_MIDDLE 		"Average"
 #define CLASS_LOWMID		"Underpaid"
 #define CLASS_LOWER			"Poor"
+#define CLASS_BROKE			"Broke"	//VOREStation Add
 
-#define ECONOMIC_CLASS		list(CLASS_UPPER,CLASS_UPMID,CLASS_MIDDLE,CLASS_LOWMID,CLASS_LOWER)
+#define ECONOMIC_CLASS		list(CLASS_UPPER,CLASS_UPMID,CLASS_MIDDLE,CLASS_LOWMID,CLASS_LOWER,CLASS_BROKE)
 
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
@@ -249,7 +250,7 @@
 #define BP_HEAD   "head"
 #define BP_TORSO  "torso"
 #define BP_GROIN  "groin"
-#define BP_ALL list(BP_GROIN, BP_TORSO, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
+#define BP_ALL list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT) //keep so that parent comes before child
 
 #define SYNTH_BLOOD_COLOUR "#030303"
 #define SYNTH_FLESH_COLOUR "#575757"
@@ -447,3 +448,7 @@
 #define DEATHGASP_NO_MESSAGE "no message"
 
 #define RESIST_COOLDOWN		2 SECONDS
+
+#define VISIBLE_GENDER_FORCE_PLURAL 1		// Used by get_visible_gender to return PLURAL
+#define VISIBLE_GENDER_FORCE_IDENTIFYING 2	// Used by get_visible_gender to return the mob's identifying gender
+#define VISIBLE_GENDER_FORCE_BIOLOGICAL 3	// Used by get_visible_gender to return the mob's biological gender

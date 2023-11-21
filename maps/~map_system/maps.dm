@@ -56,6 +56,7 @@ var/list/all_maps = list()
 	//Similar to above, but only pick ONE to load, useful for random away missions and whatnot
 	var/list/lateload_gateway = list()
 	var/list/lateload_overmap = list() //VOREStation Add - The same thing as gateway, but not
+	var/list/lateload_redgate = list() //VOREStation Add - The same thing as gateway, but safe-ish
 
 	var/list/allowed_jobs = list() //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
@@ -133,6 +134,7 @@ var/list/all_maps = list()
 	var/list/unit_test_exempt_areas = list()
 	var/list/unit_test_exempt_from_atmos = list()
 	var/list/unit_test_exempt_from_apc = list()
+	var/list/unit_test_exempt_from_wires = list()
 	var/list/unit_test_z_levels //To test more than Z1, set your z-levels to test here.
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.

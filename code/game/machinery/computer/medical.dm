@@ -33,6 +33,7 @@
 	field_edit_questions = list(
 		// General
 		"sex" = "Please select new sex:",
+		"species" = "Please input new species:",
 		"age" = "Please input new age:",
 		"fingerprint" = "Please input new fingerprint hash:",
 		"p_stat" = "Please select new physical status:",
@@ -40,6 +41,7 @@
 		// Medical
 		"id_gender" = "Please select new gender identity:",
 		"blood_type" = "Please select new blood type:",
+		"blood_reagent" = "Please select new blood basis:",
 		"b_dna" = "Please input new DNA:",
 		"mi_dis" = "Please input new minor disabilities:",
 		"mi_dis_d" = "Please summarize minor disabilities:",
@@ -137,6 +139,7 @@
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], null)
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], null)
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
+					fields[++fields.len] = FIELD("Species", active1.fields["species"], "species")
 					fields[++fields.len] = FIELD("Age", "[active1.fields["age"]]", "age")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], "p_stat")
@@ -157,6 +160,7 @@
 					medical["fields"] = fields
 					fields[++fields.len] = MED_FIELD("Gender identity", active2.fields["id_gender"], "id_gender", TRUE)
 					fields[++fields.len] = MED_FIELD("Blood Type", active2.fields["b_type"], "blood_type", FALSE)
+					fields[++fields.len] = MED_FIELD("Blood Basis", active2.fields["blood_reagent"], "blood_reagent", FALSE)
 					fields[++fields.len] = MED_FIELD("DNA", active2.fields["b_dna"], "b_dna", TRUE)
 					fields[++fields.len] = MED_FIELD("Brain Type", active2.fields["brain_type"], "brain_type", TRUE)
 					fields[++fields.len] = MED_FIELD("Important Notes", active2.fields["notes"], "notes", TRUE)
@@ -299,6 +303,7 @@
 					R.fields["id"] = active1.fields["id"]
 					R.name = "Medical Record #[R.fields["id"]]"
 					R.fields["b_type"] = "Unknown"
+					R.fields["blood_reagent"] = "Unknown"
 					R.fields["b_dna"] = "Unknown"
 					R.fields["mi_dis"] = "None"
 					R.fields["mi_dis_d"] = "No minor disabilities have been declared."
@@ -346,7 +351,7 @@
 					printing = TRUE
 					// playsound(loc, 'sound/goonstation/machines/printer_dotmatrix.ogg', 50, TRUE)
 					SStgui.update_uis(src)
-					addtimer(CALLBACK(src, .proc/print_finish), 5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(print_finish)), 5 SECONDS)
 			else
 				return FALSE
 
@@ -418,6 +423,7 @@
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
+		<br>\nSpecies: [active1.fields["species"]]
 		<br>\nAge: [active1.fields["age"]]
 		<br>\nFingerprint: [active1.fields["fingerprint"]]
 		<br>\nPhysical Status: [active1.fields["p_stat"]]
@@ -428,6 +434,7 @@
 		P.info += {"<br>\n<center><b>Medical Data</b></center>
 		<br>\nGender Identity: [active2.fields["id_gender"]]
 		<br>\nBlood Type: [active2.fields["b_type"]]
+		<br>\nBlood Basis: [active2.fields["blood_reagent"]]
 		<br>\nDNA: [active2.fields["b_dna"]]<br>\n
 		<br>\nMinor Disabilities: [active2.fields["mi_dis"]]
 		<br>\nDetails: [active2.fields["mi_dis_d"]]<br>\n

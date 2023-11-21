@@ -57,7 +57,7 @@
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#2398FF")
 	visible_message("<span class='warning'>The monkey cube suddenly takes the shape of a humanoid!</span>")
-	var/newname = sanitize(input(S, "You are a Promethean. Would you like to change your name to something else?", "Name change") as null|text, MAX_NAME_LEN)
+	var/newname = sanitize(tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(newname)
 		S.real_name = newname
 		S.name = S.real_name

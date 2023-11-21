@@ -1,10 +1,8 @@
 import { createSearch } from 'common/string';
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Collapsible, Dropdown, Flex, Input, NoticeBox, Section } from '../components';
-import { Window } from "../layouts";
-import { refocusLayout } from '../layouts';
-import { logger } from '../logging';
+import { useBackend, useLocalState } from '../backend';
+import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
+import { Window } from '../layouts';
 
 const sortTypes = {
   'Alphabetical': (a, b) => a - b,
@@ -17,25 +15,22 @@ export const Biogenerator = (props, context) => {
   return (
     <Window width={400} height={450} resizable>
       <Window.Content className="Layout__content--flexColumn" scrollable>
-        {data.processing && (
+        {(data.processing && (
           <Section title="Processing">
             The biogenerator is processing reagents!
           </Section>
-        ) || (
+        )) || (
           <Fragment>
             <Section>
               {data.points} points available.
-              <Button
-                ml={1}
-                icon="blender"
-                onClick={() => act("activate")}>
+              <Button ml={1} icon="blender" onClick={() => act('activate')}>
                 Activate
               </Button>
               <Button
                 ml={1}
                 icon="eject"
                 disabled={!data.beaker}
-                onClick={() => act("detach")}>
+                onClick={() => act('detach')}>
                 Eject Beaker
               </Button>
             </Section>
@@ -48,27 +43,22 @@ export const Biogenerator = (props, context) => {
   );
 };
 
-
 const BiogeneratorItems = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    points,
-    items,
-  } = data;
+  const { points, items } = data;
   // Search thingies
-  const [
-    searchText,
-    _setSearchText,
-  ] = useLocalState(context, 'search', '');
-  const [
-    sortOrder,
-    _setSortOrder,
-  ] = useLocalState(context, 'sort', 'Alphabetical');
-  const [
-    descending,
-    _setDescending,
-  ] = useLocalState(context, 'descending', false);
-  const searcher = createSearch(searchText, item => {
+  const [searchText, _setSearchText] = useLocalState(context, 'search', '');
+  const [sortOrder, _setSortOrder] = useLocalState(
+    context,
+    'sort',
+    'Alphabetical'
+  );
+  const [descending, _setDescending] = useLocalState(
+    context,
+    'descending',
+    false
+  );
+  const searcher = createSearch(searchText, (item) => {
     return item[0];
   });
 
@@ -76,8 +66,8 @@ const BiogeneratorItems = (props, context) => {
   let contents = Object.entries(items).map((kv, _i) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
-      .map(kv2 => {
-        kv2[1].affordable = points >= (kv2[1].price / data.build_eff);
+      .map((kv2) => {
+        kv2[1].affordable = points >= kv2[1].price / data.build_eff;
         return kv2[1];
       })
       .sort(sortTypes[sortOrder]);
@@ -99,31 +89,25 @@ const BiogeneratorItems = (props, context) => {
   });
   return (
     <Flex.Item grow="1" overflow="auto">
-      <Section onClick={e => refocusLayout()}>
-        {has_contents
-          ? contents : (
-            <Box color="label">
-              No items matching your criteria was found!
-            </Box>
-          )}
+      <Section>
+        {has_contents ? (
+          contents
+        ) : (
+          <Box color="label">No items matching your criteria was found!</Box>
+        )}
       </Section>
     </Flex.Item>
   );
 };
 
 const BiogeneratorSearch = (props, context) => {
-  const [
-    _searchText,
-    setSearchText,
-  ] = useLocalState(context, 'search', '');
-  const [
-    _sortOrder,
-    setSortOrder,
-  ] = useLocalState(context, 'sort', '');
-  const [
-    descending,
-    setDescending,
-  ] = useLocalState(context, 'descending', false);
+  const [_searchText, setSearchText] = useLocalState(context, 'search', '');
+  const [_sortOrder, setSortOrder] = useLocalState(context, 'sort', '');
+  const [descending, setDescending] = useLocalState(
+    context,
+    'descending',
+    false
+  );
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
@@ -140,13 +124,14 @@ const BiogeneratorSearch = (props, context) => {
             options={Object.keys(sortTypes)}
             width="100%"
             lineHeight="19px"
-            onSelected={v => setSortOrder(v)} />
+            onSelected={(v) => setSortOrder(v)}
+          />
         </Flex.Item>
         <Flex.Item>
           <Button
-            icon={descending ? "arrow-down" : "arrow-up"}
+            icon={descending ? 'arrow-down' : 'arrow-up'}
             height="19px"
-            tooltip={descending ? "Descending order" : "Ascending order"}
+            tooltip={descending ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
             onClick={() => setDescending(!descending)}
@@ -169,14 +154,10 @@ const canBuyItem = (item, data) => {
 
 const BiogeneratorItemsCategory = (properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    title,
-    items,
-    ...rest
-  } = properties;
+  const { title, items, ...rest } = properties;
   return (
     <Collapsible open title={title} {...rest}>
-      {items.map(item => (
+      {items.map((item) => (
         <Box key={item.name}>
           <Box
             display="inline-block"
@@ -195,14 +176,16 @@ const BiogeneratorItemsCategory = (properties, context) => {
             style={{
               float: 'right',
             }}
-            onClick={() => act('purchase', {
-              cat: title,
-              name: item.name,
-            })}
+            onClick={() =>
+              act('purchase', {
+                cat: title,
+                name: item.name,
+              })
+            }
           />
           <Box
             style={{
-              clear: "both",
+              clear: 'both',
             }}
           />
         </Box>

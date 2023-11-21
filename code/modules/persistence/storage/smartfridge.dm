@@ -32,6 +32,20 @@
 	max_storage = 250
 	stacks_go_missing = TRUE
 
+/datum/persistent/storage/smartfridge/sheet_storage/variable_max
+	name = "variable max storage"
+	max_storage = list(
+		/obj/item/stack/material/steel =     150,
+		/obj/item/stack/material/glass =     150,
+		/obj/item/stack/material/copper =    150,
+		/obj/item/stack/material/wood =      150,
+		/obj/item/stack/material/plastic =   150,
+		/obj/item/stack/material/phoron =    100,
+		/obj/item/stack/material/plasteel =  50,
+		/obj/item/stack/material/cardboard = 50,
+		"default" = 10
+	)
+
 /datum/persistent/storage/smartfridge/sheet_storage/generate_items(var/list/L)
 	. = list()
 	for(var/obj/item/stack/material/S as anything in L)
@@ -65,12 +79,12 @@
 /datum/persistent/storage/smartfridge/produce
 	name = "fruit storage"
 	max_storage = 50
-	store_per_type = FALSE
+	store_per_type = TRUE
 	target_type = /obj/machinery/smartfridge/produce
 
 /datum/persistent/storage/smartfridge/produce/lossy
 	name = "fruit storage lossy"
-	go_missing_chance = 12.5 // 10% loss between rounds
+	go_missing_chance = 10 // 10% loss chance between rounds
 
 /datum/persistent/storage/smartfridge/produce/generate_items(var/list/L)			// Mostly same as storage/generate_items() but without converting string to path
 	. = list()

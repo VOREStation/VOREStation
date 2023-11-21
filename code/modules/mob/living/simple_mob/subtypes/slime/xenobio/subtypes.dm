@@ -351,12 +351,12 @@
 		if(valid_turf)
 			valid_turfs.Add(potential_turf)
 
-	var/turf/T = get_turf(src)
-	var/turf/target_turf = pick(valid_turfs)
-
-	if(!target_turf)
+	if(!(valid_turfs.len))
 		to_chat(src, span("warning", "There wasn't an unoccupied spot to teleport to."))
 		return FALSE
+
+	var/turf/target_turf = pick(valid_turfs)
+	var/turf/T = get_turf(src)
 
 	var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread
 	s1.set_up(5, 1, T)
@@ -472,7 +472,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 
-	movement_cooldown = 0 // This actually isn't any faster due to AI limitations that hopefully the timer subsystem can fix in the future.
+	movement_cooldown = -1 // This actually isn't any faster due to AI limitations that hopefully the timer subsystem can fix in the future.
 
 	slime_mutation = list(
 		/mob/living/simple_mob/slime/xenobio/dark_blue,
@@ -488,7 +488,7 @@
 	color = "#FF3333"
 	slime_color = "red"
 	coretype = /obj/item/slime_extract/red
-	movement_cooldown = 0 // See above.
+	movement_cooldown = -1 // See above.
 	untamable = TRUE // Will enrage if disciplined.
 
 	description_info = "This slime is faster than the others.  Attempting to discipline this slime will always cause it to go rabid and berserk."

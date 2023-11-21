@@ -1,17 +1,17 @@
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
+import { Window } from '../layouts';
 import { BeakerContents } from './common/BeakerContents';
 import { ComplexModal, modalOpen, modalRegisterBodyOverride } from './common/ComplexModal';
 
 const transferAmounts = [1, 5, 10, 30, 60];
 const bottleStyles = [
-  "bottle.png",
-  "small_bottle.png",
-  "wide_bottle.png",
-  "round_bottle.png",
-  "reagent_bottle.png",
+  'bottle.png',
+  'small_bottle.png',
+  'wide_bottle.png',
+  'round_bottle.png',
+  'reagent_bottle.png',
 ];
 
 const analyzeModalBodyOverride = (modal, context) => {
@@ -22,14 +22,12 @@ const analyzeModalBodyOverride = (modal, context) => {
       level={2}
       m="-1rem"
       pb="1rem"
-      title={data.condi ? "Condiment Analysis" : "Reagent Analysis"}>
+      title={data.condi ? 'Condiment Analysis' : 'Reagent Analysis'}>
       <Box mx="0.5rem">
         <LabeledList>
-          <LabeledList.Item label="Name">
-            {result.name}
-          </LabeledList.Item>
+          <LabeledList.Item label="Name">{result.name}</LabeledList.Item>
           <LabeledList.Item label="Description">
-            {(result.desc || "").length > 0 ? result.desc : "N/A"}
+            {(result.desc || '').length > 0 ? result.desc : 'N/A'}
           </LabeledList.Item>
           {result.blood_type && (
             <Fragment>
@@ -50,10 +48,12 @@ const analyzeModalBodyOverride = (modal, context) => {
               iconSpin={!!data.printing}
               ml="0.5rem"
               content="Print"
-              onClick={() => act('print', {
-                idx: result.idx,
-                beaker: modal.args.beaker,
-              })}
+              onClick={() =>
+                act('print', {
+                  idx: result.idx,
+                  beaker: modal.args.beaker,
+                })
+              }
             />
           )}
         </LabeledList>
@@ -72,10 +72,7 @@ export const ChemMaster = (props, context) => {
     mode,
   } = data;
   return (
-    <Window
-      width={575}
-      height={500}
-      resizable>
+    <Window width={575} height={500} resizable>
       <ComplexModal />
       <Window.Content scrollable className="Layout__content--flexColumn">
         <ChemMasterBeaker
@@ -83,10 +80,7 @@ export const ChemMaster = (props, context) => {
           beakerReagents={beaker_reagents}
           bufferNonEmpty={buffer_reagents.length > 0}
         />
-        <ChemMasterBuffer
-          mode={mode}
-          bufferReagents={buffer_reagents}
-        />
+        <ChemMasterBuffer mode={mode} bufferReagents={buffer_reagents} />
         <ChemMasterProduction
           isCondiment={condi}
           bufferNonEmpty={buffer_reagents.length > 0}
@@ -99,11 +93,7 @@ export const ChemMaster = (props, context) => {
 
 const ChemMasterBeaker = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    beaker,
-    beakerReagents,
-    bufferNonEmpty,
-  } = props;
+  const { beaker, beakerReagents, bufferNonEmpty } = props;
 
   let headerButton = bufferNonEmpty ? (
     <Button.Confirm
@@ -122,69 +112,68 @@ const ChemMasterBeaker = (props, context) => {
   );
 
   return (
-    <Section
-      title="Beaker"
-      buttons={headerButton}>
-      {beaker
-        ? (
-          <BeakerContents
-            beakerLoaded
-            beakerContents={beakerReagents}
-            buttons={(chemical, i) => (
-              <Box mb={(i < beakerReagents.length - 1) && "2px"}>
-                <Button
-                  content="Analyze"
-                  mb="0"
-                  onClick={() => modalOpen(context, 'analyze', {
+    <Section title="Beaker" buttons={headerButton}>
+      {beaker ? (
+        <BeakerContents
+          beakerLoaded
+          beakerContents={beakerReagents}
+          buttons={(chemical, i) => (
+            <Box mb={i < beakerReagents.length - 1 && '2px'}>
+              <Button
+                content="Analyze"
+                mb="0"
+                onClick={() =>
+                  modalOpen(context, 'analyze', {
                     idx: i + 1,
                     beaker: 1,
-                  })}
-                />
-                {transferAmounts.map((am, j) =>
-                  (<Button
-                    key={j}
-                    content={am}
-                    mb="0"
-                    onClick={() => act('add', {
+                  })
+                }
+              />
+              {transferAmounts.map((am, j) => (
+                <Button
+                  key={j}
+                  content={am}
+                  mb="0"
+                  onClick={() =>
+                    act('add', {
                       id: chemical.id,
                       amount: am,
-                    })}
-                  />)
-                )}
-                <Button
-                  content="All"
-                  mb="0"
-                  onClick={() => act('add', {
+                    })
+                  }
+                />
+              ))}
+              <Button
+                content="All"
+                mb="0"
+                onClick={() =>
+                  act('add', {
                     id: chemical.id,
                     amount: chemical.volume,
-                  })}
-                />
-                <Button
-                  content="Custom.."
-                  mb="0"
-                  onClick={() => modalOpen(context, 'addcustom', {
+                  })
+                }
+              />
+              <Button
+                content="Custom.."
+                mb="0"
+                onClick={() =>
+                  modalOpen(context, 'addcustom', {
                     id: chemical.id,
-                  })}
-                />
-              </Box>
-            )}
-          />
-        )
-        : (
-          <Box color="label">
-            No beaker loaded.
-          </Box>
-        )}
+                  })
+                }
+              />
+            </Box>
+          )}
+        />
+      ) : (
+        <Box color="label">No beaker loaded.</Box>
+      )}
     </Section>
   );
 };
 
 const ChemMasterBuffer = (props, context) => {
   const { act } = useBackend(context);
-  const {
-    mode,
-    bufferReagents = [],
-  } = props;
+  const { mode, bufferReagents = [] } = props;
   return (
     <Section
       title="Buffer"
@@ -192,63 +181,67 @@ const ChemMasterBuffer = (props, context) => {
         <Box color="label">
           Transferring to&nbsp;
           <Button
-            icon={mode ? "flask" : "trash"}
-            color={!mode && "bad"}
-            content={mode ? "Beaker" : "Disposal"}
+            icon={mode ? 'flask' : 'trash'}
+            color={!mode && 'bad'}
+            content={mode ? 'Beaker' : 'Disposal'}
             onClick={() => act('toggle')}
           />
         </Box>
       }>
-      {(bufferReagents.length > 0)
-        ? (
-          <BeakerContents
-            beakerLoaded
-            beakerContents={bufferReagents}
-            buttons={(chemical, i) => (
-              <Box mb={(i < bufferReagents.length - 1) && "2px"}>
-                <Button
-                  content="Analyze"
-                  mb="0"
-                  onClick={() => modalOpen(context, 'analyze', {
+      {bufferReagents.length > 0 ? (
+        <BeakerContents
+          beakerLoaded
+          beakerContents={bufferReagents}
+          buttons={(chemical, i) => (
+            <Box mb={i < bufferReagents.length - 1 && '2px'}>
+              <Button
+                content="Analyze"
+                mb="0"
+                onClick={() =>
+                  modalOpen(context, 'analyze', {
                     idx: i + 1,
                     beaker: 0,
-                  })}
-                />
-                {transferAmounts.map((am, i) =>
-                  (<Button
-                    key={i}
-                    content={am}
-                    mb="0"
-                    onClick={() => act('remove', {
+                  })
+                }
+              />
+              {transferAmounts.map((am, i) => (
+                <Button
+                  key={i}
+                  content={am}
+                  mb="0"
+                  onClick={() =>
+                    act('remove', {
                       id: chemical.id,
                       amount: am,
-                    })}
-                  />)
-                )}
-                <Button
-                  content="All"
-                  mb="0"
-                  onClick={() => act('remove', {
+                    })
+                  }
+                />
+              ))}
+              <Button
+                content="All"
+                mb="0"
+                onClick={() =>
+                  act('remove', {
                     id: chemical.id,
                     amount: chemical.volume,
-                  })}
-                />
-                <Button
-                  content="Custom.."
-                  mb="0"
-                  onClick={() => modalOpen(context, 'removecustom', {
+                  })
+                }
+              />
+              <Button
+                content="Custom.."
+                mb="0"
+                onClick={() =>
+                  modalOpen(context, 'removecustom', {
                     id: chemical.id,
-                  })}
-                />
-              </Box>
-            )}
-          />
-        )
-        : (
-          <Box color="label">
-            Buffer is empty.
-          </Box>
-        )}
+                  })
+                }
+              />
+            </Box>
+          )}
+        />
+      ) : (
+        <Box color="label">Buffer is empty.</Box>
+      )}
     </Section>
   );
 };
@@ -264,32 +257,24 @@ const ChemMasterProduction = (props, context) => {
           <Button
             disabled={!data.loaded_pill_bottle}
             icon="eject"
-            content={data.loaded_pill_bottle
-              ? (
-                data.loaded_pill_bottle_name
-                + " ("
-                + data.loaded_pill_bottle_contents_len
-                + "/"
-                + data.loaded_pill_bottle_storage_slots
-                + ")"
-              )
-              : "No pill bottle loaded"}
+            content={
+              data.loaded_pill_bottle
+                ? data.loaded_pill_bottle_name +
+                ' (' +
+                data.loaded_pill_bottle_contents_len +
+                '/' +
+                data.loaded_pill_bottle_storage_slots +
+                ')'
+                : 'No pill bottle loaded'
+            }
             mb="0.5rem"
             onClick={() => act('ejectp')}
           />
         }>
         <Flex height="100%">
-          <Flex.Item
-            grow="1"
-            align="center"
-            textAlign="center"
-            color="label">
-            <Icon
-              name="tint-slash"
-              mt="0.5rem"
-              mb="0.5rem"
-              size="5"
-            /><br />
+          <Flex.Item grow="1" align="center" textAlign="center" color="label">
+            <Icon name="tint-slash" mt="0.5rem" mb="0.5rem" size="5" />
+            <br />
             Buffer is empty.
           </Flex.Item>
         </Flex>
@@ -305,16 +290,16 @@ const ChemMasterProduction = (props, context) => {
         <Button
           disabled={!data.loaded_pill_bottle}
           icon="eject"
-          content={data.loaded_pill_bottle
-            ? (
-              data.loaded_pill_bottle_name
-              + " ("
-              + data.loaded_pill_bottle_contents_len
-              + "/"
-              + data.loaded_pill_bottle_storage_slots
-              + ")"
-            )
-            : "No pill bottle loaded"}
+          content={
+            data.loaded_pill_bottle
+              ? data.loaded_pill_bottle_name +
+              ' (' +
+              data.loaded_pill_bottle_contents_len +
+              '/' +
+              data.loaded_pill_bottle_storage_slots +
+              ')'
+              : 'No pill bottle loaded'
+          }
           mb="0.5rem"
           onClick={() => act('ejectp')}
         />
@@ -344,18 +329,22 @@ const ChemMasterProductionChemical = (props, context) => {
           content="Multiple"
           mb="0.5rem"
           onClick={() => modalOpen(context, 'create_pill_multiple')}
-        /><br />
-        <Button
-          onClick={() => modalOpen(context, 'change_pill_style')}>
-          <div style={
-            "display: inline-block;"
-            + "width: 16px;"
-            + "height: 16px;"
-            + "vertical-align: middle;"
-            + "background: url(pill" + data.pillsprite + ".png);"
-            + "background-size: 200%;"
-            + "background-position: left -10px bottom -6px;"
-          } />
+        />
+        <br />
+        <Button onClick={() => modalOpen(context, 'change_pill_style')}>
+          <div
+            style={
+              'display: inline-block;' +
+              'width: 16px;' +
+              'height: 16px;' +
+              'vertical-align: middle;' +
+              'background: url(pill' +
+              data.pillsprite +
+              '.png);' +
+              'background-size: 200%;' +
+              'background-position: left -10px bottom -6px;'
+            }
+          />
           Style
         </Button>
       </LabeledList.Item>
@@ -384,19 +373,24 @@ const ChemMasterProductionChemical = (props, context) => {
           icon="plus-square"
           content="Multiple"
           onClick={() => modalOpen(context, 'create_bottle_multiple')}
-        /><br />
+        />
+        <br />
         <Button
           mb="0.5rem"
           onClick={() => modalOpen(context, 'change_bottle_style')}>
-          <div style={
-            "display: inline-block;"
-            + "width: 16px;"
-            + "height: 16px;"
-            + "vertical-align: middle;"
-            + "background: url(bottle-" + data.bottlesprite + ".png);"
-            + "background-size: 200%;"
-            + "background-position: left -10px bottom -6px;"
-          } />
+          <div
+            style={
+              'display: inline-block;' +
+              'width: 16px;' +
+              'height: 16px;' +
+              'vertical-align: middle;' +
+              'background: url(bottle-' +
+              data.bottlesprite +
+              '.png);' +
+              'background-size: 200%;' +
+              'background-position: left -10px bottom -6px;'
+            }
+          />
           Style
         </Button>
       </LabeledList.Item>
@@ -413,7 +407,8 @@ const ChemMasterProductionCondiment = (props, context) => {
         content="Create condiment pack (10u max)"
         mb="0.5rem"
         onClick={() => modalOpen(context, 'create_condi_pack')}
-      /><br />
+      />
+      <br />
       <Button
         icon="wine-bottle"
         content="Create bottle (60u max)"

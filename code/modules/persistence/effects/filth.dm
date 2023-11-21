@@ -1,6 +1,7 @@
 /datum/persistent/filth
 	name = "filth"
 	entries_expire_at = 4 // 4 rounds, 24 hours.
+	var/saves_dirt = TRUE //VOREStation edit
 
 /datum/persistent/filth/IsValidEntry(var/atom/entry)
 	. = ..() && entry.invisibility == 0

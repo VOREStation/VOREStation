@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(plant_item_products, list(
 	/obj/item/organ/internal/brain/grey = 1,
 	/obj/item/organ/internal/heart/grey = 1,
 	/obj/item/weapon/spacecash/c1 = 3,
-	/obj/item/weapon/spacecash/c10 = 1
+	/obj/item/weapon/spacecash/c5 = 1
 	))
 
 GLOBAL_LIST_INIT(forbidden_plant_growth_sprites, list(

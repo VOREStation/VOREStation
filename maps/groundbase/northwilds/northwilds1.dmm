@@ -1,54 +1,56 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall/planetary/virgo3c,
-/area/submap/groundbase/wilderness/north)
-"d" = (
-/obj/effect/map_effect/portal/line/side_b{
-	dir = 1
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/submap/groundbase/wilderness/north)
-"g" = (
-/obj/effect/map_effect/portal/line/side_a,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/submap/groundbase/wilderness/north)
+"b" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/north/unexplored)
+"c" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
+/area/submap/groundbase/wilderness/north/unexplored)
 "m" = (
 /turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/north)
 "p" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/north_south,
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "s" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/north)
 "w" = (
 /obj/effect/map_effect/portal/line/side_a,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "K" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
 "M" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/north/cave)
 "N" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/north{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "P" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "T" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/north)
 "X" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/north/unexplored)
 
 (1,1,1) = {"
@@ -2120,7 +2122,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X
@@ -3667,7 +3669,7 @@ K
 K
 X
 X
-X
+c
 X
 X
 X
@@ -4261,7 +4263,7 @@ M
 M
 K
 K
-X
+c
 X
 X
 K
@@ -5845,7 +5847,7 @@ K
 X
 X
 X
-X
+c
 X
 K
 K
@@ -6664,7 +6666,7 @@ X
 X
 X
 X
-X
+c
 X
 K
 K
@@ -7248,7 +7250,7 @@ M
 M
 K
 X
-X
+c
 X
 K
 M
@@ -7634,7 +7636,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X
@@ -8610,7 +8612,7 @@ K
 K
 K
 X
-X
+c
 X
 X
 X
@@ -9265,7 +9267,7 @@ K
 K
 K
 X
-X
+c
 X
 X
 X
@@ -9420,7 +9422,7 @@ K
 K
 T
 T
-s
+T
 N
 "}
 (67,1,1) = {"
@@ -9566,9 +9568,9 @@ T
 P
 "}
 (68,1,1) = {"
-g
-s
-s
+w
+T
+T
 s
 X
 X
@@ -9987,9 +9989,9 @@ K
 K
 K
 s
-s
-s
-d
+T
+T
+P
 "}
 (71,1,1) = {"
 w
@@ -10135,8 +10137,8 @@ a
 "}
 (72,1,1) = {"
 p
-s
-s
+T
+T
 T
 K
 K
@@ -10569,7 +10571,7 @@ X
 X
 K
 K
-K
+b
 K
 K
 K
@@ -10872,7 +10874,7 @@ K
 X
 X
 X
-X
+c
 X
 X
 X
@@ -11533,7 +11535,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X
@@ -11630,7 +11632,7 @@ M
 K
 K
 X
-K
+b
 K
 K
 M
@@ -12078,7 +12080,7 @@ K
 K
 X
 X
-X
+c
 X
 X
 X
@@ -13763,7 +13765,7 @@ M
 M
 K
 K
-X
+c
 X
 X
 X
@@ -14021,7 +14023,7 @@ K
 K
 K
 X
-X
+c
 K
 K
 M
@@ -15022,7 +15024,7 @@ K
 K
 K
 X
-X
+c
 X
 X
 X
@@ -15475,7 +15477,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X
@@ -15495,7 +15497,7 @@ K
 X
 X
 X
-X
+c
 X
 X
 X
@@ -15987,7 +15989,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X
@@ -16644,7 +16646,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X
@@ -17162,7 +17164,7 @@ X
 X
 X
 X
-X
+c
 X
 X
 X

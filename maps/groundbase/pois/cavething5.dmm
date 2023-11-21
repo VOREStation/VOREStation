@@ -8,13 +8,13 @@
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "T" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

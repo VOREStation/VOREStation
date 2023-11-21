@@ -115,7 +115,7 @@
 	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet of the creature. \
 	It's warm, and the air is thick. You can hear its body squelch and shift around you as you settle into its stomach! \
 	It's relatively calm inside the dark organ. Wet and almost molten for how gooey your surroundings feel. \
-	You can feel the doughy walls cling to you posessively... It's almost like you could sink into them. \
+	You can feel the doughy walls cling to you possessively... It's almost like you could sink into them. \
 	There is also an ominous gurgling from somewhere nearby..."
 
 	player_msg = "You're familiar with generating your own energy, but occasionally \
@@ -166,6 +166,8 @@
 	player_msg = "Your kind rarely ventures into realspace. Being in any well-lit \
 	area is very taxing on you, but you gain energy extremely fast in any very dark area. You're weaker than other \
 	shadekin, but your fast energy generation in the dark allows you to phase shift more often."
+
+	nom_mob = TRUE
 
 /mob/living/simple_mob/shadekin/yellow
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run

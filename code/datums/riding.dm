@@ -112,7 +112,7 @@
 		to_chat(user, "<span class='warning'>You'll need [key_name] in one of your hands to move \the [ridden].</span>")
 
 /datum/riding/proc/Unbuckle(atom/movable/M)
-//	addtimer(CALLBACK(ridden, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
+//	addtimer(CALLBACK(ridden, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
 	spawn(0)
 	// On /tg/ this uses the fancy CALLBACK system. Not entirely sure why they needed to do so with a duration of 0,
 	// so if there is a reason, this should replicate it close enough. Hopefully.
@@ -142,7 +142,10 @@
 	var/turf/next = get_step(ridden, direction)
 	var/turf/current = get_turf(ridden)
 
-	if(istype(next, /turf/simulated/floor/water) || istype(current, /turf/simulated/floor/water)) //We can move from land to water, or water to land, but not from land to land
+	if(istype(current, /turf/simulated/floor/water/underwater)) //don't work at the bottom of the ocean!
+		to_chat(user, "<span class='warning'>The boat has sunk!</span>")
+		return FALSE
+	else if(istype(next, /turf/simulated/floor/water) || istype(current, /turf/simulated/floor/water)) //We can move from land to water, or water to land, but not from land to land
 		..()
 	else
 		to_chat(user, "<span class='warning'>Boats don't go on land!</span>")
@@ -225,3 +228,28 @@
 
 /datum/riding/boat/get_offsets(pass_index) // list(dir = x, y, layer)
 	return list("[NORTH]" = list(1, 2), "[SOUTH]" = list(1, 2), "[EAST]" = list(1, 2), "[WEST]" = list(1, 2))
+
+/datum/riding/snowmobile
+	only_one_driver = TRUE // Keep your hands to yourself back there!
+
+/datum/riding/snowmobile/get_offsets(pass_index) // list(dir = x, y, layer)
+	var/H = 3 // Horizontal seperation.
+	var/V = 2 // Vertical seperation.
+	var/O = 2 // Vertical offset.
+	switch(pass_index)
+		if(1) // Person on front.
+			return list(
+				"[NORTH]" = list( 0, O+V, MOB_LAYER),
+				"[SOUTH]" = list( 0, O,   ABOVE_MOB_LAYER),
+				"[EAST]"  = list( H, O,   MOB_LAYER),
+				"[WEST]"  = list(-H, O,   MOB_LAYER)
+				)
+		if(2) // Person on back.
+			return list(
+				"[NORTH]" = list( 0, O,   ABOVE_MOB_LAYER),
+				"[SOUTH]" = list( 0, O+V, MOB_LAYER),
+				"[EAST]"  = list(-H, O,   MOB_LAYER),
+				"[WEST]"  = list( H, O,   MOB_LAYER)
+				)
+		else
+			return null // This will runtime, but we want that since this is out of bounds.

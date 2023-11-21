@@ -53,6 +53,30 @@
 	name = "vial (amorphorovir)"
 	prefill = list("amorphorovir" = 1)
 
+/obj/item/weapon/reagent_containers/glass/beaker/vial/androrovir
+	name = "vial (androrovir)"
+	prefill = list("androrovir" = 1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/gynorovir
+	name = "vial (gynorovir)"
+	prefill = list("gynorovir" = 1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/androgynorovir
+	name = "vial (androgynorovir)"
+	prefill = list("androgynorovir" = 1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/macrocillin
+	name = "vial (macrocillin)"
+	prefill = list("macrocillin" = 1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/microcillin
+	name = "vial (microcillin)"
+	prefill = list("microcillin" = 1)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/normalcillin
+	name = "vial (normalcillin)"
+	prefill = list("normalcillin" = 1)
+
 /obj/item/weapon/reagent_containers/glass/beaker/vial/supermatter
 	name = "vial (supermatter)"
 	desc = "A glass vial containing the extremely dangerous results of grinding a shard of supermatter down to a fine powder."

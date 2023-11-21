@@ -27,3 +27,7 @@
 /// DEPRECATED PROC: DO NOT USE IN NEW CODE
 /obj/item/proc/is_multitool()
 	return has_tool_quality(TOOL_MULTITOOL)
+
+/// DEPRECATED PROC: DO NOT USE IN NEW CODE
+/obj/item/proc/is_welder()
+	return has_tool_quality(TOOL_WELDER)

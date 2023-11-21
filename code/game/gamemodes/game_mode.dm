@@ -59,23 +59,23 @@ var/global/list/additional_antag_types = list()
 		var/choice = ""
 		switch(href_list["set"])
 			if("shuttle_delay")
-				choice = input(usr, "Enter a new shuttle delay multiplier") as num
+				choice = tgui_input_number(usr, "Enter a new shuttle delay multiplier", null, null, 20, 1)
 				if(!choice || choice < 1 || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
-				choice = input(usr, "Enter a new antagonist cap scaling coefficient.") as num
+				choice = tgui_input_number(usr, "Enter a new antagonist cap scaling coefficient.", null, null, 100, 0)
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
 			if("event_modifier_moderate")
-				choice = input(usr, "Enter a new moderate event time modifier.") as num
+				choice = tgui_input_number(usr, "Enter a new moderate event time modifier.", null, null, 100, 0)
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_moderate = choice
 				refresh_event_modifiers()
 			if("event_modifier_severe")
-				choice = input(usr, "Enter a new moderate event time modifier.") as num
+				choice = tgui_input_number(usr, "Enter a new moderate event time modifier.", null, null, 100, 0)
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_major = choice

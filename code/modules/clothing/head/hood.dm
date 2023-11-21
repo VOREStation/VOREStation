@@ -203,9 +203,43 @@
 	name = "techpriest hood"
 	desc = "A techpriest hood."
 	icon_state = "techpriesthood"
-	
+
 /obj/item/clothing/head/hood/siffet_hood
 	name = "siffet hood"
 	desc = "A hood that looks vaguely like a siffet's head. Guaranteed to traumatize your Promethean coworkers."
 	icon_state = "siffet"
 	item_state_slots = list(slot_r_hand_str = "siffet", slot_l_hand_str = "siffet")
+
+/obj/item/clothing/head/hood/hoodie
+	name = "hood"
+	desc = "The hood of a hoodie. Cosy!"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "hood_plain"
+
+/obj/item/clothing/head/hood/raincoat
+	name = "raincoat hood"
+	desc = "A hood attached to a raincoat."
+	icon_state = "raincoat"
+
+//hooded cloak hoods
+/obj/item/clothing/head/hood/cloak
+    name  = "maroon cloak hood"
+    desc = "A hood attached to a maroon cloak."
+    icon_state = "maroon_cloakhood"
+    flags_inv = HIDEEARS|BLOCKHAIR
+
+/obj/item/clothing/head/hood/cloak/winter
+    name = "winter cloak hood"
+    desc = "A hood attached to a winter cloak."
+    icon_state = "winter_cloakhood"
+
+/obj/item/clothing/head/hood/cloak/asymmetric
+    name = "asymmetric cloak hood"
+    desc = "A hood attached to an asymmetric cloak."
+    icon_state = "royalist_cloakhood"
+
+/obj/item/clothing/head/hood/cloak/fancy
+    name = "fancy cloak hood"
+    desc = "A hood attached to a fancy cloak."
+    icon_state = "hb_cloakhood"

@@ -225,7 +225,11 @@
 				if(T.density) // No walls.
 					continue
 				for(var/atom/movable/AM in T)
-					if(AM.density || istype(AM, /mob/living/simple_mob/slime))
+					if(istype(AM, /mob/living/simple_mob/slime) || !(AM.CanPass(src, T)))
+						free = FALSE
+						break
+				for(var/atom/movable/AM in get_turf(src))
+					if(!(AM.CanPass(src, T)) && !(AM == src))
 						free = FALSE
 						break
 
@@ -238,7 +242,7 @@
 
 			var/list/babies = list()
 			for(var/i = 1 to split_amount)
-				babies.Add(make_new_slime())
+				babies.Add(make_new_slime(no_step = i))
 
 			var/mob/living/simple_mob/slime/new_slime = pick(babies)
 			new_slime.universal_speak = universal_speak
@@ -253,7 +257,7 @@
 		to_chat(src, span("warning", "I have not evolved enough to reproduce yet..."))
 
 // Used when reproducing or dying.
-/mob/living/simple_mob/slime/xenobio/proc/make_new_slime(var/desired_type)
+/mob/living/simple_mob/slime/xenobio/proc/make_new_slime(var/desired_type, var/no_step)
 	var/t = src.type
 	if(desired_type)
 		t = desired_type
@@ -275,7 +279,8 @@
 	baby.faction = faction
 	baby.friends = friends.Copy()
 
-	step_away(baby, src)
+	if(no_step != 1)
+		step_away(baby, src)
 	return baby
 
 /mob/living/simple_mob/slime/xenobio/get_description_interaction()

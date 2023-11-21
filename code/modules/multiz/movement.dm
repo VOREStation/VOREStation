@@ -46,15 +46,28 @@
 		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
 
-	if(!destination.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
-		return 0
+	if(direction == DOWN)
+		var/turf/simulated/floor/water/deep/ocean/diving/sink = start
+		if(istype(sink) && !destination.density)
+			var/pull_up_time = max(3 SECONDS + (src.movement_delay() * 10), 1)
+			to_chat(src, "<span class='notice'>You start diving underwater...</span>")
+			src.audible_message("<span class='notice'>[src] begins to dive under the water.</span>", runemessage = "splish splosh")
+			if(do_after(src, pull_up_time))
+				to_chat(src, "<span class='notice'>You reach the sea floor.</span>")
+			else
+				to_chat(src, "<span class='warning'>You stopped swimming downwards.</span>")
+				return 0
+
+		else if(!destination.CanZPass(src, direction))
+			to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
+			return 0
 
 	var/area/area = get_area(src)
 	if(area.has_gravity() && !can_overcome_gravity())
 		if(direction == UP)
 			var/obj/structure/lattice/lattice = locate() in destination.contents
 			var/obj/structure/catwalk/catwalk = locate() in destination.contents
+			var/turf/simulated/floor/water/deep/ocean/diving/surface = destination
 
 			if(lattice)
 				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
@@ -64,6 +77,16 @@
 					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
 					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
+					return 0
+
+			else if(istype(surface))
+				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				to_chat(src, "<span class='notice'>You start swimming upwards...</span>")
+				src.audible_message("<span class='notice'>[src] begins to swim towards the surface.</span>", runemessage = "splish splosh")
+				if(do_after(src, pull_up_time))
+					to_chat(src, "<span class='notice'>You reach the surface.</span>")
+				else
+					to_chat(src, "<span class='warning'>You stopped swimming upwards.</span>")
 					return 0
 
 			else if(catwalk?.hatch_open)
@@ -163,6 +186,19 @@
 		return FALSE
 	return (hovering || is_incorporeal())
 
+/mob/living/simple_mob/can_ztravel()
+	if(incapacitated())
+		return FALSE
+
+	if(hovering || is_incorporeal())
+		return TRUE
+
+	if(Process_Spacemove())
+		return TRUE
+
+	if(has_hands)
+		return TRUE
+
 /mob/living/carbon/human/can_ztravel()
 	if(incapacitated())
 		return FALSE
@@ -171,7 +207,7 @@
 		return TRUE
 
 	if(flying) //VOREStation Edit. Allows movement up/down with wings.
-		return 1 //VOREStation Edit
+		return TRUE //VOREStation Edit
 
 	if(Process_Spacemove())
 		return TRUE
@@ -385,7 +421,7 @@
 
 /atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
 	if(isopenspace(oldloc))
-		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
+		oldloc.visible_message("<span class='notice'>\The [src] falls down through \the [oldloc]!</span>", "<span class='notice'>You hear something falling through the air.</span>")
 
 	// If the turf has density, we give it first dibs
 	if (landing.density && landing.CheckFall(src))

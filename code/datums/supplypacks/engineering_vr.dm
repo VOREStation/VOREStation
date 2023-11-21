@@ -26,6 +26,13 @@
 			/obj/item/clothing/head/radiation = 3
 			)
 
+/datum/supply_pack/eng/dosimeter
+	contains = list(/obj/item/weapon/storage/box/dosimeter = 6)
+	name = "Dosimeters"
+	cost = 10
+	containertype = /obj/structure/closet/crate
+	containername = "dosimeter crate"
+
 /datum/supply_pack/eng/algae
 	contains = list(/obj/item/stack/material/algae/ten)
 	name = "Algae Sheets (10)"

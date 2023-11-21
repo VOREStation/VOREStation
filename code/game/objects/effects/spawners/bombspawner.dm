@@ -7,13 +7,13 @@
 
 	var/obj/effect/spawner/newbomb/proto = /obj/effect/spawner/newbomb/radio/custom
 
-	var/p = input(usr, "Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt)) as num|null
+	var/p = tgui_input_number(usr, "Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt))
 	if(p == null) return
 
-	var/o = input(usr, "Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt)) as num|null
+	var/o = tgui_input_number(usr, "Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt))
 	if(o == null) return
 
-	var/c = input(usr, "Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt)) as num|null
+	var/c = tgui_input_number(usr, "Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt))
 	if(c == null) return
 
 	new /obj/effect/spawner/newbomb/radio/custom(get_turf(mob), p, o, c)

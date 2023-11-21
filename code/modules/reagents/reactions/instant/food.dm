@@ -140,7 +140,7 @@
 	id = "dough"
 	result = null
 	required_reagents = list("egg" = 3, "flour" = 10)
-	inhibitors = list("water" = 1, "beer" = 1) //To prevent it messing with batter recipes
+	inhibitors = list("water" = 1, "beer" = 1, "sugar" = 1) //To prevent it messing with batter recipes
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -188,6 +188,13 @@
 	result = "browniemix"
 	required_reagents = list("flour" = 5, "coco" = 5, "sugar" = 5)
 	result_amount = 15
+
+/decl/chemical_reaction/instant/food/cakebatter
+	name = "Cake Batter"
+	id = "cakebatter"
+	result = "cakebatter"
+	required_reagents = list("flour" = 15, "milk" = 10, "sugar" = 15, "egg" = 3)
+	result_amount = 60
 
 /decl/chemical_reaction/instant/food/butter
 	name = "Butter"

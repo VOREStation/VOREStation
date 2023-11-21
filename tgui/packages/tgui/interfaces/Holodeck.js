@@ -1,8 +1,6 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, Section } from '../components';
+import { Window } from '../layouts';
 
 export const Holodeck = (props, context) => {
   const { act, data } = useBackend(context);
@@ -27,15 +25,16 @@ export const Holodeck = (props, context) => {
     <Window width={400} height={610} resizable>
       <Window.Content scrollable>
         <Section title="Programs">
-          {programsToShow.map(prog => (
+          {programsToShow.map((prog) => (
             <Button
               key={prog}
-              color={restrictedPrograms.indexOf(prog) !== -1 ? "bad" : null}
+              color={restrictedPrograms.indexOf(prog) !== -1 ? 'bad' : null}
               icon="eye"
               content={prog}
               selected={currentProgram === prog}
               fluid
-              onClick={() => act("program", { program: prog })} />
+              onClick={() => act('program', { program: prog })}
+            />
           ))}
         </Section>
         {!!isSilicon && (
@@ -44,24 +43,28 @@ export const Holodeck = (props, context) => {
               icon="exclamation-triangle"
               fluid
               disabled={emagged}
-              color={safetyDisabled ? "good" : "bad"}
-              onClick={() => act("AIoverride")}>
-              {!!emagged && "Error, unable to control. "}
-              {safetyDisabled ? "Enable Safeties" : "Disable Safeties"}
+              color={safetyDisabled ? 'good' : 'bad'}
+              onClick={() => act('AIoverride')}>
+              {!!emagged && 'Error, unable to control. '}
+              {safetyDisabled ? 'Enable Safeties' : 'Disable Safeties'}
             </Button>
           </Section>
         )}
         <Section title="Controls">
           <LabeledList>
             <LabeledList.Item label="Safeties">
-              {safetyDisabled ? <Box color="bad">DISABLED</Box> : <Box color="good">ENABLED</Box>}
+              {safetyDisabled ? (
+                <Box color="bad">DISABLED</Box>
+              ) : (
+                <Box color="good">ENABLED</Box>
+              )}
             </LabeledList.Item>
             <LabeledList.Item label="Gravity">
               <Button
                 icon="user-astronaut"
                 selected={gravity}
-                onClick={() => act("gravity")}>
-                {gravity ? "Enabled" : "Disabled"}
+                onClick={() => act('gravity')}>
+                {gravity ? 'Enabled' : 'Disabled'}
               </Button>
             </LabeledList.Item>
           </LabeledList>

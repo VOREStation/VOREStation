@@ -1,5 +1,5 @@
 /mob/living/silicon/robot/proc/transform_with_anim()
-	INVOKE_ASYNC(src, .proc/do_transform_animation)
+	INVOKE_ASYNC(src, PROC_REF(do_transform_animation))
 
 /mob/living/silicon/robot/proc/do_transform_animation()
 	notransform = TRUE

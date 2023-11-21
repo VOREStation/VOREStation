@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/glue_bone
+	surgery_name = "Glue Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100
 	)
@@ -52,6 +53,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/set_bone
+	surgery_name = "Set Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonesetter = 100
 	)
@@ -98,6 +100,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/mend_skull
+	surgery_name = "Mend Skull"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonesetter = 100
 	)
@@ -139,6 +142,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/finish_bone
+	surgery_name = "Finish Mending Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100
 	)
@@ -182,6 +186,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/clamp_bone
+	surgery_name = "Clamp Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bone_clamp = 100
 		)

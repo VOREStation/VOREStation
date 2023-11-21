@@ -25,3 +25,16 @@
 
 /decl/mob_organ_names/quadruped //Most subtypes have this basic body layout.
 	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail")
+
+/mob/living/simple_mob/animal/get_examine_desc()
+	return flavor_text || desc
+
+/mob/living/simple_mob/animal/verb/set_flavour_text()
+	set name = "Set Flavour Text"
+	set category = "IC"
+	set desc = "Set your flavour text."
+	set src = usr
+	var/new_flavour_text = sanitize((input("Please describe yourself.", "Flavour Text", flavor_text) as message|null), MAX_MESSAGE_LEN)
+	if(length(new_flavour_text) && !QDELETED(src))
+		flavor_text = new_flavour_text
+		to_chat(src, SPAN_NOTICE("Your flavour text has been updated."))

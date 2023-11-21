@@ -187,7 +187,7 @@
 		flick("mulebot-emagged", src)
 	update_icons()
 
-/mob/living/bot/mulebot/handleFrustrated()
+/mob/living/bot/mulebot/handleFrustrated(has_target)
 	custom_emote(2, "makes a sighing buzz.")
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	..()

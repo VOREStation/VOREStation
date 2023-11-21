@@ -1,0 +1,1267 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/item/stack/rods,
+/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"al" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"ar" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"aE" = (
+/obj/effect/map_effect/perma_light,
+/turf/space,
+/area/space)
+"aF" = (
+/mob/living/simple_mob/humanoid/merc/melee/sword/drone/tanker_escort,
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"ck" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"cM" = (
+/obj/item/stack/cable_coil,
+/turf/space,
+/area/space)
+"dD" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"dU" = (
+/turf/simulated/wall/rplastitanium,
+/area/submap/debrisfield/phoron_tanker)
+"eo" = (
+/obj/structure/table/wooden_reinforced,
+/obj/machinery/microwave/advanced,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ey" = (
+/obj/item/ammo_casing/a95,
+/obj/effect/decal/cleanable/blood/gibs/robot/limb,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"eV" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ff" = (
+/obj/structure/lattice,
+/obj/item/broken_device,
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = 1;
+	pixel_y = 20
+	},
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"fU" = (
+/mob/living/simple_mob/humanoid/merc/ranged/smg/drone/tanker_escort,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"gn" = (
+/obj/effect/map_effect/perma_light,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"gz" = (
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ht" = (
+/obj/item/stack/cable_coil,
+/mob/living/simple_mob/humanoid/merc/melee/drone/tanker_escort,
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"hx" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"ik" = (
+/obj/structure/meteorite,
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"iD" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"jx" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"jT" = (
+/obj/structure/curtain/black,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ko" = (
+/obj/structure/lattice,
+/obj/item/pipe,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"kq" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/robot_parts/head,
+/obj/effect/decal/cleanable/blood/gibs/robot,
+/obj/effect/decal/cleanable/blood/oil,
+/obj/item/weapon/broken_gun/laserrifle,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ky" = (
+/obj/item/stack/material/steel,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"kI" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"li" = (
+/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"mm" = (
+/obj/item/stack/material/wood,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"mG" = (
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 4
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"mP" = (
+/obj/item/weapon/card/id/event/altcard/centcom,
+/obj/structure/closet/wardrobe/captain,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ng" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/obj/item/pipe,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"nn" = (
+/obj/item/ammo_casing/a95,
+/obj/machinery/light/floortube/flicker,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"nJ" = (
+/obj/structure/lattice,
+/obj/item/stack/material/steel,
+/turf/space,
+/area/space)
+"ou" = (
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"ox" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/item/ammo_casing/a95,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"pc" = (
+/mob/living/simple_mob/humanoid/merc/melee/drone/tanker_escort,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"pk" = (
+/obj/machinery/door/window,
+/obj/item/ammo_casing/a95,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"po" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"py" = (
+/turf/simulated/wall/durasteel,
+/area/submap/debrisfield/phoron_tanker)
+"qv" = (
+/obj/structure/window/reinforced,
+/obj/structure/curtain/black,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"ro" = (
+/obj/machinery/light/small/emergency/flicker{
+	dir = 8
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"rt" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"sU" = (
+/obj/item/broken_device,
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"sY" = (
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"ta" = (
+/obj/structure/meteorite,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"tg" = (
+/obj/structure/window/reinforced,
+/obj/structure/curtain/black,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"tw" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"uo" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/portables_connector,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"uF" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"uL" = (
+/obj/tether_away_spawner/debrisfield/carp,
+/turf/template_noop,
+/area/space)
+"uO" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"vs" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"vL" = (
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"xo" = (
+/obj/structure/lattice,
+/obj/item/stack/tile/floor/eris/steel,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"xx" = (
+/obj/structure/lattice,
+/obj/item/pipe,
+/obj/machinery/atmospherics/portables_connector,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"xF" = (
+/obj/machinery/door/airlock/external,
+/turf/space,
+/area/space)
+"xX" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"yp" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet/ian,
+/obj/structure/closet/walllocker_double/emergency_engi/south,
+/obj/machinery/light/flicker{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"yH" = (
+/obj/item/stack/rods,
+/turf/space,
+/area/space)
+"zf" = (
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"zi" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"zZ" = (
+/obj/structure/curtain/black,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Ad" = (
+/obj/item/ammo_casing/a95,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"AV" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"AY" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller,
+/turf/space,
+/area/space)
+"BU" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"CI" = (
+/obj/structure/lattice,
+/obj/structure/meteorite,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"CW" = (
+/turf/space,
+/area/space)
+"DI" = (
+/obj/structure/table/wooden_reinforced,
+/obj/machinery/light/flicker{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Ea" = (
+/obj/structure/meteorite,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"Ev" = (
+/obj/item/stack/tile/floor/eris/steel,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"Ex" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"Fb" = (
+/obj/structure/lattice,
+/obj/structure/meteorite,
+/obj/effect/map_effect/perma_light,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"Fi" = (
+/obj/machinery/power/apc/critical{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Fl" = (
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"Fv" = (
+/obj/structure/lattice,
+/obj/item/stack/material/steel,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"Fz" = (
+/turf/simulated/mineral/ignore_mapgen{
+	name = "asteroid"
+	},
+/area/submap/debrisfield/phoron_tanker)
+"FD" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"FY" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/item/stack/cable_coil,
+/obj/item/pipe,
+/turf/space,
+/area/space)
+"Gq" = (
+/obj/machinery/light/small/emergency/flicker{
+	dir = 4
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"Hk" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small/emergency/flicker,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"HV" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"HY" = (
+/obj/item/stack/rods,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"IF" = (
+/obj/item/stack/rods,
+/turf/simulated/mineral/ignore_mapgen{
+	name = "asteroid"
+	},
+/area/submap/debrisfield/phoron_tanker)
+"JD" = (
+/obj/effect/map_effect/perma_light,
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"JG" = (
+/obj/machinery/computer/shuttle,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"JM" = (
+/obj/item/stack/material/steel,
+/turf/simulated/mineral/ignore_mapgen{
+	name = "asteroid"
+	},
+/area/submap/debrisfield/phoron_tanker)
+"KR" = (
+/obj/machinery/alarm{
+	pixel_x = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Lr" = (
+/obj/structure/bed/chair/bay/comfy/captain,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/weapon/gun/projectile/revolver/mateba,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"LM" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Oe" = (
+/obj/structure/lattice,
+/obj/item/broken_device,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"Ok" = (
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Pi" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"QA" = (
+/obj/item/clothing/head/beret/centcom/captain,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"QC" = (
+/obj/item/stack/material/steel,
+/turf/space,
+/area/space)
+"RX" = (
+/turf/template_noop,
+/area/space)
+"Sb" = (
+/obj/structure/meteorite,
+/obj/machinery/light/small/emergency/flicker,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/submap/debrisfield/phoron_tanker)
+"SI" = (
+/obj/machinery/light/flicker{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Tk" = (
+/obj/machinery/computer/ship/navigation,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Tm" = (
+/obj/item/stack/tile/floor/eris/steel,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"TG" = (
+/obj/machinery/computer/ship/helm,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"TJ" = (
+/obj/machinery/door/window,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"TL" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"Uh" = (
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 8
+	},
+/turf/simulated/floor/plating/external{
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"Vl" = (
+/obj/effect/map_effect/perma_light,
+/turf/simulated/wall/rplastitanium,
+/area/submap/debrisfield/phoron_tanker)
+"Vr" = (
+/obj/item/broken_device,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"VD" = (
+/obj/structure/lattice,
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+"VW" = (
+/obj/structure/meteorite,
+/turf/space,
+/area/space)
+"VY" = (
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"XW" = (
+/obj/item/stack/material/steel,
+/turf/simulated/mineral/floor/ignore_mapgen/cave{
+	name = "asteroid";
+	nitrogen = 0;
+	oxygen = 0;
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"Yp" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/space/cracked_asteroid{
+	temperature = 2.7
+	},
+/area/submap/debrisfield/phoron_tanker)
+"YI" = (
+/obj/structure/window/reinforced,
+/obj/machinery/light/floortube/flicker,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/debrisfield/phoron_tanker)
+"Zk" = (
+/obj/structure/curtain/black,
+/turf/simulated/wall,
+/area/submap/debrisfield/phoron_tanker)
+"Zv" = (
+/obj/item/stack/cable_coil,
+/turf/template_noop,
+/area/space)
+"ZQ" = (
+/turf/space,
+/area/submap/debrisfield/phoron_tanker)
+
+(1,1,1) = {"
+uL
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+RX
+FY
+CW
+RX
+RX
+RX
+"}
+(2,1,1) = {"
+VD
+ng
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+RX
+RX
+RX
+"}
+(3,1,1) = {"
+VD
+VD
+al
+uO
+uO
+uO
+uO
+uO
+uO
+uO
+uO
+uO
+uO
+VD
+aE
+CW
+RX
+RX
+RX
+"}
+(4,1,1) = {"
+QC
+cM
+Uh
+Uh
+Uh
+Uh
+Uh
+Uh
+Uh
+Uh
+Uh
+Uh
+Uh
+VD
+nJ
+yH
+RX
+RX
+RX
+"}
+(5,1,1) = {"
+CW
+VD
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+ZQ
+CW
+CW
+CW
+yH
+CW
+"}
+(6,1,1) = {"
+Oe
+VD
+ro
+VD
+Fl
+Fl
+Fl
+ro
+Fl
+Fl
+ZQ
+Fl
+Fl
+VD
+VD
+VD
+CW
+CW
+AY
+"}
+(7,1,1) = {"
+VD
+Fb
+VD
+sU
+Fl
+Fl
+Fl
+Fl
+CI
+Fl
+Fl
+Fl
+VD
+VD
+rt
+VD
+gn
+Fz
+Fz
+"}
+(8,1,1) = {"
+VD
+VD
+Fl
+Fl
+Fl
+sU
+VD
+Fl
+ik
+Fl
+Fl
+Fl
+Gq
+VD
+VD
+VD
+Yp
+Yp
+Fz
+"}
+(9,1,1) = {"
+VD
+Oe
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+dU
+CW
+dU
+ZQ
+Tm
+Fz
+TL
+ou
+Fz
+"}
+(10,1,1) = {"
+RX
+QC
+mG
+mG
+mG
+mG
+mG
+ik
+mG
+mG
+mG
+VW
+mG
+Fz
+Fz
+Fz
+ou
+Fz
+Fz
+"}
+(11,1,1) = {"
+Zv
+CW
+iD
+zi
+zi
+zi
+zi
+zi
+zi
+zi
+zi
+CW
+zi
+Fz
+ht
+ou
+ou
+Fz
+CW
+"}
+(12,1,1) = {"
+RX
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+CW
+Fz
+Fz
+Fz
+zf
+Fz
+CW
+"}
+(13,1,1) = {"
+RX
+CW
+ta
+Fz
+Fz
+dU
+dU
+dU
+VD
+VD
+VD
+dU
+dU
+dU
+CW
+CW
+gn
+cM
+CW
+"}
+(14,1,1) = {"
+RX
+zf
+JD
+ah
+Fz
+ck
+ck
+ck
+ck
+VD
+ck
+ck
+Ex
+dU
+CW
+QC
+VW
+VW
+xF
+"}
+(15,1,1) = {"
+ZQ
+HY
+sY
+mm
+Fz
+py
+py
+py
+py
+py
+py
+py
+xX
+tw
+HV
+VW
+yH
+CW
+CW
+"}
+(16,1,1) = {"
+ZQ
+li
+mm
+Fz
+Fz
+DI
+eo
+tg
+zZ
+Pi
+po
+py
+vL
+dU
+Fz
+Fz
+gn
+Fz
+yH
+"}
+(17,1,1) = {"
+Ea
+Fz
+Fz
+Fz
+BU
+jx
+Ok
+tg
+zZ
+jx
+Hk
+py
+aF
+dU
+Fz
+Yp
+zf
+Fz
+CW
+"}
+(18,1,1) = {"
+Fz
+Fz
+FD
+py
+kI
+TJ
+kI
+qv
+zZ
+jT
+zZ
+py
+Sb
+dU
+Fz
+TL
+ou
+Fz
+CW
+"}
+(19,1,1) = {"
+VD
+VD
+CI
+py
+Tk
+QA
+eV
+jx
+ar
+ox
+kq
+py
+xo
+VD
+Vr
+TL
+ou
+Fz
+Fz
+"}
+(20,1,1) = {"
+VD
+VD
+Fv
+py
+TG
+Lr
+AV
+AV
+Ad
+ey
+nn
+dD
+Oe
+Vr
+hx
+uF
+XW
+ou
+Fz
+"}
+(21,1,1) = {"
+VD
+CI
+VD
+py
+JG
+AV
+jx
+eV
+kI
+kI
+pk
+py
+ff
+VD
+zf
+ou
+ou
+ou
+Fz
+"}
+(22,1,1) = {"
+RX
+dU
+FD
+py
+KR
+AV
+jx
+YI
+Zk
+zZ
+zZ
+py
+Fl
+dU
+Fz
+ou
+ou
+Fz
+Fz
+"}
+(23,1,1) = {"
+RX
+dU
+FD
+py
+Fi
+AV
+jx
+VY
+Zk
+LM
+gz
+py
+pc
+dU
+Fz
+Fz
+Fz
+Fz
+CW
+"}
+(24,1,1) = {"
+RX
+dU
+FD
+py
+fU
+SI
+jx
+VY
+Zk
+mP
+yp
+py
+vL
+dU
+zf
+RX
+RX
+RX
+RX
+"}
+(25,1,1) = {"
+RX
+dU
+FD
+py
+py
+py
+py
+py
+py
+py
+py
+py
+vs
+Fl
+zf
+RX
+RX
+RX
+RX
+"}
+(26,1,1) = {"
+RX
+dU
+xX
+ck
+ck
+ck
+tw
+Ev
+ck
+ck
+ck
+vL
+VD
+CI
+ky
+RX
+RX
+RX
+RX
+"}
+(27,1,1) = {"
+RX
+Vl
+dU
+dU
+dU
+dU
+dU
+VD
+dU
+dU
+dU
+dU
+VD
+HY
+ky
+RX
+RX
+RX
+RX
+"}
+(28,1,1) = {"
+uL
+RX
+RX
+RX
+VD
+ko
+xx
+VD
+VD
+VD
+ko
+uo
+IF
+JM
+dU
+RX
+RX
+RX
+RX
+"}

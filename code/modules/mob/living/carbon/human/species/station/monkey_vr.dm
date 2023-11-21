@@ -56,14 +56,26 @@
 //INSERT CODE HERE SO MONKEYS CAN BE SPAWNED.
 //Also, M was added to the end of the spawn names to signify that it's a monkey, since some names were conflicting.
 
+/mob/living/carbon/human/sharkm
+	low_sorting_priority = TRUE
+
 /mob/living/carbon/human/sharkm/New(var/new_loc)
 	..(new_loc, "Sobaka")
+
+/mob/living/carbon/human/sergallingm
+	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/sergallingm/New(var/new_loc)
 	..(new_loc, "Saru")
 
+/mob/living/carbon/human/sparram
+	low_sorting_priority = TRUE
+
 /mob/living/carbon/human/sparram/New(var/new_loc)
 	..(new_loc, "Sparra")
+
+/mob/living/carbon/human/wolpin
+	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/wolpin/New(var/new_loc)
 	..(new_loc, "Wolpin")

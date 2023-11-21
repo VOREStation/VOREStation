@@ -8,11 +8,19 @@ var/global/ntnet_card_uid = 1
 	critical = 0
 	icon_state = "netcard_basic"
 	hardware_size = 1
-	var/identification_id = null	// Identification ID. Technically MAC address of this device. Can't be changed by user.
-	var/identification_string = "" 	// Identification string, technically nickname seen in the network. Can be set by user.
-	var/long_range = 0
-	var/ethernet = 0 // Hard-wired, therefore always on, ignores NTNet wireless checks.
 	malfunction_probability = 1
+
+	/// Identification ID. Technically MAC address of this device. Can't be changed by user.
+	var/identification_id = null
+	/// Identification string, technically nickname seen in the network. Can be set by user.
+	var/identification_string = ""
+
+	/// Long-range cards have stronger connections, letting them reach relays from connected Z-levels.
+	var/long_range = 0
+	/// Hard-wired, therefore always on, ignores NTNet wireless checks.
+	var/ethernet = 0
+	/// If set, uses the value to funnel connections through another network card.
+	var/proxy_id
 
 /obj/item/weapon/computer_hardware/network_card/diagnostics(var/mob/user)
 	..()

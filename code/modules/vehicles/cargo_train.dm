@@ -48,6 +48,7 @@
 	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs		//VOREStation edit
 	add_overlay(I)
+	update_icon()
 	turn_off()	//so engine verbs are correctly set
 
 /obj/vehicle/train/engine/Move(var/turf/destination)
@@ -67,7 +68,7 @@
 	return ..()
 
 /obj/vehicle/train/trolley/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(open && W.is_wirecutter())
+	if(open && W.has_tool_quality(TOOL_WIRECUTTER))
 		passenger_allowed = !passenger_allowed
 		user.visible_message("<span class='notice'>[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src].</span>","<span class='notice'>You [passenger_allowed ? "cut" : "mend"] the load limiter cable.</span>")
 	else
@@ -128,6 +129,8 @@
 //-------------------------------------------
 /obj/vehicle/train/engine/turn_on()
 	if(!key)
+		return
+	if(!cell)
 		return
 	else
 		..()
@@ -230,7 +233,9 @@
 	if (on)
 		to_chat(usr, "You start [src]'s engine.")
 	else
-		if(cell.charge < charge_use)
+		if(!cell)
+			to_chat(usr, "[src] doesn't appear to have a power cell!")
+		else if(cell.charge < charge_use)
 			to_chat(usr, "[src] is out of power.")
 		else
 			to_chat(usr, "[src]'s engine won't start.")

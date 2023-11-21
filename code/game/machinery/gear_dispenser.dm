@@ -693,7 +693,7 @@ var/list/dispenser_presets = list()
 	 * "gearlist" = array of types (yes the types are not valid json, byond parses them into real types.)
 	 * "req_one_access" = array of numbers (accesses)
 	 */
-	var/input = input(usr, "Paste new gear pack JSON below. See example/code comments.", "Admin-load Dispenser", example) as null|message
+	var/input = tgui_input_text(usr, "Paste new gear pack JSON below. See example/code comments.", "Admin-load Dispenser", example, multiline = TRUE)
 	if(!input)
 		return
 	

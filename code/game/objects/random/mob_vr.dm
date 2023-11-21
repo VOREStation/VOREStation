@@ -73,6 +73,7 @@
 				prob(2);/obj/item/weapon/twohanded/fireaxe,\
 				prob(2);/obj/item/weapon/gun/projectile/luger/brown,\
 				prob(2);/obj/item/weapon/gun/launcher/crossbow,\
+				prob(2);/obj/item/weapon/melee/shock_maul,\
 			/*	prob(1);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */ // Too OP
 				prob(1);/obj/item/weapon/gun/projectile/deagle/gold,\
 				prob(1);/obj/item/weapon/gun/energy/imperial,\
@@ -183,7 +184,7 @@
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	return pick(
 				prob(50);/mob/living/simple_mob/animal/passive/gaslamp,
-//				prob(50);/mob/living/simple_mob/otie/feral, // Removed until Otie code is unfucked.
+//				prob(50);/mob/living/simple_mob/vore/otie/feral, // Removed until Otie code is unfucked.
 				prob(20);/mob/living/simple_mob/vore/aggressive/dino/virgo3b,
 				prob(1);/mob/living/simple_mob/vore/aggressive/dragon/virgo3b)
 
@@ -250,3 +251,57 @@
 				prob(1);/obj/random/coin,
 				prob(1);/obj/random/drinkbottle,
 				prob(1);/obj/random/tool/alien)
+
+//Scug spawner for the picnic!
+/obj/random/mob/wildscugs
+	name = "Random catslug spawner"
+	desc = "Spawns catslugs with random colours!"
+	icon_state = "vore"
+	mob_faction = "vore"
+	spawn_nothing_percentage = 25
+	mob_wander_distance = 4
+	mob_wander = 1
+	mob_returns_home = 1
+	var/newname = null
+	var/newdesc = null
+
+
+/obj/random/mob/wildscugs/item_to_spawn()
+	return pick(prob(99); /mob/living/simple_mob/vore/alienanimals/catslug,
+				prob(1); /mob/living/simple_mob/vore/alienanimals/catslug/suslug/color) //A super rare surprise
+
+/obj/random/mob/wildscugs/spawn_item()
+	var/build_path = item_to_spawn()
+
+	var/mob/living/simple_mob/M = new build_path(src.loc)
+	if(!istype(M))
+		return
+	if(M.has_AI())
+		var/datum/ai_holder/AI = M.ai_holder
+		AI.go_sleep() //Don't fight eachother while we're still setting up!
+		AI.returns_home = mob_returns_home
+		AI.wander = mob_wander
+		AI.max_home_distance = mob_wander_distance
+		if(overwrite_hostility)
+			AI.hostile = mob_hostile
+			AI.retaliate = mob_retaliate
+		AI.go_wake() //Now you can kill eachother if your faction didn't override.
+
+	if(pixel_x || pixel_y)
+		M.pixel_x = pixel_x
+		M.pixel_y = pixel_y
+
+	if(mob_faction)
+		M.faction = mob_faction
+
+	M.color = pick(COLOR_WHITE, COLOR_RED, COLOR_PURPLE, COLOR_YELLOW, COLOR_CYAN_BLUE, COLOR_RED_GRAY, COLOR_BEIGE, COLOR_PINK, COLOR_BLACK)
+	if(newname)
+		if(islist(newname))
+			M.name = pick(newname)
+		else
+			M.name = newname
+	if(newdesc)
+		if(islist(newdesc))
+			M.desc = pick(newdesc)
+		else
+			M.desc = newdesc

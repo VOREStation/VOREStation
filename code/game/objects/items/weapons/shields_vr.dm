@@ -22,7 +22,7 @@
 
 
 /obj/item/weapon/shield/riot/explorer
-	name = "green explorer shield"
+	name = "green away team shield"
 	desc = "A shield issued to exploration teams to help protect them when advancing into the unknown. It is lighter and cheaper but less protective than some of its counterparts. It has a flashlight straight in the middle to help draw attention."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "explorer_shield"
@@ -74,7 +74,7 @@
 		icon_state = "explorer_shield"
 
 /obj/item/weapon/shield/riot/explorer/purple
-	name = "purple explorer shield"
+	name = "purple away team shield"
 	desc = "A shield issued to exploration teams to help protect them when advancing into the unknown. It is lighter and cheaper but less protective than some of its counterparts. It has a flashlight straight in the middle to help draw attention. This one is POURPEL"
 	icon_state = "explorer_shield_P"
 

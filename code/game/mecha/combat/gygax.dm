@@ -8,7 +8,6 @@
 	health = 250
 	maxhealth = 250			//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 15
-	damage_absorption = list("brute"=0.75,"fire"=1,"bullet"=0.8,"laser"=0.7,"energy"=0.85,"bomb"=1)
 	max_temperature = 25000
 	infra_luminosity = 6
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax
@@ -55,7 +54,6 @@
 	health = 400
 	maxhealth = 400
 	deflect_chance = 25
-	damage_absorption = list("brute"=0.6,"fire"=0.8,"bullet"=0.6,"laser"=0.5,"energy"=0.65,"bomb"=0.8)
 	max_temperature = 45000
 	overload_coeff = 1
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax/dark
@@ -92,7 +90,6 @@
 	maxhealth = 150
 	deflect_chance = 20
 	step_in = 2
-	damage_absorption = list("brute"=0.9,"fire"=1,"bullet"=0.9,"laser"=0.8,"energy"=0.9,"bomb"=1)
 	max_temperature = 20000
 	overload_coeff = 1
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax/serenity

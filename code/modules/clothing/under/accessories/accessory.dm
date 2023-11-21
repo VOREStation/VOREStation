@@ -171,6 +171,24 @@
 	name = "white bow tie"
 	icon_state = "whitebowtie"
 
+/obj/item/clothing/accessory/maid_neck
+	name = "maid neck cover"
+	desc = "A neckpiece for a maid costume, it smells faintly of disappointment."
+	icon_state = "maid_neck"
+
+/obj/item/clothing/accessory/maidcorset
+	name = "maid corset"
+	desc = "The final touch that holds it all together."
+	icon_state = "maidcorset"
+
+/obj/item/clothing/accessory/maid_arms
+	name = "maid arm covers"
+	desc = "Cylindrical looking tubes that go over your arms, weird."
+	slot_flags = SLOT_OCLOTHING | SLOT_GLOVES | SLOT_TIE
+	body_parts_covered = ARMS
+	description_info = "Wearable as gloves, or attachable to uniforms. May visually conflict with actual gloves when attached to uniforms. Caveat emptor."
+	icon_state = "maid_arms"
+
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
@@ -278,7 +296,11 @@
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by high ranking officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
+	desc = "An extremely rare golden medal awarded only by high ranking officials. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
+
+/obj/item/clothing/accessory/medal/gold/casino
+	name = "medal of true lucky winner"
+	desc = "A gaudy golden medal with a logo of a casino engraved on top. The only achievement you had to earn this was great luck or great richness, neither of which is an achievement. Still, it instills a feeling of hope and smell of fresh bagels."
 
 // Base type for 'medals' found in a "dungeon" submap, as a sort of trophy to celebrate the player's conquest.
 /obj/item/clothing/accessory/medal/dungeon
@@ -520,6 +542,26 @@
 	name = "green neck gaiter"
 	icon_state = "gaiter_green"
 
+/obj/item/clothing/accessory/gaiter/blue
+	name = "blue neck gaiter"
+	icon_state = "gaiter_blue"
+
+/obj/item/clothing/accessory/gaiter/purple
+	name = "purple neck gaiter"
+	icon_state = "gaiter_purple"
+
+/obj/item/clothing/accessory/gaiter/orange
+	name = "orange neck gaiter"
+	icon_state = "gaiter_orange"
+
+/obj/item/clothing/accessory/gaiter/charcoal
+	name = "charcoal neck gaiter"
+	icon_state = "gaiter_charcoal"
+
+/obj/item/clothing/accessory/gaiter/snow
+	name = "white neck gaiter"
+	icon_state = "gaiter_snow"
+
 /*
  * Pride Pins
  */
@@ -560,3 +602,51 @@
 /obj/item/clothing/accessory/pride/vore
 	name = "vore pride pin"
 	icon_state = "pride_vore"
+
+// ranger ponchos
+
+/obj/item/clothing/accessory/poncho/roles/ranger
+	name = "red ranger poncho"
+	desc = "A rugged all-weather poncho, perfectly coloured to match a popular line of neck gaiters. You could probably use it as a tent in a pinch!"
+	icon_state = "rangerponcho_red"
+	item_state = "rangerponcho_red"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/tan
+	name = "tan ranger poncho"
+	icon_state = "rangerponcho_tan"
+	item_state = "rangerponcho_tan"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/gray
+	name = "gray ranger poncho"
+	icon_state = "rangerponcho_gray"
+	item_state = "rangerponcho_gray"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/green
+	name = "green ranger poncho"
+	icon_state = "rangerponcho_green"
+	item_state = "rangerponcho_green"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/blue
+	name = "blue ranger poncho"
+	icon_state = "rangerponcho_blue"
+	item_state = "rangerponcho_blue"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/purple
+	name = "purple ranger poncho"
+	icon_state = "rangerponcho_purple"
+	item_state = "rangerponcho_purple"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/orange
+	name = "orange ranger poncho"
+	icon_state = "rangerponcho_orange"
+	item_state = "rangerponcho_orange"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/charcoal
+	name = "charcoal ranger poncho"
+	icon_state = "rangerponcho_charcoal"
+	item_state = "rangerponcho_charcoal"
+
+/obj/item/clothing/accessory/poncho/roles/ranger/snow
+	name = "white ranger poncho"
+	icon_state = "rangerponcho_snow"
+	item_state = "rangerponcho_snow"

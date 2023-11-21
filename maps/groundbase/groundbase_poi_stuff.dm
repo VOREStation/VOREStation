@@ -13,6 +13,7 @@
 #include "pois/outdoors12.dmm"
 #include "pois/outdoors13.dmm"
 #include "pois/outdoors14.dmm"
+#include "pois/outdoors16.dmm"
 
 #include "pois/cave1.dmm"
 #include "pois/cave2.dmm"
@@ -220,6 +221,7 @@
 	mappath = 'pois/outdoors1.dmm'
 	cost = 10
 	allow_duplicates = TRUE
+
 /datum/map_template/groundbase/outdoor/thing2
 	name = "Outdoors2"
 	mappath = 'pois/outdoors2.dmm'
@@ -266,6 +268,10 @@
 /datum/map_template/groundbase/outdoor/thing15
 	name = "Outdoors15"
 	mappath = 'pois/outdoors15.dmm'
+	allow_duplicates = FALSE
+/datum/map_template/groundbase/outdoor/thing16
+	name = "Outdoors16"
+	mappath = 'pois/outdoors16.dmm'
 	allow_duplicates = FALSE
 
 /datum/map_template/groundbase/maintcaves/cave
@@ -885,7 +891,7 @@
 	name = "Cave 49"
 	mappath = 'pois/cave49c.dmm'
 
-/datum/map_template/groundbase/maintcaves/cavething 
+/datum/map_template/groundbase/maintcaves/cavething
 	name = "Cavething 1"
 	mappath = 'pois/cavething1.dmm'
 	cost = 10
@@ -939,11 +945,33 @@
 	cost = 3
 	allow_duplicates = FALSE
 
+
+/obj/effect/landmark/poi_loader/gb_square
+	name = "Square House Loader"
+	size_x = 12
+	size_y = 12
+	poi_type = /datum/map_template/groundbase/wildvillage/square
+
+/obj/effect/landmark/poi_loader/gb_wide
+	name = "Wide House Loader"
+	size_x = 17
+	size_y = 12
+	poi_type = /datum/map_template/groundbase/wildvillage/wide
+
+/obj/effect/landmark/poi_loader/gb_long
+	name = "Long House Loader"
+	size_x = 17
+	size_y = 24
+	poi_type = /datum/map_template/groundbase/wildvillage/long
+
+
 /area/submap/groundbase/poi/wildvillage
 	name = "POI - Wilderness Village"
 	icon = 'icons/turf/areas_vr.dmi'
 	ambience = AMBIENCE_OUTPOST
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	requires_power = 0
+	base_turf = /turf/simulated/mineral/floor/virgo3c
 
 /area/submap/groundbase/poi/wildvillage/plot
 	icon_state = "grewhisqu"
@@ -951,12 +979,15 @@
 /area/submap/groundbase/poi/wildvillage/plot/wide
 /area/submap/groundbase/poi/wildvillage/plot/long
 
-/area/submap/groundbase/poi/wildvillage/building
-	name = "Building"
+/area/submap/groundbase/poi/wildvillage/square
+	name = "square building"
 	icon_state = "grewhisqu"
-
-/area/submap/groundbase/poi/wildvillage/building/building1
-
+/area/submap/groundbase/poi/wildvillage/wide
+	name = "wide building"
+	icon_state = "grewhisqu"
+/area/submap/groundbase/poi/wildvillage/long
+	name = "long building"
+	icon_state = "grewhisqu"
 
 /datum/map_template/groundbase/wildvillage
 	name = "building"
@@ -996,7 +1027,6 @@
 	name = "square building 8"
 	mappath = 'southwilds/villagepois/square8.dmm'
 /area/submap/groundbase/poi/wildvillage/square/square8
-/*
 /datum/map_template/groundbase/wildvillage/square/square9
 	name = "square building 9"
 	mappath = 'southwilds/villagepois/square9.dmm'
@@ -1013,7 +1043,7 @@
 	name = "square building 12"
 	mappath = 'southwilds/villagepois/square12.dmm'
 /area/submap/groundbase/poi/wildvillage/square/square12
-*/
+
 
 /datum/map_template/groundbase/wildvillage/wide/wide1
 	name = "wide building 1"
@@ -1023,7 +1053,6 @@
 	name = "wide building 2"
 	mappath = 'southwilds/villagepois/wide2.dmm'
 /area/submap/groundbase/poi/wildvillage/wide/wide2
-/*
 /datum/map_template/groundbase/wildvillage/wide/wide3
 	name = "wide building 3"
 	mappath = 'southwilds/villagepois/wide3.dmm'
@@ -1040,7 +1069,11 @@
 	name = "wide building 6"
 	mappath = 'southwilds/villagepois/wide6.dmm'
 /area/submap/groundbase/poi/wildvillage/wide/wide6
-*/
+/obj/item/weapon/paper/wide6
+	name = "\improper hand written letter"
+	info = {"It is hard for me to write this out, and I hope you will be back soon, but I fear that by the time you return I will already be gone. I will try my best to hold on, but even as I write this, I can feel myself slipping.<BR><BR>
+	I know that you all do not believe me but I really can see them, just beyond the walls, and they're even closer now than they were before. I can see them even when I close my eyes. Seven golden eyes watch me, and I can feel their heat pouring into me. As they come closer, I can feel myself being tugged in. Like I'm a little lost moon being tugged into the embrace of a passing star. <BR><BR>It still doesn't hurt. It's getting hard to see anything else, and I can't move anymore. I feel like everything is going to be okay. If you see seven eyes, don't be afraid. Just promise you'll come find me, okay?<BR><BR>
+	I'll keep hol"}
 
 /datum/map_template/groundbase/wildvillage/long/long1
 	name = "long building 1"
@@ -1050,13 +1083,11 @@
 	name = "long building 2"
 	mappath = 'southwilds/villagepois/long2.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long2
-/*
-/datum/map_template/groundbase/wildvillage/wide/long3
+/datum/map_template/groundbase/wildvillage/long/long3
 	name = "wide building 3"
 	mappath = 'southwilds/villagepois/long3.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long3
-/datum/map_template/groundbase/wildvillage/wide/long4
+/datum/map_template/groundbase/wildvillage/long/long4
 	name = "wide building 4"
 	mappath = 'southwilds/villagepois/long4.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long4
-*/

@@ -16,12 +16,15 @@ var/list/_robot_default_emotes = list(
 	/decl/emote/visible/spin,
 	/decl/emote/visible/sidestep,
 	/decl/emote/audible/synth,
-	/decl/emote/audible/synth/ping,
+	/decl/emote/audible/synth/beep,
+	/decl/emote/audible/synth/bing,
 	/decl/emote/audible/synth/buzz,
 	/decl/emote/audible/synth/confirm,
 	/decl/emote/audible/synth/deny,
 	/decl/emote/audible/synth/scary,
 	/decl/emote/audible/synth/dwoop,
+	/decl/emote/audible/synth/boop,
+	/decl/emote/audible/synth/robochirp,
 	/decl/emote/audible/synth/security,
 	/decl/emote/audible/synth/security/halt,
 	//VOREStation Add
@@ -31,4 +34,6 @@ var/list/_robot_default_emotes = list(
 )
 
 /mob/living/silicon/robot/get_available_emotes()
-	return global._robot_default_emotes
+	var/list/fulllist = global._robot_default_emotes.Copy()
+	fulllist |= _human_default_emotes
+	return fulllist

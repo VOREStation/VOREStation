@@ -1,7 +1,12 @@
-/obj/machinery/smartfridge/sheets //Is this used anywhere? It's not secure.
-	name = "\improper Smart Sheet Storage"
-	desc = "A storage unit for metals."
-	icon_contents = "boxes"
+/*
+ * Industrial Sized Sheet Storage (but not actually industrial sized)
+ */
+/obj/machinery/smartfridge/sheets
+	name = "\improper Industrial Sheet Storage"
+	desc = "An industrial sized storage unit for materials."
+	icon_state = "base_industrial"
+	icon_base = "industrial"
+	icon_contents = "sheet"
 	stored_datum_type = /datum/stored_item/stack
 
 /obj/machinery/smartfridge/sheets/persistent
@@ -27,6 +32,20 @@
 
 /obj/machinery/smartfridge/sheets/find_record(var/obj/item/O)
 	for(var/datum/stored_item/stack/I as anything in item_records)
-		if(istype(O, I.item_path)) // Typecheck should evaluate material-specific subtype
+		if(O.type == I.item_path) // Typecheck should evaluate material-specific subtype
 			return I
 	return null
+
+/*
+ * Mining Variant
+ */
+/obj/machinery/smartfridge/sheets/mining
+	name = "\improper Mining Sheet Storage"
+	icon_state = "base_mining"
+	icon_base = "mining"
+	icon_contents = "sheet"
+
+/obj/machinery/smartfridge/sheets/mining/persistent
+	persistent = /datum/persistent/storage/smartfridge/sheet_storage
+/obj/machinery/smartfridge/sheets/mining/persistent_lossy
+	persistent = /datum/persistent/storage/smartfridge/sheet_storage/lossy

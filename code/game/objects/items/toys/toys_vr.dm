@@ -87,18 +87,61 @@
 	attack_verb = list("beeped", "booped", "pinged")
 
 /obj/item/toy/plushie/borgplushie/medihound
+	name = "medihound plushie"
 	icon_state = "medihound"
 
 /obj/item/toy/plushie/borgplushie/scrubpuppy
+	name = "janihound plushie"
 	icon_state = "scrubpuppy"
 
-/obj/item/toy/plushie/borgplushie/drakiesec
+/obj/item/toy/plushie/borgplushie/drake
 	icon = 'icons/obj/drakietoy_vr.dmi'
+	var/lights_glowing = FALSE
+
+/obj/item/toy/plushie/borgplushie/drake/AltClick(mob/living/user)
+	. = ..()
+	var/turf/T = get_turf(src)
+	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
+		return FALSE
+	lights_glowing = !lights_glowing
+	to_chat(user, "<span class='notice'>You turn the [src]'s glow-fabric [lights_glowing ? "on" : "off"].</span>")
+	update_icon()
+
+/obj/item/toy/plushie/borgplushie/drake/update_icon()
+	cut_overlays()
+	if (lights_glowing)
+		add_overlay(emissive_appearance(icon, "[icon_state]-lights"))
+
+/obj/item/toy/plushie/borgplushie/drake/get_description_info()
+	return "The lights on the plushie can be toggled [lights_glowing ? "off" : "on"] by alt-clicking on it."
+
+/obj/item/toy/plushie/borgplushie/drake/sec
+	name = "security drake plushie"
 	icon_state = "secdrake"
 
-/obj/item/toy/plushie/borgplushie/drakiemed
-	icon = 'icons/obj/drakietoy_vr.dmi'
+/obj/item/toy/plushie/borgplushie/drake/med
+	name = "medical drake plushie"
 	icon_state = "meddrake"
+
+/obj/item/toy/plushie/borgplushie/drake/sci
+	name = "science drake plushie"
+	icon_state = "scidrake"
+
+/obj/item/toy/plushie/borgplushie/drake/jani
+	name = "janitor drake plushie"
+	icon_state = "janidrake"
+
+/obj/item/toy/plushie/borgplushie/drake/eng
+	name = "engineering drake plushie"
+	icon_state = "engdrake"
+
+/obj/item/toy/plushie/borgplushie/drake/mine
+	name = "mining drake plushie"
+	icon_state = "minedrake"
+
+/obj/item/toy/plushie/borgplushie/drake/trauma
+	name = "trauma drake plushie"
+	icon_state = "traumadrake"
 
 /obj/item/toy/plushie/foxbear
 	name = "toy fox"
@@ -131,7 +174,7 @@
 		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
 		src.visible_message("<span class='danger'>Skreee!</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/plushie/vox/proc/cooldownreset()
@@ -181,7 +224,7 @@
 		playsound(user, 'sound/machines/ping.ogg', 10, 0)
 		src.visible_message("<span class='danger'>Ping!</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/plushie/ipc/proc/cooldownreset()
@@ -198,7 +241,7 @@
 		playsound(user, 'sound/machines/ding.ogg', 10, 0)
 		src.visible_message("<span class='danger'>Ding!</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/plushie/snakeplushie
@@ -231,14 +274,14 @@
 			atom_say(pick(responses))
 			playsound(user, 'sound/effects/whistle.ogg', 10, 0)
 			cooldown = 1
-			addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+			addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 		return ..()
 
 /obj/item/toy/plushie/marketable_pip/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/plushie/marketable_pip/proc/cooldownreset()
@@ -256,7 +299,7 @@
 		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
 		src.visible_message("<span class='danger'>Aaaaaaa.</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/plushie/moth/proc/cooldownreset()
@@ -301,7 +344,7 @@
 		playsound(user, 'sound/weapons/slice.ogg', 10, 0)
 		src.visible_message("<span class='danger'>Stab!</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/plushie/susblue
@@ -327,6 +370,17 @@
 	desc = "A sleepy looking basset hound plushie."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "basset"
+
+/obj/item/toy/plushie/shark
+	name = "shark plushie"
+	desc = "A plushie depicting a somewhat cartoonish shark. The tag calls it a 'hákarl', noting that it was made by an obscure furniture manufacturer in old Scandinavia."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "blahaj"
+	item_state = "blahaj"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+		)
 
 /*
  * Pet rocks
@@ -427,7 +481,7 @@
 		flick("[initial(icon_state)]2", src)
 		user.visible_message("<span class='disarm'>[user] doesn't blind [M] with the toy flash!</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 		return ..()
 
 /obj/item/toy/flash/proc/cooldownreset()
@@ -496,7 +550,7 @@
 			user.visible_message("<span class='notice'>[user] asks the AI core to state laws.</span>")
 			user.visible_message("<span class='notice'>[src] says \"[answer]\"</span>")
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 		return ..()
 
 /obj/item/toy/AI/proc/cooldownreset()
@@ -613,7 +667,7 @@
 
 /obj/item/toy/minigibber/attackby(obj/O, mob/user, params)
 	if(istype(O,/obj/item/toy/figure) || istype(O,/obj/item/toy/character) && O.loc == user)
-		to_chat(user, "<span class='notice'>You start feeding \the [O] [bicon(O)] into \the [src]'s mini-input.</span>")
+		to_chat(user, "<span class='notice'>You start feeding \the [O] \icon[O][bicon(O)] into \the [src]'s mini-input.</span>")
 		if(do_after(user, 10, target = src))
 			if(O.loc != user)
 				to_chat(user, "<span class='alert'>\The [O] is too far away to feed into \the [src]!</span>")
@@ -776,7 +830,7 @@
 	if(!cooldown)
 		playsound(user, 'sound/weapons/chainsaw_startup.ogg', 10, 0)
 		cooldown = 1
-		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
 
 /obj/item/toy/chainsaw/proc/cooldownreset()
@@ -1074,3 +1128,26 @@
 		new /obj/effect/decal/cleanable/confetti(T)
 	else
 		to_chat(user, "<span class='notice'>The [src] is already spent!</span>")
+
+/*
+ * Snow Globes
+ */
+/obj/item/weapon/toy/snowglobe
+	name = "snowglobe"
+	icon = 'icons/obj/snowglobe_vr.dmi'
+
+/obj/item/weapon/toy/snowglobe/snowvillage
+	desc = "Depicts a small, quaint village buried in snow."
+	icon_state = "smolsnowvillage"
+
+/obj/item/weapon/toy/snowglobe/tether
+	desc = "Depicts a massive space elevator reaching to the sky."
+	icon_state = "smoltether"
+
+/obj/item/weapon/toy/snowglobe/stellardelight
+	desc = "Depicts an interstellar spacecraft."
+	icon_state = "smolstellardelight"
+
+/obj/item/weapon/toy/snowglobe/rascalspass
+	desc = "Depicts a nanotrasen facility on a temperate world."
+	icon_state = "smolrascalspass"

@@ -90,7 +90,7 @@
 			return FALSE
 		// If the attacker_controller isn't next to the attacking toy (and doesn't have telekinesis), the battle ends.
 		if(!in_range(attacker, attacker_controller))
-			attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] seperates from [attacker], ending the battle.</span>", \
+			attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] separates from [attacker], ending the battle.</span>", \
 								"<span class='notice'> You separate from [attacker], ending the battle. </span>")
 			return FALSE
 
@@ -99,13 +99,13 @@
 			if(opponent.incapacitated())
 				return FALSE
 			if(!in_range(src, opponent))
-				opponent.visible_message("<span class='notice'> [opponent.name] seperates from [src], ending the battle.</span>", \
+				opponent.visible_message("<span class='notice'> [opponent.name] separates from [src], ending the battle.</span>", \
 							"<span class='notice'> You separate from [src], ending the battle. </span>")
 				return FALSE
 		// If it's not PVP and the attacker_controller isn't next to the defending toy (and doesn't have telekinesis), the battle ends.
 		else
 			if (!in_range(src, attacker_controller))
-				attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] seperates from [src] and [attacker], ending the battle.</span>", \
+				attacker_controller.visible_message("<span class='notice'> [attacker_controller.name] separates from [src] and [attacker], ending the battle.</span>", \
 									"<span class='notice'> You separate [attacker] and [src], ending the battle. </span>")
 				return FALSE
 
@@ -170,7 +170,7 @@
 		to_chat(user, "<span class='notice'>You offer battle to [target.name]!</span>")
 		to_chat(target, "<span class='notice'><b>[user.name] wants to battle with [T.His] [name]!</b> <i>Attack them with a toy mech to initiate combat.</i></span>")
 		wants_to_battle = TRUE
-		addtimer(CALLBACK(src, .proc/withdraw_offer, user), 6 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(withdraw_offer), user), 6 SECONDS)
 		return
 
 	..()

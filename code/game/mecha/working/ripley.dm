@@ -38,7 +38,8 @@
 		if(ore_box)
 			for(var/obj/item/weapon/ore/ore in range(1, src))
 				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
-					ore.forceMove(ore_box)
+					ore_box.stored_ore[ore.material]++
+					qdel(ore)
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
@@ -58,7 +59,6 @@
 	max_temperature = 65000
 	health = 250
 	lights_power = 8
-	damage_absorption = list("fire"=0.5,"bullet"=0.8,"bomb"=0.5)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
 	max_hull_equip = 2
 	max_weapon_equip = 0

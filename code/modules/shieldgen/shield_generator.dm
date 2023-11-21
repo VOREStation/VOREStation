@@ -357,12 +357,12 @@
 		overloaded = 0
 
 /obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
-	if(panel_open && (O?.is_multitool() || O?.is_wirecutter()))
+	if(panel_open && (O?.has_tool_quality(TOOL_MULTITOOL) || O?.has_tool_quality(TOOL_WIRECUTTER)))
 		wires.Interact(user)
 		return TRUE
 	if(default_deconstruction_screwdriver(user, O))
 		return
-	if(O?.is_crowbar() || O?.is_wrench() || istype(O, /obj/item/weapon/storage/part_replacer))
+	if(O?.has_tool_quality(TOOL_CROWBAR) || O?.has_tool_quality(TOOL_WRENCH) || istype(O, /obj/item/weapon/storage/part_replacer))
 		if(offline_for)
 			to_chat(user, "<span class='warning'>Wait until \the [src] cools down from emergency shutdown first!</span>")
 			return
@@ -505,14 +505,14 @@
 
 	switch(action)
 		if("set_range")
-			var/new_range = input(usr, "Enter new field range (1-[world.maxx]). Leave blank to cancel.", "Field Radius Control", field_radius) as num
+			var/new_range = tgui_input_number(usr, "Enter new field range (1-[world.maxx]). Leave blank to cancel.", "Field Radius Control", field_radius, world.maxx, 1)
 			if(!new_range)
 				return TRUE
 			target_radius = between(1, new_range, world.maxx)
 			return TRUE
 
 		if("set_input_cap")
-			var/new_cap = round(input(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(input_cap / 1000)) as num)
+			var/new_cap = round(tgui_input_number(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(input_cap / 1000)))
 			if(!new_cap)
 				input_cap = 0
 				return

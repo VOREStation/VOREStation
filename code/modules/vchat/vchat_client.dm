@@ -5,9 +5,9 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 	"code/modules/vchat/css/vchat-font-embedded.css",
 	"code/modules/vchat/css/semantic.min.css",
 	"code/modules/vchat/css/ss13styles.css",
-	"code/modules/vchat/js/polyfills.js",
+	"code/modules/vchat/js/polyfills.min.js",
 	"code/modules/vchat/js/vue.min.js",
-	"code/modules/vchat/js/vchat.js"
+	"code/modules/vchat/js/vchat.min.js"
 ))
 
 // The to_chat() macro calls this proc
@@ -161,6 +161,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	update_vis()
 
 	spawn()
+	if(owner.is_preference_enabled(/datum/client_preference/vchat_enable))
 		tgui_alert_async(owner,"VChat didn't load after some time. Switching to use oldchat as a fallback. Try using 'Reload VChat' verb in OOC verbs, or reconnecting to try again.")
 
 //Provide the JS with who we are
@@ -262,6 +263,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	if(!cid && !ip && !ckey)
 		return
 
+	if(cid && !isnum(cid) && !(cid == ""))
+		log_and_message_admins("[key_name(owner)] - bancheck with invalid cid! ([cid])")
+
+	if(ip && !findtext(ip, new/regex(@"^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$")) && !(ip == ""))
+		log_and_message_admins("[key_name(owner)] - bancheck with invalid ip! ([ip])")
+
 	var/list/ban = world.IsBanned(key = ckey, address = ip, computer_id = cid)
 	if(ban)
 		log_and_message_admins("[key_name(owner)] has a cookie from a banned account! (Cookie: [ckey], [ip], [cid])")
@@ -309,13 +316,13 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 		base64 = icon2base64(A.examine_icon(), key)
 		GLOB.bicon_cache[key] = base64
 		if(changes_often)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/expire_bicon_cache, key), 50 SECONDS, TIMER_UNIQUE)
+			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(expire_bicon_cache), key), 50 SECONDS, TIMER_UNIQUE)
 
 	// May add a class to the img tag created by bicon
 	if(use_class)
 		class = "class='icon [A.icon_state] [custom_classes]'"
 
-	return "<img [class] src='data:image/png;base64,[base64]'>"
+	return "<IMG [class] src='data:image/png;base64,[base64]'>"
 
 //Checks if the message content is a valid to_chat message
 /proc/is_valid_tochat_message(message)

@@ -193,7 +193,7 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "af" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	desc = "A large machine releasing a constant gust of air.";
 	icon = 'icons/obj/survival_pod.dmi';
 	icon_state = "fans";
@@ -292,14 +292,16 @@
 /obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/ammo_magazine/ammo_box/b12g,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/emp,
+/obj/item/ammo_magazine/ammo_box/b12g/emp,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 /obj/item/ammo_magazine/ammo_box/b12g/stunshell,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/flashshells,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flechette,
+/obj/item/ammo_magazine/ammo_box/b12g/flechette,
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
@@ -534,8 +536,6 @@
 /area/shuttle/tabiranth)
 "aC" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/telecomms/relay{
@@ -882,10 +882,10 @@
 /obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
@@ -960,13 +960,9 @@
 /area/shuttle/tabiranth)
 "aW" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -980,7 +976,6 @@
 	pixel_x = -28
 	},
 /obj/structure/cable/cyan{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/white,
@@ -996,8 +991,6 @@
 /area/shuttle/tabiranth)
 "aZ" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -1020,8 +1013,6 @@
 /area/shuttle/tabiranth)
 "bd" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/item/device/perfect_tele_beacon/stationary{
@@ -1090,7 +1081,8 @@
 "bl" = (
 /obj/machinery/power/smes/buildable/hybrid{
 	input_level = 200000;
-	output_level = 200000
+	output_level = 200000;
+	recharge_rate = 20000
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -1099,8 +1091,6 @@
 /area/shuttle/tabiranth)
 "bm" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/power/terminal{
@@ -1264,8 +1254,6 @@
 /area/shuttle/tabiranth)
 "bA" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/alien/blue{

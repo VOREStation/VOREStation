@@ -221,8 +221,8 @@
 
 //Job Undercoats
 /obj/item/clothing/under/teshari/undercoat/jobs/cap
-	name = "facility director undercoat"
-	desc = "A traditional Teshari garb made for the Facility Director"
+	name = "site manager undercoat"
+	desc = "A traditional Teshari garb made for the Site Manager"
 	icon_state = "tesh_uniform_cap"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/hop

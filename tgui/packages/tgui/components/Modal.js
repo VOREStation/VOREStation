@@ -8,33 +8,23 @@ import { classes } from 'common/react';
 import { computeBoxClassName, computeBoxProps } from './Box';
 import { Dimmer } from './Dimmer';
 
-export const Modal = props => {
-  const {
-    className,
-    children,
-    onEnter, // VOREStation Addition
-    ...rest
-  } = props;
-  // VOREStation Addition Start
+export const Modal = (props) => {
+  const { className, children, onEnter, ...rest } = props;
+  // VOREStation Addition start
   let handleKeyDown;
   if (onEnter) {
-    handleKeyDown = e => {
+    handleKeyDown = (e) => {
       let key = e.which || e.keyCode;
       if (key === 13) {
         onEnter(e);
       }
     };
   }
-  // VOREStation Addition End
+  // VOREStation Addition end
   return (
-    <Dimmer
-      onKeyDown={handleKeyDown /* VOREStation Edit */}>
+    <Dimmer onKeyDown={handleKeyDown} /* VOREStation edit */>
       <div
-        className={classes([
-          'Modal',
-          className,
-          computeBoxClassName(rest),
-        ])}
+        className={classes(['Modal', className, computeBoxClassName(rest)])}
         {...computeBoxProps(rest)}>
         {children}
       </div>

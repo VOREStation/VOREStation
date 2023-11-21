@@ -13,7 +13,7 @@
 	icon_gib = "syndicate_gib"
 
 	faction = "syndicate"
-	movement_cooldown = 4
+	movement_cooldown = 1
 
 	status_flags = 0
 
@@ -341,7 +341,7 @@
 	icon_state = "syndicatemeleespace"
 	icon_living = "syndicatemeleespace"
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 100)	// Same armor as their voidsuit
 
@@ -366,7 +366,7 @@
 	icon_state = "syndicaterangedpsace"
 	icon_living = "syndicaterangedpsace"
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	min_oxy = 0
 	max_oxy = 0

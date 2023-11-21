@@ -131,6 +131,7 @@
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris/white/brown_platform{
 	outdoors = 1
 	},
@@ -157,16 +158,16 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
@@ -207,9 +208,9 @@
 	},
 /area/gateway/arynthilake/dome)
 "dC" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/tiled/eris/white/techfloor,
-/area/gateway/arynthilake/dome)
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/outdoors/grass,
+/area/gateway/arynthilake)
 "dR" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/reagent_containers/food/condiment/enzyme{
@@ -242,8 +243,6 @@
 "eq" = (
 /obj/structure/lattice,
 /obj/structure/cable/green{
-	d1 = 32;
-	d2 = 4;
 	icon_state = "32-4"
 	},
 /turf/simulated/open,
@@ -314,10 +313,6 @@
 	outdoors = 1
 	},
 /area/gateway/arynthilake/dome)
-"fC" = (
-/obj/effect/overmap/visitable/sector/common_gateway/arynthilake,
-/turf/simulated/mineral/ignore_cavegen/cave,
-/area/gateway/arynthilake/caves)
 "fX" = (
 /obj/structure/table/standard{
 	color = "#b8e4ff"
@@ -413,7 +408,7 @@
 /turf/simulated/floor/outdoors/grass,
 /area/gateway/arynthilake/engine)
 "hP" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/gateway/arynthilake/dome)
 "hR" = (
@@ -478,8 +473,6 @@
 /area/gateway/arynthilake)
 "jh" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light,
@@ -557,6 +550,7 @@
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "ku" = (
@@ -589,9 +583,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/gateway/arynthilake/dome)
 "lk" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/tiled/eris/white/brown_platform,
-/area/gateway/arynthilake/dome)
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/gateway/arynthilake)
 "ll" = (
 /turf/simulated/floor/wood/sif,
 /area/gateway/arynthilake/oldcabin)
@@ -627,33 +621,21 @@
 /area/gateway/arynthilake/dome)
 "mp" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -673,9 +655,9 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/gateway/arynthilake/dome)
 "mv" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/tiled/eris,
-/area/gateway/arynthilake/engine)
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/gateway/arynthilake/dome)
 "mx" = (
 /obj/machinery/light,
 /turf/simulated/floor/carpet,
@@ -704,26 +686,19 @@
 /area/gateway/arynthilake/engine)
 "nq" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "nB" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -803,14 +778,11 @@
 /area/gateway/arynthilake/caveruins)
 "oX" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/random/mob/semirandom_mob_spawner/monster,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "pa" = (
@@ -1005,8 +977,8 @@
 	},
 /area/gateway/arynthilake/dome)
 "uj" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/carpet/sblucarpet,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/carpet,
 /area/gateway/arynthilake/dome)
 "um" = (
 /obj/machinery/light{
@@ -1119,11 +1091,9 @@
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "xj" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/tiled/eris{
-	outdoors = 1
-	},
-/area/gateway/arynthilake/engine)
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/outdoors/newdirt,
+/area/gateway/arynthilake)
 "xk" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1140,8 +1110,8 @@
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "xr" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/carpet,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/dome)
 "xz" = (
 /obj/machinery/seed_extractor,
@@ -1202,9 +1172,10 @@
 	},
 /area/gateway/arynthilake)
 "zk" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/gateway/arynthilake)
+/obj/structure/table/bench/marble,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/tiled/eris/white/techfloor,
+/area/gateway/arynthilake/dome)
 "zo" = (
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake/dome)
@@ -1256,6 +1227,7 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/sofa/brown,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/carpet,
 /area/gateway/arynthilake/dome)
 "AI" = (
@@ -1375,8 +1347,8 @@
 	},
 /area/gateway/arynthilake/dome)
 "EG" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/outdoors/grass/forest,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/tiled/eris/cafe,
 /area/gateway/arynthilake/dome)
 "EP" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1485,7 +1457,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/green{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -1679,7 +1650,6 @@
 	start_charge = 0
 	},
 /obj/structure/cable/green{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2082,6 +2052,7 @@
 /area/gateway/arynthilake/dome)
 "Sc" = (
 /obj/structure/bed/chair/office/light,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/gateway/arynthilake/dome)
 "Si" = (
@@ -2097,7 +2068,6 @@
 	req_access = list();
 	start_charge = 0
 	},
-/obj/random/mob/semirandom_mob_spawner/monster,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/underground/maintenance)
 "Sq" = (
@@ -2107,8 +2077,9 @@
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "Sr" = (
-/obj/random/mob/semirandom_mob_spawner/humanoid,
-/turf/simulated/floor/outdoors/grass,
+/obj/item/weapon/stool/padded,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
 "St" = (
 /obj/structure/table/rack,
@@ -2168,8 +2139,6 @@
 /area/gateway/arynthilake/dome)
 "Ui" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2267,7 +2236,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/random/mob/semirandom_mob_spawner/humanoid,
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "Vm" = (
@@ -2333,8 +2302,6 @@
 /area/gateway/arynthilake/dome)
 "WA" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2359,7 +2326,6 @@
 /area/gateway/arynthilake/dome)
 "Xx" = (
 /obj/structure/cable/green{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/alarms_hidden{
@@ -2441,7 +2407,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/arynthilake/gateway)
 "Zg" = (
-/obj/random/mob/semirandom_mob_spawner/robot,
+/obj/random/mob/semirandom_mob_spawner/robot/retaliate,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "Zn" = (
@@ -2456,8 +2422,6 @@
 /area/gateway/arynthilake/dome)
 "ZE" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2919,7 +2883,7 @@ ek
 ek
 ek
 ek
-fC
+ek
 nF
 "}
 (4,1,1) = {"
@@ -4493,7 +4457,7 @@ ek
 ek
 fs
 St
-mv
+nk
 nk
 mX
 Ui
@@ -4503,7 +4467,7 @@ nB
 ZE
 mX
 nk
-mv
+ZY
 SP
 fs
 sP
@@ -5770,7 +5734,7 @@ Vo
 Vo
 Vo
 fs
-xj
+uI
 nk
 nk
 nk
@@ -5922,7 +5886,7 @@ Zg
 nk
 nk
 rj
-xj
+uI
 fs
 nd
 fs
@@ -6805,7 +6769,7 @@ ek
 ek
 Hw
 Hw
-Uq
+Hw
 ek
 ek
 ek
@@ -6911,7 +6875,7 @@ Oo
 sP
 sP
 sP
-sP
+dC
 Vo
 CD
 Vo
@@ -7376,7 +7340,7 @@ Hw
 Hw
 Hw
 Hw
-Uq
+Hw
 Hw
 ek
 ek
@@ -9055,7 +9019,7 @@ ek
 ek
 ek
 pS
-LR
+Hw
 Hw
 Hw
 Hw
@@ -10044,7 +10008,7 @@ ek
 ek
 Hw
 Hw
-LR
+Hw
 Hw
 ek
 ek
@@ -13509,7 +13473,7 @@ CD
 CD
 CD
 Vo
-Oo
+Vo
 CD
 Vo
 CD
@@ -14307,7 +14271,7 @@ xW
 yv
 hl
 CD
-CD
+xj
 Vo
 Vo
 Vo
@@ -14472,7 +14436,7 @@ Vo
 Vo
 Vo
 Vo
-CD
+xj
 CD
 Vo
 Vo
@@ -15574,7 +15538,7 @@ Vo
 Vo
 Vo
 Vo
-zk
+Vo
 Vo
 Vo
 Vo
@@ -15858,7 +15822,7 @@ Vo
 Vo
 Vo
 Vo
-Vo
+lk
 Vo
 Vo
 sP
@@ -15890,7 +15854,7 @@ Vo
 Vo
 Vo
 Vo
-Vo
+lk
 Vo
 Vo
 Vo
@@ -16296,7 +16260,7 @@ lQ
 lQ
 lQ
 lQ
-EG
+lQ
 lQ
 nC
 iG
@@ -16602,7 +16566,7 @@ Ia
 sP
 sP
 Vo
-zk
+Vo
 Vo
 Vo
 Vo
@@ -16731,7 +16695,7 @@ lQ
 hH
 Dy
 vv
-xr
+vv
 vv
 Ty
 Ia
@@ -17155,7 +17119,7 @@ zo
 nC
 nC
 nC
-Sr
+nC
 nC
 iG
 ng
@@ -18002,7 +17966,7 @@ lQ
 lQ
 lQ
 nC
-iG
+xr
 zo
 iG
 Ky
@@ -18011,7 +17975,7 @@ cu
 cu
 zU
 BH
-BH
+EG
 nT
 BH
 Dk
@@ -18417,7 +18381,7 @@ tC
 Ia
 lQ
 lQ
-lQ
+mv
 lQ
 hH
 Ft
@@ -18572,7 +18536,7 @@ lQ
 nC
 iG
 zo
-iG
+xr
 nC
 nC
 hH
@@ -18590,7 +18554,7 @@ lF
 PF
 bw
 MJ
-PF
+Sr
 eT
 hH
 nC
@@ -19501,7 +19465,7 @@ ek
 ek
 ek
 Hw
-Ta
+rz
 rz
 rz
 Hw
@@ -19656,7 +19620,7 @@ ek
 rz
 rz
 rz
-Ta
+rz
 ek
 ek
 ek
@@ -19844,7 +19808,7 @@ NI
 NI
 NI
 NI
-lk
+NI
 Kw
 Ia
 lQ
@@ -20221,7 +20185,7 @@ Hw
 ek
 ek
 rz
-Ta
+rz
 rz
 rz
 ek
@@ -20274,7 +20238,7 @@ nC
 nC
 nC
 nC
-Sr
+nC
 iG
 nC
 nC
@@ -20835,9 +20799,9 @@ nC
 hH
 nH
 vv
+uj
 vv
 vv
-xr
 mx
 hH
 hH
@@ -20850,7 +20814,7 @@ hH
 AO
 sA
 sA
-uj
+sA
 sA
 sA
 HK
@@ -21048,7 +21012,7 @@ rz
 Hw
 Hw
 Hw
-NX
+Hw
 Hw
 Hw
 Hw
@@ -21119,7 +21083,7 @@ Qm
 Qm
 vv
 vS
-xr
+vv
 vv
 vv
 vv
@@ -21176,7 +21140,7 @@ zI
 zI
 zI
 zI
-gB
+zI
 zI
 Jn
 zI
@@ -21269,7 +21233,7 @@ Dk
 TY
 TY
 TY
-dC
+TY
 TY
 TY
 Dk
@@ -21327,7 +21291,7 @@ Hw
 rz
 rz
 rz
-Ta
+rz
 rz
 rz
 rz
@@ -21467,7 +21431,7 @@ mc
 Hw
 Hw
 Hw
-NX
+Hw
 rz
 rz
 rz
@@ -21552,7 +21516,7 @@ cL
 hH
 Py
 CY
-Pn
+zk
 Pn
 gT
 Yh
@@ -21763,7 +21727,7 @@ ek
 Hw
 Hw
 Hw
-NX
+Hw
 Hw
 Hw
 Hw

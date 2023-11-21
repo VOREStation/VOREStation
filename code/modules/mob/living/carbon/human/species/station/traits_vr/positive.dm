@@ -1,5 +1,5 @@
 /datum/trait/positive
-	category = 1
+	category = TRAIT_TYPE_POSITIVE
 
 /datum/trait/positive/speed_fast
 	name = "Haste"
@@ -26,7 +26,7 @@
 	var_changes = list("total_health" = 125)
 
 /datum/trait/positive/endurance_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.setMaxHealth(S.total_health)
 
 /datum/trait/positive/nonconductive
@@ -54,19 +54,19 @@
 	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
 
 /datum/trait/positive/melee_attack
-	name = "Sharp Melee"
+	name = "Special Attack: Sharp Melee" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
 	desc = "Provides sharp melee attacks that do slightly more damage."
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp))
 
 /datum/trait/positive/melee_attack_fangs
-	name = "Sharp Melee & Numbing Fangs"
+	name = "Special Attack: Sharp Melee & Numbing Fangs" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
 	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
 	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/positive/fangs
-	name = "Numbing Fangs"
+	name = "Special Attack: Numbing Fangs" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
 	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
@@ -107,9 +107,10 @@
 	name = "Winged Flight"
 	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
 	cost = 0
+	has_preferences = list("flight_vore" = list(TRAIT_PREF_TYPE_BOOLEAN, "Flight Vore enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
 /datum/trait/positive/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/flying_toggle
 	H.verbs |= /mob/living/proc/flying_vore_toggle
 	H.verbs |= /mob/living/proc/start_wings_hovering
@@ -119,6 +120,7 @@
 	desc = "You can fall from certain heights without suffering any injuries, be it via wings, lightness of frame or general dexterity."
 	cost = 1
 	var_changes = list("soft_landing" = TRUE)
+	custom_only = FALSE
 
 /datum/trait/positive/hardfeet
 	name = "Hard Feet"
@@ -140,6 +142,8 @@
 	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
 	cost = 2
 	var_changes = list("agility" = 90)
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
 /datum/trait/positive/snowwalker
 	name = "Snow Walker"
@@ -152,6 +156,8 @@
 	desc = "You can produce silk and create various articles of clothing and objects."
 	cost = 2
 	var_changes = list("is_weaver" = 1)
+	has_preferences = list("silk_production" = list(TRAIT_PREF_TYPE_BOOLEAN, "Silk production on spawn", TRAIT_VAREDIT_TARGET_SPECIES), \
+							"silk_color" = list(TRAIT_PREF_TYPE_COLOR, "Silk color", TRAIT_VAREDIT_TARGET_SPECIES))
 
 /datum/trait/positive/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -161,8 +167,105 @@
 	H.verbs |= /mob/living/carbon/human/proc/weave_item
 	H.verbs |= /mob/living/carbon/human/proc/set_silk_color
 
-/datum/trait/positive/water_breather
-	name = "Water Breather"
-	desc = "You can breathe under water."
+/datum/trait/positive/aquatic
+	name = "Aquatic"
+	desc = "You can breathe under water and can traverse water more efficiently. Additionally, you can eat others in the water."
 	cost = 1
-	var_changes = list("water_breather" = 1)
+	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
+
+/datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.verbs |= /mob/living/carbon/human/proc/water_stealth
+	H.verbs |= /mob/living/carbon/human/proc/underwater_devour
+
+/datum/trait/positive/cocoon_tf
+	name = "Cocoon Spinner"
+	desc = "Allows you to build a cocoon around yourself, using it to transform your body if you desire."
+	cost = 1
+
+/datum/trait/positive/cocoon_tf/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.verbs |= /mob/living/carbon/human/proc/enter_cocoon
+
+/datum/trait/positive/linguist
+	name = "Linguist"
+	desc = "Allows you to have more languages."
+	cost = 1
+	var_changes = list("num_alternate_languages" = 6)
+	var_changes_pref = list("extra_languages" = 3)
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
+/datum/trait/positive/good_shooter
+	name = "Eagle Eye"
+	desc = "You are better at aiming than most."
+	cost = 2
+	var_changes = list("gun_accuracy_mod" = 25)
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
+/datum/trait/positive/pain_tolerance
+	name = "Grit"
+	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
+	cost = 2
+	var_changes = list("trauma_mod" = 0.85)
+	excludes = list(/datum/trait/negative/neural_hypersensitivity)
+	can_take = ORGANICS
+
+/datum/trait/positive/throw_resistance
+	name = "Firm Body"
+	desc = "Your body is firm enough that small thrown items can't do anything to you."
+	cost = 1
+	var_changes = list("throwforce_absorb_threshold" = 10)
+
+
+
+
+/datum/trait/positive/wall_climber
+	name = "Climber, Amateur"
+	desc = "You can climb certain walls without tools! This is likely a personal skill you developed."
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. You suffer from a movement delay of 1.5 with this trait.\n \
+	Your total climb time is expected to be 17.5 seconds. Tools may reduce this. \n\n \
+	This likewise allows descending walls, provided you're facing an empty space and standing on \
+	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
+	cost = 1
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJ, SPECIES_VASILISSAN)	// They got unique climbing delay.
+	var_changes = list("can_climb" = TRUE)
+	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber_natural)
+
+/datum/trait/positive/wall_climber_natural
+	name = "Climber, Natural"
+	desc = "You can climb certain walls without tools! This is likely due to the unique anatomy of your species. CUSTOM AND XENOCHIM ONLY"
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. You suffer from a movement delay of 1.5 with this trait.\n \
+	Your total climb time is expected to be 17.5 seconds. Tools may reduce this. \n\n \
+	This likewise allows descending walls, provided you're facing an empty space and standing on \
+	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("can_climb" = TRUE)
+	allowed_species = list(SPECIES_XENOCHIMERA, SPECIES_CUSTOM)	//So that we avoid needless bloat for xenochim
+	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber)
+
+/datum/trait/positive/wall_climber_pro
+	name = "Climber, Professional"
+	desc = "You can climb certain walls without tools! You are a professional rock climber at this, letting you climb almost twice as fast!"
+	tutorial = "You must approach a wall and right click it and select the \
+	'climb wall' verb to climb it. Your movement delay is just 1.25 with this trait.\n \
+	Your climb time is expected to be 9 seconds. Tools may reduce this. \n\n \
+	This likewise allows descending walls, provided you're facing an empty space and standing on \
+	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
+	cost = 2
+	custom_only = FALSE
+	var_changes = list("climbing_delay" = 1.25)
+	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
+	excludes = list(/datum/trait/positive/wall_climber,/datum/trait/positive/wall_climber_natural)
+
+// This feels jank, but it's the cleanest way I could do TRAIT_VARCHANGE_LESS_BETTER while having a boolean var change
+// Alternate would've been banned_species = list(SPECIES_TAJ, SPECIES_VASSILISIAN)
+// Opted for this as it's "future proof"
+/datum/trait/positive/wall_climber_pro/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	S.can_climb = TRUE

@@ -136,3 +136,29 @@
 		uses = CEILING(uses, 1) //Ensures no decimal uses nonsense, rounds up to be nice
 		to_chat(usr, "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>")
 		qdel(O)
+
+
+/obj/item/weapon/card/emag/borg
+	uses = 12
+	var/burnt_out = FALSE
+
+/obj/item/weapon/card/emag/borg/afterattack(atom/A, mob/user, proximity, var/click_parameters)
+	if(!proximity || burnt_out) return
+	var/used_uses = A.emag_act(uses, user, src)
+	if(used_uses < 0)
+		return ..(A, user, proximity, click_parameters)
+
+	uses -= used_uses
+	A.add_fingerprint(user)
+	//Vorestation Edit: Because some things (read lift doors) don't get emagged
+	if(used_uses)
+		log_and_message_admins("emagged \an [A].")
+	else
+		log_and_message_admins("attempted to emag \an [A].")
+	// Vorestation Edit: End of Edit
+
+	if(uses<1)
+		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
+		burnt_out = TRUE
+
+	return 1

@@ -47,7 +47,19 @@ function task-webpack {
 
 ## Runs a development server
 function task-dev-server {
-  yarn node "packages/tgui-dev-server/index.esm.js" @Args
+  yarn node --experimental-modules "packages/tgui-dev-server/index.js" @Args
+}
+
+function task-bench {
+  yarn tgui:bench @Args
+}
+
+function task-prettier {
+  yarn tgui:prettier @Args
+}
+
+function task-prettify {
+  yarn prettierx --write packages @Args
 }
 
 ## Run a linter through all packages
@@ -75,7 +87,7 @@ function task-clean {
   Remove-Quiet -Force ".yarn\build-state.yml"
   Remove-Quiet -Force ".yarn\install-state.gz"
   Remove-Quiet -Force ".yarn\install-target"
-  Remove-Quiet -Force ".pnp.js"
+  Remove-Quiet -Force ".pnp.*"
   ## NPM artifacts
   Get-ChildItem -Path "." -Include "node_modules" -Recurse -File:$false | Remove-Item -Recurse -Force
   Remove-Quiet -Force "package-lock.json"
@@ -126,10 +138,27 @@ if ($Args.Length -gt 0) {
     exit 0
   }
 
+  if ($Args[0] -eq "--pretty") {
+    $Rest = $Args | Select-Object -Skip 1
+    task-install
+    task-prettify
+    task-prettier
+    task-lint
+    task-webpack --mode=production
+    exit 0
+  }
+
   ## Analyze the bundle
   if ($Args[0] -eq "--analyze") {
     task-install
     task-webpack --mode=production --analyze
+    exit 0
+  }
+
+  if ($Args[0] -eq "--bench") {
+    $Rest = $Args | Select-Object -Skip 1
+    task-install
+    task-bench --wait-on-error
     exit 0
   }
 }
@@ -137,6 +166,7 @@ if ($Args.Length -gt 0) {
 ## Make a production webpack build
 if ($Args.Length -eq 0) {
   task-install
+  task-prettier
   task-lint
   task-webpack --mode=production
   exit 0

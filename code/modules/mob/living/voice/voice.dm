@@ -80,10 +80,10 @@
 	set desc = "Changes your name."
 	set src = usr
 
-	var/new_name = sanitizeSafe(input(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name)  as text, MAX_NAME_LEN)
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(new_name)
 		if(comm)
-			comm.visible_message("<span class='notice'>[bicon(comm)] [src.name] has left, and now you see [new_name].</span>")
+			comm.visible_message("<span class='notice'>\icon[comm][bicon(comm)] [src.name] has left, and now you see [new_name].</span>")
 		//Do a bit of logging in-case anyone tries to impersonate other characters for whatever reason.
 		var/msg = "[src.client.key] ([src]) has changed their communicator identity's name to [new_name]."
 		message_admins(msg)
@@ -109,7 +109,9 @@
 	if(comm)
 		var/speech_bubble_test = say_test(message)
 		//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"h[speech_bubble_test]") //VOREStation Edit - Commented out in case of needed reenable.
-		var/speech_type = speech_bubble_appearance()
+		var/speech_type = custom_speech_bubble
+		if(!speech_type || speech_type == "default")
+			speech_type = speech_bubble_appearance()
 		var/image/speech_bubble = generate_speech_bubble(comm, "[speech_type][speech_bubble_test]")
 		spawn(30)
 			qdel(speech_bubble)

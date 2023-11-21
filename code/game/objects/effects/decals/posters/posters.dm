@@ -3,7 +3,7 @@
 		if(exact)
 			return decls_repository.get_decl(path)
 		else
-			var/list/L = decls_repository.get_decls_of_type(path) 
+			var/list/L = decls_repository.get_decls_of_type(path)
 			return L[pick(L)]
 	return null
 
@@ -27,7 +27,9 @@
 		src.poster_decl = get_poster_decl(poster_decl, TRUE)
 	else
 		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
-	
+		while (istype(src.poster_decl, /decl/poster/lewd))
+			src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+
 	name += " - [src.poster_decl.name]"
 	return ..()
 
@@ -58,8 +60,8 @@
 		if (locate(/obj/structure/sign/poster) in T)
 			stuff_on_wall = 1
 			break
-	
-	if(stuff_on_wall)		
+
+	if(stuff_on_wall)
 		to_chat(user, "<span class='notice'>There is already a poster there!</span>")
 		return FALSE
 
@@ -71,7 +73,7 @@
 		to_chat(user, "<span class='notice'>You place the poster!</span>")
 		qdel(src)
 		return TRUE
-	
+
 	P.roll_and_drop(P.loc)
 	qdel(src)
 	return FALSE
@@ -101,7 +103,7 @@
 	var/list/options = list()
 	var/list/decl/poster/posters = decls_repository.get_decls_of_type(/decl/poster)
 	for(var/option in posters)
-		options[posters[option].listing_name] = posters[option]
+		options[posters[option].name] = posters[option]
 
 	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
 	if(src && choice && !M.stat && in_range(M,src))
@@ -124,8 +126,25 @@
 	var/roll_type = /obj/item/poster
 	var/ruined = FALSE
 
-// This stuff needs to go in new() for the the flick() to look right while it's being placed
-/obj/structure/sign/poster/New(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
+/obj/structure/sign/poster/Initialize(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
+	. = ..()
+
+	if(ispath(src.poster_decl))
+		src.poster_decl = get_poster_decl(src.poster_decl, TRUE)
+	else if(istype(P))
+		src.poster_decl = P.poster_decl
+		roll_type = P.type
+	else if(ispath(P))
+		src.poster_decl = get_poster_decl(P, TRUE)
+	else
+		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+		while (istype(src.poster_decl, /decl/poster/lewd))
+			src.poster_decl = get_poster_decl(/decl/poster, FALSE)
+
+	name = "[initial(name)] - [poster_decl.name]"
+	desc = "[initial(desc)] [poster_decl.desc]"
+	icon_state = poster_decl.icon_state
+
 	if(placement_dir)
 		dir = placement_dir
 
@@ -144,28 +163,9 @@
 			pixel_y = 0
 
 	flick("poster_being_set", src)
-	return ..()
-
-
-/obj/structure/sign/poster/Initialize(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
-	if(ispath(src.poster_decl))
-		src.poster_decl = get_poster_decl(src.poster_decl, TRUE)
-	else if(istype(P))
-		src.poster_decl = P.poster_decl
-		roll_type = P.type
-	else if(ispath(P))
-		src.poster_decl = get_poster_decl(P, TRUE)
-	else
-		src.poster_decl = get_poster_decl(target_poster_decl_path, FALSE)		
-
-	name = "[initial(name)] - [poster_decl.name]"
-	desc = "[initial(desc)] [poster_decl.desc]"
-	icon_state = poster_decl.icon_state
-
-	return ..()
 
 /obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, W.usesound, 100, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")

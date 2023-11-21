@@ -78,6 +78,10 @@
 	name = "request console electronics"
 	path =/obj/item/weapon/circuitboard/request
 
+/datum/category_item/autolathe/engineering/electrochromic
+	name = "electrochromic window control electronics"
+	path =/obj/item/weapon/circuitboard/electrochromic
+
 /datum/category_item/autolathe/engineering/pipelayer
 	name = "pipe layer electronics"
 	path =/obj/item/weapon/circuitboard/pipelayer

@@ -1,8 +1,8 @@
-import { useBackend } from "../backend";
-import { Window } from "../layouts";
-import { Button, Box, Section, LabeledList, NumberInput, AnimatedNumber } from "../components";
-import { round } from "common/math";
-import { formatSiUnit, formatPower } from "../format";
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
+import { Button, Box, Section, LabeledList, NumberInput, AnimatedNumber } from '../components';
+import { round } from 'common/math';
+import { formatSiUnit, formatPower } from '../format';
 
 export const ShieldCapacitor = (props, context) => {
   const { act, data } = useBackend(context);
@@ -17,10 +17,7 @@ export const ShieldCapacitor = (props, context) => {
   } = data;
 
   return (
-    <Window
-      width={500}
-      height={400}
-      resizable>
+    <Window width={500} height={400} resizable>
       <Window.Content>
         <Section
           title="Status"
@@ -28,18 +25,27 @@ export const ShieldCapacitor = (props, context) => {
             <Button
               icon="power-off"
               selected={active}
-              content={active ? "Online" : "Offline"}
-              onClick={() => act("toggle")} />
+              content={active ? 'Online' : 'Offline'}
+              onClick={() => act('toggle')}
+            />
           }>
           <LabeledList>
             <LabeledList.Item label="Capacitor Status">
-              {time_since_fail > 2
-                ? <Box color="good">OK.</Box>
-                : <Box color="bad">Discharging!</Box>}
+              {time_since_fail > 2 ? (
+                <Box color="good">OK.</Box>
+              ) : (
+                <Box color="bad">Discharging!</Box>
+              )}
             </LabeledList.Item>
             <LabeledList.Item label="Stored Energy">
-              <AnimatedNumber value={stored_charge} format={val => formatSiUnit(val, 0, 'J')} /> (
-              <AnimatedNumber value={100 * round(stored_charge / max_charge, 1)} />
+              <AnimatedNumber
+                value={stored_charge}
+                format={(val) => formatSiUnit(val, 0, 'J')}
+              />{' '}
+              (
+              <AnimatedNumber
+                value={100 * round(stored_charge / max_charge, 1)}
+              />
               %)
             </LabeledList.Item>
             <LabeledList.Item label="Charge Rate">
@@ -49,8 +55,9 @@ export const ShieldCapacitor = (props, context) => {
                 stepPixelSize={0.2}
                 minValue={10000}
                 maxValue={max_charge_rate}
-                format={val => formatPower(val)}
-                onDrag={(e, val) => act("charge_rate", { rate: val })} />
+                format={(val) => formatPower(val)}
+                onDrag={(e, val) => act('charge_rate', { rate: val })}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>

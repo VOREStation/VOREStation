@@ -1,6 +1,6 @@
 /obj/item/device/flash
 	name = "flash"
-	desc = "Used for blinding and being an asshole."
+	desc = "Used for blinding and disorienting."
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5
@@ -37,7 +37,7 @@
 	power_supply = new cell_type(src)
 
 /obj/item/device/flash/attackby(var/obj/item/W, var/mob/user)
-	if(W.is_screwdriver() && broken)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && broken)
 		if(repairing)
 			to_chat(user, "<span class='notice'>\The [src] is already being repaired!</span>")
 			return

@@ -44,7 +44,7 @@
 		if(isanimal(bound_mob))
 			. += "<span class = 'notice'>[bound_mob.health / bound_mob.maxHealth * 100]%</span>"
 		if(bound_mob.ooc_notes)
-			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a>"
+			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 		. += "<span class='deptradio'><a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
@@ -81,7 +81,7 @@
 	else
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is unresponsive.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-	
+
 //Lets the owner get AI controlled bound mobs to follow them, or tells player controlled mobs to follow them.
 /obj/item/capture_crystal/verb/follow_owner()
 	set name = "Toggle Follow"
@@ -208,7 +208,7 @@
 	else return TRUE
 
 /obj/item/capture_crystal/attack(mob/living/M, mob/living/user)
-	if(bound_mob)	
+	if(bound_mob)
 		if(!bound_mob.devourable)	//Don't eat if prefs are bad
 			return
 		if(user.zone_sel.selecting == "mouth")	//Click while targetting the mouth and you eat/feed the stored mob to whoever you clicked on
@@ -249,8 +249,8 @@
 
 //Make it so the crystal knows if its mob references get deleted to make sure things get cleaned up
 /obj/item/capture_crystal/proc/knowyoursignals(mob/living/M, mob/living/U)
-	RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/mob_was_deleted, TRUE)
-	RegisterSignal(U, COMSIG_PARENT_QDELETING, .proc/owner_was_deleted, TRUE)
+	RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(mob_was_deleted), TRUE)
+	RegisterSignal(U, COMSIG_PARENT_QDELETING, PROC_REF(owner_was_deleted), TRUE)
 
 //The basic capture command does most of the registration work.
 /obj/item/capture_crystal/proc/capture(mob/living/M, mob/living/U)
@@ -268,7 +268,7 @@
 		bound_mob.capture_caught = TRUE
 		persist_storable = FALSE
 	desc = "A glowing crystal in what appears to be some kind of steel housing."
-	
+
 //Determines the capture chance! So you can't capture AI mobs if they're perfectly healthy and all that
 /obj/item/capture_crystal/proc/capture_chance(mob/living/M, user)
 	if(capture_chance_modifier >= 100)		//Master crystal always work
@@ -435,7 +435,7 @@
 /obj/item/capture_crystal/proc/recall(mob/living/user)
 	if(bound_mob in view(user))		//We can only recall it if we can see it
 		var/turf/turfmemory = get_turf(bound_mob)
-		if(isanimal(bound_mob))
+		if(isanimal(bound_mob) && bound_mob.ai_holder)
 			var/mob/living/simple_mob/M = bound_mob
 			M.ai_holder.go_sleep()	//AI doesn't need to think when it's in the crystal
 		bound_mob.forceMove(src)
@@ -451,7 +451,9 @@
 //Let's let our mob out!
 /obj/item/capture_crystal/proc/unleash(mob/living/user, atom/target)
 	if(!user && !target)			//We got thrown but we're not sure who did it, let's go to where the crystal is
-		bound_mob.forceMove(src.drop_location())
+		var/drop_loc = get_turf(src)
+		if (drop_loc)
+			bound_mob.forceMove(drop_loc)
 		return
 	if(!target)						//We know who wants to let us out, but they didn't say where, so let's drop us on them
 		bound_mob.forceMove(user.drop_location())
@@ -588,8 +590,8 @@
 		list(/mob/living/simple_mob/animal/passive/tindalos),
 		list(/mob/living/simple_mob/animal/passive/yithian),
 		list(
-			/mob/living/simple_mob/animal/wolf,
-			/mob/living/simple_mob/animal/wolf/direwolf
+			/mob/living/simple_mob/vore/wolf,
+			/mob/living/simple_mob/vore/wolf/direwolf
 			),
 		list(/mob/living/simple_mob/vore/rabbit),
 		list(/mob/living/simple_mob/vore/redpanda),
@@ -604,10 +606,10 @@
 			/mob/living/simple_mob/animal/space/bear/brown
 			),
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			),
 		list(/mob/living/simple_mob/animal/sif/diyaab),
 		list(/mob/living/simple_mob/animal/sif/duck),
@@ -646,8 +648,8 @@
 			/mob/living/simple_mob/animal/giant_spider/webslinger = 5,
 			/mob/living/simple_mob/animal/giant_spider/broodmother = 1),
 		list(
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5,
 			/mob/living/simple_mob/vore/greatwolf = 1,
 			/mob/living/simple_mob/vore/greatwolf/black = 1,
 			/mob/living/simple_mob/vore/greatwolf/grey = 1
@@ -680,7 +682,7 @@
 			/mob/living/simple_mob/animal/space/carp/large/huge = 5
 			),
 		list(/mob/living/simple_mob/animal/space/goose),
-		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/vore/jelly),
 		list(/mob/living/simple_mob/animal/space/tree),
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound = 10,
@@ -781,13 +783,13 @@
 		list(/mob/living/simple_mob/mechanical/wahlem),
 		list(/mob/living/simple_mob/animal/passive/fox/syndicate),
 		list(/mob/living/simple_mob/animal/passive/fox),
-		list(/mob/living/simple_mob/animal/wolf/direwolf),
-		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/vore/wolf/direwolf),
+		list(/mob/living/simple_mob/vore/jelly),
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			),
 		list(
 			/mob/living/simple_mob/shadekin/blue = 100,

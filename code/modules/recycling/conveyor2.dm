@@ -130,7 +130,7 @@
 
 	if(istype(I, /obj/item/device/multitool))
 		if(panel_open)
-			var/input = sanitize(input(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
+			var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
 			if(!input)
 				to_chat(user, "No input found. Please hang up and try your call again.")
 				return
@@ -207,6 +207,7 @@
 	var/position = 0			// 0 off, -1 reverse, 1 forward
 	var/last_pos = -1			// last direction setting
 	var/operated = 1			// true if just operated
+	var/oneway = 0				// Voreadd: One way levels mid-round!
 
 	var/id = "" 				// must match conveyor IDs to control them
 
@@ -265,7 +266,7 @@
 		return
 
 	if(position == 0)
-		if(last_pos < 0)
+		if(last_pos < 0 || oneway == 1)
 			position = 1
 			last_pos = 0
 		else
@@ -288,49 +289,56 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(istype(I, /obj/item/weapon/weldingtool))
-		if(panel_open)
-			var/obj/item/weapon/weldingtool/WT = I
-			if(!WT.remove_fuel(0, user))
-				to_chat(user, "The welding tool must be on to complete this task.")
-				return
-			playsound(src, WT.usesound, 50, 1)
-			if(do_after(user, 20 * WT.toolspeed))
-				if(!src || !WT.isOn()) return
-				to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
-				new /obj/item/stack/material/steel( src.loc, 2 )
-				qdel(src)
-				return
+	if(!panel_open) //It's probably better to just check this once instead of each time
+		return
 
-	if(istype(I, /obj/item/device/multitool))
-		if(panel_open)
-			var/input = sanitize(input(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
-			if(!input)
-				to_chat(user, "No input found. Please hang up and try your call again.")
-				return
-			id = input
-			conveyors = list() // Clear list so they aren't double added.
-			for(var/obj/machinery/conveyor/C in machines)
-				if(C.id == id)
-					conveyors += C
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = I.get_welder()
+		if(!WT.remove_fuel(0, user))
+			to_chat(user, "The welding tool must be on to complete this task.")
+			return
+		playsound(src, WT.usesound, 50, 1)
+		if(do_after(user, 20 * WT.toolspeed))
+			if(!src || !WT.isOn()) return
+			to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
+			new /obj/item/stack/material/steel( src.loc, 2 )
+			qdel(src)
 			return
 
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
+		if(!input)
+			to_chat(user, "No input found. Please hang up and try your call again.")
+			return
+		id = input
+		conveyors = list() // Clear list so they aren't double added.
+		for(var/obj/machinery/conveyor/C in machines)
+			if(C.id == id)
+				conveyors += C
+		return
+
+	if(I.has_tool_quality(TOOL_WRENCH))
+		if(oneway == 1)
+			to_chat(user, "You set the switch to two way operation.")
+			oneway = 0
+			playsound(src, I.usesound, 50, 1)
+			return
+		else
+			to_chat(user, "You set the switch to one way operation.")
+			oneway = 1
+			playsound(src, I.usesound, 50, 1)
+			return
+
+	//Ports making conveyors fast from CHOMPstation
+	if(I.has_tool_quality(TOOL_WIRECUTTER))
+		toggle_speed()
+		to_chat(user, "You adjust the speed of the conveyor switch")
+		return
+
 /obj/machinery/conveyor_switch/oneway
-	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	oneway = 1
 
-// attack with hand, switch position
-/obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
-	if(position == 0)
-		position = convdir
-	else
-		position = 0
-
-	operated = 1
-	update()
-
-	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
-		if(S.id == src.id)
-			S.position = position
-			S.update()
+/obj/machinery/conveyor_switch/examine()
+	.=..()
+	if(oneway == 1)
+		. += " It appears to only go in one direction."

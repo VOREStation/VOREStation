@@ -48,7 +48,7 @@
 		if("send_message")
 			var/obj/item/mecha_parts/mecha_tracking/MT = locate(params["mt"])
 			if(istype(MT))
-				var/message = sanitize(input(usr, "Input message", "Transmit message") as text)
+				var/message = sanitize(tgui_input_text(usr, "Input message", "Transmit message"))
 				var/obj/mecha/M = MT.in_mecha()
 				if(message && M)
 					M.occupant_message(message)

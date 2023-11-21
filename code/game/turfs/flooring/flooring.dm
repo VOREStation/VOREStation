@@ -115,6 +115,8 @@ var/list/flooring_types
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
+	var/check_season = FALSE	//VOREStation Addition
+
 /decl/flooring/proc/get_plating_type(var/turf/T)
 	return plating_type
 
@@ -146,7 +148,7 @@ var/list/flooring_types
 	flags = 0
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif"
-	build_type = /obj/item/stack/tile/grass/sif
+	build_type = null
 	has_base_range = 1
 
 /decl/flooring/grass/sif/forest
@@ -155,7 +157,6 @@ var/list/flooring_types
 	flags = 0
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif_dark"
-	build_type = /obj/item/stack/tile/grass/sif/forest
 	has_base_range = 1
 
 /decl/flooring/water
@@ -188,7 +189,7 @@ var/list/flooring_types
 
 /decl/flooring/mud
 	name = "mud"
-	desc = "STICKY AND WET!"
+	desc = "Wet and fragrant mud, bane of the freshly mopped floor."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "mud_dark"
 	footstep_sounds = list("human" = list(
@@ -199,7 +200,7 @@ var/list/flooring_types
 
 /decl/flooring/asteroid
 	name = "coarse sand"
-	desc = "Gritty and unpleasant."
+	desc = "You got a pebble in your shoe just looking at it."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
 	flags = TURF_REMOVE_SHOVEL | TURF_ACID_IMMUNE
@@ -212,8 +213,8 @@ var/list/flooring_types
 		'sound/effects/footstep/asteroid5.ogg'))
 
 /decl/flooring/dirt
-	name = "dirt"
-	desc = "Gritty and unpleasant, just like dirt."
+	name = "soil"
+	desc = "Widely considered to be some of the planet's top soil."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "dirt-dark"
 	flags = TURF_REMOVE_SHOVEL
@@ -240,6 +241,12 @@ var/list/flooring_types
 		'sound/effects/footstep/snow3.ogg',
 		'sound/effects/footstep/snow4.ogg',
 		'sound/effects/footstep/snow5.ogg'))
+
+/decl/flooring/snow/fake
+		desc = "A coating of fake snow, looks surprisingly realistic, though not as cold as the real thing."
+		icon = 'icons/turf/flooring/fakesnow.dmi'
+		icon_base = "snow"
+		flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_SHOVEL
 
 /decl/flooring/snow/snow2
 	name = "snow"
@@ -268,7 +275,7 @@ var/list/flooring_types
 
 /decl/flooring/carpet
 	name = "carpet"
-	desc = "Imported and comfy."
+	desc = "Lush synthetic carpeting, perfectly engineered for easy cleaning."
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_base = "carpet"
 	build_type = /obj/item/stack/tile/carpet
@@ -292,7 +299,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet/blucarpet
 
 /decl/flooring/carpet/turcarpet
-	name = "tur carpet"
+	name = "turquoise carpet"
 	icon_base = "turcarpet"
 	build_type = /obj/item/stack/tile/carpet/turcarpet
 
@@ -302,7 +309,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet/sblucarpet
 
 /decl/flooring/carpet/gaycarpet
-	name = "clown carpet"
+	name = "pink carpet"
 	icon_base = "gaycarpet"
 	build_type = /obj/item/stack/tile/carpet/gaycarpet
 
@@ -321,16 +328,48 @@ var/list/flooring_types
 	icon_base = "tealcarpet"
 	build_type = /obj/item/stack/tile/carpet/teal
 
-/decl/flooring/carpet/deco
-	name = "deco carpet"
-	icon_base = "decocarpet"
-	build_type = /obj/item/stack/tile/carpet/deco
+/decl/flooring/carpet/browncarpet
+	name = "brown carpet"
+	icon_base = "brncarpet"
+	build_type = /obj/item/stack/tile/carpet/brncarpet
+
+/decl/flooring/carpet/blucarpet2
+	name = "blue carpet"
+	icon_base = "blue1"
+	build_type = /obj/item/stack/tile/carpet/blucarpet2
+
+/decl/flooring/carpet/greencarpet
+	name = "green carpet"
+	icon_base = "green"
+	build_type = /obj/item/stack/tile/carpet/greencarpet
+
+/decl/flooring/carpet/purplecarpet
+	name = "purple carpet"
+	icon_base = "purple"
+	build_type = /obj/item/stack/tile/carpet/purplecarpet
+
+/decl/flooring/carpet/geo
+	name = "geometric carpet"
+	icon_base = "geocarpet"
+	build_type = /obj/item/stack/tile/carpet/geo
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
 /decl/flooring/carpet/retro
-	name = "retro carpet"
+	name = "blue retro carpet"
 	icon_base = "retrocarpet"
 	build_type = /obj/item/stack/tile/carpet/retro
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+
+/decl/flooring/carpet/retro_red
+	name = "red retro carpet"
+	icon_base = "retrocarpet_red"
+	build_type = /obj/item/stack/tile/carpet/retro_red
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+
+/decl/flooring/carpet/happy
+	name = "happy carpet"
+	icon_base = "happycarpet"
+	build_type = /obj/item/stack/tile/carpet/happy
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
 /decl/flooring/tiling
@@ -352,18 +391,19 @@ var/list/flooring_types
 		'sound/effects/footstep/floor5.ogg'))
 
 /decl/flooring/tiling/tech
-	desc = "Scuffed from the passage of countless greyshirts."
+	desc = "Metal floor tiles with a corrugated anti-slip texture."
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
 	build_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null
 
 /decl/flooring/tiling/tech/grid
+	desc = "Metal floor tiles with a barred anti-slip construction. Don't skin your knee!"
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/floor/techgrid
 
 /decl/flooring/tiling/new_tile
-	name = "floor"
+	desc = "Metal floor tiles with a corrugated anti-slip texture."
 	icon_base = "tile_full"
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
 	build_type = null
@@ -376,6 +416,7 @@ var/list/flooring_types
 
 /decl/flooring/tiling/new_tile/techmaint
 	icon_base = "techmaint"
+	build_type = /obj/item/stack/tile/floor/techmaint
 
 /decl/flooring/tiling/new_tile/monofloor
 	icon_base = "monofloor"
@@ -490,11 +531,35 @@ var/list/flooring_types
 		'sound/effects/footstep/wood5.ogg'))
 
 /decl/flooring/wood/sif
-	name = "alien wooden floor"
-	desc = "Polished alien wood planks."
+	desc = "Polished wood planks made from sivian wood."
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "sifwood"
 	build_type = /obj/item/stack/tile/wood/sif
+
+/decl/flooring/wood/alt
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_base = "wood"
+	build_type = /obj/item/stack/tile/wood/alt
+
+/decl/flooring/wood/alt/panel
+	desc = "Polished wooden panels."
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_base = "wood_panel"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/panel
+
+/decl/flooring/wood/alt/parquet
+	desc = "Polished wooden tiles."
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_base = "wood_parquet"
+	build_type = /obj/item/stack/tile/wood/parquet
+
+/decl/flooring/wood/alt/tile
+	desc = "Polished wooden tiles."
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_base = "wood_tile"
+	has_damage_range = 2
+	build_type = /obj/item/stack/tile/wood/tile
 
 /decl/flooring/reinforced
 	name = "reinforced floor"
@@ -539,7 +604,7 @@ var/list/flooring_types
 
 /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 	name = "lava"
-	desc = "Lava. Y'know. Sets you on fire. AAAAAAAAAAA"
+	desc = "It may look inviting, but it will kill you, painfully."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "lava"
 	is_plating = TRUE
@@ -548,3 +613,24 @@ var/list/flooring_types
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',
 		'sound/effects/footstep/lava3.ogg'))
+
+/decl/flooring/concrete
+	name = "concrete"
+	desc = "A flat area of poured concrete flooring."
+	icon = 'icons/turf/concrete.dmi'
+	icon_base = "concrete"
+	is_plating = FALSE 	//VOREStation edit. It's a lot cooler if it's actual tile.
+	can_paint = 1		//VOREStation edit. Let's allow for some fun.
+	can_engrave = 1		//VOREStation edit. Fun.
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
+
+///// Season Time! ///// VOREStation Addition Start
+/decl/flooring/grass/seasonal_grass
+	desc = "It's grass!"
+	icon = 'icons/seasonal/turf.dmi'
+	check_season = TRUE
+	has_base_range = 11
+
+/decl/flooring/grass/seasonal_grass/dark
+	name = "grass"
+	icon_base = "darkgrass"

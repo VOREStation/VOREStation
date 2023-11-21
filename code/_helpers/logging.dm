@@ -35,9 +35,14 @@
 	if (config.log_admin)
 		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
 
+/proc/log_pray(text, client/source)
+	admin_log.Add(text)
+	if (config.log_admin)
+		WRITE_LOG(diary, "PRAY: [key_name(source)]: [text]")
+
 /proc/log_debug(text)
 	if (config.log_debug)
-		WRITE_LOG(debug_log, "DEBUG: [text]")
+		WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
 
 	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))

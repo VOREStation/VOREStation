@@ -2,8 +2,9 @@
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = ITEMSIZE_LARGE
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/suit_cooler.dmi'
 	icon_state = "suitcooler0"
+	item_state = "coolingpack"
 	slot_flags = SLOT_BACK
 
 	//copied from tank.dm
@@ -112,13 +113,13 @@
 
 	on = 1
 	START_PROCESSING(SSobj, src)
-	updateicon()
+	update_icon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off(var/failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
 	STOP_PROCESSING(SSobj, src)
-	updateicon()
+	update_icon()
 
 /obj/item/device/suit_cooling_unit/attack_self(var/mob/user)
 	if(cover_open && cell)
@@ -132,7 +133,7 @@
 
 		to_chat(user, "You remove \the [src.cell].")
 		src.cell = null
-		updateicon()
+		update_icon()
 		return
 
 	toggle(user)
@@ -145,7 +146,7 @@
 	to_chat(user, "<span class='notice'>You switch \the [src] [on ? "on" : "off"].</span>")
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (W.is_screwdriver())
+	if (W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(cover_open)
 			cover_open = 0
 			to_chat(user, "You screw the panel into place.")
@@ -153,7 +154,7 @@
 			cover_open = 1
 			to_chat(user, "You unscrew the panel.")
 		playsound(src, W.usesound, 50, 1)
-		updateicon()
+		update_icon()
 		return
 
 	if (istype(W, /obj/item/weapon/cell))
@@ -165,19 +166,38 @@
 				W.loc = src
 				cell = W
 				to_chat(user, "You insert the [cell].")
-		updateicon()
+		update_icon()
 		return
 
 	return ..()
 
-/obj/item/device/suit_cooling_unit/proc/updateicon()
-	if (cover_open)
-		if (cell)
+/obj/item/device/suit_cooling_unit/update_icon()
+	cut_overlays()
+	if(cover_open)
+		if(cell)
 			icon_state = "suitcooler1"
 		else
 			icon_state = "suitcooler2"
-	else
-		icon_state = "suitcooler0"
+		return
+
+	icon_state = "suitcooler0"
+
+	if(!cell || !on)
+		return
+
+	switch(round(cell.percent()))
+		if(86 to INFINITY)
+			add_overlay("battery-0")
+		if(69 to 85)
+			add_overlay("battery-1")
+		if(52 to 68)
+			add_overlay("battery-2")
+		if(35 to 51)
+			add_overlay("battery-3")
+		if(18 to 34)
+			add_overlay("battery-4")
+		if(-INFINITY to 17)
+			add_overlay("battery-5")
 
 /obj/item/device/suit_cooling_unit/examine(mob/user)
 	. = ..()
@@ -208,7 +228,7 @@
 	cell = /obj/item/weapon/cell
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/device/suit_cooling_unit/emergency/updateicon()
+/obj/item/device/suit_cooling_unit/emergency/update_icon()
 	return
 
 /obj/item/device/suit_cooling_unit/emergency/get_cell()
@@ -217,8 +237,8 @@
 	return cell
 
 /obj/item/device/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (W.is_screwdriver())
-		to_chat(user, "<span class='warning'>This model has the cell permanently installed!</span>")
+	if (W.has_tool_quality(TOOL_SCREWDRIVER))
+		to_chat(user, "<span class='warning'>This cooler's cell is permanently installed!</span>")
 		return
 
 	return ..()

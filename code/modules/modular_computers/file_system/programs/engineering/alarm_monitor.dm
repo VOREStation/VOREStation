@@ -8,9 +8,10 @@
 	program_menu_icon = "alert"
 	extended_desc = "This program provides visual interface for the engineering alarm system."
 	required_access = access_engine
-	requires_ntnet = 1
+	requires_ntnet = TRUE
 	network_destination = "alarm monitoring network"
 	size = 5
+	category = PROG_MONITOR
 	var/has_alert = 0
 
 /datum/computer_file/program/alarm_monitor/process_tick()

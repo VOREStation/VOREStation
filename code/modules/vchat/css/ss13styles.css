@@ -75,7 +75,8 @@ body.inverted {
 
 .ooc .everyone			{color: #002eb8;}
 .inverted .ooc .everyone {color: #004ed8;} /* Dark mode */
-.looc				    {color: #3A9696;}
+.looc				    {color: #3A9696; font-weight: bold}
+.rlooc					{color: #3ABB96; font-weight: bold}
 .ooc .elevated			{color: #2e78d9;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
@@ -90,6 +91,8 @@ body.inverted {
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
+.mentor				{color: #808000;}
+.mentor_channel			{color: #808000; font-weight: bold;}
 .mod_channel			{color: #735638; font-weight: bold;}
 .mod_channel .admin		{color: #b82e00; font-weight: bold;}
 .admin_channel			{color: #9611D4; font-weight: bold;}
@@ -99,6 +102,7 @@ body.inverted {
 .deadsay				{color: #530FAD;}
 .inverted .deadsay		{color: #732FCD;} /* Dark mode */
 .radio					{color: #008000;}
+.inverted .radio		{color: #00a800;} /* Dark mode */
 .deptradio				{color: #ff00ff;}	/* when all other department colors fail */
 .newscaster				{color: #750000;}
 
@@ -126,7 +130,13 @@ body.inverted {
 .inverted .emote			{color: #FFFFFF;}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
-.nif					{} /* VOREStation Add */
+/* VOREStation Add Start */
+.nif					{}
+.psay					{color: #800080;font-style: italic;}
+.inverted .psay			{color: #e300e4;font-style: italic;}
+.pemote					{color: #800080;font-style: italic;}
+.inverted .pemote		{color: #e300e4;font-style: italic;}
+/* VOREStation Add End */
 
 /* Game Messages */
 
@@ -150,18 +160,22 @@ h1.alert, h2.alert		{color: #000000;}
 
 /* Languages */
 
-.alien					{color: #543354;}
+.alien					{color: #543354;font-style: italic;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
 .akhani					{color: #AC398C;}
 .skrell					{color: #00B0B3;}
 .skrellfar				{color: #70FCFF;}
 .soghun					{color: #50BA6C;}
-.solcom					{color: #22228B;}
-.changeling				{color: #800080;}
+.solcom					{color: #3333CE;}
+.inverted .solcom		{color: #6da6f0;}
+.changeling				{color: #800080;font-style: italic;}
+.inverted .changeling	{color: #b000b1;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
 .vulpkanin				{color: #B97A57;}
+.tavan					{color: #f54298; font-family: Arial}
+.echosong				{color: #826D8C;}
 .enochian				{color: #848A33; letter-spacing:-1pt; word-spacing:4pt; font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
 .daemon					{color: #5E339E; letter-spacing:-1pt; word-spacing:0pt; font-family: "Courier New", Courier, monospace;}
 .drudakar				{color: #bb2463; word-spacing:0pt; font-family: "High Tower Text", monospace;}
@@ -172,11 +186,13 @@ h1.alert, h2.alert		{color: #000000;}
 .zaddat					{color: #941C1C;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.say_quote_italics		{font-style: italic; font-family: Georgia, Verdana, sans-serif;}
 .terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
-.tavan					{color: #f54298; font-family: Arial}
+.teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
+.shadekin				{color: #be3cc5; font-size: 150%; font-weight: bold; font-family: "Gabriola", cursive, sans-serif;}
 
 .black					{color: #000000;}
 .darkgray				{color: #808080;}
@@ -192,6 +208,8 @@ h1.alert, h2.alert		{color: #000000;}
 .inverted .orange			{color: #FF8C00;}
 .inverted .blue				{color: #6666FF;}
 .inverted .green			{color: #44FF44;}
+
+.pnarrate					{color: #009AB2;}
 
 /*BIG IMG.icon 			{width: 32px; height: 32px;}*/
 img.icon				{vertical-align: middle; max-height: 1em;}

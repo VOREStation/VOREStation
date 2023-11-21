@@ -7,9 +7,12 @@
 //Devs Feel free to modify this to vend what you please
 //
 
+//
+//Locked Vendors (require access to use)
+//
 /obj/machinery/vending/deluxe_boozeomat
 	name = "Premium Drink Distributor"
-	desc = "A top of the line drink vendor that carries some of the finest drinks."
+	desc = "A top of the line drink vendor that carries some of the finest drinks in the frontier."
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "premiumbooze"
 	products = list(/obj/item/weapon/glass_extra/stick = 50,
@@ -127,3 +130,40 @@
 	req_log_access = access_bar
 	has_logs = 1
 	vending_sound = "machines/vending/vending_cans.ogg"
+
+/obj/machinery/vending/deluxe_cigs
+	name = "Premium Tobacco Distributor"
+	desc = "A top of the line smokes vendor that carries some of the finest tobacco based goods in the frontier."
+	icon = 'icons/obj/casino.dmi'
+	icon_state = "premiumcigs"
+	products = list(/obj/item/weapon/storage/fancy/cigar = 15,
+					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 15,
+					/obj/item/weapon/storage/fancy/cigarettes/professionals = 15,
+					/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba = 30,
+					/obj/item/clothing/mask/smokable/cigarette/cigar/havana = 30,
+					/obj/item/weapon/storage/box/matches = 5,
+					/obj/item/weapon/flame/lighter/zippo = 10
+					)
+
+	contraband = list()
+	vend_delay = 15
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	req_access = list(access_bar)
+	req_log_access = access_bar
+	has_logs = 1
+	vending_sound = "machines/vending/vending_cans.ogg"
+
+//
+//Unlocked Vendors
+//
+/obj/machinery/vending/deluxe_boozeomat/open
+	req_access = null
+	req_log_access = null
+
+/obj/machinery/vending/deluxe_dinner/open
+	req_access = null
+	req_log_access = null
+
+/obj/machinery/vending/deluxe_cigs/open
+	req_access = null
+	req_log_access = null

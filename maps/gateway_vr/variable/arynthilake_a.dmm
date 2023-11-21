@@ -409,7 +409,6 @@
 /area/gateway/arynthilake/dome)
 "cl" = (
 /obj/structure/cable/green{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/alarms_hidden{
@@ -486,18 +485,12 @@
 /area/gateway/arynthilake/dome)
 "ea" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -1049,8 +1042,6 @@
 /area/gateway/arynthilake/dome)
 "pW" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light,
@@ -1143,16 +1134,16 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
@@ -1174,10 +1165,6 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
-"sl" = (
-/obj/effect/overmap/visitable/sector/common_gateway/arynthilake,
-/turf/simulated/mineral/ignore_cavegen/cave,
-/area/gateway/arynthilake/caves)
 "sA" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/shoes/flats/blue,
@@ -1343,9 +1330,11 @@
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/gateway/arynthilake/dome)
 "wm" = (
-/obj/random/mob/semirandom_mob_spawner/monster,
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/gateway/arynthilake/dome)
+/obj/random/mob/semirandom_mob_spawner/monster/c,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
+/area/gateway/arynthilake/caves)
 "wq" = (
 /obj/random/mob/semirandom_mob_spawner/animal/c,
 /turf/simulated/floor/outdoors/grass,
@@ -1399,8 +1388,6 @@
 /area/gateway/arynthilake/dome)
 "yb" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -1586,33 +1573,21 @@
 /area/gateway/arynthilake/dome)
 "Ej" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -1798,8 +1773,6 @@
 /area/gateway/arynthilake/gateway)
 "Iz" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light{
@@ -1877,8 +1850,6 @@
 "Lo" = (
 /obj/structure/lattice,
 /obj/structure/cable/green{
-	d1 = 32;
-	d2 = 8;
 	icon_state = "32-8"
 	},
 /turf/simulated/open,
@@ -1986,7 +1957,6 @@
 /area/gateway/arynthilake/engine)
 "MX" = (
 /obj/structure/cable/green{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/alarms_hidden{
@@ -2014,7 +1984,6 @@
 /area/gateway/arynthilake/dome)
 "No" = (
 /obj/structure/cable/green{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/alarms_hidden{
@@ -2050,8 +2019,8 @@
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "NK" = (
-/obj/random/mob/semirandom_mob_spawner/monster/e,
-/turf/simulated/floor/beach/sand/desert,
+/obj/random/mob/semirandom_mob_spawner/monster/d,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "Oc" = (
 /obj/structure/table/marble,
@@ -2132,8 +2101,6 @@
 /area/gateway/arynthilake/dome)
 "PC" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2182,8 +2149,6 @@
 /area/gateway/arynthilake)
 "QI" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2422,8 +2387,6 @@
 /area/gateway/arynthilake/dome)
 "WV" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris,
@@ -2945,7 +2908,7 @@ Qr
 Qr
 Qr
 Qr
-sl
+Qr
 aa
 "}
 (4,1,1) = {"
@@ -3322,7 +3285,7 @@ jI
 jI
 jI
 jI
-We
+jI
 jI
 jI
 jI
@@ -5056,7 +5019,7 @@ aG
 ap
 aI
 ap
-NK
+aG
 aG
 Qr
 Qr
@@ -5193,7 +5156,7 @@ jI
 jI
 jI
 Qr
-We
+jI
 aG
 ap
 ap
@@ -5799,7 +5762,7 @@ an
 an
 aZ
 bc
-wm
+bc
 bc
 tS
 yY
@@ -15471,7 +15434,7 @@ Qr
 jI
 jI
 gu
-gu
+wm
 gu
 gu
 jI
@@ -17480,7 +17443,7 @@ Qr
 Qr
 jI
 jI
-jI
+NK
 jI
 jI
 jI
@@ -19476,7 +19439,7 @@ jI
 au
 jI
 jI
-jI
+NK
 Qr
 Qr
 Qr
@@ -20291,7 +20254,7 @@ QI
 yb
 nx
 FW
-FW
+ek
 jz
 ag
 al
@@ -20427,7 +20390,7 @@ se
 jK
 ag
 FW
-ek
+FW
 WV
 FW
 FW

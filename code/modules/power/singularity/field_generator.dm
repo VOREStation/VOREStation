@@ -36,6 +36,19 @@ field_generator power level display
 	var/gen_power_draw = 5500	//power needed per generator
 	var/field_power_draw = 2000	//power needed per field object
 
+	var/light_range_on = 3
+	var/light_power_on = 1
+	light_color = "#5BA8FF"
+
+/obj/machinery/field_generator/examine()
+	. = ..()
+	switch(state)
+		if(0)
+			. += "<span class='warning'>It is not secured in place!</span>"
+		if(1)
+			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
+		if(2)
+			. += "<span class='notice'>It has been bolted down securely and welded down into place.</span>"
 
 /obj/machinery/field_generator/update_icon()
 	cut_overlays()
@@ -103,7 +116,7 @@ field_generator power level display
 	if(active)
 		to_chat(user, "The [src] needs to be off.")
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		switch(state)
 			if(0)
 				state = 1
@@ -122,8 +135,8 @@ field_generator power level display
 			if(2)
 				to_chat(user, "<font color='red'>The [src.name] needs to be unwelded from the floor.</font>")
 				return
-	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		switch(state)
 			if(0)
 				to_chat(user, "<font color='red'>The [src.name] needs to be wrenched to the floor.</font>")
@@ -177,6 +190,7 @@ field_generator power level display
 	active = 0
 	spawn(1)
 		src.cleanup()
+		set_light(0)
 	update_icon()
 
 /obj/machinery/field_generator/proc/turn_on()
@@ -189,6 +203,7 @@ field_generator power level display
 			update_icon()
 			if(warming_up >= 3)
 				start_fields()
+				set_light(light_range_on, light_power_on)
 	update_icon()
 
 

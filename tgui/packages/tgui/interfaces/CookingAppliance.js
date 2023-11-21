@@ -1,8 +1,6 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, AnimatedNumber } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Button, Flex, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
+import { Window } from '../layouts';
 
 export const CookingAppliance = (props, context) => {
   const { act, data } = useBackend(context);
@@ -23,10 +21,11 @@ export const CookingAppliance = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="Temperature">
               <ProgressBar
-                color={temperatureEnough ? "good" : "blue"}
+                color={temperatureEnough ? 'good' : 'blue'}
                 value={temperature}
                 maxValue={optimalTemp}>
-                <AnimatedNumber value={temperature} />&deg;C / {optimalTemp}&deg;C
+                <AnimatedNumber value={temperature} />
+                &deg;C / {optimalTemp}&deg;C
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item label="Efficiency">
@@ -39,9 +38,8 @@ export const CookingAppliance = (props, context) => {
             {our_contents.map((content, i) => {
               if (content.empty) {
                 return (
-                  <LabeledList.Item label={"Slot #" + (i + 1)} >
-                    <Button
-                      onClick={() => act("slot", { slot: i + 1 })}>
+                  <LabeledList.Item label={'Slot #' + (i + 1)}>
+                    <Button onClick={() => act('slot', { slot: i + 1 })}>
                       Empty
                     </Button>
                   </LabeledList.Item>
@@ -49,13 +47,16 @@ export const CookingAppliance = (props, context) => {
               }
 
               return (
-                <LabeledList.Item label={"Slot #" + (i + 1)} verticalAlign="middle" key={i}>
+                <LabeledList.Item
+                  label={'Slot #' + (i + 1)}
+                  verticalAlign="middle"
+                  key={i}>
                   <Flex spacing={1}>
                     <Flex.Item>
                       <Button
                         disabled={!containersRemovable}
-                        onClick={() => act("slot", { slot: i + 1 })}>
-                        {content.container || "No Container"}
+                        onClick={() => act('slot', { slot: i + 1 })}>
+                        {content.container || 'No Container'}
                       </Button>
                     </Flex.Item>
                     <Flex.Item grow={1}>

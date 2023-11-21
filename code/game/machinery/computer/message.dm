@@ -34,7 +34,7 @@
 		return
 	if(!istype(user))
 		return
-	if(O.is_screwdriver() && emag)
+	if(O.has_tool_quality(TOOL_SCREWDRIVER) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
 		to_chat(user, "<span class='warning'>It is too hot to mess with!</span>")
 		return
@@ -101,7 +101,7 @@
 	if(linkedServer && auth)
 		data["linkedServer"]["active"] = linkedServer.active
 		data["linkedServer"]["broke"] = linkedServer.stat & (NOPOWER|BROKEN)
-		
+
 		var/list/pda_msgs = list()
 		for(var/datum/data_pda_msg/pda in linkedServer.pda_msgs)
 			pda_msgs.Add(list(list(
@@ -111,7 +111,7 @@
 				"message" = pda.message,
 			)))
 		data["linkedServer"]["pda_msgs"] = pda_msgs
-		
+
 		var/list/rc_msgs = list()
 		for(var/datum/data_rc_msg/rc in linkedServer.rc_msgs)
 			rc_msgs.Add(list(list(
@@ -182,7 +182,7 @@
 /obj/machinery/computer/message_monitor/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("cleartemp")
 			temp = null
@@ -218,14 +218,14 @@
 				spawn(100*length(linkedServer.decryptkey))
 					if(src && linkedServer && usr)
 						BruteForce(usr)
-	
+
 	if(!auth)
 		return
-	
+
 	if(!linkedServer || linkedServer.stat & (NOPOWER|BROKEN))
 		temp = noserver
 		return TRUE
-	
+
 	switch(action)
 		//Turn the server on/off.
 		if("active")
@@ -243,10 +243,10 @@
 			. = TRUE
 		//Change the password - KEY REQUIRED
 		if("pass")
-			var/dkey = trim(input(usr, "Please enter the current decryption key.") as text|null)
+			var/dkey = trim(tgui_input_text(usr, "Please enter the current decryption key."))
 			if(dkey && dkey != "")
 				if(linkedServer.decryptkey == dkey)
-					var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
+					var/newkey = trim(tgui_input_text(usr,"Please enter the new key (3 - 16 characters max):",null,null,16))
 					if(length(newkey) <= 3)
 						set_temp("NOTICE: Decryption key too short!", "average")
 					else if(length(newkey) > 16)
@@ -277,7 +277,7 @@
 			var/obj/item/device/pda/P = locate(ref)
 			if(!istype(P) || !P.owner || P.hidden)
 				return FALSE
-				
+
 			var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
 			if(!M || M.toff)
 				return FALSE
@@ -316,7 +316,7 @@
 			//Sender is faking as someone who exists
 			else
 				linkedServer.send_pda_message("[customrecepient.owner]", "[PDARec.owner]","[custommessage]")
-				
+
 				var/datum/data/pda/app/messenger/M = customrecepient.find_program(/datum/data/pda/app/messenger)
 				if(M)
 					M.receive_message(list("sent" = 0, "owner" = "[PDARec.owner]", "job" = "[customjob]", "message" = "[custommessage]", "target" = "\ref[PDARec]"), "\ref[PDARec]")
@@ -325,7 +325,7 @@
 			. = TRUE
 
 		if("addtoken")
-			linkedServer.spamfilter += input(usr,"Enter text you want to be filtered out","Token creation") as text|null
+			linkedServer.spamfilter += tgui_input_text(usr,"Enter text you want to be filtered out","Token creation")
 			. = TRUE
 
 		if("deltoken")

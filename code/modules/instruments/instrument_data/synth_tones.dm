@@ -1,7 +1,7 @@
 /datum/instrument/tones
 	name = "Ideal tone"
 	category = "Tones"
-	abstract_type = /datum/instrument/tones
+	instrument_type = /datum/instrument/tones
 
 /datum/instrument/tones/square_wave
 	name = "Ideal square wave"

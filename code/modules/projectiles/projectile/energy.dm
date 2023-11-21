@@ -131,6 +131,10 @@
 	combustion = FALSE
 	hud_state = "plasma_blast"
 
+/obj/item/projectile/energy/excavate/weak
+	damage = 15
+	excavation_amount = 100
+
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"

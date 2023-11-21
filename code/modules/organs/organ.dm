@@ -368,6 +368,9 @@ var/list/organ_cache = list()
 	robotize()
 
 /obj/item/organ/emp_act(severity)
+	for(var/obj/O as anything in src.contents)
+		O.emp_act(severity)
+
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
 	for(var/i = 1; i <= robotic; i++)
@@ -482,7 +485,7 @@ var/list/organ_cache = list()
 			return TRUE
 
 		if(robotic >= ORGAN_ROBOT)
-			if(O.is_screwdriver())
+			if(O.has_tool_quality(TOOL_SCREWDRIVER))
 				return TRUE
 
 		else

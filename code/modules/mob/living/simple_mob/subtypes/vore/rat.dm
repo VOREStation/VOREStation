@@ -214,7 +214,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/rat/MouseDrop_T(mob/living/M, mob/living/user)
 	return
@@ -244,6 +244,36 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+
+/mob/living/simple_mob/vore/aggressive/rat/pet
+	name = "pet rat"
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+/mob/living/simple_mob/vore/aggressive/rat/pet/Initialize()
+	.=..()
+
+	var/chance = rand(1,101)
+	switch(chance)
+		if(1 to 50)
+			name = "Ratthew"
+			desc = "When this oversized rodent and its sibling were officially adopted by Nanotrasen, a poll for a name was held. \
+			When said poll elected the name of one of station's altevian crewmembers twice in a row, ethics commitee stepped in. \
+			Then the name of ethics officer was elected. Ultimately, after a dozen or so names involving people with ratlike qualities, \
+			mental or physical, were removed from options as names, he was named Ratthew. Even though some still remember him as mouse number one."
+		if(51 to 100)
+			name = ";help maint"
+			desc = "While the other of the two trash rat siblings was named based on the poll, this one had misfortune of having official announcement \
+			of her poll results be interrupted by someone yelling on radio over an encounter with this rodent, earning her the name. Perhaps if not for \
+			this cruel twist of fate, she really would be named Julius Cheesar, after the name Jeremy was eliminated from the poll, considering nine hundred \
+			and eighty four rodent pets were named that already."
+		if(101)
+			name = "Brick"
+			desc = "Despite some conspiracy theories, this rat is not younger sibling of the other two rats commonly found in local trashpits, nor is it a \
+			younger sibling of any ratlike crew. Truth be told, it's just some random rat that barely ever shows up, yet people demanded it be given a name as well."
+			maxHealth = 1750
+			health = 1750
+			melee_damage_lower = 1
+			melee_damage_upper = 2
 
 /datum/say_list/rat
 	speak = list("Squeek!","SQUEEK!","Squeek?")

@@ -1,8 +1,8 @@
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift
+/mob/living/simple_mob/clowns/big/c_shift
 	var/ability_flags = 0 //Flags for active abilities
 
 // Phase shifting procs (and related procs)
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/proc/phase_shift()
+/mob/living/simple_mob/clowns/big/c_shift/proc/phase_shift()
 	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,"<span class='warning'>You can't use that here!</span>")
@@ -73,19 +73,19 @@
 		density = FALSE
 		force_max_speed = TRUE
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/UnarmedAttack()
+/mob/living/simple_mob/clowns/big/c_shift/UnarmedAttack()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return FALSE //Nope.
 
 	. = ..()
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/can_fall()
+/mob/living/simple_mob/clowns/big/c_shift/can_fall()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return FALSE //Nope!
 
 	return ..()
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/zMove(direction)
+/mob/living/simple_mob/clowns/big/c_shift/zMove(direction)
 	if(ability_flags & AB_PHASE_SHIFTED)
 		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 		if(destination)

@@ -10,7 +10,7 @@
 	if(!picked_client)
 		return
 	var/list/types = typesof(/mob/living)
-	var/mob_type = input(src, "Mob path to spawn as?", "Mob") as text
+	var/mob_type = tgui_input_text(src, "Mob path to spawn as?", "Mob")
 	if(!mob_type)
 		return
 	var/list/matches = new()
@@ -81,7 +81,7 @@
 	if (!holder)
 		return
 
-	var/msg = input(usr, "Message:", text("Enter the text you wish to appear to everyone:")) as text
+	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
 	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 

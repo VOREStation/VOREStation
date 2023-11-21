@@ -161,6 +161,17 @@ Please do not abuse this ability.
 		if(chosen_language)
 			if(is_lang_whitelisted(prey,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
+	for(var/key in prey.prefs.language_custom_keys)
+		if(prey.prefs.language_custom_keys[key])
+			var/datum/language/keylang = GLOB.all_languages[prey.prefs.language_custom_keys[key]]
+			if(keylang)
+				new_character.language_keys[key] = keylang
+	// VOREStation Add: Preferred Language Setting;
+	if(prey.prefs.preferred_language) // Do we have a preferred language?
+		var/datum/language/def_lang = GLOB.all_languages[prey.prefs.preferred_language]
+		if(def_lang)
+			new_character.default_language = def_lang
+	// VOREStation Add End
 
 	new_character.regenerate_icons()
 

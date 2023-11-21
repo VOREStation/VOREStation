@@ -5,10 +5,7 @@ import { Window } from '../layouts';
 export const AtmosMixer = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window
-      width={370}
-      height={195}
-      resizable>
+    <Window width={370} height={195} resizable>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -17,7 +14,8 @@ export const AtmosMixer = (props, context) => {
                 icon={data.on ? 'power-off' : 'times'}
                 content={data.on ? 'On' : 'Off'}
                 selected={data.on}
-                onClick={() => act('power')} />
+                onClick={() => act('power')}
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Output Pressure">
               <NumberInput
@@ -28,23 +26,29 @@ export const AtmosMixer = (props, context) => {
                 minValue={0}
                 maxValue={data.max_pressure}
                 step={10}
-                onChange={(e, value) => act('pressure', {
-                  pressure: value,
-                })} />
+                onChange={(e, value) =>
+                  act('pressure', {
+                    pressure: value,
+                  })
+                }
+              />
               <Button
                 ml={1}
                 icon="plus"
                 content="Max"
                 disabled={data.set_pressure === data.max_pressure}
-                onClick={() => act('pressure', {
-                  pressure: 'max',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'max',
+                  })
+                }
+              />
             </LabeledList.Item>
             <LabeledList.Divider size={1} />
             <LabeledList.Item color="label">
               <u>Concentrations</u>
             </LabeledList.Item>
-            <LabeledList.Item label={"Node 1 (" + data.node1_dir + ")"}>
+            <LabeledList.Item label={'Node 1 (' + data.node1_dir + ')'}>
               <NumberInput
                 animated
                 value={data.node1_concentration}
@@ -53,11 +57,14 @@ export const AtmosMixer = (props, context) => {
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(e, value) => act('node1', {
-                  concentration: value,
-                })} />
+                onDrag={(e, value) =>
+                  act('node1', {
+                    concentration: value,
+                  })
+                }
+              />
             </LabeledList.Item>
-            <LabeledList.Item label={"Node 2 (" + data.node2_dir + ")"}>
+            <LabeledList.Item label={'Node 2 (' + data.node2_dir + ')'}>
               <NumberInput
                 animated
                 value={data.node2_concentration}
@@ -66,9 +73,12 @@ export const AtmosMixer = (props, context) => {
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(e, value) => act('node2', {
-                  concentration: value,
-                })} />
+                onDrag={(e, value) =>
+                  act('node2', {
+                    concentration: value,
+                  })
+                }
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>

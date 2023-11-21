@@ -1,21 +1,11 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Button, Icon } from '../components';
+import { Window } from '../layouts';
 
 export const JanitorCart = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    mybag,
-    mybucket,
-    mymop,
-    myspray,
-    myreplacer,
-    signs,
-    icons,
-  } = data;
+  const { mybag, mybucket, mymop, myspray, myreplacer, signs, icons } = data;
 
   return (
     <Window width={210} height={180}>
@@ -24,78 +14,78 @@ export const JanitorCart = (props, context) => {
           width="64px"
           height="64px"
           position="relative"
-          tooltip={mybag ? mybag : "Garbage Bag Slot"}
+          tooltip={mybag ? mybag : 'Garbage Bag Slot'}
           tooltipPosition="bottom-end"
-          color={mybag ? "grey" : "transparent"}
+          color={mybag ? 'grey' : 'transparent'}
           style={{
-            border: mybag ? null : "2px solid grey",
+            border: mybag ? null : '2px solid grey',
           }}
-          onClick={() => act("bag")}>
+          onClick={() => act('bag')}>
           <JanicartIcon iconkey="mybag" />
         </Button>
         <Button
           width="64px"
           height="64px"
           position="relative"
-          tooltip={mybucket ? mybucket : "Bucket Slot"}
+          tooltip={mybucket ? mybucket : 'Bucket Slot'}
           tooltipPosition="bottom"
-          color={mybucket ? "grey" : "transparent"}
+          color={mybucket ? 'grey' : 'transparent'}
           style={{
-            border: mybucket ? null : "2px solid grey",
+            border: mybucket ? null : '2px solid grey',
           }}
-          onClick={() => act("bucket")}>
+          onClick={() => act('bucket')}>
           <JanicartIcon iconkey="mybucket" />
         </Button>
         <Button
           width="64px"
           height="64px"
           position="relative"
-          tooltip={mymop ? mymop : "Mop Slot"}
+          tooltip={mymop ? mymop : 'Mop Slot'}
           tooltipPosition="bottom-end"
-          color={mymop ? "grey" : "transparent"}
+          color={mymop ? 'grey' : 'transparent'}
           style={{
-            border: mymop ? null : "2px solid grey",
+            border: mymop ? null : '2px solid grey',
           }}
-          onClick={() => act("mop")}>
+          onClick={() => act('mop')}>
           <JanicartIcon iconkey="mymop" />
         </Button>
         <Button
           width="64px"
           height="64px"
           position="relative"
-          tooltip={myspray ? myspray : "Spray Slot"}
+          tooltip={myspray ? myspray : 'Spray Slot'}
           tooltipPosition="top-end"
-          color={myspray ? "grey" : "transparent"}
+          color={myspray ? 'grey' : 'transparent'}
           style={{
-            border: myspray ? null : "2px solid grey",
+            border: myspray ? null : '2px solid grey',
           }}
-          onClick={() => act("spray")}>
+          onClick={() => act('spray')}>
           <JanicartIcon iconkey="myspray" />
         </Button>
         <Button
           width="64px"
           height="64px"
           position="relative"
-          tooltip={myreplacer ? myreplacer : "Light Replacer Slot"}
+          tooltip={myreplacer ? myreplacer : 'Light Replacer Slot'}
           tooltipPosition="top"
-          color={myreplacer ? "grey" : "transparent"}
+          color={myreplacer ? 'grey' : 'transparent'}
           style={{
-            border: myreplacer ? null : "2px solid grey",
+            border: myreplacer ? null : '2px solid grey',
           }}
-          onClick={() => act("replacer")}>
+          onClick={() => act('replacer')}>
           <JanicartIcon iconkey="myreplacer" />
         </Button>
         <Button
           width="64px"
           height="64px"
           position="relative"
-          tooltip={signs ? signs : "Signs Slot"}
+          tooltip={signs ? signs : 'Signs Slot'}
           tooltipPosition="top-start"
-          color={signs ? "grey" : "transparent"}
+          color={signs ? 'grey' : 'transparent'}
           style={{
-            border: signs ? null : "2px solid grey",
+            border: signs ? null : '2px solid grey',
           }}
-          onClick={() => act("sign")}>
+          onClick={() => act('sign')}>
           <JanicartIcon iconkey="signs" />
         </Button>
       </Window.Content>
@@ -104,24 +94,20 @@ export const JanitorCart = (props, context) => {
 };
 
 const iconkeysToIcons = {
-  "mybag": "trash",
-  "mybucket": "fill",
-  "mymop": "broom",
-  "myspray": "spray-can",
-  "myreplacer": "lightbulb",
-  "signs": "sign",
+  'mybag': 'trash',
+  'mybucket': 'fill',
+  'mymop': 'broom',
+  'myspray': 'spray-can',
+  'myreplacer': 'lightbulb',
+  'signs': 'sign',
 };
 
 const JanicartIcon = (props, context) => {
   const { data } = useBackend(context);
 
-  const {
-    iconkey,
-  } = props;
+  const { iconkey } = props;
 
-  const {
-    icons,
-  } = data;
+  const { icons } = data;
 
   if (iconkey in icons) {
     return (
@@ -153,6 +139,7 @@ const JanicartIcon = (props, context) => {
         height: '64px',
       }}
       fontSize={2}
-      name={iconkeysToIcons[iconkey]} />
+      name={iconkeysToIcons[iconkey]}
+    />
   );
 };

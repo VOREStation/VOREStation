@@ -7,7 +7,7 @@
 /area/mine/explored/underdark)
 "c" = (
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/wolf/direwolf/rykka{
+/mob/living/simple_mob/vore/wolf/direwolf/rykka{
 	attacktext = list("attacked, bites, gnaws");
 	friendly = list("nuzzles, cuddles, rubs against")
 	},

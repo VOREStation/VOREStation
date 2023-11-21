@@ -92,7 +92,7 @@
 			var/atom/toplevelholder = target
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
-			toplevelholder.visible_message("<font color='red'>[bicon(toplevelholder)] [toplevelholder] [display_msg]</font>")
+			toplevelholder.visible_message("<span class='filter_notice'><font color='red'>\icon[toplevelholder][bicon(toplevelholder)] [toplevelholder] [display_msg]</font></span>")
 
 /datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
 /datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
@@ -158,7 +158,9 @@
 /proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 	if(!istype(H))
 		return 1
-	if(istype(get_area(H),/area/crew_quarters/sleep)) return 0 //VOREStation Edit - Dorms are protected from anomalies
+	var/area/A = get_area(H)
+	if(A.forbid_events)
+		return 0
 	var/protected = 0
 
 	//anomaly suits give best protection, but excavation suits are almost as good

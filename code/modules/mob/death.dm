@@ -104,7 +104,7 @@
 	dead_mob_list |= src
 
 	set_respawn_timer()
-	updateicon()
+	update_icon()
 	handle_regular_hud_updates()
 	handle_vision()
 

@@ -55,7 +55,7 @@ var/bomb_set
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
-	if(O.is_screwdriver())
+	if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 50, 1)
 		add_fingerprint(user)
 		if(auth)
@@ -78,7 +78,7 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
-	if(O.is_wirecutter() || istype(O, /obj/item/device/multitool))
+	if(O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/device/multitool))
 		if(opened == 1)
 			nukehack_win(user)
 		return
@@ -94,9 +94,9 @@ var/bomb_set
 	if(anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(O.has_tool_quality(TOOL_WELDER))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weapon/weldingtool/WT = O.get_welder()
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
 						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
@@ -111,7 +111,7 @@ var/bomb_set
 				return
 
 			if(1)
-				if(O.is_crowbar())
+				if(O.has_tool_quality(TOOL_CROWBAR))
 					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
 
 					playsound(src, O.usesound, 50, 1)
@@ -122,9 +122,9 @@ var/bomb_set
 				return
 
 			if(2)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(O.has_tool_quality(TOOL_WELDER))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weapon/weldingtool/WT = O.get_welder()
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
 						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
@@ -139,7 +139,7 @@ var/bomb_set
 				return
 
 			if(3)
-				if(O.is_wrench())
+				if(O.has_tool_quality(TOOL_WRENCH))
 
 					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
 					playsound(src, O.usesound, 50, 1)
@@ -150,7 +150,7 @@ var/bomb_set
 				return
 
 			if(4)
-				if(O.is_crowbar())
+				if(O.has_tool_quality(TOOL_CROWBAR))
 
 					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
 					playsound(src, O.usesound, 50, 1)
@@ -262,7 +262,7 @@ var/bomb_set
 								visible_message("<span class='notice'>The [src] emits a quiet whirling noise!</span>")
 			if(href_list["act"] == "wire")
 				var/obj/item/I = usr.get_active_hand()
-				if(!I.is_wirecutter())
+				if(!I.has_tool_quality(TOOL_WIRECUTTER))
 					to_chat(usr, "You need wirecutters!")
 				else
 					wires[temp_wire] = !wires[temp_wire]

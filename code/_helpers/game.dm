@@ -702,3 +702,48 @@
 			hear |= recursive_mob_check(A, hear, 3, 1, 0, 1)
 
 	return hear
+
+/proc/get_belly(var/atom/A)				// return a belly we're in, one way or another; and if we aren't (or are too deep to comprehend being in belly), returns null
+	var/atom/loc_check = A.loc
+	var/recursion_level = 0
+	while(loc_check && !isbelly(loc_check) && !isturf(loc_check))
+		if(recursion_level > 7)		// abstractly picked number, but basically means we tried going 8 levels up. Something is wrong if youre THAT deep anyway
+			break
+		loc_check = loc_check.loc
+		recursion_level++
+	if(isbelly(loc_check))
+		return loc_check
+	return null
+
+/proc/get_all_prey_recursive(var/mob/living/L, var/client_check = 1)			// returns all prey inside the target as well all prey of target's prey, as well as all prey inside target's prey, etc.
+	var/list/result = list()
+
+	if(!istype(L) || !(L.vore_organs) || !(L.vore_organs.len))
+		return result
+
+	for(var/obj/belly/B in L.vore_organs)
+		for(var/mob/living/P in B.contents)
+			if(istype(P))
+				if(client_check && P.client)
+					result |= P
+				result |= get_all_prey_recursive(P, client_check)
+
+	return result
+
+/proc/random_color(saturated)	//Returns a random color. If saturated is true, it will avoid pure white or pure black
+	var/r = rand(1,255)
+	var/g = rand(1,255)
+	var/b = rand(1,255)
+
+	if(saturated)	//Let's make sure we don't get too close to pure black or pure white, as they won't look good with grayscale sprites
+		if(r + g + b < 50)
+			r = r + rand(5,20)
+			g = g + rand(5,20)
+			b = b + rand(5,20)
+		else if (r + g + b > 700)
+			r = r - rand(5,50)
+			g = g - rand(5,50)
+			b = b - rand(5,50)
+
+	var/color = rgb(r, g, b)
+	return color

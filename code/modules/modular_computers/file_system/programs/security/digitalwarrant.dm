@@ -17,11 +17,12 @@ var/warrant_uid = 0
 	program_icon_state = "warrant"
 	program_key_state = "security_key"
 	program_menu_icon = "star"
-	requires_ntnet = 1
-	available_on_ntnet = 1
+	requires_ntnet = TRUE
+	available_on_ntnet = TRUE
 	required_access = access_security
 	usage_flags = PROGRAM_ALL
 	tgui_id = "NtosDigitalWarrant"
+	category = PROG_SEC
 
 	var/datum/data/record/warrant/activewarrant
 
@@ -119,7 +120,7 @@ var/warrant_uid = 0
 
 		if("editwarrantnamecustom")
 			. = TRUE
-			var/new_name = sanitize(input(usr, "Please input name") as null|text)
+			var/new_name = sanitize(tgui_input_text(usr, "Please input name"))
 			if(tgui_status(usr, state) == STATUS_INTERACTIVE)
 				if (!new_name)
 					return
@@ -127,7 +128,7 @@ var/warrant_uid = 0
 
 		if("editwarrantcharges")
 			. = TRUE
-			var/new_charges = sanitize(input(usr, "Please input charges", "Charges", activewarrant.fields["charges"]) as null|text)
+			var/new_charges = sanitize(tgui_input_text(usr, "Please input charges", "Charges", activewarrant.fields["charges"]))
 			if(tgui_status(usr, state) == STATUS_INTERACTIVE)
 				if (!new_charges)
 					return

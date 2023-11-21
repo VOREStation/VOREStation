@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face
+	surgery_name = "Facial Surgery"
 	priority = 2
 	req_open = 0
 	can_infect = 0
@@ -23,6 +24,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/cut_face
+	surgery_name = "Cut Face"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
@@ -36,8 +38,8 @@
 	return ..() && target_zone == O_MOUTH && target.op_stage.face == 0
 
 /datum/surgery_step/generic/cut_face/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts to cut open [target]'s face and neck with \the [tool].", \
-	"You start to cut open [target]'s face and neck with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts to cut open [target]'s face and neck with \the [tool].</span>", \
+	"<span class='filter_notice'>You start to cut open [target]'s face and neck with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/generic/cut_face/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -57,6 +59,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face/mend_vocal
+	surgery_name = "Mend Vocal Cords"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100, 	\
 	/obj/item/stack/cable_coil = 75, 	\
@@ -70,8 +73,8 @@
 	return ..() && target.op_stage.face == 1
 
 /datum/surgery_step/face/mend_vocal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts mending [target]'s vocal cords with \the [tool].", \
-	"You start mending [target]'s vocal cords with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts mending [target]'s vocal cords with \the [tool].</span>", \
+	"<span class='filter_notice'>You start mending [target]'s vocal cords with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/face/mend_vocal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -89,6 +92,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face/fix_face
+	surgery_name = "Fix Face"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100, 	\
 		/obj/item/weapon/material/kitchen/utensil/fork = 75
@@ -103,8 +107,8 @@
 	return ..() && target.op_stage.face == 2
 
 /datum/surgery_step/face/fix_face/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts pulling the skin on [target]'s face back in place with \the [tool].", \
-	"You start pulling the skin on [target]'s face back in place with \the [tool].")
+	user.visible_message("<span class='filter_notice'>[user] starts pulling the skin on [target]'s face back in place with \the [tool].</span>", \
+	"<span class='filter_notice'>You start pulling the skin on [target]'s face back in place with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/face/fix_face/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -123,6 +127,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face/cauterize
+	surgery_name = "Cauterize Face"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/cautery = 100,			\
 	/obj/item/clothing/mask/smokable/cigarette = 75,	\

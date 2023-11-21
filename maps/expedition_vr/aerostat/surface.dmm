@@ -6,6 +6,15 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/hallway)
+"ac" = (
+/obj/machinery/door/airlock/maintenance/engi{
+	locked = 1;
+	name = "Buffer Tanks"
+	},
+/obj/effect/floor_decal/industrial/danger/full,
+/obj/machinery/atmospherics/pipe/simple/hidden/red,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "au" = (
 /obj/structure/salvageable/server,
 /obj/machinery/light{
@@ -88,6 +97,13 @@
 "bZ" = (
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/offmap/aerostat/surface/outpost/backroom)
+"cj" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/red,
+/obj/machinery/meter{
+	name = "Buffer"
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "cq" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -109,11 +125,11 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/offmap/aerostat/surface/outpost/backroom)
 "dA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 9
 	},
-/turf/simulated/wall/r_wall,
-/area/offmap/aerostat/surface/outpost/airlock)
+/turf/simulated/floor/plating/eris/under,
+/area/offmap/aerostat/surface/outpost/guardpost)
 "dE" = (
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/hallway)
@@ -183,12 +199,14 @@
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/barracks)
 "fS" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 9
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/offmap/aerostat/surface/outpost/airlock)
+/obj/machinery/portable_atmospherics/canister/air{
+	name = "Airlock Supply Canister"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/offmap/aerostat/surface/outpost/guardpost)
 "fZ" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green,
@@ -221,8 +239,9 @@
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/barracks)
 "gy" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/obj/machinery/meter{
+	name = "Airlock Air"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
@@ -235,6 +254,9 @@
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officertwo)
+"he" = (
+/turf/simulated/wall/r_wall,
+/area/offmap/aerostat/surface/unexplored)
 "hi" = (
 /obj/structure/prop/dominator,
 /turf/simulated/floor/tiled/eris/bcircuit,
@@ -413,6 +435,12 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/hallway)
+"no" = (
+/obj/structure/grille,
+/obj/effect/floor_decal/industrial/danger/full,
+/obj/machinery/atmospherics/pipe/simple/hidden/red,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "nr" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -441,7 +469,7 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/structure/cable/cyan{
-	icon_state = "6-8"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/airlock)
@@ -452,6 +480,15 @@
 /obj/structure/salvageable/machine,
 /turf/simulated/floor/tiled/eris/bcircuit,
 /area/offmap/aerostat/surface/outpost/backroom)
+"ov" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "oB" = (
 /obj/machinery/light{
 	dir = 8
@@ -530,7 +567,11 @@
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/barracks)
 "qP" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/pipe/tank{
+	desc = "A large vessel to buffer the internal airtanks for faster airlock evacuation.";
+	name = "Internal Buffer Tank";
+	volume = 30000
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "rm" = (
@@ -545,18 +586,7 @@
 	pixel_x = -26;
 	pixel_y = 1
 	},
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	cycle_to_external_air = 1;
-	frequency = 1380;
-	id_tag = "v2outpost_airlock";
-	pixel_y = 25
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 4
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/airlock)
 "rp" = (
 /obj/machinery/power/rtg/advanced,
@@ -584,8 +614,8 @@
 	pixel_x = -23;
 	pixel_y = 30
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 9
 	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
@@ -594,8 +624,11 @@
 /area/offmap/aerostat/surface/outpost/airlock)
 "sa" = (
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/offmap/aerostat/surface/outpost/airlock)
@@ -604,10 +637,12 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "sl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4
+/obj/machinery/atmospherics/pipe/tank{
+	desc = "A large vessel to buffer the pressure differential between the internal and external atmospheres";
+	name = "External Buffer Tank";
+	volume = 30000
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "sm" = (
 /obj/structure/cable/cyan{
@@ -639,6 +674,10 @@
 /obj/item/weapon/material/kitchen/utensil/spoon,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/offmap/aerostat/surface/outpost/cafe)
+"sz" = (
+/obj/machinery/portable_atmospherics/powered/pump/filled,
+/turf/simulated/floor/plating/eris/under,
+/area/offmap/aerostat/surface/outpost/guardpost)
 "sA" = (
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/barracks)
@@ -707,6 +746,17 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/offmap/aerostat/surface/outpost/guardpost)
+"tM" = (
+/obj/machinery/power/apc/alarms_hidden{
+	dir = 1;
+	req_access = null
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
+	},
+/obj/structure/closet/crate/bin,
+/turf/simulated/floor/wood,
+/area/offmap/aerostat/surface/outpost/barracks)
 "tP" = (
 /obj/structure/salvageable/implant_container,
 /turf/simulated/floor/tiled/eris/bcircuit,
@@ -716,6 +766,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark,
 /area/offmap/aerostat/surface/outpost/cafe)
+"uh" = (
+/obj/machinery/door/blast/multi_tile/four_tile_ver_sec{
+	id = "v2outpost"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 4
+	},
+/turf/simulated/floor/hull/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "uD" = (
 /obj/structure/railing,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -805,6 +864,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/explored)
+"wh" = (
+/obj/structure/closet/walllocker/medical/north,
+/obj/structure/closet/wardrobe/grey,
+/turf/simulated/floor/wood,
+/area/offmap/aerostat/surface/outpost/barracks)
 "wi" = (
 /obj/structure/table/marble,
 /obj/machinery/door/window/brigdoor/southright,
@@ -835,13 +899,8 @@
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/offmap/aerostat/surface/outpost/backroom)
 "xf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/dark/danger,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/airlock)
 "xv" = (
 /obj/structure/bed/chair/bay/chair/padded/red,
@@ -861,17 +920,11 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/hallway)
 "yx" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = null
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/structure/cable/cyan{
-	icon_state = "0-9"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 4
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/obj/machinery/atmospherics/pipe/simple/visible/red,
+/turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "yJ" = (
 /obj/structure/table/woodentable,
@@ -961,15 +1014,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/offmap/aerostat/surface/outpost/guardpost)
-"Bs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4
-	},
-/obj/machinery/door/blast/multi_tile/four_tile_ver_sec{
-	id = "v2outpost"
-	},
-/turf/simulated/floor/hull/virgo2,
-/area/offmap/aerostat/surface/outpost/airlock)
+"BW" = (
+/obj/structure/closet/wardrobe/grey,
+/turf/simulated/floor/wood,
+/area/offmap/aerostat/surface/outpost/barracks)
 "Cj" = (
 /turf/simulated/floor/tiled/eris/dark,
 /area/offmap/aerostat/surface/outpost/cafe)
@@ -993,14 +1041,14 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/offmap/aerostat/surface/outpost/cafe)
 "CN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 6
 	},
-/turf/simulated/wall/r_wall,
-/area/offmap/aerostat/surface/outpost/airlock)
+/turf/simulated/floor/plating/eris/under,
+/area/offmap/aerostat/surface/outpost/guardpost)
 "CZ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 10
 	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
@@ -1058,10 +1106,9 @@
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officerone)
 "EV" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "Fr" = (
@@ -1074,11 +1121,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/powerroom)
 "FM" = (
-/obj/machinery/button/remote/blast_door{
-	id = "v2outpost";
-	pixel_y = 27
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
 	},
 /turf/simulated/floor/hull/virgo2,
@@ -1120,6 +1163,12 @@
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/offmap/aerostat/surface/outpost/backroom)
+"Gp" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "Gr" = (
 /obj/machinery/power/rtg/advanced,
 /obj/structure/cable/yellow,
@@ -1179,7 +1228,13 @@
 /turf/simulated/mineral/virgo2,
 /area/offmap/aerostat/surface/unexplored)
 "HU" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	cycle_to_external_air = 1;
+	frequency = 1380;
+	id_tag = "v2outpost_airlock";
+	pixel_y = 25
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
@@ -1248,15 +1303,15 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/offmap/aerostat/surface/outpost/backroom)
 "KB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
+/obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "KJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 8
-	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
 /obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8
+	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "Ll" = (
@@ -1266,8 +1321,8 @@
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/offmap/aerostat/surface/outpost/backroom)
 "Lq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 5
 	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
@@ -1278,7 +1333,6 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/powerroom)
 "Lz" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	dir = 4;
@@ -1287,11 +1341,17 @@
 	name = "exterior access button";
 	pixel_x = -24
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 5
+	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "LA" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 9
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air{
+	name = "Air Supply Canister"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
@@ -1338,6 +1398,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 9
 	},
+/obj/machinery/meter{
+	name = "Scrubbers"
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "MJ" = (
@@ -1359,13 +1422,7 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/offmap/aerostat/surface/outpost/cafe)
 "MT" = (
-/obj/machinery/button/remote/blast_door{
-	id = "v2outpost";
-	pixel_y = 27
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red,
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "MX" = (
@@ -1376,13 +1433,8 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/offmap/aerostat/surface/outpost/hallway)
 "Nl" = (
-/obj/structure/closet/crate/bin,
 /obj/structure/cable/cyan{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 1;
-	req_access = null
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/barracks)
@@ -1439,6 +1491,27 @@
 /obj/structure/grille,
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/hallway)
+"Ow" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/red{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
+"Ox" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/red,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
+"OF" = (
+/obj/machinery/airlock_sensor/airlock_interior{
+	dir = 1;
+	pixel_y = -30
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/offmap/aerostat/surface/outpost/airlock)
 "ON" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/glasses,
@@ -1449,10 +1522,20 @@
 "OT" = (
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/officerone)
+"OV" = (
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/offmap/aerostat/surface/outpost/airlock)
 "Pe" = (
-/obj/structure/closet/wardrobe/grey,
-/turf/simulated/floor/wood,
-/area/offmap/aerostat/surface/outpost/barracks)
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "Pn" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
@@ -1472,10 +1555,17 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 8
+/obj/machinery/button/remote/blast_door{
+	id = "v2outpost";
+	pixel_y = 27
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8
+	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "PH" = (
@@ -1498,7 +1588,10 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/offmap/aerostat/surface/outpost/hallway)
 "QF" = (
-/obj/machinery/portable_atmospherics/powered/pump/filled,
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air{
+	name = "Airlock Supply Canister"
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "QJ" = (
@@ -1528,8 +1621,11 @@
 /turf/simulated/floor/tiled/eris/bcircuit,
 /area/offmap/aerostat/surface/outpost/backroom)
 "Rl" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
+/obj/machinery/meter{
+	name = "Supply"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/blue{
+	dir = 1
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
@@ -1576,6 +1672,19 @@
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/offmap/aerostat/surface/explored)
+"SH" = (
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = null
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/offmap/aerostat/surface/outpost/airlock)
 "SI" = (
 /turf/simulated/floor/water/indoors,
 /area/offmap/aerostat/surface/outpost/park)
@@ -1614,11 +1723,10 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/offmap/aerostat/surface/outpost/cafe)
 "UC" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 4
+/obj/machinery/atmospherics/binary/pump/high_power/on{
+	dir = 8
 	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "UE" = (
 /obj/machinery/power/terminal,
@@ -1644,10 +1752,10 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
 "Vq" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4
 	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/offmap/aerostat/surface/outpost/airlock)
 "Vr" = (
@@ -1659,6 +1767,17 @@
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/offmap/aerostat/surface/outpost/cafe)
+"VE" = (
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "v2outpost";
+	pixel_y = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 4
+	},
+/turf/simulated/floor/hull/virgo2,
+/area/offmap/aerostat/surface/outpost/airlock)
 "VH" = (
 /obj/machinery/light{
 	dir = 8
@@ -1691,6 +1810,12 @@
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/offmap/aerostat/surface/outpost/guardpost)
+"Wf" = (
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 1
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/guardpost)
@@ -1747,6 +1872,14 @@
 "WV" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/plating/eris/under,
+/area/offmap/aerostat/surface/outpost/airlock)
+"WX" = (
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/door/airlock/glass_external,
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 10
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/airlock)
 "Xh" = (
@@ -1807,7 +1940,6 @@
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officerone)
 "Zv" = (
-/obj/structure/closet/walllocker/medical/north,
 /obj/machinery/washing_machine,
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/barracks)
@@ -5358,7 +5490,7 @@ ZQ
 ZQ
 uQ
 lZ
-cB
+sz
 LL
 jj
 dE
@@ -5645,12 +5777,12 @@ gd
 gN
 Mz
 Rl
-rS
+Wf
 rn
 Vq
-Vq
-yx
-sA
+SH
+rS
+tM
 Nl
 hj
 fK
@@ -5785,15 +5917,15 @@ ZQ
 uQ
 qP
 Vb
-Vb
+fS
 LA
 CN
 xf
 HU
-HU
-fS
-sA
-Pe
+OF
+rS
+BW
+nS
 Hn
 qJ
 lI
@@ -5930,12 +6062,12 @@ EV
 gy
 KB
 dA
-UC
+rS
 sa
-sa
-UC
-sA
-Pe
+OV
+rS
+wh
+nS
 JZ
 nS
 nS
@@ -6072,10 +6204,10 @@ uQ
 uQ
 uQ
 rS
-sl
+rS
+WX
 Tc
-Tc
-sl
+rS
 sA
 Zv
 JZ
@@ -6209,11 +6341,11 @@ HR
 HR
 ZQ
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
 rS
+sl
+Gp
+yx
+ac
 MT
 rC
 CZ
@@ -6351,15 +6483,15 @@ HR
 HR
 HR
 ZQ
-ZQ
-ZQ
-ZQ
-ZQ
 rS
+sl
+cj
+Pe
+no
 Lq
 Rw
 Rw
-Bs
+VE
 sA
 nK
 GH
@@ -6493,15 +6625,15 @@ HR
 HR
 HR
 HR
-HR
-ZQ
-ZQ
-ZQ
+he
+sl
+Ox
+UC
 rS
 FM
 Rw
 Rw
-Lq
+uh
 sA
 sA
 sA
@@ -6635,10 +6767,10 @@ HR
 HR
 HR
 HR
-HR
-ZQ
-ZQ
-ZQ
+he
+sl
+Ow
+ov
 rS
 PE
 SS
@@ -6777,10 +6909,10 @@ HR
 HR
 HR
 HR
-HR
-HR
-ZQ
-ZQ
+he
+rS
+rS
+rS
 rS
 rS
 SS

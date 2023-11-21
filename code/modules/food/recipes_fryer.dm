@@ -18,6 +18,7 @@
 	fruit = list("chili" = 1)
 	coating = /datum/reagent/nutriment/coating/batter
 	result = /obj/item/weapon/reagent_containers/food/snacks/jalapeno_poppers
+	result_quantity = 2
 
 /datum/recipe/risottoballs
 	appliance = FRYER
@@ -26,6 +27,7 @@
 	coating = /datum/reagent/nutriment/coating/batter
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/weapon/reagent_containers/food/snacks/risottoballs
+	result_quantity = 2
 
 /datum/recipe/bellefritter
 	appliance = FRYER
@@ -33,12 +35,14 @@
 	reagents = list("sugar" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/frostbelle)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bellefritter
+	result_quantity = 2
 
 /datum/recipe/onionrings
 	appliance = FRYER
 	coating = /datum/reagent/nutriment/coating/batter
 	fruit = list("onion" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/onionrings
+	result_quantity = 2
 
 //Meaty Recipes
 //====================
@@ -169,6 +173,7 @@
 	appliance = FRYER
 	reagents = list("sugar" = 5, "batter" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/funnelcake
+	result_quantity = 2
 
 /datum/recipe/pisanggoreng
 	appliance = FRYER

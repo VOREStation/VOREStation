@@ -22,27 +22,29 @@
 
 // Give Random Bad Mutation to M
 /proc/randmutb(var/mob/living/M)
-	if(!M) return
+	if(!M || !(M.dna)) return
 	M.dna.check_integrity()
-	var/block = pick(GLASSESBLOCK,COUGHBLOCK,FAKEBLOCK,NERVOUSBLOCK,CLUMSYBLOCK,TWITCHBLOCK,HEADACHEBLOCK,BLINDBLOCK,DEAFBLOCK,HALLUCINATIONBLOCK)
+	//var/block = pick(GLASSESBLOCK,COUGHBLOCK,FAKEBLOCK,NERVOUSBLOCK,CLUMSYBLOCK,TWITCHBLOCK,HEADACHEBLOCK,BLINDBLOCK,DEAFBLOCK,HALLUCINATIONBLOCK) // Most of these are disabled anyway.
+	var/block = pick(FAKEBLOCK,CLUMSYBLOCK,BLINDBLOCK,DEAFBLOCK)
 	M.dna.SetSEState(block, 1)
 
 // Give Random Good Mutation to M
 /proc/randmutg(var/mob/living/M)
-	if(!M) return
+	if(!M || !(M.dna)) return
 	M.dna.check_integrity()
-	var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK,REGENERATEBLOCK,INCREASERUNBLOCK,REMOTETALKBLOCK,MORPHBLOCK,BLENDBLOCK,NOPRINTSBLOCK,SHOCKIMMUNITYBLOCK,SMALLSIZEBLOCK)
+	//var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK,REGENERATEBLOCK,INCREASERUNBLOCK,REMOTETALKBLOCK,MORPHBLOCK,BLENDBLOCK,NOPRINTSBLOCK,SHOCKIMMUNITYBLOCK,SMALLSIZEBLOCK) // Much like above, most of these blocks are disabled in code.
+	var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,REGENERATEBLOCK,REMOTETALKBLOCK)
 	M.dna.SetSEState(block, 1)
 
 // Random Appearance Mutation
 /proc/randmuti(var/mob/living/M)
-	if(!M) return
+	if(!M || !(M.dna)) return
 	M.dna.check_integrity()
 	M.dna.SetUIValue(rand(1,DNA_UI_LENGTH),rand(1,4095))
 
 // Scramble UI or SE.
 /proc/scramble(var/UI, var/mob/M, var/prob)
-	if(!M)	return
+	if(!M || !(M.dna))	return
 	M.dna.check_integrity()
 	if(UI)
 		for(var/i = 1, i <= DNA_UI_LENGTH-1, i++)
@@ -242,6 +244,8 @@
 		H.custom_whisper = dna.custom_whisper
 		H.custom_exclaim = dna.custom_exclaim
 		H.species.blood_color = dna.blood_color
+		H.custom_heat = dna.custom_heat
+		H.custom_cold = dna.custom_cold
 		var/datum/species/S = H.species
 		S.produceCopy(dna.species_traits, H, dna.base_species)
 		// VOREStation Edit End

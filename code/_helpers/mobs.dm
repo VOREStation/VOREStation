@@ -138,9 +138,9 @@ Proc for attack log creation, because really why not
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/weapon/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
-		return pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
+		return pick(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	else
-		return pick("chest", "groin")
+		return pick(BP_TORSO, BP_GROIN)
 
 /proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
 	if(!user || !target)
@@ -219,7 +219,7 @@ Proc for attack log creation, because really why not
 	if(target?.flags & IS_BUSY)
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
 		return FALSE
-		
+
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
@@ -243,7 +243,7 @@ Proc for attack log creation, because really why not
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
-	
+
 	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
 		target.flags |= IS_BUSY
 
@@ -315,3 +315,9 @@ Proc for attack log creation, because really why not
 	else
 		. = getCompoundIcon(desired)
 		cached_character_icons[cachekey] = .
+
+/proc/not_has_ooc_text(mob/user)
+	if (config.allow_Metadata && (!user.client?.prefs?.metadata || length(user.client.prefs.metadata) < 15))
+		to_chat(user, "<span class='warning'>Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
+		return TRUE
+	return FALSE

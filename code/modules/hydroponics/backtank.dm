@@ -1,3 +1,15 @@
+///// __          __     _____  _   _ _____ _   _  _____ /////
+///// \ \        / /\   |  __ \| \ | |_   _| \ | |/ ____|/////
+/////  \ \  /\  / /  \  | |__) |  \| | | | |  \| | |  __ /////
+/////   \ \/  \/ / /\ \ |  _  /| . ` | | | | . ` | | |_ |/////
+/////    \  /\  / ____ \| | \ \| |\  |_| |_| |\  | |__| |/////
+/////     \/  \/_/    \_\_|  \_\_| \_|_____|_| \_|\_____|/////
+
+
+///// I have no clue why. I am too tired to figure out. Do not enable this file. For some esoteric reasons it breaks runtimes. Particularly, runtime logging.
+///// No I don't know why. No I don't care to figure out why. Not anymore. I haven't seen these things used anywhere. By anyone.
+///// If somebody REALLY wants these, they can be the ones to figure out why the hell this random-ass water backpack file breaks runtime list. I am disabling this and I am done with this. Good night.
+
 /*
  * Hydroponics tank and base code
  */
@@ -17,7 +29,7 @@
 
 /obj/item/weapon/watertank/Initialize()
 	. = ..()
-	create_reagents(volume, OPENCONTAINER)
+	create_reagents(volume)
 	noz = make_noz()
 
 /obj/item/weapon/watertank/MouseDrop()

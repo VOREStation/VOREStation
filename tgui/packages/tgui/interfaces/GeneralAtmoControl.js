@@ -1,7 +1,7 @@
-import { Fragment } from "inferno";
-import { useBackend } from "../backend";
-import { Box, Button, Flex, LabeledList, Slider, Section } from "../components";
-import { Window } from "../layouts";
+import { Fragment } from 'inferno';
+import { useBackend } from '../backend';
+import { Box, Button, Flex, LabeledList, Slider, Section } from '../components';
+import { Window } from '../layouts';
 
 export const GeneralAtmoControl = (props, context) => {
   const { act, data } = useBackend(context);
@@ -30,10 +30,7 @@ export const GeneralAtmoControl = (props, context) => {
   } = data;
 
   return (
-    <Window
-      width={600}
-      height={600}
-      resizable>
+    <Window width={600} height={600} resizable>
       <Window.Content>
         <AtmoControlSensors sensors={sensors} />
         {(core || tanks) && <AtmoControlTankCore />}
@@ -46,22 +43,18 @@ export const GeneralAtmoControl = (props, context) => {
 const AtmoControlSensors = (props, context) => {
   const { act } = useBackend(context);
 
-  const {
-    sensors,
-  } = props;
+  const { sensors } = props;
 
   if (!sensors) {
     return (
       <Section title="Sensors">
-        <Box color="bad">
-          No Sensors Connected.
-        </Box>
+        <Box color="bad">No Sensors Connected.</Box>
       </Section>
     );
   } else {
     return (
       <Section title="Sensors">
-        {sensors.map(sensor => (
+        {sensors.map((sensor) => (
           <Section title={sensor.long_name} key={sensor.long_name}>
             <AtmoSensor sensor={sensor} />
           </Section>
@@ -72,56 +65,44 @@ const AtmoControlSensors = (props, context) => {
 };
 
 const AtmoSensor = (props, context) => {
-  const {
-    sensor,
-  } = props;
+  const { sensor } = props;
 
   if (!sensor.sensor_data) {
     return <Box color="bad">UNABLE TO FIND SENSOR</Box>;
   }
 
-  const {
-    pressure,
-    temperature,
-    oxygen,
-    nitrogen,
-    carbon_dioxide,
-    phoron,
-  } = sensor.sensor_data;
+  const { pressure, temperature, oxygen, nitrogen, carbon_dioxide, phoron } =
+    sensor.sensor_data;
 
   let labeledListContents = [];
   if (pressure) {
-    labeledListContents.push((
+    labeledListContents.push(
       <LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>
-    ));
+    );
   }
-  
+
   if (temperature) {
-    labeledListContents.push((
+    labeledListContents.push(
       <LabeledList.Item label="Temperature">{temperature} K</LabeledList.Item>
-    ));
+    );
   }
 
   if (oxygen || nitrogen || carbon_dioxide || phoron) {
-    labeledListContents.push((
+    labeledListContents.push(
       <LabeledList.Item label="Gas Composition">
         <Flex justify="space-around">
           {oxygen ? <Flex.Item>({oxygen}% O²)</Flex.Item> : null}
           {nitrogen ? <Flex.Item>({nitrogen}% N²)</Flex.Item> : null}
-          {carbon_dioxide 
-            ? <Flex.Item>({carbon_dioxide}% CO²)</Flex.Item> 
-            : null}
+          {carbon_dioxide ? (
+            <Flex.Item>({carbon_dioxide}% CO²)</Flex.Item>
+          ) : null}
           {phoron ? <Flex.Item>({phoron}% TX)</Flex.Item> : null}
         </Flex>
       </LabeledList.Item>
-    ));
+    );
   }
 
-  return (
-    <LabeledList>
-      {labeledListContents.map(item => item)}
-    </LabeledList>
-  );
+  return <LabeledList>{labeledListContents.map((item) => item)}</LabeledList>;
 };
 
 const AtmoControlTankCore = (props, context) => {
@@ -141,27 +122,28 @@ const AtmoControlTankCore = (props, context) => {
     core,
   } = data;
 
-  let sectionName = "Unknown Control System";
+  let sectionName = 'Unknown Control System';
   if (tanks) {
-    sectionName = "Tank Control System";
+    sectionName = 'Tank Control System';
   } else if (core) {
-    sectionName = "Core Cooling Control System";
+    sectionName = 'Core Cooling Control System';
   }
 
   const inputActions = {
-    "power": () => act("in_toggle_injector"),
-    "apply": () => act("in_set_flowrate"),
-    "refresh": () => act("in_refresh_status"),
-    "slider": (e, val) => act("adj_input_flow_rate", {
-      "adj_input_flow_rate": val,
-    }),
+    'power': () => act('in_toggle_injector'),
+    'apply': () => act('in_set_flowrate'),
+    'refresh': () => act('in_refresh_status'),
+    'slider': (e, val) =>
+      act('adj_input_flow_rate', {
+        'adj_input_flow_rate': val,
+      }),
   };
 
   const outputActions = {
-    "power": () => act("out_toggle_power"),
-    "apply": () => act("out_set_pressure"),
-    "refresh": () => act("out_refresh_status"),
-    "slider": (e, val) => act("adj_pressure", { "adj_pressure": val }),
+    'power': () => act('out_toggle_power'),
+    'apply': () => act('out_set_pressure'),
+    'refresh': () => act('out_refresh_status'),
+    'slider': (e, val) => act('adj_pressure', { 'adj_pressure': val }),
   };
 
   return (
@@ -172,18 +154,20 @@ const AtmoControlTankCore = (props, context) => {
         sliderControl={input_flow_setting}
         sliderFill={input_info && input_info.volume_rate}
         unit="L/s"
-        name={core ? "Coolant Input" : "Input"}
+        name={core ? 'Coolant Input' : 'Input'}
         limitName="Flow Rate Limit"
-        actions={inputActions} />
+        actions={inputActions}
+      />
       <AtmoControlTankCoreControl
         info={output_info}
         maxSliderValue={max_pressure}
         sliderControl={pressure_setting}
         sliderFill={output_info && output_info.output_pressure}
         unit="kPa"
-        name={core ? "Core Outpump" : "Output"}
-        limitName={core ? "Min Core Pressure" : "Max Output Pressure"}
-        actions={outputActions} />
+        name={core ? 'Core Outpump' : 'Output'}
+        limitName={core ? 'Min Core Pressure' : 'Max Output Pressure'}
+        actions={outputActions}
+      />
     </Section>
   );
 };
@@ -209,36 +193,42 @@ const AtmoControlTankCoreControl = (props, context) => {
             content="Refresh"
             icon="sync"
             disabled={!info}
-            onClick={() => actions.refresh()} />
+            onClick={() => actions.refresh()}
+          />
           <Button
             content="Power"
             icon="power-off"
             selected={info ? info.power : false}
             disabled={!info}
-            onClick={() => actions.power()} />
+            onClick={() => actions.power()}
+          />
         </Fragment>
       }>
       <LabeledList>
-        {info && (
+        {(info && (
           <LabeledList.Item label={name}>
-            {info.power ? "Injecting" : "On Hold"}
+            {info.power ? 'Injecting' : 'On Hold'}
           </LabeledList.Item>
-        ) || (
+        )) || (
           <LabeledList.Item>
             <Box color="bad">ERROR: Cannot Find {name} Port</Box>
             <Button
               icon="search"
               content="Search"
-              onClick={() => actions.refresh()} />
+              onClick={() => actions.refresh()}
+            />
           </LabeledList.Item>
         )}
-        <LabeledList.Item label={limitName} buttons={
-          <Button
-            content="Apply"
-            icon="edit"
-            disabled={!info}
-            onClick={() => actions.apply()} />
-        }>
+        <LabeledList.Item
+          label={limitName}
+          buttons={
+            <Button
+              content="Apply"
+              icon="edit"
+              disabled={!info}
+              onClick={() => actions.apply()}
+            />
+          }>
           <Slider
             mt="0.4em"
             animated
@@ -248,7 +238,7 @@ const AtmoControlTankCoreControl = (props, context) => {
             value={sliderControl}
             fillValue={sliderFill ? sliderFill : 0}
             onChange={(e, val) => actions.slider(e, val)}>
-            {sliderFill ? sliderFill : "UNK"} {unit} / {sliderControl} {unit}
+            {sliderFill ? sliderFill : 'UNK'} {unit} / {sliderControl} {unit}
           </Slider>
         </LabeledList.Item>
       </LabeledList>
@@ -259,11 +249,7 @@ const AtmoControlTankCoreControl = (props, context) => {
 const AtmoControlFuel = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    fuel,
-    automation,
-    device_info,
-  } = data;
+  const { fuel, automation, device_info } = data;
   return (
     <Section
       title="Fuel Injection System"
@@ -272,24 +258,27 @@ const AtmoControlFuel = (props, context) => {
           <Button
             icon="syringe"
             content="Inject"
-            onClick={() => act("injection")}
-            disabled={automation || !device_info} />
+            onClick={() => act('injection')}
+            disabled={automation || !device_info}
+          />
           <Button
             icon="sync"
             content="Refresh"
-            onClick={() => act("refresh_status")} />
+            onClick={() => act('refresh_status')}
+          />
           <Button
             icon="power-off"
             content="Injector Power"
-            onClick={() => act("toggle_injector")}
+            onClick={() => act('toggle_injector')}
             selected={device_info ? device_info.power : false}
-            disabled={automation || !device_info} />
+            disabled={automation || !device_info}
+          />
         </Fragment>
       }>
       {device_info ? (
         <LabeledList>
           <LabeledList.Item label="Status">
-            {device_info.power ? "Injecting" : "On Hold"}
+            {device_info.power ? 'Injecting' : 'On Hold'}
           </LabeledList.Item>
           <LabeledList.Item label="Rate">
             {device_info.volume_rate}
@@ -297,20 +286,20 @@ const AtmoControlFuel = (props, context) => {
           <LabeledList.Item label="Automated Fuel Injection">
             <Button
               icon="robot"
-              content={automation ? "Engaged" : "Disengaged"}
+              content={automation ? 'Engaged' : 'Disengaged'}
               selected={automation}
-              onClick={() => act("toggle_automation")} />
+              onClick={() => act('toggle_automation')}
+            />
           </LabeledList.Item>
         </LabeledList>
       ) : (
         <Fragment>
-          <Box color="bad">
-            ERROR: Cannot Find Device
-          </Box>
+          <Box color="bad">ERROR: Cannot Find Device</Box>
           <Button
             icon="search"
             content="Search"
-            onClick={() => act("refresh_status")} />
+            onClick={() => act('refresh_status')}
+          />
         </Fragment>
       )}
     </Section>

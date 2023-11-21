@@ -20,7 +20,7 @@
 	faction = "space turtle"
 	maxHealth = 1000
 	health = 1000
-	movement_cooldown = 20
+	movement_cooldown = 10
 
 	see_in_dark = 10
 
@@ -110,12 +110,13 @@
 	violent_breakthrough = TRUE
 
 /mob/living/simple_mob/vore/alienanimals/startreader/apply_melee_effects(mob/living/L)
+	if(!isliving(L))
+		return
 	if(L.weakened) //Don't stun people while they're already stunned! That's SILLY!
 		return
 	if(prob(15))
-		if(isliving(L))
-			visible_message("<span class='danger'>\The [src] trips \the [L]!</span>!")
-			L.weakened += rand(1,10)
+		visible_message("<span class='danger'>\The [src] trips \the [L]!</span>!")
+		L.weakened += rand(1,10)
 
 /mob/living/simple_mob/vore/alienanimals/startreader/Life()
 	. = ..()

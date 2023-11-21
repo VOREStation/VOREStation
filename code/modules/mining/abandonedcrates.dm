@@ -18,8 +18,10 @@
 
 	generate_loot()
 
+/* Vorestation edit - see abandonedcrates_vr.dm for virgo version. Keeping legacy proc in comments for reference.
+
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
-	var/loot = rand(1, 99)
+	var/loot = rand(1, 100)
 	switch(loot)
 		if(1 to 5) // Common things go, 5%
 			new/obj/item/weapon/reagent_containers/food/drinks/bottle/rum(src)
@@ -140,13 +142,18 @@
 		if(99)
 			new/obj/item/weapon/storage/belt/champion(src)
 			new/obj/item/clothing/mask/luchador(src)
+		if(100)
+			new/obj/item/device/personal_shield_generator/belt/mining/loaded(src)
+
+vorestation edit end */
+
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
 	if(!locked)
 		return
 
 	to_chat(user, "<span class='notice'>The crate is locked with a Deca-code lock.</span>")
-	var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
+	var/input = tgui_input_text(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "")
 	if(!Adjacent(user))
 		return
 	var/list/sanitised = list()

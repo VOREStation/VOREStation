@@ -6,12 +6,14 @@
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/drop_get_turf = TRUE
 
-// creates a new object and deletes itself
+
 /obj/random/Initialize()
+	. = INITIALIZE_HINT_QDEL
 	..()
-	if(!prob(spawn_nothing_percentage))
-		try_spawn_item()
-	return INITIALIZE_HINT_QDEL
+	if (prob(spawn_nothing_percentage))
+		return
+	try_spawn_item()
+
 
 /obj/random/proc/try_spawn_item()
 	var/atom/result = spawn_item()

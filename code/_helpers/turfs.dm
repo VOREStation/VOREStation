@@ -131,7 +131,7 @@
 		var/old_icon1 = T.icon
 		var/old_decals = T.decals ? T.decals.Copy() : null
 
-		B.Destroy()
+		//B.Destroy()
 		X = B.ChangeTurf(T.type)
 		X.set_dir(old_dir1)
 		X.icon_state = old_icon_state1
@@ -156,7 +156,8 @@
 	for(var/obj/O in T)
 		if(O.simulated)
 			O.loc = X
-			O.update_light()
+			if(O.light_system == STATIC_LIGHT)
+				O.update_light()
 			if(z_level_change) // The objects still need to know if their z-level changed.
 				O.onTransitZ(T.z, X.z)
 

@@ -192,7 +192,7 @@
 		if(G.siemens_coefficient == 0)
 			user_protected = 1
 	log_game("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100")
-	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>")
+	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>")
 
 	var/used_hand = h_user.hand?"l_hand":"r_hand"
 
@@ -312,7 +312,8 @@
 
 		// Multitool - change RCON tag
 		if(istype(W, /obj/item/device/multitool))
-			var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
+			var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system", "", MAX_NAME_LEN)
+			newtag = sanitize(newtag,MAX_NAME_LEN)
 			if(newtag)
 				RCon_tag = newtag
 				to_chat(user, "<span class='notice'>You changed the RCON tag to: [newtag]</span>")
@@ -334,7 +335,7 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(W.is_crowbar())
+		if(W.has_tool_quality(TOOL_CROWBAR))
 			if (terminals.len)
 				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return

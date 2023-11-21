@@ -26,6 +26,8 @@
 	///Determines which boss image to use on the UI.
 	var/boss_id = 1
 
+	usage_flags = PROGRAM_ALL
+
 // This is the primary game loop, which handles the logic of being defeated or winning.
 /datum/computer_file/program/game/proc/game_check(mob/user)
 	sleep(5)

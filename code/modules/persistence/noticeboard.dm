@@ -55,7 +55,7 @@
 	icon_state = "[base_icon_state][LAZYLEN(notices)]"
 
 /obj/structure/noticeboard/attackby(obj/item/I, mob/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		var/choice = tgui_input_list(usr, "Which direction do you wish to place the noticeboard?", "Noticeboard Offset", list("North", "South", "East", "West", "No Offset"))
 		if(choice && Adjacent(user) && I.loc == user && !user.incapacitated())
 			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -75,7 +75,7 @@
 				if("No Offset")
 					return
 		return
-	else if(I.is_wrench())
+	else if(I.has_tool_quality(TOOL_WRENCH))
 		visible_message("<span class='warning'>[user] begins dismantling [src].</span>")
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 50, src))
@@ -114,8 +114,8 @@
 
 /obj/structure/noticeboard/tgui_data(mob/user)
 	var/list/data = ..()
-	
-	
+
+
 	var/list/tgui_notices = list()
 	for(var/obj/item/I in src.notices)
 		tgui_notices.Add(list(list(

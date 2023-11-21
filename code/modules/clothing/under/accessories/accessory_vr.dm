@@ -127,7 +127,7 @@
 		usr.audible_message("[usr] jingles the [src]'s bell.", runemessage = "jingle")
 		playsound(src, 'sound/items/pickup/ring.ogg', 50, 1)
 		jingled = 1
-		addtimer(CALLBACK(src, .proc/jingledreset), 50)
+		addtimer(CALLBACK(src, PROC_REF(jingledreset)), 50)
 	return
 
 /obj/item/clothing/accessory/collar/bell/proc/jingledreset()
@@ -167,7 +167,7 @@
 			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
 			set_frequency(new_frequency)
 		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(input(usr,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 			if(!str || !length(str))
 				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
 				name = initial(name)
@@ -269,6 +269,13 @@
 	item_state = "collar_cowbell_overlay"
 	overlay_state = "collar_cowbell_overlay"
 
+/obj/item/clothing/accessory/collar/collarplanet_earth
+	name = "planet collar"
+	desc = "A collar featuring a surprisingly detailed replica of a earth-like planet surrounded by a weak battery powered force shield. There is a button to turn it off."
+	icon_state = "collarplanet_earth"
+	item_state = "collarplanet_earth"
+	overlay_state = "collarplanet_earth"
+
 
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
@@ -293,7 +300,7 @@
 			return
 		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
 
-	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+	var/str = copytext(reject_bad_text(tgui_input_text(user,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 
 	if(!str || !length(str))
 		to_chat(user,"<span class='notice'>[name]'s tag set to be blank.</span>")
@@ -330,7 +337,7 @@
 	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
 		return
 
-	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+	var/str = copytext(reject_bad_text(tgui_input_text(user,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 
 	if(!str || !length(str))
 		if(!writtenon)
@@ -349,6 +356,274 @@
 			to_chat(user,"<span class='notice'>You [erasing] the words on the tag with the [I], and write '[str]'.</span>")
 			name = initial(name) + " ([str])"
 			desc = initial(desc) + " Something has been [erasemethod] on the tag, and it now has \"[str]\" [writemethod] on it."
+
+//Size collar remote
+
+/obj/item/clothing/accessory/collar/shock/bluespace
+	name = "Bluespace collar"
+	desc = "A collar that can manipulate the size of the wearer, and can be modified when unequiped."
+	icon_state = "collar_size"
+	item_state = "collar_size"
+	overlay_state = "collar_size"
+	var/original_size
+	var/last_activated
+	var/target_size = 1
+	on = 1
+
+/obj/item/clothing/accessory/collar/shock/bluespace/Topic(href, href_list)
+	if(usr.stat || usr.restrained())
+		return
+	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+		usr.set_machine(src)
+		if(href_list["freq"])
+			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
+			set_frequency(new_frequency)
+		if(href_list["tag"])
+			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
+			if(!str || !length(str))
+				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				name = initial(name)
+				desc = initial(desc)
+			else
+				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				name = initial(name) + " ([str])"
+				desc = initial(desc) + " The tag says \"[str]\"."
+		else
+			if(href_list["code"])
+				code += text2num(href_list["code"])
+				code = round(code)
+				code = min(100, code)
+				code = max(1, code)
+			else
+				if(href_list["size"])
+					var/size_select = tgui_input_number(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", target_size * 100, 200, 25)
+					if(!size_select)
+						return //cancelled
+					target_size = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
+					to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
+					if(target_size < RESIZE_MINIMUM || target_size > RESIZE_MAXIMUM)
+						to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
+		if(!( master ))
+			if(istype(loc, /mob))
+				attack_self(loc)
+			else
+				for(var/mob/M in viewers(1, src))
+					if(M.client)
+						attack_self(M)
+		else
+			if(istype(master.loc, /mob))
+				attack_self(master.loc)
+			else
+				for(var/mob/M in viewers(1, master))
+					if(M.client)
+						attack_self(M)
+	else
+		usr << browse(null, "window=radio")
+		return
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/attack_self(mob/user as mob, flag1)
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	user.set_machine(src)
+	var/dat = {"<TT>
+			<B>Frequency/Code</B> for collar:<BR>
+			Frequency:
+			<A href='byond://?src=\ref[src];freq=-10'>-</A>
+			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
+			<A href='byond://?src=\ref[src];freq=2'>+</A>
+			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+
+			Code:
+			<A href='byond://?src=\ref[src];code=-5'>-</A>
+			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
+			<A href='byond://?src=\ref[src];code=1'>+</A>
+			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
+
+			Tag:
+			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
+
+			Size:
+			<A href='?src=\ref[src];size=100'>Set size</A><BR>
+			</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/receive_signal(datum/signal/signal)
+	if(!signal || signal.encryption != code)
+		return
+
+	if(on)
+		var/mob/M = null
+		if(ismob(loc))
+			M = loc
+		if(ismob(loc.loc))
+			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
+		var/mob/living/carbon/human/H = M
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H.resizable)
+			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			return
+		if(H.size_multiplier != target_size)
+			if(!(world.time - last_activated > 10 SECONDS))
+				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				return
+			last_activated = world.time
+			original_size = H.size_multiplier
+			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
+			s.set_up(3, 1, M)
+			s.start()
+		else if(H.size_multiplier == target_size)
+			if(original_size == null)
+				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				return
+			last_activated = world.time
+			H.resize(original_size, ignore_prefs = FALSE)
+			original_size = null
+			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
+			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			s.set_up(3, 1, M)
+			s.start()
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/relaymove(var/mob/living/user,var/direction)
+	return //For some reason equipping this item was triggering this proc, putting the wearer inside of the collars belly for some reason.
+
+/obj/item/clothing/accessory/collar/shock/bluespace/attackby(var/obj/item/device/assembly/signaler/component, mob/user as mob)
+	if (!istype(component,/obj/item/device/assembly/signaler))
+		..()
+		return
+	to_chat(user, "<span class='notice'>You wire the signaler into the [src].</span>")
+	user.drop_item()
+	qdel(component)
+	var/turf/T = get_turf(src)
+	new /obj/item/clothing/accessory/collar/shock/bluespace/modified(T)
+	user.drop_from_inventory(src)
+	qdel(src)
+	return
+
+// modified bluespace collar where the size is controlled by the signaller.
+
+/obj/item/clothing/accessory/collar/shock/bluespace/modified
+	name = "Bluespace collar"
+	desc = "A collar that can manipulate the size of the wearer, and can be modified when unequiped. It has a little reciever attached."
+	icon_state = "collar_size_mod"
+	item_state = "collar_size"
+	overlay_state = "collar_size"
+	target_size = 1
+	on = 1
+
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(var/obj/item/device/assembly/signaler/component, mob/user as mob)
+	if (!istype(component,/obj/item/device/assembly/signaler))
+		..()
+		return
+	to_chat(user, "<span class='notice'>There is already a signaler wired to the [src].</span>")
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/attack_self(mob/user as mob, flag1)
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	user.set_machine(src) //Doesn't need code or size options as the code now just defines the size.
+	var/dat = {"<TT>
+			<B>Frequency/Code</B> for collar:<BR>
+			Frequency:
+			<A href='byond://?src=\ref[src];freq=-10'>-</A>
+			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
+			<A href='byond://?src=\ref[src];freq=2'>+</A>
+			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+
+			Tag:
+			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
+
+			The size control of the collar is determined by two times the value of the code it recieves, to a minimum of 26 (code 13).
+			</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/Topic(href, href_list)
+	if(usr.stat || usr.restrained())
+		return
+	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+		usr.set_machine(src)
+		if(href_list["freq"])
+			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
+			set_frequency(new_frequency)
+		if(href_list["tag"])
+			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
+			if(!str || !length(str))
+				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				name = initial(name)
+				desc = initial(desc)
+			else
+				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				name = initial(name) + " ([str])"
+				desc = initial(desc) + " The tag says \"[str]\"."
+		if(!( master ))
+			if(istype(loc, /mob))
+				attack_self(loc)
+			else
+				for(var/mob/M in viewers(1, src))
+					if(M.client)
+						attack_self(M)
+		else
+			if(istype(master.loc, /mob))
+				attack_self(master.loc)
+			else
+				for(var/mob/M in viewers(1, master))
+					if(M.client)
+						attack_self(M)
+	else
+		usr << browse(null, "window=radio")
+		return
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/receive_signal(datum/signal/signal)
+	if(!signal)
+		return
+	target_size = (signal.encryption * 2)/100
+	if(on)
+		var/mob/M = null
+		if(ismob(loc))
+			M = loc
+		if(ismob(loc.loc))
+			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
+		var/mob/living/carbon/human/H = M
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H.resizable)
+			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			return
+		if (target_size < 0.26)
+			H.visible_message("<span class='warning'>The collar on [H] flickers, but fizzles out.</span>","<span class='notice'>Your collar flickers, but is not powerful enough to shrink you that small.</span>")
+			return
+		if(H.size_multiplier != target_size)
+			if(!(world.time - last_activated > 10 SECONDS))
+				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				return
+			last_activated = world.time
+			original_size = H.size_multiplier
+			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
+			s.set_up(3, 1, M)
+			s.start()
+		else if(H.size_multiplier == target_size)
+			if(original_size == null)
+				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				return
+			last_activated = world.time
+			H.resize(original_size, ignore_prefs = FALSE)
+			original_size = null
+			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
+			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			s.set_up(3, 1, M)
+			s.start()
+	return
 
 //Machete Holsters
 /obj/item/clothing/accessory/holster/machete
@@ -384,29 +659,334 @@
 	item_state = "talonpin"
 	overlay_state = "talonpin"
 
-//Casino Slave Collar
+//Casino Sentient Prize Collar
 
-/obj/item/clothing/accessory/collar/casinoslave
-	name = "a disabled Sentient Prize Collar"
+/obj/item/clothing/accessory/collar/casinosentientprize
+	name = "disabled Sentient Prize Collar"
 	desc = "A collar worn by sentient prizes registered to a SPASM. Although the red text on it shows its disconnected and nonfunctional."
 
 	icon_state = "casinoslave"
 	item_state = "casinoslave"
 	overlay_state = "casinoslave"
 
-	var/slavename = null	//Name for system to put on collar description
+	var/sentientprizename = null	//Name for system to put on collar description
 	var/ownername = null	//Name for system to put on collar description
-	var/slaveckey = null	//Ckey for system to check who is the person and ensure no abuse of system or errors
-	var/slaveflavor = null	//Description to show on the SPASM
-	var/slaveooc = null		//OOC text to show on the SPASM
+	var/sentientprizeckey = null	//Ckey for system to check who is the person and ensure no abuse of system or errors
+	var/sentientprizeflavor = null	//Description to show on the SPASM
+	var/sentientprizeooc = null		//OOC text to show on the SPASM
 
-/obj/item/clothing/accessory/collar/casinoslave/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user as mob)
 	//keeping it blank so people don't tag and reset collar status
 
-/obj/item/clothing/accessory/collar/casinoslave_fake
-	name = "a Sentient Prize Collar"
+/obj/item/clothing/accessory/collar/casinosentientprize_fake
+	name = "Sentient Prize Collar"
 	desc = "A collar worn by sentient prizes registered to a SPASM. This one has been disconnected from the system and is now an accessory!"
 
 	icon_state = "casinoslave_owned"
 	item_state = "casinoslave_owned"
 	overlay_state = "casinoslave_owned"
+
+//The gold trim from one of the qipaos, separated to an accessory to preserve the color
+/obj/item/clothing/accessory/qipaogold
+	name = "gold trim"
+	desc = "Gold trim belonging to a qipao. Why would you remove this?"
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
+	icon_state = "qipaogold"
+	item_state = "qipaogold"
+	overlay_state = "qipaogold"
+
+//Antediluvian accessory set
+/obj/item/clothing/accessory/antediluvian
+	name = "antediluvian bracers"
+	desc = "A pair of metal bracers with gold inlay. They're thin and light."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
+	icon_state = "antediluvian"
+	item_state = "antediluvian"
+	overlay_state = "antediluvian"
+	body_parts_covered = ARMS
+
+/obj/item/clothing/accessory/antediluvian/loincloth
+	name = "antediluvian loincloth"
+	desc = "A lengthy loincloth that drapes over the loins, obviously. It's quite long."
+	icon_state = "antediluvian_loin"
+	item_state = "antediluvian_loin"
+	overlay_state = "antediluvian_loin"
+	body_parts_covered = LOWER_TORSO
+
+//The cloaks below belong to this _vr file but their sprites are contained in non-_vr icon files due to
+//the way the poncho/cloak equipped() proc works. Sorry for the inconvenience
+/obj/item/clothing/accessory/poncho/roles/cloak/antediluvian
+	name = "antediluvian cloak"
+	desc = "A regal looking cloak of white with specks of gold woven into the fabric."
+	icon_state = "antediluvian_cloak"
+	item_state = "antediluvian_cloak"
+
+//Other clothes that I'm too lazy to port to Polaris
+/obj/item/clothing/accessory/poncho/roles/cloak/chapel
+	name = "bishop's cloak"
+	desc = "An elaborate white and gold cloak."
+	icon_state = "bishopcloak"
+	item_state = "bishopcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/chapel/alt
+	name = "antibishop's cloak"
+	desc = "An elaborate black and gold cloak. It looks just a little bit evil."
+	icon_state = "blackbishopcloak"
+	item_state = "blackbishopcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/half
+	name = "rough half cloak"
+	desc = "The latest fashion innovations by the Nanotrasen Uniform & Fashion Department have provided the brilliant invention of slicing a regular cloak in half! All the ponce, half the cost!"
+	icon_state = "roughcloak"
+	item_state = "roughcloak"
+	action_button_name = "Adjust Cloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
+	. = ..()
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_wear_suit()
+
+/obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user as mob)
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]_open"
+		src.item_state = "[item_state]_open"
+		flags_inv = HIDETIE|HIDEHOLSTER
+		to_chat(user, "You flip the cloak over your shoulder.")
+	else
+		src.icon_state = initial(icon_state)
+		src.item_state = initial(item_state)
+		flags_inv = HIDEHOLSTER
+		to_chat(user, "You pull the cloak over your shoulder.")
+	update_clothing_icon()
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shoulder
+	name = "shoulder cloak"
+	desc = "A small cape that primarily covers the left shoulder. Might help you stand out more, not necessarily for the right reasons."
+	icon_state = "cape_left"
+	item_state = "cape_left"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shoulder/right
+	desc = "A small cape that primarily covers the right shoulder. It might look a tad cooler if it was longer."
+	icon_state = "cape_right"
+	item_state = "cape_right"
+
+//Mantles
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle
+	name = "shoulder mantle"
+	desc = "Not a cloak and not really a cape either, but a silky fabric that rests on the neck and shoulders alone."
+	icon_state = "mantle"
+	item_state = "mantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/cargo
+	name = "cargo mantle"
+	desc = "A shoulder mantle bearing the colors of the Supply department, with a gold lapel emblazoned upon the front."
+	icon_state = "qmmantle"
+	item_state = "qmmantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/security
+	name = "security mantle"
+	desc = "A shoulder mantle bearing the colors of the Security department, featuring rugged molding around the collar."
+	icon_state = "hosmantle"
+	item_state = "hosmantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/engineering
+	name = "engineering mantle"
+	desc = "A shoulder mantle bearing the colors of the Engineering department, accenting the pristine white fabric."
+	icon_state = "cemantle"
+	item_state = "cemantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/research
+	name = "research mantle"
+	desc = "A shoulder mantle bearing the colors of the Research department, the material slick and hydrophobic."
+	icon_state = "rdmantle"
+	item_state = "rdmantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/medical
+	name = "medical mantle"
+	desc = "A shoulder mantle bearing the general colors of the Medical department, dyed a sterile nitrile cyan."
+	icon_state = "cmomantle"
+	item_state = "cmomantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/hop
+	name = "head of personnel mantle"
+	desc = "A shoulder mantle bearing the colors of the Head of Personnel's uniform, featuring the typical royal blue contrasted by authoritative red."
+	icon_state = "hopmantle"
+	item_state = "hopmantle"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
+	name = "site manager mantle"
+	desc = "A shoulder mantle bearing the colors usually found on a Site Manager, a commanding blue with regal gold inlay."
+	icon_state = "capmantle"
+	item_state = "capmantle"
+
+//Boat cloaks
+/obj/item/clothing/accessory/poncho/roles/cloak/boat
+	name = "boat cloak"
+	desc = "A cloak that might've been worn on boats once or twice. It's just a flappy cape otherwise."
+	icon_state = "boatcloak"
+	item_state = "boatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/cap
+	name = "site manager boat cloak"
+	icon_state = "capboatcloak"
+	item_state = "capboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/hop
+	name = "head of personnel boat cloak"
+	icon_state = "hopboatcloak"
+	item_state = "hopboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/security
+	name = "security boat cloak"
+	icon_state = "secboatcloak"
+	item_state = "secboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/engineering
+	name = "engineering boat cloak"
+	icon_state = "engboatcloak"
+	item_state = "engboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/atmos
+	name = "atmospherics boat cloak"
+	icon_state = "atmosboatcloak"
+	item_state = "atmosboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/medical
+	name = "medical boat cloak"
+	icon_state = "medboatcloak"
+	item_state = "medboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/service
+	name = "service boat cloak"
+	icon_state = "botboatcloak"
+	item_state = "botboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/cargo
+	name = "cargo boat cloak"
+	icon_state = "supboatcloak"
+	item_state = "supboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/mining
+	name = "mining boat cloak"
+	icon_state = "minboatcloak"
+	item_state = "minboatcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/boat/science
+	name = "research boat cloak"
+	icon_state = "sciboatcloak"
+	item_state = "sciboatcloak"
+
+//Shrouds
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud
+	name = "shroud cape"
+	desc = "A sharp looking cape that covers more of one side than the other. Just a bit edgy."
+	icon_state = "shroud"
+	item_state = "shroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/cap
+	name = "site manager shroud"
+	icon_state = "capshroud"
+	item_state = "capshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/hop
+	name = "head of personnel shroud"
+	icon_state = "hopshroud"
+	item_state = "hopshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/security
+	name = "security shroud"
+	icon_state = "secshroud"
+	item_state = "secshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/engineering
+	name = "engineering shroud"
+	icon_state = "engshroud"
+	item_state = "engshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/atmos
+	name = "atmospherics shroud"
+	icon_state = "atmosshroud"
+	item_state = "atmosshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/medical
+	name = "medical shroud"
+	icon_state = "medshroud"
+	item_state = "medshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/service
+	name = "service shroud"
+	icon_state = "botshroud"
+	item_state = "botshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/cargo
+	name = "cargo shroud"
+	icon_state = "supshroud"
+	item_state = "supshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/mining
+	name = "mining shroud"
+	icon_state = "minshroud"
+	item_state = "minshroud"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/shroud/science
+	name = "research shroud"
+	icon_state = "scishroud"
+	item_state = "scishroud"
+
+//Crop Jackets
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket
+	name = "white crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This one's in plain white, more or less."
+	icon_state = "cropjacket_white"
+	item_state = "cropjacket_white"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/blue
+	name = "blue crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Let everyone know who's in control of the situation around here."
+	icon_state = "cropjacket_blue"
+	item_state = "cropjacket_blue"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/red
+	name = "red crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. You could probably hide a holster under this without too much trouble."
+	icon_state = "cropjacket_red"
+	item_state = "cropjacket_red"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/green
+	name = "green crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. The faded green tones bring to mind the smell of antiseptics."
+	icon_state = "cropjacket_green"
+	item_state = "cropjacket_green"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/purple
+	name = "purple crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This doesn't seem like very practical labwear."
+	icon_state = "cropjacket_purple"
+	item_state = "cropjacket_purple"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/orange
+	name = "orange crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Perfect for keeping cool whilst showing off your gains from shifting crates."
+	icon_state = "cropjacket_orange"
+	item_state = "cropjacket_orange"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/charcoal
+	name = "charcoal crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Dark and slightly edgy, just like its wearer."
+	icon_state = "cropjacket_charcoal"
+	item_state = "cropjacket_charcoal"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/marine
+	name = "faded reflec crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. Seems to be made of a semi-reflective material, like an EMT's jacket."
+	icon_state = "cropjacket_marine"
+	item_state = "cropjacket_marine"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/crop_jacket/drab
+	name = "drab crop jacket"
+	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This one's a sort of olive-drab kind of colour."
+	icon_state = "cropjacket_drab"
+	item_state = "cropjacket_drab"

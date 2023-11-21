@@ -23,9 +23,9 @@
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
 	if(dries) //VOREStation Add
-		addtimer(CALLBACK(src, .proc/post_spread), 3 + metal * 3)
-		addtimer(CALLBACK(src, .proc/pre_harden), 12 SECONDS)
-		addtimer(CALLBACK(src, .proc/harden), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(post_spread)), 3 + metal * 3)
+		addtimer(CALLBACK(src, PROC_REF(pre_harden)), 12 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(harden)), 15 SECONDS)
 
 /obj/effect/effect/foam/proc/post_spread()
 	process()
@@ -38,7 +38,7 @@
 	if(metal)
 		var/obj/structure/foamedmetal/M = new(src.loc)
 		M.metal = metal
-		M.updateicon()
+		M.update_icon()
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
@@ -151,7 +151,7 @@
 	update_nearby_tiles(1)
 	return ..()
 
-/obj/structure/foamedmetal/proc/updateicon()
+/obj/structure/foamedmetal/update_icon()
 	if(metal == 1)
 		icon_state = "metalfoam"
 	else

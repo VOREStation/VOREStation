@@ -51,19 +51,47 @@
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
 
+/obj/item/projectile/beam/weaklaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_em
+	tracer_type = /obj/effect/projectile/tracer/laser_em
+	impact_type = /obj/effect/projectile/impact/laser_em
+
 /obj/item/projectile/beam/smalllaser
 	damage = 25
 	hud_state = "laser"
+
+/obj/item/projectile/beam/smalllaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_em
+	tracer_type = /obj/effect/projectile/tracer/laser_em
+	impact_type = /obj/effect/projectile/impact/laser_em
 
 /obj/item/projectile/beam/burstlaser
 	damage = 30
 	armor_penetration = 10
 	hud_state = "laser"
 
+/obj/item/projectile/beam/burstlaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_em
+	tracer_type = /obj/effect/projectile/tracer/laser_em
+	impact_type = /obj/effect/projectile/impact/laser_em
+
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
 	hud_state = "laser"
+
+/obj/item/projectile/beam/midlaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_em
+	tracer_type = /obj/effect/projectile/tracer/laser_em
+	impact_type = /obj/effect/projectile/impact/laser_em
 
 /obj/item/projectile/beam/mininglaser
 	name = "pulsating laser"
@@ -103,6 +131,13 @@
 	muzzle_type = /obj/effect/projectile/muzzle/emitter
 	tracer_type = /obj/effect/projectile/tracer/emitter
 	impact_type = /obj/effect/projectile/impact/emitter
+
+/obj/item/projectile/beam/heavylaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_em
+	tracer_type = /obj/effect/projectile/tracer/laser_em
+	impact_type = /obj/effect/projectile/impact/laser_em
 
 /obj/item/projectile/beam/heavylaser/cannon
 	damage = 80

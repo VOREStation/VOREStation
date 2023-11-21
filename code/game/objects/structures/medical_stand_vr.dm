@@ -295,7 +295,7 @@
 			to_chat(user, "<span class='warning'>Close the valve first.</span>")
 			return
 		if (tank)
-			if(!W.is_wrench())
+			if(!W.has_tool_quality(TOOL_WRENCH))
 				return
 			if (!is_loosen)
 				is_loosen = TRUE

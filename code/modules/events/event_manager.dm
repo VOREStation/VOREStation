@@ -156,7 +156,7 @@
 		config.allow_random_events = text2num(href_list["pause_all"])
 		log_and_message_admins("has [config.allow_random_events ? "resumed" : "paused"] countdown for all events.")
 	else if(href_list["interval"])
-		var/delay = input(usr, "Enter delay modifier. A value less than one means events fire more often, higher than one less often.", "Set Interval Modifier") as num|null
+		var/delay = tgui_input_number(usr, "Enter delay modifier. A value less than one means events fire more often, higher than one less often.", "Set Interval Modifier")
 		if(delay && delay > 0)
 			var/datum/event_container/EC = locate(href_list["interval"])
 			EC.delay_modifier = delay
@@ -173,7 +173,7 @@
 	else if(href_list["back"])
 		selected_event_container = null
 	else if(href_list["set_name"])
-		var/name = sanitize(input(usr, "Enter event name.", "Set Name") as text|null)
+		var/name = sanitize(tgui_input_text(usr, "Enter event name.", "Set Name"))
 		if(name)
 			var/datum/event_meta/EM = locate(href_list["set_name"])
 			EM.name = name
@@ -183,7 +183,7 @@
 			var/datum/event_meta/EM = locate(href_list["set_type"])
 			EM.event_type = type
 	else if(href_list["set_weight"])
-		var/weight = input(usr, "Enter weight. A higher value means higher chance for the event of being selected.", "Set Weight") as num|null
+		var/weight = tgui_input_number(usr, "Enter weight. A higher value means higher chance for the event of being selected.", "Set Weight")
 		if(weight && weight > 0)
 			var/datum/event_meta/EM = locate(href_list["set_weight"])
 			EM.weight = weight

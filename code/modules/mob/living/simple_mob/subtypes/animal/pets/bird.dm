@@ -18,7 +18,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 3
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 	hovering = TRUE // Birds can fly.
 	softfall = TRUE
 	parachuting = TRUE
@@ -28,7 +28,7 @@
 
 	attacktext = list("clawed", "pecked")
 	speak_emote = list("chirps", "caws")
-	has_langs = list("Bird")
+	has_langs = list(LANGUAGE_ANIMAL)
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
 	response_harm   = "swats"

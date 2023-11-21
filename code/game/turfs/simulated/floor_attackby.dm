@@ -72,9 +72,23 @@
 			to_chat(user, "<span class='warning'>You must remove the [flooring.descriptor] first.</span>")
 			return
 		else if(istype(C, /obj/item/stack/tile))
-			try_replace_tile(C, user)
-			return
-	
+			if(try_replace_tile(C, user))
+				return
+			else if(istype(C, /obj/item/stack/tile/floor)) // While we're at it, let's see if this is a raw patch of natural sand, dirt, or whatever that you're trying to put a plating on.
+				if(!flooring.build_type && can_be_plated && !((flooring.flags & TURF_REMOVE_WRENCH) || (flooring.flags & TURF_REMOVE_CROWBAR) || (flooring.flags & TURF_REMOVE_SCREWDRIVER) || (flooring.flags & TURF_REMOVE_SHOVEL)))
+					for(var/obj/structure/P in contents)
+						if(istype(P, /obj/structure/flora))
+							to_chat(user, "<span class='warning'>The [P.name] is in the way, you'll have to get rid of it first.</span>")
+							return
+					var/obj/item/stack/tile/floor/S = C
+					if (S.get_amount() < 1)
+						return
+					S.use(1)
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+					return
+
+
 	// Floor is plating (or no flooring)
 	else
 		// Placing wires on plating
@@ -115,8 +129,8 @@
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Plating repairs and removal
-		else if(istype(C, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/welder = C
+		else if(C.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/welder = C.get_welder()
 			if(welder.isOn())
 				// Needs repairs
 				if(broken || burnt)
@@ -136,7 +150,7 @@
 						return
 					if(!can_remove_plating(user))
 						return
-					
+
 					user.visible_message("<span class='warning'>[user] begins cutting through [src].</span>", "<span class='warning'>You begin cutting through [src].</span>")
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
@@ -146,7 +160,7 @@
 						do_remove_plating(C, user, base_type)
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		if(broken || burnt)
 			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
 			make_plating()
@@ -160,14 +174,14 @@
 			return 0
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(W.is_screwdriver() && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)
 			return 0
 		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(W.is_wrench() && (flooring.flags & TURF_REMOVE_WRENCH))
+	else if(W.has_tool_quality(TOOL_WRENCH) && (flooring.flags & TURF_REMOVE_WRENCH))
 		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
@@ -187,7 +201,7 @@
 		return
 	if(!try_deconstruct_tile(W, user))
 		return
-	if(flooring)
+	if(flooring && !flooring.is_plating)
 		return
 	attackby(T, user)
 
@@ -201,8 +215,8 @@
 	return TRUE
 
 /turf/simulated/floor/proc/do_remove_plating(obj/item/weapon/W, mob/user, base_type)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(5,user))
 			to_chat(user, "<span class='warning'>You don't have enough fuel in [WT] finish cutting through [src].</span>")
 			return

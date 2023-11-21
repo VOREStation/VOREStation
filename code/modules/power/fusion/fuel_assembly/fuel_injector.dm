@@ -43,7 +43,8 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 /obj/machinery/fusion_fuel_injector/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = input(usr, "Enter a new ident tag.", "Fuel Injector", id_tag) as null|text
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Fuel Injector", id_tag, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return
@@ -68,7 +69,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 		cur_assembly = W
 		return
 
-	if(W.is_wrench() || W.is_screwdriver() || W.is_crowbar() || istype(W, /obj/item/weapon/storage/part_replacer))
+	if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_CROWBAR) || istype(W, /obj/item/weapon/storage/part_replacer))
 		if(injecting)
 			to_chat(user, "<span class='warning'>Shut \the [src] off first!</span>")
 			return

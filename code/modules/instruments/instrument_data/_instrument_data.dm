@@ -24,7 +24,7 @@
 	/// Category
 	var/category = "Unsorted"
 	/// Used for categorization subtypes
-	var/abstract_type = /datum/instrument
+	var/instrument_type = /datum/instrument
 	/// Write here however many samples, follow this syntax: "%note num%"='%sample file%' eg. "27"='synthesizer/e2.ogg'. Key must never be lower than 0 and higher than 127
 	var/list/real_samples
 	/// assoc list key = /datum/instrument_key. do not fill this yourself!
@@ -88,7 +88,7 @@
 	samples = list()
 	for(var/key in real_samples)
 		real_keys += text2num(key)
-	sortTim(real_keys, /proc/cmp_numeric_asc, associative = FALSE)
+	sortTim(real_keys, GLOBAL_PROC_REF(cmp_numeric_asc), associative = FALSE)
 
 	for(var/i in 1 to (length(real_keys) - 1))
 		var/from_key = real_keys[i]

@@ -9,7 +9,7 @@
 	<br><br>\
 	These spiders are very dangerous, and unusual. They have obviously been influenced by the mysterious \
 	material known as phoron, however it is not known if this is the result of arachnids merely being \
-	exposed to naturally-occuring phoron on some alien world, being genetically altered to produce phoron by an unknown party, \
+	exposed to naturally-occurring phoron on some alien world, being genetically altered to produce phoron by an unknown party, \
 	or some other unknown cause. \
 	<br><br>\
 	Compared to the other types of spiders in their caste, and even to those outside, this one is the \
@@ -20,7 +20,7 @@
 	Phorongenic spiders are also highly explosive, due to their infusion with phoron. \
 	Should one die, it will create a large explosion. This appears to be an automatic response \
 	caused from internal rupturing, as opposed to an intentional act of revenge by the spider, however \
-	the result is the same, oftening ending a fight with both sides dead."
+	the result is the same, often ending a fight with both sides dead."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/animal/giant_spider/phorogenic
@@ -39,7 +39,7 @@
 	melee_damage_upper = 40
 	attack_armor_pen = 15
 
-	movement_cooldown = 15
+	movement_cooldown = 4
 
 	poison_chance = 30
 	poison_per_bite = 0.5
@@ -82,4 +82,3 @@
 			exploded = TRUE
 			explosion(src.loc, explosion_dev_range, explosion_heavy_range, explosion_light_range, explosion_flash_range)
 	return ..()
-

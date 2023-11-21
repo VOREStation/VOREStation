@@ -5,18 +5,26 @@
  *	re-implemented in other classes.
  *
  *	Contains:
+ *		Generic non-item
  *		Trash Bag
+ *		Plastic Bag
  *		Mining Satchel
  *		Plant Bag
  *		Sheet Snatcher
+ *		Sheet Snatcher (Cyborg)
  *		Cash Bag
  *		Chemistry Bag
- 		Food Bag
-
+ *		Food Bag
+ *		Food Bag (Service Hound)
+ *		Evidence Bag
+ *
  *	-Sayu
  */
 
-//  Generic non-item
+
+// -----------------------------
+//          Generic non-item
+// -----------------------------
 /obj/item/weapon/storage/bag
 	allow_quick_gather = 1
 	allow_quick_empty = 1
@@ -67,7 +75,6 @@
 // -----------------------------
 //        Plastic Bag
 // -----------------------------
-
 /obj/item/weapon/storage/bag/plasticbag
 	name = "plastic bag"
 	desc = "It's a very flimsy, very noisy alternative to a bag."
@@ -85,9 +92,9 @@
 //        Mining Satchel
 // -----------------------------
 /*
- * Mechoid - Orebags are the most common quick-gathering thing, and also have tons of lag associated with it. Their checks are going to be hyper-simplified due to this, and their INCREDIBLY singular target contents.
+ * Mechoid - Orebags are the most common quick-gathering thing, and also have tons of lag associated with it.
+ * Their checks are going to be hyper-simplified due to this, and their INCREDIBLY singular target contents.
  */
-
 /obj/item/weapon/storage/bag/ore
 	name = "mining satchel"
 	desc = "This little bugger can be used to store and transport ores."
@@ -98,14 +105,48 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/weapon/ore)
-	var/stored_ore = list()
+	var/current_capacity = 0
+	var/max_pickup = 100 //How much ore can be picked up in one go. There to prevent someone from walking on a turf with 10000 ore and making the server cry.
+	var/list/stored_ore = list(
+		"sand" = 0,
+		"hematite" = 0,
+		"carbon" = 0,
+		"raw copper" = 0,
+		"raw tin" = 0,
+		"void opal" = 0,
+		"painite" = 0,
+		"quartz" = 0,
+		"raw bauxite" = 0,
+		"phoron" = 0,
+		"silver" = 0,
+		"gold" = 0,
+		"marble" = 0,
+		"uranium" = 0,
+		"diamond" = 0,
+		"platinum" = 0,
+		"lead" = 0,
+		"mhydrogen" = 0,
+		"verdantium" = 0,
+		"rutile" = 0)
 	var/last_update = 0
 
 /obj/item/weapon/storage/bag/ore/holding
 	name = "mining satchel of holding"
 	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
 	icon_state = "satchel_bspace"
-	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
+	max_storage_space = ITEMSIZE_COST_NORMAL * 15000 // This should never, ever, ever be reached.
+
+/obj/item/weapon/storage/bag/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(current_capacity >= max_storage_space)
+		to_chat(user, "<span class='notice'>\the [src] is too full to possibly fit anything else inside of it.</span>")
+		return
+
+	if (istype(W, /obj/item/weapon/ore))
+		var/obj/item/weapon/ore/ore = W
+		stored_ore[ore.material]++
+		current_capacity++
+		user.remove_from_mob(W)
+		qdel(ore)
 
 /obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
@@ -128,21 +169,39 @@
 /obj/item/weapon/storage/bag/ore/gather_all(turf/T as turf, mob/user as mob, var/silent = 0)
 	var/success = 0
 	var/failure = 0
-	for(var/obj/item/weapon/ore/I in T) //Only ever grabs ores. Doesn't do any extraneous checks, as all ore is the same size. Tons of checks means it causes hanging for up to three seconds.
-		if(contents.len >= max_storage_space)
+	var/current_pickup = 0
+	var/max_pickup_reached = 0
+	for(var/obj/item/weapon/ore/O in T) //Only ever grabs ores. Doesn't do any extraneous checks, as all ore is the same size. Tons of checks means it causes hanging for up to three seconds.
+		if(current_capacity >= max_storage_space)
 			failure = 1
 			break
-		I.forceMove(src)
+		if(current_pickup >= max_pickup)
+			max_pickup_reached = 1
+			break
+		var/obj/item/weapon/ore/ore = O
+		stored_ore[ore.material]++
+		current_capacity++
+		current_pickup++
+		qdel(ore)
 		success = 1
-	if(success && !failure && !silent)
-		to_chat(user, "<span class='notice'>You put everything in [src].</span>")
-	else if(success && (!silent || (silent && contents.len >= max_storage_space)))
-		to_chat(user, "<span class='notice'>You fill the [src].</span>")
-	else if(!silent)
-		to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
-	if(istype(user.pulling, /obj/structure/ore_box)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works.
-		var/obj/structure/ore_box/O = user.pulling
-		O.attackby(src, user)
+	if(!silent) //Let's do a single check and then do more instead of a bunch at once.
+		if(success && !failure && !max_pickup_reached) //Picked stuff up, did not reach capacity, did not reach max_pickup.
+			to_chat(user, "<span class='notice'>You put everything in [src].</span>")
+		else if(success && failure) //Picked stuff up to capacity.
+			to_chat(user, "<span class='notice'>You fill the [src].</span>")
+		else if(success && max_pickup_reached) //Picked stuff up to the max_pickup
+			to_chat(user, "<span class='notice'>You fill the [src] with as much as you can grab in one go.</span>")
+		else //Failed. The bag is full.
+			to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
+	if(istype(user.pulling, /obj/structure/ore_box)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works. //Then let me fix it. ~CL.
+		var/obj/structure/ore_box/OB = user.pulling
+		for(var/ore in stored_ore)
+			if(stored_ore[ore] > 0)
+				var/ore_amount = stored_ore[ore]	// How many ores does the satchel have?
+				OB.stored_ore[ore] += ore_amount	// Add the ore to the box
+				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
+				current_capacity = 0				// Set the amount of ore in the satchel to 0.
+	current_pickup = 0
 
 /obj/item/weapon/storage/bag/ore/equipped(mob/user)
 	..()
@@ -175,41 +234,26 @@
 	if(istype(user, /mob/living))
 		add_fingerprint(user)
 
-	if(!contents.len)
-		. += "It is empty."
-
-	else if(world.time > last_update + 10)
-		update_ore_count()
-		last_update = world.time
-
-		. += "<span class='notice'>It holds:</span>"
-		for(var/ore in stored_ore)
+	. += "<span class='notice'>It holds:</span>"
+	var/has_ore = 0
+	for(var/ore in stored_ore)
+		if(stored_ore[ore] > 0)
 			. += "<span class='notice'>- [stored_ore[ore]] [ore]</span>"
+			has_ore = 1
+	if(!has_ore)
+		. += "Nothing."
 
 /obj/item/weapon/storage/bag/ore/open(mob/user as mob) //No opening it for the weird UI of having shit-tons of ore inside it.
-	if(world.time > last_update + 10)
-		update_ore_count()
-		last_update = world.time
-		user.examinate(src)
-
-/obj/item/weapon/storage/bag/ore/proc/update_ore_count() //Stolen from ore boxes.
-
-	stored_ore = list()
-
-	for(var/obj/item/weapon/ore/O in contents)
-		if(stored_ore[O.name])
-			stored_ore[O.name]++
-		else
-			stored_ore[O.name] = 1
+	user.examinate(src)
 
 // -----------------------------
 //          Plant bag
 // -----------------------------
-
 /obj/item/weapon/storage/bag/plants
 	name = "plant bag"
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics_machines_vr.dmi'
 	icon_state = "plantbag"
+	desc = "A sturdy bag used to transport fresh produce with ease."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
@@ -217,8 +261,9 @@
 
 /obj/item/weapon/storage/bag/plants/large
 	name = "large plant bag"
-	w_class = ITEMSIZE_SMALL
-	max_storage_space = ITEMSIZE_COST_NORMAL * 45
+	icon_state = "large_plantbag"
+	desc = "A large and sturdy bag used to transport fresh produce with ease."
+	max_storage_space = ITEMSIZE_COST_NORMAL * 50
 
 // -----------------------------
 //        Sheet Snatcher
@@ -278,7 +323,6 @@
 
 	if(!inserted)
 		usr.remove_from_mob(S)
-		usr.update_icons()	//update our overlays
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= S
 		S.dropped(usr)
@@ -353,23 +397,8 @@
 
 /obj/item/weapon/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
-	desc = ""
+	desc = null
 	capacity = 500//Borgs get more because >specialization
-
-// -----------------------------
-//    Food Bag (Service Hound)
-// -----------------------------
-/obj/item/weapon/storage/bag/dogborg
-	name = "dog bag"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "foodbag"
-	desc = "A bag for storing things of all kinds."
-	max_storage_space = ITEMSIZE_COST_NORMAL * 25
-	max_w_class = ITEMSIZE_NORMAL
-	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment,
-	/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/coin,/obj/item/weapon/spacecash,
-	/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown,/obj/item/weapon/reagent_containers/pill)
 
 // -----------------------------
 //           Cash Bag
@@ -383,14 +412,14 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash)
+	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash,/obj/item/weapon/spacecasinocash)
 
-	// -----------------------------
-	//           Chemistry Bag
-	// -----------------------------
+// -----------------------------
+//         Chemistry Bag
+// -----------------------------
 /obj/item/weapon/storage/bag/chemistry
 	name = "chemistry bag"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "chembag"
 	desc = "A bag for storing pills, patches, and bottles."
 	max_storage_space = 200
@@ -398,12 +427,38 @@
 	slowdown = 3
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
 
-	// -----------------------------
-	//           Food Bag
-	// -----------------------------
+// -----------------------------
+//           Xeno Bag
+// -----------------------------
+/obj/item/weapon/storage/bag/xeno
+	name = "xenobiology bag"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "xenobag"
+	desc = "A bag for storing various slime products."
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/slime_extract,/obj/item/slimepotion, /obj/item/weapon/reagent_containers/food/snacks/monkeycube)
+
+// -----------------------------
+//         Virology Bag
+// -----------------------------
+/obj/item/weapon/storage/bag/virology
+	name = "virology bag"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "biobag"
+	desc = "A bag for storing various biological products."
+	max_storage_space = ITEMSIZE_COST_SMALL * 12
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial/,/obj/item/weapon/virusdish/)
+
+// -----------------------------
+//           Food Bag
+// -----------------------------
 /obj/item/weapon/storage/bag/food
 	name = "food bag"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "foodbag"
 	desc = "A bag for storing foods of all kinds."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
@@ -411,16 +466,30 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment)
 
-	// -----------------------------
-	//           Evidence Bag
-	// -----------------------------
+// -----------------------------
+//    Food Bag (Service Hound)
+// -----------------------------
+/obj/item/weapon/storage/bag/serviceborg
+	name = "service bag"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "foodbag"
+	desc = "An intergrated bag for storing things of all kinds."
+	max_storage_space = ITEMSIZE_COST_NORMAL * 25
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment,
+	/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/coin,/obj/item/weapon/spacecash,
+	/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown,/obj/item/weapon/reagent_containers/pill)
+
+// -----------------------------
+//           Evidence Bag
+// -----------------------------
 /obj/item/weapon/storage/bag/detective
 	name = "secure satchel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "detbag"
 	desc = "A bag for storing investigation things. You know, securely."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 15
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/forensics/swab,/obj/item/weapon/sample/print,/obj/item/weapon/sample/fibers,/obj/item/weapon/evidencebag)
-

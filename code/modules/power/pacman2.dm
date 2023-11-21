@@ -70,7 +70,7 @@
 			O.loc = src
 			to_chat(user, "<font color='blue'>You add the phoron tank to the generator.</font>")
 		else if(!active)
-			if(O.is_wrench())
+			if(O.has_tool_quality(TOOL_WRENCH))
 				anchored = !anchored
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
@@ -78,14 +78,14 @@
 				else
 					to_chat(user, "<font color='blue'>You unsecure the generator from the floor.</font>")
 				SSmachines.makepowernets()
-			else if(O.is_screwdriver())
+			else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 				open = !open
 				playsound(src, O.usesound, 50, 1)
 				if(open)
 					to_chat(user, "<font color='blue'>You open the access panel.</font>")
 				else
 					to_chat(user, "<font color='blue'>You close the access panel.</font>")
-			else if(O.is_crowbar() && !open)
+			else if(O.has_tool_quality(TOOL_CROWBAR) && !open)
 				playsound(src, O.usesound, 50, 1)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)

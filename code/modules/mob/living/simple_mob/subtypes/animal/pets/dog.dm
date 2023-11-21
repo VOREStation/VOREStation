@@ -17,7 +17,7 @@
 
 	mob_size = MOB_SMALL
 
-	has_langs = list("Dog")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	say_list_type = /datum/say_list/dog
 

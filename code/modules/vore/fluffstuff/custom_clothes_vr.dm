@@ -26,21 +26,21 @@
 
 //Natje: Awen Henry
 /obj/item/clothing/head/fluff/wolfgirl
-    name = "Wolfgirl Hat"
-    desc = "An odd, small hat with two strings attached to it."
+	name = "Wolfgirl Hat"
+	desc = "An odd, small hat with two strings attached to it."
 
-    icon_state = "wolfgirlhat"
-    icon = 'icons/vore/custom_clothes_vr.dmi'
-    icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "wolfgirlhat"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
 //Natje: Awen Henry
 /obj/item/clothing/shoes/fluff/wolfgirl
-    name = "Red Sandals"
-    desc = "A pair of sandals that make you want to awoo!"
+	name = "Red Sandals"
+	desc = "A pair of sandals that make you want to awoo!"
 
-    icon_state = "wolfgirlsandals"
-    icon = 'icons/vore/custom_clothes_vr.dmi'
-    icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "wolfgirlsandals"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
 //Natje: Awen Henry
 /obj/item/clothing/under/fluff/wolfgirl
@@ -197,15 +197,30 @@
 	item_state = "brittrenchcoat"
 
 //For general use
-/obj/item/clothing/suit/storage/vest/hoscoat/nazi_greatcoat
+/obj/item/clothing/suit/storage/vest/hoscoat/ancient_greatcoat
 	name = "Greatcoat"
-	desc = "Perfect attire for kicking down the doors of suspected dissidents; this coat gives off an imposing look, while offering a luxuriously plush fur liner."
+	desc = "This coat gives off an imposing look, while offering a luxuriously plush fur liner."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "greatcoat"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "greatcoat_mob"
+
+//For general use
+/obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
+	name = "long fur coat"
+	desc = "A sophisticated long coat made of fur."
+
+	icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "russofurcoat"
+
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	item_state = "russofurcoat"
+
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	flags_inv = HIDETIE|HIDEHOLSTER
 
 //For general use
 /obj/item/clothing/suit/storage/fluff/fedcoat
@@ -653,7 +668,7 @@
 
 /obj/item/clothing/head/fluff/avida/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
-		if(H.ear_style.name == "Bnnuy Ears"||H.ear_style.name == "Bnnuy Ears 2") //check if wearer's ear sprite is compatible with trimmed icon
+		if(H.ear_style && (H.ear_style.name == "Bnnuy Ears" || H.ear_style.name == "Bnnuy Ears 2")) //check if wearer's ear sprite is compatible with trimmed icon
 			item_state = initial(src.item_state)
 		else //if not, just use a generic icon
 			item_state = "avidahatnoears"
@@ -2044,7 +2059,7 @@ Departamental Swimsuits, for general use
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
-	icon_state = "nikki"
+	icon_state = "nikkicape"
 
 /obj/item/clothing/head/fluff/nikki
 	// I have never tryharded so much just to accomplish something so stupid as "Vore By Hat" in my entire life, and I apologize to each and every one of you.
@@ -2082,14 +2097,14 @@ Departamental Swimsuits, for general use
 		translocator_unequip(translocator, user)
 		T.forceMove(src)
 		translocator = T
-		user.show_message("[bicon(src)]*click!*")
+		user.show_message("\icon[src][bicon(src)]*click!*")
 		playsound(src, 'sound/machines/click.ogg', 30, 1)
 
 /obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
 	if (translocator)
 		if (user)
 			user.put_in_hands(T)
-			user.show_message("[bicon(src)]*click!*")
+			user.show_message("\icon[src][bicon(src)]*click!*")
 		else
 			translocator.forceMove(get_turf(src))
 		translocator = null
@@ -2433,10 +2448,281 @@ Departamental Swimsuits, for general use
 	else
 		RemoveHood_evelyn()
 
+//Allweek:Fifi the Magnificent
+/obj/item/clothing/head/fluff/fifi_hat
+	name = "fifi's hat"
+	desc = "It's a colorful hat for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_hat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_hat"
+
+/obj/item/clothing/under/fluff/fifi_jumpsuit
+	name = "fifi's jumpsuit"
+	desc = "It's a colorful outfit for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_jumpsuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_jumpsuit"
+
+/obj/item/clothing/shoes/fluff/fifi_socks
+	name = "fifi's socks"
+	desc = "A pair of colorful socks for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_socks"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_socks"
+
+
+
 //Uncle_Fruit_VEVO - Bradley Khatibi
 /obj/item/clothing/shoes/fluff/airjordans
-    name = "A pair of Air Jordan 1 Mid 'Black Gym Red's"
-    desc = "Appearing in a classic Jordan Brand colorway, the Air Jordan 1 Mid 'Black Gym Red' released in May 2021. Built with leather, the shoe's upper sports a white base, contrasted by black on the overlays and highlighted by Gym Red on the padded collar, 'Wings' logo and Swoosh branding. A breathable nylon tongue and perforated toe box support the fit, while underfoot, a standard rubber cupsole with Air in the heel anchors the build."
-    icon_state = "airjordans"
-    icon = 'icons/vore/custom_clothes_vr.dmi'
-    icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	name = "A pair of Air Jordan 1 Mid 'Black Gym Red's"
+	desc = "Appearing in a classic Jordan Brand colorway, the Air Jordan 1 Mid 'Black Gym Red' released in May 2021. Built with leather, the shoe's upper sports a white base, contrasted by black on the overlays and highlighted by Gym Red on the padded collar, 'Wings' logo and Swoosh branding. A breathable nylon tongue and perforated toe box support the fit, while underfoot, a standard rubber cupsole with Air in the heel anchors the build."
+	icon_state = "airjordans"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//Pandora029:Shona Young
+/obj/item/clothing/under/fluff/foxoflightsuit
+	name = "padded flightsuit"
+	desc = "A ruddy-orange combination immersion-and-flight suit, fitted with extra padding across the front of its legs. Warm, waterproof and practical, seveal patches are scattered across it alongside a hard-wearing harness."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "foxflightsuit"
+	worn_state = "foxflightsuit_mob"
+	rolled_sleeves = 0
+	rolled_down = 0
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "foxflightsuit_mob"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+//Shalax: Cerise Duelliste
+/obj/item/weapon/storage/belt/security/fluff/cerise
+	name = "champion's belt"
+	desc = "Cerise's hard-won belt from her glory days. Her skill might have waned since then, but her renown lives on."
+	icon_state = "champion"
+	item_state = null // i swear to god this works - hatterhat
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//Sudate: Shea Corbett
+/obj/item/clothing/under/fluff/greek_dress
+	name = "mytilenean dress"
+	desc = "It's a breezy, colorful two-part dress woven from linen, with the top consisting of white linen, and the skirt of rougher, sturdy fabric. It's adorned with a yellow belt and embroidered stripes in the hem, and blue highlights at the sleeves. More notably, however, it exposes the wearer's chest entirely."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "greek_dress"
+	worn_state = "greek_dress"
+	rolled_sleeves = 0
+	rolled_down = 0
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "greek_dress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+//JadeManique: Freyr
+/obj/item/clothing/mask/fluff/freyr_mask
+	name = "Freyr's Mask"
+	desc = "A pristine white mask with antlers. Its silky to the touch, like porcelain!"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "freyrmask"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "freyrmask_mob"
+	item_state_slots = null
+	body_parts_covered = FACE
+	flags_inv = HIDEFACE
+	item_flags = FLEXIBLEMATERIAL
+	protean_drop_whitelist = TRUE
+
+//codeme: Perrin Kade
+/obj/item/clothing/shoes/fluff/gildedshoes_perrin
+	name = "gilded shoes"
+	desc = "Black shoes with gilding, revealing and comfortable for any wearer!"
+
+	icon_state = "perrinshoes"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+/obj/item/clothing/under/fluff/gildedrobe_perrin
+	name = "gilded robe"
+	desc = "Black robe with gilding, revealing and comfortable for any wearer!"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "perrinrobes"
+	worn_state = "perrinrobes_s"
+	rolled_sleeves = 0
+	rolled_down = 0
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "perrinrobes_s"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+//Fuackwit422: Zera Livanne
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera
+	name = "Zera's Labcloak"
+	desc = "Zera's custom-designed lab-coat and cloak hybrid. Designed to perfectly align with OSHA and NT's Health and Safety regulations, while also allowing her to completely ignore all that if she really wanted."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zera_labcloak"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "zera_labcloak"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		open = 0
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		flags_inv = HIDETIE|HIDEHOLSTER
+		to_chat(usr, "You button up the coat.")
+	else if(open == 0)
+		open = 1
+		icon_state = "[icon_state]_open"
+		item_state = "[item_state]_open"
+		flags_inv = HIDEHOLSTER
+		to_chat(usr, "You unbutton the coat.")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_clothing_icon()	//so our overlays update
+
+/obj/item/clothing/head/welding/fluff/zera
+	name = "White Welding Mask"
+	desc = "It's a white welding mask. Zera likes it because it matches her labcoat."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zera_weld"
+	item_state = "zera_weld_onmob"
+	flags_inv = (HIDEEYES)
+	body_parts_covered = HEAD|EYES
+
+/obj/item/clothing/head/welding/fluff/zera/toggle() //overriding this 'cause it only conceals the eyes - it's a hat, not a mask
+	set category = "Object"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(up)
+			up = !up
+			body_parts_covered |= (EYES)
+			flags_inv |= (HIDEEYES)
+			icon_state = "zera_weld"
+			item_state = "zera_weld_onmob"
+			to_chat(usr, "You flip the helmet down to protect your eyes.")
+		else
+			up = !up
+			body_parts_covered &= ~(EYES)
+			flags_inv &= ~(HIDEEYES)
+			icon_state = "zera_weld_up"
+			item_state = "zera_weld_up_onmob"
+
+			to_chat(usr, "You push the helmet up out of your face.")
+		update_clothing_icon()	//so our mob-overlays
+		if (ismob(loc)) //should allow masks to update when it is opened/closed
+			var/mob/M = loc
+			M.update_inv_wear_mask()
+		usr.update_action_buttons()
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak
+	name = "Grand Purple Cloak"
+	desc = "Zera's custom-designed purple cloak. Nice and spooky, and the perfect length to hold up over your face with one hand like Count von Count."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "grand_purple_cloak"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "grand_purple_cloak"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		open = 0
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		flags_inv = HIDETIE|HIDEHOLSTER
+		to_chat(usr, "You button up the coat.")
+	else if(open == 0)
+		open = 1
+		icon_state = "[icon_state]_open"
+		item_state = "[item_state]_open"
+		flags_inv = HIDEHOLSTER
+		to_chat(usr, "You unbutton the coat.")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_clothing_icon()	//so our overlays update
+
+/obj/item/clothing/head/fluff/zerahat
+	name = "Grand Purple Hat"
+	desc = "It's a pointy purple hat. Zera likes it because it matches her ominous purple cloak."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "grand_purple_cloak_hat"
+	item_state = "grand_purple_cloak_hat_onmob"
+
+//verysoft:Dessa Ton
+/obj/item/clothing/head/fluff/giantbow/dessa
+	desc = "It's a huge bow! So pretty! This one is fitted specially for Dessa's rediculously large ears."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "dessabow_mob"
+
+/obj/item/clothing/head/fluff/giantbow/dessa/attack_hand(mob/user)
+
+	if(user.real_name == "Dessa Ton")
+		item_state = "dessabow_mob"
+	else
+		item_state = "giantbow_mob"
+	..()
+
+/obj/item/clothing/head/fluff/giantbow	//Public version
+	name = "Giant Bow"
+	desc = "It's a huge bow! So pretty!"
+	slot_flags = SLOT_HEAD | SLOT_EARS
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "dessabow"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "giantbow_mob"
+
+//Halored: Mercury
+
+/obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	name = "Mercury's Mate Ring"
+	desc = "A band of void opal, given to Mercury by Lumen"
+
+//satinisle: Parriz Tavakdavi
+
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/parrizjacket
+	name = "pink crop bomber"
+	desc = "A pink crop bomber jacket that is just barely able to zip up at the front. It has a small Virgo Orbital Research Establishment patch on each shoulder."
+	icon_state = "parriz_jacket"
+
+//verysoft: Casey Brown
+/obj/item/clothing/glasses/big_round
+	name = "big round blue glasses"
+	desc = "A set of glasses! They are big, round, and very reflective, catching the light and obscuring the eyes!"
+	icon = 'icons/inventory/eyes/item_vr.dmi'
+	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
+	icon_state = "bigroundglasses"
+	slot_flags = SLOT_EYES | SLOT_EARS
+	glasses_layer_above = TRUE

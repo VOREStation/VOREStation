@@ -38,6 +38,15 @@ var/list/ventcrawl_machinery = list(
 	if(buckled)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while buckled!</span>")
 		return FALSE
+	if(restrict_vore_ventcrawl)
+		var/foundstuff = FALSE
+		for(var/obj/belly/B in vore_organs)
+			if(B.contents.len)
+				foundstuff = TRUE
+				break
+		if(foundstuff)
+			to_chat(src, "<span class='warning'>You cannot ventcrawl while full!</span>")
+			return FALSE
 	return ventcrawl_carry()
 
 /mob/living/Login()
@@ -60,7 +69,7 @@ var/list/ventcrawl_machinery = list(
 		return 1
 	if(isanimal(src))
 		var/mob/living/simple_mob/S = src
-		if(carried_item == S.mobcard)	//VOREStation Edit
+		if(carried_item == S.myid)	//VOREStation Edit
 			return 1	//VOREStation Edit
 	//Try to find it in our allowed list (istype includes subtypes)
 	var/listed = FALSE

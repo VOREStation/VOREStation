@@ -1,0 +1,19 @@
+## NPM
+/**/node_modules
+
+## Yarn
+/.yarn
+/yarn.lock
+/.pnp.*
+
+/docs
+/public
+/packages/tgui-polyfill
+/packages/tgfont/static
+**/*.json
+**/*.yml
+**/*.md
+
+## Build artifacts
+/public/.tmp/**/*
+/public/*.map

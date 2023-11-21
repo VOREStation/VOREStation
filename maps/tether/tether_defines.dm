@@ -22,6 +22,8 @@
 #define Z_LEVEL_FUELDEPOT					20
 #define Z_LEVEL_GATEWAY						21
 #define Z_LEVEL_OM_ADVENTURE				22
+#define Z_LEVEL_REDGATE						23
+
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -140,18 +142,36 @@
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/looking_glass/lg_1,
-		/area/rnd/miscellaneous_lab
+		/area/rnd/miscellaneous_lab,
+		/area/tether/transit, // Tether Debug Transit
+		/area/tether/surfacebase/outside/outside2, // Very Outside
+		/area/tether/surfacebase/outside/outside3 // Very Outside
 		)
 
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
+		/area/engineering/engine_gas,
 		/area/rnd/external, //  Outside,
+		/area/rnd/outpost/xenobiology/outpost_stairs,
+		/area/tether/surfacebase/entertainment/stage, // Connected to entertainment area
+		/area/tether/surfacebase/emergency_storage/atmos,
 		/area/tether/surfacebase/emergency_storage/rnd,
 		/area/tether/surfacebase/emergency_storage/atrium,
 		/area/tether/surfacebase/lowernortheva, // it airlock
 		/area/tether/surfacebase/lowernortheva/external, //it outside
-		/area/tether/surfacebase/security/gasstorage) //it maint
+		/area/tether/surfacebase/security/gasstorage, // Maint
+		/area/tcommsat/chamber,
+		/area/tether/outpost/solars_outside, // Outside
+		/area/vacant/vacant_bar_upper // Maint
+		)
 
+	unit_test_z_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_TRANSIT,
+		Z_LEVEL_SPACE_LOW
+	)
 
 	lateload_z_levels = list(
 		list("Tether - Centcom","Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
@@ -164,18 +184,31 @@
 		)
 
 	lateload_gateway = list(
-		list("Carp Farm"),
-		list("Snow Field"),
-		list("Listening Post"),
-		list(list("Honleth Highlands A", "Honleth Highlands B")),
-		list("Arynthi Lake Underground A","Arynthi Lake A"),
-		list("Arynthi Lake Underground B","Arynthi Lake B"),
-		list("Eggnog Town Underground","Eggnog Town"),
-		list("Wild West")
+		list("Gateway - Carp Farm"),
+		list("Gateway - Snow Field"),
+		list("Gateway - Listening Post"),
+		list(list("Gateway - Honleth Highlands A", "Gateway - Honleth Highlands B")),
+		list("Gateway - Arynthi Lake Underground A","Gateway - Arynthi Lake A"),
+		list("Gateway - Arynthi Lake Underground B","Gateway - Arynthi Lake B"),
+		list("Gateway - Wild West")
 		)
 
 	lateload_overmap = list(
 		list("Grass Cave")
+		)
+
+	lateload_redgate = list(
+		list("Redgate - Teppi Ranch"),
+		list("Redgate - Innland"),
+//		list("Redgate - Abandoned Island"),	//This will come back later
+		list("Redgate - Dark Adventure"),
+		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
+		list("Redgate - Star Dog"),
+		list("Redgate - Hotsprings"),
+		list("Redgate - Rain City"),
+		list("Redgate - Islands Underwater","Redgate - Islands"),
+		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
+		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town")
 		)
 
 	ai_shell_restricted = TRUE
@@ -282,6 +315,7 @@
 	)
 
 	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	var/mob_announce_cooldown = 0
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
@@ -295,6 +329,11 @@
 	return list(Z_LEVEL_SPACE_LOW)
 
 /obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
+	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
+		if(world.time < mob_announce_cooldown)
+			return
+		else
+			mob_announce_cooldown = world.time + 5 MINUTES
 	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
 	//For landables, we need to see if their shuttle is cloaked
 	if(istype(AM, /obj/effect/overmap/visitable/ship/landable))

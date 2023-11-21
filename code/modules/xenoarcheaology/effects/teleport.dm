@@ -31,7 +31,7 @@
 			if(prob(100 * weakness))
 				to_chat(M, "<font color='red'>You are displaced by a strange force!</font>")
 				if(M.buckled)
-					M.buckled.unbuckle_mob()
+					M.buckled.unbuckle_mob(M)
 
 				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 				sparks.set_up(3, 0, get_turf(M))

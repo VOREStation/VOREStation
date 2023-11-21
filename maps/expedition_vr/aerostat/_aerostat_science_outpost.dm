@@ -48,6 +48,7 @@
 /obj/machinery/computer/shuttle_control/aerostat_shuttle
 	name = "aerostat ferry control console"
 	shuttle_tag = "Aerostat Ferry"
+	ai_control = TRUE
 
 /obj/tether_away_spawner/aerostat_inside
 	name = "Aerostat Indoors Spawner"
@@ -71,7 +72,7 @@
 	prob_fall = 50
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/jelly = 6,
+		/mob/living/simple_mob/vore/jelly = 6,
 		/mob/living/simple_mob/mechanical/viscerator = 6,
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
 		/mob/living/simple_mob/vore/oregrub = 2,
@@ -227,7 +228,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/surface/outpost
 	requires_power = TRUE
 	dynamic_lighting = TRUE
-	ambience = null
+	ambience = list()
 
 /area/offmap/aerostat/surface/outpost/backroom
 	name = "V2 Outpost - Research Area"

@@ -337,6 +337,9 @@
 /area/groundbase/cargo/office
 	name = "Cargo Office"
 	lightswitch = 1
+/area/groundbase/cargo/storage
+	name = "Cargo Storage"
+	lightswitch = 0
 /area/groundbase/cargo/bay
 	name = "Cargo Bay"
 	lightswitch = 1
@@ -359,6 +362,8 @@
 /area/groundbase/civilian/arrivals
 	name = "Arrivals"
 	lightswitch = 1
+	forbid_events = TRUE
+	forbid_singulo = TRUE
 /area/groundbase/civilian/toolstorage
 	name = "Tool Storage"
 	lightswitch = 1
@@ -366,6 +371,10 @@
 	name = "Bar"
 	sound_env = LARGE_ENCLOSED
 	lightswitch = 1
+/area/groundbase/civilian/bar/upper
+	name = "Bar Balcony"
+	base_turf = /turf/simulated/open/virgo3c
+
 /area/groundbase/civilian/cafe
 	name = "Cafe"
 	sound_env = SMALL_SOFTFLOOR
@@ -413,10 +422,12 @@
 	name = "Men's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
+	forbid_events = TRUE
 /area/groundbase/civilian/womensrestroom
 	name = "Women's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
+	forbid_events = TRUE
 
 /area/groundbase/exploration
 	name = "Exploration"
@@ -439,33 +450,43 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
+	forbid_singulo = TRUE
+
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 /area/groundbase/dorms/room1
 	name = "Dorm Room 1"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room2
 	name = "Dorm Room 2"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room3
 	name = "Dorm Room 3"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room4
 	name = "Dorm Room 4"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room5
 	name = "Dorm Room 5"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room6
 	name = "Dorm Room 6"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room7
 	name = "Dorm Room 7"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room8
 	name = "Dorm Room 8"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 
 /area/maintenance/groundbase/substation
 	name = "Substation"

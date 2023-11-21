@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mobs_monsters/clowns/
+/mob/living/simple_mob/clowns/
 	response_help = "pokes"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
@@ -11,7 +11,7 @@
 
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/honkmunculus
+/mob/living/simple_mob/clowns/honkmunculus
 	name = "A Clown?"
 	desc = "That clown has some interesting proportions."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -29,7 +29,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/cluwne
+/mob/living/simple_mob/clowns/cluwne
 	name = "A Clown?"
 	desc = "Oh no not that thing."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -41,7 +41,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/tunnelclown
+/mob/living/simple_mob/clowns/tunnelclown
 	name = "A Clown?"
 	desc = "Have you heard about our lord and savior, Honkus Chrust?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -53,7 +53,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/sentinel
+/mob/living/simple_mob/clowns/sentinel
 	name = "A Clown?"
 	desc = "This guy means business..."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -66,7 +66,7 @@
 
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/punished
+/mob/living/simple_mob/clowns/punished
 	name = "A Clown?"
 	desc = "A clown at peak performance."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -84,7 +84,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/thicc
+/mob/living/simple_mob/clowns/thicc
 	name = "A Clown..."
 	desc = "I mean, you see it don't you?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -102,7 +102,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/perm
+/mob/living/simple_mob/clowns/perm
 	name = "A Clown?"
 	desc = "That clown really needs to get that hair under control."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -120,7 +120,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/wide
+/mob/living/simple_mob/clowns/wide
 	name = "A Clown?"
 	desc = "He looks good from some angles!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -138,7 +138,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/thin
+/mob/living/simple_mob/clowns/thin
 	name = "A Clown?"
 	desc = "Is he eating enough?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -150,7 +150,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/hulk
+/mob/living/simple_mob/clowns/hulk
 	name = "A Clown?"
 	desc = "Just look at those muscles."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -168,7 +168,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/longface
+/mob/living/simple_mob/clowns/longface
 	name = "A Clown?"
 	desc = "Why the long face?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -186,7 +186,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/giggles
+/mob/living/simple_mob/clowns/giggles
 	name = "A Giggles?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -198,7 +198,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/destroyer
+/mob/living/simple_mob/clowns/destroyer
 	name = "A Clown?"
 	desc = "That clown looks like he means business."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -216,7 +216,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/chlown
+/mob/living/simple_mob/clowns/chlown
 	name = "A Clown?"
 	desc = "No."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -234,7 +234,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/scary
+/mob/living/simple_mob/clowns/scary
 	name = "A Clown?"
 	desc = "Hey that clown looks familiar!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -246,7 +246,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/flesh
+/mob/living/simple_mob/clowns/flesh
 	name = "A Clown?"
 	desc = "WOOOOO STREAKING WOOOO!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -258,7 +258,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/clowns
+/mob/living/simple_mob/clowns/clowns
 	name = "Definitely a singular clown"
 	desc = "Is it one clown, or many clowns in not a trenchcoat?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -276,7 +276,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/mutant
+/mob/living/simple_mob/clowns/mutant
 	name = "A Clown?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -294,7 +294,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/blob
+/mob/living/simple_mob/clowns/blob
 	name = "A Clown?"
 	desc = "Go to a gym fatty!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -312,7 +312,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/mayor
+/mob/living/simple_mob/clowns/mayor
 	name = "A clown?"
 	desc = "One speaks in riddles..."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -330,7 +330,7 @@
 	pixel_y = 0
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/honkling
+/mob/living/simple_mob/clowns/honkling
 	name = "A Clown?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -342,7 +342,7 @@
 	vis_height = 32
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/normal
+/mob/living/simple_mob/clowns/normal
 	name = "Clown"
 	desc = "A regular, every tuesday Clown."
 	tt_desc = "E Homo sapiens corydon" //this is a clown

@@ -69,7 +69,7 @@
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
-	if(W.is_wrench() && !status)//Taking this apart
+	if(W.has_tool_quality(TOOL_WRENCH) && !status)//Taking this apart
 		var/turf/T = get_turf(src)
 		if(weldtool)
 			weldtool.loc = T
@@ -84,7 +84,7 @@
 		qdel(src)
 		return
 
-	if(W.is_screwdriver() && igniter && !lit)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && igniter && !lit)
 		status = !status
 		to_chat(user, "<span class='notice'>[igniter] is now [status ? "secured" : "unsecured"]!</span>")
 		update_icon()
@@ -183,7 +183,7 @@
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(throw_amount/100))
-	//air_transfer.toxins = air_transfer.toxins * 5 // This is me not comprehending the air system. I realize this is retarded and I could probably make it work without fucking it up like this, but there you have it. -- TLE
+	//air_transfer.toxins = air_transfer.toxins * 5 // This is me not comprehending the air system. I realize this is mischievious and I could probably make it work without fucking it up like this, but there you have it. -- TLE
 	new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["phoron"],get_dir(loc,target))
 	air_transfer.gas["phoron"] = 0
 	target.assume_air(air_transfer)

@@ -18,7 +18,8 @@
 			continue
 		if(vent.welded)
 			continue
-		if(istype(get_area(vent), /area/crew_quarters/sleep)) //No going to dorms
+		var/area/A = get_area(vent)
+		if(A.forbid_events)
 			continue
 		vent_list += vent
 	if(!vent_list.len)

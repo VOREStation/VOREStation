@@ -27,7 +27,7 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] lifts [src] bottle over [comp]!</span>")
-	var/shuttle_name = input(usr, "Choose a name for the shuttle", "New Shuttle Name") as null|text
+	var/shuttle_name = tgui_input_text(usr, "Choose a name for the shuttle", "New Shuttle Name")
 	if(!shuttle_name || QDELETED(src) || QDELETED(comp) || comp.shuttle_tag || user.incapacitated())
 		return // After input() safety re-checks
 
@@ -47,7 +47,7 @@
 		to_chat(user, "<span class='warning'>[comp] is already in a shuttle.</span>")
 		return
 	// Count turfs in the area
-	var/list/turfs = get_area_turfs(my_area)
+	var/list/turfs = get_current_area_turfs(my_area)
 	if(turfs.len > max_area_turfs)
 		to_chat(user, "<span class='warning'>The new shuttle area is too large.</span>")
 		return

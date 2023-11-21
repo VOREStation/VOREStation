@@ -43,8 +43,8 @@
 	. += "\n It reads \"[message]\"."
 
 /obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = thing
+	if(thing.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/welder = thing.get_welder()
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, src) && !QDELETED(src))
 			playsound(src.loc, welder.usesound, 50, 1)
 			user.visible_message("<b>\The [user]</b> clears away some graffiti.")
@@ -55,7 +55,7 @@
 			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
 			return
 
-		var/_message = sanitize(input(usr, "Enter an additional message to engrave.", "Graffiti") as null|text, trim = TRUE)
+		var/_message = sanitize(tgui_input_text(usr, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
 			user.visible_message("<span class='warning'>\The [user] begins carving something into \the [loc].</span>")
 			if(do_after(user, max(20, length(_message)), src) && loc)

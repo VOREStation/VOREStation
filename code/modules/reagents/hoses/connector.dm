@@ -3,7 +3,7 @@
 	. = ..()
 
 	if(locate(/obj/item/hose_connector) in src)
-		if(O.is_wirecutter())
+		if(O.has_tool_quality(TOOL_WIRECUTTER))
 			var/list/available_sockets = list()
 
 			for(var/obj/item/hose_connector/HC in src)
@@ -134,5 +134,7 @@
 		carrier = loc
 
 /obj/item/hose_connector/output/active/process()
-	if(carrier)
+	if(carrier && my_hose)
 		carrier.reagents.trans_to_holder(reagents, reagents.maximum_volume)
+	else if(reagents.total_volume && carrier && !my_hose)
+		reagents.trans_to_obj(carrier, reagents.maximum_volume)

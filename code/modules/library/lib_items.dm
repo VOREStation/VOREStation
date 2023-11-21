@@ -33,16 +33,16 @@
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/weapon/pen))
-		var/newname = sanitizeSafe(input(usr, "What would you like to title this bookshelf?"), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(usr, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!newname)
 			return
 		else
 			name = ("bookcase ([newname])")
-	else if(O.is_wrench())
+	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 100, 1)
 		to_chat(user, (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>"))
 		anchored = !anchored
-	else if(O.is_screwdriver())
+	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 75, 1)
 		to_chat(user, "<span class='notice'>You begin dismantling \the [src].</span>")
 		if(do_after(user,25 * O.toolspeed))
@@ -229,7 +229,7 @@ Book Cart End
 		var/choice = tgui_input_list(usr, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(input(usr, "Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(usr, "Write a new title:")))
 				if(!newtitle)
 					to_chat(usr, "The title is invalid.")
 					return
@@ -244,7 +244,7 @@ Book Cart End
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(input(usr, "Write the author's name:"))
+				var/newauthor = sanitize(tgui_input_text(usr, "Write the author's name:"))
 				if(!newauthor)
 					to_chat(usr, "The name is invalid.")
 					return
@@ -281,7 +281,7 @@ Book Cart End
 							return
 					scanner.computer.inventory.Add(src)
 					to_chat(user, "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
-	else if(istype(W, /obj/item/weapon/material/knife) || W.is_wirecutter())
+	else if(istype(W, /obj/item/weapon/material/knife) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(carved)	return
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
 		if(do_after(user, 30))
@@ -309,6 +309,8 @@ Book Cart End
 	var/list/pages = list() //the contents of each page
 
 /obj/item/weapon/book/bundle/proc/show_content(mob/user as mob)
+	if(!pages.len)
+		return
 	var/dat
 	var/obj/item/weapon/W = pages[page]
 	// first

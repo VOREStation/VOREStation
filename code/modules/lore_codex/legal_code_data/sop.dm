@@ -27,7 +27,7 @@
 	All crew members and visitors, with exceptions listed below, are to wear the following at minimum: A shirt that covers the chest, pants, shorts or skirts that \
 	go no shorter than two inches above the knee, and some form of foot covering.  Those in departments considered to be emergency services (Security, \
 	Medical, Engineering) should wear a marker denoting their department, examples being armbands, uniforms, badges, or other means.  Those in a department \
-	are expected to wear clothes appropiate to protect against common risks for the department.  Off duty personnel, visitors, and those engaging in certain recreational \
+	are expected to wear clothes appropriate to protect against common risks for the department.  Off duty personnel, visitors, and those engaging in certain recreational \
 	areas such as the Pool (if one is available on your facility) have less strict dresscode, however clothing of some form must still be worn in public.\
 	<br><br>\
 	Exceptions: Skrell, Teshari, and Unathi are expected to cover at minimum their lower bodies.  Tajaran males may go topless, as a means to keep cool.  \
@@ -41,11 +41,11 @@
 	less risk to other crew members, if possible.\
 	<br>\
 	<h3>EVA Procedure</h3>\
-	Extravehicular activity should only be done by EVA trained and certified crew members, if there is no emergency.  If an emergency is occuring, NanoTrasen \
+	Extravehicular activity should only be done by EVA trained and certified crew members, if there is no emergency.  If an emergency is occurring, NanoTrasen \
 	provides high visibility, easy to seal emergency softsuits inside blue emergency lockers located at key locations inside your facility.  Regardless, \
 	for your own safety, you should only enter or exit the facility from designated external airlocks, which contain an air cycling system.  It is both \
 	wasteful and potentially dangerous to 'force' an external airlock to open before cycling has completed.  Before cycling out into the void, the person going \
-	on EVA should double check that their internal oxygen supply (or cooling system, if they are a synthetic) is functioning properly and that they have an adaquate \
+	on EVA should double check that their internal oxygen supply (or cooling system, if they are a synthetic) is functioning properly and that they have an adequate \
 	amount of oxygen inside the tank.  Magnetic boots are also highly suggested if the person will be scaling the sides of your facility, to prevent drifting away \
 	from the facility.\
 	<br><br>\

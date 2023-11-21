@@ -5,7 +5,6 @@
 // Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
 /obj/machinery/telecomms/relay/preset/station
 	id = "groundbase Relay"
-	listening_level = 9
 	autolinkers = list("groundbase_relay")
 
 // #### Hub ####
@@ -14,7 +13,7 @@
 	network = "tcommsat"
 	autolinkers = list("hub",
 		"groundbase_relay", "c_relay", "m_relay", "r_relay",
-		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "explorer", "unused",
+		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "Away Team", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
 	)
 
@@ -30,7 +29,7 @@
 
 /obj/machinery/telecomms/server/presets/service/groundbase
 	freq_listening = list(SRV_FREQ, EXP_FREQ)
-	autolinkers = list("service", "explorer")
+	autolinkers = list("service", "Away Team")
 
 // Telecommunications Satellite
 /area/groundbase/command/tcomms
@@ -77,16 +76,16 @@
 		num2text(EXP_FREQ) = list(access_explorer)
 	)
 
-/obj/item/device/multitool/groundbase_buffered
-	name = "pre-linked multitool (groundbase hub)"
+/obj/item/device/multitool/station_buffered
+	name = "pre-linked multitool (Rascal's Pass hub)"
 	desc = "This multitool has already been linked to the groundbase telecomms hub and can be used to configure one (1) relay."
 
-/obj/item/device/multitool/groundbase_buffered/Initialize()
+/obj/item/device/multitool/station_buffered/Initialize()
 	. = ..()
 	buffer = locate(/obj/machinery/telecomms/hub/preset/groundbase)
 
 /obj/item/device/bluespaceradio/groundbase_prelinked
-	name = "bluespace radio (Groundbase)"
+	name = "bluespace radio (Rascal's Pass)"
 	handset = /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked
 
 /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked

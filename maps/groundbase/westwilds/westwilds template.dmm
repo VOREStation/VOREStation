@@ -13,6 +13,37 @@
 /obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"ab" = (
+/obj/machinery/pointdefense_control{
+	id_tag = "axolotl_pd";
+	name = "axolotl defense control";
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_cockpit)
+"af" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
+"ai" = (
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -21;
+	req_one_access = null
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "am" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 9
@@ -28,9 +59,6 @@
 "aq" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -70,7 +98,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -82,7 +110,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "aE" = (
 /turf/simulated/wall,
@@ -94,8 +122,22 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "aQ" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
+"aW" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_q1)
 "bc" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -104,14 +146,11 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
 "bf" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -129,6 +168,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"bA" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
 "bE" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/floor_decal/industrial/warning{
@@ -192,6 +238,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"cg" = (
+/obj/structure/window/reinforced/tinted,
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_head)
 "ci" = (
 /obj/machinery/camera/network/research_outpost{
 	dir = 8
@@ -251,6 +304,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
+"cU" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"cV" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "cX" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/white,
@@ -262,6 +330,11 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"dh" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "do" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/maintenance/rnd{
@@ -274,6 +347,30 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/anomaly_storage)
+"dp" = (
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -21;
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"ds" = (
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 21;
+	req_one_access = null
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "dx" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 1
@@ -287,7 +384,7 @@
 /obj/machinery/power/solar{
 	SOLAR_MAX_DIST = 140
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -310,6 +407,14 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/anomaly_lab)
+"dH" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/closet/walllocker/emerglocker/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "dI" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -28
@@ -325,11 +430,30 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"dQ" = (
+/obj/machinery/computer/shuttle_control/explore/axolotl{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_cockpit)
+"dT" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "dX" = (
-/turf/unsimulated/wall/planetary/virgo3c{
+/turf/unsimulated/wall/planetary{
 	icon_state = "riveted"
 	},
 /area/submap/groundbase/wilderness/west)
+"ea" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q1)
 "ec" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
@@ -349,6 +473,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_hallway)
+"eo" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "axolotl_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "eq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -373,10 +503,36 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
+"eA" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_head)
+"eB" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "eC" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -398,6 +554,12 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_storage)
+"eV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl)
 "fd" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 4
@@ -410,6 +572,21 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/toxing_gasworks)
+"ff" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "fh" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	dir = 1
@@ -417,6 +594,9 @@
 /obj/effect/floor_decal/corner/purple,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"fl" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
 "fo" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -437,9 +617,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "fQ" = (
@@ -449,11 +626,24 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
+"fR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "gg" = (
 /obj/machinery/artifact_scanpad,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
+"gh" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "gi" = (
 /obj/structure/table/standard,
 /obj/machinery/computer/atmoscontrol/laptop{
@@ -466,6 +656,24 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"gn" = (
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"gp" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"gx" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q1)
 "gz" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/tiled,
@@ -606,7 +814,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "hB" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -624,6 +832,43 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_storage)
+"hP" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"hR" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
+"hT" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "hU" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
@@ -637,10 +882,25 @@
 	dir = 1
 	},
 /obj/structure/railing,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
+"hY" = (
+/obj/machinery/shipsensors{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
+"ib" = (
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "if" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -651,6 +911,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"ij" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
+"il" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl_q1)
 "iq" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -683,10 +950,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"iM" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "iO" = (
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"iQ" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "iU" = (
 /obj/machinery/atmospherics/unary/heat_exchanger,
 /obj/structure/window/basic,
@@ -697,7 +973,7 @@
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "jb" = (
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -787,10 +1063,32 @@
 	icon_state = "1-2"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
+"jR" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Spare Fuel";
+	pixel_y = -32
+	},
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/stack/material/tritium{
+	amount = 25
+	},
+/obj/item/weapon/tool/wrench,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
 "jS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -798,6 +1096,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_storage)
+"jT" = (
+/obj/structure/handrail,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "jU" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass_science{
@@ -807,19 +1110,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost)
-"ki" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/groundbase/science/outpost/toxins_mixing)
 "kn" = (
 /obj/machinery/light_switch{
 	dir = 8;
@@ -842,6 +1132,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"kB" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_galley)
 "kE" = (
 /obj/structure/cable/green{
 	icon_state = "0-4"
@@ -875,6 +1175,25 @@
 "kN" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/science/outpost/anomaly_testing)
+"kP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"kR" = (
+/obj/structure/table/steel,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = -22
+	},
+/obj/random/pizzabox,
+/obj/structure/closet/walllocker_double/kitchen/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_galley)
 "kT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -883,6 +1202,30 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"kU" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	req_one_access = null
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
+"kX" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "kY" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
@@ -935,7 +1278,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -943,7 +1286,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "lM" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -952,7 +1295,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
 "lO" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary,
 /area/submap/groundbase/wilderness/west)
 "lS" = (
 /obj/structure/cable/green{
@@ -967,6 +1310,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"lX" = (
+/obj/machinery/atmospherics/pipe/manifold/visible,
+/obj/structure/catwalk,
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "mc" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -977,6 +1326,10 @@
 /obj/machinery/alarm,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_storage)
+"mf" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "mg" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue,
 /obj/machinery/light,
@@ -985,6 +1338,9 @@
 "mh" = (
 /turf/simulated/wall,
 /area/groundbase/science/outpost/anomaly_storage)
+"mk" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl_head)
 "mq" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/bio_suit/anomaly,
@@ -998,6 +1354,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"mr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "ms" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -1009,7 +1377,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
 "mt" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "mC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -1023,6 +1391,36 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"mD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/obj/machinery/computer/ship/engines{
+	dir = 4;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"mK" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/south{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "mL" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue{
 	dir = 4
@@ -1046,6 +1444,17 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"mS" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "mT" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -1078,7 +1487,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
 "nb" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/engineering/solarfield)
 "nf" = (
 /obj/structure/cable/heavyduty{
@@ -1087,16 +1496,34 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
+"nl" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_q1)
 "nm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
 "nr" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "nv" = (
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
+"nF" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/sleep_console{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "nM" = (
 /obj/structure/table/standard,
 /obj/structure/window/reinforced{
@@ -1111,22 +1538,47 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
+"nO" = (
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/axolotl)
 "nR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_storage)
+"nT" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
 "nU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"oa" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	dir = 4;
+	id_tag = "axolotl_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_x = -22
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "op" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -1153,7 +1605,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1192,6 +1644,40 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/toxins_mixing)
+"oP" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable{
+	charge = 500000
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
+"oX" = (
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/axolotl_engineering)
+"pc" = (
+/obj/structure/bed/chair/bay/chair,
+/obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24;
+	req_access = list(11,67)
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q2)
+"pd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "pe" = (
 /obj/machinery/portable_atmospherics/powered/pump,
 /obj/machinery/firealarm{
@@ -1231,6 +1717,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"pA" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/axolotl)
 "pB" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -1240,6 +1732,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"pC" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_head)
 "pF" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
@@ -1266,11 +1770,20 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"pJ" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
 "pM" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "pO" = (
 /obj/effect/floor_decal/industrial/danger{
@@ -1304,11 +1817,31 @@
 	pressure_setting = 0;
 	sensors = list("burn_sensor" = "Burn Chamber Sensor")
 	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"qa" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/fuel_port/heavy{
+	pixel_y = 28
+	},
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
+"qb" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	pixel_x = 24;
+	pixel_y = -11
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "qe" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1322,6 +1855,12 @@
 /obj/machinery/portable_atmospherics/canister/phoron,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/toxins_storage)
+"qf" = (
+/obj/machinery/computer/ship/sensors{
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_cockpit)
 "qg" = (
 /obj/structure/anomaly_container,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1350,11 +1889,31 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_storage)
+"qp" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q2)
 "qq" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible,
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"qv" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_q2)
 "qw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1381,7 +1940,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1429,8 +1988,31 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
+"rc" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"rh" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_engineering)
 "rr" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 8
@@ -1444,6 +2026,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"ru" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "rw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -1491,7 +2077,7 @@
 /area/groundbase/science/outpost/anomaly_lab)
 "sc" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/science/outpost)
 "sd" = (
 /obj/machinery/space_heater,
@@ -1520,6 +2106,12 @@
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"sw" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "axolotl_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_q1)
 "sA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -1527,11 +2119,35 @@
 /obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"sE" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_q2)
+"sF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/north{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "sI" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
 "tc" = (
 /obj/structure/cable{
@@ -1540,7 +2156,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1552,10 +2168,28 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"tf" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_galley)
 "ti" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"tr" = (
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
 "tt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -1586,6 +2220,12 @@
 "tM" = (
 /turf/simulated/wall,
 /area/groundbase/science/outpost/anomaly_testing)
+"tN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "tO" = (
 /obj/machinery/atmospherics/trinary/atmos_filter/m_filter{
 	dir = 8;
@@ -1613,6 +2253,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"tT" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "axolotl_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_q2)
 "tZ" = (
 /obj/structure/closet/excavation,
 /obj/machinery/light{
@@ -1630,7 +2276,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "uj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -1639,9 +2285,36 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"uk" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/handrail,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/north{
+	name = "Voidsuit Locker"
+	},
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
+"un" = (
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "ur" = (
 /obj/structure/railing,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "ut" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -1672,7 +2345,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "uA" = (
 /obj/machinery/radiocarbon_spectrometer,
@@ -1689,6 +2362,24 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/monotile,
 /area/groundbase/science/outpost/anomaly_lab)
+"uB" = (
+/obj/structure/bed/chair/bay/chair,
+/obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24;
+	req_access = null;
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_galley)
 "uG" = (
 /turf/simulated/wall,
 /area/groundbase/science/outpost/anomaly_lab)
@@ -1697,6 +2388,16 @@
 /obj/item/device/multitool,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"uT" = (
+/obj/machinery/suit_cycler,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "vd" = (
 /obj/structure/sign/warning/hot_exhaust,
 /turf/simulated/wall/r_wall,
@@ -1743,11 +2444,17 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"vs" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
 "vw" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "vy" = (
 /obj/machinery/light{
@@ -1773,10 +2480,29 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
+"vF" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
+"vH" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "vM" = (
 /obj/machinery/door/blast/regular{
 	dir = 8;
@@ -1825,6 +2551,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"vT" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "wg" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green{
@@ -1851,6 +2583,20 @@
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"wo" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_galley)
 "wp" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -1882,7 +2628,7 @@
 	name = "Powernet Sensor - Solar Farm Input";
 	name_tag = "Solar Farm Input"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -1891,8 +2637,6 @@
 	dir = 1
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/danger{
@@ -1920,6 +2664,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"xc" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
 "xh" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1961,7 +2714,7 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east_west{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west)
 "xv" = (
 /obj/machinery/suspension_gen,
@@ -1976,7 +2729,7 @@
 	icon_state = "2-8"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -1993,6 +2746,13 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/groundbase/science/outpost/toxins_mixing)
+"xQ" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "xT" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 4
@@ -2011,6 +2771,13 @@
 /obj/machinery/portable_atmospherics/canister/empty/phoron,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"yd" = (
+/obj/machinery/computer/ship/engines{
+	dir = 1;
+	req_one_access = null
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_cockpit)
 "yf" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
@@ -2024,6 +2791,9 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/groundbase/science/outpost/toxins_mixing)
+"yg" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl_q2)
 "yk" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -2049,6 +2819,19 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/substation)
+"yw" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_galley)
 "yD" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2068,6 +2851,24 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"yO" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q1)
+"yQ" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
 "yV" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue{
 	dir = 8
@@ -2095,6 +2896,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
+"zi" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_galley)
 "zk" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2119,6 +2926,24 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/toxins_mixing)
+"zF" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
+"zG" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "zK" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -2131,6 +2956,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"zL" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "zN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/binary/pump{
@@ -2201,7 +3033,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2268,6 +3100,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"AI" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q1)
 "AQ" = (
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/dark,
@@ -2282,7 +3118,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/science/outpost)
 "Bc" = (
 /obj/machinery/firealarm{
@@ -2294,6 +3130,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Be" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/north{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Bg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -2318,6 +3171,16 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"Bt" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
 "Bw" = (
 /obj/machinery/camera/network/research_outpost,
 /turf/simulated/floor/tiled,
@@ -2335,10 +3198,17 @@
 	name = "Powernet Sensor - Solar Farm Output";
 	name_tag = "Solar Farm Output"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
+"BB" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "BH" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/green{
@@ -2380,24 +3250,39 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
 "BS" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
 /obj/machinery/atmospherics/binary/pump/on{
 	dir = 1;
 	target_pressure = 200
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
+"BY" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/south{
+	name = "Voidsuit Locker"
+	},
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "Cc" = (
 /obj/machinery/door/blast/regular{
 	dir = 2;
@@ -2437,7 +3322,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "Cq" = (
 /obj/structure/cable{
@@ -2446,7 +3331,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2456,8 +3341,40 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "Cw" = (
 /obj/structure/anomaly_container,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
+"CE" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"CQ" = (
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "axolotl_docking_port;axolotl_docking_star";
+	dir = 1;
+	id_tag = "axolotl_docking";
+	name = "Axolotl Master Docking Controller";
+	pixel_y = -22
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24;
+	req_access = null;
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable,
+/obj/machinery/light,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "Dn" = (
 /obj/item/device/radio/intercom{
 	pixel_y = -24
@@ -2471,6 +3388,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"Du" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Dz" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "0-2"
@@ -2485,9 +3417,6 @@
 "DF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 4
@@ -2558,6 +3487,31 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
+"Ej" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/closet/walllocker_double/south{
+	name = "Voidsuit Locker"
+	},
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
+"Em" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
 "Eo" = (
 /obj/machinery/firealarm,
 /turf/simulated/floor,
@@ -2651,6 +3605,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Fm" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Fp" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /obj/machinery/door/blast/regular{
@@ -2674,6 +3637,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"FH" = (
+/obj/machinery/power/port_gen/pacman/mrs{
+	anchored = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
 "FI" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2689,6 +3668,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
+"FN" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl_cockpit)
 "FO" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2707,6 +3689,15 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"FT" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "FW" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
@@ -2750,6 +3741,20 @@
 /obj/item/weapon/pickaxe,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"Gh" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 1;
+	pixel_x = 24;
+	pixel_y = 11
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Gl" = (
 /obj/machinery/atmospherics/unary/freezer{
 	icon_state = "freezer"
@@ -2827,6 +3832,21 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"Hb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"Hf" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Hp" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -2837,7 +3857,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "Hr" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -2852,6 +3872,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"Hw" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
 "Hz" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/green,
@@ -2899,6 +3928,17 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/toxing_gasworks)
+"HL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
+"HM" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "HU" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -2941,6 +3981,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
+"Ic" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Id" = (
 /obj/structure/cable/green{
 	icon_state = "0-8"
@@ -2966,7 +4012,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3023,6 +4069,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"IH" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_head)
 "II" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -3033,7 +4093,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "IO" = (
 /obj/structure/window/reinforced{
@@ -3073,10 +4133,70 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"IZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/south{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Jb" = (
 /obj/machinery/atmospherics/valve,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Jc" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
+"Je" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"Jh" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"Jl" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
+"Jm" = (
+/obj/machinery/light,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Jn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue,
 /turf/simulated/floor/tiled/white,
@@ -3099,8 +4219,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/west)
+"JD" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "JE" = (
 /obj/structure/dispenser,
 /turf/simulated/floor/tiled,
@@ -3115,10 +4242,66 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_storage)
+"JM" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24;
+	req_access = null;
+	req_one_access = list(11,67)
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
+"JU" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "JW" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Ka" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	name = "Salamander Engineering Bay";
+	req_one_access = null
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_engineering)
+"Kb" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"Kc" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "Ke" = (
 /obj/structure/dispenser/oxygen,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3130,6 +4313,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"Kn" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "Kw" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
@@ -3152,10 +4339,33 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"KH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
 "KI" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"KN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"KO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "KV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -3169,6 +4379,14 @@
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"La" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "Lb" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/black{
 	dir = 4
@@ -3196,6 +4414,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"Ll" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_head)
 "Ls" = (
 /obj/machinery/radiocarbon_spectrometer,
 /obj/structure/window/reinforced{
@@ -3235,7 +4463,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3255,6 +4483,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"LK" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/axolotl_galley)
 "LL" = (
 /obj/item/stack/cable_coil/random,
 /obj/structure/table/steel,
@@ -3264,6 +4498,23 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
+"LM" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"LN" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "LO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 10
@@ -3275,6 +4526,9 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/groundbase/science/outpost/toxins_mixing)
+"LP" = (
+/turf/simulated/floor/outdoors/sidewalk/slab,
+/area/submap/groundbase/wilderness/west)
 "LV" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -3293,12 +4547,33 @@
 /obj/structure/closet/secure_closet/xenoarchaeologist,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"Mh" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
+"Mr" = (
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "Mx" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_hallway)
+"Mz" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_cockpit)
 "MC" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/black,
 /turf/simulated/floor/tiled/white,
@@ -3332,6 +4607,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"Nj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Np" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	scrub_id = "science_outpost"
@@ -3342,7 +4623,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3354,7 +4635,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "Nz" = (
 /obj/item/stack/cable_coil/random,
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "NC" = (
 /obj/structure/cable/green{
@@ -3362,6 +4643,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"ND" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "NG" = (
 /obj/structure/table/standard,
 /obj/item/weapon/tank/phoron,
@@ -3428,14 +4715,23 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/toxins_mixing)
 "Oq" = (
-/obj/structure/cable/green{
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"Ou" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q2)
 "OI" = (
 /obj/structure/anomaly_container,
 /obj/machinery/light_switch{
@@ -3450,6 +4746,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"OM" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_engineering)
 "OQ" = (
 /obj/machinery/power/tracker{
 	SOLAR_MAX_DIST = 140
@@ -3457,7 +4768,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3472,10 +4783,20 @@
 	icon_state = "1-8"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
+"OU" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_head)
 "Pb" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/bio_suit/anomaly,
@@ -3513,6 +4834,29 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
+"Pv" = (
+/obj/structure/handrail,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
+"Px" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24;
+	req_access = null;
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_head)
 "Pz" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -3557,6 +4901,18 @@
 /obj/machinery/meter,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"PL" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "PM" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -3587,12 +4943,38 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Qe" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Qf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
+"Qh" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"Qi" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q2)
 "Qm" = (
 /obj/structure/table/standard,
 /obj/item/weapon/tool/crowbar,
@@ -3619,6 +5001,16 @@
 /obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"Qs" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "Qw" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3653,6 +5045,28 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
+"QQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"QY" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q2)
 "Rc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -3670,8 +5084,37 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
+"Rn" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28;
+	req_access = null;
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/handrail,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_cockpit)
+"Ro" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Rq" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -3694,10 +5137,17 @@
 	icon_state = "1-8"
 	},
 /obj/effect/wire_deleter,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
+"RC" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "RH" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -3711,6 +5161,10 @@
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/toxins_storage)
+"RJ" = (
+/obj/machinery/atmospherics/binary/pump/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "RM" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -3786,6 +5240,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_storage)
+"Si" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl_galley)
 "Sk" = (
 /obj/machinery/atmospherics/pipe/tank/air{
 	dir = 1
@@ -3814,8 +5271,14 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
+"Sz" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "SC" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3823,10 +5286,28 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
+"SD" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "SF" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"ST" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/structure/handrail,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/closet/walllocker_double/north{
+	name = "Voidsuit Locker"
+	},
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "Ti" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark,
@@ -3857,6 +5338,21 @@
 /obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"Tw" = (
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 21;
+	req_one_access = null
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "TE" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -3875,6 +5371,50 @@
 /obj/machinery/atmospherics/valve,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"TO" = (
+/obj/machinery/computer/ship/helm{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_cockpit)
+"Ub" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	dir = 4;
+	id_tag = "axolotl_docking_port";
+	name = "Port Airlock Control";
+	pixel_x = -22
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/effect/shuttle_landmark/shuttle_initializer/axolotl,
+/obj/effect/overmap/visitable/ship/landable/axolotl,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"Ug" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/closet/walllocker/emerglocker/east,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"Um" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/axolotl_head)
 "Up" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
@@ -3899,6 +5439,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
+"UA" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "UB" = (
 /turf/simulated/wall,
 /area/groundbase/science/outpost/toxins_storage)
@@ -3915,11 +5460,22 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
+"UM" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "UN" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"UW" = (
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
 "Vf" = (
 /obj/structure/table/steel,
 /obj/item/device/measuring_tape,
@@ -3940,15 +5496,29 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"Vm" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl)
+"Vn" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "Vr" = (
 /obj/structure/bed/chair/office/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
+"Vs" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl)
 "VD" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "VG" = (
 /obj/structure/cable/green{
@@ -3962,9 +5532,32 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_hallway)
+"VI" = (
+/obj/machinery/atmospherics/binary/pump/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "VS" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
+"VW" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "VZ" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -3978,7 +5571,7 @@
 /obj/machinery/power/solar{
 	SOLAR_MAX_DIST = 140
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -3996,7 +5589,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarshed)
@@ -4006,12 +5599,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"Wr" = (
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl)
 "Ws" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /turf/simulated/wall,
 /area/groundbase/science/outpost/toxins_lab)
+"Wz" = (
+/turf/simulated/wall/shull,
+/area/shuttle/axolotl_engineering)
 "WB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 8
@@ -4043,13 +5642,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
 "WR" = (
 /obj/machinery/atmospherics/pipe/vent/high_volume,
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "WS" = (
 /turf/simulated/floor/tiled,
@@ -4058,11 +5657,17 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
 "WV" = (
 /turf/simulated/wall,
 /area/groundbase/science/outpost/toxing_gasworks)
+"WW" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "WZ" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -4083,6 +5688,24 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_storage)
+"Xc" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24;
+	req_access = null;
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q1)
 "Xe" = (
 /obj/structure/closet/secure_closet/xenoarchaeologist,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -4112,14 +5735,48 @@
 "Xl" = (
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"XF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl_engineering)
+"XJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/axolotl)
+"XK" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "XO" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/science/outpost/toxins_mixing)
 "XS" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/wilderness/west)
 "XX" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
@@ -4146,6 +5803,11 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
+"Ya" = (
+/obj/structure/table/steel,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q2)
 "Yb" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -4184,10 +5846,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"Yv" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
 "Yw" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4195,9 +5863,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "2-4"
 	},
 /obj/effect/floor_decal/corner/purple/full{
 	dir = 1
@@ -4212,8 +5877,14 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/engineering/solarfield)
+"YH" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/axolotl_engineering)
 "YI" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Science Outpost Substation Bypass"
@@ -4228,13 +5899,20 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
 "YK" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/west/unexplored)
 "YL" = (
 /obj/structure/closet/excavation,
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
+"YM" = (
+/obj/structure/fitness/weightlifter,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_q1)
 "YT" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass_science{
@@ -4262,12 +5940,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_testing)
+"YX" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_cockpit)
 "Zi" = (
 /obj/effect/floor_decal/industrial/warning/cee{
 	dir = 1
 	},
 /turf/simulated/floor/greengrid,
 /area/groundbase/science/outpost/toxins_lab)
+"Zp" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave/advanced,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_galley)
 "Zw" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -4290,11 +5982,33 @@
 /obj/structure/anomaly_container,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
+"ZI" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/shuttle/axolotl_engineering)
+"ZK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/axolotl_engineering)
 "ZL" = (
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 4
 	},
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1
 	},
 /area/groundbase/science/outpost/atmos)
@@ -11978,22 +13692,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12120,22 +13834,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+oX
+Wz
+gn
+vT
+Wz
+Wz
+gn
+vT
+Wz
+YH
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12262,22 +13976,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+Wz
+Wz
+pd
+Jm
+Wz
+Wz
+pd
+Jm
+Wz
+Wz
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12404,22 +14118,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+Wz
+Wz
+XK
+XK
+Wz
+Wz
+XK
+Du
+Wz
+Wz
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12546,22 +14260,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+Wz
+WW
+iQ
+Nj
+Je
+rc
+tN
+mf
+UM
+Wz
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12688,22 +14402,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+CE
+gh
+tN
+VI
+dh
+LN
+RJ
+Nj
+ib
+ZI
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12830,22 +14544,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+Wz
+JU
+Ro
+dT
+KO
+mD
+gp
+SD
+kX
+Wz
+LP
+LP
+LP
 nr
 YK
 YK
@@ -12972,22 +14686,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+eo
+Wz
+Fm
+Jh
+KN
+Yv
+zL
+KN
+Jh
+mS
+Wz
+eo
+LP
+LP
 nr
 YK
 YK
@@ -13114,22 +14828,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+nO
+Vm
+Wz
+Wz
+qa
+xc
+ZK
+Hw
+xc
+jR
+Wz
+Wz
+Vm
+pA
+LP
 nr
 YK
 YK
@@ -13256,22 +14970,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Vm
+Vm
+Mr
+Wz
+FH
+JM
+OM
+rh
+Jc
+oP
+Wz
+Mr
+Vm
+Vm
+LP
 nr
 YK
 YK
@@ -13398,22 +15112,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Vm
+zG
+Wr
+Wz
+Wz
+Wz
+XF
+Ka
+Wz
+Wz
+Wz
+Wr
+ij
+Vm
+LP
 nr
 YK
 YK
@@ -13540,22 +15254,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Vm
+jT
+Kn
+xQ
+LM
+Ic
+mr
+Hf
+Ic
+Hb
+UW
+Kn
+BB
+Vm
+LP
 nr
 YK
 YK
@@ -13682,22 +15396,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+af
+Mh
+vF
+Vm
+Pv
+Vs
+mr
+Hf
+Vs
+Kc
+Vm
+Jl
+La
+JD
+LP
 nr
 YK
 YK
@@ -13824,22 +15538,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Vm
+Mh
+lX
+Vm
+HM
+nF
+QQ
+cV
+Vn
+RC
+Vm
+Qs
+La
+Vm
+LP
 nr
 YK
 YK
@@ -13966,22 +15680,22 @@ mt
 mt
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Vm
+Vm
+eV
+Vm
+HM
+un
+mr
+kP
+Vs
+RC
+Vm
+eV
+Vm
+Vm
+LP
 nr
 YK
 YK
@@ -14108,22 +15822,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Qe
+Ub
+ai
+FT
+XJ
+XJ
+ff
+Hf
+iM
+iM
+hP
+dp
+oa
+UA
+LP
 nr
 YK
 YK
@@ -14250,22 +15964,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Gh
+Ug
+Ug
+cU
+Tw
+ND
+fR
+Hf
+iM
+ds
+hP
+dH
+dH
+qb
+LP
 nr
 YK
 YK
@@ -14392,22 +16106,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Vm
+Vm
+Vm
+Vm
+Vm
+uk
+Sz
+Hf
+BY
+Vm
+Vm
+Vm
+Vm
+Vm
+LP
 nr
 YK
 YK
@@ -14534,22 +16248,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+Um
+mk
+cg
+Px
+mk
+ST
+ru
+vH
+Ej
+Si
+uB
+kR
+Si
+LK
+LP
 nr
 YK
 YK
@@ -14676,22 +16390,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+mk
+Ll
+pC
+eA
+Kb
+Qh
+VW
+Kb
+wo
+tf
+zi
+kB
+LP
+LP
 nr
 YK
 YK
@@ -14818,22 +16532,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+mk
+IH
+OU
+mk
+uT
+Sz
+eB
+CQ
+Si
+yw
+Zp
+Si
+LP
+LP
 nr
 YK
 YK
@@ -14960,22 +16674,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+mk
+mk
+mk
+mk
+Vm
+hT
+PL
+Vm
+Si
+Si
+Si
+Si
+LP
+LP
 nr
 YK
 YK
@@ -15102,22 +16816,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+sw
+il
+YM
+Xc
+il
+Be
+mK
+yg
+pc
+Ya
+yg
+tT
+LP
+LP
 nr
 YK
 YK
@@ -15244,22 +16958,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+nl
+AI
+yO
+aW
+Qh
+VW
+qv
+Ou
+qp
+sE
+LP
+LP
+LP
 nr
 YK
 YK
@@ -15386,22 +17100,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+il
+ea
+gx
+il
+sF
+IZ
+yg
+Qi
+QY
+yg
+LP
+LP
+LP
 nr
 YK
 YK
@@ -15528,22 +17242,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+il
+il
+il
+il
+HL
+kU
+yg
+yg
+yg
+yg
+LP
+LP
+LP
 nr
 YK
 YK
@@ -15670,22 +17384,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+yQ
+FN
+Rn
+nT
+Em
+hR
+FN
+hY
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -15812,22 +17526,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+LP
+pJ
+YX
+KH
+fl
+ab
+bA
+LP
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -15954,22 +17668,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+LP
+pJ
+qf
+tr
+tr
+yd
+bA
+LP
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -16096,22 +17810,22 @@ mt
 aC
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+LP
+zF
+vs
+dQ
+TO
+vs
+Bt
+LP
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -16238,22 +17952,22 @@ Co
 mt
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+LP
+LP
+zF
+Mz
+Mz
+Bt
+LP
+LP
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -16380,22 +18094,22 @@ nr
 nr
 nr
 nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
-nr
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
 nr
 YK
 YK
@@ -17653,7 +19367,7 @@ KA
 Zw
 ve
 Gm
-ki
+To
 To
 NX
 Zw

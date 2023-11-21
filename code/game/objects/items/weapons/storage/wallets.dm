@@ -36,9 +36,9 @@
 		/obj/item/weapon/stamp,
 		/obj/item/clothing/accessory/permit,
 		/obj/item/clothing/accessory/badge,
-		/obj/item/weapon/makeover
+		/obj/item/weapon/makeover,
+		/obj/item/pizzavoucher //VOREStation edit
 		)
-	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	slot_flags = SLOT_ID
 
 	var/obj/item/weapon/card/id/front_id = null
@@ -107,7 +107,7 @@
 /obj/item/weapon/storage/wallet/poly/New()
 	..()
 	verbs |= /obj/item/weapon/storage/wallet/poly/proc/change_color
-	color = "#"+get_random_colour()
+	color = get_random_colour()
 	update_icon()
 
 /obj/item/weapon/storage/wallet/poly/proc/change_color()

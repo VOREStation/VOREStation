@@ -4,6 +4,7 @@
 	real_name = "cockroach"
 	desc = "This station is just crawling with bugs."
 	tt_desc = "E Blattella germanica"
+	icon = 'icons/mob/animal_vr.dmi'
 	icon_state = "cockroach"
 	item_state = "cockroach"
 	icon_living = "cockroach"
@@ -13,7 +14,7 @@
 	maxHealth = 1
 	health = 1
 
-	movement_cooldown = 2.5
+	movement_cooldown = -1
 
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE

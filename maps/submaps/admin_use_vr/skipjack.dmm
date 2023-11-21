@@ -14,7 +14,7 @@
 /area/skipjack_station)
 "ad" = (
 /obj/structure/table/standard,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},

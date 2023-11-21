@@ -20,7 +20,7 @@
 
 	var/hibernate = 0 //Do we even process?
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
-	var/list/scrubbing_gas = list("carbon_dioxide")
+	var/list/scrubbing_gas = list("carbon_dioxide", "phoron")
 
 	var/panic = 0 //is this scrubber panicked?
 
@@ -42,6 +42,12 @@
 	if (!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
+
+/obj/machinery/atmospherics/unary/vent_scrubber/proc/update_area()
+	initial_loc = get_area(loc)
+	area_uid = "\ref[initial_loc]"
+	assign_uid()
+	id_tag = num2text(uid)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
@@ -264,7 +270,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>")

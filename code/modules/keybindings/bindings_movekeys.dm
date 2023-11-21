@@ -22,7 +22,7 @@ var/global/list/MOVE_KEY_MAPPINGS = list(
 
 	// Map text sent by skin.dmf to our numeric codes. (This can be optimized away once we update skin.dmf)
 	var/movekey = MOVE_KEY_MAPPINGS[movekeyName]
-	
+
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
 		log_debug("Client [ckey] sent an illegal movement key down: [movekeyName] ([movekey])")
@@ -54,12 +54,12 @@ var/global/list/MOVE_KEY_MAPPINGS = list(
 
 	// Map text sent by skin.dmf to our numeric codes. (This can be optimized away once we update skin.dmf)
 	var/movekey = MOVE_KEY_MAPPINGS[movekeyName]
-	
+
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
 		log_debug("Client [ckey] sent an illegal movement key up: [movekeyName] ([movekey])")
 		return
-	
+
 	// Clear bit indicating we were holding the key
 	move_keys_held &= ~movekey
 	mod_keys_held &= ~movekey

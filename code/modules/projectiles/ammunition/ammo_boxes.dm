@@ -10,7 +10,7 @@
 #
 #    Use this format, followed by the caliber. For example, a shotgun's caliber
 #    variable is "12g" as a result. Ergo, a shotgun round's path would have "a12g",
-#    or a magazine with shotgun shells would be "m12g" instead. To avoid confusion
+#    or a magazine with shotgun shells would be "m12g" instead. To avoid confusion				// Avoid confusion my ass, when ammo is called only shells and suddenly switches to being called some obscure-ass military number
 #    for developers and in-game admins spawning these items, stick to this format.
 #    Likewise, when creating new rounds, the caliber variable should match whatever
 #    the name says.

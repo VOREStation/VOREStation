@@ -106,7 +106,7 @@
 	if(sensors)
 		switch(action)
 			if("range")
-				var/nrange = input(usr, "Set new sensors range", "Sensor range", sensors.range) as num|null
+				var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range)
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return FALSE
 				if(nrange)
@@ -145,9 +145,9 @@
 
 /obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
 	var/damage = max_health - health
-	if(damage && istype(W, /obj/item/weapon/weldingtool))
+	if(damage && W.has_tool_quality(TOOL_WELDER))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 
 		if(!WT.isOn())
 			return

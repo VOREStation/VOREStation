@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
-		to_chat(user, "You short out \the [src]'s product lock.")
+		to_chat(user, "<span class='filter_notice'>You short out \the [src]'s product lock.</span>")
 		return 1
 
 /obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		else
 			to_chat(user, "<span class='notice'>You cannot refill [src] with [RC].</span>")
 			return
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, W.usesound, 50, 1)
@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 		SStgui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 		return
-	else if(istype(W, /obj/item/device/multitool) || W.is_wirecutter())
+	else if(istype(W, /obj/item/device/multitool) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -240,12 +240,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
 		SStgui.update_uis(src)
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
-			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			user.visible_message("<span class='filter_notice'>[user] begins unsecuring \the [src] from the floor.</span>", "<span class='filter_notice'>You start unsecuring \the [src] from the floor.</span>")
 		else
-			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			user.visible_message("<span class='filter_notice'>[user] begins securing \the [src] to the floor.</span>", "<span class='filter_notice'>You start securing \the [src] to the floor.</span>")
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		to_chat(usr, "[bicon(cashmoney)] <span class='warning'>That is not enough money.</span>")
+		to_chat(usr, "\icon[cashmoney][bicon(cashmoney)] <span class='warning'>That is not enough money.</span>")
 		return 0
 
 	if(istype(cashmoney, /obj/item/weapon/spacecash))
@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = input(usr, "Enter pin code", "Vendor transaction") as num
+		var/attempt_pin = tgui_input_number(usr, "Enter pin code", "Vendor transaction")
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
@@ -487,7 +487,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return FALSE
 
 			if(!coin)
-				to_chat(usr, "There is no coin in this machine.")
+				to_chat(usr, "<span class='filter_notice'>There is no coin in this machine.</span>")
 				return
 
 			coin.forceMove(src.loc)
@@ -538,7 +538,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/obj/item/weapon/card/id/C = H.GetIdCard()
 
 			if(!vendor_account || vendor_account.suspended)
-				to_chat(usr, "Vendor account offline. Unable to process transaction.")
+				to_chat(usr, "<span class='filter_notice'>Vendor account offline. Unable to process transaction.</span>")
 				flick("[icon_state]-deny",src)
 				vend_ready = TRUE
 				return
@@ -619,7 +619,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	use_power(vend_power_usage)	//actuators and stuff
 	flick("[icon_state]-vend",src)
-	addtimer(CALLBACK(src, .proc/delayed_vend, R, user), vend_delay)
+	addtimer(CALLBACK(src, PROC_REF(delayed_vend), R, user), vend_delay)
 
 /obj/machinery/vending/proc/delayed_vend(datum/stored_item/vending_product/R, mob/user)
 	R.get_product(get_turf(src))
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return 0
 
 	if (src.anchored || usr:stat)
-		to_chat(usr, "It is bolted down!")
+		to_chat(usr, "<span class='filter_notice'>It is bolted down!</span>")
 		return 0
 	src.set_dir(turn(src.dir, 270))
 	return 1
@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!throw_item)
 		return FALSE
 	throw_item.vendor_action(src)
-	INVOKE_ASYNC(throw_item, /atom/movable.proc/throw_at, target, rand(3, 10), rand(1, 3), src)
+	INVOKE_ASYNC(throw_item, TYPE_PROC_REF(/atom/movable, throw_at), target, rand(3, 10), rand(1, 3), src)
 	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
 	return 1
 

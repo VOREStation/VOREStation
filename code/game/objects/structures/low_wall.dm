@@ -81,12 +81,12 @@
 		return
 
 	// Making windows, different per subtype
-	else if(istype(W, /obj/item/stack/material/glass))
+	else if(istype(W, /obj/item/stack/material/glass) || istype(W, /obj/item/stack/material/cyborg/glass))
 		handle_glass_use(user, W)
 		return
 
 	// Dismantling the half wall
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		for(var/obj/structure/S in loc)
 			if(istype(S, /obj/structure/window))
 				to_chat(user, "<span class='notice'>There is still a window on the low wall!</span>")

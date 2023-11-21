@@ -21,7 +21,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		var/new_name = sanitize(input(usr,"What would you like to name this mob?","Input a name",M.real_name) as text|null, MAX_NAME_LEN)
+		var/new_name = sanitize(tgui_input_text(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN), MAX_NAME_LEN)
 		if( !new_name || !M )	return
 
 		message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
@@ -92,6 +92,44 @@
 		src.admin_give_modifier(M)
 		href_list["datumrefresh"] = href_list["give_modifier"]
 
+	else if(href_list["give_wound_internal"])
+		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG|R_EVENT))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["give_wound_internal"])
+		if(!istype(H))
+			to_chat(usr, span_notice("This can only be used on instances of type /mob/living/carbon/human"))
+			return
+
+		var/severity = tgui_input_number(usr, "How much damage should the bleeding internal wound cause? \
+		Bleed timer directly correlates with this. 0 cancels. Input is rounded to nearest integer.",
+		"Wound Severity", 0, min_value = 0, round_value = TRUE )
+		if(!severity) return
+
+		var/obj/item/organ/external/chosen_organ = tgui_input_list(usr, "Choose an external organ to inflict IB on!", "Organ Choice", H.organs)
+		if(!chosen_organ || !istype(chosen_organ))
+			to_chat(usr, span_notice("The chosen organ is of inappropriate type or no longer exists."))
+			return
+
+		var/datum/wound/internal_bleeding/I = new /datum/wound/internal_bleeding(severity)
+		if(!I || !istype(I))
+			to_chat(usr, span_notice("Could not initialize internal wound"))
+			log_debug("[usr] attempted to create an internal bleeding wound on [H]'s [chosen_organ] of [severity] damage \
+			and wound initialization failed")
+
+		chosen_organ.wounds += I
+		chosen_organ.update_wounds()
+		chosen_organ.update_damages()
+		H.bad_external_organs += chosen_organ
+		H.handle_organs()
+
+		if(H.client)
+			H.custom_pain("You feel a throbbing pain inside your [chosen_organ]", severity, force=TRUE)
+			log_and_message_admins("created an Internal Bleeding wound on [H.ckey]'s mob [H] on [chosen_organ] of [severity] damage", usr)
+
+		href_list["datumrefresh"] = href_list["give_wound_internal"]
+
+
 	else if(href_list["give_disease2"])
 		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
@@ -156,6 +194,29 @@
 
 		if(usr.client)
 			usr.client.cmd_assume_direct_control(M)
+
+	else if(href_list["give_ai"])
+		if(!check_rights(0))	return
+
+		var/mob/M = locate(href_list["give_ai"])
+		if(!istype(M, /mob/living))
+			to_chat(usr, span_notice("This can only be used on instances of type /mob/living"))
+			return
+		var/mob/living/L = M
+		if(L.client || L.teleop)
+			to_chat(usr, span_warning("This cannot be used on player mobs!"))
+			return
+
+		if(L.ai_holder)	//Cleaning up the original ai
+			var/ai_holder_old = L.ai_holder
+			L.ai_holder = null
+			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
+		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+		L.initialize_ai_holder()
+		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
+		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+			L.AdjustSleeping(-100)
 
 	else if(href_list["make_skeleton"])
 		if(!check_rights(R_FUN))	return
@@ -475,7 +536,7 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount =  input(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num
+		var/amount =  tgui_input_number(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0)
 
 		if(!L)
 			to_chat(usr, "Mob doesn't exist anymore")
@@ -514,7 +575,7 @@
 		if(!thing)
 			to_chat(usr, "<span class='warning'>The object you tried to expose to [C] no longer exists (GC'd)</span>")
 			return
-		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;datumrefresh=\ref[thing]'>VV window</a>")
+		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=\ref[thing]'>VV window</a>")
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [src]")
 		to_chat(C, "[holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
 		C.debug_variables(thing)
@@ -523,4 +584,3 @@
 		var/datum/DAT = locate(href_list["datumrefresh"])
 		if(istype(DAT, /datum) || istype(DAT, /client) || islist(DAT))
 			debug_variables(DAT)
-

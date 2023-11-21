@@ -48,7 +48,8 @@
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
-								ore.forceMove(ore_box)
+								ore_box.stored_ore[ore.material]++
+								qdel(ore)
 			else if(isliving(target))
 				drill_mob(target, chassis.occupant)
 				return 1

@@ -180,6 +180,14 @@
 	name = "\improper Third Floor Hallway"
 	icon_state = "dk_yellow"
 
+/area/tether/surfacebase/surface_three_hall/west
+	name = "\improper Third Floor Hallway - West"
+	icon_state = "dk_yellow"
+
+/area/tether/surfacebase/surface_three_hall/nwest
+	name = "\improper Third Floor Hallway - Northwest"
+	icon_state = "dk_yellow"
+
 /area/tether/surfacebase/north_stairs_one
 	name = "\improper North Stairwell First Floor"
 	icon_state = "dk_yellow"
@@ -480,11 +488,10 @@
 
 /area/tether/surfacebase/entertainment
 	name = "\improper Entertainment Auditorium"
-	icon_state = "library"
+	icon_state = "entertainment"
 
 /area/tether/surfacebase/entertainment/stage
 	name = "\improper Entertainment Stage"
-	icon_state = "library"
 
 /area/tether/surfacebase/funny/clownoffice
 	name = "\improper Clown's Office"
@@ -504,7 +511,6 @@
 
 /area/tether/surfacebase/entertainment/backstage
 	name = "\improper Entertainment Backstage"
-	icon_state = "library"
 
 /area/tether/surfacebase/botanystorage
 	name = "\improper Botany Storage"

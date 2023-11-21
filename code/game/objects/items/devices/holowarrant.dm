@@ -68,7 +68,7 @@
 	if(active.fields["arrestsearch"] == "arrest")
 		var/output = {"
 		<HTML><HEAD><TITLE>[active.fields["namewarrant"]]</TITLE></HEAD>
-		<BODY bgcolor='#FFFFFF'><center><large><b>Sol Central Government Colonial Marshal Bureau</b></large></br>
+		<BODY bgcolor='#FFFFFF'><center><large><b>Commonwealth Security Bond Association</b></large></br>
 		in the jurisdiction of the</br>
 		[using_map.boss_name] in [using_map.station_name]</br>
 		</br>
@@ -95,7 +95,7 @@
 		to conduct a one time lawful search of the Suspect's person/belongings/premises and/or Department </br>
 		for any items and materials that could be connected to the suspected criminal act described below, </br>
 		pending an investigation in progress. The Security Officer(s) are obligated to remove any and all</br>
-		such items from the Suspects posession and/or Department and file it as evidence. The Suspect/Department </br>
+		such items from the Suspect's possession and/or Department and file it as evidence. The Suspect/Department </br>
 		staff is expected to offer full co-operation. In the event of the Suspect/Department staff attempting </br>
 		to resist/impede this search or flee, they must be taken into custody immediately! </br>
 		All confiscated items must be filed and taken to Evidence!</small></i></br>
@@ -113,9 +113,9 @@
 
 /obj/item/weapon/storage/box/holowarrants // VOREStation addition starts
 	name = "holowarrant devices"
-	desc = "A box of holowarrant diplays for security use."
+	desc = "A box of holowarrant displays for security use."
 
-/obj/item/weapon/storage/box/holowarrants/New() 
+/obj/item/weapon/storage/box/holowarrants/New()
 	..()
 	for(var/i = 0 to 3)
 		new /obj/item/device/holowarrant(src) // VOREStation addition ends

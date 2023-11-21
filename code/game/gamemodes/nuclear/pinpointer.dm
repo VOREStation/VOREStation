@@ -124,10 +124,10 @@
 		if("Location")
 			mode = 1
 
-			var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
+			var/locationx = tgui_input_number(usr, "Please input the x coordinate to search for.", "Location?" , "")
 			if(!locationx || !(usr in view(1,src)))
 				return
-			var/locationy = input(usr, "Please input the y coordinate to search for.", "Location?" , "") as num
+			var/locationy = tgui_input_number(usr, "Please input the y coordinate to search for.", "Location?" , "")
 			if(!locationy || !(usr in view(1,src)))
 				return
 
@@ -160,7 +160,7 @@
 					to_chat(usr, "You set the pinpointer to locate [targetitem]")
 
 				if("DNA")
-					var/DNAstring = input(usr, "Input DNA string to search for." , "Please Enter String." , "")
+					var/DNAstring = tgui_input_text(usr, "Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
 						return
 					for(var/mob/living/carbon/M in mob_list)

@@ -31,13 +31,13 @@
 	update_icon()
 
 /obj/item/ammo_casing/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!BB)
 			to_chat(user, "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>")
 			return
 
 		var/tmp_label = ""
-		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
+		var/label_text = sanitizeSafe(tgui_input_text(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label,MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(label_text) > 20)
 			to_chat(user, "<font color='red'>The inscription can be at most 20 characters long.</font>")
 		else if(!label_text)
@@ -281,4 +281,4 @@
 /obj/item/ammo_magazine/ammo_box/examine(mob/user)
 	. = ..()
 
-	. += to_chat(usr, "<span class='notice'>Alt-click to extract contents</span>")
+	. += to_chat(usr, "<span class='notice'>Alt-click to extract contents.</span>")

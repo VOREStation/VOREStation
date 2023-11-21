@@ -15,8 +15,9 @@ em						{font-style: normal;font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}
 
 /* OOC */
-.ooc					{font-weight: bold;}
-.looc					{color: #3A9696;}
+.ooc					      {font-weight: bold;}
+.looc					      {color: #3A9696; font-weight: bold}
+.rlooc					    {color: #3ABB96; font-weight: bold}
 .ooc img.text_tag		{width: 32px; height: 10px;}
 
 .ooc .everyone			{color: #002eb8;}
@@ -34,6 +35,8 @@ em						{font-style: normal;font-weight: bold;}
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
+.mentor_channel			{color: #808000;	font-weight: bold;}
+.mentor					{color: #808000;}
 .mod_channel			{color: #735638;	font-weight: bold;}
 .mod_channel .admin		{color: #b82e00;	font-weight: bold;}
 .admin_channel			{color: #9611D4;	font-weight: bold;}
@@ -70,7 +73,7 @@ h1.alert, h2.alert		{color: #000000;}
 
 /* VOREStation Edit Start */
 .emote					{}
-.emote_subtle			{font-style: italic;}
+.emotesubtle			{font-style: italic;}
 /* VOREStation Edit End */
 
 /* Game Messages */
@@ -93,7 +96,7 @@ h1.alert, h2.alert		{color: #000000;}
 
 /* Languages */
 
-.alien					{color: #543354;}
+.alien					{color: #543354;font-style: italic;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
 .akhani					{color: #AC398C;}
@@ -101,10 +104,13 @@ h1.alert, h2.alert		{color: #000000;}
 .skrellfar				{color: #70FCFF;}
 .soghun					{color: #50BA6C;}
 .solcom					{color: #22228B;}
-.changeling				{color: #800080;}
+.changeling				{color: #800080;font-style: italic;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
 .vulpkanin				{color: #B97A57;}
+.tavan					{color: #f54298; font-family: Arial}
+.drudakar				{color: #bb2463; word-spacing:0pt; font-family: "High Tower Text", monospace;}
+.echosong				{color: #826D8C;}
 .enochian				{color: #848A33; letter-spacing:-1pt; word-spacing:4pt; font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
 .daemon					{color: #5E339E; letter-spacing:-1pt; word-spacing:0pt; font-family: "Courier New", Courier, monospace;}
 .bug                                    {color: #9e9e39;}
@@ -113,10 +119,13 @@ h1.alert, h2.alert		{color: #000000;}
 .promethean				{color: #5A5A5A;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.say_quote_italics		{font-style: italic; font-family: Georgia, Verdana, sans-serif;}
 .terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
+.teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
+.shadekin				{color: #be3cc5; font-size: 150%; font-weight: bold; font-family: "Gabriola", cursive, sans-serif;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
 
@@ -134,6 +143,8 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .orange					{color: #FF8C00;}
 .blue					{color: #0000FF;}
 .green					{color: #00DD00;}
+
+.pnarrate				{color: #009AB2;}
 
 
 </style>"}

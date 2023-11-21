@@ -225,7 +225,7 @@ Thus, the two variables affect pump operation are set in New():
 				if("max")
 					target_pressure = max_pressure_setting
 				if("set")
-					var/new_pressure = input(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure control",src.target_pressure) as num
+					var/new_pressure = tgui_input_number(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure control",src.target_pressure,max_pressure_setting,0)
 					src.target_pressure = between(0, new_pressure, max_pressure_setting)
 			. = TRUE
 
@@ -239,7 +239,7 @@ Thus, the two variables affect pump operation are set in New():
 		update_icon()
 
 /obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>")

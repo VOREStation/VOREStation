@@ -9,7 +9,6 @@
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/hos,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_w = 0;
 	pixel_x = 0;
 	pixel_y = 32
@@ -32,7 +31,6 @@
 "ae" = (
 /obj/structure/bed/padded,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_w = 0;
 	pixel_x = 0;
 	pixel_y = 32
@@ -369,7 +367,6 @@
 /obj/item/stack/medical/bruise_pack,
 /obj/item/weapon/melee/telebaton,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_w = 0;
 	pixel_x = 0;
 	pixel_y = 32
@@ -645,7 +642,6 @@
 "aZ" = (
 /obj/structure/bed/padded,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_w = 0;
 	pixel_x = 32;
 	pixel_y = 0
@@ -1232,7 +1228,6 @@
 /area/antag/antag_base)
 "bP" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_w = 0;
 	pixel_x = 0;
 	pixel_y = 32

@@ -24,7 +24,7 @@
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/outdoor/cabin5)
 "m" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/outdoor)
 "q" = (
 /obj/structure/bed/chair/sofa/corner/brown{

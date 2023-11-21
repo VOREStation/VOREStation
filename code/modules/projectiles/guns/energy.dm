@@ -14,6 +14,8 @@
 	var/modifystate
 	var/charge_meter = 1	//if set, the icon state will be chosen based on the current charge
 
+	reload_time = 5		//Energy weapons are slower to reload than ballistics by default, but this is no change from current values
+
 	//self-recharging
 	var/self_recharge = 0	//if set, the weapon will recharge itself
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
@@ -24,6 +26,7 @@
 	var/shot_counter = TRUE // does this gun tell you how many shots it has?
 
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
+	var/random_start_ammo = FALSE	//if TRUE, the weapon will spawn with randomly-determined ammo
 
 /obj/item/weapon/gun/energy/New()
 	..()
@@ -35,7 +38,9 @@
 			power_supply = new cell_type(src)
 		else
 			power_supply = null
-
+	//random starting power! gives us a random number of shots in the battery between 0 and the max possible
+	if(random_start_ammo && cell_type)
+		power_supply.charge = charge_cost*rand(0,power_supply.maxcharge/charge_cost)
 	update_icon()
 
 /obj/item/weapon/gun/energy/Destroy()
@@ -113,8 +118,8 @@
 	if(!power_supply) return null
 	if(!ispath(projectile_type)) return null
 	if(!power_supply.checked_use(charge_cost)) return null
-	var/mob/living/M = loc // TGMC Ammo HUD 
-	if(istype(M)) // TGMC Ammo HUD 
+	var/mob/living/M = loc // TGMC Ammo HUD
+	if(istype(M)) // TGMC Ammo HUD
 		M?.hud_used.update_ammo_hud(M, src)
 	return new projectile_type(src)
 
@@ -129,7 +134,7 @@
 				to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
 			else
 				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
-				if(do_after(user, 5 * P.w_class))
+				if(do_after(user, reload_time * P.w_class))
 					user.remove_from_mob(P)
 					power_supply = P
 					P.loc = src

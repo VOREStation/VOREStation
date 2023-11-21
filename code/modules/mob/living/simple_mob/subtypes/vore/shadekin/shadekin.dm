@@ -13,12 +13,12 @@
 	maxHealth = 200
 	health = 200
 
-	movement_cooldown = 2
+	movement_cooldown = -1.5
 	see_in_dark = 10 //SHADEkin
 	has_hands = TRUE //Pawbs
 	seedarkness = FALSE //SHAAAADEkin
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	has_langs = list(LANGUAGE_GALCOM,LANGUAGE_SHADEKIN)
+	has_langs = list(LANGUAGE_GALCOM, LANGUAGE_SHADEKIN)
 
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -131,6 +131,8 @@
 
 	update_icon()
 
+	verbs |= /mob/proc/adjust_hive_range
+
 	return ..()
 
 /mob/living/simple_mob/shadekin/Destroy()
@@ -169,7 +171,7 @@
 		)
 	B.emote_lists[DM_ABSORB] = list(
 		"The walls cling to you awfully close... It's almost like you're sinking into them.",
-		"You can feel the walls press in tightly against you, clinging to you posessively!",
+		"You can feel the walls press in tightly against you, clinging to you possessively!",
 		"It almost feels like you're sinking into the soft, doughy flesh!",
 		"You can feel the walls press in around you. Almost molten, so squishy!!"
 		)
@@ -212,7 +214,7 @@
 			phase_shift() // shifting back in, nobody present
 		else if (non_kin_count && !(ability_flags & AB_PHASE_SHIFTED))
 			phase_shift() // shifting out, scaredy
-				
+
 /mob/living/simple_mob/shadekin/update_icon()
 	. = ..()
 

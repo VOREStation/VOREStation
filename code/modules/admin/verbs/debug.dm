@@ -129,31 +129,35 @@
 		M.Animalize()
 
 
-/client/proc/makepAI(var/turf/T in mob_list)
+/client/proc/makepAI()
 	set category = "Fun"
 	set name = "Make pAI"
-	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
+	set desc = "Spawn someone in as a pAI!"
+	if(!check_rights(R_ADMIN|R_EVENT|R_DEBUG))
+		return
+	var/turf/T = get_turf(mob)
 
 	var/list/available = list()
 	for(var/mob/C in mob_list)
-		if(C.key)
+		if(C.key && isobserver(C))
 			available.Add(C)
 	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
 	if(!choice)
 		return 0
-	if(!istype(choice, /mob/observer/dead))
-		var/confirm = tgui_alert(usr, "[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("No", "Yes"))
-		if(confirm != "Yes")
-			return 0
-	var/obj/item/device/paicard/card = new(T)
+	var/obj/item/device/paicard/typeb/card = new(T)
 	var/mob/living/silicon/pai/pai = new(card)
-	pai.name = sanitizeSafe(input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text)
 	pai.real_name = pai.name
 	pai.key = choice.key
 	card.setPersonality(pai)
+	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
+		pai.savefile_load(pai)
+	else
+		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI"))
+		card.setPersonality(pai)
 	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
 		if(candidate.key == choice.key)
 			paiController.pai_candidates.Remove(candidate)
+	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(var/mob/M in mob_list)
@@ -245,6 +249,7 @@
 	if(!check_rights(R_DEBUG))	return
 	src << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
 
+/*
 /client/proc/cmd_display_overlay_log()
 	set category = "Debug"
 	set name = "Display overlay Log"
@@ -252,7 +257,7 @@
 
 	if(!check_rights(R_DEBUG))	return
 	render_stats(SSoverlays.stats, src)
-
+*/
 // Render stats list for round-end statistics.
 /proc/render_stats(list/stats, user, sort = /proc/cmp_generic_stat_item_time)
 	sortTim(stats, sort, TRUE)
@@ -647,6 +652,21 @@
 			message_admins(log)
 			log_admin(log)
 
+/datum/admins/proc/toggle_firework_override()
+	set category = "Fun"
+	set name = "Toggle Weather Firework Override"
+	set desc = "Toggles ability for weather fireworks to affect weather on planet of choice."
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to toggle firework effects on?", "Change Weather", SSplanets.planets)
+	if(istype(planet) && planet.weather_holder)
+		planet.weather_holder.firework_override = !(planet.weather_holder.firework_override)
+		var/log = "[key_name(src)] toggled [planet.name]'s firework override to [planet.weather_holder.firework_override ? "on" : "off"]."
+		message_admins(log)
+		log_admin(log)
+
 /datum/admins/proc/change_time()
 	set category = "Debug"
 	set name = "Change Planet Time"
@@ -658,9 +678,9 @@
 	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
 	if(istype(planet))
 		var/datum/time/current_time_datum = planet.current_time
-		var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num
+		var/new_hour = tgui_input_number(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")))
 		if(!isnull(new_hour))
-			var/new_minute = input(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) ) as null|num
+			var/new_minute = tgui_input_number(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) )
 			if(!isnull(new_minute))
 				var/type_needed = current_time_datum.type
 				var/datum/time/new_time = new type_needed()

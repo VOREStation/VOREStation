@@ -58,9 +58,13 @@
 /obj/effect/decal/remains/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>[src] sinks together into a pile of ash.</span>")
 	var/turf/simulated/floor/F = get_turf(src)
-	if (istype(F))
+	if(istype(F))
 		new /obj/effect/decal/cleanable/ash(F)
 	qdel(src)
 
 /obj/effect/decal/remains/robot/attack_hand(mob/user as mob)
-	return
+	to_chat(user, "<span class='notice'>[src] crumbles down into a pile of debris.</span>")
+	var/turf/simulated/floor/F = get_turf(src)
+	if(istype(F))
+		new /obj/effect/decal/cleanable/blood/gibs/robot(F)
+	qdel(src)

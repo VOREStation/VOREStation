@@ -456,16 +456,16 @@
 /obj/item/weapon/gun/energy/sniperrifle{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
 /obj/item/weapon/cell/device/weapon,
@@ -790,8 +790,8 @@
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
 /obj/item/weapon/storage/pill_bottle/sleevingcure/full,
 /obj/item/weapon/extinguisher/mini,
 /obj/item/weapon/extinguisher/mini,

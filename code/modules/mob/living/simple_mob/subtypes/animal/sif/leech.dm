@@ -60,7 +60,7 @@
 
 	holder_type = /obj/item/weapon/holder/leech
 
-	movement_cooldown = 0
+	movement_cooldown = -2
 	aquatic_movement = -2
 
 	melee_damage_lower = 1
@@ -101,7 +101,7 @@
 	if(!istype(H))
 		return .
 
-	if(istype(L.buckled, /obj/vehicle) || L.hovering) // Ignore people hovering or on boats.
+	if(istype(L.buckled, /obj/vehicle) || L.hovering || L.flying) // Ignore people hovering or on boats.
 		return TRUE
 
 	if(!.)
@@ -183,7 +183,7 @@
 
 		if(!docile && ishuman(host) && chemicals < max_chemicals)
 			var/mob/living/carbon/human/H = host
-			H.vessel.remove_reagent("blood", 1)
+			H.remove_blood(1)
 			if(!H.reagents.has_reagent("inaprovaline"))
 				H.reagents.add_reagent("inaprovaline", 1)
 			chemicals += 2

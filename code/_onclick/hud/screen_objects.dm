@@ -19,7 +19,7 @@
 /obj/screen/Destroy()
 	master = null
 	return ..()
-	
+
 /obj/screen/proc/component_click(obj/screen/component_button/component, params)
 	return
 
@@ -46,9 +46,8 @@
 	object_overlays.Cut()
 
 /obj/screen/inventory/proc/add_overlays()
-	var/mob/user = hud.mymob
-
-	if(hud && user && slot_id)
+	if(hud && hud.mymob && slot_id)
+		var/mob/user = hud.mymob
 		var/obj/item/holding = user.get_active_hand()
 
 		if(!holding || user.get_equipped_item(slot_id))
@@ -168,13 +167,15 @@
 	vis_contents -= hover_overlays_cache[hovering_choice]
 	hovering_choice = choice
 
+	if(!choice)
+		return
+
 	var/obj/effect/overlay/zone_sel/overlay_object = hover_overlays_cache[choice]
 	if(!overlay_object)
 		overlay_object = new
 		overlay_object.icon_state = "[choice]"
 		hover_overlays_cache[choice] = overlay_object
 	vis_contents += overlay_object
-
 
 /obj/effect/overlay/zone_sel
 	icon = 'icons/mob/zone_sel.dmi'
@@ -241,7 +242,7 @@
 		update_icon()
 
 /obj/screen/zone_sel/update_icon()
-	cut_overlay(selecting_appearance)
+	cut_overlays()
 	selecting_appearance = mutable_appearance('icons/mob/zone_sel.dmi', "[selecting]")
 	add_overlay(selecting_appearance)
 
@@ -422,16 +423,28 @@
 			usr.a_intent_change("right")
 		if(I_HELP)
 			usr.a_intent = I_HELP
-			usr.hud_used.action_intent.icon_state = "intent_help"
+			if(ispAI(usr))
+				usr.a_intent_change(I_HELP)
+			else
+				usr.hud_used.action_intent.icon_state = "intent_help"
 		if(I_HURT)
 			usr.a_intent = I_HURT
-			usr.hud_used.action_intent.icon_state = "intent_harm"
+			if(ispAI(usr))
+				usr.a_intent_change(I_HURT)
+			else
+				usr.hud_used.action_intent.icon_state = "intent_harm"
 		if(I_GRAB)
 			usr.a_intent = I_GRAB
-			usr.hud_used.action_intent.icon_state = "intent_grab"
+			if(ispAI(usr))
+				usr.a_intent_change(I_GRAB)
+			else
+				usr.hud_used.action_intent.icon_state = "intent_grab"
 		if(I_DISARM)
 			usr.a_intent = I_DISARM
-			usr.hud_used.action_intent.icon_state = "intent_disarm"
+			if(ispAI(usr))
+				usr.a_intent_change(I_DISARM)
+			else
+				usr.hud_used.action_intent.icon_state = "intent_disarm"
 
 		if("pull")
 			usr.stop_pulling()
@@ -441,6 +454,37 @@
 		if("drop")
 			if(usr.client)
 				usr.client.drop_item()
+		if("autowhisper")
+			if(isliving(usr))
+				var/mob/living/u = usr
+				u.toggle_autowhisper()
+		if("autowhisper mode")
+			if(isliving(usr))
+				var/mob/living/u = usr
+				u.autowhisper_mode()
+		if("check known languages")
+			usr.check_languages()
+		if("set pose")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/u = usr
+				u.pose()
+			else if (issilicon(usr))
+				var/mob/living/silicon/u = usr
+				u.pose()
+		if("move upwards")
+			usr.up()
+		if("move downwards")
+			usr.down()
+
+		if("use held item on self")
+			var/obj/screen/useself/s = src
+			if(ishuman(usr))
+				var/mob/living/carbon/human/u = usr
+				var/obj/item/i = u.get_active_hand()
+				if(i)
+					s.can_use(u,i)
+				else
+					to_chat(usr, "<span class='notice'>You're not holding anything to use. You need to have something in your active hand to use it.</span>")
 
 		if("module")
 			if(isrobot(usr))
@@ -607,7 +651,7 @@
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
 			add_overlay(handcuff_overlay)
-			
+
 // PIP stuff
 /obj/screen/component_button
 	var/obj/screen/parent
@@ -622,7 +666,7 @@
 
 // Character setup stuff
 /obj/screen/setup_preview
-	
+
 	var/datum/preferences/pref
 
 /obj/screen/setup_preview/Destroy()
@@ -692,7 +736,7 @@
  * size of the screen. This is not ideal, as filter() is faster, and has
  * alpha masks, but the alpha masks it has can't be animated, so the 'ping'
  * mode of this device isn't possible using that technique.
- * 
+ *
  * The markers use that technique, though, so at least there's that.
  */
 /obj/screen/movable/mapper_holder
@@ -710,7 +754,7 @@
 	var/obj/screen/mapper/mask_full/mask_full
 	var/obj/screen/mapper/mask_ping/mask_ping
 	var/obj/screen/mapper/bg/bg
-	
+
 	var/obj/screen/mapper/frame/frame
 	var/obj/screen/mapper/powbutton/powbutton
 	var/obj/screen/mapper/mapbutton/mapbutton
@@ -720,7 +764,7 @@
 
 /obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
 	owner = newowner
-	
+
 	mask_full = new(src) // Full white square mask
 	mask_ping = new(src) // Animated 'pinging' mask
 	bg = new(src) // Background color, holds map in vis_contents, uses mult against masks
@@ -728,19 +772,19 @@
 	frame = new(src) // Decorative frame
 	powbutton = new(src) // Clickable button
 	mapbutton = new(src) // Clickable button
-	
+
 	frame.icon_state = initial(frame.icon_state)+owner.hud_frame_hint
 
 	/**
 	 * The vis_contents layout is: this(frame,extras_holder,mask(bg(map)))
 	 * bg is set to BLEND_MULTIPLY against the mask to crop it.
 	 */
-	
+
 	mask_full.vis_contents.Add(bg)
 	mask_ping.vis_contents.Add(bg)
 	frame.vis_contents.Add(powbutton,mapbutton)
 	vis_contents.Add(frame)
-	
+
 
 /obj/screen/movable/mapper_holder/Destroy()
 	qdel_null(mask_full)
@@ -760,12 +804,12 @@
 		running = TRUE
 		if(ping)
 			vis_contents.Add(mask_ping)
-		else	
+		else
 			vis_contents.Add(mask_full)
 
 	bg.vis_contents.Cut()
 	bg.vis_contents.Add(map)
-	
+
 	if(extras && !extras_holder)
 		extras_holder = extras
 		vis_contents += extras_holder
@@ -778,7 +822,7 @@
 		off()
 	else
 		on()
-	
+
 /obj/screen/movable/mapper_holder/proc/mapClick()
 	if(owner)
 		if(running)
@@ -806,7 +850,7 @@
 	mouse_opacity = 0
 	var/obj/screen/movable/mapper_holder/parent
 
-/obj/screen/mapper/New()	
+/obj/screen/mapper/New()
 	..()
 	parent = loc
 
@@ -909,10 +953,10 @@
 	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
 
 /obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
-	
+
 	if(!user?.client)
 		return
-	
+
 	if(!G)
 		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
 

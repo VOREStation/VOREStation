@@ -24,7 +24,7 @@
 	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
 	var/obj/machinery/teleport/hub/hub = null
-	
+
 	// Search surrounding turfs for the station, and then search the station's surrounding turfs for the hub.
 	for(var/direction in cardinal)
 		station = locate(/obj/machinery/teleport/station, get_step(src, direction))
@@ -92,8 +92,8 @@
 
 	return
 
-/obj/machinery/teleport/station/attack_ai()
-	attack_hand()
+/obj/machinery/teleport/station/attack_ai(mob/user)
+	attack_hand(user)
 
 /obj/machinery/computer/teleporter/attack_ai(mob/user)
 	teleport_control.tgui_interact(user)

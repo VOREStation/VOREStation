@@ -71,7 +71,7 @@
 					By default, every note is natural and in octave 3. Defining otherwise is remembered for each note.<br>
 					Example: <i>C,D,E,F,G,A,B</i> will play a C major scale.<br>
 					After a note has an accidental placed, it will be remembered: <i>C,C4,C,C3</i> is <i>C3,C4,C4,C3</i><br>
-					Chords can be played simply by seperating each note with a hyphon: <i>A-C#,Cn-E,E-G#,Gn-B</i><br>
+					Chords can be played simply by separating each note with a hyphen: <i>A-C#,Cn-E,E-G#,Gn-B</i><br>
 					A pause may be denoted by an empty chord: <i>C,E,,C,G</i><br>
 					To make a chord be a different time, end it with /x, where the chord length will be length<br>
 					defined by tempo / x: <i>C,G/2,E/4</i><br>
@@ -130,7 +130,7 @@
 	else if(href_list["import"])
 		var/t = ""
 		do
-			t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", name), t)  as message)
+			t = html_encode(tgui_input_text(usr, "Please paste the entire song, formatted:", text("[]", name), t, multiline = TRUE, prevent_enter = TRUE))
 			if(!in_range(parent, usr))
 				return
 
@@ -160,10 +160,10 @@
 		tempo = sanitize_tempo(tempo + text2num(href_list["tempo"]))
 
 	else if(href_list["play"])
-		INVOKE_ASYNC(src, .proc/start_playing, usr)
+		INVOKE_ASYNC(src, PROC_REF(start_playing), usr)
 
 	else if(href_list["newline"])
-		var/newline = html_encode(input(usr, "Enter your line: ", parent.name) as text|null)
+		var/newline = html_encode(tgui_input_text(usr, "Enter your line: ", parent.name))
 		if(!newline || !in_range(parent, usr))
 			return
 		if(lines.len > MUSIC_MAXLINES)
@@ -191,22 +191,22 @@
 		stop_playing()
 
 	else if(href_list["setlinearfalloff"])
-		var/amount = input(usr, "Set linear sustain duration in seconds", "Linear Sustain Duration") as null|num
+		var/amount = tgui_input_number(usr, "Set linear sustain duration in seconds", "Linear Sustain Duration")
 		if(!isnull(amount))
 			set_linear_falloff_duration(round(amount * 10, world.tick_lag))
 
 	else if(href_list["setexpfalloff"])
-		var/amount = input(usr, "Set exponential sustain factor", "Exponential sustain factor") as null|num
+		var/amount = tgui_input_number(usr, "Set exponential sustain factor", "Exponential sustain factor")
 		if(!isnull(amount))
 			set_exponential_drop_rate(round(amount, 0.00001))
 
 	else if(href_list["setvolume"])
-		var/amount = input(usr, "Set volume", "Volume") as null|num
+		var/amount = tgui_input_number(usr, "Set volume", "Volume")
 		if(!isnull(amount))
 			set_volume(round(amount, 1))
 
 	else if(href_list["setdropoffvolume"])
-		var/amount = input(usr, "Set dropoff threshold", "Dropoff Threshold Volume") as null|num
+		var/amount = tgui_input_number(usr, "Set dropoff threshold", "Dropoff Threshold Volume")
 		if(!isnull(amount))
 			set_dropoff_volume(round(amount, 0.01))
 
@@ -233,7 +233,7 @@
 			set_instrument(choice)
 
 	else if(href_list["setnoteshift"])
-		var/amount = input(usr, "Set note shift", "Note Shift") as null|num
+		var/amount = tgui_input_number(usr, "Set note shift", "Note Shift")
 		if(!isnull(amount))
 			note_shift = clamp(amount, note_shift_min, note_shift_max)
 

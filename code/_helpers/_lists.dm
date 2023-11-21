@@ -53,7 +53,7 @@
 			// atoms/items/objects can be pretty and whatnot
 			var/atom/A = item
 			if(output_icons && isicon(A.icon) && !ismob(A)) // mobs tend to have unusable icons
-				item_str += "[bicon(A)]&nbsp;"
+				item_str += "\icon[A][bicon(A)]&nbsp;"
 			switch(determiners)
 				if(DET_NONE) item_str += A.name
 				if(DET_DEFINITE) item_str += "\the [A]"
@@ -218,6 +218,17 @@ This actually tests if they have the same entries and values.
 	return 1
 
 /*
+Checks if a list has the same entries and values as an element of big.
+*/
+/proc/in_as_list(var/list/little, var/list/big)
+	if(!islist(big))
+		return 0
+	for(var/element in big)
+		if(same_entries(little, element))
+			return 1
+	return 0
+
+/*
  * Returns list containing entries that are in either list but not both.
  * If skipref = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
@@ -350,7 +361,7 @@ This actually tests if they have the same entries and values.
 	if(isnull(L) || L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1
-	return mergeAtoms(sortAtom(L.Copy(0,middle)), sortAtom(L.Copy(middle)), order)
+	return mergeAtoms(sortAtom(L.Copy(1,middle)), sortAtom(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
 /proc/mergeAtoms(var/list/atom/L, var/list/atom/R, var/order = 1)
@@ -870,4 +881,3 @@ var/global/list/json_cache = list()
 	else
 		used_key_list[input_key] = 1
 	return input_key
-	

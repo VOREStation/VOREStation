@@ -83,6 +83,12 @@
 	light_power = 1
 	light_color = "#FF0D00"
 
+/obj/effect/projectile/tracer/laser_em
+	icon_state = "em_laser"
+	light_range = 3
+	light_power = 1
+	light_color = "#00C6FF"
+
 /obj/effect/projectile/tracer/darkmatter
 	icon_state = "darkb"
 	light_range = 2

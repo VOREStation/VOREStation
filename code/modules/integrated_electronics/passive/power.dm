@@ -125,7 +125,7 @@
 	create_reagents(volume)
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/interact(mob/user)
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 	..()
 
@@ -215,7 +215,7 @@
 				assembly.give_power(amount)
 			else
 				var/amount = assembly.draw_power(throughput)
-				IO.add_avail(amount)
+				IO.add_avail(amount / CELLRATE)
 
 		set_pin_data(IC_OUTPUT, 1, IO.avail())
 		set_pin_data(IC_OUTPUT, 2, IO.surplus())

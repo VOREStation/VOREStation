@@ -6,7 +6,7 @@
 /turf/simulated/wall,
 /area/template_noop)
 "Z" = (
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},

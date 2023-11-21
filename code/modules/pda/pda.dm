@@ -99,10 +99,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		S = 'sound/machines/twobeep.ogg'
 	playsound(loc, S, 50, 1)
 	for(var/mob/O in hearers(3, loc))
-		O.show_message(text("[bicon(src)] *[ttone]*"))
+		O.show_message(text("\icon[src][bicon(src)] *[ttone]*"))
 
 /obj/item/device/pda/proc/set_ringtone()
-	var/t = input(usr, "Please enter new ringtone", name, ttone) as text
+	var/t = tgui_input_text(usr, "Please enter new ringtone", name, ttone)
 	if(in_range(src, usr) && loc == usr)
 		if(t)
 			if(hidden_uplink && hidden_uplink.check_trigger(usr, lowertext(t), lowertext(lock_code)))
@@ -147,6 +147,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 			)
 		if(7) icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
+		if(8)
+			icon = 'icons/obj/pda_vintage.dmi'
+			desc = "A vintage communication device. This device has been refitted for compatibility with modern messaging systems, ROM cartridges and ID cards. Despite its heavy modifications it does not feature voice communication."
+
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")

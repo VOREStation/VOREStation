@@ -4,6 +4,7 @@
 // Holographic racks are in code/modules/tables/rack.dm
 
 /turf/simulated/floor/holofloor
+	desc = "A convincing simulation."
 	thermal_conductivity = 0
 	flags = TURF_ACID_IMMUNE
 
@@ -205,11 +206,11 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
-	else if(W.is_crowbar() && reinf && state <= 1)
+	else if(W.has_tool_quality(TOOL_CROWBAR) && reinf && state <= 1)
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't pry it!</span>")
-	else if(W.is_wrench() && !anchored && (!state || !reinf))
+	else if(W.has_tool_quality(TOOL_WRENCH) && !anchored && (!state || !reinf))
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
@@ -266,20 +267,22 @@
 	qdel(src)
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add
 /obj/structure/bed/holobed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add End
 /obj/item/weapon/holo
 	damtype = HALLOSS
 	no_attack_log = 1
+	no_random_knockdown = TRUE
 
 /obj/item/weapon/holo/esword
+	name = "holographic energy sword"
 	desc = "May the force be within you. Sorta."
 	icon_state = "esword"
 	var/lcolor

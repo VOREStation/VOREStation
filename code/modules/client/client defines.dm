@@ -13,6 +13,7 @@
 	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
 	var/ircreplyamount = 0
+	var/entity_narrate_holder //Holds /datum/entity_narrate when using the relevant admin verbs.
 
 		/////////
 		//OTHER//
@@ -80,10 +81,15 @@
 	// Runechat messages
 	var/list/seen_messages
 
+	//Hide top bars
+	var/fullscreen = FALSE
+	//Hide status bar
+	var/show_status_bar = TRUE
+
 		///////////
 		// INPUT //
 		///////////
-	
+
 	/// Bitfield of modifier keys (Shift, Ctrl, Alt) held currently.
 	var/mod_keys_held = 0
 	/// Bitfield of movement keys (WASD/Cursor Keys) held currently.

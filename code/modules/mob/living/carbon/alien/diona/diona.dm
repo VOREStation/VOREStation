@@ -47,7 +47,7 @@ var/list/_nymph_default_emotes = list(
 	var/obj/item/hat
 
 /mob/living/carbon/alien/diona/get_available_emotes()
-	return global._nymph_default_emotes
+	return global._nymph_default_emotes.Copy()
 
 /mob/living/carbon/alien/diona/Initialize()
 	. = ..()

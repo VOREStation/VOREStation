@@ -49,9 +49,6 @@
 		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,				500),
 		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
 		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
-		new /datum/data/mining_equipment("Fine Excavation Kit - Chisels",/obj/item/weapon/storage/excavation,								500),
-		new /datum/data/mining_equipment("Fine Excavation Kit - Measuring Tape",/obj/item/device/measuring_tape,							125),
-		new /datum/data/mining_equipment("Fine Excavation Kit - Hand Pick",/obj/item/weapon/pickaxe/hand,									375),
 		new /datum/data/mining_equipment("Explosive Excavation Kit - Plastic Charge",/obj/item/weapon/plastique/seismic,					1500),
 		new /datum/data/mining_equipment("Injector (L) - Glucose",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,	500),
 		new /datum/data/mining_equipment("Injector (L) - Panacea",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,	500),
@@ -99,6 +96,7 @@
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							1200),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											750),
 		EQUIPMENT("Mining Satchel of Holding",					/obj/item/weapon/storage/bag/ore/holding,							1500),
+		EQUIPMENT("Advanced Ore Scanner",						/obj/item/weapon/mining_scanner/advanced,							500),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
@@ -170,6 +168,7 @@
 		EQUIPMENT("Thalers - 1000",				/obj/item/weapon/spacecash/c1000,									10000),
 		EQUIPMENT("Umbrella",					/obj/item/weapon/melee/umbrella/random,								200),
 		EQUIPMENT("Whiskey",					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		125),
+		EQUIPMENT("Mining PSG Upgrade Disk",	/obj/item/borg/upgrade/shield_upgrade,								2500),
 	)
 	prize_list["Extra"] = list() // Used in child vendors
 	//VOREStation Edit End

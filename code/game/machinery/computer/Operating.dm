@@ -184,7 +184,7 @@
 /obj/machinery/computer/operating/proc/build_surgery_list(mob/user)
 	if(!istype(victim))
 		return null
-	
+
 	. = list()
 
 	for(var/limb in victim.organs_by_name)
@@ -281,6 +281,7 @@
 			/datum/surgery_step/cavity,
 			/datum/surgery_step/limb,
 			/datum/surgery_step/brainstem,
+			/datum/surgery_step/generic/ripper,
 		)
 	good_surgeries = surgery_steps
 	for(var/datum/surgery_step/S in good_surgeries)

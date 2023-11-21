@@ -43,10 +43,10 @@
 // update the invisibility and icon
 /obj/machinery/magnetic_module/hide(var/intact)
 	invisibility = intact ? 101 : 0
-	updateicon()
+	update_icon()
 
 // update the icon_state
-/obj/machinery/magnetic_module/proc/updateicon()
+/obj/machinery/magnetic_module/update_icon()
 	var/state="floor_magnet"
 	var/onstate=""
 	if(!on)
@@ -157,7 +157,7 @@
 					qdel(src)
 	*/
 
-	updateicon()
+	update_icon()
 
 /obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the pulling
 	if(pulling) return
@@ -314,7 +314,7 @@
 				if(speed <= 0)
 					speed = 1
 			if("setpath")
-				var/newpath = sanitize(input(usr, "Please define a new path!",,path) as text|null)
+				var/newpath = sanitize(tgui_input_text(usr, "Please define a new path!",,path))
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath

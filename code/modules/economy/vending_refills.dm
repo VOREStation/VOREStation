@@ -5,10 +5,15 @@
 	icon_state = "rc_generic"
 	item_state = "syringe_kit"
 	var/refill_type
+	var/exact_type = TRUE
 
 /obj/item/weapon/refill_cartridge/proc/can_refill(obj/machinery/vending/V as obj)
-	if(V.type == refill_type)
-		return TRUE
+	if(exact_type)
+		if(V.type == refill_type)
+			return TRUE
+	else
+		if(istype(V, refill_type))
+			return TRUE
 	return FALSE
 
 /obj/item/weapon/refill_cartridge/multitype
@@ -49,12 +54,12 @@
 	icon_state = "rc_food"
 	refill_type = list(/obj/machinery/vending/snack,
 					   /obj/machinery/vending/fitness,
-					   /obj/machinery/vending/hotfood,
 					   /obj/machinery/vending/weeb,
 					   /obj/machinery/vending/sol,
 					   /obj/machinery/vending/snix,
 					   /obj/machinery/vending/snlvend,
-					   /obj/machinery/vending/sovietvend)
+					   /obj/machinery/vending/sovietvend,
+					   /obj/machinery/vending/altevian)
 
 /obj/item/weapon/refill_cartridge/multitype/drink
 	name = "drinks vendor refill cartridge"
@@ -103,9 +108,6 @@
 /obj/item/weapon/refill_cartridge/autoname/food/fitness
 	refill_type = /obj/machinery/vending/fitness
 
-/obj/item/weapon/refill_cartridge/autoname/food/hotfood
-	refill_type = /obj/machinery/vending/hotfood
-
 /obj/item/weapon/refill_cartridge/autoname/food/weeb
 	refill_type = /obj/machinery/vending/weeb
 
@@ -121,6 +123,9 @@
 /obj/item/weapon/refill_cartridge/autoname/food/sovietvend
 	refill_type = /obj/machinery/vending/sovietvend
 
+/obj/item/weapon/refill_cartridge/autoname/food/altevian
+	refill_type = /obj/machinery/vending/altevian
+
 /obj/item/weapon/refill_cartridge/autoname/drink
 	icon_state = "rc_drink"
 
@@ -129,9 +134,7 @@
 
 /obj/item/weapon/refill_cartridge/autoname/drink/cola
 	refill_type = /obj/machinery/vending/cola
-
-/obj/item/weapon/refill_cartridge/autoname/drink/cola_soft
-	refill_type = /obj/machinery/vending/cola/soft
+	exact_type = FALSE
 
 /obj/item/weapon/refill_cartridge/autoname/drink/sovietsoda
 	refill_type = /obj/machinery/vending/sovietsoda

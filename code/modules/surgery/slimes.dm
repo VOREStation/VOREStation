@@ -3,6 +3,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/slime
+	surgery_name = "Slime Surgery"
 	is_valid_target(mob/living/simple_mob/slime/target)
 		return istype(target, /mob/living/simple_mob/slime/)
 
@@ -12,6 +13,7 @@
 
 
 /datum/surgery_step/slime/cut_flesh
+	surgery_name = "Cut Flesh"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
@@ -40,6 +42,7 @@
 
 
 /datum/surgery_step/slime/cut_innards
+	surgery_name = "Cut Innards"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
@@ -68,6 +71,7 @@
 
 
 /datum/surgery_step/slime/saw_core
+	surgery_name = "Remove Core"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/circular_saw = 100, \
 	/obj/item/weapon/material/knife/machete/hatchet = 75

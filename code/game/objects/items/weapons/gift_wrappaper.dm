@@ -49,17 +49,14 @@
 /obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if (!W.is_wirecutter())
+	if (!W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user, "<span class='warning'>I need wirecutters for that.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You cut open the present.</span>")
 
 	for(var/mob/M in src) //Should only be one but whatever.
-		M.loc = src.loc
-		if (M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+		M.forceMove(src.loc)
 
 	qdel(src)
 
@@ -135,7 +132,7 @@
 		to_chat(user, "<span class='warning'>You MUST put the paper on a table!</span>")
 	if (W.w_class < ITEMSIZE_LARGE)
 		var/obj/item/I = user.get_inactive_hand()
-		if(I.is_wirecutter())
+		if(I.has_tool_quality(TOOL_WIRECUTTER))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				to_chat(user, "<span class='warning'>You need more paper!</span>")
@@ -180,11 +177,7 @@
 			var/obj/effect/spresent/present = new /obj/effect/spresent (H.loc)
 			src.amount -= 2
 
-			if (H.client)
-				H.client.perspective = EYE_PERSPECTIVE
-				H.client.eye = present
-
-			H.loc = present
+			H.forceMove(present)
 
 			add_attack_logs(user,H,"Wrapped with [src]")
 		else

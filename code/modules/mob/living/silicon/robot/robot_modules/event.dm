@@ -4,11 +4,8 @@
 /obj/item/weapon/robot_module/robot/lost
 	name = "lost robot module"
 	hide_on_manifest = TRUE
-	sprites = list(
-					"Drone" = "drone-lost"
-				)
 
-/obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/lost/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// Sec
 	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
@@ -17,6 +14,7 @@
 
 	// Med
 	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/lost(src)
 
 	// Engi
@@ -30,7 +28,7 @@
 	src.modules += new /obj/item/device/robotanalyzer(src)
 
 	// Potato
-	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
+	src.emag += new /obj/item/weapon/gun/energy/retro/mounted(src)
 
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += wire
@@ -39,15 +37,14 @@
 	C.synths = list(wire)
 	src.modules += C
 
+	src.modules += new /obj/item/device/dogborg/sleeper/lost(src)
+	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+
 /obj/item/weapon/robot_module/robot/gravekeeper
 	name = "gravekeeper robot module"
 	hide_on_manifest = TRUE
-	sprites = list(
-					"Drone" = "drone-gravekeeper",
-					"Sleek" = "sleek-gravekeeper"
-				)
 
-/obj/item/weapon/robot_module/robot/gravekeeper/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// For fending off animals and looters
 	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
@@ -70,7 +67,7 @@
 	src.modules += new /obj/item/weapon/gripper/gravekeeper(src)
 
 	// For really persistent looters
-	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
+	src.emag += new /obj/item/weapon/gun/energy/retro/mounted(src)
 
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(25000)
 	synths += wood
@@ -78,3 +75,7 @@
 	var/obj/item/stack/material/cyborg/wood/W = new (src)
 	W.synths = list(wood)
 	src.modules += W
+
+	// For uwu
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/generic(src)
+	src.emag += new /obj/item/weapon/dogborg/pounce(src)

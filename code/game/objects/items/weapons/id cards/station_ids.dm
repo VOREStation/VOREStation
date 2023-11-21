@@ -13,6 +13,7 @@
 	slot_flags = SLOT_ID | SLOT_EARS
 
 	var/age = "\[UNSET\]"
+	var/species = "\[UNSET\]"
 	var/blood_type = "\[UNSET\]"
 	var/dna_hash = "\[UNSET\]"
 	var/fingerprint_hash = "\[UNSET\]"
@@ -53,8 +54,7 @@
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
 /obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
-	COMPILE_OVERLAYS(M)
-	SSoverlays.queue -= M
+	M.ImmediateOverlayUpdate()
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 
@@ -62,6 +62,7 @@
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
+	id_card.species				= SPECIES_HUMAN
 	id_card.set_id_photo(src)
 
 	if(dna)
@@ -73,6 +74,7 @@
 /mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
 	..()
 	id_card.age = age
+	id_card.species = "[custom_species ? "[custom_species] ([species.name])" : species.name]"
 	id_card.sex = capitalize(name_gender())
 
 /obj/item/weapon/card/id/tgui_data(mob/user)
@@ -80,6 +82,7 @@
 
 	data["registered_name"] = registered_name
 	data["sex"] = sex
+	data["species"] = species
 	data["age"] = age
 	data["assignment"] = assignment
 	data["fingerprint_hash"] = fingerprint_hash
@@ -90,8 +93,8 @@
 	return data
 
 /obj/item/weapon/card/id/attack_self(mob/user as mob)
-	user.visible_message("\The [user] shows you: [bicon(src)] [src.name]. The assignment on the card: [src.assignment]",\
-		"You flash your ID card: [bicon(src)] [src.name]. The assignment on the card: [src.assignment]")
+	user.visible_message("\The [user] shows you: \icon[src][bicon(src)] [src.name]. The assignment on the card: [src.assignment]",\
+		"You flash your ID card: \icon[src][bicon(src)] [src.name]. The assignment on the card: [src.assignment]")
 
 	src.add_fingerprint(user)
 	return
@@ -107,7 +110,7 @@
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, "[bicon(src)] [src.name]: The current assignment on the card is [src.assignment].")
+	to_chat(usr, "\icon[src][bicon(src)] [src.name]: The current assignment on the card is [src.assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
@@ -144,7 +147,7 @@
 
 /obj/item/weapon/card/id/gold/captain/spare
 	name = "\improper Site Manager's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	desc = "The emergency spare ID for the station's very own Big Cheese."
 	icon_state = "gold-id-alternate"
 	registered_name = "Site Manager"
 
@@ -167,7 +170,7 @@
 	assignment = "Synthetic"
 	access = list(
 		access_synth, access_mining, access_mining_station, access_mining_office, access_research,
-		access_xenoarch, access_xenobiology, access_external_airlocks, access_robotics, access_tox, 
+		access_xenoarch, access_xenobiology, access_external_airlocks, access_robotics, access_tox,
 		access_tox_storage, access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot
 	)
 

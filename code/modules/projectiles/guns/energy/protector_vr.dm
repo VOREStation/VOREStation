@@ -27,6 +27,10 @@
 	light_state = "prot_light"
 	flight_x_offset = 0
 	flight_y_offset = 0
+	action_button_name = "Toggle gun-light"
+	var/gun_light_icon = TRUE
+	var/gun_light_on = FALSE
+	var/brightness_on = 5
 
 	w_class = ITEMSIZE_SMALL
 
@@ -44,6 +48,17 @@
 
 	return ..()
 
+/obj/item/weapon/gun/energy/gun/protector/ui_action_click(mob/user, actiontype)
+	gun_light_on = !gun_light_on
+	playsound(src, 'sound/weapons/empty.ogg', 40, TRUE)
+	update_brightness(user)
+	update_icon()
+
+/obj/item/weapon/gun/energy/gun/protector/proc/update_brightness(mob/user = null)
+	if(gun_light_on)
+		set_light(brightness_on)
+	else
+		set_light(0)
 
 /obj/item/weapon/gun/energy/gun/protector/emag_act(var/remaining_charges,var/mob/user)
 	..()
@@ -86,11 +101,12 @@
 			else
 				add_overlay("[icon_state]_[modifystate][ratio]")
 
-	if(can_flashlight & gun_light)
+	if(can_flashlight & gun_light_on)
 		var/mutable_appearance/flashlight_overlay = mutable_appearance(icon, light_state)
 		flashlight_overlay.pixel_x = flight_x_offset
 		flashlight_overlay.pixel_y = flight_y_offset
-		add_overlay(flashlight_overlay)
+		add_overlay(light_state)
+
 
 	/* Don't have one for this gun
 	if(itemState)
@@ -102,3 +118,43 @@
 	emagged = TRUE
 	name = "small energy gun"
 	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell. It also features an integrated flashlight!"
+
+
+/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked
+	name = "secure shuttle-protection pistol"
+	desc = "The LAEP97 'Defender' is a variant of another firearm from Lawson Arms and "+TSC_HEPH+", designed to be issued to pilots for defence of their craft from trespassers whilst in-flight. It contains a detachable cell, two modes of fire and a safety interlock to minimize workplace accidents. It also features an integrated flashlight!"
+
+	description_info = "This gun can only fire non-lethally. Additionally, it's incapable of firing within the proximity of Nanotrasen facilities courtesy of the built-in safety interlock."
+	description_fluff = "A lighter weapon designed for pilots, this gun has a wireless connection to the computer's datacore to ensure it can't be used within the bounds of NT facilities without authorization from ranking members of security, or the Captain."
+
+	firemodes = list(
+		list(mode_name="stunbeam", projectile_type=/obj/item/projectile/beam/stun/med, modifystate="stun", charge_cost = 400),
+		list(mode_name="electrode", projectile_type=/obj/item/projectile/energy/electrode/strong, modifystate="zap", charge_cost = 800),
+		)
+
+	req_access = list(access_armory) //for toggling safety
+	var/locked = 1
+	var/lockable = 1
+
+/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked/attackby(obj/item/I, mob/user)
+	var/obj/item/weapon/card/id/id = I.GetID()
+	if(istype(id) && lockable)
+		if(check_access(id))
+			locked = !locked
+			to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety interlock on \the [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+		user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
+	else
+		return ..()
+
+/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked/emag_act(var/remaining_charges,var/mob/user)
+	return ..()
+
+/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked/special_check(mob/user)
+	if(locked)
+		var/turf/T = get_turf(src)
+		if(T.z in using_map.station_levels)
+			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
+			return 0
+	return ..()

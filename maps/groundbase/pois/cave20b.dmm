@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
@@ -9,20 +9,20 @@
 /area/template_noop)
 "r" = (
 /obj/random/maintenance/misc,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "s" = (
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "V" = (
 /obj/random/trash_pile,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)

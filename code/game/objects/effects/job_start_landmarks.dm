@@ -44,12 +44,14 @@
 	name = "Cargo Technician"
 /obj/effect/landmark/start/miner
 	name = "Shaft Miner"
+/* //VOREStation Removal
 /obj/effect/landmark/start/pf
 	name = "Pathfinder"
 /obj/effect/landmark/start/explorer
 	name = "Explorer"
 /obj/effect/landmark/start/fieldmedic
 	name = "Field Medic"
+*/
 /obj/effect/landmark/start/bartender
 	name = "Bartender"
 /obj/effect/landmark/start/botanist
@@ -62,6 +64,8 @@
 	name = "Clown"
 /obj/effect/landmark/start/entertainer
 	name = "Entertainer"
+/obj/effect/landmark/start/entrepreneur
+	name = "Entrepreneur"
 /obj/effect/landmark/start/intern
 	name = "Intern"
 /obj/effect/landmark/start/iaa

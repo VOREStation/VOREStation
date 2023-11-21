@@ -123,7 +123,7 @@
 	var/mob/M = usr
 	if(!M.mind)	return 0
 
-	var/input = sanitizeSafe(input(usr, "What do you want to name the icon?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the icon?", ,"", null, MAX_NAME_LEN), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = "icon of " + input

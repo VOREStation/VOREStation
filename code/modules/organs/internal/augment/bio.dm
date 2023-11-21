@@ -93,8 +93,8 @@
 		return
 
 	if(aug_cooldown)
-		if(last_activate <= world.time + aug_cooldown)
-			last_activate = world.time
+		if(cooldown <= world.time)
+			cooldown = world.time + aug_cooldown
 		else
 			return
 

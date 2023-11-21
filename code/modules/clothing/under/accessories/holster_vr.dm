@@ -3,6 +3,17 @@
 	desc = "A specialized holster, made specifically for Kinetic Accelerators."
 	can_hold = list(/obj/item/weapon/gun/energy/kinetic_accelerator)
 
+/obj/item/clothing/accessory/holster/waist/lanyard
+	name = "baton lanyard"
+	desc = "A sturdy tether with quick-release carabiner that can keep several patterns of standard-issue security baton ready for quick usage."
+	icon_state = "holster_lanyard"
+	overlay_state = "holster_lanyard"
+	can_hold = list(
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/weapon/melee/telebaton		
+		)
+
 /obj/item/clothing/accessory/holster/machete/rapier
 	name = "rapier sheath"
 	desc = "A beautiful red sheath, probably for a beautiful blade."
@@ -45,9 +56,11 @@
 /obj/item/clothing/accessory/holster/machete/rapier/holster(var/obj/item/I, var/mob/living/user)
 	..()
 	occupied()
-	has_suit.update_clothing_icon()
+	if(has_suit)
+		has_suit.update_clothing_icon()
 
 /obj/item/clothing/accessory/holster/machete/rapier/unholster(var/obj/item/I, var/mob/living/user)
 	..()
 	occupied()
-	has_suit.update_clothing_icon()
+	if(has_suit)
+		has_suit.update_clothing_icon()

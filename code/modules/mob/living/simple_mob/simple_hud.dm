@@ -158,7 +158,40 @@
 	healths.screen_loc = ui_health
 	hud_elements |= healths
 
+	autowhisper_display = new /obj/screen()
+	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
+	autowhisper_display.icon_state = "autowhisper"
+	autowhisper_display.name = "autowhisper"
+	autowhisper_display.screen_loc = "EAST-1:28,CENTER-2:13"
+	hud_elements |= autowhisper_display
 
+	var/obj/screen/aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "aw-select"
+	aw.name = "autowhisper mode"
+	aw.screen_loc = "EAST-1:28,CENTER-2:13"
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "lang"
+	aw.name = "check known languages"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "up"
+	aw.name = "move upwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
+
+	aw = new /obj/screen()
+	aw.icon = 'icons/mob/screen/minimalist.dmi'
+	aw.icon_state = "down"
+	aw.name = "move downwards"
+	aw.screen_loc = ui_under_health
+	hud_elements |= aw
 
 	pain = new /obj/screen( null )
 
@@ -194,7 +227,7 @@
 
 		//Hand slots themselves
 		inv_box = new /obj/screen/inventory/hand()
-		inv_box.hud = src
+		inv_box.hud = HUD
 		inv_box.name = "r_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "r_hand_inactive"
@@ -209,7 +242,7 @@
 		slot_info["[slot_r_hand]"] = inv_box.screen_loc
 
 		inv_box = new /obj/screen/inventory/hand()
-		inv_box.hud = src
+		inv_box.hud = HUD
 		inv_box.name = "l_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "l_hand_inactive"

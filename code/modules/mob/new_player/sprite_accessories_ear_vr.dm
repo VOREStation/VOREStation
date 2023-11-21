@@ -9,7 +9,7 @@
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/ears_vr.dmi'
 	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 
 // Species-unique ears
@@ -32,13 +32,21 @@
 
 // Ears avaliable to anyone
 
+/datum/sprite_accessory/ears/alien_slug
+	name = "Alien slug antennae"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "alien_slug"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/taj_ears
 	name = "tajaran, colorable (old)"
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/taj_ears_tall
 	name = "tajaran tall, colorable (old)"
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/alt_ram_horns
 	name = "Solid ram horns"
@@ -116,6 +124,15 @@
 	name = "antennae, colorable"
 	desc = ""
 	icon_state = "antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antennae_eye
+	name = "antennae eye, colorable"
+	desc = ""
+	icon_state = "antennae"
+	extra_overlay = "antennae_eye_1"
+	extra_overlay2 = "antennae_eye_2"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -380,19 +397,19 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/elfs1
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/elfs2
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/elfs3
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/elfs4
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/elfs5
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/ears/sleek
 	name = "sleek ears"
@@ -500,6 +517,14 @@
 	icon_state = "big_liz"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/cobra_hood
+	name = "Cobra hood (large)"
+	desc = ""
+	icon_state = "cobra_hood"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "cobra_hood-inner"
 
 // Special snowflake ears go below here.
 
@@ -821,7 +846,24 @@
 	name = "Antlers (large)"
 	desc = ""
 	icon = 'icons/mob/vore/ears_32x64.dmi'
-	icon_state = "antlers_large"
+	icon_state = "antlers-large"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_wide
+	name = "Antlers (wide)"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers-wide"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_wide_e
+	name = "Antlers (wide) with ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers-wide"
+	extra_overlay = "deer"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -840,5 +882,186 @@
 	icon = 'icons/mob/vore/ears_32x64.dmi'
 	icon_state = "bunny-tall"
 	extra_overlay = "bunny-tall-inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/altevian
+	name = "Altevian Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "altevian"
+	extra_overlay = "altevian-inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/wilddog
+	name = "Wild Dog Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "wild_dog"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wild_doginner"
+
+/datum/sprite_accessory/ears/teshbeeantenna
+	name = "Teshari bee antenna"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "teshbee"
+
+/datum/sprite_accessory/ears/teshantenna
+	name = "Teshari antenna, colorable"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "teshantenna"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/curlyteshantenna
+	name = "Teshari curly antenna, colorable"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "curly_bug_tesh"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/syrishroom
+	name = "Orange Mushroom Cap"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "syrishroom"
+
+/datum/sprite_accessory/ears/singlesidehorn
+	name = "Single Side Horn"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "single-side-horn"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/zaprat
+	name = "zaprat ears (dual-color)"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "zaprat"
+	extra_overlay = "zaprat-tips"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/kara //SatinIsle Fluff Item
+	name = "Pterokara horn"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "kara_horn"
+	ckeys_allowed = list("satinisle")
+
+/datum/sprite_accessory/ears/shark
+	name = "shark ears (Colorable)"
+	desc = ""
+	icon_state = "shark_ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkhigh
+	name = "shark upper ears (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharklow
+	name = "shark lower ears (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkfin
+	name = "shark fin (Colorable)"
+	desc = ""
+	icon_state = "shark_fin"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkfinalt
+	name = "shark fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_fin_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sharkboth
+	name = "shark ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharkbothalt
+	name = "shark ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/sharkhighboth
+	name = "shark upper ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharkhighbothalt
+	name = "shark upper ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_upper"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/sharklowboth
+	name = "shark lower ears and fin (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin"
+
+/datum/sprite_accessory/ears/sharklowbothalt
+	name = "shark lower ears and fin alt style (Colorable)"
+	desc = ""
+	icon_state = "shark_ears_lower"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/feather_horns
+	name = "feather horns (dual-color)"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "feather_horns"
+	extra_overlay = "feather_horns-fluff"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/party_plume
+	name = "nevrean party parrot plume(tri-color)"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "party_plume"
+	extra_overlay = "party_plume-1"
+	extra_overlay2 = "party_plume-2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/feather_fan_ears //why yes I did abuse my abilities to make a sprite that is specifically compatible with one hair for my OC, why do you ask? - Tank
+	name = "feather fan avian ears"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "feather_fan_ears"
+	extra_overlay = "feather_fan_ears-outer"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+//Dino frills
+/datum/sprite_accessory/ears/dino_frills
+	name = "triceratops frills"
+	icon_state = "triceratops_frill"
+	extra_overlay = "triceratops_frill_spikes"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY

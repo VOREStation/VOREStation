@@ -4,18 +4,18 @@
 /area/template_noop)
 "p" = (
 /obj/random/crate,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "w" = (
 /obj/random/maintenance/misc,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)
 "S" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
 	},
 /area/maintenance/groundbase/poi/caves)

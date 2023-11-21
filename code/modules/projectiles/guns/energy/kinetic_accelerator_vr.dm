@@ -182,7 +182,7 @@
 	if(!QDELING(src) && !holds_charge)
 		// Put it on a delay because moving item from slot to hand
 		// calls dropped().
-		addtimer(CALLBACK(src, .proc/empty_if_not_held), 2)
+		addtimer(CALLBACK(src, PROC_REF(empty_if_not_held)), 2)
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/empty_if_not_held()
 	if(!ismob(loc) && !istype(loc, /obj/item/integrated_circuit))
@@ -206,7 +206,7 @@
 	var/carried = max(1, loc.ConflictElementCount(CONFLICT_ELEMENT_KA))
 
 	deltimer(recharge_timerid)
-	recharge_timerid = addtimer(CALLBACK(src, .proc/reload), recharge_time * carried, TIMER_STOPPABLE)
+	recharge_timerid = addtimer(CALLBACK(src, PROC_REF(reload)), recharge_time * carried, TIMER_STOPPABLE)
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/emp_act(severity)
 	return
@@ -382,13 +382,6 @@
 	. = TRUE
 	if(src in KA.modkits) // Sanity check to prevent installing the same modkit twice thanks to occasional click/lag delays.
 		return FALSE
-	// if(minebot_upgrade)
-	// 	if(minebot_exclusive && !istype(KA.loc, /mob/living/simple_animal/hostile/mining_drone))
-	// 		to_chat(user, "<span class='notice'>The modkit you're trying to install is only rated for minebot use.</span>")
-	// 		return FALSE
-	// else if(istype(KA.loc, /mob/living/simple_animal/hostile/mining_drone))
-	// 	to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for minebot use.</span>")
-	// 	return FALSE
 	if(denied_type)
 		var/number_of_denied = 0
 		for(var/A in KA.get_modkits())

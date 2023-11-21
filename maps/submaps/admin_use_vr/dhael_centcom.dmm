@@ -307,8 +307,8 @@
 /area/centcom/specops)
 "aP" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/unsimulated/floor{
@@ -5726,7 +5726,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 10
 	},
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -7139,7 +7139,6 @@
 /area/centcom/command)
 "ou" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/unsimulated/floor{
@@ -13145,7 +13144,6 @@
 /area/centcom/security)
 "zm" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -14425,7 +14423,6 @@
 	})
 "Bv" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -16126,8 +16123,8 @@
 /area/centcom/evac)
 "UO" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/unsimulated/floor{

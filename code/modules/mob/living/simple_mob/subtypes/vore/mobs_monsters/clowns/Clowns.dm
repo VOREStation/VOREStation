@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mobs_monsters/clowns/
+/mob/living/simple_mob/clowns/
 	tt_desc = "E Homo sapiens corydon" //this is a clown
 	faction = "clown"
 	movement_sound = 'sound/effects/clownstep2.ogg'

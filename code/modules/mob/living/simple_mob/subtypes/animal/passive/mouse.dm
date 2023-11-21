@@ -15,7 +15,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 3
 
-	movement_cooldown = 1.5
+	movement_cooldown = -1
 
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE
@@ -32,7 +32,7 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
 
-	has_langs = list("Mouse")
+	has_langs = list(LANGUAGE_MOUSE)
 
 	holder_type = /obj/item/weapon/holder/mouse
 	meat_amount = 1
@@ -40,7 +40,7 @@
 
 	say_list_type = /datum/say_list/mouse
 
-	var/body_color //brown, gray and white, leave blank for random
+	var/body_color //brown, gray, white and black, leave blank for random
 
 /mob/living/simple_mob/animal/passive/mouse/New()
 	..()
@@ -53,7 +53,7 @@
 	real_name = name
 
 	if(!body_color)
-		body_color = pick( list("brown","gray","white") )
+		body_color = pick( list("brown","gray","white","black") )
 	icon_state = "mouse_[body_color]"
 	item_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
@@ -79,7 +79,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M.visible_message("<font color='blue'>[bicon(src)] Squeek!</font>")
+			M.visible_message("<font color='blue'>\icon[src][bicon(src)] Squeek!</font>")
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 

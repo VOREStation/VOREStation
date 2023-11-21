@@ -145,6 +145,7 @@
 	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
 	icon = 'icons/turf/flooring/maglevs.dmi'
 	icon_state = "maglevup"
+	can_be_plated = FALSE
 
 	var/area/shock_area = /area/tether/surfacebase/tram
 
@@ -211,7 +212,7 @@
 
 	var/mob/living/carbon/human/user = AM
 
-	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
+	var/choice = tgui_alert(usr, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
 	if(user && Adjacent(user) && choice == "Yes")
 		var/mob/observer/dead/newghost = user.ghostize()
 		newghost.timeofdeath = world.time
@@ -281,6 +282,12 @@
 
 /obj/machinery/camera/network/outside
 	network = list(NETWORK_OUTSIDE)
+
+// Shelter Capsule extra restrictions
+/datum/map_template/shelter/New()
+	..()
+	banned_areas += list(/area/tether/surfacebase/fish_farm, /area/tether/surfacebase/public_garden, /area/tether/surfacebase/tram)
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
@@ -329,7 +336,7 @@
 	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/vending/wallmed2
 	layer = ABOVE_WINDOW_LAYER
-/obj/structure/closet/fireaxecabinet
+/obj/structure/fireaxecabinet
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/extinguisher_cabinet
 	layer = ABOVE_WINDOW_LAYER
@@ -343,6 +350,5 @@
 	prob_spawn = 75
 	prob_fall = 50
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/passive/gaslamp = 300,
-		/mob/living/simple_mob/vore/alienanimals/teppi = 4
+		/mob/living/simple_mob/animal/passive/gaslamp = 300
 		)

@@ -111,7 +111,7 @@
 /turf/simulated/shuttle/proc/underlay_update()
 	if(!takes_underlays)
 		//Basically, if it's not forced, and we don't care, don't do it.
-		return 0
+		return
 
 	var/turf/under //May be a path or a turf
 	var/mutable_appearance/us = new(src) //We'll use this for changes later

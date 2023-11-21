@@ -6,15 +6,12 @@
 /turf/simulated/mineral/vacuum,
 /area/space)
 "c" = (
-/mob/living/simple_mob/mechanical/mining_drone{
-	faction = "poi_mining_drones"
-	},
+/mob/living/simple_mob/mechanical/mining_drone/scavenger,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_outpost)
 "d" = (
 /obj/machinery/power/rtg,
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/airless,
@@ -79,13 +76,13 @@
 	pixel_y = 24
 	},
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/airless,
 /area/submap/debrisfield/mining_outpost)
 "p" = (
 /obj/item/weapon/material/shard,
+/mob/living/simple_mob/mechanical/mining_drone/scavenger,
 /turf/space,
 /area/space)
 "q" = (
@@ -262,9 +259,9 @@ v
 a
 B
 f
-c
 f
 c
+f
 f
 f
 "}

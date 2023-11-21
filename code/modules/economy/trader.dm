@@ -258,7 +258,7 @@
 		dir = dt.dir
 		log_admin("[src] has been placed at [loc], [x],[y],[z]")
 	else
-		log_and_message_admins("[src] tried to move itself but its target pick list was empty, so it was not moved. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+		log_and_message_admins("[src] tried to move itself but its target pick list was empty, so it was not moved. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
 /obj/move_trader_landmark //You need to place the trader somewhere in the world and enable the 'move_trader' var. When the trader initializes, it will make a list of these landmarks and then move itself.
 	name = "trader mover"
@@ -326,6 +326,7 @@
 		/obj/item/device/chameleon = 25,
 		/obj/item/weapon/gun/energy/sizegun = 25,
 		/obj/item/device/slow_sizegun = 25,
+		/obj/item/clothing/accessory/collar/shock/bluespace = 25,
 		/obj/item/weapon/implant/sizecontrol = 25,
 		/obj/item/clothing/under/hyperfiber/bluespace = 25,
 		/obj/item/device/nif/authentic = 1,
@@ -352,6 +353,7 @@
 		/obj/item/device/chameleon = 20,
 		/obj/item/weapon/gun/energy/sizegun = 10,
 		/obj/item/device/slow_sizegun = 10,
+		/obj/item/clothing/accessory/collar/shock/bluespace = 10,
 		/obj/item/weapon/implant/sizecontrol = 10,
 		/obj/item/clothing/under/hyperfiber/bluespace = 10,
 		/obj/item/device/nif/authentic = 100,
@@ -376,6 +378,7 @@
 		/obj/item/capture_crystal/random = 2,
 		/obj/item/weapon/gun/energy/sizegun = 2,
 		/obj/item/device/slow_sizegun = 2,
+		/obj/item/clothing/accessory/collar/shock/bluespace = 2,
 		/obj/item/weapon/implant/sizecontrol = 2,
 		/obj/item/clothing/under/hyperfiber/bluespace = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 10

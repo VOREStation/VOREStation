@@ -12,12 +12,16 @@
 	ui_header = "ntnrc_idle.gif"
 	available_on_ntnet = 1
 	tgui_id = "NtosNetChat"
-	var/last_message				// Used to generate the toolbar icon
+	/// Used to generate the toolbar icon
+	var/last_message
 	var/username
 	var/active_channel
 	var/list/channel_history = list()
-	var/operator_mode = FALSE		// Channel operator mode
-	var/netadmin_mode = FALSE		// Administrator mode (invisible to other users + bypasses passwords)
+	/// Channel operator mode
+	var/operator_mode = FALSE
+	/// Administrator mode (invisible to other users + bypasses passwords)
+	var/netadmin_mode = FALSE
+	usage_flags = PROGRAM_ALL
 
 /datum/computer_file/program/chatclient/New()
 	username = "DefaultUser[rand(100, 999)]"
@@ -169,7 +173,7 @@
 	var/list/data = list()
 	data["can_admin"] = can_run(user, FALSE, access_network)
 	return data
-	
+
 /datum/computer_file/program/chatclient/tgui_data(mob/user)
 	if(!ntnet_global || !ntnet_global.chat_channels)
 		return list()

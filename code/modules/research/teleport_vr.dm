@@ -19,5 +19,5 @@
 	id = "bluespace_crystal"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_PHORON = 4)
 	materials = list(MAT_DIAMOND = 1500, MAT_PHORON = 1500)
-	build_path = /obj/item/weapon/ore/bluespace_crystal/artificial
+	build_path = /obj/item/weapon/bluespace_crystal/artificial
 	sort_string = "PAAAB"

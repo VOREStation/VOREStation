@@ -7,9 +7,30 @@
 /obj/item/weapon/reagent_containers/food
 	possible_transfer_amounts = null
 	volume = 50 //Sets the default container amount for all food items.
-	var/filling_color = "#FFFFFF" //Used by sandwiches.
+	description_info = "Food can use the Rename Food verb in the Object Tab to rename it."
+	var/filling_color = "#FFFFFF" //Used by sandwiches and custom food.
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
+
+	var/food_can_insert_micro = FALSE
+	var/list/food_inserted_micros
+
+/obj/item/weapon/reagent_containers/food/verb/change_name()
+	set name = "Rename Food"
+	set category = "Object"
+	set src in view(0)
+
+	handle_name_change(usr)
+
+/obj/item/weapon/reagent_containers/food/proc/handle_name_change(var/mob/living/user)
+	if(user.stat == DEAD || !(ishuman(user) || isrobot(user)))
+		to_chat(user, SPAN_WARNING("You can't cook!"))
+		return
+	var/n_name = sanitizeSafe(input(user, "What would you like to name \the [src]? Leave blank to reset.", "Food Naming", null) as text, MAX_NAME_LEN)
+	if(!n_name)
+		n_name = initial(name)
+
+	name = n_name
 
 /obj/item/weapon/reagent_containers/food/Initialize()
 	. = ..()
@@ -33,6 +54,12 @@
 
 		pixel_x = (CELLSIZE * (0.5 + cell_x)) - center_of_mass["x"]
 		pixel_y = (CELLSIZE * (0.5 + cell_y)) - center_of_mass["y"]
+
+/obj/item/weapon/reagent_containers/food/container_resist(mob/living/M)
+	if(food_inserted_micros)
+		food_inserted_micros -= M
+	M.forceMove(get_turf(src))
+	to_chat(M, "<span class='warning'>You climb out of \the [src].</span>")
 
 #undef CELLS
 #undef CELLSIZE

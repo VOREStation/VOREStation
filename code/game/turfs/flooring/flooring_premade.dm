@@ -19,11 +19,11 @@
 	icon_state = "tealcarpet"
 	initial_flooring = /decl/flooring/carpet/tealcarpet
 
-/turf/simulated/floor/carpet/deco
+/turf/simulated/floor/carpet/geo
 	name = "deco carpet"
 	icon_state = "decocarpet"
-	initial_flooring = /decl/flooring/carpet/deco
-	
+	initial_flooring = /decl/flooring/carpet/geo
+
 /turf/simulated/floor/carpet/retro
 	name = "retro carpet"
 	icon_state = "retrocarpet"
@@ -60,6 +60,46 @@
 	icon_state = "oracarpet"
 	initial_flooring = /decl/flooring/carpet/oracarpet
 
+/turf/simulated/floor/carpet/brown
+	name = "brown carpet"
+	icon_state = "brncarpet"
+	initial_flooring = /decl/flooring/carpet/browncarpet
+
+/turf/simulated/floor/carpet/blue2
+	name = "blue carpet"
+	icon_state = "blue1"
+	initial_flooring = /decl/flooring/carpet/blucarpet2
+
+/turf/simulated/floor/carpet/green
+	name = "green carpet"
+	icon_state = "green"
+	initial_flooring = /decl/flooring/carpet/greencarpet
+
+/turf/simulated/floor/carpet/purple
+	name = "purple carpet"
+	icon_state = "purple"
+	initial_flooring = /decl/flooring/carpet/purplecarpet
+
+/turf/simulated/floor/carpet/geo
+	name = "geometric carpet"
+	icon_state = "geocarpet"
+	initial_flooring = /decl/flooring/carpet/geo
+
+/turf/simulated/floor/carpet/retro
+	name = "blue retro carpet"
+	icon_state = "retrocarpet"
+	initial_flooring = /decl/flooring/carpet/retro
+
+/turf/simulated/floor/carpet/retro_red
+	name = "red retro carpet"
+	icon_state = "retrocarpet_red"
+	initial_flooring = /decl/flooring/carpet/retro_red
+
+/turf/simulated/floor/carpet/happy
+	name = "happy carpet"
+	icon_state = "happycarpet"
+	initial_flooring = /decl/flooring/carpet/happy
+
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
@@ -78,25 +118,73 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-/turf/simulated/floor/wood/broken
-	icon_state = "wood_broken0" // This gets changed when spawned.
+/turf/simulated/floor/wood/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
 
-/turf/simulated/floor/wood/broken/Initialize()
+/turf/simulated/floor/wood/broken
+	icon_state = "wood-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/broken/LateInitialize()
+	. = ..()
 	break_tile()
-	return ..()
 
 /turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
-	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "sifwood"
 	initial_flooring = /decl/flooring/wood/sif
 
 /turf/simulated/floor/wood/sif/broken
-	icon_state = "sifwood_broken0" // This gets changed when spawned.
+	icon_state = "sifwood-broken0" // This gets changed when spawned.
 
-/turf/simulated/floor/wood/sif/broken/Initialize()
+/turf/simulated/floor/wood/sif/broken/LateInitialize()
+	. = ..()
 	break_tile()
-	return ..()
+
+/turf/simulated/floor/wood/alt
+	icon = 'icons/turf/flooring/wood.dmi'
+	initial_flooring = /decl/flooring/wood/alt
+
+/turf/simulated/floor/wood/alt/broken
+	icon_state = "wood-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/broken/LateInitialize()
+	. = ..()
+	break_tile()
+
+/turf/simulated/floor/wood/alt/tile
+	icon_state = "wood_tile"
+	initial_flooring = /decl/flooring/wood/alt/tile
+
+/turf/simulated/floor/wood/alt/tile/broken
+	icon_state = "wood_tile-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/tile/broken/LateInitialize()
+	. = ..()
+	break_tile()
+
+/turf/simulated/floor/wood/alt/panel
+	icon_state = "wood_panel"
+	initial_flooring = /decl/flooring/wood/alt/panel
+
+/turf/simulated/floor/wood/alt/panel/broken
+	icon_state = "wood_panel-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/panel/broken/LateInitialize()
+	. = ..()
+	break_tile()
+
+/turf/simulated/floor/wood/alt/parquet
+	icon_state = "wood_parquet"
+	initial_flooring = /decl/flooring/wood/alt/parquet
+
+/turf/simulated/floor/wood/alt/parquet/broken
+	icon_state = "wood_parquet-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/parquet/broken/LateInitialize()
+	. = ..()
+	break_tile()
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -188,6 +276,7 @@
 
 /turf/simulated/floor/tiled/kafel_full
 	name = "floor"
+	desc = "Ceramic tile flooring."
 	icon_state = "kafel_full"
 	initial_flooring = /decl/flooring/tiling/new_tile/kafel
 /turf/simulated/floor/tiled/kafel_full/white
@@ -406,6 +495,12 @@
 	initial_flooring = /decl/flooring/snow
 	var/list/crossed_dirs = list()
 
+/turf/simulated/floor/fakesnow
+	name = "fake snow"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "snow"
+	initial_flooring = /decl/flooring/snow/fake
+
 /turf/simulated/floor/snow/snow2
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
@@ -431,7 +526,9 @@
 /turf/simulated/floor/snow/Entered(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		if(L.hovering) // Flying things shouldn't make footprints.
+		if(L.hovering || L.flying) // Flying things shouldn't make footprints.
+			if(L.flying)
+				L.adjust_nutrition(-0.5)
 			return ..()
 		var/mdir = "[A.dir]"
 		crossed_dirs[mdir] = 1
@@ -444,3 +541,9 @@
 		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
 
 //**** Here ends snow ****
+
+/turf/simulated/floor/concrete
+	name = "concrete"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete"
+	initial_flooring = /decl/flooring/concrete

@@ -161,8 +161,8 @@
 /area/centcom/control)
 "aG" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled{
@@ -710,8 +710,8 @@
 /area/centcom/terminal)
 "cv" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled/dark,
@@ -1127,10 +1127,10 @@
 /area/centcom/medical)
 "dV" = (
 /obj/structure/table/reinforced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
 "dX" = (
@@ -2554,7 +2554,7 @@
 "iY" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
-	base_turf = /turf/simulated/floor/reinforced/virgo3c;
+	base_turf = /turf/simulated/floor/reinforced;
 	landmark_tag = "supply_cc";
 	name = "Centcom Supply Depot"
 	},
@@ -4405,12 +4405,6 @@
 /obj/item/weapon/book/manual/security_space_law,
 /turf/simulated/floor/tiled,
 /area/centcom/security)
-"pf" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/escape)
 "pg" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/carpet,
@@ -6652,7 +6646,6 @@
 /area/centcom/specops)
 "wo" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -7675,7 +7668,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "zv" = (
@@ -7858,6 +7851,12 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"Af" = (
+/obj/machinery/item_bank{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "Ai" = (
 /obj/structure/sign/department/armory,
 /turf/simulated/floor/tiled,
@@ -9127,6 +9126,17 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/centcom/command)
+"ET" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "EV" = (
 /obj/item/weapon/storage/box/evidence,
 /obj/item/weapon/folder/red,
@@ -12416,7 +12426,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "Pb" = (
@@ -13670,6 +13680,7 @@
 /area/centcom/terminal)
 "SK" = (
 /obj/structure/table/reinforced,
+/obj/machinery/librarycomp,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "SL" = (
@@ -13851,7 +13862,7 @@
 /area/centcom/command)
 "Tw" = (
 /obj/structure/table/glass,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "Tx" = (
@@ -15109,7 +15120,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 10
 	},
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "XE" = (
@@ -15135,7 +15146,6 @@
 /area/centcom/main_hall)
 "XI" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/simulated/floor/lino,
@@ -15274,8 +15284,8 @@
 /area/centcom/specops)
 "Yp" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
@@ -21030,9 +21040,9 @@ SA
 tQ
 tQ
 Ll
-pf
-pf
-pf
+Sc
+Sc
+Sc
 jh
 Sc
 Sc
@@ -29039,7 +29049,7 @@ dR
 Fo
 Fo
 Fo
-Fo
+ET
 Fo
 Fo
 Fo
@@ -33701,7 +33711,7 @@ Lu
 bm
 qE
 wc
-vd
+Af
 vd
 vd
 vd

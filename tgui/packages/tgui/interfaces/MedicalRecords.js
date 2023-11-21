@@ -1,19 +1,18 @@
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Collapsible, Icon, Input, LabeledList, Section, Tabs } from "../components";
-import { ComplexModal, modalOpen, modalRegisterBodyOverride } from "../interfaces/common/ComplexModal";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Collapsible, Icon, Input, LabeledList, Section, Tabs } from '../components';
+import { ComplexModal, modalOpen, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
+import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
-import { decodeHtmlEntities } from 'common/string';
 
 const severities = {
-  "Minor": "good",
-  "Medium": "average",
-  "Dangerous!": "bad",
-  "Harmful": "bad",
-  "BIOHAZARD THREAT!": "bad",
+  'Minor': 'good',
+  'Medium': 'average',
+  'Dangerous!': 'bad',
+  'Harmful': 'bad',
+  'BIOHAZARD THREAT!': 'bad',
 };
 
 const doEdit = (context, field) => {
@@ -30,12 +29,9 @@ const virusModalBodyOverride = (modal, context) => {
     <Section
       level={2}
       m="-1rem"
-      title={virus.name || "Virus"}
+      title={virus.name || 'Virus'}
       buttons={
-        <Button
-          icon="times"
-          color="red"
-          onClick={() => act('modal_close')} />
+        <Button icon="times" color="red" onClick={() => act('modal_close')} />
       }>
       <Box mx="0.5rem">
         <LabeledList>
@@ -56,10 +52,16 @@ const virusModalBodyOverride = (modal, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Symptoms">
             <LabeledList>
-              {virus.symptoms.map(s => (
-                <LabeledList.Item key={s.stage} label={s.stage + ". " + s.name}>
-                  <Box inline color="label">Strength:</Box> {s.strength}&nbsp;
-                  <Box inline color="label">Aggressiveness:</Box> {s.aggressiveness}
+              {virus.symptoms.map((s) => (
+                <LabeledList.Item key={s.stage} label={s.stage + '. ' + s.name}>
+                  <Box inline color="label">
+                    Strength:
+                  </Box>{' '}
+                  {s.strength}&nbsp;
+                  <Box inline color="label">
+                    Aggressiveness:
+                  </Box>{' '}
+                  {s.aggressiveness}
                 </LabeledList.Item>
               ))}
             </LabeledList>
@@ -72,16 +74,10 @@ const virusModalBodyOverride = (modal, context) => {
 
 export const MedicalRecords = (_properties, context) => {
   const { data } = useBackend(context);
-  const {
-    authenticated,
-    screen,
-  } = data;
+  const { authenticated, screen } = data;
   if (!authenticated) {
     return (
-      <Window
-        width={800}
-        height={380}
-        resizable>
+      <Window width={800} height={380} resizable>
         <Window.Content>
           <LoginScreen />
         </Window.Content>
@@ -90,25 +86,27 @@ export const MedicalRecords = (_properties, context) => {
   }
 
   let body;
-  if (screen === 2) { // List Records
+  if (screen === 2) {
+    // List Records
     body = <MedicalRecordsList />;
-  } else if (screen === 3) { // Record Maintenance
+  } else if (screen === 3) {
+    // Record Maintenance
     body = <MedicalRecordsMaintenance />;
-  } else if (screen === 4) { // View Records
+  } else if (screen === 4) {
+    // View Records
     body = <MedicalRecordsView />;
-  } else if (screen === 5) { // Virus Database
+  } else if (screen === 5) {
+    // Virus Database
     body = <MedicalRecordsViruses />;
-  } else if (screen === 6) { // Medbot Tracking
+  } else if (screen === 6) {
+    // Medbot Tracking
     body = <MedicalRecordsMedbots />;
   }
 
   return (
-    <Window
-      width={800}
-      height={380}
-      resizable>
+    <Window width={800} height={380} resizable>
       <ComplexModal maxHeight="100%" maxWidth="80%" />
-      <Window.Content className="Layout__content--flexColumn">
+      <Window.Content className="Layout__content--flexColumn" scrollable>
         <LoginInfo />
         <TemporaryNotice />
         <MedicalRecordsNavigation />
@@ -122,9 +120,7 @@ export const MedicalRecords = (_properties, context) => {
 
 const MedicalRecordsList = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    records,
-  } = data;
+  const { records } = data;
   return (
     <Fragment>
       <Input
@@ -138,7 +134,7 @@ const MedicalRecordsList = (_properties, context) => {
             key={i}
             icon="user"
             mb="0.5rem"
-            content={record.id + ": " + record.name}
+            content={record.id + ': ' + record.name}
             onClick={() => act('d_rec', { d_rec: record.ref })}
           />
         ))}
@@ -151,17 +147,15 @@ const MedicalRecordsMaintenance = (_properties, context) => {
   const { act } = useBackend(context);
   return (
     <Fragment>
-      <Button
-        icon="download"
-        content="Backup to Disk"
-        disabled
-      /><br />
+      <Button icon="download" content="Backup to Disk" disabled />
+      <br />
       <Button
         icon="upload"
         content="Upload from Disk"
         my="0.5rem"
         disabled
-      /> <br />
+      />{' '}
+      <br />
       <Button.Confirm
         icon="trash"
         content="Delete All Medical Records"
@@ -173,10 +167,7 @@ const MedicalRecordsMaintenance = (_properties, context) => {
 
 const MedicalRecordsView = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    medical,
-    printing,
-  } = data;
+  const { medical, printing } = data;
   return (
     <Fragment>
       <Section title="General Data" level={2} mt="-6px">
@@ -200,7 +191,8 @@ const MedicalRecordsView = (_properties, context) => {
           content="Print Entry"
           ml="0.5rem"
           onClick={() => act('print_p')}
-        /><br />
+        />
+        <br />
         <Button
           icon="arrow-left"
           content="Back"
@@ -214,15 +206,9 @@ const MedicalRecordsView = (_properties, context) => {
 
 const MedicalRecordsViewGeneral = (_properties, context) => {
   const { data } = useBackend(context);
-  const {
-    general,
-  } = data;
+  const { general } = data;
   if (!general || !general.fields) {
-    return (
-      <Box color="bad">
-        General records lost!
-      </Box>
-    );
+    return <Box color="bad">General records lost!</Box>;
   }
   return (
     <Fragment>
@@ -245,7 +231,7 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
         </LabeledList>
       </Box>
       <Box width="50%" float="right" textAlign="right">
-        {!!general.has_photos && (
+        {!!general.has_photos &&
           general.photos.map((p, i) => (
             <Box
               key={i}
@@ -259,11 +245,11 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
                   'margin-bottom': '0.5rem',
                   '-ms-interpolation-mode': 'nearest-neighbor',
                 }}
-              /><br />
+              />
+              <br />
               Photo #{i + 1}
             </Box>
-          ))
-        )}
+          ))}
       </Box>
     </Fragment>
   );
@@ -271,9 +257,7 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
 
 const MedicalRecordsViewMedical = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    medical,
-  } = data;
+  const { medical } = data;
   if (!medical || !medical.fields) {
     return (
       <Box color="bad">
@@ -291,30 +275,29 @@ const MedicalRecordsViewMedical = (_properties, context) => {
     <Fragment>
       <LabeledList>
         {medical.fields.map((field, i) => (
-          <LabeledList.Item
-            key={i}
-            label={field.field} preserveWhitespace>
-            {field.value}
-            <Button
-              icon="pen"
-              ml="0.5rem"
-              mb={field.line_break ? '1rem' : 'initial'}
-              onClick={() => doEdit(context, field)}
-            />
+          <LabeledList.Item key={i} label={field.field}>
+            <Box preserveWhitespace>
+              {field.value}
+              <Button
+                icon="pen"
+                ml="0.5rem"
+                mb={field.line_break ? '1rem' : 'initial'}
+                onClick={() => doEdit(context, field)}
+              />
+            </Box>
           </LabeledList.Item>
         ))}
       </LabeledList>
       <Section title="Comments/Log" level={2}>
         {medical.comments.length === 0 ? (
-          <Box color="label">
-            No comments found.
-          </Box>
-        )
-          : medical.comments.map((comment, i) => (
+          <Box color="label">No comments found.</Box>
+        ) : (
+          medical.comments.map((comment, i) => (
             <Box key={i}>
               <Box color="label" inline>
                 {comment.header}
-              </Box><br />
+              </Box>
+              <br />
               {comment.text}
               <Button
                 icon="comment-slash"
@@ -323,7 +306,8 @@ const MedicalRecordsViewMedical = (_properties, context) => {
                 onClick={() => act('del_c', { del_c: i + 1 })}
               />
             </Box>
-          ))}
+          ))
+        )}
 
         <Button
           icon="comment-medical"
@@ -340,10 +324,8 @@ const MedicalRecordsViewMedical = (_properties, context) => {
 
 const MedicalRecordsViruses = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    virus,
-  } = data;
-  virus.sort((a, b) => a.name > b.name ? 1 : -1);
+  const { virus } = data;
+  virus.sort((a, b) => (a.name > b.name ? 1 : -1));
   return virus.map((vir, i) => (
     <Fragment key={i}>
       <Button
@@ -359,21 +341,12 @@ const MedicalRecordsViruses = (_properties, context) => {
 
 const MedicalRecordsMedbots = (_properties, context) => {
   const { data } = useBackend(context);
-  const {
-    medbots,
-  } = data;
+  const { medbots } = data;
   if (medbots.length === 0) {
-    return (
-      <Box color="label">
-        There are no Medbots.
-      </Box>
-    );
+    return <Box color="label">There are no Medbots.</Box>;
   }
   return medbots.map((medbot, i) => (
-    <Collapsible
-      key={i}
-      open
-      title={medbot.name}>
+    <Collapsible key={i} open title={medbot.name}>
       <Box px="0.5rem">
         <LabeledList>
           <LabeledList.Item label="Location">
@@ -382,20 +355,18 @@ const MedicalRecordsMedbots = (_properties, context) => {
           <LabeledList.Item label="Status">
             {medbot.on ? (
               <Fragment>
-                <Box color="good">
-                  Online
-                </Box>
+                <Box color="good">Online</Box>
                 <Box mt="0.5rem">
                   {medbot.use_beaker
-                    ? ("Reservoir: "
-                    + medbot.total_volume + "/" + medbot.maximum_volume)
-                    : "Using internal synthesizer."}
+                    ? 'Reservoir: ' +
+                    medbot.total_volume +
+                    '/' +
+                    medbot.maximum_volume
+                    : 'Using internal synthesizer.'}
                 </Box>
               </Fragment>
             ) : (
-              <Box color="average">
-                Offline
-              </Box>
+              <Box color="average">Offline</Box>
             )}
           </LabeledList.Item>
         </LabeledList>
@@ -406,9 +377,7 @@ const MedicalRecordsMedbots = (_properties, context) => {
 
 const MedicalRecordsNavigation = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    screen,
-  } = data;
+  const { screen } = data;
   return (
     <Tabs>
       <Tabs.Tab

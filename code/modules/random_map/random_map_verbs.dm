@@ -42,9 +42,9 @@
 
 	var/datum/random_map/M
 	if(tgui_alert(usr, "Do you wish to customise the map?","Customize",list("Yes","No")) == "Yes")
-		var/seed = input(usr, "Seed? (blank for none)")       as text|null
-		var/lx =   input(usr, "X-size? (blank for default)")  as num|null
-		var/ly =   input(usr, "Y-size? (blank for default)")  as num|null
+		var/seed = tgui_input_text(usr, "Seed? (blank for none)")
+		var/lx =   tgui_input_number(usr, "X-size? (blank for default)")
+		var/ly =   tgui_input_number(usr, "Y-size? (blank for default)")
 		M = new map_datum(seed,null,null,null,lx,ly,1)
 	else
 		M = new map_datum(null,null,null,null,null,null,1)
@@ -65,9 +65,9 @@
 		return
 	var/datum/random_map/M = random_maps[choice]
 	if(istype(M))
-		var/tx = input(usr, "X? (default to current turf)") as num|null
-		var/ty = input(usr, "Y? (default to current turf)") as num|null
-		var/tz = input(usr, "Z? (default to current turf)") as num|null
+		var/tx = tgui_input_number(usr, "X? (default to current turf)")
+		var/ty = tgui_input_number(usr, "Y? (default to current turf)")
+		var/tz = tgui_input_number(usr, "Z? (default to current turf)")
 		if(isnull(tx) || isnull(ty) || isnull(tz))
 			var/turf/T = get_turf(usr)
 			tx = !isnull(tx) ? tx : T.x
@@ -98,8 +98,8 @@
 	var/datum/random_map/overlay_map = random_maps[choice]
 
 	if(istype(base_map) && istype(overlay_map))
-		var/tx = input(usr, "X? (default to 1)") as num|null
-		var/ty = input(usr, "Y? (default to 1)") as num|null
+		var/tx = tgui_input_number(usr, "X? (default to 1)")
+		var/ty = tgui_input_number(usr, "Y? (default to 1)")
 		if(!tx) tx = 1
 		if(!ty) ty = 1
 		message_admins("[key_name_admin(usr)] has applied [overlay_map.name] to [base_map.name] at x[tx],y[ty].")

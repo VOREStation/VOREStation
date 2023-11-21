@@ -128,7 +128,7 @@
 /mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return
-	
+
 	add_fingerprint(usr)
 
 	switch(action)
@@ -379,7 +379,8 @@
 	s.start()
 
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
-	qdel(src)
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/secbot/proc/target_name(mob/living/T)
 	if(ishuman(T))
@@ -435,8 +436,8 @@
 
 /obj/item/weapon/secbot_assembly/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool) && !build_step)
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER) && !build_step)
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(WT.remove_fuel(0, user))
 			build_step = 1
 			add_overlay("hs_hole")
@@ -471,7 +472,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

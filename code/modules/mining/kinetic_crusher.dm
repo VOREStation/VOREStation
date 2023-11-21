@@ -69,8 +69,8 @@
 /obj/item/weapon/kinetic_crusher/Initialize()
 	. = ..()
 	if(requires_Wield)
-		RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-		RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+		RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+		RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 
 /obj/item/weapon/kinetic_crusher/ComponentInitialize()
 	. = ..()
@@ -163,7 +163,7 @@
 		D.fire()
 		charged = FALSE
 		update_icon()
-		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
+		addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
 		// * (user?.ConflictElementCount(CONFLICT_ELEMENT_CRUSHER) || 1 - tentatively commented out
 		return
 	if(proximity_flag && isliving(target))
@@ -230,7 +230,7 @@
 	desc = "A modified design of a proto-kinetic crusher, it is still little more of a combination of various mining tools cobbled together \
 	and kit-bashed into a high-tech cleaver on a stick - with a handguard and a goliath hide grip. While it is still of little use to any \
 	but the most skilled and/or suicidal miners against local fauna, it's an elegant weapon for a more civilized hunter."
-    
+
     look gary there i am
     - hatterhat
 */
@@ -256,6 +256,9 @@
 	backstab_bonus = 40 // 100
 	thrown_bonus = 20 // 120
 	update_item_state = FALSE
+	slot_flags = SLOT_BELT
+
+
 
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets
@@ -275,6 +278,7 @@
 	detonation_damage = 37 // 75
 	backstab_bonus = 55 // 130
 	var/obj/item/offhand/crushergauntlets/offhand
+	slot_flags = null
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/equipped()
 	. = ..()
@@ -381,6 +385,7 @@
 	thrown_bonus = 50 // 135 but you drop your knife because you threw it
 
 
+
 //destablizing force
 /obj/item/projectile/destabilizer
 	name = "destabilizing force"
@@ -420,4 +425,3 @@ but alas
 - hatterhat
 
 */
-

@@ -130,7 +130,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "az" = (
@@ -245,13 +245,13 @@
 /area/submap/Diner)
 "aQ" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aR" = (

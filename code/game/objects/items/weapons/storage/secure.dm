@@ -43,7 +43,7 @@
 			playsound(src, "sparks", 50, 1)
 			return
 
-		if (W.is_screwdriver())
+		if (W.has_tool_quality(TOOL_SCREWDRIVER))
 			if (do_after(user, 20 * W.toolspeed))
 				src.open =! src.open
 				playsound(src, W.usesound, 50, 1)
@@ -80,16 +80,27 @@
 		return
 	..()
 
+/obj/item/weapon/storage/secure/AltClick(mob/user as mob)
+	if (isliving(user) && Adjacent(user) && (src.locked == 1))
+		to_chat(user, "<span class='warning'>[src] is locked and cannot be opened!</span>")
+	else if (isliving(user) && Adjacent(user) && (!src.locked))
+		src.open(usr)
+	else
+		for(var/mob/M in range(1))
+			if (M.s_active == src)
+				src.close(M)
+	src.add_fingerprint(user)
+	return
 
 /obj/item/weapon/storage/secure/attack_self(mob/user as mob)
 	tgui_interact(user)
 
 /obj/item/weapon/storage/secure/tgui_interact(mob/user, datum/tgui/ui = null)
-	ui = SStgui.try_update_ui(user, src, ui)	
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SecureSafe", name)
 		ui.open()
-		
+
 /obj/item/weapon/storage/secure/tgui_data(mob/user)
 	var/list/data = list()
 	data["locked"] = locked

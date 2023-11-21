@@ -18,7 +18,7 @@
 
 	switch(action)
 		if("set_tag")
-			var/new_ident = sanitize_text(input(usr, "Enter a new ident tag.", "Gyrotron Control", gyro_tag) as null|text)
+			var/new_ident = sanitize_text(tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron Control", gyro_tag))
 			if(new_ident)
 				gyro_tag = new_ident
 			return TRUE

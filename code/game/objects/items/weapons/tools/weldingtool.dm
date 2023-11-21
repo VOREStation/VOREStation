@@ -41,6 +41,7 @@
 	toolspeed = 1
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
+	tool_qualities = list(TOOL_WELDER)
 
 /obj/item/weapon/weldingtool/Initialize()
 	. = ..()
@@ -57,6 +58,9 @@
 	if(welding || always_process)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
+
+/obj/item/weapon/weldingtool/get_welder()
+	return src
 
 /obj/item/weapon/weldingtool/examine(mob/user)
 	. = ..()
@@ -79,19 +83,21 @@
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
-				return 1
+				return TRUE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>")
-				return 1
+				return TRUE
 
 		if(!welding)
 			to_chat(user, "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>")
-			return 1
+			return TRUE
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
 			remove_fuel(1, user)
-			return 1
+			return TRUE
+		else
+			return TRUE //Stops you from accidentally harming someone while on help intent.
 
 	return ..()
 
@@ -687,5 +693,23 @@
 			setWelding(TRUE, M.occupant)
 		else
 			setWelding(FALSE, M.occupant)
+
+
+/obj/item/weapon/weldingtool/dummy
+	name = "dummy welding tool"
+	desc = "you shouldn't be reading this. Tell a dev!"
+	welding = TRUE
+
+/obj/item/weapon/weldingtool/dummy/process()
+	return
+
+/obj/item/weapon/weldingtool/dummy/get_fuel()
+	return get_max_fuel()
+
+/obj/item/weapon/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
+	return TRUE
+
+/obj/item/weapon/weldingtool/dummy/isOn()
+	return TRUE
 
 #undef WELDER_FUEL_BURN_INTERVAL

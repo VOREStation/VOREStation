@@ -61,7 +61,7 @@
 	if(busy)
 		to_chat(user,"<span class='notice'>The slot machine is currently running.</span> ")
 		return
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
@@ -199,7 +199,7 @@
 
 		if (symbol1 == "platinum coin" && symbol2 == "platinum coin" && symbol3 == "platinum coin")
 			output = "<span class='notice'>Three platinum coins! The slot machine deposits a platinum chip!</span>"
-			platinumwin = TRUE;
+			platinumwin = TRUE
 			celebrate = 1
 
 		icon_state = initial(icon_state) // Set it back to the original iconstate.
@@ -291,7 +291,7 @@
 	if(busy)
 		to_chat(user,"<span class='notice'>The slot machine is currently running.</span> ")
 		return
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")

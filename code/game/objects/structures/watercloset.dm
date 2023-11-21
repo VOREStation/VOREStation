@@ -44,7 +44,7 @@
 	icon_state = "[initial(icon_state)][open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		playsound(src, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30))
@@ -123,7 +123,6 @@
 					GM.adjustBruteLoss(5)
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
-	
 
 /obj/structure/urinal
 	name = "urinal"
@@ -151,7 +150,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
+	desc = "The HS-451. Installed in the 2250s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -194,14 +193,14 @@
 			wash(M)
 			process_heat(M)
 		for (var/atom/movable/G in src.loc)
-			G.clean_blood()
+			G.clean_blood(TRUE)
 	else
 		soundloop.stop()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 		playsound(src, I.usesound, 50, 1)
@@ -255,13 +254,7 @@
 
 		M.clean_blood()
 
-	if(isturf(loc))
-		var/turf/tile = loc
-		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				qdel(E)
-
-	reagents.splash(O, 10)
+	reagents.splash(O, 10, min_spill = 0, max_spill = 0)
 
 /obj/machinery/shower/process()
 	if(!on) return
@@ -275,11 +268,10 @@
 	reagents.add_reagent("water", reagents.get_free_space())
 
 /obj/machinery/shower/proc/wash_floor()
-	if(!ismist && is_washing)
+	if(is_washing)
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-	reagents.splash(T, reagents.total_volume)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0

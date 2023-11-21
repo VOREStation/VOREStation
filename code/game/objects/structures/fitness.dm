@@ -34,7 +34,7 @@
 	var/list/qualifiers = list("with ease", "without any trouble", "with great effort")
 
 /obj/structure/fitness/weightlifter/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 		weight = ((weight) % qualifiers.len) + 1
 		to_chat(user, "You set the machine's weight level to [weight].")

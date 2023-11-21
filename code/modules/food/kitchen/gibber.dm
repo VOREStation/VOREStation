@@ -212,7 +212,7 @@
 			new_meat.name = "[slab_name] [new_meat.name]"
 			new_meat.reagents.add_reagent("nutriment",slab_nutrition)
 			if(src.occupant.reagents)
-				src.occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/slab_count,1))
+				src.occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/(2 + occupant.meat_amount),1))
 
 	add_attack_logs(user,occupant,"Used [src] to gib")
 

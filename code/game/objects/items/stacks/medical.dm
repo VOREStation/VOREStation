@@ -20,8 +20,7 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return 1
 
-	if ( ! (istype(user, /mob/living/carbon/human) || \
-			istype(user, /mob/living/silicon)) )
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
@@ -129,7 +128,7 @@
 				if(used >= available)
 					to_chat(user, "<span class='warning'>You run out of [src]!</span>")
 					break
-				
+
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message("<b>\The [user]</b> bandages \a [W.desc] on [M]'s [affecting.name].", \
 					                              "<span class='notice'>You bandage \a [W.desc] on [M]'s [affecting.name].</span>" )
@@ -263,6 +262,12 @@
 			use(1)
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
+
+/obj/item/stack/medical/ointment/simple
+	name = "ointment paste"
+	desc = "A simple thick paste used to salve burns."
+	singular_name = "old-ointment"
+	icon_state = "old-ointment"
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"

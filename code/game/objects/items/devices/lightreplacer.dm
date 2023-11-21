@@ -53,6 +53,7 @@
 	var/emagged = 0
 	var/failmsg = ""
 	var/charge = 0
+	var/selected_color = LIGHT_COLOR_INCANDESCENT_TUBE //Default color!
 
 	// Eating used bulbs gives us bulb shards
 	var/bulb_shards = 0
@@ -141,6 +142,10 @@
 			return
 	*/
 	to_chat(usr, "It has [uses] lights remaining.")
+	var/new_color = input(usr, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color) as color|null
+	if(new_color)
+		selected_color = new_color
+		to_chat(usr, "The light color has been changed.")
 
 /obj/item/device/lightreplacer/update_icon()
 	icon_state = "lightreplacer[emagged]"
@@ -184,19 +189,13 @@
 					to_chat(U, "<span class='notice'>\The [src] has fabricated a new bulb from the broken bulbs it has stored. It now has [uses] uses.</span>")
 					playsound(src, 'sound/machines/ding.ogg', 50, 1)
 				target.status = LIGHT_EMPTY
+				target.installed_light = null //Remove the light!
 				target.update()
 
 			var/obj/item/weapon/light/L2 = new target.light_type()
-
-			target.status = L2.status
-			target.switchcount = L2.switchcount
-			target.rigged = emagged
-			target.brightness_range = L2.brightness_range
-			target.brightness_power = L2.brightness_power
-			target.brightness_color = L2.brightness_color
-			target.on = target.has_power()
+			L2.brightness_color = selected_color
+			target.insert_bulb(L2) //Call the insertion proc.
 			target.update()
-			qdel(L2)
 
 			if(target.on && target.rigged)
 				target.explode()

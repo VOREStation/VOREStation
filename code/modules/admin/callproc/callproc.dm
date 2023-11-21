@@ -21,7 +21,7 @@
 			target = null
 			targetselected = 0
 
-	var/procname = input(usr, "Proc path, eg: /proc/fake_blood","Path:", null) as text|null
+	var/procname = tgui_input_text(usr, "Proc path, eg: /proc/fake_blood","Path:", null)
 	if(!procname)
 		return
 
@@ -136,7 +136,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/procname = input(usr, "Proc name, eg: fake_blood","Proc:", null) as text|null
+	var/procname = tgui_input_text(usr, "Proc name, eg: fake_blood","Proc:", null)
 	if(!procname)
 		return
 	if(!hascall(A,procname))
@@ -161,7 +161,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(usr, .)
 
 /client/proc/get_callproc_args()
-	var/argnum = input(usr, "Number of arguments","Number:",0) as num|null
+	var/argnum = tgui_input_number(usr, "Number of arguments","Number:",0)
 	if(isnull(argnum))
 		return null					//Cancel
 

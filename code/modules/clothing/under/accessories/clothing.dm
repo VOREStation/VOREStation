@@ -499,7 +499,7 @@
 
 /obj/item/clothing/accessory/asymmetric
 	name = "blue asymmetrical jacket"
-	desc = "Insultingly avant-garde in prussian blue."
+	desc = "Insultingly avant-garde in Prussian blue."
 	icon_state = "asym_blue"
 
 /obj/item/clothing/accessory/asymmetric/purple
@@ -514,7 +514,7 @@
 
 /obj/item/clothing/accessory/asymovercoat
 	name = "orange asymmetrical overcoat"
-	desc = "An asymmetrical orange overcoat in a 2560's fashion."
+	desc = "An asymmetrical orange overcoat in a 2320's fashion."
 	icon_state = "asymovercoat"
 
 /*

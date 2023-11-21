@@ -25,7 +25,7 @@
 			return TRUE
 
 		if("set_tag")
-			var/new_ident = sanitize_text(input(usr, "Enter a new ident tag.", "Core Control", core_tag) as null|text)
+			var/new_ident = sanitize_text(tgui_input_text(usr, "Enter a new ident tag.", "Core Control", core_tag))
 			if(new_ident)
 				core_tag = new_ident
 			return TRUE

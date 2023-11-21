@@ -4,10 +4,11 @@
 	<br><br>\
 	The many star systems inhabitied by humanity and friends can seem bewildering to the uninitiated. \
 	This guide seeks to provide valuable information to anyone new in the system. This edition is tailored for visitors to the Virgo-Erigone system, \
-	however it also contains useful general information about human space, such as locations you may hear about, the current (as of 2562) political climate, various aliens you \
+	however it also contains useful general information about human space, such as locations you may hear about, the current (as of 2322) political climate, various aliens you \
 	may meet in your travels, the big Trans-Stellars, and more."
 	children = list(
 		/datum/lore/codex/category/important_locations,
+		/datum/lore/codex/category/history,
 		/datum/lore/codex/category/species,
 		/datum/lore/codex/category/auto_org/tsc,
 		/datum/lore/codex/category/auto_org/other,
@@ -29,5 +30,8 @@
 	to an immigrant from another system, or even from outside human space, and anyone inbetween. The publisher wishes to note that any opinions expressed \
 	in this text does not reflect the opinions of the publisher, and are instead the author's.\
 	<br><br>\
-	Eshi Tache has also written other <i>The Traveler's Guide</i> books, including <i>Sol Edition</i>, <i>Tau Ceti Edition</i>, <i>Alpha Centauri Edition</i>, <i>Vir Edition</i>, and more, \
-	which you can find in your local book store, library, or e-reader device."
+	Eshi Tache has also written other <i>The Traveler's Guide</i> books, including <i>Sol Edition</i>, <i>Tau Ceti Edition</i>, <i>Alpha Centauri Edition</i>, <i>Virgo-Erigone Edition</i>, and more, \
+	which you can find in your local book store, library, or e-reader device. \
+	<br><br> \
+	((Please note - this is an IC book. Lore inside may exhibit biases differing from reality. Furthermore, it may be outdated in parts. Please consult the VOREStation Wiki \
+	for up to date and objective information under the Backstory button.))"

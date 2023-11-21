@@ -81,31 +81,6 @@
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 4
 
-/datum/frame/frame_types/oven
-	name = "Oven"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/fryer
-	name = "Fryer"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/grill
-	name = "Grill"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/cerealmaker
-	name = "Cereal Maker"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/candymachine
-	name = "Candy Machine"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
 /datum/frame/frame_types/fax
 	name = "Fax"
 	frame_class = FRAME_CLASS_MACHINE
@@ -221,11 +196,25 @@
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
 	y_offset = 28
-	
+
 /datum/frame/frame_types/arfgs
 	name = "ARF Generator"
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 3
+
+/datum/frame/frame_types/injector_maker
+	name = "Ready-to-Use Medicine 3000"
+	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/machinery/atmospheric_field_generator
+	frame_size = 3
+
+/datum/frame/frame_types/electrochromic_button
+	name = "Electrochromic Window Button"
+	frame_class = FRAME_CLASS_ALARM
+	frame_size = 1
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 24
+	y_offset = 24
 
 //////////////////////////////
 // Frame Object (Structure)
@@ -311,7 +300,7 @@
 	update_icon()
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
-	if(P.is_wrench())
+	if(P.has_tool_quality(TOOL_WRENCH))
 		if(state == FRAME_PLACED && !anchored)
 			to_chat(user, "<span class='notice'>You start to wrench the frame into place.</span>")
 			playsound(src, P.usesound, 50, 1)
@@ -331,9 +320,9 @@
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				anchored = FALSE
 
-	else if(istype(P, /obj/item/weapon/weldingtool))
+	else if(P.has_tool_quality(TOOL_WELDER))
 		if(state == FRAME_PLACED)
-			var/obj/item/weapon/weldingtool/WT = P
+			var/obj/item/weapon/weldingtool/WT = P.get_welder()
 			if(WT.remove_fuel(0, user))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
@@ -364,7 +353,7 @@
 				to_chat(user, "<span class='warning'>This frame does not accept circuit boards of this type!</span>")
 				return
 
-	else if(P.is_screwdriver())
+	else if(P.has_tool_quality(TOOL_SCREWDRIVER))
 		if(state == FRAME_UNFASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
@@ -459,7 +448,7 @@
 				qdel(src)
 				return
 
-	else if(P.is_crowbar())
+	else if(P.has_tool_quality(TOOL_CROWBAR))
 		if(state == FRAME_UNFASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
@@ -536,7 +525,7 @@
 						break
 				to_chat(user, desc)
 
-	else if(P.is_wirecutter())
+	else if(P.has_tool_quality(TOOL_WIRECUTTER))
 		if(state == FRAME_WIRED)
 			if( \
 				frame_type.frame_class == FRAME_CLASS_COMPUTER || \

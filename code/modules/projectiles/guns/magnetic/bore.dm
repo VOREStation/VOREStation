@@ -88,7 +88,7 @@
 	. = ..()
 	update_rating_mod()
 	if(removable_components)
-		if(thing.is_crowbar())
+		if(thing.has_tool_quality(TOOL_CROWBAR))
 			if(!manipulator)
 				to_chat(user, "<span class='warning'>\The [src] has no manipulator installed.</span>")
 				return

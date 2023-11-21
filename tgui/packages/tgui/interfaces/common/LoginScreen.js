@@ -1,10 +1,13 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Flex, Icon, Section } from '../../components';
+import { Box, Button, Icon } from '../../components';
 import { FullscreenNotice } from './FullscreenNotice';
 
 /**
  * Displays a login screen that users can interact with
  * using an ID card in their hand.
+ * Special elements can be invoked by defining machineType prop
+ * possible string arguments are defined in SpecialMachineInteraction in loginScreen.js
+ *
  * Required data fields:
  * * `scan` — The name of the currently inserted ID
  * * `isAI` — Whether the user is an AI. If true, shows "Login as AI"
@@ -25,27 +28,19 @@ import { FullscreenNotice } from './FullscreenNotice';
  */
 export const LoginScreen = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    scan,
-    isAI,
-    isRobot,
-  } = data;
+  const { scan, isAI, isRobot } = data;
+  const { machineType } = _properties;
   return (
     <FullscreenNotice title="Welcome">
       <Box fontSize="1.5rem" bold>
-        <Icon
-          name="user-circle"
-          verticalAlign="middle"
-          size={3}
-          mr="1rem"
-        />
+        <Icon name="user-circle" verticalAlign="middle" size={3} mr="1rem" />
         Guest
       </Box>
       <Box color="label" my="1rem">
         ID:
         <Button
           icon="id-card"
-          content={scan ? scan : "----------"}
+          content={scan ? scan : '----------'}
           ml="0.5rem"
           onClick={() => act('scan')}
         />
@@ -54,28 +49,66 @@ export const LoginScreen = (_properties, context) => {
         icon="sign-in-alt"
         disabled={!scan}
         content="Login"
-        onClick={() => act('login', {
-          login_type: 1,
-        })}
+        onClick={() =>
+          act('login', {
+            login_type: 1,
+          })
+        }
       />
+
       {!!isAI && (
         <Button
           icon="sign-in-alt"
           content="Login as AI"
-          onClick={() => act('login', {
-            login_type: 2,
-          })}
+          onClick={() =>
+            act('login', {
+              login_type: 2,
+            })
+          }
         />
       )}
       {!!isRobot && (
         <Button
           icon="sign-in-alt"
           content="Login as Cyborg"
-          onClick={() => act('login', {
-            login_type: 3,
-          })}
+          onClick={() =>
+            act('login', {
+              login_type: 3,
+            })
+          }
         />
       )}
+      <Box>
+        <SpecialMachineInteraction specialType={machineType} />
+      </Box>
     </FullscreenNotice>
   );
+};
+
+/**
+ * Special login screen elements that we want to appear for specific machines.
+ * Props: "specialType", arguemnt: string
+ * specialType definitions are defined in LoginScreen.js SpecialMachineInteraction
+ * currently supported: "Fax"
+ */
+export const SpecialMachineInteraction = (_properties, context) => {
+  const { act } = useBackend(context);
+  const { specialType } = _properties;
+  if (!specialType) {
+    return null;
+  } else if (specialType === 'Fax') {
+    return (
+      <Button
+        position="relative"
+        content="Send Automated Fax Request"
+        bottom="152px"
+        left="188px"
+        icon="share-square"
+        onClick={() => act('send_automated_staff_request')}
+        tooltip={
+          "Automated Fax Requests do not require staff to post on discord, but won't ping the related roles."
+        }
+      />
+    );
+  }
 };

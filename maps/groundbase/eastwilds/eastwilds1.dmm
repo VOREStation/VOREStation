@@ -1,63 +1,87 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall/planetary/virgo3c,
+/turf/unsimulated/wall/planetary/normal{
+	desc = "It's quite impassable";
+	icon_state = "rock-dark";
+	name = "impassable rock"
+	},
 /area/submap/groundbase/wilderness/east)
+"b" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
+/area/submap/groundbase/wilderness/east/unexplored)
 "c" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/east)
 "d" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/water/virgo3c,
+/turf/simulated/floor/water/seasonal,
+/area/submap/groundbase/wilderness/east)
+"e" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/wilderness/east/unexplored)
+"f" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/water/seasonal{
+	outdoors = 0
+	},
+/area/submap/groundbase/wilderness/east)
+"g" = (
+/obj/effect/landmark/wildlife/water,
+/turf/simulated/floor/water/seasonal,
+/area/submap/groundbase/wilderness/east)
+"h" = (
+/obj/effect/landmark/wildlife/forest,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
+/area/submap/groundbase/wilderness/east/unexplored)
+"i" = (
+/obj/effect/landmark/wildlife/water,
+/turf/simulated/floor/water/deep/seasonal,
 /area/submap/groundbase/wilderness/east)
 "l" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/east/unexplored)
 "m" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
-/turf/simulated/floor/water/deep/virgo3c,
-/area/submap/groundbase/wilderness/east)
-"p" = (
-/obj/effect/map_effect/portal/line/side_a{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/water/deep/seasonal,
 /area/submap/groundbase/wilderness/east)
 "r" = (
-/turf/simulated/mineral/cave/virgo3c,
+/turf/simulated/mineral/cave,
 /area/submap/groundbase/wilderness/east/cave)
 "w" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/east_west{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east)
 "y" = (
 /turf/simulated/mineral/ignore_cavegen,
 /area/submap/groundbase/wilderness/east)
 "F" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east/unexplored)
 "G" = (
 /obj/effect/map_effect/portal/line/side_a{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east)
 "M" = (
-/turf/simulated/floor/outdoors/grass/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/wilderness/east)
 "O" = (
-/turf/simulated/floor/water/virgo3c,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east/cave)
 "P" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/submap/groundbase/wilderness/east)
 "Q" = (
-/turf/simulated/floor/water/virgo3c{
+/turf/simulated/floor/water/seasonal{
 	outdoors = 0
 	},
 /area/submap/groundbase/wilderness/east)
@@ -65,18 +89,19 @@
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east{
 	dir = 4
 	},
-/turf/simulated/floor/water/virgo3c,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east)
 "U" = (
-/turf/simulated/floor/water/deep/virgo3c,
+/turf/simulated/floor/water/deep/seasonal,
 /area/submap/groundbase/wilderness/east)
 "V" = (
-/turf/simulated/floor/beach/sand/virgo3c{
-	edge_blending_priority = -1
+/turf/simulated/floor/beach/sand{
+	edge_blending_priority = -1;
+	outdoors = 1
 	},
 /area/submap/groundbase/wilderness/east)
 "Z" = (
-/turf/simulated/floor/water/virgo3c,
+/turf/simulated/floor/water/seasonal,
 /area/submap/groundbase/wilderness/east)
 
 (1,1,1) = {"
@@ -818,7 +843,7 @@ Z
 U
 U
 U
-U
+i
 U
 U
 U
@@ -1423,7 +1448,7 @@ U
 U
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -3320,7 +3345,7 @@ r
 r
 r
 Q
-Q
+f
 Q
 Q
 U
@@ -3432,7 +3457,7 @@ Z
 Z
 V
 V
-F
+e
 F
 F
 F
@@ -3852,7 +3877,7 @@ U
 U
 Z
 Z
-Z
+g
 Z
 Z
 V
@@ -4206,7 +4231,7 @@ Z
 Z
 Z
 Z
-Z
+g
 U
 U
 U
@@ -4683,7 +4708,7 @@ U
 U
 Z
 Z
-Z
+g
 Z
 Z
 V
@@ -4858,7 +4883,7 @@ F
 F
 l
 l
-l
+h
 l
 l
 l
@@ -5797,7 +5822,7 @@ l
 l
 l
 l
-l
+h
 l
 l
 l
@@ -6490,7 +6515,7 @@ U
 U
 U
 U
-U
+i
 Z
 Z
 Z
@@ -7230,7 +7255,7 @@ V
 Z
 Z
 Z
-Z
+g
 Z
 Z
 V
@@ -7968,7 +7993,7 @@ U
 Z
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -8569,7 +8594,7 @@ l
 l
 l
 l
-l
+h
 l
 l
 l
@@ -8975,7 +9000,7 @@ l
 l
 l
 l
-l
+h
 l
 l
 l
@@ -9788,7 +9813,7 @@ l
 l
 l
 l
-l
+h
 l
 l
 l
@@ -10899,7 +10924,7 @@ U
 U
 U
 U
-U
+i
 U
 Z
 Z
@@ -11484,7 +11509,7 @@ Z
 Z
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -12081,7 +12106,7 @@ U
 U
 U
 Z
-Z
+g
 Z
 Z
 Z
@@ -12309,7 +12334,7 @@ Z
 Z
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -13379,7 +13404,7 @@ l
 l
 l
 l
-l
+h
 l
 F
 F
@@ -13444,7 +13469,7 @@ r
 F
 F
 F
-l
+b
 l
 l
 l
@@ -13632,7 +13657,7 @@ Z
 U
 U
 U
-U
+i
 Z
 Z
 Z
@@ -13653,7 +13678,7 @@ Z
 V
 V
 F
-F
+e
 F
 F
 l
@@ -13692,7 +13717,7 @@ r
 Q
 Q
 Q
-Q
+f
 Q
 Q
 Q
@@ -14435,7 +14460,7 @@ F
 l
 l
 l
-l
+h
 l
 l
 l
@@ -15057,7 +15082,7 @@ l
 l
 l
 l
-l
+h
 l
 l
 F
@@ -15439,7 +15464,7 @@ l
 l
 l
 l
-l
+h
 l
 l
 l
@@ -15753,7 +15778,7 @@ Z
 Z
 Z
 Z
-Z
+g
 Z
 Z
 Z
@@ -18325,7 +18350,7 @@ l
 l
 l
 l
-l
+h
 l
 F
 F
@@ -19744,11 +19769,11 @@ y
 y
 y
 P
-P
 M
 M
 M
-P
+M
+M
 P
 y
 y
@@ -19890,7 +19915,7 @@ w
 G
 G
 G
-p
+G
 a
 a
 a

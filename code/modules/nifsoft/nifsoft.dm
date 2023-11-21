@@ -38,6 +38,8 @@
 	var/vision_flags_mob = 0
 	var/darkness_view = 0
 
+	var/can_uninstall = TRUE
+
 	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
 
 	var/vision_exclusive = FALSE	//Whether or not this NIFSoft provides exclusive vision modifier
@@ -67,6 +69,8 @@
 
 //Called when the software is removed from the NIF
 /datum/nifsoft/proc/uninstall()
+	if(!can_uninstall)
+		return nif.uninstall(src)
 	if(nif)
 		if(active)
 			deactivate()
@@ -263,10 +267,10 @@
 	..(A,user,flag,params)
 
 /obj/item/weapon/disk/nifsoft/compliance/attack_self(mob/user)
-	var/newlaws = input(user,"Please Input Laws","Compliance Laws",laws) as message
+	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
 	newlaws = sanitize(newlaws,2048)
 	if(newlaws)
-		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
+		to_chat(user,"<span class='filter_notice'>You set the laws to: <br><span class='notice'>[newlaws]</span></span>")
 		laws = newlaws
 
 /obj/item/weapon/disk/nifsoft/compliance/extra_params()
@@ -377,3 +381,26 @@
 	..()
 	for(var/i = 0 to 7)
 		new /obj/item/weapon/disk/nifsoft/mining(src)
+
+// Mass Alteration Disk //
+/obj/item/weapon/disk/nifsoft/sizechange
+	name = "NIFSoft Uploader - Mass Alteration"
+	desc = "Contains free NIFSofts for special purposes.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
+
+	icon_state = "mining"
+	stored_organic = /datum/nifsoft/sizechange
+	stored_synthetic = /datum/nifsoft/sizechange
+
+/obj/item/weapon/storage/box/nifsofts_sizechange
+	name = "mass alteration nifsoft uploaders"
+	desc = "A box of free nifsofts for special purposes."
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_mining"
+
+/obj/item/weapon/storage/box/nifsofts_sizechange/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/sizechange(src)

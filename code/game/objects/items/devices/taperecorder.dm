@@ -88,8 +88,9 @@
 
 /obj/item/device/taperecorder/hear_talk(mob/M, list/message_pieces, verb)
 	var/msg = multilingual_to_message(message_pieces, requires_machine_understands = TRUE, with_capitalization = TRUE)
+	var/voice = M.GetVoice() //Defined on living, returns name for normal mobs/
 	if(mytape && recording)
-		mytape.record_speech("[M.name] [verb], \"[msg]\"")
+		mytape.record_speech("[voice] [verb], \"[msg]\"")
 
 
 /obj/item/device/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
@@ -408,7 +409,7 @@
 
 
 /obj/item/device/tape/attackby(obj/item/I, mob/user, params)
-	if(ruined && I.is_screwdriver())
+	if(ruined && I.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 120 * I.toolspeed, target = src))
@@ -417,7 +418,7 @@
 		return
 	else if(istype(I, /obj/item/weapon/pen))
 		if(loc == user && !user.incapacitated())
-			var/new_name = input(user, "What would you like to label the tape?", "Tape labeling") as null|text
+			var/new_name = tgui_input_text(user, "What would you like to label the tape?", "Tape labeling")
 			if(isnull(new_name)) return
 			new_name = sanitizeSafe(new_name)
 			if(new_name)

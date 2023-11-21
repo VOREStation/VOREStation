@@ -287,7 +287,7 @@
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot armor crate"
 	access = access_armory
-
+/*
 /datum/supply_pack/security/riot_sprayer
 	name = "Gear - Riot sprayer"
 	contains = list(
@@ -296,7 +296,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot sprayer crate"
-	access = access_armory
+	access = access_armory*/
 
 /datum/supply_pack/security/ablative_armor
 	name = "Armor - Ablative"
@@ -444,7 +444,8 @@
 			/obj/item/weapon/storage/belt/security = 3,
 			/obj/item/clothing/glasses/sunglasses/sechud = 3,
 			/obj/item/device/radio/headset/headset_sec/alt = 3,
-			/obj/item/clothing/suit/storage/hooded/wintercoat/security = 3
+			/obj/item/clothing/suit/storage/hooded/wintercoat/security = 3,
+			/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/nanothreads

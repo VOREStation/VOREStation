@@ -28,7 +28,7 @@
 "aB" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_r"; dir = 4},/turf/simulated/floor/virgo3b_indoors{desc = "Quite dirty!"; icon = 'icons/turf/outdoors.dmi'; icon_state = "dirt-dark"; name = "dirt"},/area/tether/surfacebase/outside/wilderness)
 "aC" = (/obj/item/weapon/material/shard,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
 "aD" = (/obj/item/weapon/pen{pixel_y = 4},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
-"aE" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/computer/security/telescreen/entertainment{icon_state = "frame"; pixel_x = 32},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
+"aE" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/computer/security/telescreen/entertainment{pixel_x = 32},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
 "aF" = (/obj/structure/window/reinforced,/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/virgo3b,/area/tether/surfacebase/crash)
 "aG" = (/obj/structure/window/reinforced,/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/virgo3b,/area/tether/surfacebase/crash)
 "aH" = (/obj/machinery/sleep_console{dir = 8},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)

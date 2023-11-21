@@ -16,6 +16,10 @@
 	var/can_start_dirty = TRUE	// If false, cannot start dirty roundstart
 	var/dirty_prob = 2	// Chance of being dirty roundstart
 	var/dirt = 0
+	var/special_temperature //Used for turf HE-Pipe interaction
+	var/climbable = FALSE //Adds proc to wall if set to TRUE on its initialization, defined here since not all walls are subtypes of wall
+
+	var/icon_edge = 'icons/turf/outdoors_edge.dmi'	//VOREStation Addition - Allows for alternative edge icon files
 
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
@@ -60,6 +64,14 @@
 	if(istype(loc, /area/chapel))
 		holy = 1
 	levelupdate()
+	if(climbable)
+		verbs += /turf/simulated/proc/climb_wall
+
+/turf/simulated/examine(mob/user)
+	. = ..()
+	if(climbable)
+		. += "This [src] looks climbable."
+
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src

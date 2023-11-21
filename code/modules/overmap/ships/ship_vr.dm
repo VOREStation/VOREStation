@@ -9,6 +9,10 @@
 /obj/effect/overmap/visitable/ship/MouseDrop(atom/over)
 	if(!isliving(over) || !Adjacent(over) || !Adjacent(usr))
 		return
+	if(istype(over, /mob/living/simple_mob/vore/overmap))
+		var/mob/living/simple_mob/vore/overmap/sdog = over
+		if(!sdog.shipvore)
+			return
 	var/mob/living/L = over
 	var/confirm = tgui_alert(L, "You COULD eat this spaceship...", "Eat spaceship?", list("Eat it!", "No, thanks."))
 	if(confirm == "Eat it!")
@@ -28,14 +32,14 @@
 
 /obj/effect/overmap/visitable/ship/hear_talk(mob/talker, list/message_pieces, verb)
 	. = ..()
-	
+
 	var/list/listeners = get_people_in_ship()
 	for(var/mob/M as anything in listeners)
 		M.hear_say(message_pieces, verb, FALSE, talker)
 
 /obj/effect/overmap/visitable/ship/show_message(msg, type, alt, alt_type)
 	. = ..()
-	
+
 	var/list/listeners = get_people_in_ship()
 	for(var/mob/M as anything in listeners)
 		M.show_message(msg, type, alt, alt_type)
@@ -43,6 +47,6 @@
 /obj/effect/overmap/visitable/ship/see_emote(source, message, m_type)
 	. = ..()
 
-	var/list/listeners = get_people_in_ship()	
+	var/list/listeners = get_people_in_ship()
 	for(var/mob/M as anything in listeners)
 		M.show_message(message, m_type)

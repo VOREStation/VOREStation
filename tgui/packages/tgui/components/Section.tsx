@@ -11,42 +11,51 @@ import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 
 interface SectionProps extends BoxProps {
   className?: string;
-  title?: string;
+  title?: string | InfernoElement<string>;
   buttons?: InfernoNode;
   fill?: boolean;
   fitted?: boolean;
   scrollable?: boolean;
+  scrollableHorizontal?: boolean;
   flexGrow?: boolean; // VOREStation Addition
   noTopPadding?: boolean; // VOREStation Addition
   stretchContents?: boolean; // VOREStation Addition
   /** @deprecated This property no longer works, please remove it. */
-  level?: boolean;
+  level?: never;
   /** @deprecated Please use `scrollable` property */
-  overflowY?: any;
+  overflowY?: never;
+  /** @member Allows external control of scrolling. */
+  scrollableRef?: RefObject<HTMLDivElement>;
+  /** @member Callback function for the `scroll` event */
+  onScroll?: (this: GlobalEventHandlers, ev: Event) => any;
 }
 
 export class Section extends Component<SectionProps> {
   scrollableRef: RefObject<HTMLDivElement>;
   scrollable: boolean;
+  onScroll?: (this: GlobalEventHandlers, ev: Event) => any;
+  scrollableHorizontal: boolean;
 
   constructor(props) {
     super(props);
-    this.scrollableRef = createRef();
+    this.scrollableRef = props.scrollableRef || createRef();
     this.scrollable = props.scrollable;
+    this.onScroll = props.onScroll;
+    this.scrollableHorizontal = props.scrollableHorizontal;
   }
 
   componentDidMount() {
-    if (this.scrollable) {
-      addScrollableNode(this.scrollableRef.current);
-    }
-    if (this.props.autoFocus) {
-      setTimeout(() => this.scrollableRef.current.focus(), 1);
+    if (this.scrollable || this.scrollableHorizontal) {
+      addScrollableNode(this.scrollableRef.current as HTMLElement);
+      if (this.onScroll && this.scrollableRef.current) {
+        this.scrollableRef.current.onscroll = this.onScroll;
+      }
     }
   }
 
   componentWillUnmount() {
-    if (this.scrollable) {
-      removeScrollableNode(this.scrollableRef.current);
+    if (this.scrollable || this.scrollableHorizontal) {
+      removeScrollableNode(this.scrollableRef.current as HTMLElement);
     }
   }
 
@@ -58,10 +67,12 @@ export class Section extends Component<SectionProps> {
       fill,
       fitted,
       scrollable,
+      scrollableHorizontal,
       flexGrow, // VOREStation Addition
       noTopPadding, // VOREStation Addition
       stretchContents, // VOREStation Addition
       children,
+      onScroll,
       ...rest
     } = this.props;
     const hasTitle = canRender(title) || canRender(buttons);
@@ -73,6 +84,7 @@ export class Section extends Component<SectionProps> {
           fill && 'Section--fill',
           fitted && 'Section--fitted',
           scrollable && 'Section--scrollable',
+          scrollableHorizontal && 'Section--scrollableHorizontal',
           flexGrow && 'Section--flex', // VOREStation Addition
           className,
           computeBoxClassName(rest),
@@ -80,21 +92,19 @@ export class Section extends Component<SectionProps> {
         {...computeBoxProps(rest)}>
         {hasTitle && (
           <div className="Section__title">
-            <span className="Section__titleText">
-              {title}
-            </span>
-            <div className="Section__buttons">
-              {buttons}
-            </div>
+            <span className="Section__titleText">{title}</span>
+            <div className="Section__buttons">{buttons}</div>
           </div>
         )}
         <div className="Section__rest">
           {/* Vorestation Edit Start */}
-          <div ref={this.scrollableRef} className={classes([
-            "Section__content",
-            !!stretchContents && "Section__content--stretchContents",
-            !!noTopPadding && "Section__content--noTopPadding",
-          ])}>
+          <div
+            ref={this.scrollableRef}
+            className={classes([
+              'Section__content',
+              !!stretchContents && 'Section__content--stretchContents',
+              !!noTopPadding && 'Section__content--noTopPadding',
+            ])}>
             {children}
           </div>
           {/* Vorestation Edit End */}

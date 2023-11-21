@@ -91,9 +91,38 @@
 /obj/item/clothing/head/pizzaguy
 	name = "pizza delivery visor"
 	desc = "A fancy visor showing alignment to pizza delivery service. Extremely risky career choice."
-	icon_state = "pizzadelivery"
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "pizzadelivery"
+	item_state = "pizzadelivery"
+
+/obj/item/clothing/head/wedding
+	name = "wedding veil"
+	desc = "A lace veil worn over the face, typically by a bride during their wedding."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "weddingveil"
+
+/obj/item/clothing/head/halo/alt
+	name = "metal halo"
+	desc = "A halo made of a light metal. This one doesn't float, but it's still a circle on your head!"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "halo_alt"
+
+/obj/item/clothing/head/buckethat
+	name = "bucket hat"
+	desc = "Turns out these are actually called 'gatsby caps' but telling people you wear a bucket is slightly more interesting, so that's what it's called."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "buckethat"
+
+/obj/item/clothing/head/nonla
+	name = "non la"
+	desc = "A conical hat typically woven from leaves, good for keeping the sun AND rain off your head, in case it happens to be sunny while raining."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "nonla"
 
 //////////TALON HATS//////////
 
@@ -129,3 +158,17 @@
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "beret_talon_officer"
 	item_state = "baret_talon_command"
+
+/obj/item/clothing/head/cowboy
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
+		)
+
+// tiny tophat
+
+/obj/item/clothing/head/tinytophat
+	name = "tiny tophat"
+	desc = "A tophat that is far too small to properly sit on someone's head!"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "tiny_tophat"

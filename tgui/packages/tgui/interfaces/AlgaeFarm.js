@@ -1,8 +1,6 @@
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Slider, Table } from '../components';
-import { formatPower } from '../format';
+import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Table } from '../components';
 import { Window } from '../layouts';
-import { round } from 'common/math';
 import { capitalize } from 'common/string';
 
 export const AlgaeFarm = (props, context) => {
@@ -18,12 +16,9 @@ export const AlgaeFarm = (props, context) => {
     output,
     errorText,
   } = data;
-  
+
   return (
-    <Window
-      width={500}
-      height={300}
-      resizable>
+    <Window width={500} height={300} resizable>
       <Window.Content>
         {errorText && (
           <NoticeBox warning>
@@ -39,7 +34,8 @@ export const AlgaeFarm = (props, context) => {
               icon="power-off"
               content="Processing"
               selected={usePower === 2}
-              onClick={() => act("toggle")} />
+              onClick={() => act('toggle')}
+            />
           }>
           <LabeledList>
             <LabeledList.Item label="Flow Rate">
@@ -49,7 +45,7 @@ export const AlgaeFarm = (props, context) => {
               {last_power_draw} W
             </LabeledList.Item>
             <LabeledList.Divider size={1} />
-            {materials.map(material => (
+            {materials.map((material) => (
               <LabeledList.Item
                 key={material.name}
                 label={capitalize(material.display)}>
@@ -62,16 +58,19 @@ export const AlgaeFarm = (props, context) => {
                 <Button
                   ml={1}
                   content="Eject"
-                  onClick={() => act("ejectMaterial", {
-                    mat: material.name,
-                  })} />
+                  onClick={() =>
+                    act('ejectMaterial', {
+                      mat: material.name,
+                    })
+                  }
+                />
               </LabeledList.Item>
             ))}
           </LabeledList>
           <Table mt={1}>
             <Table.Row>
               <Table.Cell>
-                <Section title={"Gas Input (" + inputDir + ")"}>
+                <Section title={'Gas Input (' + inputDir + ')'}>
                   {input ? (
                     <LabeledList>
                       <LabeledList.Item label="Total Pressure">
@@ -87,7 +86,7 @@ export const AlgaeFarm = (props, context) => {
                 </Section>
               </Table.Cell>
               <Table.Cell>
-                <Section title={"Gas Output (" + outputDir + ")"}>
+                <Section title={'Gas Output (' + outputDir + ')'}>
                   {output ? (
                     <LabeledList>
                       <LabeledList.Item label="Total Pressure">
@@ -99,7 +98,7 @@ export const AlgaeFarm = (props, context) => {
                     </LabeledList>
                   ) : (
                     <Box color="bad">No connection detected.</Box>
-                  )} 
+                  )}
                 </Section>
               </Table.Cell>
             </Table.Row>

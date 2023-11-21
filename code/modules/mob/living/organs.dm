@@ -35,4 +35,10 @@
 			if(!ispath(E))
 				E.droplimb(0,DROPLIMB_EDGE,1)
 
+	//VOREStation Addition Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		tf_mob_holder.revert_mob_tf()
+		tf_mob_holder.gib()
+	//VOREStation Addition End
+
 	..()

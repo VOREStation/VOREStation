@@ -121,21 +121,21 @@
 	else
 		icon_state = "[icon_modifier]railing1"
 		if (check & 32)
-			add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay"))
+			add_overlay(image(icon, src, "[icon_modifier]corneroverlay"))
 		if ((check & 16) || !(check & 32) || (check & 64))
-			add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_l"))
+			add_overlay(image(icon, src, "[icon_modifier]frontoverlay_l"))
 		if (!(check & 2) || (check & 1) || (check & 4))
-			add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_r"))
+			add_overlay(image(icon, src, "[icon_modifier]frontoverlay_r"))
 			if(check & 4)
 				switch (src.dir)
 					if (NORTH)
-						add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32))
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_x = 32))
 					if (SOUTH)
-						add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32))
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_x = -32))
 					if (EAST)
-						add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32))
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = -32))
 					if (WEST)
-						add_overlay(image('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
 
 /obj/structure/railing/verb/rotate_counterclockwise()
 	set name = "Rotate Railing Counter-Clockwise"
@@ -202,7 +202,7 @@
 
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
-	if(W.is_wrench() && !anchored)
+	if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
 			user.visible_message("<b>\The [user]</b> dismantles \the [src].", "<span class='notice'>You dismantle \the [src].</span>")
@@ -211,8 +211,8 @@
 			return
 
 	// Repair
-	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/F = W
+	if(health < maxhealth && W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/F = W.get_welder()
 		if(F.welding)
 			playsound(src, F.usesound, 50, 1)
 			if(do_after(user, 20, src))
@@ -221,7 +221,7 @@
 				return
 
 	// Install
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		user.visible_message(anchored ? "<b>\The [user]</b> begins unscrewing \the [src]." : "<b>\The [user]</b> begins fasten \the [src]." )
 		playsound(src, W.usesound, 75, 1)
 		if(do_after(user, 10, src))

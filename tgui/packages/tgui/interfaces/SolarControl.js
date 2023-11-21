@@ -17,18 +17,17 @@ export const SolarControl = (props, context) => {
     connected_tracker,
   } = data;
   return (
-    <Window
-      width={380}
-      height={230}>
+    <Window width={380} height={230}>
       <Window.Content>
         <Section
           title="Status"
-          buttons={(
+          buttons={
             <Button
               icon="sync"
               content="Scan for new hardware"
-              onClick={() => act('refresh')} />
-          )}>
+              onClick={() => act('refresh')}
+            />
+          }>
           <Grid>
             <Grid.Column>
               <LabeledList>
@@ -73,18 +72,21 @@ export const SolarControl = (props, context) => {
                 icon="times"
                 content="Off"
                 selected={tracking_state === 0}
-                onClick={() => act('tracking', { mode: 0 })} />
+                onClick={() => act('tracking', { mode: 0 })}
+              />
               <Button
                 icon="clock-o"
                 content="Timed"
                 selected={tracking_state === 1}
-                onClick={() => act('tracking', { mode: 1 })} />
+                onClick={() => act('tracking', { mode: 1 })}
+              />
               <Button
                 icon="sync"
                 content="Auto"
                 selected={tracking_state === 2}
                 disabled={!connected_tracker}
-                onClick={() => act('tracking', { mode: 2 })} />
+                onClick={() => act('tracking', { mode: 2 })}
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Azimuth">
               {(tracking_state === 0 || tracking_state === 1) && (
@@ -96,25 +98,27 @@ export const SolarControl = (props, context) => {
                   minValue={-360}
                   maxValue={+720}
                   value={array_angle}
-                  format={rate => {
+                  format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return Math.abs(round(rate)) + sign;
                   }}
-                  onDrag={(e, value) => act('azimuth', { value })} />
+                  onDrag={(e, value) => act('azimuth', { value })}
+                />
               )}
               {tracking_state === 1 && (
                 <NumberInput
                   width="80px"
                   unit="deg/h"
                   step={1}
-                  minValue={-max_rotation_rate-0.01}
-                  maxValue={max_rotation_rate+0.01}
+                  minValue={-max_rotation_rate - 0.01}
+                  maxValue={max_rotation_rate + 0.01}
                   value={rotation_rate}
-                  format={rate => {
+                  format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return Math.abs(round(rate)) + sign;
                   }}
-                  onDrag={(e, value) => act('azimuth_rate', { value })} />
+                  onDrag={(e, value) => act('azimuth_rate', { value })}
+                />
               )}
               {tracking_state === 2 && (
                 <Box inline color="label" mt="3px">

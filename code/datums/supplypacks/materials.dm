@@ -57,28 +57,64 @@
 	containername = "Cardboard sheets crate"
 
 /datum/supply_pack/materials/carpet
-	name = "Imported carpet"
+	name = "Imported standard carpet"
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Imported carpet crate"
 	cost = 15
 	contains = list(
 					/obj/fiftyspawner/carpet,
-					/obj/fiftyspawner/tealcarpet
+					/obj/fiftyspawner/tealcarpet,
+					/obj/fiftyspawner/turcarpet
 					)
 
-/datum/supply_pack/materials/arcade_carpet
-	name = "Retro carpets"
+/datum/supply_pack/materials/carpet_ornate
+	name = "Imported ornate carpet"
 	containertype = /obj/structure/closet/crate/grayson
-	containername = "Retro carpets crate"
-	cost = 15
+	containername = "Imported ornate carpet crate"
+	cost = 20
 	contains = list(
-					/obj/fiftyspawner/decocarpet,
-					/obj/fiftyspawner/retrocarpet
+					/obj/fiftyspawner/brncarpet,
+					/obj/fiftyspawner/blucarpet2,
+					/obj/fiftyspawner/greencarpet,
+					/obj/fiftyspawner/purplecarpet
 					)
 
-/datum/supply_pack/misc/linoleum
+/datum/supply_pack/materials/carpet_diamond
+	name = "Imported diamond carpet"
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Imported diamond carpet crate"
+	cost = 30
+	contains = list(
+					/obj/fiftyspawner/bcarpet,
+					/obj/fiftyspawner/blucarpet,
+					/obj/fiftyspawner/sblucarpet,
+					/obj/fiftyspawner/gaycarpet,
+					/obj/fiftyspawner/purcarpet,
+					/obj/fiftyspawner/oracarpet
+					)
+
+/datum/supply_pack/materials/retrocarpet
+	name = "Imported retro carpet"
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Imported retro carpet crate"
+	cost = 20
+	contains = list(
+					/obj/fiftyspawner/geocarpet,
+					/obj/fiftyspawner/retrocarpet,
+					/obj/fiftyspawner/retrocarpet_red,
+					/obj/fiftyspawner/happycarpet
+					)
+
+/datum/supply_pack/materials/linoleum
 	name = "Linoleum"
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Linoleum crate"
 	cost = 15
 	contains = list(/obj/fiftyspawner/linoleum)
+
+/datum/supply_pack/materials/concrete
+	name = "Concrete"
+	cost = 10
+	containertype = /obj/structure/closet/crate/grayson
+	contains = list(/obj/fiftyspawner/concrete)
+	containername = "Concrete bricks crate"

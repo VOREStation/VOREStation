@@ -1,43 +1,26 @@
-import { filter } from 'common/collections';
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../../components";
+import { useBackend } from '../../backend';
+import { Box, Button, LabeledList, Section } from '../../components';
 
 export const pda_security = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    recordsList,
-    records,
-  } = data;
+  const { recordsList, records } = data;
 
   if (records) {
-    const {
-      general,
-      security,
-    } = records;
+    const { general, security } = records;
 
     return (
       <Box>
         <Section level={2} title="General Data">
-          {general && (
+          {(general && (
             <LabeledList>
-              <LabeledList.Item label="Name">
-                {general.name}
-              </LabeledList.Item>
-              <LabeledList.Item label="Sex">
-                {general.sex}
-              </LabeledList.Item>
+              <LabeledList.Item label="Name">{general.name}</LabeledList.Item>
+              <LabeledList.Item label="Sex">{general.sex}</LabeledList.Item>
               <LabeledList.Item label="Species">
                 {general.species}
               </LabeledList.Item>
-              <LabeledList.Item label="Age">
-                {general.age}
-              </LabeledList.Item>
-              <LabeledList.Item label="Rank">
-                {general.rank}
-              </LabeledList.Item>
+              <LabeledList.Item label="Age">{general.age}</LabeledList.Item>
+              <LabeledList.Item label="Rank">{general.rank}</LabeledList.Item>
               <LabeledList.Item label="Fingerprint">
                 {general.fingerprint}
               </LabeledList.Item>
@@ -48,14 +31,10 @@ export const pda_security = (props, context) => {
                 {general.m_stat}
               </LabeledList.Item>
             </LabeledList>
-          ) || (
-            <Box color="bad">
-              General record lost!
-            </Box>
-          )}
+          )) || <Box color="bad">General record lost!</Box>}
         </Section>
         <Section level={2} title="Security Data">
-          {security && (
+          {(security && (
             <LabeledList>
               <LabeledList.Item label="Criminal Status">
                 {security.criminal}
@@ -72,15 +51,13 @@ export const pda_security = (props, context) => {
               <LabeledList.Item label="Details">
                 {security.ma_crim_d}
               </LabeledList.Item>
-              <LabeledList.Item label="Important Notes:" preserveWhitespace>
-                {security.notes || "No data found."}
+              <LabeledList.Item label="Important Notes:">
+                <Box preserveWhitespace>
+                  {security.notes || 'No data found.'}
+                </Box>
               </LabeledList.Item>
             </LabeledList>
-          ) || (
-            <Box color="bad">
-              Security record lost!
-            </Box>
-          )}
+          )) || <Box color="bad">Security record lost!</Box>}
         </Section>
       </Box>
     );
@@ -88,13 +65,14 @@ export const pda_security = (props, context) => {
 
   return (
     <Section level={2} title="Select a record">
-      {recordsList.map(record => (
+      {recordsList.map((record) => (
         <Button
           key={record.ref}
           icon="eye"
           fluid
           content={record.Name}
-          onClick={() => act("Records", { target: record.ref })} />
+          onClick={() => act('Records', { target: record.ref })}
+        />
       ))}
     </Section>
   );

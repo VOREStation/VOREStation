@@ -271,7 +271,7 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(opened)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
@@ -291,8 +291,8 @@
 			return 0
 		if(istype(W,/obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(W.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/WT = W.get_welder()
 			if(!WT.remove_fuel(0,user))
 				if(!WT.isOn())
 					return
@@ -326,8 +326,8 @@
 	else if(seal_tool)
 		if(istype(W, seal_tool))
 			var/obj/item/weapon/S = W
-			if(istype(S, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = S
+			if(S.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = S.get_welder()
 				if(!WT.remove_fuel(0,user))
 					if(!WT.isOn())
 						return
@@ -397,6 +397,13 @@
 	if(ishuman(usr) || isrobot(usr))
 		add_fingerprint(usr)
 		toggle(usr)
+	else if(isanimal(usr))	//VOREStation Addition Start
+		var/mob/living/simple_mob/s = usr
+		if(s.has_hands)
+			add_fingerprint(usr)
+			toggle(usr)
+		else
+			to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")		//VOREStation Addition End
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
@@ -519,7 +526,7 @@
 			animate(door_obj, transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag, flags = ANIMATION_END_NOW)
 		else
 			animate(transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag)
-	addtimer(CALLBACK(src, .proc/end_door_animation,closing), closet_appearance.door_anim_time, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(end_door_animation), closing), closet_appearance.door_anim_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/closet/proc/end_door_animation(closing = FALSE)
 	is_animating_door = FALSE

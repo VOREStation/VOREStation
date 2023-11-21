@@ -9,8 +9,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -20,8 +18,6 @@
 	dir = 5
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -56,6 +52,12 @@
 	dir = 1
 	},
 /turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
+"dF" = (
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "dU" = (
 /obj/structure/table/woodentable,
@@ -96,6 +98,20 @@
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
+"hw" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/computer/timeclock/premade/west,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"hW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -151,6 +167,10 @@
 "kz" = (
 /turf/space/v3b_midpoint,
 /area/tether/transit)
+"lG" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "lL" = (
 /obj/effect/blocker,
 /turf/space/v3b_midpoint,
@@ -253,6 +273,12 @@
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/midpoint)
+"rW" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "sw" = (
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 10
@@ -284,8 +310,6 @@
 /area/tether/midpoint)
 "tn" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -298,8 +322,6 @@
 /area/tether/midpoint)
 "tB" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -385,8 +407,6 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -419,6 +439,10 @@
 "Dz" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/tether_midpoint)
+"El" = (
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "Et" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -431,8 +455,6 @@
 /area/tether/midpoint)
 "EI" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -471,6 +493,15 @@
 	hard_corner = 1
 	},
 /area/tether/elevator)
+"Hv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "Hy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -481,8 +512,6 @@
 "HK" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -495,8 +524,6 @@
 /area/tether/midpoint)
 "It" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -592,8 +619,6 @@
 /area/tether/midpoint)
 "Oq" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/lattice,
@@ -633,8 +658,6 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -683,7 +706,7 @@
 /area/tether/midpoint)
 "Ud" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "Ui" = (
@@ -692,8 +715,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -758,7 +779,6 @@
 	pixel_x = -28
 	},
 /obj/structure/cable{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/dark,
@@ -9068,11 +9088,11 @@ pK
 pK
 pK
 pK
-pK
+dF
 pK
 Pz
 Wc
-pK
+rW
 pK
 Wc
 Pz
@@ -9220,7 +9240,7 @@ PF
 PF
 PF
 PF
-Or
+Hv
 pK
 pK
 mT
@@ -9356,7 +9376,7 @@ Dz
 iK
 pM
 pM
-pM
+El
 Dz
 oN
 yi
@@ -9919,7 +9939,7 @@ mT
 mT
 pK
 pK
-pK
+lG
 Dz
 Qv
 Hs
@@ -10498,7 +10518,7 @@ Hs
 Hs
 Dz
 PF
-Or
+hW
 pK
 pK
 mT
@@ -10639,7 +10659,7 @@ jt
 cR
 JB
 XO
-Nt
+hw
 KH
 pK
 pK

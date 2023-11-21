@@ -689,6 +689,15 @@
 	required_reagents = list("liquidcarpeto" = 2, "plasticide" = 1)
 	carpet_type = /obj/item/stack/tile/carpet/oracarpet
 
+/decl/chemical_reaction/instant/concrete
+	name = "Concrete"
+	id = "concretereagent"
+	required_reagents = list("calcium" = 2, "silicate" = 2, "water" = 2)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/concrete/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/concrete(get_turf(holder.my_atom), created_volume)
+	return
 
 /* Grenade reactions */
 

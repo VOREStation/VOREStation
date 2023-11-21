@@ -79,20 +79,6 @@ var/list/gurgled_overlays = list(
 		..()
 
 //////////////
-// Special things that happen when wet
-//////////////
-/obj/item/weapon/storage/box/open(mob/user as mob)
-	if(gurgled)
-		to_chat(usr, "The soggy box falls apart in your hands.")
-		var/turf/T = get_turf(src)
-		for(var/obj/item/I in contents)
-			remove_from_storage(I, T)
-		new/obj/effect/decal/cleanable/molten_item(T)
-		qdel(src)
-		return
-	..()
-
-//////////////
 // Special handling of gurgle_contaminate
 //////////////
 /obj/item/weapon/card/id/gurgle_contaminate(var/atom/movable/item_storage = null)

@@ -14,7 +14,7 @@
 	tends to get deflected after slicing into someone's flesh, and as such they tend to not cut deeply. \
 	The simplistic AI inside compensates for this by using the tendency to bounce away after \
 	slicing as an evasive tactic to avoid harm. This allows the viscerator to cut up the target, \
-	fly to the side, and then repeat, potentially causing the target to die from many seperate wounds."
+	fly to the side, and then repeat, potentially causing the target to die from many separate wounds."
 	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/mechanical/viscerator
@@ -30,7 +30,7 @@
 	faction = "syndicate"
 	maxHealth = 15
 	health = 15
-	movement_cooldown = 0
+	movement_cooldown = -2
 
 	pass_flags = PASSTABLE
 	mob_swap_flags = 0
@@ -94,7 +94,7 @@
 /mob/living/simple_mob/mechanical/viscerator/piercing
 	attack_armor_pen = 20
 	base_attack_cooldown = 10 // One attack a second or so.
-	movement_cooldown = 0.5
+	movement_cooldown = -1
 
 /decl/mob_organ_names/viscerator
 	hit_zones = list("chassis", "rotor blades", "sensor array")

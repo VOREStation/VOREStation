@@ -1,3 +1,10 @@
+var/bluespace_item_types = newlist(/obj/item/weapon/storage/backpack/holding,
+/obj/item/weapon/storage/bag/trash/holding,
+/obj/item/weapon/storage/pouch/holding,
+/obj/item/weapon/storage/belt/utility/holding,
+/obj/item/weapon/storage/belt/medical/holding
+)
+
 //wrapper
 /proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE) //VOREStation Edit
 	new /datum/teleport/instant/science(arglist(args))
@@ -151,19 +158,25 @@
 
 /datum/teleport/instant/science/setPrecision(aprecision)
 	..()
-	if(istype(teleatom, /obj/item/weapon/storage/backpack/holding))
-		precision = rand(1,100)
 
-	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	var/list/bluespace_things = newlist()
+
+	for (var/item in bluespace_item_types)
+		if (istype(teleatom, item))
+			precision = rand(1, 100)
+		bluespace_things |= teleatom.search_contents_for(item)
+
 	//VOREStation Addition Start: Prevent taurriding abuse
 	if(istype(teleatom, /mob/living))
 		var/mob/living/L = teleatom
 		if(LAZYLEN(L.buckled_mobs))
 			for(var/mob/rider in L.buckled_mobs)
-				bagholding += rider.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+				for (var/item in bluespace_item_types)
+					bluespace_things |= rider.search_contents_for(item)
 	//VOREStation Addition End: Prevent taurriding abuse
-	if(bagholding.len)
-		precision = max(rand(1,100)*bagholding.len,100)
+
+	if(bluespace_things.len)
+		precision = max(rand(1,100)*bluespace_things.len,100)
 		if(istype(teleatom, /mob/living))
 			var/mob/living/MM = teleatom
 			to_chat(MM, "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>")

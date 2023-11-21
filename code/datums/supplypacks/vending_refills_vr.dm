@@ -18,11 +18,6 @@
 	name = "SweatMAX Vendor Refill Cartridge"
 	cost = 10
 
-/datum/supply_pack/vending_refills/hotfood
-	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/hotfood)
-	name = "Hot Foods Vendor Refill Cartridge"
-	cost = 10
-
 /datum/supply_pack/vending_refills/weeb
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/weeb)
 	name = "Nippon-tan Vendor Refill Cartridge"
@@ -48,6 +43,11 @@
 	name = "Ration Station Vendor Refill Cartridge"
 	cost = 10
 
+/datum/supply_pack/vending_refills/altevian
+	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/altevian)
+	name = "Altevian Vendor Refill Cartridge"
+	cost = 10
+
 /datum/supply_pack/vending_refills/coffee
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/drink/coffee)
 	name = "Hot Drinks Vendor Refill Cartridge"
@@ -56,11 +56,6 @@
 /datum/supply_pack/vending_refills/cola
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/drink/cola)
 	name = "Robust Softdrinks Vendor Refill Cartridge"
-	cost = 10
-
-/datum/supply_pack/vending_refills/cola_soft
-	contains = list(/obj/item/weapon/refill_cartridge/autoname/drink/cola_soft)
-	name = "Soft Robustdrinks Vendor Refill Cartridge"
 	cost = 10
 
 /datum/supply_pack/vending_refills/sovietsoda
@@ -117,7 +112,6 @@
 	num_contained = 5
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/snack,
 					/obj/item/weapon/refill_cartridge/autoname/food/fitness,
-					/obj/item/weapon/refill_cartridge/autoname/food/hotfood,
 					/obj/item/weapon/refill_cartridge/autoname/food/weeb,
 					/obj/item/weapon/refill_cartridge/autoname/food/sol,
 					/obj/item/weapon/refill_cartridge/autoname/food/snix,
@@ -125,7 +119,6 @@
 					/obj/item/weapon/refill_cartridge/autoname/food/sovietvend,
 					/obj/item/weapon/refill_cartridge/autoname/drink/coffee,
 					/obj/item/weapon/refill_cartridge/autoname/drink/cola,
-					/obj/item/weapon/refill_cartridge/autoname/drink/cola_soft,
 					/obj/item/weapon/refill_cartridge/autoname/drink/sovietsoda,
 					/obj/item/weapon/refill_cartridge/autoname/drink/bepis,
 					/obj/item/weapon/refill_cartridge/autoname/cigarette,

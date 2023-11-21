@@ -1228,7 +1228,6 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1;
-	d2 = 2
 	},
 /turf/simulated/floor{
 	 icon_state = "vault";
@@ -1256,8 +1255,6 @@
 /area/awaymission/challenge/end)
 "dd" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
@@ -1305,8 +1302,6 @@
 /area/awaymission/challenge/end)
 "di" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
@@ -1371,14 +1366,10 @@
 /area/awaymission/challenge/end)
 "do" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /mob/living/simple_mob/hostile/syndicate{
@@ -1390,8 +1381,6 @@
 /area/awaymission/challenge/end)
 "dp" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor{

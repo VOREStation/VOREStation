@@ -16,10 +16,10 @@
 
 	if(reinf_material)
 		name = "reinforced [material.display_name] wall"
-		desc = "It seems to be a section of hull reinforced with [reinf_material.display_name] and plated with [material.display_name]."
+		desc = "It seems to be a section of wall reinforced with [reinf_material.display_name] and plated with [material.display_name]."
 	else
 		name = "[material.display_name] wall"
-		desc = "It seems to be a section of hull plated with [material.display_name]."
+		desc = "It seems to be a section of wall plated with [material.display_name]."
 
 	if(material.opacity > 0.5 && !opacity)
 		set_light(1)
@@ -77,6 +77,9 @@
 				I = image(wall_masks, reinf_material.icon_reinf)
 				I.color = reinf_material.icon_colour
 				add_overlay(I)
+	var/image/texture = material.get_wall_texture()
+	if(texture)
+		add_overlay(texture)
 
 	if(damage != 0)
 		var/integrity = material.integrity

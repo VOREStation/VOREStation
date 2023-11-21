@@ -14,9 +14,14 @@
 		handle_attack_delay(A, melee_attack_delay) // This will sleep this proc for a bit, which is why waitfor is false.
 
 	// Cooldown testing is done at click code (for players) and interface code (for AI).
-	setClickCooldown(get_attack_speed())
+	// VOREStation Edit Start: Simplemob Injury
+	if(injury_enrages)
+		setClickCooldown(get_attack_speed() - ((injury_level / 2) SECONDS)) // Increase how fast we can attack by our injury level / 2
+	else
+		setClickCooldown(get_attack_speed() + ((injury_level / 2) SECONDS)) // Delay how fast we can attack by our injury level / 2
+	// VOREStation Edit Stop: Simplemob Injury
 
-	// Returns a value, but will be lost if 
+	// Returns a value, but will be lost if
 	. = do_attack(A, their_T)
 
 	if(melee_attack_delay)
@@ -90,7 +95,12 @@
 	if(!istype(A) || QDELETED(A))
 		return
 
-	setClickCooldown(get_attack_speed())
+	// VOREStation Edit Start: Simplemob Injury
+	if(injury_enrages)
+		setClickCooldown(get_attack_speed() - ((injury_level / 2) SECONDS)) // Increase how fast we can attack by our injury level / 2
+	else
+		setClickCooldown(get_attack_speed() + ((injury_level / 2) SECONDS)) // Delay how fast we can attack by our injury level / 2
+	// VOREStation Edit Stop: Simplemob Injury
 
 	face_atom(A)
 

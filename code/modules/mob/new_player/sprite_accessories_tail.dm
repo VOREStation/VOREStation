@@ -20,17 +20,20 @@
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
 	var/extra_overlay2_w // Tertiary wagging.
-	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
+
+	// VOREStation Edit: Taur Loafing
+	var/can_loaf = FALSE
+	var/loaf_offset = 0
 
 	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
-	if(clip_mask_icon && clip_mask_state)
-		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
+	if(clip_mask_state)
+		clip_mask = icon(icon = (clip_mask_icon ? clip_mask_icon : icon), icon_state = clip_mask_state)
 
 // Species-unique tails
 
@@ -997,3 +1000,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wardtakahashi_vulp_dc_mark"
+
+/datum/sprite_accessory/tail/zorgoia
+	name = "Zorgoia tail, dual-color"
+	desc = ""
+	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
+	icon_state = "zorgoia"
+	extra_overlay = "zorgoia_fluff"
+	extra_overlay2 = "zorgoia_fluff_top"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

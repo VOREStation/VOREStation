@@ -228,7 +228,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain functions which \
 			do something to generate energy.<br>"
 			dat += "<br>"
-			dat += "The second thing you need to know is that awesome power over the physical world has consquences, in the form \
+			dat += "The second thing you need to know is that awesome power over the physical world has consequences, in the form \
 			of <b>Instability</b>.  Instability is the result of your Core's energy being used to fuel it, and so little is \
 			understood about it, even among fellow Core owners, however it is almost always a bad thing to have.  Instability will \
 			'cling' to you as you use functions, with powerful functions creating lots of instability.  The effects of holding onto \
@@ -241,7 +241,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			purple colored lightning that appears around something with instability lingering on it.  High amounts of instability \
 			may cause the object afflicted with it to glow a dark purple, which is often known simply as <b>Glow</b>, which spreads \
 			the instability.  You should stay far away from anyone afflicted by Glow, as they will be a danger to both themselves and \
-			anything nearby.  Multiple sources of Glow can perpetuate the glow for a very long time if they are not seperated.<br>"
+			anything nearby.  Multiple sources of Glow can perpetuate the glow for a very long time if they are not separated.<br>"
 			dat += "<br>"
 			dat += "You should strive to keep you and your apprentices' cores secure.  To help with this, each core comes with a \
 			locking mechanism, which should make attempts at forceful removal by third parties (or you) futile, until it is \
@@ -385,4 +385,3 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 				qdel(AM)
 				return
 	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
-

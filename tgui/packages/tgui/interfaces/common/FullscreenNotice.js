@@ -4,10 +4,7 @@ import { Flex, Section } from '../../components';
  * Just a generic wrapper for fullscreen notices.
  */
 export const FullscreenNotice = (props, context) => {
-  const {
-    children,
-    title = 'Welcome',
-  } = props;
+  const { children, title = 'Welcome' } = props;
   return (
     <Section title={title} height="100%" fill>
       <Flex height="100%" align="center" justify="center">

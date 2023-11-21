@@ -14,6 +14,13 @@
 	required_reagents = list("antifreeze" = 1, "gargleblaster" = 1, "syndicatebomb" =1)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/drinks/burnout
+	name = "Burnout"
+	id = "burnout"
+	result = "burnout"
+	required_reagents = list("antifreeze" = 1, "deathbell" = 1, "lovemaker" =1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/drinks/monstertamer
 	name = "Monster Tamer"
 	id = "monstertamer"
@@ -197,3 +204,31 @@
 	result = "mudslide"
 	required_reagents = list("blackrussian" = 1, "irishcream" = 1)
 	result_amount = 2
+
+/decl/chemical_reaction/instant/drinks/protein_shake
+	name = "Protein Shake"
+	id = "protein_shake"
+	result = "protein_shake"
+	required_reagents = list("water" = 5, "protein_powder" = 1)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/protein_shake/vanilla
+	name = "Vanilla Protein Shake"
+	id = "vanilla_protein_shake"
+	result = "vanilla_protein_shake"
+	required_reagents = list("water" = 5, "vanilla_protein_powder" = 1)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/protein_shake/banana
+	name = "Banana Protein Shake"
+	id = "banana_protein_shake"
+	result = "banana_protein_shake"
+	required_reagents = list("water" = 5, "banana_protein_powder" = 1)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/protein_shake/strawberry
+	name = "Strawberry Protein Shake"
+	id = "strawberry_protein_shake"
+	result = "strawberry_protein_shake"
+	required_reagents = list("water" = 5, "strawberry_protein_powder" = 1)
+	result_amount = 5

@@ -2,13 +2,15 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
-"m" = (
+"b" = (
+/mob/living/simple_mob/creature{
+	faction = "spookyland"
+	},
 /turf/simulated/floor/flesh{
 	base_icon = 'icons/turf/stomach_vr.dmi'
 	},
 /area/om_adventure/poi/fleshtear4)
-"n" = (
-/mob/living/simple_mob/creature,
+"m" = (
 /turf/simulated/floor/flesh{
 	base_icon = 'icons/turf/stomach_vr.dmi'
 	},
@@ -31,7 +33,7 @@ a
 (3,1,1) = {"
 a
 a
-n
+b
 m
 a
 "}
@@ -65,7 +67,7 @@ a
 "}
 (8,1,1) = {"
 a
-n
+b
 m
 m
 a

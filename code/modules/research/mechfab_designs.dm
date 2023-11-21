@@ -804,12 +804,20 @@
 	build_path = /obj/item/weapon/vehicle_assembly/spacebike
 
 /datum/design/item/mechfab/vehicle/quadbike_chassis
-	name = "Quadbike Chassis"
-	desc = "A space-bike's un-assembled frame."
+	name = "Quad bike Chassis"
+	desc = "A quad bike's un-assembled frame."
 	id = "vehicle_chassis_quadbike"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 15000, MAT_SILVER = 3000, MAT_PLASTIC = 3000, MAT_OSMIUM = 1000)
 	build_path = /obj/item/weapon/vehicle_assembly/quadbike
+
+/datum/design/item/mechfab/vehicle/snowmobile_chassis
+	name = "Snowmobile Chassis"
+	desc = "A snowmobile's un-assembled frame."
+	id = "vehicle_chassis_snowmobile"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 12000, MAT_SILVER = 3000, MAT_PLASTIC = 3000, MAT_OSMIUM = 1000)
+	build_path = /obj/item/weapon/vehicle_assembly/snowmobile
 
 /*
  * Rigsuits

@@ -391,8 +391,8 @@
 /area/centcom/specops)
 "bc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
@@ -456,6 +456,20 @@
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall/r_wall,
 /area/centcom)
+"bn" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ccboat";
+	pixel_y = 29
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "bo" = (
 /obj/structure/sign/department/bar,
 /turf/simulated/wall/r_wall,
@@ -500,6 +514,25 @@
 /obj/structure/sign/warning/nosmoking_2,
 /turf/simulated/wall/r_wall,
 /area/centcom/terminal)
+"by" = (
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	frequency = 1380;
+	id_tag = null;
+	pixel_x = 24
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "bz" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
@@ -524,15 +557,76 @@
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
+"bC" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
+/obj/effect/overmap/visitable/ship/landable/ccboat,
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bD" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "bE" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
 /obj/structure/closet/walllocker/medical/east,
+/obj/item/stack/medical/crude_pack,
+/obj/item/stack/medical/crude_pack,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/splint,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
+"bF" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/angled/open{
+	id = "ccshuttleshutter"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bG" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "ccshuttleshutter"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bH" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bI" = (
+/turf/simulated/floor/reinforced,
+/area/shuttle/centcom/ccbay)
 "bJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -826,7 +920,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/structure/closet/walllocker/medical/west,
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -876,10 +972,10 @@
 /area/centcom/medical)
 "cL" = (
 /obj/structure/table/reinforced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
 "cO" = (
@@ -1024,12 +1120,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"df" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "dh" = (
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
@@ -1124,8 +1214,8 @@
 /area/centcom/specops)
 "dv" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled/dark,
@@ -1207,7 +1297,7 @@
 /area/centcom/specops)
 "dG" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /turf/simulated/shuttle/floor,
@@ -1892,16 +1982,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/centcom/specops)
-"gh" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
-/obj/effect/overmap/visitable/ship/landable/ccboat,
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "gj" = (
 /obj/machinery/vending/cola{
 	name = "hacked Robust Softdrinks";
@@ -2085,25 +2165,6 @@
 /area/centcom/security{
 	name = "\improper CentCom Residential Security"
 	})
-"gN" = (
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	frequency = 1380;
-	id_tag = null;
-	pixel_x = 24
-	},
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "gP" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/green,
@@ -2258,8 +2319,8 @@
 /area/centcom/control)
 "hq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled{
@@ -3439,6 +3500,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
+"lB" = (
+/obj/machinery/item_bank{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "lC" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -3775,22 +3842,6 @@
 /obj/item/weapon/melee/energy/sword/red,
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
-"mS" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "ccshuttleshutter"
-	},
-/turf/simulated/floor,
-/area/shuttle/ccboat)
 "mT" = (
 /obj/machinery/camera/network/crescent,
 /obj/structure/table/reinforced,
@@ -4996,9 +5047,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"sX" = (
-/turf/simulated/floor/reinforced/airless,
-/area/shuttle/centcom/ccbay)
 "sY" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ArmouryC4";
@@ -5428,6 +5476,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/terminal)
+"vF" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "vG" = (
 /obj/item/modular_computer/console/preset/civilian{
 	dir = 8
@@ -5472,19 +5531,6 @@
 	},
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
-"vY" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/blast/angled/open{
-	id = "ccshuttleshutter"
-	},
-/turf/simulated/floor,
-/area/shuttle/ccboat)
 "vZ" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorblack{
@@ -5610,14 +5656,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/control)
-"ww" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "wx" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
@@ -6576,10 +6614,10 @@
 	name = "Shuttle Hatch"
 	},
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/shuttle/floor,
 /area/shuttle/supply)
 "BM" = (
 /obj/effect/floor_decal/fancy_shuttle{
@@ -6625,20 +6663,6 @@
 "Cj" = (
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
-"Cl" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "ccboat";
-	pixel_y = 29
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "Cn" = (
 /turf/unsimulated/wall,
 /area/centcom/main_hall)
@@ -7043,6 +7067,7 @@
 /area/centcom/medical)
 "DJ" = (
 /obj/structure/table/reinforced,
+/obj/machinery/librarycomp,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "DK" = (
@@ -8429,6 +8454,7 @@
 	pixel_x = -24;
 	pixel_y = 25
 	},
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug,
 /turf/simulated/floor/tiled,
 /area/centcom/holding)
 "HK" = (
@@ -9674,7 +9700,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 10
 	},
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "KJ" = (
@@ -10534,7 +10560,7 @@
 /area/centcom/medical)
 "MJ" = (
 /obj/structure/table/glass,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "MK" = (
@@ -11612,7 +11638,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "Pv" = (
@@ -12821,7 +12847,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "Sx" = (
@@ -25739,21 +25765,21 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
-sX
-sX
-sX
+bI
+bI
+bI
+bI
+bI
+bI
 fE
 gn
 mY
 zN
 uf
-mS
+bG
 uf
-sX
-sX
+bI
+bI
 pR
 nJ
 ac
@@ -25881,16 +25907,16 @@ ZQ
 ac
 nJ
 px
-sX
-sX
+bI
+bI
 WO
 uf
 uf
-mS
-mS
+bG
+bG
 go
-Cl
-gh
+bn
+bC
 gn
 wr
 uf
@@ -26025,14 +26051,14 @@ nJ
 px
 uf
 uf
-mS
+bG
 uf
 vq
 bP
 Bn
 go
-gN
-ww
+by
+bD
 xJ
 wm
 HU
@@ -26165,7 +26191,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 Bc
 DW
 uf
@@ -26307,7 +26333,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 LB
 cX
 qL
@@ -26321,7 +26347,7 @@ uf
 vi
 YD
 cY
-df
+bH
 pR
 nJ
 ac
@@ -26449,7 +26475,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 Ti
 nA
 sp
@@ -26591,7 +26617,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 UE
 CK
 jK
@@ -26605,7 +26631,7 @@ uf
 fG
 YD
 cY
-df
+bH
 pR
 nJ
 ac
@@ -26733,7 +26759,7 @@ ZQ
 ac
 nJ
 px
-vY
+bF
 VJ
 vG
 uf
@@ -26877,7 +26903,7 @@ nJ
 px
 uf
 uf
-mS
+bG
 uf
 vq
 bP
@@ -27017,13 +27043,13 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
+bI
+bI
+bI
 uf
 uf
-mS
-mS
+bG
+bG
 pw
 tT
 tT
@@ -27159,21 +27185,21 @@ ZQ
 ac
 nJ
 px
-sX
-sX
-sX
-sX
-sX
-sX
+bI
+bI
+bI
+bI
+bI
+bI
 fE
 UC
 uf
 uf
 uf
-mS
+bG
 uf
-sX
-sX
+bI
+bI
 pR
 nJ
 ic
@@ -29092,7 +29118,7 @@ vu
 Zy
 Zy
 Zy
-Zy
+vF
 Zy
 Zy
 Zy
@@ -33754,7 +33780,7 @@ Ll
 OA
 Xf
 as
-VH
+lB
 VH
 VH
 VH

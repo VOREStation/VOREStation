@@ -1,7 +1,7 @@
 /datum/instrument/chromatic
 	name = "Generic chromatic percussion instrument"
 	category = "Chromatic percussion"
-	abstract_type = /datum/instrument/chromatic
+	instrument_type = /datum/instrument/chromatic
 
 /datum/instrument/chromatic/vibraphone1
 	name = "Crisis Vibraphone"

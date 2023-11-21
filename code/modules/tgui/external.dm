@@ -1,7 +1,8 @@
-/**
- * tgui external
+/*!
+ * External tgui definitions, such as src_object APIs.
  *
- * Contains all external tgui declarations.
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
  */
 
 /**
@@ -81,6 +82,17 @@
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
 	if(!ui || ui.status != STATUS_INTERACTIVE)
 		return TRUE
+
+/**
+ * public
+ *
+ * Called on a UI when the UI crashed.
+ *
+ * required payload list A list of the payload supposed to be set on the regular UI.
+ */
+/datum/proc/tgui_fallback(list/payload)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_UI_FALLBACK, usr)
 
 /**
  * public

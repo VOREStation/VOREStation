@@ -3,7 +3,9 @@
 
 /datum/sprite_accessory/marking //Override for base markings
 	color_blend_mode = ICON_ADD
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list() //This lets all races use
+	var/digitigrade_acceptance = MARKING_NONDIGI_ONLY
+	var/digitigrade_icon = 'icons/mob/human_races/markings_digi.dmi'
 
 /datum/sprite_accessory/marking/vr_vulp_belly
 	name = "belly fur (Vulp)"
@@ -81,7 +83,7 @@
 	icon_state = "sergal_full"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//species_allowed = list("Sergal")			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr_sergal_full_female
 	name = "Sergal Markings (Female)"
@@ -89,7 +91,7 @@
 	icon_state = "sergal_full_female"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	species_allowed = list("Sergal")
+	//("Sergal")
 
 /datum/sprite_accessory/marking/vr_monoeye
 	name = "Monoeye"
@@ -401,6 +403,7 @@
 	icon_state = "tesh-feathers"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_harpy_feathers
 	name = "Rapala leg Feather"
@@ -488,7 +491,7 @@
 	icon = 'icons/mob/human_races/markings_vr.dmi'
 	icon_state = "eyes_panda"
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/vr_catwomantorso
 	name = "Catwoman chest stripes"
@@ -524,6 +527,7 @@
 	icon_state = "teshi_sf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)
+	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/vr_spirit_lights
 	name = "Ward - Spirit FBP Lights"
@@ -680,19 +684,6 @@
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 
 	//CitRP stuff
-/datum/sprite_accessory/marking/vr_vox_alt
-	name = "Vox Alternate"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "bay_vox"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
-	species_allowed = list(SPECIES_VOX)
-
-/datum/sprite_accessory/marking/vr_vox_alt_eyes
-	name = "Alternate Vox Eyes"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "bay_vox_eyes"
-	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_VOX)
 
 /datum/sprite_accessory/marking/vr_c_beast_body
 	name = "Cyber Body"
@@ -768,29 +759,8 @@
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/vr_voxscales
-	name = "Vox Scales"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_HEAD)
-
-/datum/sprite_accessory/marking/vr_voxclaws
-	name = "Vox Claws"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxclaws"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-
-/datum/sprite_accessory/marking/vr_voxbeak
-	name = "Vox Beak"
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-	icon_state = "Voxscales"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
 /datum/sprite_accessory/marking/vr_unathihood
-	name = "Cobra Hood"
+	name = "Cobra hood (small)"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
 	icon_state = "unathihood"
 	color_blend_mode = ICON_MULTIPLY
@@ -851,3 +821,414 @@
 	icon_state = "thunderthighs"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG)
+
+/datum/sprite_accessory/marking/vr_altevian_snout
+	name = "Altevian Snout"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-snout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_chin
+	name = "Altevian Chin"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-chin"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_nose
+	name = "Altevian Nose"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-nose"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_fangs
+	name = "Altevian Fangs"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-fangs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_incisors
+	name = "Altevian Incisors"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-incisors"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_eldritch_markings
+	name = "Eldritch Markings"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "perrinmarkings"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_L_ARM,BP_L_HAND,BP_R_ARM,BP_R_HAND,BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/vr_tesh_beak
+	name = "Teshari beak, pointed"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "tesh-beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/vr_tesh_beak_alt
+	name = "Teshari beak, rounded"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "tesh-beak-alt"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/vr_generic_hooves
+	name = "Generic Hooves"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "generic_hooves"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT)
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_unathi_blocky_head
+	name = "Unathi alt head (Blocky)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "unathi_blocky_head"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+	hide_body_parts = list(BP_HEAD)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_unathi_blocky_head_eyes
+	name = "Unathi alt head eyes (Blocky)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "unathi_blocky_head_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_manedwolf1
+	name = "Maned Wolf Primary Markings"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "manedwolf1"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_TORSO,BP_R_ARM,BP_L_ARM,BP_R_HAND,BP_L_HAND,BP_R_LEG,BP_L_LEG,BP_R_FOOT,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/vr_manedwolf2
+	name = "Maned Wolf Secondary Markings"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "manedwolf2"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD,BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/vr_head_paint_front
+	name = "Head Paint Front"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "paintfront"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_head_paint_back
+	name = "Head Paint"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "paint"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_sect_drone
+	name = "Sect Drone Bodytype"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "sectdrone"
+	color_blend_mode = ICON_MULTIPLY
+	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+	organ_override = TRUE
+
+/datum/sprite_accessory/marking/vr_sect_drone_eyes
+	name = "Sect Drone Eyes"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "sectdrone_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_zaprat_cheeks
+	name = "Cheek Marks"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "zaprat_cheeks"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_secbirbfeathers
+	name = "Secretary Bird Feathers"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "secbirbfeathers"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_zmaskanime
+	name = "eye mask (anime eyes)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "zmaskanime"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_birdpants
+	name = "leg coverings (nev/rap)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "birdpants"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG, BP_L_LEG, BP_GROIN)
+
+/datum/sprite_accessory/marking/vr/nevrean_long
+	name = "Long Snout"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "nevrean_long"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_heterochromia_l
+	name = "Heterochromia (left eye)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "heterochromia_l"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_teshi_heterochromia_l
+	name = "Heterochromia (Teshari) (left eye)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "teshi_heterochromia_l"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/vr/nevrean_beak //that's right, its bird rework time
+	name = "nevrean beak"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "nevrean_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/parrot_beak
+	name = "parrot beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "parrot_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/thin_beak //kiwis and hummingbirds
+	name = "thin beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "thin_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/finch_beak
+	name = "finch beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "finch_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/pelican_beak
+	name = "pelican beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "pelican_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/pelican_beak_pouch //recolor the pouch
+	name = "pelican beak pouch (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "pelican_beak_pouch"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/toucan_beak
+	name = "toucan beak (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "toucan_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/toucan_beak_tip //recolor the tip
+	name = "toucan beak tip (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "toucan_beak_tip"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/raptor_beak_small
+	name = "bird of prey beak, small (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "raptor_beak_small"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/raptor_beak_large
+	name = "bird of prey beak, large (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "raptor_beak_large"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_heartface
+	name = "heart face (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "heartface"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_fullhead
+	name = "full head recolor (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "full_head_nev"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_tophead
+	name = "top of the head recolor (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "top_head_nev"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/nev_cheeks //the face ones
+	name = "bird face cheeks (nev)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "cheeks_nev"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+
+// Dino stuff
+/datum/sprite_accessory/marking/vr_dino_horn
+	name = "dino horn"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "dino_horn"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_dino_plates
+	name = "stegosaurus plates"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "stegoplates"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/vr_triceratops_beak
+	name = "triceratops beak"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "triceratops_beak"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_triceratops_horn
+	name = "triceratops horn"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "triceratops_horn"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_backsail
+	name = "backsail"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "backsail"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+//Digitigrade markings
+/datum/sprite_accessory/marking/digi
+	icon = 'icons/mob/human_races/markings_digi.dmi'
+	digitigrade_acceptance = MARKING_DIGITIGRADE_ONLY
+
+/datum/sprite_accessory/marking/digi/fullleft
+	name = "Digitigrade Full Left Leg(Only works with digitigrade legs)"
+	icon_state = "full"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/fullright
+	name = "Digitigrade Full Right Leg(Only works with digitigrade legs)"
+	icon_state = "full"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/longsockleft
+	name = "Digitigrade Long Socks Left(Only works with digitigrade legs)"
+	icon_state = "longsock"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/longsockright
+	name = "Digitigrade Long Socks Right(Only works with digitigrade legs)"
+	icon_state = "longsock"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/medsockleft
+	name = "Digitigrade Medium Socks Left(Only works with digitigrade legs)"
+	icon_state = "medsock"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/medsockright
+	name = "Digitigrade Medium Socks Right(Only works with digitigrade legs)"
+	icon_state = "medsock"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/shortsockleft
+	name = "Digitigrade Short Socks Left(Only works with digitigrade legs)"
+	icon_state = "shortsock"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/shortsockright
+	name = "Digitigrade Short Socks Right(Only works with digitigrade legs)"
+	icon_state = "shortsock"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/toesleft
+	name = "Digitigrade Toes Left(Only works with digitigrade legs)"
+	icon_state = "toes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/toesright
+	name = "Digitigrade Toes Right(Only works with digitigrade legs)"
+	icon_state = "toes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/stripesleft
+	name = "Digitigrade Stripes Left(Only works with digitigrade legs)"
+	icon_state = "stripes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/stripesright
+	name = "Digitigrade Stripes Right(Only works with digitigrade legs)"
+	icon_state = "stripes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/smallspotsleft
+	name = "Digitigrade Small Spots Left(Only works with digitigrade legs)"
+	icon_state = "smallspots"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/smallspotsright
+	name = "Digitigrade Small Spots Right(Only works with digitigrade legs)"
+	icon_state = "smallspots"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/bigspotsleft
+	name = "Digitigrade Big Spots Left(Only works with digitigrade legs)"
+	icon_state = "bigspots"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/bigspotsright
+	name = "Digitigrade Big Spots Right(Only works with digitigrade legs)"
+	icon_state = "bigspots"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)

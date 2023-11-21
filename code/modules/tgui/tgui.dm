@@ -1,7 +1,6 @@
-/**
- * tgui
- *
- * /tg/station user interface library
+/*!
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
  */
 
 /**
@@ -32,8 +31,14 @@
 	var/closing = FALSE
 	/// The status/visibility of the UI.
 	var/status = STATUS_INTERACTIVE
+	/// Timed refreshing state
+	var/refreshing = FALSE
 	/// Topic state used to determine status/interactability.
 	var/datum/tgui_state/state = null
+	/// Rate limit client refreshes to prevent DoS.
+	COOLDOWN_DECLARE(refresh_cooldown)
+	/// Are byond mouse events beyond the window passed in to the ui
+	var/mouse_hooked = FALSE
 	/// The map z-level to display.
 	var/map_z_level = 1
 	/// The Parent UI
@@ -91,11 +96,11 @@
 	window.acquire_lock(src)
 	if(!window.is_ready())
 		window.initialize(
+			strict_mode = TRUE,
 			fancy = user.client.prefs.tgui_fancy,
-			inline_assets = list(
-			get_asset_datum(/datum/asset/simple/tgui_common),
-			get_asset_datum(/datum/asset/simple/tgui)
-		))
+			assets = list(
+				get_asset_datum(/datum/asset/simple/tgui),
+			))
 	else
 		window.send_message("ping")
 	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))
@@ -105,6 +110,8 @@
 	window.send_message("update", get_payload(
 		with_data = TRUE,
 		with_static_data = TRUE))
+	if(mouse_hooked)
+		window.set_mouse_macro()
 	SStgui.on_open(src)
 
 /**
@@ -147,6 +154,17 @@
 /**
  * public
  *
+ * Enable/disable passing through byond mouse events to the window
+ *
+ * required value bool Enable/disable hooking.
+ */
+/datum/tgui/proc/set_mouse_hook(value)
+	src.mouse_hooked = value
+	//Handle unhooking/hooking on already open windows ?
+
+/**
+ * public
+ *
  * Replace current ui.state with a new one.
  *
  * required state datum/ui_state/state Next state
@@ -177,11 +195,17 @@
 /datum/tgui/proc/send_full_update(custom_data, force)
 	if(!user.client || !initialized || closing)
 		return
+	//if(!COOLDOWN_FINISHED(src, refresh_cooldown))
+		//refreshing = TRUE
+		//addtimer(CALLBACK(src, PROC_REF(send_full_update)), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
+		//return
+	//refreshing = FALSE
 	var/should_update_data = force || status >= STATUS_UPDATE
 	window.send_message("update", get_payload(
 		custom_data,
 		with_data = should_update_data,
 		with_static_data = TRUE))
+	//COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
 
 /**
  * public
@@ -212,6 +236,8 @@
 		"title" = title,
 		"status" = status,
 		"interface" = interface,
+		//"refreshing" = refreshing,
+		"refreshing" = FALSE,
 		"map" = (using_map && using_map.path) ? using_map.path : "Unknown",
 		"mapZLevel" = map_z_level,
 		"window" = list(
@@ -313,8 +339,11 @@
 		return FALSE
 	switch(type)
 		if("ready")
+			// Send a full update when the user manually refreshes the UI
+			if(initialized)
+				send_full_update()
 			initialized = TRUE
-		if("pingReply")
+		if("ping/reply")
 			initialized = TRUE
 		if("suspend")
 			close(can_be_suspended = TRUE)
@@ -329,3 +358,8 @@
 			LAZYINITLIST(src_object.tgui_shared_states)
 			src_object.tgui_shared_states[href_list["key"]] = href_list["value"]
 			SStgui.update_uis(src_object)
+		if("fallback")
+			#ifdef TGUI_DEBUGGING
+			log_tgui(user, "Fallback Triggered: [href_list["payload"]], Window: [window.id], Source: [src_object]")
+			#endif
+			src_object.tgui_fallback(payload)

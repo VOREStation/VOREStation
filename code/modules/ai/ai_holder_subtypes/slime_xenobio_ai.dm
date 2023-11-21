@@ -123,6 +123,12 @@
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_tactic()
 	evolve_and_reproduce()
 
+/datum/ai_holder/simple_mob/xenobio_slime/handle_stance_tactical()
+	if(!istype(holder) || QDELETED(holder))
+		qdel(src)
+		return
+	..()
+
 // Hit the correct verbs to keep the slime species going.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/evolve_and_reproduce()
 	var/mob/living/simple_mob/slime/xenobio/my_slime = holder

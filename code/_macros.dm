@@ -43,3 +43,5 @@
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
 
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
+
+#define JOINTEXT(X) jointext(X, null)

@@ -55,10 +55,10 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 // hide the object if turf is intact
 /obj/machinery/navbeacon/hide(var/intact)
 	invisibility = intact ? 101 : 0
-	updateicon()
+	update_icon()
 
 // update the icon_state
-/obj/machinery/navbeacon/proc/updateicon()
+/obj/machinery/navbeacon/update_icon()
 	var/state="navbeacon[open]"
 
 	if(invisibility)
@@ -72,12 +72,12 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		open = !open
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
 
-		updateicon()
+		update_icon()
 
 	else if(I.GetID())
 		if(open)
@@ -150,7 +150,7 @@ Transponder Codes:<UL>"}
 			usr.set_machine(src)
 
 			if(href_list["locedit"])
-				var/newloc = sanitize(input(usr, "Enter New Location", "Navigation Beacon", location) as text|null)
+				var/newloc = sanitize(tgui_input_text(usr, "Enter New Location", "Navigation Beacon", location, MAX_NAME_LEN))
 				if(newloc)
 					location = newloc
 					updateDialog()
@@ -158,12 +158,14 @@ Transponder Codes:<UL>"}
 			else if(href_list["edit"])
 				var/codekey = href_list["code"]
 
-				var/newkey = input(usr, "Enter Transponder Code Key", "Navigation Beacon", codekey) as text|null
+				var/newkey = tgui_input_text(usr, "Enter Transponder Code Key", "Navigation Beacon", codekey, MAX_NAME_LEN)
+				newkey = sanitize(newkey,MAX_NAME_LEN)
 				if(!newkey)
 					return
 
 				var/codeval = codes[codekey]
-				var/newval = input(usr, "Enter Transponder Code Value", "Navigation Beacon", codeval) as text|null
+				var/newval = tgui_input_text(usr, "Enter Transponder Code Value", "Navigation Beacon", codeval, MAX_NAME_LEN)
+				newval = sanitize(newval,MAX_NAME_LEN)
 				if(!newval)
 					newval = codekey
 					return
@@ -180,11 +182,13 @@ Transponder Codes:<UL>"}
 
 			else if(href_list["add"])
 
-				var/newkey = input(usr, "Enter New Transponder Code Key", "Navigation Beacon") as text|null
+				var/newkey = tgui_input_text(usr, "Enter New Transponder Code Key", "Navigation Beacon", null, MAX_NAME_LEN)
+				newkey = sanitize(newkey,MAX_NAME_LEN)
 				if(!newkey)
 					return
 
-				var/newval = input(usr, "Enter New Transponder Code Value", "Navigation Beacon") as text|null
+				var/newval = tgui_input_text(usr, "Enter New Transponder Code Value", "Navigation Beacon", null, MAX_NAME_LEN)
+				newval = sanitize(newval,MAX_NAME_LEN)
 				if(!newval)
 					newval = "1"
 					return

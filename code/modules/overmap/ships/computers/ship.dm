@@ -79,7 +79,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	user.set_viewsize(world.view + extra_view)
 	GLOB.moved_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
 	// TODO GLOB.stat_set_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
-	LAZYDISTINCTADD(viewers, weakref(user))
+	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /obj/machinery/computer/ship/proc/unlook(var/mob/user)
 	user.reset_view()
@@ -92,10 +92,10 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	user.set_viewsize() // reset to default
 	GLOB.moved_event.unregister(user, src, /obj/machinery/computer/ship/proc/unlook)
 	// TODO GLOB.stat_set_event.unregister(user, src, /obj/machinery/computer/ship/proc/unlook)
-	LAZYREMOVE(viewers, weakref(user))
+	LAZYREMOVE(viewers, WEAKREF(user))
 
 /obj/machinery/computer/ship/proc/viewing_overmap(mob/user)
-	return (weakref(user) in viewers)
+	return (WEAKREF(user) in viewers)
 
 /obj/machinery/computer/ship/tgui_status(mob/user)
 	. = ..()
@@ -120,7 +120,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 /obj/machinery/computer/ship/sensors/Destroy()
 	sensors = null
 	if(LAZYLEN(viewers))
-		for(var/weakref/W in viewers)
+		for(var/datum/weakref/W in viewers)
 			var/M = W.resolve()
 			if(M)
 				unlook(M)

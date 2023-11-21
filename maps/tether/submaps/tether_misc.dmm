@@ -28,6 +28,11 @@
 "ae" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/space)
+"af" = (
+/obj/structure/table/woodentable/holotable,
+/turf/space,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_game_room)
 "ag" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -54,6 +59,16 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
+"ai" = (
+/obj/structure/bed/chair/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/carpet{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source_game_room)
 "aj" = (
 /obj/machinery/light{
 	dir = 1
@@ -438,7 +453,7 @@
 /obj/structure/fitness/boxing_ropes{
 	dir = 1
 	},
-/obj/structure/fitness/boxing_turnbuckle{
+/obj/structure/fitness/boxing_ropes/turnbuckle{
 	dir = 8;
 	layer = 3.4
 	},
@@ -461,7 +476,7 @@
 /obj/structure/fitness/boxing_ropes{
 	dir = 1
 	},
-/obj/structure/fitness/boxing_turnbuckle{
+/obj/structure/fitness/boxing_ropes/turnbuckle{
 	dir = 4;
 	layer = 3.4
 	},
@@ -489,21 +504,21 @@
 /turf/simulated/fitness,
 /area/holodeck/source_boxingcourt)
 "bD" = (
-/obj/structure/fitness/boxing_turnbuckle{
+/obj/structure/fitness/boxing_ropes/turnbuckle{
 	dir = 8
 	},
-/obj/structure/fitness/boxing_ropes_bottom,
+/obj/structure/fitness/boxing_ropes/bottom,
 /turf/simulated/fitness,
 /area/holodeck/source_boxingcourt)
 "bE" = (
-/obj/structure/fitness/boxing_ropes_bottom,
+/obj/structure/fitness/boxing_ropes/bottom,
 /turf/simulated/fitness,
 /area/holodeck/source_boxingcourt)
 "bF" = (
-/obj/structure/fitness/boxing_turnbuckle{
+/obj/structure/fitness/boxing_ropes/turnbuckle{
 	dir = 4
 	},
-/obj/structure/fitness/boxing_ropes_bottom,
+/obj/structure/fitness/boxing_ropes/bottom,
 /turf/simulated/fitness,
 /area/holodeck/source_boxingcourt)
 "bG" = (
@@ -574,6 +589,26 @@
 "bN" = (
 /turf/simulated/floor/flesh,
 /area/holodeck/the_uwu_zone)
+"bO" = (
+/obj/structure/table/woodentable/holotable,
+/obj/effect/landmark/costume/elpresidente,
+/turf/space,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_game_room)
+"bP" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "escapeshuttle_leave";
+	teleport_x = 25;
+	teleport_x_offset = 245;
+	teleport_y = 25;
+	teleport_y_offset = 245;
+	teleport_z = 4;
+	teleport_z_offset = 4
+	},
+/turf/space,
+/turf/space/transit/north,
+/area/space)
 "bQ" = (
 /turf/space/internal_edge/left,
 /area/space)
@@ -1149,20 +1184,6 @@
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm6)
-"dD" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "dE" = (
 /turf/space/internal_edge/bottomright,
 /area/space)
@@ -2670,11 +2691,6 @@
 /obj/effect/floor_decal/sign/small_b,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
-"Ej" = (
-/obj/structure/table/woodentable/holotable,
-/turf/space,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_game_room)
 "El" = (
 /turf/space/transit/west,
 /area/space)
@@ -2784,12 +2800,6 @@
 /area/holodeck/source_chess)
 "HU" = (
 /obj/structure/table/woodentable/holotable,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_game_room)
-"HX" = (
-/obj/structure/table/woodentable/holotable,
-/obj/effect/landmark/costume/elpresidente,
-/turf/space,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "Ik" = (
@@ -3627,10 +3637,6 @@
 "VC" = (
 /turf/unsimulated/beach/sand,
 /area/beach)
-"VW" = (
-/turf/space,
-/turf/space,
-/area/space)
 "Wf" = (
 /obj/item/toy/chess/queen_white,
 /turf/simulated/floor/holofloor/wmarble,
@@ -3679,16 +3685,6 @@
 /obj/structure/closet,
 /turf/unsimulated/beach/sand,
 /area/beach)
-"Yi" = (
-/obj/structure/bed/chair/holochair{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_game_room)
 "YI" = (
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -13330,10 +13326,10 @@ Jz
 Jz
 Jz
 Jz
-dD
-dD
-dD
-dD
+bP
+bP
+bP
+bP
 iO
 El
 El
@@ -13475,7 +13471,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -13617,7 +13613,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -13759,7 +13755,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -13901,7 +13897,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14043,7 +14039,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14185,7 +14181,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14327,7 +14323,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14469,7 +14465,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14611,7 +14607,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14753,7 +14749,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -14895,7 +14891,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15037,7 +15033,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15179,7 +15175,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15321,7 +15317,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15463,7 +15459,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15605,7 +15601,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15747,7 +15743,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -15889,7 +15885,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -16031,7 +16027,7 @@ jf
 Gs
 Gs
 Gs
-dD
+bP
 iO
 El
 El
@@ -16150,30 +16146,30 @@ ap
 ap
 ap
 ap
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
+bP
 iO
 El
 El
@@ -17375,11 +17371,11 @@ Xs
 vY
 HU
 Pr
-Ej
+af
 HU
 Pr
 lX
-HX
+bO
 yW
 fZ
 ap
@@ -17801,7 +17797,7 @@ Pr
 Pr
 gZ
 QU
-Yi
+ai
 QU
 QU
 yr
@@ -19513,7 +19509,7 @@ RT
 gD
 fZ
 ap
-VW
+ap
 ap
 ap
 ap
@@ -19655,7 +19651,7 @@ gD
 gD
 fZ
 ap
-VW
+ap
 ap
 ap
 ap
@@ -19797,7 +19793,7 @@ gD
 gD
 fZ
 ap
-VW
+ap
 ap
 ap
 ap
@@ -19939,7 +19935,7 @@ gD
 xc
 fZ
 ap
-VW
+ap
 ap
 ap
 ap
@@ -20081,7 +20077,7 @@ gD
 Fk
 fZ
 ap
-VW
+ap
 ap
 ap
 ap

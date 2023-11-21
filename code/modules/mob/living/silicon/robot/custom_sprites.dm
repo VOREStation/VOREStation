@@ -1,3 +1,4 @@
+// Deprecated as of the sprite datumization, kept only for ai custom icons (even though we dont yet have any)
 
 //list(ckey = real_name,)
 //Since the ckey is used as the icon_state, the current system will only permit a single custom robot sprite per ckey.
@@ -24,7 +25,7 @@ GLOBAL_LIST_EMPTY(robot_custom_icons)
 	return 1
 
 /mob/living/silicon/robot/proc/set_custom_sprite()
-	if(!sprite_name)
+	if(!sprite_name || !(sprite_name in GLOB.robot_custom_icons))
 		return
 	var/sprite_owner = GLOB.robot_custom_icons[sprite_name]
 	if(sprite_owner && sprite_owner == ckey)

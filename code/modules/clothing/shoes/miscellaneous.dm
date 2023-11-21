@@ -144,7 +144,7 @@
 	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
 
 /obj/item/clothing/shoes/laceup
-	name = "black oxford  shoes"
+	name = "black oxford shoes"
 	icon_state = "oxford_black"
 
 /obj/item/clothing/shoes/laceup/grey
@@ -248,3 +248,9 @@
 	desc = "A stylish, expensive pair of red sneakers."
 	icon_state = "sneakersred"
 	item_state = "sneakersred"
+
+/obj/item/clothing/shoes/ballet
+	name = "pointe shoes"
+	desc = "These shoes feature long lace straps and flattened off toes. Great for the most elegant of dances!"
+	icon_state = "ballet"
+	item_state = "ballet"

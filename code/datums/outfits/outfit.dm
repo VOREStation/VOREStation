@@ -41,7 +41,7 @@ var/list/outfits_decls_by_type_
 	var/l_hand = null
 	// In the list(path=count,otherpath=count) format
 	var/list/uniform_accessories = list() // webbing, armbands etc - fits in slot_tie
-	var/list/backpack_contents = list() 
+	var/list/backpack_contents = list()
 
 	var/id_type
 	var/id_desc

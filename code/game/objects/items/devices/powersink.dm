@@ -4,6 +4,7 @@
 	name = "power sink"
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
+	icon = 'icons/obj/device.dmi'
 	w_class = ITEMSIZE_LARGE
 	throwforce = 5
 	throw_speed = 1
@@ -29,7 +30,7 @@
 	..()
 
 /obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(mode == 0)
 			var/turf/T = loc
 			if(isturf(T) && !!T.is_plating())

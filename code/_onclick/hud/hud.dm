@@ -192,7 +192,7 @@ var/list/global_huds = list(
 	var/icon/ui_style
 	var/ui_color
 	var/ui_alpha
-	
+
 	// TGMC Ammo HUD Port
 	var/list/obj/screen/ammo_hud_list = list()
 
@@ -205,7 +205,7 @@ var/list/global_huds = list(
 
 /datum/hud/Destroy()
 	. = ..()
-	qdel_null(minihuds)
+	QDEL_NULL_LIST(minihuds)
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null
@@ -224,7 +224,9 @@ var/list/global_huds = list(
 	other_important = null
 	hotkeybuttons = null
 //	item_action_list = null // ?
-	QDEL_LIST(ammo_hud_list)
+	for (var/x in ammo_hud_list)
+		remove_ammo_hud(mymob, x)
+	ammo_hud_list = null
 	mymob = null
 
 /datum/hud/proc/hidden_inventory_update()
@@ -368,6 +370,9 @@ var/list/global_huds = list(
 	toggle_hud_vis(full)
 
 /mob/proc/toggle_hud_vis(full)
+	if(!client)
+		return FALSE
+
 	if(hud_used.hud_shown)
 		hud_used.hud_shown = 0
 		if(hud_used.adding)
@@ -405,7 +410,8 @@ var/list/global_huds = list(
 	return TRUE
 
 /mob/living/carbon/human/toggle_hud_vis(full)
-	..()
+	if(!(. = ..()))
+		return FALSE
 
 	// Prevents humans from hiding a few hud elements
 	if(!hud_used.hud_shown) // transitioning to hidden
@@ -466,7 +472,7 @@ var/list/global_huds = list(
 
 /mob/new_player/add_click_catcher()
 	return
-	
+
 /* TGMC Ammo HUD Port
  * These procs call to screen_objects.dm's respective procs.
  * All these do is manage the amount of huds on screen and set the HUD.

@@ -16,7 +16,7 @@
 
 /obj/structure/ladder_assembly/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter the name for the ladder.", "Ladder Name", src.created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the ladder.", "Ladder Name", src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(in_range(src, user))
 			created_name = t
 		return
@@ -24,7 +24,7 @@
 	else if(istype(get_area(src), /area/shuttle))
 		to_chat(user, "<span class='warning'>\The [src] cannot be constructed on a shuttle.</span>")
 		return
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
 				state = CONSTRUCTION_WRENCHED
@@ -44,8 +44,8 @@
 				to_chat(user, "<span class='warning'>\The [src] needs to be unwelded.</span>")
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
 				to_chat(user, "<span class='warning'>The refinforcing bolts need to be secured.</span>")

@@ -18,7 +18,7 @@
 		CRASH("Invalid ID in conflict checking element.")
 	if(isnull(src.id))
 		src.id = id
-	RegisterSignal(target, COMSIG_CONFLICT_ELEMENT_CHECK, .proc/check)
+	RegisterSignal(target, COMSIG_CONFLICT_ELEMENT_CHECK, PROC_REF(check))
 
 /datum/element/conflict_checking/proc/check(datum/source, id_to_check)
 	if(id == id_to_check)

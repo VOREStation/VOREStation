@@ -216,23 +216,31 @@
 	for(var/mob/living/L in view(src))
 		if(L.stat == DEAD)
 			continue // Already dying or dead.
-		if(L.faction == blob_type.faction)
-			continue // No friendly fire.
-		if(locate(/obj/structure/blob) in L.loc)
-			continue // Already has a blob over them.
+		if(can_attack(L))
+			potential_targets += L
 
-		var/obj/structure/blob/B = null
-		for(var/direction in cardinal)
-			var/turf/T = get_step(L, direction)
-			B = locate(/obj/structure/blob) in T
-			if(B && B.overmind == src)
-				break
-		if(!B)
-			continue
-
-		potential_targets += L
+	for(var/obj/mecha/M in view(src))
+		if(!M.occupant)
+			continue // Just a hunk of metal
+		if(can_attack(M.occupant))
+			potential_targets += M
 
 	if(potential_targets.len)
 		var/mob/living/victim = pick(potential_targets)
 		var/turf/T = get_turf(victim)
 		expand_blob(T)
+
+/mob/observer/blob/proc/can_attack(var/mob/living/L)
+	if(!istype(L))
+		return FALSE
+	if(L.faction == blob_type.faction)
+		return FALSE // No friendly fire.
+	if(locate(/obj/structure/blob) in get_turf(L))
+		return FALSE // Already has a blob over them.
+
+	for(var/direction in cardinal)
+		var/turf/T = get_step(L, direction)
+		var/obj/structure/blob/B = locate(/obj/structure/blob) in T
+		if(B && B.overmind == src)
+			return TRUE
+	return FALSE

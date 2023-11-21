@@ -1,8 +1,7 @@
-import { Box, Flex, LabeledList, Section, Icon } from "../components";
-import { useBackend } from "../backend";
-import { Window } from "../layouts";
-import { Fragment } from "inferno";
-import { RankIcon } from "./common/RankIcon";
+import { Box, Flex, LabeledList, Section, Icon } from '../components';
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
+import { RankIcon } from './common/RankIcon';
 
 export const IDCard = (props, context) => {
   const { data } = useBackend(context);
@@ -10,6 +9,7 @@ export const IDCard = (props, context) => {
   const {
     registered_name,
     sex,
+    species,
     age,
     assignment,
     fingerprint_hash,
@@ -19,18 +19,16 @@ export const IDCard = (props, context) => {
   } = data;
 
   const dataIter = [
-    { name: "Sex", val: sex },
-    { name: "Age", val: age },
-    { name: "Blood Type", val: blood_type },
-    { name: "Fingerprint", val: fingerprint_hash },
-    { name: "DNA Hash", val: dna_hash },
+    { name: 'Sex', val: sex },
+    { name: 'Species', val: species },
+    { name: 'Age', val: age },
+    { name: 'Blood Type', val: blood_type },
+    { name: 'Fingerprint', val: fingerprint_hash },
+    { name: 'DNA Hash', val: dna_hash },
   ];
 
   return (
-    <Window
-      width={470}
-      height={250}
-      resizable>
+    <Window width={470} height={250} resizable>
       <Window.Content>
         <Section>
           <Flex>
@@ -40,10 +38,10 @@ export const IDCard = (props, context) => {
                 style={{
                   width: '101px',
                   height: '120px',
-                  overflow: "hidden",
-                  outline: "2px solid #4972a1",
+                  overflow: 'hidden',
+                  outline: '2px solid #4972a1',
                 }}>
-                {photo_front && (
+                {(photo_front && (
                   <img
                     src={photo_front.substr(1, photo_front.length - 1)}
                     style={{
@@ -52,14 +50,12 @@ export const IDCard = (props, context) => {
                       '-ms-interpolation-mode': 'nearest-neighbor',
                     }}
                   />
-                ) || (
-                  <Icon name="user" size={8} ml={1.5} mt={2.5} />
-                )}
+                )) || <Icon name="user" size={8} ml={1.5} mt={2.5} />}
               </Box>
             </Flex.Item>
             <Flex.Item basis={0} grow={1}>
               <LabeledList>
-                {dataIter.map(data => (
+                {dataIter.map((data) => (
                   <LabeledList.Item key={data.name} label={data.name}>
                     {data.val}
                   </LabeledList.Item>
@@ -72,9 +68,7 @@ export const IDCard = (props, context) => {
             align="center"
             justify="space-around">
             <Flex.Item>
-              <Box textAlign="center">
-                {registered_name}
-              </Box>
+              <Box textAlign="center">{registered_name}</Box>
             </Flex.Item>
             <Flex.Item>
               <Box textAlign="center">
@@ -82,9 +76,7 @@ export const IDCard = (props, context) => {
               </Box>
             </Flex.Item>
             <Flex.Item>
-              <Box textAlign="center">
-                {assignment}
-              </Box>
+              <Box textAlign="center">{assignment}</Box>
             </Flex.Item>
           </Flex>
         </Section>

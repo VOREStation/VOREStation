@@ -40,9 +40,10 @@
 #define NIF_SIZECHANGE			33
 #define NIF_SOULCATCHER			34
 #define NIF_WORLDBEND			35
+#define NIF_MALWARE				36
 
 // Must be equal to the highest number above
-#define TOTAL_NIF_SOFTWARE		35
+#define TOTAL_NIF_SOFTWARE		36
 
 //////////////////////
 // NIF flag list hints

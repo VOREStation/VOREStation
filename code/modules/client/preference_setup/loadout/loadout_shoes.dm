@@ -169,13 +169,13 @@
 	display_name = "cowboy boots, snake skin"
 	path = /obj/item/clothing/shoes/boots/cowboy/snakeskin
 
-/datum/gear/shoes/cowboy/lizard
-	display_name = "cowboy boots, lizard skin"
-	path = /obj/item/clothing/shoes/boots/cowboy/lizard
+/datum/gear/shoes/cowboy/green
+	display_name = "cowboy boots, green"
+	path = /obj/item/clothing/shoes/boots/cowboy/green
 
-/datum/gear/shoes/cowboy/lizard/masterwork
-	display_name = "cowboy boots, lizard skin (masterwork)"
-	path = /obj/item/clothing/shoes/boots/cowboy/lizard/masterwork
+/datum/gear/shoes/cowboy/blue
+	display_name = "cowboy boots, blue"
+	path = /obj/item/clothing/shoes/boots/cowboy/blue
 
 /datum/gear/shoes/jungle
 	display_name = "jungle boots"
@@ -252,3 +252,15 @@
 /datum/gear/shoes/circuitry
 	display_name = "boots, circuitry (empty)"
 	path = /obj/item/clothing/shoes/circuitry
+
+/datum/gear/shoes/ballet
+	display_name = "pointe shoes"
+	path = /obj/item/clothing/shoes/ballet
+
+/datum/gear/shoes/ballet/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/shoes/halfmoon
+	display_name = "half moon boots"
+	path = /obj/item/clothing/shoes/boots/half_moon

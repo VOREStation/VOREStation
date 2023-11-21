@@ -25,7 +25,7 @@
 	softfall = TRUE //Beings made of Hellmarble and powered by the tears of the damned are not concerned with mortal things such as 'gravity'.
 	parachuting = TRUE
 
-	has_langs = list(LANGUAGE_GALCOM, LANGUAGE_CULT, LANGUAGE_OCCULT)
+	has_langs = list(LANGUAGE_GALCOM, LANGUAGE_CULT)
 
 	has_eye_glow = TRUE
 
@@ -103,7 +103,7 @@
 	real_name = name
 	for(var/spell in construct_spells)
 		src.add_spell(new spell, "const_spell_ready")
-	updateicon()
+	update_icon()
 
 /*
 /mob/living/simple_mob/construct/update_icon()
