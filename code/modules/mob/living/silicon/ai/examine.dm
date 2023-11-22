@@ -22,17 +22,17 @@
 			else
 				. += "<span class='warning'>It seems to be running on backup power.</span>"
 
-		if (src.stat == UNCONSCIOUS)
+		if (src.stat == UNCONSCIOUS || src.stat == PARALYZED)
 			. += "<span class='warning'>It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".</span>"
 
 		if(deployed_shell)
 			. += "The wireless networking light is blinking."
 
 	. += "*---------*"
-	
+
 	if(hardware && (hardware.owner == src))
 		. += hardware.get_examine_desc()
-	
+
 	user.showLaws(src)
 
 /mob/proc/showLaws(var/mob/living/silicon/S)

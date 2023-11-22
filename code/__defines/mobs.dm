@@ -1,7 +1,8 @@
 // /mob/var/stat things.
 #define CONSCIOUS   0
-#define UNCONSCIOUS 1
-#define DEAD        2
+#define PARALYZED	1
+#define UNCONSCIOUS 2
+#define DEAD        3
 
 // Bitflags defining which status effects could be or are inflicted on a mob.
 #define CANSTUN     0x1

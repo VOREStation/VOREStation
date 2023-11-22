@@ -269,7 +269,7 @@ datum
 			check_completion()
 				if(!emergency_shuttle.returned())
 					return 0
-				if(target.current.stat == 2)
+				if(target.current.stat == DEAD)
 					return 0
 				var/turf/location = get_turf(target.current.loc)
 				if(!location)
@@ -316,7 +316,7 @@ datum
 				if(!emergency_shuttle.returned())
 					return 0
 
-				if(target.current.stat == 2)
+				if(target.current.stat == DEAD)
 					return 0
 
 				var/turf/location = get_turf(target.current.loc)
@@ -358,7 +358,7 @@ datum
 
 			check_completion()
 				if(target && target.current)
-					if(target.current.stat == 2 || istype(get_area(target.current), /area/tdome) || issilicon(target.current) || isbrain(target.current))
+					if(target.current.stat == DEAD || istype(get_area(target.current), /area/tdome) || issilicon(target.current) || isbrain(target.current))
 						return 1
 					else
 						return 0
@@ -429,7 +429,7 @@ datum
 
 			check_completion()
 				if(target && target.current)
-					if(target.current.stat == 2)
+					if(target.current.stat == DEAD)
 						if(config.require_heads_alive) return 0
 					else
 						if(!target.current.handcuffed)
@@ -480,7 +480,7 @@ datum
 				if(!emergency_shuttle.returned())
 					return 0
 
-				if(!owner.current || owner.current.stat == 2)
+				if(!owner.current || owner.current.stat == DEAD)
 					return 0
 				var/turf/location = get_turf(owner.current.loc)
 
@@ -515,7 +515,7 @@ datum
 				if(!emergency_shuttle.returned())
 					return 0
 
-				if(!owner.current || owner.current.stat ==2)
+				if(!owner.current || owner.current.stat == DEAD)
 					return 0
 
 				var/turf/location = get_turf(owner.current.loc)
@@ -540,7 +540,7 @@ datum
 			explanation_text = "Stay alive."
 
 			check_completion()
-				if(!owner.current || owner.current.stat == 2)
+				if(!owner.current || owner.current.stat == DEAD)
 					return 0
 
 				return 1
@@ -1331,7 +1331,7 @@ datum
 			check_completion()
 				if(!ishuman(owner.current))
 					return 0
-				if(!owner.current || owner.current.stat == 2)
+				if(!owner.current || owner.current.stat == DEAD)
 					return 0
 
 				var/current_amount
@@ -1406,7 +1406,7 @@ datum
 			check_completion()
 				if(target && target.current)
 					var/turf/T = get_turf(target.current)
-					if(target.current.stat == 2)
+					if(target.current.stat == DEAD)
 						return 1
 					else if((T) && (isNotStationLevel(T.z)))//If they leave the station they count as dead for this
 						return 2

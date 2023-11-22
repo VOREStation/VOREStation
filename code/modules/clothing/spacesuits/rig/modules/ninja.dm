@@ -205,7 +205,7 @@
 		return 0
 
 	//OH SHIT.
-	if(holder.wearer.stat == 2)
+	if(holder.wearer.stat == DEAD)
 		engage(1)
 
 /obj/item/rig_module/self_destruct/engage(var/skip_check)

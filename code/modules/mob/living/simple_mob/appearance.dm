@@ -19,7 +19,7 @@
 		icon_state = icon_dead
 
 	//Resting or KO'd
-	else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest)
+	else if(((stat == UNCONSCIOUS) || (stat == PARALYZED) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest)
 		icon_state = icon_rest
 
 	//Backup

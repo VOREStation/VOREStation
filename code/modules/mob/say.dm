@@ -5,6 +5,9 @@
 	set name = "Whisper"
 	set category = "IC"
 	//VOREStation Addition Start
+	if(paralysis)
+		to_chat(usr, "<span class='danger'>You can't speak whilst paralyzed!</span>")
+		return
 	if(forced_psay)
 		psay(message)
 		return
@@ -16,6 +19,9 @@
 	set name = "Say"
 	set category = "IC"
 	//VOREStation Addition Start
+	if(paralysis)
+		to_chat(usr, "<span class='danger'>You can't speak whilst paralyzed!</span>")
+		return
 	if(forced_psay)
 		psay(message)
 		return
@@ -30,6 +36,9 @@
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<font color='red'>Speech is currently admin-disabled.</font>")
+		return
+	if(paralysis)
+		to_chat(usr, "<span class='danger'>You can't act whilst paralyzed!</span>")
 		return
 	//VOREStation Addition Start
 	if(forced_psay)

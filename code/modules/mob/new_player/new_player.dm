@@ -13,7 +13,7 @@
 	invisibility = 101
 
 	density = FALSE
-	stat = 2
+	stat = DEAD
 	canmove = 0
 
 	anchored = TRUE	//  don't get pushed around

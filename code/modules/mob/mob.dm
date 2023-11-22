@@ -70,7 +70,7 @@
 		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
 		if(client && client.prefs.chat_timestamp)
-			msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") 
+			msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2")
 			to_chat(src,msg)
 		else if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
@@ -170,10 +170,10 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting))
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || paralysis))
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_KNOCKOUT) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
+	if ((incapacitation_flags & INCAPACITATION_KNOCKOUT) && (stat || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -919,8 +919,8 @@
 		return
 	usr.setClickCooldown(20)
 
-	if(usr.stat == 1)
-		to_chat(usr, "<span class='filter_notice'>You are unconcious and cannot do that!</span>")
+	if(usr.stat >= 1)
+		to_chat(usr, "<span class='filter_notice'>You are cannot do that right now!</span>")
 		return
 
 	if(usr.restrained())

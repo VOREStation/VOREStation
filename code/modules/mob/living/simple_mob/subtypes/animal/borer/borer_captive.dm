@@ -18,7 +18,7 @@
 		if (!message)
 			return
 		log_say(message,src)
-		if (stat == 2)
+		if (stat == DEAD)
 			return say_dead(message)
 
 		var/mob/living/simple_mob/animal/borer/B = src.loc

@@ -202,7 +202,7 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	if(usr!=src.occupant || usr.stat == 2)
+	if(usr!=src.occupant || usr.stat == DEAD)
 		return
 	to_chat(usr,"<span class='notice'>Release sequence activated. This will take one minute.</span>")
 	sleep(600)

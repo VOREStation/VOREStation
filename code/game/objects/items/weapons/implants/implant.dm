@@ -522,7 +522,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	if(isnull(M)) // If the mob got gibbed
 		activate()
-	else if(M.stat == 2)
+	else if(M.stat == DEAD)
 		activate("death")
 
 /obj/item/weapon/implant/death_alarm/activate(var/cause)

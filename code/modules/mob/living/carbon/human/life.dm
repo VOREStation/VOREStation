@@ -1245,22 +1245,24 @@
 			Paralyse(10)
 			setHalLoss(species.total_health - 1)
 
-		if(paralysis || sleeping)
+		if(paralysis)
+			set_stat(PARALYZED)
+			animate_tail_reset()
+
+		if(sleeping)
+			adjustHalLoss(-3)
 			blinded = 1
 			set_stat(UNCONSCIOUS)
 			animate_tail_reset()
-			adjustHalLoss(-3)
-
-			if(sleeping)
-				handle_dreams()
-				if (mind)
-					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
-					if(client || sleeping > 3)
-						AdjustSleeping(-1)
-						throw_alert("asleep", /obj/screen/alert/asleep)
-				if( prob(2) && health && !hal_crit && client )
-					spawn(0)
-						emote("snore")
+			handle_dreams()
+			if (mind)
+				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
+				if(client || sleeping > 3)
+					AdjustSleeping(-1)
+					throw_alert("asleep", /obj/screen/alert/asleep)
+			if( prob(2) && health && !hal_crit && client )
+				spawn(0)
+					emote("snore")
 		//CONSCIOUS
 		else
 			set_stat(CONSCIOUS)
@@ -1723,7 +1725,7 @@
 				stomach_contents.Remove(M)
 				continue
 			if(istype(M, /mob/living/carbon) && stat != 2)
-				if(M.stat == 2)
+				if(M.stat == DEAD)
 					M.death(1)
 					stomach_contents.Remove(M)
 					qdel(M)

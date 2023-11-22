@@ -10,14 +10,14 @@
 	if (!ticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
-	
+
 	to_chat(src, "<span class='warning'>No. Adminhelp if there is a legitimate reason, and please review our server rules.</span>")
 	message_admins("[ckey] has tried to trigger the suicide verb as human, but it is currently disabled.")
 
 /mob/living/carbon/brain/verb/suicide()
 	set hidden = 1
 
-	if (stat == 2)
+	if (stat == DEAD)
 		to_chat(src, "You're already dead!")
 		return
 
@@ -41,7 +41,7 @@
 /mob/living/silicon/ai/verb/suicide()
 	set hidden = 1
 
-	if (stat == 2)
+	if (stat == DEAD)
 		to_chat(src, "You're already dead!")
 		return
 
@@ -61,7 +61,7 @@
 /mob/living/silicon/robot/verb/suicide()
 	set hidden = 1
 
-	if (stat == 2)
+	if (stat == DEAD)
 		to_chat(src, "You're already dead!")
 		return
 

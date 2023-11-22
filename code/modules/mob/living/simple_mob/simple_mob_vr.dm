@@ -94,7 +94,7 @@
 			icon_state = "[icon_living]-[vore_fullness]"
 		else if(stat >= DEAD && (vore_icons & SA_ICON_DEAD))
 			icon_state = "[icon_dead]-[vore_fullness]"
-		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
+		else if(((stat == UNCONSCIOUS) || (stat == PARALYZED) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 			icon_state = "[icon_rest]-[vore_fullness]"
 		if(vore_eyes && voremob_awake) //Update eye layer if applicable.
 			remove_eyes()

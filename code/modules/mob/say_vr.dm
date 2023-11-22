@@ -10,6 +10,9 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "Speech is currently admin-disabled.")
 		return
+	if(paralysis)
+		to_chat(usr, "<span class='danger'>You can't act whilst paralyzed!</span>")
+		return
 	if(forced_psay)
 		pme(message)
 		return
@@ -32,6 +35,9 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "Speech is currently admin-disabled.")
 		return
+	if(paralysis)
+		to_chat(usr, "<span class='danger'>You can't act whilst paralyzed!</span>")
+		return
 	if(forced_psay)
 		pme(message)
 		return
@@ -52,6 +58,9 @@
 		return
 
 	//VOREStation Addition Start
+	if(paralysis)
+		to_chat(usr, "<span class='danger'>You can't act whilst paralyzed!</span>")
+		return
 	if(forced_psay)
 		pme(message)
 		return

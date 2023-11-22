@@ -280,7 +280,7 @@
 	//Basically! Mobs over 1000 max health will be unable to be caught without using status effects.
 	//Thanks Aronai!
 	var/effect_count = 0	//This will give you a smol chance to capture if you have applied status effects, even if the chance would ordinarily be <0
-	if(M.stat == UNCONSCIOUS)
+	if(M.stat == PARALYZED || M.stat == UNCONSCIOUS)
 		capture_chance += 0.1
 		effect_count += 1
 	else if(M.stat == CONSCIOUS)

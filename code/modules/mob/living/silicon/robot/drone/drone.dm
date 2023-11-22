@@ -237,7 +237,7 @@ var/list/mob_hat_cache = list()
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		if(stat == 2)
+		if(stat == DEAD)
 
 			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
 				to_chat(user, "<span class='danger'>The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.</span>")
@@ -271,7 +271,7 @@ var/list/mob_hat_cache = list()
 	..()
 
 /mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
-	if(!client || stat == 2)
+	if(!client || stat == DEAD)
 		to_chat(user, "<span class='danger'>There's not much point subverting this heap of junk.</span>")
 		return
 

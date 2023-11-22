@@ -287,7 +287,7 @@
 
 	if (src.stat)
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>"
-		if((stat == 2 || src.losebreath) && get_dist(user, src) <= 3)
+		if((stat == DEAD || src.losebreath) && get_dist(user, src) <= 3)
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>"
 		if(istype(user, /mob/living/carbon/human) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")

@@ -338,7 +338,7 @@ emp_act
 				if(BP_HEAD)//Harder to score a stun but if you do it lasts a bit longer
 					if(prob(effective_force))
 						apply_effect(20, PARALYZE, blocked, soaked)
-						visible_message("<span class='danger'>\The [src] has been knocked unconscious!</span>")
+						visible_message("<span class='danger'>\The [src] has been stunned!</span>")
 					if(bloody)//Apply blood
 						if(wear_mask)
 							wear_mask.add_blood(src)

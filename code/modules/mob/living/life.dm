@@ -112,6 +112,8 @@
 	updatehealth()
 	if(stat != DEAD)
 		if(paralysis)
+			set_stat(PARALYZED)
+		else if (sleeping)
 			set_stat(UNCONSCIOUS)
 		else if (status_flags & FAKEDEATH)
 			set_stat(UNCONSCIOUS)

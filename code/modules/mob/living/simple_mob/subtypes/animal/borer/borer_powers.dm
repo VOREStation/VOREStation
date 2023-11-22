@@ -164,7 +164,7 @@
 
 	H.add_language("Cortical Link")
 
-	if(host.stat == 2)
+	if(host.stat == DEAD)
 		H.verbs |= /mob/living/carbon/human/proc/jumpstart
 
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper

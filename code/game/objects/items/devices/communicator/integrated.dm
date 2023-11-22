@@ -25,7 +25,7 @@
 	set desc = "Utilizes your built-in communicator."
 	set src in usr
 
-	if(usr.stat == 2)
+	if(usr.stat == DEAD)
 		to_chat(usr, "You can't do that because you are dead!")
 		return
 

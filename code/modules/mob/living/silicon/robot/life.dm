@@ -69,7 +69,7 @@
 /mob/living/silicon/robot/handle_regular_status_updates()
 
 	if(src.camera && !scrambledcodes)
-		if(src.stat == 2 || wires.is_cut(WIRE_BORG_CAMERA))
+		if(src.stat == DEAD || wires.is_cut(WIRE_BORG_CAMERA))
 			src.camera.set_status(0)
 		else
 			src.camera.set_status(1)
@@ -89,7 +89,7 @@
 	if (src.stat != 2) //Alive.
 		if (src.weakened > 0)	// Do not fullstun on weaken
 			AdjustWeakened(-1)
-		if (src.paralysis || src.stunned || !src.has_power) //Stunned etc.
+		if (src.stunned || !src.has_power) //Stunned etc.
 			src.set_stat(UNCONSCIOUS)
 			if (src.stunned > 0)
 				AdjustStunned(-1)

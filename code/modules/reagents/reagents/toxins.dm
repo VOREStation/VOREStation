@@ -779,14 +779,10 @@
 	if(effective_dose == metabolism)
 		M.AdjustParalysis(1)
 	else if(effective_dose < 2 * threshold)
-		M.AdjustParalysis(5)
-		M.eye_blurry = max(M.eye_blurry, 10)
+		M.AdjustParalysis(2.5)
 	else
 		if(alien == IS_SLIME)
-			if(prob(30))
-				M.ear_deaf = max(M.ear_deaf, 4)
-			M.eye_blurry = max(M.eye_blurry, 60)
-			M.AdjustParalysis(5)
+			M.AdjustParalysis(2.5)
 
 	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)

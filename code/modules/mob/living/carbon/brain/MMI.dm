@@ -204,7 +204,7 @@
 			if(CONSCIOUS)
 				if(!src.brainmob.client)
 					. += "<span class='warning'>It appears to be in stand-by mode.</span>" //afk
-			if(UNCONSCIOUS)
+			if(UNCONSCIOUS || PARALYZED)
 				. += "<span class='warning'>It doesn't seem to be responsive.</span>"
 			if(DEAD)
 				. += "<span class='deadsay'>It appears to be completely inactive.</span>"

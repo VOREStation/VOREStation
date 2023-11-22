@@ -195,7 +195,7 @@
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
-		chassis.occupant_message("You select [chassis.selected]") 
+		chassis.occupant_message("You select [chassis.selected]")
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"
 		button.UpdateIcon()
@@ -294,7 +294,7 @@
 	overload()
 
 /obj/mecha/proc/overload()
-	if(usr.stat == 1)//No manipulating things while unconcious.
+	if(usr.stat == PARALYZED)//No manipulating things while unconcious or unable to act
 		return
 	if(usr!=src.occupant)
 		return

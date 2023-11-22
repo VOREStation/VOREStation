@@ -41,7 +41,7 @@
 	throw_range = 20
 	var/randomize = TRUE
 	var/square_chance = 10
-	
+
 /obj/item/weapon/soap/Initialize()
 	if(randomize && prob(square_chance))
 		icon_state = "[icon_state]-alt"
@@ -346,7 +346,7 @@
 		if (C.c_tag == target)
 			target = C
 			break
-	if (usr.stat == 2) return
+	if (usr.stat == DEAD) return
 
 	usr.client.eye = target
 

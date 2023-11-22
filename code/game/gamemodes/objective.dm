@@ -290,7 +290,7 @@ var/global/list/all_objectives = list()
 		return 0
 	if(!emergency_shuttle.returned())
 		return 0
-	if(!owner.current || owner.current.stat ==2)
+	if(!owner.current || owner.current.stat == DEAD)
 		return 0
 	var/turf/location = get_turf(owner.current.loc)
 	if(!location)
@@ -553,7 +553,7 @@ var/global/list/all_objectives = list()
 /datum/objective/download/check_completion()
 	if(!ishuman(owner.current))
 		return 0
-	if(!owner.current || owner.current.stat == 2)
+	if(!owner.current || owner.current.stat == DEAD)
 		return 0
 
 	var/current_amount
@@ -663,7 +663,7 @@ var/global/list/all_objectives = list()
 
 /datum/objective/heist/kidnap/check_completion()
 	if(target && target.current)
-		if (target.current.stat == 2)
+		if (target.current.stat == DEAD)
 			return 0 // They're dead. Fail.
 		//if (!target.current.restrained())
 		//	return 0 // They're loose. Close but no cigar.

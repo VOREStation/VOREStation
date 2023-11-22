@@ -369,11 +369,11 @@ var/global/list/additional_antag_types = list()
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 	SSwebhooks.send(
-		WEBHOOK_ROUNDEND, 
+		WEBHOOK_ROUNDEND,
 		list(
-			"survivors" = surviving_total, 
-			"escaped" = escaped_total, 
-			"ghosts" = ghosts, 
+			"survivors" = surviving_total,
+			"escaped" = escaped_total,
+			"ghosts" = ghosts,
 			"clients" = clients
 		)
 	)
@@ -490,8 +490,11 @@ var/global/list/additional_antag_types = list()
 				if(L.suiciding)	//Suicider
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
 					continue //Disconnected client
+				if(L.stat == PARALYZED)
+					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Paralyzed)\n"
+					continue //Paralyzed
 				if(L.stat == UNCONSCIOUS)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Unconscious)\n"
 					continue //Unconscious
 				if(L.stat == DEAD)
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"

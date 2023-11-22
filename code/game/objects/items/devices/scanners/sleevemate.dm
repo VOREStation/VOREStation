@@ -119,6 +119,8 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	switch(H.stat)
 		if(CONSCIOUS)
 			output += "Alive<br>"
+		if(PARALYZED)
+			output += "Paralyzed<br>"
 		if(UNCONSCIOUS)
 			output += "Unconscious<br>"
 		if(DEAD)
