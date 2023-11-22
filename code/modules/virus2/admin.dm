@@ -178,7 +178,7 @@
 		if("infectee")
 			var/list/candidates = list()
 			for(var/mob/living/carbon/G in living_mob_list)
-				if(G.stat != DEAD && G.species && !isbelly(H.loc))
+				if(G.stat != DEAD && G.species && !isbelly(G.loc))
 					if(G.species.get_bodytype() in species)
 						candidates["[G.name][G.client ? "" : " (no client)"]"] = G
 					else
