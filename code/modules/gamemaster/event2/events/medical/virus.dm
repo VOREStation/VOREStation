@@ -44,7 +44,7 @@
 
 /datum/event2/event/virus/set_up()
 	for(var/mob/living/carbon/human/H in player_list)
-		if(H.client && !H.isSynthetic() && H.stat != DEAD && !player_is_antag(H.mind))
+		if(H.client && !H.isSynthetic() && H.stat != DEAD && !player_is_antag(H.mind) && !H.absorbed)
 			candidates += H
 	candidates = shuffle(candidates)
 
