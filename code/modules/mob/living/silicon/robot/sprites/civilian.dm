@@ -186,13 +186,13 @@
 	name = "Hound V2"
 	sprite_icon_state = "vale"
 	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = FALSE
+	has_vore_belly_sprites = TRUE
 
 /datum/robot_sprite/dogborg/service/valedark
 	name = "Hound V2 Darkmode"
 	sprite_icon_state = "valedark"
 	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = FALSE
+	has_vore_belly_sprites = TRUE
 
 /datum/robot_sprite/dogborg/service/drake
 	name = "Drake"
