@@ -90,7 +90,7 @@
 	src.set_dir(turn(src.dir, 90))
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench() && istype(src,/obj/structure/closet/crate/bin))
+	if(W.has_tool_quality(TOOL_WRENCH) && istype(src,/obj/structure/closet/crate/bin))
 		return ..()
 	else if(opened)
 		if(isrobot(user))
@@ -117,7 +117,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			return
-	else if(W.is_wirecutter())
+	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(rigged)
 			to_chat(user , "<span class='notice'>You cut away the wiring.</span>")
 			playsound(src, W.usesound, 100, 1)
@@ -720,6 +720,15 @@
 	name = "wooden crate"
 	desc = "A crate made from wood and lined with straw. Cheapest form of storage."
 	icon = 'icons/obj/closets/wooden.dmi'
+	closet_appearance = null
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
+//Chest
+/obj/structure/closet/crate/chest
+	name = "chest"
+	desc = "A fancy chest made from wood and lined with red velvet."
+	icon = 'icons/obj/closets/chest.dmi'
 	closet_appearance = null
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'

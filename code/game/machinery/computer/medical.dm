@@ -41,6 +41,7 @@
 		// Medical
 		"id_gender" = "Please select new gender identity:",
 		"blood_type" = "Please select new blood type:",
+		"blood_reagent" = "Please select new blood basis:",
 		"b_dna" = "Please input new DNA:",
 		"mi_dis" = "Please input new minor disabilities:",
 		"mi_dis_d" = "Please summarize minor disabilities:",
@@ -159,6 +160,7 @@
 					medical["fields"] = fields
 					fields[++fields.len] = MED_FIELD("Gender identity", active2.fields["id_gender"], "id_gender", TRUE)
 					fields[++fields.len] = MED_FIELD("Blood Type", active2.fields["b_type"], "blood_type", FALSE)
+					fields[++fields.len] = MED_FIELD("Blood Basis", active2.fields["blood_reagent"], "blood_reagent", FALSE)
 					fields[++fields.len] = MED_FIELD("DNA", active2.fields["b_dna"], "b_dna", TRUE)
 					fields[++fields.len] = MED_FIELD("Brain Type", active2.fields["brain_type"], "brain_type", TRUE)
 					fields[++fields.len] = MED_FIELD("Important Notes", active2.fields["notes"], "notes", TRUE)
@@ -301,6 +303,7 @@
 					R.fields["id"] = active1.fields["id"]
 					R.name = "Medical Record #[R.fields["id"]]"
 					R.fields["b_type"] = "Unknown"
+					R.fields["blood_reagent"] = "Unknown"
 					R.fields["b_dna"] = "Unknown"
 					R.fields["mi_dis"] = "None"
 					R.fields["mi_dis_d"] = "No minor disabilities have been declared."
@@ -431,6 +434,7 @@
 		P.info += {"<br>\n<center><b>Medical Data</b></center>
 		<br>\nGender Identity: [active2.fields["id_gender"]]
 		<br>\nBlood Type: [active2.fields["b_type"]]
+		<br>\nBlood Basis: [active2.fields["blood_reagent"]]
 		<br>\nDNA: [active2.fields["b_dna"]]<br>\n
 		<br>\nMinor Disabilities: [active2.fields["mi_dis"]]
 		<br>\nDetails: [active2.fields["mi_dis_d"]]<br>\n

@@ -99,6 +99,11 @@
 	for(var/modifier_type in R.genetic_modifiers)
 		H.add_modifier(modifier_type)
 
+	//Apply legs
+	H.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
+	if(H.dna.digitigrade <> R.dna.digitigrade)
+		H.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
+
 	//Apply damage
 	H.adjustCloneLoss(H.getMaxHealth()*1.5)
 	H.Paralyse(4)

@@ -46,6 +46,7 @@
 	return ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+	var/time = say_timestamp()
 
 	if(!client && !teleop)	return
 
@@ -68,9 +69,13 @@
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
-		to_chat(src,msg)
-		if(teleop)
+		if(client && client.prefs.chat_timestamp)
+			msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") 
+			to_chat(src,msg)
+		else if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
+		else
+			to_chat(src,msg)
 	return
 
 // Show a message to all mobs and objects in sight of this one
@@ -1145,11 +1150,20 @@
 
 /mob/proc/throw_mode_off()
 	src.in_throw_mode = 0
+	if(client)
+		if(a_intent == I_HELP || client.prefs.throwmode_loud)
+			src.visible_message("<span class='notice'>[src] relaxes from their ready stance.</span>","<span class='notice'>You relax from your ready stance.</span>")
 	if(src.throw_icon) //in case we don't have the HUD and we use the hotkey
 		src.throw_icon.icon_state = "act_throw_off"
 
 /mob/proc/throw_mode_on()
 	src.in_throw_mode = 1
+	if(client)
+		if(a_intent == I_HELP || client.prefs.throwmode_loud)
+			if(src.get_active_hand())
+				src.visible_message("<span class='warning'>[src] winds up to throw [get_active_hand()]!</span>","<span class='notice'>You wind up to throw [get_active_hand()].</span>")
+			else
+				src.visible_message("<span class='warning'>[src] looks ready to catch anything thrown at them!</span>","<span class='notice'>You get ready to catch anything thrown at you.</span>")
 	if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"
 

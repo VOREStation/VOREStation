@@ -80,6 +80,27 @@
 /obj/structure/closet/walllocker/medical/east
 	pixel_x = 32
 	dir = EAST
+
+/obj/structure/closet/walllocker/wooden
+	name = "wooden cabinet"
+	desc = "A wall mounted storage cabinet."
+	closet_appearance = /decl/closet_appearance/wall_double/wooden
+
+/obj/structure/closet/walllocker/wooden/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/wooden/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/wooden/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/wooden/east
+	pixel_x = 32
+	dir = EAST
 //VOREStation Add End
 
 //double-size "cabinet" lockers, from Killian

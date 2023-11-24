@@ -32,6 +32,8 @@ var/list/preferences_datums = list()
 	var/tgui_input_lock = FALSE
 	var/tgui_large_buttons = TRUE
 	var/tgui_swapped_buttons = FALSE
+	var/chat_timestamp = FALSE
+	var/throwmode_loud = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
@@ -44,6 +46,7 @@ var/list/preferences_datums = list()
 	var/bday_announce = FALSE			//Public announcement for birthdays
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
+	var/blood_reagents = "iron"				//blood restoration reagents
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
@@ -79,6 +82,7 @@ var/list/preferences_datums = list()
 	var/g_synth							//Same as above
 	var/b_synth							//Same as above
 	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
+	var/digitigrade = 0
 
 		//Some faction information.
 	var/home_system = "Unset"           //Current home or residence.

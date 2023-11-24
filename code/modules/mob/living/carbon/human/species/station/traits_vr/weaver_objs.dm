@@ -74,7 +74,7 @@
 	return
 
 /obj/structure/bed/double/weaversilk_nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench() || istype(W,/obj/item/stack) || W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WRENCH) || istype(W,/obj/item/stack) || W.has_tool_quality(TOOL_WIRECUTTER))
 		return
 	..()
 

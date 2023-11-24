@@ -33,7 +33,7 @@
 	result = "/obj/mecha/micro/sec/polecat"
 	steps = list(
 		//1
-		list("key"=/obj/item/weapon/weldingtool,
+		list("key"=IS_WELDER,
 				"backkey"=IS_WRENCH,
 				"desc"="External armor is wrenched."),
 		//2
@@ -42,10 +42,10 @@
 			"desc"="External armor is installed."),
 		//3
 		list("key"=/obj/item/mecha_parts/micro/part/polecat_armour,
-			"backkey"=/obj/item/weapon/weldingtool,
+			"backkey"=IS_WELDER,
 			"desc"="Internal armor is welded."),
 		//4
-		list("key"=/obj/item/weapon/weldingtool,
+		list("key"=IS_WELDER,
 			"backkey"=IS_WRENCH,
 			"desc"="Internal armor is wrenched"),
 		//5
@@ -312,7 +312,7 @@
 	result = "/obj/mecha/micro/utility/gopher"
 	steps = list(
 		//1
-		list("key"=/obj/item/weapon/weldingtool,
+		list("key"=IS_WELDER,
 				"backkey"=IS_WRENCH,
 				"desc"="External armor is wrenched."),
 		//2
@@ -321,10 +321,10 @@
 			"desc"="External armor is installed."),
 		//3
 		list("key"=/obj/item/stack/material/plasteel,
-			"backkey"=/obj/item/weapon/weldingtool,
+			"backkey"=IS_WELDER,
 			"desc"="Internal armor is welded."),
 		//4
-		list("key"=/obj/item/weapon/weldingtool,
+		list("key"=IS_WELDER,
 			"backkey"=IS_WRENCH,
 			"desc"="Internal armor is wrenched"),
 		//5
@@ -518,7 +518,7 @@
 	result = "/obj/mecha/micro/sec/weasel"
 	steps = list(
 		//1
-		list("key"=/obj/item/weapon/weldingtool,
+		list("key"=IS_WELDER,
 				"backkey"=IS_WRENCH,
 				"desc"="External armor is wrenched."),
 		//2
@@ -527,10 +527,10 @@
 			"desc"="External armor is installed."),
 		//3
 		list("key"=/obj/item/stack/material/plasteel,
-			"backkey"=/obj/item/weapon/weldingtool,
+			"backkey"=IS_WELDER,
 			"desc"="Internal armor is welded."),
 		//4
-		list("key"=/obj/item/weapon/weldingtool,
+		list("key"=IS_WELDER,
 			"backkey"=IS_WRENCH,
 			"desc"="Internal armor is wrenched"),
 		//5

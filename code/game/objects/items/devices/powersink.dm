@@ -30,7 +30,7 @@
 	..()
 
 /obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(mode == 0)
 			var/turf/T = loc
 			if(isturf(T) && !!T.is_plating())

@@ -101,7 +101,7 @@
 			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		user.visible_message("<span class='warning'>[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"].</span>",
 		"<span class='notice'>You very carefully screw the mine's panel [panel_open ? "open" : "closed"].</span>")
@@ -110,7 +110,7 @@
 		// Panel open, stay uncloaked, or uncloak if already cloaked. If you don't cloak on place, ignore it and just be normal alpha.
 		alpha = camo_net ? (panel_open ? 255 : 50) : 255
 
-	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
+	else if((W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool)) && panel_open)
 		interact(user)
 	else
 		..()
@@ -309,7 +309,7 @@
 	return
 
 /obj/item/weapon/mine/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(W.is_screwdriver() && trap)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && trap)
 		to_chat(user, "<span class='notice'>You begin removing \the [trap].</span>")
 		if(do_after(user, 10 SECONDS))
 			to_chat(user, "<span class='notice'>You finish disconnecting the mine's trigger.</span>")

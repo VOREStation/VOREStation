@@ -14,7 +14,7 @@
 	return
 
 /obj/item/assembly/shock_kit/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(W.is_wrench() && !status)
+	if(W.has_tool_quality(TOOL_WRENCH) && !status)
 		var/turf/T = loc
 		if(ismob(T))
 			T = T.loc
@@ -26,7 +26,7 @@
 		part2 = null
 		qdel(src)
 		return
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "secured" : "unsecured"]!</span>")
 		playsound(src, W.usesound, 50, 1)

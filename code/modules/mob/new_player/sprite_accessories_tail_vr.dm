@@ -1434,3 +1434,37 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sharktail_tipmarkings"
+
+/datum/sprite_accessory/tail/narrow_tail
+	name = "feathered narrow tail, colorable"
+	desc = ""
+	icon_state = "narrowtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/narrow_tail2
+	name = "feathered narrow tail, 2 colors"
+	desc = ""
+	icon_state = "narrowtail_2color"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "narrowtail_2color-1"
+
+
+// Dino Tails
+
+/datum/sprite_accessory/tail/clubtail
+	name = "dino clubtail, colorable"
+	desc = ""
+	icon_state = "clubtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "clubtail-1"
+
+/datum/sprite_accessory/tail/spiketail
+	name = "dino spiketail, colorable"
+	desc = ""
+	icon_state = "spiketail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "spiketail-1"

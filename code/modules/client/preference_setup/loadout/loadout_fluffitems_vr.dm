@@ -521,6 +521,12 @@
 	ckeywhitelist = list("hunterbirk")
 	character_name = list("Aria Blue")
 
+/datum/gear/fluff/elizabeth_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Elizabeth's Distinguished Conduct Medal"
+	ckeywhitelist = list("hunterbirk")
+	character_name = list("Elizabeth Bayou")
+
 /datum/gear/fluff/mercury_vopal_ring
 	path = /obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
 	display_name = "Mercury's Mate Ring"
@@ -1436,15 +1442,9 @@
 
 /datum/gear/fluff/harmony_id
 	path = /obj/item/weapon/card/id/event/polymorphic/itg
-	display_name = "Harmony's ITG-ID card"
+	display_name = "ITG-ID card"
 	ckeywhitelist = list("verysoft")
-	character_name = list("Harmony")
-
-/datum/gear/fluff/shinerunner_id
-	path = /obj/item/weapon/card/id/event/polymorphic/itg
-	display_name = "Shine-Runner's ITG-ID card"
-	ckeywhitelist = list("verysoft")
-	character_name = list("Shine-Runner")
+	character_name = null
 
 /datum/gear/fluff/dessa_hat
 	path = /obj/item/clothing/head/fluff/giantbow/dessa
@@ -1456,6 +1456,13 @@
 /datum/gear/fluff/dessa_hat/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/fluff/casey_glasses
+	path = /obj/item/clothing/glasses/big_round
+	display_name = "Big Round Glasses"
+	slot = slot_glasses
+	ckeywhitelist = list("verysoft")
+	character_name = null
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer

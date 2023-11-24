@@ -489,7 +489,7 @@
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
 	log_subtle(message,L)
-	message = "<span class='emote_subtle'><B>[L]</B> <I>[message]</I></span>"
+	message = "<span class='emotesubtle'><B>[L]</B> <I>[message]</I></span>"
 	message = "<B>(From the back of \the [m]) </B>" + message
 	message = encode_html_emphasis(message)
 
@@ -500,7 +500,8 @@
 	for(var/mob/M as anything in vis_mobs)
 		if(isnewplayer(M))
 			continue
-		if(isobserver(M) && !L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+		if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+		!L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else
@@ -1160,7 +1161,7 @@
 		return
 
 	log_subtle(message,L)
-	message = "<span class='emote_subtle'><B>[L]</B> <I>[message]</I></span>"
+	message = "<span class='emotesubtle'><B>[L]</B> <I>[message]</I></span>"
 	message = "<B>(From within \the [s]) </B>" + message
 	message = encode_html_emphasis(message)
 
@@ -1171,7 +1172,8 @@
 	for(var/mob/M as anything in vis_mobs)
 		if(isnewplayer(M))
 			continue
-		if(isobserver(M) && !L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+		if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+		!L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else

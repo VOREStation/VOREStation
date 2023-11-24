@@ -11,6 +11,9 @@
 	forgive_resting = TRUE
 	cooperative = FALSE
 
+/datum/ai_holder/simple_mob/vore/edible
+	belly_attack = FALSE
+
 /datum/ai_holder/simple_mob/vore/micro_hunter
 	micro_hunt = TRUE
 	micro_hunt_size = 0.8

@@ -175,6 +175,7 @@ var/global/list/grub_machine_overlays = list()
 /mob/living/simple_mob/animal/solargrub_larva/proc/expand_grub()
 	eject_from_machine()
 	visible_message("<span class='warning'>\The [src] suddenly balloons in size!</span>")
+	log_game("A larva has matured into a grub in area [src.loc.name] ([src.x],[src.y],[src.z]")
 	var/mob/living/simple_mob/vore/solargrub/adult = new(get_turf(src))
 	adult.tracked = tracked
 //	grub.power_drained = power_drained //TODO

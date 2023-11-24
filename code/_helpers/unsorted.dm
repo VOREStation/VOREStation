@@ -1035,7 +1035,8 @@ var/global/list/common_tools = list(
 /obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/tool/wirecutters,
 /obj/item/device/multitool,
-/obj/item/weapon/tool/crowbar)
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/transforming)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -1044,7 +1045,7 @@ var/global/list/common_tools = list(
 
 
 /proc/is_wire_tool(obj/item/I)
-	if(istype(I, /obj/item/device/multitool) || I.is_wirecutter())
+	if(istype(I, /obj/item/device/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
 		return TRUE
 	if(istype(I, /obj/item/device/assembly/signaler))
 		return TRUE
@@ -1055,6 +1056,12 @@ var/global/list/common_tools = list(
 		if(/obj/item/weapon/weldingtool)
 			var/obj/item/weapon/weldingtool/WT = W
 			if(WT.isOn())
+				return 3800
+			else
+				return 0
+		if(/obj/item/weapon/tool/transforming)
+			var/obj/item/weapon/tool/transforming/TT = W
+			if(TT.possible_tooltypes[TT.current_tooltype] == TOOL_WELDER)
 				return 3800
 			else
 				return 0
@@ -1105,7 +1112,7 @@ var/global/list/common_tools = list(
 	if(W.sharp)
 		return TRUE
 	return ( \
-		W.is_screwdriver()		     				              || \
+		W.has_tool_quality(TOOL_SCREWDRIVER)		     				              || \
 		istype(W, /obj/item/weapon/pen)                           || \
 		istype(W, /obj/item/weapon/weldingtool)					  || \
 		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \

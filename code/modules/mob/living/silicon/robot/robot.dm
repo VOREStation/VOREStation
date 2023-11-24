@@ -476,6 +476,16 @@
 	else
 		stat(null, text("No Cell Inserted!"))
 
+// function to toggle VTEC once installed
+/mob/living/silicon/robot/proc/toggle_vtec()
+    set name = "Toggle VTEC"
+    set category = "Abilities"
+    if(speed == -1)
+        to_chat(src, "<span class='filter_notice'>VTEC module disabled.</span>")
+        speed = 0
+    else
+        to_chat(src, "<span class='filter_notice'>VTEC module enabled.</span>")
+        speed = -1
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()
@@ -546,16 +556,16 @@
 		M.install(src, user)
 		return
 
-	if (istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
-		if (src == user)
+	if(W.has_tool_quality(TOOL_WELDER) && user.a_intent != I_HURT)
+		if(src == user)
 			to_chat(user, "<span class='warning'>You lack the reach to be able to repair yourself.</span>")
 			return
 
-		if (!getBruteLoss())
+		if(!getBruteLoss())
 			to_chat(user, "<span class='filter_notice'>Nothing to fix here!</span>")
 			return
-		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		if(WT.remove_fuel(0))
 			user.setClickCooldown(user.get_attack_speed(WT))
 			adjustBruteLoss(-30)
 			updatehealth()
@@ -567,7 +577,7 @@
 			return
 
 	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
-		if (!getFireLoss())
+		if(!getFireLoss())
 			to_chat(user, "<span class='filter_notice'>Nothing to fix here!</span>")
 			return
 		var/obj/item/stack/cable_coil/coil = W
@@ -578,7 +588,7 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message("<span class='filter_notice'><font color='red'>[user] has fixed some of the burnt wires on [src]!</font></span>", 1)
 
-	else if (W.is_crowbar() && user.a_intent != I_HURT)	// crowbar means open or close the cover
+	else if(W.has_tool_quality(TOOL_CROWBAR) && user.a_intent != I_HURT)	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				to_chat(user, "<span class='filter_notice'>You close the cover.</span>")
@@ -655,26 +665,26 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (W.is_wirecutter() || istype(W, /obj/item/device/multitool))
+	else if (W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			wires.Interact(user)
 		else
 			to_chat(user, "<span class='filter_notice'>You can't reach the wiring.</span>")
 
-	else if(W.is_screwdriver() && opened && !cell)	// haxing
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "<span class='filter_notice'>The wires have been [wiresexposed ? "exposed" : "unexposed"]</span>")
 		playsound(src, W.usesound, 50, 1)
 		update_icon()
 
-	else if(W.is_screwdriver() && opened && cell)	// radio
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			to_chat(user, "<span class='filter_notice'>Unable to locate a radio.</span>")
 		update_icon()
 
-	else if(W.is_wrench() && opened && !cell)
+	else if(W.has_tool_quality(TOOL_WRENCH) && opened && !cell)
 		if(bolt)
 			to_chat(user,"<span class='filter_notice'>You begin removing \the [bolt].</span>")
 
@@ -884,35 +894,57 @@
 		old_x = sprite_datum.pixel_x
 
 	if(stat == CONSCIOUS)
-		var/show_belly = FALSE
-		if(sprite_datum.has_vore_belly_sprites)
+		var/belly_size = 0
+		if(sprite_datum.has_vore_belly_sprites && vore_selected.belly_overall_mult != 0)
 			if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
 				if(sleeper_state)
-					show_belly = TRUE
-			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly")
-				if(LAZYLEN(vore_selected.contents) >= vore_selected.visible_belly_minimum_prey)
-					if(vore_selected.overlay_min_prey_size == 0)	//if min size is 0, we dont check for size
-						show_belly = TRUE
-					else
-						if(vore_selected.override_min_prey_size && (LAZYLEN(vore_selected.contents) > vore_selected.override_min_prey_num))
-							show_belly = TRUE	//Override regardless of content size
+					belly_size = sprite_datum.max_belly_size
+			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly" || vore_selected.silicon_belly_overlay_preference == "Both")
+				if(sleeper_state)
+					belly_size += 1
+				if(LAZYLEN(vore_selected.contents) > 0)
+					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
+						if(istype(borgfood, /mob/living))
+							if(vore_selected.belly_mob_mult <= 0) //If mobs dont contribute, dont calculate further
+								continue
+							var/mob/living/prey = borgfood //typecast to living
+							belly_size += (prey.size_multiplier / size_multiplier) / vore_selected.belly_mob_mult //Smaller prey are less filling to larger bellies
+						else if(istype(borgfood, /obj/item))
+							if(vore_selected.belly_item_mult <= 0) //If items dont contribute, dont calculate further
+								continue
+							var/obj/item/junkfood = borgfood //typecast to item
+							var/fullness_to_add = 0
+							switch(junkfood.w_class)
+								if(ITEMSIZE_TINY)
+									fullness_to_add = ITEMSIZE_COST_TINY
+								if(ITEMSIZE_SMALL)
+									fullness_to_add = ITEMSIZE_COST_SMALL
+								if(ITEMSIZE_NORMAL)
+									fullness_to_add = ITEMSIZE_COST_NORMAL
+								if(ITEMSIZE_LARGE)
+									fullness_to_add = ITEMSIZE_COST_LARGE
+								if(ITEMSIZE_HUGE)
+									fullness_to_add = ITEMSIZE_COST_HUGE
+								else
+									fullness_to_add = ITEMSIZE_COST_NO_CONTAINER
+							belly_size += (fullness_to_add / 32) //* vore_selected.overlay_item_multiplier //Enable this later when vorepanel is reworked.
 						else
-							for(var/content in vore_selected.contents)	//If ANY in belly are big enough, we set to true
-								if(!istype(content, /mob/living)) continue
-								var/mob/living/prey = content
-								if(prey.size_multiplier >= vore_selected.overlay_min_prey_size)
-									show_belly = TRUE
-									break
-		if(show_belly)
-			add_overlay(sprite_datum.get_belly_overlay(src))
+							belly_size += 1 //if it's not a person, nor an item... lets just go with 1
+
+					belly_size *= vore_selected.belly_overall_mult //Enable this after vore panel rework
+					belly_size = round(belly_size, 1)
+					belly_size = clamp(belly_size, 0, sprite_datum.max_belly_size) //Value from 0 to however many bellysizes the borg has
+
+		if(belly_size > 0) //Borgs probably only have 1 belly size. but here's support for larger ones if that changes.
+			if(resting && sprite_datum.has_vore_belly_resting_sprites)
+				add_overlay(sprite_datum.get_belly_resting_overlay(src, belly_size))
+			else if(!resting)
+				add_overlay(sprite_datum.get_belly_overlay(src, belly_size))
 
 		sprite_datum.handle_extra_icon_updates(src)			// Various equipment-based sprites go here.
 
 		if(resting && sprite_datum.has_rest_sprites)
-			cut_overlays() // Hide that gut for it has no ground sprite yo.
 			icon_state = sprite_datum.get_rest_sprite(src)
-			if(show_belly && sprite_datum.has_vore_belly_sprites && sprite_datum.has_vore_belly_resting_sprites)	// Or DOES IT?
-				add_overlay(sprite_datum.get_belly_resting_overlay(src))
 
 		if(sprite_datum.has_eye_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.

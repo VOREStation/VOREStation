@@ -15,6 +15,10 @@
 		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 		return
 
+	//No OOC notes
+	if (not_has_ooc_text(user))
+		return
+
 	if(!remains_active || busy)
 		return
 

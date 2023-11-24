@@ -69,7 +69,7 @@
 
 		return TRUE
 
-	if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
+	if(reinforcing && I.has_tool_quality(TOOL_WELDER))
 		if(!density)
 			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
 			return TRUE
@@ -78,7 +78,7 @@
 			to_chat(user, "<span class='warning'>You will need more plasteel to reinforce \the [src].</span>")
 			return TRUE
 
-		var/obj/item/weapon/weldingtool/welder = I
+		var/obj/item/weapon/weldingtool/welder = I.get_welder()
 		if(welder.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start weld \the plasteel into place.</span>")
 			playsound(src, welder.usesound, 50, 1)
@@ -89,7 +89,7 @@
 				reinforcing = 0
 		return TRUE
 
-	if(reinforcing && I.is_crowbar())
+	if(reinforcing && I.has_tool_quality(TOOL_CROWBAR))
 		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc, reinforcing)
 		reinforcing = 0
 		to_chat(user, "<span class='notice'>You remove \the [reinforcing_sheet].</span>")

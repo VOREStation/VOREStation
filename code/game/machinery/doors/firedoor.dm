@@ -57,7 +57,7 @@
 		if(F != src)
 			log_debug("Duplicate firedoors at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
-	
+
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -80,7 +80,7 @@
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
-	
+
 	if(!Adjacent(user))
 		return .
 
@@ -249,10 +249,10 @@
 		return //Don't open the door if we're putting tape on it to tell people 'don't open the door'.
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/weapon/weldingtool) && !repairing)
+	if(C.has_tool_quality(TOOL_WELDER) && !repairing)
 		if(prying)
 			to_chat(user, "<span class='notice'>Someone's busy prying that [density ? "open" : "closed"]!</span>")
-		var/obj/item/weapon/weldingtool/W = C
+		var/obj/item/weapon/weldingtool/W = C.get_welder()
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
 			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
@@ -262,7 +262,7 @@
 			update_icon()
 			return
 
-	if(density && C.is_screwdriver())
+	if(density && C.has_tool_quality(TOOL_SCREWDRIVER))
 		hatch_open = !hatch_open
 		playsound(src, C.usesound, 50, 1)
 		user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
@@ -270,7 +270,7 @@
 		update_icon()
 		return
 
-	if(blocked && C.is_crowbar() && !repairing)
+	if(blocked && C.has_tool_quality(TOOL_CROWBAR) && !repairing)
 		if(!hatch_open)
 			to_chat(user, "<span class='danger'>You must open the maintenance hatch first!</span>")
 		else
@@ -304,7 +304,7 @@
 		if(operating)
 			return
 
-		if(blocked && C.is_crowbar())
+		if(blocked && C.has_tool_quality(TOOL_CROWBAR))
 			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
@@ -326,7 +326,7 @@
 		update_icon()
 		playsound(src, C.usesound, 100, 1)
 		if(do_after(user,30 * C.toolspeed))
-			if(C.is_crowbar())
+			if(C.has_tool_quality(TOOL_CROWBAR))
 				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 					"You force \the [src] [density ? "open" : "closed"] with \the [C]!",\

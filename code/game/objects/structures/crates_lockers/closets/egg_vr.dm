@@ -24,7 +24,7 @@
 			icon_state = icon_closed
 
 /obj/structure/closet/secure_closet/egg/attackby(obj/item/weapon/W, mob/user as mob) //This also prevents crew from welding the eggs and making them unable to be opened.
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.has_tool_quality(TOOL_WELDER))
 		src.dump_contents()
 		qdel(src)
 

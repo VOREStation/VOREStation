@@ -328,7 +328,6 @@
 	description_antag = "This case will likely contain a charged fuel rod gun, and a few fuel rods to go with it. It can only hold the fuel rod gun, fuel rods, batteries, a screwdriver, and stock machine parts."
 	force = 12 //Anti-rad lined i.e. Lead, probably gonna hurt a bit if you get bashed with it.
 	can_hold = list(/obj/item/weapon/gun/magnetic/fuelrod, /obj/item/weapon/fuel_assembly, /obj/item/weapon/cell, /obj/item/weapon/stock_parts, /obj/item/weapon/tool/screwdriver)
-	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	starts_with = list(
 		/obj/item/weapon/gun/magnetic/fuelrod,
 		/obj/item/weapon/fuel_assembly/deuterium,

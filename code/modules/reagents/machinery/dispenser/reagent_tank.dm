@@ -103,6 +103,11 @@
 	. = ..()
 	reagents.add_reagent("water", 4000)
 
+/obj/structure/reagent_dispensers/watertank/barrel
+	name = "water barrel"
+	desc = "A barrel for holding water."
+	icon_state = "waterbarrel"
+
 //Fuel
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
@@ -173,7 +178,7 @@
 	modded = FALSE
 
 /obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (W.is_wrench()) //can't wrench it shut, it's always open
+	if (W.has_tool_quality(TOOL_WRENCH)) //can't wrench it shut, it's always open
 		return
 	return ..()
 //VOREStation Add End
@@ -197,7 +202,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if (W.is_wrench())
+	if (W.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = modded ? 0 : 1
@@ -355,7 +360,7 @@
 	return 1
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		src.add_fingerprint(user)
 		if(bottle)
 			playsound(src, I.usesound, 50, 1)
@@ -380,7 +385,7 @@
 				playsound(src, I.usesound, 50, 1)
 		return
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(cupholder)
 			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You take the cup dispenser off.</span>")
@@ -463,6 +468,20 @@
 	. = ..()
 	reagents.add_reagent("beer",1000)
 
+/obj/structure/reagent_dispensers/beerkeg/wood
+	name = "beer keg"
+	desc = "A beer keg with a tap on it."
+	icon_state = "beertankfantasy"
+
+/obj/structure/reagent_dispensers/beerkeg/wine
+	name = "wine barrel"
+	desc = "A wine casket with a tap on it."
+	icon_state = "beertankfantasy"
+
+/obj/structure/reagent_dispensers/beerkeg/wine/Initialize()
+	. = ..()
+	reagents.add_reagent("redwine",1000)
+
 /obj/structure/reagent_dispensers/beerkeg/fakenuke
 	name = "nuclear beer keg"
 	desc = "A beer keg in the form of a nuclear bomb! An absolute blast at parties!"
@@ -492,3 +511,15 @@
 	reagents.splash_area(get_turf(src), 3)
 	visible_message(span("danger", "The [src] bursts open, spreading oil all over the area."))
 	qdel(src)
+
+/obj/structure/reagent_dispensers/bloodbarrel
+	name = "blood barrel"
+	desc = "A beer keg."
+	icon = 'icons/obj/chemical_tanks.dmi'
+	icon_state = "bloodbarrel"
+	amount_per_transfer_from_this = 10
+
+/obj/structure/reagent_dispensers/bloodbarrel/Initialize()
+	. = ..()
+	reagents.add_reagent("blood", 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+

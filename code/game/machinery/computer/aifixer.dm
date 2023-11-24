@@ -6,7 +6,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK
-	
+
 	active_power_usage = 1000
 
 	/// Variable containing transferred AI
@@ -15,7 +15,7 @@
 	var/restoring = FALSE
 
 /obj/machinery/computer/aifixer/attackby(obj/item/I, mob/living/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(occupier)
 			if(stat & (NOPOWER|BROKEN))
 				to_chat(user, "<span class='warning'>The screws on [name]'s screen won't budge.</span>")
@@ -85,10 +85,10 @@
 		return TRUE
 	if(!occupier)
 		restoring = FALSE
-	
+
 	if(action)
 		playsound(src, "terminal_type", 50, 1)
-	
+
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)

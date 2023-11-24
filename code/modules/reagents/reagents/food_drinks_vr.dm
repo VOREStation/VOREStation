@@ -624,3 +624,76 @@
 	description = "A mixture of water and protein commonly used as a meal supplement. This one has added strawberry flavoring."
 	taste_description = "strawberry"
 	color = "#e28585"
+
+//SOUPS. Don't use the base soup reagent.
+/datum/reagent/drink/soup
+	name = "Soup"
+	id = "generic_soup"
+	description = "An indistinct soupy mass of nominal goodness, but questionable flavour."
+	taste_description = "upsettingly bland soup"
+	color = "#9a9a9a"
+	nutrition = 30	//same as base nutriment
+
+/datum/reagent/drink/soup/tomato
+	name = "Tomato Soup"
+	id = "tomato_soup"
+	description = "A thick and creamy tomato soup. Delicious! Definitely not ketchup."
+	taste_description = "rich, creamy tomato"
+	color = "#e4612d"
+	allergen_type = ALLERGEN_FRUIT //tomatoes are fruit, etc. etc.
+
+/datum/reagent/drink/soup/mushroom
+	name = "Cream of Mushroom Soup"
+	id = "mushroom_soup"
+	description = "A rich, earthy mushroom soup."
+	taste_description = "earthy mushrooms"
+	color = "#a59a83"
+	allergen_type = ALLERGEN_FUNGI //shrooms!
+
+/datum/reagent/drink/soup/chicken
+	name = "Cream of Chicken Soup"
+	id = "chicken_soup"
+	description = "A fairly thick, warming chicken-based soup."
+	taste_description = "savoury chicken goodness"
+	color = "#d4c574"
+	allergen_type = ALLERGEN_MEAT //plain ol' chimken
+
+/datum/reagent/drink/soup/chicken_noodle
+	name = "Chicken Noodle Soup"
+	id = "chicken_noodle_soup"
+	description = "A thin chicken broth with added noodles. If you're lucky there might be some chunks of chicken and veggies in there! Maybe."
+	taste_description = "savoury chicken-noodle goodness"
+	color = "#a27a41"
+	allergen_type = ALLERGEN_MEAT|ALLERGEN_GRAINS|ALLERGEN_VEGETABLE //chicken + grain-based noodles + veggie chunks
+
+/datum/reagent/drink/soup/onion
+	name = "Onion Soup"
+	id = "onion_soup"
+	description = "A humble staple of humanity throughout the centuries."
+	taste_description = "caramelized onions"
+	color = "#5d3918"
+	allergen_type = ALLERGEN_VEGETABLE //onions are veg, right?
+
+/datum/reagent/drink/soup/vegetable
+	name = "Vegetable Soup"
+	id = "vegetable_soup"
+	description = "A mix of various kinds of tasty vegetables, in soup format!"
+	taste_description = "mixed vegetables"
+	color = "#824005"
+	allergen_type = ALLERGEN_VEGETABLE //mixed veg
+
+/datum/reagent/drink/soup/beet
+	name = "Beet Soup"
+	id = "beet_soup"
+	description = "A hearty mix of tomatoes and beets, with a meat stock base."
+	taste_description = "sour tomatoes and some killer beets"
+	color = "#471b1c"
+	allergen_type = ALLERGEN_MEAT|ALLERGEN_FRUIT|ALLERGEN_VEGETABLE //meat stock, tomatoes, and beets
+
+/datum/reagent/drink/soup/hot_and_sour
+	name = "Hot & Sour Soup"
+	id = "hot_n_sour_soup"
+	description = "A spicy tofu-based soup."
+	taste_description = "spicy, sour tofu"
+	color = "#5f1b06"
+	allergen_type = ALLERGEN_BEANS|ALLERGEN_VEGETABLE|ALLERGEN_FUNGI //tofu is soy-based, ergo, beans. base recipe also uses cabbage and mushroom.

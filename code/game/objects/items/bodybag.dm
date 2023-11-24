@@ -47,7 +47,7 @@
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(W.is_wirecutter())
+	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user, "You cut the tag off the bodybag")
 		src.name = "body bag"
 		cut_overlays()
@@ -244,7 +244,7 @@
 					inject_occupant(H)
 					break
 
-		else if(W.is_screwdriver())
+		else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 			if(syringe)
 				if(used)
 					to_chat(user,"<span class='warning'>The injector cannot be removed now that the stasis bag has been used!</span>")

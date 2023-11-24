@@ -36,7 +36,8 @@
 	src.modules += jetpack
 	robot.internals = jetpack
 
-	id = robot.idcard
+	var/obj/id = robot.idcard
+	id.forceMove(src)
 	src.modules += id
 
 /obj/item/weapon/robot_module/robot/syndicate/Destroy()
@@ -82,7 +83,7 @@
 
 	// Hacking other things.
 	src.modules += new /obj/item/weapon/card/robot/syndi(src)
-	src.modules += new /obj/item/weapon/card/emag(src)
+	src.modules += new /obj/item/weapon/card/emag/borg(src)
 
 	// Materials.
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
@@ -135,7 +136,6 @@
 
 /obj/item/weapon/robot_module/robot/syndicate/combat_medic/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer/phasic(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)
 

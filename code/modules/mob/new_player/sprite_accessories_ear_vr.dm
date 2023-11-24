@@ -846,7 +846,24 @@
 	name = "Antlers (large)"
 	desc = ""
 	icon = 'icons/mob/vore/ears_32x64.dmi'
-	icon_state = "antlers_large"
+	icon_state = "antlers-large"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_wide
+	name = "Antlers (wide)"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers-wide"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_wide_e
+	name = "Antlers (wide) with ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers-wide"
+	extra_overlay = "deer"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1015,3 +1032,36 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shark_fin_alt"
+
+/datum/sprite_accessory/ears/feather_horns
+	name = "feather horns (dual-color)"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "feather_horns"
+	extra_overlay = "feather_horns-fluff"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/party_plume
+	name = "nevrean party parrot plume(tri-color)"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "party_plume"
+	extra_overlay = "party_plume-1"
+	extra_overlay2 = "party_plume-2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/feather_fan_ears //why yes I did abuse my abilities to make a sprite that is specifically compatible with one hair for my OC, why do you ask? - Tank
+	name = "feather fan avian ears"
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "feather_fan_ears"
+	extra_overlay = "feather_fan_ears-outer"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+//Dino frills
+/datum/sprite_accessory/ears/dino_frills
+	name = "triceratops frills"
+	icon_state = "triceratops_frill"
+	extra_overlay = "triceratops_frill_spikes"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

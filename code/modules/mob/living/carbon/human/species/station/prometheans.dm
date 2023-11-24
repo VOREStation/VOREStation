@@ -36,6 +36,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
 	blood_name = "gelatinous ooze"
+	blood_reagents = "slimejelly"
 
 	breath_type = null
 	poison_type = null

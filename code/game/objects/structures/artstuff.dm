@@ -394,7 +394,7 @@
 		frame_canvas(user, I)
 	else if(current_canvas && current_canvas.painting_name == initial(current_canvas.painting_name) && istype(I,/obj/item/weapon/pen))
 		try_rename(user)
-	else if(current_canvas && I.is_wirecutter())
+	else if(current_canvas && I.has_tool_quality(TOOL_WIRECUTTER))
 		unframe_canvas(user)
 	else
 		return ..()

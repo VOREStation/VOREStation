@@ -5295,7 +5295,6 @@
 /obj/structure/closet/secure_closet/captains,
 /obj/item/clothing/glasses/omnihud/all,
 /obj/item/weapon/disk/nuclear,
-/obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/retail_scanner/command,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)

@@ -153,6 +153,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		>> pref.r_wing3
 	S["g_wing3"]		>> pref.g_wing3
 	S["b_wing3"]		>> pref.b_wing3
+	S["digitigrade"] 	>> pref.digitigrade
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["species"]			<< pref.species
@@ -217,6 +218,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		<< pref.r_wing3
 	S["g_wing3"]		<< pref.g_wing3
 	S["b_wing3"]		<< pref.b_wing3
+	S["digitigrade"]	<< pref.digitigrade
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in GLOB.playable_species))
@@ -281,6 +283,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_wing3	= sanitize_integer(pref.r_wing3, 0, 255, initial(pref.r_wing3))
 	pref.g_wing3	= sanitize_integer(pref.g_wing3, 0, 255, initial(pref.g_wing3))
 	pref.b_wing3	= sanitize_integer(pref.b_wing3, 0, 255, initial(pref.b_wing3))
+	pref.digitigrade	= sanitize_integer(pref.digitigrade, 0, 1, initial(pref.digitigrade))
 
 	pref.sanitize_body_styles()
 
@@ -314,6 +317,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
+	if(character.species.digi_allowed)
+		character.digitigrade = pref.digitigrade
+	else
+		character.digitigrade = 0
+
+	//sanity check
+	if(character.digitigrade == null)
+		character.digitigrade = 0
+		pref.digitigrade = 0
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
@@ -577,6 +589,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<br><b>Body Color</b><br>"
 		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> [color_square(pref.r_skin, pref.g_skin, pref.b_skin)]<br>"
 
+	if(mob_species.digi_allowed)
+		. += "<br><b>Digitigrade?:</b> <a href='?src=\ref[src];digitigrade=1'><b>[pref.digitigrade ? "Yes" : "No"]</b></a><br>"
+
 	. += "<h2>Genetics Settings</h2>"
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
@@ -793,6 +808,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.g_facial = hex2num(copytext(new_facial, 4, 6))
 			pref.b_facial = hex2num(copytext(new_facial, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	if(href_list["digitigrade"])
+		pref.digitigrade = !pref.digitigrade
+
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["eye_color"])
 		if(!has_flag(mob_species, HAS_EYE_COLOR))

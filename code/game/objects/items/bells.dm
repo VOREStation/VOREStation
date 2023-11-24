@@ -87,7 +87,7 @@
 /obj/item/weapon/deskbell/attackby(obj/item/W, mob/user, params)
 	if(!istype(W))
 		return
-	if(W.is_wrench() && isturf(loc))
+	if(W.has_tool_quality(TOOL_WRENCH) && isturf(loc))
 		if(do_after(5))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You dissasemble the desk bell</span>")

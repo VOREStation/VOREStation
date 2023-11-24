@@ -99,8 +99,8 @@
 				icon_state = "ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(W.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = W.get_welder()
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "shielded frame assembly"
@@ -150,7 +150,7 @@
 				qdel(W)
 
 		if(8)
-			if(W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, "<span class='notice'>Now attaching the gun to the frame...</span>")

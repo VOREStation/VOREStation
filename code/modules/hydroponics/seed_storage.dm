@@ -245,7 +245,7 @@
 
 /obj/machinery/seed_storage/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	if(smart)
 		scanner = list("stats", "produce", "soil", "temperature", "light", "pressure")
 	else
@@ -402,18 +402,18 @@
 		else
 			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
 		return
-	else if(O.is_wrench())
+	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "<span class ='filter_notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-	else if(O.is_screwdriver())
+	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		to_chat(user, "<span class ='filter_notice'>You [panel_open ? "open" : "close"] the maintenance panel.</span>")
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
 			add_overlay("[initial(icon_state)]-panel")
-	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
+	else if((O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/device/multitool)) && panel_open)
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)

@@ -77,7 +77,7 @@
 
 
 /obj/item/weapon/inducer/attackby(obj/item/W, mob/user)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
 		if(!opened)
 			to_chat(user, "<span class='notice'>You open the battery compartment.</span>")

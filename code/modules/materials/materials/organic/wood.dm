@@ -79,6 +79,7 @@
 
 /datum/material/wood/hardwood/generate_recipes()
 	..()
+	recipes += new /datum/stack_recipe("parquet wood floor tile", /obj/item/stack/tile/wood/parquet, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe

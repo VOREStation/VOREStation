@@ -126,14 +126,11 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
-	d2 = 4
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "v" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0
 	},
@@ -142,7 +139,6 @@
 "w" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty,

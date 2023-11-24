@@ -416,15 +416,15 @@
 
 // Big altevian version of pacman. has a lot of copypaste from regular kind, but less flexible.
 /obj/machinery/power/port_gen/large_altevian
-	name = "Converted High Energy Exchange Supplier Extractor"
-	desc = "A take on the classic PACMAN reactors that are seen throughout the galaxy. The altevians have ripped apart the tech and seemed to of found a way to maximize the fuel usage one would see with this kind of process. \
-			However, it is a lot bulkier and nearly impossible to break apart, but still can be moved if need be with special tools."
+	name = "Phoronic Conversion System"
+	desc = "A reactor system similar to the PACMAN generators seen throughout the stars. This one is a specific model created by the altevians. It seems this reactor has a way to maximize the fuel usage one would see with this kind of process. \
+			However, due to its construction and size it is nearly impossible to break apart. It still can be moved if need be with special tools."
 	icon = 'icons/obj/props/decor64x64.dmi'
 	icon_state = "alteviangen"
 	bound_width = 64
 	bound_height = 64
 	anchored = TRUE
-	power_gen = 200000
+	power_gen = 250000
 
 	var/sheet_name = "Phoron Sheets"
 	var/sheet_path = /obj/item/stack/material/phoron

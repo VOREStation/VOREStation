@@ -59,7 +59,15 @@ export const FaxContent = (props, context) => {
         <Box mt={1}>
           <LabeledList>
             <LabeledList.Item label="Currently Sending">
-              {copyItem}
+              {copyItem}{' '}
+              <Button
+                icon="pen"
+                onClick={() => act('rename')}
+                tooltip={
+                  'Renames the paper. This changes its preview in staff chat when sending to centcom/job board/supply (admin departments).\
+              It is advisable to name your faxes something self-explanatory for quick response.'
+                }
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Sending To">
               <Button

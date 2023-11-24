@@ -9,7 +9,7 @@
 	var/list/known_targets
 	var/list/supported_types
 	var/datum/tgui_state/default/must_hack/hack_state
-	
+
 /obj/item/device/multitool/hacktool/override
 	hackspeed = 0.75
 	max_level = 5
@@ -31,7 +31,7 @@
 	return ..()
 
 /obj/item/device/multitool/hacktool/attackby(var/obj/item/W, var/mob/user)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		in_hack_mode = !in_hack_mode
 		playsound(src, W.usesound, 50, 1)
 	else
@@ -78,7 +78,7 @@
 	if(D.security_level > max_level)
 		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Target's electronic security is too complex.</span>")
 		return 0
-		
+
 	var/found = known_targets.Find(D)
 	if(found)
 		known_targets.Swap(1, found)	// Move the last hacked item first

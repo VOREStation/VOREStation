@@ -11,7 +11,7 @@
 	qdel(src)
 
 /obj/structure/sign/attackby(obj/item/tool, mob/user)	//deconstruction
-	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
+	if(tool.has_tool_quality(TOOL_SCREWDRIVER) && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
 		playsound(src, tool.usesound, 50, 1)
 		unfasten(user)
 	else ..()
@@ -36,7 +36,7 @@
 	var/original_type
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
-	if(tool.is_screwdriver() && isturf(user.loc))
+	if(tool.has_tool_quality(TOOL_SCREWDRIVER) && isturf(user.loc))
 		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
 		if(direction == "Cancel") return
 		var/target_type = original_type || /obj/structure/sign

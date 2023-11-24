@@ -270,9 +270,7 @@
 	},
 /area/redgate/wilds)
 "de" = (
-/obj/structure/sign/poster{
-	pixel_y = -32
-	},
+/obj/structure/sign/poster,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/structure/powered)
 "df" = (
@@ -296,7 +294,7 @@
 /area/redgate/structure/powered)
 "dh" = (
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/redgate/structure/powered)
@@ -322,7 +320,7 @@
 /area/redgate/structure/powered)
 "dn" = (
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
@@ -389,7 +387,7 @@
 	dir = 5
 	},
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/redgate/structure/powered)
@@ -432,6 +430,7 @@
 	layer = 5
 	},
 /obj/item/weapon/reagent_containers/dropper,
+/obj/structure/sign/poster,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -779,9 +778,7 @@
 /turf/simulated/floor/plating,
 /area/redgate/structure/powered)
 "eR" = (
-/obj/structure/sign/poster{
-	pixel_y = -32
-	},
+/obj/structure/sign/poster,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -944,9 +941,6 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/structure/sign/poster{
-	pixel_y = -32
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -32
 	},
@@ -957,6 +951,16 @@
 "mB" = (
 /obj/structure/bonfire/permanent,
 /turf/simulated/floor/reinforced,
+/area/redgate/structure/powered)
+"pX" = (
+/obj/structure/table/woodentable,
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/unsimulated/floor/steel{
+	icon = 'icons/turf/floors_vr.dmi';
+	icon_state = "wood"
+	},
 /area/redgate/structure/powered)
 "ub" = (
 /turf/simulated/floor/water,
@@ -969,11 +973,31 @@
 	base_desc = "Soft, plush green grass. It feels nice under your feet~"
 	},
 /area/redgate/structure/powered)
+"Bs" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
+	desc = "It's finely packed dirt. It is soft, and comfortable to walk on.";
+	name = "dirt"
+	},
+/area/redgate/structure/powered)
 "Ha" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
+/area/redgate/structure/powered)
+"Ug" = (
+/obj/effect/floor_decal/corner/grey/diagonal{
+	dir = 4
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
 /area/redgate/structure/powered)
 
 (1,1,1) = {"
@@ -3287,7 +3311,7 @@ ct
 ct
 ct
 cQ
-cQ
+aL
 cQ
 ct
 ct
@@ -3428,9 +3452,9 @@ ct
 ct
 ct
 cQ
-cQ
-cQ
-cQ
+aL
+br
+aL
 cQ
 ct
 ct
@@ -3571,7 +3595,7 @@ ct
 ct
 ct
 cQ
-cQ
+aL
 cQ
 ct
 ct
@@ -3724,7 +3748,7 @@ ge
 cQ
 cQ
 af
-aj
+pX
 ap
 ap
 dA
@@ -5286,7 +5310,7 @@ df
 ap
 ap
 af
-dT
+Ug
 dT
 dT
 dT
@@ -7010,7 +7034,7 @@ ct
 bG
 dl
 dl
-bO
+Bs
 cq
 le
 cq
@@ -18193,9 +18217,9 @@ lb
 lb
 lb
 lb
-aL
-aL
-aL
+cq
+cq
+cq
 lb
 lb
 lb
@@ -18335,9 +18359,9 @@ lb
 lb
 lb
 cq
-aL
-br
-aL
+cq
+cq
+cq
 cq
 lb
 lb
@@ -18477,9 +18501,9 @@ lb
 lb
 lb
 lb
-aL
-aL
-aL
+cq
+cq
+cq
 lb
 lb
 lb

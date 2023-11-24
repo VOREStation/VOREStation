@@ -17,7 +17,7 @@
 		)
 
 /obj/structure/plasticflaps/attackby(obj/item/P, mob/user)
-	if(P.is_wirecutter())
+	if(P.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, P.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You start to cut the plastic flaps.</span>")
 		if(do_after(user, 10 * P.toolspeed))

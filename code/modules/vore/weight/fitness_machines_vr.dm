@@ -55,7 +55,7 @@
 			"A honk emits from the punching bag as you hit it")
 
 /obj/machinery/fitness/heavy/attackby(obj/item/W, mob/living/user)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		add_fingerprint(user)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored

@@ -3,7 +3,7 @@
 	. = ..()
 
 	if(locate(/obj/item/hose_connector) in src)
-		if(O.is_wirecutter())
+		if(O.has_tool_quality(TOOL_WIRECUTTER))
 			var/list/available_sockets = list()
 
 			for(var/obj/item/hose_connector/HC in src)

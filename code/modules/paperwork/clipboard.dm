@@ -59,11 +59,12 @@
 
 	return
 
-/obj/item/weapon/clipboard/afterattack(turf/T as turf)
+/obj/item/weapon/clipboard/afterattack(turf/T as turf, mob/user as mob)
 	for(var/obj/item/weapon/paper/P in T)
 		P.loc = src
 		toppaper = P
 		update_icon()
+		to_chat(user, "<span class='notice'>You clip the [P] onto \the [src].</span>")
 
 /obj/item/weapon/clipboard/attack_self(mob/user as mob)
 	var/dat = "<title>Clipboard</title>"

@@ -467,7 +467,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	if(issilicon(user) && get_dist(src,user) > 1)
 		return attack_hand(user)
 	add_fingerprint(user)
-	if(W.is_crowbar() && opened)
+	if(W.has_tool_quality(TOOL_CROWBAR) && opened)
 		if(has_electronics == APC_HAS_ELECTRONICS_WIRED)
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the wires first.</span>")
@@ -491,7 +491,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		else if(opened != 2) //cover isn't removed
 			opened = 0
 			update_icon()
-	else if(W.is_crowbar() && !(stat & BROKEN) )
+	else if(W.has_tool_quality(TOOL_CROWBAR) && !(stat & BROKEN) )
 		if(coverlocked && !(stat & MAINT))
 			to_chat(user, "<span class='warning'>The cover is locked and cannot be opened.</span>")
 			return
@@ -517,7 +517,7 @@ GLOBAL_LIST_EMPTY(apcs)
 			"<span class='notice'>You insert the power cell.</span>")
 		chargecount = 0
 		update_icon()
-	else if	(W.is_screwdriver())	// haxing
+	else if	(W.has_tool_quality(TOOL_SCREWDRIVER))	// haxing
 		if(opened)
 			if(cell)
 				to_chat(user, "<span class='warning'>Remove the power cell first.</span>")
@@ -573,7 +573,7 @@ GLOBAL_LIST_EMPTY(apcs)
 					"You add cables to the APC frame.")
 				make_terminal()
 				terminal.connect_to_network()
-	else if(W.is_wirecutter() && terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
+	else if(W.has_tool_quality(TOOL_WIRECUTTER) && terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
@@ -605,8 +605,8 @@ GLOBAL_LIST_EMPTY(apcs)
 	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && ((stat & BROKEN)))
 		to_chat(user, "<span class='warning'>The [src] is too broken for that. Repair it first.</span>")
 		return
-	else if(istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && !terminal)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(W.has_tool_quality(TOOL_WELDER) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && !terminal)
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(WT.get_fuel() < 3)
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -674,7 +674,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		else
 			if(istype(user, /mob/living/silicon))
 				return attack_hand(user)
-			if(!opened && wiresexposed && (istype(W, /obj/item/device/multitool) || W.is_wirecutter() || istype(W, /obj/item/device/assembly/signaler)))
+			if(!opened && wiresexposed && (istype(W, /obj/item/device/multitool) || W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/assembly/signaler)))
 				return attack_hand(user)
 			//Placeholder until someone can do take_damage() for APCs or something.
 			to_chat(user, "<span class='notice'>The [name] looks too sturdy to bash open with \the [W.name].</span>")
