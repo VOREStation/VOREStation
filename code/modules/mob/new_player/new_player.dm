@@ -51,6 +51,8 @@
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
+	/*
+	//nobody uses this feature
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
 
@@ -69,6 +71,7 @@
 				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 			else
 				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
+	*/
 
 	output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>View Changelog</A></p>"
 
