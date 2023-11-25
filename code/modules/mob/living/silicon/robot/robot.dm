@@ -177,6 +177,36 @@
 	. = ..()
 	update_icon()
 
+/mob/living/silicon/robot/rejuvenate()
+	for (var/V in components)
+		var/datum/robot_component/C = components[V]
+		if(istype(C.wrapped, /obj/item/broken_device))
+			qdel(C.wrapped)
+			switch(V)
+				if("actuator")
+					C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
+				if("radio")
+					C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
+				if("power cell")
+					cell = new /obj/item/weapon/cell(src)
+					cell.maxcharge = 7500
+					cell.charge = 7500
+					C.wrapped = cell
+				if("diagnosis unit")
+					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
+				if("camera")
+					C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
+				if("comms")
+					C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
+				if("armour")
+					C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
+			C.installed = 1
+			C.install()
+			C.brute_damage = 0
+			C.electronics_damage = 0
+	cell.charge = cell.maxcharge
+	..()
+
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 	laws = new /datum/ai_laws/nanotrasen()
