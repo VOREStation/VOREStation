@@ -4007,6 +4007,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dompurify@npm:^2.3.1":
+  version: 2.4.7
+  resolution: "dompurify@npm:2.4.7"
+  checksum: 13c047e772a1998348191554dda403950d45ef2ec75fa0b9915cc179ccea0a39ef780d283109bd72cf83a2a085af6c77664281d4d0106a737bc5f39906364efe
+  languageName: node
+  linkType: hard
+
 "dompurify@npm:^2.3.8":
   version: 2.3.8
   resolution: "dompurify@npm:2.3.8"
@@ -9157,6 +9164,19 @@ __metadata:
     source-map: ^0.7.3
     stacktrace-parser: ^0.1.10
     ws: ^8.6.0
+  languageName: unknown
+  linkType: soft
+
+"tgui-panel@workspace:packages/tgui-panel":
+  version: 0.0.0-use.local
+  resolution: "tgui-panel@workspace:packages/tgui-panel"
+  dependencies:
+    common: "workspace:*"
+    dompurify: ^2.3.1
+    inferno: ^7.4.8
+    tgui: "workspace:*"
+    tgui-dev-server: "workspace:*"
+    tgui-polyfill: "workspace:*"
   languageName: unknown
   linkType: soft
 

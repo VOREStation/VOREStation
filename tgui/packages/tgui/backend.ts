@@ -89,6 +89,14 @@ export const backendReducer = (state = initialState, action) => {
     };
   }
 
+  if (type === 'byond/ctrldown') {
+    globalEvents.emit('byond/ctrldown');
+  }
+
+  if (type === 'byond/ctrlup') {
+    globalEvents.emit('byond/ctrlup');
+  }
+
   if (type === 'backend/suspendStart') {
     return {
       ...state,
