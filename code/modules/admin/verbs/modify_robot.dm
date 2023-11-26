@@ -109,12 +109,10 @@
 				to_chat(usr, "<span class='danger'>You added \"[selected_radio_channel]\" channel to [target]</span>")
 				if(selected_radio_channel == "Special Ops")
 					target.radio.centComm = 1
-					to_chat(usr, "Debug, Add cetCOm key")
 				if(selected_radio_channel == "Raider")
 					qdel(target.radio.keyslot)
 					target.radio.keyslot = new /obj/item/device/encryptionkey/raider(src)
 					target.radio.syndie = 1
-					to_chat(usr, "Debug, Add raid key")
 				if(selected_radio_channel == "Mercenary")
 					qdel(target.radio.keyslot)
 					target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(src)
