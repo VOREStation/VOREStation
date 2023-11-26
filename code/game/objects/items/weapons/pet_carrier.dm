@@ -236,7 +236,7 @@
 		occupant.buckled.dropInto(src)
 	occupants -= occupant
 	occupant_weight -= occupant.mob_size
-	occupant.set_dir = SOUTH
+	occupant.dir = SOUTH
 
 /obj/item/weapon/pet_carrier/biopod
 	name = "portable bluspace stasis cage"
