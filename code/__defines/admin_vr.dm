@@ -4,3 +4,5 @@
 #define SMITE_AD_SPAM				"Ad Spam"
 #define SMITE_AUTOSAVE				"10 Second Autosave"
 #define SMITE_AUTOSAVE_WIDE			"10 Second Autosave (AoE)"
+#define MODIFIY_ROBOT_MODULE_ADD	"Add a Module"
+#define MODIFIY_ROBOT_MODULE_REMOVE	"Remove a Module"
