@@ -52,7 +52,8 @@ $scrollbar-color-multiplier: 1 !default;
 }
 
 .Layout__content--scrollable {
-  overflow-y: auto; // VOREStation Edit: Use auto, not scroll.
+  overflow-y: scroll;
+  margin-bottom: 0;
 }
 
 // VOREStation Addition Start
