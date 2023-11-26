@@ -203,7 +203,6 @@
 							cell = new /obj/item/weapon/cell/hyper
 						if("Slime")
 							cell = new /obj/item/weapon/cell/slime
-					cell.charge = cell.maxcharge
 					C.wrapped = cell
 				if("diagnosis unit")
 					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
