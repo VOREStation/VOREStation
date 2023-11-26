@@ -178,6 +178,7 @@
 	update_icon()
 
 /mob/living/silicon/robot/rejuvenate()
+	..()
 	for (var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(istype(C.wrapped, /obj/item/broken_device))
@@ -188,9 +189,21 @@
 				if("radio")
 					C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
 				if("power cell")
-					cell = new /obj/item/weapon/cell(src)
-					cell.maxcharge = 7500
-					cell.charge = 7500
+					var/celltype = tgui_input_list(usr, "What kind of cell do you want to install?", "Cells", list("Default", "Super", "Syndicate", "Hyper", "Slime"))
+					switch(celltype)
+						if("Default")
+							cell = new /obj/item/weapon/cell(src)
+							cell.maxcharge = 7500
+						if("Super")
+							cell = new /obj/item/weapon/cell/super
+						if("Syndicate")
+							cell = new /obj/item/weapon/cell(src)
+							cell.maxcharge = 25000
+						if("Hyper")
+							cell = new /obj/item/weapon/cell/hyper
+						if("Slime")
+							cell = new /obj/item/weapon/cell/slime
+					cell.charge = cell.maxcharge
 					C.wrapped = cell
 				if("diagnosis unit")
 					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
@@ -205,7 +218,6 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 	cell.charge = cell.maxcharge
-	..()
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
