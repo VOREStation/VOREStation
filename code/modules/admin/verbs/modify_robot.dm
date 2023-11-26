@@ -9,6 +9,9 @@
 	if(!istype(target))
 		return
 
+	if(!target.module.modules)
+		return
+
 	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE)
 
 	var/modification_choice = tgui_input_list(usr, "Select if you want to add or remove a module to/from [target]","Choice", modification_options)
@@ -38,21 +41,19 @@
 					if(!istype(add_item, /obj/item/))
 						break
 					to_chat(usr, "<span class='danger'>You added [add_item] to [target]</span>")
+					robot.module.emag.Remove(add_item)
 					robot.module.modules.Remove(add_item)
 					robot.module.contents.Remove(add_item)
 					target.module.modules.Add(add_item)
 					target.module.contents.Add(add_item)
 				robot.Destroy()
 		if(MODIFIY_ROBOT_MODULE_REMOVE)
-			if(!target.module.modules)
-				return
 			while(TRUE)
 				var/list/active_modules = target.module.modules
-				if(target.emagged || target.emag_items)
-					active_modules += target.module.emag
 				var/selected_module_module = tgui_input_list(usr, "Please select the modules to remove", "Modules", active_modules)
 				if(!istype(selected_module_module, /obj/item/))
 					break
+				target.module.emag.Remove(selected_module_module)
 				target.module.modules.Remove(selected_module_module)
 				target.module.contents.Remove(selected_module_module)
 				qdel(selected_module_module)
