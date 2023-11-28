@@ -148,9 +148,7 @@
 		C.wrapped = new C.external_type
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell(src)
-		cell.maxcharge = 7500
-		cell.charge = 7500
+		cell = new /obj/item/weapon/cell/robot_station(src)
 	else if(ispath(cell))
 		cell = new cell(src)
 
@@ -176,6 +174,38 @@
 /mob/living/silicon/robot/LateInitialize()
 	. = ..()
 	update_icon()
+
+/mob/living/silicon/robot/rejuvenate()
+	for (var/V in components)
+		var/datum/robot_component/C = components[V]
+		if(istype(C.wrapped, /obj/item/broken_device))
+			qdel(C.wrapped)
+		if(!C.wrapped)
+			switch(V)
+				if("actuator")
+					C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
+				if("radio")
+					C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
+				if("power cell")
+					var/list/recommended_cells = list(/obj/item/weapon/cell/robot_station, /obj/item/weapon/cell/high, /obj/item/weapon/cell/super, /obj/item/weapon/cell/robot_syndi, /obj/item/weapon/cell/hyper,
+						/obj/item/weapon/cell/infinite, /obj/item/weapon/cell/potato, /obj/item/weapon/cell/slime)
+					var/celltype = tgui_input_list(usr, "What kind of cell do you want to install? Cancel installs a default robot cell.", "Cells", recommended_cells)
+					if(!celltype || !celltype == "Cancel")
+						celltype = /obj/item/weapon/cell/robot_station
+					cell = new celltype(src)
+					C.wrapped = cell
+				if("diagnosis unit")
+					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
+				if("camera")
+					C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
+				if("comms")
+					C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
+				if("armour")
+					C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
+			C.installed = 1
+			C.install()
+	cell.charge = cell.maxcharge
+	..()
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)

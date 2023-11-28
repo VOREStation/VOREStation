@@ -12,7 +12,7 @@
 	if(!target.module.modules)
 		return
 
-	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE)
+	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE, MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE)
 
 	var/modification_choice = tgui_input_list(usr, "Select if you want to add or remove a module to/from [target]","Choice", modification_options)
 	if(!modification_choice)
@@ -139,3 +139,48 @@
 					target.radio.channels[n_chan] -= target.module.channels[n_chan]
 				radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
 				target.radio.secure_radio_connections -= selected_radio_channel
+		if(MODIFIY_ROBOT_COMP_ADD)
+			while(TRUE)
+				var/selected_component = tgui_input_list(usr, "Please select the component to add or replace", "Component", target.components)
+				if(!selected_component || selected_component == "Cancel")
+					break
+				var/datum/robot_component/C = target.components[selected_component]
+				if(C.wrapped && !selected_component == "power cell")
+					qdel(C.wrapped)
+				switch(selected_component)
+					if("actuator")
+						C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
+					if("radio")
+						C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
+					if("power cell")
+						var/list/recommended_cells = list(/obj/item/weapon/cell/robot_station, /obj/item/weapon/cell/high, /obj/item/weapon/cell/super, /obj/item/weapon/cell/robot_syndi, /obj/item/weapon/cell/hyper,
+							/obj/item/weapon/cell/infinite, /obj/item/weapon/cell/potato, /obj/item/weapon/cell/slime)
+						var/celltype = tgui_input_list(usr, "What kind of cell do you want to install?", "Cells", recommended_cells)
+						if(!celltype || celltype == "Cancel")
+							continue
+						qdel(C.wrapped)
+						target.cell = new celltype(src)
+						C.wrapped = target.cell
+					if("diagnosis unit")
+						C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
+					if("camera")
+						C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
+					if("comms")
+						C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
+					if("armour")
+						C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
+				C.install()
+				C.installed = 1
+		if(MODIFIY_ROBOT_COMP_REMOVE)
+			while(TRUE)
+				var/selected_component = tgui_input_list(usr, "Please select the component to remove", "Component", target.components)
+				if(!selected_component || selected_component == "Cancel")
+					break
+				var/datum/robot_component/C = target.components[selected_component]
+				if(C.wrapped)
+					C.uninstall()
+					C.installed = 0
+					qdel(C.wrapped)
+					C.wrapped = null
+					if(selected_component == "power cell")
+						target.cell = null
