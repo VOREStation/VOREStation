@@ -50,17 +50,20 @@
 		unarmed_attacks += new u_type()
 
 /datum/species/create_organs(var/mob/living/carbon/human/H)
-	if(H.nif)
+	..()
+	var/has_nif = FALSE
+	for(var/C in H.contents["head"].implants)
+		if(istype(C, /obj/item/device/nif))
+			has_nif = TRUE
+	if(H.nif && !has_nif)
 		var/type = H.nif.type
 		var/durability = H.nif.durability
 		var/list/nifsofts = H.nif.nifsofts
 		var/list/nif_savedata = H.nif.save_data.Copy()
-		..()
 
 		var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
 		nif.nifsofts = nifsofts
-	else
-		..()
+
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
 	ASSERT(src)
 	ASSERT(istype(H))
