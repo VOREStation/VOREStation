@@ -52,7 +52,7 @@
 /datum/species/create_organs(var/mob/living/carbon/human/H)
 	..()
 	var/has_nif = FALSE
-	for(var/C in H.contents["head"].implants)
+	for(var/C in H.contents["head"].contents)
 		if(istype(C, /obj/item/device/nif))
 			has_nif = TRUE
 	if(H.nif && !has_nif)
