@@ -51,17 +51,17 @@
 
 /datum/species/create_organs(var/mob/living/carbon/human/H)
 	if(H.nif)
-		var/type = H.nif.type
+		/*var/type = H.nif.type
 		var/durability = H.nif.durability
 		var/list/nifsofts = H.nif.nifsofts
-		var/list/nif_savedata = H.nif.save_data.Copy()
+		var/list/nif_savedata = H.nif.save_data.Copy()*/
 		..()
-
-		H.nif = null
-		var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
-		nif.nifsofts = nifsofts
+		H.nif = null //A previous call during the rejuvenation path deleted it, so we no longer should have it here
+		/*var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
+		nif.nifsofts = nifsofts*/
 	else
 		..()
+
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
 	ASSERT(src)
 	ASSERT(istype(H))
