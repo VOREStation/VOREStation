@@ -459,11 +459,9 @@
 		return SURGERY_FAILURE
 	*/
 
-	/* VOREStation Edit - allow implanting MMIs back into meat bodies
 	if(!(affected.robotic >= ORGAN_ROBOT))
 		to_chat(user, "<span class='danger'>You cannot install a computer brain into a meat skull.</span>")
 		return SURGERY_FAILURE
-	*/
 
 	if(!target.should_have_organ("brain"))
 		to_chat(user, "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>")

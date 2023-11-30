@@ -1138,10 +1138,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if("Stomach")
 				organ = O_STOMACH
 			if("Brain")
-				//organic characters can have cyberbrains if they want
-				//if(pref.organ_data[BP_HEAD] != "cyborg")
-				//	to_chat(user, "<span class='warning'>You may only select a cybernetic or synthetic brain if you have a full prosthetic body.</span>")
-				//	return
+				if(pref.organ_data[BP_HEAD] != "cyborg")
+					to_chat(user, "<span class='warning'>You may only select a cybernetic or synthetic brain if you have a full prosthetic body.</span>")
+					return
 				organ = "brain"
 
 		var/datum/species/current_species = GLOB.all_species[pref.species]
