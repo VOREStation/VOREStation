@@ -12,7 +12,7 @@
 	if(!target.module.modules)
 		return
 
-	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE, MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE)
+	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE, MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_RESET_MODULE)
 
 	var/modification_choice = tgui_input_list(usr, "Select if you want to add or remove a module to/from [target]","Choice", modification_options)
 	if(!modification_choice)
@@ -189,3 +189,5 @@
 					C.wrapped = null
 					if(selected_component == "power cell")
 						target.cell = null
+		if(MODIFIY_ROBOT_RESET_MODULE)
+			target.module_reset()

@@ -10,3 +10,4 @@
 #define MODIFIY_ROBOT_RADIOC_REMOVE	"Remove a Radio Channel"
 #define MODIFIY_ROBOT_COMP_ADD		"Replace a Component"
 #define MODIFIY_ROBOT_COMP_REMOVE	"Remove a Component"
+#define MODIFIY_ROBOT_RESET_MODULE	"Fully Resets a Robot Module"
