@@ -190,4 +190,6 @@
 					if(selected_component == "power cell")
 						target.cell = null
 		if(MODIFIY_ROBOT_RESET_MODULE)
+			if(tgui_alert(usr, "Are you sure that you want to reset the entire module?","Confirm",list("Yes","No"))=="No")
+				return
 			target.module_reset()
