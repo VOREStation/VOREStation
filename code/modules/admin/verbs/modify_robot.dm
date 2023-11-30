@@ -1,4 +1,4 @@
-//Allows to add and remove modules from bogs
+//Allows to add and remove modules from borgs
 /client/proc/modify_robot(var/mob/living/silicon/robot/target in player_list)
 	set name = "Modify Robot Module"
 	set desc = "Allows to add or remove modules to/from robots."
@@ -40,12 +40,12 @@
 					var/add_item = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)
 					if(!istype(add_item, /obj/item/))
 						break
-					to_chat(usr, "<span class='danger'>You added \"[add_item]\" to [target]</span>")
 					robot.module.emag.Remove(add_item)
 					robot.module.modules.Remove(add_item)
 					robot.module.contents.Remove(add_item)
 					target.module.modules.Add(add_item)
 					target.module.contents.Add(add_item)
+					to_chat(usr, "<span class='danger'>You added \"[add_item]\" to [target].</span>")
 					if(istype(add_item, /obj/item/stack/))
 						var/obj/item/stack/item_with_synth = add_item
 						for(var/synth in item_with_synth.synths)
@@ -106,7 +106,6 @@
 				var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to add", "Channels", available_channels)
 				if(!selected_radio_channel || selected_radio_channel == "Cancel")
 					break
-				to_chat(usr, "<span class='danger'>You added \"[selected_radio_channel]\" channel to [target]</span>")
 				if(selected_radio_channel == "Special Ops")
 					target.radio.centComm = 1
 				if(selected_radio_channel == "Raider")
@@ -121,12 +120,12 @@
 				target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
 				target.radio.secure_radio_connections[selected_radio_channel] += radio_controller.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
 				available_channels -= selected_radio_channel
+				to_chat(usr, "<span class='danger'>You added \"[selected_radio_channel]\" channel to [target].</span>")
 		if(MODIFIY_ROBOT_RADIOC_REMOVE)
 			while(TRUE)
 				var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to remove", "Channels", target.radio.channels)
 				if(!selected_radio_channel || selected_radio_channel == "Cancel")
 					break
-				to_chat(usr, "<span class='danger'>You removed \"[selected_radio_channel]\" channel from [target]</span>")
 				if(selected_radio_channel == "Special Ops")
 					target.radio.centComm = 0
 				target.module.channels -= selected_radio_channel
@@ -139,13 +138,14 @@
 					target.radio.channels[n_chan] -= target.module.channels[n_chan]
 				radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
 				target.radio.secure_radio_connections -= selected_radio_channel
+				to_chat(usr, "<span class='danger'>You removed \"[selected_radio_channel]\" channel from [target].</span>")
 		if(MODIFIY_ROBOT_COMP_ADD)
 			while(TRUE)
 				var/selected_component = tgui_input_list(usr, "Please select the component to add or replace", "Component", target.components)
 				if(!selected_component || selected_component == "Cancel")
 					break
 				var/datum/robot_component/C = target.components[selected_component]
-				if(C.wrapped && !selected_component == "power cell")
+				if(C.wrapped && selected_component != "power cell")
 					qdel(C.wrapped)
 				switch(selected_component)
 					if("actuator")
@@ -166,6 +166,7 @@
 						var/new_power_cell = cell_names[capitalize(selected_cell)]
 						target.cell = new new_power_cell(target)
 						C.wrapped = target.cell
+						to_chat(usr, "<span class='danger'>You replaced \"[C]\" on [target] with \"[selected_cell]\".</span>")
 					if("diagnosis unit")
 						C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(target)
 					if("camera")
@@ -176,6 +177,8 @@
 						C.wrapped = new /obj/item/robot_parts/robot_component/armour(target)
 				C.install()
 				C.installed = 1
+				if(selected_component != "power cell")
+					to_chat(usr, "<span class='danger'>You repplaced \"[C]\" on [target].</span>")
 		if(MODIFIY_ROBOT_COMP_REMOVE)
 			while(TRUE)
 				var/selected_component = tgui_input_list(usr, "Please select the component to remove", "Component", target.components)
@@ -189,7 +192,9 @@
 					C.wrapped = null
 					if(selected_component == "power cell")
 						target.cell = null
+				to_chat(usr, "<span class='danger'>You removed \"[C]\" from [target]</span>")
 		if(MODIFIY_ROBOT_RESET_MODULE)
 			if(tgui_alert(usr, "Are you sure that you want to reset the entire module?","Confirm",list("Yes","No"))=="No")
 				return
 			target.module_reset()
+			to_chat(usr, "<span class='danger'>You resetted [target]'s module selection.</span>")
