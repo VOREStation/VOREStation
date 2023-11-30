@@ -100,6 +100,7 @@ export class Section extends Component<SectionProps> {
           {/* Vorestation Edit Start */}
           <div
             ref={this.scrollableRef}
+            onScroll={onScroll}
             className={classes([
               'Section__content',
               !!stretchContents && 'Section__content--stretchContents',

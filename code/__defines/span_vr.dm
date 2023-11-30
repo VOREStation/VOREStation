@@ -29,7 +29,7 @@
 
 
 #define span_emote(str) ("<span class='emote'>" + str + "</span>")
-#define span_emote_subtle(str) ("<span class='emote_subtle'>" + str + "</span>")
+#define span_emote_subtle(str) ("<span class='emotesubtle'>" + str + "</span>")
 
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_moderate(str) ("<span class='moderate'>" + str + "</span>")
