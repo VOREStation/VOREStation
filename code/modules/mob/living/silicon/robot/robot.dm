@@ -180,6 +180,7 @@
 		var/datum/robot_component/C = components[V]
 		if(istype(C.wrapped, /obj/item/broken_device))
 			qdel(C.wrapped)
+			C.wrapped = null
 		if(!C.wrapped)
 			switch(V)
 				if("actuator")
@@ -189,10 +190,15 @@
 				if("power cell")
 					var/list/recommended_cells = list(/obj/item/weapon/cell/robot_station, /obj/item/weapon/cell/high, /obj/item/weapon/cell/super, /obj/item/weapon/cell/robot_syndi, /obj/item/weapon/cell/hyper,
 						/obj/item/weapon/cell/infinite, /obj/item/weapon/cell/potato, /obj/item/weapon/cell/slime)
-					var/celltype = tgui_input_list(usr, "What kind of cell do you want to install? Cancel installs a default robot cell.", "Cells", recommended_cells)
-					if(!celltype || !celltype == "Cancel")
-						celltype = /obj/item/weapon/cell/robot_station
-					cell = new celltype(src)
+					var/list/cell_names = list()
+					for(var/cell_type in recommended_cells)
+						var/obj/item/weapon/cell/single_cell = cell_type
+						cell_names[capitalize(initial(single_cell.name))] = cell_type
+					var/selected_cell = tgui_input_list(usr, "What kind of cell do you want to install? Cancel installs a default robot cell.", "Cells", cell_names)
+					if(!selected_cell || selected_cell == "Cancel")
+						selected_cell = "A standard robot power cell"
+					var/new_power_cell = cell_names[capitalize(selected_cell)]
+					cell = new new_power_cell(src)
 					C.wrapped = cell
 				if("diagnosis unit")
 					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)

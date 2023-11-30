@@ -111,11 +111,11 @@
 					target.radio.centComm = 1
 				if(selected_radio_channel == "Raider")
 					qdel(target.radio.keyslot)
-					target.radio.keyslot = new /obj/item/device/encryptionkey/raider(src)
+					target.radio.keyslot = new /obj/item/device/encryptionkey/raider(target)
 					target.radio.syndie = 1
 				if(selected_radio_channel == "Mercenary")
 					qdel(target.radio.keyslot)
-					target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(src)
+					target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(target)
 					target.radio.syndie = 1
 				target.module.channels += list("[selected_radio_channel]" = 1)
 				target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
@@ -149,26 +149,31 @@
 					qdel(C.wrapped)
 				switch(selected_component)
 					if("actuator")
-						C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
+						C.wrapped = new /obj/item/robot_parts/robot_component/actuator(target)
 					if("radio")
-						C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
+						C.wrapped = new /obj/item/robot_parts/robot_component/radio(target)
 					if("power cell")
 						var/list/recommended_cells = list(/obj/item/weapon/cell/robot_station, /obj/item/weapon/cell/high, /obj/item/weapon/cell/super, /obj/item/weapon/cell/robot_syndi, /obj/item/weapon/cell/hyper,
 							/obj/item/weapon/cell/infinite, /obj/item/weapon/cell/potato, /obj/item/weapon/cell/slime)
-						var/celltype = tgui_input_list(usr, "What kind of cell do you want to install?", "Cells", recommended_cells)
-						if(!celltype || celltype == "Cancel")
+						var/list/cell_names = list()
+						for(var/cell_type in recommended_cells)
+							var/obj/item/weapon/cell/single_cell = cell_type
+							cell_names[capitalize(initial(single_cell.name))] = cell_type
+						var/selected_cell = tgui_input_list(usr, "What kind of cell do you want to install?", "Cells", cell_names)
+						if(!selected_cell || selected_cell == "Cancel")
 							continue
 						qdel(C.wrapped)
-						target.cell = new celltype(src)
+						var/new_power_cell = cell_names[capitalize(selected_cell)]
+						target.cell = new new_power_cell(target)
 						C.wrapped = target.cell
 					if("diagnosis unit")
-						C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
+						C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(target)
 					if("camera")
-						C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
+						C.wrapped = new /obj/item/robot_parts/robot_component/camera(target)
 					if("comms")
-						C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
+						C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(target)
 					if("armour")
-						C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
+						C.wrapped = new /obj/item/robot_parts/robot_component/armour(target)
 				C.install()
 				C.installed = 1
 		if(MODIFIY_ROBOT_COMP_REMOVE)
