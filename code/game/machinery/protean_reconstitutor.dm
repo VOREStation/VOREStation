@@ -14,6 +14,7 @@
 	var/processing_revive = FALSE
 	clicksound = 'sound/machines/buttonbeep.ogg'	//standard initialization sound
 	var/dingsound = 'sound/machines/kitchen/microwave/microwave-end.ogg'	//sound to play when the process is complete
+	var/buzzsound = 'sound/items/nif_tone_bad.ogg'	//sound to play when we have to abort due to loss of posibrain client
 
 	//vars for basic functionality
 	var/obj/item/device/mmi/digital/posibrain/nano/protean_brain = null	//only allow protean brains, no midround upgrades to bypass the whitelist!
@@ -23,9 +24,11 @@
 	var/nanotank_max = 300			//how much we can store at once, higher = better
 	var/nanomass_required = 150		//how much we need in order to make a new body, non-adjustable
 	var/paste_inefficiency = 5		//divisor to mech_repair value of paste added; higher = less effective; adv paste is +40 reserve at base, or +200 at max!
+
+	//time vars
 	var/base_cook_time = 150 SECONDS	//how long to initially delay before starting the overall cooking cycle
-	var/per_organ_delay = 30 SECONDS	//how long to delay the cycle per organ and per synch step (multiply by three to get time for all three organs), then add base cook time for total time
-	var/finalize_time = 150 SECONDS	//finally, how long we need before popping them out of the tank
+	var/per_organ_delay = 5 SECONDS	//how long to delay the cycle per organ and per synch step (multiply by three to get time for all three organs), then add base cook time for total time
+	var/finalize_time = 135 SECONDS	//finally, how long we need before popping them out of the tank
 
 	//component vars
 	circuit = /obj/item/weapon/circuitboard/protean_reconstitutor
@@ -74,21 +77,20 @@
 /obj/machinery/protean_reconstitutor/examine()
 	. = ..()
 	if(protean_refactory)
-		. += "A protean refactory appears to be present."
-	if(protean_brain && !protean_orchestrator)
-		. += "It currently has a protean positronic brain ready, but still needs an orchestrator."
-	else if(protean_orchestrator && !protean_brain)
-		. += "It currently has an orchestrator ready, but lacks a protean positronic brain."
-	else if(protean_orchestrator && protean_brain)
-		. += "It currently has both a positronic brain and orchestrator ready!"
-	else
-		. += "It currently lacks both a positronic brain and orchestrator."
+		. += "A protean refactory is present."
+	if(protean_orchestrator)
+		. += "A protean orchestrator is present."
+	if(protean_brain)
+		. += "It currently has a protean positronic brain."
+		if(!protean_brain.brainmob.client)
+			. += "<span class='warning'>The positronic brain appears to be inactive!</span>"
 	. += "The readout shows that it has [nanomass_reserve] units of nanites ready for use. It requires [nanomass_required] per \'revive\' process, and has a maximum capacity of [nanotank_max] units."
 
 /obj/machinery/protean_reconstitutor/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(processing_revive)
 		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
+		playsound(src, buzzsound, 100, 1, -1)
 		return
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -161,18 +163,20 @@
 	if(!protean_brain || !protean_orchestrator || (nanomass_reserve < nanomass_required))
 		//no brain, no orchestrator, and/or not enough goo
 		to_chat(user,"<span class='warning'>Essential components missing, or insufficient materials available!</span>")
+		playsound(src, buzzsound, 100, 1, -1)
 		update_icon()
 		return
 	if(processing_revive)
 		//we're currently processing a patient, chill out!
 		src.visible_message("<span class='notice'>\The [src] chirps, \"Reconstitution cycle currently in progress, please wait!\"</span>")
+		playsound(src, buzzsound, 100, 1, -1)
 		return
 	if(!protean_brain.brainmob.client)
 		src.visible_message("<span class='warning'>\The [src] chirps, \"Warning, no positronic neural network activity detected! Recommend removing inactive core.\"</span>")
 		return
 	else if(!processing_revive && protean_brain && protean_orchestrator && (nanomass_reserve >= nanomass_required))
 		//we're good, let's get recombobulating!
-		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: [base_cook_time+(per_organ_delay*3)+finalize_time SECONDS] seconds.\"</span>")
+		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: five minutes.\"</span>")
 		processing_revive = TRUE
 		power_change()
 		if(prob(2))
@@ -187,7 +191,6 @@
 		P.loc = src
 		P.name = "Unfinished Protean"
 		P.real_name = "Unfinished Protean"
-		P.AdjustSleeping(60)	//be eepy until well after the synch process completes
 		for(var/organ in P.internal_organs_by_name)
 			sleep(per_organ_delay)
 			var/obj/item/O = P.internal_organs_by_name[organ]
@@ -203,7 +206,6 @@
 					materials_cache = protean_refactory.materials.Copy()
 					mats_cached = TRUE
 					protean_refactory.loc = P
-					protean_refactory = null
 				else
 					src.visible_message("<span class='notice'>\The [src] chirps, \"No refactory detected in storage, fabricating replacement...\"</span>")
 					continue
@@ -216,9 +218,17 @@
 				P.internal_organs_by_name.Add(list(O_ORCH = protean_orchestrator))
 				P.internal_organs.Add(protean_orchestrator)
 				protean_orchestrator.loc = P
-				protean_orchestrator = null
 			if(istype(O,/obj/item/organ/internal/mmi_holder/posibrain/nano))
 				src.visible_message("<span class='notice'>\The [src] chirps, \"Synchronizing positronic neural architecture...\"</span>")
+				//on the offchance our client blipped before getting to this step, abort, schloop the organs back into the machine, dissolve the body, and refund the nanos
+				if(!protean_brain.brainmob.client)
+					src.visible_message("<span class='warning'>\The [src] buzzes, \"No positronic neural activity detected! Aborting cycle!\"</span>")
+					playsound(src, buzzsound, 100, 1, -1)
+					processing_revive = FALSE
+					qdel(P)
+					nanomass_reserve += nanomass_required
+					update_icon()
+					return
 				var/obj/item/organ/internal/mmi_holder/posibrain/nano/BR = O
 				BR.stored_mmi = null	//toss the dummy...
 				BR.contents.Cut()
@@ -265,7 +275,9 @@
 
 				protean_brain.brainmob.mind.transfer_to(P)
 				protean_brain.loc = BR
-				protean_brain = null
+		protean_refactory = null
+		protean_brain = null
+		protean_orchestrator = null
 		sleep(finalize_time)	//let 'em cook a tiny bit longer
 		P.revive()
 		P.apply_vore_prefs()
