@@ -1,7 +1,7 @@
 /obj/machinery/protean_reconstitutor
 	name = "protean reconstitutor"
 	desc = "A complex machine that is most definitely <i>not</i> just a large tub into which one pours a large amount of untethered nanites, then adds a protean positronic brain and orchestrator, in order to reconstitute a disintegrated protean... it's complicated, really!"
-	description_info = "Use a protean positronic brain, orchestrator, optionally a refactory, and nanopaste to \'fill\' the machine, then interact with it once it's ready. Protean components can be retrieved using a wrench, but any nanopaste inserted will be converted and cannot be reclaimed!"
+	description_info = "Use a protean positronic brain, orchestrator, optionally a refactory, and nanopaste to \'fill\' the machine, then interact with it once it's ready. Protean components can be retrieved using a wrench, but any nanopaste inserted will be converted, cannot be reclaimed, and will be lost if the machine is disassembled!"
 	icon = 'icons/obj/protean_recon.dmi'
 	icon_state = "recon-nopower"
 	var/state_base = "recon"
@@ -19,21 +19,39 @@
 	var/obj/item/device/mmi/digital/posibrain/nano/protean_brain = null	//only allow protean brains, no midround upgrades to bypass the whitelist!
 	var/obj/item/organ/internal/nano/orchestrator/protean_orchestrator = null	//essential
 	var/obj/item/organ/internal/nano/refactory/protean_refactory = null	//not essential, but nice to have; lets us transfer stored materials
-	var/nanomass_reserve = 0		//starting reserve
-	var/nanotank_max = 300			//how much we can store at once, todo: upgradable
-	var/nanomass_required = 60		//how much we need in order to make a new body, base
-	var/nanomass_efficiency = 1		//multiplier to nanomass required, todo: upgradable
-	var/paste_inefficiency = 5		//divisor to mech_repair value of paste added; higher = less effective
-	var/base_cook_time = 30 SECONDS	//how long to initially delay before starting the overall cooking cycle
-	var/per_organ_delay = 10 SECONDS	//how long to delay the cycle per organ and per synch step (multiply by three to get time for all three organs), then add base cook time for total time
-	var/finalize_time = 30 SECONDS	//finally, how long we need before popping them out of the tank
+	var/nanomass_reserve = 0		//starting reserve - will be wiped if it's deconstructed!
+	var/nanotank_max = 300			//how much we can store at once, higher = better
+	var/nanomass_required = 150		//how much we need in order to make a new body, non-adjustable
+	var/paste_inefficiency = 5		//divisor to mech_repair value of paste added; higher = less effective; adv paste is +40 reserve at base, or +200 at max!
+	var/base_cook_time = 150 SECONDS	//how long to initially delay before starting the overall cooking cycle
+	var/per_organ_delay = 30 SECONDS	//how long to delay the cycle per organ and per synch step (multiply by three to get time for all three organs), then add base cook time for total time
+	var/finalize_time = 150 SECONDS	//finally, how long we need before popping them out of the tank
 
-	//TODO: component vars
-	//bin
+	//component vars
+	circuit = /obj/item/weapon/circuitboard/protean_reconstitutor
 
 /obj/machinery/protean_reconstitutor/Initialize()
-	//TODO: spawn starting components
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 5)
+	RefreshParts()
 	. = ..()
+
+/obj/machinery/protean_reconstitutor/RefreshParts()
+	//total paste storage cap (300 * the rating, straightforward)
+	var/store_rating = initial(nanotank_max)
+	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+		store_rating = store_rating * MB.rating
+	nanotank_max = store_rating
+
+	//inefficiency of adding paste (amount of uses * (mech_repair / inefficiency)); most complex, good way to get good bang for your buck tho
+	var/paste_rating = initial(paste_inefficiency)
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		paste_rating = paste_rating - (M.rating - 1)
+	paste_inefficiency = paste_rating
+	..()
 
 /obj/machinery/protean_reconstitutor/update_icon()
 	cut_overlays()
@@ -50,7 +68,7 @@
 		add_overlay("[state_base]-orchestrator")
 	if(protean_refactory)
 		add_overlay("[state_base]-refactory")
-	if(nanomass_reserve >= nanomass_required * nanomass_efficiency)
+	if(nanomass_reserve >= nanomass_required)
 		add_overlay("[state_base]-tank_full")
 
 /obj/machinery/protean_reconstitutor/examine()
@@ -65,13 +83,26 @@
 		. += "It currently has both a positronic brain and orchestrator ready!"
 	else
 		. += "It currently lacks both a positronic brain and orchestrator."
-	. += "The readout shows that it has [nanomass_reserve] units of nanites ready for use. It requires [nanomass_required * nanomass_efficiency] per \'revive\' process, and has a maximum capacity of [nanotank_max] units."
+	. += "The readout shows that it has [nanomass_reserve] units of nanites ready for use. It requires [nanomass_required] per \'revive\' process, and has a maximum capacity of [nanotank_max] units."
 
 /obj/machinery/protean_reconstitutor/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
+	if(processing_revive)
+		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
+		return
+
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
 
 	if(istype(W,/obj/item/device/mmi/digital/posibrain/nano))
 		var/obj/item/device/mmi/digital/posibrain/nano/NB = W
+		if(!NB.brainmob.client)
+			to_chat(user,"<span class='warning'>You cannot use an inactive positronic brain for this process.</span>")
+			return
 		to_chat(user,"<span class='notice'>You slot \the [NB] into \the [src].</span>")
 		user.drop_from_inventory(NB)
 		NB.loc = src
@@ -124,10 +155,10 @@
 			to_chat(user, "\The [src] does not have any protean components you can retrieve.")
 
 	update_icon()
-	return ..()
+	..()
 
 /obj/machinery/protean_reconstitutor/attack_hand(mob/user as mob)
-	if(!protean_brain || !protean_orchestrator || (nanomass_reserve < (nanomass_required * nanomass_efficiency)))
+	if(!protean_brain || !protean_orchestrator || (nanomass_reserve < nanomass_required))
 		//no brain, no orchestrator, and/or not enough goo
 		to_chat(user,"<span class='warning'>Essential components missing, or insufficient materials available!</span>")
 		update_icon()
@@ -136,16 +167,19 @@
 		//we're currently processing a patient, chill out!
 		src.visible_message("<span class='notice'>\The [src] chirps, \"Reconstitution cycle currently in progress, please wait!\"</span>")
 		return
-	else if(!processing_revive && protean_brain && protean_orchestrator && (nanomass_reserve >= (nanomass_required * nanomass_efficiency)))
+	if(!protean_brain.brainmob.client)
+		src.visible_message("<span class='warning'>\The [src] chirps, \"Warning, no positronic neural network activity detected! Recommend removing inactive core.\"</span>")
+		return
+	else if(!processing_revive && protean_brain && protean_orchestrator && (nanomass_reserve >= nanomass_required))
 		//we're good, let's get recombobulating!
-		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: 1 minute, 30 seconds.\"</span>")
+		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: [base_cook_time+(per_organ_delay*3)+finalize_time SECONDS] seconds.\"</span>")
 		processing_revive = TRUE
 		power_change()
 		if(prob(2))
 			playsound(src, 'sound/machines/blender.ogg', 50, 1)
 		else
 			playsound(src, clicksound, 50, 1)
-		nanomass_reserve -= nanomass_required * nanomass_efficiency
+		nanomass_reserve -= nanomass_required
 		sleep(base_cook_time)
 		var/mob/living/carbon/human/protean/P = new /mob/living/carbon/human/protean
 		var/mats_cached
