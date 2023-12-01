@@ -11,18 +11,28 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 1000
-	clicksound = 'sound/machines/buttonbeep.ogg'
-	var/dingsound = 'sound/machines/kitchen/microwave/microwave-end.ogg'
+	var/inuse = FALSE
+	clicksound = 'sound/machines/buttonbeep.ogg'	//standard initialization sound
+	var/dingsound = 'sound/machines/kitchen/microwave/microwave-end.ogg'	//sound to play when the process is complete
 
 	//vars for basic functionality
-	var/obj/item/device/mmi/digital/posibrain/nano/protean_brain = null	//only allow protean brains
-	var/obj/item/organ/internal/nano/orchestrator/protean_orchestrator = null
-	var/obj/item/organ/internal/nano/refactory/protean_refactory = null //not essential, but nice to have; lets us transfer stored materials
+	var/obj/item/device/mmi/digital/posibrain/nano/protean_brain = null	//only allow protean brains, no midround upgrades to bypass the whitelist!
+	var/obj/item/organ/internal/nano/orchestrator/protean_orchestrator = null	//essential
+	var/obj/item/organ/internal/nano/refactory/protean_refactory = null	//not essential, but nice to have; lets us transfer stored materials
 	var/nanomass_reserve = 0		//starting reserve
 	var/nanotank_max = 300			//how much we can store at once, todo: upgradable
 	var/nanomass_required = 60		//how much we need in order to make a new body, base
 	var/nanomass_efficiency = 1		//multiplier to nanomass required, todo: upgradable
 	var/paste_inefficiency = 5		//divisor to mech_repair value of paste added; higher = less effective
+	var/base_cook_time = 30 SECONDS	//how long to initially delay before starting the overall cooking cycle
+	var/per_organ_delay = 5 SECONDS	//how long to delay the cycle per organ and per synch step (multiply by six to get time for all three organs), then add base cook time for total time
+
+	//TODO: component vars
+	//bin
+
+/obj/machinery/protean_reconstitutor/Initialize()
+	//TODO: spawn starting components
+	. = ..()
 
 /obj/machinery/protean_reconstitutor/update_icon()
 	cut_overlays()
@@ -117,41 +127,53 @@
 
 /obj/machinery/protean_reconstitutor/attack_hand(mob/user as mob)
 	if(!protean_brain || !protean_orchestrator || (nanomass_reserve < (nanomass_required * nanomass_efficiency)))
+		//no brain, no orchestrator, and/or not enough goo
 		to_chat(user,"<span class='warning'>Essential components missing, or insufficient materials available!</span>")
 		update_icon()
 		return
-	else if(protean_brain && protean_orchestrator && (nanomass_reserve > (nanomass_required * nanomass_efficiency)))
+	if(inuse)
+		//we're currently processing a patient, chill out!
+		src.visible_message("<span class='notice'>\The [src] chirps, \"Currently reconstituting [protean_brain.stored_mmi.brainmob.name], please wait!\"<\span>")
+		return
+	else if(!inuse && protean_brain && protean_orchestrator && (nanomass_reserve > (nanomass_required * nanomass_efficiency)))
 		//we're good, let's get recombobulating!
 		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: 1 minute.\"</span>")
+		inuse = TRUE
 		power_change()
 		if(prob(2))
 			playsound(src, 'sound/machines/blender.ogg', 50, 1)
+		else
+			playsound(src, clicksound, 50, 1)
 		nanomass_reserve -= nanomass_required * nanomass_efficiency
-		sleep(20 SECONDS)	//1 minute default, testing placeholder
+		sleep(base_cook_time)	//base cook time
 		var/mob/living/carbon/human/protean/P = new /mob/living/carbon/human/protean
 		var/mats_cached
 		var/list/materials_cache
 		P.loc = src
 		for(var/organ in P.internal_organs_by_name)
+			sleep(per_organ_delay)
 			var/obj/item/O = P.internal_organs_by_name[organ]
 			if(istype(O,/obj/item/organ/internal/nano/refactory))
 				if(protean_refactory)	//if we have a refactory present, install it, otherwise they get a free replacement (for now; perhaps no free replacement but they can be made printable at the prosfab?)
-					src.visible_message("<span class='notice>\The [src] chirps, \"Reinitializing refactory...\"</span>")
+					src.visible_message("<span class='notice'>\The [src] chirps, \"Reinitializing refactory...\"</span>")
 					P.internal_organs_by_name.Remove(O)
 					P.contents.Remove(O)
 					qdel(O)
 					P.internal_organs_by_name.Add(list(O_FACT = protean_refactory))
 					P.internal_organs.Add(protean_refactory)
+					//cache our mats otherwise they get wiped by the revive
 					materials_cache = protean_refactory.materials.Copy()
 					mats_cached = TRUE
 					protean_refactory.loc = P
 					protean_refactory = null
-					src.visible_message("<span class='notice>\The [src] chirps, \"Refactory reboot complete...\"</span>")
+					sleep(per_organ_delay)
+					src.visible_message("<span class='notice'>\The [src] chirps, \"Refactory reboot complete...\"</span>")
 				else
-					src.visible_message("<span class='notice>\The [src] chirps, \"No refactory detected in storage, fabricating replacement...\"</span>")
+					src.visible_message("<span class='notice'>\The [src] chirps, \"No refactory detected in storage, fabricating replacement...\"</span>")
+					sleep(per_organ_delay)
 					continue
 			if(istype(O,/obj/item/organ/internal/nano/orchestrator))
-				src.visible_message("<span class='notice>\The [src] chirps, \"Linking nanoswarm to orchestrator...\"</span>")
+				src.visible_message("<span class='notice'>\The [src] chirps, \"Linking nanoswarm to orchestrator...\"</span>")
 				P.internal_organs_by_name.Remove(O)
 				P.internal_organs.Remove(O)
 				P.contents.Remove(O)
@@ -160,9 +182,10 @@
 				P.internal_organs.Add(protean_orchestrator)
 				protean_orchestrator.loc = P
 				protean_orchestrator = null
-				src.visible_message("<span class='notice>\The [src] chirps, \"Secure nanoswarm network established...\"</span>")
+				sleep(per_organ_delay)
+				src.visible_message("<span class='notice'>\The [src] chirps, \"Secure nanoswarm network established...\"</span>")
 			if(istype(O,/obj/item/organ/internal/mmi_holder/posibrain/nano))
-				src.visible_message("<span class='notice>\The [src] chirps, \"Synchronizing positronic neural architecture...\"</span>")
+				src.visible_message("<span class='notice'>\The [src] chirps, \"Synchronizing positronic neural architecture...\"</span>")
 				var/obj/item/organ/internal/mmi_holder/posibrain/nano/BR = O
 				BR.stored_mmi = null	//toss the dummy...
 				BR.contents.Cut()
@@ -173,24 +196,31 @@
 				P.client = protean_brain.brainmob.client
 				protean_brain.loc = BR
 				protean_brain = null
-				src.visible_message("<span class='notice>\The [src] chirps, \"Neural architecture [BR.stored_mmi.brainmob.name] synchronized to network...\"</span>")
-		//run a little revive and boot a new NIF on them for the finishing touches and cleanup...
+				sleep(per_organ_delay)
+				src.visible_message("<span class='notice'>\The [src] chirps, \"Neural architecture [BR.stored_mmi.brainmob.name] synchronized to network...\"</span>")
+		//run a little revive, load their prefs, and boot a new NIF on them for the finishing touches and cleanup... (yes, we need to initialize a new NIF, they don't get one from the revive process)
+		//using revive is honestly a bit overkill since it kinda deletes-and-replaces most of the guts anyway (hence the cache and restore of refactory contents; otherwise they get wiped!), but it also ensures the new protean comes out in their "base form" as well as cleaning up some loose ends in the resurrection process
 		P.revive()
+		P.apply_vore_prefs()
+		var/obj/item/device/nif/protean/new_nif = new()
+		new_nif.quick_implant(P)
+		//revive complete, now restore the cached mats (if we had any)
 		if(mats_cached == TRUE)
+			src.visible_message("<span class='notice'>\The [src] chirps, \"Reindexing archived refactory materials storage.\"</span>")
 			for(var/organ in P.internal_organs_by_name)
 				var/obj/item/O = P.internal_organs_by_name[organ]
 				if(istype(O,/obj/item/organ/internal/nano/refactory))
 					var/obj/item/organ/internal/nano/refactory/RF = O
-					src.visible_message("<span class='notice>\The [src] chirps, \"Refactory storage indexing complete...\"</span>")
+					src.visible_message("<span class='notice'>\The [src] chirps, \"Refactory storage indexing complete...\"</span>")
 					RF.materials = materials_cache.Copy()
 					materials_cache.Cut()
 					mats_cached = FALSE
-		var/obj/item/device/nif/protean/new_nif = new()
-		new_nif.quick_implant(P)
 		//finally... drop them in front of the machine!
 		sleep(1 SECOND)
-		src.visible_message("<span class='notice>\The [src] chirps, \"Protean reconstitution cycle complete!\"</span>")
+		src.visible_message("<span class='notice'>\The [src] chirps, \"Protean reconstitution cycle complete!\"</span>")
+		to_chat(P,"<span class='notice'>You feel your sense of self expanding, spreading out to inhabit your new \'body\'. You feel... <i><b>ALIVE!</b></i></span>")
 		playsound(src, dingsound, 100, 1, -1)	//soup's on!
 		P.loc = src.loc
+		inuse = FALSE
 		update_icon()
 	update_icon()
