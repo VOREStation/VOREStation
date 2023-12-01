@@ -133,7 +133,7 @@
 		return
 	if(inuse)
 		//we're currently processing a patient, chill out!
-		src.visible_message("<span class='notice'>\The [src] chirps, \"Currently reconstituting [protean_brain.stored_mmi.brainmob.name], please wait!\"<\span>")
+		src.visible_message("<span class='notice'>\The [src] chirps, \"Currently reconstituting [protean_brain.stored_mmi.brainmob.name], please wait!\"</span>")
 		return
 	else if(!inuse && protean_brain && protean_orchestrator && (nanomass_reserve > (nanomass_required * nanomass_efficiency)))
 		//we're good, let's get recombobulating!
