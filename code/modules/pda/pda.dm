@@ -50,7 +50,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 								"bark" = 'sound/voice/bark2.ogg',
 								"bork" = 'sound/voice/bork.ogg',
 								"roark" = 'sound/voice/roarbark.ogg',
-								"chitter" = 'sound/voice/moth/moth_chitter.ogg')
+								"chitter" = 'sound/voice/moth/moth_chitter.ogg',
+								"squish" = 'sound/effects/slime_squish.ogg')
 	var/hidden = 0 // Is the PDA hidden from the PDA list?
 	var/touch_silent = 0 //If 1, no beeps on interacting.
 
