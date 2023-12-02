@@ -196,7 +196,7 @@ const TechDisk = (props, context) => {
 const DataDisk = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { designs } = data.info;
+  const { designs } = data;
 
   const { disk } = props;
 
@@ -233,20 +233,22 @@ const DataDisk = (props, context) => {
           onInput={(e, v) => act('search', { search: v })}
           mb={1}
         />
-        <LabeledList>
-          {designs.map((item) => (
-            <LabeledList.Item label={item.name} key={item.name}>
-              <Button
-                icon="save"
-                onClick={() => {
-                  setSaveDialog(false);
-                  act('copy_design', { copy_design_ID: item.id });
-                }}>
-                Copy To Disk
-              </Button>
-            </LabeledList.Item>
-          ))}
-        </LabeledList>
+        {(designs && designs.length && (
+          <LabeledList>
+            {designs.map((item) => (
+              <LabeledList.Item label={item.name} key={item.name}>
+                <Button
+                  icon="save"
+                  onClick={() => {
+                    setSaveDialog(false);
+                    act('copy_design', { copy_design_ID: item.id });
+                  }}>
+                  Copy To Disk
+                </Button>
+              </LabeledList.Item>
+            ))}
+          </LabeledList>
+        )) || <Box color="warning">No designs found.</Box>}
       </Section>
     );
   }
