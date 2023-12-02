@@ -69,22 +69,24 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(coats)
 
-//Emergency Responder jackets for Parameds & EMTs, but also general Medical Staff
-/datum/gear/suit/roles/medical/ems_jacket
-	display_name = "first responder jacket"
+//EMT coats, jackets and vest
+/datum/gear/suit/paramedic_coat
+	display_name = "paramedic outerwear selection"
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
 
-//imo-superior 'martian' style jacket with the star-of-life design
-/datum/gear/suit/roles/medical/ems_jacket/alt
-	display_name = "first responder jacket, alt."
-	path = /obj/item/clothing/suit/storage/toggle/fr_jacket/ems
-
-//paramedic vest
-/datum/gear/suit/roles/medical/paramedic_vest
-	display_name = "paramedic vest"
-	path = /obj/item/clothing/suit/storage/toggle/paramedic
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+/datum/gear/suit/paramedic_coat/New()
+	..()
+	var/list/paramedicCoats = list(
+		"First responder jacket" = /obj/item/clothing/suit/storage/toggle/fr_jacket,
+		"First responder jacket, alt." = /obj/item/clothing/suit/storage/toggle/fr_jacket/ems,
+		"Paramedic vest" = /obj/item/clothing/suit/storage/toggle/paramedic,
+		"EMT's labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_emt,
+		"High visibility jacket" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_highvis,
+		"Red EMT jacket" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_redemt,
+		"Dark Blue EMT jacket" = /obj/item/clothing/suit/storage/toggle/labcoat/neo_blueemt
+	)
+	gear_tweaks += new/datum/gear_tweak/path(paramedicCoats)
 
 //greek thing
 /datum/gear/suit/chiton
