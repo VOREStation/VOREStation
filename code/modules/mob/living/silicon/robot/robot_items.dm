@@ -319,7 +319,7 @@
 	name = "paperwork printer"
 	//name = "paper dispenser"
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "paper_bin1"
+	icon_state = "doc_printer_mod_pre"
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
@@ -338,23 +338,28 @@
 		deploy_paper(get_turf(target))
 
 /obj/item/weapon/form_printer/attack_self(mob/user as mob)
-	deploy_paper(get_turf(src))
+	deploy_paper()
 
-/obj/item/weapon/form_printer/proc/deploy_paper(var/turf/T)
+/obj/item/weapon/form_printer/proc/deploy_paper()
 	var/choice = tgui_alert(usr, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
 	if(!choice || choice == "Cancel")
 		return
+	var/turf/T = get_turf(src)
 	switch(choice)
 		if("Paper")
-			T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
-			new /obj/item/weapon/paper(T)
+			flick("doc_printer_mod_ejecting", src)
+			spawn(22)
+				T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
+				new /obj/item/weapon/paper(T)
 		if ("Form")
 			var/list/content = print_form()
 			if(!content)
 				to_chat(usr, "<span class='warning'>No form for this category found in central network. Central is advising employees to upload new forms whenever possible.</span>")
 				return
-			T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
-			new /obj/item/weapon/paper(T, content[1], content[2])
+			flick("doc_printer_mod_printing", src)
+			spawn(22)
+				T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
+				new /obj/item/weapon/paper(T, content[1], content[2])
 
 /obj/item/weapon/form_printer/proc/print_form()
 	var/list/paper_forms = list("Empty", "Command", "Security", "Supply", "Science", "Medical", "Engineering", "Service", "Exploration", "Event", "Other", "Mercenary")
