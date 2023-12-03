@@ -102,6 +102,8 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/Destroy()
 	for(var/module in modules)
 		qdel(module)
+	for(var/emg in emag)
+		qdel(emg)
 	for(var/synth in synths)
 		qdel(synth)
 	modules.Cut()
