@@ -93,6 +93,14 @@
 		/mob/living/carbon/human/proc/self_diagnostics
 	)
 
+/obj/item/organ/internal/nano/orchestrator/robotize()
+	. = ..()
+	icon_state = "orchestrator"
+
+/obj/item/organ/internal/nano/orchestrator/mechassist()
+	. = ..()
+	icon_state = "orchestrator"
+
 /obj/item/organ/internal/nano/refactory
 	name = "refactory module"
 	desc = "A miniature metal processing unit and nanite factory."
@@ -106,6 +114,14 @@
 	organ_verbs = list(
 		/mob/living/carbon/human/proc/reagent_purge
 	)
+
+/obj/item/organ/internal/nano/refactory/robotize()
+	. = ..()
+	icon_state = "refactory"
+
+/obj/item/organ/internal/nano/refactory/mechassist()
+	. = ..()
+	icon_state = "refactory"
 
 /obj/item/organ/internal/nano/refactory/proc/get_stored_material(var/material)
 	if(status & ORGAN_DEAD)

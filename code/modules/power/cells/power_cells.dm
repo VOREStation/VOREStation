@@ -35,6 +35,13 @@
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 
 /*
+ * Robot
+ */
+/obj/item/weapon/cell/robot_station
+	name = "A standard robot power cell"
+	maxcharge = 7500
+
+/*
  * High
  */
 /obj/item/weapon/cell/high
@@ -63,6 +70,15 @@
 	..()
 	charge = 0
 	update_icon()
+
+/*
+ * Syndicate
+ */
+/obj/item/weapon/cell/robot_syndi
+	name = "A syndicate robot power cell"
+	description_fluff = "Almost as good as a hyper."
+	icon_state = "super" //We don't want roboticists confuse it with a low standard cell
+	maxcharge = 25000
 
 /*
  * Hyper
