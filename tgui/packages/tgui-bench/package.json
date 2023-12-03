@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "tgui-bench",
-  "version": "4.3.1",
+  "version": "4.3.0",
   "dependencies": {
+    "@fastify/static": "^5.0.2",
     "common": "workspace:*",
     "fastify": "^3.29.4",
-    "fastify-static": "^4.2.3",
     "inferno": "^7.4.8",
     "inferno-vnode-flags": "^7.4.8",
     "lodash": "^4.17.21",
