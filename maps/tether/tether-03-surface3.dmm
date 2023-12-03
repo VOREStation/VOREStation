@@ -34770,10 +34770,13 @@
 /obj/machinery/alarm{
 	pixel_y = 30
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/resleeving)
 "bky" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/button/windowtint{
 	id = "robo_resleeving";
 	pixel_x = 10;
@@ -34783,7 +34786,8 @@
 	pixel_x = -10;
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/steel_grid,
+/obj/machinery/protean_reconstitutor,
+/turf/simulated/floor/tiled/dark,
 /area/rnd/robotics/resleeving)
 "bkz" = (
 /obj/machinery/light{
@@ -34797,6 +34801,9 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "0-2"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/resleeving)
@@ -34888,29 +34895,35 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/resleeving)
 "bkJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/rnd/robotics/resleeving)
-"bkK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/robotics/resleeving)
+"bkK" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/resleeving)
 "bkL" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/resleeving)
