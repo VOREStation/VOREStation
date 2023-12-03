@@ -139,10 +139,10 @@
 		"%item suddenly slips out of %pred's %belly!")
 
 	var/list/escape_fail_messages_owner = list(
-		"Your attempt to escape %pred's %belly has failed!")
+		"%prey's attempt to escape from your %belly has failed!")
 
 	var/list/escape_fail_messages_prey = list(
-		"%prey's attempt to escape from your %belly has failed!")
+		"Your attempt to escape %pred's %belly has failed!")
 
 	var/list/escape_attempt_absorbed_messages_owner = list(
 		"%prey is attempting to free themselves from your %belly!")
@@ -703,7 +703,7 @@
 	formatted_message = replacetext(formatted_message, "%countprey", living_count)
 	formatted_message = replacetext(formatted_message, "%count", contents.len)
 
-	return("<span class=''vwarning'>[formatted_message]</span>")
+	return("<span class='vwarning'>[formatted_message]</span>")
 
 /obj/belly/proc/get_examine_msg_absorbed()
 	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
@@ -727,7 +727,7 @@
 	formatted_message = replacetext(formatted_message, "%prey", english_list(absorbed_victims))
 	formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
 
-	return("<span class=''vwarning'>[formatted_message]</span>")
+	return("<span class='vwarning'>[formatted_message]</span>")
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
@@ -1204,13 +1204,13 @@
 	escape_fail_prey_message = replacetext(escape_fail_prey_message, "%countprey", living_count)
 	escape_fail_prey_message = replacetext(escape_fail_prey_message, "%count", contents.len)
 
-	escape_attempt_owner_message = "<span class=''vwarning'>[escape_attempt_owner_message]</span>"
-	escape_attempt_prey_message = "<span class=''vwarning'>[escape_attempt_prey_message]</span>"
-	escape_fail_owner_message = "<span class=''vwarning'>[escape_fail_owner_message]</span>"
+	escape_attempt_owner_message = "<span class='vwarning'>[escape_attempt_owner_message]</span>"
+	escape_attempt_prey_message = "<span class='vwarning'>[escape_attempt_prey_message]</span>"
+	escape_fail_owner_message = "<span class='vwarning'>[escape_fail_owner_message]</span>"
 	escape_fail_prey_message = "<span class='vnotice'>[escape_fail_prey_message]</span>"
 
 	if(owner.stat) //If owner is stat (dead, KO) we can actually escape
-		escape_attempt_prey_message = replacetext(escape_fail_prey_message, "</span>", " (This will take around [escapetime/10] seconds.)</span>")
+		escape_attempt_prey_message = replacetext(escape_attempt_prey_message, new/regex("^(<span(?: \[^>]*)?>.*)(</span>)$", ""), "$1 (This will take around [escapetime/10] seconds.)$2")
 		to_chat(R, escape_attempt_prey_message)
 		to_chat(owner, escape_attempt_owner_message)
 
@@ -1293,9 +1293,9 @@
 					escape_item_outside_message = replacetext(escape_item_outside_message, "%count", contents.len)
 					escape_item_outside_message = replacetext(escape_item_outside_message, "%item", C)
 
-					escape_item_owner_message = "<span class=''vwarning'>[escape_item_owner_message]</span>"
-					escape_item_prey_message = "<span class=''vwarning'>[escape_item_prey_message]</span>"
-					escape_item_outside_message = "<span class=''vwarning'>[escape_item_outside_message]</span>"
+					escape_item_owner_message = "<span class='vwarning'>[escape_item_owner_message]</span>"
+					escape_item_prey_message = "<span class='vwarning'>[escape_item_prey_message]</span>"
+					escape_item_outside_message = "<span class='vwarning'>[escape_item_outside_message]</span>"
 
 					release_specific_contents(C)
 					to_chat(R, escape_item_prey_message)
@@ -1326,9 +1326,9 @@
 					escape_outside_message = replacetext(escape_outside_message, "%countprey", living_count)
 					escape_outside_message = replacetext(escape_outside_message, "%count", contents.len)
 
-					escape_owner_message = "<span class=''vwarning'>[escape_owner_message]</span>"
-					escape_prey_message = "<span class=''vwarning'>[escape_prey_message]</span>"
-					escape_outside_message = "<span class=''vwarning'>[escape_outside_message]</span>"
+					escape_owner_message = "<span class='vwarning'>[escape_owner_message]</span>"
+					escape_prey_message = "<span class='vwarning'>[escape_prey_message]</span>"
+					escape_outside_message = "<span class='vwarning'>[escape_outside_message]</span>"
 					release_specific_contents(R)
 					to_chat(R, escape_prey_message)
 					to_chat(owner, escape_owner_message)
@@ -1350,7 +1350,7 @@
 					break
 
 			if(!dest_belly)
-				to_chat(owner, "<span class=''vwarning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
+				to_chat(owner, "<span class='vwarning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
 				transferchance = 0
 				transferlocation = null
 				return
@@ -1371,8 +1371,8 @@
 			primary_transfer_prey_message = replacetext(primary_transfer_prey_message, "%count", contents.len)
 			primary_transfer_prey_message = replacetext(primary_transfer_prey_message, "%dest", transferlocation)
 
-			primary_transfer_owner_message = "<span class=''vwarning'>[primary_transfer_owner_message]</span>"
-			primary_transfer_prey_message = "<span class=''vwarning'>[primary_transfer_prey_message]</span>"
+			primary_transfer_owner_message = "<span class='vwarning'>[primary_transfer_owner_message]</span>"
+			primary_transfer_prey_message = "<span class='vwarning'>[primary_transfer_prey_message]</span>"
 
 			to_chat(R, primary_transfer_prey_message)
 			to_chat(owner, primary_transfer_owner_message)
@@ -1390,7 +1390,7 @@
 					break
 
 			if(!dest_belly)
-				to_chat(owner, "<span class=''vwarning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
+				to_chat(owner, "<span class='vwarning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
 				transferchance_secondary = 0
 				transferlocation_secondary = null
 				return
@@ -1412,8 +1412,8 @@
 			secondary_transfer_prey_message = replacetext(secondary_transfer_prey_message, "%count", contents.len)
 			secondary_transfer_prey_message = replacetext(secondary_transfer_prey_message, "%dest", transferlocation_secondary)
 
-			secondary_transfer_owner_message = "<span class=''vwarning'>[secondary_transfer_owner_message]</span>"
-			secondary_transfer_prey_message = "<span class=''vwarning'>[secondary_transfer_prey_message]</span>"
+			secondary_transfer_owner_message = "<span class='vwarning'>[secondary_transfer_owner_message]</span>"
+			secondary_transfer_prey_message = "<span class='vwarning'>[secondary_transfer_prey_message]</span>"
 
 			to_chat(R, secondary_transfer_prey_message)
 			to_chat(owner, secondary_transfer_owner_message)
@@ -1439,8 +1439,8 @@
 			absorb_chance_prey_message = replacetext(absorb_chance_prey_message, "%countprey", living_count)
 			absorb_chance_prey_message = replacetext(absorb_chance_prey_message, "%count", contents.len)
 
-			absorb_chance_owner_message = "<span class=''vwarning'>[absorb_chance_owner_message]</span>"
-			absorb_chance_prey_message = "<span class=''vwarning'>[absorb_chance_prey_message]</span>"
+			absorb_chance_owner_message = "<span class='vwarning'>[absorb_chance_owner_message]</span>"
+			absorb_chance_prey_message = "<span class='vwarning'>[absorb_chance_prey_message]</span>"
 
 			to_chat(R, absorb_chance_prey_message)
 			to_chat(owner, absorb_chance_owner_message)
@@ -1463,8 +1463,8 @@
 			digest_chance_prey_message = replacetext(digest_chance_prey_message, "%countprey", living_count)
 			digest_chance_prey_message = replacetext(digest_chance_prey_message, "%count", contents.len)
 
-			digest_chance_owner_message = "<span class=''vwarning'>[digest_chance_owner_message]</span>"
-			digest_chance_prey_message = "<span class=''vwarning'>[digest_chance_prey_message]</span>"
+			digest_chance_owner_message = "<span class='vwarning'>[digest_chance_owner_message]</span>"
+			digest_chance_prey_message = "<span class='vwarning'>[digest_chance_prey_message]</span>"
 
 			to_chat(R, digest_chance_prey_message)
 			to_chat(owner, digest_chance_owner_message)
@@ -1473,7 +1473,7 @@
 
 		else //Nothing interesting happened.
 			to_chat(R, struggle_user_message)
-			to_chat(owner, "<span class=''vwarning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
+			to_chat(owner, "<span class='vwarning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
 			return
 	to_chat(R, struggle_user_message)
 
@@ -1543,8 +1543,8 @@
 			escape_attempt_absorbed_prey_message = replacetext(escape_attempt_absorbed_prey_message, "%countprey", living_count)
 			escape_attempt_absorbed_prey_message = replacetext(escape_attempt_absorbed_prey_message, "%count", contents.len)
 
-			escape_attempt_absorbed_owner_message = "<span class=''vwarning'>[escape_attempt_absorbed_owner_message]</span>"
-			escape_attempt_absorbed_prey_message = "<span class=''vwarning'>[escape_attempt_absorbed_prey_message]</span>"
+			escape_attempt_absorbed_owner_message = "<span class='vwarning'>[escape_attempt_absorbed_owner_message]</span>"
+			escape_attempt_absorbed_prey_message = "<span class='vwarning'>[escape_attempt_absorbed_prey_message]</span>"
 
 			to_chat(R, escape_attempt_absorbed_prey_message)
 			to_chat(owner, escape_attempt_absorbed_owner_message)
@@ -1572,9 +1572,9 @@
 					escape_absorbed_outside_message = replacetext(escape_absorbed_outside_message, "%countprey", living_count)
 					escape_absorbed_outside_message = replacetext(escape_absorbed_outside_message, "%count", contents.len)
 
-					escape_absorbed_owner_message = "<span class=''vwarning'>[escape_absorbed_owner_message]</span>"
-					escape_absorbed_prey_message = "<span class=''vwarning'>[escape_absorbed_prey_message]</span>"
-					escape_absorbed_outside_message = "<span class=''vwarning'>[escape_absorbed_outside_message]</span>"
+					escape_absorbed_owner_message = "<span class='vwarning'>[escape_absorbed_owner_message]</span>"
+					escape_absorbed_prey_message = "<span class='vwarning'>[escape_absorbed_prey_message]</span>"
+					escape_absorbed_outside_message = "<span class='vwarning'>[escape_absorbed_outside_message]</span>"
 
 					release_specific_contents(R)
 					to_chat(R, escape_absorbed_prey_message)
@@ -1601,7 +1601,7 @@
 					escape_fail_absorbed_prey_message = replacetext(escape_fail_absorbed_prey_message, "%countprey", living_count)
 					escape_fail_absorbed_prey_message = replacetext(escape_fail_absorbed_prey_message, "%count", contents.len)
 
-					escape_fail_absorbed_owner_message = "<span class=''vwarning'>[escape_fail_absorbed_owner_message]</span>"
+					escape_fail_absorbed_owner_message = "<span class='vwarning'>[escape_fail_absorbed_owner_message]</span>"
 					escape_fail_absorbed_prey_message = "<span class='vnotice'>[escape_fail_absorbed_prey_message]</span>"
 
 					to_chat(R, escape_fail_absorbed_prey_message)
