@@ -327,6 +327,11 @@
 /obj/effect/landmark/map_data/fantasy
 	height = 2
 
+/datum/map_template/common_lateload/redgate/laserdome
+	name = "Redgate - Laserdome"
+	desc = "A large orbital station with recreational facilities, namely a pair of laser tag arenas."
+	mappath = 'maps/redgate/laserdome.dmm'
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST

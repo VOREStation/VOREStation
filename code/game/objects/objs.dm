@@ -21,6 +21,8 @@
 
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
 
+	var/redgate_allowed = TRUE	//can we be taken through the redgate, in either direction?
+
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
 

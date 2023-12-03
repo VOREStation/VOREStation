@@ -221,7 +221,8 @@
 		list("Redgate - Rain City"),
 		list("Redgate - Islands Underwater","Redgate - Islands"),
 		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
-		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town")
+		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town"),
+		list("Redgate - Laserdome")
 		)
 
 	lateload_gb_north = list(
