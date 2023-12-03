@@ -395,6 +395,162 @@ const VoreSelectedBellyDescriptions = (props, context) => {
           content="Absorbed Struggle Message (inside)"
         />
       </LabeledList.Item>
+      <LabeledList.Item label="Escape Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escao' })
+          }
+          content="Escape Attempt Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escap' })
+          }
+          content="Escape Attempt Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escp' })
+          }
+          content="Escape Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'esco' })
+          }
+          content="Escape Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escout' })
+          }
+          content="Escape Message (outside)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escip' })
+          }
+          content="Escape Item Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escio' })
+          }
+          content="Escape Item Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'esciout' })
+          }
+          content="Escape Item Message (outside)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfp' })
+          }
+          content="Escape Fail Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfo' })
+          }
+          content="Escape Fail Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescao' })
+          }
+          content="Absorbed Escape Attempt Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescap' })
+          }
+          content="Absorbed Escape Attempt Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescp' })
+          }
+          content="Absorbed Escape Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aesco' })
+          }
+          content="Absorbed Escape Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescout' })
+          }
+          content="Absorbed Escape Message (outside)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfp' })
+          }
+          content="Absorbed Escape Fail Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfo' })
+          }
+          content="Absorbed Escape Fail Message (to you)"
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Transfer Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnspp' })
+          }
+          content="Primary Transfer Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnspo' })
+          }
+          content="Primary Transfer Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnssp' })
+          }
+          content="Secondary Transfer Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnsso' })
+          }
+          content="Secondary Transfer Message (to you)"
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Interaction Chance Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmodp' })
+          }
+          content="Interaction Chance Digest Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmodo' })
+          }
+          content="Interaction Chance Digest Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmoap' })
+          }
+          content="Interaction Chance Absorb Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmoao' })
+          }
+          content="Interaction Chance Absorb Message (to you)"
+        />
+      </LabeledList.Item>
       <LabeledList.Item label="Bellymode Messages">
         <Button
           onClick={() =>
@@ -1028,6 +1184,14 @@ const VoreSelectedBellyInteractions = (props, context) => {
               content={interacts.escapechance + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_escapechance' })
+              }
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Absorbed Escape Chance">
+            <Button
+              content={interacts.escapechance_absorbed + '%'}
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_escapechance_absorbed' })
               }
             />
           </LabeledList.Item>
