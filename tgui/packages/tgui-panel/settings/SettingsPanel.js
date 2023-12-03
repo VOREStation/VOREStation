@@ -9,7 +9,7 @@ import { useLocalState } from 'tgui/backend';
 import { useDispatch, useSelector } from 'common/redux';
 import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Stack, Tabs, TextArea } from 'tgui/components';
 import { ChatPageSettings } from '../chat';
-import { rebuildChat, saveChatToDisk } from '../chat/actions';
+import { rebuildChat, saveChatToDisk, purgeChatMessageArchive } from '../chat/actions';
 import { THEMES } from '../themes';
 import { changeSettingsTab, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from './actions';
 import { SETTINGS_TABS, FONTS, MAX_HIGHLIGHT_SETTINGS } from './constants';
@@ -56,6 +56,11 @@ export const SettingsGeneral = (props, context) => {
   );
   const dispatch = useDispatch(context);
   const [freeFont, setFreeFont] = useLocalState(context, 'freeFont', false);
+  const [purgeConfirm, setPurgeConfirm] = useLocalState(
+    context,
+    'purgeConfirm',
+    0
+  );
   return (
     <Section>
       <LabeledList>
@@ -155,6 +160,29 @@ export const SettingsGeneral = (props, context) => {
       <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
         Save chat log
       </Button>
+      {purgeConfirm > 0 ? (
+        <Button
+          icon="trash"
+          color="red"
+          onClick={() => {
+            dispatch(purgeChatMessageArchive());
+            setPurgeConfirm(2);
+          }}>
+          {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
+        </Button>
+      ) : (
+        <Button
+          icon="trash"
+          color="red"
+          onClick={() => {
+            setPurgeConfirm(1);
+            setTimeout(() => {
+              setPurgeConfirm(false);
+            }, 5000);
+          }}>
+          Purge message archive
+        </Button>
+      )}
     </Section>
   );
 };
