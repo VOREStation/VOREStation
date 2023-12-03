@@ -87,13 +87,7 @@ export const chatMiddleware = (store) => {
       loadChatFromStorage(store);
     }
     if (type === 'chat/message') {
-      let payload_obj;
-      try {
-        payload_obj = JSON.parse(payload);
-      } catch (err) {
-        return;
-      }
-
+      const payload_obj = JSON.parse(payload);
       const sequence = payload_obj.sequence;
       if (sequences.includes(sequence)) {
         return;

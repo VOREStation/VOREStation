@@ -276,7 +276,8 @@ em {
 
 img.text_tag {
   width: 32px;
-  height: 5px;
+  height: 10px;
+  min-height: 10px;
 }
 
 /*BIG IMG.icon 			{width: 32px; height: 32px;}*/
@@ -395,7 +396,7 @@ img.icon.bigicon {
 }
 
 .expradio {
-  color: #555555;
+  color: #8a8a8a;
 }
 
 .syndradio {
@@ -406,7 +407,7 @@ img.icon.bigicon {
   color: #ac2ea1;
 }
 
-.centcomradio {
+.centradio {
   color: #2681a5;
 }
 

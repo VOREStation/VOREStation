@@ -326,6 +326,7 @@
 #include "code\datums\callback.dm"
 #include "code\datums\category.dm"
 #include "code\datums\chat_message.dm"
+#include "code\datums\chat_payload.dm"
 #include "code\datums\datacore.dm"
 #include "code\datums\datum.dm"
 #include "code\datums\datumvars.dm"
