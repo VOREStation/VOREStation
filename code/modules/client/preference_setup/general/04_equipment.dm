@@ -22,6 +22,33 @@
 	S["communicator_visibility"]	<< pref.communicator_visibility
 	S["ringtone"]	<< pref.ringtone
 
+var/global/list/valid_ringtones = list(
+		"beep",
+		"boom",
+		"slip",
+		"honk",
+		"SKREE",
+		"xeno",
+		"spark",
+		"rad",
+		"servo",
+		"buh-boop",
+		"trombone",
+		"whistle",
+		"chirp",
+		"slurp",
+		"pwing",
+		"clack",
+		"bzzt",
+		"chimes",
+		"prbt",
+		"bark",
+		"bork",
+		"roark",
+		"chitter",
+		"squish"
+		)
+
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
 	character.all_underwear.Cut()
@@ -151,8 +178,15 @@
 			pref.communicator_visibility = !pref.communicator_visibility
 			return TOPIC_REFRESH
 	else if(href_list["set_ringtone"])
-		if(CanUseTopic(user))
-			pref.ringtone = sanitize(input(user, "Please enter a new ringtone.", "Character Preference") as null|text, 20)
-			return TOPIC_REFRESH
+		var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
+		if(!choice || !CanUseTopic(user))
+			return TOPIC_NOACTION
+		if(choice == "Other")
+			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
+			if(raw_choice && CanUseTopic(user))
+				pref.ringtone = raw_choice
+		else
+			pref.ringtone = choice
+		return TOPIC_REFRESH
 
 	return ..()
