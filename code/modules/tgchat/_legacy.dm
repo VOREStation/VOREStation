@@ -1,5 +1,6 @@
 /// Old VChat Code Stuff
 
+/* Old bicon code
 /proc/expire_bicon_cache(key)
 	if(GLOB.bicon_cache[key])
 		GLOB.bicon_cache -= key
@@ -7,9 +8,12 @@
 	return FALSE
 
 GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
+*/
+
 /proc/bicon(var/obj, var/use_class = 1, var/custom_classes = "")
 	return icon2base64html(obj, custom_classes)
 
+	/* Old bicon code
 	var/class = use_class ? "class='icon misc [custom_classes]'" : null
 	if(!obj)
 		return
@@ -41,3 +45,4 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 		class = "class='icon [A.icon_state] [custom_classes]'"
 
 	return "<IMG [class] src='data:image/png;base64,[base64]'>"
+	*/
