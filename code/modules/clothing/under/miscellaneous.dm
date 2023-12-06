@@ -614,6 +614,16 @@
 	desc = "Just looking at this makes you want to sing."
 	icon_state = "ysing"
 
+/obj/item/clothing/under/dress/tabard
+	name = "white tabard-dress"
+	desc = "A gold-trimmed white tabard-dress with a large V-shaped boob window. For when you want to show off your hips and look classy at the same time."
+	icon_state = "white_tabard"
+
+/obj/item/clothing/under/dress/tabard/black
+	name = "black tabard-dress"
+	desc = "A gold-trimmed black tabard-dress with a large circular boob window. For when you want to show off your hips and look classy at the same time."
+	icon_state = "black_tabard"
+
 /*
  * Wedding Stuff
  */
