@@ -497,6 +497,10 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_outfits)
 
+/datum/gear/uniform/hightrousers
+	display_name = "high-waisted trousers"
+	path = /obj/item/clothing/under/dress/hightrousers
+
 /*
  * 80s
  */
@@ -586,3 +590,16 @@
 /datum/gear/uniform/fienddress
     display_name = "fiendish dress"
     path = /obj/item/clothing/under/fienddress
+
+//tabard dresses
+/datum/gear/uniform/tabarddress
+	display_name = "tabard-dress selection"
+	path = /obj/item/clothing/under/dress/tabard
+
+/datum/gear/uniform/tabarddress/New()
+	..()
+	var/list/tabarddress = list(
+	"white tabard-dress"=/obj/item/clothing/under/dress/tabard,
+	"black tabard-dress"=/obj/item/clothing/under/dress/tabard/black
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(tabarddress))

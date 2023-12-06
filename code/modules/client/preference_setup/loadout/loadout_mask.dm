@@ -76,3 +76,7 @@
 
 /datum/gear/mask/lace/New()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/mask/half
+	display_name = "black half-mask"
+	path = /obj/item/clothing/accessory/gaiter/half
