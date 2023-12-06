@@ -51,9 +51,19 @@
 	name = "Fishnet top"
 	icon_state = "fishnet_body"
 
+/datum/category_item/underwear/top/fishnet_base_alt
+	name = "Fishnet top, alt"
+	icon_state = "fishnet_body_alt"
+	has_color = TRUE
+
 /datum/category_item/underwear/top/fishnet_sleeves
 	name = "Fishnet with sleeves"
 	icon_state = "fishnet_sleeves"
+
+/datum/category_item/underwear/top/fishnet_sleeves_alt
+	name = "Fishnet with sleeves, alt"
+	icon_state = "fishnet_sleeves_alt"
+	has_color = TRUE
 
 /datum/category_item/underwear/top/fishnet_gloves
 	name = "Fishnet with gloves"

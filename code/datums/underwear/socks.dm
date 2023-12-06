@@ -209,3 +209,7 @@
 	name = "Black Stirrup Stockings"
 	icon_state = "leggings-stir-black"
 	has_color = TRUE
+
+/datum/category_item/underwear/socks/stirrup_pantyhose
+	name = "Pantyhose, stirrup"
+	icon_state = "pantyhose-stir"
