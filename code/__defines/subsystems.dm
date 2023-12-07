@@ -1,31 +1,76 @@
-//Timing subsystem
-//Don't run if there is an identical unique timer active
-//if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer, and returns the id of the existing timer
-#define TIMER_UNIQUE			(1<<0)
-//For unique timers: Replace the old timer rather then not start this one
-#define TIMER_OVERRIDE			(1<<1)
-//Timing should be based on how timing progresses on clients, not the sever.
-//	tracking this is more expensive,
-//	should only be used in conjuction with things that have to progress client side, such as animate() or sound()
-#define TIMER_CLIENT_TIME		(1<<2)
-//Timer can be stopped using deltimer()
-#define TIMER_STOPPABLE			(1<<3)
-//To be used with TIMER_UNIQUE
-//prevents distinguishing identical timers with the wait variable
-#define TIMER_NO_HASH_WAIT		(1<<4)
-//Loops the timer repeatedly until qdeleted
-//In most cases you want a subsystem instead
-#define TIMER_LOOP				(1<<5)
+//! Defines for subsystems and overlays
+//!
+//! Lots of important stuff in here, make sure you have your brain switched on
+//! when editing this file
 
+//! ## Timing subsystem
+/**
+ * Don't run if there is an identical unique timer active
+ *
+ * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+ * and returns the id of the existing timer
+ */
+#define TIMER_UNIQUE (1<<0)
+
+///For unique timers: Replace the old timer rather then not start this one
+#define TIMER_OVERRIDE (1<<1)
+
+/**
+ * Timing should be based on how timing progresses on clients, not the server.
+ *
+ * Tracking this is more expensive,
+ * should only be used in conjuction with things that have to progress client side, such as
+ * animate() or sound()
+ */
+#define TIMER_CLIENT_TIME (1<<2)
+
+///Timer can be stopped using deltimer()
+#define TIMER_STOPPABLE (1<<3)
+
+///prevents distinguishing identical timers with the wait variable
+///
+///To be used with TIMER_UNIQUE
+#define TIMER_NO_HASH_WAIT (1<<4)
+
+///Loops the timer repeatedly until qdeleted
+///
+///In most cases you want a subsystem instead, so don't use this unless you have a good reason
+#define TIMER_LOOP (1<<5)
+
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
+
+///Empty ID define
 #define TIMER_ID_NULL -1
 
-#define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
-#define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
-#define INITIALIZATION_INNEW_REGULAR 2	//New should call Initialize(FALSE)
+/// Used to trigger object removal from a processing list
+#define PROCESS_KILL 26
 
-#define INITIALIZE_HINT_NORMAL   0  //Nothing happens
-#define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
-#define INITIALIZE_HINT_QDEL     2  //Call qdel on the atom
+
+//! ## Initialization subsystem
+
+///New should not call Initialize
+#define INITIALIZATION_INSSATOMS 0
+///New should call Initialize(TRUE)
+#define INITIALIZATION_INNEW_MAPLOAD 2
+///New should call Initialize(FALSE)
+#define INITIALIZATION_INNEW_REGULAR 1
+
+//! ### Initialization hints
+
+///Nothing happens
+#define INITIALIZE_HINT_NORMAL 0
+/**
+ * call LateInitialize at the end of all atom Initalization
+ *
+ * The item will be added to the late_loaders list, this is iterated over after
+ * initalization of subsystems is complete and calls LateInitalize on the atom
+ * see [this file for the LateIntialize proc](atom.html#proc/LateInitialize)
+ */
+#define INITIALIZE_HINT_LATELOAD 1
+
+///Call qdel on the atom after intialization
+#define INITIALIZE_HINT_QDEL 2
 
 //type and all subtypes should always call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
@@ -35,19 +80,6 @@
 		SSatoms.InitAtom(src, args);\
 	}\
 }
-
-// SS runlevels
-
-#define RUNLEVEL_INIT 0			// "Initialize Only" - Used for subsystems that should never be fired (Should also have SS_NO_FIRE set)
-#define RUNLEVEL_LOBBY 1		// Initial runlevel before setup.  Returns to here if setup fails.
-#define RUNLEVEL_SETUP 2		// While the gamemode setup is running.  I.E gameticker.setup()
-#define RUNLEVEL_GAME 4			// After successful game ticker setup, while the round is running.
-#define RUNLEVEL_POSTGAME 8		// When round completes but before reboot
-
-#define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
-
-var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_GAME, RUNLEVEL_POSTGAME)
-#define RUNLEVEL_FLAG_TO_INDEX(flag) (log(2, flag) + 1)	// Convert from the runlevel bitfield constants to index in runlevel_flags list
 
 //! ### SS initialization hints
 /**
@@ -64,14 +96,17 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 /// Subsystem initialized sucessfully.
 #define SS_INIT_SUCCESS 2
 
-/// Successful, but don't print anything. Useful if subsystem was disabled.
+/// If your system doesn't need to be initialized (by being disabled or something)
 #define SS_INIT_NO_NEED 3
 
-//! ### SS initialization load orders
+/// Succesfully initialized, BUT do not announce it to players (generally to hide game mechanics it would otherwise spoil)
+#define SS_INIT_NO_MESSAGE 4
 
+//! ### SS initialization load orders
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
+
 #define INIT_ORDER_WEBHOOKS			50
 #define INIT_ORDER_SQLITE			40
 #define INIT_ORDER_GARBAGE			39
@@ -111,10 +146,9 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_MAPRENAME		-60 //Initiating after Ticker to ensure everything is loaded and everything we rely on us working
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
-
-
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
+
 #define FIRE_PRIORITY_PLAYERTIPS	5
 #define FIRE_PRIORITY_SHUTTLES		5
 #define FIRE_PRIORITY_SUPPLY		5
@@ -142,3 +176,22 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
+
+
+// SS runlevels
+
+#define RUNLEVEL_LOBBY 1
+#define RUNLEVEL_SETUP 2
+#define RUNLEVEL_GAME 4
+#define RUNLEVEL_POSTGAME 8
+
+#define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
+
+// OLD STUFF?
+#define RUNLEVEL_INIT 0			// "Initialize Only" - Used for subsystems that should never be fired (Should also have SS_NO_FIRE set)
+var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_GAME, RUNLEVEL_POSTGAME)
+#define RUNLEVEL_FLAG_TO_INDEX(flag) (log(2, flag) + 1)	// Convert from the runlevel bitfield constants to index in runlevel_flags list
+// OLD STUFF? END
+
+/// The timer key used to know how long subsystem initialization takes
+#define SS_INIT_TIMER_KEY "ss_init"

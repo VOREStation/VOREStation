@@ -23,12 +23,12 @@ SUBSYSTEM_DEF(machines)
 
 	var/list/current_run = list()
 
-/datum/controller/subsystem/machines/Initialize(timeofday)
+/datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
 	setup_atmos_machinery(global.machines)
 	fire()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	var/timer = TICK_USAGE
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/atmos_machines)
 	var/list/actual_atmos_machines = list()
-	
+
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)
 		machine.atmos_init()
 		actual_atmos_machines += machine

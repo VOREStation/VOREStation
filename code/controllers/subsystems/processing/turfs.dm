@@ -1,6 +1,7 @@
 PROCESSING_SUBSYSTEM_DEF(turfs)
 	name = "Turf Processing"
 	wait = 20
+	flags = SS_NO_INIT
 
 /datum/controller/subsystem/processing/turfs/Recover()
 	log_debug("[name] subsystem Recover().")

@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(assets)
 	var/list/cache = list()
 	var/list/preload = list()
 
-/datum/controller/subsystem/assets/Initialize(timeofday)
+/datum/controller/subsystem/assets/Initialize()
 	for(var/typepath in typesof(/datum/asset))
 		var/datum/asset/A = typepath
 		if (typepath != initial(A._abstract))
@@ -15,4 +15,4 @@ SUBSYSTEM_DEF(assets)
 
 	for(var/client/C in GLOB.clients)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(getFilesSlow), C, preload, FALSE), 10)
-	return ..()
+	return SS_INIT_SUCCESS

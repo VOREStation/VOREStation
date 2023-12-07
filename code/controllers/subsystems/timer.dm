@@ -3,6 +3,15 @@
 #define TIMER_MAX (world.time + TICKS2DS(min(BUCKET_LEN-(SStimer.practical_offset-DS2TICKS(world.time - SStimer.head_offset))-1, BUCKET_LEN-1)))
 #define TIMER_ID_MAX (2**24) //max float with integer precision
 
+/**
+ * # Timer Subsystem
+ *
+ * Handles creation, callbacks, and destruction of timed events.
+ *
+ * It is important to understand the buckets used in the timer subsystem are just a series of doubly-linked
+ * lists. The object at a given index in bucket_list is a /datum/timedevent, the head of a list, which has prev
+ * and next references for the respective elements in that bucket's list.
+ */
 SUBSYSTEM_DEF(timer)
 	name = "Timer"
 	wait = 1 //SS_TICKER subsystem, so wait is in ticks

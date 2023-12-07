@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(chemistry)
 /datum/controller/subsystem/chemistry/Initialize()
 	initialize_chemical_reagents()
 	initialize_chemical_reactions()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/chemistry/stat_entry()
 	..("C: [chemical_reagents.len] | R: [chemical_reactions.len]")
@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(chemistry)
 //				add_to = fusion_reactions_by_reagent
 			if(istype(D, /decl/chemical_reaction/distilling))
 				add_to = distilled_reactions_by_reagent
-			
+
 			LAZYINITLIST(add_to[reagent_id])
 			add_to[reagent_id] += D
 

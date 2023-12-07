@@ -14,9 +14,9 @@ SUBSYSTEM_DEF(holomaps)
 /datum/controller/subsystem/holomaps/Recover()
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 
-/datum/controller/subsystem/holomaps/Initialize(timeofday)
+/datum/controller/subsystem/holomaps/Initialize()
 	generateHoloMinimaps()
-	. = ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/holomaps/stat_entry(msg)
 	if (!Debug2)

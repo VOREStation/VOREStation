@@ -5,6 +5,7 @@ SUBSYSTEM_DEF(event_ticker)
 	name = "Events (Ticker)"
 	wait = 2 SECONDS
 	runlevels = RUNLEVEL_GAME
+	flags = SS_NO_INIT
 
 	// List of `/datum/event2/event`s that are currently active, and receiving process() ticks.
 	var/list/active_events = list()

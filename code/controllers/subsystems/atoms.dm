@@ -23,7 +23,8 @@ SUBSYSTEM_DEF(atoms)
 	to_world_log("Initializing objects")
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	InitializeAtoms()
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
 	if(initialized == INITIALIZATION_INSSATOMS)

@@ -57,3 +57,8 @@
 #define VV_HK_ATOM_EMP "turf_emp"
 
 #define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
+
+// Flags for debug_variable() that do little things to what we end up rendering
+
+/// ALWAYS render a reduced list, useful for fuckoff big datums that need to be condensed for the sake of client load
+#define VV_ALWAYS_CONTRACT_LIST (1<<0)

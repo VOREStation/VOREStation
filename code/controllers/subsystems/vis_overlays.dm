@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(vis_overlays)
 
 /datum/controller/subsystem/vis_overlays/Initialize()
 	vis_overlay_cache = list()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/vis_overlays/fire(resumed = FALSE)
 	if(!resumed)
@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(vis_overlays)
 	if(istext(icon))
 		iconstate = icon
 		icon = src.icon
-		
+
 	return SSvis_overlays.add_vis_overlay(src, icon, iconstate, layer, plane, dir, alpha, add_appearance_flags, add_vis_flags, unique)
 
 /atom/proc/remove_vis_overlay(list/overlays)

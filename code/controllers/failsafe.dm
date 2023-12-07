@@ -1,10 +1,11 @@
- /**
-  * Failsafe
-  *
-  * Pretty much pokes the MC to make sure it's still alive.
+/**
+ * Failsafe
+ *
+ * Pretty much pokes the MC to make sure it's still alive.
  **/
 
-var/datum/controller/failsafe/Failsafe
+// See initialization order in /code/game/world.dm
+GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 
 /datum/controller/failsafe // This thing pretty much just keeps poking the master controller
 	name = "Failsafe"
@@ -15,7 +16,7 @@ var/datum/controller/failsafe/Failsafe
 	// The alert level. For every failed poke, we drop a DEFCON level. Once we hit DEFCON 1, restart the MC.
 	var/defcon = 5
 	//the world.time of the last check, so the mc can restart US if we hang.
-	//	(Real friends look out for *eachother*)
+	// (Real friends look out for *eachother*)
 	var/lasttick = 0
 
 	// Track the MC iteration to make sure its still on track.
@@ -31,8 +32,24 @@ var/datum/controller/failsafe/Failsafe
 	Initialize()
 
 /datum/controller/failsafe/Initialize()
-	set waitfor = 0
+	set waitfor = FALSE
 	Failsafe.Loop()
+	if (!Master || defcon == 0) //Master is gone/not responding and Failsafe just exited its loop
+		defcon = 3 //Reset defcon level as its used inside the emergency loop
+		while (defcon > 0)
+			var/recovery_result = emergency_loop()
+			if (recovery_result == 1) //Exit emergency loop and delete self if it was able to recover MC
+				break
+			else if (defcon == 1) //Exit Failsafe if we weren't able to recover the MC in the last stage
+				log_game("FailSafe: Failed to recover MC while in emergency state. Failsafe exiting.")
+				message_admins("<span class='boldannounce'>Failsafe failed critically while trying to recreate broken MC. Please manually fix the MC or reboot the server. Failsafe exiting now.</span>")
+				message_admins("<span class='boldannounce'>You can try manually calling these two procs:.</span>")
+				message_admins("<span class='boldannounce'>/proc/recover_all_SS_and_recreate_master: Most stuff should still function but expect instability/runtimes/broken stuff.</span>")
+				message_admins("<span class='boldannounce'>/proc/delete_all_SS_and_recreate_master: Most stuff will be broken but basic stuff like movement and chat should still work.</span>")
+			else if (recovery_result == -1) //Failed to recreate MC
+				defcon--
+			sleep(initial(processing_interval)) //Wait a bit until the next try
+
 	if(!QDELETED(src))
 		qdel(src) //when Loop() returns, we delete ourselves and let the mc recreate us
 
@@ -45,43 +62,54 @@ var/datum/controller/failsafe/Failsafe
 	while(running)
 		lasttick = world.time
 		if(!Master)
-			// Replace the missing Master! This should never, ever happen.
-			new /datum/controller/master()
+			// Break out of the main loop so we go into emergency state
+			break
 		// Only poke it if overrides are not in effect.
 		if(processing_interval > 0)
 			if(Master.processing && Master.iteration)
+				if (defcon > 1 && (!Master.stack_end_detector || !Master.stack_end_detector.check()))
+
+					to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: The Master Controller code stack has exited unexpectedly, Restarting...</span>")
+					defcon = 0
+					var/rtn = Recreate_MC()
+					if(rtn > 0)
+						master_iteration = 0
+						to_chat(GLOB.admins, "<span class='adminnotice'>MC restarted successfully</span>")
+					else if(rtn < 0)
+						log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
+						to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
 				// Check if processing is done yet.
 				if(Master.iteration == master_iteration)
-					log_debug("DEFCON [defcon]: Master.iteration=[Master.iteration] Master.last_run=[Master.last_run] world.time=[world.time]")
 					switch(defcon)
 						if(4,5)
 							--defcon
 						if(3)
-							log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has not fired in the last [(5-defcon) * processing_interval] ticks.</span>")
+							log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks.</span>")
 							--defcon
 						if(2)
-							log_and_message_admins("<span class='boldannounce'>SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.</span>")
+							to_chat(GLOB.admins, "<span class='boldannounce'>SSfailsafe DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.</span>")
 							--defcon
 						if(1)
 
-							log_and_message_admins("<span class='boldannounce'>SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting...</span>")
+							to_chat(GLOB.admins, "<span class='boldannounce'>SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting...</span>")
 							--defcon
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: MC (New:\ref[Master]) restarted successfully</span>")
+								to_chat(GLOB.admins, "<span class='adminnotice'>SSfailsafe Notice: MC restarted successfully</span>")
 							else if(rtn < 0)
-								log_game("SSfailsafe Notice: Could not restart MC (\ref[Master]), runtime encountered. Entering defcon 0")
-								log_and_message_admins("<span class='boldannounce'>SSFAILSAFE ERROR: DEFCON [defcon_pretty()]. Could not restart MC (\ref[Master]), runtime encountered. I will silently keep retrying.</span>")
+								log_game("SSfailsafe Notice: Could not restart MC, runtime encountered. Entering defcon 0")
+								to_chat(GLOB.admins, "<span class='boldannounce'>SSFAILSAFE ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
+
 						if(0) //DEFCON 0! (mc failed to restart)
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: MC (New:\ref[Master]) restarted successfully</span>")
+								to_chat(GLOB.admins, "<span class='adminnotice'>SSfailsafe Notice: MC restarted successfully</span>")
 				else
 					defcon = min(defcon + 1,5)
 					master_iteration = Master.iteration
@@ -92,6 +120,57 @@ var/datum/controller/failsafe/Failsafe
 		else
 			defcon = 5
 			sleep(initial(processing_interval))
+
+//Emergency loop used when Master got deleted or the main loop exited while Defcon == 0
+//Loop is driven externally so runtimes only cancel the current recovery attempt
+/datum/controller/failsafe/proc/emergency_loop()
+	//The code in this proc should be kept as simple as possible, anything complicated like to_chat might rely on master existing and runtime
+	//The goal should always be to get a new Master up and running before anything else
+	. = -1
+	switch (defcon) //The lower defcon goes the harder we try to fix the MC
+		if (2 to 3) //Try to normally recreate the MC two times
+			. = Recreate_MC()
+		if (1) //Delete the old MC first so we don't transfer any info, in case that caused any issues
+			del(Master)
+			. = Recreate_MC()
+
+	if (. == 1) //We were able to create a new master
+		master_iteration = 0
+		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
+		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
+		to_chat(GLOB.admins, "<span class='adminnotice'>Failsafe recovered MC while in emergency state [defcon_pretty()]</span>")
+	else
+		log_game("FailSafe: Failsafe in emergency state and was unable to recreate MC while in defcon state [defcon_pretty()].")
+		message_admins("<span class='boldannounce'>Failsafe in emergency state and master down, trying to recreate MC while in defcon level [defcon_pretty()] failed.</span>")
+
+///Recreate all SSs which will still cause data survive due to Recover(), the new Master will then find and take them from global.vars
+/proc/recover_all_SS_and_recreate_master()
+	del(Master)
+	var/list/subsytem_types = subtypesof(/datum/controller/subsystem)
+	sortTim(subsytem_types, GLOBAL_PROC_REF(cmp_subsystem_init))
+	for(var/I in subsytem_types)
+		new I
+	. = Recreate_MC()
+	if (. == 1) //We were able to create a new master
+		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
+		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
+		to_chat(GLOB.admins, "<span class='adminnotice'>MC successfully recreated after recovering all subsystems!</span>")
+	else
+		message_admins("<span class='boldannounce'>Failed to create new MC!</span>")
+
+///Delete all existing SS to basically start over
+/proc/delete_all_SS_and_recreate_master()
+	del(Master)
+	for(var/global_var in global.vars)
+		if (istype(global.vars[global_var], /datum/controller/subsystem))
+			del(global.vars[global_var])
+	. = Recreate_MC()
+	if (. == 1) //We were able to create a new master
+		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
+		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
+		to_chat(GLOB.admins, "<span class='adminnotice'>MC successfully recreated after deleting and recreating all subsystems!</span>")
+	else
+		message_admins("<span class='boldannounce'>Failed to create new MC!</span>")
 
 /datum/controller/failsafe/proc/defcon_pretty()
 	return defcon
