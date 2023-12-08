@@ -1,4 +1,4 @@
-/obj/item/weapon/dogborg/jaws/big
+/obj/item/weapon/melee/dogborg/jaws/big
 	name = "combat jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "jaws"
@@ -9,7 +9,7 @@
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/weapon/dogborg/jaws/small
+/obj/item/weapon/melee/dogborg/jaws/small
 	name = "puppy jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "smalljaws"
@@ -21,7 +21,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/emagged = 0
 
-/obj/item/weapon/dogborg/jaws/small/attack_self(mob/user)
+/obj/item/weapon/melee/dogborg/jaws/small/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
@@ -48,7 +48,7 @@
 		update_icon()
 
 // Baton chompers
-/obj/item/weapon/borg_combat_shocker
+/obj/item/weapon/melee/borg_combat_shocker
 	name = "combat shocker"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "combatshocker"
@@ -61,7 +61,7 @@
 	var/charge_cost = 15
 	var/dogborg = FALSE
 
-/obj/item/weapon/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/weapon/melee/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -348,7 +348,7 @@
 	recharge_time = 10 //Takes ten ticks to recharge a shot, so don't waste them all!
 	//cell_type = null //Same cell as a taser until edits are made.
 
-/obj/item/weapon/combat_borgblade
+/obj/item/weapon/melee/combat_borgblade
 	name = "energy blade"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
