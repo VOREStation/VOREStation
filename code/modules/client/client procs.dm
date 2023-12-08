@@ -168,7 +168,7 @@
 		return null
 
 	if(!config.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
+		alert(src,"This server doesn't allow guest accounts to play. Please go to https://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
 		del(src)
 		return
 
@@ -467,7 +467,7 @@
 		prefs.ShowChoices(usr)
 
 /client/proc/findJoinDate()
-	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+	var/list/http = world.Export("https://byond.com/members/[ckey]?format=text")
 	if(!http)
 		log_world("Failed to connect to byond age check for [ckey]")
 		return
@@ -511,7 +511,7 @@
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
 /client/proc/update_ip_reputation()
-	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
+	var/request = "https://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
 	var/http[] = world.Export(request)
 
 	/* Debug
