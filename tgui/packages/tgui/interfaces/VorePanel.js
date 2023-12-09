@@ -398,13 +398,13 @@ const VoreSelectedBellyDescriptions = (props, context) => {
       <LabeledList.Item label="Escape Messages">
         <Button
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escao' })
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escap' })
           }
           content="Escape Attempt Message (to prey)"
         />
         <Button
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escap' })
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escao' })
           }
           content="Escape Attempt Message (to you)"
         />
@@ -458,13 +458,13 @@ const VoreSelectedBellyDescriptions = (props, context) => {
         />
         <Button
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescao' })
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescap' })
           }
           content="Absorbed Escape Attempt Message (to prey)"
         />
         <Button
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescap' })
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescao' })
           }
           content="Absorbed Escape Attempt Message (to you)"
         />

@@ -749,51 +749,51 @@
 			raw_messages = escape_attempt_messages_owner
 		if("escap")
 			raw_messages = escape_attempt_messages_prey
-		if("escp")
-			raw_messages = escape_messages_owner
 		if("esco")
+			raw_messages = escape_messages_owner
+		if("escp")
 			raw_messages = escape_messages_prey
 		if("escout")
 			raw_messages = escape_messages_outside
-		if("escip")
-			raw_messages = escape_item_messages_owner
 		if("escio")
+			raw_messages = escape_item_messages_owner
+		if("escip")
 			raw_messages = escape_item_messages_prey
 		if("esciout")
 			raw_messages = escape_item_messages_outside
-		if("escfp")
-			raw_messages = escape_fail_messages_owner
 		if("escfo")
+			raw_messages = escape_fail_messages_owner
+		if("escfp")
 			raw_messages = escape_fail_messages_prey
 		if("aescao")
 			raw_messages = escape_attempt_absorbed_messages_owner
 		if("aescap")
 			raw_messages = escape_attempt_absorbed_messages_prey
-		if("aescp")
-			raw_messages = escape_absorbed_messages_owner
 		if("aesco")
+			raw_messages = escape_absorbed_messages_owner
+		if("aescp")
 			raw_messages = escape_absorbed_messages_prey
 		if("aescout")
 			raw_messages = escape_absorbed_messages_outside
-		if("aescfp")
-			raw_messages = escape_fail_absorbed_messages_owner
 		if("aescfo")
+			raw_messages = escape_fail_absorbed_messages_owner
+		if("aescfp")
 			raw_messages = escape_fail_absorbed_messages_prey
-		if("trnspp")
-			raw_messages = primary_transfer_messages_owner
 		if("trnspo")
+			raw_messages = primary_transfer_messages_owner
+		if("trnspp")
 			raw_messages = primary_transfer_messages_prey
-		if("trnssp")
-			raw_messages = secondary_transfer_messages_owner
 		if("trnsso")
+			raw_messages = secondary_transfer_messages_owner
+		if("trnssp")
 			raw_messages = secondary_transfer_messages_prey
-		if("stmodp")
-			raw_messages = digest_chance_messages_owner
 		if("stmodo")
+			raw_messages = digest_chance_messages_owner
+		if("stmodp")
 			raw_messages = digest_chance_messages_prey
-		if("stmoap")
-			raw_messages = absorb_chance_messages_owner
 		if("stmoao")
+			raw_messages = absorb_chance_messages_owner
+		if("stmoap")
 			raw_messages = absorb_chance_messages_prey
 		if("dmo")
 			raw_messages = digest_messages_owner
@@ -879,51 +879,51 @@
 			escape_attempt_messages_owner = raw_list
 		if("escap")
 			escape_attempt_messages_prey = raw_list
-		if("escp")
-			escape_messages_owner = raw_list
 		if("esco")
+			escape_messages_owner = raw_list
+		if("escp")
 			escape_messages_prey = raw_list
 		if("escout")
 			escape_messages_outside = raw_list
-		if("escip")
-			escape_item_messages_owner = raw_list
 		if("escio")
+			escape_item_messages_owner = raw_list
+		if("escip")
 			escape_item_messages_prey = raw_list
 		if("esciout")
 			escape_item_messages_outside = raw_list
-		if("escfp")
-			escape_fail_messages_owner = raw_list
 		if("escfo")
+			escape_fail_messages_owner = raw_list
+		if("escfp")
 			escape_fail_messages_prey = raw_list
 		if("aescao")
 			escape_attempt_absorbed_messages_owner = raw_list
 		if("aescap")
 			escape_attempt_absorbed_messages_prey = raw_list
-		if("aescp")
-			escape_absorbed_messages_owner = raw_list
 		if("aesco")
+			escape_absorbed_messages_owner = raw_list
+		if("aescp")
 			escape_absorbed_messages_prey = raw_list
 		if("aescout")
 			escape_absorbed_messages_outside = raw_list
-		if("aescfp")
-			escape_fail_absorbed_messages_owner = raw_list
 		if("aescfo")
+			escape_fail_absorbed_messages_owner = raw_list
+		if("aescfp")
 			escape_fail_absorbed_messages_prey = raw_list
-		if("trnspp")
-			primary_transfer_messages_owner = raw_list
 		if("trnspo")
+			primary_transfer_messages_owner = raw_list
+		if("trnspp")
 			primary_transfer_messages_prey = raw_list
-		if("trnssp")
-			secondary_transfer_messages_owner = raw_list
 		if("trnsso")
+			secondary_transfer_messages_owner = raw_list
+		if("trnssp")
 			secondary_transfer_messages_prey = raw_list
-		if("stmodp")
-			digest_chance_messages_owner = raw_list
 		if("stmodo")
+			digest_chance_messages_owner = raw_list
+		if("stmodp")
 			digest_chance_messages_prey = raw_list
-		if("stmoap")
-			absorb_chance_messages_owner = raw_list
 		if("stmoao")
+			absorb_chance_messages_owner = raw_list
+		if("stmoap")
 			absorb_chance_messages_prey = raw_list
 		if("dmo")
 			digest_messages_owner = raw_list

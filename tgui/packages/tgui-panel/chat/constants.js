@@ -24,6 +24,7 @@ export const MESSAGE_TYPE_INTERNAL = 'internal';
 export const MESSAGE_TYPE_SYSTEM = 'system';
 export const MESSAGE_TYPE_LOCALCHAT = 'localchat';
 export const MESSAGE_TYPE_PLOCALCHAT = 'plocalchat';
+export const MESSAGE_TYPE_VORE = 'vore';
 export const MESSAGE_TYPE_RADIO = 'radio';
 export const MESSAGE_TYPE_NIF = 'nif';
 export const MESSAGE_TYPE_INFO = 'info';
@@ -65,6 +66,12 @@ export const MESSAGE_TYPES = [
     name: 'Local (Pred/Prey)',
     description: 'Messages from / to absorbed or dominated prey',
     selector: '.psay, .pemote',
+  },
+  {
+    type: MESSAGE_TYPE_VORE,
+    name: 'Vorgan Messages',
+    description: 'Messages regarding vore interactions',
+    selector: '.valert, .vwarning, .vnotice, .vdanger',
   },
   {
     type: MESSAGE_TYPE_RADIO,
