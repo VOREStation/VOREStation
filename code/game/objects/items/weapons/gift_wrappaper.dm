@@ -132,13 +132,14 @@
 		to_chat(user, "<span class='warning'>You MUST put the paper on a table!</span>")
 	if (W.w_class < ITEMSIZE_LARGE)
 		var/obj/item/I = user.get_inactive_hand()
-		if(I.has_tool_quality(TOOL_WIRECUTTER))
+		if(I && I.has_tool_quality(TOOL_WIRECUTTER))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				to_chat(user, "<span class='warning'>You need more paper!</span>")
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
+					to_chat(user, "<span class='warning'>You can't wrap something that's already wrapped!</span>")
 					return
 
 				src.amount -= a_used
