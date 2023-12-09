@@ -337,6 +337,26 @@ img.icon.bigicon {
   font-weight: bold;
 }
 
+.mentor_channel {
+  color: #808000;
+  font-weight: bold;
+}
+
+.mod_channel {
+  color: #735638;
+  font-weight: bold;
+}
+
+.admin_channel {
+  color: #9611d4;
+  font-weight: bold;
+}
+
+.event_channel {
+  color: #cc3399;
+  font-weight: bold;
+}
+
 .name {
   font-weight: bold;
 }
@@ -595,6 +615,11 @@ h2.alert {
 
 .adminhelp {
   color: #ff0000;
+  font-weight: bold;
+}
+
+.log_message {
+  color: #386aff;
   font-weight: bold;
 }
 
