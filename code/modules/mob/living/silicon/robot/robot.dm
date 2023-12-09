@@ -341,6 +341,7 @@
 	hands.icon_state = get_hud_module_icon()
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
 	updatename()
+	hud_used.update_robot_modules_display()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
 
 /mob/living/silicon/robot/proc/update_braintype()
@@ -767,6 +768,7 @@
 				to_chat(usr, "<span class='filter_notice'>You apply the upgrade to [src]!</span>")
 				usr.drop_item()
 				U.loc = src
+				hud_used.update_robot_modules_display()
 			else
 				to_chat(usr, "<span class='filter_notice'>Upgrade error!</span>")
 
@@ -804,12 +806,13 @@
 /mob/living/silicon/robot/proc/module_reset()
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
+	hud_used.update_robot_modules_display(TRUE)
 	modtype = initial(modtype)
 	hands.icon_state = get_hud_module_icon()
 
 	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	qdel(module)
+	module.Destroy()
 	module = null
 	updatename("Default")
 
@@ -1374,6 +1377,7 @@
 				laws.show_laws(src)
 				to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>")
 				update_icon()
+				hud_used.update_robot_modules_display()
 		else
 			to_chat(user, "<span class='filter_warning'>You fail to hack [src]'s interface.</span>")
 			to_chat(src, "<span class='filter_warning'>Hack attempt detected.</span>")
