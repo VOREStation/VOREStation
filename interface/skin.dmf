@@ -1159,16 +1159,6 @@ window "mainwindow"
 		icon = 'icons\\virgoicon.png'
 		macro = "macro"
 		menu = "menu"
-	elem "split"
-		type = CHILD
-		pos = 3,0
-		size = 634x416
-		anchor1 = 0,0
-		anchor2 = 100,100
-		saved-params = "splitter"
-		left = "mapwindow"
-		right = "rpane"
-		is-vert = true
 	elem "asset_cache_browser"
 		type = BROWSER
 		pos = 0,0
@@ -1183,25 +1173,9 @@ window "mainwindow"
 		size = 80x20
 		anchor1 = 100,100
 		anchor2 = -1,-1
-		background-color = none
-		border = line
 		saved-params = ""
 		text = "Hotkey Toggle"
 		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
-		is-flat = true
-		button-type = pushbox
-	elem "saybutton"
-		type = BUTTON
-		pos = 520,420
-		size = 40x20
-		anchor1 = 100,100
-		anchor2 = -1,-1
-		background-color = none
-		border = line
-		saved-params = "is-checked"
-		text = "Say"
-		command = ".winset \"saybutton.is-checked=true ? input.command=\"!say \\\"\" : input.command=\"\"saybutton.is-checked=true ? mebutton.is-checked=false\"\"saybutton.is-checked=true ? oocbutton.is-checked=false\""
-		is-flat = true
 		button-type = pushbox
 	elem "mainvsplit"
 		type = CHILD
@@ -1286,6 +1260,8 @@ window "outputwindow"
 		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		//outer-size = 656x538
+		//inner-size = 640x499
 	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
@@ -1337,15 +1313,12 @@ window "rpane"
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-		outer-size = 656x538
-		inner-size = 640x499
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,30
-		size = 0x0
+		size = 640x445
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
@@ -1523,26 +1496,14 @@ window "infowindow"
 		title = "Info"
 		is-pane = true
 	elem "statbrowser"
-		///type = BROWSER
-		type = INFO
+		type = BROWSER
 		pos = 0,0
 		size = 638x477
 		anchor1 = 0,0
 		anchor2 = 100,100
-		//is-default = true
-		is-visible = false
+		is-default = false
 		saved-params = ""
-		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
-		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
-	//elem "info"
-		//type = INFO
-		//pos = 0,0
-		//size = 638x477
-		//anchor1 = 0,0
-		//anchor2 = 100,100
-		//is-default = true
-		//saved-params = ""
-		//highlight-color = #00aa00
+		highlight-color = #00aa00
 		//on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		//on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 

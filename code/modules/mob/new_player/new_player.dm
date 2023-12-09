@@ -117,24 +117,25 @@
 	if(SSticker.current_state == GAME_STATE_INIT)
 		. += "Time To Start: Server Initializing"
 
-		else if(SSticker.current_state == GAME_STATE_PREGAME)
-			. += "Time To Start:", "[round(SSticker.pregame_timeleft,1)][round_progressing ? "" : " (DELAYED)"]"
-			. += "Players: [totalPlayers]", "Players Ready: [totalPlayersReady]"
-			totalPlayers = 0
-			totalPlayersReady = 0
-			var/datum/job/refJob = null
-			for(var/mob/new_player/player in player_list)
-				refJob = player.client.prefs.get_highest_job()
-				if(player.client.prefs.obfuscate_key && player.client.prefs.obfuscate_job)
-					. += "Anonymous User", (player.ready)?("Ready!"):(null)
-				else if(player.client.prefs.obfuscate_key)
-					. += "Anonymous User", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null)
-				else if(player.client.prefs.obfuscate_job)
-					. += "[player.key]", (player.ready)?("Ready!"):(null)
-				else
-					. += "[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null)
-				totalPlayers++
-				if(player.ready)totalPlayersReady++
+	else if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [round(SSticker.pregame_timeleft,1)][round_progressing ? "" : " (DELAYED)"]"
+		. += "Players: [totalPlayers]"
+		. += "Players Ready: [totalPlayersReady]"
+		totalPlayers = 0
+		totalPlayersReady = 0
+		var/datum/job/refJob = null
+		for(var/mob/new_player/player in player_list)
+			refJob = player.client.prefs.get_highest_job()
+			if(player.client.prefs.obfuscate_key && player.client.prefs.obfuscate_job)
+				. += "Anonymous User [player.ready ? "Ready!" : null]"
+			else if(player.client.prefs.obfuscate_key)
+				. += "Anonymous User [player.ready ? "(Playing as: [refJob ? refJob.title : "Unknown"])" : null]"
+			else if(player.client.prefs.obfuscate_job)
+				. += "[player.key] [player.ready ? "Ready!" : null]"
+			else
+				. += "[player.key] [player.ready ? "(Playing as: [refJob ? refJob.title : "Unknown"])" : null]"
+			totalPlayers++
+			if(player.ready)totalPlayersReady++
 
 /mob/new_player/Topic(href, href_list[])
 	if(!client)	return 0

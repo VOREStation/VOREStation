@@ -59,6 +59,7 @@
 	description_holders["icon"] = icon2html(A, src, A.icon_state)
 	description_holders["desc"] = A.desc
 
+/*
 /mob/Stat()
 	. = ..()
 	if(client && statpanel("Examine"))
@@ -93,6 +94,7 @@
 			stat(null,"<font color=[color_f]><b>[description_holders["fluff"]]</b></font>") //Yellow, fluff-related text.
 		if(description_holders["antag"])
 			stat(null,"<font color=[color_a]><b>[description_holders["antag"]]</b></font>") //Red, malicious antag-related text
+*/
 
 //override examinate verb to update description holders when things are examined
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
