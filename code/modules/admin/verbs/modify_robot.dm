@@ -6,7 +6,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(target))
+	if(!istype(target) || !target.module)
 		return
 
 	if(!target.module.modules)
@@ -45,6 +45,7 @@
 					robot.module.contents.Remove(add_item)
 					target.module.modules.Add(add_item)
 					target.module.contents.Add(add_item)
+					target.hud_used.update_robot_modules_display()
 					to_chat(usr, "<span class='danger'>You added \"[add_item]\" to [target].</span>")
 					if(istype(add_item, /obj/item/stack/))
 						var/obj/item/stack/item_with_synth = add_item
@@ -94,6 +95,7 @@
 				if(!istype(selected_module_module, /obj/item/))
 					break
 				to_chat(usr, "<span class='danger'>You removed \"[selected_module_module]\" from [target]</span>")
+				target.hud_used.update_robot_modules_display(TRUE)
 				target.module.emag.Remove(selected_module_module)
 				target.module.modules.Remove(selected_module_module)
 				target.module.contents.Remove(selected_module_module)
