@@ -177,14 +177,6 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".valert, .vwarning, .vnotice, .vdanger",
-					becomes: "vc_vore_message",
-					pretty: "Vore Messages",
-					tooltip: "Vore Messages",
-					required: false,
-					admin: false
-				},
-				{
 					matches: ".filter_deadsay, .deadsay",
 					becomes: "vc_deadchat",
 					pretty: "Deadchat",

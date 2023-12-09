@@ -1250,46 +1250,28 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
-	elem "chatloadlabel"
-		type = LABEL
-		pos = 0,0
-		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		font-family = "sans-serif"
-		font-size = 24
-		font-style = "bold"
-		text-color = #ffffff
-		background-color = #222222
-		saved-params = ""
-		text = "Chat is loading.\nIf nothing happens after 20s,\nuse OOC > \"Reload VChat\"."
-	elem "htmloutput"
+	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		is-visible = false
+		is-disabled = true
 		saved-params = ""
-	elem "oldoutput"
+	elem "output"
 		type = OUTPUT
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-visible = false
 		is-default = true
 		saved-params = ""
 		style = ".system {color:#FF0000;}"
 		enable-http-images = true
-		max-lines = 0
 
 window "prefs_markings_subwindow"
 	elem "prefs_markings_subwindow"

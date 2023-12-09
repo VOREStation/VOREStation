@@ -289,7 +289,7 @@ var/list/_client_preferences_by_type
 	key = "SOUND_INSTRUMENT"
 
 /datum/client_preference/vchat_enable
-	description = "Enable/Disable VChat"
+	description = "Enable/Disable TGChat"
 	key = "VCHAT_ENABLE"
 	enabled_description =  "Enabled"
 	disabled_description = "Disabled"

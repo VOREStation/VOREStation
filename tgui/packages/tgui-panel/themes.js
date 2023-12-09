@@ -81,6 +81,24 @@ export const setClientTheme = (name) => {
       'tooltip.text-color': '#000000',
       'input.background-color': '#FFFFFF',
       'input.text-color': '#000000',
+      // VOREStation
+      'rpane.background-color': 'none',
+      'rpane.text-color': '#000000',
+      'rpanewindow.background-color': 'none',
+      'rpanewindow.text-color': '#000000',
+      'mainvsplit.background-color': 'none',
+      'info.tab-background-color': 'none',
+      'info.tab-text-color': '#000000',
+      'discord.background-color': 'none',
+      'discord.text-color': '#000000',
+      'mapb.background-color': 'none',
+      'mapb.text-color': '#000000',
+      'rulesb.background-color': 'none',
+      'rulesb.text-color': '#000000',
+      'wikib.background-color': 'none',
+      'wikib.text-color': '#000000',
+      'forumb.background-color': 'none',
+      'forumb.text-color': '#000000',
     });
   }
   if (name === 'dark') {
@@ -133,6 +151,24 @@ export const setClientTheme = (name) => {
       'tooltip.text-color': COLOR_DARK_TEXT,
       'input.background-color': COLOR_DARK_BG_DARKER,
       'input.text-color': COLOR_DARK_TEXT,
+      // VOREStation
+      'rpane.background-color': COLOR_DARK_BG_DARKER,
+      'rpane.text-color': COLOR_DARK_TEXT,
+      'rpanewindow.background-color': COLOR_DARK_BG_DARKER,
+      'rpanewindow.text-color': COLOR_DARK_TEXT,
+      'mainvsplit.background-color': COLOR_DARK_BG,
+      'info.tab-background-color': COLOR_DARK_BG,
+      'info.tab-text-color': COLOR_DARK_TEXT,
+      'mapb.background-color': '#494949',
+      'mapb.text-color': COLOR_DARK_TEXT,
+      'discord.background-color': '#494949',
+      'discord.text-color': COLOR_DARK_TEXT,
+      'rulesb.background-color': '#494949',
+      'rulesb.text-color': COLOR_DARK_TEXT,
+      'wikib.background-color': '#494949',
+      'wikib.text-color': COLOR_DARK_TEXT,
+      'forumb.background-color': '#494949',
+      'forumb.text-color': COLOR_DARK_TEXT,
     });
   }
 };
