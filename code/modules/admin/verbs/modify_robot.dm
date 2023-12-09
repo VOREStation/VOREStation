@@ -95,6 +95,7 @@
 				if(!istype(selected_module_module, /obj/item/))
 					break
 				to_chat(usr, "<span class='danger'>You removed \"[selected_module_module]\" from [target]</span>")
+				target.uneq_all()
 				target.hud_used.update_robot_modules_display(TRUE)
 				target.module.emag.Remove(selected_module_module)
 				target.module.modules.Remove(selected_module_module)
