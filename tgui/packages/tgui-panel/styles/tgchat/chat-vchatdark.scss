@@ -6,24 +6,6 @@
 @use 'sass:map';
 @use 'sass:color';
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  color: #000000;
-}
-
-body {
-  background: #fff;
-  font-family: Verdana, sans-serif;
-  font-size: 13px;
-  line-height: 1.2;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  word-wrap: break-word;
-}
-
 em {
   font-style: normal;
   font-weight: bold;
@@ -45,15 +27,15 @@ img.icon {
 }
 
 a {
-  color: #0000ff;
+  color: #397ea5;
 }
 
 a.visited {
-  color: #ff00ff;
+  color: #7c00e6;
 }
 
 a:visited {
-  color: #ff00ff;
+  color: #7c00e6;
 }
 
 a.popt {
@@ -209,10 +191,10 @@ a.popt {
 }
 
 /*****************************************
-*
-* OUTPUT ACTUALLY RELATED TO MESSAGES
-*
-******************************************/
+ *
+ * OUTPUT ACTUALLY RELATED TO MESSAGES
+ *
+ ******************************************/
 
 /* MOTD */
 
@@ -273,13 +255,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: #0000ff;
+  color: #a4bad6;
   font-family: Georgia, Verdana, sans-serif;
 }
 
 h1.alert,
 h2.alert {
-  color: #000000;
+  color: #a4bad6;
 }
 
 em {
@@ -288,7 +270,7 @@ em {
 }
 
 .ooc {
-  color: #002eb8;
+  color: #004ed8;
   font-weight: bold;
 }
 
@@ -347,7 +329,7 @@ img.icon.bigicon {
 }
 
 .adminooc {
-  color: #700038;
+  color: #3d5bc3;
   font-weight: bold;
 }
 
@@ -357,7 +339,7 @@ img.icon.bigicon {
 }
 
 .admin {
-  color: #4473ff;
+  color: #5975da;
   font-weight: bold;
 }
 
@@ -390,29 +372,28 @@ img.icon.bigicon {
 .infoplain,
 .oocplain,
 .warningplain {
+  color: #ffffff;
 }
 
 .nif {
 }
 
 .psay {
-  color: #800080;
+  color: #e300e4;
   font-style: italic;
 }
 
 .pemote {
-  color: #800080;
+  color: #e300e4;
   font-style: italic;
 }
 
 .deadsay {
-  color: #5c00e6;
+  color: #732fcd;
 }
 
 .binarysay {
-  color: #20c20e;
-  background-color: #000000;
-  display: block;
+  color: #1e90ff;
 }
 
 .binarysay a {
@@ -424,8 +405,11 @@ img.icon.bigicon {
   color: #88ff88;
 }
 
+/* RADIO COLORS */
+/* IF YOU CHANGE THIS KEEP IT IN SYNC WITH TGUI CONSTANTS */
+
 .radio {
-  color: #008000;
+  color: #00a800;
 }
 
 .sciradio {
@@ -433,7 +417,7 @@ img.icon.bigicon {
 }
 
 .comradio {
-  color: #337296;
+  color: #395a9a;
 }
 
 .secradio {
@@ -441,15 +425,15 @@ img.icon.bigicon {
 }
 
 .medradio {
-  color: #339661;
+  color: #008160;
 }
 
 .engradio {
-  color: #948f02;
+  color: #a66300;
 }
 
 .supradio {
-  color: #a8732b;
+  color: #5f4519;
 }
 
 .srvradio {
@@ -469,7 +453,7 @@ img.icon.bigicon {
 }
 
 .centradio {
-  color: #686868;
+  color: #5c5c8a;
 }
 
 .airadio {
@@ -477,19 +461,19 @@ img.icon.bigicon {
 }
 
 .redteamradio {
-  color: #ff0000 !important;
+  color: #ff4444 !important;
 }
 
 .blueteamradio {
-  color: #0000ff !important;
+  color: #3434fd !important;
 }
 
 .greenteamradio {
-  color: #00ff00 !important;
+  color: #34fd34 !important;
 }
 
 .yellowteamradio {
-  color: #d1ba22 !important;
+  color: #fdfd34 !important;
 }
 
 .yell {
@@ -501,50 +485,35 @@ img.icon.bigicon {
 }
 
 .valert {
-  color: #ff0000;
-}
-
-h1.alert,
-h2.alert {
-  color: #000000;
+  color: #d82020;
 }
 
 .userdanger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
   font-size: 185%;
 }
 
 .bolddanger {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
 }
 
 .danger {
-  color: #ff0000;
+  color: #c51e1e;
 }
 
 .vdanger {
-  color: #ff0000;
-}
-
-.tinydanger {
-  color: #ff0000;
-  font-size: 85%;
-}
-
-.smalldanger {
-  color: #ff0000;
-  font-size: 90%;
+  color: #c51e1e;
 }
 
 .warning {
-  color: #ff0000;
+  color: #c51e1e;
   font-style: italic;
 }
 
 .vwarning {
-  color: #ff0000;
+  color: #c51e1e;
   font-style: italic;
 }
 
@@ -554,51 +523,51 @@ h2.alert {
 }
 
 .boldwarning {
-  color: #ff0000;
+  color: #c51e1e;
   font-style: italic;
   font-weight: bold;
 }
 
 .announce {
-  color: #228b22;
+  color: #c51e1e;
   font-weight: bold;
 }
 
 .boldannounce {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
 }
 
 .minorannounce {
-  color: #ff0000;
+  color: #c51e1e;
   font-weight: bold;
   font-size: 185%;
 }
 
 .minoralert {
-  color: #000000;
+  color: #a4bad6;
   font-size: 125%;
 }
 
 .priorityannounce {
-  color: #000000;
+  color: #a4bad6;
   font-weight: bold;
   font-size: 225%;
 }
 
 .prioritytitle {
-  color: #0000ff;
+  color: #6685f5;
   font-weight: bold;
   font-size: 185%;
 }
 
 .priorityalert {
-  color: #ff0000;
+  color: #c51e1e;
   font-size: 140%;
 }
 
 .greenannounce {
-  color: #00ff00;
+  color: #059223;
   font-weight: bold;
 }
 
@@ -607,51 +576,56 @@ h2.alert {
 }
 
 .info {
-  color: #0000cc;
+  color: #6060c9;
 }
 
 .notice {
-  color: #000099;
+  color: #6060c9;
 }
 
 .vnotice {
-  color: #000099;
+  color: #6060c9;
 }
 
 .tinynotice {
-  color: #000099;
+  color: #6060c9;
   font-size: 85%;
 }
 
 .tinynoticeital {
-  color: #000099;
+  color: #6060c9;
   font-style: italic;
   font-size: 85%;
 }
 
 .smallnotice {
-  color: #000099;
+  color: #6060c9;
   font-size: 90%;
 }
 
 .smallnoticeital {
-  color: #000099;
+  color: #6060c9;
   font-style: italic;
   font-size: 90%;
 }
 
+.bolditalic {
+  font-style: italic;
+  font-weight: bold;
+}
+
 .boldnotice {
-  color: #000099;
+  color: #6060c9;
   font-weight: bold;
 }
 
 .hear {
-  color: #000099;
+  color: #6060c9;
   font-style: italic;
 }
 
 .adminnotice {
-  color: #0000ff;
+  color: #6060c9;
 }
 
 .adminhelp {
@@ -665,7 +639,7 @@ h2.alert {
 }
 
 .unconscious {
-  color: #0000ff;
+  color: #a4bad6;
   font-weight: bold;
 }
 
@@ -675,11 +649,11 @@ h2.alert {
 }
 
 .green {
-  color: #03ff39;
+  color: #44ff44;
 }
 
 .grey {
-  color: #838383;
+  color: #a9a9a9;
 }
 
 .red {
@@ -687,16 +661,26 @@ h2.alert {
 }
 
 .blue {
-  color: #0000ff;
+  color: #6666ff;
 }
 
 .nicegreen {
-  color: #14a833;
+  color: #059223;
 }
 
 .boldnicegreen {
-  color: #14a833;
+  color: #059223;
   font-weight: bold;
+}
+
+.blob {
+  color: #ee4000;
+}
+
+.blobannounce {
+  color: #556b2f;
+  font-weight: bold;
+  font-size: 185%;
 }
 
 .cult {
@@ -726,16 +710,6 @@ h2.alert {
   font-size: 185%;
 }
 
-.blob {
-  color: #ee4000;
-}
-
-.blobannounce {
-  color: #323f1c;
-  font-weight: bold;
-  font-size: 185%;
-}
-
 .narsie {
   color: #973e3b;
   font-weight: bold;
@@ -754,35 +728,35 @@ h2.alert {
 }
 
 .hierophant {
-  color: #660099;
+  color: #b441ee;
   font-weight: bold;
   font-style: italic;
 }
 
 .hierophant_warning {
-  color: #660099;
+  color: #c56bf1;
   font-style: italic;
 }
 
 .purple {
-  color: #5e2d79;
+  color: #9956d3;
 }
 
 .holoparasite {
-  color: #35333a;
+  color: #88809c;
 }
 
 .revennotice {
-  color: #1d2953;
+  color: #c099e2;
 }
 
 .revenboldnotice {
-  color: #1d2953;
+  color: #c099e2;
   font-weight: bold;
 }
 
 .revenbignotice {
-  color: #1d2953;
+  color: #c099e2;
   font-weight: bold;
   font-size: 185%;
 }
@@ -803,32 +777,32 @@ h2.alert {
 }
 
 .deconversion_message {
-  color: #5000a0;
+  color: #a947ff;
   font-size: 185%;
   font-style: italic;
 }
 
 .ghostalert {
-  color: #5c00e6;
+  color: #6600ff;
   font-style: italic;
   font-weight: bold;
 }
 
 .alien {
-  color: #543354;
+  color: #855d85;
 }
 
 .noticealien {
-  color: #00c000;
+  color: #059223;
 }
 
 .alertalien {
-  color: #00c000;
+  color: #059223;
   font-weight: bold;
 }
 
 .changeling {
-  color: #800080;
+  color: #b000b1;
   font-style: italic;
 }
 
@@ -839,25 +813,25 @@ h2.alert {
 }
 
 .spiderbroodmother {
-  color: #4d004d;
+  color: #8800ff;
   font-weight: bold;
   font-size: 185%;
 }
 
 .spiderbreacher {
-  color: #804b02;
+  color: #e8b670;
   font-weight: bold;
   font-size: 140%;
 }
 
 .spiderscout {
-  color: #0c0674;
+  color: #231d98;
   font-weight: bold;
   font-size: 120%;
 }
 
 .interface {
-  color: #330033;
+  color: #750e75;
 }
 
 .sans {
@@ -873,7 +847,7 @@ h2.alert {
 }
 
 .tape_recorder {
-  color: #800000;
+  color: #ff0000;
   font-family: 'Courier New', cursive, sans-serif;
 }
 
@@ -899,17 +873,17 @@ h2.alert {
 }
 
 .greentext {
-  color: #00ff00;
+  color: #059223;
   font-size: 185%;
 }
 
 .redtext {
-  color: #ff0000;
+  color: #c51e1e;
   font-size: 185%;
 }
 
 .clown {
-  color: #ff69bf;
+  color: #ff70c1;
   font-size: 160%;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-weight: bold;
@@ -927,7 +901,7 @@ h2.alert {
 }
 
 .hypnophrase {
-  color: #0d0d0d;
+  color: #202020;
   font-weight: bold;
   animation: hypnocolor 1500ms infinite;
   animation-direction: alternate;
@@ -935,23 +909,23 @@ h2.alert {
 
 @keyframes hypnocolor {
   0% {
-    color: #0d0d0d;
+    color: #202020;
   }
 
   25% {
-    color: #410194;
+    color: #4b02ac;
   }
 
   50% {
-    color: #7f17d8;
+    color: #9f41f1;
   }
 
   75% {
-    color: #410194;
+    color: #541c9c;
   }
 
   100% {
-    color: #3bb5d3;
+    color: #7adbf3;
   }
 }
 
@@ -963,7 +937,7 @@ h2.alert {
 
 @keyframes phobia {
   0% {
-    color: #0d0d0d;
+    color: #f75a5a;
   }
 
   50% {
@@ -971,7 +945,7 @@ h2.alert {
   }
 
   100% {
-    color: #0d0d0d;
+    color: #f75a5a;
   }
 }
 
@@ -999,12 +973,12 @@ h2.alert {
 }
 
 .abductor {
-  color: #800080;
+  color: #c204c2;
   font-style: italic;
 }
 
 .mind_control {
-  color: #a00d6f;
+  color: #df3da9;
   font-size: 100%;
   font-weight: bold;
   font-style: italic;
@@ -1051,7 +1025,7 @@ h2.alert {
 }
 
 .internal.boldnshit {
-  color: blue;
+  color: #3d5bc3;
   font-weight: bold;
 }
 
@@ -1080,63 +1054,63 @@ h2.alert {
 }
 
 .examine_block {
-  background: #f2f7fa;
-  border: 1px solid #111a27;
+  background: #1b1c1e;
+  border: 1px solid #a4bad6;
   margin: 0.5em;
   padding: 0.5em 0.75em;
 }
 
 .tooltip {
   font-style: italic;
-  border-bottom: 1px dashed #000;
+  border-bottom: 1px dashed #fff;
 }
 
 $alert-stripe-colors: (
-  'default': #b3bfff,
-  'green': #adffad,
-  'blue': #b3bfff,
-  'pink': #ffb3df,
-  'yellow': #fff3b3,
-  'orange': #ffe2b3,
-  'red': #ffb3b3,
-  'purple': #fac2ff,
-  'grey': #e3e3e3,
+  'default': #00283a,
+  'green': #003d00,
+  'blue': #00283a,
+  'pink': #30001b,
+  'yellow': #574a00,
+  'orange': #593400,
+  'red': #420000,
+  'purple': #2c0030,
+  'grey': #252525,
 );
 
 $alert-stripe-alternate-colors: (
-  'default': #bdc8ff,
-  'green': #bdffbd,
-  'blue': #bdc8ff,
-  'pink': #ffc2e5,
-  'yellow': #fff5c2,
-  'orange': #ffe8c2,
-  'red': #ffc2c2,
-  'purple': #fbd1ff,
-  'grey': #ebebeb,
+  'default': #003045,
+  'green': #004700,
+  'blue': #003045,
+  'pink': #400025,
+  'yellow': #4d4100,
+  'orange': #6b4200,
+  'red': #520000,
+  'purple': #38003d,
+  'grey': #292929,
 );
 
 $alert-major-header-colors: (
-  'default': #003061,
-  'green': #005229,
-  'blue': #003061,
-  'pink': #800033,
-  'yellow': #754900,
-  'orange': #823208,
-  'red': #800029,
-  'purple': #450d8c,
-  'grey': #800033,
+  'default': #33d5ff,
+  'green': #00ff80,
+  'blue': #33d5ff,
+  'pink': #ff5297,
+  'yellow': #fff4e0,
+  'orange': #feefe7,
+  'red': #ff5297,
+  'purple': #c7a1f7,
+  'grey': #ff5297,
 );
 
 $alert-subheader-header-colors: (
-  'default': #6b0020,
-  'green': #6b0020,
-  'blue': #6b0020,
-  'pink': #002c85,
-  'yellow': #002c85,
-  'orange': #002c85,
-  'red': #002c85,
-  'purple': #002c85,
-  'grey': #002c85,
+  'default': #ff5297,
+  'green': #ff85b5,
+  'blue': #ff5297,
+  'pink': #33d5ff,
+  'yellow': #33d5ff,
+  'orange': #33d5ff,
+  'red': #33d5ff,
+  'purple': #33d5ff,
+  'grey': #33d5ff,
 );
 
 $border-width: 4;
@@ -1164,8 +1138,8 @@ $border-width-px: $border-width * 1px;
 }
 
 .major_announcement_text {
-  color: #131313;
-  background-color: #eaeaea;
+  color: #eaeaea;
+  background-color: #131313;
   font-weight: bold;
   font-size: 100%;
   text-align: left;
@@ -1186,8 +1160,8 @@ $border-width-px: $border-width * 1px;
 }
 
 .minor_announcement_text {
-  background-color: #eaeaea;
-  color: #202020;
+  background-color: #202020;
+  color: #eaeaea;
   padding: 0.5rem 0.5rem;
   text-align: left;
   font-size: 100%;
@@ -1237,17 +1211,11 @@ $border-width-px: $border-width * 1px;
   }
 
   .chat_alert_#{$color-name} .minor_announcement_text {
-    background-color: lighten(
-      map.get($alert-stripe-alternate-colors, $color-name),
-      5
-    );
+    background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
   }
 
   .chat_alert_#{$color-name} .major_announcement_text {
-    background-color: lighten(
-      map.get($alert-stripe-alternate-colors, $color-name),
-      5
-    );
+    background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
   }
 }
 
@@ -1277,7 +1245,7 @@ $border-width-px: $border-width * 1px;
 }
 
 .solcom {
-  color: #3333ce;
+  color: #6da6f0;
 }
 
 .sergal {
@@ -1330,7 +1298,7 @@ $border-width-px: $border-width * 1px;
 }
 
 .promethean {
-  color: #5a5a5a;
+  color: #a5a5a5;
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 

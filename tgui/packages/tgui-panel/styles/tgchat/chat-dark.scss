@@ -274,6 +274,30 @@ em {
   font-weight: bold;
 }
 
+.ooc .elevated {
+  color: #2e78d9;
+}
+
+.ooc .moderator {
+  color: #184880;
+}
+
+.ooc .developer {
+  color: #1b521f;
+}
+
+.ooc .admin {
+  color: #b82e00;
+}
+
+.ooc .event_manager {
+  color: #660033;
+}
+
+.ooc .aooc {
+  color: #960018;
+}
+
 img.text_tag {
   width: 32px;
   height: 10px;
@@ -459,6 +483,10 @@ img.icon.bigicon {
   color: #d82020;
 }
 
+.valert {
+  color: #d82020;
+}
+
 .userdanger {
   color: #c51e1e;
   font-weight: bold;
@@ -474,7 +502,16 @@ img.icon.bigicon {
   color: #c51e1e;
 }
 
+.vdanger {
+  color: #c51e1e;
+}
+
 .warning {
+  color: #c51e1e;
+  font-style: italic;
+}
+
+.vwarning {
   color: #c51e1e;
   font-style: italic;
 }
@@ -542,6 +579,10 @@ img.icon.bigicon {
 }
 
 .notice {
+  color: #6685f5;
+}
+
+.vnotice {
   color: #6685f5;
 }
 

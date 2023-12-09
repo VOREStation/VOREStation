@@ -1155,6 +1155,7 @@ window "mainwindow"
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "VOREStation"
 		is-maximized = true
+		statusbar = false
 		icon = 'icons\\virgoicon.png'
 		macro = "macro"
 		menu = "menu"
@@ -1168,7 +1169,7 @@ window "mainwindow"
 		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON
-		pos = 560,420
+		pos = 560,400
 		size = 80x20
 		anchor1 = 100,100
 		anchor2 = -1,-1
@@ -1179,7 +1180,7 @@ window "mainwindow"
 	elem "mainvsplit"
 		type = CHILD
 		pos = 3,0
-		size = 634x416
+		size = 634x400
 		anchor1 = 0,0
 		anchor2 = 100,100
 		saved-params = "splitter"
@@ -1187,7 +1188,7 @@ window "mainwindow"
 		is-vert = true
 	elem "input"
 		type = INPUT
-		pos = 3,420
+		pos = 3,400
 		size = 517x20
 		anchor1 = 0,100
 		anchor2 = 100,100
@@ -1195,9 +1196,19 @@ window "mainwindow"
 		is-default = true
 		border = sunken
 		saved-params = "command"
+	elem "status_bar"
+		type = LABEL
+		pos = 3,420
+		size = 517x16
+		anchor1 = 0,100
+		anchor2 = 100,100
+		is-visible = true
+		text = ""
+		align = left
+		border = sunken
 	elem "saybutton"
 		type = BUTTON
-		pos = 520,420
+		pos = 520,400
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = -1,-1
@@ -1222,12 +1233,8 @@ window "mapwindow"
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
+		on-status = ".winset \"status_bar.text=[[*]]\" "
 	elem "map"
 		type = MAP
 		pos = 0,0

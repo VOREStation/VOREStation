@@ -209,10 +209,10 @@ a.popt {
 }
 
 /*****************************************
-*
-* OUTPUT ACTUALLY RELATED TO MESSAGES
-*
-******************************************/
+ *
+ * OUTPUT ACTUALLY RELATED TO MESSAGES
+ *
+ ******************************************/
 
 /* MOTD */
 
@@ -390,6 +390,7 @@ img.icon.bigicon {
 .infoplain,
 .oocplain,
 .warningplain {
+  color: #ffffff;
 }
 
 .nif {
@@ -406,7 +407,7 @@ img.icon.bigicon {
 }
 
 .deadsay {
-  color: #5c00e6;
+  color: #530fad;
 }
 
 .binarysay {
@@ -433,7 +434,7 @@ img.icon.bigicon {
 }
 
 .comradio {
-  color: #337296;
+  color: #193a7a;
 }
 
 .secradio {
@@ -441,15 +442,15 @@ img.icon.bigicon {
 }
 
 .medradio {
-  color: #339661;
+  color: #008160;
 }
 
 .engradio {
-  color: #948f02;
+  color: #a66300;
 }
 
 .supradio {
-  color: #a8732b;
+  color: #5f4519;
 }
 
 .srvradio {
@@ -469,7 +470,7 @@ img.icon.bigicon {
 }
 
 .centradio {
-  color: #686868;
+  color: #5c5c8a;
 }
 
 .airadio {

@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-export const THEMES = ['light', 'dark'];
+export const THEMES = ['light', 'dark', 'vchatlight', 'vchatdark'];
 
 const COLOR_DARK_BG = '#202020';
 const COLOR_DARK_BG_DARKER = '#171717';
@@ -31,7 +31,7 @@ export const setClientTheme = (name) => {
     Byond.command(`.output statbrowser:set_theme ${name}`);
   }, 1500);
 
-  if (name === 'light') {
+  if (name === 'light' || name === 'vchatlight') {
     return Byond.winset({
       // Main windows
       'infowindow.background-color': 'none',
@@ -101,7 +101,7 @@ export const setClientTheme = (name) => {
       'forumb.text-color': '#000000',
     });
   }
-  if (name === 'dark') {
+  if (name === 'dark' || name === 'vchatdark') {
     Byond.winset({
       // Main windows
       'infowindow.background-color': COLOR_DARK_BG,
