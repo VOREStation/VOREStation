@@ -500,6 +500,10 @@ img.icon.bigicon {
   color: #ff0000;
 }
 
+.valert {
+  color: #ff0000;
+}
+
 h1.alert,
 h2.alert {
   color: #000000;
@@ -520,6 +524,10 @@ h2.alert {
   color: #ff0000;
 }
 
+.vdanger {
+  color: #ff0000;
+}
+
 .tinydanger {
   color: #ff0000;
   font-size: 85%;
@@ -531,6 +539,11 @@ h2.alert {
 }
 
 .warning {
+  color: #ff0000;
+  font-style: italic;
+}
+
+.vwarning {
   color: #ff0000;
   font-style: italic;
 }
@@ -598,6 +611,10 @@ h2.alert {
 }
 
 .notice {
+  color: #000099;
+}
+
+.vnotice {
   color: #000099;
 }
 

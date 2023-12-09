@@ -484,6 +484,10 @@ img.icon.bigicon {
   color: #ff0000;
 }
 
+.valert {
+  color: #d82020;
+}
+
 .userdanger {
   color: #c51e1e;
   font-weight: bold;
@@ -499,7 +503,16 @@ img.icon.bigicon {
   color: #c51e1e;
 }
 
+.vdanger {
+  color: #c51e1e;
+}
+
 .warning {
+  color: #c51e1e;
+  font-style: italic;
+}
+
+.vwarning {
   color: #c51e1e;
   font-style: italic;
 }
@@ -563,31 +576,35 @@ img.icon.bigicon {
 }
 
 .info {
-  color: #9ab0ff;
+  color: #6060c9;
 }
 
 .notice {
-  color: #6685f5;
+  color: #6060c9;
+}
+
+.vnotice {
+  color: #6060c9;
 }
 
 .tinynotice {
-  color: #6685f5;
+  color: #6060c9;
   font-size: 85%;
 }
 
 .tinynoticeital {
-  color: #6685f5;
+  color: #6060c9;
   font-style: italic;
   font-size: 85%;
 }
 
 .smallnotice {
-  color: #6685f5;
+  color: #6060c9;
   font-size: 90%;
 }
 
 .smallnoticeital {
-  color: #6685f5;
+  color: #6060c9;
   font-style: italic;
   font-size: 90%;
 }
@@ -598,17 +615,17 @@ img.icon.bigicon {
 }
 
 .boldnotice {
-  color: #6685f5;
+  color: #6060c9;
   font-weight: bold;
 }
 
 .hear {
-  color: #6685f5;
+  color: #6060c9;
   font-style: italic;
 }
 
 .adminnotice {
-  color: #6685f5;
+  color: #6060c9;
 }
 
 .adminhelp {

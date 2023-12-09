@@ -483,6 +483,10 @@ img.icon.bigicon {
   color: #d82020;
 }
 
+.valert {
+  color: #d82020;
+}
+
 .userdanger {
   color: #c51e1e;
   font-weight: bold;
@@ -498,7 +502,16 @@ img.icon.bigicon {
   color: #c51e1e;
 }
 
+.vdanger {
+  color: #c51e1e;
+}
+
 .warning {
+  color: #c51e1e;
+  font-style: italic;
+}
+
+.vwarning {
   color: #c51e1e;
   font-style: italic;
 }
@@ -566,6 +579,10 @@ img.icon.bigicon {
 }
 
 .notice {
+  color: #6685f5;
+}
+
+.vnotice {
   color: #6685f5;
 }
 

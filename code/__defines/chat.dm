@@ -15,6 +15,7 @@
 #define MESSAGE_TYPE_NIF "nif"
 #define MESSAGE_TYPE_INFO "info"
 #define MESSAGE_TYPE_WARNING "warning"
+#define MESSAGE_TYPE_VORE "vore"
 #define MESSAGE_TYPE_DEADCHAT "deadchat"
 #define MESSAGE_TYPE_OOC "ooc"
 #define MESSAGE_TYPE_LOOC "looc"
