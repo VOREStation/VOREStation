@@ -55,6 +55,7 @@
 			desc = initial(desc) + " It's fitted with a prying head."
 			icon_state = "jaws_pry"
 			usesound = 'sound/items/jaws_pry.ogg'
+			pry = 1
 			tool_qualities = list(TOOL_CROWBAR)
 			if(user)
 				playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
@@ -63,6 +64,7 @@
 			desc = initial(desc) + " It's fitted with a cutting head."
 			icon_state = "jaws_cutter"
 			usesound = 'sound/items/jaws_cut.ogg'
+			pry = 0
 			tool_qualities = list(TOOL_WIRECUTTER)
 			if(user)
 				playsound(src, 'sound/items/change_jaws.ogg', 50, 1)

@@ -1,4 +1,4 @@
-/obj/item/weapon/dogborg/jaws/big
+/obj/item/weapon/melee/dogborg/jaws/big
 	name = "combat jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "jaws"
@@ -9,7 +9,7 @@
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/weapon/dogborg/jaws/small
+/obj/item/weapon/melee/dogborg/jaws/small
 	name = "puppy jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "smalljaws"
@@ -21,7 +21,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/emagged = 0
 
-/obj/item/weapon/dogborg/jaws/small/attack_self(mob/user)
+/obj/item/weapon/melee/dogborg/jaws/small/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
@@ -48,7 +48,7 @@
 		update_icon()
 
 // Baton chompers
-/obj/item/weapon/borg_combat_shocker
+/obj/item/weapon/melee/borg_combat_shocker
 	name = "combat shocker"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "combatshocker"
@@ -61,7 +61,7 @@
 	var/charge_cost = 15
 	var/dogborg = FALSE
 
-/obj/item/weapon/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/weapon/melee/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -237,6 +237,7 @@
 	icon_state = "synthtongue"
 	hitsound = 'sound/effects/attackblob.ogg'
 	var/emagged = 0
+	var/busy = 0 	//prevents abuse and runtimes
 
 /obj/item/device/robot_tongue/New()
 	..()
@@ -263,21 +264,27 @@
 		return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(busy)
+		to_chat(user, "<span class='warning'>You are already licking something else.</span>")
+		return
 	if(user.client && (target in user.client.screen))
 		to_chat(user, "<span class='warning'>You need to take \the [target.name] off before cleaning it!</span>")
 		return
 	else if(istype(target,/obj/item))
 		if(istype(target,/obj/item/trash))
 			user.visible_message("<span class='filter_notice'>[user] nibbles away at \the [target.name].</span>", "<span class='notice'>You begin to nibble away at \the [target.name]...</span>")
+			busy = 1
 			if(do_after (user, 50))
 				user.visible_message("<span class='filter_notice'>[user] finishes eating \the [target.name].</span>", "<span class='notice'>You finish eating \the [target.name].</span>")
 				to_chat(user, "<span class='notice'>You finish off \the [target.name].</span>")
 				qdel(target)
 				var/mob/living/silicon/robot/R = user
 				R.cell.charge += 250
+			busy = 0
 			return
 		if(istype(target,/obj/item/weapon/cell))
 			user.visible_message("<span class='filter_notice'>[user] begins cramming \the [target.name] down its throat.</span>", "<span class='notice'>You begin cramming \the [target.name] down your throat...</span>")
+			busy = 1
 			if(do_after (user, 50))
 				user.visible_message("<span class='filter_notice'>[user] finishes gulping down \the [target.name].</span>", "<span class='notice'>You finish swallowing \the [target.name].</span>")
 				to_chat(user, "<span class='notice'>You finish off \the [target.name], and gain some charge!</span>")
@@ -285,6 +292,7 @@
 				var/obj/item/weapon/cell/C = target
 				R.cell.charge += C.charge / 3
 				qdel(target)
+			busy = 0
 			return
 	else if(ishuman(target))
 		if(src.emagged)
@@ -340,12 +348,13 @@
 	recharge_time = 10 //Takes ten ticks to recharge a shot, so don't waste them all!
 	//cell_type = null //Same cell as a taser until edits are made.
 
-/obj/item/weapon/combat_borgblade
+/obj/item/weapon/melee/combat_borgblade
 	name = "energy blade"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
 	desc = "A glowing dagger. It appears to be extremely sharp."
-	force = 20 //Takes 5 hits to 100-0
+	force = 35 //Takes 3 hits to 100-0
+	armor_penetration = 70
 	sharp = TRUE
 	edge = TRUE
 	throwforce = 0 //This shouldn't be thrown in the first place.

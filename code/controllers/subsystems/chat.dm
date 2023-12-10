@@ -1,77 +1,100 @@
+/*!
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
 SUBSYSTEM_DEF(chat)
 	name = "Chat"
-	flags = SS_TICKER
-	wait = 1 // SS_TICKER means this runs every tick
+	flags = SS_TICKER|SS_NO_INIT
+	wait = 1
 	priority = FIRE_PRIORITY_CHAT
 	init_order = INIT_ORDER_CHAT
 
-	var/list/list/msg_queue = list() //List of lists
+	/// Assosciates a ckey with a list of messages to send to them.
+	var/list/list/datum/chat_payload/client_to_payloads = list()
 
-/datum/controller/subsystem/chat/Initialize(timeofday)
-	init_vchat()
-	..()
+	/// Associates a ckey with an assosciative list of their last CHAT_RELIABILITY_HISTORY_SIZE messages.
+	var/list/list/datum/chat_payload/client_to_reliability_history = list()
+
+	/// Assosciates a ckey with their next sequence number.
+	var/list/client_to_sequence_number = list()
+
+/datum/controller/subsystem/chat/proc/generate_payload(client/target, message_data)
+	var/sequence = client_to_sequence_number[target.ckey]
+	client_to_sequence_number[target.ckey] += 1
+
+	var/datum/chat_payload/payload = new
+	payload.sequence = sequence
+	payload.content = message_data
+
+	if(!(target.ckey in client_to_reliability_history))
+		client_to_reliability_history[target.ckey] = list()
+	var/list/client_history = client_to_reliability_history[target.ckey]
+	client_history["[sequence]"] = payload
+
+	if(length(client_history) > CHAT_RELIABILITY_HISTORY_SIZE)
+		var/oldest = text2num(client_history[1])
+		for(var/index in 2 to length(client_history))
+			var/test = text2num(client_history[index])
+			if(test < oldest)
+				oldest = test
+		client_history -= "[oldest]"
+	return payload
+
+/datum/controller/subsystem/chat/proc/send_payload_to_client(client/target, datum/chat_payload/payload)
+	target.tgui_panel.window.send_message("chat/message", payload.into_message())
+	SEND_TEXT(target, payload.get_content_as_html())
 
 /datum/controller/subsystem/chat/fire()
-	var/list/msg_queue = src.msg_queue // Local variable for sanic speed.
-	for(var/client/C as anything in msg_queue)
-		var/list/messages = msg_queue[C]
-		msg_queue -= C
-		if (C)
-			C << output(jsEncode(messages), "htmloutput:putmessage")
+	for(var/ckey in client_to_payloads)
+		var/client/target = GLOB.directory[ckey]
+		if(isnull(target)) // verify client still exists
+			LAZYREMOVE(client_to_payloads, ckey)
+			continue
+
+		for(var/datum/chat_payload/payload as anything in client_to_payloads[ckey])
+			send_payload_to_client(target, payload)
+		LAZYREMOVE(client_to_payloads, ckey)
 
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/chat/stat_entry()
-	..("C:[msg_queue.len]")
+/datum/controller/subsystem/chat/proc/queue(queue_target, list/message_data)
+	var/list/targets = islist(queue_target) ? queue_target : list(queue_target)
+	for(var/target in targets)
+		var/client/client = CLIENT_FROM_VAR(target)
+		if(isnull(client))
+			continue
+		LAZYADDASSOCLIST(client_to_payloads, client.ckey, generate_payload(client, message_data))
 
-/datum/controller/subsystem/chat/proc/queue(target, time, message, handle_whitespace = TRUE)
-	if(!target || !message)
+/datum/controller/subsystem/chat/proc/send_immediate(send_target, list/message_data)
+	var/list/targets = islist(send_target) ? send_target : list(send_target)
+	for(var/target in targets)
+		var/client/client = CLIENT_FROM_VAR(target)
+		if(isnull(client))
+			continue
+		send_payload_to_client(client, generate_payload(client, message_data))
+
+/datum/controller/subsystem/chat/proc/handle_resend(client/client, sequence)
+	var/list/client_history = client_to_reliability_history[client.ckey]
+	sequence = "[sequence]"
+	if(isnull(client_history) || !(sequence in client_history))
 		return
 
-	if(!istext(message))
-		stack_trace("to_chat called with invalid input type")
-		return
+	var/datum/chat_payload/payload = client_history[sequence]
+	if(payload.resends > CHAT_RELIABILITY_MAX_RESENDS)
+		return // we tried but byond said no
 
-	// Currently to_chat(world, ...) gets sent individually to each client.  Consider.
-	if(target == world)
-		target = GLOB.clients
-
-	//Some macros remain in the string even after parsing and fuck up the eventual output
-	var/original_message = message
-	message = replacetext(message, "\n", "<br>")
-	message = replacetext(message, "\improper", "")
-	message = replacetext(message, "\proper", "")
-
-	if(isnull(time))
-		time = world.time
-
-	var/list/messageStruct = list("time" = time, "message" = message);
-
-	if(islist(target))
-		for(var/I in target)
-			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
-
-			if(!C || !C.chatOutput)
-				continue // No client? No care.
-			else if(C.chatOutput.broken)
-				DIRECT_OUTPUT(C, original_message)
-				continue
-			else if(!C.chatOutput.loaded)
-				continue // If not loaded yet, do nothing and history-sending on load will get it.
-
-			LAZYINITLIST(msg_queue[C])
-			msg_queue[C][++msg_queue[C].len] = messageStruct
-	else
-		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
-
-		if(!C || !C.chatOutput)
-			return // No client? No care.
-		else if(C.chatOutput.broken)
-			DIRECT_OUTPUT(C, original_message)
-			return
-		else if(!C.chatOutput.loaded)
-			return // If not loaded yet, do nothing and history-sending on load will get it.
-
-		LAZYINITLIST(msg_queue[C])
-		msg_queue[C][++msg_queue[C].len] = messageStruct
+	payload.resends += 1
+	send_payload_to_client(client, client_history[sequence])
+	/*
+	SSblackbox.record_feedback(
+		"nested tally",
+		"chat_resend_byond_version",
+		1,
+		list(
+			"[client.byond_version]",
+			"[client.byond_build]",
+		),
+	)
+	*/

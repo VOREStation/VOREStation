@@ -217,13 +217,13 @@ var/obj/screen/robot_inventory
 	update_robot_modules_display()
 
 
-/datum/hud/proc/update_robot_modules_display()
+/datum/hud/proc/update_robot_modules_display(var/reset = FALSE)
 	if(!isrobot(mymob))
 		return
 
 	var/mob/living/silicon/robot/r = mymob
 
-	if(r.shown_robot_modules)
+	if(r.shown_robot_modules && !reset)
 		//Modules display is shown
 		//r.client.screen += robot_inventory	//"store" icon
 

@@ -129,6 +129,7 @@ body.inverted {
 .emote					{color: #000000;}
 .inverted .emote			{color: #FFFFFF;}
 .alert					{color: #ff0000;}
+.valert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 /* VOREStation Add Start */
 .nif					{}
@@ -147,12 +148,16 @@ h1.alert, h2.alert		{color: #000000;}
 
 .critical				{color: #ff0000; font-weight: bold; font-size: 150%;}
 .danger					{color: #ff0000; font-weight: bold;}
+.vdanger				{color: #ff0000; font-weight: bold;}
 .warning				{color: #ff0000; font-style: italic;}
+.vwarning				{color: #ff0000; font-style: italic;}
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
 .inverted .info			{color: #6060c9;} /* Dark mode */
 .notice					{color: #000099;}
 .inverted .notice		{color: #6060c9;} /* Dark mode */
+.vnotice				{color: #000099;}
+.inverted .vnotice		{color: #6060c9;} /* Dark mode */
 .alium					{color: #00ff00;}
 .cult					{color: #800080; font-weight: bold; font-style: italic;}
 

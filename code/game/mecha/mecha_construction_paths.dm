@@ -374,7 +374,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -656,7 +656,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -919,7 +919,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //12
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //13
@@ -1159,7 +1159,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -1417,7 +1417,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //11
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //12
@@ -1650,7 +1650,7 @@
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is adjusted"),
 					//17
-					list("key"=/obj/item/weapon/tool/wirecutters,
+					list("key"=IS_WIRECUTTER,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is added"),
 					//18
@@ -1937,7 +1937,7 @@
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is adjusted"),
 					//19
-					list("key"=/obj/item/weapon/tool/wirecutters,
+					list("key"=IS_WIRECUTTER,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is added"),
 					//20

@@ -100,6 +100,31 @@ type Belly = {
   struggle_messages_inside: string[];
   absorbed_struggle_messages_outside: string[];
   absorbed_struggle_messages_inside: string[];
+  escape_attempt_messages_owner: string[];
+  escape_attempt_messages_prey: string[];
+  escape_messages_owner: string[];
+  escape_messages_prey: string[];
+  escape_messages_outside: string[];
+  escape_item_messages_owner: string[];
+  escape_item_messages_prey: string[];
+  escape_item_messages_outside: string[];
+  escape_fail_messages_owner: string[];
+  escape_fail_messages_prey: string[];
+  escape_attempt_absorbed_messages_owner: string[];
+  escape_attempt_absorbed_messages_prey: string[];
+  escape_absorbed_messages_owner: string[];
+  escape_absorbed_messages_prey: string[];
+  escape_absorbed_messages_outside: string[];
+  escape_fail_absorbed_messages_owner: string[];
+  escape_fail_absorbed_messages_prey: string[];
+  primary_transfer_messages_owner: string[];
+  primary_transfer_messages_prey: string[];
+  secondary_transfer_messages_owner: string[];
+  secondary_transfer_messages_prey: string[];
+  digest_chance_messages_owner: string[];
+  digest_chance_messages_prey: string[];
+  absorb_chance_messages_owner: string[];
+  absorb_chance_messages_prey: string[];
   digest_messages_owner: string[];
   digest_messages_prey: string[];
   absorb_messages_owner: string[];
@@ -136,6 +161,7 @@ type Belly = {
   escapable: BooleanLike;
 
   escapechance: number;
+  escapechance_absorbed: number;
   escapetime: number;
 
   transferchance: number;
@@ -189,6 +215,31 @@ const generateBellyString = (belly: Belly, index: number) => {
     struggle_messages_inside,
     absorbed_struggle_messages_outside,
     absorbed_struggle_messages_inside,
+    escape_attempt_messages_owner,
+    escape_attempt_messages_prey,
+    escape_messages_owner,
+    escape_messages_prey,
+    escape_messages_outside,
+    escape_item_messages_owner,
+    escape_item_messages_prey,
+    escape_item_messages_outside,
+    escape_fail_messages_owner,
+    escape_fail_messages_prey,
+    escape_attempt_absorbed_messages_owner,
+    escape_attempt_absorbed_messages_prey,
+    escape_absorbed_messages_owner,
+    escape_absorbed_messages_prey,
+    escape_absorbed_messages_outside,
+    escape_fail_absorbed_messages_owner,
+    escape_fail_absorbed_messages_prey,
+    primary_transfer_messages_owner,
+    primary_transfer_messages_prey,
+    secondary_transfer_messages_owner,
+    secondary_transfer_messages_prey,
+    digest_chance_messages_owner,
+    digest_chance_messages_prey,
+    absorb_chance_messages_owner,
+    absorb_chance_messages_prey,
     digest_messages_owner,
     digest_messages_prey,
     absorb_messages_owner,
@@ -225,6 +276,7 @@ const generateBellyString = (belly: Belly, index: number) => {
     escapable,
 
     escapechance,
+    escapechance_absorbed,
     escapetime,
 
     transferchance,
@@ -274,7 +326,32 @@ const generateBellyString = (belly: Belly, index: number) => {
   result += '<div role="messagesTabpanel">'; // Start Div messagesTabpanel
   result += '<div class="row"><div class="col-4">';
   result += '<div class="list-group" id="messagesList" role="messagesTablist">';
-  result += '<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#struggleMessagesOutside' + index + '" role="tab">Struggle Messages (Outside)</a>';
+  result += '<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#escapeAttemptMessagesOwner' + index + '" role="tab">Escape Attempt Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptMessagesPrey' + index + '" role="tab">Escape Attempt Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesOwner' + index + '" role="tab">Escape Message (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesPrey' + index + '" role="tab">Escape Message (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesOutside' + index + '" role="tab">Escape Message (Outside)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesOwner' + index + '" role="tab">Escape Item Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesPrey' + index + '" role="tab">Escape Item Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesOutside' + index + '" role="tab">Escape Item Messages (Outside)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailMessagesOwner' + index + '" role="tab">Escape Fail Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#esccapeFailMessagesPrey' + index + '" role="tab">Escape Fail Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptAbsorbedMessagesOwner' + index + '" role="tab">Escape Attempt Absorbed Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptAbsorbedMessagesPrey' + index + '" role="tab">Escape Attempt Absorbed Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesOwner' + index + '" role="tab">Escape Absorbed Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesPrey' + index + '" role="tab">Escape Absorbed Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesOutside' + index + '" role="tab">Escape Absorbed Messages (Outside)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailAbsorbedMessagesOwner' + index + '" role="tab">Escape Fail Absorbed Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailAbsorbedMessagesPrey' + index + '" role="tab">Escape Fail Absorbed Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#primaryTransferMessagesOwner' + index + '" role="tab">Primary Transfer Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#primaryTransferMessagesPrey' + index + '" role="tab">Primary Transfer Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#secondaryTransferMessagesOwner' + index + '" role="tab">Secondary Transfer Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#secondaryTransferMessagesPrey' + index + '" role="tab">Secondary Transfer Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesOwner' + index + '" role="tab">Digest Chance Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesPrey' + index + '" role="tab">Digest Chance Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesOwner' + index + '" role="tab">Absorb Chance Messages (Owner)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesPrey' + index + '" role="tab">Absorb Chance Messages (Prey)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesOutside' + index + '" role="tab">Struggle Messages (Outside)</a>';
   result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesInside' + index + '" role="tab">Struggle Messages (Inside)</a>';
   result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleOutside' + index + '" role="tab">Absorbed Struggle Messages (Outside)</a>';
   result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleInside' + index + '" role="tab">Absorbed Struggle Messages (Inside)</a>';
@@ -291,7 +368,157 @@ const generateBellyString = (belly: Belly, index: number) => {
   result += '<div class="col-8">';
   result += '<div class="tab-content">';
 
-  result += '<div class="tab-pane fade show active" id="struggleMessagesOutside' + index + '" role="messagesTabpanel">';
+  result += '<div class="tab-pane fade show active" id="escapeAttemptMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_attempt_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeAttemptMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_attempt_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeMessagesOutside' + index + '" role="messagesTabpanel">';
+  escape_messages_outside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeItemMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_item_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeItemMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_item_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeItemMessagesOutside' + index + '" role="messagesTabpanel">';
+  escape_item_messages_outside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeFailMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_fail_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="esccapeFailMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_fail_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeAttemptAbsorbedMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_attempt_absorbed_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeAttemptAbsorbedMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_attempt_absorbed_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeAbsorbedMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_absorbed_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeAbsorbedMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_absorbed_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeAbsorbedMessagesOutside' + index + '" role="messagesTabpanel">';
+  escape_absorbed_messages_outside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeFailAbsorbedMessagesOwner' + index + '" role="messagesTabpanel">';
+  escape_fail_absorbed_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="escapeFailAbsorbedMessagesPrey' + index + '" role="messagesTabpanel">';
+  escape_fail_absorbed_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="primaryTransferMessagesOwner' + index + '" role="messagesTabpanel">';
+  primary_transfer_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="primaryTransferMessagesPrey' + index + '" role="messagesTabpanel">';
+  primary_transfer_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="secondaryTransferMessagesOwner' + index + '" role="messagesTabpanel">';
+  secondary_transfer_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="secondaryTransferMessagesPrey' + index + '" role="messagesTabpanel">';
+  secondary_transfer_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="digestChanceMessagesOwner' + index + '" role="messagesTabpanel">';
+  digest_chance_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="digestChanceMessagesPrey' + index + '" role="messagesTabpanel">';
+  digest_chance_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="absorbChanceMessagesOwner' + index + '" role="messagesTabpanel">';
+  absorb_chance_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="absorbChanceMessagesPrey' + index + '" role="messagesTabpanel">';
+  absorb_chance_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="struggleMessagesOutside' + index + '" role="messagesTabpanel">';
   struggle_messages_outside?.forEach((msg) => {
     result += msg + '<br>';
   });
@@ -521,6 +748,7 @@ const generateBellyString = (belly: Belly, index: number) => {
   '</span>)</b>';
   result += '<ul class="list-group">';
   result += '<li class="list-group-item">Escape Chance: ' + escapechance + '%</li>';
+  result += '<li class="list-group-item">Escape Chance: ' + escapechance_absorbed + '%</li>';
   result += '<li class="list-group-item">Escape Time: ' + escapetime / 10 + 's</li>';
   result += '<li class="list-group-item">Transfer Chance: ' + transferchance + '%</li>';
   result += '<li class="list-group-item">Transfer Location: ' + transferlocation + '</li>';

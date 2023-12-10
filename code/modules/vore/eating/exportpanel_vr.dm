@@ -69,6 +69,106 @@
 			for(var/msg in B.absorbed_struggle_messages_inside)
 				belly_data["absorbed_struggle_messages_inside"] += msg
 
+			belly_data["escape_attempt_messages_owner"] = list()
+			for(var/msg in B.escape_attempt_messages_owner)
+				belly_data["escape_attempt_messages_owner"] += msg
+
+			belly_data["escape_attempt_messages_prey"] = list()
+			for(var/msg in B.escape_attempt_messages_prey)
+				belly_data["escape_attempt_messages_prey"] += msg
+
+			belly_data["escape_messages_owner"] = list()
+			for(var/msg in B.escape_messages_owner)
+				belly_data["escape_messages_owner"] += msg
+
+			belly_data["escape_messages_prey"] = list()
+			for(var/msg in B.escape_messages_prey)
+				belly_data["escape_messages_prey"] += msg
+
+			belly_data["escape_messages_outside"] = list()
+			for(var/msg in B.escape_messages_outside)
+				belly_data["escape_messages_outside"] += msg
+
+			belly_data["escape_item_messages_owner"] = list()
+			for(var/msg in B.escape_item_messages_owner)
+				belly_data["escape_item_messages_owner"] += msg
+
+			belly_data["escape_item_messages_prey"] = list()
+			for(var/msg in B.escape_item_messages_prey)
+				belly_data["escape_item_messages_prey"] += msg
+
+			belly_data["escape_item_messages_outside"] = list()
+			for(var/msg in B.escape_item_messages_outside)
+				belly_data["escape_item_messages_outside"] += msg
+
+			belly_data["escape_fail_messages_owner"] = list()
+			for(var/msg in B.escape_fail_messages_owner)
+				belly_data["escape_fail_messages_owner"] += msg
+
+			belly_data["escape_fail_messages_prey"] = list()
+			for(var/msg in B.escape_fail_messages_prey)
+				belly_data["escape_fail_messages_prey"] += msg
+
+			belly_data["escape_attempt_absorbed_messages_owner"] = list()
+			for(var/msg in B.escape_attempt_absorbed_messages_owner)
+				belly_data["escape_attempt_absorbed_messages_owner"] += msg
+
+			belly_data["escape_attempt_absorbed_messages_prey"] = list()
+			for(var/msg in B.escape_attempt_absorbed_messages_prey)
+				belly_data["escape_attempt_absorbed_messages_prey"] += msg
+
+			belly_data["escape_absorbed_messages_owner"] = list()
+			for(var/msg in B.escape_absorbed_messages_owner)
+				belly_data["escape_absorbed_messages_owner"] += msg
+
+			belly_data["escape_absorbed_messages_prey"] = list()
+			for(var/msg in B.escape_absorbed_messages_prey)
+				belly_data["escape_absorbed_messages_prey"] += msg
+
+			belly_data["escape_absorbed_messages_outside"] = list()
+			for(var/msg in B.escape_absorbed_messages_outside)
+				belly_data["escape_absorbed_messages_outside"] += msg
+
+			belly_data["escape_fail_absorbed_messages_owner"] = list()
+			for(var/msg in B.escape_fail_absorbed_messages_owner)
+				belly_data["escape_fail_absorbed_messages_owner"] += msg
+
+			belly_data["escape_fail_absorbed_messages_prey"] = list()
+			for(var/msg in B.escape_fail_absorbed_messages_prey)
+				belly_data["escape_fail_absorbed_messages_prey"] += msg
+
+			belly_data["primary_transfer_messages_owner"] = list()
+			for(var/msg in B.primary_transfer_messages_owner)
+				belly_data["primary_transfer_messages_owner"] += msg
+
+			belly_data["primary_transfer_messages_prey"] = list()
+			for(var/msg in B.primary_transfer_messages_prey)
+				belly_data["primary_transfer_messages_prey"] += msg
+
+			belly_data["secondary_transfer_messages_owner"] = list()
+			for(var/msg in B.secondary_transfer_messages_owner)
+				belly_data["secondary_transfer_messages_owner"] += msg
+
+			belly_data["secondary_transfer_messages_prey"] = list()
+			for(var/msg in B.secondary_transfer_messages_prey)
+				belly_data["secondary_transfer_messages_prey"] += msg
+
+			belly_data["digest_chance_messages_owner"] = list()
+			for(var/msg in B.digest_chance_messages_owner)
+				belly_data["digest_chance_messages_owner"] += msg
+
+			belly_data["digest_chance_messages_prey"] = list()
+			for(var/msg in B.digest_chance_messages_prey)
+				belly_data["digest_chance_messages_prey"] += msg
+
+			belly_data["absorb_chance_messages_owner"] = list()
+			for(var/msg in B.absorb_chance_messages_owner)
+				belly_data["absorb_chance_messages_owner"] += msg
+
+			belly_data["absorb_chance_messages_prey"] = list()
+			for(var/msg in B.absorb_chance_messages_prey)
+				belly_data["absorb_chance_messages_prey"] += msg
+
 			belly_data["digest_messages_owner"] = list()
 			for(var/msg in B.digest_messages_owner)
 				belly_data["digest_messages_owner"] += msg
@@ -188,6 +288,7 @@
 			belly_data["escapable"] = B.escapable
 
 			belly_data["escapechance"] = B.escapechance
+			belly_data["escapechance_absorbed"] = B.escapechance_absorbed
 			belly_data["escapetime"] = B.escapetime
 
 			belly_data["transferchance"] = B.transferchance
