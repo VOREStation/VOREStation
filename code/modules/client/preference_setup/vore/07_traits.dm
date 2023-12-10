@@ -5,7 +5,7 @@
 #define ORGANICS	1
 #define SYNTHETICS	2
 
-var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","silver","gold","slimejelly")	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
+var/global/list/valid_bloodreagents = list("iron","copper","phoron","silver","gold","slimejelly")	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
 
 /datum/preferences
 	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
@@ -258,8 +258,7 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 
 	//Any additional non-trait settings can be applied here
 	new_S.blood_color = pref.blood_color
-	if(!(pref.blood_reagents == "default"))
-		new_S.blood_reagents = pref.blood_reagents
+	new_S.blood_reagents = pref.blood_reagents
 
 	if(pref.species == SPECIES_CUSTOM)
 		//Statistics for this would be nice

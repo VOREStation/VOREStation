@@ -43,10 +43,10 @@ export const createMessage = (payload) => ({
   ...payload,
 });
 
-export const serializeMessage = (message, archive = false) => ({
+export const serializeMessage = (message) => ({
   type: message.type,
   text: message.text,
-  html: archive ? message.node.outerHTML : message.html,
+  html: message.html,
   times: message.times,
   createdAt: message.createdAt,
 });

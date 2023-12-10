@@ -9,7 +9,7 @@ import { classes } from 'common/react';
 import { createLogger } from 'tgui/logging';
 import { COMBINE_MAX_MESSAGES, COMBINE_MAX_TIME_WINDOW, IMAGE_RETRY_DELAY, IMAGE_RETRY_LIMIT, IMAGE_RETRY_MESSAGE_AGE, MAX_PERSISTED_MESSAGES, MAX_VISIBLE_MESSAGES, MESSAGE_PRUNE_INTERVAL, MESSAGE_TYPES, MESSAGE_TYPE_INTERNAL, MESSAGE_TYPE_UNKNOWN } from './constants';
 import { render } from 'inferno';
-import { canPageAcceptType, createMessage, isSameMessage, serializeMessage } from './model';
+import { canPageAcceptType, createMessage, isSameMessage } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
 import { Tooltip } from '../../tgui/components';
 
@@ -111,7 +111,6 @@ class ChatRenderer {
     this.rootNode = null;
     this.queue = [];
     this.messages = [];
-    this.archivedMessages = [];
     this.visibleMessages = [];
     this.page = null;
     this.events = new EventEmitter();
@@ -323,7 +322,7 @@ class ChatRenderer {
   }
 
   processBatch(batch, options = {}) {
-    const { prepend, notifyListeners = true, noArchive = false } = options;
+    const { prepend, notifyListeners = true } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
     if (!this.isReady()) {
@@ -460,9 +459,6 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
-      if (!noArchive) {
-        this.archivedMessages.push(serializeMessage(message, true)); // TODO: Actually having a better message archiving maybe for exports?
-      }
       if (canPageAcceptType(this.page, message.type)) {
         fragment.appendChild(node);
         this.visibleMessages.push(message);
@@ -572,12 +568,10 @@ class ChatRenderer {
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
     let messagesHtml = '';
-    // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
-    for (let message of this.archivedMessages) {
-      // if (message.node) {
-      //  messagesHtml += message.node.outerHTML + '\n';
-      // }
-      messagesHtml += message.html + '\n';
+    for (let message of this.visibleMessages) {
+      if (message.node) {
+        messagesHtml += message.node.outerHTML + '\n';
+      }
     }
     // Create a page
     // prettier-ignore
@@ -601,10 +595,6 @@ class ChatRenderer {
       .replace(/[-:]/g, '')
       .replace('T', '-');
     window.navigator.msSaveBlob(blob, `ss13-chatlog-${timestamp}.html`);
-  }
-
-  purgeMessageArchive() {
-    this.archivedMessages = [];
   }
 }
 
