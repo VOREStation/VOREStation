@@ -367,17 +367,17 @@
 	feedback_add_details("admin_verb","THInstm") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_vchat()
-	set name = "Toggle VChat"
+	set name = "Toggle TGChat"
 	set category = "Preferences"
-	set desc = "Toggles VChat. Reloading VChat and/or reconnecting required to affect changes."
+	set desc = "Toggles TGChat. Reloading TGChat and/or reconnecting required to affect changes."
 
 	var/pref_path = /datum/client_preference/vchat_enable
 	toggle_preference(pref_path)
 	SScharacter_setup.queue_preferences_save(prefs)
 
-	to_chat(src, "You have toggled VChat [is_preference_enabled(pref_path) ? "on" : "off"]. \
-		You will have to reload VChat and/or reconnect to the server for these changes to take place. \
-		VChat message persistence is not guaranteed if you change this again before the start of the next round.")
+	to_chat(src, "You have toggled TGChat [is_preference_enabled(pref_path) ? "on" : "off"]. \
+		You will have to reload TGChat and/or reconnect to the server for these changes to take place. \
+		TGChat message persistence is not guaranteed if you change this again before the start of the next round.")
 
 /client/verb/toggle_tgui_inputlock()
 	set name = "Toggle TGUI Input Lock"

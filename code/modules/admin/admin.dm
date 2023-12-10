@@ -8,7 +8,10 @@ var/global/floorIsLava = 0
 
 	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
-			to_chat(C,msg)
+			to_chat(C,
+					type = MESSAGE_TYPE_ADMINLOG,
+					html = msg,
+					confidential = TRUE)
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	var/rendered = "<span class='filter_attacklog log_message'><span class='prefix'>ATTACK:</span> <span class=\"message\">[text]</span></span>"
@@ -16,7 +19,10 @@ var/global/floorIsLava = 0
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			if(C.is_preference_enabled(/datum/client_preference/mod/show_attack_logs))
 				var/msg = rendered
-				to_chat(C,msg)
+				to_chat(C,
+						type = MESSAGE_TYPE_ATTACKLOG,
+						html = msg,
+						confidential = TRUE)
 
 /proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in mob_list)

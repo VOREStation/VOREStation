@@ -276,8 +276,8 @@ default behaviour is:
 		is_shifted = FALSE
 		pixel_x = default_pixel_x
 		pixel_y = default_pixel_y
-		layer = MOB_LAYER
-		plane = MOB_PLANE
+		layer = initial(layer)
+		plane = initial(plane)
 	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
