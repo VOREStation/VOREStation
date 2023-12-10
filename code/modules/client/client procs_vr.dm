@@ -20,7 +20,7 @@
 	if(!config.ipr_email)
 		return -1
 
-	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
+	var/request = "https://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
 	var/http[] = world.Export(request)
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.
@@ -74,7 +74,7 @@
 	if(!config.ipqualityscore_apikey)
 		return -1
 
-	var/request = "http://www.ipqualityscore.com/api/json/ip/[config.ipqualityscore_apikey]/[address]?strictness=1&fast=true&byond_key=[key]"
+	var/request = "https://www.ipqualityscore.com/api/json/ip/[config.ipqualityscore_apikey]/[address]?strictness=1&fast=true&byond_key=[key]"
 	var/http[] = world.Export(request)
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.

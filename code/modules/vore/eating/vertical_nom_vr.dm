@@ -31,17 +31,17 @@
 	if(!target)
 		return
 
-	to_chat(target, "<span class='warning'>You feel yourself being pulled up by something... Or someone?!</span>")
+	to_chat(target, "<span class='vwarning'>You feel yourself being pulled up by something... Or someone?!</span>")
 	var/starting_loc = target.loc
 
 	if(do_after(src, 50))
 		if(target.loc != starting_loc)
-			to_chat(target, "<span class='warning'>You have interrupted whatever that was...</span>")
-			to_chat(src, "<span class='notice'>They got away.</span>")
+			to_chat(target, "<span class='vwarning'>You have interrupted whatever that was...</span>")
+			to_chat(src, "<span class='vnotice'>They got away.</span>")
 			return
 		if(target.buckled)
 			target.buckled.unbuckle_mob()
-		target.visible_message("<span class='warning'>\The [target] suddenly disappears somewhere above!</span>",\
-			"<span class='danger'>You are dragged above and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
-		to_chat(src, "<span class='notice'>You successfully snatch \the [target], slipping them into your [vore_selected].</span>")
+		target.visible_message("<span class='vwarning'>\The [target] suddenly disappears somewhere above!</span>",\
+			"<span class='vdanger'>You are dragged above and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
+		to_chat(src, "<span class='vnotice'>You successfully snatch \the [target], slipping them into your [vore_selected].</span>")
 		target.forceMove(src.vore_selected)

@@ -46,7 +46,9 @@
 
 	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
-			to_chat(C, "<span class='filter_debuglog'>DEBUG: [text]</span>")
+			to_chat(C,
+					type = MESSAGE_TYPE_DEBUG,
+					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")
 
 /proc/log_game(text)
 	if (config.log_game)
