@@ -292,55 +292,6 @@ em {
   font-weight: bold;
 }
 
-.ooc .elevated {
-  color: #2e78d9;
-}
-
-.ooc .moderator {
-  color: #184880;
-}
-
-.ooc .developer {
-  color: #1b521f;
-}
-
-.ooc .admin {
-  color: #b82e00;
-}
-
-.ooc .event_manager {
-  color: #660033;
-}
-
-.ooc .aooc {
-  color: #960018;
-}
-
-img.text_tag {
-  width: 32px;
-  height: 10px;
-  min-height: 10px;
-}
-
-/*BIG IMG.icon 			{width: 32px; height: 32px;}*/
-img.icon {
-  vertical-align: middle;
-  max-height: 1em;
-}
-img.icon.bigicon {
-  max-height: 32px;
-}
-
-.looc {
-  color: #3a9696;
-  font-weight: bold;
-}
-
-.rlooc {
-  color: #3abb96;
-  font-weight: bold;
-}
-
 .adminobserverooc {
   color: #0099cc;
   font-weight: bold;
@@ -361,26 +312,6 @@ img.icon.bigicon {
   font-weight: bold;
 }
 
-.mentor_channel {
-  color: #808000;
-  font-weight: bold;
-}
-
-.mod_channel {
-  color: #735638;
-  font-weight: bold;
-}
-
-.admin_channel {
-  color: #9611d4;
-  font-weight: bold;
-}
-
-.event_channel {
-  color: #cc3399;
-  font-weight: bold;
-}
-
 .name {
   font-weight: bold;
 }
@@ -390,19 +321,6 @@ img.icon.bigicon {
 .infoplain,
 .oocplain,
 .warningplain {
-}
-
-.nif {
-}
-
-.psay {
-  color: #800080;
-  font-style: italic;
-}
-
-.pemote {
-  color: #800080;
-  font-style: italic;
 }
 
 .deadsay {
@@ -433,7 +351,7 @@ img.icon.bigicon {
 }
 
 .comradio {
-  color: #337296;
+  color: #948f02;
 }
 
 .secradio {
@@ -441,23 +359,19 @@ img.icon.bigicon {
 }
 
 .medradio {
-  color: #339661;
+  color: #337296;
 }
 
 .engradio {
-  color: #948f02;
+  color: #fb5613;
 }
 
-.supradio {
+.suppradio {
   color: #a8732b;
 }
 
-.srvradio {
+.servradio {
   color: #6eaa2c;
-}
-
-.expradio {
-  color: #555555;
 }
 
 .syndradio {
@@ -468,11 +382,11 @@ img.icon.bigicon {
   color: #ac2ea1;
 }
 
-.centradio {
+.centcomradio {
   color: #686868;
 }
 
-.airadio {
+.aiprivradio {
   color: #ff00ff;
 }
 
@@ -500,10 +414,6 @@ img.icon.bigicon {
   color: #ff0000;
 }
 
-.valert {
-  color: #ff0000;
-}
-
 h1.alert,
 h2.alert {
   color: #000000;
@@ -524,10 +434,6 @@ h2.alert {
   color: #ff0000;
 }
 
-.vdanger {
-  color: #ff0000;
-}
-
 .tinydanger {
   color: #ff0000;
   font-size: 85%;
@@ -539,11 +445,6 @@ h2.alert {
 }
 
 .warning {
-  color: #ff0000;
-  font-style: italic;
-}
-
-.vwarning {
   color: #ff0000;
   font-style: italic;
 }
@@ -614,10 +515,6 @@ h2.alert {
   color: #000099;
 }
 
-.vnotice {
-  color: #000099;
-}
-
 .tinynotice {
   color: #000099;
   font-size: 85%;
@@ -656,11 +553,6 @@ h2.alert {
 
 .adminhelp {
   color: #ff0000;
-  font-weight: bold;
-}
-
-.log_message {
-  color: #386aff;
   font-weight: bold;
 }
 
@@ -1249,125 +1141,4 @@ $border-width-px: $border-width * 1px;
       5
     );
   }
-}
-
-// Extra Languages
-.tajaran {
-  color: #803b56;
-}
-
-.tajaran_signlang {
-  color: #941c1c;
-}
-
-.akhani {
-  color: #ac398c;
-}
-
-.skrell {
-  color: #00b0b3;
-}
-
-.skrellfar {
-  color: #70fcff;
-}
-
-.soghun {
-  color: #50ba6c;
-}
-
-.solcom {
-  color: #3333ce;
-}
-
-.sergal {
-  color: #0077ff;
-}
-
-.birdsongc {
-  color: #cc9900;
-}
-
-.vulpkanin {
-  color: #b97a57;
-}
-
-.tavan {
-  color: #f54298;
-  font-family: Arial;
-}
-
-.echosong {
-  color: #826d8c;
-}
-
-.enochian {
-  color: #848a33;
-  letter-spacing: -1pt;
-  word-spacing: 4pt;
-  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-}
-
-.daemon {
-  color: #5e339e;
-  letter-spacing: -1pt;
-  word-spacing: 0pt;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.drudakar {
-  color: #bb2463;
-  word-spacing: 0pt;
-  font-family: 'High Tower Text', monospace;
-}
-
-.bug {
-  color: #9e9e39;
-}
-
-.vox {
-  color: #aa00aa;
-}
-
-.promethean {
-  color: #5a5a5a;
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-}
-
-.zaddat {
-  color: #941c1c;
-}
-
-.rough {
-  font-family: 'Trebuchet MS', cursive, sans-serif;
-}
-
-.say_quote {
-  font-family: Georgia, Verdana, sans-serif;
-}
-
-.say_quote_italics {
-  font-style: italic;
-  font-family: Georgia, Verdana, sans-serif;
-}
-
-.terminus {
-  font-family: 'Times New Roman', Times, serif, sans-serif;
-}
-
-.spacer {
-  color: #9c660b;
-}
-
-.teppi {
-  color: #816540;
-  word-spacing: 4pt;
-  font-family: 'Segoe Script Bold', 'Segoe Script', sans-serif, Verdana;
-}
-
-.shadekin {
-  color: #be3cc5;
-  font-size: 150%;
-  font-weight: bold;
-  font-family: 'Gabriola', cursive, sans-serif;
 }

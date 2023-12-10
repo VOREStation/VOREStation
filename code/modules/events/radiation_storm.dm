@@ -34,8 +34,6 @@
 		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
 
 	for(var/mob/living/carbon/C in living_mob_list)
-		if(!(C.z in using_map.station_levels) || C.isSynthetic() || isbelly(C.loc))
-			continue
 		var/area/A = get_area(C)
 		if(!A)
 			continue
@@ -43,9 +41,7 @@
 			continue
 		if(istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			var/chance = 5.0
-			chance -= (chance / 100) * C.getarmor(null, "rad")
-			if(prob(chance))
+			if(prob(5))
 				if (prob(75))
 					randmutb(H) // Applies bad mutation
 					domutcheck(H,null,MUTCHK_FORCED)

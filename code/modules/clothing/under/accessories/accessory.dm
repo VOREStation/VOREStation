@@ -562,10 +562,6 @@
 	name = "white neck gaiter"
 	icon_state = "gaiter_snow"
 
-/obj/item/clothing/accessory/gaiter/half //functions like a gaiter
-	name = "black half-mask"
-	icon_state = "half_mask"
-
 /*
  * Pride Pins
  */
