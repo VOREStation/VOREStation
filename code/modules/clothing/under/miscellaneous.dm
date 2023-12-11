@@ -241,6 +241,25 @@
 	icon_state = "overalls_sleek"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
+/obj/item/clothing/under/overalls/service
+	name = "workman overalls"
+	desc = "The very image of a working man. Not that you're probably doing work."
+	icon_state = "mechanic_over"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/overalls/frontier
+	name = "frontier overalls"
+	desc = "Simple denim overalls. A popular style among frontier colonists, when paired with a flannel."
+	icon_state = "frontier_over"
+	worn_state = "frontier_over"
+
+/obj/item/clothing/under/overalls/rustler
+	name = "rustler overalls"
+	desc = "A rugged pair of overalls for rustling cattle out on the frontier."
+	icon_state = "rustler_over"
+	worn_state = "rustler_over"
+
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
 	desc = "Yarr."
