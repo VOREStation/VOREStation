@@ -72,9 +72,12 @@
 /obj/machinery/recharge_station/proc/process_occupant()
 	if(isrobot(occupant))
 		var/mob/living/silicon/robot/R = occupant
-		if(R.module)
+		var/overcharged = FALSE
+		if(R.cell.maxcharge < R.cell.charge)
+			overcharged = TRUE
+		if(R.module && !overcharged)
 			R.module.respawn_consumable(R, charging_power * CELLRATE / 250) //consumables are magical, apparently
-		if(R.cell && !R.cell.fully_charged())
+		if(R.cell && !R.cell.fully_charged() && !overcharged)
 			var/diff = min(R.cell.maxcharge - R.cell.charge, charging_power * CELLRATE) // Capped by charging_power / tick
 			var/charge_used = cell.use(diff)
 			R.cell.give(charge_used)
