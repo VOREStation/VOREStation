@@ -156,6 +156,7 @@ var/list/preferences_datums = list()
 	var/metadata_likes = ""
 	var/metadata_maybes = ""
 	var/metadata_dislikes = ""
+	var/ooc_note_system = FALSE
 	var/list/ignored_players = list()
 
 	var/client/client = null

@@ -7,6 +7,7 @@
 	var/likes = replacetext(html_decode(src.ooc_notes_likes), "\n", "<BR>")
 	var/maybes = replacetext(html_decode(src.ooc_notes_maybes), "\n", "<BR>")
 	var/dislikes = replacetext(html_decode(src.ooc_notes_dislikes), "\n", "<BR>")
+	var/style = src.client.prefs.ooc_note_system
 	var/dat = {"
 	<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 	<html>
@@ -95,28 +96,28 @@
 		<br>
 		<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">"}
+	if(style)
+		dat += {"<div class='row'><div class='column'>"}
+		if(favs || user == src)
+			dat += {"<div class="collapsible"><b><center>Favourites</center></b></div>"}
+		if(user == src)
+			dat += {"
+					<table>
+						<td class="button">
+							<a href='byond://?src=\ref[src];edit_ooc_note_favs=1' class='button'>Edit</a>
+						</td>
+					</table>
+					"}
 
-	dat += {"<div class='row'><div class='column'>"}
-	if(favs || user == src)
-		dat += {"<div class="collapsible"><b><center>Favourites</center></b></div>"}
-	if(user == src)
-		dat += {"
-				<table>
-					<td class="button">
-						<a href='byond://?src=\ref[src];edit_ooc_note_favs=1' class='button'>Edit</a>
-					</td>
-				</table>
-				"}
-
-	if(favs)
-		dat += {"
-			<div class="content">
-			  <p>[favs]</p>
-			</div>"}
+		if(favs)
+			dat += {"
+				<div class="content">
+				<p>[favs]</p>
+				</div>"}
 
 
-	dat += {"</div>"}
-	dat += {"<div class='column'>"}
+		dat += {"</div>"}
+		dat += {"<div class='column'>"}
 	if(likes || user == src)
 		dat += {"<div class="collapsible_a"><b><center>Likes</center></b></div>"}
 	if(user == src)
@@ -134,9 +135,9 @@
 			  <p>[likes]</p>
 			</div>"}
 
-
-	dat += {"</div>"}
-	dat += {"<div class='column'>"}
+	if(style)
+		dat += {"</div>"}
+		dat += {"<div class='column'>"}
 	if(maybes || user == src)
 		dat += {"<div class="collapsible_b"><b><center>Maybes</center></b></div>"}
 	if(user == src)
@@ -156,9 +157,9 @@
 			"}
 
 
-
-	dat += {"</div>"}
-	dat += {"<div class='column'>"}
+	if(style)
+		dat += {"</div>"}
+		dat += {"<div class='column'>"}
 	if(dislikes || user == src)
 		dat += {"<div class="collapsible_c"><b><center>Dislikes</center></b></div>"}
 	if(user == src)
@@ -176,7 +177,8 @@
 			  <p>[dislikes]</p>
 			</div>
 			"}
-	dat += {"</div></div>"}
+	if(style)
+		dat += {"</div></div>"}
 	dat+= {"	</body>
 			</html>"}
 
