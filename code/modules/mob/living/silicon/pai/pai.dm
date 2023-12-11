@@ -149,7 +149,9 @@
 	// Vorestation Edit: Meta Info for pAI
 	if (client.prefs)
 		ooc_notes = client.prefs.metadata
+		ooc_notes_favs = client.prefs.metadata_favs
 		ooc_notes_likes = client.prefs.metadata_likes
+		ooc_notes_maybes = client.prefs.metadata_maybes
 		ooc_notes_dislikes = client.prefs.metadata_dislikes
 
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add

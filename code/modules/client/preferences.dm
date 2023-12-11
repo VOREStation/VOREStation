@@ -152,7 +152,9 @@ var/list/preferences_datums = list()
 
 	// OOC Metadata:
 	var/metadata = ""
+	var/metadata_favs = ""
 	var/metadata_likes = ""
+	var/metadata_maybes = ""
 	var/metadata_dislikes = ""
 	var/list/ignored_players = list()
 

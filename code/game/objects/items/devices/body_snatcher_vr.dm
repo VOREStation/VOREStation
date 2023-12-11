@@ -40,10 +40,14 @@
 					var/datum/mind/user_mind = user.mind
 					var/datum/mind/prey_mind = M.mind
 					var/target_ooc_notes = M.ooc_notes
+					var/target_favs = M.ooc_notes_favs
 					var/target_likes = M.ooc_notes_likes
+					var/target_maybes = M.ooc_notes_maybes
 					var/target_dislikes = M.ooc_notes_dislikes
 					var/user_ooc_notes = user.ooc_notes
+					var/user_favs = user.ooc_notes_favs
 					var/user_likes = user.ooc_notes_likes
+					var/user_maybes = user.ooc_notes_maybes
 					var/user_dislikes = user.ooc_notes_dislikes
 					M.ghostize()
 					usr.ghostize()
@@ -56,10 +60,14 @@
 					prey_mind.active = TRUE
 					prey_mind.transfer_to(user)
 					M.ooc_notes = user_ooc_notes //Let's keep their OOC notes over to their new body.
+					M.ooc_notes_favs = user_favs
 					M.ooc_notes_likes = user_likes
+					M.ooc_notes_maybes = user_maybes
 					M.ooc_notes_dislikes = user_dislikes
 					user.ooc_notes = target_ooc_notes
+					user.ooc_notes_favs = target_favs
 					user.ooc_notes_likes = target_likes
+					user.ooc_notes_maybes = target_maybes
 					user.ooc_notes_dislikes = target_dislikes
 					usr.sleeping = 10 //Device knocks out both the user and the target.
 					usr.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision

@@ -381,7 +381,9 @@ var/global/list/disallowed_protean_accessories = list(
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
 	blob.ooc_notes = ooc_notes
+	blob.ooc_notes_favs = ooc_notes_favs
 	blob.ooc_notes_likes = ooc_notes_likes
+	blob.ooc_notes_maybes = ooc_notes_maybes
 	blob.ooc_notes_dislikes = ooc_notes_dislikes
 	temporary_form = blob
 
@@ -465,7 +467,9 @@ var/global/list/disallowed_protean_accessories = list(
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
 	ooc_notes = blob.ooc_notes // Lets give the protean any updated notes from blob form.
+	ooc_notes_favs = blob.ooc_notes_favs
 	ooc_notes_likes = blob.ooc_notes_likes
+	ooc_notes_maybes = blob.ooc_notes_maybes
 	ooc_notes_dislikes = blob.ooc_notes_dislikes
 	temporary_form = null
 

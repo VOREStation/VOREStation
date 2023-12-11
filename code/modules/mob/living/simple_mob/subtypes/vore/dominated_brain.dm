@@ -13,10 +13,14 @@
 	var/mob/living/pred_body		//The body of the person who was dominated
 	var/pred_ckey					//The ckey of the person who was dominated
 	var/pred_ooc_notes
+	var/pred_ooc_favs
 	var/pred_ooc_likes
+	var/pred_ooc_maybes
 	var/pred_ooc_dislikes
 	var/prey_ooc_notes
+	var/prey_ooc_favs
 	var/prey_ooc_likes
+	var/prey_ooc_maybes
 	var/prey_ooc_dislikes
 
 /mob/living/dominated_brain/New(loc, var/mob/living/pred, preyname, var/mob/living/prey)
@@ -112,7 +116,9 @@
 		src.languages -= src.temp_languages
 		prey_goes_here.languages |= src.prey_langs
 		prey_goes_here.ooc_notes = prey_ooc_notes
+		prey_goes_here.ooc_notes_favs = prey_ooc_favs
 		prey_goes_here.ooc_notes_likes = prey_ooc_likes
+		prey_goes_here.ooc_notes_maybes = prey_ooc_maybes
 		prey_goes_here.ooc_notes_dislikes = prey_ooc_dislikes
 		prey_goes_here.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
 
@@ -128,7 +134,9 @@
 		prey_goes_here.languages |= src.prey_langs
 		prey_goes_here.real_name = src.prey_name
 		prey_goes_here.ooc_notes = prey_ooc_notes
+		prey_goes_here.ooc_notes_favs = prey_ooc_favs
 		prey_goes_here.ooc_notes_likes = prey_ooc_likes
+		prey_goes_here.ooc_notes_maybes = prey_ooc_maybes
 		prey_goes_here.ooc_notes_dislikes = prey_ooc_dislikes
 
 	///////////////////
@@ -140,7 +148,9 @@
 	prey_goes_here.ckey = src.prey_ckey
 	pred_body.ckey = src.pred_ckey
 	pred_body.ooc_notes = pred_ooc_notes
+	pred_body.ooc_notes_favs = pred_ooc_favs
 	pred_body.ooc_notes_likes = pred_ooc_likes
+	pred_body.ooc_notes_maybes = pred_ooc_maybes
 	pred_body.ooc_notes_dislikes = pred_ooc_dislikes
 	log_and_message_admins("[pred_body] is now controlled by [pred_body.ckey]. They were restored to control through prey domination, and had been controlled by [prey_ckey].")
 	pred_body.absorb_langs()
@@ -239,10 +249,14 @@
 		pred_brain = new /mob/living/dominated_brain(pred, pred, name, prey)
 
 	pred_brain.prey_ooc_notes = prey.ooc_notes
+	pred_brain.prey_ooc_favs = prey.ooc_notes_favs
 	pred_brain.prey_ooc_likes = prey.ooc_notes_likes
+	pred_brain.prey_ooc_maybes = prey.ooc_notes_maybes
 	pred_brain.prey_ooc_dislikes = prey.ooc_notes_dislikes
 	pred_brain.pred_ooc_notes = pred.ooc_notes
+	pred_brain.pred_ooc_favs = pred.ooc_notes_favs
 	pred_brain.pred_ooc_likes = pred.ooc_notes_likes
+	pred_brain.pred_ooc_maybes = pred.ooc_notes_maybes
 	pred_brain.pred_ooc_dislikes = pred.ooc_notes_dislikes
 
 	pred_brain.name = pred.name
@@ -254,7 +268,9 @@
 	pred_brain.pred_ckey = pred.ckey
 	pred_brain.pred_body.absorb_langs()
 	pred.ooc_notes = pred_brain.prey_ooc_notes
+	pred.ooc_notes_favs = pred_brain.prey_ooc_favs
 	pred.ooc_notes_likes = pred_brain.prey_ooc_likes
+	pred.ooc_notes_maybes = pred_brain.prey_ooc_maybes
 	pred.ooc_notes_dislikes = pred_brain.prey_ooc_dislikes
 
 	pred.verbs |= /mob/proc/release_predator
@@ -359,10 +375,14 @@
 	M.languages -= M.temp_languages
 	db.languages |= M.languages
 	db.ooc_notes = M.ooc_notes
+	db.ooc_notes_favs = M.ooc_notes_favs
 	db.ooc_notes_likes = M.ooc_notes_likes
+	db.ooc_notes_maybes = M.ooc_notes_maybes
 	db.ooc_notes_dislikes = M.ooc_notes_dislikes
+	db.prey_ooc_favs = M.ooc_notes_favs
 	db.prey_ooc_likes = M.ooc_notes_likes
-	db.prey_ooc_likes = M.ooc_notes_dislikes
+	db.prey_ooc_maybes = M.ooc_notes_maybes
+	db.prey_ooc_dislikes = M.ooc_notes_dislikes
 	db.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
 
 	absorb_langs()
@@ -464,10 +484,14 @@
 		pred_brain = new /mob/living/dominated_brain(pred, pred, name, prey)
 
 	pred_brain.prey_ooc_notes = prey.ooc_notes
+	pred_brain.prey_ooc_favs = prey.ooc_notes_favs
 	pred_brain.prey_ooc_likes = prey.ooc_notes_likes
+	pred_brain.prey_ooc_maybes = prey.ooc_notes_maybes
 	pred_brain.prey_ooc_dislikes = prey.ooc_notes_dislikes
 	pred_brain.pred_ooc_notes = pred.ooc_notes
+	pred_brain.pred_ooc_favs = pred.ooc_notes_favs
 	pred_brain.pred_ooc_likes = pred.ooc_notes_likes
+	pred_brain.pred_ooc_maybes = pred.ooc_notes_maybes
 	pred_brain.pred_ooc_dislikes = pred.ooc_notes_dislikes
 	pred_brain.name = pred.name
 	var/list/preylangs = list()
@@ -478,7 +502,9 @@
 	pred_brain.pred_ckey = pred.ckey
 	pred_brain.pred_body.absorb_langs()
 	pred.ooc_notes = pred_brain.prey_ooc_notes
+	pred.ooc_notes_favs = pred_brain.prey_ooc_favs
 	pred.ooc_notes_likes = pred_brain.prey_ooc_likes
+	pred.ooc_notes_maybes = pred_brain.prey_ooc_maybes
 	pred.ooc_notes_dislikes = pred_brain.prey_ooc_dislikes
 
 	pred.verbs |= /mob/proc/release_predator

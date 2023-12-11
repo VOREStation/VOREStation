@@ -18,7 +18,9 @@
 /mob/living/proc/login_prefs()
 
 	ooc_notes = client.prefs.metadata
+	ooc_notes_favs = client.prefs.metadata_favs
 	ooc_notes_likes = client.prefs.metadata_likes
+	ooc_notes_maybes = client.prefs.metadata_maybes
 	ooc_notes_dislikes = client.prefs.metadata_dislikes
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable

@@ -116,7 +116,9 @@
 
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
+	H.ooc_notes_favs = current_project.body_oocfavs
 	H.ooc_notes_likes = current_project.body_ooclikes
+	H.ooc_notes_maybes = current_project.body_oocmaybes
 	H.ooc_notes_dislikes = current_project.body_oocdislikes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult, FALSE)
@@ -339,7 +341,9 @@
 
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
+	H.ooc_notes_favs = current_project.body_oocfavs
 	H.ooc_notes_likes = current_project.body_ooclikes
+	H.ooc_notes_maybes = current_project.body_oocmaybes
 	H.ooc_notes_dislikes = current_project.body_oocdislikes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult)
@@ -589,7 +593,9 @@
 	MR.mind_ref.transfer_to(occupant) //Does mind+ckey+client.
 	occupant.identifying_gender = MR.id_gender
 	occupant.ooc_notes = MR.mind_oocnotes
+	occupant.ooc_notes_favs = MR.mind_oocfavs
 	occupant.ooc_notes_likes = MR.mind_ooclikes
+	occupant.ooc_notes_maybes = MR.mind_oocmaybes
 	occupant.ooc_notes_dislikes = MR.mind_oocdislikes
 
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.

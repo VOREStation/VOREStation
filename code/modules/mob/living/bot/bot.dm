@@ -517,7 +517,9 @@
 	src.ckey = AI.ckey
 	name = AI.name
 	ooc_notes = AI.ooc_notes
+	ooc_notes_favs = AI.ooc_notes_favs
 	ooc_notes_likes = AI.ooc_notes_likes
+	ooc_notes_maybes = AI.ooc_notes_maybes
 	ooc_notes_dislikes = AI.ooc_notes_dislikes
 	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
 	if(AI.idcard.access)
@@ -528,7 +530,9 @@
 		var/mob/living/silicon/pai/AI = paicard.pai
 		AI.ckey = src.ckey
 		AI.ooc_notes = ooc_notes
+		AI.ooc_notes_favs = ooc_notes_favs
 		AI.ooc_notes_likes = ooc_notes_likes
+		AI.ooc_notes_maybes = ooc_notes_maybes
 		AI.ooc_notes_dislikes = ooc_notes_dislikes
 		paicard.forceMove(src.loc)
 		paicard = null

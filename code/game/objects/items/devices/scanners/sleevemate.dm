@@ -18,7 +18,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	var/datum/mind/stored_mind
 
 	var/ooc_notes = null //For holding prefs
+	var/ooc_notes_favs = null
 	var/ooc_notes_likes = null
+	var/ooc_notes_maybes = null
 	var/ooc_notes_dislikes = null
 
 	// Resleeving database this machine interacts with. Blank for default database
@@ -34,14 +36,18 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 /obj/item/device/sleevemate/proc/clear_mind()
 	stored_mind = null
 	ooc_notes = null
+	ooc_notes_favs = null
 	ooc_notes_likes = null
+	ooc_notes_maybes = null
 	ooc_notes_dislikes = null
 	update_icon()
 
 /obj/item/device/sleevemate/proc/get_mind(mob/living/M)
 	ASSERT(M.mind)
 	ooc_notes = M.ooc_notes
+	ooc_notes_favs = M.ooc_notes_favs
 	ooc_notes_likes = M.ooc_notes_likes
+	ooc_notes_maybes = M.ooc_notes_maybes
 	ooc_notes_dislikes = M.ooc_notes_dislikes
 	stored_mind = M.mind
 	M.ghostize()
@@ -52,7 +58,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	stored_mind.active = TRUE
 	stored_mind.transfer_to(M)
 	M.ooc_notes = ooc_notes
+	M.ooc_notes_favs = ooc_notes_favs
 	M.ooc_notes_likes = ooc_notes_likes
+	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_dislikes = ooc_notes_dislikes
 	clear_mind()
 

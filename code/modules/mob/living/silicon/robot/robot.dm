@@ -391,7 +391,9 @@
 		var/meta_info = client.prefs.metadata
 		if (meta_info)
 			ooc_notes = meta_info
+			ooc_notes_favs = client.prefs.metadata_favs
 			ooc_notes_likes = client.prefs.metadata_likes
+			ooc_notes_maybes = client.prefs.metadata_maybes
 			ooc_notes_dislikes = client.prefs.metadata_dislikes
 		custom_link = client.prefs.custom_link
 

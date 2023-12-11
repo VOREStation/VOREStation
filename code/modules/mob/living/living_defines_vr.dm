@@ -5,7 +5,9 @@
 	var/autowhisper_mode = null			// Mode to use with autowhisper
 /mob/living
 	var/ooc_notes = null
+	var/ooc_notes_favs = null
 	var/ooc_notes_likes = null
+	var/ooc_notes_maybes = null
 	var/ooc_notes_dislikes = null
 	var/custom_link = null
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
