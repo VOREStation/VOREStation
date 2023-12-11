@@ -114,14 +114,14 @@
 		return
 	var/msg = ooc_notes
 	if(ooc_notes_favs)
-		msg += "<br><br><b>FAVS</b><br><br>[ooc_notes_favs]"
+		msg += "<br><br><b>FAVS</b><br>[ooc_notes_favs]"
 	if(ooc_notes_likes)
-		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
+		msg += "<br><br><b>LIKES</b><br>[ooc_notes_likes]"
 	if(ooc_notes_maybes)
-		msg += "<br><br><b>MAYBES</b><br><br>[ooc_notes_maybes]"
+		msg += "<br><br><b>MAYBES</b><br>[ooc_notes_maybes]"
 	if(ooc_notes_dislikes)
-		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(usr, "<span class='filter_notice'><b>[src]'s Metainfo:</b><br><br>[msg]</span>")
+		msg += "<br><br><b>DISLIKES</b><br>[ooc_notes_dislikes]"
+	to_chat(usr, "<span class='chatexport'><b>[src]'s Metainfo:</b><br>[msg]</span>")
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
