@@ -17,7 +17,7 @@
 				box-sizing: border-box;
 				}
 				.collapsible {
-					background-color: #1c44bd;
+					background-color: #1a1e3f;
 					color: white;
 					width: 100%;
 					text-align: left;
@@ -31,7 +31,7 @@
 					font-size: 20px;
 				}
 				.collapsible_b {
-					background-color: #b08309;
+					background-color: #3e3f1a;
 					color: white;
 					width: 100%;
 					text-align: left;
