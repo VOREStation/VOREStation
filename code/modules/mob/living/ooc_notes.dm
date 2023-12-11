@@ -13,7 +13,7 @@
 		<head>
 			<style>
 				* {
-					box-sizing: border-box;
+				box-sizing: border-box;
 				}
 				.collapsible {
 					background-color: #1c44bd;
@@ -89,7 +89,9 @@
 
 	dat += {"
 		<br>
-		<p>[notes]</p>
+			<div class="content">
+				<p>[notes]</p>
+			</div>
 		<br>
 		<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">"}
