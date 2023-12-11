@@ -121,7 +121,7 @@
 		msg += "<br><br><b>MAYBES</b><br><br>[ooc_notes_maybes]"
 	if(ooc_notes_dislikes)
 		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(usr, "<span class='filter_notice'>[src]'s Metainfo:<br>[msg]</span>")
+	to_chat(usr, "<span class='filter_notice'><b>[src]'s Metainfo:</b><br><br>[msg]</span>")
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
