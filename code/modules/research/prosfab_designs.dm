@@ -528,3 +528,21 @@
 	id = "misc_synth_bag_tag_bishop"
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 2000, MAT_PLASTIC = 500)
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/bishop
+
+// Replacement protean bits
+
+/datum/design/item/prosfab/orchestrator
+	name = "Protean Orchestrator"
+	id = "prot_orch"
+	build_path = /obj/item/organ/internal/nano/orchestrator
+	time = 30
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000)
+	//req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
+
+/datum/design/item/prosfab/refactory
+	name = "Protean Refactory"
+	id = "prot_refact"
+	build_path = /obj/item/organ/internal/nano/refactory
+	time = 30
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000)
+	//req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
