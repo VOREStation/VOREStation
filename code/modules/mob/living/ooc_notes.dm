@@ -7,7 +7,7 @@
 	var/likes = replacetext(html_decode(src.ooc_notes_likes), "\n", "<BR>")
 	var/maybes = replacetext(html_decode(src.ooc_notes_maybes), "\n", "<BR>")
 	var/dislikes = replacetext(html_decode(src.ooc_notes_dislikes), "\n", "<BR>")
-	var/style = src.client.prefs.ooc_note_system
+	var/style = src.ooc_notes_style
 	var/dat = {"
 	<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 	<html>
@@ -75,8 +75,20 @@
 			<td class="button">
 				<a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1' class='button'>Print to chat</a>
 			</td>
-			</table>
 			"}
+	if(style)
+		dat += {"
+			<td class="button">
+				<a href='byond://?src=\ref[src];set_metainfo_ooc_style=1' class='button'>Lists</a>
+			</td>
+			"}
+	else
+		dat += {"
+			<td class="button">
+				<a href='byond://?src=\ref[src];set_metainfo_ooc_style=1' class='button'>Fields</a>
+			</td>
+			"}
+	dat += {"</table>"}
 
 	if(user == src)
 		dat += {"

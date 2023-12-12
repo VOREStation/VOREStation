@@ -385,6 +385,7 @@ var/global/list/disallowed_protean_accessories = list(
 	blob.ooc_notes_likes = ooc_notes_likes
 	blob.ooc_notes_maybes = ooc_notes_maybes
 	blob.ooc_notes_dislikes = ooc_notes_dislikes
+	blob.ooc_notes_style = ooc_notes_style
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -471,6 +472,7 @@ var/global/list/disallowed_protean_accessories = list(
 	ooc_notes_likes = blob.ooc_notes_likes
 	ooc_notes_maybes = blob.ooc_notes_maybes
 	ooc_notes_dislikes = blob.ooc_notes_dislikes
+	ooc_notes_style = blob.ooc_notes_style
 	temporary_form = null
 
 	//Transfer vore organs

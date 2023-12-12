@@ -396,6 +396,7 @@
 	blob.ooc_notes_likes = ooc_notes_likes
 	blob.ooc_notes_maybes = ooc_notes_maybes
 	blob.ooc_notes_dislikes = ooc_notes_dislikes
+	blob.ooc_notes_style = ooc_notes_style
 	blob.transforming = FALSE
 	blob.name = name
 	blob.nutrition = nutrition
@@ -472,6 +473,7 @@
 	ooc_notes_likes = blob.ooc_notes_likes
 	ooc_notes_maybes = blob.ooc_notes_maybes
 	ooc_notes_dislikes = blob.ooc_notes_dislikes
+	ooc_notes_style = blob.ooc_notes_style
 	transforming = FALSE
 	blob.name = "Promethean Blob"
 	var/obj/item/hat = blob.hat

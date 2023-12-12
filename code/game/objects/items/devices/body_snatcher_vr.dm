@@ -44,11 +44,13 @@
 					var/target_likes = M.ooc_notes_likes
 					var/target_maybes = M.ooc_notes_maybes
 					var/target_dislikes = M.ooc_notes_dislikes
+					var/target_style = M.ooc_notes_style
 					var/user_ooc_notes = user.ooc_notes
 					var/user_favs = user.ooc_notes_favs
 					var/user_likes = user.ooc_notes_likes
 					var/user_maybes = user.ooc_notes_maybes
 					var/user_dislikes = user.ooc_notes_dislikes
+					var/user_style = user.ooc_notes_style
 					M.ghostize()
 					usr.ghostize()
 					usr.mind = null
@@ -64,11 +66,13 @@
 					M.ooc_notes_likes = user_likes
 					M.ooc_notes_maybes = user_maybes
 					M.ooc_notes_dislikes = user_dislikes
+					M.ooc_notes_style = user_style
 					user.ooc_notes = target_ooc_notes
 					user.ooc_notes_favs = target_favs
 					user.ooc_notes_likes = target_likes
 					user.ooc_notes_maybes = target_maybes
 					user.ooc_notes_dislikes = target_dislikes
+					user.ooc_notes_style = target_style
 					usr.sleeping = 10 //Device knocks out both the user and the target.
 					usr.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision
 					usr.slurring = 50 //And let's also have them slurring while they attempt to get used to using their new body.

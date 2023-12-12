@@ -49,6 +49,7 @@
 	infomorph.ooc_notes_likes = MR.mind_ooclikes
 	infomorph.ooc_notes_maybes = MR.mind_oocmaybes
 	infomorph.ooc_notes_dislikes = MR.mind_oocdislikes
+	infomorph.ooc_notes_style = MR.mind_oocstyle
 	infomorph.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
 	//Don't set 'real_name' because then we get a nice (as sleevecard) thing.

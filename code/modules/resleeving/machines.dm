@@ -120,6 +120,7 @@
 	H.ooc_notes_likes = current_project.body_ooclikes
 	H.ooc_notes_maybes = current_project.body_oocmaybes
 	H.ooc_notes_dislikes = current_project.body_oocdislikes
+	H.ooc_notes_style = current_project.body_oocstyle
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult, FALSE)
 	H.appearance_flags = current_project.aflags
@@ -345,6 +346,7 @@
 	H.ooc_notes_likes = current_project.body_ooclikes
 	H.ooc_notes_maybes = current_project.body_oocmaybes
 	H.ooc_notes_dislikes = current_project.body_oocdislikes
+	H.ooc_notes_style = current_project.body_oocstyle
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult)
 	H.appearance_flags = current_project.aflags
@@ -597,6 +599,7 @@
 	occupant.ooc_notes_likes = MR.mind_ooclikes
 	occupant.ooc_notes_maybes = MR.mind_oocmaybes
 	occupant.ooc_notes_dislikes = MR.mind_oocdislikes
+	occupant.ooc_notes_style = MR.mind_oocstyle
 
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 	if(MR.one_time)

@@ -9,6 +9,7 @@
 	var/ooc_notes_likes = null
 	var/ooc_notes_maybes = null
 	var/ooc_notes_dislikes = null
+	var/ooc_notes_style = FALSE
 	var/custom_link = null
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	var/hunger_rate = DEFAULT_HUNGER_FACTOR

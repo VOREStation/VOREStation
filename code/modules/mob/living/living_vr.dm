@@ -100,6 +100,14 @@
 		if(reopen)
 			ooc_notes_window(usr)
 
+/mob/living/proc/set_metainfo_ooc_style(var/reopen = TRUE)
+	if(usr != src)
+		return
+	ooc_notes_style = !ooc_notes_style
+	client.prefs.matadata_ooc_style = !client.prefs.matadata_ooc_style
+	if(reopen)
+		ooc_notes_window(usr)
+
 /mob/living/proc/save_ooc_panel()
 	if(usr != src)
 		return

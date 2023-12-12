@@ -521,6 +521,7 @@
 	ooc_notes_likes = AI.ooc_notes_likes
 	ooc_notes_maybes = AI.ooc_notes_maybes
 	ooc_notes_dislikes = AI.ooc_notes_dislikes
+	ooc_notes_style = AI.ooc_notes_style
 	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
 	if(AI.idcard.access)
 		botcard.access	|= AI.idcard.access
@@ -534,6 +535,7 @@
 		AI.ooc_notes_likes = ooc_notes_likes
 		AI.ooc_notes_maybes = ooc_notes_maybes
 		AI.ooc_notes_dislikes = ooc_notes_dislikes
+		AI.ooc_notes_style = ooc_notes_style
 		paicard.forceMove(src.loc)
 		paicard = null
 		name = initial(name)

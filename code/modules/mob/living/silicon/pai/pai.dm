@@ -153,6 +153,7 @@
 		ooc_notes_likes = client.prefs.metadata_likes
 		ooc_notes_maybes = client.prefs.metadata_maybes
 		ooc_notes_dislikes = client.prefs.metadata_dislikes
+		ooc_notes_style = client.prefs.matadata_ooc_style
 
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add
 

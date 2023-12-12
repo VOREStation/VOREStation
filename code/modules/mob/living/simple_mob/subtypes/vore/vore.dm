@@ -22,6 +22,7 @@
 	ooc_notes_likes = client.prefs.metadata_likes
 	ooc_notes_maybes = client.prefs.metadata_maybes
 	ooc_notes_dislikes = client.prefs.metadata_dislikes
+	ooc_notes_style = client.prefs.matadata_ooc_style
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable
 	absorbable = client.prefs_vr.absorbable

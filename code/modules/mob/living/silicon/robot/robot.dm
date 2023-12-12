@@ -395,6 +395,7 @@
 			ooc_notes_likes = client.prefs.metadata_likes
 			ooc_notes_maybes = client.prefs.metadata_maybes
 			ooc_notes_dislikes = client.prefs.metadata_dislikes
+			ooc_notes_style = client.prefs.matadata_ooc_style
 		custom_link = client.prefs.custom_link
 
 /mob/living/silicon/robot/verb/namepick()
