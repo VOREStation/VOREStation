@@ -53,6 +53,8 @@ export const setClientTheme = (name) => {
       'forumb.text-color': '#000000',
       'hotkey_toggle.background-color': 'none',
       'hotkey_toggle.text-color': '#000000',
+      'status_bar.background-color': '#FFFFFF',
+      'status_bar.text-color': '#000000',
     });
 
     return Byond.winset({
@@ -128,6 +130,8 @@ export const setClientTheme = (name) => {
       'forumb.text-color': COLOR_DARK_TEXT,
       'hotkey_toggle.background-color': COLOR_DARK_BG,
       'hotkey_toggle.text-color': COLOR_DARK_TEXT,
+      'status_bar.background-color': COLOR_DARK_BG_DARKER,
+      'status_bar.text-color': COLOR_DARK_TEXT,
     });
 
     Byond.winset({
