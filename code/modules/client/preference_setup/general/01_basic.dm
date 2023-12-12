@@ -27,7 +27,7 @@
 	S["OOC_Notes_Likes"]		>> pref.metadata_likes
 	S["OOC_Notes_Maybes"]		>> pref.metadata_maybes
 	S["OOC_Notes_Disikes"]		>> pref.metadata_dislikes
-	S["OOC_Notes_System"]		<< pref.ooc_note_system
+	S["OOC_Notes_System"]		>> pref.ooc_note_system
 
 /datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
 	S["real_name"]				<< pref.real_name
