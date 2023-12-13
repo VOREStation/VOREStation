@@ -291,9 +291,20 @@
 	display_name = "jumpsuit, circuitry (empty)"
 	path = /obj/item/clothing/under/circuitry
 
-/datum/gear/uniform/sleekoverall
-	display_name = "sleek overalls"
-	path = /obj/item/clothing/under/overalls/sleek
+/datum/gear/uniform/overalls
+	display_name = "overalls selection"
+	path = /obj/item/clothing/under/overalls
+
+/datum/gear/uniform/overalls/New()
+	..()
+	var/list/overalls = list(
+	"Laborer's Overalls" = /obj/item/clothing/under/overalls,
+	"Sleek Overalls" = /obj/item/clothing/under/overalls/sleek,
+	"Workman Overalls" = /obj/item/clothing/under/overalls/service,
+	"Frontier Overalls" = /obj/item/clothing/under/overalls/frontier,
+	"Rustler Overalls" = /obj/item/clothing/under/overalls/rustler
+	)
+	gear_tweaks += new/datum/gear_tweak/path(overalls)
 
 /datum/gear/uniform/sarired
 	display_name = "sari, red"
