@@ -933,6 +933,13 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/vr_knees_to_chest
+	name = "knees to chest"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "knees_to_chest"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO,BP_GROIN,BP_L_LEG,BP_R_LEG)
+
 /datum/sprite_accessory/marking/vr_sect_drone
 	name = "Sect Drone Bodytype"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
