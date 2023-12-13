@@ -1,7 +1,7 @@
 /obj/machinery/protean_reconstitutor
 	name = "protean reconstitutor"
 	desc = "A complex machine that is most definitely <i>not</i> just a large tub into which one pours a large amount of untethered nanites, then adds a protean positronic brain and orchestrator, in order to reconstitute a disintegrated protean... it's complicated, really!"
-	description_info = "Use a protean positronic brain, orchestrator, optionally a refactory, and nanopaste to \'fill\' the machine, then interact with it once it's ready. Protean components can be retrieved using a wrench, but any nanopaste inserted will be converted, cannot be reclaimed, and will be lost if the machine is disassembled!"
+	description_info = "Use a protean positronic brain, orchestrator, refactory, and nanopaste to \'fill\' the machine, then interact with it once it's ready. Protean components can be retrieved using a wrench, but any nanopaste inserted will be converted, cannot be reclaimed, and will be lost if the machine is disassembled!"
 	icon = 'icons/obj/protean_recon.dmi'
 	icon_state = "recon-nopower"
 	var/state_base = "recon"
@@ -160,7 +160,7 @@
 	..()
 
 /obj/machinery/protean_reconstitutor/attack_hand(mob/user as mob)
-	if(!protean_brain || !protean_orchestrator || (nanomass_reserve < nanomass_required))
+	if(!protean_brain || !protean_orchestrator || !protean_refactory || (nanomass_reserve < nanomass_required))
 		//no brain, no orchestrator, and/or not enough goo
 		to_chat(user,"<span class='warning'>Essential components missing, or insufficient materials available!</span>")
 		playsound(src, buzzsound, 100, 1, -1)
@@ -174,7 +174,7 @@
 	if(!protean_brain.brainmob.client)
 		src.visible_message("<span class='warning'>\The [src] chirps, \"Warning, no positronic neural network activity detected! Recommend removing inactive core.\"</span>")
 		return
-	else if(!processing_revive && protean_brain && protean_orchestrator && (nanomass_reserve >= nanomass_required))
+	else if(!processing_revive && protean_brain && protean_orchestrator && protean_refactory && (nanomass_reserve >= nanomass_required))
 		//we're good, let's get recombobulating!
 		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: five minutes.\"</span>")
 		processing_revive = TRUE
@@ -195,20 +195,16 @@
 			sleep(per_organ_delay)
 			var/obj/item/O = P.internal_organs_by_name[organ]
 			if(istype(O,/obj/item/organ/internal/nano/refactory))
-				if(protean_refactory)	//if we have a refactory present, install it, otherwise they get a free replacement (for now; perhaps no free replacement but they can be made printable at the prosfab?)
-					src.visible_message("<span class='notice'>\The [src] chirps, \"Reinitializing refactory...\"</span>")
-					P.internal_organs_by_name.Remove(O)
-					P.contents.Remove(O)
-					qdel(O)
-					P.internal_organs_by_name.Add(list(O_FACT = protean_refactory))
-					P.internal_organs.Add(protean_refactory)
-					//cache our mats otherwise they get wiped by the revive
-					materials_cache = protean_refactory.materials.Copy()
-					mats_cached = TRUE
-					protean_refactory.loc = P
-				else
-					src.visible_message("<span class='notice'>\The [src] chirps, \"No refactory detected in storage, fabricating replacement...\"</span>")
-					continue
+				src.visible_message("<span class='notice'>\The [src] chirps, \"Initializing refactory...\"</span>")
+				P.internal_organs_by_name.Remove(O)
+				P.contents.Remove(O)
+				qdel(O)
+				P.internal_organs_by_name.Add(list(O_FACT = protean_refactory))
+				P.internal_organs.Add(protean_refactory)
+				//cache our mats otherwise they get wiped by the revive
+				materials_cache = protean_refactory.materials.Copy()
+				mats_cached = TRUE
+				protean_refactory.loc = P
 			if(istype(O,/obj/item/organ/internal/nano/orchestrator))
 				src.visible_message("<span class='notice'>\The [src] chirps, \"Linking nanoswarm to orchestrator...\"</span>")
 				P.internal_organs_by_name.Remove(O)
