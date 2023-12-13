@@ -23,8 +23,8 @@ type Data = {
   viewing: BooleanLike;
 };
 
-export const OvermapNavigationContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const OvermapNavigationContent = (props) => {
+  const { act, data } = useBackend<Data>();
   const { sector, s_x, s_y, sector_info, viewing } = data;
   return (
     <Fragment>

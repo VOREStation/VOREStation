@@ -5,8 +5,8 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, ByondUi, Flex, LabeledList, Section, Tabs, ColorBox } from '../components';
 import { Window } from '../layouts';
 
-export const AppearanceChanger = (props, context) => {
-  const { act, config, data } = useBackend(context);
+export const AppearanceChanger = (props) => {
+  const { act, config, data } = useBackend();
 
   const {
     name,
@@ -53,11 +53,7 @@ export const AppearanceChanger = (props, context) => {
     firstAccesibleTab = 5;
   }
 
-  const [tabIndex, setTabIndex] = useLocalState(
-    context,
-    'tabIndex',
-    firstAccesibleTab
-  );
+  const [tabIndex, setTabIndex] = useLocalState('tabIndex', firstAccesibleTab);
 
   return (
     <Window width={700} height={650} title={decodeHtmlEntities(title)}>
@@ -194,8 +190,8 @@ export const AppearanceChanger = (props, context) => {
   );
 };
 
-const AppearanceChangerSpecies = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerSpecies = (props) => {
+  const { act, data } = useBackend();
   const { species, specimen } = data;
 
   const sortedSpecies = sortBy((val) => val.specimen)(species || []);
@@ -214,8 +210,8 @@ const AppearanceChangerSpecies = (props, context) => {
   );
 };
 
-const AppearanceChangerGender = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerGender = (props) => {
+  const { act, data } = useBackend();
 
   const { gender, gender_id, genders, id_genders } = data;
 
@@ -247,8 +243,8 @@ const AppearanceChangerGender = (props, context) => {
   );
 };
 
-const AppearanceChangerColors = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerColors = (props) => {
+  const { act, data } = useBackend();
 
   const {
     change_eye_color,
@@ -356,8 +352,8 @@ const AppearanceChangerColors = (props, context) => {
   );
 };
 
-const AppearanceChangerHair = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerHair = (props) => {
+  const { act, data } = useBackend();
 
   const { hair_style, hair_styles } = data;
 
@@ -375,8 +371,8 @@ const AppearanceChangerHair = (props, context) => {
   );
 };
 
-const AppearanceChangerFacialHair = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerFacialHair = (props) => {
+  const { act, data } = useBackend();
 
   const { facial_hair_style, facial_hair_styles } = data;
 
@@ -396,8 +392,8 @@ const AppearanceChangerFacialHair = (props, context) => {
   );
 };
 
-const AppearanceChangerEars = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerEars = (props) => {
+  const { act, data } = useBackend();
 
   const { ear_style, ear_styles } = data;
 
@@ -420,8 +416,8 @@ const AppearanceChangerEars = (props, context) => {
   );
 };
 
-const AppearanceChangerTails = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerTails = (props) => {
+  const { act, data } = useBackend();
 
   const { tail_style, tail_styles } = data;
 
@@ -444,8 +440,8 @@ const AppearanceChangerTails = (props, context) => {
   );
 };
 
-const AppearanceChangerWings = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerWings = (props) => {
+  const { act, data } = useBackend();
 
   const { wing_style, wing_styles } = data;
 
@@ -468,8 +464,8 @@ const AppearanceChangerWings = (props, context) => {
   );
 };
 
-const AppearanceChangerMarkings = (props, context) => {
-  const { act, data } = useBackend(context);
+const AppearanceChangerMarkings = (props) => {
+  const { act, data } = useBackend();
 
   const { markings } = data;
 

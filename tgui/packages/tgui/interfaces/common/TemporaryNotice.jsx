@@ -13,11 +13,10 @@ import { Box, Button, NoticeBox } from '../../components';
  *
  * Allows clearing the notice through the `cleartemp` TGUI act
  * @param {object} _properties
- * @param {object} context
  */
-export const TemporaryNotice = (_properties, context) => {
+export const TemporaryNotice = (_properties) => {
   const { decode } = _properties;
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend();
   const { temp } = data;
   if (!temp) {
     return;

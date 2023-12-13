@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const InventoryPanelHuman = (props, context) => {
-  const { act, data } = useBackend(context);
+export const InventoryPanelHuman = (props) => {
+  const { act, data } = useBackend();
 
   const {
     slots,

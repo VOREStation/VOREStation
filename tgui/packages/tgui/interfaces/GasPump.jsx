@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, ProgressBar, Section, LabeledControls, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
 
-export const GasPump = (props, context) => {
-  const { act, data } = useBackend(context);
+export const GasPump = (props) => {
+  const { act, data } = useBackend();
 
   const { on, pressure_set, last_flow_rate, last_power_draw, max_power_draw } =
     data;

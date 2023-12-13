@@ -4,8 +4,8 @@ import { Box, Button, Modal, LabeledList, ProgressBar, Section, NoticeBox } from
 import { Window } from '../layouts';
 import { toTitleCase, decodeHtmlEntities } from 'common/string';
 
-export const MechaControlConsole = (props, context) => {
-  const { act, data } = useBackend(context);
+export const MechaControlConsole = (props) => {
+  const { act, data } = useBackend();
   const { beacons, stored_data } = data;
   return (
     <Window width={600} height={600} resizable>

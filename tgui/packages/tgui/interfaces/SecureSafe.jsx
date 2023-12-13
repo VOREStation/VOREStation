@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, Grid, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
-const NukeKeypad = (props, context) => {
-  const { act, data } = useBackend(context);
+const NukeKeypad = (props) => {
+  const { act, data } = useBackend();
   const keypadKeys = [
     ['1', '4', '7', 'R'],
     ['2', '5', '8', '0'],
@@ -42,8 +42,8 @@ const NukeKeypad = (props, context) => {
   );
 };
 
-export const SecureSafe = (props, context) => {
-  const { act, data } = useBackend(context);
+export const SecureSafe = (props) => {
+  const { act, data } = useBackend();
   const { code, l_setshort, l_set, emagged, locked } = data;
 
   let new_code = !(!!l_set || !!l_setshort);

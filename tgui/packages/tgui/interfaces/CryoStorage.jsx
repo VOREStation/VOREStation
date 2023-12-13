@@ -2,12 +2,12 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Section, Tabs, NoticeBox } from '../components';
 import { Window } from '../layouts';
 
-export const CryoStorage = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CryoStorage = (props) => {
+  const { act, data } = useBackend();
 
   const { real_name, allow_items } = data;
 
-  const [tab, setTab] = useLocalState(context, 'tab', 0);
+  const [tab, setTab] = useLocalState('tab', 0);
 
   return (
     <Window width={400} height={600} resizable>
@@ -30,8 +30,8 @@ export const CryoStorage = (props, context) => {
   );
 };
 
-export const CryoStorageCrew = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CryoStorageCrew = (props) => {
+  const { act, data } = useBackend();
 
   const { crew } = data;
 
@@ -47,8 +47,8 @@ export const CryoStorageCrew = (props, context) => {
   );
 };
 
-export const CryoStorageItems = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CryoStorageItems = (props) => {
+  const { act, data } = useBackend();
 
   const { items } = data;
 

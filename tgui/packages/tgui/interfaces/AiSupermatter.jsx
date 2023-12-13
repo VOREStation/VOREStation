@@ -3,8 +3,8 @@ import { Box, Icon, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
-export const AiSupermatter = (props, context) => {
-  const { data } = useBackend(context);
+export const AiSupermatter = (props) => {
+  const { data } = useBackend();
 
   const { integrity_percentage, ambient_temp, ambient_pressure, detonating } =
     data;
@@ -21,7 +21,7 @@ export const AiSupermatter = (props, context) => {
   );
 };
 
-const AiSupermatterDetonation = (props, context) => (
+const AiSupermatterDetonation = (props) => (
   <FullscreenNotice title="DETONATION IMMINENT">
     <Box fontSize="1.5rem" bold color="bad">
       <Icon
@@ -37,8 +37,8 @@ const AiSupermatterDetonation = (props, context) => (
   </FullscreenNotice>
 );
 
-const AiSupermatterContent = (props, context) => {
-  const { data } = useBackend(context);
+const AiSupermatterContent = (props) => {
+  const { data } = useBackend();
 
   const { integrity_percentage, ambient_temp, ambient_pressure } = data;
 

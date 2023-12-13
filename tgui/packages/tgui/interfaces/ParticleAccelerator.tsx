@@ -9,8 +9,8 @@ type Data = {
   strength: number;
 };
 
-export const ParticleAccelerator = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const ParticleAccelerator = (props) => {
+  const { act, data } = useBackend<Data>();
   const { assembled, power, strength } = data;
   return (
     <Window width={350} height={185}>

@@ -4,8 +4,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, NoticeBox, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const TelecommsLogBrowser = (props, context) => {
-  const { act, data } = useBackend(context);
+export const TelecommsLogBrowser = (props) => {
+  const { act, data } = useBackend();
 
   const { universal_translate, network, temp, servers, selectedServer } = data;
 
@@ -69,8 +69,8 @@ export const TelecommsLogBrowser = (props, context) => {
   );
 };
 
-const TelecommsServerSelection = (props, context) => {
-  const { act, data } = useBackend(context);
+const TelecommsServerSelection = (props) => {
+  const { act, data } = useBackend();
   const { network, servers } = props;
 
   if (!servers || !servers.length) {
@@ -106,8 +106,8 @@ const TelecommsServerSelection = (props, context) => {
   );
 };
 
-const TelecommsSelectedServer = (props, context) => {
-  const { act, data } = useBackend(context);
+const TelecommsSelectedServer = (props) => {
+  const { act, data } = useBackend();
   const { network, server, universal_translate } = props;
 
   return (
@@ -178,8 +178,8 @@ const TelecommsSelectedServer = (props, context) => {
   );
 };
 
-const TelecommsLog = (props, context) => {
-  const { act, data } = useBackend(context);
+const TelecommsLog = (props) => {
+  const { act, data } = useBackend();
   const { log, error } = props;
 
   const { timecode, name, race, job, message } = (log && log.parameters) || {

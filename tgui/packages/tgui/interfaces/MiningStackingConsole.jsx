@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Button, Section, LabeledList, AnimatedNumber, NumberInput } from '../components';
 import { Window } from '../layouts';
 
-export const MiningStackingConsole = (props, context) => {
-  const { act, data } = useBackend(context);
+export const MiningStackingConsole = (props) => {
+  const { act, data } = useBackend();
 
   const { stacktypes, stackingAmt } = data;
 

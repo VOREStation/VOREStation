@@ -5,8 +5,8 @@ import { Box, Button, Dropdown, Section, LabeledList, AnimatedNumber } from '../
 import { Window } from '../layouts';
 import { MiningUser } from './common/Mining';
 
-export const MiningOreProcessingConsole = (props, context) => {
-  const { act, data } = useBackend(context);
+export const MiningOreProcessingConsole = (props) => {
+  const { act, data } = useBackend();
 
   const { unclaimedPoints, ores, showAllOres, power, speed } = data;
 
@@ -100,8 +100,8 @@ const oreSorter = (a, b) => {
   return oreOrder.indexOf(b.ore) - oreOrder.indexOf(a.ore);
 };
 
-const MOPCOres = (props, context) => {
-  const { act, data } = useBackend(context);
+const MOPCOres = (props) => {
+  const { act, data } = useBackend();
   const { ores, showAllOres, power } = data;
   return (
     <Section

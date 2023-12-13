@@ -1,8 +1,8 @@
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
 
-export const pda_security = (props, context) => {
-  const { act, data } = useBackend(context);
+export const pda_security = (props) => {
+  const { act, data } = useBackend();
 
   const { recordsList, records } = data;
 

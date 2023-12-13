@@ -2,8 +2,8 @@ import { useBackend, useSharedState } from '../backend';
 import { Box, Button, LabeledList, Input, Section, Table, Tabs } from '../components';
 import { Window } from '../layouts';
 
-export const AccountsTerminal = (props, context) => {
-  const { act, data } = useBackend(context);
+export const AccountsTerminal = (props) => {
+  const { act, data } = useBackend();
 
   const { id_inserted, id_card, access_level, machine_id } = data;
 
@@ -31,8 +31,8 @@ export const AccountsTerminal = (props, context) => {
   );
 };
 
-const AccountTerminalContent = (props, context) => {
-  const { act, data } = useBackend(context);
+const AccountTerminalContent = (props) => {
+  const { act, data } = useBackend();
 
   const { creating_new_account, detailed_account_view } = data;
 
@@ -64,11 +64,11 @@ const AccountTerminalContent = (props, context) => {
   );
 };
 
-const NewAccountView = (props, context) => {
-  const { act } = useBackend(context);
+const NewAccountView = (props) => {
+  const { act } = useBackend();
 
-  const [holder, setHolder] = useSharedState(context, 'holder', '');
-  const [newMoney, setMoney] = useSharedState(context, 'money', '');
+  const [holder, setHolder] = useSharedState('holder', '');
+  const [newMoney, setMoney] = useSharedState('money', '');
 
   return (
     <Section title="Create Account" level={2}>
@@ -97,8 +97,8 @@ const NewAccountView = (props, context) => {
   );
 };
 
-const DetailedView = (props, context) => {
-  const { act, data } = useBackend(context);
+const DetailedView = (props) => {
+  const { act, data } = useBackend();
 
   const {
     access_level,
@@ -188,8 +188,8 @@ const DetailedView = (props, context) => {
   );
 };
 
-const ListView = (props, context) => {
-  const { act, data } = useBackend(context);
+const ListView = (props) => {
+  const { act, data } = useBackend();
 
   const { accounts } = data;
 

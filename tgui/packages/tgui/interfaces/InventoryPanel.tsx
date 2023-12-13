@@ -8,8 +8,8 @@ type Data = {
   internalsValid: BooleanLike;
 };
 
-export const InventoryPanel = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const InventoryPanel = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { slots, internalsValid } = data;
 

@@ -3,8 +3,8 @@ import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, LabeledList, ProgressBar, Section } from '../components';
 
-export const ResleevingPod = (model, context) => {
-  const { data } = useBackend(context);
+export const ResleevingPod = (model) => {
+  const { data } = useBackend();
   const {
     occupied,
     name,

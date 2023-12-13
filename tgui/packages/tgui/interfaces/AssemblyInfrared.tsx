@@ -8,8 +8,8 @@ type Data = {
   visible: BooleanLike;
 };
 
-export const AssemblyInfrared = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const AssemblyInfrared = (props) => {
+  const { act, data } = useBackend<Data>();
   const { on, visible } = data;
   return (
     <Window>

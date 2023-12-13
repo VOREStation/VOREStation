@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Button, Box, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
 
-export const SmartVend = (props, context) => {
-  const { act, config, data } = useBackend(context);
+export const SmartVend = (props) => {
+  const { act, config, data } = useBackend();
   return (
     <Window width={500} height={550} resizable>
       <Window.Content scrollable>

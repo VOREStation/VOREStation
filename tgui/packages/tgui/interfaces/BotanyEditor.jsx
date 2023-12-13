@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, NoticeBox } from '../components';
 import { Window } from '../layouts';
 
-export const BotanyEditor = (props, context) => {
-  const { act, data } = useBackend(context);
+export const BotanyEditor = (props) => {
+  const { act, data } = useBackend();
 
   const { activity, degradation, disk, sourceName, locus, loaded } = data;
 

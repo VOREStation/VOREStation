@@ -7,10 +7,9 @@ import { Box, Button, NoticeBox } from '../../components';
  *
  * Also gives an option to log off (calls `logout` TGUI action)
  * @param {object} _properties
- * @param {object} context
  */
-export const LoginInfo = (_properties, context) => {
-  const { act, data } = useBackend(context);
+export const LoginInfo = (_properties) => {
+  const { act, data } = useBackend();
   const { authenticated, rank } = data;
   if (!data) {
     return;

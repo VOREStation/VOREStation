@@ -2,8 +2,8 @@
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
 
-export const pda_notekeeper = (props, context) => {
-  const { act, data } = useBackend(context);
+export const pda_notekeeper = (props) => {
+  const { act, data } = useBackend();
 
   const { note } = data;
 

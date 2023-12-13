@@ -32,8 +32,8 @@ const tempColors = [
   'bad',
 ];
 
-export const Sleeper = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Sleeper = (props) => {
+  const { act, data } = useBackend();
   const { hasOccupant } = data;
   const body = hasOccupant ? <SleeperMain /> : <SleeperEmpty />;
   return (
@@ -45,8 +45,8 @@ export const Sleeper = (props, context) => {
   );
 };
 
-const SleeperMain = (props, context) => {
-  const { act, data } = useBackend(context);
+const SleeperMain = (props) => {
+  const { act, data } = useBackend();
   const { occupant, dialysis, stomachpumping } = data;
   return (
     <Fragment>
@@ -67,8 +67,8 @@ const SleeperMain = (props, context) => {
   );
 };
 
-const SleeperOccupant = (props, context) => {
-  const { act, data } = useBackend(context);
+const SleeperOccupant = (props) => {
+  const { act, data } = useBackend();
   const { occupant, auto_eject_dead, stasis } = data;
   return (
     <Section
@@ -147,8 +147,8 @@ const SleeperOccupant = (props, context) => {
   );
 };
 
-const SleeperDamage = (props, context) => {
-  const { data } = useBackend(context);
+const SleeperDamage = (props) => {
+  const { data } = useBackend();
   const { occupant } = data;
   return (
     <Section title="Damage">
@@ -170,8 +170,8 @@ const SleeperDamage = (props, context) => {
   );
 };
 
-const SleeperDialysisPump = (props, context) => {
-  const { act, data } = useBackend(context);
+const SleeperDialysisPump = (props) => {
+  const { act, data } = useBackend();
   const { isBeakerLoaded, beakerMaxSpace, beakerFreeSpace } = data;
   const { active, actToDo, title } = props;
   const canDialysis = active && beakerFreeSpace > 0;
@@ -218,8 +218,8 @@ const SleeperDialysisPump = (props, context) => {
   );
 };
 
-const SleeperChemicals = (props, context) => {
-  const { act, data } = useBackend(context);
+const SleeperChemicals = (props) => {
+  const { act, data } = useBackend();
   const { occupant, chemicals, maxchem, amounts } = data;
   return (
     <Section title="Chemicals" flexGrow="1">
@@ -289,8 +289,8 @@ const SleeperChemicals = (props, context) => {
   );
 };
 
-const SleeperEmpty = (props, context) => {
-  const { act, data } = useBackend(context);
+const SleeperEmpty = (props) => {
+  const { act, data } = useBackend();
   const { isBeakerLoaded } = data;
   return (
     <Section textAlign="center" flexGrow="1">

@@ -4,8 +4,8 @@ import { Box, Button, Flex, LabeledList, ProgressBar, Section } from '../compone
 import { Window } from '../layouts';
 import { capitalize, toTitleCase } from 'common/string';
 
-export const RIGSuit = (props, context) => {
-  const { act, data } = useBackend(context);
+export const RIGSuit = (props) => {
+  const { act, data } = useBackend();
 
   const { interfacelock, malf, aicontrol, ai } = data;
 
@@ -35,8 +35,8 @@ export const RIGSuit = (props, context) => {
   );
 };
 
-const RIGSuitStatus = (props, context) => {
-  const { act, data } = useBackend(context);
+const RIGSuitStatus = (props) => {
+  const { act, data } = useBackend();
 
   const {
     // Power Bar
@@ -127,8 +127,8 @@ const RIGSuitStatus = (props, context) => {
   );
 };
 
-const RIGSuitHardware = (props, context) => {
-  const { act, data } = useBackend(context);
+const RIGSuitHardware = (props) => {
+  const { act, data } = useBackend();
 
   const {
     // Disables buttons while the suit is busy
@@ -204,8 +204,8 @@ const RIGSuitHardware = (props, context) => {
   );
 };
 
-const RIGSuitModules = (props, context) => {
-  const { act, data } = useBackend(context);
+const RIGSuitModules = (props) => {
+  const { act, data } = useBackend();
 
   const {
     // Seals disable Modules

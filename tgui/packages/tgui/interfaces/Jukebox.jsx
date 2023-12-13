@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Collapsible, LabeledList, ProgressBar, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
-export const Jukebox = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Jukebox = (props) => {
+  const { act, data } = useBackend();
 
   const {
     playing,

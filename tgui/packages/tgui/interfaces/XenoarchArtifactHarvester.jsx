@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const XenoarchArtifactHarvester = (props, context) => {
-  const { act, data } = useBackend(context);
+export const XenoarchArtifactHarvester = (props) => {
+  const { act, data } = useBackend();
 
   const { no_scanner, harvesting, inserted_battery } = data.info;
 
@@ -79,8 +79,8 @@ export const XenoarchArtifactHarvester = (props, context) => {
   );
 };
 
-const ArtHarvestBatteryProgress = (props, context) => {
-  const { act, data } = useBackend(context);
+const ArtHarvestBatteryProgress = (props) => {
+  const { act, data } = useBackend();
 
   const { inserted_battery } = data.info;
 
