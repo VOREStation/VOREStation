@@ -939,7 +939,7 @@
 				if(sleeper_state)
 					belly_size = sprite_datum.max_belly_size
 			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly" || vore_selected.silicon_belly_overlay_preference == "Both")
-				if(sleeper_state)
+				if(sleeper_state && vore_selected.silicon_belly_overlay_preference == "Both")
 					belly_size += 1
 				if(LAZYLEN(vore_selected.contents) > 0)
 					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
