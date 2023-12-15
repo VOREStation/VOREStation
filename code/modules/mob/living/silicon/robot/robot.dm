@@ -1194,7 +1194,10 @@
 			sprite_datum = module_sprites[1]
 	else
 		var/selection = tgui_input_list(src, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
-		sprite_datum = selection
+		if(selection)
+			sprite_datum = selection
+		else
+			sprite_datum = module_sprites[1]
 		if(!istype(src,/mob/living/silicon/robot/drone))
 			robot_species = sprite_datum.name
 		if(notransform)
