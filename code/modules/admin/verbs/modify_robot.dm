@@ -103,7 +103,6 @@
 					target.module.contents.Remove(selected_module_module)
 					qdel(selected_module_module)
 			if(MODIFIY_ROBOT_APPLY_UPGRADE)
-				to_chat(usr,"UPGRADE???")
 				var/list/upgrades = list()
 				for(var/datum/design/item/prosfab/robot_upgrade/upgrade)
 					upgrades[initial(upgrade.name)] = initial(upgrade.build_path)
