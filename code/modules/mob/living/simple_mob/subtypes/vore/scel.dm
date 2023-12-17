@@ -73,7 +73,7 @@
 	vore_active = 1
 	vore_icons = 1
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
-	vore_capacity = 2
+	vore_capacity = 1
 	swallowTime = 50
 	vore_ignores_undigestable = TRUE
 	vore_default_mode = DM_SELECT

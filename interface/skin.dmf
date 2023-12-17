@@ -1205,7 +1205,7 @@ window "mainwindow"
 		is-visible = true
 		text = ""
 		align = left
-		border = sunken
+		border = line
 	elem "saybutton"
 		type = BUTTON
 		pos = 520,400

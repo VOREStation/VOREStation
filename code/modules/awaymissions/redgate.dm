@@ -11,7 +11,8 @@
 	var/obj/structure/redgate/target
 	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
 	var/list/exceptions = list(
-		/obj/structure/ore_box
+		/obj/structure/ore_box,
+		/obj/structure/bed/roller
 		)	//made it a var so that GMs or map makers can selectively allow things to pass through
 	var/list/restrictions = list(
 		/mob/living/simple_mob/vore/overmap/stardog,
