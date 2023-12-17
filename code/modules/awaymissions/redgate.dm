@@ -12,8 +12,7 @@
 	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
 	var/list/exceptions = list(
 		/obj/structure/ore_box,
-		/obj/structure/bed/roller,
-		/obj/structure/bed/roller/adv
+		/obj/structure/bed/roller
 		)	//made it a var so that GMs or map makers can selectively allow things to pass through
 	var/list/restrictions = list(
 		/mob/living/simple_mob/vore/overmap/stardog,
@@ -32,7 +31,7 @@
 /obj/structure/redgate/proc/teleport(var/mob/M as mob)
 	var/keycheck = TRUE
 	if (!istype(M,/mob/living))		//We only want mob/living, no bullets or mechs or AI eyes or items
-		if(M.type in exceptions)
+		if(is_type_in_list(M, exceptions))
 			keycheck = FALSE		//we'll allow it
 		else
 			return
@@ -55,17 +54,15 @@
 	var/turf/ourturf = find_our_turf(M)		//Find the turf on the opposite side of the target
 	if(!ourturf.check_density(TRUE,TRUE))	//Make sure there isn't a wall there
 		M.unbuckle_all_mobs(TRUE)
-		if(M.pulling)
+		if(istype(M,/mob/living) && M.pulling)
 			var/atom/movable/pulled = M.pulling
 			M.stop_pulling()
 			playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
 			M.forceMove(ourturf)
-			if(pulled.type in exceptions)
-				if(istype(pulled,/obj/structure/bed/roller))
-					var/obj/structure/bed/roller/R = pulled
-					for(var/mob/on_roller in R.buckled_mobs)
-						if(!on_roller.key || (on_roller.type in restrictions))
-							R.unbuckle_mob(on_roller, TRUE)
+			if(is_type_in_list(pulled, exceptions))
+				for(var/mob/living/buckled_on in pulled.buckled_mobs)
+					if(!buckled_on.key || (buckled_on.type in restrictions))
+						pulled.unbuckle_mob(buckled_on, TRUE)
 				pulled.forceMove(ourturf)
 				M.continue_pulling(pulled)
 			else
