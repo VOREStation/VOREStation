@@ -302,6 +302,8 @@ var/list/gamemode_cache = list()
 	var/static/suggested_byond_version
 	var/static/suggested_byond_build
 
+	var/static/invoke_youtubedl = null
+
 /datum/configuration/New()
 	var/list/L = subtypesof(/datum/game_mode)
 	for (var/T in L)
@@ -973,6 +975,9 @@ var/list/gamemode_cache = list()
 				if("vgs_server_port")
 					config.vgs_server_port = text2num(value)
 				// VOREStation Edit End
+
+				if("invoke_youtubedl")
+					config.invoke_youtubedl = value
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
