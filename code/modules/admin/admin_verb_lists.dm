@@ -119,7 +119,8 @@ var/list/admin_verbs_ban = list(
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
-	/client/proc/play_server_sound
+	/client/proc/play_server_sound,
+	/client/proc/play_web_sound
 	)
 
 var/list/admin_verbs_fun = list(
@@ -240,7 +241,8 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/view_feedback,
 	/client/proc/debug_global_variables,
 	/client/proc/ping_webhook,
-	/client/proc/reload_webhooks
+	/client/proc/reload_webhooks,
+	/client/proc/stop_sounds
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -286,6 +288,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/play_server_sound,
+	/client/proc/play_web_sound,
 	/client/proc/object_talk,
 	/datum/admins/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
@@ -335,7 +338,8 @@ var/list/admin_verbs_hideable = list(
 	/proc/possess,
 	/proc/release,
 	/datum/admins/proc/set_tcrystals,
-	/client/proc/debug_global_variables
+	/client/proc/debug_global_variables,
+	/client/proc/stop_sounds
 	)
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	//right-click adminPM interface,

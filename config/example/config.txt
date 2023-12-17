@@ -41,7 +41,7 @@ Configure how fast explosion strength diminishes when travelling up/down z level
 ## log OOC channel
 LOG_OOC
 
-## log client Say 
+## log client Say
 LOG_SAY
 
 ## log admin actions
@@ -114,7 +114,7 @@ MOD_TEMPBAN_MAX 1440
 MOD_JOB_TEMPBAN_MAX 4320
 
 ## probablities for game modes chosen in "secret" and "random" modes
-## 
+##
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
@@ -177,7 +177,7 @@ VOTE_PERIOD 600
 VOTE_AUTOTRANSFER_INITIAL 216000
 
 ##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 60 minutes)
-VOTE_AUTOTRANSFER_INTERVAL 36000 
+VOTE_AUTOTRANSFER_INTERVAL 36000
 
 ## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
 VOTE_AUTOGAMEMODE_TIMELEFT -1
@@ -257,6 +257,14 @@ SERVER your.domain:6000
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 #BANAPPEALS http://bans.your.domain/
 
+## System command that invokes yt-dlp, used by Play Internet Sound.
+## You can install yt-dlp with
+## "pip install yt-dlp" if you have pip installed
+## from https://github.com/yt-dlp/yt-dlp
+## or your package manager
+## The default value assumes yt-dlp is in your system PATH
+# INVOKE_YOUTUBEDL yt-dlp
+
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
 # FEATURE_OBJECT_SPELL_SYSTEM
@@ -267,7 +275,7 @@ SERVER your.domain:6000
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
 #FORBID_SINGULO_POSSESSION
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 
@@ -533,13 +541,13 @@ PARANOIA_LOGGING
 ## The benefit of doing so in-game is that the quality of feedback received will likely be superior, as it self-selects for people who care enough to join the game.
 # SQLITE_FEEDBACK
 
-## A list of 'topics' that can be used to categorize feedback submitted, chosen 
+## A list of 'topics' that can be used to categorize feedback submitted, chosen
 ## by the user. Have each topic seperated by a ';', as seen below.
 ## The first one in the list will be the default one used, if the user does not change it.
 # SQLITE_FEEDBACK_TOPICS General; Suggestion; Complaint
 
 ## Uncomment to add a layer of privacy to player feedback, by hashing their key, if the user wants to.
-## This is intended to encourage more honest feedback, while still allowing the ability to determine 
+## This is intended to encourage more honest feedback, while still allowing the ability to determine
 ## if its just one person submitting everything.
 ## A 'pepper.txt' containing a secret string must exist in the /config folder.
 ## If this is turned off, users won't have the option to obfuscate their key.
@@ -583,7 +591,7 @@ LOADOUT_WHITELIST 1
 # Allowed time from death to defib in minutes
 DEFIB_TIMER 60
 
-# Jukebox track files to load, JSON format. Keys include: 
+# Jukebox track files to load, JSON format. Keys include:
 # REQUIRED: url (str), title (str), duration (num, in DS)
 # SUGGESTED: artist (str), genre (str)
 # OPTIONAL: secret (bool), lobby (bool)
