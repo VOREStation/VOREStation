@@ -13,6 +13,9 @@ vchat.db*
 *.pid
 cfg/
 
+#Ignore the data folder/symlink itself.  This is very important if you are using VGS
+/data
+
 #Ignore everything in datafolder and subdirectories
 /data/**/*
 /tmp/**/*
