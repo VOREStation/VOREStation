@@ -46,7 +46,9 @@
 
 	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
-			to_chat(C, "<span class='filter_debuglog'>DEBUG: [text]</span>")
+			to_chat(C,
+					type = MESSAGE_TYPE_DEBUG,
+					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")
 
 /proc/log_game(text)
 	if (config.log_game)
@@ -163,10 +165,6 @@
 	if(Debug2)
 		WRITE_LOG(diary, "TOPIC: [text]")
 
-/proc/log_href(text)
-	// Configs are checked by caller
-	WRITE_LOG(href_logfile, "HREF: [text]")
-
 /proc/log_unit_test(text)
 	to_world_log("## UNIT_TEST: [text]")
 
@@ -175,22 +173,6 @@
 #else
 #define log_reftracker(msg)
 #endif
-
-/proc/log_tgui(user_or_client, text)
-	if(!text)
-		stack_trace("Pointless log_tgui message")
-		return
-	var/entry = ""
-	if(!user_or_client)
-		entry += "no user"
-	else if(istype(user_or_client, /mob))
-		var/mob/user = user_or_client
-		entry += "[user.ckey] (as [user])"
-	else if(istype(user_or_client, /client))
-		var/client/client = user_or_client
-		entry += "[client.ckey]"
-	entry += ":\n[text]"
-	WRITE_LOG(diary, entry)
 
 /proc/log_asset(text)
 	WRITE_LOG(diary, "ASSET: [text]")

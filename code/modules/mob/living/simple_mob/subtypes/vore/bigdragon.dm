@@ -563,7 +563,7 @@ I think I covered everything.
 	autotransferwait = 150
 	escapable = 1
 	escapechance = 100
-	escapetime = 30
+	escapetime = 15
 	fancy_vore = 1
 	contamination_color = "grey"
 	contamination_flavor = "Wet"

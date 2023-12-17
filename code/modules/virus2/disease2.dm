@@ -284,7 +284,7 @@ var/global/list/virusDB = list()
 	var/list/candidates = list()	//list of candidate keys
 
 	for(var/mob/living/carbon/human/G in player_list)
-		if(G.client && G.stat != DEAD)
+		if(G.client && G.stat != DEAD && !isbelly(G.loc))
 			candidates += G
 
 	if(!candidates.len)	return
@@ -297,7 +297,7 @@ var/global/list/virusDB = list()
 	var/list/candidates = list()	//list of candidate keys
 
 	for(var/mob/living/carbon/human/G in player_list)
-		if(G.client && G.stat != DEAD)
+		if(G.client && G.stat != DEAD && !isbelly(G.loc))
 			candidates += G
 	if(!candidates.len)	return
 

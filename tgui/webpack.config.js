@@ -26,17 +26,15 @@ const createStats = (verbose) => ({
 
 // prettier-ignore
 module.exports = (env = {}, argv) => {
-  const mode = argv.mode === 'production' ? 'production' : 'development';
+  const mode = argv.mode || 'production';
   const bench = env.TGUI_BENCH;
   const config = {
-    mode,
+    mode: mode === 'production' ? 'production' : 'development',
     context: path.resolve(__dirname),
     target: ['web', 'es3', 'browserslist:ie 8'],
     entry: {
-      'tgui': [
-        './packages/tgui-polyfill',
-        './packages/tgui',
-      ],
+      'tgui': ['./packages/tgui-polyfill', './packages/tgui'],
+      'tgui-panel': ['./packages/tgui-polyfill', './packages/tgui-panel'],
     },
     output: {
       path: argv.useTmpFolder
@@ -47,13 +45,13 @@ module.exports = (env = {}, argv) => {
       chunkLoadTimeout: 15000,
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: ['.tsx', '.ts', '.js', '.jsx'],
       alias: {},
     },
     module: {
       rules: [
         {
-          test: /\.(js|cjs|ts|tsx)$/,
+          test: /\.(js(x)?|cjs|ts(x)?)$/,
           use: [
             {
               loader: require.resolve('babel-loader'),
@@ -106,7 +104,7 @@ module.exports = (env = {}, argv) => {
     stats: createStats(true),
     plugins: [
       new webpack.EnvironmentPlugin({
-        NODE_ENV: env.NODE_ENV || argv.mode || 'development',
+        NODE_ENV: env.NODE_ENV || mode,
         WEBPACK_HMR_ENABLED: env.WEBPACK_HMR_ENABLED || argv.hot || false,
         DEV_SERVER_IP: env.DEV_SERVER_IP || null,
       }),
@@ -127,24 +125,18 @@ module.exports = (env = {}, argv) => {
   }
 
   // Production build specific options
-  if (argv.mode === 'production') {
-    const TerserPlugin = require('terser-webpack-plugin');
+  if (mode === 'production') {
+    const { EsbuildPlugin } = require('esbuild-loader');
     config.optimization.minimizer = [
-      new TerserPlugin({
-        extractComments: false,
-        terserOptions: {
-          ie8: true,
-          output: {
-            ascii_only: true,
-            comments: false,
-          },
-        },
+      new EsbuildPlugin({
+        target: 'ie8',
+        css: true,
       }),
     ];
   }
 
   // Development build specific options
-  if (argv.mode !== 'production') {
+  if (mode !== 'production') {
     config.devtool = 'cheap-module-source-map';
   }
 

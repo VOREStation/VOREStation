@@ -319,7 +319,7 @@
 	name = "paperwork printer"
 	//name = "paper dispenser"
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "paper_bin1"
+	icon_state = "doc_printer_mod_pre"
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
@@ -338,23 +338,28 @@
 		deploy_paper(get_turf(target))
 
 /obj/item/weapon/form_printer/attack_self(mob/user as mob)
-	deploy_paper(get_turf(src))
+	deploy_paper()
 
-/obj/item/weapon/form_printer/proc/deploy_paper(var/turf/T)
+/obj/item/weapon/form_printer/proc/deploy_paper()
 	var/choice = tgui_alert(usr, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
 	if(!choice || choice == "Cancel")
 		return
+	var/turf/T = get_turf(src)
 	switch(choice)
 		if("Paper")
-			T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
-			new /obj/item/weapon/paper(T)
+			flick("doc_printer_mod_ejecting", src)
+			spawn(22)
+				T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
+				new /obj/item/weapon/paper(T)
 		if ("Form")
 			var/list/content = print_form()
 			if(!content)
 				to_chat(usr, "<span class='warning'>No form for this category found in central network. Central is advising employees to upload new forms whenever possible.</span>")
 				return
-			T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
-			new /obj/item/weapon/paper(T, content[1], content[2])
+			flick("doc_printer_mod_printing", src)
+			spawn(22)
+				T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
+				new /obj/item/weapon/paper(T, content[1], content[2])
 
 /obj/item/weapon/form_printer/proc/print_form()
 	var/list/paper_forms = list("Empty", "Command", "Security", "Supply", "Science", "Medical", "Engineering", "Service", "Exploration", "Event", "Other", "Mercenary")
@@ -364,7 +369,7 @@
 	var/list/science_paper_forms = list("SCI-3003: Cyborg / Robot Inspection", "SCI-3004: Cyborg / Robot Upgrades", "SCI-3009: Xenoflora Genetics Report")
 	var/list/medical_paper_forms = list("MED-4001: Death Certificate", "MED-4002: Prescription", "MED-4003: Against Medical Advice", "MED-4004: Cyborgification Contract", "MED-4005: Mental Health Patient Intake", "MED-4006: NIF Surgery", "MED-4007: Psychiatric Evaluation")
 	var/list/engineering_paper_forms = list("ENG-5001: Building Permit")
-	var/list/service_paper_forms = list()
+	var/list/service_paper_forms = list("SER-6005: Certificate of Marriage")
 	var/list/exploration_paper_forms = list()
 	var/list/event_paper_forms = list()
 	var/list/other_paper_forms = list("OTHR-9001: Emergency Transmission", "OTHR-9032: Ownership Transfer")
@@ -434,7 +439,7 @@
 			split = splittext(mercenary_paper, ": ")
 		else
 			return
-	return list(select_form(split[1]), split[1] + ": " + split[2])
+	return list(select_form(split[1], split[2]), split[1] + ": " + split[2])
 
 /obj/item/weapon/form_printer/proc/select_form(paperid, name)
 	var/content = ""
@@ -552,6 +557,9 @@
 			content = @{"[grid][row][cell][b]Location:[/b] [cell][field][br][row][cell][b]Purpose:[/b] [cell][field][/grid][br][hr][br]I, [[u][field][/u]] certify that I have reviewed and approved of provided blueprints. I have verified that design will be structurally sound and fall within building guidelines. I and any others participating in its construction will ensure that the blueprint will be followed.[br][br][br][b]Blueprint:[/b] [field][br][br][hr][grid][row][cell][list][b]Constructing Engineer signature:[/b][/list][cell][list][list][list][list][list][b]Chief Engineer signature:[/b][/list][/list][/list][/list][/list][cell][br][row][cell][list] - [field][/list][cell][list][list][list][list][list]- [large][field][/large][/list][/list][/list][/list][/list][cell][/grid]"}
 			revision = "Revision 1.1"
 		//Service forms, SER-6
+		if("SER-6005")
+			content = @{"[hr][br][center]This is to certify that[br][br][u]_[field]_[/u] and [u]_[field]_[/u][br][br]were united in marriage at [u]_[field]_[/u] on date [u]_[field]_[/u][br][br][hr][grid][row][cell][list][b]Bride:[/b][/list][cell][cell][list][list][list][list][b]Groom:[/b][/list][/list][/list][/list][cell][row][cell][list] - [large][field][/large][/list][cell][cell][list][list][list][list]- [large][field][/large][/list][/list][/list][/list][cell][/grid][hr][br][b]Chaplain:[/b] [large][field][/large]"}
+			revision = "Revision 1.4"
 		//Explorer forms, EXP-7
 		//Event forms, EVNT-8
 		//Other forms, OTHR-9

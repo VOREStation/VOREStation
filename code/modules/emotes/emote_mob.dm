@@ -188,7 +188,10 @@
 
 	if(input)
 		log_emote(message,src) //Log before we add junk
-		message = "<span class='emote'><B>[src]</B> [input]</span>"
+		if(usr && usr.client)
+			message = "<span class='emote'><B>[src]</B> [input]</span>"
+		else
+			message = "<span class='npcemote'><B>[src]</B> [input]</span>"
 	else
 		return
 

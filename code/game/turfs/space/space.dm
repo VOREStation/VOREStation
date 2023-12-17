@@ -41,7 +41,7 @@
 /turf/space/proc/toggle_transit(var/direction)
 	if(edge) //Not a great way to do this yet. Maybe we'll come up with one. We could pre-make sprites... or tile the overlay over it?
 		return
-	
+
 	if(!direction) //Stopping our transit
 		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
 	else if(direction & (NORTH|SOUTH)) //Starting transit vertically
@@ -137,7 +137,18 @@
 	. = ..()
 
 	if(edge && ticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
-		A?.touch_map_edge()
+		if(isliving(A))
+			var/mob/living/L = A
+			if(L.pulling)
+				var/atom/movable/pulled = L.pulling
+				L.stop_pulling()
+				A?.touch_map_edge()
+				pulled.forceMove(L.loc)
+				L.continue_pulling(pulled)
+			else
+				A?.touch_map_edge()
+		else
+			A?.touch_map_edge()
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
 	var/cur_x

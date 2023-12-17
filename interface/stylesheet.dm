@@ -1,3 +1,11 @@
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/// !!!!!!!!!!HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!!!
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// If you modify this file you ALSO need to modify tgui/packages/tgui-panel/styles/tgchat/chat-light.scss and chat-dark.scss
+// BUT you have to use PX font sizes with are on a x8 scale of these font sizes
+// Sample font-size: DM: 8 CSS: 64px
+
 /client/script = {"<style>
 body					{font-family: Verdana, sans-serif;}
 
@@ -10,6 +18,10 @@ em						{font-style: normal;font-weight: bold;}
 						{color: #638500;text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 						{color: #638500;}
+
+.italics				{					font-style: italic;}
+
+.bold					{					font-weight: bold;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}

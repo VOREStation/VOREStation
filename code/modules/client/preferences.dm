@@ -32,6 +32,8 @@ var/list/preferences_datums = list()
 	var/tgui_input_lock = FALSE
 	var/tgui_large_buttons = TRUE
 	var/tgui_swapped_buttons = FALSE
+	var/obfuscate_key = FALSE
+	var/obfuscate_job = FALSE
 	var/chat_timestamp = FALSE
 	var/throwmode_loud = FALSE
 
@@ -46,7 +48,7 @@ var/list/preferences_datums = list()
 	var/bday_announce = FALSE			//Public announcement for birthdays
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/blood_reagents = "iron"				//blood restoration reagents
+	var/blood_reagents = "default"		//blood restoration reagents
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
@@ -159,6 +161,9 @@ var/list/preferences_datums = list()
 
 	// Communicator identity data
 	var/communicator_visibility = 0
+
+	/// Default ringtone for character; if blank, use job default.
+	var/ringtone = null
 
 	var/datum/category_collection/player_setup_collection/player_setup
 	var/datum/browser/panel
