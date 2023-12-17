@@ -11,7 +11,9 @@
 	var/obj/structure/redgate/target
 	var/secret = FALSE	//If either end of the redgate has this enabled, ghosts will not be able to click to teleport
 	var/list/exceptions = list(
-		/obj/structure/ore_box
+		/obj/structure/ore_box,
+		/obj/structure/bed/roller,
+		/obj/structure/bed/roller/adv
 		)	//made it a var so that GMs or map makers can selectively allow things to pass through
 	var/list/restrictions = list(
 		/mob/living/simple_mob/vore/overmap/stardog,
@@ -59,6 +61,11 @@
 			playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
 			M.forceMove(ourturf)
 			if(pulled.type in exceptions)
+				if(istype(pulled,/obj/structure/bed/roller))
+					var/obj/structure/bed/roller/R = pulled
+					for(var/mob/on_roller in R.buckled_mobs)
+						if(!on_roller.key || (on_roller.type in restrictions))
+							R.unbuckle_mob(on_roller, TRUE)
 				pulled.forceMove(ourturf)
 				M.continue_pulling(pulled)
 			else
