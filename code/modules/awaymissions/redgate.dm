@@ -36,7 +36,7 @@
 		else
 			return
 
-	if(M.type in restrictions)	//Some stuff we don't want to bring EVEN IF it has a key.
+	if(is_type_in_list(M, restrictions))	//Some stuff we don't want to bring EVEN IF it has a key.
 		return
 
 	for(var/obj/O in M.contents)
@@ -61,7 +61,7 @@
 			M.forceMove(ourturf)
 			if(is_type_in_list(pulled, exceptions))
 				for(var/mob/living/buckled_on in pulled.buckled_mobs)
-					if(!buckled_on.key || (buckled_on.type in restrictions))
+					if(!buckled_on.key || is_type_in_list(M, restrictions))
 						pulled.unbuckle_mob(buckled_on, TRUE)
 				pulled.forceMove(ourturf)
 				M.continue_pulling(pulled)
