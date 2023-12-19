@@ -29,6 +29,9 @@ const initialState = {
     visible: false,
     activeTab: SETTINGS_TABS[0].id,
   },
+  showReconnectWarning: true,
+  logRetainDays: -1,
+  logLineCount: -1,
 };
 
 export const settingsReducer = (state = initialState, action) => {

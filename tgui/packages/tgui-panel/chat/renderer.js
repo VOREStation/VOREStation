@@ -189,7 +189,9 @@ class ChatRenderer {
     highlightSettings.map((id) => {
       const setting = highlightSettingById[id];
       const text = setting.highlightText;
+      const blacklist = setting.blacklistText;
       const highlightColor = setting.highlightColor;
+      const highlightBlacklist = setting.highlightBlacklist;
       const highlightWholeMessage = setting.highlightWholeMessage;
       const matchWord = setting.matchWord;
       const matchCase = setting.matchCase;
@@ -213,6 +215,55 @@ class ChatRenderer {
       // Nothing to match, reset highlighting
       if (lines.length === 0) {
         return;
+      }
+      const blacklistLines = String(blacklist)
+        .split(',')
+        .map((str) => str.trim())
+        .filter(
+          (str) =>
+            // Must be longer than one character
+            str &&
+            str.length > 1 &&
+            // Must be alphanumeric (with some punctuation)
+            allowedRegex.test(str) &&
+            // Reset lastIndex so it does not mess up the next word
+            ((allowedRegex.lastIndex = 0) || true)
+        );
+      let blacklistWords;
+      let blacklistregex;
+      if (highlightBlacklist && blacklistLines.length > 0) {
+        let blacklistRegexExpressions = [];
+        for (let line of blacklistLines) {
+          // Regex expression syntax is /[exp]/
+          if (line.charAt(0) === '/' && line.charAt(line.length - 1) === '/') {
+            const expr = line.substring(1, line.length - 1);
+            // Check if this is more than one character
+            if (/^(\[.*\]|\\.|.)$/.test(expr)) {
+              continue;
+            }
+            blacklistRegexExpressions.push(expr);
+          } else {
+            // Lazy init
+            if (!blacklistWords) {
+              blacklistWords = [];
+            }
+            // We're not going to let regex characters fuck up our RegEx operation.
+            line = line.replace(regexEscapeCharacters, '\\$&');
+
+            blacklistWords.push('^\\s*' + line);
+            blacklistWords.push('^\\[\\d+:\\d+\\]\\s*' + line);
+          }
+        }
+        const regexStrBL = blacklistWords.join('|');
+        const flagsBL = 'i';
+        // We wrap this in a try-catch to ensure that broken regex doesn't break
+        // the entire chat.
+        try {
+          blacklistregex = new RegExp('(' + regexStrBL + ')', flagsBL);
+        } catch {
+          // We just reset it if it's invalid.
+          blacklistregex = null;
+        }
       }
       let regexExpressions = [];
       // Organize each highlight entry into regex expressions and words
@@ -263,6 +314,8 @@ class ChatRenderer {
         highlightRegex,
         highlightColor,
         highlightWholeMessage,
+        highlightBlacklist,
+        blacklistregex,
       });
     });
   }
@@ -415,6 +468,13 @@ class ChatRenderer {
         // Highlight text
         if (!message.avoidHighlighting && this.highlightParsers) {
           this.highlightParsers.map((parser) => {
+            if (
+              parser.highlightBlacklist &&
+              parser.blacklistregex &&
+              parser.blacklistregex.test(node.textContent)
+            ) {
+              return;
+            }
             const highlighted = highlightNode(
               node,
               parser.highlightRegex,
@@ -552,7 +612,7 @@ class ChatRenderer {
     });
   }
 
-  saveToDisk() {
+  saveToDisk(logLineCount) {
     // Allow only on IE11
     if (Byond.IS_LTE_IE10) {
       return;
@@ -572,8 +632,16 @@ class ChatRenderer {
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
     let messagesHtml = '';
+
+    let tmpMsgArray = [];
+    if (logLineCount > 0) {
+      tmpMsgArray = this.archivedMessages.slice(-logLineCount);
+    } else {
+      tmpMsgArray = this.archivedMessages;
+    }
+
     // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
-    for (let message of this.archivedMessages) {
+    for (let message of tmpMsgArray) {
       // if (message.node) {
       //  messagesHtml += message.node.outerHTML + '\n';
       // }
