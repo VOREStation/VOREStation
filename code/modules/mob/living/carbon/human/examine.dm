@@ -432,7 +432,7 @@
 
 	// VOREStation Start
 	if(custom_link)
-		msg += "Custom link: [custom_link]"
+		msg += "Custom link: <span class='linkify'>[custom_link]</span>"
 
 	if(ooc_notes)
 		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
