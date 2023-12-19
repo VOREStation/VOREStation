@@ -552,7 +552,7 @@ class ChatRenderer {
     });
   }
 
-  saveToDisk() {
+  saveToDisk(logLineCount) {
     // Allow only on IE11
     if (Byond.IS_LTE_IE10) {
       return;
@@ -572,8 +572,16 @@ class ChatRenderer {
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
     let messagesHtml = '';
+
+    let tmpMsgArray = [];
+    if (logLineCount > 0) {
+      tmpMsgArray = this.archivedMessages.slice(-logLineCount);
+    } else {
+      tmpMsgArray = this.archivedMessages;
+    }
+
     // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
-    for (let message of this.archivedMessages) {
+    for (let message of tmpMsgArray) {
       // if (message.node) {
       //  messagesHtml += message.node.outerHTML + '\n';
       // }

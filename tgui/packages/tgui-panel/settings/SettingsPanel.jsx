@@ -42,6 +42,7 @@ export const SettingsPanel = (props, context) => {
       </Stack.Item>
       <Stack.Item grow={1} basis={0}>
         {activeTab === 'general' && <SettingsGeneral />}
+        {activeTab === 'export' && <ExportTab />}
         {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'textHighlight' && <TextHighlightSettings />}
       </Stack.Item>
@@ -50,17 +51,10 @@ export const SettingsPanel = (props, context) => {
 };
 
 export const SettingsGeneral = (props, context) => {
-  const { theme, fontFamily, fontSize, lineHeight } = useSelector(
-    context,
-    selectSettings
-  );
+  const { theme, fontFamily, fontSize, lineHeight, showReconnectWarning } =
+    useSelector(context, selectSettings);
   const dispatch = useDispatch(context);
   const [freeFont, setFreeFont] = useLocalState(context, 'freeFont', false);
-  const [purgeConfirm, setPurgeConfirm] = useLocalState(
-    context,
-    'purgeConfirm',
-    0
-  );
   return (
     <Section>
       <LabeledList>
@@ -150,6 +144,67 @@ export const SettingsGeneral = (props, context) => {
               dispatch(
                 updateSettings({
                   lineHeight: value,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+        <LabeledList.Item label="Enable disconnection/afk warning">
+          <Button.Checkbox
+            checked={showReconnectWarning}
+            content=""
+            tooltip="Unchecking this will disable the red afk/reconnection warning bar at the bottom of the chat."
+            mr="5px"
+            onClick={() =>
+              dispatch(
+                updateSettings({
+                  showReconnectWarning: !showReconnectWarning,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+      </LabeledList>
+    </Section>
+  );
+};
+
+export const ExportTab = (props, context) => {
+  const dispatch = useDispatch(context);
+  const { logRetainDays, logLineCount } = useSelector(context, selectSettings);
+  const [purgeConfirm, setPurgeConfirm] = useLocalState(
+    context,
+    'purgeConfirm',
+    0
+  );
+  return (
+    <Section>
+      <LabeledList>
+        {/* FIXME: Implement this later on
+        <LabeledList.Item label="Days to retain logs (-1 = inf.)">
+          <Input
+            width="5em"
+            monospace
+            value={logRetainDays}
+            onInput={(e, value) =>
+              dispatch(
+                updateSettings({
+                  logRetainDays: value,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+        */}
+        <LabeledList.Item label="Amount of lines to export (-1 = inf.)">
+          <Input
+            width="5em"
+            monospace
+            value={logLineCount}
+            onInput={(e, value) =>
+              dispatch(
+                updateSettings({
+                  logLineCount: value,
                 })
               )
             }
