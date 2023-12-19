@@ -362,7 +362,7 @@
 	db.ooc_notes_likes = M.ooc_notes_likes
 	db.ooc_notes_dislikes = M.ooc_notes_dislikes
 	db.prey_ooc_likes = M.ooc_notes_likes
-	db.prey_ooc_likes = M.ooc_notes_dislikes
+	db.prey_ooc_dislikes = M.ooc_notes_dislikes
 	db.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
 
 	absorb_langs()

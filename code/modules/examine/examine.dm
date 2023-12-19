@@ -112,7 +112,7 @@
 	var/list/results = A.examine(src)
 	if(!results || !results.len)
 		results = list("You were unable to examine that. Tell a developer!")
-	to_chat(src, "<span class='filter_notice'>[jointext(results, "<br>")]</span>")
+	to_chat(src, "<span class='infoplain'>[jointext(results, "<br>")]</span>")
 	update_examine_panel(A)
 
 /mob/proc/update_examine_panel(var/atom/A)

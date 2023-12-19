@@ -1521,7 +1521,7 @@
 
 	//absorb resists
 	if(escapable || owner.stat) //If the stomach has escapable enabled or the owner is dead/unconscious
-		if(prob(escapechance) || owner.stat) //Let's have it check to see if the prey's escape attempt starts.
+		if(prob(escapechance_absorbed) || owner.stat) //Let's have it check to see if the prey's escape attempt starts.
 
 
 			var/living_count = 0
