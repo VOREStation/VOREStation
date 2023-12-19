@@ -9,7 +9,10 @@ export const SETTINGS_TABS = [
     id: 'general',
     name: 'General',
   },
-
+  {
+    id: 'export',
+    name: 'Export',
+  },
   {
     id: 'textHighlight',
     name: 'Text Highlights',
