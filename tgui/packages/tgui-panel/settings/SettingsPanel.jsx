@@ -235,7 +235,9 @@ const TextHighlightSetting = (props, context) => {
   const {
     highlightColor,
     highlightText,
+    blacklistText,
     highlightWholeMessage,
+    highlightBlacklist,
     matchWord,
     matchCase,
   } = highlightSettingById[id];
@@ -251,6 +253,22 @@ const TextHighlightSetting = (props, context) => {
               dispatch(
                 removeHighlightSetting({
                   id: id,
+                })
+              )
+            }
+          />
+        </Flex.Item>
+        <Flex.Item>
+          <Button.Checkbox
+            checked={highlightBlacklist}
+            content="Highlight Blacklist"
+            tooltip="If this option is selected, you can blacklist senders not to highlight their messages."
+            mr="5px"
+            onClick={() =>
+              dispatch(
+                updateHighlightSetting({
+                  id: id,
+                  highlightBlacklist: !highlightBlacklist,
                 })
               )
             }
@@ -334,6 +352,23 @@ const TextHighlightSetting = (props, context) => {
           )
         }
       />
+      {highlightBlacklist ? (
+        <TextArea
+          height="3em"
+          value={blacklistText}
+          placeholder="Put names of senders you don't want highlighted here. Separate names with commas, i.e. (name1, name2, name3)"
+          onChange={(e, value) =>
+            dispatch(
+              updateHighlightSetting({
+                id: id,
+                blacklistText: value,
+              })
+            )
+          }
+        />
+      ) : (
+        ''
+      )}
     </Flex.Item>
   );
 };
