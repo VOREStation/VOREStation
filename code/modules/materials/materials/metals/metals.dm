@@ -151,6 +151,7 @@
 	stack_type = /obj/item/stack/material/graphite
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
 	icon_colour = "#333333"
 	hardness = 75
