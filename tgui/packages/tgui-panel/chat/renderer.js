@@ -469,20 +469,21 @@ class ChatRenderer {
         if (!message.avoidHighlighting && this.highlightParsers) {
           this.highlightParsers.map((parser) => {
             if (
-              parser.highlightBlacklist &&
-              parser.blacklistregex &&
-              parser.blacklistregex.test(node.textContent)
+              !(
+                parser.highlightBlacklist &&
+                parser.blacklistregex &&
+                parser.blacklistregex.test(node.textContent)
+              )
             ) {
-              return;
-            }
-            const highlighted = highlightNode(
-              node,
-              parser.highlightRegex,
-              parser.highlightWords,
-              (text) => createHighlightNode(text, parser.highlightColor)
-            );
-            if (highlighted && parser.highlightWholeMessage) {
-              node.className += ' ChatMessage--highlighted';
+              const highlighted = highlightNode(
+                node,
+                parser.highlightRegex,
+                parser.highlightWords,
+                (text) => createHighlightNode(text, parser.highlightColor)
+              );
+              if (highlighted && parser.highlightWholeMessage) {
+                node.className += ' ChatMessage--highlighted';
+              }
             }
           });
         }
