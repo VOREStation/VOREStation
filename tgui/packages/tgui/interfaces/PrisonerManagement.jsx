@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Button, Section, Box, Table } from '../components';
 import { Window } from '../layouts';
@@ -7,7 +7,7 @@ export const PrisonerManagement = (props) => {
   const { act, data } = useBackend();
   const { locked, chemImplants, trackImplants } = data;
   return (
-    <Window width={500} height={400} resizable>
+    <Window width={500} height={400}>
       <Window.Content scrollable>
         {(locked && (
           <Section title="Locked" textAlign="center">
@@ -19,7 +19,7 @@ export const PrisonerManagement = (props) => {
             </Box>
           </Section>
         )) || (
-          <Fragment>
+          <>
             <Section
               title="Interface Lock"
               buttons={
@@ -91,7 +91,7 @@ export const PrisonerManagement = (props) => {
                 </Table>
               )) || <Box color="average">No chemical implants found.</Box>}
             </Section>
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>

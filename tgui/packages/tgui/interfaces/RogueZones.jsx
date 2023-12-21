@@ -18,7 +18,7 @@ export const RogueZones = (props) => {
     can_recall_shuttle,
   } = data;
   return (
-    <Window width={360} height={250} resizable>
+    <Window width={360} height={250}>
       <Window.Content>
         <Section title="Current Area">
           <LabeledList>

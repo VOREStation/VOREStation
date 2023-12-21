@@ -11,7 +11,7 @@ export const TEGenerator = (props) => {
     data;
 
   return (
-    <Window width={550} height={310} resizable>
+    <Window width={550} height={310}>
       <Window.Content>
         <Section title="Status">
           <LabeledList>

@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
 
@@ -8,7 +8,7 @@ export const pda_main_menu = (props) => {
   const { owner, ownjob, idInserted, categories, pai, notifying } = data;
 
   return (
-    <Fragment>
+    <>
       <Box>
         <LabeledList>
           <LabeledList.Item label="Owner" color="average">
@@ -66,6 +66,6 @@ export const pda_main_menu = (props) => {
           />
         </Section>
       )}
-    </Fragment>
+    </>
   );
 };

@@ -20,7 +20,7 @@ export const ICAssembly = (props) => {
   } = data;
 
   return (
-    <Window width={600} height={380} resizable>
+    <Window width={600} height={380}>
       <Window.Content scrollable>
         <Section title="Status">
           <LabeledList>

@@ -8,7 +8,7 @@ export const NtosUAV = (props) => {
   const { current_uav, signal_strength, in_use, paired_uavs } = data;
 
   return (
-    <NtosWindow width={600} height={500} resizable>
+    <NtosWindow width={600} height={500}>
       <NtosWindow.Content>
         <Section title="Selected UAV">
           <LabeledList>

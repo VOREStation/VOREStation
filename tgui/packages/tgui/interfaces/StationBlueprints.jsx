@@ -1,11 +1,11 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { ByondUi } from '../components';
 import { Window } from '../layouts';
 
 export const StationBlueprints = (props) => {
   return (
-    <Window width={870} height={708} resizable>
+    <Window width={870} height={708}>
       <StationBlueprintsContent />
     </Window>
   );
@@ -16,7 +16,7 @@ export const StationBlueprintsContent = (props) => {
 
   const { mapRef, areas, turfs } = data;
   return (
-    <Fragment>
+    <>
       <div className="CameraConsole__left">
         <Window.Content scrollable>Honk!</Window.Content>
       </div>
@@ -29,6 +29,6 @@ export const StationBlueprintsContent = (props) => {
           }}
         />
       </div>
-    </Fragment>
+    </>
   );
 };

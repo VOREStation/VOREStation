@@ -1,5 +1,5 @@
 /* eslint react/no-danger: "off" */
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Button, Box, Section, Table, LabeledList, Input, Tabs, Flex, AnimatedNumber, ProgressBar } from '../components';
 import { NtosWindow } from '../layouts';
@@ -71,7 +71,7 @@ const NtosEmailClientContent = (props) => {
     <Section
       title={'Logged in as: ' + current_account}
       buttons={
-        <Fragment>
+        <>
           <Button
             icon="plus"
             tooltip="New Message"
@@ -90,7 +90,7 @@ const NtosEmailClientContent = (props) => {
             tooltipPosition="left"
             onClick={() => act('logout')}
           />
-        </Fragment>
+        </>
       }>
       {content}
     </Section>
@@ -188,7 +188,7 @@ export const NtosEmailClientViewMessage = (props) => {
         administrator ? (
           <Button icon="times" onClick={() => act('back')} />
         ) : (
-          <Fragment>
+          <>
             <Button
               icon="share"
               tooltip="Reply"
@@ -223,7 +223,7 @@ export const NtosEmailClientViewMessage = (props) => {
               tooltipPosition="left"
               onClick={() => act('cancel', { cancel: cur_uid })}
             />
-          </Fragment>
+          </>
         )
       }>
       <LabeledList>
@@ -294,12 +294,12 @@ const NtosEmailClientNewMessage = (props) => {
       title="New Message"
       level={2}
       buttons={
-        <Fragment>
+        <>
           <Button icon="share" onClick={() => act('send')}>
             Send Message
           </Button>
           <Button color="bad" icon="times" onClick={() => act('cancel')} />
-        </Fragment>
+        </>
       }>
       <LabeledList>
         <LabeledList.Item label="Title">

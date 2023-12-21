@@ -1,5 +1,5 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, NoticeBox, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -10,7 +10,7 @@ export const TelecommsLogBrowser = (props) => {
   const { universal_translate, network, temp, servers, selectedServer } = data;
 
   return (
-    <Window width={575} height={450} resizable>
+    <Window width={575} height={450}>
       <Window.Content scrollable>
         {temp ? (
           <NoticeBox
@@ -32,7 +32,7 @@ export const TelecommsLogBrowser = (props) => {
             <LabeledList.Item
               label="Current Network"
               buttons={
-                <Fragment>
+                <>
                   <Button
                     icon="search"
                     content="Refresh"
@@ -45,7 +45,7 @@ export const TelecommsLogBrowser = (props) => {
                     disabled={servers.length === 0}
                     onClick={() => act('release')}
                   />
-                </Fragment>
+                </>
               }>
               <Button
                 content={network}

@@ -1,5 +1,5 @@
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState, useSharedState } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Tabs, Input, NumberInput, Table, Divider } from '../components';
 import { Window } from '../layouts';
@@ -53,7 +53,7 @@ const PaginationChevrons = (props) => {
   const { target } = props;
 
   return (
-    <Fragment>
+    <>
       <Button icon="undo" onClick={() => act(target, { reset: true })} />
       <Button
         icon="chevron-left"
@@ -63,7 +63,7 @@ const PaginationChevrons = (props) => {
         icon="chevron-right"
         onClick={() => act(target, { reverse: 1 })}
       />
-    </Fragment>
+    </>
   );
 };
 
@@ -81,12 +81,12 @@ const ResearchConsoleViewDesigns = (props) => {
         />
       }
       buttons={
-        <Fragment>
+        <>
           <Button icon="print" onClick={() => act('print', { print: 2 })}>
             Print This Page
           </Button>
           {<PaginationChevrons target={'design_page'} /> || null}
-        </Fragment>
+        </>
       }>
       <Input
         fluid
@@ -209,14 +209,14 @@ const DataDisk = (props) => {
           <PaginationTitle title="Load Design to Disk" target="design_page" />
         }
         buttons={
-          <Fragment>
+          <>
             <Button
               icon="arrow-left"
               content="Back"
               onClick={() => setSaveDialog(false)}
             />
             {<PaginationChevrons target={'design_page'} /> || null}
-          </Fragment>
+          </>
         }>
         <Input
           fluid
@@ -591,7 +591,7 @@ const ResearchConsoleConstructor = (props) => {
                   label={toTitleCase(mat.name)}
                   key={mat.name}
                   buttons={
-                    <Fragment>
+                    <>
                       <NumberInput
                         minValue={0}
                         width="100px"
@@ -622,7 +622,7 @@ const ResearchConsoleConstructor = (props) => {
                         }>
                         All
                       </Button>
-                    </Fragment>
+                    </>
                   }>
                   {mat.amount} cm&sup3;
                 </LabeledList.Item>
@@ -687,14 +687,14 @@ const ResearchConsoleSettings = (props) => {
       {(settingsTab === 0 && (
         <Box>
           {(sync && (
-            <Fragment>
+            <>
               <Button fluid icon="sync" onClick={() => act('sync')}>
                 Sync Database with Network
               </Button>
               <Button fluid icon="unlink" onClick={() => act('togglesync')}>
                 Disconnect from Research Network
               </Button>
-            </Fragment>
+            </>
           )) || (
             <Button fluid icon="link" onClick={() => act('togglesync')}>
               Connect to Research Network

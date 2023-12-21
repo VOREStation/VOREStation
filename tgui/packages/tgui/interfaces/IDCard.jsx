@@ -28,7 +28,7 @@ export const IDCard = (props) => {
   ];
 
   return (
-    <Window width={470} height={250} resizable>
+    <Window width={470} height={250}>
       <Window.Content>
         <Section>
           <Flex>

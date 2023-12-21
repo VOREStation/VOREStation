@@ -9,7 +9,7 @@ export const TelesciConsole = (props) => {
   const { noTelepad } = data;
 
   return (
-    <Window width={400} height={450} resizable>
+    <Window width={400} height={450}>
       <Window.Content scrollable>
         {(noTelepad && <TelesciNoTelepadError />) || <TelesciConsoleContent />}
       </Window.Content>

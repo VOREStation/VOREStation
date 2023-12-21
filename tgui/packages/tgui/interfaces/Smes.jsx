@@ -29,7 +29,7 @@ export const Smes = (props) => {
   const outputState =
     (outputting && 'good') || (charge > 0 && 'average') || 'bad';
   return (
-    <Window width={340} height={350} resizable>
+    <Window width={340} height={350}>
       <Window.Content>
         <Section title="Stored Energy">
           <ProgressBar

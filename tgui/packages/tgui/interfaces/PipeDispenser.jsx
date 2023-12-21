@@ -12,7 +12,7 @@ export const PipeDispenser = (props) => {
     categories.find((category) => category.cat_name === categoryName) ||
     categories[0];
   return (
-    <Window width={425} height={515} resizable>
+    <Window width={425} height={515}>
       <Window.Content scrollable>
         {!disposals && (
           <Section title="Layer">

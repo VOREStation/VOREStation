@@ -19,7 +19,7 @@ export const NtosEmailAdministration = (props) => {
   }
 
   return (
-    <NtosWindow width={600} height={450} resizable>
+    <NtosWindow width={600} height={450}>
       <NtosWindow.Content scrollable>{body}</NtosWindow.Content>
     </NtosWindow>
   );

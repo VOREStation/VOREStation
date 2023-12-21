@@ -18,7 +18,7 @@ export const Batteryrack = (props) => {
   } = data;
 
   return (
-    <Window width={500} height={430} resizable>
+    <Window width={500} height={430}>
       <Window.Content scrollable>
         <Section title="Controls">
           <LabeledList>

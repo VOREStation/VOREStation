@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -28,11 +28,11 @@ export const ICCircuit = (props) => {
         <Section
           title="Stats"
           buttons={
-            <Fragment>
+            <>
               <Button onClick={() => act('rename')}>Rename</Button>
               <Button onClick={() => act('scan')}>Scan with Device</Button>
               <Button onClick={() => act('remove')}>Remove</Button>
-            </Fragment>
+            </>
           }>
           <LabeledList>
             <LabeledList.Item label="Complexity">{complexity}</LabeledList.Item>

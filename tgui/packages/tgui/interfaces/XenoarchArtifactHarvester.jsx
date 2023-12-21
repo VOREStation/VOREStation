@@ -8,7 +8,7 @@ export const XenoarchArtifactHarvester = (props) => {
   const { no_scanner, harvesting, inserted_battery } = data.info;
 
   return (
-    <Window width={450} height={200} resizable>
+    <Window width={450} height={200}>
       <Window.Content>
         {(no_scanner && (
           <Box color="bad">Warning: No scanner detected.</Box>

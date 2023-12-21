@@ -3,7 +3,7 @@ import { flow } from 'common/fp';
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { NanoMap, Box, Table, Button, Tabs, Icon } from '../components';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 
 const getStatText = (cm) => {
   if (cm.dead) {
@@ -29,7 +29,7 @@ const getStatColor = (cm) => {
 
 export const CrewMonitor = () => {
   return (
-    <Window width={800} height={600} resizable>
+    <Window width={800} height={600}>
       <Window.Content>
         <CrewMonitorContent />
       </Window.Content>
@@ -125,7 +125,7 @@ export const CrewMonitorContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab
           key="DataView"
@@ -141,7 +141,7 @@ export const CrewMonitorContent = (props) => {
         </Tabs.Tab>
       </Tabs>
       <Box m={2}>{body}</Box>
-    </Fragment>
+    </>
   );
 };
 

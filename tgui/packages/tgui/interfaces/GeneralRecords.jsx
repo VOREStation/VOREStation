@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Icon, Input, LabeledList, Section, Tabs } from '../components';
 import { ComplexModal, modalOpen } from './common/ComplexModal';
@@ -22,7 +22,7 @@ export const GeneralRecords = (_properties) => {
   const { authenticated, screen } = data;
   if (!authenticated) {
     return (
-      <Window width={800} height={380} resizable>
+      <Window width={800} height={380}>
         <Window.Content>
           <LoginScreen />
         </Window.Content>
@@ -43,7 +43,7 @@ export const GeneralRecords = (_properties) => {
   }
 
   return (
-    <Window width={800} height={640} resizable>
+    <Window width={800} height={640}>
       <ComplexModal />
       <Window.Content className="Layout__content--flexColumn" scrollable>
         <LoginInfo />
@@ -83,7 +83,7 @@ const GeneralRecordsList = (_properties) => {
 
   const records = selectRecords(data.records, searchText);
   return (
-    <Fragment>
+    <>
       <Box mb="0.2rem">
         <Button icon="pen" content="New Record" onClick={() => act('new')} />
       </Box>
@@ -103,7 +103,7 @@ const GeneralRecordsList = (_properties) => {
           />
         ))}
       </Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -122,7 +122,7 @@ const GeneralRecordsView = (_properties) => {
   const { act, data } = useBackend();
   const { general, printing } = data;
   return (
-    <Fragment>
+    <>
       <Section title="General Data" level={2} mt="-6px">
         <GeneralRecordsViewGeneral />
       </Section>
@@ -150,7 +150,7 @@ const GeneralRecordsView = (_properties) => {
           onClick={() => act('screen', { screen: 2 })}
         />
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -171,7 +171,7 @@ const GeneralRecordsViewGeneral = (_properties) => {
     );
   }
   return (
-    <Fragment>
+    <>
       <Box width="50%" float="left">
         <LabeledList>
           {general.fields.map((field, i) => (
@@ -240,7 +240,7 @@ const GeneralRecordsViewGeneral = (_properties) => {
             </Box>
           ))}
       </Box>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Slider, Section } from '../components';
 import { Window } from '../layouts';
@@ -30,7 +30,7 @@ export const GeneralAtmoControl = (props) => {
   } = data;
 
   return (
-    <Window width={600} height={600} resizable>
+    <Window width={600} height={600}>
       <Window.Content>
         <AtmoControlSensors sensors={sensors} />
         {(core || tanks) && <AtmoControlTankCore />}
@@ -188,7 +188,7 @@ const AtmoControlTankCoreControl = (props) => {
     <Section
       title={name}
       buttons={
-        <Fragment>
+        <>
           <Button
             content="Refresh"
             icon="sync"
@@ -202,7 +202,7 @@ const AtmoControlTankCoreControl = (props) => {
             disabled={!info}
             onClick={() => actions.power()}
           />
-        </Fragment>
+        </>
       }>
       <LabeledList>
         {(info && (
@@ -254,7 +254,7 @@ const AtmoControlFuel = (props) => {
     <Section
       title="Fuel Injection System"
       buttons={
-        <Fragment>
+        <>
           <Button
             icon="syringe"
             content="Inject"
@@ -273,7 +273,7 @@ const AtmoControlFuel = (props) => {
             selected={device_info ? device_info.power : false}
             disabled={automation || !device_info}
           />
-        </Fragment>
+        </>
       }>
       {device_info ? (
         <LabeledList>
@@ -293,14 +293,14 @@ const AtmoControlFuel = (props) => {
           </LabeledList.Item>
         </LabeledList>
       ) : (
-        <Fragment>
+        <>
           <Box color="bad">ERROR: Cannot Find Device</Box>
           <Button
             icon="search"
             content="Search"
             onClick={() => act('refresh_status')}
           />
-        </Fragment>
+        </>
       )}
     </Section>
   );

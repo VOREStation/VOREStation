@@ -22,8 +22,7 @@ export const PlayerNotes = (props) => {
       title={'Player Notes'}
       theme={device_theme}
       width={400}
-      height={500}
-      resizable>
+      height={500}>
       <Window.Content scrollable>
         <Section title="Player notes">
           <Button icon="filter" onClick={() => act('filter_player_notes')}>

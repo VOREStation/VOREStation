@@ -22,7 +22,7 @@ type OvermapShip = {
 
 export const AdminShuttleController = () => {
   return (
-    <Window width={600} height={600} resizable>
+    <Window width={600} height={600}>
       <Window.Content scrollable>
         <ShuttleList />
       </Window.Content>

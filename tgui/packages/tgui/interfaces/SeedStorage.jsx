@@ -12,7 +12,7 @@ export const SeedStorage = (props) => {
   const sortedSeeds = sortBy((seed) => seed.name.toLowerCase())(seeds);
 
   return (
-    <Window width={600} height={760} resizable>
+    <Window width={600} height={760}>
       <Window.Content scrollable>
         <Section title="Seeds">
           {sortedSeeds.map((seed) => (

@@ -254,7 +254,7 @@ const EjectMaterial = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <NumberInput
         width="30px"
         animated
@@ -279,7 +279,7 @@ const EjectMaterial = (props) => {
           })
         }
       />
-    </Fragment>
+    </>
   );
 };
 
@@ -447,7 +447,7 @@ const PartLists = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Section>
         <Flex>
           <Flex.Item mr={1}>
@@ -477,7 +477,7 @@ const PartLists = (props) => {
             parts={partsList[category]}
           />
         ))}
-    </Fragment>
+    </>
   );
 };
 
@@ -591,7 +591,7 @@ const Queue = (props) => {
           title="Queue"
           overflowY="auto"
           buttons={
-            <Fragment>
+            <>
               <Button.Confirm
                 disabled={!queue.length}
                 color="bad"
@@ -614,7 +614,7 @@ const Queue = (props) => {
                   onClick={() => act('build_queue')}
                 />
               )}
-            </Fragment>
+            </>
           }>
           <Flex direction="column" height="100%">
             <Flex.Item>
@@ -671,7 +671,7 @@ const QueueList = (props) => {
   const queue = data.queue || [];
 
   if (!queue.length) {
-    return <Fragment>No parts in queue.</Fragment>;
+    return <>No parts in queue.</>;
   }
 
   return queue.map((part, index) => (

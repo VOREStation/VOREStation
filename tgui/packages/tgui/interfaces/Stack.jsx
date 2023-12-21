@@ -8,7 +8,7 @@ export const Stack = (props) => {
   const { amount, recipes } = data;
 
   return (
-    <Window width={400} height={600} resizable>
+    <Window width={400} height={600}>
       <Window.Content scrollable>
         <Section title={'Amount: ' + amount}>
           <RecipeList recipes={recipes} />

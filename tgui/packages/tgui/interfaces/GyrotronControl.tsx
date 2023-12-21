@@ -4,7 +4,7 @@ import { Button, Section, Table, Knob } from '../components';
 import { BooleanLike } from 'common/react';
 
 export const GyrotronControl = () => (
-  <Window width={627} height={700} resizable>
+  <Window width={627} height={700}>
     <Window.Content>
       <GyrotronControlContent />
     </Window.Content>

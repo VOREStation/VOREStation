@@ -10,7 +10,7 @@ export const LookingGlass = (props) => {
   let height = Math.min(180 + supportedPrograms.length * 23, 600);
 
   return (
-    <Window width={300} height={height} resizable>
+    <Window width={300} height={height}>
       <Window.Content scrollable>
         <Section title="Programs">
           {supportedPrograms.map((program) => (

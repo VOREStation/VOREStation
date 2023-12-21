@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -9,7 +9,7 @@ export const Microwave = (props) => {
   const { broken, operating, dirty, items } = data;
 
   return (
-    <Window width={400} height={500} resizable>
+    <Window width={400} height={500}>
       <Window.Content scrollable>
         {(broken && (
           <Section>
@@ -39,14 +39,14 @@ export const Microwave = (props) => {
               level={1}
               title="Ingredients"
               buttons={
-                <Fragment>
+                <>
                   <Button icon="radiation" onClick={() => act('cook')}>
                     Microwave
                   </Button>
                   <Button icon="eject" onClick={() => act('dispose')}>
                     Eject
                   </Button>
-                </Fragment>
+                </>
               }>
               <LabeledList>
                 {items.map((item) => (

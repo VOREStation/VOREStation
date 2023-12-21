@@ -23,7 +23,7 @@ export const Teleporter = (props) => {
   } = data;
 
   return (
-    <Window width={300} height={200} resizable>
+    <Window width={300} height={200}>
       <Window.Content>
         <Section>
           <LabeledList>

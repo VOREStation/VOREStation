@@ -1,5 +1,5 @@
 import { createSearch } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
@@ -12,12 +12,12 @@ const sortTypes = {
 
 export const CasinoPrizeDispenser = () => {
   return (
-    <Window width={400} height={450} resizable>
+    <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
-        <Fragment>
+        <>
           <CasinoPrizeDispenserSearch />
           <CasinoPrizeDispenserItems />
-        </Fragment>
+        </>
       </Window.Content>
     </Window>
   );

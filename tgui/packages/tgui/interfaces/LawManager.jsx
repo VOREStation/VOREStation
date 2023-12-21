@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useSharedState } from '../backend';
 import { Button, LabeledList, Section, Tabs, NoticeBox, Table, Input } from '../components';
 import { Window } from '../layouts';
@@ -9,7 +9,7 @@ export const LawManager = (props) => {
   const { isSlaved } = data;
 
   return (
-    <Window width={800} height={600} resizable>
+    <Window width={800} height={600}>
       <Window.Content scrollable>
         {(isSlaved && <NoticeBox info>Law-synced to {isSlaved}</NoticeBox>) ||
           null}
@@ -23,7 +23,7 @@ const LawManagerContent = (props) => {
   const [tabIndex, setTabIndex] = useSharedState('lawsTabIndex', 0);
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
           Law Management
@@ -34,7 +34,7 @@ const LawManagerContent = (props) => {
       </Tabs>
       {(tabIndex === 0 && <LawManagerLaws />) || null}
       {(tabIndex === 1 && <LawManagerLawSets />) || null}
-    </Fragment>
+    </>
   );
 };
 
@@ -224,10 +224,10 @@ const LawsTable = (props) => {
           <Table.Cell>Law</Table.Cell>
           {(!noButtons && <Table.Cell collapsing>State</Table.Cell>) || null}
           {(isMalf && !noButtons && (
-            <Fragment>
+            <>
               <Table.Cell collapsing>Edit</Table.Cell>
               <Table.Cell collapsing>Delete</Table.Cell>
-            </Fragment>
+            </>
           )) ||
             null}
         </Table.Row>
@@ -250,7 +250,7 @@ const LawsTable = (props) => {
             )) ||
               null}
             {(isMalf && !noButtons && (
-              <Fragment>
+              <>
                 <Table.Cell collapsing>
                   <Button
                     disabled={law.zero && !isAdmin}
@@ -268,7 +268,7 @@ const LawsTable = (props) => {
                     Delete
                   </Button>
                 </Table.Cell>
-              </Fragment>
+              </>
             )) ||
               null}
           </Table.Row>
@@ -284,7 +284,7 @@ const LawManagerLawSets = (props) => {
   const { isMalf, law_sets } = data;
 
   return (
-    <Fragment>
+    <>
       <NoticeBox>
         Remember: Stating laws other than those currently loaded may be grounds
         for decommissioning! - NanoTrasen
@@ -295,7 +295,7 @@ const LawManagerLawSets = (props) => {
             key={laws.name}
             title={laws.name}
             buttons={
-              <Fragment>
+              <>
                 <Button
                   disabled={!isMalf}
                   icon="sync"
@@ -311,7 +311,7 @@ const LawManagerLawSets = (props) => {
                   }>
                   State Laws
                 </Button>
-              </Fragment>
+              </>
             }>
             {(laws.laws.has_ion_laws && (
               <LawsTable
@@ -340,6 +340,6 @@ const LawManagerLawSets = (props) => {
           </Section>
         ))) ||
         null}
-    </Fragment>
+    </>
   );
 };

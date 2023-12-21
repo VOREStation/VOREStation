@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Modal, Section, Dropdown, AnimatedNumber, NoticeBox, Table } from '../components';
 import { Window } from '../layouts';
@@ -29,7 +29,7 @@ export const NIF = (props) => {
   const [viewingModule, setViewing] = useLocalState('viewingModule', null);
 
   return (
-    <Window theme={theme} width={500} height={400} resizable>
+    <Window theme={theme} width={500} height={400}>
       <Window.Content scrollable>
         {!!last_notification && (
           <NoticeBox info>
@@ -57,7 +57,7 @@ export const NIF = (props) => {
               m={0}
               title={viewingModule.name}
               buttons={
-                <Fragment>
+                <>
                   <Button.Confirm
                     icon="ban"
                     color="bad"
@@ -73,7 +73,7 @@ export const NIF = (props) => {
                     icon="window-close"
                     onClick={() => setViewing(null)}
                   />
-                </Fragment>
+                </>
               }>
               <Box>{viewingModule.desc}</Box>
               <Box>
@@ -220,7 +220,7 @@ const NIFMain = (props) => {
               label={module.name}
               key={module.ref}
               buttons={
-                <Fragment>
+                <>
                   <Button.Confirm
                     icon="trash"
                     color="bad"
@@ -236,7 +236,7 @@ const NIFMain = (props) => {
                     tooltip="View Information"
                     tooltipPosition="left"
                   />
-                </Fragment>
+                </>
               }>
               {(module.activates && (
                 <Button

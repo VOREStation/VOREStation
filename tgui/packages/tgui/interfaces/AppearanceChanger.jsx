@@ -1,6 +1,6 @@
 import { sortBy } from 'common/collections';
 import { capitalize, decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, ByondUi, Flex, LabeledList, Section, Tabs, ColorBox } from '../components';
 import { Window } from '../layouts';
@@ -138,7 +138,7 @@ export const AppearanceChanger = (props) => {
             </Tabs.Tab>
           ) : null}
           {change_hair ? (
-            <Fragment>
+            <>
               <Tabs.Tab
                 selected={tabIndex === 3}
                 onClick={() => setTabIndex(3)}>
@@ -164,7 +164,7 @@ export const AppearanceChanger = (props) => {
                 onClick={() => setTabIndex(8)}>
                 Markings
               </Tabs.Tab>
-            </Fragment>
+            </>
           ) : null}
           {change_facial_hair ? (
             <Tabs.Tab selected={tabIndex === 4} onClick={() => setTabIndex(4)}>
@@ -287,7 +287,7 @@ const AppearanceChangerColors = (props) => {
         </Box>
       ) : null}
       {change_hair_color ? (
-        <Fragment>
+        <>
           <Box>
             <ColorBox color={hair_color} mr={1} />
             <Button
@@ -337,7 +337,7 @@ const AppearanceChangerColors = (props) => {
               onClick={() => act('wing2_color')}
             />
           </Box>
-        </Fragment>
+        </>
       ) : null}
       {change_facial_hair_color ? (
         <Box>

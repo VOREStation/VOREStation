@@ -1,5 +1,5 @@
 import { createSearch } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
@@ -13,14 +13,14 @@ const sortTypes = {
 export const Biogenerator = (props) => {
   const { act, data } = useBackend();
   return (
-    <Window width={400} height={450} resizable>
+    <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
         {(data.processing && (
           <Section title="Processing">
             The biogenerator is processing reagents!
           </Section>
         )) || (
-          <Fragment>
+          <>
             <Section>
               {data.points} points available.
               <Button ml={1} icon="blender" onClick={() => act('activate')}>
@@ -36,7 +36,7 @@ export const Biogenerator = (props) => {
             </Section>
             <BiogeneratorSearch />
             <BiogeneratorItems />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>
