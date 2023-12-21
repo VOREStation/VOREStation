@@ -167,8 +167,8 @@
 	//10MW = 88
 	//100MW = 110
 	//1GW = 132
-	if(charge >= 1000)
-		var/damage = log(1.1,charge)
+	if(avail >= 1000)
+		var/damage = log(1.1,avail)
 		damage = damage - (log(1.1,damage)*1.5)
 		return round(damage)
 	else
