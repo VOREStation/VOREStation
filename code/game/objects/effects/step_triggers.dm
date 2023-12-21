@@ -117,7 +117,7 @@
 			L.stop_pulling()
 			P.forceMove(T)
 			L.forceMove(T)
-			L.start_pulling(P)
+			L.continue_pulling(P)
 		else
 			L.forceMove(T)
 	else
@@ -285,4 +285,3 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 
 /obj/effect/step_trigger/warning/train_edge
 	warningmessage = "The wind billowing alongside the train is extremely strong here! Any movement could easily pull you down beneath the carriages, return to the train immediately!"
-
