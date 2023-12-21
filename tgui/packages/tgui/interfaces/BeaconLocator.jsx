@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
 
-export const BeaconLocator = (props, context) => {
-  const { act, data } = useBackend(context);
+export const BeaconLocator = (props) => {
+  const { act, data } = useBackend();
 
   const { scan_ticks, degrees, rawfreq, minFrequency, maxFrequency } = data;
 

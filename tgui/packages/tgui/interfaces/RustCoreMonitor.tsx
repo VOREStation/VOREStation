@@ -27,8 +27,8 @@ type Data = {
   }[];
 };
 
-export const RustCoreMonitorContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const RustCoreMonitorContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { cores } = data;
 

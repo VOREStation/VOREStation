@@ -24,10 +24,9 @@ import { FullscreenNotice } from './FullscreenNotice';
  * The normal login button is only available when `scan` is not null.
  * The AI and robot login buttons are only visible if the user is one
  * @param {object} _properties
- * @param {object} context
  */
-export const LoginScreen = (_properties, context) => {
-  const { act, data } = useBackend(context);
+export const LoginScreen = (_properties) => {
+  const { act, data } = useBackend();
   const { scan, isAI, isRobot } = data;
   const { machineType } = _properties;
   return (
@@ -91,8 +90,8 @@ export const LoginScreen = (_properties, context) => {
  * specialType definitions are defined in LoginScreen.js SpecialMachineInteraction
  * currently supported: "Fax"
  */
-export const SpecialMachineInteraction = (_properties, context) => {
-  const { act } = useBackend(context);
+export const SpecialMachineInteraction = (_properties) => {
+  const { act } = useBackend();
   const { specialType } = _properties;
   if (!specialType) {
     return null;

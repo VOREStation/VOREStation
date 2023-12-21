@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Box, LabeledList, ProgressBar, Section, Icon } from '../components';
 import { NtosWindow } from '../layouts';
 
-export const NtosNetTransfer = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosNetTransfer = (props) => {
+  const { act, data } = useBackend();
 
   const { error, downloading, uploading, upload_filelist } = data;
 
@@ -26,8 +26,8 @@ export const NtosNetTransfer = (props, context) => {
   );
 };
 
-const P2PError = (props, context) => {
-  const { act, data } = useBackend(context);
+const P2PError = (props) => {
+  const { act, data } = useBackend();
   const { error } = data;
   return (
     <Section
@@ -42,8 +42,8 @@ const P2PError = (props, context) => {
   );
 };
 
-const P2PDownload = (props, context) => {
-  const { act, data } = useBackend(context);
+const P2PDownload = (props) => {
+  const { act, data } = useBackend();
   const { download_name, download_progress, download_size, download_netspeed } =
     data;
   return (
@@ -70,8 +70,8 @@ const P2PDownload = (props, context) => {
   );
 };
 
-const P2PUpload = (props, context) => {
-  const { act, data } = useBackend(context);
+const P2PUpload = (props) => {
+  const { act, data } = useBackend();
   const { upload_clients, upload_filename, upload_haspassword } = data;
   return (
     <Section title="Server enabled">
@@ -98,8 +98,8 @@ const P2PUpload = (props, context) => {
   );
 };
 
-const P2PUploadServer = (props, context) => {
-  const { act, data } = useBackend(context);
+const P2PUploadServer = (props) => {
+  const { act, data } = useBackend();
   const { upload_filelist } = data;
   return (
     <Section
@@ -127,8 +127,8 @@ const P2PUploadServer = (props, context) => {
   );
 };
 
-const P2PAvailable = (props, context) => {
-  const { act, data } = useBackend(context);
+const P2PAvailable = (props) => {
+  const { act, data } = useBackend();
   const { servers } = data;
   return (
     <Section

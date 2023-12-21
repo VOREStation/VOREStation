@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
-export const DestinationTagger = (props, context) => {
-  const { act, data } = useBackend(context);
+export const DestinationTagger = (props) => {
+  const { act, data } = useBackend();
 
   const { currTag, taggerLocs } = data;
 

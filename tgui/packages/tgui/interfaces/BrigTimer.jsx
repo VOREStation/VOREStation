@@ -5,8 +5,8 @@ import { Button, Section, NumberInput, Flex } from '../components';
 import { Window } from '../layouts';
 import { formatTime } from '../format';
 
-export const BrigTimer = (props, context) => {
-  const { act, data } = useBackend(context);
+export const BrigTimer = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window width={300} height={138} resizable>
       <Window.Content scrollable>

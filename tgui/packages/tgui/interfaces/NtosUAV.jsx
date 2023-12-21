@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { NtosWindow } from '../layouts';
 
-export const NtosUAV = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosUAV = (props) => {
+  const { act, data } = useBackend();
 
   const { current_uav, signal_strength, in_use, paired_uavs } = data;
 

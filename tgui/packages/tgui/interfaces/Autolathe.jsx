@@ -26,17 +26,12 @@ const canBeMade = (recipe, materials, mult = 1) => {
   return true;
 };
 
-export const Autolathe = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Autolathe = (props) => {
+  const { act, data } = useBackend();
   const { recipes, busy, materials, categories } = data;
 
-  const [category, setCategory] = useSharedState(context, 'category', 0);
-
-  const [searchText, setSearchText] = useSharedState(
-    context,
-    'search_text',
-    ''
-  );
+  const [category, setCategory] = useSharedState('category', 0);
+  const [searchText, setSearchText] = useSharedState('search_text', '');
 
   const testSearch = createSearch(searchText, (recipe) => recipe.name);
 

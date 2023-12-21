@@ -16,8 +16,8 @@ const getItemColor = (value, min2, min1, max1, max2) => {
   return 'good';
 };
 
-export const pda_atmos_scan = (props, context) => {
-  const { act, data } = useBackend(context);
+export const pda_atmos_scan = (props) => {
+  const { act, data } = useBackend();
 
   const { aircontents } = data;
 

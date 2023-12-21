@@ -28,7 +28,7 @@
     "@babel/preset-typescript": "^7.17.12",
     "@types/jest": "^27.5.1",
     "@types/jsdom": "^16.2.14",
-    "@types/node": "^17.0.35",
+    "@types/node": "^14.x",
     "@types/webpack": "^5.28.0",
     "@types/webpack-env": "^1.17.0",
     "@typescript-eslint/parser": "^5.25.0",

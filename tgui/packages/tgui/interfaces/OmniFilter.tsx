@@ -25,8 +25,8 @@ type Data = {
   last_flow_rate: number;
 };
 
-export const OmniFilter = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const OmniFilter = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { power, config, ports, set_flow_rate, last_flow_rate } = data;
 

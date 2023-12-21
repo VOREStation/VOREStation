@@ -4,8 +4,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const DishIncubator = (props, context) => {
-  const { act, data } = useBackend(context);
+export const DishIncubator = (props) => {
+  const { act, data } = useBackend();
 
   const {
     on,

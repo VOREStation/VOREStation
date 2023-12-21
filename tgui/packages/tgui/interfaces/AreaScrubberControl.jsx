@@ -3,10 +3,10 @@ import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { toTitleCase } from 'common/string';
 
-export const AreaScrubberControl = (props, context) => {
-  const { act, data } = useBackend(context);
+export const AreaScrubberControl = (props) => {
+  const { act, data } = useBackend();
 
-  const [showArea, setShowArea] = useLocalState(context, 'showArea', false);
+  const [showArea, setShowArea] = useLocalState('showArea', false);
 
   const { scrubbers } = data;
 
@@ -80,8 +80,8 @@ export const AreaScrubberControl = (props, context) => {
   );
 };
 
-const BigScrubber = (props, context) => {
-  const { act } = useBackend(context);
+const BigScrubber = (props) => {
+  const { act } = useBackend();
 
   const { scrubber, showArea } = props;
 

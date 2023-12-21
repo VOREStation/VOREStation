@@ -5,8 +5,8 @@ import { Box, Button, Flex, LabeledList, Section, NoticeBox } from '../component
 import { Window } from '../layouts';
 import { RankIcon } from './common/RankIcon';
 
-export const TimeClock = (props, context) => {
-  const { act, data } = useBackend(context);
+export const TimeClock = (props) => {
+  const { act, data } = useBackend();
 
   const {
     department_hours,

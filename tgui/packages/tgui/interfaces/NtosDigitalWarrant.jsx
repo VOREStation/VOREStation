@@ -4,8 +4,8 @@ import { NtosWindow } from '../layouts';
 import { filter } from 'common/collections';
 import { Fragment } from 'inferno';
 
-export const NtosDigitalWarrant = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosDigitalWarrant = (props) => {
+  const { act, data } = useBackend();
 
   const { warrantname, warrantcharges, warrantauth, type, allwarrants } = data;
 
@@ -22,8 +22,8 @@ export const NtosDigitalWarrant = (props, context) => {
   );
 };
 
-const AllWarrants = (props, context) => {
-  const { act, data } = useBackend(context);
+const AllWarrants = (props) => {
+  const { act, data } = useBackend();
 
   const { allwarrants } = data;
 
@@ -42,8 +42,8 @@ const AllWarrants = (props, context) => {
   );
 };
 
-const WarrantList = (props, context) => {
-  const { act, data } = useBackend(context);
+const WarrantList = (props) => {
+  const { act, data } = useBackend();
 
   const { type } = props;
 
@@ -83,8 +83,8 @@ const WarrantList = (props, context) => {
   );
 };
 
-const ActiveWarrant = (props, context) => {
-  const { act, data } = useBackend(context);
+const ActiveWarrant = (props) => {
+  const { act, data } = useBackend();
 
   const { warrantname, warrantcharges, warrantauth, type } = data;
 

@@ -12,8 +12,8 @@ export const StationAlertConsole = () => {
   );
 };
 
-export const StationAlertConsoleContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const StationAlertConsoleContent = (props) => {
+  const { act, data } = useBackend();
   const { categories = [] } = data;
   return categories.map((category) => (
     <Section key={category.category} title={category.category}>

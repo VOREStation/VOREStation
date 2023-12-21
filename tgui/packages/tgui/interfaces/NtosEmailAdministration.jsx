@@ -3,8 +3,8 @@ import { Box, Button, LabeledList, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 import { NtosEmailClientViewMessage } from './NtosEmailClient';
 
-export const NtosEmailAdministration = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosEmailAdministration = (props) => {
+  const { act, data } = useBackend();
 
   const { error, cur_title, current_account } = data;
 
@@ -25,8 +25,8 @@ export const NtosEmailAdministration = (props, context) => {
   );
 };
 
-const MainMenu = (props, context) => {
-  const { act, data } = useBackend(context);
+const MainMenu = (props) => {
+  const { act, data } = useBackend();
   const { accounts } = data;
   return (
     <Section title="Welcome to the NTNet Email Administration System">
@@ -52,8 +52,8 @@ const MainMenu = (props, context) => {
   );
 };
 
-const EmailError = (props, context) => {
-  const { act, data } = useBackend(context);
+const EmailError = (props) => {
+  const { act, data } = useBackend();
   const { error } = data;
   return (
     <Section
@@ -68,8 +68,8 @@ const EmailError = (props, context) => {
   );
 };
 
-const ViewEmail = (props, context) => {
-  const { act, data } = useBackend(context);
+const ViewEmail = (props) => {
+  const { act, data } = useBackend();
   return (
     <Section>
       <NtosEmailClientViewMessage administrator />
@@ -77,8 +77,8 @@ const ViewEmail = (props, context) => {
   );
 };
 
-const ViewAccount = (props, context) => {
-  const { act, data } = useBackend(context);
+const ViewAccount = (props) => {
+  const { act, data } = useBackend();
   const {
     error,
     msg_title,

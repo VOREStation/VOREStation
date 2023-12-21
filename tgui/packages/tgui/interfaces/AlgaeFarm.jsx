@@ -3,8 +3,8 @@ import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Table } from
 import { Window } from '../layouts';
 import { capitalize } from 'common/string';
 
-export const AlgaeFarm = (props, context) => {
-  const { act, data } = useBackend(context);
+export const AlgaeFarm = (props) => {
+  const { act, data } = useBackend();
   const {
     usePower,
     materials,

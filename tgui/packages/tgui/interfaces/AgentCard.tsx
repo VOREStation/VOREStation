@@ -8,8 +8,8 @@ type Data = {
   electronic_warfare: BooleanLike;
 };
 
-export const AgentCard = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const AgentCard = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { entries, electronic_warfare } = data;
 

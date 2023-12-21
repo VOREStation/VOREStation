@@ -25,8 +25,8 @@ type Data = {
   }[];
 };
 
-export const RustFuelContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const RustFuelContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { fuels } = data;
 

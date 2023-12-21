@@ -9,7 +9,7 @@ import { capitalize } from 'common/string';
 // Common power multiplier
 const POWER_MUL = 1e3;
 
-export const RCON = (props, context) => {
+export const RCON = (props) => {
   return (
     <Window width={630} height={540} resizable>
       <Window.Content scrollable>
@@ -19,8 +19,8 @@ export const RCON = (props, context) => {
   );
 };
 
-export const RCONContent = (props, context) => {
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
+export const RCONContent = (props) => {
+  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
 
   let body;
   if (tabIndex === 0) {
@@ -50,8 +50,8 @@ export const RCONContent = (props, context) => {
   );
 };
 
-const RCONSmesList = (props, context) => {
-  const { act, data } = useBackend(context);
+const RCONSmesList = (props) => {
+  const { act, data } = useBackend();
 
   const { smes_info, pages, current_page } = data;
 
@@ -92,8 +92,8 @@ const RCONSmesList = (props, context) => {
   );
 };
 
-const SMESItem = (props, context) => {
-  const { act } = useBackend(context);
+const SMESItem = (props) => {
+  const { act } = useBackend();
   const {
     capacityPercent,
     capacity,
@@ -143,8 +143,8 @@ const SMESItem = (props, context) => {
   );
 };
 
-const SMESControls = (props, context) => {
-  const { act } = useBackend(context);
+const SMESControls = (props) => {
+  const { act } = useBackend();
   const { way, smes } = props;
   const {
     capacityPercent,
@@ -294,8 +294,8 @@ const SMESControls = (props, context) => {
   );
 };
 
-const RCONBreakerList = (props, context) => {
-  const { act, data } = useBackend(context);
+const RCONBreakerList = (props) => {
+  const { act, data } = useBackend();
 
   const { breaker_info } = data;
 

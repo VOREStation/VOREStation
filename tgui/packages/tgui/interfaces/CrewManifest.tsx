@@ -34,8 +34,8 @@ type Data = {
   }[];
 };
 
-export const CrewManifestContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const CrewManifestContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { manifest } = data;
 

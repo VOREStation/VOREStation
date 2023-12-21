@@ -3,8 +3,8 @@ import { Box, Button, Grid, LabeledList, NumberInput, ProgressBar, Section } fro
 import { Window } from '../layouts';
 import { round } from 'common/math';
 
-export const SolarControl = (props, context) => {
-  const { act, data } = useBackend(context);
+export const SolarControl = (props) => {
+  const { act, data } = useBackend();
   const {
     generated,
     generated_ratio,

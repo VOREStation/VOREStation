@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, ByondUi, Button, Flex, LabeledList, Section, ColorBox } from '../components';
 import { Window } from '../layouts';
 
-export const BodyDesigner = (props, context) => {
-  const { act, data } = useBackend(context);
+export const BodyDesigner = (props) => {
+  const { act, data } = useBackend();
 
   const { menu, disk, diskStored, activeBodyRecord } = data;
 
@@ -40,8 +40,8 @@ export const BodyDesigner = (props, context) => {
   );
 };
 
-const BodyDesignerMain = (props, context) => {
-  const { act, data } = useBackend(context);
+const BodyDesignerMain = (props) => {
+  const { act, data } = useBackend();
   return (
     <Section title="Database Functions">
       <Button
@@ -58,8 +58,8 @@ const BodyDesignerMain = (props, context) => {
   );
 };
 
-const BodyDesignerBodyRecords = (props, context) => {
-  const { act, data } = useBackend(context);
+const BodyDesignerBodyRecords = (props) => {
+  const { act, data } = useBackend();
   const { bodyrecords } = data;
   return (
     <Section
@@ -83,8 +83,8 @@ const BodyDesignerBodyRecords = (props, context) => {
   );
 };
 
-const BodyDesignerStockRecords = (props, context) => {
-  const { act, data } = useBackend(context);
+const BodyDesignerStockRecords = (props) => {
+  const { act, data } = useBackend();
   const { stock_bodyrecords } = data;
   return (
     <Section
@@ -108,8 +108,8 @@ const BodyDesignerStockRecords = (props, context) => {
   );
 };
 
-const BodyDesignerSpecificRecord = (props, context) => {
-  const { act, data } = useBackend(context);
+const BodyDesignerSpecificRecord = (props) => {
+  const { act, data } = useBackend();
   const { activeBodyRecord, mapRef } = data;
   return activeBodyRecord ? (
     <Flex direction="column">
@@ -309,8 +309,8 @@ const BodyDesignerSpecificRecord = (props, context) => {
   );
 };
 
-const BodyDesignerOOCNotes = (props, context) => {
-  const { act, data } = useBackend(context);
+const BodyDesignerOOCNotes = (props) => {
+  const { act, data } = useBackend();
   const { activeBodyRecord } = data;
   return (
     <Section

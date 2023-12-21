@@ -8,8 +8,8 @@ type Data = {
   activecolor: string;
 };
 
-export const ColorMate = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const ColorMate = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { items, activecolor } = data;
 

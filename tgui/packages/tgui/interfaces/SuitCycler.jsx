@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Dropdown, NumberInput, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
-export const SuitCycler = (props, context) => {
-  const { act, data } = useBackend(context);
+export const SuitCycler = (props) => {
+  const { act, data } = useBackend();
   const { active, locked, uv_active } = data;
 
   let subTemplate = <SuitCyclerContent />;
@@ -24,8 +24,8 @@ export const SuitCycler = (props, context) => {
   );
 };
 
-const SuitCyclerContent = (props, context) => {
-  const { act, data } = useBackend(context);
+const SuitCyclerContent = (props) => {
+  const { act, data } = useBackend();
   const {
     safeties,
     occupied,
@@ -151,7 +151,7 @@ const SuitCyclerContent = (props, context) => {
   );
 };
 
-const SuitCyclerUV = (props, context) => {
+const SuitCyclerUV = (props) => {
   return (
     <NoticeBox>
       Contents are currently being decontaminated. Please wait.
@@ -159,8 +159,8 @@ const SuitCyclerUV = (props, context) => {
   );
 };
 
-const SuitCyclerLocked = (props, context) => {
-  const { act, data } = useBackend(context);
+const SuitCyclerLocked = (props) => {
+  const { act, data } = useBackend();
 
   const { model_text, userHasAccess } = data;
 
@@ -182,7 +182,7 @@ const SuitCyclerLocked = (props, context) => {
   );
 };
 
-const SuitCyclerActive = (props, context) => {
+const SuitCyclerActive = (props) => {
   return (
     <NoticeBox>Contents are currently being painted. Please wait.</NoticeBox>
   );

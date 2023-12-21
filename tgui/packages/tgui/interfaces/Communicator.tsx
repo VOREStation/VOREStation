@@ -42,8 +42,8 @@ type Data = {
   invitesSent: [];
 };
 
-export const Communicator = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const Communicator = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { currentTab, video_comm, mapRef } = data;
 
@@ -51,11 +51,7 @@ export const Communicator = (props, context) => {
    * 1: Popup Video
    * 2: Minimized Video
    */
-  const [videoSetting, setVideoSetting] = useLocalState(
-    context,
-    'videoSetting',
-    0
-  );
+  const [videoSetting, setVideoSetting] = useLocalState('videoSetting', 0);
 
   return (
     <Window width={475} height={700} resizable>
@@ -88,8 +84,8 @@ export const Communicator = (props, context) => {
   );
 };
 
-const VideoComm = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const VideoComm = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { video_comm, mapRef } = data;
 
@@ -204,8 +200,8 @@ const VideoComm = (props, context) => {
   return null;
 };
 
-const TemplateError = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const TemplateError = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { currentTab } = data;
 
@@ -216,8 +212,8 @@ const TemplateError = (props, context) => {
   );
 };
 
-const CommunicatorHeader = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const CommunicatorHeader = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { time, connectionStatus, owner, occupation } = data;
 
@@ -238,8 +234,8 @@ const CommunicatorHeader = (props, context) => {
   );
 };
 
-const CommunicatorFooter = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const CommunicatorFooter = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { flashlight } = data;
 
@@ -289,8 +285,8 @@ const CommunicatorFooter = (props, context) => {
 };
 
 /* Helper for notifications (yes this is a mess, but whatever, it works) */
-const hasNotifications = (app, context) => {
-  const { data } = useBackend<Data>(context);
+const hasNotifications = (app) => {
+  const { data } = useBackend<Data>();
 
   const {
     /* Phone Notifications */
@@ -323,8 +319,8 @@ type HomeTabData = {
 };
 
 /* Home tab, provides access to all other tabs. */
-const HomeTab = (props, context) => {
-  const { act, data } = useBackend<HomeTabData>(context);
+const HomeTab = (props) => {
+  const { act, data } = useBackend<HomeTabData>();
 
   const { homeScreen } = data;
 
@@ -342,8 +338,8 @@ const HomeTab = (props, context) => {
             position="relative"
             onClick={() => act('switch_tab', { switch_tab: app.number })}>
             <Icon
-              spin={hasNotifications(app.module, context)}
-              color={hasNotifications(app.module, context) ? 'bad' : null}
+              spin={hasNotifications(app.module)}
+              color={hasNotifications(app.module) ? 'bad' : null}
               name={app.icon}
               position="absolute"
               size={3}
@@ -376,8 +372,8 @@ type PhoneTabData = {
 };
 
 /* Phone tab, provides a phone interface! */
-const PhoneTab = (props, context) => {
-  const { act, data } = useBackend<PhoneTabData>(context);
+const PhoneTab = (props) => {
+  const { act, data } = useBackend<PhoneTabData>();
 
   const {
     targetAddress,
@@ -538,8 +534,8 @@ const PhoneTab = (props, context) => {
 };
 
 // Subtemplate
-const NumberPad = (props, context) => {
-  const { act, data } = useBackend<PhoneTabData>(context);
+const NumberPad = (props) => {
+  const { act, data } = useBackend<PhoneTabData>();
 
   const { targetAddress } = data;
 
@@ -657,8 +653,8 @@ type ContactsTabData = {
 };
 
 /* Contacts */
-const ContactsTab = (props, context) => {
-  const { act, data } = useBackend<ContactsTabData>(context);
+const ContactsTab = (props) => {
+  const { act, data } = useBackend<ContactsTabData>();
 
   const { knownDevices } = data;
 
@@ -727,8 +723,8 @@ type MessagingTabData = {
 };
 
 /* Messaging */
-const MessagingTab = (props, context) => {
-  const { act, data } = useBackend<MessagingTabData>(context);
+const MessagingTab = (props) => {
+  const { act, data } = useBackend<MessagingTabData>();
 
   const { imContacts } = data;
 
@@ -811,13 +807,12 @@ const findClassMessage = (im, targetAddress, lastIndex, filterArray) => {
   return thisSent ? 'TinderMessage_First_Sent' : 'TinderMessage_First_Received';
 };
 
-const MessagingThreadTab = (props, context) => {
-  const { act, data } = useBackend<MessagingTabData>(context);
+const MessagingThreadTab = (props) => {
+  const { act, data } = useBackend<MessagingTabData>();
 
   const { targetAddressName, targetAddress, imList } = data;
 
   const [clipboardMode, setClipboardMode] = useLocalState(
-    context,
     'clipboardMode',
     false
   );
@@ -968,8 +963,8 @@ type NewsMessage = {
 };
 
 /* News */
-const NewsTab = (props, context) => {
-  const { act, data } = useBackend<NewsTabData>(context);
+const NewsTab = (props) => {
+  const { act, data } = useBackend<NewsTabData>();
 
   const { feeds, target_feed } = data;
 
@@ -985,8 +980,8 @@ const NewsTab = (props, context) => {
   );
 };
 
-const NewsTargetFeed = (props, context) => {
-  const { act, data } = useBackend<NewsTabData>(context);
+const NewsTargetFeed = (props) => {
+  const { act, data } = useBackend<NewsTabData>();
 
   const { target_feed } = data;
 
@@ -1023,8 +1018,8 @@ const NewsTargetFeed = (props, context) => {
   );
 };
 
-const NewsFeed = (props, context) => {
-  const { act, data } = useBackend<NewsTabData>(context);
+const NewsFeed = (props) => {
+  const { act, data } = useBackend<NewsTabData>();
 
   const { feeds, latest_news } = data;
 
@@ -1083,8 +1078,8 @@ type NoteTabData = {
 };
 
 /* Note Keeper */
-const NoteTab = (props, context) => {
-  const { act, data } = useBackend<NoteTabData>(context);
+const NoteTab = (props) => {
+  const { act, data } = useBackend<NoteTabData>();
 
   const { note } = data;
 
@@ -1153,8 +1148,8 @@ type Weather = {
   Forecast: string;
 };
 
-const WeatherTab = (props, context) => {
-  const { act, data } = useBackend<WeatherTabData>(context);
+const WeatherTab = (props) => {
+  const { act, data } = useBackend<WeatherTabData>();
 
   const { aircontents, weather } = data;
 
@@ -1240,8 +1235,8 @@ type SettingsTabData = {
 };
 
 /* Settings */
-const SettingsTab = (props, context) => {
-  const { act, data } = useBackend<SettingsTabData>(context);
+const SettingsTab = (props) => {
+  const { act, data } = useBackend<SettingsTabData>();
 
   const {
     owner,

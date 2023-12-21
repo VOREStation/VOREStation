@@ -4,8 +4,8 @@ import { Button, Box, Section, LabeledList, NumberInput, AnimatedNumber } from '
 import { round } from 'common/math';
 import { formatSiUnit, formatPower } from '../format';
 
-export const ShieldCapacitor = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ShieldCapacitor = (props) => {
+  const { act, data } = useBackend();
 
   const {
     active,

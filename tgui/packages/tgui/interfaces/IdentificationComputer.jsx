@@ -16,8 +16,8 @@ export const IdentificationComputer = () => {
   );
 };
 
-export const IdentificationComputerContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const IdentificationComputerContent = (props) => {
+  const { act, data } = useBackend();
 
   const { ntos } = props;
 
@@ -66,12 +66,12 @@ export const IdentificationComputerContent = (props, context) => {
   );
 };
 
-export const IdentificationComputerPrinting = (props, context) => {
+export const IdentificationComputerPrinting = (props) => {
   return <Section title="Printing">Please wait...</Section>;
 };
 
-export const IdentificationComputerAccessModification = (props, context) => {
-  const { act, data } = useBackend(context);
+export const IdentificationComputerAccessModification = (props) => {
+  const { act, data } = useBackend();
 
   const { ntos } = props;
 
@@ -219,8 +219,8 @@ export const IdentificationComputerAccessModification = (props, context) => {
   );
 };
 
-export const IdentificationComputerRegions = (props, context) => {
-  const { act, data } = useBackend(context);
+export const IdentificationComputerRegions = (props) => {
+  const { act, data } = useBackend();
 
   const { actName } = props;
 

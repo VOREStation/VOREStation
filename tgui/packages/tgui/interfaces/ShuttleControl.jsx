@@ -33,8 +33,8 @@ const getDockingStatus = (docking_status, docking_override) => {
 };
 
 /* Templates */
-const ShuttleControlSharedShuttleStatus = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShuttleControlSharedShuttleStatus = (props) => {
+  const { act, data } = useBackend();
   const { engineName = 'Bluespace Drive' } = props;
   const {
     shuttle_status,
@@ -81,8 +81,8 @@ const ShuttleControlSharedShuttleStatus = (props, context) => {
   );
 };
 
-const ShuttleControlSharedShuttleControls = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShuttleControlSharedShuttleControls = (props) => {
+  const { act, data } = useBackend();
 
   const { can_launch, can_cancel, can_force } = data;
 
@@ -122,8 +122,8 @@ const ShuttleControlSharedShuttleControls = (props, context) => {
   );
 };
 
-const ShuttleControlConsoleDefault = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShuttleControlConsoleDefault = (props) => {
+  const { act, data } = useBackend();
   return (
     <Fragment>
       <ShuttleControlSharedShuttleStatus />
@@ -132,8 +132,8 @@ const ShuttleControlConsoleDefault = (props, context) => {
   );
 };
 
-const ShuttleControlConsoleMulti = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShuttleControlConsoleMulti = (props) => {
+  const { act, data } = useBackend();
   const { can_cloak, can_pick, legit, cloaked, destination_name } = data;
   return (
     <Fragment>
@@ -166,8 +166,8 @@ const ShuttleControlConsoleMulti = (props, context) => {
   );
 };
 
-const ShuttleControlConsoleExploration = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShuttleControlConsoleExploration = (props) => {
+  const { act, data } = useBackend();
   const { can_pick, destination_name, fuel_usage, fuel_span, remaining_fuel } =
     data;
   return (
@@ -202,8 +202,8 @@ const ShuttleControlConsoleExploration = (props, context) => {
 };
 
 /* Ugh. Just ugh. */
-const ShuttleControlConsoleWeb = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShuttleControlConsoleWeb = (props) => {
+  const { act, data } = useBackend();
 
   const {
     autopilot,
@@ -457,8 +457,8 @@ const SubtemplateList = {
   'ShuttleControlConsoleWeb': <ShuttleControlConsoleWeb />,
 };
 
-export const ShuttleControl = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ShuttleControl = (props) => {
+  const { act, data } = useBackend();
   const { subtemplate } = data;
   return (
     <Window

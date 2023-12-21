@@ -12,8 +12,8 @@ type Data = {
   power: BooleanLike;
 };
 
-export const SpaceHeater = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const SpaceHeater = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { temp, minTemp, maxTemp, cell, power } = data;
 

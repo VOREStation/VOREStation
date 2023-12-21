@@ -2,8 +2,8 @@ import { ProgressBar, NumberInput, Button, Section, Box, Flex } from '../compone
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-export const Photocopier = (props, context) => {
-  const { data } = useBackend(context);
+export const Photocopier = (props) => {
+  const { data } = useBackend();
   const { isAI, has_toner, has_item } = data;
 
   return (
@@ -29,8 +29,8 @@ export const Photocopier = (props, context) => {
   );
 };
 
-const Toner = (props, context) => {
-  const { act, data } = useBackend(context);
+const Toner = (props) => {
+  const { act, data } = useBackend();
   const { max_toner, current_toner } = data;
 
   const average_toner = max_toner * 0.66;
@@ -52,8 +52,8 @@ const Toner = (props, context) => {
   );
 };
 
-const Options = (props, context) => {
-  const { act, data } = useBackend(context);
+const Options = (props) => {
+  const { act, data } = useBackend();
   const { num_copies, has_enough_toner } = data;
 
   return (
@@ -101,8 +101,8 @@ const Options = (props, context) => {
   );
 };
 
-const AIOptions = (props, context) => {
-  const { act, data } = useBackend(context);
+const AIOptions = (props) => {
+  const { act, data } = useBackend();
   const { can_AI_print } = data;
 
   return (
