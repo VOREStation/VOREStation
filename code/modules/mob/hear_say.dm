@@ -22,7 +22,7 @@
 				return
 
 		if(iteration_count == 1)
-			piece = capitalize(piece)
+			piece = capitalize_utf(piece)
 
 		if(always_stars)
 			piece = stars(piece)
