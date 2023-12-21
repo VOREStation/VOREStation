@@ -14,13 +14,13 @@ import { PingIndicator } from './ping';
 import { ReconnectButton } from './reconnect';
 import { SettingsPanel, useSettings } from './settings';
 
-export const Panel = (props, context) => {
-  const audio = useAudio(context);
-  const settings = useSettings(context);
-  const game = useGame(context);
+export const Panel = (props) => {
+  const audio = useAudio();
+  const settings = useSettings();
+  const game = useGame();
   if (process.env.NODE_ENV !== 'production') {
     const { useDebug, KitchenSink } = require('tgui/debug');
-    const debug = useDebug(context);
+    const debug = useDebug();
     if (debug.kitchenSink) {
       return <KitchenSink panel />;
     }
