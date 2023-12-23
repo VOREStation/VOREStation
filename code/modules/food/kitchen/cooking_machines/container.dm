@@ -208,3 +208,19 @@
 	shortname = "rack"
 	desc = "Put ingredients 'in'/on this; designed for use with a grill. Warranty void if used incorrectly. Alt click to remove contents."
 	icon_state = "grillrack"
+
+/obj/item/weapon/reagent_containers/cooking_container/grill/Initialize()
+	. = ..()
+
+	// Needed for the special recipes of the grill
+	insertable += list(
+		/obj/item/organ/internal/brain,
+		/obj/item/robot_parts/head,
+		/obj/item/weapon/ectoplasm,
+		/obj/item/clothing/mask/gas/clown_hat,
+		/obj/item/clothing/head/beret,
+		/obj/item/weapon/holder/mouse,
+		/obj/item/stack/rods,
+		/obj/item/clothing/head/wizard/fake,
+		/obj/item/clothing/head/wizard
+	)
