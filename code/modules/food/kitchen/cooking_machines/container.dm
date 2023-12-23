@@ -193,7 +193,6 @@
 
 	// We add to the insertable list specifically for the oven trays, to allow specialty cakes.
 	insertable += list(
-		/obj/item/clothing/head/cakehat, // This is because we want to allow birthday cakes to be makeable.
 		/obj/item/organ/internal/brain // As before, needed for braincake
 	)
 
@@ -217,10 +216,6 @@
 		/obj/item/organ/internal/brain,
 		/obj/item/robot_parts/head,
 		/obj/item/weapon/ectoplasm,
-		/obj/item/clothing/mask/gas/clown_hat,
-		/obj/item/clothing/head/beret,
 		/obj/item/weapon/holder/mouse,
-		/obj/item/stack/rods,
-		/obj/item/clothing/head/wizard/fake,
-		/obj/item/clothing/head/wizard
+		/obj/item/stack/rods
 	)
