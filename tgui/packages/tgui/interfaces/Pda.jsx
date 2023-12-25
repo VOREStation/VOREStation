@@ -24,8 +24,8 @@ const getPdaApp = (name) => {
   return Component;
 };
 
-export const Pda = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Pda = (props) => {
+  const { act, data } = useBackend();
 
   const { app, owner, useRetro } = data;
 
@@ -43,11 +43,7 @@ export const Pda = (props, context) => {
 
   let App = getPdaApp(app.template);
 
-  const [settingsMode, setSettingsMode] = useLocalState(
-    context,
-    'settingsMode',
-    false
-  );
+  const [settingsMode, setSettingsMode] = useLocalState('settingsMode', false);
 
   return (
     <Window
@@ -79,8 +75,8 @@ export const Pda = (props, context) => {
   );
 };
 
-const PDAHeader = (props, context) => {
-  const { act, data } = useBackend(context);
+const PDAHeader = (props) => {
+  const { act, data } = useBackend();
 
   const { settingsMode, setSettingsMode } = props;
 
@@ -115,8 +111,8 @@ const PDAHeader = (props, context) => {
   );
 };
 
-const PDASettings = (props, context) => {
-  const { act, data } = useBackend(context);
+const PDASettings = (props) => {
+  const { act, data } = useBackend();
 
   const { idInserted, idLink, cartridge_name, touch_silent } = data;
 
@@ -161,8 +157,8 @@ const PDASettings = (props, context) => {
   );
 };
 
-const PDAFooter = (props, context) => {
-  const { act, data } = useBackend(context);
+const PDAFooter = (props) => {
+  const { act, data } = useBackend();
 
   const { setSettingsMode } = props;
 

@@ -6,7 +6,7 @@ import { useBackend, useLocalState } from '../backend';
 import { createLogger } from '../logging';
 const logger = createLogger('fuck');
 
-export const AtmosControl = (props, context) => {
+export const AtmosControl = (props) => {
   return (
     <Window width={600} height={440} resizable>
       <Window.Content scrollable>
@@ -16,15 +16,15 @@ export const AtmosControl = (props, context) => {
   );
 };
 
-export const AtmosControlContent = (props, context) => {
-  const { act, data, config } = useBackend(context);
+export const AtmosControlContent = (props) => {
+  const { act, data, config } = useBackend();
 
   let sortedAlarms = sortBy((alarm) => alarm.name)(data.alarms || []);
 
   // sortedAlarms = sortedAlarms.slice(1, 3);
 
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
-  const [zoom, setZoom] = useLocalState(context, 'zoom', 1);
+  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [zoom, setZoom] = useLocalState('zoom', 1);
 
   let body;
   // Alarms View

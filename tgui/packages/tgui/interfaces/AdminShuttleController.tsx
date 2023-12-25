@@ -30,8 +30,8 @@ export const AdminShuttleController = () => {
   );
 };
 
-export const ShuttleList = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const ShuttleList = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { shuttles, overmap_ships } = data;
 

@@ -4,8 +4,8 @@ import { Box, Button, LabeledList, ProgressBar, Section, NoticeBox, Slider } fro
 import { Window } from '../layouts';
 import { decodeHtmlEntities } from 'common/string';
 
-export const XenoarchSpectrometer = (props, context) => {
-  const { act, data } = useBackend(context);
+export const XenoarchSpectrometer = (props) => {
+  const { act, data } = useBackend();
 
   const {
     scanned_item,

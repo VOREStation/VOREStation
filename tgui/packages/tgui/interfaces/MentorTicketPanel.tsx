@@ -22,8 +22,8 @@ type Data = {
   log: string[];
 };
 
-export const MentorTicketPanel = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const MentorTicketPanel = (props) => {
+  const { act, data } = useBackend<Data>();
   const {
     id,
     title,

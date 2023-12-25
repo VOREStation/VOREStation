@@ -10,7 +10,7 @@ const sortTypes = {
   'By price': (a, b) => a.price - b.price,
 };
 
-export const MiningVendor = (props, context) => {
+export const MiningVendor = (props) => {
   return (
     <Window width={400} height={450} resizable>
       <Window.Content className="Layout__content--flexColumn" scrollable>
@@ -22,21 +22,13 @@ export const MiningVendor = (props, context) => {
   );
 };
 
-const MiningVendorItems = (props, context) => {
-  const { act, data } = useBackend(context);
+const MiningVendorItems = (props) => {
+  const { act, data } = useBackend();
   const { has_id, id, items } = data;
   // Search thingies
-  const [searchText, _setSearchText] = useLocalState(context, 'search', '');
-  const [sortOrder, _setSortOrder] = useLocalState(
-    context,
-    'sort',
-    'Alphabetical'
-  );
-  const [descending, _setDescending] = useLocalState(
-    context,
-    'descending',
-    false
-  );
+  const [searchText, _setSearchText] = useLocalState('search', '');
+  const [sortOrder, _setSortOrder] = useLocalState('sort', 'Alphabetical');
+  const [descending, _setDescending] = useLocalState('descending', false);
   const searcher = createSearch(searchText, (item) => {
     return item[0];
   });
@@ -79,14 +71,10 @@ const MiningVendorItems = (props, context) => {
   );
 };
 
-const MiningVendorSearch = (props, context) => {
-  const [_searchText, setSearchText] = useLocalState(context, 'search', '');
-  const [_sortOrder, setSortOrder] = useLocalState(context, 'sort', '');
-  const [descending, setDescending] = useLocalState(
-    context,
-    'descending',
-    false
-  );
+const MiningVendorSearch = (props) => {
+  const [_searchText, setSearchText] = useLocalState('search', '');
+  const [_sortOrder, setSortOrder] = useLocalState('sort', '');
+  const [descending, setDescending] = useLocalState('descending', false);
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
@@ -121,8 +109,8 @@ const MiningVendorSearch = (props, context) => {
   );
 };
 
-const MiningVendorItemsCategory = (properties, context) => {
-  const { act, data } = useBackend(context);
+const MiningVendorItemsCategory = (properties) => {
+  const { act, data } = useBackend();
   const { title, items, ...rest } = properties;
   return (
     <Collapsible open title={title} {...rest}>

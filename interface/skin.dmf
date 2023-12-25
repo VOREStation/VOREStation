@@ -1,7 +1,7 @@
 macro "borghotkeymode"
 	elem
 		name = "TAB"
-		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
+		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true\""
 	elem
 		name = "Shift"
 		command = "KeyDown Shift"
@@ -790,7 +790,7 @@ macro "hotkeymode"
 macro "borgmacro"
 	elem
 		name = "TAB"
-		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
+		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
 	elem
 		name = "Shift"
 		command = "KeyDown Shift"

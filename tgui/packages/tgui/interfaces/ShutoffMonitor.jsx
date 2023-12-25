@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Button, Section, Table } from '../components';
 
-export const ShutoffMonitor = (props, context) => (
+export const ShutoffMonitor = (props) => (
   <Window width={627} height={700} resizable>
     <Window.Content>
       <ShutoffMonitorContent />
@@ -10,8 +10,8 @@ export const ShutoffMonitor = (props, context) => (
   </Window>
 );
 
-export const ShutoffMonitorContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ShutoffMonitorContent = (props) => {
+  const { act, data } = useBackend();
 
   const { valves } = data;
 

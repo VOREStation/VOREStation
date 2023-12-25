@@ -9,8 +9,8 @@ type Data = {
   ckeys: { name: string; desc: string }[];
 };
 
-export const PlayerNotes = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const PlayerNotes = (props) => {
+  const { act, data } = useBackend<Data>();
   const { device_theme, filter, pages, ckeys } = data;
 
   const runCallback = (cb) => {

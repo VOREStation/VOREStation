@@ -220,12 +220,16 @@
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
 	else if(href_list["edit_ooc_note_likes"])
-		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata_likes), multiline = TRUE,  prevent_enter = TRUE))
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.metadata_likes), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
+			if(new_metadata == "!clear")
+				new_metadata = ""
 			pref.metadata_likes = new_metadata
 	else if(href_list["edit_ooc_note_dislikes"])
-		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata_dislikes), multiline = TRUE,  prevent_enter = TRUE))
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.metadata_dislikes), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
+			if(new_metadata == "!clear")
+				new_metadata = ""
 			pref.metadata_dislikes = new_metadata
 	return ..()
 

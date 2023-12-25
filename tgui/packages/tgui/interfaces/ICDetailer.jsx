@@ -3,8 +3,8 @@ import { Button, Section } from '../components';
 import { Window } from '../layouts';
 import { toTitleCase } from 'common/string';
 
-export const ICDetailer = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ICDetailer = (props) => {
+  const { act, data } = useBackend();
 
   const { detail_color, color_list } = data;
 

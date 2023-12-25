@@ -23,6 +23,7 @@ import { setupPanelFocusHacks } from './panelFocus';
 import { pingMiddleware, pingReducer } from './ping';
 import { settingsMiddleware, settingsReducer } from './settings';
 import { telemetryMiddleware } from './telemetry';
+import { setGlobalStore } from 'tgui/backend';
 
 perf.mark('inception', window.performance?.timing?.navigationStart);
 perf.mark('init');
@@ -48,6 +49,8 @@ const store = configureStore({
 });
 
 const renderApp = createRenderer(() => {
+  setGlobalStore(store);
+
   const { Panel } = require('./Panel');
   return (
     <StoreProvider store={store}>
@@ -87,7 +90,7 @@ const setupApp = () => {
   });
 
   // Resize the panel to match the non-browser output
-  Byond.winget('output').then((output) => {
+  Byond.winget('output').then((output: { size: string }) => {
     Byond.winset('browseroutput', {
       'size': output.size,
     });
@@ -96,19 +99,22 @@ const setupApp = () => {
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
-    // prettier-ignore
-    module.hot.accept([
-      './audio',
-      './chat',
-      './game',
-      './Notifications',
-      './Panel',
-      './ping',
-      './settings',
-      './telemetry',
-    ], () => {
-      renderApp();
-    });
+
+    module.hot.accept(
+      [
+        './audio',
+        './chat',
+        './game',
+        './Notifications',
+        './Panel',
+        './ping',
+        './settings',
+        './telemetry',
+      ],
+      () => {
+        renderApp();
+      }
+    );
   }
 };
 

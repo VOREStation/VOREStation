@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Microwave = (props, context) => {
-  const { act, config, data } = useBackend(context);
+export const Microwave = (props) => {
+  const { act, config, data } = useBackend();
 
   const { broken, operating, dirty, items } = data;
 

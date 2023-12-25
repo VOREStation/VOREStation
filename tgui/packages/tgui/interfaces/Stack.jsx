@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Section, Collapsible, Table } from '../components';
 import { Window } from '../layouts';
 
-export const Stack = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Stack = (props) => {
+  const { act, data } = useBackend();
 
   const { amount, recipes } = data;
 
@@ -18,8 +18,8 @@ export const Stack = (props, context) => {
   );
 };
 
-const RecipeList = (props, context) => {
-  const { act, data } = useBackend(context);
+const RecipeList = (props) => {
+  const { act, data } = useBackend();
 
   const { recipes } = props;
 
@@ -65,8 +65,8 @@ const buildMultiplier = (recipe, amount) => {
   return Math.floor(amount / recipe.req_amount);
 };
 
-const Multipliers = (props, context) => {
-  const { act, data } = useBackend(context);
+const Multipliers = (props) => {
+  const { act, data } = useBackend();
 
   const { recipe, maxMultiplier } = props;
 
@@ -112,8 +112,8 @@ const Multipliers = (props, context) => {
   return finalResult;
 };
 
-const Recipe = (props, context) => {
-  const { act, data } = useBackend(context);
+const Recipe = (props) => {
+  const { act, data } = useBackend();
 
   const { amount } = data;
 

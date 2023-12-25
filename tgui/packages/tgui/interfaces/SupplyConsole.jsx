@@ -7,8 +7,8 @@ import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/Co
 import { Window } from '../layouts';
 import { flow } from 'common/fp';
 
-const viewCrateContents = (modal, context) => {
-  const { act, data } = useBackend(context);
+const viewCrateContents = (modal) => {
+  const { act, data } = useBackend();
   const { supply_points } = data;
   const { name, cost, manifest, ref, random } = modal.args;
   return (
@@ -38,8 +38,8 @@ const viewCrateContents = (modal, context) => {
   );
 };
 
-export const SupplyConsole = (props, context) => {
-  const { act, data } = useBackend(context);
+export const SupplyConsole = (props) => {
+  const { act, data } = useBackend();
   modalRegisterBodyOverride('view_crate', viewCrateContents);
   return (
     <Window width={700} height={620}>
@@ -54,8 +54,8 @@ export const SupplyConsole = (props, context) => {
   );
 };
 
-const SupplyConsoleShuttleStatus = (props, context) => {
-  const { act, data } = useBackend(context);
+const SupplyConsoleShuttleStatus = (props) => {
+  const { act, data } = useBackend();
 
   const { supply_points, shuttle, shuttle_auth } = data;
 
@@ -135,12 +135,12 @@ const SupplyConsoleShuttleStatus = (props, context) => {
   );
 };
 
-const SupplyConsoleMenu = (props, context) => {
-  const { act, data } = useBackend(context);
+const SupplyConsoleMenu = (props) => {
+  const { act, data } = useBackend();
 
   const { order_auth } = data;
 
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
+  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
 
   return (
     <Section title="Menu">
@@ -185,13 +185,12 @@ const SupplyConsoleMenu = (props, context) => {
   );
 };
 
-const SupplyConsoleMenuOrder = (props, context) => {
-  const { act, data } = useBackend(context);
+const SupplyConsoleMenuOrder = (props) => {
+  const { act, data } = useBackend();
 
   const { categories, supply_packs, contraband, supply_points } = data;
 
   const [activeCategory, setActiveCategory] = useLocalState(
-    context,
     'activeCategory',
     null
   );
@@ -279,8 +278,8 @@ const SupplyConsoleMenuOrder = (props, context) => {
   );
 };
 
-const SupplyConsoleMenuOrderList = (props, context) => {
-  const { act, data } = useBackend(context);
+const SupplyConsoleMenuOrderList = (props) => {
+  const { act, data } = useBackend();
   const { mode } = props;
   const { orders, order_auth, supply_points } = data;
 
@@ -368,8 +367,8 @@ const SupplyConsoleMenuOrderList = (props, context) => {
   );
 };
 
-const SupplyConsoleMenuHistoryExport = (props, context) => {
-  const { act, data } = useBackend(context);
+const SupplyConsoleMenuHistoryExport = (props) => {
+  const { act, data } = useBackend();
   const { receipts, order_auth } = data;
 
   if (!receipts.length) {

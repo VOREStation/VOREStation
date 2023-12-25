@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const RogueZones = (props, context) => {
-  const { act, data } = useBackend(context);
+export const RogueZones = (props) => {
+  const { act, data } = useBackend();
   const {
     timeout_percent,
     diffstep,

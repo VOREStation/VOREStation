@@ -118,8 +118,8 @@ const germStatus = (i) => {
   return '';
 };
 
-export const BodyScanner = (props, context) => {
-  const { data } = useBackend(context);
+export const BodyScanner = (props) => {
+  const { data } = useBackend();
   const { occupied, occupant = {} } = data;
   const body = occupied ? (
     <BodyScannerMain occupant={occupant} />
@@ -149,8 +149,8 @@ const BodyScannerMain = (props) => {
   );
 };
 
-const BodyScannerMainOccupant = (props, context) => {
-  const { act, data } = useBackend(context);
+const BodyScannerMainOccupant = (props) => {
+  const { act, data } = useBackend();
   const { occupant } = data;
   return (
     <Section

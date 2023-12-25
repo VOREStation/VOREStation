@@ -20,8 +20,8 @@ type Data = {
   maxFrequency: number;
 };
 
-export const SignalerContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const SignalerContent = (props) => {
+  const { act, data } = useBackend<Data>();
   const { code, frequency, minFrequency, maxFrequency } = data;
   return (
     <Section>

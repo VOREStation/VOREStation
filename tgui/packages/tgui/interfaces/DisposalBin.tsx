@@ -11,8 +11,8 @@ type Data = {
   flushing: BooleanLike;
 };
 
-export const DisposalBin = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const DisposalBin = (props) => {
+  const { act, data } = useBackend<Data>();
   const { mode, pressure, isAI, panel_open, flushing } = data;
   let stateColor;
   let stateText;

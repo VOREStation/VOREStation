@@ -11275,7 +11275,7 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/outside/outside2)
 "asy" = (
-/obj/structure/table/rack/holorack,
+/obj/structure/table/rack,
 /obj/random/maintenance/clean,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -13254,7 +13254,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "avQ" = (
-/obj/structure/table/rack/holorack,
+/obj/structure/table/rack,
 /obj/effect/floor_decal/rust,
 /obj/random/maintenance/clean,
 /obj/random/tech_supply,
@@ -23572,7 +23572,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aRh" = (
-/obj/structure/table/rack/holorack,
+/obj/structure/table/rack,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,

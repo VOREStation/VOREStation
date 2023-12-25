@@ -193,7 +193,6 @@
 
 	// We add to the insertable list specifically for the oven trays, to allow specialty cakes.
 	insertable += list(
-		/obj/item/clothing/head/cakehat, // This is because we want to allow birthday cakes to be makeable.
 		/obj/item/organ/internal/brain // As before, needed for braincake
 	)
 
@@ -208,3 +207,15 @@
 	shortname = "rack"
 	desc = "Put ingredients 'in'/on this; designed for use with a grill. Warranty void if used incorrectly. Alt click to remove contents."
 	icon_state = "grillrack"
+
+/obj/item/weapon/reagent_containers/cooking_container/grill/Initialize()
+	. = ..()
+
+	// Needed for the special recipes of the grill
+	insertable += list(
+		/obj/item/organ/internal/brain,
+		/obj/item/robot_parts/head,
+		/obj/item/weapon/ectoplasm,
+		/obj/item/weapon/holder/mouse,
+		/obj/item/stack/rods
+	)

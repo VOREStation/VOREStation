@@ -4,8 +4,8 @@ import { Box, Button, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 import { filter } from 'common/collections';
 
-export const ResearchServerController = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ResearchServerController = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window width={575} height={430} resizable>
       <Window.Content scrollable>
@@ -15,13 +15,12 @@ export const ResearchServerController = (props, context) => {
   );
 };
 
-const ResearchControllerContent = (props, context) => {
-  const { act, data } = useBackend(context);
+const ResearchControllerContent = (props) => {
+  const { act, data } = useBackend();
 
   const { badmin, servers, consoles } = data;
 
   const [selectedServer, setSelectedServer] = useSharedState(
-    context,
     'selectedServer',
     null
   );
@@ -50,12 +49,12 @@ const ResearchControllerContent = (props, context) => {
   );
 };
 
-const ResearchServer = (props, context) => {
-  const { act, data } = useBackend(context);
+const ResearchServer = (props) => {
+  const { act, data } = useBackend();
   const { badmin } = data;
   const { server, setSelectedServer } = props;
 
-  const [tab, setTab] = useSharedState(context, 'tab', 0);
+  const [tab, setTab] = useSharedState('tab', 0);
 
   return (
     <Section
@@ -87,8 +86,8 @@ const ResearchServer = (props, context) => {
   );
 };
 
-const ResearchServerAccess = (props, context) => {
-  const { act, data } = useBackend(context);
+const ResearchServerAccess = (props) => {
+  const { act, data } = useBackend();
   const { server } = props;
 
   const { consoles } = data;
@@ -146,8 +145,8 @@ const ResearchServerAccess = (props, context) => {
   );
 };
 
-const ResearchServerData = (props, context) => {
-  const { act, data } = useBackend(context);
+const ResearchServerData = (props) => {
+  const { act, data } = useBackend();
   const { server } = props;
 
   return (
@@ -194,8 +193,8 @@ const ResearchServerData = (props, context) => {
   );
 };
 
-const ResearchServerTransfer = (props, context) => {
-  const { act, data } = useBackend(context);
+const ResearchServerTransfer = (props) => {
+  const { act, data } = useBackend();
 
   const { server } = props;
 

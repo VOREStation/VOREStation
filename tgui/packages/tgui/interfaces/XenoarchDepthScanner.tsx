@@ -15,8 +15,8 @@ type Data = {
   positive_locations: { index: string; time: string; coords: string }[];
 };
 
-export const XenoarchDepthScanner = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const XenoarchDepthScanner = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { current, positive_locations } = data;
 

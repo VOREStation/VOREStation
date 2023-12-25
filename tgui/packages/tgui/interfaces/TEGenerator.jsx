@@ -4,8 +4,8 @@ import { Box, Flex, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 import { formatSiUnit, formatPower } from '../format';
 
-export const TEGenerator = (props, context) => {
-  const { data } = useBackend(context);
+export const TEGenerator = (props) => {
+  const { data } = useBackend();
 
   const { totalOutput, maxTotalOutput, thermalOutput, primary, secondary } =
     data;
@@ -45,7 +45,7 @@ export const TEGenerator = (props, context) => {
   );
 };
 
-const TEGCirculator = (props, context) => {
+const TEGCirculator = (props) => {
   const { name, values } = props;
 
   const {

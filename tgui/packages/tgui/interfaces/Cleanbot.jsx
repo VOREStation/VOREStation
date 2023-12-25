@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Cleanbot = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Cleanbot = (props) => {
+  const { act, data } = useBackend();
 
   const {
     on,

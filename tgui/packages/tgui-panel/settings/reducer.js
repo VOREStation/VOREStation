@@ -29,6 +29,9 @@ const initialState = {
     visible: false,
     activeTab: SETTINGS_TABS[0].id,
   },
+  showReconnectWarning: true,
+  logRetainDays: -1,
+  logLineCount: -1,
 };
 
 export const settingsReducer = (state = initialState, action) => {
@@ -154,9 +157,7 @@ export const settingsReducer = (state = initialState, action) => {
     // Transfer this data from the default highlight setting
     // so they carry over to other servers
     if (id === defaultHighlightSetting.id) {
-      if (settings.highlightText) {
-        nextState.highlightText = settings.highlightText;
-      }
+      nextState.highlightText = settings.highlightText;
       if (settings.highlightColor) {
         nextState.highlightColor = settings.highlightColor;
       }

@@ -5,8 +5,8 @@ import { Window } from '../layouts';
 import { toTitleCase } from 'common/string';
 import { Materials } from './ExosuitFabricator';
 
-export const PartsLathe = (props, context) => {
-  const { act, data } = useBackend(context);
+export const PartsLathe = (props) => {
+  const { act, data } = useBackend();
   const {
     panelOpen,
     copyBoard,

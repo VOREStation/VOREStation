@@ -36,6 +36,7 @@ export const MESSAGE_TYPE_LOOC = 'looc';
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_MENTORPM = 'mentorpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
+export const MESSAGE_TYPE_CHATPRINT = 'chatprint';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
 export const MESSAGE_TYPE_MODCHAT = 'modchat';
 export const MESSAGE_TYPE_RLOOC = 'rlooc';
@@ -143,6 +144,12 @@ export const MESSAGE_TYPES = [
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
     selector: '.danger',
+  },
+  {
+    type: MESSAGE_TYPE_CHATPRINT,
+    name: 'Chat prints',
+    description: 'Chat outputs of ooc notes or vorebelly exports',
+    selector: '.chatexport',
   },
   {
     type: MESSAGE_TYPE_UNKNOWN,

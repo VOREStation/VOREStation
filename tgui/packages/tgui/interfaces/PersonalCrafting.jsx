@@ -2,8 +2,8 @@ import { useBackend, useLocalState } from '../backend';
 import { Button, Dimmer, Flex, Icon, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
-export const PersonalCrafting = (props, context) => {
-  const { act, data } = useBackend(context);
+export const PersonalCrafting = (props) => {
+  const { act, data } = useBackend();
   const { busy, display_craftable_only, display_compact } = data;
   const crafting_recipes = data.crafting_recipes || {};
   // Sort everything into flat categories
@@ -48,7 +48,7 @@ export const PersonalCrafting = (props, context) => {
     }
   }
   // Sort out the tab state
-  const [tab, setTab] = useLocalState(context, 'tab', categories[0]?.name);
+  const [tab, setTab] = useLocalState('tab', categories[0]?.name);
   const shownRecipes = recipes.filter((recipe) => recipe.category === tab);
   return (
     <Window title="Crafting Menu" width={700} height={800}>
@@ -104,9 +104,9 @@ export const PersonalCrafting = (props, context) => {
   );
 };
 
-const CraftingList = (props, context) => {
+const CraftingList = (props) => {
   const { craftables = [] } = props;
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend();
   const { craftability = {}, display_compact, display_craftable_only } = data;
   return craftables.map((craftable) => {
     if (display_craftable_only && !craftability[craftable.ref]) {

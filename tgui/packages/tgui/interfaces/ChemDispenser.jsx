@@ -7,7 +7,7 @@ import { Window } from '../layouts';
 const dispenseAmounts = [5, 10, 20, 30, 40, 60];
 const removeAmounts = [1, 5, 10];
 
-export const ChemDispenser = (props, context) => {
+export const ChemDispenser = (props) => {
   return (
     <Window width={390} height={655} resizable>
       <Window.Content className="Layout__content--flexColumn">
@@ -19,8 +19,8 @@ export const ChemDispenser = (props, context) => {
   );
 };
 
-const ChemDispenserSettings = (properties, context) => {
-  const { act, data } = useBackend(context);
+const ChemDispenserSettings = (properties) => {
+  const { act, data } = useBackend();
   const { amount } = data;
   return (
     <Section title="Settings" flex="content">
@@ -59,8 +59,8 @@ const ChemDispenserSettings = (properties, context) => {
   );
 };
 
-const ChemDispenserChemicals = (properties, context) => {
-  const { act, data } = useBackend(context);
+const ChemDispenserChemicals = (properties) => {
+  const { act, data } = useBackend();
   const { chemicals = [] } = data;
   const flexFillers = [];
   for (let i = 0; i < (chemicals.length + 1) % 3; i++) {
@@ -95,8 +95,8 @@ const ChemDispenserChemicals = (properties, context) => {
   );
 };
 
-const ChemDispenserBeaker = (properties, context) => {
-  const { act, data } = useBackend(context);
+const ChemDispenserBeaker = (properties) => {
+  const { act, data } = useBackend();
   const {
     isBeakerLoaded,
     beakerCurrentVolume,

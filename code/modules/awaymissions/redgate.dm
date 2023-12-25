@@ -31,12 +31,12 @@
 /obj/structure/redgate/proc/teleport(var/mob/M as mob)
 	var/keycheck = TRUE
 	if (!istype(M,/mob/living))		//We only want mob/living, no bullets or mechs or AI eyes or items
-		if(M.type in exceptions)
+		if(is_type_in_list(M, exceptions))
 			keycheck = FALSE		//we'll allow it
 		else
 			return
 
-	if(M.type in restrictions)	//Some stuff we don't want to bring EVEN IF it has a key.
+	if(is_type_in_list(M, restrictions))	//Some stuff we don't want to bring EVEN IF it has a key.
 		return
 
 	for(var/obj/O in M.contents)
@@ -54,9 +54,22 @@
 	var/turf/ourturf = find_our_turf(M)		//Find the turf on the opposite side of the target
 	if(!ourturf.check_density(TRUE,TRUE))	//Make sure there isn't a wall there
 		M.unbuckle_all_mobs(TRUE)
-		M.stop_pulling()
-		playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
-		M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
+		if(istype(M,/mob/living) && M.pulling)
+			var/atom/movable/pulled = M.pulling
+			M.stop_pulling()
+			playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
+			M.forceMove(ourturf)
+			if(is_type_in_list(pulled, exceptions))
+				for(var/mob/living/buckled_on in pulled.buckled_mobs)
+					if(!buckled_on.key || is_type_in_list(M, restrictions))
+						pulled.unbuckle_mob(buckled_on, TRUE)
+				pulled.forceMove(ourturf)
+				M.continue_pulling(pulled)
+			else
+				to_chat(M, "<span class='notice'>The redgate refused your pulled item.</span>")
+		else
+			playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
+			M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
 	else
 		to_chat(M, "<span class='notice'>Something blocks your way.</span>")
 

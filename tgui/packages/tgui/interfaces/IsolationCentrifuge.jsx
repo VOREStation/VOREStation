@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const IsolationCentrifuge = (props, context) => {
-  const { act, data } = useBackend(context);
+export const IsolationCentrifuge = (props) => {
+  const { act, data } = useBackend();
 
   const { busy, antibodies, pathogens, is_antibody_sample, sample_inserted } =
     data;

@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, Dropdown } from '../components';
 import { Window } from '../layouts';
 
-export const DroneConsole = (props, context) => {
-  const { act, data } = useBackend(context);
+export const DroneConsole = (props) => {
+  const { act, data } = useBackend();
 
   const { drones, areas, selected_area, fabricator, fabPower } = data;
 

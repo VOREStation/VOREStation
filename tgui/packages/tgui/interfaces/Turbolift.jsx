@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Turbolift = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Turbolift = (props) => {
+  const { act, data } = useBackend();
 
   const { floors, doors_open, fire_mode } = data;
 

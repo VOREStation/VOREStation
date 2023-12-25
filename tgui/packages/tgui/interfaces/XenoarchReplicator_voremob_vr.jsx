@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button } from '../components';
 import { Window } from '../layouts';
 
-export const XenoarchReplicator_voremob_vr = (props, context) => {
-  const { act, data } = useBackend(context);
+export const XenoarchReplicator_voremob_vr = (props) => {
+  const { act, data } = useBackend();
 
   const { tgui_construction } = data;
 

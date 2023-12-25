@@ -4,8 +4,8 @@ import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 
-export const Fax = (props, context) => {
-  const { data } = useBackend(context);
+export const Fax = (props) => {
+  const { data } = useBackend();
 
   const { authenticated, copyItem } = data;
 
@@ -36,8 +36,8 @@ export const Fax = (props, context) => {
   );
 };
 
-export const FaxContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const FaxContent = (props) => {
+  const { act, data } = useBackend();
 
   const { bossName, copyItem, cooldown, destination, adminDepartments } = data;
   const staffRequestDepartment = new Set(adminDepartments);
@@ -90,8 +90,8 @@ export const FaxContent = (props, context) => {
   );
 };
 
-const RemoveItem = (props, context) => {
-  const { act, data } = useBackend(context);
+const RemoveItem = (props) => {
+  const { act, data } = useBackend();
 
   const { copyItem } = data;
 
@@ -111,8 +111,8 @@ const RemoveItem = (props, context) => {
   );
 };
 
-const AutomatedStaffRequest = (props, context) => {
-  const { act, data } = useBackend(context);
+const AutomatedStaffRequest = (props) => {
+  const { act, data } = useBackend();
 
   const { adminDepartments, destination, copyItem } = data;
   const staffRequestDepartment = new Set(adminDepartments);

@@ -3,8 +3,8 @@ import { Box, Button, LabeledList, ProgressBar, Section, Tabs, Stack } from '../
 import { Window } from '../layouts';
 import { sortBy, filter } from 'common/collections';
 
-export const ICPrinter = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ICPrinter = (props) => {
+  const { act, data } = useBackend();
 
   const {
     metal,
@@ -57,13 +57,12 @@ const canBuild = (item, data) => {
   return true;
 };
 
-const ICPrinterCategories = (props, context) => {
-  const { act, data } = useBackend(context);
+const ICPrinterCategories = (props) => {
+  const { act, data } = useBackend();
 
   const { categories, debug } = data;
 
   const [categoryTarget, setcategoryTarget] = useSharedState(
-    context,
     'categoryTarget',
     null
   );
