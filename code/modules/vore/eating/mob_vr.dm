@@ -25,6 +25,7 @@
 	var/show_vore_fx = TRUE				// Show belly fullscreens
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
 	var/eating_privacy_global = FALSE //Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
+	var/text_warnings = TRUE // Allows us to hide the text limit warning messages
 	var/nutrition_message_visible = TRUE
 	var/list/nutrition_messages = list(
 							"They are starving! You can hear their stomach snarling from across the room!",

@@ -36,6 +36,7 @@
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
 	eating_privacy_global = client.prefs_vr.eating_privacy_global
+	text_warnings = client.prefs_vr.text_warnings
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore

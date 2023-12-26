@@ -1382,6 +1382,7 @@ const VoreUserPreferences = (props) => {
     nutrition_message_visible,
     weight_message_visible,
     eating_privacy_global,
+    text_warnings,
   } = data.prefs;
 
   const { show_pictures } = data;
@@ -1738,6 +1739,19 @@ const VoreUserPreferences = (props) => {
         disabled: 'Global Vore Privacy: Loud',
       },
     },
+    text_warnings: {
+      action: 'toggle_warnings_texts',
+      test: text_warnings,
+      tooltip: {
+        main: '',
+        enable: 'Click here to enable text limit warning messages.',
+        disable: 'Click here to disable text limit warning messages.',
+      },
+      content: {
+        enabled: 'Text Limit Warnings Active',
+        disabled: 'Text Limit Warnings Inactive',
+      },
+    },
   };
 
   return (
@@ -1884,6 +1898,13 @@ const VoreUserPreferences = (props) => {
           </Flex.Item>
           <Flex.Item basis="50%">
             <VoreUserPreferenceItem spec={preferences.examine_weight} />
+          </Flex.Item>
+        </Flex>
+      </Section>
+      <Section title="Warning Preferences">
+        <Flex spacing={1} wrap="wrap" justify="center">
+          <Flex.Item basis="50%" grow={1}>
+            <VoreUserPreferenceItem spec={preferences.text_warnings} />
           </Flex.Item>
         </Flex>
       </Section>
