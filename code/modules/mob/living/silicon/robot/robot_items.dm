@@ -344,11 +344,11 @@
 	var/choice = tgui_alert(usr, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
 	if(!choice || choice == "Cancel")
 		return
-	var/turf/T = get_turf(src)
 	switch(choice)
 		if("Paper")
 			flick("doc_printer_mod_ejecting", src)
 			spawn(22)
+				var/turf/T = get_turf(src)
 				T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
 				new /obj/item/weapon/paper(T)
 		if ("Form")
@@ -358,6 +358,7 @@
 				return
 			flick("doc_printer_mod_printing", src)
 			spawn(22)
+				var/turf/T = get_turf(src)
 				T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
 				new /obj/item/weapon/paper(T, content[1], content[2])
 

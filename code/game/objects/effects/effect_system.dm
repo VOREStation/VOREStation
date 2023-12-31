@@ -338,9 +338,11 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/elemental/mist
 	name = "misty cloud"
 	desc = "A cloud filled with water vapor."
-	color = "#CCFFFF"
+	color = "#F0FFFF"
 	alpha = 128
 	strength = 1
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 
 /obj/effect/effect/smoke/elemental/mist/affect(mob/living/L)
 	L.water_act(strength)
