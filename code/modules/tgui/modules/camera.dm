@@ -80,8 +80,10 @@
 /datum/tgui_module/camera/tgui_interact(mob/user, datum/tgui/ui = null)
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
+	var/turf/newturf = get_turf(active_camera)
+	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use())
+	if(!active_camera?.can_use() || B.block_tracking)
 		show_camera_static()
 	if(!ui)
 		var/user_ref = REF(user)
