@@ -30,20 +30,24 @@ export const ChatPageSettings = (props, context) => {
             }
           />
         </Stack.Item>
-        <Stack.Item>
-          <Button
-            icon="times"
-            color="red"
-            onClick={() =>
-              dispatch(
-                removeChatPage({
-                  pageId: page.id,
-                })
-              )
-            }>
-            Remove
-          </Button>
-        </Stack.Item>
+        {!page.isMain ? (
+          <Stack.Item>
+            <Button
+              icon="times"
+              color="red"
+              onClick={() =>
+                dispatch(
+                  removeChatPage({
+                    pageId: page.id,
+                  })
+                )
+              }>
+              Remove
+            </Button>
+          </Stack.Item>
+        ) : (
+          ''
+        )}
       </Stack>
       <Divider />
       <Section title="Messages to display" level={2}>

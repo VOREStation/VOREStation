@@ -7,7 +7,7 @@
 import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
 import { createLogger } from 'tgui/logging';
-import { COMBINE_MAX_MESSAGES, COMBINE_MAX_TIME_WINDOW, IMAGE_RETRY_DELAY, IMAGE_RETRY_LIMIT, IMAGE_RETRY_MESSAGE_AGE, MAX_PERSISTED_MESSAGES, MAX_VISIBLE_MESSAGES, MESSAGE_PRUNE_INTERVAL, MESSAGE_TYPES, MESSAGE_TYPE_INTERNAL, MESSAGE_TYPE_UNKNOWN } from './constants';
+import { IMAGE_RETRY_DELAY, IMAGE_RETRY_LIMIT, IMAGE_RETRY_MESSAGE_AGE, MESSAGE_PRUNE_INTERVAL, MESSAGE_TYPES, MESSAGE_TYPE_INTERNAL, MESSAGE_TYPE_UNKNOWN } from './constants';
 import { render } from 'inferno';
 import { canPageAcceptType, createMessage, isSameMessage, serializeMessage } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
@@ -115,6 +115,11 @@ class ChatRenderer {
     this.visibleMessages = [];
     this.page = null;
     this.events = new EventEmitter();
+    // Adjustables
+    this.visibleMessageLimit = 2500;
+    this.combineMessageLimit = 5;
+    this.combineIntervalLimit = 5;
+    this.exportLimit = -1;
     // Scroll handler
     /** @type {HTMLElement} */
     this.scrollNode = null;
@@ -352,11 +357,23 @@ class ChatRenderer {
     }
   }
 
+  setVisualChatLimits(
+    visibleMessageLimit,
+    combineMessageLimit,
+    combineIntervalLimit,
+    exportLimit
+  ) {
+    this.visibleMessageLimit = visibleMessageLimit;
+    this.combineMessageLimit = combineMessageLimit;
+    this.combineIntervalLimit = combineIntervalLimit;
+    this.exportLimit = exportLimit;
+  }
+
   getCombinableMessage(predicate) {
     const now = Date.now();
     const len = this.visibleMessages.length;
     const from = len - 1;
-    const to = Math.max(0, len - COMBINE_MAX_MESSAGES);
+    const to = Math.max(0, len - this.combineMessageLimit);
     for (let i = from; i >= to; i--) {
       const message = this.visibleMessages[i];
 
@@ -366,7 +383,7 @@ class ChatRenderer {
         // Text payload must fully match
         isSameMessage(message, predicate) &&
         // Must land within the specified time window
-        now < message.createdAt + COMBINE_MAX_TIME_WINDOW;
+        now < message.createdAt + this.combineIntervalLimit * 1000;
       if (matches) {
         return message;
       }
@@ -419,6 +436,15 @@ class ChatRenderer {
           node.innerHTML = message.html;
         } else {
           logger.error('Error: message is missing text payload', message);
+        }
+        // Get our commands we might want to send to chat
+        const commands = node.querySelectorAll('[data-command]');
+        if (commands.length) {
+          const command = commands[0].getAttribute('data-command');
+          if (command === '$do_export') {
+            this.saveToDisk(this.exportLimit);
+          }
+          return; // We do not want those logged or shown!
         }
         // Get all nodes in this message that want to be rendered like jsx
         const nodes = node.querySelectorAll('[data-component]');
@@ -560,7 +586,7 @@ class ChatRenderer {
     // Visible messages
     {
       const messages = this.visibleMessages;
-      const fromIndex = Math.max(0, messages.length - MAX_VISIBLE_MESSAGES);
+      const fromIndex = Math.max(0, messages.length - this.visibleMessageLimit);
       if (fromIndex > 0) {
         this.visibleMessages = messages.slice(fromIndex);
         for (let i = 0; i < fromIndex; i++) {
@@ -581,7 +607,7 @@ class ChatRenderer {
     {
       const fromIndex = Math.max(
         0,
-        this.messages.length - MAX_PERSISTED_MESSAGES
+        this.messages.length - this.persistentMessageLimit
       );
       if (fromIndex > 0) {
         this.messages = this.messages.slice(fromIndex);
@@ -590,15 +616,12 @@ class ChatRenderer {
     }
   }
 
-  rebuildChat() {
+  rebuildChat(visibleMessageLimit) {
     if (!this.isReady()) {
       return;
     }
     // Make a copy of messages
-    const fromIndex = Math.max(
-      0,
-      this.messages.length - MAX_PERSISTED_MESSAGES
-    );
+    const fromIndex = Math.max(0, this.messages.length - visibleMessageLimit);
     const messages = this.messages.slice(fromIndex);
     // Remove existing nodes
     for (let message of messages) {
@@ -678,6 +701,10 @@ class ChatRenderer {
 
   purgeMessageArchive() {
     this.archivedMessages = [];
+  }
+
+  getStoredMessages() {
+    return this.archivedMessages.length;
   }
 }
 

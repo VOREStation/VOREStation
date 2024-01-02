@@ -4016,6 +4016,7 @@
 #include "code\modules\telesci\telesci_computer.dm"
 #include "code\modules\tension\tension.dm"
 #include "code\modules\tgchat\_legacy.dm"
+#include "code\modules\tgchat\chat_verbs.dm"
 #include "code\modules\tgchat\message.dm"
 #include "code\modules\tgchat\to_chat.dm"
 #include "code\modules\tgs\includes.dm"

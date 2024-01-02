@@ -9,7 +9,7 @@ import { storage } from 'common/storage';
 import { loadSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
 import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
-import { MAX_PERSISTED_MESSAGES, MESSAGE_SAVE_INTERVAL } from './constants';
+import { MESSAGE_SAVE_INTERVAL } from './constants';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
@@ -19,9 +19,10 @@ const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
 
 const saveChatToStorage = async (store) => {
   const state = selectChat(store.getState());
+  const settings = selectSettings(store.getState());
   const fromIndex = Math.max(
     0,
-    chatRenderer.messages.length - MAX_PERSISTED_MESSAGES
+    chatRenderer.messages.length - settings.persistentMessageLimit
   );
   const messages = chatRenderer.messages
     .slice(fromIndex)
@@ -111,6 +112,12 @@ export const chatMiddleware = (store) => {
   chatRenderer.events.on('scrollTrackingChanged', (scrollTracking) => {
     store.dispatch(changeScrollTracking(scrollTracking));
   });
+  const initialSettings = selectSettings(store.getState());
+  chatRenderer.setVisualChatLimits(
+    initialSettings.visibleMessageLimit,
+    initialSettings.combineMessageLimit,
+    initialSettings.combineIntervalLimit
+  );
   setInterval(() => {
     saveChatToStorage(store);
   }, MESSAGE_SAVE_INTERVAL);
@@ -155,6 +162,16 @@ export const chatMiddleware = (store) => {
         }
       }
 
+      const settings = selectSettings(store.getState());
+      chatRenderer.setVisualChatLimits(
+        settings.visibleMessageLimit,
+        settings.combineMessageLimit,
+        settings.combineIntervalLimit,
+        settings.logLineCount
+      );
+
+      settings.totalStoredMessages = chatRenderer.getStoredMessages();
+
       chatRenderer.processBatch([payload_obj.content]);
       return;
     }
@@ -178,7 +195,8 @@ export const chatMiddleware = (store) => {
       return;
     }
     if (type === rebuildChat.type) {
-      chatRenderer.rebuildChat();
+      const settings = selectSettings(store.getState());
+      chatRenderer.rebuildChat(settings.visibleMessages);
       return next(action);
     }
 
@@ -209,6 +227,8 @@ export const chatMiddleware = (store) => {
       return;
     }
     if (type === purgeChatMessageArchive.type) {
+      const settings = selectSettings(store.getState());
+      settings.totalStoredMessages = 0;
       chatRenderer.purgeMessageArchive();
       return;
     }
