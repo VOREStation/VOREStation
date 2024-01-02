@@ -228,7 +228,9 @@
 	var/obj/item/weapon/card/id/id = GetIdCard()
 	if(id && id.prevent_tracking())
 		return TRACKING_TERMINATE
-	if(InvalidPlayerTurf(get_turf(src)))
+	var/turf/pos = get_turf(src)
+	var/area/B = pos?.loc // No cam tracking in dorms!
+	if(InvalidPlayerTurf(pos) || B.block_tracking)
 		return TRACKING_TERMINATE
 	if(invisibility >= INVISIBILITY_LEVEL_ONE) //cloaked
 		return TRACKING_TERMINATE
