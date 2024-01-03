@@ -80,8 +80,10 @@
 /datum/tgui_module/camera/tgui_interact(mob/user, datum/tgui/ui = null)
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
+	var/turf/newturf = get_turf(active_camera)
+	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use())
+	if(!active_camera?.can_use() || B.block_tracking)
 		show_camera_static()
 	if(!ui)
 		var/user_ref = REF(user)
@@ -175,15 +177,16 @@
 				. = TRUE
 
 /datum/tgui_module/camera/proc/update_active_camera_screen()
+	var/turf/newturf = get_turf(active_camera)
+	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use())
+	if(!active_camera?.can_use() || B.block_tracking)
 		show_camera_static()
 		return TRUE
 
 	// If we're not forcing an update for some reason and the cameras are in the same location,
 	// we don't need to update anything.
 	// Most security cameras will end here as they're not moving.
-	var/turf/newturf = get_turf(active_camera)
 	if(newturf == last_camera_turf)
 		return
 
