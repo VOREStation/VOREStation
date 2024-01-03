@@ -165,7 +165,7 @@ class ChatRenderer {
       this.scrollToBottom();
     });
     // Flush the queue
-    this.tryFlushQueue();
+    this.tryFlushQueue(true);
   }
 
   onStateLoaded() {
@@ -173,9 +173,9 @@ class ChatRenderer {
     this.tryFlushQueue();
   }
 
-  tryFlushQueue() {
+  tryFlushQueue(doArchive = false) {
     if (this.isReady() && this.queue.length > 0) {
-      this.processBatch(this.queue);
+      this.processBatch(this.queue, { doArchive: doArchive });
       this.queue = [];
     }
   }
@@ -392,7 +392,7 @@ class ChatRenderer {
   }
 
   processBatch(batch, options = {}) {
-    const { prepend, notifyListeners = true, noArchive = false } = options;
+    const { prepend, notifyListeners = true, doArchive = false } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
     if (!this.isReady()) {
@@ -548,7 +548,7 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
-      if (!noArchive) {
+      if (doArchive) {
         this.archivedMessages.push(serializeMessage(message, true)); // TODO: Actually having a better message archiving maybe for exports?
       }
       if (canPageAcceptType(this.page, message.type)) {
@@ -616,12 +616,12 @@ class ChatRenderer {
     }
   }
 
-  rebuildChat(visibleMessageLimit) {
+  rebuildChat(rebuildLimit) {
     if (!this.isReady()) {
       return;
     }
     // Make a copy of messages
-    const fromIndex = Math.max(0, this.messages.length - visibleMessageLimit);
+    const fromIndex = Math.max(0, this.messages.length - rebuildLimit);
     const messages = this.messages.slice(fromIndex);
     // Remove existing nodes
     for (let message of messages) {

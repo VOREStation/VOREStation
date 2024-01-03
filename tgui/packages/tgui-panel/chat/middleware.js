@@ -62,7 +62,6 @@ const loadChatFromStorage = async (store) => {
     ];
     chatRenderer.processBatch(batch, {
       prepend: true,
-      noarchive: true,
     });
   }
   if (archivedMessages) {
@@ -112,17 +111,19 @@ export const chatMiddleware = (store) => {
   chatRenderer.events.on('scrollTrackingChanged', (scrollTracking) => {
     store.dispatch(changeScrollTracking(scrollTracking));
   });
-  const initialSettings = selectSettings(store.getState());
-  chatRenderer.setVisualChatLimits(
-    initialSettings.visibleMessageLimit,
-    initialSettings.combineMessageLimit,
-    initialSettings.combineIntervalLimit
-  );
   setInterval(() => {
     saveChatToStorage(store);
   }, MESSAGE_SAVE_INTERVAL);
   return (next) => (action) => {
     const { type, payload } = action;
+    const settings = selectSettings(store.getState());
+    settings.totalStoredMessages = chatRenderer.getStoredMessages();
+    chatRenderer.setVisualChatLimits(
+      settings.visibleMessageLimit,
+      settings.combineMessageLimit,
+      settings.combineIntervalLimit,
+      settings.logLineCount
+    );
     if (!initialized) {
       initialized = true;
       loadChatFromStorage(store);
@@ -162,17 +163,9 @@ export const chatMiddleware = (store) => {
         }
       }
 
-      const settings = selectSettings(store.getState());
-      chatRenderer.setVisualChatLimits(
-        settings.visibleMessageLimit,
-        settings.combineMessageLimit,
-        settings.combineIntervalLimit,
-        settings.logLineCount
-      );
-
-      settings.totalStoredMessages = chatRenderer.getStoredMessages();
-
-      chatRenderer.processBatch([payload_obj.content]);
+      chatRenderer.processBatch([payload_obj.content], {
+        doArchive: true,
+      });
       return;
     }
     if (type === loadChat.type) {
@@ -195,7 +188,6 @@ export const chatMiddleware = (store) => {
       return;
     }
     if (type === rebuildChat.type) {
-      const settings = selectSettings(store.getState());
       chatRenderer.rebuildChat(settings.visibleMessages);
       return next(action);
     }
@@ -208,7 +200,6 @@ export const chatMiddleware = (store) => {
       type === updateHighlightSetting.type
     ) {
       next(action);
-      const settings = selectSettings(store.getState());
       chatRenderer.setHighlight(
         settings.highlightSettings,
         settings.highlightSettingById
@@ -222,13 +213,10 @@ export const chatMiddleware = (store) => {
       return next(action);
     }
     if (type === saveChatToDisk.type) {
-      const settings = selectSettings(store.getState());
       chatRenderer.saveToDisk(settings.logLineCount);
       return;
     }
     if (type === purgeChatMessageArchive.type) {
-      const settings = selectSettings(store.getState());
-      settings.totalStoredMessages = 0;
       chatRenderer.purgeMessageArchive();
       return;
     }
