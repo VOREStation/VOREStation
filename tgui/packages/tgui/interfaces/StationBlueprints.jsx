@@ -3,7 +3,7 @@ import { useBackend } from '../backend';
 import { ByondUi } from '../components';
 import { Window } from '../layouts';
 
-export const StationBlueprints = (props, context) => {
+export const StationBlueprints = (props) => {
   return (
     <Window width={870} height={708} resizable>
       <StationBlueprintsContent />
@@ -11,8 +11,8 @@ export const StationBlueprints = (props, context) => {
   );
 };
 
-export const StationBlueprintsContent = (props, context) => {
-  const { act, data, config } = useBackend(context);
+export const StationBlueprintsContent = (props) => {
+  const { act, data, config } = useBackend();
 
   const { mapRef, areas, turfs } = data;
   return (

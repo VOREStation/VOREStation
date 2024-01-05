@@ -7,15 +7,15 @@ import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
 
-const doEdit = (context, field) => {
-  modalOpen(context, 'edit', {
+const doEdit = (field) => {
+  modalOpen('edit', {
     field: field.edit,
     value: field.value,
   });
 };
 
-export const SecurityRecords = (_properties, context) => {
-  const { data } = useBackend(context);
+export const SecurityRecords = (_properties) => {
+  const { data } = useBackend();
   const { authenticated, screen } = data;
   if (!authenticated) {
     return (
@@ -52,8 +52,8 @@ export const SecurityRecords = (_properties, context) => {
   );
 };
 
-const SecurityRecordsList = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const SecurityRecordsList = (_properties) => {
+  const { act, data } = useBackend();
   const { records } = data;
   return (
     <Fragment>
@@ -85,8 +85,8 @@ const SecurityRecordsList = (_properties, context) => {
   );
 };
 
-const SecurityRecordsMaintenance = (_properties, context) => {
-  const { act } = useBackend(context);
+const SecurityRecordsMaintenance = (_properties) => {
+  const { act } = useBackend();
   return (
     <Fragment>
       <Button icon="download" content="Backup to Disk" disabled />
@@ -107,8 +107,8 @@ const SecurityRecordsMaintenance = (_properties, context) => {
   );
 };
 
-const SecurityRecordsView = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const SecurityRecordsView = (_properties) => {
+  const { act, data } = useBackend();
   const { security, printing } = data;
   return (
     <Fragment>
@@ -153,8 +153,8 @@ const SecurityRecordsView = (_properties, context) => {
   );
 };
 
-const SecurityRecordsViewGeneral = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const SecurityRecordsViewGeneral = (_properties) => {
+  const { act, data } = useBackend();
   const { general } = data;
   if (!general || !general.fields) {
     return <Box color="bad">General records lost!</Box>;
@@ -169,11 +169,7 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
                 {field.value}
               </Box>
               {!!field.edit && (
-                <Button
-                  icon="pen"
-                  ml="0.5rem"
-                  onClick={() => doEdit(context, field)}
-                />
+                <Button icon="pen" ml="0.5rem" onClick={() => doEdit(field)} />
               )}
             </LabeledList.Item>
           ))}
@@ -208,8 +204,8 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
   );
 };
 
-const SecurityRecordsViewSecurity = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const SecurityRecordsViewSecurity = (_properties) => {
+  const { act, data } = useBackend();
   const { security } = data;
   if (!security || !security.fields) {
     return (
@@ -235,7 +231,7 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
                 icon="pen"
                 ml="0.5rem"
                 mb={field.line_break ? '1rem' : 'initial'}
-                onClick={() => doEdit(context, field)}
+                onClick={() => doEdit(field)}
               />
             </Box>
           </LabeledList.Item>
@@ -268,15 +264,15 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
           color="good"
           mt="0.5rem"
           mb="0"
-          onClick={() => modalOpen(context, 'add_c')}
+          onClick={() => modalOpen('add_c')}
         />
       </Section>
     </Fragment>
   );
 };
 
-const SecurityRecordsNavigation = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const SecurityRecordsNavigation = (_properties) => {
+  const { act, data } = useBackend();
   const { screen } = data;
   return (
     <Tabs>

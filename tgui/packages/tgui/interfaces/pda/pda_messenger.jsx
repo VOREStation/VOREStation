@@ -3,8 +3,8 @@ import { filter } from 'common/collections';
 import { useBackend, useLocalState } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
 
-export const pda_messenger = (props, context) => {
-  const { act, data } = useBackend(context);
+export const pda_messenger = (props) => {
+  const { act, data } = useBackend();
 
   const { auto_scroll, convo_name, convo_job, messages, active_conversation } =
     data;
@@ -31,8 +31,8 @@ const findClassMessage = (im, lastIndex, filterArray) => {
   return im.sent ? 'TinderMessage_First_Sent' : 'TinderMessage_First_Received';
 };
 
-const ActiveConversation = (props, context) => {
-  const { act, data } = useBackend(context);
+const ActiveConversation = (props) => {
+  const { act, data } = useBackend();
 
   const {
     auto_scroll,
@@ -44,7 +44,6 @@ const ActiveConversation = (props, context) => {
   } = data;
 
   const [clipboardMode, setClipboardMode] = useLocalState(
-    context,
     'clipboardMode',
     false
   );
@@ -159,8 +158,8 @@ const ActiveConversation = (props, context) => {
   );
 };
 
-const MessengerList = (props, context) => {
-  const { act, data } = useBackend(context);
+const MessengerList = (props) => {
+  const { act, data } = useBackend();
 
   const { auto_scroll, convopdas, pdas, charges, plugins, silent, toff } = data;
 
@@ -216,8 +215,8 @@ const MessengerList = (props, context) => {
   );
 };
 
-const PDAList = (props, context) => {
-  const { act, data } = useBackend(context);
+const PDAList = (props) => {
+  const { act, data } = useBackend();
 
   const { pdas, title, msgAct } = props;
 

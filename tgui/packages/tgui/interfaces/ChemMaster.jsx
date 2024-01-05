@@ -14,8 +14,8 @@ const bottleStyles = [
   'reagent_bottle.png',
 ];
 
-const analyzeModalBodyOverride = (modal, context) => {
-  const { act, data } = useBackend(context);
+const analyzeModalBodyOverride = (modal) => {
+  const { act, data } = useBackend();
   const result = modal.args.analysis;
   return (
     <Section
@@ -62,8 +62,8 @@ const analyzeModalBodyOverride = (modal, context) => {
   );
 };
 
-export const ChemMaster = (props, context) => {
-  const { data } = useBackend(context);
+export const ChemMaster = (props) => {
+  const { data } = useBackend();
   const {
     condi,
     beaker,
@@ -91,8 +91,8 @@ export const ChemMaster = (props, context) => {
   );
 };
 
-const ChemMasterBeaker = (props, context) => {
-  const { act, data } = useBackend(context);
+const ChemMasterBeaker = (props) => {
+  const { act, data } = useBackend();
   const { beaker, beakerReagents, bufferNonEmpty } = props;
 
   let headerButton = bufferNonEmpty ? (
@@ -123,7 +123,7 @@ const ChemMasterBeaker = (props, context) => {
                 content="Analyze"
                 mb="0"
                 onClick={() =>
-                  modalOpen(context, 'analyze', {
+                  modalOpen('analyze', {
                     idx: i + 1,
                     beaker: 1,
                   })
@@ -156,7 +156,7 @@ const ChemMasterBeaker = (props, context) => {
                 content="Custom.."
                 mb="0"
                 onClick={() =>
-                  modalOpen(context, 'addcustom', {
+                  modalOpen('addcustom', {
                     id: chemical.id,
                   })
                 }
@@ -171,8 +171,8 @@ const ChemMasterBeaker = (props, context) => {
   );
 };
 
-const ChemMasterBuffer = (props, context) => {
-  const { act } = useBackend(context);
+const ChemMasterBuffer = (props) => {
+  const { act } = useBackend();
   const { mode, bufferReagents = [] } = props;
   return (
     <Section
@@ -198,7 +198,7 @@ const ChemMasterBuffer = (props, context) => {
                 content="Analyze"
                 mb="0"
                 onClick={() =>
-                  modalOpen(context, 'analyze', {
+                  modalOpen('analyze', {
                     idx: i + 1,
                     beaker: 0,
                   })
@@ -231,7 +231,7 @@ const ChemMasterBuffer = (props, context) => {
                 content="Custom.."
                 mb="0"
                 onClick={() =>
-                  modalOpen(context, 'removecustom', {
+                  modalOpen('removecustom', {
                     id: chemical.id,
                   })
                 }
@@ -246,8 +246,8 @@ const ChemMasterBuffer = (props, context) => {
   );
 };
 
-const ChemMasterProduction = (props, context) => {
-  const { act, data } = useBackend(context);
+const ChemMasterProduction = (props) => {
+  const { act, data } = useBackend();
   if (!props.bufferNonEmpty) {
     return (
       <Section
@@ -313,8 +313,8 @@ const ChemMasterProduction = (props, context) => {
   );
 };
 
-const ChemMasterProductionChemical = (props, context) => {
-  const { act, data } = useBackend(context);
+const ChemMasterProductionChemical = (props) => {
+  const { act, data } = useBackend();
   return (
     <LabeledList>
       <LabeledList.Item label="Pills">
@@ -322,16 +322,16 @@ const ChemMasterProductionChemical = (props, context) => {
           icon="circle"
           content="One (60u max)"
           mr="0.5rem"
-          onClick={() => modalOpen(context, 'create_pill')}
+          onClick={() => modalOpen('create_pill')}
         />
         <Button
           icon="plus-circle"
           content="Multiple"
           mb="0.5rem"
-          onClick={() => modalOpen(context, 'create_pill_multiple')}
+          onClick={() => modalOpen('create_pill_multiple')}
         />
         <br />
-        <Button onClick={() => modalOpen(context, 'change_pill_style')}>
+        <Button onClick={() => modalOpen('change_pill_style')}>
           <div
             style={
               'display: inline-block;' +
@@ -353,12 +353,12 @@ const ChemMasterProductionChemical = (props, context) => {
           icon="square"
           content="One (60u max)"
           mr="0.5rem"
-          onClick={() => modalOpen(context, 'create_patch')}
+          onClick={() => modalOpen('create_patch')}
         />
         <Button
           icon="plus-square"
           content="Multiple"
-          onClick={() => modalOpen(context, 'create_patch_multiple')}
+          onClick={() => modalOpen('create_patch_multiple')}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Bottle">
@@ -367,17 +367,15 @@ const ChemMasterProductionChemical = (props, context) => {
           content="Create bottle (60u max)"
           mr="0.5rem"
           mb="0.5rem"
-          onClick={() => modalOpen(context, 'create_bottle')}
+          onClick={() => modalOpen('create_bottle')}
         />
         <Button
           icon="plus-square"
           content="Multiple"
-          onClick={() => modalOpen(context, 'create_bottle_multiple')}
+          onClick={() => modalOpen('create_bottle_multiple')}
         />
         <br />
-        <Button
-          mb="0.5rem"
-          onClick={() => modalOpen(context, 'change_bottle_style')}>
+        <Button mb="0.5rem" onClick={() => modalOpen('change_bottle_style')}>
           <div
             style={
               'display: inline-block;' +
@@ -398,15 +396,15 @@ const ChemMasterProductionChemical = (props, context) => {
   );
 };
 
-const ChemMasterProductionCondiment = (props, context) => {
-  const { act } = useBackend(context);
+const ChemMasterProductionCondiment = (props) => {
+  const { act } = useBackend();
   return (
     <Fragment>
       <Button
         icon="box"
         content="Create condiment pack (10u max)"
         mb="0.5rem"
-        onClick={() => modalOpen(context, 'create_condi_pack')}
+        onClick={() => modalOpen('create_condi_pack')}
       />
       <br />
       <Button
@@ -419,8 +417,8 @@ const ChemMasterProductionCondiment = (props, context) => {
   );
 };
 
-// const ChemMasterCustomization = (props, context) => {
-//   const { act, data } = useBackend(context);
+// const ChemMasterCustomization = (props) => {
+//   const { act, data } = useBackend();
 //   if (!data.loaded_pill_bottle) {
 //     return (
 //       <Section title="Pill Bottle Customization">

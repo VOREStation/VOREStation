@@ -6,8 +6,8 @@ type Data = {
   tgui_construction: { key; background; icon; foreground }[];
 };
 
-export const XenoarchReplicator = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const XenoarchReplicator = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { tgui_construction } = data;
 

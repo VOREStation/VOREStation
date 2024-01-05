@@ -10,15 +10,15 @@ import { createSearch } from 'common/string';
 import { filter } from 'common/collections';
 import { flow } from 'common/fp';
 
-const doEdit = (context, field) => {
-  modalOpen(context, 'edit', {
+const doEdit = (field) => {
+  modalOpen('edit', {
     field: field.edit,
     value: field.value,
   });
 };
 
-export const GeneralRecords = (_properties, context) => {
-  const { data } = useBackend(context);
+export const GeneralRecords = (_properties) => {
+  const { data } = useBackend();
   const { authenticated, screen } = data;
   if (!authenticated) {
     return (
@@ -76,10 +76,10 @@ const selectRecords = (records, searchText = '') => {
   return fl;
 };
 
-const GeneralRecordsList = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const GeneralRecordsList = (_properties) => {
+  const { act, data } = useBackend();
 
-  const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
+  const [searchText, setSearchText] = useLocalState('searchText', '');
 
   const records = selectRecords(data.records, searchText);
   return (
@@ -107,8 +107,8 @@ const GeneralRecordsList = (_properties, context) => {
   );
 };
 
-const GeneralRecordsMaintenance = (_properties, context) => {
-  const { act } = useBackend(context);
+const GeneralRecordsMaintenance = (_properties) => {
+  const { act } = useBackend();
   return (
     <Button.Confirm
       icon="trash"
@@ -118,8 +118,8 @@ const GeneralRecordsMaintenance = (_properties, context) => {
   );
 };
 
-const GeneralRecordsView = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const GeneralRecordsView = (_properties) => {
+  const { act, data } = useBackend();
   const { general, printing } = data;
   return (
     <Fragment>
@@ -154,8 +154,8 @@ const GeneralRecordsView = (_properties, context) => {
   );
 };
 
-const GeneralRecordsViewGeneral = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const GeneralRecordsViewGeneral = (_properties) => {
+  const { act, data } = useBackend();
   const { general } = data;
   if (!general || !general.fields) {
     return (
@@ -180,11 +180,7 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
                 {field.value}
               </Box>
               {!!field.edit && (
-                <Button
-                  icon="pen"
-                  ml="0.5rem"
-                  onClick={() => doEdit(context, field)}
-                />
+                <Button icon="pen" ml="0.5rem" onClick={() => doEdit(field)} />
               )}
             </LabeledList.Item>
           ))}
@@ -219,7 +215,7 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
             color="good"
             mt="0.5rem"
             mb="0"
-            onClick={() => modalOpen(context, 'add_c')}
+            onClick={() => modalOpen('add_c')}
           />
         </Section>
       </Box>
@@ -248,8 +244,8 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
   );
 };
 
-const GeneralRecordsNavigation = (_properties, context) => {
-  const { act, data } = useBackend(context);
+const GeneralRecordsNavigation = (_properties) => {
+  const { act, data } = useBackend();
   const { screen } = data;
   return (
     <Tabs>

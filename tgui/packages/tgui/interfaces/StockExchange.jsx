@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Chart, Divider, Section, Table } from '../components';
 import { Window } from '../layouts';
 
-export const StockExchange = (props, context) => {
-  const { act, data } = useBackend(context);
+export const StockExchange = (props) => {
+  const { act, data } = useBackend();
 
   const { screen, stationName } = data;
 
@@ -27,8 +27,8 @@ export const StockExchange = (props, context) => {
   );
 };
 
-const StockExchangeStockList = (props, context) => {
-  const { act, data } = useBackend(context);
+const StockExchangeStockList = (props) => {
+  const { act, data } = useBackend();
 
   const { balance, stationName, viewMode } = data;
 
@@ -63,8 +63,8 @@ const StockExchangeStockList = (props, context) => {
   );
 };
 
-const StockExchangeFullView = (props, context) => {
-  const { act, data } = useBackend(context);
+const StockExchangeFullView = (props) => {
+  const { act, data } = useBackend();
 
   const { stocks = [] } = data;
 
@@ -120,8 +120,8 @@ const StockExchangeFullView = (props, context) => {
   );
 };
 
-const StockExchangeCompactView = (props, context) => {
-  const { act, data } = useBackend(context);
+const StockExchangeCompactView = (props) => {
+  const { act, data } = useBackend();
 
   const { stocks = [] } = data;
 
@@ -177,8 +177,8 @@ const StockExchangeCompactView = (props, context) => {
 };
 
 // "<div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div></br>"
-const StockExchangeLogs = (props, context) => {
-  const { act, data } = useBackend(context);
+const StockExchangeLogs = (props) => {
+  const { act, data } = useBackend();
 
   const { logs = [] } = data;
 
@@ -224,8 +224,8 @@ const StockExchangeLogs = (props, context) => {
   );
 };
 
-const StockExchangeArchive = (props, context) => {
-  const { act, data } = useBackend(context);
+const StockExchangeArchive = (props) => {
+  const { act, data } = useBackend();
 
   const { name, events = [], articles = [] } = data;
 
@@ -269,8 +269,8 @@ const StockExchangeArchive = (props, context) => {
   );
 };
 
-const StockExchangeGraph = (props, context) => {
-  const { act, data } = useBackend(context);
+const StockExchangeGraph = (props) => {
+  const { act, data } = useBackend();
 
   const { name, maxValue, values = [] } = data;
 

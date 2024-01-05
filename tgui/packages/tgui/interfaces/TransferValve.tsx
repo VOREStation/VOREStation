@@ -10,8 +10,8 @@ type Data = {
   valve: BooleanLike;
 };
 
-export const TransferValve = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const TransferValve = (props) => {
+  const { act, data } = useBackend<Data>();
   const { tank_one, tank_two, attached_device, valve } = data;
   return (
     <Window>

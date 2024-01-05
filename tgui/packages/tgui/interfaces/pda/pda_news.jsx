@@ -5,8 +5,8 @@ import { Box, Button, Section } from '../../components';
 
 // Stolen wholesale from communicators. TGUITODO: Merge PDA & Communicator shared code once both are in
 /* News */
-export const pda_news = (props, context) => {
-  const { act, data } = useBackend(context);
+export const pda_news = (props) => {
+  const { act, data } = useBackend();
 
   const { feeds, target_feed } = data;
 
@@ -22,8 +22,8 @@ export const pda_news = (props, context) => {
   );
 };
 
-const NewsTargetFeed = (props, context) => {
-  const { act, data } = useBackend(context);
+const NewsTargetFeed = (props) => {
+  const { act, data } = useBackend();
 
   const { target_feed } = data;
 
@@ -62,8 +62,8 @@ const NewsTargetFeed = (props, context) => {
   );
 };
 
-const NewsFeed = (props, context) => {
-  const { act, data } = useBackend(context);
+const NewsFeed = (props) => {
+  const { act, data } = useBackend();
 
   const { feeds, latest_news } = data;
 

@@ -100,7 +100,7 @@ const rank2icon = {
   'Emergency Responder': 'fighter-jet',
 };
 
-export const RankIcon = (props, context) => {
+export const RankIcon = (props) => {
   const { rank, color = 'label' } = props;
 
   let rankObj = rank2icon[rank];

@@ -801,8 +801,8 @@ const getCurrentTimestamp = (): string => {
   );
 };
 
-const downloadPrefs = (context, extension: string) => {
-  const { act, data } = useBackend<Data>(context);
+const downloadPrefs = (extension: string) => {
+  const { act, data } = useBackend<Data>();
 
   const { db_version, db_repo, mob_name, bellies } = data;
 
@@ -872,24 +872,18 @@ export const VorePanelExport = () => {
   );
 };
 
-const VorePanelExportContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const VorePanelExportContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { bellies } = data;
 
   return (
     <Section title="Vore Export Panel">
       <Section title="Export">
-        <Button
-          fluid
-          icon="file-alt"
-          onClick={() => downloadPrefs(context, '.html')}>
+        <Button fluid icon="file-alt" onClick={() => downloadPrefs('.html')}>
           Export (HTML)
         </Button>
-        <Button
-          fluid
-          icon="file-alt"
-          onClick={() => downloadPrefs(context, '.vrdb')}>
+        <Button fluid icon="file-alt" onClick={() => downloadPrefs('.vrdb')}>
           Export (VRDB)
         </Button>
       </Section>

@@ -400,8 +400,8 @@
 			if(R.fields["name"] == perpname)
 				criminal = R.fields["criminal"]
 
-		msg += "<span class='deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>"
-		msg += "<span class='deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>"
+		msg += "Criminal status: <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>"
+		msg += "Security records: <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>"
 
 	if(hasHUD(user,"medical"))
 		var/perpname = name
@@ -419,11 +419,11 @@
 			if (R.fields["name"] == perpname)
 				medical = R.fields["p_stat"]
 
-		msg += "<span class='deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>"
-		msg += "<span class='deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
+		msg += "Physical status: <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>"
+		msg += "Medical records: <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
 
 	if(hasHUD(user,"best"))
-		msg += "<span class='deptradio'>Employment records:</span> <a href='?src=\ref[src];emprecord=`'>\[View\]</a> <a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"
+		msg += "Employment records: <a href='?src=\ref[src];emprecord=`'>\[View\]</a> <a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"
 
 
 	var/flavor_text = print_flavor_text()
@@ -432,11 +432,11 @@
 
 	// VOREStation Start
 	if(custom_link)
-		msg += "Custom link: [custom_link]"
+		msg += "Custom link: <span class='linkify'>[custom_link]</span>"
 
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
-	msg += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+	msg += "<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 	// VOREStation End
 	msg += "*---------*</span>"
 	if(applying_pressure)

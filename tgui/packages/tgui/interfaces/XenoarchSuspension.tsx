@@ -12,8 +12,8 @@ type Data = {
   suspension_field: BooleanLike;
 };
 
-export const XenoarchSuspension = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const XenoarchSuspension = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { cell, cellCharge, cellMaxCharge, locked, suspension_field } = data;
 

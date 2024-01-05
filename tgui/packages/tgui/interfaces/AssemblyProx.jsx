@@ -4,8 +4,8 @@ import { Button, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
 import { formatTime } from '../format';
 
-export const AssemblyProx = (props, context) => {
-  const { act, data } = useBackend(context);
+export const AssemblyProx = (props) => {
+  const { act, data } = useBackend();
   const { timing, time, range, maxRange, scanning } = data;
   return (
     <Window>

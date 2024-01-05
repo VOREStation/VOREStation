@@ -20,8 +20,8 @@ const PROGRAM_ICONS = {
   shipping: 'tags',
 };
 
-export const NtosMain = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosMain = (props) => {
+  const { act, data } = useBackend();
   const {
     device_theme,
     programs = [],

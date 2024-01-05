@@ -13,8 +13,8 @@ export const NtosNetDos = () => {
   );
 };
 
-export const NtosNetDosContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosNetDosContent = (props) => {
+  const { act, data } = useBackend();
 
   const { relays = [], focus, target, speed, overload, capacity, error } = data;
 

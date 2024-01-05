@@ -4,8 +4,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
 
-const VendingRow = (props, context) => {
-  const { act, data } = useBackend(context);
+const VendingRow = (props) => {
+  const { act, data } = useBackend();
   const { actively_vending } = data;
   const { product } = props;
   return (
@@ -58,8 +58,8 @@ const VendingRow = (props, context) => {
   );
 };
 
-export const Vending = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Vending = (props) => {
+  const { act, data } = useBackend();
   const { panel } = data;
 
   return (
@@ -72,8 +72,8 @@ export const Vending = (props, context) => {
   );
 };
 
-export const VendingProducts = (props, context) => {
-  const { act, data } = useBackend(context);
+export const VendingProducts = (props) => {
+  const { act, data } = useBackend();
   const { coin, chargesMoney, user, userMoney, guestNotice, products } = data;
 
   // Just in case we still have undefined values in the list
@@ -114,8 +114,8 @@ export const VendingProducts = (props, context) => {
   );
 };
 
-export const VendingMaintenance = (props, context) => {
-  const { act, data } = useBackend(context);
+export const VendingMaintenance = (props) => {
+  const { act, data } = useBackend();
   const { speaker } = data;
 
   return (

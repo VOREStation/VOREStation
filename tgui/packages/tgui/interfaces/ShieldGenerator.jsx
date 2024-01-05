@@ -6,8 +6,8 @@ import { round } from 'common/math';
 import { formatSiUnit, formatPower } from '../format';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
-export const ShieldGenerator = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ShieldGenerator = (props) => {
+  const { act, data } = useBackend();
 
   const { locked } = data;
 
@@ -20,7 +20,7 @@ export const ShieldGenerator = (props, context) => {
   );
 };
 
-const ShieldGeneratorLocked = (props, context) => (
+const ShieldGeneratorLocked = (props) => (
   <FullscreenNotice title="Locked">
     <Box fontSize="1.5rem" bold>
       <Icon
@@ -36,8 +36,8 @@ const ShieldGeneratorLocked = (props, context) => (
   </FullscreenNotice>
 );
 
-const ShieldGeneratorContent = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShieldGeneratorContent = (props) => {
+  const { act, data } = useBackend();
 
   const {
     capacitors,

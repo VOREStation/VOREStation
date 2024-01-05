@@ -41,8 +41,8 @@ const TOOLS = [
   },
 ];
 
-const SelectionSection = (props, context) => {
-  const { act, data } = useBackend(context);
+const SelectionSection = (props) => {
+  const { act, data } = useBackend();
   const { category: rootCategoryIndex, selected_color, mode } = data;
   return (
     <Section>
@@ -99,8 +99,8 @@ const SelectionSection = (props, context) => {
   );
 };
 
-const LayerSection = (props, context) => {
-  const { act, data } = useBackend(context);
+const LayerSection = (props) => {
+  const { act, data } = useBackend();
   const { category: rootCategoryIndex, piping_layer, pipe_layers } = data;
   const previews = data.preview_rows.flatMap((row) => row.previews);
   return (
@@ -156,13 +156,10 @@ const LayerSection = (props, context) => {
   );
 };
 
-const PipeTypeSection = (props, context) => {
-  const { act, data } = useBackend(context);
+const PipeTypeSection = (props) => {
+  const { act, data } = useBackend();
   const { categories = [] } = data;
-  const [categoryName, setCategoryName] = useLocalState(
-    context,
-    'categoryName'
-  );
+  const [categoryName, setCategoryName] = useLocalState('categoryName');
   const shownCategory =
     categories.find((category) => category.cat_name === categoryName) ||
     categories[0];
@@ -200,8 +197,8 @@ const PipeTypeSection = (props, context) => {
   );
 };
 
-export const RapidPipeDispenser = (props, context) => {
-  const { act, data } = useBackend(context);
+export const RapidPipeDispenser = (props) => {
+  const { act, data } = useBackend();
   const { category: rootCategoryIndex } = data;
   return (
     <Window width={550} height={570}>

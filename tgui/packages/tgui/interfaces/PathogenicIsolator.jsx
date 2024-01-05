@@ -4,8 +4,8 @@ import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/Co
 import { Box, Button, Flex, NoticeBox, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
-const virusModalBodyOverride = (modal, context) => {
-  const { act, data } = useBackend(context);
+const virusModalBodyOverride = (modal) => {
+  const { act, data } = useBackend();
   const { can_print } = data;
   const virus = modal.args;
   return (
@@ -69,12 +69,12 @@ const virusModalBodyOverride = (modal, context) => {
   );
 };
 
-export const PathogenicIsolator = (props, context) => {
-  const { act, data } = useBackend(context);
+export const PathogenicIsolator = (props) => {
+  const { act, data } = useBackend();
 
   const { isolating } = data;
 
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
+  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
 
   let tab = null;
   if (tabIndex === 0) {
@@ -106,8 +106,8 @@ export const PathogenicIsolator = (props, context) => {
   );
 };
 
-const PathogenicIsolatorTabHome = (props, context) => {
-  const { act, data } = useBackend(context);
+const PathogenicIsolatorTabHome = (props) => {
+  const { act, data } = useBackend();
   const { syringe_inserted, pathogen_pool, can_print } = data;
   return (
     <Section
@@ -171,8 +171,8 @@ const PathogenicIsolatorTabHome = (props, context) => {
   );
 };
 
-const PathogenicIsolatorTabDatabase = (props, context) => {
-  const { act, data } = useBackend(context);
+const PathogenicIsolatorTabDatabase = (props) => {
+  const { act, data } = useBackend();
   const { database, can_print } = data;
   return (
     <Section

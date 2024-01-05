@@ -24,8 +24,8 @@ export const PowerMonitor = () => {
   );
 };
 
-export const PowerMonitorContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const PowerMonitorContent = (props) => {
+  const { act, data } = useBackend();
 
   const { map_levels, all_sensors, focus } = data;
 
@@ -68,15 +68,11 @@ export const PowerMonitorContent = (props, context) => {
   );
 };
 
-export const PowerMonitorFocus = (props, context) => {
-  const { act, data } = useBackend(context);
+export const PowerMonitorFocus = (props) => {
+  const { act, data } = useBackend();
   const { focus } = props;
   const { history } = focus;
-  const [sortByField, setSortByField] = useLocalState(
-    context,
-    'sortByField',
-    null
-  );
+  const [sortByField, setSortByField] = useLocalState('sortByField', null);
   const supply = history.supply[history.supply.length - 1] || 0;
   const demand = history.demand[history.demand.length - 1] || 0;
   const supplyData = history.supply.map((value, i) => [i, value]);

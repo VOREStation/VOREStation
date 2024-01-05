@@ -11,8 +11,8 @@ type Data = {
   logs: string[];
 };
 
-export const ExonetNode = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const ExonetNode = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { on, allowPDAs, allowCommunicators, allowNewscasters, logs } = data;
 

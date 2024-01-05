@@ -300,11 +300,15 @@
 			if (W.w_class >= src.w_class || is_robot_module(W) || istype(W, /obj/item/weapon/holder))
 				return
 
-			to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
-			user.drop_from_inventory(W, src)
-			add_fingerprint(user)
-			contents += W
-			return
+			if(tgui_alert(user,"You can't slice \the [src] here. Would you like to hide \the [W] inside it instead?","No Cutting Surface!",list("Yes","No")) == "No")
+				to_chat(user, "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>")
+				return
+			else
+				to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
+				user.drop_from_inventory(W, src)
+				add_fingerprint(user)
+				contents += W
+				return
 
 		if (has_edge(W))
 			if (!can_slice_here)

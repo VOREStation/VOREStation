@@ -448,3 +448,104 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/alecan/Initialize()
 	. = ..()
 	reagents.add_reagent("ale", 30)
+
+/////////////////////////ENERGY DRINKS/////////////////////////
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_peach
+	name = "\improper Nukies - Peach Blaster"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_peach"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_peach/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_peach", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_pear
+	name = "\improper Nukies - Great Pear"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_pear"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_pear/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_pear", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_cherry
+	name = "\improper Nukies - Popping Cherry"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_cherry"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_cherry/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_cherry", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_melon
+	name = "\improper Nukies - Melon Squirter"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_melon"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_melon/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_melon", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_banana
+	name = "\improper Nukies - Bursting Banana"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_banana"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_banana/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_banana", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_rose
+	name = "\improper Nukies - Insatiable Rose"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_rose"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_rose/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_rose", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_lemon
+	name = "\improper Nukies - Citrus Got Real"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_lemon"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_lemon/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_lemon", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_fruit
+	name = "\improper Nukies - Swelling Fruit"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_fruit"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_fruit/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_fruit", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_special
+	name = "\improper Nukies - Limited Edition"
+	desc = "Harness the power of the atom with this over-caffinated energy drink."
+	icon_state = "nukie_special"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_special/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_special", 60)

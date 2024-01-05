@@ -3,8 +3,8 @@ import { useBackend } from '../backend';
 import { Button, Box, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
-export const NtosWordProcessor = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtosWordProcessor = (props) => {
+  const { act, data } = useBackend();
 
   const {
     PC_device_theme,

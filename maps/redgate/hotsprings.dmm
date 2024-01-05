@@ -62,6 +62,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/redgate/hotsprings/house)
+"cA" = (
+/turf/simulated/floor/water{
+	name = "hotspring";
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 310
+	},
+/area/redgate/hotsprings/westcave)
+"cC" = (
+/obj/structure/prop/warmrocks{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = -1
+	},
+/area/redgate/hotsprings/westcave)
 "dc" = (
 /obj/structure/railing/grey,
 /obj/effect/floor_decal/shuttles,
@@ -76,6 +93,7 @@
 /obj/structure/prop/warmrocks{
 	dir = 8
 	},
+/obj/effect/mist,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = -1
 	},
@@ -130,12 +148,6 @@
 "ej" = (
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
-"eq" = (
-/obj/structure/prop/warmrocks{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/rocks,
-/area/redgate/hotsprings/outdoors)
 "ex" = (
 /turf/simulated/mineral/ignore_cavegen{
 	nitrogen = 93.7835;
@@ -157,6 +169,19 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
+"fg" = (
+/obj/structure/prop/warmrocks{
+	invisibility = 101
+	},
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/turf/simulated/floor/water{
+	name = "hotspring";
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 310
+	},
+/area/redgate/hotsprings/westcave)
 "fB" = (
 /obj/structure/table/rack/shelf,
 /obj/item/key/snowmobile,
@@ -174,6 +199,30 @@
 	temperature = 243.15
 	},
 /area/redgate/hotsprings/outdoors)
+"fL" = (
+/obj/item/clothing/suit/storage/hooded/cloak/winter,
+/obj/item/clothing/suit/storage/hooded/cloak/winter,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/head/hood/winter,
+/obj/item/clothing/head/hood/winter,
+/obj/item/clothing/shoes/boots/winter,
+/obj/item/clothing/shoes/boots/winter,
+/obj/structure/closet,
+/obj/random/firstaid,
+/obj/item/device/flashlight/maglight,
+/obj/item/device/flashlight/maglight,
+/turf/simulated/floor/tiled/steel,
+/area/redgate/hotsprings/redgate)
+"fS" = (
+/obj/machinery/light/small/torch,
+/turf/simulated/floor/outdoors/dirt{
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 243.15
+	},
+/area/redgate/hotsprings/westcave)
 "fT" = (
 /obj/machinery/door/airlock{
 	id_tag = "hotspringdorm1";
@@ -190,7 +239,9 @@
 	},
 /area/redgate/hotsprings/westcave)
 "gL" = (
-/obj/machinery/light/flamp,
+/obj/machinery/light/small/torch{
+	dir = 1
+	},
 /turf/simulated/floor/outdoors/dirt{
 	nitrogen = 93.7835;
 	outdoors = -1;
@@ -357,6 +408,12 @@
 /obj/structure/redgate/away,
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
+"kE" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/redgate/hotsprings/redgate)
 "kR" = (
 /obj/structure/railing/grey{
 	dir = 4
@@ -432,14 +489,13 @@
 	},
 /area/redgate/hotsprings/house/lovercave)
 "mN" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/simulated/floor/outdoors/grass/sif{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15;
-	tree_chance = 0
+/obj/structure/prop/warmrocks{
+	dir = 8
 	},
-/area/redgate/hotsprings/outdoors)
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = -1
+	},
+/area/redgate/hotsprings/westcave)
 "mR" = (
 /obj/structure/flora/mushroom,
 /turf/simulated/floor/outdoors/snow{
@@ -458,6 +514,12 @@
 /obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
+"ng" = (
+/obj/structure/prop/warmrocks{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/rocks,
+/area/redgate/hotsprings/outdoors)
 "nV" = (
 /obj/machinery/portable_atmospherics/canister/phoron,
 /turf/simulated/floor/tiled/steel,
@@ -475,6 +537,14 @@
 /area/redgate/hotsprings/outdoors)
 "ol" = (
 /turf/simulated/wall/durasteel,
+/area/redgate/hotsprings/outdoors)
+"oA" = (
+/turf/simulated/floor/outdoors/dirt{
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 243.15
+	},
 /area/redgate/hotsprings/outdoors)
 "oC" = (
 /obj/random/medical/pillbottle,
@@ -591,15 +661,9 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/redgate/hotsprings/house/dorm1)
 "qt" = (
-/obj/item/weapon/stool/padded{
-	pixel_y = 10
-	},
-/obj/item/weapon/stool/padded,
-/turf/simulated/floor/outdoors/dirt{
-	nitrogen = 93.7835;
-	outdoors = -1;
-	oxygen = 20.7263;
-	temperature = 243.15
+/obj/structure/prop/warmrocks,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = -1
 	},
 /area/redgate/hotsprings/westcave)
 "qJ" = (
@@ -691,6 +755,7 @@
 /turf/simulated/floor/tiled,
 /area/redgate/hotsprings/house)
 "tZ" = (
+/obj/effect/mist,
 /turf/simulated/floor/water{
 	name = "hotspring";
 	nitrogen = 93.7835;
@@ -739,6 +804,20 @@
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled,
 /area/redgate/hotsprings/house)
+"uM" = (
+/obj/item/clothing/suit/storage/hooded/cloak/winter,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/head/hood/winter,
+/obj/item/clothing/head/hood/winter,
+/obj/item/clothing/shoes/boots/winter,
+/obj/item/clothing/shoes/boots/winter,
+/obj/structure/closet,
+/obj/random/firstaid,
+/obj/item/device/flashlight/maglight,
+/obj/item/device/flashlight/maglight,
+/turf/simulated/floor/tiled/steel,
+/area/redgate/hotsprings/redgate)
 "uT" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/steel,
@@ -758,12 +837,6 @@
 	oxygen = 20.7263;
 	temperature = 243.15
 	},
-/area/redgate/hotsprings/outdoors)
-"uZ" = (
-/obj/structure/prop/warmrocks{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/rocks,
 /area/redgate/hotsprings/outdoors)
 "vb" = (
 /mob/living/simple_mob/shadekin/yellow/retaliate/dark,
@@ -820,6 +893,7 @@
 	},
 /area/redgate/hotsprings/outdoors)
 "vO" = (
+/obj/effect/mist,
 /turf/simulated/floor/water{
 	name = "hotspring";
 	nitrogen = 93.7835;
@@ -910,6 +984,12 @@
 	temperature = 243.15
 	},
 /area/redgate/hotsprings/outdoors)
+"yC" = (
+/obj/structure/closet/walllocker{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/steel,
+/area/redgate/hotsprings/redgate)
 "yG" = (
 /obj/structure/railing/grey,
 /obj/structure/railing/grey{
@@ -934,7 +1014,7 @@
 	},
 /area/redgate/hotsprings/westcave)
 "yU" = (
-/obj/structure/bonfire,
+/obj/structure/bonfire/permanent,
 /turf/simulated/floor/wmarble,
 /area/redgate/hotsprings/house)
 "yW" = (
@@ -947,6 +1027,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
+"zm" = (
+/obj/effect/mist,
+/turf/simulated/floor/wood,
+/area/redgate/hotsprings/house/hotspringhouse)
 "zu" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
 /turf/simulated/floor/outdoors/ice{
@@ -1088,6 +1172,7 @@
 /obj/structure/prop/warmrocks{
 	dir = 1
 	},
+/obj/effect/mist,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = -1
 	},
@@ -1106,6 +1191,10 @@
 	temperature = 243.15
 	},
 /area/redgate/hotsprings/westcave)
+"CX" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel,
+/area/redgate/hotsprings/redgate)
 "CZ" = (
 /obj/structure/fence{
 	dir = 8
@@ -1252,6 +1341,7 @@
 	},
 /area/redgate/hotsprings/eastcave)
 "FR" = (
+/obj/effect/mist,
 /turf/simulated/floor/wood{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
@@ -1286,6 +1376,14 @@
 "GP" = (
 /turf/simulated/wall/log,
 /area/redgate/hotsprings/house/hotspringhouse)
+"GW" = (
+/obj/effect/mist,
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/turf/simulated/floor/water/deep{
+	name = "deep hotspring";
+	temperature = 310
+	},
+/area/redgate/hotsprings/outdoors)
 "Hm" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_alc,
@@ -1347,6 +1445,7 @@
 /turf/simulated/wall/durasteel,
 /area/redgate/hotsprings/redgate)
 "Iy" = (
+/obj/effect/mist,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = -1
 	},
@@ -1433,6 +1532,15 @@
 	temperature = 243.15
 	},
 /area/redgate/hotsprings/outdoors)
+"LE" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/simulated/floor/outdoors/grass/sif{
+	nitrogen = 93.7835;
+	oxygen = 20.7263;
+	temperature = 243.15;
+	tree_chance = 0
+	},
+/area/redgate/hotsprings/outdoors)
 "LJ" = (
 /obj/structure/flora/grass/brown,
 /turf/simulated/floor/outdoors/snow{
@@ -1452,6 +1560,7 @@
 	name = "Automatic Door"
 	},
 /obj/structure/atmospheric_retention_field/underdoors,
+/obj/effect/floor_decal/industrial/warning/tile,
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
 "Mp" = (
@@ -1468,6 +1577,15 @@
 /obj/item/clothing/suit/storage/snowsuit/medical,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/redgate/hotsprings/house/dorm1)
+"ME" = (
+/obj/structure/prop/warmrocks{
+	dir = 4
+	},
+/obj/effect/mist,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = -1
+	},
+/area/redgate/hotsprings/westcave)
 "MX" = (
 /obj/structure/table/woodentable,
 /obj/random/snack,
@@ -1562,6 +1680,12 @@
 	temperature = 243.15
 	},
 /area/redgate/hotsprings/outdoors)
+"OC" = (
+/obj/structure/prop/warmrocks{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/rocks,
+/area/redgate/hotsprings/outdoors)
 "OT" = (
 /obj/machinery/light/small/poi{
 	dir = 1
@@ -1575,6 +1699,11 @@
 	outdoors = -1;
 	oxygen = 20.7263;
 	temperature = 243.15
+	},
+/area/redgate/hotsprings/westcave)
+"PE" = (
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = -1
 	},
 /area/redgate/hotsprings/westcave)
 "PL" = (
@@ -1650,12 +1779,6 @@
 "RO" = (
 /turf/simulated/floor/wood,
 /area/redgate/hotsprings/house/hotspringhouse)
-"RS" = (
-/obj/structure/prop/warmrocks{
-	dir = 1
-	},
-/turf/simulated/floor/outdoors/rocks,
-/area/redgate/hotsprings/outdoors)
 "RW" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/freezer,
@@ -1720,6 +1843,12 @@
 	temperature = 243.15
 	},
 /area/redgate/hotsprings/eastcave)
+"TC" = (
+/obj/structure/prop/warmrocks{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/rocks,
+/area/redgate/hotsprings/outdoors)
 "TL" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/outdoors/dirt{
@@ -1763,6 +1892,7 @@
 /area/redgate/hotsprings/house)
 "UH" = (
 /obj/structure/prop/warmrocks,
+/obj/effect/mist,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = -1
 	},
@@ -1855,6 +1985,17 @@
 /obj/item/clothing/suit/storage/snowsuit/security,
 /turf/simulated/floor/wood,
 /area/redgate/hotsprings/house)
+"Xl" = (
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/obj/effect/mist,
+/turf/simulated/floor/water{
+	name = "hotspring";
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 310
+	},
+/area/redgate/hotsprings/westcave)
 "Xq" = (
 /obj/vehicle/boat{
 	dir = 4
@@ -2402,7 +2543,7 @@ ea
 ea
 oY
 tg
-gr
+ME
 vO
 vO
 vO
@@ -2687,7 +2828,7 @@ tg
 ea
 tg
 dq
-gr
+ME
 dq
 Iy
 ea
@@ -6117,16 +6258,16 @@ XM
 XM
 Ya
 XM
-vE
 XM
-uZ
+XM
+OC
 Dv
-RS
-uZ
-eq
-eq
-mN
-mN
+TC
+OC
+ng
+ng
+LE
+XM
 XM
 XM
 XM
@@ -6260,13 +6401,13 @@ XM
 Ya
 XM
 XM
-mN
-RS
+LE
+TC
 as
 as
 as
 as
-uZ
+OC
 XM
 XM
 XM
@@ -6401,15 +6542,15 @@ Ya
 Ya
 XM
 XM
-mN
+LE
 Dv
 as
 as
+DD
 as
 as
-as
-RS
-uZ
+TC
+OC
 XM
 XM
 XM
@@ -6544,11 +6685,11 @@ Ya
 XM
 Tz
 Tz
-eq
-as
+ng
 as
 DD
-as
+DD
+DD
 as
 as
 Dv
@@ -6670,10 +6811,10 @@ tg
 tg
 tg
 Ya
+XM
 Ya
 Ya
-Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -6686,14 +6827,14 @@ Ya
 Ya
 XM
 Tz
-uZ
-as
+OC
 as
 DD
+GW
 DD
 as
 as
-RS
+TC
 XM
 XM
 Ya
@@ -6817,30 +6958,30 @@ Ya
 Ya
 Ya
 Ya
+XM
+Ya
+XM
 Ya
 Ya
 Ya
-Ya
-Ya
-Ya
-Ya
+XM
 Ya
 XM
 XM
 Tz
-RS
-as
+TC
 as
 DD
 DD
+DD
 as
 as
-eq
+ng
 XM
 XM
 XM
-Ya
-Ya
+XM
+XM
 Ya
 Ya
 Ya
@@ -6962,7 +7103,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -6973,10 +7114,10 @@ XM
 Dv
 as
 as
+DD
+DD
 as
-as
-as
-uZ
+OC
 Tz
 XM
 Ya
@@ -7112,13 +7253,13 @@ Ya
 Ya
 XM
 XM
-RS
+TC
 as
 as
 as
 as
 as
-RS
+TC
 Tz
 XM
 Ya
@@ -7255,11 +7396,11 @@ Ya
 Ya
 Tz
 Tz
-uZ
+OC
 as
 as
 as
-eq
+ng
 Dv
 XM
 XM
@@ -7397,10 +7538,10 @@ Ya
 XM
 XM
 XM
-mN
+LE
 Dv
-RS
-uZ
+TC
+OC
 XM
 XM
 XM
@@ -7519,7 +7660,7 @@ Zk
 Zk
 yM
 tg
-qt
+ko
 ea
 ea
 Ya
@@ -8108,7 +8249,7 @@ Ya
 XM
 Ya
 Ya
-XM
+Ya
 Ya
 Ya
 Ya
@@ -8250,7 +8391,7 @@ Ya
 Ya
 Ya
 Ya
-XM
+Ya
 Ya
 Ya
 Ya
@@ -9362,8 +9503,8 @@ ea
 ea
 ea
 ea
-CM
-dq
+cC
+mN
 tg
 tg
 ea
@@ -9407,7 +9548,7 @@ tg
 tg
 tg
 tg
-gL
+fS
 ea
 ea
 ea
@@ -9504,7 +9645,7 @@ ea
 ea
 ea
 Et
-vO
+cA
 gr
 tg
 tg
@@ -9536,8 +9677,8 @@ Ya
 Ya
 Ya
 Ya
-Ya
-Ya
+oA
+oA
 ea
 ea
 ea
@@ -9548,7 +9689,7 @@ tg
 tg
 tg
 tg
-dq
+mN
 tg
 tg
 ea
@@ -9644,11 +9785,11 @@ tg
 ea
 ea
 ea
-Et
-vO
-vO
-CM
-UH
+fg
+cA
+cA
+cC
+qt
 tg
 tg
 tg
@@ -9690,8 +9831,8 @@ tg
 ea
 tg
 gr
-vO
-CM
+cA
+cC
 tg
 ea
 ea
@@ -9787,10 +9928,10 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
-CM
+cA
+cA
+cA
+cC
 tg
 tg
 tg
@@ -9830,10 +9971,10 @@ tg
 tg
 ea
 ea
-UH
-vO
-vO
-vO
+qt
+cA
+cA
+cA
 gr
 ea
 ea
@@ -9929,9 +10070,9 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
+cA
+cA
+cA
 gr
 tg
 tg
@@ -9973,10 +10114,10 @@ ea
 ea
 ea
 tg
-CM
-vO
-vO
-UH
+cC
+cA
+Xl
+qt
 ea
 ea
 ea
@@ -10071,10 +10212,10 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
-UH
+cA
+cA
+cA
+qt
 tg
 tg
 tg
@@ -10117,8 +10258,8 @@ ea
 gL
 tg
 gr
-dq
-gL
+mN
+fS
 ea
 ea
 ea
@@ -10213,9 +10354,9 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
+cA
+cA
+cA
 gr
 tg
 tg
@@ -10355,11 +10496,11 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
-UH
-dq
+cA
+cA
+cA
+qt
+mN
 tg
 tg
 tg
@@ -10498,9 +10639,9 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
+cA
+cA
+cA
 gr
 tg
 tg
@@ -10640,10 +10781,10 @@ ea
 ea
 ea
 Et
-vO
-vO
-vO
-CM
+cA
+cA
+cA
+cC
 tg
 tg
 Mp
@@ -10782,10 +10923,10 @@ ea
 ea
 ea
 ea
-Et
-vO
-vO
-UH
+fg
+cA
+cA
+qt
 tg
 tg
 tg
@@ -10824,7 +10965,7 @@ ea
 GP
 tZ
 tZ
-RO
+zm
 GP
 Ya
 Ya
@@ -10890,7 +11031,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 yu
@@ -10926,8 +11067,8 @@ ea
 ea
 ea
 Et
-vO
-CM
+cA
+cC
 tg
 tg
 tg
@@ -10966,7 +11107,7 @@ ea
 GP
 tZ
 tZ
-RO
+zm
 GP
 Ya
 Ya
@@ -11068,8 +11209,8 @@ ea
 ea
 ea
 ea
-dq
-Iy
+mN
+PE
 tg
 tg
 tg
@@ -11107,11 +11248,11 @@ ea
 ea
 GP
 FR
-RO
+zm
 RO
 ds
-Ya
-Ya
+XM
+XM
 Ya
 Ya
 Ya
@@ -11600,7 +11741,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -11742,7 +11883,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -12026,7 +12167,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -12452,7 +12593,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -12594,7 +12735,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -12736,7 +12877,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -12878,7 +13019,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -13162,7 +13303,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -13304,7 +13445,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -13589,7 +13730,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -13731,7 +13872,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -14015,7 +14156,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -14157,7 +14298,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 yu
@@ -14299,7 +14440,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 yu
@@ -14441,7 +14582,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 yu
 yu
@@ -14583,7 +14724,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 yu
 yu
@@ -14725,7 +14866,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 yu
 yu
@@ -14867,7 +15008,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 yu
 yu
@@ -15150,7 +15291,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -15292,7 +15433,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -15434,7 +15575,7 @@ jp
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -15576,7 +15717,7 @@ jp
 Ya
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -15718,7 +15859,7 @@ jp
 jp
 Ya
 Ya
-Ya
+XM
 Ya
 Ya
 Ya
@@ -15854,7 +15995,7 @@ jp
 bL
 jp
 jp
-ej
+yC
 ej
 ej
 jp
@@ -15987,7 +16128,7 @@ Ya
 Ya
 Ya
 jp
-dA
+uM
 pT
 dA
 jp
@@ -16271,7 +16412,7 @@ UI
 UI
 Ya
 LQ
-ej
+kE
 ej
 ej
 bL
@@ -16283,7 +16424,7 @@ sL
 Wc
 AY
 ej
-ej
+CX
 LQ
 XM
 XM
@@ -16555,9 +16696,9 @@ Ya
 Ya
 Ya
 jp
-dA
-dA
-dA
+fL
+uM
+uM
 jp
 VJ
 ej
@@ -16706,7 +16847,7 @@ jp
 bL
 jp
 jp
-ej
+yC
 ej
 ej
 jp

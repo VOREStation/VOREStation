@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Farmbot = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Farmbot = (props) => {
+  const { act, data } = useBackend();
 
   const {
     on,

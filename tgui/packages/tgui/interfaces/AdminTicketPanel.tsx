@@ -23,8 +23,8 @@ type Data = {
   log: string[];
 };
 
-export const AdminTicketPanel = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const AdminTicketPanel = (props) => {
+  const { act, data } = useBackend<Data>();
   const {
     id,
     title,

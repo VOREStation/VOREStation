@@ -10,8 +10,8 @@ const sortTypes = {
   'By price': (a, b) => a.price - b.price,
 };
 
-export const Biogenerator = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Biogenerator = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window width={400} height={450} resizable>
       <Window.Content className="Layout__content--flexColumn" scrollable>
@@ -43,21 +43,13 @@ export const Biogenerator = (props, context) => {
   );
 };
 
-const BiogeneratorItems = (props, context) => {
-  const { act, data } = useBackend(context);
+const BiogeneratorItems = (props) => {
+  const { act, data } = useBackend();
   const { points, items } = data;
   // Search thingies
-  const [searchText, _setSearchText] = useLocalState(context, 'search', '');
-  const [sortOrder, _setSortOrder] = useLocalState(
-    context,
-    'sort',
-    'Alphabetical'
-  );
-  const [descending, _setDescending] = useLocalState(
-    context,
-    'descending',
-    false
-  );
+  const [searchText, _setSearchText] = useLocalState('search', '');
+  const [sortOrder, _setSortOrder] = useLocalState('sort', 'Alphabetical');
+  const [descending, _setDescending] = useLocalState('descending', false);
   const searcher = createSearch(searchText, (item) => {
     return item[0];
   });
@@ -100,14 +92,10 @@ const BiogeneratorItems = (props, context) => {
   );
 };
 
-const BiogeneratorSearch = (props, context) => {
-  const [_searchText, setSearchText] = useLocalState(context, 'search', '');
-  const [_sortOrder, setSortOrder] = useLocalState(context, 'sort', '');
-  const [descending, setDescending] = useLocalState(
-    context,
-    'descending',
-    false
-  );
+const BiogeneratorSearch = (props) => {
+  const [_searchText, setSearchText] = useLocalState('search', '');
+  const [_sortOrder, setSortOrder] = useLocalState('sort', '');
+  const [descending, setDescending] = useLocalState('descending', false);
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
@@ -152,8 +140,8 @@ const canBuyItem = (item, data) => {
   return true;
 };
 
-const BiogeneratorItemsCategory = (properties, context) => {
-  const { act, data } = useBackend(context);
+const BiogeneratorItemsCategory = (properties) => {
+  const { act, data } = useBackend();
   const { title, items, ...rest } = properties;
   return (
     <Collapsible open title={title} {...rest}>

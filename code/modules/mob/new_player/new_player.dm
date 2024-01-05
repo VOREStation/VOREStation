@@ -33,9 +33,14 @@
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
 
-	output += "<b>Current Map:</b><br>"
-	output += "[using_map.full_name]"
-	output +="<hr>"
+	output += "<b>Map:</b> [using_map.full_name]<br>"
+	output += "<b>Station Time:</b> [stationtime2text()]<br>"
+
+	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+		output += "<b>Server Initializing!</b>"
+	else
+		output += "<b>Round Duration:</b> [roundduration2text()]<br>"
+	output += "<hr>"
 
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
 
@@ -150,7 +155,7 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Player Setup",list("Yes","No")) == "Yes")
+		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance

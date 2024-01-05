@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section, NumberInput } from '../components';
 import { Window } from '../layouts';
 
-export const Medbot = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Medbot = (props) => {
+  const { act, data } = useBackend();
 
   const {
     on,

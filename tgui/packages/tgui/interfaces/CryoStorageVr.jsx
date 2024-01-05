@@ -3,12 +3,12 @@ import { Box, Section, Tabs, NoticeBox } from '../components';
 import { Window } from '../layouts';
 import { CryoStorageCrew } from './CryoStorage';
 
-export const CryoStorageVr = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CryoStorageVr = (props) => {
+  const { act, data } = useBackend();
 
   const { real_name, allow_items } = data;
 
-  const [tab, setTab] = useLocalState(context, 'tab', 0);
+  const [tab, setTab] = useLocalState('tab', 0);
 
   return (
     <Window width={400} height={600} resizable>
@@ -31,8 +31,8 @@ export const CryoStorageVr = (props, context) => {
   );
 };
 
-export const CryoStorageItemsVr = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CryoStorageItemsVr = (props) => {
+  const { act, data } = useBackend();
 
   const { items } = data;
 

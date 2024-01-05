@@ -697,3 +697,76 @@
 	taste_description = "spicy, sour tofu"
 	color = "#5f1b06"
 	allergen_type = ALLERGEN_BEANS|ALLERGEN_VEGETABLE|ALLERGEN_FUNGI //tofu is soy-based, ergo, beans. base recipe also uses cabbage and mushroom.
+
+/////////Energy Drinks/////////
+
+/datum/reagent/drink/coffee/nukie
+
+	name = "Nukie"
+	id = "nukie"
+	description = "An extremely concentrated caffinated drink."
+	color = "#102838"
+	adj_temp = 0
+	adj_dizzy = 0
+	adj_drowsy = -5
+	adj_sleepy = -10
+
+	glass_name = "nukie"
+	glass_desc = "A drink to perk you up and refresh you!"
+	overdose = 30
+
+	taste_description = "flavourless energy"
+
+/datum/reagent/drink/coffee/nukie/peach
+	name = "Nukie Peach"
+	id = "nukie_peach"
+	color = "#ffc76e"
+	taste_description = "battery acid with a hint of artificial peach"
+
+/datum/reagent/drink/coffee/nukie/pear
+	name = "Nukie Pear"
+	id = "nukie_pear"
+	color = "#d4c03d"
+	taste_description = "electrostimulation with a hint of artificial pear"
+
+/datum/reagent/drink/coffee/nukie/cherry
+	name = "Nukie Cherry"
+	id = "nukie_cherry"
+	color = "#b00707"
+	taste_description = "the rapid acceleration of tooth decay with a hint of artificial cherry"
+
+/datum/reagent/drink/coffee/nukie/melon
+	name = "Nukie Melon"
+	id = "nukie_melon"
+	color = "#00bf06"
+	taste_description = "something is crawling under your skin with a hint of artificial melon"
+
+/datum/reagent/drink/coffee/nukie/banana
+	name = "Nukie Banana"
+	id = "nukie_banana"
+	color = "#ffee00"
+	taste_description = "imminent cardiac arrest with a hint of something that doesn't really taste like banana at all but is clearly intending to be banana"
+
+/datum/reagent/drink/coffee/nukie/rose
+	name = "Nukie Rose"
+	id = "nukie_rose"
+	color = "#ff7df4"
+	taste_description = "paint stripper, space cleaner and some sort of cheap perfume"
+
+/datum/reagent/drink/coffee/nukie/lemon
+	name = "Nukie Lemon"
+	id = "nukie_lemon"
+	color = "#c3ff00"
+	taste_description = "something that once resembled lemon mixed thoroughly with literal toxic waste"
+
+/datum/reagent/drink/coffee/nukie/fruit
+	name = "Nukie Fruit"
+	id = "nukie_fruit"
+	color = "#b300ff"
+	taste_description = "the colour purple"
+
+/datum/reagent/drink/coffee/nukie/special
+	name = "Nukie Limited Edition"
+	id = "nukie_special"
+	color = "#ffffff"
+	taste_description = "sitting in your college dorm one week before your exams start, staring at a screen without anything particularly interesting on, knowing that you should really be studying, but you can put it off for another day right? Plus your friends are gonna be getting on soon and there's an event starting that you need to prep for"

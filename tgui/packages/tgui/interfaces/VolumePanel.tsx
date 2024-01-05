@@ -6,8 +6,8 @@ type Data = {
   volume_channels: { key; val: number }[];
 };
 
-export const VolumePanel = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const VolumePanel = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { volume_channels } = data;
 

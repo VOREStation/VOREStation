@@ -5,8 +5,8 @@ import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
-export const APC = (props, context) => {
-  const { act, data } = useBackend(context);
+export const APC = (props) => {
+  const { act, data } = useBackend();
 
   let body = <ApcContent />;
 
@@ -64,8 +64,8 @@ const malfMap = {
   // },
 };
 
-const ApcContent = (props, context) => {
-  const { act, data } = useBackend(context);
+const ApcContent = (props) => {
+  const { act, data } = useBackend();
   const locked = data.locked && !data.siliconUser;
   const normallyLocked = data.normallyLocked;
   const externalPowerStatus =
@@ -260,7 +260,7 @@ const ApcContent = (props, context) => {
   );
 };
 
-const GridCheck = (props, context) => {
+const GridCheck = (props) => {
   return (
     <FullscreenNotice title="System Failure">
       <Box fontSize="1.5rem" bold>
@@ -278,8 +278,8 @@ const GridCheck = (props, context) => {
   );
 };
 
-const ApcFailure = (props, context) => {
-  const { data, act } = useBackend(context);
+const ApcFailure = (props) => {
+  const { data, act } = useBackend();
 
   let rebootOptions = (
     <Button

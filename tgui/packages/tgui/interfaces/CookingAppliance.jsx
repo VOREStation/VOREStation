@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Flex, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
 
-export const CookingAppliance = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CookingAppliance = (props) => {
+  const { act, data } = useBackend();
 
   const {
     temperature,

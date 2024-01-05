@@ -11,8 +11,8 @@ type Data = {
   current_emotion: string;
 };
 
-export const pAIInterface = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const pAIInterface = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { bought, not_bought, available_ram, emotions, current_emotion } = data;
 

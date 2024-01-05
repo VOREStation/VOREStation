@@ -57,16 +57,10 @@
 	},
 /area/redgate/eggnogtown/underground)
 "ak" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/mineral/floor/ignore_cavegen/cave{
-	temperature = 303.15
-	},
-/area/redgate/eggnogtown/hotsprings)
-"al" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	dir = 8;
+	name = "wall torch fixture"
 	},
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
@@ -128,6 +122,21 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"br" = (
+/obj/structure/stairs/spawner/east,
+/obj/structure/railing,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
+"bL" = (
+/obj/random/vendordrink{
+	dir = 1
+	},
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "bX" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -153,8 +162,16 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/item/clothing/under/swimsuit/fluff/science,
 /obj/random/awayloot,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/clothing/under/swimsuit/fluff/science,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
+"di" = (
+/obj/structure/railing,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
@@ -197,11 +214,23 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"fk" = (
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	dir = 1;
+	name = "wall torch fixture"
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "fV" = (
 /obj/structure/closet/walllocker{
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /obj/item/clothing/under/swimsuit/fluff/engineering,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -216,9 +245,11 @@
 	},
 /area/redgate/eggnogtown/vibeout)
 "gA" = (
-/turf/simulated/floor/beach/water{
-	name = "hot spring";
-	temperature = 303.15
+/obj/effect/mist,
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
 	},
 /area/redgate/eggnogtown/underground)
 "gE" = (
@@ -262,6 +293,17 @@
 /area/redgate/eggnogtown/vibeout)
 "iB" = (
 /obj/structure/stairs/spawner/east,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
+"iE" = (
+/obj/structure/railing{
+	dir = 1
+	},
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
@@ -270,7 +312,18 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 26
 	},
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /obj/item/clothing/under/swimsuit/earth,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
+"jD" = (
+/obj/structure/bed/chair/sofa/bench,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
@@ -283,17 +336,21 @@
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /obj/item/clothing/under/swimsuit/fluff/medical,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
 "kK" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/freezer{
-	name = "Automatic Door"
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	name = "wall torch fixture"
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
+	temperature = 303.15
+	},
 /area/redgate/eggnogtown/hotsprings)
 "kS" = (
 /obj/structure/bed/chair/sofa/right/black,
@@ -326,18 +383,30 @@
 	},
 /area/redgate/eggnogtown/vibeout)
 "ma" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	dir = 8;
+	name = "wall torch fixture"
 	},
-/turf/simulated/floor/beach/water{
-	name = "hot spring";
-	temperature = 303.15
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
 	},
 /area/redgate/eggnogtown/hotsprings)
 "mf" = (
 /obj/structure/simple_door/silver,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/eggnogtown/hotspring)
+"mQ" = (
+/obj/structure/bonfire/permanent,
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/underground)
 "nh" = (
 /obj/structure/bed/chair/sofa/corner/black,
 /turf/simulated/floor/plating/eris/under{
@@ -385,6 +454,14 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"rX" = (
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 1
+	},
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "rZ" = (
 /obj/structure/bed/chair/bay/comfy/red{
 	dir = 4
@@ -394,10 +471,10 @@
 	},
 /area/redgate/eggnogtown/vibeout)
 "sc" = (
-/obj/random/mob/semirandom_mob_spawner/vore/passive,
-/turf/simulated/floor/beach/water{
-	name = "hot spring";
-	temperature = 303.15
+/mob/living/simple_mob/vore/catgirl,
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
 	},
 /area/redgate/eggnogtown/underground)
 "sj" = (
@@ -468,6 +545,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/hotspring)
+"vc" = (
+/turf/simulated/floor/water/deep{
+	name = "deep hotspring";
+	temperature = 310
+	},
+/area/redgate/eggnogtown/underground)
 "vg" = (
 /turf/simulated/floor/tiled{
 	temperature = 258.15
@@ -535,6 +618,17 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/hotspring)
+"yK" = (
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	dir = 1;
+	name = "wall torch fixture"
+	},
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
+	},
+/area/redgate/eggnogtown/hotsprings)
 "yM" = (
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/wood{
@@ -560,6 +654,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"Ba" = (
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
+	},
+/area/redgate/eggnogtown/underground)
 "Ce" = (
 /turf/simulated/wall/iron,
 /area/redgate/eggnogtown/vibeout)
@@ -567,7 +667,25 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 26
 	},
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /obj/item/clothing/under/swimsuit/blue,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
+"DP" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/bonfire/permanent,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
@@ -581,8 +699,17 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"Eu" = (
+/obj/structure/bonfire/permanent,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/underground)
 "FJ" = (
-/obj/random/vendordrink,
+/obj/machinery/vending/fitness,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
@@ -614,6 +741,16 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"HU" = (
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	dir = 4;
+	name = "wall torch fixture"
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "HV" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/freezer{
@@ -621,6 +758,19 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/eggnogtown/hotspring)
+"It" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/freezer{
+	name = "Automatic Door"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/redgate/eggnogtown/hotsprings)
+"IP" = (
+/obj/structure/bed/chair/sofa/bench/left,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "Jv" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/weapon/material/ashtray,
@@ -663,15 +813,44 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/houserhomestead/basement)
+"Mm" = (
+/obj/machinery/vending/altevian,
+/obj/random/vendorfood,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "MG" = (
 /obj/move_trader_landmark{
 	dir = 8;
 	trader_type = /obj/trader/general
 	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/underground)
+"MI" = (
+/obj/machinery/light/small/torch{
+	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
+	name = "wall torch fixture"
+	},
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
+	},
+/area/redgate/eggnogtown/hotsprings)
+"MO" = (
+/obj/structure/bed/chair/sofa/bench{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
 "Oa" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
@@ -723,16 +902,25 @@
 	},
 /area/redgate/eggnogtown/vibeout)
 "Pc" = (
-/obj/structure/table/bench/steel,
+/obj/structure/bed/chair/sofa/bench/right,
+/turf/simulated/floor/bmarble{
+	temperature = 303.15
+	},
+/area/redgate/eggnogtown/hotsprings)
+"Pd" = (
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 1
+	},
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
 "QL" = (
-/obj/effect/map_effect/interval/effect_emitter/steam,
-/turf/simulated/floor/beach/water{
-	name = "hot spring";
-	temperature = 303.15
+/obj/effect/mist,
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/turf/simulated/floor/water/deep{
+	name = "deep hotspring";
+	temperature = 310
 	},
 /area/redgate/eggnogtown/underground)
 "Rv" = (
@@ -766,6 +954,14 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"Uo" = (
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/obj/effect/mist,
+/turf/simulated/floor/water{
+	name = "hotspring";
+	temperature = 310
+	},
+/area/redgate/eggnogtown/underground)
 "UJ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -789,6 +985,14 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/houserhomestead/basement)
+"Wc" = (
+/obj/effect/map_effect/interval/effect_emitter/smoke/mist,
+/obj/effect/mist,
+/turf/simulated/floor/water/deep{
+	name = "deep hotspring";
+	temperature = 310
+	},
+/area/redgate/eggnogtown/underground)
 "We" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood{
@@ -884,8 +1088,10 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 26
 	},
-/obj/item/clothing/under/swimsuit/black,
 /obj/random/awayloot,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/clothing/under/swimsuit/black,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
 	},
@@ -1255,7 +1461,7 @@ ab
 ab
 ab
 ab
-af
+Eu
 ab
 ab
 kA
@@ -1393,8 +1599,8 @@ ab
 ab
 ab
 ab
-ab
-af
+kA
+fk
 af
 af
 af
@@ -1519,29 +1725,29 @@ ab
 ab
 ab
 ab
+mQ
 af
+Ba
+Ba
+Ba
 af
-gA
-gA
-gA
-af
-af
+kK
+kA
+ab
+Ba
+Ba
+Uo
+Ba
 ab
 ab
-gA
-gA
-gA
-gA
 ab
-ab
-ab
+ak
 af
-af
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 ab
 ab
@@ -1662,30 +1868,30 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
 af
-af
+ak
 ab
-gA
-gA
+Ba
+Ba
 sc
-gA
-gA
+Ba
+Ba
 ab
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+vc
+vc
+vc
+Ba
+Ba
+Ba
 af
 af
 ab
@@ -1804,31 +2010,31 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+vc
+Wc
+vc
+Ba
+Ba
 af
 ab
-gA
-gA
-QL
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+vc
+vc
+Wc
+vc
+vc
+vc
+Ba
+Ba
 af
 af
 ab
@@ -1945,33 +2151,33 @@ ab
 ab
 ab
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+vc
+vc
+vc
+vc
+Ba
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-af
+Ba
+vc
+vc
+vc
+vc
+vc
+vc
+vc
+Ba
+Ba
 af
 ab
 ab
@@ -2086,34 +2292,34 @@ ab
 ab
 ab
 ab
-af
+HU
 gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+Ba
+Ba
 af
 ab
 af
-gA
-gA
-gA
+Ba
+Ba
+Ba
 af
 af
 af
-gA
-gA
-gA
-gA
+Ba
+vc
+vc
+vc
+vc
+vc
+vc
 QL
-gA
-gA
-gA
-gA
-gA
+vc
+Ba
 af
 ab
 ab
@@ -2228,17 +2434,15 @@ ab
 ab
 ab
 ab
-af
-gA
-gA
-gA
-QL
-gA
-gA
-gA
-gA
-af
-af
+kA
+yK
+vc
+vc
+vc
+vc
+vc
+Ba
+Ba
 af
 af
 af
@@ -2246,18 +2450,20 @@ af
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
 af
-ab
+af
+Ba
+Ba
+vc
+vc
+vc
+vc
+vc
+vc
+vc
+Ba
+MI
+kA
 ab
 ab
 ab
@@ -2371,33 +2577,33 @@ ab
 ab
 ab
 ab
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+vc
+vc
+vc
+Ba
+Ba
 af
 af
 cb
 cb
 cb
-cb
+DP
 cb
 cb
 cb
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-af
+Ba
+Ba
+vc
+Wc
+vc
+vc
+vc
+Ba
+Ba
 af
 ab
 ab
@@ -2514,11 +2720,11 @@ ab
 ab
 ab
 af
-gA
-gA
-gA
-gA
-gA
+Ba
+vc
+Wc
+Ba
+Ba
 af
 af
 MG
@@ -2532,13 +2738,13 @@ cb
 MG
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+vc
+vc
+Ba
+Ba
 af
 ab
 ab
@@ -2656,10 +2862,10 @@ ab
 ab
 ab
 af
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -2676,10 +2882,10 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
 af
 af
 ab
@@ -2800,7 +3006,7 @@ ab
 af
 af
 af
-gA
+Ba
 af
 af
 af
@@ -2942,7 +3148,7 @@ ab
 ab
 ab
 af
-al
+HU
 af
 ab
 ab
@@ -2961,7 +3167,7 @@ ab
 ab
 ab
 af
-al
+HU
 af
 ab
 ab
@@ -3092,11 +3298,11 @@ ab
 Kk
 Pc
 cb
-cb
+iE
 Kk
+di
 cb
-cb
-Pc
+rX
 Kk
 ab
 ab
@@ -3232,13 +3438,13 @@ ab
 ab
 ab
 Kk
-Pc
+jD
 cb
 iB
 Kk
-iB
+br
 cb
-Pc
+MO
 Kk
 ab
 ab
@@ -3374,13 +3580,13 @@ ab
 ab
 ab
 Kk
-Pc
+IP
 cb
 Kk
 Kk
 Kk
 cb
-Pc
+Pd
 Kk
 ab
 ab
@@ -3518,9 +3724,9 @@ ab
 Kk
 FJ
 cb
-Kk
-Kk
-Kk
+cb
+cb
+cb
 cb
 hh
 Kk
@@ -3658,13 +3864,13 @@ ab
 ab
 ab
 Kk
-Kk
-kK
-Kk
-Kk
-Kk
-Kk
-Kk
+Mm
+cb
+cb
+qb
+cb
+cb
+bL
 Kk
 ab
 ab
@@ -3799,15 +4005,15 @@ ab
 ab
 ab
 ab
-ab
-ab
-aa
-aa
-aa
-ab
-ab
-ab
-ab
+Kk
+Kk
+It
+Kk
+Kk
+Kk
+It
+Kk
+Kk
 ab
 ab
 ab
@@ -4085,8 +4291,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -4229,8 +4435,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -4369,11 +4575,11 @@ ab
 ab
 aa
 aa
+ab
+ab
+ab
+ab
 aa
-ab
-ab
-ab
-ab
 aa
 aa
 aa
@@ -4512,11 +4718,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
 ab
 ab
+ab
+ab
+aa
 aa
 aa
 ab
@@ -4657,8 +4863,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ab
+ab
 aa
 aa
 aa
@@ -4796,7 +5002,7 @@ ab
 aa
 aa
 aa
-ab
+aa
 aa
 aa
 aa
@@ -11442,10 +11648,10 @@ xA
 Ou
 af
 af
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -11584,11 +11790,11 @@ Oy
 vJ
 af
 af
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 ab
@@ -11726,11 +11932,11 @@ We
 vJ
 af
 af
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -11868,12 +12074,12 @@ OL
 TN
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -11923,8 +12129,8 @@ af
 af
 af
 af
-gA
-gA
+vc
+vc
 af
 af
 ab
@@ -12010,12 +12216,12 @@ uh
 uh
 af
 af
-gA
-gA
-QL
-gA
-gA
-gA
+Ba
+Ba
+Uo
+Ba
+Ba
+Ba
 ai
 af
 af
@@ -12064,10 +12270,10 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
 af
 af
 ab
@@ -12152,13 +12358,13 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -12205,11 +12411,11 @@ af
 af
 af
 ap
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
 af
 af
 ab
@@ -12294,14 +12500,14 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -12346,12 +12552,12 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
 af
 af
 ab
@@ -12437,14 +12643,14 @@ af
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -12487,13 +12693,13 @@ ab
 af
 af
 af
-gA
-gA
-gA
+vc
+vc
+vc
 QL
-gA
-gA
-gA
+vc
+vc
+vc
 af
 af
 ab
@@ -12582,12 +12788,12 @@ af
 af
 ah
 af
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Uo
+Ba
+Ba
+Ba
 af
 af
 af
@@ -12629,12 +12835,12 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
 af
 af
 af
@@ -12723,14 +12929,14 @@ af
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -12771,12 +12977,12 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
 af
 af
 af
@@ -12860,16 +13066,16 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -12915,9 +13121,9 @@ af
 af
 af
 af
-gA
-gA
-gA
+vc
+vc
+vc
 af
 ab
 ab
@@ -13002,16 +13208,16 @@ af
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+Ba
+Ba
+Ba
+Ba
+Ba
 af
 af
 af
@@ -13143,16 +13349,16 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
+vc
+Ba
+Ba
+Ba
 af
 aj
 af
@@ -13284,17 +13490,17 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+Wc
+vc
+vc
+Ba
+Ba
+Ba
 af
 af
 af
@@ -13426,15 +13632,15 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
+vc
+vc
+vc
 af
 af
 af
@@ -13568,13 +13774,13 @@ af
 af
 af
 af
-gA
-gA
-gA
-QL
-gA
-gA
-gA
+vc
+vc
+vc
+Wc
+vc
+vc
+vc
 af
 af
 af
@@ -13710,13 +13916,13 @@ af
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
+vc
 af
 ab
 ab
@@ -13852,12 +14058,12 @@ ab
 af
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
 af
 af
 ab
@@ -13994,12 +14200,12 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
+vc
+vc
 af
 af
 ab
@@ -14137,10 +14343,10 @@ ab
 ab
 af
 af
-gA
-gA
-gA
-gA
+vc
+vc
+vc
+vc
 af
 af
 af
@@ -14280,8 +14486,8 @@ ab
 af
 af
 af
-gA
-gA
+vc
+vc
 af
 ab
 af
