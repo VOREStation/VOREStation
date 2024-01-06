@@ -667,10 +667,13 @@ class ChatRenderer {
 
     // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
     for (let message of tmpMsgArray) {
+      // Filter messages according to active tab for export
+      if (canPageAcceptType(this.page, message.type)) {
+        messagesHtml += message.html + '\n';
+      }
       // if (message.node) {
       //  messagesHtml += message.node.outerHTML + '\n';
       // }
-      messagesHtml += message.html + '\n';
     }
     // Create a page
 
