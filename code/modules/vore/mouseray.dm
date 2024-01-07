@@ -249,6 +249,7 @@
 	new_mob.nutrition_message_visible = nutrition_message_visible
 	new_mob.allow_spontaneous_tf = allow_spontaneous_tf
 	new_mob.eating_privacy_global = eating_privacy_global
+	new_mob.text_warnings = text_warnings
 
 /////SUBTYPES/////
 
