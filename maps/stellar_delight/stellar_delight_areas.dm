@@ -129,6 +129,7 @@
 	soundproofed = TRUE
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
+	block_tracking = TRUE
 	forbid_events = TRUE
 	forbid_singulo = TRUE
 
@@ -286,6 +287,7 @@
 	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
 	soundproofed = TRUE
 	block_suit_sensors = TRUE
+	block_tracking = TRUE
 	forbid_events = TRUE
 
 /area/stellardelight/deck3/portdock
@@ -305,4 +307,3 @@
 	name = "Deck Two Exterior"
 /area/stellardelight/deck3/exterior
 	name = "Deck Three Exterior"
-

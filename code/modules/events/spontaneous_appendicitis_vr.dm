@@ -7,5 +7,7 @@
 			continue
 		if(A.flags & RAD_SHIELDED)
 			continue
+		if(isbelly(H.loc))
+			continue
 		if(H.client && H.appendicitis())
 			break
