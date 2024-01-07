@@ -703,7 +703,7 @@
 	formatted_message = replacetext(formatted_message, "%countprey", living_count)
 	formatted_message = replacetext(formatted_message, "%count", contents.len)
 
-	return("<font color='red'>[formatted_message]</font>")
+	return("<i><font color='red'>[formatted_message]</font></i>")
 
 /obj/belly/proc/get_examine_msg_absorbed()
 	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
@@ -727,7 +727,7 @@
 	formatted_message = replacetext(formatted_message, "%prey", english_list(absorbed_victims))
 	formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
 
-	return("<font color='red'>[formatted_message]</font>")
+	return("<i><font color='red'>[formatted_message]</font></i>")
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
