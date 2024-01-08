@@ -81,6 +81,7 @@
 		var/list/names = list()
 		if (!islist)
 			names = D.get_variables()
+		//sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects. //VOREStation edit - commented out, replaced with spawn(0) above
 
 		var/list/variable_html = list()
 		if (islist)
