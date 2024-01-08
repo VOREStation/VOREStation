@@ -85,6 +85,7 @@
 	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 35
+	B.escapechance_absorbed = 20
 	B.selective_preference = DM_ABSORB
 
 /mob/living/simple_mob/vore/alienanimals/succlet/checkMoveCooldown()

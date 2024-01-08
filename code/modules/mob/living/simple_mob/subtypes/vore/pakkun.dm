@@ -147,6 +147,7 @@
 	assuming you ever get out at all. For now though, you're stuck as some extra softness padding out a cute little lizard."
 	B.belly_fullscreen = "a_tumby"
 	B.escapechance = 25
+	B.escapechance_absorbed = 20
 	B.absorbchance = 0
 	B.digestchance = 0
 	B.digest_mode = DM_SELECT

@@ -1549,7 +1549,7 @@
 			to_chat(R, escape_attempt_absorbed_prey_message)
 			to_chat(owner, escape_attempt_absorbed_owner_message)
 			if(do_after(R, escapetime))
-				if((escapable || owner.stat) && (R.loc == src) && (prob(escapechance_absorbed) || (!owner.ckey && !escapechance_absorbed && prob(20)))) //Does the escape attempt succeed?
+				if((escapable || owner.stat) && (R.loc == src) && prob(escapechance_absorbed)) //Does the escape attempt succeed?
 					var/escape_absorbed_owner_message = pick(escape_absorbed_messages_owner)
 					var/escape_absorbed_prey_message = pick(escape_absorbed_messages_prey)
 					var/escape_absorbed_outside_message = pick(escape_absorbed_messages_outside)

@@ -95,6 +95,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 15
+	B.escapechance_absorbed = 20
 
 
 /mob/living/simple_mob/vore/alienanimals/space_jellyfish/apply_melee_effects(var/atom/A)

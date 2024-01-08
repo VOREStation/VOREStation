@@ -124,6 +124,7 @@
 	B.digestchance = 10
 	B.absorbchance = 1
 	B.escapechance = 15
+	B.escapechance_absorbed = 20
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug
 	hostile = FALSE

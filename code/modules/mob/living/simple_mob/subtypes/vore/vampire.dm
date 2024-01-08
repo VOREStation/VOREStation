@@ -67,6 +67,7 @@
 	B.digestchance = 25
 	B.absorbchance = 0
 	B.escapechance = 10
+	B.escapechance_absorbed = 20
 	B.selective_preference = DM_DRAIN
 	B.escape_stun = 5
 

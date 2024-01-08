@@ -82,6 +82,7 @@
 	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 25
+	B.escapechance_absorbed = 20
 	B.escape_stun = 5
 
 /mob/living/simple_mob/vore/vore_hostile/abyss_lurker/attack_hand(mob/living/user)
@@ -200,6 +201,7 @@
 	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 25
+	B.escapechance_absorbed = 20
 	B.colorization_enabled = TRUE
 	B.belly_fullscreen_color = "#591579"
 	B.escape_stun = 3
@@ -319,6 +321,7 @@
 	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 10
+	B.escapechance_absorbed = 20
 	B.escapetime = 5 SECONDS
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 3
