@@ -22,7 +22,6 @@
 	//33% chance to spawn nasties
 	if(prob(33))
 		spawn_type = pick(
-		/mob/living/simple_mob/animal/giant_spider/nurse,
 		/mob/living/simple_mob/animal/space/alien,
 		/mob/living/simple_mob/animal/space/bear,
 		/mob/living/simple_mob/creature,

@@ -31,7 +31,6 @@
 		/mob/living/simple_mob/animal/giant_spider/electric/broodling,
 		/mob/living/simple_mob/animal/giant_spider/hunter/broodling,
 		/mob/living/simple_mob/animal/giant_spider/lurker/broodling,
-		/mob/living/simple_mob/animal/giant_spider/nurse/broodling,
 		/mob/living/simple_mob/animal/giant_spider/pepper/broodling,
 		/mob/living/simple_mob/animal/giant_spider/thermic/broodling,
 		/mob/living/simple_mob/animal/giant_spider/tunneler/broodling,
