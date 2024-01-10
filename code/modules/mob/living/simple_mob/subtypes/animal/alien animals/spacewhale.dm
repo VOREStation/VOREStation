@@ -60,7 +60,6 @@
 	B.digest_brute = 50
 	B.digest_burn = 50
 	B.escapechance = 0
-	B.escapechance_absorbed = 20
 
 /mob/living/simple_mob/vore/overmap/spacewhale/Initialize()
 	. = ..()

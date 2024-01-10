@@ -77,7 +77,6 @@
 	B.digest_brute = 1
 	B.digest_burn = 1
 	B.escapechance = 35
-	B.escapechance_absorbed = 20
 
 	if(icon == 'icons/mob/alienanimals_x32.dmi')
 		B.desc = "With a final gulp, the cool air of the outside world is replaced with the incredibly tight, hot, and humid insides of the squirrel. \

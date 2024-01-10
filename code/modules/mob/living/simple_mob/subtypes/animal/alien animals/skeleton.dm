@@ -97,7 +97,6 @@
 	B.digestchance = 10
 	B.absorbchance = 0
 	B.escapechance = 25
-	B.escapechance_absorbed = 20
 
 /mob/living/simple_mob/vore/alienanimals/skeleton/death(gibbed, deathmessage = "falls down and stops moving...")
 	. = ..()

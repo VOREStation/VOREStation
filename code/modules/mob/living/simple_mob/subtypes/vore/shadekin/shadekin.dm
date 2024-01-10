@@ -48,7 +48,6 @@
 	vore_icons = SA_ICON_LIVING
 	swallowTime = 2 SECONDS
 	vore_escape_chance = 25
-	vore_escape_chance_absorbed = 20
 
 	//None, they stay as their defaults.
 	vore_digest_chance = 0
@@ -152,7 +151,6 @@
 	B.digest_mode = vore_default_mode
 	B.escapable = vore_escape_chance > 0
 	B.escapechance = vore_escape_chance
-	B.escapechance_absorbed = vore_escape_chance_absorbed
 	B.digestchance = vore_digest_chance
 	B.absorbchance = vore_absorb_chance
 	B.human_prey_swallow_time = swallowTime

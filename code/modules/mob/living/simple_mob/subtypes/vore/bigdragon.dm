@@ -563,7 +563,6 @@ I think I covered everything.
 	autotransferwait = 150
 	escapable = 1
 	escapechance = 100
-	escapechance_absorbed = 20
 	escapetime = 15
 	fancy_vore = 1
 	contamination_color = "grey"
@@ -575,7 +574,6 @@ I think I covered everything.
 	name = "Maw"
 	desc = "Seizing it's opportunity, the dragon's jaws swoop in to scoop you up off of your feet, giving you a view down your body of the glistening, red interior. Vicious looking jaws hover above you like a guillotine, threatening to sink down into you, though such a thing never arrives. Seems it has a slower fate in store for you, as it guides your body along the bumpy mattress of it's tongue until the lowermost parts of your body press around the entrance of it's wide, quivering throat. The jaws snap shut, trapping you within, though thankfully clear of snagging your body between them. It's vast tongue coming to life, lifting to cram you against the insides of it's teeth and against the cathedral-roof ridges of it's palate - lathering you in hot, oily drool. It's panting, growled breaths gust from that wide, eye-catching hatch at the back, blasting you with murky breath and airborne spittle, presenting itself as a place to get up close and intimate with very, very soon...."
 	escapechance = 100
-	escapechance_absorbed = 20
 	struggle_messages_inside = list(
 		"You wriggle and wrestle for purchase against the tongue. It lifts, cocooning and squeezing you hard between itself and the palate.",
 		"Reaching out, you try to pry at the beast's interlocked, mighty teeth. A zig-zag crack of light bleeds in to the maw for a moment, presenting you with your current, slimy state, before clicking shut once more.",
@@ -601,7 +599,6 @@ I think I covered everything.
 	transferchance = 20
 	transferlocation = "Maw"
 	escapechance = 0
-	escapechance_absorbed = 20
 	desc = "...And that 'very, very soon' rapidly becomes 'now'. The mighty tongue lifts, having collected enough of your flavor, squelching your lower body up to your chest inside it's hot gullet, giving you an ample view of itself slithering up over your body. You get to watch it quiver and clench with a resounding glllk, around you, the tongue's fat bumpy rear lifting behind your head to displace you down and inside the clinging tunnel. Tight, crushing pressure embraces you with each of those deep, liquid-sounding swallows, inching you down little by little each time. The flesh of the tunnel wraps you tightly, leaving you mostly unable to move, given short moments of respite between each swallow, to listen to the thudding heartbeat and the distant glrrrbles deep below. The hot scent of acidity grows stronger, the deeper you plunge..."
 	struggle_messages_inside = list(
 		"With as much effort as you can muster, you squirm and writhe, trying to swim up the passage of soft flesh. You barely peek out the beast's gullet, before the back of it's tongue squelches into your face, forcing you back down.",
@@ -618,7 +615,6 @@ I think I covered everything.
 	name = "Throat."
 	desc = "Giving in to the beast's gentle ministrations, you let yourself get slowly urged forward by the fat tongue, squelched cheek-first against the hot, wet back of it's throat, the gullet guiding you down and inside. Schllorp! You descend into  the jelly-like folds of the dragon's quivering gullet, rhythmic periastaltic motions helping to suckle and drag you inside. the last of your body slides off of it's tongue, the rear of that muscle lifting up against the last of you to help squelch you down. Each swallow leaves a little time inbetween, and the pace down the hatch is slow and gentle - you feel like resistance and squirms would defeat this pace and have you slithering back up the way you came."
 	escapechance = 0
-	escapechance_absorbed = 20
 	transferchance = 100
 	transferlocation = "Maw."
 	digest_mode = DM_HEAL
@@ -630,7 +626,6 @@ I think I covered everything.
 /obj/belly/dragon/stomach
 	name = "Stomach"
 	escapechance = 0
-	escapechance_absorbed = 20
 	transferchance = 10
 	transferlocation = "Throat"
 	desc = "The final part of your journey arrives, in the form of a tightly squelched, muscular sphincter. Throat pressure crams against you, until abruptly, you find yourself spat into a hot, caustic cauldron of churning doom, the dragon's stomach. After slithering in, the way you entered squelches shut, dissapearing among the folds - impossible for you to find any more. You are trapped, no way out, lounging in a shallow pool of thick sticky juices. endless undulations from thick, pendulous folds of stomach-wall all around continually churn it up into a foamy, bubbling mess, soaking their folds in it to drip in ropes and even shivering sheets of the stuff around you. Clenches gush the digestive slimes all over you from time to time, cradling you in it's noxious embrace. Your ears are filled with such sloppy squelches now, those distant muffled glrrns you heard earlier now sharp, crisp, and thunderous as you nestle in their very source. Settle down for what little time you have left, for your fate rests adding to the powerful beast all around you."
@@ -650,7 +645,6 @@ I think I covered everything.
 	name = "Second Stomach"
 	desc = "You've kept yourself surrendered and let the beast get you this far, and now you find yourself squelching into the puffy, pillowy clutches of a rather tight chamber, spat slowly inside from the last portion of the gullet. It's pretty cramped in here, though the sheer squishiness of the walls allows you to stretch yourself out into them. Nothing but doughy texture for inches, even feet, deep into the walls. The chamber secretes a thick, clear slime all over you, the walls churning and lathering every single part of you lovingly in it's embrace. Its incessant, kneading affections seems reminiscent of the digestive processes, yet you feel no tingle from the liquid. To the contrary, any injuries or cuts you have, seem to buzz and heat up on touch with the liquids, closing up and healing over at a visibly rapid pace. This hidden space inside the beast seems to be dedicated to holding and healing things within it! The air, although humid and murky, is very breathable in here, though nearby - very close to you, is the constant squelch and churn of the standard processes of the dragon's digestive system. Seems you are right next door to a place you could of gone to! The path you entered remains visible among the undulating squelch of padded walls, and you feel that it wouldn't be too hard to writhe yourself back up into it's snug embrace."
 	escapechance = 0
-	escapechance_absorbed = 20
 	transferchance = 100
 	transferlocation = "Throat."
 	digest_mode = DM_HEAL

@@ -102,7 +102,6 @@
 	B.digestchance = 10
 	B.absorbchance = 0
 	B.escapechance = 15
-	B.escapechance_absorbed = 20
 
 /datum/ai_holder/simple_mob/melee/startreader
 	hostile = TRUE

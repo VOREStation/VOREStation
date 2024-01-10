@@ -31,7 +31,6 @@
 	var/vore_digest_chance = 25			// Chance to switch to digest mode if resisted
 	var/vore_absorb_chance = 0			// Chance to switch to absorb mode if resisted
 	var/vore_escape_chance = 25			// Chance of resisting out of mob
-	var/vore_escape_chance_absorbed = 20// Chance of absorbed prey finishing an escape. Requires a successful escape roll against the above as well.
 
 	var/vore_stomach_name				// The name for the first belly if not "stomach"
 	var/vore_stomach_flavor				// The flavortext for the first belly if not the default
@@ -237,7 +236,6 @@
 	B.contamination_color = vore_default_contamination_color
 	B.escapable = vore_escape_chance > 0
 	B.escapechance = vore_escape_chance
-	B.escapechance_absorbed = vore_escape_chance_absorbed
 	B.digestchance = vore_digest_chance
 	B.absorbchance = vore_absorb_chance
 	B.human_prey_swallow_time = swallowTime

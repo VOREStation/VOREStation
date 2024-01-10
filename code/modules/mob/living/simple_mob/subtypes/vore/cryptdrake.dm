@@ -85,7 +85,6 @@
 	B.digestchance = 50
 	B.absorbchance = 0
 	B.escapechance = 3
-	B.escapechance_absorbed = 20
 	B.escape_stun = 5
 	B.contamination_color = "grey"
 	B.contamination_flavor = "Wet"

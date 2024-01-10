@@ -177,7 +177,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	B.digestchance = 5
 	B.absorbchance = 1
 	B.escapechance = 15
-	B.escapechance_absorbed = 20
 
 	B.emote_lists[DM_DRAIN] = list(
 		"The walls press in heavily over you, holding you tightly and grinding, churning against your body powerfully!! You can feel %pred’s heartbeat through the flesh, pounding in your ears, and the groaning gurgles of the gastric chamber rolling around you, eagerly pressing in against you.",
@@ -289,7 +288,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	p.absorbchance = 0
 	p.escapable = TRUE
 	p.escapechance = 40
-	B.escapechance_absorbed = 20
 	p.digest_mode = DM_HEAL
 	p.name = "propeutpericulum" 	//I'm no latin professor I just know that some organs and things are based on latin words
 									//and google translate says that each of these individually
