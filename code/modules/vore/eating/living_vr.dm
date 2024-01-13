@@ -496,6 +496,10 @@
 	else if(tf_mob_holder)
 		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob.")
 		revert_mob_tf()
+	else if(istype(loc, /obj/item/weapon/pet_carrier)) // Adding an oh shit button for the pet carrier.
+		var/obj/item/weapon/pet_carrier/cage = loc
+		cage.remove_occupant(src)
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [cage]. [ADMIN_FLW(src)]")
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")

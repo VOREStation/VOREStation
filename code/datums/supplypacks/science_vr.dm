@@ -29,6 +29,14 @@
 	containertype = /obj/structure/largecrate/animal/weretiger
 	containername = "Weretiger crate"
 	access = access_xenobiology
+
+/datum/supply_pack/sci/stasis_cage
+	name = "Wildlife Stasis Cage"
+	cost = 25
+	contains = list(/obj/structure/stasis_cage)
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "Wildlife Stasis Cage"
+	//access = access_xenobiology // We don't need access restrictions for this, really.
 /*
 /datum/supply_pack/sci/otie
 	name = "VARMAcorp adoptable reject (Dangerous!)"
