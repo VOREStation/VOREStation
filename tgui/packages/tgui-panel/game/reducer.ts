@@ -5,8 +5,7 @@
  */
 
 import { connectionLost } from './actions';
-import { connectionRestored } from './actions';
-import { dismissWarning } from './actions';
+import { connectionRestored, dismissWarning } from './actions';
 
 const initialState = {
   // TODO: This is where round info should be.
