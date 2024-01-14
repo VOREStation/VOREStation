@@ -74,6 +74,7 @@
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/scatter/ratminer
 	charge_cost = 400
+	fire_sound = 'sound/weapons/laser3.ogg'
 
 /obj/item/projectile/scatter/ratminer
 	spread_submunition_damage = FALSE
