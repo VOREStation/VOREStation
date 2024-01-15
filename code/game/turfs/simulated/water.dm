@@ -73,6 +73,26 @@
 			water_breath.adjust_gas(gasid, BREATH_MOLES) // They have no oxygen, but non-zero moles and temp
 			water_breath.temperature = above_air.temperature
 			return water_breath
+	if(L && L.is_bad_swimmer() && depth >= 2 && !L.buckled())
+		L.visible_message("<span class='notice'>[L] splashes wildly.</span>","<span class='warning'>You struggle to keep your head above the water!</span>")
+		if(L.can_breathe_water())
+			var/datum/gas_mixture/water_breath = new()
+			var/datum/gas_mixture/above_air = return_air()
+			var/amount = 300
+			water_breath.adjust_gas("oxygen", amount) // Assuming water breathes just extract the oxygen directly from the water.
+			water_breath.temperature = above_air.temperature
+			return water_breath
+		else
+			var/gasid = "carbon_dioxide"
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(H.species && H.species.exhale_type)
+					gasid = H.species.exhale_type
+			var/datum/gas_mixture/water_breath = new()
+			var/datum/gas_mixture/above_air = return_air()
+			water_breath.adjust_gas(gasid, BREATH_MOLES) // They have no oxygen, but non-zero moles and temp
+			water_breath.temperature = above_air.temperature
+			return water_breath
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
@@ -123,6 +143,14 @@
 /mob/living/carbon/human/can_breathe_water()
 	if(species)
 		return species.can_breathe_water()
+	return ..()
+
+/mob/living/proc/is_bad_swimmer()
+	return FALSE
+
+/mob/living/carbon/human/is_bad_swimmer()
+	if(species)
+		return species.is_bad_swimmer()
 	return ..()
 
 /mob/living/proc/check_submerged()
