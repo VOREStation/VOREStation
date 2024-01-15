@@ -104,7 +104,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/sif/siffet),
 		list(/mob/living/simple_mob/animal/sif/tymisian),
 		list(
-			/mob/living/simple_mob/animal/giant_spider/nurse = 10,
 			/mob/living/simple_mob/animal/giant_spider/electric = 5,
 			/mob/living/simple_mob/animal/giant_spider/frost = 5,
 			/mob/living/simple_mob/animal/giant_spider/hunter = 10,
@@ -448,7 +447,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 
 	possible_mob_types = list(
 		list(
-			/mob/living/simple_mob/animal/giant_spider/nurse = 10,
 			/mob/living/simple_mob/animal/giant_spider/electric = 5,
 			/mob/living/simple_mob/animal/giant_spider/frost = 5,
 			/mob/living/simple_mob/animal/giant_spider/hunter = 10,

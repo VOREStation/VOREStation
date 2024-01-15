@@ -309,3 +309,17 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		icon_state = "[initial(icon_state)]_on"
 	else
 		icon_state = initial(icon_state)
+
+/obj/item/device/sleevemate/emag_act(var/remaining_charges, var/mob/user)
+	to_chat(user,"<span class='danger'>You hack [src]!</span>")
+	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system.set_up(5, 0, src.loc)
+	spark_system.start()
+	playsound(src, "sparks", 50, 1)
+	if(istype(src.loc,/mob/living))
+		var/mob/living/L = src.loc
+		L.unEquip(src)
+	src.forceMove(get_turf(src))
+	new /obj/item/device/bodysnatcher(src.loc)
+	qdel(src)
+	return 1
