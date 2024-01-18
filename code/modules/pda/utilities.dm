@@ -178,11 +178,18 @@
 		if(length(notes.note) > 0)
 			notes.note += "<br><br>"
 		// Store the scanned document to the notes
-		notes.note += "Scanned Document. Edit to restore previous notes/delete scan.<br>----------<br>" + formatted_scan + "<br>"
-		// notehtml ISN'T set to allow user to get their old notes back. A better implementation would add a "scanned documents"
-		// feature to the PDA, which would better convey the availability of the feature, but this will work for now.
+		notes.note = formatted_scan
+		notes.notetitle = sanitize_simple(P.name, list("\n" = "", "\t" = "", "ÿ" = ""))
+		// update the saved note too incase we kept the pda open, this is really silly due to how the notehtml is actually what's passed to the editor's text.
+		// If I don't update it here, it loses the data when you edit it!
+		notes.storednotes[notes.currentnote] = notes.note
+		notes.storedtitles[notes.currentnote] = notes.notetitle
+		notes.notehtml = html_decode(replacetext(notes.note,"<br>", "\n"))
 		// Inform the user
-		to_chat(user, "<span class=notice>Paper scanned and OCRed to notekeeper.</span>")//concept of scanning paper copyright brainoblivion 2009
+		var/scannedtitle = "Paper"
+		if(!isnull(notes.notetitle) && notes.notetitle != "")
+			scannedtitle = "'[notes.notetitle]'"
+		to_chat(user, "<span class=notice>[scannedtitle] scanned to Notekeeper in note [alphabet_uppercase[notes.currentnote]].</span>")//concept of scanning paper copyright brainoblivion 2009
 
 	else
 		to_chat(user, "<span class=warning>Error scanning [A].</span>")

@@ -407,6 +407,11 @@
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
 
+	// set butcherable meats from species
+	for(var/obj/item/organ/O in H.organs)
+		O.set_initial_meat()
+	for(var/obj/item/organ/O in H.internal_organs)
+		O.set_initial_meat()
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
@@ -570,4 +575,3 @@
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
 	return
-

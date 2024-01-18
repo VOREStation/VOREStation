@@ -213,6 +213,7 @@ var/list/name_to_material
 	var/luminescence
 	var/radiation_resistance = 0 // Radiation resistance, which is added on top of a material's weight for blocking radiation. Needed to make lead special without superrobust weapons.
 	var/supply_conversion_value  // Supply points per sheet that this material sells for.
+	var/can_sharpen = TRUE // Is this material compatible with a sharpening kit?
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window

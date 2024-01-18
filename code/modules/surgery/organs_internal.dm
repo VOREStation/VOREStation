@@ -20,6 +20,8 @@
 //				CHEST INTERNAL ORGAN SURGERY					//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ
+	surgery_name = "Dress Organ"
+
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack= 100,		\
 	/obj/item/stack/medical/bruise_pack = 20
@@ -114,6 +116,8 @@
 
 //Robo internal organ fix. For when an organic has robotic limbs.
 /datum/surgery_step/fix_organic_organ_robotic //For artificial organs
+	surgery_name = "Mend Organ"
+
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,
 	/obj/item/stack/cable_coil = 75,
@@ -187,6 +191,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/detatch_organ/
+	surgery_name = "Detatch Organ"
 
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel = 100,		\
@@ -329,6 +334,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/replace_organ
+	surgery_name = "Replace Organ"
 	allowed_tools = list(
 	/obj/item/organ = 100
 	)
@@ -408,6 +414,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/attach_organ
+	surgery_name = "Attach Organ"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75

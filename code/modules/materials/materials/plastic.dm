@@ -109,3 +109,4 @@
 	weight = 1
 	protectiveness = 0 // 0%
 	conductive = 0
+	can_sharpen = FALSE
