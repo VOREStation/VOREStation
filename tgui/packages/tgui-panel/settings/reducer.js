@@ -30,6 +30,11 @@ const initialState = {
     activeTab: SETTINGS_TABS[0].id,
   },
   showReconnectWarning: true,
+  visibleMessageLimit: 2500,
+  persistentMessageLimit: 1000,
+  combineMessageLimit: 5,
+  combineIntervalLimit: 5,
+  totalStoredMessages: 0,
   logRetainDays: -1,
   logLineCount: -1,
 };
