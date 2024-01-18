@@ -3636,7 +3636,7 @@ shaved
 	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/bandage/r_foot/r_foot3
-	name = "Bandage, Rufgt Foot 3"
+	name = "Bandage, Right Foot 3"
 	icon_state = "bandage3"
 
 /datum/sprite_accessory/marking/bandage/r_foot/r_foot3/teshari
