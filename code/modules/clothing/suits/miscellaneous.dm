@@ -801,7 +801,7 @@
 
 /obj/item/clothing/suit/runner
 	name = "runner jacket"
-	desc = "A red sports jacket with white trim and an unfolded collar."
+	desc = "A yellow sports jacket with white trim and an unfolded collar."
 	icon_state = "runner"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	item_state_slots = list(slot_r_hand_str = "suit_red", slot_l_hand_str = "suit_red")
