@@ -332,6 +332,11 @@
 	desc = "A large orbital station with recreational facilities, namely a pair of laser tag arenas."
 	mappath = 'maps/redgate/laserdome.dmm'
 
+/datum/map_template/common_lateload/redgate/falls
+	name = "Redgate - Cascading Falls"
+	desc = "A world made up almost entirely of water, sprinkled with obscure marble structures."
+	mappath = 'maps/redgate/falls/falls.dmm'
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
