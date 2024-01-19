@@ -74,7 +74,8 @@
 			water_breath.temperature = above_air.temperature
 			return water_breath
 	if(L && L.is_bad_swimmer() && depth >= 2 && !L.buckled())
-		L.visible_message("<span class='notice'>[L] splashes wildly.</span>","<span class='warning'>You struggle to keep your head above the water!</span>")
+		if(prob(10))
+			L.visible_message("<span class='notice'>[L] splashes wildly.</span>","<span class='warning'>You struggle to keep your head above the water!</span>")
 		if(L.can_breathe_water())
 			var/datum/gas_mixture/water_breath = new()
 			var/datum/gas_mixture/above_air = return_air()
