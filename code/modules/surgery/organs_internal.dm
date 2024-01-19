@@ -117,7 +117,7 @@
 //Robo internal organ fix. For when an organic has robotic limbs.
 /datum/surgery_step/fix_organic_organ_robotic //For artificial organs
 	surgery_name = "Mend Organ"
-	
+
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,
 	/obj/item/stack/cable_coil = 75,
