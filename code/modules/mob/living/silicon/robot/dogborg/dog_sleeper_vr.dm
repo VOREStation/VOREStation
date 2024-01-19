@@ -331,7 +331,7 @@
 		var/burncolor = (patient.getFireLoss() < 60 ? "color:gray;" : "color:red;")
 
 		dat += "<span style='[pulsecolor]'>\t-Pulse, bpm: [patient.get_pulse(GETPULSE_TOOL)]</span><BR>"
-		dat += "<span style='[healthcolor]'>\t-Overall Health %: [round(patient.health)]</span><BR>"
+		dat += "<span style='[healthcolor]'>\t-Overall Health %: [round(100 * (patient.health / patient.getMaxHealth()))]</span><BR>"
 		dat += "<span style='[brutecolor]'>\t-Brute Damage %: [patient.getBruteLoss()]</span><BR>"
 		dat += "<span style='[o2color]'>\t-Respiratory Damage %: [patient.getOxyLoss()]</span><BR>"
 		dat += "<span style='[toxcolor]'>\t-Toxin Content %: [patient.getToxLoss()]</span><BR>"
