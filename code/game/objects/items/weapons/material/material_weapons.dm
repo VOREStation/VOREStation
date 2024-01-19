@@ -140,7 +140,7 @@
 		return
 
 /obj/item/weapon/material/proc/sharpen(var/material, var/sharpen_time, var/kit, mob/living/M)
-	if(!fragile)
+	if(!fragile && src.material.can_sharpen)
 		if(health < initial(health))
 			to_chat(M, "You should repair [src] first. Try using [kit] on it.")
 			return FALSE
