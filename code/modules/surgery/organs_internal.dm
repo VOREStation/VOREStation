@@ -20,7 +20,7 @@
 //				CHEST INTERNAL ORGAN SURGERY					//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ
-	surgery_name = "Dress Organ"
+	surgery_name = "Treat Organ"
 
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack= 100,		\
@@ -191,7 +191,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/detatch_organ/
-	surgery_name = "Detatch Organ"
+	surgery_name = "Detach Organ"
 
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel = 100,		\
