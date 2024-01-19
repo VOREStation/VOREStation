@@ -981,6 +981,11 @@
 	desc = "Jean shorts and a black halter top. Perfect for casual Fridays!"
 	icon_state = "haltertop"
 
+/obj/item/clothing/under/tanktop
+	name = "tank top"
+	desc = "The most versatile top ever created."
+	icon_state = "tanktop"
+
 /obj/item/clothing/under/rippedpunk
 	name = "ripped punk jeans"
 	desc = "Black ripped jeans and a fishnet top. How punk."
