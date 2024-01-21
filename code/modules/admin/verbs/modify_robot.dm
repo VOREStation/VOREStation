@@ -3,7 +3,7 @@
 	set name = "Modify Robot Module"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin"
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN, R_FUN, R_VAREDIT))
 		return
 
 	if(!istype(target) || !target.module)
