@@ -8,8 +8,8 @@ import DOMPurify from 'dompurify';
 import { storage } from 'common/storage';
 import { loadSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
-import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
-import { MAX_PERSISTED_MESSAGES, MESSAGE_SAVE_INTERVAL } from './constants';
+import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, moveChatPageLeft, moveChatPageRight, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
+import { MESSAGE_SAVE_INTERVAL } from './constants';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
@@ -19,9 +19,10 @@ const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
 
 const saveChatToStorage = async (store) => {
   const state = selectChat(store.getState());
+  const settings = selectSettings(store.getState());
   const fromIndex = Math.max(
     0,
-    chatRenderer.messages.length - MAX_PERSISTED_MESSAGES
+    chatRenderer.messages.length - settings.persistentMessageLimit
   );
   const messages = chatRenderer.messages
     .slice(fromIndex)
@@ -61,7 +62,6 @@ const loadChatFromStorage = async (store) => {
     ];
     chatRenderer.processBatch(batch, {
       prepend: true,
-      noarchive: true,
     });
   }
   if (archivedMessages) {
@@ -116,6 +116,14 @@ export const chatMiddleware = (store) => {
   }, MESSAGE_SAVE_INTERVAL);
   return (next) => (action) => {
     const { type, payload } = action;
+    const settings = selectSettings(store.getState());
+    settings.totalStoredMessages = chatRenderer.getStoredMessages();
+    chatRenderer.setVisualChatLimits(
+      settings.visibleMessageLimit,
+      settings.combineMessageLimit,
+      settings.combineIntervalLimit,
+      settings.logLineCount
+    );
     if (!initialized) {
       initialized = true;
       loadChatFromStorage(store);
@@ -155,7 +163,9 @@ export const chatMiddleware = (store) => {
         }
       }
 
-      chatRenderer.processBatch([payload_obj.content]);
+      chatRenderer.processBatch([payload_obj.content], {
+        doArchive: true,
+      });
       return;
     }
     if (type === loadChat.type) {
@@ -170,7 +180,9 @@ export const chatMiddleware = (store) => {
       type === changeChatPage.type ||
       type === addChatPage.type ||
       type === removeChatPage.type ||
-      type === toggleAcceptedType.type
+      type === toggleAcceptedType.type ||
+      type === moveChatPageLeft.type ||
+      type === moveChatPageRight.type
     ) {
       next(action);
       const page = selectCurrentChatPage(store.getState());
@@ -178,7 +190,7 @@ export const chatMiddleware = (store) => {
       return;
     }
     if (type === rebuildChat.type) {
-      chatRenderer.rebuildChat();
+      chatRenderer.rebuildChat(settings.visibleMessages);
       return next(action);
     }
 
@@ -190,7 +202,6 @@ export const chatMiddleware = (store) => {
       type === updateHighlightSetting.type
     ) {
       next(action);
-      const settings = selectSettings(store.getState());
       chatRenderer.setHighlight(
         settings.highlightSettings,
         settings.highlightSettingById
@@ -204,7 +215,6 @@ export const chatMiddleware = (store) => {
       return next(action);
     }
     if (type === saveChatToDisk.type) {
-      const settings = selectSettings(store.getState());
       chatRenderer.saveToDisk(settings.logLineCount);
       return;
     }

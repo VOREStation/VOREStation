@@ -505,6 +505,10 @@
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cosmic
 // winter coats end here
 
+/datum/gear/suit/runner
+	display_name = "runner jacket"
+	path = /obj/item/clothing/suit/runner
+
 /datum/gear/suit/varsity
 	display_name = "varsity jacket selection"
 	path = /obj/item/clothing/suit/varsity

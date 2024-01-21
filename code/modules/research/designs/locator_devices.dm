@@ -6,7 +6,7 @@
 
 /datum/design/item/gps/AssembleDesignName()
 	..()
-	name = "Triangulating device design ([name])"
+	name = "Triangulating device design (GPS - [name])"
 
 /datum/design/item/gps/generic
 	name = "GEN"

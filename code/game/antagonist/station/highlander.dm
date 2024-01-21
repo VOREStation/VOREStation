@@ -12,6 +12,8 @@ var/datum/antagonist/highlander/highlanders
 	initial_spawn_req = 3
 	initial_spawn_target = 5
 
+	id_type = /obj/item/weapon/card/id/centcom/ERT
+
 /datum/antagonist/highlander/New()
 	..()
 	highlanders = src
@@ -32,26 +34,28 @@ var/datum/antagonist/highlander/highlanders
 	if(!..())
 		return
 
-	for (var/obj/item/I in player)
-		if (istype(I, /obj/item/weapon/implant))
-			continue
-		qdel(I)
-
+	// drop original items! It used to be a loop that just Qdeled everything including your organs!
+	// Dropping because of non-oxy breathers... That would suck wouldn't it?
+	player.drop_from_inventory(player.get_equipped_item(slot_wear_id))
+	player.drop_from_inventory(player.get_equipped_item(slot_wear_suit))
+	player.drop_from_inventory(player.get_equipped_item(slot_w_uniform))
+	player.drop_from_inventory(player.get_equipped_item(slot_l_ear))
+	player.drop_from_inventory(player.get_equipped_item(slot_head))
+	player.drop_from_inventory(player.get_equipped_item(slot_l_hand))
+	player.drop_from_inventory(player.get_equipped_item(slot_shoes))
+	player.drop_from_inventory(player.get_equipped_item(slot_l_store))
+	// highlanders!
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(player), slot_l_ear)
 	player.equip_to_slot_or_del(new /obj/item/clothing/head/beret(player), slot_head)
 	player.equip_to_slot_or_del(new /obj/item/weapon/material/sword(player), slot_l_hand)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/combat(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(get_turf(player)), slot_l_store)
 
-	var/obj/item/weapon/card/id/W = new(player)
-	W.name = "[player.real_name]'s ID Card"
-	W.icon_state = "centcom"
-	W.access = get_all_station_access().Copy()
-	W.access |= get_all_centcom_access()
-	W.assignment = "Highlander"
-	W.registered_name = player.real_name
-	player.equip_to_slot_or_del(W, slot_wear_id)
+	var/obj/item/weapon/card/id/id = create_id("Highlander", player)
+	if(id)
+		id.access |= get_all_station_access()
+		id.icon_state = "centcom"
+	create_radio(DTH_FREQ, player)
 
 /proc/only_one()
 
