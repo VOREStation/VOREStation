@@ -24,16 +24,16 @@
 	set category = null
 
 	if(!src.holder)
-		to_chat(src, "<font color='red'>Only Admins may use this command.</font>")
+		to_chat(src, span_red("Only Admins may use this command."))
 		return
 
 	var/client/target = tgui_input_list(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions", GLOB.clients)
 	if(!istype(target,/client))
-		to_chat(src, "<font color='red'>Error: giveruntimelog(): Client not found.</font>")
+		to_chat(src, span_red("Error: giveruntimelog(): Client not found."))
 		return
 
 	target.verbs |= /client/proc/getruntimelog
-	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
+	to_chat(target, span_red("You have been granted access to runtime logs. Please use them responsibly or risk being banned."))
 	return
 
 
@@ -89,7 +89,7 @@
 	if( fexists(path) )
 		src << run( file(path) )
 	else
-		to_chat(src, "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>")
+		to_chat(src, span_red("Error: view_txt_log(): File not found/Invalid path([path])."))
 		return
 	feedback_add_details("admin_verb","VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return

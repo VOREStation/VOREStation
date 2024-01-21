@@ -203,10 +203,10 @@
 /obj/item/device/radio/intercom/AIAltClick(var/mob/user)
 	if(frequency == AI_FREQ)
 		set_frequency(initial(frequency))
-		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='green'><b>Default</b></font>.</span>")
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to [span_green("<b>Default</b>")].</span>")
 	else
 		set_frequency(AI_FREQ)
-		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='pink'><b>AI Private</b></font>.</span>")
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to [span_pink("<b>AI Private</b>")].</span>")
 //VOREStation Add End
 /obj/item/device/radio/intercom/locked
     var/locked_frequency

@@ -702,9 +702,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("<font color='red'>[user] sticks their gun in their mouth, ready to pull the trigger...</font>")
+	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 40))
-		M.visible_message("<font color='blue'>[user] decided life was worth living</font>")
+		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

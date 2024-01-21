@@ -458,7 +458,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || istype(src, /mob/new_player))
-		to_chat(usr, "<span class='filter_notice'><font color='blue'>You must be observing to use this!</font></span>")
+		to_chat(usr, "<span class='filter_notice'>[span_blue("You must be observing to use this!")]</span>")
 		return
 
 	if(is_admin && stat == DEAD)
@@ -609,7 +609,7 @@
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
-			to_chat(src, "<span class='filter_notice'><font color='red'><B>Pulling \the [H] in their current condition would probably be a bad idea.</B></font></span>")
+			to_chat(src, "<span class='filter_notice'>[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]</span>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))

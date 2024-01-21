@@ -11,10 +11,10 @@
 
 /obj/item/clothing/shoes/New()
 	inside_emotes = list(
-		"<font color='red'>You feel weightless for a moment as \the [name] moves upwards.</font>",
-		"<font color='red'>\The [name] are a ride you've got no choice but to participate in as the wearer moves.</font>",
-		"<font color='red'>The wearer of \the [name] moves, pressing down on you.</font>",
-		"<font color='red'>More motion while \the [name] move, feet pressing down against you.</font>"
+		span_red("You feel weightless for a moment as \the [name] moves upwards."),
+		span_red("\The [name] are a ride you've got no choice but to participate in as the wearer moves."),
+		span_red("The wearer of \the [name] moves, pressing down on you."),
+		span_red("More motion while \the [name] move, feet pressing down against you.")
 	)
 
 	..()
@@ -116,20 +116,20 @@
 	if(ishuman(src.loc)) //Is this on a person?
 		var/mob/living/carbon/human/H = src.loc
 		if(istype(user,/mob/living/voice)) //Is this a possessed item? Spooky. It can move on it's own!
-			to_chat(H, "<font color='red'>The [src] shifts about, almost as if squirming!</font>")
-			to_chat(user, "<font color='red'>You cause the [src] to shift against [H]'s form! Well, what little you can get to, given your current state!</font>")
+			to_chat(H, span_red("The [src] shifts about, almost as if squirming!"))
+			to_chat(user, span_red("You cause the [src] to shift against [H]'s form! Well, what little you can get to, given your current state!"))
 		else if(H.shoes == src)
-			to_chat(H, "<font color='red'>[user]'s tiny body presses against you in \the [src], squirming!</font>")
-			to_chat(user, "<font color='red'>Your body presses out against [H]'s form! Well, what little you can get to!</font>")
+			to_chat(H, span_red("[user]'s tiny body presses against you in \the [src], squirming!"))
+			to_chat(user, span_red("Your body presses out against [H]'s form! Well, what little you can get to!"))
 		else
-			to_chat(H, "<font color='red'>[user]'s form shifts around in the \the [src], squirming!</font>")
-			to_chat(user, "<font color='red'>You move around inside the [src], to no avail.</font>")
+			to_chat(H, span_red("[user]'s form shifts around in the \the [src], squirming!"))
+			to_chat(user, span_red("You move around inside the [src], to no avail."))
 	else if(istype(user,/mob/living/voice)) //Possessed!
-		src.visible_message("<font color='red'>The [src] shifts about!</font>")
-		to_chat(user, "<font color='red'>You cause the [src] to shift about!</font>")
+		src.visible_message(span_red("The [src] shifts about!"))
+		to_chat(user, span_red("You cause the [src] to shift about!"))
 	else
-		src.visible_message("<font color='red'>\The [src] moves a little!</font>")
-		to_chat(user, "<font color='red'>You throw yourself against the inside of \the [src]!</font>")
+		src.visible_message(span_red("\The [src] moves a little!"))
+		to_chat(user, span_red("You throw yourself against the inside of \the [src]!"))
 
 //Mask
 /obj/item/clothing/mask

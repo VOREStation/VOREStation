@@ -276,7 +276,7 @@
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='warning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,"<span class='vwarning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
 /mob/living/simple_mob/protean_blob/attack_target(var/atom/A)
 	if(refactory && istype(A,/obj/item/stack/material))

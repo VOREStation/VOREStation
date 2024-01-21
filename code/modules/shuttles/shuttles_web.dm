@@ -300,7 +300,7 @@
 		return
 
 	if(WS.moving_status != SHUTTLE_IDLE)
-		to_chat(usr, "<font color='blue'>[WS.visible_name] is busy moving.</font>")
+		to_chat(usr, span_blue("[WS.visible_name] is busy moving."))
 		return
 
 	switch(action)
@@ -337,7 +337,7 @@
 				return
 
 			if((WS.last_move + WS.cooldown) > world.time)
-				to_chat(usr, "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>")
+				to_chat(usr, span_red("The ship's drive is inoperable while the engines are charging."))
 				return
 
 			var/index = text2num(params["traverse"])

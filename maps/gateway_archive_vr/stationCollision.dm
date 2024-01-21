@@ -124,7 +124,7 @@ var/sc_safecode5 = "[rand(0,9)]"
 /obj/item/weapon/paper/sc_safehint_paper_caf
 	name = "blood-soaked paper"
 	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
-	info = "<font color=red><i>This paper is soaked in blood, it is impossible to read any text.</i></font>"
+	info = "<span class=red><i>This paper is soaked in blood, it is impossible to read any text.</i></span>"
 
 /obj/item/weapon/paper/sc_safehint_paper_bible
 	name = "hidden paper"

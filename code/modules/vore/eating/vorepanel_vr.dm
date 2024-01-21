@@ -649,19 +649,19 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				to_chat(user, "<span class='warning'>You can't do that in your state!</span>")
 				return TRUE
 
-			to_chat(user,"<font color='green'>You begin to push [M] to freedom!</font>")
-			to_chat(M,"[host] begins to push you to freedom!")
-			to_chat(OB.owner,"<span class='warning'>Someone is trying to escape from inside you!</span>")
+			to_chat(user,"<span vnotice>[span_green("You begin to push [M] to freedom!")]</span>")
+			to_chat(M,"<span vnotice>[host] begins to push you to freedom!</span>")
+			to_chat(OB.owner,"<span class='vwarning'>Someone is trying to escape from inside you!</span>")
 			sleep(50)
 			if(prob(33))
 				OB.release_specific_contents(M)
-				to_chat(user,"<font color='green'>You manage to help [M] to safety!</font>")
-				to_chat(M,"<font color='green'>[host] pushes you free!</font>")
-				to_chat(OB.owner,"<span class='alert'>[M] forces free of the confines of your body!</span>")
+				to_chat(user,"<span vnotice>[span_green("You manage to help [M] to safety!")]</span>")
+				to_chat(M, "<span vnotice>[span_green("[host] pushes you free!")]</span>")
+				to_chat(OB.owner,"<span class='valert'>[M] forces free of the confines of your body!</span>")
 			else
-				to_chat(user,"<span class='alert'>[M] slips back down inside despite your efforts.</span>")
-				to_chat(M,"<span class='alert'> Even with [host]'s help, you slip back inside again.</span>")
-				to_chat(OB.owner,"<font color='green'>Your body efficiently shoves [M] back where they belong.</font>")
+				to_chat(user,"<span class='valert'>[M] slips back down inside despite your efforts.</span>")
+				to_chat(M,"<span class='valert'> Even with [host]'s help, you slip back inside again.</span>")
+				to_chat(OB.owner,"<span vnotice>[span_green("Your body efficiently shoves [M] back where they belong.")]</span>")
 			return TRUE
 
 		if("Devour") //Eat the inside mob
@@ -674,15 +674,15 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				return TRUE
 
 			var/obj/belly/TB = host.vore_selected
-			to_chat(user,"<span class='warning'>You begin to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
-			to_chat(M,"<span class='warning'>[host] begins to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
-			to_chat(OB.owner,"<span class='warning'>Someone inside you is eating someone else!</span>")
+			to_chat(user,"<span class='vwarning'>You begin to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
+			to_chat(M,"<span class='vwarning'>[host] begins to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
+			to_chat(OB.owner,"<span class='vwarning'>Someone inside you is eating someone else!</span>")
 
 			sleep(TB.nonhuman_prey_swallow_time) //Can't do after, in a stomach, weird things abound.
 			if((host in OB) && (M in OB)) //Make sure they're still here.
-				to_chat(user,"<span class='warning'>You manage to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
-				to_chat(M,"<span class='warning'>[host] manages to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
-				to_chat(OB.owner,"<span class='warning'>Someone inside you has eaten someone else!</span>")
+				to_chat(user,"<span class='vwarning'>You manage to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
+				to_chat(M,"<span class='vwarning'>[host] manages to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
+				to_chat(OB.owner,"<span class='vwarning'>Someone inside you has eaten someone else!</span>")
 				if(M.absorbed)
 					M.absorbed = FALSE
 					OB.handle_absorb_langs(M, OB.owner)
@@ -716,7 +716,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 					return FALSE
 
 				for(var/atom/movable/target in host.vore_selected)
-					to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!</span>")
+					to_chat(target,"<span class='vwarning'>You're squished from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!</span>")
 					host.vore_selected.transfer_contents(target, choice, 1)
 				return TRUE
 		return
@@ -756,7 +756,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			var/obj/belly/choice = tgui_input_list(usr, "Move [target] where?","Select Belly", host.vore_organs)
 			if(!choice || !(target in host.vore_selected))
 				return TRUE
-			to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
+			to_chat(target,"<span class='vwarning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
 			host.vore_selected.transfer_contents(target, choice)
 
 
@@ -785,18 +785,18 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				return TRUE
 
 			if(belly_owner != host)
-				to_chat(user, "<span class='notice'>Transfer offer sent. Await their response.</span>")
+				to_chat(user, "<span class='vnotice'>Transfer offer sent. Await their response.</span>")
 				var/accepted = tgui_alert(belly_owner, "[host] is trying to transfer [target] from their [lowertext(host.vore_selected.name)] into your [lowertext(choice.name)]. Do you accept?", "Feeding Offer", list("Yes", "No"))
 				if(accepted != "Yes")
-					to_chat(user, "<span class='warning'>[belly_owner] refused the transfer!!</span>")
+					to_chat(user, "<span class='vwarning'>[belly_owner] refused the transfer!!</span>")
 					return TRUE
 				if(!belly_owner || !(belly_owner in range(1, host)))
 					return TRUE
-				to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to [belly_owner]'s [lowertext(choice.name)]!</span>")
-				to_chat(belly_owner,"<span class='warning'>[target] is squished from [host]'s [lowertext(host.vore_selected.name)] to your [lowertext(choice.name)]!</span>")
+				to_chat(target,"<span class='vwarning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to [belly_owner]'s [lowertext(choice.name)]!</span>")
+				to_chat(belly_owner,"<span class='vwarning'>[target] is squished from [host]'s [lowertext(host.vore_selected.name)] to your [lowertext(choice.name)]!</span>")
 				host.vore_selected.transfer_contents(target, choice)
 			else
-				to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
+				to_chat(target,"<span class='vwarning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
 				host.vore_selected.transfer_contents(target, choice)
 			return TRUE
 
@@ -826,27 +826,27 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(process_options.len)
 				process_options += "Cancel"
 			else
-				to_chat(usr, "<span class= 'warning'>You cannot instantly process [ourtarget].</span>")
+				to_chat(usr, "<span class= 'vwarning'>You cannot instantly process [ourtarget].</span>")
 				return
 
 			var/ourchoice = tgui_input_list(usr, "How would you prefer to process \the [target]? This will perform the given action instantly if the prey accepts.","Instant Process", process_options)
 			if(!ourchoice)
 				return
 			if(!ourtarget.client)
-				to_chat(usr, "<span class= 'warning'>You cannot instantly process [ourtarget].</span>")
+				to_chat(usr, "<span class= 'vwarning'>You cannot instantly process [ourtarget].</span>")
 				return
 			var/obj/belly/b = ourtarget.loc
 			switch(ourchoice)
 				if("Digest")
 					if(ourtarget.absorbed)
-						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is absorbed, and cannot presently be digested.</span>")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is absorbed, and cannot presently be digested.</span>")
 						return
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly digest you. Is this something you are okay with happening to you?","Instant Digest", list("No", "Yes")) != "Yes")
-						to_chat(usr, "<span class= 'warning'>\The [ourtarget] declined your digest attempt.</span>")
-						to_chat(ourtarget, "<span class= 'warning'>You declined the digest attempt.</span>")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your digest attempt.</span>")
+						to_chat(ourtarget, "<span class= 'vwarning'>You declined the digest attempt.</span>")
 						return
 					if(ourtarget.loc != b)
-						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is no longer in \the [b].</span>")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
 						return
 					if(isliving(usr))
 						var/mob/living/l = usr
@@ -865,11 +865,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 						b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
-						to_chat(usr, "<span class= 'warning'>\The [ourtarget] declined your absorb attempt.</span>")
-						to_chat(ourtarget, "<span class= 'warning'>You declined the absorb attempt.</span>")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your absorb attempt.</span>")
+						to_chat(ourtarget, "<span class= 'vwarning'>You declined the absorb attempt.</span>")
 						return
 					if(ourtarget.loc != b)
-						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is no longer in \the [b].</span>")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
 						return
 					if(isliving(usr))
 						var/mob/living/l = usr
@@ -884,7 +884,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			var/target_health = round((H.health/H.getMaxHealth())*100)
 			var/condition
 			var/condition_consequences
-			to_chat(usr, "<span class= 'warning'>\The [target] is at [target_health]% health.</span>")
+			to_chat(usr, "<span class= 'vwarning'>\The [target] is at [target_health]% health.</span>")
 			if(H.blinded)
 				condition += "blinded"
 				condition_consequences += "hear emotes"
@@ -901,7 +901,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				condition += "sleeping"
 				condition_consequences += "hear or do anything"
 			if(condition)
-				to_chat(usr, "<span class= 'warning'>\The [target] is currently [condition], they will not be able to [condition_consequences].</span>")
+				to_chat(usr, "<span class= 'vwarning'>\The [target] is currently [condition], they will not be able to [condition_consequences].</span>")
 			return
 
 

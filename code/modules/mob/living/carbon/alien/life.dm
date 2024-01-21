@@ -150,7 +150,7 @@
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
 		throw_alert("alien_fire", /obj/screen/alert/alien_fire)
 		if(prob(20))
-			to_chat(src, "<font color='red'>You feel a searing heat!</font>")
+			to_chat(src, span_red("You feel a searing heat!"))
 	else
 		clear_alert("alien_fire")
 

@@ -167,13 +167,13 @@
 			return 0
 
 		playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
-		chassis.occupant_message("<font color='red' size='5'>HONK</font>")
+		chassis.occupant_message(span_red("font size='5'>HONK</font>"))
 		for(var/mob/living/carbon/M in ohearers(6, chassis))
 			if(istype(M, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue
-			to_chat(M, "<font color='red' size='7'>HONK</font>")
+			to_chat(M, span_red("font size='7'>HONK</font>"))
 			M.sleeping = 0
 			M.stuttering += 20
 			M.ear_deaf += 30

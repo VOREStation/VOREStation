@@ -230,7 +230,7 @@
 		toner--
 	if(toner == 0)
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
+		visible_message("<span class='notice'>A [span_red("red")] light on \the [src] flashes, indicating that it is out of toner.</span>")
 	return c
 
 

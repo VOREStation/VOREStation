@@ -278,7 +278,7 @@
 
 		if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<font color='red'><B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B></font>"), 1)
+				O.show_message(span_red(text("<B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>")), 1)
 			user.remove_from_mob(src)
 			qdel(src)
 

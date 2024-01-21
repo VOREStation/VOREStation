@@ -90,7 +90,7 @@
 		if(chassis.selected == src)
 			chassis.selected = null
 		src.update_chassis_page()
-		chassis.occupant_message("<font color='red'>The [src] is destroyed!</font>")
+		chassis.occupant_message(span_red("The [src] is destroyed!"))
 		chassis.log_append_to_last("[src] is destroyed.",1)
 		if(istype(src, /obj/item/mecha_parts/mecha_equipment/weapon))//Gun
 			switch(chassis.mech_faction)

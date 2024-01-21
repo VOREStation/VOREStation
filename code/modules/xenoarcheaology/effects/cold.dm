@@ -14,7 +14,7 @@
 /datum/artifact_effect/cold/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
 	if(holder)
-		to_chat(user, "<font color='blue'>A chill passes up your spine!</font>")
+		to_chat(user, span_blue("A chill passes up your spine!"))
 		var/datum/gas_mixture/env = holder.loc.return_air()
 		if(env)
 			env.temperature = max(env.temperature - rand(5,50), 0)

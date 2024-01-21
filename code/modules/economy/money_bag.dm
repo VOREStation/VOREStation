@@ -49,14 +49,14 @@
 	..()
 	if (istype(W, /obj/item/weapon/coin))
 		var/obj/item/weapon/coin/C = W
-		to_chat(user, "<font color='blue'>You add the [C.name] into the bag.</font>")
+		to_chat(user, span_blue("You add the [C.name] into the bag."))
 		usr.drop_item()
 		contents += C
 	if (istype(W, /obj/item/weapon/moneybag))
 		var/obj/item/weapon/moneybag/C = W
 		for (var/obj/O in C.contents)
 			contents += O;
-		to_chat(user, "<font color='blue'>You empty the [C.name] into the bag.</font>")
+		to_chat(user, span_blue("You empty the [C.name] into the bag."))
 	return
 
 /obj/item/weapon/moneybag/Topic(href, href_list)

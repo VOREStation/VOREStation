@@ -229,7 +229,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
 	if(islocked || isUV)
-		to_chat(user, "<font color='red'>Unable to open unit.</font>")
+		to_chat(user, span_red("Unable to open unit."))
 		return
 	if(OCCUPANT)
 		eject_occupant(user)
@@ -240,7 +240,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
 	if(OCCUPANT && safetieson)
-		to_chat(user, "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>")
+		to_chat(user, span_red("The Unit's safety protocols disallow locking when a biological form is detected inside its compartments."))
 		return
 	if(isopen)
 		return
@@ -252,10 +252,10 @@
 	if(isUV || isopen) //I'm bored of all these sanity checks
 		return
 	if(OCCUPANT && safetieson)
-		to_chat(user, "<font color='red'><B>WARNING:</B> Biological entity detected in the confines of the Unit's storage. Cannot initiate cycle.</font>")
+		to_chat(user, span_red("<B>WARNING:</B> Biological entity detected in the confines of the Unit's storage. Cannot initiate cycle."))
 		return
 	if(!HELMET && !MASK && !SUIT && !OCCUPANT) //shit's empty yo
-		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
+		to_chat(user, span_red("Unit storage bays empty. Nothing to disinfect -- Aborting."))
 		return
 	to_chat(user, "You start the Unit's cauterisation cycle.")
 	cycletime_left = 20
@@ -295,7 +295,7 @@
 					SUIT = null
 				if(MASK)
 					MASK = null
-				visible_message("<font color='red'>With a loud whining noise, the Suit Storage Unit's door grinds open. Puffs of ashen smoke come out of its chamber.</font>", 3)
+				visible_message(span_red("With a loud whining noise, the Suit Storage Unit's door grinds open. Puffs of ashen smoke come out of its chamber."), 3)
 				isbroken = 1
 				isopen = 1
 				islocked = 0
@@ -320,9 +320,9 @@
 
 	if(OCCUPANT.client)
 		if(user != OCCUPANT)
-			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
+			to_chat(OCCUPANT, span_blue("The machine kicks you out!"))
 		if(user.loc != src.loc)
-			to_chat(OCCUPANT, "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>")
+			to_chat(OCCUPANT, span_blue("You leave the not-so-cozy confines of the SSU."))
 
 		OCCUPANT.client.eye = OCCUPANT.client.mob
 		OCCUPANT.client.perspective = MOB_PERSPECTIVE
@@ -356,13 +356,13 @@
 	if(usr.stat != 0)
 		return
 	if(!isopen)
-		to_chat(usr, "<font color='red'>The unit's doors are shut.</font>")
+		to_chat(usr, span_red("The unit's doors are shut."))
 		return
 	if(!ispowered || isbroken)
-		to_chat(usr, "<font color='red'>The unit is not operational.</font>")
+		to_chat(usr, span_red("The unit is not operational."))
 		return
 	if((OCCUPANT) || (HELMET) || (SUIT))
-		to_chat(usr, "<font color='red'>It's too cluttered inside for you to fit in!</font>")
+		to_chat(usr, span_red("It's too cluttered inside for you to fit in!"))
 		return
 	visible_message("[usr] starts squeezing into the suit storage unit!", 3)
 	if(do_after(usr, 10))
@@ -388,7 +388,7 @@
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		panelopen = !panelopen
 		playsound(src, I.usesound, 100, 1)
-		to_chat(user, "<font color='blue'>You [panelopen ? "open up" : "close"] the unit's maintenance panel.</font>")
+		to_chat(user, span_blue("You [panelopen ? "open up" : "close"] the unit's maintenance panel."))
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/grab))
@@ -396,13 +396,13 @@
 		if(!(ismob(G.affecting)))
 			return
 		if(!isopen)
-			to_chat(user, "<font color='red'>The unit's doors are shut.</font>")
+			to_chat(user, span_red("The unit's doors are shut."))
 			return
 		if(!ispowered || isbroken)
-			to_chat(user, "<font color='red'>The unit is not operational.</font>")
+			to_chat(user, span_red("The unit is not operational."))
 			return
 		if((OCCUPANT) || (HELMET) || (SUIT)) //Unit needs to be absolutely empty
-			to_chat(user, "<font color='red'>The unit's storage area is too cluttered.</font>")
+			to_chat(user, span_red("The unit's storage area is too cluttered."))
 			return
 		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
 		if(do_after(user, 20))
@@ -426,7 +426,7 @@
 			return
 		var/obj/item/clothing/suit/space/S = I
 		if(SUIT)
-			to_chat(user, "<font color='blue'>The unit already contains a suit.</font>")
+			to_chat(user, span_blue("The unit already contains a suit."))
 			return
 		to_chat(user, "You load the [S.name] into the storage compartment.")
 		user.drop_item()
@@ -440,7 +440,7 @@
 			return
 		var/obj/item/clothing/head/helmet/H = I
 		if(HELMET)
-			to_chat(user, "<font color='blue'>The unit already contains a helmet.</font>")
+			to_chat(user, span_blue("The unit already contains a helmet."))
 			return
 		to_chat(user, "You load the [H.name] into the storage compartment.")
 		user.drop_item()
@@ -454,7 +454,7 @@
 			return
 		var/obj/item/clothing/mask/M = I
 		if(MASK)
-			to_chat(user, "<font color='blue'>The unit already contains a mask.</font>")
+			to_chat(user, span_blue("The unit already contains a mask."))
 			return
 		to_chat(user, "You load the [M.name] into the storage compartment.")
 		user.drop_item()

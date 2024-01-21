@@ -404,7 +404,7 @@ Book Cart End
 			modedesc = "ERROR"
 	to_chat(user, " - Mode [mode] : [modedesc]")
 	if(src.computer)
-		to_chat(user, "<font color=green>Computer has been associated with this unit.</font>")
+		to_chat(user, span_green("Computer has been associated with this unit."))
 	else
-		to_chat(user, "<font color=red>No associated computer found. Only local scans will function properly.</font>")
+		to_chat(user, span_red("No associated computer found. Only local scans will function properly."))
 	to_chat(user, "\n")

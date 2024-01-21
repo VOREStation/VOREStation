@@ -254,7 +254,7 @@
 	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<font color='red'>Sorry but this mob type is currently unavailable.</font>")
+		to_chat(usr, span_red("Sorry but this mob type is currently unavailable."))
 		return
 
 	if(transforming)
@@ -288,7 +288,7 @@
 	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<font color='red'>Sorry but this mob type is currently unavailable.</font>")
+		to_chat(usr, span_red("Sorry but this mob type is currently unavailable."))
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)
@@ -337,6 +337,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

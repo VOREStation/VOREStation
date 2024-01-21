@@ -269,7 +269,7 @@
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
-		src.visible_message("<span class='filter_warning'><font color='red'>[src] has been hit by [O].</font></span>")
+		src.visible_message("<span class='filter_warning'>[span_red("[src] has been hit by [O].")]</span>")
 		var/armor = run_armor_check(null, "melee")
 		var/soaked = get_armor_soak(null, "melee")
 
@@ -296,7 +296,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("<span class='filter_warning'><font color='red'>[src] staggers under the impact!</font></span>","<span class='filter_warning'><font color='red'>You stagger under the impact!</font></span>")
+			visible_message("<span class='filter_warning'>[span_red("[src] staggers under the impact!")]</span>","<span class='filter_warning'>[span_red("You stagger under the impact!")]</span>")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
@@ -330,7 +330,7 @@
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
 		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
 			vore_selected.nom_mob(thrown_mob) //Eat them!!!
-			visible_message("<span class='warning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
+			visible_message("<span class='vwarning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
 			if(thrown_mob.loc != vore_selected)
 				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			on_throw_vore_special(TRUE, thrown_mob)
@@ -340,7 +340,7 @@
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
 		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore)) //Pred thrown into prey.
-			visible_message("<span class='warning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
+			visible_message("<span class='vwarning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
 			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
 			if(src.loc != thrown_mob.vore_selected)
 				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!

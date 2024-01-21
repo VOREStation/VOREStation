@@ -3,7 +3,7 @@
 	set name = "Pray"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<font color='red'>Speech is currently admin-disabled.</font>")
+		to_chat(usr, span_red("Speech is currently admin-disabled."))
 		return
 
 	var/raw_msg = sanitize(tgui_input_text(usr, "Prayers are sent to staff but do not open tickets or go to Discord. If you have a technical difficulty or an event/spice idea/hook - please ahelp instead. Thank you!", "Pray", null, MAX_MESSAGE_LEN))
@@ -13,11 +13,11 @@
 		if(raw_msg)
 			client.handle_spam_prevention(MUTE_PRAY)
 			if(usr.client.prefs.muted & MUTE_PRAY)
-				to_chat(usr, "<font color='red'> You cannot pray (muted).</font>")
+				to_chat(usr, span_red("You cannot pray (muted)."))
 				return
 
 	var/icon/cross = icon('icons/obj/storage.dmi',"bible")
-	var/msg = "<span class='filter_pray'><font color='blue'>\icon[cross][bicon(cross)] <b><font color=purple>PRAY: </font>[key_name(src, 1)] [ADMIN_QUE(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] ([admin_jump_link(src, src)]) [ADMIN_CA(src)] [ADMIN_SC(src)] [ADMIN_SMITE(src)]:</b> [raw_msg]</font></span>"
+	var/msg = "<span class='filter_pray'>" + span_blue("\icon[cross][bicon(cross)] <b>" + span_purple("PRAY: ") + "[key_name(src, 1)] [ADMIN_QUE(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] ([admin_jump_link(src, src)]) [ADMIN_CA(src)] [ADMIN_SC(src)] [ADMIN_SMITE(src)]:</b> [raw_msg]") + "</span>"
 
 	for(var/client/C in GLOB.admins)
 		if(R_ADMIN|R_EVENT & C.holder.rights)
@@ -30,14 +30,14 @@
 	log_pray(raw_msg, src)
 
 /proc/CentCom_announce(var/msg, var/mob/Sender, var/iamessage)
-	msg = "<font color='blue'><b><font color=orange>[uppertext(using_map.boss_short)]M[iamessage ? " IA" : ""]:</font>[key_name(Sender, 1)] [ADMIN_PP(Sender)] [ADMIN_VV(Sender)] [ADMIN_SM(Sender)] ([admin_jump_link(Sender)]) [ADMIN_CA(Sender)] [ADMIN_BSA(Sender)] [ADMIN_CENTCOM_REPLY(Sender)]:</b> [msg]</font>"
+	msg = span_blue("<b>" + span_orange("[uppertext(using_map.boss_short)]M[iamessage ? " IA" : ""]:") + "[key_name(Sender, 1)] [ADMIN_PP(Sender)] [ADMIN_VV(Sender)] [ADMIN_SM(Sender)] ([admin_jump_link(Sender)]) [ADMIN_CA(Sender)] [ADMIN_BSA(Sender)] [ADMIN_CENTCOM_REPLY(Sender)]:</b> [msg]")
 	for(var/client/C in GLOB.admins) //VOREStation Edit - GLOB admins
 		if(R_ADMIN|R_EVENT & C.holder.rights)
 			to_chat(C,msg)
 			C << 'sound/machines/signal.ogg'
 
 /proc/Syndicate_announce(var/msg, var/mob/Sender)
-	msg = "<font color='blue'><b><font color=crimson>ILLEGAL:</font>[key_name(Sender, 1)] [ADMIN_PP(Sender)] [ADMIN_VV(Sender)] [ADMIN_SM(Sender)] ([admin_jump_link(Sender)]) [ADMIN_CA(Sender)] [ADMIN_BSA(Sender)] [ADMIN_SYNDICATE_REPLY(Sender)]:</b> [msg]</font>"
+	msg = span_blue("<b>" + span_crimson("ILLEGAL:") + "[key_name(Sender, 1)] [ADMIN_PP(Sender)] [ADMIN_VV(Sender)] [ADMIN_SM(Sender)] ([admin_jump_link(Sender)]) [ADMIN_CA(Sender)] [ADMIN_BSA(Sender)] [ADMIN_SYNDICATE_REPLY(Sender)]:</b> [msg]")
 	for(var/client/C in GLOB.admins) //VOREStation Edit - GLOB admins
 		if(R_ADMIN|R_EVENT & C.holder.rights)
 			to_chat(C,msg)
