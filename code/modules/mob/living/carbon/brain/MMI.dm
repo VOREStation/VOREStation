@@ -279,7 +279,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message(span_blue("\The [src] chimes quietly.</font>"))
+		M.show_message(span_blue("\The [src] chimes quietly."))
 
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"

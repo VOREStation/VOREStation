@@ -104,8 +104,8 @@
 			dat += "<span class='notice'>    Limbs are OK.</span><br>"
 
 	OX = M.getOxyLoss() > 50 ? 	 "[span_cyan("<b>Severe oxygen deprivation detected</b>")]" 			: 	"Subject bloodstream oxygen level normal"
-	TX = M.getToxLoss() > 50 ? 	 "[span_green("<b>Dangerous amount of toxins detected</b></font>")]" 	: 	"Subject bloodstream toxin level minimal"
-	BU = M.getFireLoss() > 50 ?  "[span_orange("<b>Severe burn damage detected</b></font>")]" 			:	"Subject burn injury status O.K"
+	TX = M.getToxLoss() > 50 ? 	 "[span_green("<b>Dangerous amount of toxins detected</b>")]" 	: 	"Subject bloodstream toxin level minimal"
+	BU = M.getFireLoss() > 50 ?  "[span_orange("<b>Severe burn damage detected</b>")]" 			:	"Subject burn injury status O.K"
 	BR = M.getBruteLoss() > 50 ? "[span_red("<b>Severe anatomical damage detected</b>")]"		 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		"<span class='warning'>Severe oxygen deprivation detected</span>" 	: 	"Subject bloodstream oxygen level normal"

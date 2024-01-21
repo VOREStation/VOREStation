@@ -9,7 +9,7 @@
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(prob(weakness * 100))
 			var/mob/living/carbon/C = toucher
-			to_chat(C, span_blue("You feel a soothing energy invigorate you.</font>"))
+			to_chat(C, span_blue("You feel a soothing energy invigorate you."))
 
 			if(ishuman(toucher))
 				var/mob/living/carbon/human/H = toucher
@@ -42,7 +42,7 @@
 			var/weakness = GetAnomalySusceptibility(C)
 			if(prob(weakness * 100))
 				if(prob(10))
-					to_chat(C, span_blue("You feel a soothing energy radiating from something nearby.</font>"))
+					to_chat(C, span_blue("You feel a soothing energy radiating from something nearby."))
 				C.adjustBruteLoss(-1 * weakness)
 				C.adjustFireLoss(-1 * weakness)
 				C.adjustToxLoss(-1 * weakness)
