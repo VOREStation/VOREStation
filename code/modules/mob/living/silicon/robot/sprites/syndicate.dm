@@ -32,11 +32,6 @@
 	sprite_icon = 'icons/mob/robot/syndie_large.dmi'
 	sprite_hud_icon_state = "malf"
 
-/datum/robot_sprite/dogborg/tall/syndie/raptor
-	name = "Raptor V-4"
-	sprite_icon_state = "raptor"
-	rest_sprite_options = list("Default", "Bellyup")
-
 /datum/robot_sprite/dogborg/tall/syndie/meka
 	name = "MEKA"
 	sprite_icon_state = "meka"
@@ -112,6 +107,25 @@
 	sprite_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 
+// Tall sprites
+
+/datum/robot_sprite/dogborg/tall/protector
+	module_type = "Protector"
+	sprite_icon = 'icons/mob/robot/syndie_large.dmi'
+	sprite_hud_icon_state = "malf"
+
+	var/has_gun_sprite = FALSE
+
+/datum/robot_sprite/dogborg/tall/protector/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+	if(has_gun_sprite && istype (ourborg.module_active, /obj/item/weapon/gun/energy/dakkalaser))
+		ourborg.add_overlay("[sprite_icon_state]-gun")
+
+/datum/robot_sprite/dogborg/tall/protector/syndiprotraptor
+	name = "Raptor V-4"
+	sprite_icon_state = "syndiprotraptor"
+	has_eye_light_sprites = TRUE
+	has_gun_sprite = TRUE
+	rest_sprite_options = list("Default", "Bellyup")
 
 // Mechanist
 
@@ -143,6 +157,18 @@
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default")
 
+// Tall sprites
+
+/datum/robot_sprite/dogborg/tall/mechanist
+	module_type = "Mechanist"
+	sprite_icon = 'icons/mob/robot/syndie_large.dmi'
+	sprite_hud_icon_state = "malf"
+
+/datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor
+	name = "Raptor V-4"
+	sprite_icon_state = "syndimechraptor"
+	has_eye_light_sprites = TRUE
+	rest_sprite_options = list("Default", "Bellyup")
 
 // Combat Medic
 
@@ -183,3 +209,16 @@
 	sprite_icon_state = "vale"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
+
+// Tall sprites
+
+/datum/robot_sprite/dogborg/tall/combat_medic
+	module_type = "Combat Medic"
+	sprite_icon = 'icons/mob/robot/syndie_large.dmi'
+	sprite_hud_icon_state = "malf"
+
+/datum/robot_sprite/dogborg/tall/combat_medic/syndimediraptor
+	name = "Raptor V-4"
+	sprite_icon_state = "syndimediraptor"
+	has_eye_light_sprites = TRUE
+	rest_sprite_options = list("Default", "Bellyup")
