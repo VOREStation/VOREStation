@@ -251,7 +251,7 @@
 		SP.attack_verb = list("batted", "pawed", "bopped", "whapped")
 
 /datum/robot_sprite/dogborg/tall/surgical/raptor
-	name = "Raptor V-4"
+	name = "Raptor Surgical"
 	sprite_icon_state = "raptor"
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
@@ -389,7 +389,7 @@
 		SP.attack_verb = list("batted", "pawed", "bopped", "whapped")
 
 /datum/robot_sprite/dogborg/tall/crisis/raptor
-	name = "Raptor V-4"
+	name = "Raptor Medic"
 	sprite_icon_state = "raptor"
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")

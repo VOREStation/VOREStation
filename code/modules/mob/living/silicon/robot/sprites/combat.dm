@@ -8,9 +8,8 @@
 	var/has_shield_sprite = FALSE
 
 /datum/robot_sprite/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_speed_sprite)
-		if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
-			ourborg.icon_state = "[sprite_icon_state]-roll"
+	if(has_speed_sprite && istype(ourborg.module_active, /obj/item/borg/combat/mobility))
+		ourborg.icon_state = "[sprite_icon_state]-roll"
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
 			var/obj/item/borg/combat/shield/shield = locate() in ourborg
@@ -90,10 +89,20 @@
 	has_custom_equipment_sprites = TRUE
 
 	var/has_gun_sprite = FALSE
+	var/has_speed_sprite = FALSE
+	var/has_shield_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	if(has_gun_sprite && (istype(ourborg.module_active, /obj/item/weapon/gun/energy/laser/mounted) || istype(ourborg.module_active, /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun) || istype(ourborg.module_active, /obj/item/weapon/gun/energy/lasercannon/mounted)))
 		ourborg.add_overlay("[sprite_icon_state]-gun")
+	if(has_speed_sprite && (istype(ourborg.module_active, /obj/item/borg/combat/mobility)))
+		ourborg.icon_state = "[sprite_icon_state]-roll"
+	if(has_shield_sprite)
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
+			var/obj/item/borg/combat/shield/shield = locate() in ourborg
+			if(shield && shield.active)
+				ourborg.add_overlay("[sprite_icon_state]-shield")
+
 
 /datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
 	if(!has_custom_equipment_sprites)
@@ -133,3 +142,29 @@
 	rest_sprite_options = list("Default")
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
+
+/datum/robot_sprite/dogborg/tall/combat/raptor
+	name = "Raptor V-4"
+	sprite_icon_state = "raptor"
+	sprite_hud_icon_state = "ert"
+	rest_sprite_options = list("Default", "Bellyup")
+	has_gun_sprite = TRUE
+	has_eye_light_sprites = TRUE
+	has_shield_sprite = TRUE
+	has_speed_sprite = TRUE
+
+/datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+		return
+	else
+		return ..()
+/datum/robot_sprite/dogborg/tall/combat/raptor/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
+	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+		return
+	else
+		return ..()
+/datum/robot_sprite/dogborg/tall/combat/raptor/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
+	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+		return
+	else
+		return ..()
