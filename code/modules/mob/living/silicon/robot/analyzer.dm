@@ -96,7 +96,8 @@
 					user.show_message("\t Power Cell Details: [span_blue("[capitalize(cell.name)]")] with a capacity of [cell.maxcharge] at [round(cell.percent())]% charge")
 				var/show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
-					var/needs_module = initial(initial(upgrade.build_path).require_module)
+					var/obj/item/borg/upgrade/utility/upgrade_type = initial(upgrade.build_path)
+					var/needs_module = initial(upgrade_type.require_module)
 					if((!H.module && needs_module) || !initial(upgrade.name) || (H.stat != DEAD && initial(upgrade.name) == "Emergency Restart Module"))
 						continue
 					if(show_title)
@@ -109,7 +110,8 @@
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_green("Usable")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
-					var/needs_module = initial(initial(upgrade.build_path).require_module)
+					var/obj/item/borg/upgrade/basic/upgrade_type = initial(upgrade.build_path)
+					var/needs_module = initial(upgrade_type.require_module)
 					if((!H.module && needs_module) || !initial(upgrade.name) || H.stat == DEAD)
 						continue
 					if(show_title)
@@ -121,7 +123,8 @@
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_basic_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
-					var/needs_module = initial(initial(upgrade.build_path).require_module)
+					var/obj/item/borg/upgrade/advanced/upgrade_type = initial(upgrade.build_path)
+					var/needs_module = initial(upgrade_type.require_module)
 					if((!H.module && needs_module) || !initial(upgrade.name) || H.stat == DEAD)
 						continue
 					if(show_title)
@@ -133,7 +136,8 @@
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_advanced_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
-					var/needs_module = initial(initial(upgrade.build_path).require_module)
+					var/obj/item/borg/upgrade/restricted/upgrade_type = initial(upgrade.build_path)
+					var/needs_module = initial(upgrade_type.require_module)
 					if((!H.module && needs_module) || !initial(upgrade.name) || !H.supports_upgrade(initial(upgrade.build_path)) || H.stat == DEAD)
 						continue
 					if(show_title)
@@ -145,8 +149,9 @@
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_restricted_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/no_prod/upgrade)
-					var/needs_module = initial(initial(upgrade.build_path).require_module)
-					var/hidden = initial(initial(upgrade.build_path).hidden_from_scan)
+					var/obj/item/borg/upgrade/no_prod/upgrade_type = initial(upgrade.build_path)
+					var/needs_module = initial(upgrade_type.require_module)
+					var/hidden = initial(upgrade_type.hidden_from_scan)
 					if((!H.module && needs_module) || !initial(upgrade.name) || hidden || H.stat == DEAD)
 						continue
 					if(show_title)
