@@ -54,17 +54,17 @@ var/global/list/rad_collectors = list()
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["phoron"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
-			to_chat(user, "<font color='red'>The controls are locked!</font>")
+			to_chat(user, span_red("The controls are locked!"))
 			return
 
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/tank/phoron))
 		if(!src.anchored)
-			to_chat(user, "<font color='red'>The [src] needs to be secured to the floor first.</font>")
+			to_chat(user, span_red("The [src] needs to be secured to the floor first."))
 			return 1
 		if(src.P)
-			to_chat(user, "<font color='red'>There's already a phoron tank loaded.</font>")
+			to_chat(user, span_red("There's already a phoron tank loaded."))
 			return 1
 		user.drop_item()
 		src.P = W
@@ -77,7 +77,7 @@ var/global/list/rad_collectors = list()
 			return 1
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(P)
-			to_chat(user, "<font color='blue'>Remove the phoron tank first.</font>")
+			to_chat(user, span_blue("Remove the phoron tank first."))
 			return 1
 		playsound(src, W.usesound, 75, 1)
 		src.anchored = !src.anchored
@@ -96,9 +96,9 @@ var/global/list/rad_collectors = list()
 				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, "<font color='red'>The controls can only be locked when the [src] is active.</font>")
+				to_chat(user, span_red("The controls can only be locked when the [src] is active."))
 		else
-			to_chat(user, "<font color='red'>Access denied!</font>")
+			to_chat(user, span_red("Access denied!"))
 		return 1
 	return ..()
 
@@ -157,4 +157,3 @@ var/global/list/rad_collectors = list()
 		flick("ca_deactive", src)
 	update_icons()
 	return
-

@@ -45,11 +45,11 @@
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			to_chat(user, "<font color='red'>Access denied.</font>")
+			to_chat(user, span_red("Access denied."))
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
-		src.visible_message("<font color='blue'>\icon[src][bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</font>")
+		src.visible_message(span_blue("\icon[src][bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user]."))
 
 		if(anchored)
 			spawn(0)
@@ -121,7 +121,7 @@
 	switch(action)
 		if("toggle")
 			if(!active && !anchored)
-				to_chat(usr, "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>")
+				to_chat(usr, span_red("The [src] needs to be firmly secured to the floor first."))
 				return
 			active = !active
 			. = TRUE

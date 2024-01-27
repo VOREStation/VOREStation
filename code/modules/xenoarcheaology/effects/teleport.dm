@@ -8,7 +8,7 @@
 	var/atom/holder = get_master_holder()
 	var/weakness = GetAnomalySusceptibility(user)
 	if(prob(100 * weakness))
-		to_chat(user, "<font color='red'>You are suddenly zapped away elsewhere!</font>")
+		to_chat(user, span_red("You are suddenly zapped away elsewhere!"))
 		if (user.buckled)
 			user.buckled.unbuckle_mob()
 
@@ -29,7 +29,7 @@
 		for (var/mob/living/M in range(src.effectrange,T))
 			var/weakness = GetAnomalySusceptibility(M)
 			if(prob(100 * weakness))
-				to_chat(M, "<font color='red'>You are displaced by a strange force!</font>")
+				to_chat(M, span_red("You are displaced by a strange force!"))
 				if(M.buckled)
 					M.buckled.unbuckle_mob(M)
 
@@ -49,7 +49,7 @@
 		for (var/mob/living/M in range(src.effectrange, T))
 			var/weakness = GetAnomalySusceptibility(M)
 			if(prob(100 * weakness))
-				to_chat(M, "<font color='red'>You are displaced by a strange force!</font>")
+				to_chat(M, span_red("You are displaced by a strange force!"))
 				if(M.buckled)
 					M.buckled.unbuckle_mob()
 

@@ -154,7 +154,7 @@
 	var/damage = rand(0, 9)
 	if(!damage)
 		playsound(target, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-		target.visible_message("<font color='red'><B>[user] has attempted to punch [target]!</B></font>")
+		target.visible_message(span_red("<B>[user] has attempted to punch [target]!</B>"))
 		return TRUE
 	var/obj/item/organ/external/affecting = target.get_organ(ran_zone(user.zone_sel.selecting))
 	var/armor_block = target.run_armor_check(affecting, "melee")
@@ -165,14 +165,14 @@
 
 	playsound(target, "punch", 25, 1, -1)
 
-	target.visible_message("<font color='red'><B>[user] has punched [target]!</B></font>")
+	target.visible_message(span_red("<B>[user] has punched [target]!</B>"))
 
 	if(armor_soak >= damage)
 		return TRUE
 
 	target.apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
 	if(damage >= 9)
-		target.visible_message("<font color='red'><B>[user] has weakened [target]!</B></font>")
+		target.visible_message(span_red("<B>[user] has weakened [target]!</B>"))
 		target.apply_effect(4, WEAKEN, armor_block)
 
 	return TRUE
@@ -239,7 +239,7 @@
 	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
 		var/aforce = I.force
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
-		visible_message("<font color='red'><B>[src] was hit by [I].</B></font>")
+		visible_message(span_red("<B>[src] was hit by [I].</B>"))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return

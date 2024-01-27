@@ -27,13 +27,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		to_chat(user, "<font color='red'>The shield generator needs to be firmly secured to the floor first.</font>")
+		to_chat(user, span_red("The shield generator needs to be firmly secured to the floor first."))
 		return 1
 	if(src.locked && !istype(user, /mob/living/silicon))
-		to_chat(user, "<font color='red'>The controls are locked!</font>")
+		to_chat(user, span_red("The controls are locked!"))
 		return 1
 	if(power != 1)
-		to_chat(user, "<font color='red'>The shield generator needs to be powered by wire underneath.</font>")
+		to_chat(user, span_red("The shield generator needs to be powered by wire underneath."))
 		return 1
 
 	if(src.active >= 1)
@@ -105,7 +105,7 @@
 		src.active = 2
 	if(src.active >= 1)
 		if(src.power == 0)
-			src.visible_message("<font color='red'>The [src.name] shuts down due to lack of power!</font>", \
+			src.visible_message(span_red("The [src.name] shuts down due to lack of power!"), \
 				"You hear heavy droning fade out")
 			icon_state = "Shield_Gen"
 			src.active = 0
@@ -181,11 +181,11 @@
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "<font color='red'>Access denied.</font>")
+			to_chat(user, span_red("Access denied."))
 
 	else
 		src.add_fingerprint(user)
-		visible_message("<font color='red'>The [src.name] has been hit with \the [W.name] by [user.name]!</font>")
+		visible_message(span_red("The [src.name] has been hit with \the [W.name] by [user.name]!"))
 
 /obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F

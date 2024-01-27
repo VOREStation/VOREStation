@@ -134,12 +134,12 @@
 			. += "<span class='notice'>The installed [capacitor.name] has a charge level of [round((capacitor.charge/capacitor.max_charge)*100)]%.</span>"
 
 		if(state & ICON_BAD)
-			. += "<span class='notice'>The capacitor charge indicator is blinking <font color ='[COLOR_RED]'>red</font>. Maybe you should check the cell or capacitor.</span>"
+			. += "<span class='notice'>The capacitor charge indicator is blinking [span_red("red")]. Maybe you should check the cell or capacitor.</span>"
 		else
 			if(state & ICON_CHARGE)
-				. += "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_ORANGE]'>amber</font>.</span>"
+				. += "<span class='notice'>The capacitor charge indicator is [span_orange("amber")].</span>"
 			else
-				. += "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_GREEN]'>green</font>.</span>"
+				. += "<span class='notice'>The capacitor charge indicator is [span_green("green")].</span>"
 
 /obj/item/weapon/gun/magnetic/attackby(var/obj/item/thing, var/mob/user)
 

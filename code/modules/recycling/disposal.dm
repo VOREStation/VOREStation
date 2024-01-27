@@ -100,7 +100,7 @@
 
 	if(istype(I, /obj/item/weapon/storage/bag/trash))
 		var/obj/item/weapon/storage/bag/trash/T = I
-		to_chat(user, "<font color='blue'>You empty the bag.</font>")
+		to_chat(user, span_blue("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O,src)
 		T.update_icon()
@@ -129,7 +129,7 @@
 					GM.client.eye = src
 				GM.forceMove(src)
 				for (var/mob/C in viewers(src))
-					C.show_message("<font color='red'>[GM.name] has been placed in the [src] by [user].</font>", 3)
+					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
 				qdel(G)
 
 				add_attack_logs(user,GM,"Disposals dunked")
@@ -233,7 +233,7 @@
 		return
 
 	if(user && user.loc == src)
-		to_chat(user, "<font color='red'>You cannot reach the controls from inside.</font>")
+		to_chat(user, span_red("You cannot reach the controls from inside."))
 		return
 
 	// Clumsy folks can only flush it.
@@ -1272,7 +1272,7 @@
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
-			to_chat(user, "<font color='blue'>Changed tag to '[sort_tag]'.</font>")
+			to_chat(user, span_blue("Changed tag to '[sort_tag]'."))
 			updatename()
 			updatedesc()
 
@@ -1340,7 +1340,7 @@
 		if(O.currTag)// Tag set
 			sortType = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
-			to_chat(user, "<font color='blue'>Changed filter to '[sortType]'.</font>")
+			to_chat(user, span_blue("Changed filter to '[sortType]'."))
 			updatename()
 			updatedesc()
 

@@ -200,8 +200,8 @@
 				user.drop_from_inventory(ai)
 				ai.forceMove(src)
 				ai_card = ai
-				to_chat(ai_mob, "<font color='blue'>You have been transferred to \the [holder]'s [src].</font>")
-				to_chat(user, "<font color='blue'>You load [ai_mob] into \the [holder]'s [src].</font>")
+				to_chat(ai_mob, span_blue("You have been transferred to \the [holder]'s [src]."))
+				to_chat(user, span_blue("You load [ai_mob] into \the [holder]'s [src]."))
 
 			integrated_ai = ai_mob
 

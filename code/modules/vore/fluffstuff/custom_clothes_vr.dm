@@ -547,7 +547,7 @@
 
 	//Chica Head
 /obj/item/clothing/head/helmet/fluff/freddy/chica
-	desc = "<b><font color=red>LET'S EAT!</font></b>"
+	desc = span_red("<b>LET'S EAT!</b>")
 	icon_state = "chicahead"
 	item_state = "chicahead_mob"
 
@@ -586,7 +586,7 @@
 
 	//Chica Suit
 /obj/item/clothing/suit/fluff/freddy/chica
-	desc = "<b><font color=red>LET'S EAT!</font></b>"
+	desc = span_red("<b>LET'S EAT!</b>")
 	icon_state = "chicasuit"
 	item_state = "chicasuit_mob"
 

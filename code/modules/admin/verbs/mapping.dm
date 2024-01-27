@@ -218,7 +218,7 @@ var/list/debug_verbs = list (
 	var/turf/simulated/location = get_turf(usr)
 
 	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
-		to_chat(usr, "<font color='red'>this debug tool cannot be used from space</font>")
+		to_chat(usr, span_red("this debug tool cannot be used from space"))
 		return
 
 	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
@@ -227,10 +227,10 @@ var/list/debug_verbs = list (
 
 	if(!usedZAScolors)
 		to_chat(usr, "ZAS Test Colors")
-		to_chat(usr, "Green = Zone you are standing in")
-		to_chat(usr, "Blue = Connected zone to the zone you are standing in")
-		to_chat(usr, "Yellow = A zone that is connected but not one adjacent to your connected zone")
-		to_chat(usr, "Red = Not connected")
+		to_chat(usr, "[span_green("Green")] = Zone you are standing in")
+		to_chat(usr, "[span_blue("Blue")] = Connected zone to the zone you are standing in")
+		to_chat(usr, "[span_yellow("Yellow")] = A zone that is connected but not one adjacent to your connected zone")
+		to_chat(usr, "[span_red("Red")] = Not connected")
 		usedZAScolors = 1
 
 	testZAScolors_zones += location.zone
@@ -362,7 +362,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Regroup All Airgroups Attempt"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>") //Why not.. Delete the procs instead?
+	to_chat(usr, span_red("Proc disabled.")) //Why not.. Delete the procs instead?
 
 	/*prevent_airgroup_regroup = 0
 	for(var/datum/air_group/AG in air_master.air_groups)
@@ -373,7 +373,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill pipe processing"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*pipe_processing_killed = !pipe_processing_killed
 	if(pipe_processing_killed)
@@ -385,7 +385,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill air processing"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*air_processing_killed = !air_processing_killed
 	if(air_processing_killed)
@@ -399,7 +399,7 @@ var/global/say_disabled = 0
 	set category = "Mapping"
 	set name = "Disable all communication verbs"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
@@ -414,7 +414,7 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	set category = "Mapping"
 	set name = "Disable all movement"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)

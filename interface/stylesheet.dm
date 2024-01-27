@@ -133,7 +133,6 @@ h1.alert, h2.alert		{color: #000000;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 .say_quote_italics		{font-style: italic; font-family: Georgia, Verdana, sans-serif;}
 .terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
-.interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
 .teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
@@ -148,6 +147,8 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .debug_debug					{color:#0000FF;}
 .debug_trace					{color:#888888;}
 
+.interface				{color: #330033;}
+
 .black					{color: #000000;}
 .darkgray				{color: #808080;}
 .gray					{color: #A9A9A9;}
@@ -155,6 +156,13 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .orange					{color: #FF8C00;}
 .blue					{color: #0000FF;}
 .green					{color: #00DD00;}
+.purple					{color: #800080;}
+.yellow					{color: #ffcc00;}
+.pink					{color: #ffc0cb;}
+.cyan					{color: #00ffff;}
+.maroon					{color: #800000;}
+.crimson				{color: #DC143C;}
+.brown					{color: #8D4925;}
 
 .pnarrate				{color: #009AB2;}
 

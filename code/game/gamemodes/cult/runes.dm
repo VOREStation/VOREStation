@@ -357,9 +357,9 @@ var/list/sacrificed = list()
 	else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
 		for(var/mob/observer/dead/ghost in player_list)
 			if(ghost.mind == corpse_to_raise.mind)
-				to_chat(ghost, "<b><font color = #330033><font size = 3>The cultist [usr.real_name] is trying to \
+				to_chat(ghost, span_interface("<b><font size = 3>The cultist [usr.real_name] is trying to \
 				revive you. Return to your body if you want to be resurrected into the service of Nar'Sie!</b> \
-				(Verbs -> Ghost -> Re-enter corpse)</font></font>")
+				(Verbs -> Ghost -> Re-enter corpse)</font>"))
 				break
 
 	sleep(10 SECONDS)

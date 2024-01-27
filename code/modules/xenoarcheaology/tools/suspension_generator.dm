@@ -150,10 +150,10 @@
 
 	for(var/mob/living/M in T)
 		M.Weaken(5)
-		M.visible_message("<font color='blue'>[bicon(M)] [M] begins to float in the air!</font>","You feel tingly and light, but it is difficult to move.")
+		M.visible_message(span_blue("[bicon(M)] [M] begins to float in the air!"),"You feel tingly and light, but it is difficult to move.")
 
 	suspension_field = new(T)
-	visible_message("<font color='blue'>[bicon(src)] [src] activates with a low hum.</font>")
+	visible_message(span_blue("[bicon(src)] [src] activates with a low hum."))
 	icon_state = "suspension_on"
 	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
 	update_icon()
@@ -165,7 +165,7 @@
 	if(collected)
 		suspension_field.icon_state = "energynet"
 		add_overlay("shield2")
-		visible_message("<font color='blue'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</font>")
+		visible_message(span_blue("[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
@@ -180,7 +180,7 @@
 		to_chat(M, "<span class='info'>You no longer feel like floating.</span>")
 		M.Weaken(3)
 
-	visible_message("<font color='blue'>[bicon(src)] [src] deactivates with a gentle shudder.</font>")
+	visible_message(span_blue("[bicon(src)] [src] deactivates with a gentle shudder."))
 	qdel(suspension_field)
 	suspension_field = null
 	icon_state = "suspension_wrenched"
@@ -197,7 +197,7 @@
 	set category = "Object"
 
 	if(anchored)
-		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
+		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
 		return
 	set_dir(turn(dir, 90))
 
@@ -207,7 +207,7 @@
 	set category = "Object"
 
 	if(anchored)
-		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
+		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
 		return
 	set_dir(turn(dir, 270))
 

@@ -17,17 +17,17 @@
 /obj/item/weapon/gun/launcher/confetti_cannon/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
-		. += "<font color='blue'>It's loaded with [confetti_charge] ball\s of confetti.</font>"
+		. += span_blue("It's loaded with [confetti_charge] ball\s of confetti.")
 
 /obj/item/weapon/gun/launcher/confetti_cannon/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/shreddedp))
 		if(confetti_charge < max_confetti)
 			user.drop_item()
 			++confetti_charge
-			to_chat(usr, "<font color='blue'>You put the paper in the [src].</font>")
+			to_chat(usr, span_blue("You put the paper in the [src]."))
 			qdel(I)
 		else
-			to_chat(usr, "<font color='red'>[src] cannot hold more paper.</font>")
+			to_chat(usr, span_red("[src] cannot hold more paper."))
 
 /obj/item/weapon/gun/launcher/confetti_cannon/proc/pump(mob/M as mob)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
@@ -35,11 +35,11 @@
 		if(confetti_charge)
 			chambered = new /obj/item/weapon/grenade/confetti/party_ball
 			--confetti_charge
-			to_chat(usr, "<font color='blue'>You compress a new confetti ball.</font>")
+			to_chat(usr, span_blue("You compress a new confetti ball."))
 		else
-			to_chat(usr, "<font color='red'>The [src] is out of confetti!</font>")
+			to_chat(usr, span_red("The [src] is out of confetti!"))
 	else
-		to_chat(usr, "<font color='red'>The [src] is already loaded!</font>")
+		to_chat(usr, span_red("The [src] is already loaded!"))
 
 /obj/item/weapon/gun/launcher/confetti_cannon/attack_self(mob/user)
 	pump(user)
@@ -80,24 +80,24 @@
 		switch(choice)
 			if("Confetti")
 				chambered = new /obj/item/weapon/grenade/confetti/party_ball
-				to_chat(usr, "<font color='blue'>Confetti loaded.</font>")
+				to_chat(usr, span_blue("Confetti loaded."))
 				if(istype(usr,/mob/living/silicon/robot))
 					var/mob/living/silicon/robot/R = usr
 					R.cell.charge -= 200
 			if("Banana Peel")
 				chambered = new /obj/item/weapon/bananapeel
-				to_chat(usr, "<font color='blue'>Banana peel loaded.</font>")
+				to_chat(usr, span_blue("Banana peel loaded."))
 				if(istype(usr,/mob/living/silicon/robot))
 					var/mob/living/silicon/robot/R = usr
 					R.cell.charge -= 200
 			if("Cream Pie")
 				chambered = new /obj/item/weapon/reagent_containers/food/snacks/pie
-				to_chat(usr, "<font color='blue'>Banana cream pie loaded.</font>")
+				to_chat(usr, span_blue("Banana cream pie loaded."))
 				if(istype(usr,/mob/living/silicon/robot))
 					var/mob/living/silicon/robot/R = usr
 					R.cell.charge -= 200
 	else
-		to_chat(usr, "<font color='red'>The [src] is already loaded!</font>")
+		to_chat(usr, span_red("The [src] is already loaded!"))
 
 /obj/item/weapon/gun/launcher/confetti_cannon/robot/consume_next_projectile()
 	if(istype(chambered,/obj/item/weapon/grenade/confetti/party_ball))

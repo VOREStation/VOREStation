@@ -32,9 +32,9 @@
 			var/mob/living/carbon/human/H = user
 			if(prob(50))
 				if(prob(75))
-					to_chat(H, "<b><font color='blue' size='[num2text(rand(1,5))]'>[pick(drastic_messages)]</b></font>")
+					to_chat(H, span_blue("<b><font size='[num2text(rand(1,5))]'>[pick(drastic_messages)]</b></font>"))
 				else
-					to_chat(H, "<font color='blue'>[pick(messages)]</font>")
+					to_chat(H, span_blue("[pick(messages)]"))
 
 			if(prob(50))
 				H.dizziness += rand(3,5)
@@ -46,9 +46,9 @@
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
 			if(prob(5))
 				if(prob(75))
-					to_chat(H, "<font color='blue'>[pick(messages)]</font>")
+					to_chat(H, span_blue("[pick(messages)]"))
 				else
-					to_chat(H, "<font color='blue' size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>")
+					to_chat(H, span_blue("<font size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>"))
 
 			if(prob(5))
 				H.dizziness += rand(3,5)
@@ -61,9 +61,9 @@
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
 			if(prob(50))
 				if(prob(95))
-					to_chat(H, "<font color='blue' size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>")
+					to_chat(H, span_blue("<font size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>"))
 				else
-					to_chat(H, "<font color='blue'>[pick(messages)]</font>")
+					to_chat(H, span_blue("[pick(messages)]"))
 
 			if(prob(50))
 				H.dizziness += rand(3,5)

@@ -1,7 +1,7 @@
 /obj/item/stack/animalhide
 	name = "hide"
 	desc = "The hide of some creature."
-	description_info = "Use something <b><font color='red'>sharp</font></b>, like a knife, to scrape the hairs/feathers/etc off this hide to prepare it for tanning."
+	description_info = "Use something <b><span class='red'>sharp</span></b>, like a knife, to scrape the hairs/feathers/etc off this hide to prepare it for tanning."
 	icon_state = "sheet-hide"
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
@@ -27,7 +27,7 @@
 				if(HS.get_amount() < HS.max_amount)
 					H = HS
 					break
-			
+
 			 // Either we found a valid stack, in which case increment amount,
 			 // Or we need to make a new stack
 			if(istype(H))
@@ -38,7 +38,7 @@
 			// Increment the amount
 			src.use(1)
 			scraped++
-		
+
 		if(scraped)
 			to_chat(user, SPAN_NOTICE("You scrape the hair off [scraped] hide\s."))
 	else
