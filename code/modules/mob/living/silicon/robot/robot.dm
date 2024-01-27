@@ -1416,8 +1416,8 @@
 	return cell
 
 /mob/living/silicon/robot/lay_down()
-	 . = ..()
-	 update_icon()
+	. = ..()
+	update_icon()
 
 /mob/living/silicon/robot/verb/rest_style()
 	set name = "Switch Rest Style"
@@ -1437,3 +1437,75 @@
 	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
 	if(!rest_style)
 		rest_style = "Default"
+
+// Those basic ones require quite detailled checks on the robot's vars to see if they are installed!
+/mob/living/silicon/robot/proc/has_basic_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/basic/vtec)
+		return (/mob/living/silicon/robot/proc/toggle_vtec in verbs)
+	else if(given_type == /obj/item/borg/upgrade/basic/sizeshift)
+		return (/mob/living/proc/set_size in verbs)
+	else if(given_type == /obj/item/borg/upgrade/basic/syndicate)
+		return emag_items
+	else if(given_type == /obj/item/borg/upgrade/basic/language)
+		return (speech_synthesizer_langs.len > 20) // Service with the most has 18
+	return null
+
+// We check for the module only here
+/mob/living/silicon/robot/proc/has_upgrade_module(var/given_type)
+	var/obj/T = locate(given_type) in module
+	if(!T)
+		T = locate(given_type) in module.contents
+	if(!T)
+		T = locate(given_type) in module.modules
+	return T
+
+// Most of the advanced ones, we can easily check, but a few special cases exist and need to be handled specially
+/mob/living/silicon/robot/proc/has_advanced_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/advanced/bellysizeupgrade)
+		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
+		if(T && T.upgraded_capacity)
+			return T
+		else
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+	if(given_type == /obj/item/borg/upgrade/advanced/jetpack)
+		return has_upgrade_module(/obj/item/weapon/tank/jetpack/carbondioxide)
+	if(given_type == /obj/item/borg/upgrade/advanced/advhealth)
+		return has_upgrade_module(/obj/item/device/healthanalyzer/advanced)
+	if(given_type == /obj/item/borg/upgrade/advanced/sizegun)
+		return has_upgrade_module(/obj/item/weapon/gun/energy/sizegun/mounted)
+	return null
+
+// Do we support specific upgrades?
+/mob/living/silicon/robot/proc/supports_upgrade(var/given_type)
+	return (given_type in module.supported_upgrades)
+
+// Most of the restricted ones, we can easily check, but a few special cases exist and need to be handled specially
+/mob/living/silicon/robot/proc/has_restricted_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/restricted/bellycapupgrade)
+		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
+		if(T && T.compactor)
+			return T
+		else
+			return ""
+	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
+		var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = has_upgrade_module(/obj/item/weapon/gun/energy/taser/mounted/cyborg)
+		if(T && T.recharge_time <= 2)
+			return T
+		else
+			return ""
+	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
+		return has_upgrade_module(/obj/item/weapon/storage/part_replacer/adv)
+	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
+		return has_upgrade_module(/obj/item/weapon/pickaxe/diamonddrill)
+	if(given_type == /obj/item/borg/upgrade/restricted/pka)
+		return has_upgrade_module(/obj/item/weapon/gun/energy/kinetic_accelerator/cyborg)
+	return null
+
+// Check if we have any non production upgrades
+/mob/living/silicon/robot/proc/has_no_prod_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/no_prod/toygun)
+		return has_upgrade_module(/obj/item/weapon/gun/projectile/cyborgtoy)
+	return null
+
+/mob/living/silicon/robot/proc/has_upgrade(var/given_type)
+	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))

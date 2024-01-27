@@ -385,68 +385,140 @@
 	time = 12
 	materials = list(MAT_STEEL = 7500)
 
-/datum/design/item/prosfab/robot_upgrade/rename
+// Section for utility upgrades
+
+/datum/design/item/prosfab/robot_upgrade/utility/rename
 	name = "Rename Module"
 	desc = "Used to rename a cyborg."
 	id = "borg_rename_module"
-	build_path = /obj/item/borg/upgrade/rename
+	build_path = /obj/item/borg/upgrade/utility/rename
 
-/datum/design/item/prosfab/robot_upgrade/reset
+/datum/design/item/prosfab/robot_upgrade/utility/reset
 	name = "Reset Module"
 	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
 	id = "borg_reset_module"
-	build_path = /obj/item/borg/upgrade/reset
+	build_path = /obj/item/borg/upgrade/utility/reset
 
-/datum/design/item/prosfab/robot_upgrade/restart
+/datum/design/item/prosfab/robot_upgrade/utility/restart
 	name = "Emergency Restart Module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	id = "borg_restart_module"
 	materials = list(MAT_STEEL = 45000, MAT_GLASS = 3750)
-	build_path = /obj/item/borg/upgrade/restart
+	build_path = /obj/item/borg/upgrade/utility/restart
 
-/datum/design/item/prosfab/robot_upgrade/vtec
+// Section for basic upgrades for all cyborgs
+
+/datum/design/item/prosfab/robot_upgrade/basic/sizeshift
+	name = "Size Alteration Module"
+	id = "borg_sizeshift_module"
+	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	build_path = /obj/item/borg/upgrade/basic/sizeshift
+
+/datum/design/item/prosfab/robot_upgrade/basic/vtec
 	name = "VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	id = "borg_vtec_module"
 	materials = list(MAT_STEEL = 60000, MAT_GLASS = 4500, MAT_GOLD = 3750)
-	build_path = /obj/item/borg/upgrade/vtec
+	build_path = /obj/item/borg/upgrade/basic/vtec
 
-/datum/design/item/prosfab/robot_upgrade/tasercooler
-	name = "Rapid Taser Cooling Module"
-	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
-	id = "borg_taser_module"
-	materials = list(MAT_STEEL = 60000, MAT_GLASS = 4500, MAT_GOLD = 1500, MAT_DIAMOND = 375)
-	build_path = /obj/item/borg/upgrade/tasercooler
-
-/datum/design/item/prosfab/robot_upgrade/jetpack
-	name = "Jetpack Module"
-	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
-	id = "borg_jetpack_module"
-	materials = list(MAT_STEEL = 7500, MAT_PHORON = 11250, MAT_URANIUM = 15000)
-	build_path = /obj/item/borg/upgrade/jetpack
-
-/datum/design/item/prosfab/robot_upgrade/advhealth
-	name = "Advanced Health Analyzer Module"
-	desc = "An advanced health analyzer suitable for diagnosing more serious injuries."
-	id = "borg_advhealth_module"
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6500, MAT_DIAMOND = 350)
-	build_path = /obj/item/borg/upgrade/advhealth
-
-/datum/design/item/prosfab/robot_upgrade/syndicate
+/datum/design/item/prosfab/robot_upgrade/basic/syndicate
 	name = "Scrambled Equipment Module"
 	desc = "Allows for the construction of lethal upgrades for cyborgs."
 	id = "borg_syndicate_module"
 	req_tech = list(TECH_COMBAT = 4, TECH_ILLEGAL = 3)
 	materials = list(MAT_STEEL = 7500, MAT_GLASS = 11250, MAT_DIAMOND = 7500)
-	build_path = /obj/item/borg/upgrade/syndicate
+	build_path = /obj/item/borg/upgrade/basic/syndicate
 
-/datum/design/item/prosfab/robot_upgrade/language
+/datum/design/item/prosfab/robot_upgrade/basic/language
 	name = "Language Module"
 	desc = "Used to let cyborgs other than clerical or service speak a variety of languages."
 	id = "borg_language_module"
 	req_tech = list(TECH_DATA = 6, TECH_MATERIAL = 6)
 	materials = list(MAT_STEEL = 25000, MAT_GLASS = 3000, MAT_GOLD = 350)
-	build_path = /obj/item/borg/upgrade/language
+	build_path = /obj/item/borg/upgrade/basic/language
+
+// Section for advanced upgrades for all cyborgs
+
+/datum/design/item/prosfab/robot_upgrade/advanced/bellysizeupgrade
+	name = "Robohound Capacity Expansion Module"
+	id = "borg_hound_capacity_module"
+	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	build_path = /obj/item/borg/upgrade/advanced/bellysizeupgrade
+
+/datum/design/item/prosfab/robot_upgrade/advanced/sizegun
+	name = "Size Gun Module"
+	id = "borg_sizegun_module"
+	req_tech = list(TECH_COMBAT = 3, TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000)
+	build_path = /obj/item/borg/upgrade/advanced/sizegun
+
+/datum/design/item/prosfab/robot_upgrade/advanced/jetpack
+	name = "Jetpack Module"
+	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
+	id = "borg_jetpack_module"
+	materials = list(MAT_STEEL = 7500, MAT_PHORON = 11250, MAT_URANIUM = 15000)
+	build_path = /obj/item/borg/upgrade/advanced/jetpack
+
+/datum/design/item/prosfab/robot_upgrade/advanced/advhealth
+	name = "Advanced Health Analyzer Module"
+	desc = "An advanced health analyzer suitable for diagnosing more serious injuries."
+	id = "borg_advhealth_module"
+	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6500, MAT_DIAMOND = 350)
+	build_path = /obj/item/borg/upgrade/advanced/advhealth
+
+/*
+	Some job related borg upgrade modules, adding useful items for puppers.
+*/
+
+/datum/design/item/prosfab/robot_upgrade/restricted/bellycapupgrade
+	name = "Robohound Capability Expansion Module"
+	id = "borg_hound_capability_module"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 6000)
+	build_path = /obj/item/borg/upgrade/restricted/bellycapupgrade
+
+/datum/design/item/prosfab/robot_upgrade/restricted/advrped
+	name = "Advanced Rapid Part Exchange Device"
+	desc = "Exactly the same as a standard Advanced RPED, but this one has mounting hardware for a Science Borg."
+	id = "borg_advrped_module"
+	req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 6)
+	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000)
+	build_path = /obj/item/borg/upgrade/restricted/advrped
+
+/datum/design/item/prosfab/robot_upgrade/restricted/diamonddrill
+	name = "Diamond Drill"
+	desc = "A mining drill with a diamond tip, made for use by Mining Borgs."
+	id = "borg_ddrill_module"
+	req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 5, TECH_ENGINEERING = 5)
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/borg/upgrade/restricted/diamonddrill
+
+/datum/design/item/prosfab/robot_upgrade/restricted/pka
+	name = "Proto-Kinetic Accelerator"
+	desc = "A mining weapon designed for clearing rocks and hostile wildlife. This model is equiped with a self upgrade system, allowing it to attach modules hands free."
+	id = "borg_pka_module"
+	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
+	materials = list(MAT_PLASTEEL = 5000, MAT_GLASS = 1000, MAT_URANIUM = 500, MAT_PLATINUM = 350)
+	build_path = /obj/item/borg/upgrade/restricted/pka
+
+/datum/design/item/prosfab/robot_upgrade/restricted/tasercooler
+	name = "Rapid Taser Cooling Module"
+	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
+	id = "borg_taser_module"
+	materials = list(MAT_STEEL = 60000, MAT_GLASS = 4500, MAT_GOLD = 1500, MAT_DIAMOND = 375)
+	build_path = /obj/item/borg/upgrade/restricted/tasercooler
+
+// Section for quick access for admins, events and such, but can't be produced.
+
+/datum/design/item/prosfab/robot_upgrade/no_prod/cyborgtoy
+	category = list()		// We simply do not sort them in
+
+/datum/design/item/prosfab/robot_upgrade/no_prod/cyborgtoy
+	name = "Donk-Soft Cyborg Blaster"
+	id = "borg_hound_cyborg_blaster"
+	build_path = /obj/item/borg/upgrade/no_prod/toygun
 
 // Synthmorph Bags.
 
@@ -546,3 +618,46 @@
 	time = 30
 	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000)
 	//req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
+
+///// pAI parts!!!
+
+//////////////////// Cyborg Parts ////////////////////
+/datum/design/item/prosfab/paiparts
+	category = list("pAI Parts")
+	time = 20
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
+
+/datum/design/item/prosfab/paiparts/cell
+	name = "pAI Cell"
+	id = "pai_cell"
+	build_path = /obj/item/paiparts/cell
+
+/datum/design/item/prosfab/paiparts/processor
+	name = "pAI Processor"
+	id = "pai_processor"
+	build_path = /obj/item/paiparts/processor
+
+/datum/design/item/prosfab/paiparts/board
+	name = "pAI Board"
+	id = "pai_board"
+	build_path = /obj/item/paiparts/board
+
+/datum/design/item/prosfab/paiparts/capacitor
+	name = "pAI capacitor"
+	id = "pai_capacitor"
+	build_path = /obj/item/paiparts/capacitor
+
+/datum/design/item/prosfab/paiparts/projector
+	name = "pAI Projector"
+	id = "pai_projector"
+	build_path = /obj/item/paiparts/projector
+
+/datum/design/item/prosfab/paiparts/emitter
+	name = "pAI Emitter"
+	id = "pai_emitter"
+	build_path = /obj/item/paiparts/emitter
+
+/datum/design/item/prosfab/paiparts/speech_synthesizer
+	name = "pAI Speech Synthesizer"
+	id = "pai_speech_synthesizer"
+	build_path = /obj/item/paiparts/speech_synthesizer
