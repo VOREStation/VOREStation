@@ -70,7 +70,7 @@
 					else if (cell_charge > 1)
 						cell_text = span_red("[cell_charge]")
 					else
-						cell_text = span_red("<b>[cell_charge]<b>")
+						cell_text = span_red("<b>[cell_charge]</b>")
 					user.show_message("\t Power Cell Status: [span_blue("[capitalize(cell.name)]")] at [cell_text]% charge")
 				var/list/damaged = H.get_damaged_components(1,1,1)
 				user.show_message(span_blue("Localized Damage:"),1)
