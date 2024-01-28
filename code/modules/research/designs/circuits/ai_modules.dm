@@ -180,65 +180,58 @@
 	build_path = /obj/item/weapon/aiModule/corp
 	sort_string = "XADAB"
 
-/datum/design/aimodule/illegal/drone
-	name = "Drone"
-	id = "drone"
-	req_tech = list(TECH_DATA = 3, TECH_ILLEGAL = 3, TECH_COMBAT = 2)
-	build_path = /obj/item/weapon/aiModule/drone
-	sort_string = "XADAC"
-
 /datum/design/aimodule/illegal/robocop
 	name = "Robocop"
 	id = "robocop"
 	req_tech = list(TECH_DATA = 2, TECH_ILLEGAL = 2, TECH_MATERIAL = 2, TECH_COMBAT = 4)
 	build_path = /obj/item/weapon/aiModule/robocop
-	sort_string = "XADAD"
+	sort_string = "XADAC"
 
 /datum/design/aimodule/illegal/antimov
 	name = "Antimov"
 	id = "antimov"
 	req_tech = list(TECH_DATA = 6, TECH_ILLEGAL = 7, TECH_MATERIAL = 7, TECH_COMBAT = 5)
 	build_path = /obj/item/weapon/aiModule/antimov
-	sort_string = "XADAE"
+	sort_string = "XADAD"
 
 /datum/design/aimodule/illegal/nanotrasen_aggressive
 	name = "NT Aggressive"
 	id = "nanotrasen_aggressive"
 	req_tech = list(TECH_DATA = 5, TECH_ILLEGAL = 6, TECH_MATERIAL = 3, TECH_COMBAT = 7)
 	build_path = /obj/item/weapon/aiModule/nanotrasen_aggressive
-	sort_string = "XADAF"
+	sort_string = "XADAE"
 
 /datum/design/aimodule/illegal/maintenance
 	name = "Maintenance"
 	id = "maintenance"
 	req_tech = list(TECH_DATA = 3, TECH_ILLEGAL = 2, TECH_MATERIAL = 3, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/aiModule/maintenance
-	sort_string = "XADAG"
+	sort_string = "XADAF"
 
 /datum/design/aimodule/illegal/peacekeeper
 	name = "Peacekeeper"
 	id = "peacekeeper"
 	req_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 3, TECH_MATERIAL = 2, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/aiModule/peacekeeper
-	sort_string = "XADAH"
+	sort_string = "XADAG"
 
 /datum/design/aimodule/illegal/reporter
 	name = "Reporter"
 	id = "reporter"
 	req_tech = list(TECH_DATA = 2, TECH_ILLEGAL = 2, TECH_MATERIAL = 3)
 	build_path = /obj/item/weapon/aiModule/reporter
-	sort_string = "XADAI"
+	sort_string = "XADAH"
 
 /datum/design/aimodule/illegal/live_and_let_live
 	name = "Live and Let Live"
 	id = "live_and_let_live"
 	req_tech = list(TECH_DATA = 5, TECH_ILLEGAL = 3, TECH_MATERIAL = 4, TECH_COMBAT = 3)
 	build_path = /obj/item/weapon/aiModule/live_and_let_live
-	sort_string = "XADAJ"
+	sort_string = "XADAI"
 
 /datum/design/aimodule/illegal/balance
 	name = "Guardian of Balance."
 	id = "balance"
 	req_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 2, TECH_MATERIAL = 2, TECH_COMBAT = 3)
 	build_path = /obj/item/weapon/aiModule/balance
-	sort_string = "XADAK"
+	sort_string = "XADAJ"
