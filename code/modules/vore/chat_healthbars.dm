@@ -87,9 +87,9 @@
 	else if(ourpercent > 0)
 		ourbar = span_red("[ourbar] - [ourbelly.digest_mode]ing")
 	else
-		ourbar = "<span class = 'vdanger'>[ourbar] - [ourbelly.digest_mode]ing</span>"
+		ourbar = "<span class='vdanger'>[ourbar] - [ourbelly.digest_mode]ing</span>"
 
-	to_chat(reciever,ourbar)
+	to_chat(reciever,"<span class='vnotice'>[ourbar]</span>")
 
 /mob/living/verb/print_healthbars()
 	set name = "Print Prey Healthbars"
