@@ -693,6 +693,7 @@
 				stat("Keys Held", keys2text(client.move_keys_held | client.mod_keys_held))
 				stat("Next Move ADD", dirs2text(client.next_move_dir_add))
 				stat("Next Move SUB", dirs2text(client.next_move_dir_sub))
+				stat("Current size:", size_multiplier * 100)
 
 			if(statpanel("MC"))
 				stat("Location:", "([x], [y], [z]) [loc]")

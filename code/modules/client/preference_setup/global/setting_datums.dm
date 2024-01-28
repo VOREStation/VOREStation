@@ -330,6 +330,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "On"
 	disabled_description = "Off"
 
+/datum/client_preference/vore_health_bars
+	description = "Vore Health Bars"
+	key = "VORE_HEALTH_BARS"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+
 /datum/client_preference/runechat_mob
 	description = "Runechat (Mobs)"
 	key = "RUNECHAT_MOB"
