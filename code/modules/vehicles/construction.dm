@@ -203,7 +203,7 @@
 /obj/item/weapon/vehicle_assembly/spacebike/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	switch(build_stage)
 		if(0)
-			if(istype(W, /obj/item/weapon/tank/jetpack) || istype(W, /obj/item/borg/upgrade/jetpack))
+			if(istype(W, /obj/item/weapon/tank/jetpack) || istype(W, /obj/item/borg/upgrade/advanced/jetpack))
 				user.drop_item()
 				qdel(W)
 				increase_step()

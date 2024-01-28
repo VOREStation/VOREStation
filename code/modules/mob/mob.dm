@@ -70,8 +70,10 @@
 		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
 		if(client && client.prefs.chat_timestamp)
-			msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2")
-			to_chat(src,msg)
+			// TG-Chat filters latch directly to the spans, we no longer need that
+			//msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") // Insteres timestamps after the first qualifying span
+			//msg = replacetext(msg, new/regex("^\[^<]((?:.|\\n)*)", ""), "[time] $1") // Spanless messages also get timestamped
+			to_chat(src,"[time] [msg]")
 		else if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
 		else
