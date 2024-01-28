@@ -326,7 +326,8 @@ var/list/name_to_material
 
 // Debris product. Used ALL THE TIME.
 /datum/material/proc/place_sheet(var/turf/target, amount)
-	if(stack_type)
+	amount = round(amount)
+	if(stack_type && amount > 0)
 		return new stack_type(target, amount)
 
 // As above.
