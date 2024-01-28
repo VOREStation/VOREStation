@@ -58,16 +58,16 @@ export const MESSAGE_TYPES = [
   },
   // Basic types
   {
+    type: MESSAGE_TYPE_NPCEMOTE, // Needs to be first
+    name: 'NPC Emotes / Says',
+    description: 'In-character emotes and says from NPCs',
+    selector: '.npcemote, .npcsay',
+  },
+  {
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
     selector: '.say, .emote, .emotesubtle',
-  },
-  {
-    type: MESSAGE_TYPE_NPCEMOTE,
-    name: 'NPC Emotes / Says',
-    description: 'In-character emotes and says from NPCs',
-    selector: '.npcemote, .npcsay',
   },
   {
     type: MESSAGE_TYPE_PLOCALCHAT,
