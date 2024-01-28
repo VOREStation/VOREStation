@@ -53,18 +53,18 @@
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
-		to_chat(user, "<font color='red'>System locked. Please try again later.</font>")
+		to_chat(user, span_red("System locked. Please try again later."))
 		return
 
 	if(busy)
-		to_chat(user, "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>")
+		to_chat(user, span_red("System is busy. Please wait until current operation is finished before changing power settings."))
 		return
 
 	busy = 1
-	to_chat(user, "<font color='green'>Updating power settings...</font>")
+	to_chat(user, span_green("Updating power settings..."))
 	if(do_after(user, 50))
 		set_state(!on)
-		to_chat(user, "<font color='green'>Update Completed. New setting:[on ? "on": "off"]</font>")
+		to_chat(user, span_green("Update Completed. New setting:[on ? "on": "off"]"))
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -73,16 +73,16 @@
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 	if(update_locked)
-		to_chat(user, "<font color='red'>System locked. Please try again later.</font>")
+		to_chat(user, span_red("System locked. Please try again later."))
 		return
 
 	if(busy)
-		to_chat(user, "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>")
+		to_chat(user, span_red("System is busy. Please wait until current operation is finished before changing power settings."))
 		return
 
 	busy = 1
 	for(var/mob/O in viewers(user))
-		O.show_message(text("<font color='red'>[user] started reprogramming [src]!</font>"), 1)
+		O.show_message(span_red(text("[user] started reprogramming [src]!")), 1)
 
 	if(do_after(user, 50))
 		set_state(!on)
@@ -102,7 +102,7 @@
 			RCon_tag = newtag
 			to_chat(user, "<span class='notice'>You changed the RCON tag to: [newtag]</span>")
 	if(on)
-		to_chat(user, "<font color='red'>Disable the breaker before performing maintenance.</font>")
+		to_chat(user, span_red("Disable the breaker before performing maintenance."))
 		return
 	if(default_deconstruction_screwdriver(user, W))
 		return

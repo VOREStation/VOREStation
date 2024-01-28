@@ -111,16 +111,16 @@
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!istype(I, container_type))
-			to_chat(user, "<font color='blue'>[I] doesn't seem to fit into [src].</font>")
+			to_chat(user, span_blue("[I] doesn't seem to fit into [src]."))
 			return
 		if(beakers.len >= max_beakers)
-			to_chat(user, "<font color='blue'>[src] already has [max_beakers] beakers in it - another one isn't going to fit!</font>")
+			to_chat(user, span_blue("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		B.loc = src
 		beakers += B
-		to_chat(user, "<font color='blue'>You slot [B] into [src].</font>")
+		to_chat(user, span_blue("You slot [B] into [src]."))
 		src.updateUsrDialog()
 		return 1
 	..()

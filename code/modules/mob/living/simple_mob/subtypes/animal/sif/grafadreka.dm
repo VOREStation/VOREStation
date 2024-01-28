@@ -121,7 +121,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	desc = "A large, sleek snow drake with heavy claws, powerful jaws and many pale spines along its body."
 	player_msg = "You are a large Sivian pack predator in symbiosis with the local bioluminescent bacteria. You can eat glowing \
 	tree fruit to fuel your <b>ranged spitting attack</b> and <b>poisonous bite</b> (on <span class = 'danger'>harm intent</span>), as well as <b>healing saliva</b> \
-	(on <b><font color = '#009900'>help intent</font></b>).<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
+	(on <b><span class='green'>help intent</span></b>).<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
 	is up to you."
 	color = "#608894"
 	icon = 'icons/mob/drake_adult.dmi'

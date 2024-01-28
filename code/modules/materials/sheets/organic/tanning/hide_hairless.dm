@@ -3,7 +3,7 @@
 /obj/item/stack/hairlesshide
 	name = "hairless hide"
 	desc = "This hide was stripped of it's hair, but still needs tanning."
-	description_info = "Get it <b><font color='blue'>wet</font></b> to continue tanning this into leather.<br>\
+	description_info = "Get it <b><span class='blue'>wet</span></b> to continue tanning this into leather.<br>\
 					You could set it in a river, wash it with a sink, or just splash water on it with a bucket."
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
@@ -24,7 +24,7 @@
 			if(HS.get_amount() < HS.max_amount)
 				H = HS
 				break
-			
+
 		 // Either we found a valid stack, in which case increment amount,
 		 // Or we need to make a new stack
 		if(istype(H))

@@ -777,7 +777,7 @@ var/global/list/light_type_cache = list()
 		if(H.species.can_shred(H))
 			user.setClickCooldown(user.get_attack_speed())
 			for(var/mob/M in viewers(src))
-				M.show_message("<font color='red'>[user.name] smashed the light!</font>", 3, "You hear a tinkle of breaking glass", 2)
+				M.show_message(span_red("[user.name] smashed the light!"), 3, "You hear a tinkle of breaking glass", 2)
 			broken()
 			return
 
@@ -1165,7 +1165,7 @@ var/global/list/light_type_cache = list()
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("<font color='red'>[name] shatters.</font>","<font color='red'> You hear a small glass object shatter.</font>")
+		src.visible_message(span_red("[name] shatters."),span_red("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = TRUE

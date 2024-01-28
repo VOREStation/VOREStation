@@ -26,11 +26,11 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	my_controller = get_controller(get_area(src))
 	my_device = locate(my_device_type) in get_turf(src)
 	if(!my_device)
-		to_world("<b><font color='red'>WARNING:</font><font color='black'>Airlock helper '[name]' couldn't find what it wanted at: X:[x] Y:[y] Z:[z]</font></b>")
+		to_world("<b>[span_red("WARNING:")][span_black("Airlock helper '[name]' couldn't find what it wanted at: X:[x] Y:[y] Z:[z]")]</b>")
 	else if(!my_controller)
-		to_world("<b><font color='red'>WARNING:</font><font color='black'>Airlock helper '[name]' couldn't find a controller at: X:[x] Y:[y] Z:[z]</font></b>")
+		to_world("<b>[span_red("WARNING:")][span_black("Airlock helper '[name]' couldn't find a controller at: X:[x] Y:[y] Z:[z]")]</b>")
 	else if(!my_controller.id_tag)
-		to_world("<b><font color='red'>WARNING:</font><font color='black'>Airlock helper '[name]' found a controller without an 'id_tag' set: X:[x] Y:[y] Z:[z]</font></b>")
+		to_world("<b>[span_red("WARNING:")][span_black("Airlock helper '[name]' found a controller without an 'id_tag' set: X:[x] Y:[y] Z:[z]")]</b>")
 	else
 		setup()
 	return INITIALIZE_HINT_QDEL
@@ -48,15 +48,15 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	for(var/obj/O in A)
 		if(istype(O, my_controller_type))
 			potentials += O
-	
+
 	//Couldn't find one
 	if(!potentials.len)
 		return null
-	
+
 	//Only found one
 	if(potentials.len == 1)
 		return potentials[1]
-	
+
 	//Gotta find closest
 	var/closest = potentials[potentials.len]
 	var/closest_dist = get_dist(src, closest)

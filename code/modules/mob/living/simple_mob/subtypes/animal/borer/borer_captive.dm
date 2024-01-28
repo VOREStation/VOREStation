@@ -9,7 +9,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<font color='red'>You cannot speak in IC (muted).</font>")
+			to_chat(src, span_red("You cannot speak in IC (muted)."))
 			return
 
 	if(istype(src.loc, /mob/living/simple_mob/animal/borer))

@@ -27,7 +27,7 @@ var/list/dreams = list(
 
 	spawn(0)
 		for(var/i = rand(1,4),i > 0, i--)
-			to_chat(src, "<font color='blue'><i>... [pick(dreams)] ...</i></font>")
+			to_chat(src, span_blue("<i>... [pick(dreams)] ...</i>"))
 			sleep(rand(40,70))
 			if(paralysis <= 0)
 				dreaming = 0

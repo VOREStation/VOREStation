@@ -195,7 +195,7 @@
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
-		chassis.occupant_message("You select [chassis.selected]") 
+		chassis.occupant_message("You select [chassis.selected]")
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"
 		button.UpdateIcon()
@@ -277,10 +277,10 @@
 	defence_mode = !defence_mode
 	if(defence_mode)
 		deflect_chance = defence_deflect
-		src.occupant_message("<font color='blue'>You enable [src] defence mode.</font>")
+		src.occupant_message(span_blue("You enable [src] defence mode."))
 	else
 		deflect_chance = initial(deflect_chance)
-		src.occupant_message("<font color='red'>You disable [src] defence mode.</font>")
+		src.occupant_message(span_red("You disable [src] defence mode."))
 	src.log_message("Toggled defence mode.")
 	return
 
@@ -299,17 +299,17 @@
 	if(usr!=src.occupant)
 		return
 	if(health < initial(health) - initial(health)/3)//Same formula as in movement, just beforehand.
-		src.occupant_message("<font color='red'>Leg actuators damage critical, unable to engage overload.</font>")
+		src.occupant_message(span_red("Leg actuators damage critical, unable to engage overload."))
 		overload = 0	//Just to be sure
 		return
 	if(overload)
 		overload = 0
 		step_energy_drain = initial(step_energy_drain)
-		src.occupant_message("<font color='blue'>You disable leg actuators overload.</font>")
+		src.occupant_message(span_blue("You disable leg actuators overload."))
 	else
 		overload = 1
 		step_energy_drain = step_energy_drain*overload_coeff
-		src.occupant_message("<font color='red'>You enable leg actuators overload.</font>")
+		src.occupant_message(span_red("You enable leg actuators overload."))
 	src.log_message("Toggled leg actuators overload.")
 	playsound(src, 'sound/mecha/mechanical_toggle.ogg', 50, 1)
 	return
@@ -327,12 +327,12 @@
 		return
 
 	if(smoke_reserve < 1)
-		src.occupant_message("<font color='red'>You don't have any smoke left in stock!</font>")
+		src.occupant_message(span_red("You don't have any smoke left in stock!"))
 		return
 
 	if(smoke_ready)
 		smoke_reserve--	//Remove ammo
-		src.occupant_message("<font color='red'>Smoke fired. [smoke_reserve] usages left.</font>")
+		src.occupant_message(span_red("Smoke fired. [smoke_reserve] usages left."))
 
 		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 		smoke.attach(src)
@@ -360,7 +360,10 @@
 	if(src.occupant.client)
 		src.zoom = !src.zoom
 		src.log_message("Toggled zoom mode.")
-		src.occupant_message("<font color='[src.zoom?"blue":"red"]'>Zoom mode [zoom?"en":"dis"]abled.</font>")
+		if(src.zoom)
+			src.occupant_message(span_blue("Zoom mode enabled."))
+		else
+			src.occupant_message(span_red("Zoom mode disabled."))
 		if(zoom)
 			src.occupant.set_viewsize(12)
 			src.occupant << sound('sound/mecha/imag_enh.ogg',volume=50)
@@ -384,7 +387,10 @@
 		if(get_charge() > 0)
 			thrusters = !thrusters
 			src.log_message("Toggled thrusters.")
-			src.occupant_message("<font color='[src.thrusters?"blue":"red"]'>Thrusters [thrusters?"en":"dis"]abled.</font>")
+			if(src.thrusters)
+				src.occupant_message(span_blue("Thrusters enabled."))
+			else
+				src.occupant_message(span_red("Thrusters disabled."))
 	return
 
 
@@ -427,7 +433,10 @@
 		return
 	phasing = !phasing
 	send_byjax(src.occupant,"exosuit.browser","phasing_command","[phasing?"Dis":"En"]able phasing")
-	src.occupant_message("<font color=\"[phasing?"#00f\">En":"#f00\">Dis"]abled phasing.</font>")
+	if(phasing)
+		src.occupant_message(span_blue("Enabled phasing."))
+	else
+		src.occupant_message(span_red("Disabled phasing."))
 	return
 
 
@@ -447,7 +456,10 @@
 	else
 		cloak()
 
-	src.occupant_message("<font color=\"[cloaked?"#00f\">En":"#f00\">Dis"]abled cloaking.</font>")
+	if(cloaked)
+		src.occupant_message(span_blue("Enabled cloaking."))
+	else
+		src.occupant_message(span_red("Disabled cloaking."))
 	return
 
 /obj/mecha/verb/toggle_weapons_only_cycle()
@@ -461,5 +473,8 @@
 	if(usr!=src.occupant)
 		return
 	weapons_only_cycle = !weapons_only_cycle
-	src.occupant_message("<font color=\"[weapons_only_cycle?"#00f\">En":"#f00\">Dis"]abled weapons only cycling.</font>")
+	if(weapons_only_cycle)
+		src.occupant_message(span_blue("Enabled weapons only cycling."))
+	else
+		src.occupant_message(span_red("Disabled weapons only cycling."))
 	return

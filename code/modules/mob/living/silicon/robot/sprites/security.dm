@@ -182,10 +182,21 @@
 	module_type = "Security"
 	sprite_icon = 'icons/mob/robot/security_large.dmi'
 
+	var/has_laser_sprite = FALSE
+	var/has_taser_sprite = FALSE
+
+/datum/robot_sprite/dogborg/tall/security/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/weapon/gun/energy/laser/mounted))
+		ourborg.add_overlay("[sprite_icon_state]-laser")
+	if(has_taser_sprite && istype(ourborg.module_active, /obj/item/weapon/gun/energy/taser/mounted/cyborg))
+		ourborg.add_overlay("[sprite_icon_state]-taser")
+
 /datum/robot_sprite/dogborg/tall/security/raptor
 	name = "Raptor V-4"
 	sprite_icon_state = "raptor"
 	has_custom_equipment_sprites = TRUE
+	has_laser_sprite = TRUE
+	has_taser_sprite = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/security/meka

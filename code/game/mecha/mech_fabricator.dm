@@ -138,6 +138,12 @@
 			var/module_types = initial(U.module_flags)
 			sub_category = list()
 			if(module_types)
+				if(module_types & BORG_UTILITY)
+					sub_category += "All Cyborgs - Utility"
+				if(module_types & BORG_BASIC)
+					sub_category += "All Cyborgs - Basic"
+				if(module_types & BORG_ADVANCED)
+					sub_category += "All Cyborgs - Advanced"
 				if(module_types & BORG_MODULE_SECURITY)
 					sub_category += "Security"
 				if(module_types & BORG_MODULE_MINER)
@@ -150,9 +156,16 @@
 					sub_category += "Engineering"
 				if(module_types & BORG_MODULE_SCIENCE)
 					sub_category += "Science"
-
+				if(module_types & BORG_MODULE_SERVICE)
+					sub_category += "Service"
+				if(module_types & BORG_MODULE_CLERIC)
+					sub_category += "Cleric"
+				if(module_types & BORG_MODULE_COMBAT)
+					sub_category += "Combat"
+				if(module_types & BORG_MODULE_EXPLO)
+					sub_category += "Exploration"
 			else
-				sub_category += "All Cyborgs"
+				sub_category += "This shouldn't be here, bother a dev!"
 		// Else check if this design builds a piece of exosuit equipment.
 		else if(built_item in typesof(/obj/item/mecha_parts/mecha_equipment))
 			var/obj/item/mecha_parts/mecha_equipment/E = built_item

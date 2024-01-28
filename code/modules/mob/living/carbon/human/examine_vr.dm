@@ -87,13 +87,13 @@
 /mob/living/carbon/human/proc/examine_pickup_size(mob/living/H)
 	var/message = ""
 	if(istype(H) && (H.get_effective_size(FALSE) - src.get_effective_size(TRUE)) >= 0.50)
-		message = "<font color='blue'>They are small enough that you could easily pick them up!</font>"
+		message = span_blue("They are small enough that you could easily pick them up!")
 	return message
 
 /mob/living/carbon/human/proc/examine_step_size(mob/living/H)
 	var/message = ""
 	if(istype(H) && (H.get_effective_size(FALSE) - src.get_effective_size(TRUE)) >= 0.75)
-		message = "<font color='red'>They are small enough that you could easily trample them!</font>"
+		message = span_red("They are small enough that you could easily trample them!")
 	return message
 
 /mob/living/carbon/human/proc/examine_nif(mob/living/carbon/human/H)

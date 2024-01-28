@@ -109,14 +109,14 @@
 		confirm2 = tgui_alert(usr, "Pressing this buttom will really kill you, no going back", "Are you sure?", list("Yes", "No")) //Swapped answers to protect from accidental double clicks.
 	if (src.health < 0 && stat != DEAD && confirm1 == "Yes" && confirm2 == "Yes") // Checking both confirm1 and confirm2 for good measure. I don't trust TGUI.
 		src.death()
-		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
+		to_chat(src, span_blue("You have given up life and succumbed to death."))
 	else
 		if(stat == DEAD)
-			to_chat(src, "<font color='blue'>As much as you'd like, you can't die when already dead</font>")
+			to_chat(src, span_blue("As much as you'd like, you can't die when already dead"))
 		else if(confirm1 == "No" || confirm2 == "No")
-			to_chat(src, "<font color='blue'>You chose to live another day.</font>")
+			to_chat(src, span_blue("You chose to live another day."))
 		else
-			to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
+			to_chat(src, span_blue("You are not injured enough to succumb to death!"))
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)

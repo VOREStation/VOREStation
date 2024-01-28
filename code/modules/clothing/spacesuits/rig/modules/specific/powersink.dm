@@ -118,10 +118,10 @@
 
 	if(!interfaced_with)
 		if(M)
-			to_chat(M, "<font color='blue'><b>Total power drained:</b> [round(total_power_drained*CELLRATE)] cell units.</font>")
+			to_chat(M, span_blue("<b>Total power drained:</b> [round(total_power_drained*CELLRATE)] cell units."))
 	else
 		if(M)
-			to_chat(M, "<font color='blue'><b>Total power drained from [interfaced_with]:</b> [round(total_power_drained*CELLRATE)] cell units.</font>")
+			to_chat(M, span_blue("<b>Total power drained from [interfaced_with]:</b> [round(total_power_drained*CELLRATE)] cell units."))
 		interfaced_with.drain_power(0,1,0) // Damage the victim.
 
 	drain_loc = null

@@ -11,11 +11,11 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 		return
 
 	if(!ticker)
-		to_chat(usr, "<font color='red'>The game hasn't started yet!</font>")
+		to_chat(usr, span_red("The game hasn't started yet!"))
 		return
 
 	if(world.time < 6000)
-		to_chat(usr, "<font color='red'>There are [(6000-world.time)/10] seconds remaining before it may be called.</font>")
+		to_chat(usr, span_red("There are [(6000-world.time)/10] seconds remaining before it may be called."))
 		return
 
 	var/datum/antagonist/deathsquad/team
@@ -33,7 +33,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 			return
 
 	if(team.deployed)
-		to_chat(usr, "<font color='red'>Someone is already sending a team.</font>")
+		to_chat(usr, span_red("Someone is already sending a team."))
 		return
 
 	if(tgui_alert(usr, "Do you want to send in a strike team? Once enabled, this is irreversible.","Strike Team",list("Yes","No"))!="Yes")

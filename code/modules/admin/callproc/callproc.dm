@@ -39,12 +39,12 @@
 		testname = replacetext(testname, "()", "")
 
 	if(targetselected && !hascall(target,testname))
-		to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc(): type [target.type] has no proc named [procname].</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>" + span_red("Error: callproc(): type [target.type] has no proc named [procname].") + "</span>")
 		return
 	else
 		var/procpath = text2path(procname)
 		if (!procpath)
-			to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font></span>")
+			to_chat(usr, "<span class='filter_adminlog'>" + span_red("Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)") + "</span>")
 			return
 	var/list/lst = get_callproc_args()
 	if(!lst)
@@ -52,7 +52,7 @@
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc(): owner of proc no longer exists.</font></span>")
+			to_chat(usr, "<span class='filter_adminlog'>" + span_red("Error: callproc(): owner of proc no longer exists.") + "</span>")
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 		log_admin(msg)
@@ -140,7 +140,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!procname)
 		return
 	if(!hascall(A,procname))
-		to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>" + span_red("Error: callproc_datum(): type [A.type] has no proc named [procname].") + "</span>")
 		return
 	var/list/lst = get_callproc_args()
 	if(!lst)
@@ -190,7 +190,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	. = ""
 	if(islist(returnval))
 		var/list/returnedlist = returnval
-		. = "<font color='blue'>"
+		. = "<span class='blue'>"
 		if(returnedlist.len)
 			var/assoc_check = returnedlist[1]
 			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
@@ -204,7 +204,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					. += "\n[elem]"
 		else
 			. = "[procname] returned an empty list"
-		. += "</font>"
+		. += "</span>"
 
 	else
-		. = "<font color='blue'>[procname] returned: [!isnull(returnval) ? returnval : "null"]</font>"
+		. = span_blue("[procname] returned: [!isnull(returnval) ? returnval : "null"]")

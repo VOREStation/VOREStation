@@ -44,7 +44,7 @@
 		if(chassis.loc!=C || target.loc!=T)
 			return
 		if(occupant)
-			occupant_message("<font color=\"red\"><B>The sleeper is already occupied!</B></font>")
+			occupant_message(span_red("<B>The sleeper is already occupied!</B>"))
 			return
 		target.forceMove(src)
 		occupant = target
@@ -57,7 +57,7 @@
 		*/
 		set_ready_state(FALSE)
 		START_PROCESSING(SSprocessing, src)
-		occupant_message("<font color='blue'>[target] successfully loaded into [src]. Life support functions engaged.</font>")
+		occupant_message(span_blue("[target] successfully loaded into [src]. Life support functions engaged."))
 		chassis.visible_message("[chassis] loads [target] into [src].")
 		log_message("[target] loaded. Life support functions engaged.")
 	return
