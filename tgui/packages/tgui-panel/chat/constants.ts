@@ -65,9 +65,9 @@ export const MESSAGE_TYPES = [
   },
   {
     type: MESSAGE_TYPE_NPCEMOTE,
-    name: 'NPC Emotes',
-    description: 'In-character emotes from NPCs',
-    selector: '.npcemote',
+    name: 'NPC Emotes / Says',
+    description: 'In-character emotes and says from NPCs',
+    selector: '.npcemote, .npcsay',
   },
   {
     type: MESSAGE_TYPE_PLOCALCHAT,
