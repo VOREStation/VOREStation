@@ -67,7 +67,7 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/proc/remove_padding()
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 		padding_material = null
 	update_icon()
 
@@ -104,9 +104,9 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/proc/dismantle()
 	if(material)
-		material.place_sheet(get_turf(src))
+		material.place_sheet(get_turf(src), 1)
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 	qdel(src)
 
 /obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)

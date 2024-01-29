@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		return list("to_update" = TRUE, "soundToPlay" = sound(get_sfx("fancy_death_pred")))
 
 	// Deal digestion damage (and feed the pred)
+	var/old_health = L.health
 	var/old_brute = L.getBruteLoss()
 	var/old_burn = L.getFireLoss()
 	var/old_oxy = L.getOxyLoss()
@@ -59,6 +60,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 	var/offset = (1 + ((L.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 	var/difference = B.owner.size_multiplier / L.size_multiplier
+
+	consider_healthbar(L, old_health, B.owner)
+
 	if(isrobot(B.owner))
 		var/mob/living/silicon/robot/R = B.owner
 		R.cell.charge += 25 * damage_gain
@@ -76,10 +80,15 @@ GLOBAL_LIST_INIT(digest_modes, list())
 /datum/digest_mode/absorb/process_mob(obj/belly/B, mob/living/L)
 	if(!L.absorbable || L.absorbed)
 		return null
+
+	var/old_nutrition = L.nutrition
 	B.steal_nutrition(L)
 	if(L.nutrition < 100)
 		B.absorb_living(L)
+		consider_healthbar(L, old_nutrition, B.owner)
 		return list("to_update" = TRUE)
+	else
+		consider_healthbar(L, old_nutrition, B.owner)
 
 /datum/digest_mode/unabsorb
 	id = DM_UNABSORB
@@ -95,7 +104,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	noise_chance = 10
 
 /datum/digest_mode/drain/process_mob(obj/belly/B, mob/living/L)
+	var/old_nutrition = L.nutrition
 	B.steal_nutrition(L)
+	consider_healthbar(L, old_nutrition, B.owner)
 
 /datum/digest_mode/drain/shrink
 	id = DM_SHRINK
@@ -296,3 +307,106 @@ GLOBAL_LIST_INIT(digest_modes, list())
 					else
 						tempmode = DM_DRAIN			// Otherwise drain.
 	return tempmode
+
+/datum/digest_mode/proc/consider_healthbar()
+	return
+
+/datum/digest_mode/digest/consider_healthbar(mob/living/L, old_health, mob/living/reciever)
+
+	if(old_health <= L.health)
+		return
+
+	var/old_percent
+	var/new_percent
+
+	if(ishuman(L))
+		old_percent = ((old_health + 50) / (L.maxHealth + 50)) * 100
+		new_percent = ((L.health + 50) / (L.maxHealth + 50)) * 100
+	else
+		old_percent = (old_health / L.maxHealth) * 100
+		new_percent = (L.health / L.maxHealth) * 100
+
+	var/lets_announce = FALSE
+	if(new_percent <= 75 && old_percent > 75)
+		lets_announce = TRUE
+	else if(new_percent <= 50 && old_percent > 50)
+		lets_announce = TRUE
+	else if(new_percent <= 25 && old_percent > 25)
+		lets_announce = TRUE
+	else if(new_percent <= 5 && old_percent > 5)
+		lets_announce = TRUE
+
+	if(lets_announce)
+		L.chat_healthbar(reciever)
+		L.chat_healthbar(L)
+
+/datum/digest_mode/heal/consider_healthbar(mob/living/L, old_health, mob/living/reciever)
+
+	if(old_health >= L.health)
+		return
+
+	var/old_percent
+	var/new_percent
+
+	if(ishuman(L))
+		old_percent = ((old_health + 50) / (L.maxHealth + 50)) * 100
+		new_percent = ((L.health + 50) / (L.maxHealth + 50)) * 100
+	else
+		old_percent = (old_health / L.maxHealth) * 100
+		new_percent = (L.health / L.maxHealth) * 100
+
+	var/lets_announce = FALSE
+	if(new_percent >= 75 && old_percent < 75)
+		lets_announce = TRUE
+	else if(new_percent >= 50 && old_percent < 50)
+		lets_announce = TRUE
+	else if(new_percent >= 25 && old_percent < 25)
+		lets_announce = TRUE
+	else if(new_percent >= 5 && old_percent < 5)
+		lets_announce = TRUE
+
+	if(lets_announce)
+		L.chat_healthbar(reciever)
+		L.chat_healthbar(L)
+
+/datum/digest_mode/absorb/consider_healthbar(mob/living/L, old_nutrition, mob/living/reciever)
+	if(old_nutrition <= L.nutrition)
+		return
+
+	var/old_percent = ((old_nutrition - 100) / 500) * 100
+	var/new_percent = ((L.nutrition - 100) / 500) * 100
+	var/lets_announce = FALSE
+	if(new_percent <= 75 && old_percent > 75)
+		lets_announce = TRUE
+	else if(new_percent <= 50 && old_percent > 50)
+		lets_announce = TRUE
+	else if(new_percent <= 25 && old_percent > 25)
+		lets_announce = TRUE
+	else if(new_percent <= 0 && old_percent > 0)
+		lets_announce = TRUE
+
+	if(lets_announce)
+		L.chat_healthbar(reciever)
+		L.chat_healthbar(L)
+
+/datum/digest_mode/drain/consider_healthbar(mob/living/L, old_nutrition, mob/living/reciever)
+
+	if(old_nutrition <= L.nutrition)
+		return
+
+	var/old_percent = ((old_nutrition - 100) / 500) * 100
+	var/new_percent = ((L.nutrition - 100) / 500) * 100
+
+	var/lets_announce = FALSE
+	if(new_percent <= 75 && old_percent > 75)
+		lets_announce = TRUE
+	else if(new_percent <= 50 && old_percent > 50)
+		lets_announce = TRUE
+	else if(new_percent <= 25 && old_percent > 25)
+		lets_announce = TRUE
+	else if(new_percent <= 0 && old_percent > 0)
+		lets_announce = TRUE
+
+	if(lets_announce)
+		L.chat_healthbar(reciever)
+		L.chat_healthbar(L)
