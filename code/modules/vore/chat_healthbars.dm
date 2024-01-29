@@ -78,6 +78,8 @@
 		ourbar = "[ourbar] - [span_red("<b>DEAD</b>")]"
 	if(absorbed)
 		ourbar = span_purple("[ourbar] - ABSORBED")	//Absorb is a little funny, I didn't want it to say 'absorbing ABSORBED' so we did it different
+	else if(ourpercent > 99 && ourbelly.digest_mode == DM_HEAL)
+		ourbar = span_green("<b>[ourbar] - [ourbelly.digest_mode]ed</b>")
 	else if(ourpercent > 75)
 		ourbar = span_green("[ourbar] - [ourbelly.digest_mode]ing")
 	else if(ourpercent > 50)
@@ -87,7 +89,7 @@
 	else if(ourpercent > 0)
 		ourbar = span_red("[ourbar] - [ourbelly.digest_mode]ing")
 	else
-		ourbar = span_red("<b>[ourbar] - [ourbelly.digest_mode]ing</b>")
+		ourbar = span_red("<b>[ourbar] - [ourbelly.digest_mode]ed</b>")
 
 	if(onExamine)
 		to_chat(reciever,"<span class='notice'>[ourbar]</span>")
