@@ -78,7 +78,7 @@ em						{font-style: normal;font-weight: bold;}
 /* Miscellaneous */
 .name					{font-weight: bold;}
 .say					{}
-.alert					{color: #ff0000;}
+.alert, .valert			{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 .ghostalert				{color: #5c00e6;	font-style: italic; font-weight: bold;}
 
@@ -96,11 +96,11 @@ h1.alert, h2.alert		{color: #000000;}
 .passive				{color: #660000;}
 
 .critical				{color: #ff0000; font-weight: bold; font-size: 150%;}
-.danger					{color: #ff0000; font-weight: bold;}
-.warning				{color: #ff0000; font-style: italic;}
+.danger, .vdanger		{color: #ff0000; font-weight: bold;}
+.warning, .vwarning		{color: #ff0000; font-style: italic;}
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
-.notice					{color: #000099;}
+.notice, .vnotice		{color: #000099;}
 .alium					{color: #00ff00;}
 .cult					{color: #800080; font-weight: bold; font-style: italic;}
 
@@ -116,7 +116,7 @@ h1.alert, h2.alert		{color: #000000;}
 .skrellfar				{color: #70FCFF;}
 .soghun					{color: #50BA6C;}
 .solcom					{color: #22228B;}
-.changeling				{color: #800080;font-style: italic;}
+.changeling, .psay, .pemote		{color: #800080;font-style: italic;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
 .vulpkanin				{color: #B97A57;}
