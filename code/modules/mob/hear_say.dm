@@ -218,37 +218,47 @@
 	return "<span class='say_quote'>\[[time2text(world.timeofday, "hh:mm")]\]</span>"
 
 /mob/proc/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/time = ""
+	if(client?.prefs.chat_timestamp)
+		time = say_timestamp()
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
+		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[part_a][final_message][part_e]"
+		final_message = "[time][part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
 /mob/observer/dead/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
+	var/time = ""
+	if(client?.prefs.chat_timestamp)
+		time = say_timestamp()
 	var/final_message = "[part_b][track][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
+		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[part_a][final_message][part_e]"
+		final_message = "[time][part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
 /mob/living/silicon/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
-	var/time = say_timestamp()
+	var/time = ""
+	if(client?.prefs.chat_timestamp)
+		time = say_timestamp()
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[part_a][time]<font size='3'><b>[final_message]</b></font>[part_e]"
+		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[part_a][time][final_message][part_e]"
+		final_message = "[time][part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
 /mob/living/silicon/ai/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
-	var/time = say_timestamp()
+	var/time = ""
+	if(client?.prefs.chat_timestamp)
+		time = say_timestamp()
 	var/final_message = "[part_b][track][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
-		final_message = "[part_a][time]<font size='3'><b>[final_message]</b></font>[part_e]"
+		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
-		final_message = "[part_a][time][final_message][part_e]"
+		final_message = "[time][part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/verb_understood = "gestures", var/datum/language/language, var/mob/speaker = null, var/speech_type = 1)
