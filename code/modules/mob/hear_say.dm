@@ -219,7 +219,7 @@
 
 /mob/proc/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
 	var/time = ""
-	if(client?.prefs.chat_timestamp)
+	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
@@ -230,7 +230,7 @@
 
 /mob/observer/dead/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
 	var/time = ""
-	if(client?.prefs.chat_timestamp)
+	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][track][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
@@ -241,7 +241,7 @@
 
 /mob/living/silicon/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
 	var/time = ""
-	if(client?.prefs.chat_timestamp)
+	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
@@ -252,7 +252,7 @@
 
 /mob/living/silicon/ai/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
 	var/time = ""
-	if(client?.prefs.chat_timestamp)
+	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][track][part_c][formatted][part_d]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
