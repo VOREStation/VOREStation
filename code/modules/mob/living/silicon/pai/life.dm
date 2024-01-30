@@ -4,7 +4,7 @@
 		if(get_dist(src, src.cable) > 1)
 			var/turf/T = get_turf_or_move(src.loc)
 			for (var/mob/M in viewers(T))
-				M.show_message("<font color='red'>The data cable rapidly retracts back into its spool.</font>", 3, "<font color='red'>You hear a click and the sound of wire spooling rapidly.</font>", 2)
+				M.show_message(span_red("The data cable rapidly retracts back into its spool."), 3, span_red("You hear a click and the sound of wire spooling rapidly."), 2)
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 			qdel(src.cable)
@@ -31,7 +31,7 @@
 	if(silence_time)
 		if(world.timeofday >= silence_time)
 			silence_time = null
-			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
+			to_chat(src, span_green("Communication circuit reinitialized. Speech and messaging functionality restored."))
 
 	handle_statuses()
 

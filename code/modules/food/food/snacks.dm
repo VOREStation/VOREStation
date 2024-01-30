@@ -853,7 +853,7 @@
 	. = ..()
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.splash(hit_atom, reagents.total_volume)
-	src.visible_message("<font color='red'>[src.name] has been squashed.</font>","<font color='red'>You hear a smack.</font>")
+	src.visible_message(span_red("[src.name] has been squashed."),span_red("You hear a smack."))
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -862,10 +862,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(usr, "<font color='blue'>The egg refuses to take on this color!</font>")
+			to_chat(usr, span_blue("The egg refuses to take on this color!"))
 			return
 
-		to_chat(usr, "<font color='blue'>You color \the [src] [clr]</font>")
+		to_chat(usr, span_blue("You color \the [src] [clr]"))
 		icon_state = "egg-[clr]"
 	else
 		. = ..()
@@ -1633,7 +1633,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, "<font color='red'>You bite down on an un-popped kernel!</font>")
+		to_chat(usr, span_red("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped-1)
 	. = ..()
 

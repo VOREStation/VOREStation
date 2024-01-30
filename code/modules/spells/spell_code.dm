@@ -90,7 +90,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 		take_charge(user, skipcharge)
 
 		before_cast(targets) //applies any overlays and effects
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>[user.real_name] ([user.ckey]) cast the spell [name].</font>")
+		user.attack_log += text("\[[time_stamp()]\] [span_red("[user.real_name] ([user.ckey]) cast the spell [name].")]")
 		if(prob(critfailchance))
 			critfail(targets, user)
 		else
@@ -267,7 +267,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			else
 				user.whisper(replacetext(invocation," ","`"))
 		if(SpI_EMOTE)
-			user.custom_emote(VISIBLE_MESSAGE, invocation) 
+			user.custom_emote(VISIBLE_MESSAGE, invocation)
 
 /////////////////////
 ///UPGRADING PROCS///

@@ -347,7 +347,7 @@
 					to_chat(usr, "<span class='warning'>Message '[input]' is too short. [COMM_CCMSGLEN_MINIMUM] character minimum.</span>")
 					return
 				CentCom_announce(input, usr)
-				to_chat(usr, "<font color='blue'>Message transmitted.</font>")
+				to_chat(usr, span_blue("Message transmitted."))
 				log_game("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 				centcomm_message_cooldown = world.time + 300 // 30 seconds
 			setMenuState(usr, COMM_SCREEN_MAIN)
@@ -365,7 +365,7 @@
 					to_chat(usr, "<span class='warning'>Message '[input]' is too short. [COMM_CCMSGLEN_MINIMUM] character minimum.</span>")
 					return
 				Syndicate_announce(input, usr)
-				to_chat(usr, "<font color='blue'>Message transmitted.</font>")
+				to_chat(usr, span_blue("Message transmitted."))
 				log_game("[key_name(usr)] has made an illegal announcement: [input]")
 				centcomm_message_cooldown = world.time + 300 // 30 seconds
 

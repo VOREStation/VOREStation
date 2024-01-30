@@ -5,7 +5,7 @@
  */
 
 import { connectionLost } from './actions';
-import { connectionRestored } from './actions';
+import { connectionRestored, dismissWarning } from './actions';
 
 const initialState = {
   // TODO: This is where round info should be.
@@ -13,6 +13,7 @@ const initialState = {
   roundTime: null,
   roundRestartedAt: null,
   connectionLostAt: null,
+  dismissedConnectionWarning: false,
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -33,6 +34,13 @@ export const gameReducer = (state = initialState, action) => {
     return {
       ...state,
       connectionLostAt: null,
+      dismissedConnectionWarning: false,
+    };
+  }
+  if (type === dismissWarning.type) {
+    return {
+      ...state,
+      dismissedConnectionWarning: true,
     };
   }
   return state;

@@ -175,7 +175,7 @@
 			feedback_inc("alert_keycard_auth_maintRevoke",1)
 		if("Emergency Response Team")
 			if(is_ert_blocked())
-				to_chat(usr, "<font color='red'>All emergency response teams are dispatched and can not be called at this time.</font>")
+				to_chat(usr, span_red("All emergency response teams are dispatched and can not be called at this time."))
 				return
 
 			trigger_armed_response_team(1)
@@ -189,13 +189,13 @@ var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_world("<font size=4 color='red'>Attention!</font>")
-	to_world("<font color='red'>The maintenance access requirement has been revoked on all airlocks.</font>")
+	to_world(span_red("<font size=4>Attention!</font>"))
+	to_world(span_red("The maintenance access requirement has been revoked on all airlocks."))
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_world("<font size=4 color='red'>Attention!</font>")
-	to_world("<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
+	to_world(span_red("<font size=4>Attention!</font>"))
+	to_world(span_red("The maintenance access requirement has been readded on all maintenance airlocks."))
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))

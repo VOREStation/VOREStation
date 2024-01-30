@@ -16,29 +16,29 @@
 		entry += " - Playing as [C.mob.real_name]"
 		switch(C.mob.stat)
 			if(UNCONSCIOUS)
-				entry += " - <font color='darkgray'><b>Unconscious</b></font>"
+				entry += " - [span_darkgray("<b>Unconscious</b>")]"
 			if(DEAD)
 				if(isobserver(C.mob))
 					var/mob/observer/dead/O = C.mob
 					if(O.started_as_observer)
-						entry += " - <font color='gray'>Observing</font>"
+						entry += " - [span_gray("Observing")]"
 					else
-						entry += " - <font color='black'><b>DEAD</b></font>"
+						entry += " - [span_black("<b>DEAD</b>")]"
 				else
-					entry += " - <font color='black'><b>DEAD</b></font>"
+					entry += " - [span_black("<b>DEAD</b>")]"
 
 		if(C.player_age != initial(C.player_age) && isnum(C.player_age)) // database is on
 			var/age = C.player_age
 			switch(age)
 				if(0 to 1)
-					age = "<font color='#ff0000'><b>[age] days old</b></font>"
+					age = span_red("<b>[age] days old</b>")
 				if(1 to 10)
-					age = "<font color='#ff8c00'><b>[age] days old</b></font>"
+					age = span_orange("<b>[age] days old</b>")
 				else
 					entry += " - [age] days old"
 
 		if(is_special_character(C.mob))
-			entry += " - <b><font color='red'>Antagonist</font></b>"
+			entry += " - [span_red("<b>Antagonist</b>")]"
 
 		if(C.is_afk())
 			var/seconds = C.last_activity_seconds()

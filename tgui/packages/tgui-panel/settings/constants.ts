@@ -10,6 +10,10 @@ export const SETTINGS_TABS = [
     name: 'General',
   },
   {
+    id: 'limits',
+    name: 'Visual Limits',
+  },
+  {
     id: 'export',
     name: 'Export',
   },

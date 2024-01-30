@@ -489,6 +489,19 @@
 
 	feedback_add_details("admin_verb","TSubtleSounds")
 
+/client/verb/toggle_vore_health_bars()
+	set name = "Toggle Vore Health Bars"
+	set category = "Preferences"
+	set desc = "Toggle the display of vore related health bars"
+
+	var/pref_path = /datum/client_preference/vore_health_bars
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "Vore related health bars - [(is_preference_enabled(/datum/client_preference/vore_health_bars)) ? "Enabled" : "Disabled"]")
+
+	feedback_add_details("admin_verb","TVoreHealthBars")
+
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"

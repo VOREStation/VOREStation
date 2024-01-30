@@ -95,7 +95,7 @@
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
-	var/t = ""
+	var/t = "<span class='infoplain'>"
 	for(var/i = 1 to reagent_ids.len)
 		if(t)
 			t += ", "
@@ -103,7 +103,7 @@
 			t += "<b>[reagent_names[i]]</b>"
 		else
 			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
-	t = "Available reagents: [t]."
+	t = "Available reagents: [t].</span>"
 	to_chat(user,t)
 
 	return

@@ -54,7 +54,7 @@
 		to_chat(user, "<span class='danger'>Another grenade of that type will not fit into the module.</span>")
 		return 0
 
-	to_chat(user, "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>")
+	to_chat(user, span_blue("<b>You slot \the [input_device] into the suit module.</b>"))
 	user.drop_from_inventory(input_device)
 	qdel(input_device)
 	accepted_item.charges++
@@ -256,7 +256,7 @@
 		else
 			var/obj/item/new_weapon = new fabrication_type()
 			new_weapon.forceMove(H)
-			to_chat(H, "<font color='blue'><b>You quickly fabricate \a [new_weapon].</b></font>")
+			to_chat(H, span_blue("<b>You quickly fabricate \a [new_weapon].</b>"))
 			H.put_in_hands(new_weapon)
 
 	return 1

@@ -42,6 +42,7 @@ export const SettingsPanel = (props, context) => {
       </Stack.Item>
       <Stack.Item grow={1} basis={0}>
         {activeTab === 'general' && <SettingsGeneral />}
+        {activeTab === 'limits' && <MessageLimits />}
         {activeTab === 'export' && <ExportTab />}
         {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'textHighlight' && <TextHighlightSettings />}
@@ -169,9 +170,101 @@ export const SettingsGeneral = (props, context) => {
   );
 };
 
+export const MessageLimits = (props, context) => {
+  const dispatch = useDispatch(context);
+  const {
+    visibleMessageLimit,
+    persistentMessageLimit,
+    combineMessageLimit,
+    combineIntervalLimit,
+  } = useSelector(context, selectSettings);
+  return (
+    <Section>
+      <LabeledList>
+        <LabeledList.Item label="Amount of lines to display 500-10000 (Default: 2500)">
+          <NumberInput
+            width="5em"
+            step={100}
+            stepPixelSize={2}
+            minValue={500}
+            maxValue={10000}
+            value={visibleMessageLimit}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  visibleMessageLimit: value,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+        <LabeledList.Item label="Amount of visually persistent lines 500-10000 (Default: 1000)">
+          <NumberInput
+            width="5em"
+            step={100}
+            stepPixelSize={2}
+            minValue={500}
+            maxValue={10000}
+            value={persistentMessageLimit}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  persistentMessageLimit: value,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+        <LabeledList.Item label="Amount of different lines in between to combine 0-10 (Default: 5)">
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={10}
+            minValue={0}
+            maxValue={10}
+            value={combineMessageLimit}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  combineMessageLimit: value,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+        <LabeledList.Item label="Time to combine messages 0-10 (Default: 5 Seconds)">
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={10}
+            minValue={0}
+            maxValue={10}
+            value={combineIntervalLimit}
+            unit="s"
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  combineIntervalLimit: value,
+                })
+              )
+            }
+          />
+        </LabeledList.Item>
+      </LabeledList>
+    </Section>
+  );
+};
+
 export const ExportTab = (props, context) => {
   const dispatch = useDispatch(context);
-  const { logRetainDays, logLineCount } = useSelector(context, selectSettings);
+  const { logRetainDays, logLineCount, totalStoredMessages } = useSelector(
+    context,
+    selectSettings
+  );
   const [purgeConfirm, setPurgeConfirm] = useLocalState(
     context,
     'purgeConfirm',
@@ -197,11 +290,15 @@ export const ExportTab = (props, context) => {
         </LabeledList.Item>
         */}
         <LabeledList.Item label="Amount of lines to export (-1 = inf.)">
-          <Input
+          <NumberInput
             width="5em"
-            monospace
+            step={100}
+            stepPixelSize={2}
+            minValue={-1}
+            maxValue={50000}
             value={logLineCount}
-            onInput={(e, value) =>
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
               dispatch(
                 updateSettings({
                   logLineCount: value,
@@ -209,6 +306,9 @@ export const ExportTab = (props, context) => {
               )
             }
           />
+        </LabeledList.Item>
+        <LabeledList.Item label="Totally stored messages">
+          <Box>{totalStoredMessages}</Box>
         </LabeledList.Item>
       </LabeledList>
       <Divider />

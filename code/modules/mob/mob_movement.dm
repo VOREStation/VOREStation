@@ -45,7 +45,7 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				to_chat(usr, "<font color='red'>This mob type cannot throw items.</font>")
+				to_chat(usr, span_red("This mob type cannot throw items."))
 			return
 		if(NORTHWEST)
 			if(isliving(usr))
@@ -54,11 +54,11 @@
 					if(C.pulling)
 						C.stop_pulling()
 						return
-					to_chat(usr, "<font color='red'>You have nothing to drop in your hand.</font>")
+					to_chat(usr, span_red("You have nothing to drop in your hand."))
 					return
 				drop_item()
 			else
-				to_chat(usr, "<font color='red'>This mob type cannot drop items.</font>")
+				to_chat(usr, span_red("This mob type cannot drop items."))
 			return
 
 //This gets called when you press the delete button.
@@ -66,7 +66,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, "<font color='blue'>You are not pulling anything.</font>")
+		to_chat(usr, span_blue("You are not pulling anything."))
 		return
 	usr.stop_pulling()
 
@@ -225,13 +225,13 @@
 		for(var/mob/M in range(my_mob, 1))
 			if(M.pulling == my_mob)
 				if(!M.restrained() && M.stat == 0 && M.canmove && my_mob.Adjacent(M))
-					to_chat(src, "<font color='blue'>You're restrained! You can't move!</font>")
+					to_chat(src, span_blue("You're restrained! You can't move!"))
 					return 0
 				else
 					M.stop_pulling()
 
 	if(my_mob.pinned.len)
-		to_chat(src, "<font color='blue'>You're pinned to a wall by [my_mob.pinned[1]]!</font>")
+		to_chat(src, span_blue("You're pinned to a wall by [my_mob.pinned[1]]!"))
 		return 0
 
 	if(istype(my_mob.buckled, /obj/vehicle) || ismob(my_mob.buckled))

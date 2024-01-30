@@ -374,6 +374,10 @@
 	display_name = "halter top"
 	path = /obj/item/clothing/under/haltertop
 
+/datum/gear/uniform/tanktop
+	display_name = "tank top"
+	path = /obj/item/clothing/under/tanktop
+
 /datum/gear/uniform/revealingdress
 	display_name = "revealing dress"
 	path = /obj/item/clothing/under/dress/revealingdress

@@ -260,7 +260,7 @@
 		return
 
 	if (get_dist(user, holder) > 1)
-		to_chat(user, "<span class='filter_notice'><font color='red'>You can't reach [holder] from here.</font></span>")
+		to_chat(user, "<span class='filter_notice'>[span_red("You can't reach [holder] from here.")]</span>")
 		return
 	if(ishuman(user) && user:gloves)
 		to_chat(user, "<span class='filter_notice'><b>You touch [holder]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].</span>")
@@ -418,4 +418,3 @@
 		//NITROGEN GAS ACTIVATION
 		if(my_effect.trigger == TRIGGER_NITRO && (trigger_nitro ^ my_effect.activated))
 			my_effect.ToggleActivate()
-

@@ -2,9 +2,9 @@
     set name = "Resize"
     set desc = "Resizes any living mob without any restrictions on size."
     set category = "Fun"
-    if(!check_rights(R_ADMIN, R_FUN))
+    if(!check_rights(R_ADMIN, R_FUN, R_VAREDIT))
         return
-    
+
     var/size_multiplier = tgui_input_number(usr, "Input size multiplier.", "Resize", 1)
     if(!size_multiplier)
         return //cancelled

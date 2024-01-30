@@ -77,7 +77,7 @@
 			for (var/mob/v in viewers(T))
 				v.show_message("<span class='notice'>[M] presses [TM.his] thumb against [P].</span>", 3, "<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>", 2)
 			var/datum/dna/dna = M.dna
-			to_chat(P, "<font color = red><h3>[M]'s UE string : [dna.unique_enzymes]</h3></font>")
+			to_chat(P, span_red("<h3>[M]'s UE string : [dna.unique_enzymes]</h3>"))
 			if(dna.unique_enzymes == P.master_dna)
 				to_chat(P, "<b>DNA is a match to stored Master DNA.</b>")
 			else
@@ -293,9 +293,9 @@
 	var/turf/T = get_turf(src)
 	for(var/mob/living/silicon/ai/AI in player_list)
 		if(T.loc)
-			to_chat(AI, "<font color = red><b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b></font>")
+			to_chat(AI, span_red("<b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b>"))
 		else
-			to_chat(AI, "<font color = red><b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b></font>")
+			to_chat(AI, span_red("<b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b>"))
 	var/obj/machinery/door/D = cable.machine
 	if(!istype(D))
 		hack_aborted = 1

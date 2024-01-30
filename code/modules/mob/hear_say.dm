@@ -38,6 +38,9 @@
 
 		raw_msg += (piece + " ")
 
+		if(!speaker.client)
+			piece = "<span class='npcsay'>[piece]</span>"
+
 		//HTML formatting
 		if(!SP.speaking) // Catch the most generic case first
 			piece = "<span class='message body'>[piece]</span>"

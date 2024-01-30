@@ -32,20 +32,20 @@
 /obj/item/weapon/deadringer/attack_self(var/mob/living/user as mob)
 	var/mob/living/H = src.loc
 	if (!istype(H, /mob/living/carbon/human))
-		to_chat(H,"<font color='blue'>You have no clue what to do with this thing.</font>")
+		to_chat(H, span_blue("You have no clue what to do with this thing."))
 		return
 	if(!activated)
 		if(timer == 0)
-			to_chat(H, "<font color='blue'>You press a small button on [src]'s side. It starts to hum quietly.</font>")
+			to_chat(H, span_blue("You press a small button on [src]'s side. It starts to hum quietly."))
 			bruteloss_prev = H.getBruteLoss()
 			fireloss_prev = H.getFireLoss()
 			activated = 1
 			return
 		else
-			to_chat(H,"<font color='blue'>You press a small button on [src]'s side. It buzzes a little.</font>")
+			to_chat(H, span_blue("You press a small button on [src]'s side. It buzzes a little."))
 			return
 	if(activated)
-		to_chat(H,"<font color='blue'>You press a small button on [src]'s side. It stops humming.</font>")
+		to_chat(H, span_blue("You press a small button on [src]'s side. It stops humming."))
 		activated = 0
 		return
 
@@ -58,9 +58,9 @@
 				deathprevent()
 				activated = 0
 				if(watchowner.isSynthetic())
-					to_chat(watchowner, "<font color='blue'>You fade into nothingness! [src]'s screen blinks, being unable to copy your synthetic body!</font>")
+					to_chat(watchowner, span_blue("You fade into nothingness! [src]'s screen blinks, being unable to copy your synthetic body!"))
 				else
-					to_chat(watchowner, "<font color='blue'>You fade into nothingness, leaving behind a fake body!</font>")
+					to_chat(watchowner, span_blue("You fade into nothingness, leaving behind a fake body!"))
 				icon_state = "deadringer_cd"
 				timer = 50
 				return

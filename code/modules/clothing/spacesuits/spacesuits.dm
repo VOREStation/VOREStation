@@ -54,11 +54,11 @@
 
 	if(camera.status == TRUE)
 		camera.set_status(FALSE)
-		to_chat(usr, "<font color='blue'>Camera deactivated.</font>")
+		to_chat(usr, span_blue("Camera deactivated."))
 	else
 		camera.set_status(TRUE)
 		camera.c_tag = usr.name
-		to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
+		to_chat(usr, span_blue("User scanned as [camera.c_tag]. Camera activated."))
 
 /obj/item/clothing/head/helmet/space/examine(mob/user)
 	. = ..()

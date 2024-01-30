@@ -16,7 +16,7 @@
 /obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		to_chat(user, "<font color='blue'>You carefully locate the manual activation switch and start the positronic brain's boot process.</font>")
+		to_chat(user, span_blue("You carefully locate the manual activation switch and start the positronic brain's boot process."))
 		icon_state = "posibrain-searching"
 		src.searching = 1
 		src.request_player()
@@ -68,7 +68,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The positronic brain beeps as it loads a personality.</font>")
+		M.show_message(span_blue("The positronic brain beeps as it loads a personality."))
 	playsound(src, 'sound/misc/boobeebeep.ogg', 50, 1)
 	icon_state = "posibrain-occupied"
 
@@ -82,7 +82,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?</font>")
+		M.show_message(span_blue("The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?"))
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
 /obj/item/device/mmi/digital/posibrain/emp_act(severity)

@@ -7,6 +7,7 @@
 	icon_state = "particle1"//Need a new icon for this
 	anchored = TRUE
 	density = TRUE
+	movement_type = UNSTOPPABLE // for bumps to trigger
 	var/movement_range = 10
 	var/energy = 10		//energy in eV
 	var/mega_energy = 0	//energy in MeV

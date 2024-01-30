@@ -259,13 +259,13 @@
 		var/playedmessage = mytape.storedinfo[i]
 		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
 			playedmessage = copytext(playedmessage,2)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: [playedmessage]</font>", runemessage = playedmessage)
+		T.audible_message(span_maroon("<B>Tape Recorder</B>: [playedmessage]"), runemessage = playedmessage)
 
 		if(mytape.storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
 			T = get_turf(src)
-			T.audible_message("<font color=Maroon><B>Tape Recorder</B>: End of recording.</font>", runemessage = "click")
+			T.audible_message(span_maroon("<B>Tape Recorder</B>: End of recording."), runemessage = "click")
 			break
 		else
 			playsleepseconds = mytape.timestamp[i+1] - mytape.timestamp[i]
@@ -273,7 +273,7 @@
 		if(playsleepseconds > 14)
 			sleep(10)
 			T = get_turf(src)
-			T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence</font>", runemessage = "tape winding")
+			T.audible_message(span_maroon("<B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence"), runemessage = "tape winding")
 			playsleepseconds = 1
 		sleep(10 * playsleepseconds)
 
@@ -283,19 +283,19 @@
 
 	if(emagged)
 		var/turf/T = get_turf(src)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: This tape recorder will self-destruct in... Five.</font>", runemessage = "beep beep")
+		T.audible_message(span_maroon("<B>Tape Recorder</B>: This tape recorder will self-destruct in... Five."), runemessage = "beep beep")
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Four.</font>")
+		T.audible_message(span_maroon("<B>Tape Recorder</B>: Four."))
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Three.</font>")
+		T.audible_message(span_maroon("<B>Tape Recorder</B>: Three."))
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Two.</font>")
+		T.audible_message(span_maroon("<B>Tape Recorder</B>: Two."))
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: One.</font>")
+		T.audible_message(span_maroon("<B>Tape Recorder</B>: One."))
 		sleep(10)
 		explode()
 

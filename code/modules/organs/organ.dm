@@ -114,8 +114,7 @@ var/list/organ_cache = list()
 
 	handle_organ_mod_special()
 
-/obj/item/organ/Initialize()
-	. = ..()
+/obj/item/organ/proc/set_initial_meat()
 	if(owner)
 		if(!meat_type)
 			if(owner.isSynthetic())
@@ -394,7 +393,7 @@ var/list/organ_cache = list()
 		var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 		if(affected) affected.internal_organs -= src
 
-		forceMove(owner.drop_location())
+		owner.remove_from_mob(src, owner.drop_location())
 		START_PROCESSING(SSobj, src)
 		rejecting = null
 

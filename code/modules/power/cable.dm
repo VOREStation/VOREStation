@@ -985,7 +985,7 @@ var/list/possible_cable_coil_colours = list(
 			var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
 			CC.amount = N
 			CC.update_icon()
-			to_chat(user,"<font color='blue'>You take [N] units of wire from the [src].</font>")
+			to_chat(user,span_blue("You take [N] units of wire from the [src]."))
 			if (CC)
 				user.put_in_hands(CC)
 				src.add_fingerprint(user)

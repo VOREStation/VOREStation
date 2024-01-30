@@ -301,11 +301,11 @@ This device records all warnings given and teleport events for admin review in c
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
 		if(!(target.can_be_drop_prey) && B.owner != user)
-			to_chat(target,"<span class='warning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,"<span class='vwarning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
 			real_dest = dT //Nevermind!
 		else
 			televored = TRUE
-			to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,"<span class='vwarning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
