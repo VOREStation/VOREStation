@@ -48,7 +48,7 @@
 	cost = 100
 	obj_path = /obj/item/weapon/technomancer_core/unstable
 
-/datum/technomancer/equipment/recyclingW
+/datum/technomancer/equipment/recycling
 	name = "Recycling Core"
 	desc = "This core is optimized for energy efficency, being able to sometimes recover energy that would have been lost with other \
 	cores.  Each time energy is spent, there is a 30% chance of recovering half of what was spent.<br>\
