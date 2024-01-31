@@ -10,7 +10,7 @@
 
 #define span_comradio(str) ("<span class='comradio'>" + str + "</span>")
 #define span_syndradio(str) ("<span class='syndradio'>" + str + "</span>")
-#define span_centradio(str) ("<span class='centradio'>" + str + "</span>"
+#define span_centradio(str) ("<span class='centradio'>" + str + "</span>")
 #define span_airadio(str) ("<span class='airadio'>" + str + "</span>")
 #define span_entradio(str) ("<span class='entradio'>" + str + "</span>")
 
@@ -18,7 +18,7 @@
 #define span_engradio(str) ("<span class='engradio'>" + str + "</span>")
 #define span_medradio(str) ("<span class='medradio'>" + str + "</span>")
 #define span_sciradio(str) ("<span class='sciradio'>" + str + "</span>")
-#define span_supradio(str) ("<span class='supradio'>" + str + "</span>"
+#define span_supradio(str) ("<span class='supradio'>" + str + "</span>")
 #define span_srvradio(str) ("<span class='srvradio'>" + str + "</span>")
 #define span_expradio(str) ("<span class='expradio'>" + str + "</span>")
 
@@ -81,6 +81,7 @@
 #define span_debug_debug(str) ("<span class='debug_debug'>" + str + "</span>")
 #define span_debug_trace(str) ("<span class='debug_trace'>" + str + "</span>")
 
+#define span_white(str) ("<span class='white'>" + str + "</span>")
 #define span_black(str) ("<span class='black'>" + str + "</span>")
 #define span_darkgray(str) ("<span class='darkgray'>" + str + "</span>")
 #define span_gray(str) ("<span class='gray'>" + str + "</span>")
@@ -95,3 +96,5 @@
 #define span_crimson(str) ("<span class='crimson'>" + str + "</span>")
 #define span_maroon(str) ("<span class='maroon'>" + str + "</span>")
 #define span_brown(str) ("<span class='brown'>" + str + "</span>")
+#define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
+#define span_darkpink(str) ("<span class='lightpurple'>" + str + "</span>")
