@@ -194,6 +194,10 @@
 		to_chat(prey, "<span class='warning'>You cannot do that in your current state.</span>")
 		return
 
+	if(isrobot(pred) && jobban_isbanned(prey, "Cyborg"))
+		to_chat(prey, "<span class='warning'>Forces beyond your comprehension forbid you from taking control of [pred].</span>")
+		return
+
 	if(!pred.ckey)
 		to_chat(prey, "<span class='notice'>\The [pred] isn't able to be dominated.</span>")
 		return
@@ -421,17 +425,20 @@
 	var/mob/living/pred = src
 
 	if(prey.stat == DEAD)
-		to_chat(prey, "<span class='warning'>You cannot do that to this prey.</span>")
+		to_chat(pred, "<span class='warning'>You cannot do that to this prey.</span>")
 		return
 
 	if(!prey.ckey)
-		to_chat(prey, "<span class='notice'>\The [prey] cannot take control.</span>")
+		to_chat(pred, "<span class='notice'>\The [prey] cannot take control.</span>")
+		return
+	if(isrobot(pred) && jobban_isbanned(prey, "Cyborg"))
+		to_chat(pred, "<span class='warning'>Forces beyond your comprehension prevent you from giving [prey] control.</span>")
 		return
 	if(prey.prey_controlled)
-		to_chat(prey, "<span class='warning'>\The [prey] is already under someone's control and cannot be given control of your body.</span>")
+		to_chat(pred, "<span class='warning'>\The [prey] is already under someone's control and cannot be given control of your body.</span>")
 		return
 	if(pred.prey_controlled)
-		to_chat(prey, "<span class='warning'>You are already controlling someone's body.</span>")
+		to_chat(pred, "<span class='warning'>You are already controlling someone's body.</span>")
 		return
 	if(tgui_alert(pred, "You are attempting to give [prey] control over you, are you sure? Ensure that their preferences align with this kind of play.", "Give Prey Control",list("No","Yes")) != "Yes")
 		return
