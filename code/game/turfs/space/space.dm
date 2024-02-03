@@ -41,7 +41,7 @@
 /turf/space/proc/toggle_transit(var/direction)
 	if(edge) //Not a great way to do this yet. Maybe we'll come up with one. We could pre-make sprites... or tile the overlay over it?
 		return
-	
+
 	if(!direction) //Stopping our transit
 		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
 	else if(direction & (NORTH|SOUTH)) //Starting transit vertically
@@ -84,6 +84,7 @@
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
+			L.upgrade(C, user)
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
