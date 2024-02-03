@@ -18,8 +18,8 @@ type Data = {
   scan_in_progress: BooleanLike;
 };
 
-const XenoarchArtifactAnalyzerContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const XenoarchArtifactAnalyzerContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { owned_scanner, scan_in_progress } = data;
 

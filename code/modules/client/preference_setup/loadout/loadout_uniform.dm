@@ -291,9 +291,20 @@
 	display_name = "jumpsuit, circuitry (empty)"
 	path = /obj/item/clothing/under/circuitry
 
-/datum/gear/uniform/sleekoverall
-	display_name = "sleek overalls"
-	path = /obj/item/clothing/under/overalls/sleek
+/datum/gear/uniform/overalls
+	display_name = "overalls selection"
+	path = /obj/item/clothing/under/overalls
+
+/datum/gear/uniform/overalls/New()
+	..()
+	var/list/overalls = list(
+	"Laborer's Overalls" = /obj/item/clothing/under/overalls,
+	"Sleek Overalls" = /obj/item/clothing/under/overalls/sleek,
+	"Workman Overalls" = /obj/item/clothing/under/overalls/service,
+	"Frontier Overalls" = /obj/item/clothing/under/overalls/frontier,
+	"Rustler Overalls" = /obj/item/clothing/under/overalls/rustler
+	)
+	gear_tweaks += new/datum/gear_tweak/path(overalls)
 
 /datum/gear/uniform/sarired
 	display_name = "sari, red"
@@ -362,6 +373,10 @@
 /datum/gear/uniform/haltertop
 	display_name = "halter top"
 	path = /obj/item/clothing/under/haltertop
+
+/datum/gear/uniform/tanktop
+	display_name = "tank top"
+	path = /obj/item/clothing/under/tanktop
 
 /datum/gear/uniform/revealingdress
 	display_name = "revealing dress"
@@ -497,6 +512,10 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_outfits)
 
+/datum/gear/uniform/hightrousers
+	display_name = "high-waisted trousers"
+	path = /obj/item/clothing/under/dress/hightrousers
+
 /*
  * 80s
  */
@@ -586,3 +605,16 @@
 /datum/gear/uniform/fienddress
     display_name = "fiendish dress"
     path = /obj/item/clothing/under/fienddress
+
+//tabard dresses
+/datum/gear/uniform/tabarddress
+	display_name = "tabard-dress selection"
+	path = /obj/item/clothing/under/dress/tabard
+
+/datum/gear/uniform/tabarddress/New()
+	..()
+	var/list/tabarddress = list(
+	"white tabard-dress"=/obj/item/clothing/under/dress/tabard,
+	"black tabard-dress"=/obj/item/clothing/under/dress/tabard/black
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(tabarddress))

@@ -25,6 +25,7 @@
 /mob/living/carbon/human/dummy/mannequin/autoequip
 	icon = 'icons/mob/human_races/r_human.dmi'
 	icon_state = "preview"
+	var/autorotate = TRUE
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/Initialize()
 	icon = null
@@ -32,7 +33,8 @@
 	. = ..()
 
 	dress_up()
-	turntable()
+	if(autorotate)
+		turntable()
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/proc/dress_up()
 	set waitfor = FALSE

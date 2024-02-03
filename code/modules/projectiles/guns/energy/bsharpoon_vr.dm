@@ -144,8 +144,8 @@
 							if(prey != user && prey.can_be_drop_prey)
 								prey.forceMove(belly_dest)
 								vore_happened = TRUE
-								to_chat(prey, "<span class='danger'>[living_user] materializes around you, as you end up in their [belly_dest]!</span>")
-								to_chat(living_user, "<span class='notice'>You materialize around [prey] as they end up in your [belly_dest]!</span>")
+								to_chat(prey, "<span class='vdanger'>[living_user] materializes around you, as you end up in their [belly_dest]!</span>")
+								to_chat(living_user, "<span class='vnotice'>You materialize around [prey] as they end up in your [belly_dest]!</span>")
 				if(can_dropnom && !vore_happened && living_user.can_be_drop_prey)
 					var/mob/living/pred
 					for(var/mob/living/potential_pred in ToTurf)
@@ -159,8 +159,8 @@
 							belly_dest = pick(pred.vore_organs)
 						if(belly_dest)
 							living_user.forceMove(belly_dest)
-							to_chat(pred, "<span class='notice'>[living_user] materializes inside you as they end up in your [belly_dest]!</span>")
-							to_chat(living_user, "<span class='danger'>You materialize inside [pred] as you end up in their [belly_dest]!</span>")
+							to_chat(pred, "<span class='vnotice'>[living_user] materializes inside you as they end up in your [belly_dest]!</span>")
+							to_chat(living_user, "<span class='vdanger'>You materialize inside [pred] as you end up in their [belly_dest]!</span>")
 
 	else
 		for(var/obj/O in FromTurf)
@@ -185,8 +185,8 @@
 						belly_dest = pick(living_user.vore_organs)
 					if(belly_dest)
 						M.forceMove(belly_dest)
-						to_chat(living_user, "<span class='notice'>[M] materializes inside you as they end up in your [belly_dest]!</span>")
-						to_chat(M, "<span class='danger'>You materialize inside [living_user] as you end up in their [belly_dest]!</span>")
+						to_chat(living_user, "<span class='vnotice'>[M] materializes inside you as they end up in your [belly_dest]!</span>")
+						to_chat(M, "<span class='vdanger'>You materialize inside [living_user] as you end up in their [belly_dest]!</span>")
 				else if(can_dropnom && living_user.can_be_drop_prey && M.can_be_drop_pred && !user_vored)
 					var/obj/belly/belly_dest
 					if(M.vore_selected)
@@ -196,8 +196,8 @@
 					if(belly_dest)
 						living_user.forceMove(belly_dest)
 						user_vored = TRUE
-						to_chat(living_user, "<span class='danger'>[M] materializes around you, as you end up in their [belly_dest]!</span>")
-						to_chat(M, "<span class='notice'>You materialize around [living_user] as they end up in your [belly_dest]!</span>")
+						to_chat(living_user, "<span class='vdanger'>[M] materializes around you, as you end up in their [belly_dest]!</span>")
+						to_chat(M, "<span class='vnotice'>You materialize around [living_user] as they end up in your [belly_dest]!</span>")
 
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)

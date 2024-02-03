@@ -12,7 +12,7 @@
 
 // #define to_chat(target, message) target << message Not anymore!
 //#define to_chat to_chat_filename=__FILE__;to_chat_line=__LINE__;to_chat_src=src;__to_chat
-#define to_chat __to_chat
+//#define to_chat __to_chat
 #define to_world(message) to_chat(world, message)
 #define to_world_log(message) world.log << message
 // TODO - Baystation has this log to crazy places. For now lets just world.log, but maybe look into it later.

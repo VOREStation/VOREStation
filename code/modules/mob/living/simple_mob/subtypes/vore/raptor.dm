@@ -56,7 +56,7 @@
 	vore_pounce_chance = 50
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
-	vore_capacity = 2
+	vore_capacity = 1
 	swallowTime = 50
 	vore_ignores_undigestable = TRUE
 	vore_default_mode = DM_DIGEST
@@ -147,4 +147,3 @@
 			remove_eyes()
 			add_eyes()
 	update_transform()
-

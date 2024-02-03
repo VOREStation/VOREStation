@@ -57,7 +57,7 @@
 			if(!hit_zone)
 				H.do_attack_animation(src)
 				playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("<span class='filter_combat'><font color='red'><B>[H] reaches for [src], but misses!</B></font></span>")
+				visible_message("<span class='filter_combat'>[span_red("<B>[H] reaches for [src], but misses!</B>")]</span>")
 				return FALSE
 
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
@@ -333,7 +333,7 @@
 						return
 
 			playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("<span class='filter_combat'><font color='red'> <B>[M] attempted to disarm [src]!</B></font></span>")
+			visible_message("<span class='filter_combat'>[span_red("<B>[M] attempted to disarm [src]!</B>")]</span>")
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)

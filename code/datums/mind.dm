@@ -143,9 +143,9 @@
 		for(var/datum/objective/O in objectives)
 			out += "<b>Objective #[num]:</b> [O.explanation_text] "
 			if(O.completed)
-				out += "(<font color='green'>complete</font>)"
+				out += "([span_green("complete")])"
 			else
-				out += "(<font color='red'>incomplete</font>)"
+				out += "([span_red("incomplete")])"
 			out += " <a href='?src=\ref[src];[HrefToken()];obj_completed=\ref[O]'>\[toggle\]</a>"
 			out += " <a href='?src=\ref[src];[HrefToken()];obj_delete=\ref[O]'>\[remove\]</a><br>"
 			num++
@@ -419,7 +419,7 @@
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
-		to_chat(current, "<font color='blue'>Your current objectives:</font>")
+		to_chat(current, span_blue("Your current objectives:"))
 		for(var/datum/objective/objective in objectives)
 			to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++

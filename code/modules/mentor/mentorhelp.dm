@@ -224,7 +224,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	AddInteraction("<font color='purple'>Reopened by [usr.ckey]</font>")
 	if(initiator)
-		to_chat(initiator, "<span class='filter_adminlog'><font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [usr.ckey].</font></span>")
+		to_chat(initiator, "<span class='filter_adminlog'>[span_purple("Ticket [TicketHref("#[id]")] was reopened by [usr.ckey].")]</span>")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [usr.ckey].</span>"
 	message_mentors(msg)
 	log_admin(msg)
@@ -249,9 +249,9 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	state = AHELP_RESOLVED
 	GLOB.mhelp_tickets.ListInsert(src)
 
-	AddInteraction("<span class='filter_adminlog'><font color='green'>Resolved by [usr.ckey].</font></span>")
+	AddInteraction("<span class='filter_adminlog'>[span_green("Resolved by [usr.ckey].")]</span>")
 	if(initiator)
-		to_chat(initiator, "<span class='filter_adminlog'><font color='green'>Ticket [TicketHref("#[id]")] was marked resolved by [usr.ckey].</font></span>")
+		to_chat(initiator, "<span class='filter_adminlog'>[span_green("Ticket [TicketHref("#[id]")] was marked resolved by [usr.ckey].")]</span>")
 	if(!silent)
 		feedback_inc("mhelp_resolve")
 		var/msg = "Ticket [TicketHref("#[id]")] resolved by [usr.ckey]"

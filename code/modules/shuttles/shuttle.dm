@@ -332,10 +332,10 @@
 			for(var/mob/living/M in A)
 				spawn(0)
 					if(M.buckled)
-						to_chat(M, "<font color='red'>Sudden acceleration presses you into \the [M.buckled]!</font>")
+						to_chat(M, span_red("Sudden acceleration presses you into \the [M.buckled]!"))
 						shake_camera(M, 3, 1)
 					else
-						to_chat(M, "<font color='red'>The floor lurches beneath you!</font>")
+						to_chat(M, span_red("The floor lurches beneath you!"))
 						shake_camera(M, 10, 1)
 						// TODO - tossing?
 						//M.visible_message("<span class='warning'>[M.name] is tossed around by the sudden acceleration!</span>")

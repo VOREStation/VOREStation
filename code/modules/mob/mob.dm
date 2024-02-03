@@ -70,8 +70,10 @@
 		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
 		if(client && client.prefs.chat_timestamp)
-			msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") 
-			to_chat(src,msg)
+			// TG-Chat filters latch directly to the spans, we no longer need that
+			//msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") // Insteres timestamps after the first qualifying span
+			//msg = replacetext(msg, new/regex("^\[^<]((?:.|\\n)*)", ""), "[time] $1") // Spanless messages also get timestamped
+			to_chat(src,"[time] [msg]")
 		else if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
 		else
@@ -458,7 +460,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || istype(src, /mob/new_player))
-		to_chat(usr, "<span class='filter_notice'><font color='blue'>You must be observing to use this!</font></span>")
+		to_chat(usr, "<span class='filter_notice'>[span_blue("You must be observing to use this!")]</span>")
 		return
 
 	if(is_admin && stat == DEAD)
@@ -609,7 +611,27 @@
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
-			to_chat(src, "<span class='filter_notice'><font color='red'><B>Pulling \the [H] in their current condition would probably be a bad idea.</B></font></span>")
+			to_chat(src, "<span class='filter_notice'>[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]</span>")
+
+	//Attempted fix for people flying away through space when cuffed and dragged.
+	if(ismob(AM))
+		var/mob/pulled = AM
+		pulled.inertia_dir = 0
+
+// We have pulled something before, so we should be able to safely continue pulling it. This proc is only for portals!
+/mob/proc/continue_pulling(var/atom/movable/AM)
+
+	if ( !AM || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+		return
+
+	if (AM.anchored)
+		return
+
+	src.pulling = AM
+	AM.pulledby = src
+
+	if(pullin)
+		pullin.icon_state = "pull1"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -671,6 +693,7 @@
 				stat("Keys Held", keys2text(client.move_keys_held | client.mod_keys_held))
 				stat("Next Move ADD", dirs2text(client.next_move_dir_add))
 				stat("Next Move SUB", dirs2text(client.next_move_dir_sub))
+				stat("Current size:", size_multiplier * 100)
 
 			if(statpanel("MC"))
 				stat("Location:", "([x], [y], [z]) [loc]")

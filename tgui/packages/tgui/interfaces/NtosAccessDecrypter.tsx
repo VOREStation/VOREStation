@@ -12,8 +12,8 @@ type Data = {
   regions: [];
 };
 
-export const NtosAccessDecrypter = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const NtosAccessDecrypter = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { message, running, rate, factor, regions } = data;
 

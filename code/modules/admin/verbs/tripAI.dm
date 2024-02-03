@@ -14,9 +14,9 @@
 		if(ticker.triai)
 			ticker.triai = 0
 			to_chat(usr, "Only one AI will be spawned at round start.")
-			message_admins("<font color='blue'>[key_name_admin(usr)] has toggled off triple AIs at round start.</font>", 1)
+			message_admins(span_blue("[key_name_admin(usr)] has toggled off triple AIs at round start."), 1)
 		else
 			ticker.triai = 1
 			to_chat(usr, "There will be an AI Triumvirate at round start.")
-			message_admins("<font color='blue'>[key_name_admin(usr)] has toggled on triple AIs at round start.</font>", 1)
+			message_admins(span_blue("[key_name_admin(usr)] has toggled on triple AIs at round start."), 1)
 	return

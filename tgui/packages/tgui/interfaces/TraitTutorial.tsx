@@ -12,8 +12,8 @@ type data = {
   selection: string;
 };
 
-export const TraitTutorial = (props, context) => {
-  const { act, data } = useBackend<data>(context);
+export const TraitTutorial = (props) => {
+  const { act, data } = useBackend<data>();
   return (
     <Window width={804} height={426}>
       <Window.Content scrollable>
@@ -25,8 +25,8 @@ export const TraitTutorial = (props, context) => {
   );
 };
 
-export const TraitSelection = (props, context) => {
-  const { act, data } = useBackend<data>(context);
+export const TraitSelection = (props) => {
+  const { act, data } = useBackend<data>();
 
   const { names, selection } = data;
 
@@ -57,8 +57,8 @@ export const TraitSelection = (props, context) => {
   );
 };
 
-export const TraitDescription = (props, context) => {
-  const { act, data } = useBackend<data>(context);
+export const TraitDescription = (props) => {
+  const { act, data } = useBackend<data>();
 
   const { name } = props;
   const { descriptions, categories, tutorials } = data;

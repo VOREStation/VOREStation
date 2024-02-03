@@ -63,6 +63,7 @@
 		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
 
+	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
 
 	for(var/client/target in GLOB.clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
@@ -76,7 +77,7 @@
 					else
 						display_name = holder.fakekey
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+				to_chat(target, "<span class='ooc'><font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></font></span>")
 			else
 				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>")
 
@@ -169,6 +170,8 @@
 	for(var/client/admin in GLOB.admins)
 		if(!(admin in receivers) && admin.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
 			r_receivers |= admin
+
+	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
 
 	// Send a message
 	for(var/client/target in receivers)

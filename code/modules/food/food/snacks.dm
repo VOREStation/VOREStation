@@ -300,11 +300,15 @@
 			if (W.w_class >= src.w_class || is_robot_module(W) || istype(W, /obj/item/weapon/holder))
 				return
 
-			to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
-			user.drop_from_inventory(W, src)
-			add_fingerprint(user)
-			contents += W
-			return
+			if(tgui_alert(user,"You can't slice \the [src] here. Would you like to hide \the [W] inside it instead?","No Cutting Surface!",list("Yes","No")) == "No")
+				to_chat(user, "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>")
+				return
+			else
+				to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
+				user.drop_from_inventory(W, src)
+				add_fingerprint(user)
+				contents += W
+				return
 
 		if (has_edge(W))
 			if (!can_slice_here)
@@ -849,7 +853,7 @@
 	. = ..()
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.splash(hit_atom, reagents.total_volume)
-	src.visible_message("<font color='red'>[src.name] has been squashed.</font>","<font color='red'>You hear a smack.</font>")
+	src.visible_message(span_red("[src.name] has been squashed."),span_red("You hear a smack."))
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -858,10 +862,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(usr, "<font color='blue'>The egg refuses to take on this color!</font>")
+			to_chat(usr, span_blue("The egg refuses to take on this color!"))
 			return
 
-		to_chat(usr, "<font color='blue'>You color \the [src] [clr]</font>")
+		to_chat(usr, span_blue("You color \the [src] [clr]"))
 		icon_state = "egg-[clr]"
 	else
 		. = ..()
@@ -947,10 +951,6 @@
 	nutriment_amt = 12
 	nutriment_desc = list("turkey" = 3, "tofu" = 5, "goeyness" = 4)
 	bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/tofurkey/Initialize()
-	. = ..()
-	reagents.add_reagent("stoxin", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/stuffing
 	name = "Stuffing"
@@ -1633,7 +1633,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, "<font color='red'>You bite down on an un-popped kernel!</font>")
+		to_chat(usr, span_red("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped-1)
 	. = ..()
 

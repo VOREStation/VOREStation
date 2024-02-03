@@ -63,28 +63,28 @@
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(istype(O, /obj/item/weapon/tank/phoron))
 			if(P)
-				to_chat(user, "<font color='red'>The generator already has a phoron tank loaded!</font>")
+				to_chat(user, span_red("The generator already has a phoron tank loaded!"))
 				return
 			P = O
 			user.drop_item()
 			O.loc = src
-			to_chat(user, "<font color='blue'>You add the phoron tank to the generator.</font>")
+			to_chat(user, span_blue("You add the phoron tank to the generator."))
 		else if(!active)
 			if(O.has_tool_quality(TOOL_WRENCH))
 				anchored = !anchored
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
-					to_chat(user, "<font color='blue'>You secure the generator to the floor.</font>")
+					to_chat(user, span_blue("You secure the generator to the floor."))
 				else
-					to_chat(user, "<font color='blue'>You unsecure the generator from the floor.</font>")
+					to_chat(user, span_blue("You unsecure the generator from the floor."))
 				SSmachines.makepowernets()
 			else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 				open = !open
 				playsound(src, O.usesound, 50, 1)
 				if(open)
-					to_chat(user, "<font color='blue'>You open the access panel.</font>")
+					to_chat(user, span_blue("You open the access panel."))
 				else
-					to_chat(user, "<font color='blue'>You close the access panel.</font>")
+					to_chat(user, span_blue("You close the access panel."))
 			else if(O.has_tool_quality(TOOL_CROWBAR) && !open)
 				playsound(src, O.usesound, 50, 1)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)

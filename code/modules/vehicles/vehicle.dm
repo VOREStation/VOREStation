@@ -111,7 +111,7 @@
 						health = min(maxhealth, health+10)
 						user.setClickCooldown(user.get_attack_speed(W))
 						playsound(src, T.usesound, 50, 1)
-						user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
+						user.visible_message(span_red("[user] repairs [src]!"),span_blue("You repair [src]!"))
 					else
 						to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 				else
@@ -226,7 +226,7 @@
 		return TRUE
 
 /obj/vehicle/proc/explode()
-	src.visible_message("<font color='red'><B>[src] blows apart!</B></font>", 1)
+	src.visible_message(span_red("<B>[src] blows apart!</B>"), 1)
 	var/turf/Tsec = get_turf(src)
 
 	//stuns people who are thrown off a train that has been blown up
@@ -402,7 +402,7 @@
 	if(!damage)
 		return
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+	user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
 	user.do_attack_animation(src)
 	src.health -= damage
 	if(mechanical && prob(10))

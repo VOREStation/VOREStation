@@ -32,10 +32,10 @@ type Data = {
   initial_z: number;
 };
 
-export const MobSpawner = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const MobSpawner = (props) => {
+  const { act, data } = useBackend<Data>();
 
-  const [tabIndex, setTabIndex] = useLocalState(context, 'panelTabIndex', 0);
+  const [tabIndex, setTabIndex] = useLocalState('panelTabIndex', 0);
 
   const tabs: any = [];
 
@@ -59,57 +59,41 @@ export const MobSpawner = (props, context) => {
   );
 };
 
-const GeneralMobSettings = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const GeneralMobSettings = (props) => {
+  const { act, data } = useBackend<Data>();
 
-  const [amount, setAmount] = useLocalState(context, 'amount', 1);
-  const [name, setName] = useLocalState(
-    context,
-    'name',
-    data.default_path_name
-  );
-  const [ai_type] = useLocalState(context, 'aiType', data.ai_type);
-  const [use_custom_ai] = useLocalState(
-    context,
-    'toggleCustomAi',
-    data.use_custom_ai
-  );
-  const [faction] = useLocalState(context, 'setMobFaction', data.faction);
-  const [intent] = useLocalState(context, 'setIntent', data.intent);
-  const [maxHealth, setMaxHealth] = useLocalState(
-    context,
-    'maxHealth',
-    data.max_health
-  );
-  const [health, setHealth] = useLocalState(context, 'health', data.health);
+  const [amount, setAmount] = useLocalState('amount', 1);
+  const [name, setName] = useLocalState('name', data.default_path_name);
+  const [ai_type] = useLocalState('aiType', data.ai_type);
+  const [use_custom_ai] = useLocalState('toggleCustomAi', data.use_custom_ai);
+  const [faction] = useLocalState('setMobFaction', data.faction);
+  const [intent] = useLocalState('setIntent', data.intent);
+  const [maxHealth, setMaxHealth] = useLocalState('maxHealth', data.max_health);
+  const [health, setHealth] = useLocalState('health', data.health);
   const [meleeDamageLower, setMeleeDamageLower] = useLocalState(
-    context,
     'meleeDamageLower',
     data.melee_damage_lower
   );
   const [meleeDamageUpper, setMeleeDamageUpper] = useLocalState(
-    context,
     'meleeDamageUpper',
     data.melee_damage_upper
   );
-  const [desc, setDesc] = useLocalState(context, 'desc', data.default_desc);
+  const [desc, setDesc] = useLocalState('desc', data.default_desc);
   const [flavorText, setFlavorText] = useLocalState(
-    context,
     'flavorText',
     data.default_flavor_text
   );
 
   const [sizeMultiplier, setSizeMultiplier] = useLocalState(
-    context,
     'sizeMultiplier',
     100
   );
 
-  const [x, setX] = useLocalState(context, 'x', data.initial_x);
-  const [y, setY] = useLocalState(context, 'y', data.initial_y);
-  const [z, setZ] = useLocalState(context, 'z', data.initial_z);
+  const [x, setX] = useLocalState('x', data.initial_x);
+  const [y, setY] = useLocalState('y', data.initial_y);
+  const [z, setZ] = useLocalState('z', data.initial_z);
 
-  const [radius, setRadius] = useLocalState(context, 'radius', 0);
+  const [radius, setRadius] = useLocalState('radius', 0);
 
   return (
     <>
@@ -317,8 +301,8 @@ const GeneralMobSettings = (props, context) => {
   );
 };
 
-const VoreMobSettings = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const VoreMobSettings = (props) => {
+  const { act, data } = useBackend<Data>();
 
   return (
     <Section title="WIP">

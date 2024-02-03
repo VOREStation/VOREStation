@@ -7,7 +7,6 @@
 
 /obj/item/organ/internal/robotic/heatsink/handle_organ_proc_special()
 	if(owner && owner.stat != DEAD)
-		owner.bodytemperature += round(owner.robobody_count * 0.75, 0.1)
 
 		var/thermostat = owner.species.body_temperature
 		var/turf/T = get_turf(src)
@@ -17,7 +16,10 @@
 		var/env_temp = get_environment_temperature()
 		var/thermal_protection = owner.get_heat_protection(env_temp)
 
-		if(thermal_protection < 1)
+		if(!efficiency)
+			owner.bodytemperature -= round(owner.robobody_count * (1 - damage / max_damage), 0.1) // We are dissipating added heat under normal conditions and without damage
+
+		if(thermal_protection < 0.99)
 			temp_adj = min(owner.bodytemperature - max(thermostat, env_temp), owner.robobody_count * 2)
 		else
 			temp_adj = min(owner.bodytemperature - thermostat, owner.robobody_count * 2)
@@ -27,9 +29,12 @@
 
 		owner.bodytemperature -= temp_adj*efficiency
 
-		if(owner.bodytemperature > owner.species.heat_level_2)	// If you're already overheating to the point of melting, the heatsink starts causing problems.
+		if(owner.bodytemperature > owner.species.heat_level_3)    // If you're already overheating to the point of melting, the heatsink starts causing problems.
 			owner.adjustToxLoss(2 * damage / max_damage)
 			take_damage(max(0.5,round(damage / max_damage, 0.1)))
+		else if (owner.bodytemperature > owner.species.heat_level_2)
+			owner.adjustToxLoss(damage / max_damage)
+			take_damage(max(0.25,round(damage / max_damage, 0.1)))
 
 	return
 
@@ -54,6 +59,6 @@
 		return owner.species.heat_level_2 * efficiency
 
 	if(!environment)
-		return owner.species.heat_level_2 * efficiency
+		return owner.species.heat_level_2
 
 	return environment.temperature

@@ -13,8 +13,8 @@ type Data = {
   }[];
 };
 
-export const NoticeBoard = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const NoticeBoard = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { notices } = data;
 

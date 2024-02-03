@@ -12,6 +12,8 @@
  * Lasertag
  */
 
+#define LASER_TAG_HEALTH 3	//how many strikes do we get?
+
 /obj/item/clothing/suit/bluetag
 	name = "blue laser tag armor"
 	desc = "Blue Pride, Station Wide."
@@ -21,10 +23,11 @@
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/blue)
 	siemens_coefficient = 3.0
+	var/lasertag_health = LASER_TAG_HEALTH
 
 /obj/item/clothing/suit/bluetag/sub
 	name = "Brigader Armor"
-	desc = "Repilca rmor commonly worn by Spacer Union Brigade members from the hit series Spacer Trail. Modified for Laser Tag (Blue Team)."
+	desc = "Replica armor commonly worn by Spacer Union Brigade members from the hit series Spacer Trail. Modified for Laser Tag (Blue Team)."
 	icon_state = "bluetag2"
 
 /obj/item/clothing/suit/redtag
@@ -36,10 +39,11 @@
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/red)
 	siemens_coefficient = 3.0
+	var/lasertag_health = LASER_TAG_HEALTH
 
 /obj/item/clothing/suit/redtag/dom
 	name = "Mu'tu'bi Armor"
-	desc = "Repilca rmor commonly worn by Dominion Of Mu'tu'bi soldiers from the hit series Spacer Trail. Modified for Laser Tag (Red Team)."
+	desc = "Replica armor commonly worn by Dominion Of Mu'tu'bi soldiers from the hit series Spacer Trail. Modified for Laser Tag (Red Team)."
 	icon_state = "redtag2"
 
 /*
@@ -794,6 +798,14 @@
 /obj/item/clothing/suit/varsity/brown
 	name = "brown varsity jacket"
 	icon_state = "varsity_brown"
+
+/obj/item/clothing/suit/runner
+	name = "runner jacket"
+	desc = "A yellow sports jacket with white trim and an unfolded collar."
+	icon_state = "runner"
+	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	item_state_slots = list(slot_r_hand_str = "suit_red", slot_l_hand_str = "suit_red")
+	flags_inv = HIDEHOLSTER
 
 /*
  * Department Jackets

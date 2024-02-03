@@ -107,7 +107,10 @@
 		/mob/living/silicon/robot/proc/robot_checklaws,
 		/mob/living/silicon/robot/proc/robot_mount,
 		/mob/living/proc/toggle_rider_reins,
-		/mob/living/proc/shred_limb
+		/mob/living/proc/vertical_nom,
+		/mob/living/proc/shred_limb,
+		/mob/living/proc/dominate_prey,
+		/mob/living/proc/lend_prey_control
 	)
 
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
@@ -148,9 +151,7 @@
 		C.wrapped = new C.external_type
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell(src)
-		cell.maxcharge = 7500
-		cell.charge = 7500
+		cell = new /obj/item/weapon/cell/robot_station(src)
 	else if(ispath(cell))
 		cell = new cell(src)
 
@@ -176,6 +177,44 @@
 /mob/living/silicon/robot/LateInitialize()
 	. = ..()
 	update_icon()
+
+/mob/living/silicon/robot/rejuvenate()
+	for (var/V in components)
+		var/datum/robot_component/C = components[V]
+		if(istype(C.wrapped, /obj/item/broken_device))
+			qdel(C.wrapped)
+			C.wrapped = null
+		if(!C.wrapped)
+			switch(V)
+				if("actuator")
+					C.wrapped = new /obj/item/robot_parts/robot_component/actuator(src)
+				if("radio")
+					C.wrapped = new /obj/item/robot_parts/robot_component/radio(src)
+				if("power cell")
+					var/list/recommended_cells = list(/obj/item/weapon/cell/robot_station, /obj/item/weapon/cell/high, /obj/item/weapon/cell/super, /obj/item/weapon/cell/robot_syndi, /obj/item/weapon/cell/hyper,
+						/obj/item/weapon/cell/infinite, /obj/item/weapon/cell/potato, /obj/item/weapon/cell/slime)
+					var/list/cell_names = list()
+					for(var/cell_type in recommended_cells)
+						var/obj/item/weapon/cell/single_cell = cell_type
+						cell_names[capitalize(initial(single_cell.name))] = cell_type
+					var/selected_cell = tgui_input_list(usr, "What kind of cell do you want to install? Cancel installs a default robot cell.", "Cells", cell_names)
+					if(!selected_cell || selected_cell == "Cancel")
+						selected_cell = "A standard robot power cell"
+					var/new_power_cell = cell_names[capitalize(selected_cell)]
+					cell = new new_power_cell(src)
+					C.wrapped = cell
+				if("diagnosis unit")
+					C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
+				if("camera")
+					C.wrapped = new /obj/item/robot_parts/robot_component/camera(src)
+				if("comms")
+					C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(src)
+				if("armour")
+					C.wrapped = new /obj/item/robot_parts/robot_component/armour(src)
+			C.installed = 1
+			C.install()
+	cell.charge = cell.maxcharge
+	..()
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
@@ -283,7 +322,7 @@
 	else
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
-			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
+			to_chat(src, span_red("Crisis mode active. Combat module available."))
 			modules |= emergency_module_types
 		for(var/module_name in whitelisted_module_types)
 			if(is_borg_whitelisted(src, module_name))
@@ -305,6 +344,7 @@
 	hands.icon_state = get_hud_module_icon()
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
 	updatename()
+	hud_used.update_robot_modules_display()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
 
 /mob/living/silicon/robot/proc/update_braintype()
@@ -412,11 +452,11 @@
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, "<font color='red'>Your self-diagnosis component isn't functioning.</font>")
+		to_chat(src, span_red("Your self-diagnosis component isn't functioning."))
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
-		to_chat(src, "<font color='red'>Low Power.</font>")
+		to_chat(src, span_red("Low Power."))
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
 
@@ -440,10 +480,10 @@
 	var/datum/robot_component/C = components[toggle]
 	if(C.toggled)
 		C.toggled = 0
-		to_chat(src, "<font color='red'>You disable [C.name].</font>")
+		to_chat(src, span_red("You disable [C.name]."))
 	else
 		C.toggled = 1
-		to_chat(src, "<font color='red'>You enable [C.name].</font>")
+		to_chat(src, span_red("You enable [C.name]."))
 
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
 	set category = "Robot Commands"
@@ -571,7 +611,7 @@
 			updatehealth()
 			add_fingerprint(user)
 			for(var/mob/O in viewers(user, null))
-				O.show_message("<span class='filter_notice'><font color='red'>[user] has fixed some of the dents on [src]!</font></span>", 1)
+				O.show_message("<span class='filter_notice'>[span_red("[user] has fixed some of the dents on [src]!")]</span>", 1)
 		else
 			to_chat(user, "<span class='filter_warning'>Need more welding fuel!</span>")
 			return
@@ -586,7 +626,7 @@
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
-				O.show_message("<span class='filter_notice'><font color='red'>[user] has fixed some of the burnt wires on [src]!</font></span>", 1)
+				O.show_message("<span class='filter_notice'>[span_red("[user] has fixed some of the burnt wires on [src]!")]</span>", 1)
 
 	else if(W.has_tool_quality(TOOL_CROWBAR) && user.a_intent != I_HURT)	// crowbar means open or close the cover
 		if(opened)
@@ -716,7 +756,7 @@
 				to_chat(user, "<span class='filter_notice'>You [ locked ? "lock" : "unlock"] [src]'s interface.</span>")
 				update_icon()
 			else
-				to_chat(user, "<span class='filter_notice'><font color='red'>Access denied.</font></span>")
+				to_chat(user, "<span class='filter_notice'>[span_red("Access denied.")]</span>")
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
@@ -731,6 +771,7 @@
 				to_chat(usr, "<span class='filter_notice'>You apply the upgrade to [src]!</span>")
 				usr.drop_item()
 				U.loc = src
+				hud_used.update_robot_modules_display()
 			else
 				to_chat(usr, "<span class='filter_notice'>Upgrade error!</span>")
 
@@ -768,12 +809,13 @@
 /mob/living/silicon/robot/proc/module_reset()
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
+	hud_used.update_robot_modules_display(TRUE)
 	modtype = initial(modtype)
 	hands.icon_state = get_hud_module_icon()
 
 	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	qdel(module)
+	module.Destroy()
 	module = null
 	updatename("Default")
 
@@ -900,7 +942,7 @@
 				if(sleeper_state)
 					belly_size = sprite_datum.max_belly_size
 			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly" || vore_selected.silicon_belly_overlay_preference == "Both")
-				if(sleeper_state)
+				if(sleeper_state && vore_selected.silicon_belly_overlay_preference == "Both")
 					belly_size += 1
 				if(LAZYLEN(vore_selected.contents) > 0)
 					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
@@ -971,7 +1013,7 @@
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
-		to_chat(src, "<span class='filter_warning'><font color='red'>Weapon lock active, unable to use modules! Count:[weaponlock_time]</font></span>")
+		to_chat(src, "<span class='filter_warning'>" + span_red("Weapon lock active, unable to use modules! Count:[weaponlock_time]") + "</span>")
 		return
 
 	if(!module)
@@ -1155,7 +1197,10 @@
 			sprite_datum = module_sprites[1]
 	else
 		var/selection = tgui_input_list(src, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
-		sprite_datum = selection
+		if(selection)
+			sprite_datum = selection
+		else
+			sprite_datum = module_sprites[1]
 		if(!istype(src,/mob/living/silicon/robot/drone))
 			robot_species = sprite_datum.name
 		if(notransform)
@@ -1338,6 +1383,7 @@
 				laws.show_laws(src)
 				to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>")
 				update_icon()
+				hud_used.update_robot_modules_display()
 		else
 			to_chat(user, "<span class='filter_warning'>You fail to hack [src]'s interface.</span>")
 			to_chat(src, "<span class='filter_warning'>Hack attempt detected.</span>")
@@ -1373,8 +1419,8 @@
 	return cell
 
 /mob/living/silicon/robot/lay_down()
-	 . = ..()
-	 update_icon()
+	. = ..()
+	update_icon()
 
 /mob/living/silicon/robot/verb/rest_style()
 	set name = "Switch Rest Style"
@@ -1394,3 +1440,75 @@
 	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
 	if(!rest_style)
 		rest_style = "Default"
+
+// Those basic ones require quite detailled checks on the robot's vars to see if they are installed!
+/mob/living/silicon/robot/proc/has_basic_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/basic/vtec)
+		return (/mob/living/silicon/robot/proc/toggle_vtec in verbs)
+	else if(given_type == /obj/item/borg/upgrade/basic/sizeshift)
+		return (/mob/living/proc/set_size in verbs)
+	else if(given_type == /obj/item/borg/upgrade/basic/syndicate)
+		return emag_items
+	else if(given_type == /obj/item/borg/upgrade/basic/language)
+		return (speech_synthesizer_langs.len > 20) // Service with the most has 18
+	return null
+
+// We check for the module only here
+/mob/living/silicon/robot/proc/has_upgrade_module(var/given_type)
+	var/obj/T = locate(given_type) in module
+	if(!T)
+		T = locate(given_type) in module.contents
+	if(!T)
+		T = locate(given_type) in module.modules
+	return T
+
+// Most of the advanced ones, we can easily check, but a few special cases exist and need to be handled specially
+/mob/living/silicon/robot/proc/has_advanced_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/advanced/bellysizeupgrade)
+		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
+		if(T && T.upgraded_capacity)
+			return T
+		else
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+	if(given_type == /obj/item/borg/upgrade/advanced/jetpack)
+		return has_upgrade_module(/obj/item/weapon/tank/jetpack/carbondioxide)
+	if(given_type == /obj/item/borg/upgrade/advanced/advhealth)
+		return has_upgrade_module(/obj/item/device/healthanalyzer/advanced)
+	if(given_type == /obj/item/borg/upgrade/advanced/sizegun)
+		return has_upgrade_module(/obj/item/weapon/gun/energy/sizegun/mounted)
+	return null
+
+// Do we support specific upgrades?
+/mob/living/silicon/robot/proc/supports_upgrade(var/given_type)
+	return (given_type in module.supported_upgrades)
+
+// Most of the restricted ones, we can easily check, but a few special cases exist and need to be handled specially
+/mob/living/silicon/robot/proc/has_restricted_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/restricted/bellycapupgrade)
+		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
+		if(T && T.compactor)
+			return T
+		else
+			return ""
+	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
+		var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = has_upgrade_module(/obj/item/weapon/gun/energy/taser/mounted/cyborg)
+		if(T && T.recharge_time <= 2)
+			return T
+		else
+			return ""
+	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
+		return has_upgrade_module(/obj/item/weapon/storage/part_replacer/adv)
+	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
+		return has_upgrade_module(/obj/item/weapon/pickaxe/diamonddrill)
+	if(given_type == /obj/item/borg/upgrade/restricted/pka)
+		return has_upgrade_module(/obj/item/weapon/gun/energy/kinetic_accelerator/cyborg)
+	return null
+
+// Check if we have any non production upgrades
+/mob/living/silicon/robot/proc/has_no_prod_upgrade(var/given_type)
+	if(given_type == /obj/item/borg/upgrade/no_prod/toygun)
+		return has_upgrade_module(/obj/item/weapon/gun/projectile/cyborgtoy)
+	return null
+
+/mob/living/silicon/robot/proc/has_upgrade(var/given_type)
+	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))

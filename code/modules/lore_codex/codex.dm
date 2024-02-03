@@ -9,13 +9,21 @@
 	var/datum/codex_tree/tree = null
 	var/root_type = /datum/lore/codex/category/main_virgo_lore	//Runtimes on codex_tree.dm, line 18 with a null here
 
+	var/static/list/codex_tree_keys = list() // static list linking codexes to the correct codex_tree.
+
 /obj/item/weapon/book/codex/Initialize()
-	tree = new(src, root_type)
+	tree = codex_tree_keys["[root_type]"]
+	if(!tree)
+		tree = new(src, root_type)
+		codex_tree_keys["[root_type]"] = tree
 	. = ..()
 
 /obj/item/weapon/book/codex/attack_self(mob/user)
 	if(!tree)
-		tree = new(src, root_type)
+		tree = codex_tree_keys["[root_type]"]
+		if(!tree)
+			tree = new(src, root_type)
+			codex_tree_keys["[root_type]"] = tree
 	icon_state = "[initial(icon_state)]-open"
 	tree.display(user)
 

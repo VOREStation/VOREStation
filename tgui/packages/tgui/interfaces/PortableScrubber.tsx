@@ -9,8 +9,8 @@ type Data = {
   maxrate: number;
 };
 
-export const PortableScrubber = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const PortableScrubber = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { rate, minrate, maxrate } = data;
 

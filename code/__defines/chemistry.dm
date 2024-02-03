@@ -49,7 +49,7 @@
 // Chemistry lists.
 var/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
 var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "bliss", "stoxin", "ambrosia_extract")   // Decrease heart rate.
-var/list/heartstopper  = list("potassium_chlorophoride", "zombie_powder") // This stops the heart.
+var/list/heartstopper  = list("potassium_chlorophoride", "zombiepowder") // This stops the heart.
 var/list/cheartstopper = list("potassium_chloride")                       // This stops the heart when overdose is met. -- c = conditional
 
 #define MAX_PILL_SPRITE 24 //max icon state of the pill sprites

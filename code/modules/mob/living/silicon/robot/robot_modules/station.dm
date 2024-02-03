@@ -47,8 +47,6 @@ var/global/list/robot_modules = list(
 	var/list/modules = list()
 	var/list/datum/matter_synth/synths = list()
 	var/list/emag = list()
-	var/obj/item/borg/upgrade/jetpack = null
-	var/obj/item/borg/upgrade/advhealth = null
 	var/list/subsystems = list()
 	var/list/obj/item/borg/upgrade/supported_upgrades = list()
 
@@ -102,13 +100,13 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/Destroy()
 	for(var/module in modules)
 		qdel(module)
+	for(var/emg in emag)
+		qdel(emg)
 	for(var/synth in synths)
 		qdel(synth)
 	modules.Cut()
 	synths.Cut()
 	emag.Cut()
-	qdel(jetpack)
-	jetpack = null
 	return ..()
 
 /obj/item/weapon/robot_module/emp_act(severity)
@@ -231,6 +229,7 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	pto_type = PTO_MEDICAL
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
 /obj/item/weapon/robot_module/robot/medical/surgeon
 	name = "surgeon robot module"
@@ -468,7 +467,7 @@ var/global/list/robot_modules = list(
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
-	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/tasercooler, /obj/item/borg/upgrade/restricted/bellycapupgrade)
 	pto_type = PTO_SECURITY
 
 /obj/item/weapon/robot_module/robot/security/general
@@ -666,7 +665,7 @@ var/global/list/robot_modules = list(
 	name = "miner robot module"
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
-	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill)
 	pto_type = PTO_CARGO
 
 /obj/item/weapon/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
@@ -687,7 +686,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/research
 	name = "research module"
 	channels = list("Science" = 1)
-	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/advrped)
 	pto_type = PTO_SCIENCE
 
 /obj/item/weapon/robot_module/robot/research/create_equipment(var/mob/living/silicon/robot/robot)
@@ -750,6 +749,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/security/combat
 	name = "combat robot module"
 	hide_on_manifest = TRUE
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
 /obj/item/weapon/robot_module/robot/security/combat/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -758,10 +758,10 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
-	src.modules += new /obj/item/weapon/combat_borgblade(src)
+	src.modules += new /obj/item/weapon/melee/combat_borgblade(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
-	src.modules += new /obj/item/weapon/borg_combat_shocker(src)
+	src.modules += new /obj/item/weapon/melee/borg_combat_shocker(src)
 	src.modules += new /obj/item/device/ticket_printer(src)
 	src.emag += new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
 

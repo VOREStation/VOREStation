@@ -133,7 +133,6 @@
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
-		if("chat")		return chatOutput.Topic(href, href_list)
 
 	switch(href_list["action"])
 		if("openLink")
@@ -144,7 +143,7 @@
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
+		to_chat(src, span_red("Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB."))
 		return 0
 /*	//Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
@@ -168,21 +167,19 @@
 		return null
 
 	if(!config.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
+		alert(src,"This server doesn't allow guest accounts to play. Please go to https://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
 		del(src)
 		return
 
-	chatOutput = new /datum/chatOutput(src) //veechat
-	chatOutput.send_resources()
-	spawn()
-		chatOutput.start()
-
 	//Only show this if they are put into a new_player mob. Otherwise, "what title screen?"
 	if(isnewplayer(src.mob))
-		to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
+		to_chat(src, span_red("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+
+	// Instantiate tgui panel
+	tgui_panel = new(src, "browseroutput")
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 	GLOB.mhelp_tickets.ClientLogin(src)
@@ -212,6 +209,9 @@
 	prefs.sanitize_preferences()
 	if(prefs)
 		prefs.selecting_slots = FALSE
+
+	// Initialize tgui panel
+	tgui_panel.initialize()
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -484,34 +484,11 @@
 		return FALSE
 	return ..()
 
-/client/verb/reload_vchat()
-	set name = "Reload VChat"
-	set category = "OOC"
-
-	//Timing
-	if(src.chatOutputLoadedAt > (world.time - 10 SECONDS))
-		tgui_alert_async(src, "You can only try to reload VChat every 10 seconds at most.")
-		return
-
-	verbs -= /client/proc/vchat_export_log
-
-	//Log, disable
-	log_debug("[key_name(src)] reloaded VChat.")
-	winset(src, null, "outputwindow.htmloutput.is-visible=false;outputwindow.oldoutput.is-visible=false;outputwindow.chatloadlabel.is-visible=true")
-
-	//The hard way
-	qdel_null(src.chatOutput)
-	chatOutput = new /datum/chatOutput(src) //veechat
-	chatOutput.send_resources()
-	spawn()
-		chatOutput.start()
-
-
 //This is for getipintel.net.
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
 /client/proc/update_ip_reputation()
-	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
+	var/request = "https://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
 	var/http[] = world.Export(request)
 
 	/* Debug

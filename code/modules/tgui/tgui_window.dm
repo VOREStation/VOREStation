@@ -380,6 +380,8 @@
 			// Resend the assets
 			for(var/asset in sent_assets)
 				send_asset(asset)
+		if("chat/resend")
+			SSchat.handle_resend(client, payload)
 
 /datum/tgui_window/vv_edit_var(var_name, var_value)
 	return var_name != NAMEOF(src, id) && ..()

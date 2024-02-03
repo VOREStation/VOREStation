@@ -71,7 +71,7 @@
 				break
 
 	if(total_transferred)
-		to_chat(user, "<font color='blue'>You transfer [total_transferred] units into the suit reservoir.</font>")
+		to_chat(user, span_blue("You transfer [total_transferred] units into the suit reservoir."))
 	else
 		to_chat(user, "<span class='danger'>None of the reagents seem suitable.</span>")
 	return 1

@@ -3525,6 +3525,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackramen = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/ratpackcake = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey = 2)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/ratprotein = 8,
@@ -3535,6 +3536,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackramen = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/ratpackcake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey = 200)
 
 /obj/machinery/vending/desatti
@@ -3567,4 +3569,32 @@
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/pasty = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/porkpie = 10
+					)
+
+/obj/machinery/vending/nukie
+	name = "Nukies Energy Drinks"
+	desc = "A vending machine stocked full of the most potent energy drinks on the market."
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "nukie"
+	product_slogans = "Contains one gram of caffeine!;Keep going, go on forever!;It'll blow you away!;Nukies is not responsible for any deaths occurred in a period of 24 hours after consuming our products!"
+	product_ads = "Get your peach blasted!;Pop your cherry here!;Dare you swallow the bursting banana?;Try our limited edition flavour!"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_peach = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_pear = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_cherry = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_melon = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_banana = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_rose = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_lemon = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_fruit = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_special = 1)
+
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_peach = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_pear = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_cherry = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_melon = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_banana = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_rose = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_lemon = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_fruit = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_special = 100
 					)

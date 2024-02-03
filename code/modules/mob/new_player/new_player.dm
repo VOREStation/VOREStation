@@ -33,9 +33,14 @@
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
 
-	output += "<b>Current Map:</b><br>"
-	output += "[using_map.full_name]"
-	output +="<hr>"
+	output += "<b>Map:</b> [using_map.full_name]<br>"
+	output += "<b>Station Time:</b> [stationtime2text()]<br>"
+
+	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+		output += "<b>Server Initializing!</b>"
+	else
+		output += "<b>Round Duration:</b> [roundduration2text()]<br>"
+	output += "<hr>"
 
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
 
@@ -51,6 +56,8 @@
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
+	/*
+	//nobody uses this feature
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
 
@@ -69,6 +76,7 @@
 				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 			else
 				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
+	*/
 
 	output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>View Changelog</A></p>"
 
@@ -117,7 +125,14 @@
 			var/datum/job/refJob = null
 			for(var/mob/new_player/player in player_list)
 				refJob = player.client.prefs.get_highest_job()
-				stat("[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
+				if(player.client.prefs.obfuscate_key && player.client.prefs.obfuscate_job)
+					stat("Anonymous User", (player.ready)?("Ready!"):(null))
+				else if(player.client.prefs.obfuscate_key)
+					stat("Anonymous User", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
+				else if(player.client.prefs.obfuscate_job)
+					stat("[player.key]", (player.ready)?("Ready!"):(null))
+				else
+					stat("[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
@@ -140,7 +155,7 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Player Setup",list("Yes","No")) == "Yes")
+		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
@@ -180,7 +195,7 @@
 	if(href_list["late_join"])
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
+			to_chat(usr, span_red("The round is either not ready, or has already finished..."))
 			return
 
 		var/time_till_respawn = time_till_respawn()
@@ -413,7 +428,7 @@
 	if (src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
+		to_chat(usr, span_red("The round is either not ready, or has already finished..."))
 		return 0
 	if(!config.enter_allowed)
 		to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")

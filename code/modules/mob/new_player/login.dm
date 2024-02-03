@@ -29,6 +29,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 /mob/new_player/Login()
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 	if(join_motd)
+		join_motd = GLOB.is_valid_url.Replace(join_motd,"<span class='linkify'>$1</span>")
 		to_chat(src, "<div class=\"motd\">[join_motd]</div>")
 
 	if(has_respawned)
@@ -86,7 +87,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 		tgui_alert_async(src, message, "BYOND Client Version Warning")
 
 		// So we can be more wordy and give links.
-		to_chat(src, "<span class='danger'>Your client version has known issues.</span> Please consider using a different version: <a href='http://www.byond.com/download/build/'>http://www.byond.com/download/build/</a>.")
+		to_chat(src, "<span class='danger'>Your client version has known issues.</span> Please consider using a different version: <a href='https://www.byond.com/download/build/'>https://www.byond.com/download/build/</a>.")
 		var/chat_message = ""
 		if(config.suggested_byond_version)
 			chat_message += "We suggest using version [config.suggested_byond_version]."

@@ -96,3 +96,13 @@
 	name = "Swimming One Piece"
 	icon_state = "onepiece"
 	has_color = TRUE
+
+/datum/category_item/underwear/top/onepiece_alt
+	name = "Swimming One Piece, Alt"
+	icon_state = "swim_onepiece"
+	has_color = TRUE
+
+/datum/category_item/underwear/top/onepiece_strapless
+	name = "Swimming One Piece, Strapless"
+	icon_state = "swim_strapless_onepiece"
+	has_color = TRUE

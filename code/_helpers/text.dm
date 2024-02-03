@@ -255,6 +255,10 @@
 /proc/capitalize(var/t as text)
 	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
 
+//Returns a unicode string with the first element of the string capitalized.
+/proc/capitalize_utf(var/t as text)
+	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
+
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()
 /proc/strip_html_properly(var/input)
@@ -345,7 +349,7 @@
 	if(!text_tag_cache[tagname])
 		var/icon/tag = icon(text_tag_icons, tagname)
 		text_tag_cache[tagname] = bicon(tag, TRUE, "text_tag")
-	if(C.chatOutput.broken)
+	if(!C.tgui_panel.is_ready() || C.tgui_panel.oldchat)
 		return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 	return text_tag_cache[tagname]
 

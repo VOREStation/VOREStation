@@ -14,8 +14,8 @@ type Data = {
   interval: number;
 };
 
-export const XenoarchHandheldPowerUtilizer = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const XenoarchHandheldPowerUtilizer = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const {
     inserted_battery,

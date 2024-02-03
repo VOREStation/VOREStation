@@ -226,6 +226,7 @@
 
 /obj/item/attack_hand(mob/living/user as mob)
 	if (!user) return
+	..()
 	if(anchored)
 		to_chat(user, span("notice", "\The [src] won't budge, you can't pick it up!"))
 		return

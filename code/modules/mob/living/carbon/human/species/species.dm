@@ -137,6 +137,7 @@
 	var/poison_type = "phoron"								// Poisonous air.
 	var/exhale_type = "carbon_dioxide"						// Exhaled gas type.
 	var/water_breather = FALSE
+	var/bad_swimmer = FALSE
 
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
 
@@ -380,15 +381,17 @@
 		if((organ in H.organs) || (organ in H.internal_organs))
 			qdel(organ)
 
-	if(H.organs)									H.organs.Cut()
-	if(H.internal_organs)				 H.internal_organs.Cut()
-	if(H.organs_by_name)					H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
+	if(H.organs)					H.organs.Cut()
+	if(H.internal_organs)			H.internal_organs.Cut()
+	if(H.organs_by_name)			H.organs_by_name.Cut()
+	if(H.internal_organs_by_name) 	H.internal_organs_by_name.Cut()
+	if(H.bad_external_organs)		H.bad_external_organs.Cut()
 
 	H.organs = list()
 	H.internal_organs = list()
 	H.organs_by_name = list()
 	H.internal_organs_by_name = list()
+	H.bad_external_organs = list()
 
 	for(var/limb_type in has_limbs)
 		var/list/organ_data = has_limbs[limb_type]
@@ -407,6 +410,11 @@
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
 
+	// set butcherable meats from species
+	for(var/obj/item/organ/O in H.organs)
+		O.set_initial_meat()
+	for(var/obj/item/organ/O in H.internal_organs)
+		O.set_initial_meat()
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
@@ -513,6 +521,10 @@
 /datum/species/proc/can_breathe_water()
 	return water_breather
 
+// Called when standing on a water tile.
+/datum/species/proc/is_bad_swimmer()
+	return bad_swimmer
+
 // Impliments different trails for species depending on if they're wearing shoes.
 /datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
 	if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
@@ -570,4 +582,3 @@
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
 	return
-

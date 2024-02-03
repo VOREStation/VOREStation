@@ -96,3 +96,13 @@
 	name = "\improper Prepackaged Meal Tray"
 	icon = 'icons/obj/trash_vr.dmi'
 	icon_state = "altevian_pack_taco-trash"
+
+/obj/item/trash/ratpackcake
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_cake-trash"
+
+/obj/item/trash/ratpackmeat
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_meat-trash"

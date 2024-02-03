@@ -19,6 +19,7 @@ radishfriend - clown
 schrano - mime
 seiga - mime
 sgtryder - mime
+sharplight - clown
 siennaathens - clown
 silvertalismen - clown
 spirit1299 - clown

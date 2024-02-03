@@ -305,13 +305,13 @@ var/list/table_icon_cache = list()
 	var/obj/item/weapon/material/shard/S = null
 	if(reinforced)
 		if(reinforced.stack_type && (full_return || prob(20)))
-			reinforced.place_sheet(loc)
+			reinforced.place_sheet(loc, 1)
 		else
 			S = reinforced.place_shard(loc)
 			if(S) shards += S
 	if(material)
 		if(material.stack_type && (full_return || prob(20)))
-			material.place_sheet(loc)
+			material.place_sheet(loc, 1)
 		else
 			S = material.place_shard(loc)
 			if(S) shards += S

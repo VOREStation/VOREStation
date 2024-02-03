@@ -32,8 +32,8 @@ type Data = {
   last_flow_rate: number;
 };
 
-export const OmniMixer = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const OmniMixer = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { power, config, ports, set_flow_rate, last_flow_rate } = data;
 
@@ -104,8 +104,8 @@ export const OmniMixer = (props, context) => {
   );
 };
 
-const PortRow = (props, context) => {
-  const { act } = useBackend(context);
+const PortRow = (props) => {
+  const { act } = useBackend();
   const { port, config } = props;
 
   return (

@@ -75,6 +75,10 @@
 	name = "black jeans short shorts"
 	icon_state = "black_shorts_f"
 
+/obj/item/clothing/under/shorts/black/ripped
+	name = "black ripped shorts"
+	icon_state = "black_shorts_ripped"
+
 /obj/item/clothing/under/shorts/jeans/grey
 	name = "grey jeans shorts"
 	icon_state = "greyshorts"

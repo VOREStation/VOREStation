@@ -22,8 +22,8 @@
 		if(!H.client)
 			continue
 
-		// Or antags.
-		if(player_is_antag(H.mind))
+		// Or antags / bellied.
+		if(player_is_antag(H.mind) || isbelly(H.loc))
 			continue
 
 		// Or doctors (otherwise it could be possible for the only surgeon to need surgery).

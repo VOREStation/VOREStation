@@ -85,7 +85,8 @@
 				prob(5);/obj/machinery/vending/sovietvend,
 				prob(5);/obj/machinery/vending/radren,
 				prob(3);/obj/machinery/vending/altevian,
-				prob(5);/obj/machinery/vending/desatti) //VOREStation Edit End
+				prob(5);/obj/machinery/vending/desatti,
+				prob(5);/obj/machinery/vending/nukie) //VOREStation Edit End
 
 /obj/random/vendorfood //Random food vendors for station use
 	name = "random snack vending machine"
@@ -114,7 +115,8 @@
 				/obj/machinery/vending/cola/soft,
 				/obj/machinery/vending/bepis,
 				/obj/machinery/vending/sovietsoda,
-				/obj/machinery/vending/radren)
+				/obj/machinery/vending/radren,
+				/obj/machinery/vending/nukie)
 //VOREStation Edit End
 
 /obj/random/obstruction //Large objects to block things off in maintenance

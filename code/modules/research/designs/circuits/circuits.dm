@@ -441,6 +441,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/arf_generator
 	sort_string = "LAAAD"
 
+/datum/design/circuit/protean_reconstitutor
+	name = "protean reconstitutor"
+	id = "protean_recon"
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
+	build_path = /obj/item/weapon/circuitboard/protean_reconstitutor
+	sort_string = "LAAAE"
+
 /datum/design/circuit/mecha
 	req_tech = list(TECH_DATA = 3)
 

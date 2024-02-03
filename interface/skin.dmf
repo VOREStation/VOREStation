@@ -1,7 +1,7 @@
 macro "borghotkeymode"
 	elem
 		name = "TAB"
-		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
+		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true\""
 	elem
 		name = "Shift"
 		command = "KeyDown Shift"
@@ -790,7 +790,7 @@ macro "hotkeymode"
 macro "borgmacro"
 	elem
 		name = "TAB"
-		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
+		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
 	elem
 		name = "Shift"
 		command = "KeyDown Shift"
@@ -1155,6 +1155,7 @@ window "mainwindow"
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "VOREStation"
 		is-maximized = true
+		statusbar = false
 		icon = 'icons\\virgoicon.png'
 		macro = "macro"
 		menu = "menu"
@@ -1168,7 +1169,7 @@ window "mainwindow"
 		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON
-		pos = 560,420
+		pos = 560,400
 		size = 80x20
 		anchor1 = 100,100
 		anchor2 = -1,-1
@@ -1179,7 +1180,7 @@ window "mainwindow"
 	elem "mainvsplit"
 		type = CHILD
 		pos = 3,0
-		size = 634x416
+		size = 634x400
 		anchor1 = 0,0
 		anchor2 = 100,100
 		saved-params = "splitter"
@@ -1187,7 +1188,7 @@ window "mainwindow"
 		is-vert = true
 	elem "input"
 		type = INPUT
-		pos = 3,420
+		pos = 3,400
 		size = 517x20
 		anchor1 = 0,100
 		anchor2 = 100,100
@@ -1195,9 +1196,19 @@ window "mainwindow"
 		is-default = true
 		border = sunken
 		saved-params = "command"
+	elem "status_bar"
+		type = LABEL
+		pos = 3,420
+		size = 517x16
+		anchor1 = 0,100
+		anchor2 = 100,100
+		is-visible = true
+		text = ""
+		align = left
+		border = line
 	elem "saybutton"
 		type = BUTTON
-		pos = 520,420
+		pos = 520,400
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = -1,-1
@@ -1222,12 +1233,8 @@ window "mapwindow"
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
+		on-status = ".winset \"status_bar.text=[[*]]\" "
 	elem "map"
 		type = MAP
 		pos = 0,0
@@ -1250,46 +1257,28 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
-	elem "chatloadlabel"
-		type = LABEL
-		pos = 0,0
-		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		font-family = "sans-serif"
-		font-size = 24
-		font-style = "bold"
-		text-color = #ffffff
-		background-color = #222222
-		saved-params = ""
-		text = "Chat is loading.\nIf nothing happens after 20s,\nuse OOC > \"Reload VChat\"."
-	elem "htmloutput"
+	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		is-visible = false
+		is-disabled = true
 		saved-params = ""
-	elem "oldoutput"
+	elem "output"
 		type = OUTPUT
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-visible = false
 		is-default = true
 		saved-params = ""
 		style = ".system {color:#FF0000;}"
 		enable-http-images = true
-		max-lines = 0
 
 window "prefs_markings_subwindow"
 	elem "prefs_markings_subwindow"
@@ -1427,6 +1416,19 @@ window "rpane"
 		text = "Text"
 		command = ".winset \"rpanewindow.left=;\""
 		is-checked = true
+		group = "rpanemode"
+		button-type = pushbox
+	elem "infob"
+		type = BUTTON
+		pos = 60,0
+		size = 60x16
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
+		is-visible = false
+		saved-params = "is-checked"
+		text = "Info"
+		command = ".winset \"rpanewindow.left=infowindow\""
 		group = "rpanemode"
 		button-type = pushbox
 	elem "mediapanel"

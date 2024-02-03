@@ -132,8 +132,7 @@
 	mob_wander_distance = 4
 
 /obj/random/mob/spider/item_to_spawn()
-	return pick(prob(22);/mob/living/simple_mob/animal/giant_spider/nurse,
-				prob(33);/mob/living/simple_mob/animal/giant_spider/hunter,
+	return pick(prob(33);/mob/living/simple_mob/animal/giant_spider/hunter,
 				prob(45);/mob/living/simple_mob/animal/giant_spider)
 
 /obj/random/mob/spider/nurse

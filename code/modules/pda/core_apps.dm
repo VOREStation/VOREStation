@@ -46,16 +46,26 @@
 	icon = "sticky-note-o"
 	template = "pda_notekeeper"
 
+	var/greeted = FALSE
 	var/note = null
+	var/notetitle = null
+	var/currentnote = 1
+	var/list/storedtitles = list("","","","","","","","","","","","")
+	var/list/storednotes = list("","","","","","","","","","","","")
 	var/notehtml = ""
 
 /datum/data/pda/app/notekeeper/start()
 	. = ..()
-	if(!note)
-		note = "Congratulations, your station has chosen the [pda.model_name]!"
+	if(!note && greeted == FALSE)
+
+		// display greeting!
+		greeted = TRUE
+		note = "Your station has chosen the [pda.model_name]!"
+		notetitle = "Congratulations!"
 
 /datum/data/pda/app/notekeeper/update_ui(mob/user as mob, list/data)
 	data["note"] = note									// current pda notes
+	data["notename"] = "Note [alphabet_uppercase[currentnote]] : [notetitle]"
 
 /datum/data/pda/app/notekeeper/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -70,6 +80,126 @@
 			else
 				pda.close(usr)
 			return TRUE
+		if("Titleset")
+			var/n = tgui_input_text(usr, "Please enter title", name, notetitle, multiline = FALSE)
+			if(pda.loc == usr)
+				notetitle = adminscrub(n)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Print")
+			if(pda.loc == usr)
+				printnote()
+			else
+				pda.close(usr)
+			return TRUE
+		// dumb way to do this, but i don't know how to easily parse this without a lot of silly code outside the switch!
+		if("Note1")
+			if(pda.loc == usr)
+				changetonote(1)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note2")
+			if(pda.loc == usr)
+				changetonote(2)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note3")
+			if(pda.loc == usr)
+				changetonote(3)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note4")
+			if(pda.loc == usr)
+				changetonote(4)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note5")
+			if(pda.loc == usr)
+				changetonote(5)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note6")
+			if(pda.loc == usr)
+				changetonote(6)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note7")
+			if(pda.loc == usr)
+				changetonote(7)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note8")
+			if(pda.loc == usr)
+				changetonote(8)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note9")
+			if(pda.loc == usr)
+				changetonote(9)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note10")
+			if(pda.loc == usr)
+				changetonote(10)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note11")
+			if(pda.loc == usr)
+				changetonote(11)
+			else
+				pda.close(usr)
+			return TRUE
+		if("Note12")
+			if(pda.loc == usr)
+				changetonote(12)
+			else
+				pda.close(usr)
+			return TRUE
+
+/datum/data/pda/app/notekeeper/proc/printnote()
+	// get active hand of person holding PDA, and print the page to the paper in it
+	if(istype( usr, /mob/living/carbon/human ))
+		var/mob/living/carbon/human/H = usr
+		var/obj/item/I = H.get_active_hand()
+		if(istype(I,/obj/item/weapon/paper))
+			var/obj/item/weapon/paper/P = I
+			if(isnull(P.info) || P.info == "" )
+				var/titlenote = "Note [alphabet_uppercase[currentnote]]"
+				if(!isnull(notetitle) && notetitle != "")
+					titlenote = notetitle
+				to_chat(usr, "<span class='notice'>Successfully printed [titlenote]!</span>")
+				P.set_content( pencode2html(note), titlenote)
+			else
+				to_chat(usr, "<span class='notice'>You can only print to empty paper!</span>")
+		else
+			to_chat(usr, "<span class='notice'>You must be holding paper for the pda to print to!</span>")
+
+
+/datum/data/pda/app/notekeeper/proc/changetonote(var/noteindex)
+	// save note to current slot, then load another slot
+	storednotes[currentnote] = note
+	storedtitles[currentnote] = notetitle
+
+	currentnote = noteindex
+
+	note = storednotes[currentnote]
+	notetitle = storedtitles[currentnote]
+
+	// update text on keeper, silly swapping!
+	note = replacetext(note, "<br>", "\n")
+	notehtml = html_decode(note)
+	note = replacetext(note, "\n", "<br>")
 
 /datum/data/pda/app/manifest
 	name = "Crew Manifest"

@@ -109,7 +109,7 @@
 			///// If user clicked on their grabbed target
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
 				if(!G.affecting.feeding)
-					to_chat(user, "<span class='notice'>[G.affecting] isn't willing to be fed.</span>")
+					to_chat(user, "<span class='vnotice'>[G.affecting] isn't willing to be fed.</span>")
 					log_and_message_admins("[key_name_admin(src)] attempted to feed themselves to [key_name_admin(G.affecting)] against their prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 					return FALSE
 
@@ -122,11 +122,11 @@
 			///// If user clicked on anyone else but their grabbed target
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
 				if(!feeding)
-					to_chat(user, "<span class='notice'>[src] isn't willing to be fed.</span>")
+					to_chat(user, "<span class='vnotice'>[src] isn't willing to be fed.</span>")
 					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against predator's prefs ([src ? ADMIN_JMP(src) : "null"])")
 					return FALSE
 				if(!(G.affecting.devourable))
-					to_chat(user, "<span class='notice'>[G.affecting] isn't able to be devoured.</span>")
+					to_chat(user, "<span class='vnotice'>[G.affecting] isn't able to be devoured.</span>")
 					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against prey's prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 					return FALSE
 				if(attacker.feed_grabbed_to_other(attacker, G.affecting, src))
@@ -364,7 +364,7 @@
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-	visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
+	visible_message("<span class='vwarning'>[src] licks [tasted]!</span>","<span class='vnotice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
 
 
 /mob/living/proc/get_taste_message(allow_generic = 1)
@@ -403,7 +403,7 @@
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	visible_message("<span class='warning'>[src] smells [smelled]!</span>","<span class='notice'>You smell [smelled]. They smell like [smelled.get_smell_message()].</span>","<b>Sniff!</b>")
+	visible_message("<span class='vwarning'>[src] smells [smelled]!</span>","<span class='vnotice'>You smell [smelled]. They smell like [smelled.get_smell_message()].</span>","<b>Sniff!</b>")
 
 /mob/living/proc/get_smell_message(allow_generic = 1)
 	if(!vore_smell && !allow_generic)
@@ -496,6 +496,11 @@
 	else if(tf_mob_holder)
 		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob.")
 		revert_mob_tf()
+
+	else if(istype(loc, /obj/item/weapon/holder/micro) && (istype(loc.loc, /obj/machinery/microwave)))
+		forceMove(get_turf(src))
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a microwave.")
+
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -546,11 +551,11 @@
 		return FALSE
 
 	if(!prey.devourable)
-		to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
+		to_chat(user, "<span class='vnotice'>They aren't able to be devoured.</span>")
 		log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
 		return FALSE
 	if(prey.absorbed || pred.absorbed)
-		to_chat(user, "<span class='warning'>They aren't aren't in a state to be devoured.</span>")
+		to_chat(user, "<span class='vwarning'>They aren't aren't in a state to be devoured.</span>")
 		return FALSE
 
 	//Determining vore attempt privacy
@@ -568,17 +573,17 @@
 	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
 	if(prey.is_slipping)
-		attempt_msg = "<span class='warning'>It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!</span>"
-		success_msg = "<span class='warning'>[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!</span>"
+		attempt_msg = "<span class='vwarning'>It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!</span>"
+		success_msg = "<span class='vwarning'>[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!</span>"
 	else if(pred.is_slipping)
-		attempt_msg = "<span class='warning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
-		success_msg = "<span class='warning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
+		attempt_msg = "<span class='vwarning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
+		success_msg = "<span class='vwarning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
 	else if(user == pred) //Feeding someone to yourself
-		attempt_msg = "<span class='warning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
-		success_msg = "<span class='warning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
+		attempt_msg = "<span class='vwarning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
+		success_msg = "<span class='vwarning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 	else //Feeding someone to another person
-		attempt_msg = "<span class='warning'>[user] is attempting to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
-		success_msg = "<span class='warning'>[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
+		attempt_msg = "<span class='vwarning'>[user] is attempting to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
+		success_msg = "<span class='vwarning'>[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 
 	// Announce that we start the attempt!
 
@@ -740,11 +745,11 @@
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
 
-	if(is_type_in_list(I,item_vore_blacklist))
+	if(is_type_in_list(I,item_vore_blacklist) && !adminbus_trash) //If someone has adminbus, they can eat whatever they want.
 		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
 		return
 
-	if(!I.trash_eatable)
+	if(!I.trash_eatable) //OOC pref. This /IS/ respected, even if adminbus_trash is enabled
 		to_chat(src, "<span class='warning'>You can't eat that so casually!</span>")
 		return
 
@@ -830,16 +835,11 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of really bad ideas.</span>")
-		else if(istype(I,/obj/item/toy))
-			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 		else if(istype(I,/obj/item/weapon/bikehorn/tinytether))
 			to_chat(src, "<span class='notice'>You feel a rush of power swallowing such a large, err, tiny structure.</span>")
-			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 		else if(istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
-			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship. Or maybe it is something else.</span>")
 		else if(istype(I,/obj/item/device/paicard))
-			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship.</span>")
 			var/obj/item/device/paicard/ourcard = I
 			if(ourcard.pai && ourcard.pai.client && isbelly(ourcard.loc))
@@ -852,7 +852,6 @@
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of gluttonous waste of food.</span>")
 		else if (istype(I,/obj/item/clothing/accessory/collar))
-			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
 		else if(iscapturecrystal(I))
 			var/obj/item/capture_crystal/C = I
@@ -863,6 +862,7 @@
 					to_chat(src, "<span class='notice'>You can taste the the power of command.</span>")
 		else
 			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
+		visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 		return
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
@@ -1020,10 +1020,10 @@
 /mob/living/examine(mob/user, infix, suffix)
 	. = ..()
 	if(custom_link)
-		. += "Custom link: [custom_link]"
+		. += "Custom link: <span class='linkify'>[custom_link]</span>"
 	if(ooc_notes)
-		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
-	. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+		. += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+	. += "<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
@@ -1116,50 +1116,126 @@
 		for(var/belly in vore_organs)
 			if(isbelly(belly))
 				var/obj/belly/B = belly
-				to_chat(src, "<span class='notice'><b>Belly name:</b> [B.name]</span>")
-				to_chat(src, "<span class='notice'><b>Belly desc:</b> [B.desc]</span>")
-				to_chat(src, "<span class='notice'><b>Belly absorbed desc:</b> [B.absorbed_desc]</span>")
-				to_chat(src, "<span class='notice'><b>Vore verb:</b> [B.vore_verb]</span>")
-				to_chat(src, "<span class='notice'><b>Struggle messages (outside):</b></span>")
+				to_chat(src, "<span class='chatexport'><b>Belly name:</b> [B.name]</span>")
+				to_chat(src, "<span class='chatexport'><b>Belly desc:</b> [B.desc]</span>")
+				to_chat(src, "<span class='chatexport'><b>Belly absorbed desc:</b> [B.absorbed_desc]</span>")
+				to_chat(src, "<span class='chatexport'><b>Vore verb:</b> [B.vore_verb]</span>")
+				to_chat(src, "<span class='chatexport'><b>Struggle messages (outside):</b></span>")
 				for(var/msg in B.struggle_messages_outside)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Struggle messages (inside):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Struggle messages (inside):</b></span>")
 				for(var/msg in B.struggle_messages_inside)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Absorbed struggle messages (outside):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed struggle messages (outside):</b></span>")
 				for(var/msg in B.absorbed_struggle_messages_outside)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Absorbed struggle messages (inside):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed struggle messages (inside):</b></span>")
 				for(var/msg in B.absorbed_struggle_messages_inside)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Digest messages (owner):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape attempt messages (owner):</b></span>")
+				for(var/msg in B.escape_attempt_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape attempt messages (prey):</b></span>")
+				for(var/msg in B.escape_attempt_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape messages (owner):</b></span>")
+				for(var/msg in B.escape_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape messages (prey):</b></span>")
+				for(var/msg in B.escape_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape messages (outside):</b></span>")
+				for(var/msg in B.escape_messages_outside)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape item messages (owner):</b></span>")
+				for(var/msg in B.escape_item_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape item messages (prey):</b></span>")
+				for(var/msg in B.escape_item_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape item messages (outside):</b></span>")
+				for(var/msg in B.escape_item_messages_outside)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape fail messages (owner):</b></span>")
+				for(var/msg in B.escape_fail_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Escape fail messages (prey):</b></span>")
+				for(var/msg in B.escape_fail_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape attempt messages (owner):</b></span>")
+				for(var/msg in B.escape_attempt_absorbed_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape attempt messages (prey):</b></span>")
+				for(var/msg in B.escape_attempt_absorbed_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape messages (owner):</b></span>")
+				for(var/msg in B.escape_absorbed_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape messages (prey):</b></span>")
+				for(var/msg in B.escape_absorbed_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape messages (outside):</b></span>")
+				for(var/msg in B.escape_absorbed_messages_outside)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape fail messages (owner):</b></span>")
+				for(var/msg in B.escape_fail_absorbed_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorbed escape fail messages (prey):</b></span>")
+				for(var/msg in B.escape_fail_absorbed_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Primary transfer messages (owner):</b></span>")
+				for(var/msg in B.primary_transfer_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Primary transfer messages (prey):</b></span>")
+				for(var/msg in B.primary_transfer_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Secondary transfer messages (owner):</b></span>")
+				for(var/msg in B.secondary_transfer_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Secondary transfer messages (prey):</b></span>")
+				for(var/msg in B.secondary_transfer_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Digest chance messages (owner):</b></span>")
+				for(var/msg in B.digest_chance_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Digest chance messages  (prey):</b></span>")
+				for(var/msg in B.digest_chance_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorb chance messages (owner):</b></span>")
+				for(var/msg in B.absorb_chance_messages_owner)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorb chance messages  (prey):</b></span>")
+				for(var/msg in B.absorb_chance_messages_prey)
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Digest messages (owner):</b></span>")
 				for(var/msg in B.digest_messages_owner)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Digest messages (prey):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Digest messages (prey):</b></span>")
 				for(var/msg in B.digest_messages_prey)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Absorb messages:</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorb messages (owner):</b></span>")
 				for(var/msg in B.absorb_messages_owner)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Absorb messages (prey):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Absorb messages (prey):</b></span>")
 				for(var/msg in B.absorb_messages_prey)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Unabsorb messages:</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Unabsorb messages (owner):</b></span>")
 				for(var/msg in B.unabsorb_messages_owner)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Unabsorb messages (prey):</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Unabsorb messages (prey):</b></span>")
 				for(var/msg in B.unabsorb_messages_prey)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Examine messages:</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Examine messages (when full):</b></span>")
 				for(var/msg in B.examine_messages)
-					to_chat(src, "<span class='notice'>[msg]</span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Examine messages (with absorbed victims):</b></span>")
 				for(var/msg in B.examine_messages_absorbed)
-					to_chat(src, "<span class='notice'>[msg]</span>")
-				to_chat(src, "<span class='notice'><b>Emote lists:</b></span>")
+					to_chat(src, "<span class='chatexport'>[msg]</span>")
+				to_chat(src, "<span class='chatexport'><b>Emote lists:</b></span>")
 				for(var/EL in B.emote_lists)
-					to_chat(src, "<span class='notice'><b>[EL]:</b></span>")
+					to_chat(src, "<span class='chatexport'><b>[EL]:</b></span>")
 					for(var/msg in B.emote_lists[EL])
-						to_chat(src, "<span class='notice'>[msg]</span>")
+						to_chat(src, "<span class='chatexport'>[msg]</span>")
 
 /**
  * Small helper component to manage the vore panel HUD icon

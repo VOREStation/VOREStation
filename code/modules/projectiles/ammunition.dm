@@ -33,18 +33,18 @@
 /obj/item/ammo_casing/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!BB)
-			to_chat(user, "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>")
+			to_chat(user, span_blue("There is no bullet in the casing to inscribe anything into."))
 			return
 
 		var/tmp_label = ""
 		var/label_text = sanitizeSafe(tgui_input_text(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label,MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(label_text) > 20)
-			to_chat(user, "<font color='red'>The inscription can be at most 20 characters long.</font>")
+			to_chat(user, span_red("The inscription can be at most 20 characters long."))
 		else if(!label_text)
-			to_chat(user, "<font color='blue'>You scratch the inscription off of [initial(BB)].</font>")
+			to_chat(user, span_blue("You scratch the inscription off of [initial(BB)]."))
 			BB.name = initial(BB.name)
 		else
-			to_chat(user, "<font color='blue'>You inscribe \"[label_text]\" into \the [initial(BB.name)].</font>")
+			to_chat(user, span_blue("You inscribe \"[label_text]\" into \the [initial(BB.name)]."))
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 	else if(istype(I, /obj/item/ammo_magazine) && isturf(loc)) // Mass magazine reloading.
 		var/obj/item/ammo_magazine/box = I

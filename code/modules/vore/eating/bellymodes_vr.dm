@@ -125,7 +125,7 @@
 					formatted_message = replacetext(formatted_message, "%prey", M)
 					formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
 					if(formatted_message)
-						to_chat(M, "<span class='notice'>[formatted_message]</span>")
+						to_chat(M, "<span class='vnotice'>[formatted_message]</span>")
 				else
 					if (digest_mode == DM_SELECT)
 						var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
@@ -141,7 +141,7 @@
 					formatted_message = replacetext(formatted_message, "%countprey", living_count)
 					formatted_message = replacetext(formatted_message, "%count", contents.len)
 					if(formatted_message)
-						to_chat(M, "<span class='notice'>[formatted_message]</span>")
+						to_chat(M, "<span class='vnotice'>[formatted_message]</span>")
 
 	if(to_update)
 		updateVRPanels()
@@ -280,8 +280,8 @@
 	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 
 	//Send messages
-	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")
-	to_chat(M, "<span class='notice'>[digest_alert_prey]</span>")
+	to_chat(owner, "<span class='vnotice'>[digest_alert_owner]</span>")
+	to_chat(M, "<span class='vnotice'>[digest_alert_prey]</span>")
 
 	if(M.ckey)
 		GLOB.prey_digested_roundstat++

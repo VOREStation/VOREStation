@@ -25,8 +25,8 @@ type Data = {
   }[];
 };
 
-export const GyrotronControlContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const GyrotronControlContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { gyros } = data;
 
