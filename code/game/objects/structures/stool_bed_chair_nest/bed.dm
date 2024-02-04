@@ -155,7 +155,7 @@
 
 /obj/structure/bed/proc/remove_padding()
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 		padding_material = null
 	update_icon()
 
@@ -164,9 +164,9 @@
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
-	material.place_sheet(get_turf(src))
+	material.place_sheet(get_turf(src), 1)
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"

@@ -107,7 +107,10 @@
 		/mob/living/silicon/robot/proc/robot_checklaws,
 		/mob/living/silicon/robot/proc/robot_mount,
 		/mob/living/proc/toggle_rider_reins,
-		/mob/living/proc/shred_limb
+		/mob/living/proc/vertical_nom,
+		/mob/living/proc/shred_limb,
+		/mob/living/proc/dominate_prey,
+		/mob/living/proc/lend_prey_control
 	)
 
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)

@@ -50,7 +50,7 @@
 	if(W.has_tool_quality(TOOL_WELDER) && material.shard_can_repair)
 		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(WT.remove_fuel(0, user))
-			material.place_sheet(loc)
+			material.place_sheet(loc, 1)
 			qdel(src)
 			return
 	return ..()
