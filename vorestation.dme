@@ -1919,7 +1919,6 @@
 #include "code\modules\catalogue\catalogue_data_vr.dm"
 #include "code\modules\catalogue\cataloguer.dm"
 #include "code\modules\catalogue\cataloguer_visuals.dm"
-#include "code\modules\catalogue\cataloguer_vr.dm"
 #include "code\modules\client\client defines.dm"
 #include "code\modules\client\client procs.dm"
 #include "code\modules\client\client procs_vr.dm"

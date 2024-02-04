@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	Scanning something requires remaining within a certain radius of the object for a specific period of time, until the \
 	scan is finished. If the scan is interrupted, it can be resumed from where it was left off, if the same thing is \
 	scanned again."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "cataloguer"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 2, TECH_DATA = 3, TECH_MAGNET = 3)
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	slot_flags = SLOT_BELT
 	var/points_stored = 0 // Amount of 'exploration points' this device holds.
 	var/scan_range = 3 // How many tiles away it can scan. Changing this also changes the box size.
-	var/credit_sharing_range = 14 // If another person is within this radius, they will also be credited with a successful scan.
+	var/credit_sharing_range = 280 // If another person is within this radius, they will also be credited with a successful scan. Original was 14
 	var/datum/category_item/catalogue/displayed_data = null // Used for viewing a piece of data in the UI.
 	var/busy = FALSE // Set to true when scanning, to stop multiple scans.
 	var/debug = FALSE // If true, can view all catalogue data defined, regardless of unlock status.
@@ -318,4 +318,66 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		else
 			to_chat(user, "<span class='notice'>\The [src] has no points available.</span>")
 		busy = FALSE
+	return ..()
+
+/obj/item/device/cataloguer/compact
+	name = "compact cataloguer"
+	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
+	Alt+click to highlight scannable objects around you."
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "compact"
+	action_button_name = "Toggle Cataloguer"
+	var/deployed = TRUE
+	scan_range = 1
+	toolspeed = 1.2
+
+/obj/item/device/cataloguer/compact/pathfinder
+	name = "pathfinder's cataloguer"
+	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
+	Alt+click to highlight scannable objects around you."
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "pathcat"
+	scan_range = 3
+	toolspeed = 1
+
+/obj/item/device/cataloguer/compact/update_icon()
+	if(busy)
+		icon_state = "[initial(icon_state)]_s"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/device/cataloguer/compact/ui_action_click()
+	toggle()
+
+/obj/item/device/cataloguer/compact/verb/toggle()
+	set name = "Toggle Cataloguer"
+	set category = "Object"
+
+	if(busy)
+		to_chat(usr, span("warning", "\The [src] is currently scanning something."))
+		return
+	deployed = !(deployed)
+	if(deployed)
+		w_class = ITEMSIZE_NORMAL
+		icon_state = "[initial(icon_state)]"
+		to_chat(usr, span("notice", "You flick open \the [src]."))
+	else
+		w_class = ITEMSIZE_SMALL
+		icon_state = "[initial(icon_state)]_closed"
+		to_chat(usr, span("notice", "You close \the [src]."))
+
+	if (ismob(usr))
+		var/mob/M = usr
+		M.update_action_buttons()
+
+/obj/item/device/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
+	if(!deployed)
+		to_chat(user, span("warning", "\The [src] is closed."))
+		return
+	return ..()
+
+/obj/item/device/cataloguer/compact/pulse_scan(mob/user)
+	if(!deployed)
+		to_chat(user, span("warning", "\The [src] is closed."))
+		return
 	return ..()
