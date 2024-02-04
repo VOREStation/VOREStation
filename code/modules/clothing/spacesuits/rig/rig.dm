@@ -177,7 +177,7 @@
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			. += "\icon[piece][bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
 
 	if(src.loc == usr)
 		. += "The access panel is [locked? "locked" : "unlocked"]."

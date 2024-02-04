@@ -142,14 +142,14 @@ var/list/runechat_image_cache = list()
 
 	// Append prefixes
 	if(extra_classes.Find("virtual-speaker"))
-		LAZYADD(prefixes, "\icon[runechat_image_cache["radio"]]")
+		LAZYADD(prefixes, "[bicon(runechat_image_cache["radio"])]")
 	if(extra_classes.Find("emote"))
 		// Icon on both ends?
 		//var/image/I = runechat_image_cache["emote"]
-		//text = "\icon[I][text]\icon[I]"
+		//text = "[bicon(I)][text][bicon(I)]"
 
 		// Icon on one end?
-		//LAZYADD(prefixes, "\icon[runechat_image_cache["emote"]]")
+		//LAZYADD(prefixes, "[bicon(runechat_image_cache["emote"])]")
 
 		// Asterisks instead?
 		text = "*&nbsp;[text]&nbsp;*"

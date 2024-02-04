@@ -74,13 +74,13 @@
 
 	to_chat(nif.human,
 			type = MESSAGE_TYPE_NIF,
-			html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+			html = "<span class='nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
 	nif.human << sound
 
 	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 		to_chat(CS,
 				type = MESSAGE_TYPE_NIF,
-				html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+				html = "<span class='nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
 		CS << sound
 
 /datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
@@ -94,11 +94,11 @@
 	else
 		to_chat(nif.human,
 				type = MESSAGE_TYPE_NIF,
-				html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+				html = "<span class='nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,
 					type = MESSAGE_TYPE_NIF,
-					html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+					html = "<span class='nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 
 	log_nsay(message,nif.human.real_name,sender)
 
@@ -113,11 +113,11 @@
 	else
 		to_chat(nif.human,
 				type = MESSAGE_TYPE_NIF,
-				html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+				html = "<span class='nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,
 					type = MESSAGE_TYPE_NIF,
-					html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+					html = "<span class='nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 
 	log_nme(message,nif.human.real_name,sender)
 

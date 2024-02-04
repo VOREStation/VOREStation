@@ -83,7 +83,7 @@
 
 	if(charges >= 0.1)
 		if(prob(5))
-			holder.visible_message("<span class='alien'>\icon[holder] \The [holder] gleams a bloody red!</span>")
+			holder.visible_message("<span class='alien'>[bicon(holder)] \The [holder] gleams a bloody red!</span>")
 			charges -= 0.1
 
 /datum/artifact_effect/vampire/DoEffectPulse()
