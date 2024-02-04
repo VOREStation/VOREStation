@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 /obj/item/device/cataloguer/advanced
 	name = "advanced cataloguer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "adv_cataloguer"
 	desc = "A hand-held device, used for compiling information about an object by scanning it. This one is an upgraded model, \
 	with a scanner that both can scan from farther away, and with less time."
@@ -49,6 +50,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	desc = "A hand-held cataloguer device that appears to be plated with gold. For some reason, it \
 	just seems to already know everything about narrowly defined pieces of knowledge one would find \
 	from nearby, perhaps due to being colored gold. Truly a epistemological mystery."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "debug_cataloguer"
 	toolspeed = 0.1
 	scan_range = 7
