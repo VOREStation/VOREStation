@@ -5,6 +5,7 @@
  */
 
 import { toFixed } from 'common/math';
+import { useGame } from '../game';
 import { useLocalState } from 'tgui/backend';
 import { useDispatch, useSelector } from 'common/redux';
 import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Stack, Tabs, TextArea } from 'tgui/components';
@@ -177,6 +178,7 @@ export const MessageLimits = (props, context) => {
     persistentMessageLimit,
     combineMessageLimit,
     combineIntervalLimit,
+    saveInterval,
   } = useSelector(context, selectSettings);
   return (
     <Section>
@@ -198,13 +200,21 @@ export const MessageLimits = (props, context) => {
               )
             }
           />
+          &nbsp;
+          {visibleMessageLimit >= 5000 ? (
+            <Box inline fontSize="0.9em" color="red">
+              Impacts performance!
+            </Box>
+          ) : (
+            ''
+          )}
         </LabeledList.Item>
-        <LabeledList.Item label="Amount of visually persistent lines 500-10000 (Default: 1000)">
+        <LabeledList.Item label="Amount of visually persistent lines 0-10000 (Default: 1000)">
           <NumberInput
             width="5em"
             step={100}
             stepPixelSize={2}
-            minValue={500}
+            minValue={0}
             maxValue={10000}
             value={persistentMessageLimit}
             format={(value) => toFixed(value)}
@@ -216,8 +226,16 @@ export const MessageLimits = (props, context) => {
               )
             }
           />
+          &nbsp;
+          {persistentMessageLimit >= 2500 ? (
+            <Box inline fontSize="0.9em" color="red">
+              Delays initialization!
+            </Box>
+          ) : (
+            ''
+          )}
         </LabeledList.Item>
-        <LabeledList.Item label="Amount of different lines in between to combine 0-10 (Default: 5)">
+        <LabeledList.Item label="Amount of different lines in-between to combine 0-10 (Default: 5)">
           <NumberInput
             width="5em"
             step={1}
@@ -254,6 +272,33 @@ export const MessageLimits = (props, context) => {
             }
           />
         </LabeledList.Item>
+        <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={5}
+            minValue={1}
+            maxValue={10}
+            value={saveInterval}
+            unit="s"
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  saveInterval: value,
+                })
+              )
+            }
+          />
+          &nbsp;
+          {saveInterval <= 3 ? (
+            <Box inline fontSize="0.9em" color="red">
+              Warning, experimental! Might crash!
+            </Box>
+          ) : (
+            ''
+          )}
+        </LabeledList.Item>
       </LabeledList>
     </Section>
   );
@@ -261,40 +306,179 @@ export const MessageLimits = (props, context) => {
 
 export const ExportTab = (props, context) => {
   const dispatch = useDispatch(context);
-  const { logRetainDays, logLineCount, totalStoredMessages } = useSelector(
-    context,
-    selectSettings
-  );
-  const [purgeConfirm, setPurgeConfirm] = useLocalState(
-    context,
-    'purgeConfirm',
-    0
-  );
+  const game = useGame(context);
+  const {
+    storedRounds,
+    exportStart,
+    exportEnd,
+    logRetainRounds,
+    logEnable,
+    logLineCount,
+    logLimit,
+    totalStoredMessages,
+  } = useSelector(context, selectSettings);
+  const [purgeConfirm, setPurgeConfirm] = useLocalState('purgeConfirm', 0);
+  const [logConfirm, setLogConfirm] = useLocalState('logConfirm', 0);
   return (
     <Section>
-      <LabeledList>
-        {/* FIXME: Implement this later on
-        <LabeledList.Item label="Days to retain logs (-1 = inf.)">
-          <Input
-            width="5em"
-            monospace
-            value={logRetainDays}
-            onInput={(e, value) =>
+      <Flex align="baseline">
+        {logEnable ? (
+          logConfirm ? (
+            <Button
+              icon="ban"
+              color="red"
+              onClick={() => {
+                dispatch(
+                  updateSettings({
+                    logEnable: false,
+                  })
+                );
+                setLogConfirm(false);
+              }}>
+              Disable?
+            </Button>
+          ) : (
+            <Button
+              icon="ban"
+              color="red"
+              onClick={() => {
+                setLogConfirm(true);
+                setTimeout(() => {
+                  setLogConfirm(false);
+                }, 5000);
+              }}>
+              Disable logging
+            </Button>
+          )
+        ) : (
+          <Button
+            icon="download"
+            color="green"
+            onClick={() => {
               dispatch(
                 updateSettings({
-                  logRetainDays: value,
+                  logEnable: true,
+                })
+              );
+            }}>
+            Enable logging
+          </Button>
+        )}
+        <Flex.Item grow={1} />
+        <Flex.Item>Round ID:&nbsp;</Flex.Item>
+        <Flex.Item color={game.roundId ? '' : 'red'}>
+          {game.roundId ? game.roundId : 'ERROR'}
+        </Flex.Item>
+      </Flex>
+      <LabeledList>
+        {logEnable ? (
+          <>
+            <LabeledList.Item label="Amount of rounds to log (1 to 8)">
+              <NumberInput
+                width="5em"
+                step={1}
+                stepPixelSize={10}
+                minValue={1}
+                maxValue={8}
+                value={logRetainRounds}
+                format={(value) => toFixed(value)}
+                onDrag={(e, value) =>
+                  dispatch(
+                    updateSettings({
+                      logRetainRounds: value,
+                    })
+                  )
+                }
+              />
+              &nbsp;
+              {logRetainRounds > 3 ? (
+                <Box inline fontSize="0.9em" color="red">
+                  Warning, might crash!
+                </Box>
+              ) : (
+                ''
+              )}
+            </LabeledList.Item>
+            <LabeledList.Item label="Hardlimit for the log archive (0 to 50000)">
+              <NumberInput
+                width="5em"
+                step={500}
+                stepPixelSize={10}
+                minValue={0}
+                maxValue={50000}
+                value={logLimit}
+                format={(value) => toFixed(value)}
+                onDrag={(e, value) =>
+                  dispatch(
+                    updateSettings({
+                      logLimit: value,
+                    })
+                  )
+                }
+              />
+              &nbsp;
+              {logLimit > 0 ? (
+                <Box
+                  inline
+                  fontSize="0.9em"
+                  color={logLimit > 10000 ? 'red' : 'label'}>
+                  {logLimit > 15000
+                    ? 'Warning, might crash! Takes priority above round retention.'
+                    : 'Takes priority above round retention.'}
+                </Box>
+              ) : (
+                ''
+              )}
+            </LabeledList.Item>
+          </>
+        ) : (
+          ''
+        )}
+        <LabeledList.Item label="Export round start (0 = curr.) / end (0 = dis.)">
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={10}
+            minValue={0}
+            maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
+            value={exportStart}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  exportStart: value,
                 })
               )
             }
           />
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={10}
+            minValue={exportStart === 0 ? 0 : exportStart + 1}
+            maxValue={storedRounds}
+            value={exportEnd}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  exportEnd: value,
+                })
+              )
+            }
+          />
+          &nbsp;
+          <Box inline fontSize="0.9em" color="label">
+            Stored Rounds:&nbsp;
+          </Box>
+          <Box inline>{storedRounds}</Box>
         </LabeledList.Item>
-        */}
-        <LabeledList.Item label="Amount of lines to export (-1 = inf.)">
+        <LabeledList.Item label="Amount of lines to export (0 = inf.)">
           <NumberInput
             width="5em"
             step={100}
-            stepPixelSize={2}
-            minValue={-1}
+            stepPixelSize={10}
+            minValue={0}
             maxValue={50000}
             value={logLineCount}
             format={(value) => toFixed(value)}

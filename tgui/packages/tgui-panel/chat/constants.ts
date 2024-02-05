@@ -6,7 +6,7 @@
 
 // export const MAX_VISIBLE_MESSAGES = 2500; No longer a constant
 // export const MAX_PERSISTED_MESSAGES = 1000; No longer a constant
-export const MESSAGE_SAVE_INTERVAL = 10000;
+// export const MESSAGE_SAVE_INTERVAL = 10000; No longer a constant
 export const MESSAGE_PRUNE_INTERVAL = 60000;
 // export const COMBINE_MAX_MESSAGES = 5; No longer a constant
 // export const COMBINE_MAX_TIME_WINDOW = 5000; No longer a constant
@@ -61,7 +61,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_NPCEMOTE, // Needs to be first
     name: 'NPC Emotes / Says',
     description: 'In-character emotes and says from NPCs',
-    selector: '.npcemote, .npcsay',
+    selector: '.npcemote, .npcsay :not(.radio)',
   },
   {
     type: MESSAGE_TYPE_LOCALCHAT,
@@ -99,7 +99,7 @@ export const MESSAGE_TYPES = [
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
     selector:
-      '.notice:not(.pm), .adminnotice, .info, .sinister, .cult, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice',
+      '.notice:not(.pm), .adminnotice:not(.pm), .info, .sinister, .cult, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice',
   },
   {
     type: MESSAGE_TYPE_WARNING,

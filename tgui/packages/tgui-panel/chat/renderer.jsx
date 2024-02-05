@@ -119,7 +119,10 @@ class ChatRenderer {
     this.visibleMessageLimit = 2500;
     this.combineMessageLimit = 5;
     this.combineIntervalLimit = 5;
-    this.exportLimit = -1;
+    this.exportLimit = 0;
+    this.logLimit = 0;
+    this.logEnable = true;
+    this.roundId = null;
     // Scroll handler
     /** @type {HTMLElement} */
     this.scrollNode = null;
@@ -361,12 +364,18 @@ class ChatRenderer {
     visibleMessageLimit,
     combineMessageLimit,
     combineIntervalLimit,
-    exportLimit
+    exportLimit,
+    logEnable,
+    logLimit,
+    roundId
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
     this.combineIntervalLimit = combineIntervalLimit;
     this.exportLimit = exportLimit;
+    this.logEnable = logEnable;
+    this.logLimit = logLimit;
+    this.roundId = roundId;
   }
 
   getCombinableMessage(predicate) {
@@ -548,7 +557,21 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
-      if (doArchive) {
+      if (doArchive && this.logEnable) {
+        message.roundId = this.roundId;
+        if (
+          this.logLimit > 0 &&
+          this.archivedMessages.length >= this.logLimit + 1
+        ) {
+          this.archivedMessages = this.archivedMessages.slice(
+            -(this.logLimit - 1)
+          );
+        } else if (
+          this.logLimit > 0 &&
+          this.archivedMessages.length >= this.logLimit
+        ) {
+          this.archivedMessages.shift();
+        }
         this.archivedMessages.push(serializeMessage(message, true)); // TODO: Actually having a better message archiving maybe for exports?
       }
       if (canPageAcceptType(this.page, message.type)) {
@@ -637,7 +660,7 @@ class ChatRenderer {
     });
   }
 
-  saveToDisk(logLineCount) {
+  saveToDisk(logLineCount, startLine = 0, endLine = 0) {
     // Allow only on IE11
     if (Byond.IS_LTE_IE10) {
       return;
@@ -659,7 +682,16 @@ class ChatRenderer {
     let messagesHtml = '';
 
     let tmpMsgArray = [];
-    if (logLineCount > 0) {
+    if (startLine || endLine) {
+      if (!endLine) {
+        tmpMsgArray = this.archivedMessages.slice(startLine);
+      } else {
+        tmpMsgArray = this.archivedMessages.slice(startLine, endLine);
+      }
+      if (logLineCount > 0) {
+        tmpMsgArray = tmpMsgArray.slice(-logLineCount);
+      }
+    } else if (logLineCount > 0) {
       tmpMsgArray = this.archivedMessages.slice(-logLineCount);
     } else {
       tmpMsgArray = this.archivedMessages;

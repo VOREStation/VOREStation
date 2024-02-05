@@ -32,11 +32,19 @@ const initialState = {
   showReconnectWarning: true,
   visibleMessageLimit: 2500,
   persistentMessageLimit: 1000,
+  saveInterval: 10,
   combineMessageLimit: 5,
   combineIntervalLimit: 5,
   totalStoredMessages: 0,
-  logRetainDays: -1,
-  logLineCount: -1,
+  logRetainRounds: 2,
+  logEnable: true,
+  logLineCount: 0,
+  logLimit: 10000,
+  storedRounds: 0,
+  exportStart: 0,
+  exportEnd: 0,
+  lastId: null,
+  initialized: false,
 };
 
 export const settingsReducer = (state = initialState, action) => {
@@ -54,6 +62,7 @@ export const settingsReducer = (state = initialState, action) => {
     }
 
     delete payload.view;
+    payload.initialized = true;
     const nextState = {
       ...state,
       ...payload,
