@@ -533,3 +533,39 @@
 /obj/item/clothing/accessory/cowboy_vest/grey
 	name = "grey cowboy vest"
 	icon_state = "cowboyvest_grey"
+
+//Replikant Vests
+
+/obj/item/clothing/accessory/replika
+	name = "generic"
+	desc = "generic"
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "klbr"
+	icon_override = 'icons/inventory/accessory/mob.dmi'
+	item_state_slots = list(SLOT_ID_RIGHT_HAND = "armor", SLOT_ID_LEFT_HAND = "armor")
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/flashlight/maglight,/obj/item/clothing/head/helmet)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|ARMS
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
+
+/obj/item/clothing/accessory/replika/klbr
+	name = "controller replikant chestplate"
+	desc = "A sloped titanium-composite chest plate fitted for use by 2nd generation biosynthetics. The right shoulder has been painted an imposing shade of red."
+	icon_state = "klbr"
+
+/obj/item/clothing/accessory/replika/lstr
+	name = "combat-engineer replikant chestplate"
+	desc = "A sloped titanium-composite chest plate fitted for use by 2nd generation biosynthetics. This plain-white version is a staple of biosynths assinged to combat-engineering duties."
+	icon_state = "lstr"
+
+/obj/item/clothing/accessory/replika/stcr
+	name = "security-controller replikant chestplate"
+	desc = "A sloped titanium-composite chest plate fitted for use by 2nd generation biosynthetics. This version sports multiple red adjustable straps and a lack of shoulder pads."
+	icon_state = "stcr"
+
+/obj/item/clothing/accessory/replika/star
+	name = "security-technician replikant chestplate"
+	desc = "A sloped titanium-composite chest plate with a matte black finish, fitted for use by 2nd generation biosynthetics. Comes with red adjustable straps."
+	icon_state = "star"
