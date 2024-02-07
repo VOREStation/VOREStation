@@ -516,6 +516,10 @@
 	display_name = "high-waisted trousers"
 	path = /obj/item/clothing/under/dress/hightrousers
 
+/datum/gear/uniform/vampirehunter
+	display_name = "18th century outfit"
+	path = /obj/item/clothing/under/vampirehunter
+
 /*
  * 80s
  */
