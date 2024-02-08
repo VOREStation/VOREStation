@@ -9,7 +9,7 @@ export const MiningStackingConsole = (props) => {
   const { stacktypes, stackingAmt } = data;
 
   return (
-    <Window width={400} height={500} resizable>
+    <Window width={400} height={500}>
       <Window.Content>
         <Section title="Stacker Controls">
           <LabeledList>

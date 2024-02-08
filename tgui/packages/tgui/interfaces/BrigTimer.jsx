@@ -1,5 +1,5 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Button, Section, NumberInput, Flex } from '../components';
 import { Window } from '../layouts';
@@ -8,12 +8,12 @@ import { formatTime } from '../format';
 export const BrigTimer = (props) => {
   const { act, data } = useBackend();
   return (
-    <Window width={300} height={138} resizable>
+    <Window width={300} height={138}>
       <Window.Content scrollable>
         <Section
           title="Cell Timer"
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon="clock-o"
                 content={data.timing ? 'Stop' : 'Start'}
@@ -29,7 +29,7 @@ export const BrigTimer = (props) => {
                 />
               )) ||
                 null}
-            </Fragment>
+            </>
           }>
           <NumberInput
             animated

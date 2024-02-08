@@ -1,5 +1,5 @@
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -64,7 +64,7 @@ const ShuttleControlSharedShuttleStatus = (props) => {
             )) || <Box color="bad">ERROR</Box>}
         </LabeledList.Item>
         {(has_docking && (
-          <Fragment>
+          <>
             <LabeledList.Item label="Docking Status">
               {getDockingStatus(docking_status, docking_override)}
             </LabeledList.Item>
@@ -73,7 +73,7 @@ const ShuttleControlSharedShuttleStatus = (props) => {
                 {docking_codes || 'Not Set'}
               </Button>
             </LabeledList.Item>
-          </Fragment>
+          </>
         )) ||
           null}
       </LabeledList>
@@ -125,10 +125,10 @@ const ShuttleControlSharedShuttleControls = (props) => {
 const ShuttleControlConsoleDefault = (props) => {
   const { act, data } = useBackend();
   return (
-    <Fragment>
+    <>
       <ShuttleControlSharedShuttleStatus />
       <ShuttleControlSharedShuttleControls />
-    </Fragment>
+    </>
   );
 };
 
@@ -136,7 +136,7 @@ const ShuttleControlConsoleMulti = (props) => {
   const { act, data } = useBackend();
   const { can_cloak, can_pick, legit, cloaked, destination_name } = data;
   return (
-    <Fragment>
+    <>
       <ShuttleControlSharedShuttleStatus />
       <Section title="Multishuttle Controls">
         <LabeledList>
@@ -162,7 +162,7 @@ const ShuttleControlConsoleMulti = (props) => {
         </LabeledList>
       </Section>
       <ShuttleControlSharedShuttleControls />
-    </Fragment>
+    </>
   );
 };
 
@@ -171,7 +171,7 @@ const ShuttleControlConsoleExploration = (props) => {
   const { can_pick, destination_name, fuel_usage, fuel_span, remaining_fuel } =
     data;
   return (
-    <Fragment>
+    <>
       <ShuttleControlSharedShuttleStatus engineName="Engines" />
       <Section title="Jump Controls">
         <LabeledList>
@@ -184,20 +184,20 @@ const ShuttleControlConsoleExploration = (props) => {
             </Button>
           </LabeledList.Item>
           {(fuel_usage && (
-            <Fragment>
+            <>
               <LabeledList.Item label="Est. Delta-V Budget" color={fuel_span}>
                 {remaining_fuel} m/s
               </LabeledList.Item>
               <LabeledList.Item label="Avg. Delta-V Per Maneuver">
                 {fuel_usage} m/s
               </LabeledList.Item>
-            </Fragment>
+            </>
           )) ||
             null}
         </LabeledList>
       </Section>
       <ShuttleControlSharedShuttleControls />
-    </Fragment>
+    </>
   );
 };
 
@@ -226,7 +226,7 @@ const ShuttleControlConsoleWeb = (props) => {
   } = data;
 
   return (
-    <Fragment>
+    <>
       {(autopilot && (
         <Section title="AI PILOT (CLASS D) ACTIVE">
           <Box inline italic>
@@ -263,7 +263,7 @@ const ShuttleControlConsoleWeb = (props) => {
               )) || <Box color="bad">ERROR</Box>}
           </LabeledList.Item>
           {(!is_moving && (
-            <Fragment>
+            <>
               <LabeledList.Item label="Current Location">
                 {toTitleCase(shuttle_location)}
               </LabeledList.Item>
@@ -271,7 +271,7 @@ const ShuttleControlConsoleWeb = (props) => {
                 <LabeledList.Item
                   label="Docking Status"
                   buttons={
-                    <Fragment>
+                    <>
                       <Button
                         selected={docking_status === 'docked'}
                         disabled={
@@ -290,7 +290,7 @@ const ShuttleControlConsoleWeb = (props) => {
                         onClick={() => act('undock_command')}>
                         Undock
                       </Button>
-                    </Fragment>
+                    </>
                   }>
                   <Box bold inline>
                     {getDockingStatus(docking_status, docking_override)}
@@ -320,7 +320,7 @@ const ShuttleControlConsoleWeb = (props) => {
                 </LabeledList.Item>
               )) ||
                 null}
-            </Fragment>
+            </>
           )) ||
             null}
         </LabeledList>
@@ -444,7 +444,7 @@ const ShuttleControlConsoleWeb = (props) => {
         </Section>
       )) ||
         null}
-    </Fragment>
+    </>
   );
 };
 
@@ -463,8 +463,7 @@ export const ShuttleControl = (props) => {
   return (
     <Window
       width={470}
-      height={subtemplate === 'ShuttleControlConsoleWeb' ? 560 : 370}
-      resizable>
+      height={subtemplate === 'ShuttleControlConsoleWeb' ? 560 : 370}>
       <Window.Content>{SubtemplateList[subtemplate]}</Window.Content>
     </Window>
   );

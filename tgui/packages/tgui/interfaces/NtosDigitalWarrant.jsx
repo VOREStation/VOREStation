@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 import { filter } from 'common/collections';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 
 export const NtosDigitalWarrant = (props) => {
   const { act, data } = useBackend();
@@ -16,7 +16,7 @@ export const NtosDigitalWarrant = (props) => {
   }
 
   return (
-    <NtosWindow width={500} height={350} resizable>
+    <NtosWindow width={500} height={350}>
       <NtosWindow.Content scrollable>{body}</NtosWindow.Content>
     </NtosWindow>
   );
@@ -97,7 +97,7 @@ const ActiveWarrant = (props) => {
     <Section
       title={isArrest ? 'Editing Arrest Warrant' : 'Editing Search Warrant'}
       buttons={
-        <Fragment>
+        <>
           <Button icon="save" onClick={() => act('savewarrant')}>
             Save
           </Button>
@@ -107,20 +107,20 @@ const ActiveWarrant = (props) => {
           <Button icon="undo" onClick={() => act('back')}>
             Back
           </Button>
-        </Fragment>
+        </>
       }>
       <LabeledList>
         <LabeledList.Item
           label={warrantnameLabel}
           buttons={
             (isArrest && (
-              <Fragment>
+              <>
                 <Button icon="search" onClick={() => act('editwarrantname')} />
                 <Button
                   icon="pen"
                   onClick={() => act('editwarrantnamecustom')}
                 />
-              </Fragment>
+              </>
             )) || (
               <Button icon="pen" onClick={() => act('editwarrantnamecustom')} />
             )

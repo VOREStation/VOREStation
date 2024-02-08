@@ -12,7 +12,7 @@ const sortTypes = {
 
 export const MiningVendor = (props) => {
   return (
-    <Window width={400} height={450} resizable>
+    <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
         <MiningUser insertIdText="Please insert an ID in order to make purchases." />
         <MiningVendorSearch />

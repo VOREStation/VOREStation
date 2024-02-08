@@ -21,7 +21,7 @@ export const XenoarchDepthScanner = (props) => {
   const { current, positive_locations } = data;
 
   return (
-    <Window width={300} height={500} resizable>
+    <Window width={300} height={500}>
       <Window.Content scrollable>
         {(Object.keys(current).length && (
           <Section

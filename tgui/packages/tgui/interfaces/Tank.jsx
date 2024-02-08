@@ -17,7 +17,7 @@ export const Tank = (props) => {
   } = data;
 
   return (
-    <Window width={400} height={320} resizable>
+    <Window width={400} height={320}>
       <Window.Content>
         <Section
           title="Status"

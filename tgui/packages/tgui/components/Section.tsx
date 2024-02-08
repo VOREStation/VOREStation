@@ -5,112 +5,93 @@
  */
 
 import { canRender, classes } from 'common/react';
-import { Component, createRef, InfernoNode, RefObject } from 'inferno';
+import { ReactNode, RefObject, createRef, useEffect } from 'react';
 import { addScrollableNode, removeScrollableNode } from '../events';
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 
-interface SectionProps extends BoxProps {
-  className?: string;
-  title?: string | InfernoElement<string>;
-  buttons?: InfernoNode;
-  fill?: boolean;
-  fitted?: boolean;
-  scrollable?: boolean;
-  scrollableHorizontal?: boolean;
+export type SectionProps = Partial<{
+  buttons: ReactNode;
+  fill: boolean;
+  fitted: boolean;
+  scrollable: boolean;
+  scrollableHorizontal: boolean;
+  title: ReactNode;
+  /** @member Allows external control of scrolling. */
+  scrollableRef: RefObject<HTMLDivElement>;
+  /** @member Callback function for the `scroll` event */
+  onScroll: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+
   flexGrow?: boolean; // VOREStation Addition
   noTopPadding?: boolean; // VOREStation Addition
   stretchContents?: boolean; // VOREStation Addition
-  /** @deprecated This property no longer works, please remove it. */
-  level?: never;
-  /** @deprecated Please use `scrollable` property */
-  overflowY?: never;
-  /** @member Allows external control of scrolling. */
-  scrollableRef?: RefObject<HTMLDivElement>;
-  /** @member Callback function for the `scroll` event */
-  onScroll?: (this: GlobalEventHandlers, ev: Event) => any;
-}
+}> &
+  BoxProps;
 
-export class Section extends Component<SectionProps> {
-  scrollableRef: RefObject<HTMLDivElement>;
-  scrollable: boolean;
-  onScroll?: (this: GlobalEventHandlers, ev: Event) => any;
-  scrollableHorizontal: boolean;
+export const Section = (props: SectionProps) => {
+  const {
+    className,
+    title,
+    buttons,
+    fill,
+    fitted,
+    scrollable,
+    scrollableHorizontal,
+    flexGrow, // VOREStation Addition
+    noTopPadding, // VOREStation Addition
+    stretchContents, // VOREStation Addition
+    children,
+    onScroll,
+    ...rest
+  } = props;
 
-  constructor(props) {
-    super(props);
-    this.scrollableRef = props.scrollableRef || createRef();
-    this.scrollable = props.scrollable;
-    this.onScroll = props.onScroll;
-    this.scrollableHorizontal = props.scrollableHorizontal;
-  }
+  const scrollableRef = props.scrollableRef || createRef();
+  const hasTitle = canRender(title) || canRender(buttons);
 
-  componentDidMount() {
-    if (this.scrollable || this.scrollableHorizontal) {
-      addScrollableNode(this.scrollableRef.current as HTMLElement);
-      if (this.onScroll && this.scrollableRef.current) {
-        this.scrollableRef.current.onscroll = this.onScroll;
+  useEffect(() => {
+    if (scrollable || scrollableHorizontal) {
+      addScrollableNode(scrollableRef.current as HTMLElement);
+      if (onScroll && scrollableRef.current) {
+        scrollableRef.current.onscroll = onScroll;
       }
     }
-  }
 
-  componentWillUnmount() {
-    if (this.scrollable || this.scrollableHorizontal) {
-      removeScrollableNode(this.scrollableRef.current as HTMLElement);
-    }
-  }
+    return () => {
+      if (scrollable || scrollableHorizontal) {
+        removeScrollableNode(scrollableRef.current as HTMLElement);
+      }
+    };
+  }, []);
 
-  render() {
-    const {
-      className,
-      title,
-      buttons,
-      fill,
-      fitted,
-      scrollable,
-      scrollableHorizontal,
-      flexGrow, // VOREStation Addition
-      noTopPadding, // VOREStation Addition
-      stretchContents, // VOREStation Addition
-      children,
-      onScroll,
-      ...rest
-    } = this.props;
-    const hasTitle = canRender(title) || canRender(buttons);
-    return (
-      <div
-        className={classes([
-          'Section',
-          Byond.IS_LTE_IE8 && 'Section--iefix',
-          fill && 'Section--fill',
-          fitted && 'Section--fitted',
-          scrollable && 'Section--scrollable',
-          scrollableHorizontal && 'Section--scrollableHorizontal',
-          flexGrow && 'Section--flex', // VOREStation Addition
-          className,
-          computeBoxClassName(rest),
-        ])}
-        {...computeBoxProps(rest)}>
-        {hasTitle && (
-          <div className="Section__title">
-            <span className="Section__titleText">{title}</span>
-            <div className="Section__buttons">{buttons}</div>
-          </div>
-        )}
-        <div className="Section__rest">
-          {/* Vorestation Edit Start */}
-          <div
-            ref={this.scrollableRef}
-            onScroll={onScroll}
-            className={classes([
-              'Section__content',
-              !!stretchContents && 'Section__content--stretchContents',
-              !!noTopPadding && 'Section__content--noTopPadding',
-            ])}>
-            {children}
-          </div>
-          {/* Vorestation Edit End */}
+  return (
+    <div
+      className={classes([
+        'Section',
+        fill && 'Section--fill',
+        fitted && 'Section--fitted',
+        scrollable && 'Section--scrollable',
+        scrollableHorizontal && 'Section--scrollableHorizontal',
+        flexGrow && 'Section--flex', // VOREStation Addition
+        className,
+        computeBoxClassName(rest),
+      ])}
+      {...computeBoxProps(rest)}>
+      {hasTitle && (
+        <div className="Section__title">
+          <span className="Section__titleText">{title}</span>
+          <div className="Section__buttons">{buttons}</div>
+        </div>
+      )}
+      <div className="Section__rest">
+        <div
+          onScroll={onScroll as any}
+          className={classes([
+            'Section__content',
+            !!stretchContents && 'Section__content--stretchContents', // VOREStation Addition
+            !!noTopPadding && 'Section__content--noTopPadding', // VOREStation Addition
+          ])}>
+          {children}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

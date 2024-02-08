@@ -1,5 +1,5 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -37,7 +37,7 @@ export const Sleeper = (props) => {
   const { hasOccupant } = data;
   const body = hasOccupant ? <SleeperMain /> : <SleeperEmpty />;
   return (
-    <Window width={550} height={760} resizable>
+    <Window width={550} height={760}>
       <Window.Content className="Layout__content--flexColumn">
         {body}
       </Window.Content>
@@ -49,7 +49,7 @@ const SleeperMain = (props) => {
   const { act, data } = useBackend();
   const { occupant, dialysis, stomachpumping } = data;
   return (
-    <Fragment>
+    <>
       <SleeperOccupant />
       <SleeperDamage />
       <SleeperDialysisPump
@@ -63,7 +63,7 @@ const SleeperMain = (props) => {
         actToDo="togglepump"
       />
       <SleeperChemicals />
-    </Fragment>
+    </>
   );
 };
 
@@ -74,7 +74,7 @@ const SleeperOccupant = (props) => {
     <Section
       title="Occupant"
       buttons={
-        <Fragment>
+        <>
           <Box color="label" inline>
             Auto-eject if dead:&nbsp;
           </Box>
@@ -92,7 +92,7 @@ const SleeperOccupant = (props) => {
             onClick={() => act('ejectify')}
           />
           <Button content={stasis} onClick={() => act('changestasis')} />
-        </Fragment>
+        </>
       }>
       <LabeledList>
         <LabeledList.Item label="Name">{occupant.name}</LabeledList.Item>
@@ -123,7 +123,7 @@ const SleeperOccupant = (props) => {
           </ProgressBar>
         </LabeledList.Item>
         {!!occupant.hasBlood && (
-          <Fragment>
+          <>
             <LabeledList.Item label="Blood Level">
               <ProgressBar
                 min="0"
@@ -140,7 +140,7 @@ const SleeperOccupant = (props) => {
             <LabeledList.Item label="Pulse" verticalAlign="middle">
               {occupant.pulse} BPM
             </LabeledList.Item>
-          </Fragment>
+          </>
         )}
       </LabeledList>
     </Section>
@@ -179,7 +179,7 @@ const SleeperDialysisPump = (props) => {
     <Section
       title={title}
       buttons={
-        <Fragment>
+        <>
           <Button
             disabled={!isBeakerLoaded || beakerFreeSpace <= 0}
             selected={canDialysis}
@@ -193,7 +193,7 @@ const SleeperDialysisPump = (props) => {
             content="Eject"
             onClick={() => act('removebeaker')}
           />
-        </Fragment>
+        </>
       }>
       {isBeakerLoaded ? (
         <LabeledList>

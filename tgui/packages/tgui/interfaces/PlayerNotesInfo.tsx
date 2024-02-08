@@ -17,8 +17,7 @@ export const PlayerNotesInfo = (props) => {
       title={`Info on ${ckey}`}
       theme={device_theme}
       width={400}
-      height={500}
-      resizable>
+      height={500}>
       <Window.Content scrollable>
         <Section title={`Player age: ${age}`}>
           <Table>

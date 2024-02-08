@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
@@ -16,10 +16,10 @@ export const ColorMate = (props) => {
   let height = Math.min(270 + items.length * 15, 600);
 
   return (
-    <Window width={300} height={height} resizable>
+    <Window width={300} height={height}>
       <Window.Content>
         {(items.length && (
-          <Fragment>
+          <>
             <Section title="Paint">
               <Flex justify="center" align="center">
                 <Flex.Item basis="50%">
@@ -55,7 +55,7 @@ export const ColorMate = (props) => {
                 </Box>
               ))}
             </Section>
-          </Fragment>
+          </>
         )) || (
           <Section>
             <Box color="bad">No items inserted.</Box>

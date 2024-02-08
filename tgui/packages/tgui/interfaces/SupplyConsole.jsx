@@ -1,5 +1,5 @@
 import { filter, sortBy } from 'common/collections';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { formatTime } from '../format';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, Section, Tabs, AnimatedNumber, Stack } from '../components';
@@ -108,7 +108,7 @@ const SupplyConsoleShuttleStatus = (props) => {
           <LabeledList.Item
             label="Location"
             buttons={
-              <Fragment>
+              <>
                 {shuttle_buttons}
                 {showShuttleForce ? (
                   <Button
@@ -119,7 +119,7 @@ const SupplyConsoleShuttleStatus = (props) => {
                     }
                   />
                 ) : null}
-              </Fragment>
+              </>
             }>
             {shuttle.location}
           </LabeledList.Item>
@@ -347,7 +347,7 @@ const SupplyConsoleMenuOrderList = (props) => {
             ) : null}
           </LabeledList>
           {order_auth && mode === 'Requested' ? (
-            <Fragment>
+            <>
               <Button
                 icon="check"
                 content="Approve"
@@ -359,7 +359,7 @@ const SupplyConsoleMenuOrderList = (props) => {
                 content="Deny"
                 onClick={() => act('deny_order', { ref: order.ref })}
               />
-            </Fragment>
+            </>
           ) : null}
         </Section>
       ))}
@@ -413,7 +413,7 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                   key={i}
                   buttons={
                     order_auth ? (
-                      <Fragment>
+                      <>
                         <Button
                           icon="pen"
                           content="Edit"
@@ -437,7 +437,7 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                             })
                           }
                         />
-                      </Fragment>
+                      </>
                     ) : null
                   }>
                   {item.quantity}x -&gt; {item.value} points
@@ -446,7 +446,7 @@ const SupplyConsoleMenuHistoryExport = (props) => {
             )}
           </LabeledList>
           {order_auth ? (
-            <Fragment>
+            <>
               <Button
                 mt={1}
                 icon="plus"
@@ -458,7 +458,7 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                 content="Delete Record"
                 onClick={() => act('export_delete', { ref: r.ref })}
               />
-            </Fragment>
+            </>
           ) : null}
         </Section>
       ))}

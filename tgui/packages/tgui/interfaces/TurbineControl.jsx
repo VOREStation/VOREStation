@@ -19,7 +19,7 @@ export const TurbineControl = (props) => {
   } = data;
 
   return (
-    <Window width={520} height={440} resizable>
+    <Window width={520} height={440}>
       <Window.Content scrollable>
         <Section title="Turbine Controller">
           <LabeledList>

@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, NumberInput } from '../components';
 import { TemporaryNotice } from './common/TemporaryNotice';
@@ -23,7 +23,7 @@ export const TelecommsMultitoolMenu = (props) => {
   } = data;
 
   return (
-    <Window width={520} height={540} resizable>
+    <Window width={520} height={540}>
       <Window.Content scrollable>
         <TemporaryNotice />
         <TelecommsMultitoolMenuStatus />
@@ -78,9 +78,9 @@ const TelecommsMultitoolMenuStatus = (props) => {
         {multitool ? (
           <LabeledList.Item label="Multitool Buffer">
             {multitool_buffer ? (
-              <Fragment>
+              <>
                 {multitool_buffer.name} ({multitool_buffer.id})
-              </Fragment>
+              </>
             ) : null}
             <Button
               color={multitool_buffer ? 'green' : null}

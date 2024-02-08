@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -6,7 +6,7 @@ import { OvermapFlightData, OvermapPanControls } from './common/Overmap';
 
 export const OvermapHelm = (props) => {
   return (
-    <Window width={565} height={545} resizable>
+    <Window width={565} height={545}>
       <Window.Content>
         <OvermapHelmContent />
       </Window.Content>
@@ -16,7 +16,7 @@ export const OvermapHelm = (props) => {
 
 export const OvermapHelmContent = (props) => {
   return (
-    <Fragment>
+    <>
       <Flex>
         <Flex.Item basis="40%" height="180px">
           <OvermapFlightDataWrap />
@@ -29,7 +29,7 @@ export const OvermapHelmContent = (props) => {
         </Flex.Item>
       </Flex>
       <OvermapNavComputer />
-    </Fragment>
+    </>
   );
 };
 
@@ -119,14 +119,14 @@ const OvermapAutopilot = (props) => {
       <LabeledList>
         <LabeledList.Item label="Target">
           {(dest && (
-            <Fragment>
+            <>
               <Button onClick={() => act('setcoord', { setx: true })}>
                 {d_x}
               </Button>
               <Button onClick={() => act('setcoord', { sety: true })}>
                 {d_y}
               </Button>
-            </Fragment>
+            </>
           )) || (
             <Button
               icon="pen"

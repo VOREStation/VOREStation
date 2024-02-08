@@ -17,7 +17,7 @@ export const GravityGenerator = (props) => {
   }
 
   return (
-    <Window width={500} height={400} resizable>
+    <Window width={500} height={400}>
       <Window.Content>
         <Section
           title="Status"

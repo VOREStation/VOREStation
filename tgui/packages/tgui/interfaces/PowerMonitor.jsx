@@ -2,7 +2,7 @@ import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { pureComponentHooks } from 'common/react';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Chart, ColorBox, Flex, Icon, LabeledList, ProgressBar, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -16,7 +16,7 @@ export const powerRank = (str) => {
 
 export const PowerMonitor = () => {
   return (
-    <Window width={550} height={700} resizable>
+    <Window width={550} height={700}>
       <Window.Content scrollable>
         <PowerMonitorContent />
       </Window.Content>
@@ -102,7 +102,7 @@ export const PowerMonitorFocus = (props) => {
       ),
   ])(focus.areas);
   return (
-    <Fragment>
+    <>
       <Section
         title={focus.name}
         buttons={
@@ -224,14 +224,14 @@ export const PowerMonitorFocus = (props) => {
           ))}
         </Table>
       </Section>
-    </Fragment>
+    </>
   );
 };
 
 export const AreaCharge = (props) => {
   const { charging, charge } = props;
   return (
-    <Fragment>
+    <>
       <Icon
         width="18px"
         textAlign="center"
@@ -250,7 +250,7 @@ export const AreaCharge = (props) => {
       <Box inline width="36px" textAlign="right">
         {toFixed(charge) + '%'}
       </Box>
-    </Fragment>
+    </>
   );
 };
 

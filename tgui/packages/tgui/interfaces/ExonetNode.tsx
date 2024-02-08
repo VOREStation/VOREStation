@@ -17,7 +17,7 @@ export const ExonetNode = (props) => {
   const { on, allowPDAs, allowCommunicators, allowNewscasters, logs } = data;
 
   return (
-    <Window width={400} height={400} resizable>
+    <Window width={400} height={400}>
       <Window.Content scrollable>
         <Section
           title="Status"

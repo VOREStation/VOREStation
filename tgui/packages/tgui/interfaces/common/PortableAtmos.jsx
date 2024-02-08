@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { Box, Section, LabeledList, Button, AnimatedNumber, ProgressBar } from '../../components';
 
 export const PortableBasicInfo = (props) => {
@@ -16,7 +16,7 @@ export const PortableBasicInfo = (props) => {
   } = data;
 
   return (
-    <Fragment>
+    <>
       <Section
         title="Status"
         buttons={
@@ -74,6 +74,6 @@ export const PortableBasicInfo = (props) => {
           <Box color="average">No holding tank</Box>
         )}
       </Section>
-    </Fragment>
+    </>
   );
 };

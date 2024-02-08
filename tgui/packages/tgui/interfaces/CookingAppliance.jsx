@@ -15,7 +15,7 @@ export const CookingAppliance = (props) => {
   } = data;
 
   return (
-    <Window width={600} height={600} resizable>
+    <Window width={600} height={600}>
       <Window.Content scrollable>
         <Section title="Status">
           <LabeledList>

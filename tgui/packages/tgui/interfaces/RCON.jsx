@@ -1,6 +1,6 @@
 import { round } from 'common/math';
 import { formatPower } from '../format';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Icon, LabeledList, ProgressBar, Stack, Section, Tabs, Slider } from '../components';
 import { Window } from '../layouts';
@@ -11,7 +11,7 @@ const POWER_MUL = 1e3;
 
 export const RCON = (props) => {
   return (
-    <Window width={630} height={540} resizable>
+    <Window width={630} height={540}>
       <Window.Content scrollable>
         <RCONContent />
       </Window.Content>
@@ -30,7 +30,7 @@ export const RCONContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab
           key="SMESs"
@@ -46,7 +46,7 @@ export const RCONContent = (props) => {
         </Tabs.Tab>
       </Tabs>
       <Box m={2}>{body}</Box>
-    </Fragment>
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ export const Holodeck = (props) => {
   }
 
   return (
-    <Window width={400} height={610} resizable>
+    <Window width={400} height={610}>
       <Window.Content scrollable>
         <Section title="Programs">
           {programsToShow.map((prog) => (

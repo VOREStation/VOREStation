@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -21,14 +21,14 @@ export const RIGSuit = (props) => {
   }
 
   return (
-    <Window height={480} width={550} resizable>
+    <Window height={480} width={550}>
       <Window.Content scrollable>
         {override || (
-          <Fragment>
+          <>
             <RIGSuitStatus />
             <RIGSuitHardware />
             <RIGSuitModules />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>
@@ -91,11 +91,11 @@ const RIGSuitStatus = (props) => {
     <Section
       title="Status"
       buttons={
-        <Fragment>
+        <>
           {SealButton}
           {AIButton}
           {CoolingButton}
-        </Fragment>
+        </>
       }>
       <LabeledList>
         <LabeledList.Item label="Power Supply">
@@ -239,7 +239,7 @@ const RIGSuitModules = (props) => {
               toTitleCase(module.name) + (module.damage ? ' (damaged)' : '')
             }
             buttons={
-              <Fragment>
+              <>
                 {module.can_select ? (
                   <Button
                     selected={module.name === primarysystem}
@@ -284,7 +284,7 @@ const RIGSuitModules = (props) => {
                     }
                   />
                 ) : null}
-              </Fragment>
+              </>
             }>
             {module.damage >= 2 ? (
               <Box color="bad">-- MODULE DESTROYED --</Box>

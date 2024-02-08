@@ -1,7 +1,7 @@
 import { filter } from 'common/collections';
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, ByondUi, Button, Flex, Icon, LabeledList, Input, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -54,7 +54,7 @@ export const Communicator = (props) => {
   const [videoSetting, setVideoSetting] = useLocalState('videoSetting', 0);
 
   return (
-    <Window width={475} height={700} resizable>
+    <Window width={475} height={700}>
       <Window.Content>
         {video_comm && (
           <VideoComm
@@ -63,7 +63,7 @@ export const Communicator = (props) => {
           />
         )}
         {(!video_comm || videoSetting !== 0) && (
-          <Fragment>
+          <>
             <CommunicatorHeader />
             <Box
               height="88%"
@@ -77,7 +77,7 @@ export const Communicator = (props) => {
               videoSetting={videoSetting}
               setVideoSetting={setVideoSetting}
             />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>
@@ -1024,7 +1024,7 @@ const NewsFeed = (props) => {
   const { feeds, latest_news } = data;
 
   return (
-    <Fragment>
+    <>
       <Section title="Recent News">
         <Section>
           {latest_news.map((news) => (
@@ -1067,7 +1067,7 @@ const NewsFeed = (props) => {
           />
         ))}
       </Section>
-    </Fragment>
+    </>
   );
 };
 

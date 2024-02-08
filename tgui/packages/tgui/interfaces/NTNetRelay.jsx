@@ -15,10 +15,7 @@ export const NTNetRelay = (props) => {
   }
 
   return (
-    <Window
-      width={dos_crashed ? 700 : 500}
-      height={dos_crashed ? 600 : 300}
-      resizable>
+    <Window width={dos_crashed ? 700 : 500} height={dos_crashed ? 600 : 300}>
       <Window.Content scrollable>{body}</Window.Content>
     </Window>
   );

@@ -60,7 +60,7 @@ export const ClawMachine = (props) => {
     );
   }
   return (
-    <Window resizable>
+    <Window>
       <center>{body}</center>
     </Window>
   );

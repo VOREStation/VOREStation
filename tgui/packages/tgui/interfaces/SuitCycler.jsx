@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Dropdown, NumberInput, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -18,7 +18,7 @@ export const SuitCycler = (props) => {
   }
 
   return (
-    <Window width={320} height={400} resizable>
+    <Window width={320} height={400}>
       <Window.Content>{subTemplate}</Window.Content>
     </Window>
   );
@@ -40,7 +40,7 @@ const SuitCyclerContent = (props) => {
   } = data;
 
   return (
-    <Fragment>
+    <>
       <Section
         title="Storage"
         buttons={
@@ -147,7 +147,7 @@ const SuitCyclerContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };
 

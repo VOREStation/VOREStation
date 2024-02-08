@@ -1,5 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Dropdown, Flex, Icon, Input, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
@@ -23,7 +23,7 @@ export const MessageMonitor = (props) => {
   }
 
   return (
-    <Window width={670} height={450} resizable>
+    <Window width={670} height={450}>
       <Window.Content scrollable>
         <TemporaryNotice />
         {body}
@@ -176,7 +176,7 @@ const MessageMonitorContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab
           key="Main"
@@ -213,7 +213,7 @@ const MessageMonitorContent = (props) => {
         </Tabs.Tab>
       </Tabs>
       <Box m={2}>{body}</Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -226,7 +226,7 @@ const MessageMonitorMain = (props) => {
     <Section
       title="Main Menu"
       buttons={
-        <Fragment>
+        <>
           <Button
             icon="link"
             content="Server Link"
@@ -238,7 +238,7 @@ const MessageMonitorMain = (props) => {
             selected={linkedServer.active}
             onClick={() => act('active')}
           />
-        </Fragment>
+        </>
       }>
       <LabeledList>
         <LabeledList.Item label="Server Status">

@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, NoticeBox, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -9,7 +9,7 @@ export const TelecommsMachineBrowser = (props) => {
   const { network, temp, machinelist, selectedMachine } = data;
 
   return (
-    <Window width={575} height={450} resizable>
+    <Window width={575} height={450}>
       <Window.Content scrollable>
         {temp ? (
           <NoticeBox
@@ -31,7 +31,7 @@ export const TelecommsMachineBrowser = (props) => {
             <LabeledList.Item
               label="Current Network"
               buttons={
-                <Fragment>
+                <>
                   <Button
                     icon="search"
                     content="Probe Network"
@@ -44,7 +44,7 @@ export const TelecommsMachineBrowser = (props) => {
                     disabled={machinelist.length === 0}
                     onClick={() => act('release')}
                   />
-                </Fragment>
+                </>
               }>
               <Button
                 content={network}

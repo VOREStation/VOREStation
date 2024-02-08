@@ -1,5 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
@@ -70,7 +70,7 @@ const RequestConsoleSendMenu = (props) => {
             <LabeledList.Item
               label={dept}
               buttons={
-                <Fragment>
+                <>
                   <Button
                     icon="envelope-open-text"
                     onClick={() => act('write', { write: dept, priority: 1 })}>
@@ -81,7 +81,7 @@ const RequestConsoleSendMenu = (props) => {
                     onClick={() => act('write', { write: dept, priority: 2 })}>
                     High Priority
                   </Button>
-                </Fragment>
+                </>
               }
             />
           )) ||
@@ -215,7 +215,7 @@ const RequestConsoleAnnounce = (props) => {
   return (
     <Section title="Send Station-Wide Announcement">
       {(announceAuth && (
-        <Fragment>
+        <>
           <Box bold color="good" mb={1}>
             ID Verified. Authentication Accepted.
           </Box>
@@ -234,7 +234,7 @@ const RequestConsoleAnnounce = (props) => {
             }>
             {message || 'No Message'}
           </Section>
-        </Fragment>
+        </>
       )) || (
         <Box bold color="bad" mb={1}>
           Swipe your ID card to authenticate yourself.
@@ -273,7 +273,7 @@ export const RequestConsole = (props) => {
   let BodyElement = screenToTemplate[screen];
 
   return (
-    <Window width={520} height={410} resizable>
+    <Window width={520} height={410}>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab

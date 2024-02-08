@@ -5,7 +5,7 @@ import { OvermapPanControls } from './common/Overmap';
 
 export const OvermapDisperser = (props) => {
   return (
-    <Window width={400} height={550} resizable>
+    <Window width={400} height={550}>
       <Window.Content>
         <OvermapDisperserContent />
       </Window.Content>

@@ -18,7 +18,7 @@ export const AlgaeFarm = (props) => {
   } = data;
 
   return (
-    <Window width={500} height={300} resizable>
+    <Window width={500} height={300}>
       <Window.Content>
         {errorText && (
           <NoticeBox warning>

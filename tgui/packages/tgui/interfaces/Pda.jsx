@@ -46,11 +46,7 @@ export const Pda = (props) => {
   const [settingsMode, setSettingsMode] = useLocalState('settingsMode', false);
 
   return (
-    <Window
-      width={580}
-      height={670}
-      theme={useRetro ? 'pda-retro' : null}
-      resizable>
+    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}

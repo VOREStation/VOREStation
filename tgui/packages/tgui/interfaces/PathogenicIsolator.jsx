@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
 import { Box, Button, Flex, NoticeBox, LabeledList, Section, Tabs } from '../components';
@@ -14,7 +14,7 @@ const virusModalBodyOverride = (modal) => {
       m="-1rem"
       title={virus.name || 'Virus'}
       buttons={
-        <Fragment>
+        <>
           <Button
             disabled={!can_print}
             icon="print"
@@ -24,7 +24,7 @@ const virusModalBodyOverride = (modal) => {
             }
           />
           <Button icon="times" color="red" onClick={() => act('modal_close')} />
-        </Fragment>
+        </>
       }>
       <Box mx="0.5rem">
         <LabeledList>
@@ -85,7 +85,7 @@ export const PathogenicIsolator = (props) => {
 
   modalRegisterBodyOverride('virus', virusModalBodyOverride);
   return (
-    <Window height={500} width={520} resizable>
+    <Window height={500} width={520}>
       <ComplexModal maxHeight="100%" maxWidth="95%" />
       <Window.Content scrollable>
         {(isolating && (
@@ -113,7 +113,7 @@ const PathogenicIsolatorTabHome = (props) => {
     <Section
       title="Pathogens"
       buttons={
-        <Fragment>
+        <>
           <Button
             icon="print"
             content="Print"
@@ -126,7 +126,7 @@ const PathogenicIsolatorTabHome = (props) => {
             disabled={!syringe_inserted}
             onClick={() => act('eject')}
           />
-        </Fragment>
+        </>
       }>
       {(pathogen_pool.length &&
         pathogen_pool.map((pathogen) => (

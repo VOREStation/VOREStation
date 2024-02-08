@@ -8,7 +8,7 @@ export const pAIDoorjack = (props) => {
   const { cable, machine, inprogress, progress_a, progress_b, aborted } = data;
 
   return (
-    <Window width={300} height={150} resizable>
+    <Window width={300} height={150}>
       <Window.Content scrollable>
         <Section>
           <LabeledList>

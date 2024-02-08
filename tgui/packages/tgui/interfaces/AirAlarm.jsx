@@ -1,5 +1,5 @@
 import { toFixed } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { getGasLabel, getGasColor } from '../constants';
@@ -11,7 +11,7 @@ export const AirAlarm = (props) => {
   const { act, data } = useBackend();
   const locked = data.locked && !data.siliconUser && !data.remoteUser;
   return (
-    <Window width={440} height={650} resizable>
+    <Window width={440} height={650}>
       <Window.Content scrollable>
         <InterfaceLockNoticeBox />
         <AirAlarmStatus />
@@ -46,7 +46,7 @@ const AirAlarmStatus = (props) => {
     <Section title="Air Status">
       <LabeledList>
         {(entries.length > 0 && (
-          <Fragment>
+          <>
             {entries.map((entry) => {
               const status = dangerMap[entry.danger_level] || dangerMap[0];
               return (
@@ -69,7 +69,7 @@ const AirAlarmStatus = (props) => {
                 (data.fire_alarm && 'Fire Alarm') ||
                 'Nominal'}
             </LabeledList.Item>
-          </Fragment>
+          </>
         )) || (
           <LabeledList.Item label="Warning" color="bad">
             Cannot obtain air sample for analysis.
@@ -171,7 +171,7 @@ const AirAlarmControlHome = (props) => {
   const [screen, setScreen] = useLocalState('screen');
   const { mode, atmos_alarm } = data;
   return (
-    <Fragment>
+    <>
       <Button
         icon={atmos_alarm ? 'exclamation-triangle' : 'exclamation'}
         color={atmos_alarm && 'caution'}
@@ -213,7 +213,7 @@ const AirAlarmControlHome = (props) => {
         content="Alarm Thresholds"
         onClick={() => setScreen('thresholds')}
       />
-    </Fragment>
+    </>
   );
 };
 

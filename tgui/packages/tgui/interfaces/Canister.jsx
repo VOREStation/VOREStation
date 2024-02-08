@@ -18,7 +18,7 @@ export const Canister = (props) => {
     holding,
   } = data;
   return (
-    <Window width={360} height={242} resizable>
+    <Window width={360} height={242}>
       <Window.Content>
         <Section
           title="Canister"

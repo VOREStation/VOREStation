@@ -1,5 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
 
@@ -68,7 +68,7 @@ const NewsFeed = (props) => {
   const { feeds, latest_news } = data;
 
   return (
-    <Fragment>
+    <>
       <Section title="Recent News" level={2}>
         {(latest_news.length && (
           <Section>
@@ -113,6 +113,6 @@ const NewsFeed = (props) => {
           />
         ))}
       </Section>
-    </Fragment>
+    </>
   );
 };

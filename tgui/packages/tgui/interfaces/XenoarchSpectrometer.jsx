@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section, NoticeBox, Slider } from '../components';
 import { Window } from '../layouts';
@@ -31,12 +31,12 @@ export const XenoarchSpectrometer = (props) => {
   } = data;
 
   return (
-    <Window width={900} height={760} resizable>
+    <Window width={900} height={760}>
       <Window.Content scrollable>
         <Section
           title="Status"
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon="signal"
                 selected={scanning}
@@ -49,7 +49,7 @@ export const XenoarchSpectrometer = (props) => {
                 onClick={() => act('ejectItem')}>
                 Eject Item
               </Button>
-            </Fragment>
+            </>
           }>
           <LabeledList>
             <LabeledList.Item label="Item">

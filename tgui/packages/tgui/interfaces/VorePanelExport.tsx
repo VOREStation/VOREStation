@@ -864,7 +864,7 @@ const downloadPrefs = (extension: string) => {
 
 export const VorePanelExport = () => {
   return (
-    <Window width={790} height={560} theme="abstract" resizeable>
+    <Window width={790} height={560} theme="abstract">
       <Window.Content>
         <VorePanelExportContent />
       </Window.Content>

@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { Box, Button, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
@@ -38,12 +38,12 @@ export const OmniMixer = (props) => {
   const { power, config, ports, set_flow_rate, last_flow_rate } = data;
 
   return (
-    <Window width={390} height={330} resizable>
+    <Window width={390} height={330}>
       <Window.Content>
         <Section
           title={config ? 'Configuration' : 'Status'}
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon="power-off"
                 content={power ? 'On' : 'Off'}
@@ -56,16 +56,16 @@ export const OmniMixer = (props) => {
                 selected={config}
                 onClick={() => act('configure')}
               />
-            </Fragment>
+            </>
           }>
           <Table>
             <Table.Row header>
               <Table.Cell textAlign="center">Port</Table.Cell>
               {config ? (
-                <Fragment>
+                <>
                   <Table.Cell textAlign="center">Input</Table.Cell>
                   <Table.Cell textAlign="center">Output</Table.Cell>
-                </Fragment>
+                </>
               ) : (
                 <Table.Cell textAlign="center">Mode</Table.Cell>
               )}
@@ -147,7 +147,7 @@ const PortRow = (props) => {
         )}
       </Table.Cell>
       {config ? (
-        <Fragment>
+        <>
           <Table.Cell textAlign="center" width="20%">
             <Button
               width="100%"
@@ -174,7 +174,7 @@ const PortRow = (props) => {
               }
             />
           </Table.Cell>
-        </Fragment>
+        </>
       ) : null}
     </Table.Row>
   );

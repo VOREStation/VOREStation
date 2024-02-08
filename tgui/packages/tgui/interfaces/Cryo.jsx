@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { AnimatedNumber, Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -49,7 +49,7 @@ const CryoContent = (props) => {
     isBeakerLoaded,
   } = data;
   return (
-    <Fragment>
+    <>
       <Section
         title="Occupant"
         flexGrow="1"
@@ -134,7 +134,7 @@ const CryoContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -143,7 +143,7 @@ const CryoBeaker = (props) => {
   const { isBeakerLoaded, beakerLabel, beakerVolume } = data;
   if (isBeakerLoaded) {
     return (
-      <Fragment>
+      <>
         {beakerLabel ? beakerLabel : <Box color="average">No label</Box>}
         <Box color={!beakerVolume && 'bad'}>
           {beakerVolume ? (
@@ -155,7 +155,7 @@ const CryoBeaker = (props) => {
             'Beaker is empty'
           )}
         </Box>
-      </Fragment>
+      </>
     );
   } else {
     return <Box color="average">No beaker loaded</Box>;
