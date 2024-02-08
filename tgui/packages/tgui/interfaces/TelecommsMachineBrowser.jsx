@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, NoticeBox, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -9,12 +9,13 @@ export const TelecommsMachineBrowser = (props) => {
   const { network, temp, machinelist, selectedMachine } = data;
 
   return (
-    <Window width={575} height={450} resizable>
+    <Window width={575} height={450}>
       <Window.Content scrollable>
         {temp ? (
           <NoticeBox
             danger={temp.color === 'bad'}
-            warning={temp.color !== 'bad'}>
+            warning={temp.color !== 'bad'}
+          >
             <Box display="inline-box" verticalAlign="middle">
               {temp.text}
             </Box>
@@ -31,7 +32,7 @@ export const TelecommsMachineBrowser = (props) => {
             <LabeledList.Item
               label="Current Network"
               buttons={
-                <Fragment>
+                <>
                   <Button
                     icon="search"
                     content="Probe Network"
@@ -44,8 +45,9 @@ export const TelecommsMachineBrowser = (props) => {
                     disabled={machinelist.length === 0}
                     onClick={() => act('release')}
                   />
-                </Fragment>
-              }>
+                </>
+              }
+            >
               <Button
                 content={network}
                 icon="pen"
@@ -94,7 +96,8 @@ const TelecommsBrowser = (props) => {
             onClick={() => act('mainmenu')}
           />
         )
-      }>
+      }
+    >
       <Box color="label">
         <u>Linked entities</u>
       </Box>
@@ -103,7 +106,8 @@ const TelecommsBrowser = (props) => {
           list.map((machine) => (
             <LabeledList.Item
               key={machine.id}
-              label={machine.name + ' (' + machine.id + ')'}>
+              label={machine.name + ' (' + machine.id + ')'}
+            >
               <Button
                 content="View"
                 icon="eye"

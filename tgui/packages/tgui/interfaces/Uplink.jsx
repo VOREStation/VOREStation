@@ -1,7 +1,17 @@
 import { createSearch, decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Input, Section, Table, Tabs, NoticeBox, LabeledList } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Section,
+  Table,
+  Tabs,
+  NoticeBox,
+  LabeledList,
+} from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
 
@@ -14,7 +24,7 @@ export const Uplink = (props) => {
 
   const { telecrystals } = data;
   return (
-    <Window width={620} height={580} theme="syndicate" resizable>
+    <Window width={620} height={580} theme="syndicate">
       <Window.Content scrollable>
         <UplinkHeader screen={screen} setScreen={setScreen} />
         {(screen === 0 && (
@@ -41,7 +51,8 @@ const UplinkHeader = (props) => {
         style={{
           'border-bottom': 'none',
           'margin-bottom': '0',
-        }}>
+        }}
+      >
         <Tabs.Tab selected={screen === 0} onClick={() => setScreen(0)}>
           Request Items
         </Tabs.Tab>
@@ -77,7 +88,8 @@ const ExploitableInformation = (props) => {
             onClick={() => act('view_exploits', { id: 0 })}
           />
         )
-      }>
+      }
+    >
       {(exploit && (
         <Box>
           <LabeledList>
@@ -139,7 +151,7 @@ export const GenericUplink = (props) => {
   const [searchText, setSearchText] = useLocalState('searchText', '');
   const [selectedCategory, setSelectedCategory] = useLocalState(
     'category',
-    categories[0]?.name
+    categories[0]?.name,
   );
   const testSearch = createSearch(searchText, (item) => {
     return item.name + item.desc;
@@ -163,7 +175,7 @@ export const GenericUplink = (props) => {
         </Box>
       }
       buttons={
-        <Fragment>
+        <>
           Search
           <Input
             autoFocus
@@ -179,8 +191,9 @@ export const GenericUplink = (props) => {
           {!!lockable && (
             <Button icon="lock" content="Lock" onClick={() => act('lock')} />
           )}
-        </Fragment>
-      }>
+        </>
+      }
+    >
       <Flex>
         {searchText.length === 0 && (
           <Flex.Item>
@@ -189,7 +202,8 @@ export const GenericUplink = (props) => {
                 <Tabs.Tab
                   key={category.name}
                   selected={category.name === selectedCategory}
-                  onClick={() => setSelectedCategory(category.name)}>
+                  onClick={() => setSelectedCategory(category.name)}
+                >
                   {category.name} ({category.items?.length || 0})
                 </Tabs.Tab>
               ))}
@@ -276,7 +290,8 @@ const ItemList = (props) => {
             })
           }
         />
-      }>
+      }
+    >
       {decodeHtmlEntities(item.desc)}
     </Section>
   ));

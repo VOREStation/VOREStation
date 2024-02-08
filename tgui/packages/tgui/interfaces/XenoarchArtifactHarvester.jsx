@@ -8,7 +8,7 @@ export const XenoarchArtifactHarvester = (props) => {
   const { no_scanner, harvesting, inserted_battery } = data.info;
 
   return (
-    <Window width={450} height={200} resizable>
+    <Window width={450} height={200}>
       <Window.Content>
         {(no_scanner && (
           <Box color="bad">Warning: No scanner detected.</Box>
@@ -24,7 +24,8 @@ export const XenoarchArtifactHarvester = (props) => {
                   mt={1}
                   fluid
                   icon="stop"
-                  onClick={() => act('stopharvest')}>
+                  onClick={() => act('stopharvest')}
+                >
                   Stop Early
                 </Button>
               </Box>
@@ -39,7 +40,8 @@ export const XenoarchArtifactHarvester = (props) => {
                     mt={1}
                     fluid
                     icon="stop"
-                    onClick={() => act('stopharvest')}>
+                    onClick={() => act('stopharvest')}
+                  >
                     Stop Early
                   </Button>
                 </Box>
@@ -61,7 +63,8 @@ export const XenoarchArtifactHarvester = (props) => {
                     mt={1}
                     fluid
                     icon="eject"
-                    onClick={() => act('ejectbattery')}>
+                    onClick={() => act('ejectbattery')}
+                  >
                     Eject Battery
                   </Button>
                   <Button fluid icon="bolt" onClick={() => act('drainbattery')}>

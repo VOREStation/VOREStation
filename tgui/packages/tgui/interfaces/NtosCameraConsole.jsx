@@ -15,7 +15,7 @@ export const prevNextCamera = (cameras, activeCamera) => {
     return [];
   }
   const index = cameras.findIndex(
-    (camera) => camera.name === activeCamera.name
+    (camera) => camera.name === activeCamera.name,
   );
   return [cameras[index - 1]?.name, cameras[index + 1]?.name];
 };
@@ -46,10 +46,10 @@ export const NtosCameraConsole = (props) => {
   const cameras = selectCameras(data.cameras);
   const [prevCameraName, nextCameraName] = prevNextCamera(
     cameras,
-    activeCamera
+    activeCamera,
   );
   return (
-    <NtosWindow width={870} height={708} resizable>
+    <NtosWindow width={870} height={708}>
       <NtosWindow.Content>
         <div className="CameraConsole__left">
           <CameraConsoleContent />

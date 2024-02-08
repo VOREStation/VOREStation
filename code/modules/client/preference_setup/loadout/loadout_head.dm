@@ -297,7 +297,8 @@
 		"engineering"=/obj/item/clothing/head/welding/engie,
 		"fancy"=/obj/item/clothing/head/welding/fancy,
 		"demonic"=/obj/item/clothing/head/welding/demon,
-		"knightly"=/obj/item/clothing/head/welding/knight
+		"knightly"=/obj/item/clothing/head/welding/knight,
+		"replikant"=/obj/item/clothing/head/welding/arar
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 

@@ -12,7 +12,7 @@ export const SeedStorage = (props) => {
   const sortedSeeds = sortBy((seed) => seed.name.toLowerCase())(seeds);
 
   return (
-    <Window width={600} height={760} resizable>
+    <Window width={600} height={760}>
       <Window.Content scrollable>
         <Section title="Seeds">
           {sortedSeeds.map((seed) => (
@@ -35,7 +35,8 @@ export const SeedStorage = (props) => {
                 <Button
                   fluid
                   icon="download"
-                  onClick={() => act('vend', { id: seed.id })}>
+                  onClick={() => act('vend', { id: seed.id })}
+                >
                   Vend
                 </Button>
               </Flex.Item>
@@ -43,7 +44,8 @@ export const SeedStorage = (props) => {
                 <Button
                   fluid
                   icon="trash"
-                  onClick={() => act('purge', { id: seed.id })}>
+                  onClick={() => act('purge', { id: seed.id })}
+                >
                   Purge
                 </Button>
               </Flex.Item>

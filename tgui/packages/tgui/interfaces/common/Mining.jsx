@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../../backend';
 import { Box, Button, NoticeBox } from '../../components';
 
@@ -9,13 +9,14 @@ export const MiningUser = (props) => {
   return (
     <NoticeBox success={has_id}>
       {has_id ? (
-        <Fragment>
+        <>
           <Box
             display="inline-block"
             verticalAlign="middle"
             style={{
               float: 'left',
-            }}>
+            }}
+          >
             Logged in as {id.name}.<br />
             You have {id.points.toLocaleString('en-US')} points.
           </Box>
@@ -32,7 +33,7 @@ export const MiningUser = (props) => {
               clear: 'both',
             }}
           />
-        </Fragment>
+        </>
       ) : (
         insertIdText
       )}

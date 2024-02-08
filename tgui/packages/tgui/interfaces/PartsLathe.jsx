@@ -1,6 +1,13 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, NoticeBox } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  NoticeBox,
+} from '../components';
 import { Window } from '../layouts';
 import { toTitleCase } from 'common/string';
 import { Materials } from './ExosuitFabricator';
@@ -18,7 +25,7 @@ export const PartsLathe = (props) => {
     recipies,
   } = data;
   return (
-    <Window width={500} height={500} resizable>
+    <Window width={500} height={500}>
       <Window.Content scrollable>
         {(error && <NoticeBox danger>Missing Materials: {error}</NoticeBox>) ||
           null}
@@ -47,12 +54,13 @@ export const PartsLathe = (props) => {
                   <Button icon="eject" onClick={() => act('ejectBoard')}>
                     Eject
                   </Button>
-                }>
+                }
+              >
                 {toTitleCase(copyBoard)}
               </LabeledList.Item>
             </LabeledList>
             {(copyBoardReqComponents && copyBoardReqComponents.length && (
-              <Fragment>
+              <>
                 {copyBoardReqComponents.map((comp) => (
                   <Box key={comp.name}>
                     {comp.qty} x {toTitleCase(comp.name)}
@@ -61,7 +69,7 @@ export const PartsLathe = (props) => {
                 <Button icon="wrench" onClick={() => act('queueBoard')}>
                   Build All
                 </Button>
-              </Fragment>
+              </>
             )) || <Box>Board has no required components.</Box>}
           </Section>
         )}
@@ -74,7 +82,8 @@ export const PartsLathe = (props) => {
                   <Button
                     ml={1}
                     icon="times"
-                    onClick={() => act('cancel', { cancel: i + 1 })}>
+                    onClick={() => act('cancel', { cancel: i + 1 })}
+                  >
                     Cancel
                   </Button>
                 )) ||
@@ -88,7 +97,8 @@ export const PartsLathe = (props) => {
               <Box key={recipe.name}>
                 <Button
                   icon="wrench"
-                  onClick={() => act('queue', { queue: recipe.type })}>
+                  onClick={() => act('queue', { queue: recipe.type })}
+                >
                   {toTitleCase(recipe.name)}
                 </Button>
               </Box>

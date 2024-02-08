@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Slider, Section, LabeledList } from '../components';
+import { LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 import { PortableBasicInfo } from './common/PortableAtmos';
 

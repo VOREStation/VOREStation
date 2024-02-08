@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -25,7 +26,8 @@ export const ParticleAccelerator = (props) => {
                   content={'Run Scan'}
                   onClick={() => act('scan')}
                 />
-              }>
+              }
+            >
               <Box color={assembled ? 'good' : 'bad'}>
                 {assembled
                   ? 'Ready - All parts in place'

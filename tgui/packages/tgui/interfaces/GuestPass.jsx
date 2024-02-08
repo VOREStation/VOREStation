@@ -11,7 +11,7 @@ export const GuestPass = (props) => {
     data;
 
   return (
-    <Window width={500} height={520} resizable>
+    <Window width={500} height={520}>
       <Window.Content scrollable>
         {(mode === 1 && (
           <Section
@@ -23,7 +23,8 @@ export const GuestPass = (props) => {
                 selected
                 onClick={() => act('mode', { mode: 0 })}
               />
-            }>
+            }
+          >
             <Button
               icon="print"
               content="Print"
@@ -48,7 +49,8 @@ export const GuestPass = (props) => {
                 content="Activity Log"
                 onClick={() => act('mode', { mode: 1 })}
               />
-            }>
+            }
+          >
             <LabeledList>
               <LabeledList.Item label="Issuing ID">
                 <Button

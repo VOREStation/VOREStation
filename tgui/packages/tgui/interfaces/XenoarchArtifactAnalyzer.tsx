@@ -1,7 +1,8 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Box, Button, Section } from '../components';
 import { BooleanLike } from 'common/react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Section } from '../components';
+import { Window } from '../layouts';
 
 export const XenoarchArtifactAnalyzer = () => {
   return (

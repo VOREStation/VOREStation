@@ -25,7 +25,8 @@ export const Modal = (props) => {
     <Dimmer onKeyDown={handleKeyDown} /* VOREStation edit */>
       <div
         className={classes(['Modal', className, computeBoxClassName(rest)])}
-        {...computeBoxProps(rest)}>
+        {...computeBoxProps(rest)}
+      >
         {children}
       </div>
     </Dimmer>

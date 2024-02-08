@@ -17,7 +17,7 @@ export const BotanyIsolator = (props) => {
 
   if (activity) {
     return (
-      <Window width={470} height={500} resizable>
+      <Window width={470} height={500}>
         <Window.Content scrollable>
           <NoticeBox info>Scanning...</NoticeBox>
         </Window.Content>
@@ -26,7 +26,7 @@ export const BotanyIsolator = (props) => {
   }
 
   return (
-    <Window width={470} height={500} resizable>
+    <Window width={470} height={500}>
       <Window.Content scrollable>
         <Section title="Buffered Genetic Data">
           {(hasGenetics && (
@@ -43,7 +43,8 @@ export const BotanyIsolator = (props) => {
                       <Button
                         mb={-1}
                         icon="download"
-                        onClick={() => act('get_gene', { get_gene: mask.tag })}>
+                        onClick={() => act('get_gene', { get_gene: mask.tag })}
+                      >
                         Extract
                       </Button>
                     </LabeledList.Item>

@@ -4,9 +4,16 @@
  * @license MIT
  */
 
-import DOMPurify from 'dompurify';
 import { storage } from 'common/storage';
-import { loadSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from '../settings/actions';
+import DOMPurify from 'dompurify';
+
+import {
+  addHighlightSetting,
+  loadSettings,
+  removeHighlightSetting,
+  updateHighlightSetting,
+  updateSettings,
+} from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
 import { selectGame } from '../game/selectors';
 import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, moveChatPageLeft, moveChatPageRight, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
@@ -24,7 +31,7 @@ const saveChatToStorage = async (store) => {
   const settings = selectSettings(store.getState());
   const fromIndex = Math.max(
     0,
-    chatRenderer.messages.length - settings.persistentMessageLimit
+    chatRenderer.messages.length - settings.persistentMessageLimit,
   );
   const messages = chatRenderer.messages
     .slice(fromIndex)
@@ -33,7 +40,7 @@ const saveChatToStorage = async (store) => {
   storage.set('chat-messages', messages);
   storage.set(
     'chat-messages-archive',
-    chatRenderer.archivedMessages.map((message) => serializeMessage(message))
+    chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
   ); // FIXME: Better chat history
 };
 
@@ -234,7 +241,7 @@ export const chatMiddleware = (store) => {
       next(action);
       chatRenderer.setHighlight(
         settings.highlightSettings,
-        settings.highlightSettingById
+        settings.highlightSettingById,
       );
 
       return;

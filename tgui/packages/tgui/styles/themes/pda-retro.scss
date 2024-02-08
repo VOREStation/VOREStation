@@ -4,13 +4,13 @@
 @use '../colors.scss' with (
   $primary: #000000,
   $label: #000000,
-  $average: #000000,
+  $average: #000000
 );
 @use '../base.scss' with (
   $color-bg: #6f7961,
   $color-bg-grad-spread: 0%,
   $color-fg: #000,
-  $border-radius: 0,
+  $border-radius: 0
 );
 
 // A fat warning to anyone who wants to use this: this only half works.

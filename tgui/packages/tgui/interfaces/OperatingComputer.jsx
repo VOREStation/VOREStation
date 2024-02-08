@@ -1,8 +1,18 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Box, Button, Flex, Icon, Knob, LabeledList, Section, Tabs, ProgressBar } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Knob,
+  LabeledList,
+  Section,
+  Tabs,
+  ProgressBar,
+} from '../components';
 
 const stats = [
   ['good', 'Conscious'],
@@ -46,19 +56,21 @@ export const OperatingComputer = (props) => {
     body = <OperatingComputerOptions />;
   }
   return (
-    <Window width={650} height={455} resizable>
+    <Window width={650} height={455}>
       <Window.Content>
         <Tabs>
           <Tabs.Tab
             selected={!choice}
             icon="user"
-            onClick={() => act('choiceOff')}>
+            onClick={() => act('choiceOff')}
+          >
             Patient
           </Tabs.Tab>
           <Tabs.Tab
             selected={!!choice}
             icon="cog"
-            onClick={() => act('choiceOn')}>
+            onClick={() => act('choiceOn')}
+          >
             Options
           </Tabs.Tab>
         </Tabs>
@@ -72,7 +84,7 @@ const OperatingComputerPatient = (props) => {
   const { data } = useBackend();
   const { occupant } = data;
   return (
-    <Fragment>
+    <>
       <Section title="Patient" level="2">
         <LabeledList>
           <LabeledList.Item label="Name">{occupant.name}</LabeledList.Item>
@@ -98,7 +110,8 @@ const OperatingComputerPatient = (props) => {
                 min="0"
                 max="100"
                 value={occupant[d[1]] / 100}
-                ranges={damageRange}>
+                ranges={damageRange}
+              >
                 {round(occupant[d[1]])}
               </ProgressBar>
             </LabeledList.Item>
@@ -108,12 +121,13 @@ const OperatingComputerPatient = (props) => {
               min="0"
               max={occupant.maxTemp}
               value={occupant.bodyTemperature / occupant.maxTemp}
-              color={tempColors[occupant.temperatureSuitability + 3]}>
+              color={tempColors[occupant.temperatureSuitability + 3]}
+            >
               {round(occupant.btCelsius)}&deg;C, {round(occupant.btFaren)}&deg;F
             </ProgressBar>
           </LabeledList.Item>
           {!!occupant.hasBlood && (
-            <Fragment>
+            <>
               <LabeledList.Item label="Blood Level">
                 <ProgressBar
                   min="0"
@@ -123,14 +137,15 @@ const OperatingComputerPatient = (props) => {
                     bad: [-Infinity, 0.6],
                     average: [0.6, 0.9],
                     good: [0.6, Infinity],
-                  }}>
+                  }}
+                >
                   {occupant.bloodPercent}%, {occupant.bloodLevel}cl
                 </ProgressBar>
               </LabeledList.Item>
               <LabeledList.Item label="Pulse">
                 {occupant.pulse} BPM
               </LabeledList.Item>
-            </Fragment>
+            </>
           )}
         </LabeledList>
       </Section>
@@ -156,7 +171,7 @@ const OperatingComputerPatient = (props) => {
           <Box color="label">No procedure ongoing.</Box>
         )}
       </Section>
-    </Fragment>
+    </>
   );
 };
 

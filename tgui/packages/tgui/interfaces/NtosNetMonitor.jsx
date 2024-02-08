@@ -1,6 +1,13 @@
-import { Section, Box, Button, NoticeBox, LabeledList, NumberInput } from '../components';
+import {
+  Section,
+  Box,
+  Button,
+  NoticeBox,
+  LabeledList,
+  NumberInput,
+} from '../components';
 import { useBackend } from '../backend';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { NtosWindow } from '../layouts';
 
 export const NtosNetMonitor = (props) => {
@@ -21,7 +28,7 @@ export const NtosNetMonitor = (props) => {
     ntnetlogs = [],
   } = data;
   return (
-    <NtosWindow resizable>
+    <NtosWindow>
       <NtosWindow.Content scrollable>
         <NoticeBox>
           WARNING: Disabling wireless transmitters when using a wireless device
@@ -36,7 +43,8 @@ export const NtosNetMonitor = (props) => {
               selected={ntnetstatus}
               onClick={() => act('toggleWireless')}
             />
-          }>
+          }
+        >
           {ntnetrelays ? (
             <LabeledList>
               <LabeledList.Item label="Active NTNet Relays">
@@ -97,33 +105,34 @@ export const NtosNetMonitor = (props) => {
         </Section>
         <Section title="Security Systems">
           {!!idsalarm && (
-            <Fragment>
+            <>
               <NoticeBox>NETWORK INCURSION DETECTED</NoticeBox>
               <Box italics>
                 Abnormal activity has been detected in the network. Check system
                 logs for more information
               </Box>
-            </Fragment>
+            </>
           )}
           <LabeledList>
             <LabeledList.Item
               label="Banned NIDs"
               buttons={
-                <Fragment>
+                <>
                   <Button icon="ban" onClick={() => act('ban_nid')}>
                     Ban NID
                   </Button>
                   <Button icon="balance-scale" onClick={() => act('unban_nid')}>
                     Unban NID
                   </Button>
-                </Fragment>
-              }>
+                </>
+              }
+            >
               {banned_nids.join(', ') || 'None'}
             </LabeledList.Item>
             <LabeledList.Item
               label="IDS Status"
               buttons={
-                <Fragment>
+                <>
                   <Button
                     icon={idsstatus ? 'power-off' : 'times'}
                     content={idsstatus ? 'ENABLED' : 'DISABLED'}
@@ -136,7 +145,7 @@ export const NtosNetMonitor = (props) => {
                     color="bad"
                     onClick={() => act('resetIDS')}
                   />
-                </Fragment>
+                </>
               }
             />
             <LabeledList.Item
@@ -165,7 +174,8 @@ export const NtosNetMonitor = (props) => {
                 content="Clear Logs"
                 onClick={() => act('purgelogs')}
               />
-            }>
+            }
+          >
             {ntnetlogs.map((log) => (
               <Box key={log.entry} className="candystripe">
                 {log.entry}
