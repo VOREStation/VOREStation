@@ -4,11 +4,12 @@
  * @license MIT
  */
 
-import DOMPurify from 'dompurify';
 import { storage } from 'common/storage';
-import { loadSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from '../settings/actions';
+import DOMPurify from 'dompurify';
+
+import { addHighlightSetting, loadSettings, removeHighlightSetting, updateHighlightSetting, updateSettings } from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
-import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, moveChatPageLeft, moveChatPageRight, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
+import { addChatPage, changeChatPage, changeScrollTracking, loadChat, moveChatPageLeft, moveChatPageRight, purgeChatMessageArchive, rebuildChat, removeChatPage, saveChatToDisk, toggleAcceptedType, updateMessageCount } from './actions';
 import { MESSAGE_SAVE_INTERVAL } from './constants';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';

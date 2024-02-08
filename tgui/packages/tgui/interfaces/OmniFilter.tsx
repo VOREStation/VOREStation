@@ -1,8 +1,9 @@
-import { useBackend } from '../backend';
+import { BooleanLike } from 'common/react';
 import { Fragment } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-import { BooleanLike } from 'common/react';
 
 const getStatusText = (port) => {
   if (port.input) {

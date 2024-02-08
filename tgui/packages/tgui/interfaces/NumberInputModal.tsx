@@ -1,9 +1,9 @@
-import { Loader } from './common/Loader';
-import { InputButtons } from './common/InputButtons';
 import { KEY_ENTER, KEY_ESCAPE } from '../../common/keycodes';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, RestrictedInput, Section, Stack } from '../components';
 import { Window } from '../layouts';
+import { InputButtons } from './common/InputButtons';
+import { Loader } from './common/Loader';
 
 type NumberInputData = {
   init_value: number;

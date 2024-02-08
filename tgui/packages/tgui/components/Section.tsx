@@ -5,7 +5,8 @@
  */
 
 import { canRender, classes } from 'common/react';
-import { ReactNode, RefObject, createRef, useEffect } from 'react';
+import { createRef, ReactNode, RefObject, useEffect } from 'react';
+
 import { addScrollableNode, removeScrollableNode } from '../events';
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 

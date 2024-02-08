@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, Slider, Section } from '../components';
+import { Button, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

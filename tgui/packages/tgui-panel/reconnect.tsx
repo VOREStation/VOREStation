@@ -1,5 +1,6 @@
-import { Button } from 'tgui/components';
 import { useDispatch } from 'tgui/backend';
+import { Button } from 'tgui/components';
+
 import { dismissWarning } from './game/actions';
 
 let url: string | null = null;

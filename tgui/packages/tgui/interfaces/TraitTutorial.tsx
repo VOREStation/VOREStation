@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import { useBackend } from '../backend';
-import { Stack, Tabs, Section, Box } from '../components';
+import { Box, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 type data = {

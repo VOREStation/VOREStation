@@ -1,7 +1,8 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Button, Section, Table, Knob } from '../components';
 import { BooleanLike } from 'common/react';
+
+import { useBackend } from '../backend';
+import { Button, Knob, Section, Table } from '../components';
+import { Window } from '../layouts';
 
 export const GyrotronControl = () => (
   <Window width={627} height={700}>

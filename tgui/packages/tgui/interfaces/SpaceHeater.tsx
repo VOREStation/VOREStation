@@ -1,8 +1,9 @@
-import { T0C } from '../constants';
-import { useBackend } from '../backend';
-import { Button, Knob, Section, LabeledControls, LabeledList } from '../components';
-import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
+
+import { useBackend } from '../backend';
+import { Button, Knob, LabeledControls, LabeledList, Section } from '../components';
+import { T0C } from '../constants';
+import { Window } from '../layouts';
 
 type Data = {
   temp: number;
