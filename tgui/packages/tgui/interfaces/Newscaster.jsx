@@ -1,5 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useSharedState } from '../backend';
 import { Box, Button, Flex, LabeledList, Input, Section } from '../components';
 import { Window } from '../layouts';
@@ -20,7 +20,7 @@ export const Newscaster = (props) => {
   const { screen, user } = data;
 
   return (
-    <Window width={600} height={600} resizable>
+    <Window width={600} height={600}>
       <Window.Content scrollable>
         <TemporaryNotice decode />
         <NewscasterContent />
@@ -52,7 +52,7 @@ const NewscasterMainMenu = (props) => {
   const { setScreen } = props;
 
   return (
-    <Fragment>
+    <>
       <Section title="Main Menu">
         {wanted_issue && (
           <Button
@@ -98,7 +98,7 @@ const NewscasterMainMenu = (props) => {
           </Button>
         </Section>
       )}
-    </Fragment>
+    </>
   );
 };
 
@@ -466,7 +466,7 @@ const NewscasterViewSelected = (props) => {
     <Section
       title={decodeHtmlEntities(viewing_channel.name)}
       buttons={
-        <Fragment>
+        <>
           {!!securityCaster && (
             <Button.Confirm
               color="bad"
@@ -483,7 +483,7 @@ const NewscasterViewSelected = (props) => {
             onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
             Back
           </Button>
-        </Fragment>
+        </>
       }>
       <LabeledList>
         <LabeledList.Item label="Channel Created By">
@@ -524,7 +524,7 @@ const NewscasterViewSelected = (props) => {
               {message.timestamp}]
             </Box>
             {!!securityCaster && (
-              <Fragment>
+              <>
                 <Button.Confirm
                   mt={1}
                   color="bad"
@@ -544,7 +544,7 @@ const NewscasterViewSelected = (props) => {
                     act('censor_channel_story_author', { ref: message.ref })
                   }
                 />
-              </Fragment>
+              </>
             )}
           </Section>
         ))) ||

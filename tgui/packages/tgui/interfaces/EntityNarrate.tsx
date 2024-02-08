@@ -18,7 +18,7 @@ type data = {
 export const EntityNarrate = (props) => {
   const { act, data } = useBackend<data>();
   return (
-    <Window width={800} height={470} theme="abstract" resizable>
+    <Window width={800} height={470} theme="abstract">
       <Window.Content scrollable>
         <Section>
           <Flex>

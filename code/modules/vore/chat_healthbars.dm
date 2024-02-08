@@ -1,6 +1,6 @@
 //Health bars in the game window would be pretty challenging and I don't know how to do that, so I thought this would be a good alternative
 
-/mob/living/proc/chat_healthbar(var/mob/living/reciever, override = FALSE)
+/mob/living/proc/chat_healthbar(var/mob/living/reciever, onExamine = FALSE, override = FALSE)
 	if(!reciever)	//No one to send it to, don't bother
 		return
 	if(!reciever.client)	//No one is home, don't bother
@@ -78,6 +78,8 @@
 		ourbar = "[ourbar] - [span_red("<b>DEAD</b>")]"
 	if(absorbed)
 		ourbar = span_purple("[ourbar] - ABSORBED")	//Absorb is a little funny, I didn't want it to say 'absorbing ABSORBED' so we did it different
+	else if(ourpercent > 99 && ourbelly.digest_mode == DM_HEAL)
+		ourbar = span_green("<b>[ourbar] - [ourbelly.digest_mode]ed</b>")
 	else if(ourpercent > 75)
 		ourbar = span_green("[ourbar] - [ourbelly.digest_mode]ing")
 	else if(ourpercent > 50)
@@ -87,9 +89,12 @@
 	else if(ourpercent > 0)
 		ourbar = span_red("[ourbar] - [ourbelly.digest_mode]ing")
 	else
-		ourbar = "<span class='vdanger'>[ourbar] - [ourbelly.digest_mode]ing</span>"
+		ourbar = span_red("<b>[ourbar] - [ourbelly.digest_mode]ed</b>")
 
-	to_chat(reciever,"<span class='vnotice'>[ourbar]</span>")
+	if(onExamine)
+		to_chat(reciever,"<span class='notice'>[ourbar]</span>")
+	else
+		to_chat(reciever,"<span class='vnotice'>[ourbar]</span>")
 
 /mob/living/verb/print_healthbars()
 	set name = "Print Prey Healthbars"
@@ -104,10 +109,10 @@
 			if(!isliving(thing))
 				continue
 			if(!belly_announce)
-				to_chat(src, "<span class='vnotice'>[b.digest_mode] - Within [b.name]:</span>")	//We only want to announce the belly if we found something
+				to_chat(src, "<span class='notice'>[b.digest_mode] - Within [b.name]:</span>")	//We only want to announce the belly if we found something
 				belly_announce = TRUE
 			var/mob/living/ourmob = thing
-			ourmob.chat_healthbar(src, TRUE)
+			ourmob.chat_healthbar(src, TRUE, TRUE)
 			nuffin = FALSE
 	if(nuffin)
-		to_chat(src, "<span class='vwarning'>There are no mobs within any of your bellies to print health bars for.</span>")
+		to_chat(src, "<span class='warning'>There are no mobs within any of your bellies to print health bars for.</span>")

@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -30,7 +30,7 @@ const analyzeModalBodyOverride = (modal) => {
             {(result.desc || '').length > 0 ? result.desc : 'N/A'}
           </LabeledList.Item>
           {result.blood_type && (
-            <Fragment>
+            <>
               <LabeledList.Item label="Blood type">
                 {result.blood_type}
               </LabeledList.Item>
@@ -39,7 +39,7 @@ const analyzeModalBodyOverride = (modal) => {
                 className="LabeledList__breakContents">
                 {result.blood_dna}
               </LabeledList.Item>
-            </Fragment>
+            </>
           )}
           {!data.condi && (
             <Button
@@ -72,7 +72,7 @@ export const ChemMaster = (props) => {
     mode,
   } = data;
   return (
-    <Window width={575} height={500} resizable>
+    <Window width={575} height={500}>
       <ComplexModal />
       <Window.Content scrollable className="Layout__content--flexColumn">
         <ChemMasterBeaker
@@ -399,7 +399,7 @@ const ChemMasterProductionChemical = (props) => {
 const ChemMasterProductionCondiment = (props) => {
   const { act } = useBackend();
   return (
-    <Fragment>
+    <>
       <Button
         icon="box"
         content="Create condiment pack (10u max)"
@@ -413,7 +413,7 @@ const ChemMasterProductionCondiment = (props) => {
         mb="0"
         onClick={() => act('create_condi_bottle')}
       />
-    </Fragment>
+    </>
   );
 };
 

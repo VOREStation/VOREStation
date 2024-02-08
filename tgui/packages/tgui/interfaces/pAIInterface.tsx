@@ -17,7 +17,7 @@ export const pAIInterface = (props) => {
   const { bought, not_bought, available_ram, emotions, current_emotion } = data;
 
   return (
-    <Window width={450} height={600} resizable>
+    <Window width={450} height={600}>
       <Window.Content scrollable>
         <Section title="Emotion">
           {emotions.map((emote) => (

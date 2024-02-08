@@ -1,5 +1,5 @@
 import { sortBy } from 'common/collections';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, Input, LabeledList, Section, Table, Tabs } from '../components';
 import { Window } from '../layouts';
@@ -9,7 +9,7 @@ import { CrewManifestContent } from './CrewManifest';
 export const IdentificationComputer = () => {
   return (
     <Window width={600} height={700}>
-      <Window.Content resizable>
+      <Window.Content>
         <IdentificationComputerContent />
       </Window.Content>
     </Window>
@@ -33,7 +33,7 @@ export const IdentificationComputerContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         {(!ntos || !!data.have_id_slot) && (
           <Tabs.Tab
@@ -62,7 +62,7 @@ export const IdentificationComputerContent = (props) => {
           ))}
       </Tabs>
       {body}
-    </Fragment>
+    </>
   );
 };
 
@@ -118,7 +118,7 @@ export const IdentificationComputerAccessModification = (props) => {
         )}
       </LabeledList>
       {!!authenticated && !!has_modify && (
-        <Fragment>
+        <>
           <Section title="Details" level={2}>
             <LabeledList>
               <LabeledList.Item label="Registered Name">
@@ -213,7 +213,7 @@ export const IdentificationComputerAccessModification = (props) => {
               <IdentificationComputerRegions actName="access" />
             </Section>
           )}
-        </Fragment>
+        </>
       )}
     </Section>
   );

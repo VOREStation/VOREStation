@@ -1,11 +1,11 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const OvermapShipSensors = (props) => {
   return (
-    <Window width={375} height={545} resizable>
+    <Window width={375} height={545}>
       <Window.Content>
         <OvermapShipSensorsContent />
       </Window.Content>
@@ -28,11 +28,11 @@ export const OvermapShipSensorsContent = (props) => {
   } = data;
 
   return (
-    <Fragment>
+    <>
       <Section
         title="Status"
         buttons={
-          <Fragment>
+          <>
             <Button
               icon="eye"
               selected={viewing}
@@ -45,7 +45,7 @@ export const OvermapShipSensorsContent = (props) => {
               onClick={() => act('toggle_sensor')}>
               {on ? 'Sensors Enabled' : 'Sensors Disabled'}
             </Button>
-          </Fragment>
+          </>
         }>
         <LabeledList>
           <LabeledList.Item label="Status">{status}</LabeledList.Item>
@@ -110,6 +110,6 @@ export const OvermapShipSensorsContent = (props) => {
         </Section>
       )) ||
         null}
-    </Fragment>
+    </>
   );
 };

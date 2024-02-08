@@ -1,5 +1,5 @@
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Dropdown, Section, LabeledList, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
@@ -11,7 +11,7 @@ export const MiningOreProcessingConsole = (props) => {
   const { unclaimedPoints, ores, showAllOres, power, speed } = data;
 
   return (
-    <Window width={400} height={500} resizable>
+    <Window width={400} height={500}>
       <Window.Content>
         <MiningUser
           insertIdText={
@@ -26,7 +26,7 @@ export const MiningOreProcessingConsole = (props) => {
         <Section
           title="Status"
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon="bolt"
                 selected={speed}
@@ -39,7 +39,7 @@ export const MiningOreProcessingConsole = (props) => {
                 onClick={() => act('power')}>
                 {power ? 'Smelting' : 'Not Smelting'}
               </Button>
-            </Fragment>
+            </>
           }>
           <LabeledList>
             <LabeledList.Item

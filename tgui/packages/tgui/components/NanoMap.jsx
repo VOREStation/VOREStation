@@ -1,4 +1,4 @@
-import { Component } from 'inferno';
+import { Component } from 'react';
 import { Box, Button, Icon, Tooltip, LabeledList, Slider } from '.';
 import { useBackend } from '../backend';
 
@@ -186,8 +186,8 @@ const NanoMapMarker = (props, context) => {
 
 NanoMap.Marker = NanoMapMarker;
 
-const NanoMapZoomer = (props, context) => {
-  const { act, config, data } = useBackend(context);
+const NanoMapZoomer = (props) => {
+  const { act, config, data } = useBackend();
   return (
     <Box className="NanoMap__zoomer">
       <LabeledList>

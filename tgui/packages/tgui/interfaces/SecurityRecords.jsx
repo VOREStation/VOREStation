@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, Input, LabeledList, Section, Tabs } from '../components';
 import { ComplexModal, modalOpen } from '../interfaces/common/ComplexModal';
@@ -19,7 +19,7 @@ export const SecurityRecords = (_properties) => {
   const { authenticated, screen } = data;
   if (!authenticated) {
     return (
-      <Window width={700} height={680} resizable>
+      <Window width={700} height={680}>
         <Window.Content>
           <LoginScreen />
         </Window.Content>
@@ -40,7 +40,7 @@ export const SecurityRecords = (_properties) => {
   }
 
   return (
-    <Window width={700} height={680} resizable>
+    <Window width={700} height={680}>
       <ComplexModal maxHeight="100%" maxWidth="400px" />
       <Window.Content scrollable>
         <LoginInfo />
@@ -56,7 +56,7 @@ const SecurityRecordsList = (_properties) => {
   const { act, data } = useBackend();
   const { records } = data;
   return (
-    <Fragment>
+    <>
       <Input
         fluid
         placeholder="Search by Name, DNA, or ID"
@@ -81,14 +81,14 @@ const SecurityRecordsList = (_properties) => {
           />
         ))}
       </Box>
-    </Fragment>
+    </>
   );
 };
 
 const SecurityRecordsMaintenance = (_properties) => {
   const { act } = useBackend();
   return (
-    <Fragment>
+    <>
       <Button icon="download" content="Backup to Disk" disabled />
       <br />
       <Button
@@ -103,7 +103,7 @@ const SecurityRecordsMaintenance = (_properties) => {
         content="Delete All Security Records"
         onClick={() => act('del_all')}
       />
-    </Fragment>
+    </>
   );
 };
 
@@ -111,7 +111,7 @@ const SecurityRecordsView = (_properties) => {
   const { act, data } = useBackend();
   const { security, printing } = data;
   return (
-    <Fragment>
+    <>
       <Section title="General Data" mt="-6px">
         <SecurityRecordsViewGeneral />
       </Section>
@@ -149,7 +149,7 @@ const SecurityRecordsView = (_properties) => {
           onClick={() => act('screen', { screen: 2 })}
         />
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -221,7 +221,7 @@ const SecurityRecordsViewSecurity = (_properties) => {
     );
   }
   return (
-    <Fragment>
+    <>
       <LabeledList>
         {security.fields.map((field, i) => (
           <LabeledList.Item key={i} label={field.field}>
@@ -267,7 +267,7 @@ const SecurityRecordsViewSecurity = (_properties) => {
           onClick={() => modalOpen('add_c')}
         />
       </Section>
-    </Fragment>
+    </>
   );
 };
 

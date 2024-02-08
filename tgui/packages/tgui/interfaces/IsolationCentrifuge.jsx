@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -18,7 +18,7 @@ export const IsolationCentrifuge = (props) => {
       );
     } else {
       blood_sample = (
-        <Fragment>
+        <>
           {antibodies ? (
             <Section title="Antibodies">{antibodies}</Section>
           ) : null}
@@ -33,7 +33,7 @@ export const IsolationCentrifuge = (props) => {
               </LabeledList>
             </Section>
           ) : null}
-        </Fragment>
+        </>
       );
     }
   }
@@ -48,7 +48,7 @@ export const IsolationCentrifuge = (props) => {
             </center>
           </Section>
         ) : (
-          <Fragment>
+          <>
             <Section
               title={is_antibody_sample ? 'Antibody Sample' : 'Blood Sample'}>
               <Flex spacing={1} mb={1}>
@@ -102,7 +102,7 @@ export const IsolationCentrifuge = (props) => {
                 </LabeledList>
               </Section>
             ) : null}
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>

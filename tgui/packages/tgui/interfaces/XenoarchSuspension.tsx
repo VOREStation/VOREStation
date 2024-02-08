@@ -1,5 +1,5 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -35,7 +35,7 @@ export const XenoarchSuspension = (props) => {
               This interface is locked. Swipe an ID card to unlock it.
             </Box>
           )) || (
-            <Fragment>
+            <>
               <LabeledList>
                 <LabeledList.Item label="Cell Charge">
                   {(cell && (
@@ -61,7 +61,7 @@ export const XenoarchSuspension = (props) => {
                   ? 'Disengage Suspension Field'
                   : 'Engage Suspension Field'}
               </Button>
-            </Fragment>
+            </>
           )}
         </Section>
       </Window.Content>

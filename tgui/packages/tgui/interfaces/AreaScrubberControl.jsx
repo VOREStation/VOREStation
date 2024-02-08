@@ -25,7 +25,7 @@ export const AreaScrubberControl = (props) => {
   }
 
   return (
-    <Window width={600} height={400} resizable>
+    <Window width={600} height={400}>
       <Window.Content scrollable>
         <Section>
           <Flex wrap="wrap">

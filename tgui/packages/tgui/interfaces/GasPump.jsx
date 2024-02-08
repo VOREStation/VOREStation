@@ -9,7 +9,7 @@ export const GasPump = (props) => {
     data;
 
   return (
-    <Window width={470} height={290} resizable>
+    <Window width={470} height={290}>
       <Window.Content>
         <Section title="Status">
           <LabeledList>

@@ -1,6 +1,6 @@
 import { sortBy } from 'common/collections';
 import { Window } from '../layouts';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { Button, Box, Tabs, Icon, Section, NanoMap } from '../components';
 import { useBackend, useLocalState } from '../backend';
 import { createLogger } from '../logging';
@@ -8,7 +8,7 @@ const logger = createLogger('fuck');
 
 export const AtmosControl = (props) => {
   return (
-    <Window width={600} height={440} resizable>
+    <Window width={600} height={440}>
       <Window.Content scrollable>
         <AtmosControlContent />
       </Window.Content>
@@ -70,7 +70,7 @@ export const AtmosControlContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab
           key="AlarmView"
@@ -86,6 +86,6 @@ export const AtmosControlContent = (props) => {
         </Tabs.Tab>
       </Tabs>
       <Box m={2}>{body}</Box>
-    </Fragment>
+    </>
   );
 };

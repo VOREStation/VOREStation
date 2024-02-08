@@ -327,7 +327,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		new_percent = (L.health / L.maxHealth) * 100
 
 	var/lets_announce = FALSE
-	if(new_percent <= 75 && old_percent > 75)
+	if(new_percent <= 99 && old_percent > 99)
+		lets_announce = TRUE
+	else if(new_percent <= 75 && old_percent > 75)
 		lets_announce = TRUE
 	else if(new_percent <= 50 && old_percent > 50)
 		lets_announce = TRUE
@@ -356,7 +358,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		new_percent = (L.health / L.maxHealth) * 100
 
 	var/lets_announce = FALSE
-	if(new_percent >= 75 && old_percent < 75)
+	if(new_percent >= 100 && old_percent < 100)
+		lets_announce = TRUE
+	else if(new_percent >= 75 && old_percent < 75)
 		lets_announce = TRUE
 	else if(new_percent >= 50 && old_percent < 50)
 		lets_announce = TRUE
@@ -376,7 +380,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/old_percent = ((old_nutrition - 100) / 500) * 100
 	var/new_percent = ((L.nutrition - 100) / 500) * 100
 	var/lets_announce = FALSE
-	if(new_percent <= 75 && old_percent > 75)
+	if(new_percent <= 99 && old_percent > 99)
+		lets_announce = TRUE
+	else if(new_percent <= 75 && old_percent > 75)
 		lets_announce = TRUE
 	else if(new_percent <= 50 && old_percent > 50)
 		lets_announce = TRUE
@@ -398,7 +404,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/new_percent = ((L.nutrition - 100) / 500) * 100
 
 	var/lets_announce = FALSE
-	if(new_percent <= 75 && old_percent > 75)
+	if(new_percent <= 99 && old_percent > 99)
+		lets_announce = TRUE
+	else if(new_percent <= 75 && old_percent > 75)
 		lets_announce = TRUE
 	else if(new_percent <= 50 && old_percent > 50)
 		lets_announce = TRUE

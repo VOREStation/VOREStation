@@ -16,7 +16,7 @@ export const Fax = (props) => {
 
   if (!authenticated) {
     return (
-      <Window width={600} height={250} resizable>
+      <Window width={600} height={250}>
         <Window.Content>
           <RemoveItem />
           <LoginScreen machineType="Fax" />
@@ -26,7 +26,7 @@ export const Fax = (props) => {
   }
 
   return (
-    <Window width={600} height={variableHeight} resizable>
+    <Window width={600} height={variableHeight}>
       <Window.Content>
         <RemoveItem />
         <LoginInfo />

@@ -18,7 +18,7 @@ export const ArcadeBattle = (props) => {
   } = data;
 
   return (
-    <Window width={400} height={240} resizable>
+    <Window width={400} height={240}>
       <Window.Content>
         <Section title={enemyName} textAlign="center">
           <Section color="label">

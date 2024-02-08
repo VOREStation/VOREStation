@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Slider, Section } from '../components';
 import { BeakerContents } from '../interfaces/common/BeakerContents';
@@ -9,7 +9,7 @@ const removeAmounts = [1, 5, 10];
 
 export const ChemDispenser = (props) => {
   return (
-    <Window width={390} height={655} resizable>
+    <Window width={390} height={655}>
       <Window.Content className="Layout__content--flexColumn">
         <ChemDispenserSettings />
         <ChemDispenserChemicals />
@@ -127,7 +127,7 @@ const ChemDispenserBeaker = (properties) => {
         beakerLoaded={isBeakerLoaded}
         beakerContents={beakerContents}
         buttons={(chemical) => (
-          <Fragment>
+          <>
             <Button
               content="Isolate"
               icon="compress-arrows-alt"
@@ -159,7 +159,7 @@ const ChemDispenserBeaker = (properties) => {
                 })
               }
             />
-          </Fragment>
+          </>
         )}
       />
     </Section>

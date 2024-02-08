@@ -23,7 +23,7 @@ export const pAIAtmos = (props) => {
   const { aircontents } = data;
 
   return (
-    <Window width={450} height={600} resizable>
+    <Window width={450} height={600}>
       <Window.Content scrollable>
         <Section>
           <LabeledList>

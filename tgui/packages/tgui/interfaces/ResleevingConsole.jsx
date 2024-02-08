@@ -1,5 +1,5 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Dimmer, Flex, Icon, LabeledList, NoticeBox, ProgressBar, Section, Tabs } from '../components';
 import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
@@ -122,14 +122,14 @@ export const ResleevingConsole = (props) => {
   const { act, data } = useBackend();
   const { menu, coredumped, emergency } = data;
   let body = (
-    <Fragment>
+    <>
       <ResleevingConsoleTemp />
       <ResleevingConsoleStatus />
       <ResleevingConsoleNavigation />
       <Section noTopPadding flexGrow="1">
         <ResleevingConsoleBody />
       </Section>
-    </Fragment>
+    </>
   );
   if (coredumped) {
     body = <ResleevingConsoleCoreDump />;
@@ -140,7 +140,7 @@ export const ResleevingConsole = (props) => {
   modalRegisterBodyOverride('view_b_rec', viewBodyRecordModalBodyOverride);
   modalRegisterBodyOverride('view_m_rec', viewMindRecordModalBodyOverride);
   return (
-    <Window width={640} height={520} resizable>
+    <Window width={640} height={520}>
       <ComplexModal maxWidth="75%" maxHeight="75%" />
       <Window.Content className="Layout__content--flexColumn">
         {body}

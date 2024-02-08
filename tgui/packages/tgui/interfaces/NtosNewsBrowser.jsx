@@ -3,7 +3,7 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, ProgressBar, Section, NoticeBox } from '../components';
 import { NtosWindow } from '../layouts';
 import { resolveAsset } from '../assets';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 
 export const NtosNewsBrowser = (props) => {
   const { act, data } = useBackend();
@@ -19,7 +19,7 @@ export const NtosNewsBrowser = (props) => {
   }
 
   return (
-    <NtosWindow width={575} height={750} resizable>
+    <NtosWindow width={575} height={750}>
       <NtosWindow.Content scrollable>
         {!!message && (
           <NoticeBox>
@@ -48,14 +48,14 @@ const SelectedArticle = (props) => {
     <Section
       title={'Viewing: ' + title}
       buttons={
-        <Fragment>
+        <>
           <Button icon="save" onClick={() => act('PRG_savearticle')}>
             Save
           </Button>
           <Button icon="times" onClick={() => act('PRG_reset')}>
             Close
           </Button>
-        </Fragment>
+        </>
       }>
       {!!cover && <img src={resolveAsset(cover)} />}
       {/* News articles are written in premade .html files and cannot be edited by players, so it should be

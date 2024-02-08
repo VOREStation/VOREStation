@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -12,7 +12,7 @@ export const DNAForensics = (props) => {
         <Section
           title="Status"
           buttons={
-            <Fragment>
+            <>
               <Button
                 selected={scanning}
                 disabled={!bloodsamp}
@@ -26,7 +26,7 @@ export const DNAForensics = (props) => {
                 onClick={() => act('ejectItem')}>
                 Eject Bloodsample
               </Button>
-            </Fragment>
+            </>
           }>
           <LabeledList>
             <LabeledList.Item label="Scan Progress">

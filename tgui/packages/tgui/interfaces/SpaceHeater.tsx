@@ -18,7 +18,7 @@ export const SpaceHeater = (props) => {
   const { temp, minTemp, maxTemp, cell, power } = data;
 
   return (
-    <Window width={300} height={250} resizable>
+    <Window width={300} height={250}>
       <Window.Content>
         <Section title="Status">
           <LabeledList>

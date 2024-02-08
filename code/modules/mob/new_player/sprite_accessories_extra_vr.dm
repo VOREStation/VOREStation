@@ -1139,6 +1139,50 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO)
 
+//Replikant-specific markings
+
+/datum/sprite_accessory/marking/replikant/replika_r_thigh
+	name = "Replikant Stripe - Right Thigh"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "replika"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/replikant/replika_r_knee
+	name = "Replikant Stripe - Right Knee"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "replika"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_FOOT)
+
+/datum/sprite_accessory/marking/replikant/replika_l_thigh
+	name = "Replikant Stripe - Left Thigh"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "replika"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/replikant/replika_l_knee
+	name = "Replikant Stripe - Left Knee"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "replika"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT)
+
+/datum/sprite_accessory/marking/replikant/replika_panels_body
+	name = "Replikant Paneling - SynthFlesh (body)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "replikao"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/replikant/replika_panels_groin
+	name = "Replikant Paneling - SynthFlesh (groin)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "replika"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_GROIN)
+
 //Digitigrade markings
 /datum/sprite_accessory/marking/digi
 	icon = 'icons/mob/human_races/markings_digi.dmi'

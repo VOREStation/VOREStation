@@ -20,7 +20,7 @@ export const NtosNetTransfer = (props) => {
   }
 
   return (
-    <NtosWindow width={575} height={700} resizable>
+    <NtosWindow width={575} height={700}>
       <NtosWindow.Content scrollable>{body}</NtosWindow.Content>
     </NtosWindow>
   );

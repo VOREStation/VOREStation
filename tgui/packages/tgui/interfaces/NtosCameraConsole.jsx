@@ -49,7 +49,7 @@ export const NtosCameraConsole = (props) => {
     activeCamera
   );
   return (
-    <NtosWindow width={870} height={708} resizable>
+    <NtosWindow width={870} height={708}>
       <NtosWindow.Content>
         <div className="CameraConsole__left">
           <CameraConsoleContent />

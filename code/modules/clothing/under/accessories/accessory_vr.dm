@@ -990,3 +990,17 @@
 	desc = "A cut down jacket that looks like it's light enough to wear on top of some other clothes. This one's a sort of olive-drab kind of colour."
 	icon_state = "cropjacket_drab"
 	item_state = "cropjacket_drab"
+
+//Replikant patch & jacket
+
+/obj/item/clothing/accessory/sleekpatch
+	name = "sleek uniform patch"
+	desc = "A somewhat old-fashioned embroidered patch of Nanotrasen's logo."
+	icon_state = "sleekpatch"
+	item_state = "sleekpatch"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/custom/gestaltjacket
+	name = "sleek uniform jacket"
+	desc = "Barely more than a pair of long stirrup sleeves joined by a turtleneck. Has decorative red accents."
+	icon_state = "gestaltjacket"
+	item_state = "gestaltjacket"

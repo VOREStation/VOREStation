@@ -19,7 +19,7 @@ export const InventoryPanelHuman = (props) => {
   } = data;
 
   return (
-    <Window width={400} height={600} resizable>
+    <Window width={400} height={600}>
       <Window.Content scrollable>
         <Section>
           <LabeledList>

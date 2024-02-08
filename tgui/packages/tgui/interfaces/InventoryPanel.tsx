@@ -14,7 +14,7 @@ export const InventoryPanel = (props) => {
   const { slots, internalsValid } = data;
 
   return (
-    <Window width={400} height={200} resizable>
+    <Window width={400} height={200}>
       <Window.Content scrollable>
         <Section>
           <LabeledList>

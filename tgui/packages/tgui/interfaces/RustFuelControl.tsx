@@ -4,7 +4,7 @@ import { Button, Section, Table } from '../components';
 import { BooleanLike } from 'common/react';
 
 export const RustFuelControl = () => (
-  <Window width={627} height={700} resizable>
+  <Window width={627} height={700}>
     <Window.Content>
       <RustFuelContent />
     </Window.Content>

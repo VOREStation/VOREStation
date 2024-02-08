@@ -1,11 +1,11 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
 
 export const OvermapShieldGenerator = (props) => {
   return (
-    <Window width={500} height={760} resizable>
+    <Window width={500} height={760}>
       <Window.Content scrollable>
         <OvermapShieldGeneratorContent />
       </Window.Content>
@@ -28,7 +28,7 @@ const OvermapShieldGeneratorContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <OvermapShieldGeneratorStatus />
       <OvermapShieldGeneratorControls />
       <Section title="Field Calibration">
@@ -50,7 +50,7 @@ const OvermapShieldGeneratorContent = (props) => {
           </Section>
         ))}
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -144,7 +144,7 @@ const OvermapShieldGeneratorControls = (props) => {
     <Section
       title="Controls"
       buttons={
-        <Fragment>
+        <>
           {(running >= 2 && (
             <Box>
               <Button
@@ -182,7 +182,7 @@ const OvermapShieldGeneratorControls = (props) => {
             </Button>
           )) ||
             null}
-        </Fragment>
+        </>
       }>
       <Button icon="expand-arrows-alt" onClick={() => act('set_range')}>
         Set Field Range

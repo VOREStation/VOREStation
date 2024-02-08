@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Knob, NoticeBox, Section, Flex } from '../components';
 import { Window } from '../layouts';
@@ -18,7 +18,7 @@ export const SuitStorageUnit = (props) => {
   }
 
   return (
-    <Window width={400} height={365} resizable>
+    <Window width={400} height={365}>
       <Window.Content>{subTemplate}</Window.Content>
     </Window>
   );
@@ -33,7 +33,7 @@ const SuitStorageUnitContent = (props) => {
       title="Storage"
       minHeight="260px"
       buttons={
-        <Fragment>
+        <>
           {!open && (
             <Button
               icon={locked ? 'unlock' : 'lock'}
@@ -48,7 +48,7 @@ const SuitStorageUnitContent = (props) => {
               onClick={() => act('door')}
             />
           )}
-        </Fragment>
+        </>
       }>
       {!!(occupied && safeties) && (
         <NoticeBox>
