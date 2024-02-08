@@ -403,7 +403,7 @@ export const ExportTab = (props) => {
           </Button>
         )}
         <Flex.Item grow={1} />
-        <Flex.Item>Round ID:&nbsp;</Flex.Item>
+        <Flex.Item color="label">Round ID:&nbsp;</Flex.Item>
         <Flex.Item color={game.roundId ? '' : 'red'}>
           {game.roundId ? game.roundId : 'ERROR'}
         </Flex.Item>
