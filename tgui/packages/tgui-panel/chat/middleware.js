@@ -7,16 +7,29 @@
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 
+import { selectGame } from '../game/selectors';
 import {
   addHighlightSetting,
   loadSettings,
   removeHighlightSetting,
   updateHighlightSetting,
   updateSettings,
-  } from '../settings/actions';
+} from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
-import { selectGame } from '../game/selectors';
-import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, moveChatPageLeft, moveChatPageRight, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
+import {
+  addChatPage,
+  changeChatPage,
+  changeScrollTracking,
+  loadChat,
+  moveChatPageLeft,
+  moveChatPageRight,
+  purgeChatMessageArchive,
+  rebuildChat,
+  removeChatPage,
+  saveChatToDisk,
+  toggleAcceptedType,
+  updateMessageCount,
+} from './actions';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
@@ -31,7 +44,7 @@ const saveChatToStorage = async (store) => {
   const settings = selectSettings(store.getState());
   const fromIndex = Math.max(
     0,
-    chatRenderer.messages.length - settings.persistentMessageLimit
+    chatRenderer.messages.length - settings.persistentMessageLimit,
   );
   const messages = chatRenderer.messages
     .slice(fromIndex)
@@ -40,7 +53,7 @@ const saveChatToStorage = async (store) => {
   storage.set('chat-messages', messages);
   storage.set(
     'chat-messages-archive',
-    chatRenderer.archivedMessages.map((message) => serializeMessage(message))
+    chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
   ); // FIXME: Better chat history
 };
 
@@ -107,7 +120,7 @@ const loadChatFromStorage = async (store) => {
       }
       if (storedRounds.length > settings.logRetainRounds) {
         chatRenderer.archivedMessages = archivedMessages.slice(
-          storedLines[storedRounds.length - settings.logRetainRounds]
+          storedLines[storedRounds.length - settings.logRetainRounds],
         );
         settings.storedRounds = settings.logRetainRounds;
       } else {
@@ -151,7 +164,7 @@ export const chatMiddleware = (store) => {
       settings.logEnable,
       settings.logLimit,
       settings.storedTypes,
-      game.roundId
+      game.roundId,
     );
     // Load the chat once settings are loaded
     if (!initialized && settings.initialized) {
@@ -242,7 +255,7 @@ export const chatMiddleware = (store) => {
       next(action);
       chatRenderer.setHighlight(
         settings.highlightSettings,
-        settings.highlightSettingById
+        settings.highlightSettingById,
       );
 
       return;
@@ -256,7 +269,7 @@ export const chatMiddleware = (store) => {
       chatRenderer.saveToDisk(
         settings.logLineCount,
         storedLines[storedLines.length - settings.exportEnd],
-        storedLines[storedLines.length - settings.exportStart]
+        storedLines[storedLines.length - settings.exportStart],
       );
       return;
     }

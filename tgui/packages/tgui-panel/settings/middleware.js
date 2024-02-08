@@ -13,7 +13,7 @@ import {
   removeHighlightSetting,
   updateHighlightSetting,
   updateSettings,
-  updateToggle
+  updateToggle,
 } from './actions';
 import { FONTS_DISABLED } from './constants';
 import { selectSettings } from './selectors';

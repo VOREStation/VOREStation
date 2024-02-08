@@ -5,17 +5,49 @@
  */
 
 import { toFixed } from 'common/math';
-import { useGame } from '../game';
 import { useLocalState } from 'tgui/backend';
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Stack, Tabs, TextArea, Collapsible } from 'tgui/components';
+import {
+  Box,
+  Button,
+  Collapsible,
+  ColorBox,
+  Divider,
+  Dropdown,
+  Flex,
+  Input,
+  LabeledList,
+  NumberInput,
+  Section,
+  Stack,
+  Tabs,
+  TextArea,
+} from 'tgui/components';
+
 import { ChatPageSettings } from '../chat';
-import { rebuildChat, saveChatToDisk, purgeChatMessageArchive } from '../chat/actions';
+import {
+  purgeChatMessageArchive,
+  rebuildChat,
+  saveChatToDisk,
+} from '../chat/actions';
 import { MESSAGE_TYPES } from '../chat/constants';
+import { useGame } from '../game';
 import { THEMES } from '../themes';
-import { changeSettingsTab, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting, updateToggle } from './actions';
-import { SETTINGS_TABS, FONTS, MAX_HIGHLIGHT_SETTINGS } from './constants';
-import { selectActiveTab, selectSettings, selectHighlightSettings, selectHighlightSettingById } from './selectors';
+import {
+  addHighlightSetting,
+  changeSettingsTab,
+  removeHighlightSetting,
+  updateHighlightSetting,
+  updateSettings,
+  updateToggle,
+} from './actions';
+import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
+import {
+  selectActiveTab,
+  selectHighlightSettingById,
+  selectHighlightSettings,
+  selectSettings,
+} from './selectors';
 
 export const SettingsPanel = (props) => {
   const activeTab = useSelector(selectActiveTab);
@@ -33,9 +65,10 @@ export const SettingsPanel = (props) => {
                   dispatch(
                     changeSettingsTab({
                       tabId: tab.id,
-                    })
+                    }),
                   )
-                }>
+                }
+              >
                 {tab.name}
               </Tabs.Tab>
             ))}
@@ -69,7 +102,7 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   theme: value,
-                })
+                }),
               )
             }
           />
@@ -85,7 +118,7 @@ export const SettingsGeneral = (props) => {
                     dispatch(
                       updateSettings({
                         fontFamily: value,
-                      })
+                      }),
                     )
                   }
                 />
@@ -96,7 +129,7 @@ export const SettingsGeneral = (props) => {
                     dispatch(
                       updateSettings({
                         fontFamily: value,
-                      })
+                      }),
                     )
                   }
                 />
@@ -129,7 +162,7 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   fontSize: value,
-                })
+                }),
               )
             }
           />
@@ -147,7 +180,7 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   lineHeight: value,
-                })
+                }),
               )
             }
           />
@@ -162,7 +195,7 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   showReconnectWarning: !showReconnectWarning,
-                })
+                }),
               )
             }
           />
@@ -197,7 +230,7 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   visibleMessageLimit: value,
-                })
+                }),
               )
             }
           />
@@ -223,7 +256,7 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   persistentMessageLimit: value,
-                })
+                }),
               )
             }
           />
@@ -249,7 +282,7 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   combineMessageLimit: value,
-                })
+                }),
               )
             }
           />
@@ -268,7 +301,7 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   combineIntervalLimit: value,
-                })
+                }),
               )
             }
           />
@@ -287,7 +320,7 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   saveInterval: value,
-                })
+                }),
               )
             }
           />
@@ -333,10 +366,11 @@ export const ExportTab = (props) => {
                 dispatch(
                   updateSettings({
                     logEnable: false,
-                  })
+                  }),
                 );
                 setLogConfirm(false);
-              }}>
+              }}
+            >
               Disable?
             </Button>
           ) : (
@@ -348,7 +382,8 @@ export const ExportTab = (props) => {
                 setTimeout(() => {
                   setLogConfirm(false);
                 }, 5000);
-              }}>
+              }}
+            >
               Disable logging
             </Button>
           )
@@ -360,9 +395,10 @@ export const ExportTab = (props) => {
               dispatch(
                 updateSettings({
                   logEnable: true,
-                })
+                }),
               );
-            }}>
+            }}
+          >
             Enable logging
           </Button>
         )}
@@ -388,7 +424,7 @@ export const ExportTab = (props) => {
                   dispatch(
                     updateSettings({
                       logRetainRounds: value,
-                    })
+                    }),
                   )
                 }
               />
@@ -401,7 +437,7 @@ export const ExportTab = (props) => {
                 ''
               )}
             </LabeledList.Item>
-            <LabeledList.Item label="Hardlimit for the log archive (0 to 50000)">
+            <LabeledList.Item label="Hardlimit for the log archive (0 = inf. to 50000)">
               <NumberInput
                 width="5em"
                 step={500}
@@ -414,7 +450,7 @@ export const ExportTab = (props) => {
                   dispatch(
                     updateSettings({
                       logLimit: value,
-                    })
+                    }),
                   )
                 }
               />
@@ -423,7 +459,8 @@ export const ExportTab = (props) => {
                 <Box
                   inline
                   fontSize="0.9em"
-                  color={logLimit > 10000 ? 'red' : 'label'}>
+                  color={logLimit > 10000 ? 'red' : 'label'}
+                >
                   {logLimit > 15000
                     ? 'Warning, might crash! Takes priority above round retention.'
                     : 'Takes priority above round retention.'}
@@ -443,9 +480,10 @@ export const ExportTab = (props) => {
                     dispatch(
                       updateToggle({
                         type: typeDef.type,
-                      })
+                      }),
                     )
-                  }>
+                  }
+                >
                   {typeDef.name}
                 </Button.Checkbox>
               ))}
@@ -469,7 +507,7 @@ export const ExportTab = (props) => {
               dispatch(
                 updateSettings({
                   exportStart: value,
-                })
+                }),
               )
             }
           />
@@ -485,7 +523,7 @@ export const ExportTab = (props) => {
               dispatch(
                 updateSettings({
                   exportEnd: value,
-                })
+                }),
               )
             }
           />
@@ -508,7 +546,7 @@ export const ExportTab = (props) => {
               dispatch(
                 updateSettings({
                   logLineCount: value,
-                })
+                }),
               )
             }
           />
@@ -528,7 +566,8 @@ export const ExportTab = (props) => {
           onClick={() => {
             dispatch(purgeChatMessageArchive());
             setPurgeConfirm(2);
-          }}>
+          }}
+        >
           {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
         </Button>
       ) : (
@@ -540,7 +579,8 @@ export const ExportTab = (props) => {
             setTimeout(() => {
               setPurgeConfirm(false);
             }, 5000);
-          }}>
+          }}
+        >
           Purge message archive
         </Button>
       )}
@@ -614,7 +654,7 @@ const TextHighlightSetting = (props) => {
               dispatch(
                 removeHighlightSetting({
                   id: id,
-                })
+                }),
               )
             }
           />
@@ -630,7 +670,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   highlightBlacklist: !highlightBlacklist,
-                })
+                }),
               )
             }
           />
@@ -646,7 +686,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   highlightWholeMessage: !highlightWholeMessage,
-                })
+                }),
               )
             }
           />
@@ -662,7 +702,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   matchWord: !matchWord,
-                })
+                }),
               )
             }
           />
@@ -677,7 +717,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   matchCase: !matchCase,
-                })
+                }),
               )
             }
           />
@@ -694,7 +734,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   highlightColor: value,
-                })
+                }),
               )
             }
           />
@@ -709,7 +749,7 @@ const TextHighlightSetting = (props) => {
             updateHighlightSetting({
               id: id,
               highlightText: value,
-            })
+            }),
           )
         }
       />
@@ -723,7 +763,7 @@ const TextHighlightSetting = (props) => {
               updateHighlightSetting({
                 id: id,
                 blacklistText: value,
-              })
+              }),
             )
           }
         />
