@@ -4,15 +4,17 @@
  * @license MIT
  */
 
+import { MESSAGE_TYPES } from '../chat/constants';
 import {
   addHighlightSetting,
-  changeSettingsTab,
+  hangeSettingsTab,
   loadSettings,
   openChatSettings,
   removeHighlightSetting,
   toggleSettings,
   updateHighlightSetting,
   updateSettings,
+  updateToggle
 } from './actions';
 import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
 import { createDefaultHighlightSetting } from './model';
@@ -54,6 +56,7 @@ const initialState = {
   exportEnd: 0,
   lastId: null,
   initialized: false,
+  storedTypes: {},
 };
 
 export const settingsReducer = (state = initialState, action) => {
@@ -64,6 +67,14 @@ export const settingsReducer = (state = initialState, action) => {
       ...payload,
     };
   }
+  if (type === updateToggle.type) {
+    const { type } = payload;
+    state.storedTypes[type] = !state.storedTypes[type];
+    return {
+      ...state,
+      storedTypes: { ...state.storedTypes },
+    };
+  }
   if (type === loadSettings.type) {
     // Validate version and/or migrate state
     if (!payload?.version) {
@@ -71,11 +82,21 @@ export const settingsReducer = (state = initialState, action) => {
     }
 
     delete payload.view;
-    payload.initialized = true;
     const nextState = {
       ...state,
       ...payload,
     };
+    nextState.initialized = true;
+    let newFilters = {};
+    for (let typeDef of MESSAGE_TYPES) {
+      // alert(typeDef.type);
+      if (nextState.storedTypes[typeDef.type] === null) {
+        newFilters[typeDef.type] = true;
+      } else {
+        newFilters[typeDef.type] = nextState.storedTypes[typeDef.type];
+      }
+    }
+    nextState.storedTypes = newFilters;
     // Lazy init the list for compatibility reasons
     if (!nextState.highlightSettings) {
       nextState.highlightSettings = [defaultHighlightSetting.id];
@@ -157,7 +178,7 @@ export const settingsReducer = (state = initialState, action) => {
     } else {
       delete nextState.highlightSettingById[id];
       nextState.highlightSettings = nextState.highlightSettings.filter(
-        (sid) => sid !== id,
+        (sid) => sid !== id
       );
       if (!nextState.highlightSettings.length) {
         nextState.highlightSettings.push(defaultHighlightSetting.id);
