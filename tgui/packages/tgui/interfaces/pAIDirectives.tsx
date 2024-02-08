@@ -15,7 +15,7 @@ export const pAIDirectives = (props) => {
   const { master, dna, prime, supplemental } = data;
 
   return (
-    <Window width={450} height={600} resizable>
+    <Window width={450} height={600}>
       <Window.Content scrollable>
         <Section title="Master">
           <LabeledList>

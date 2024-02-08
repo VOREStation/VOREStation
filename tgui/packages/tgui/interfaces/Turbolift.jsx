@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
@@ -9,13 +9,13 @@ export const Turbolift = (props) => {
   const { floors, doors_open, fire_mode } = data;
 
   return (
-    <Window width={480} height={260 + fire_mode * 25} resizable>
+    <Window width={480} height={260 + fire_mode * 25}>
       <Window.Content>
         <Section
           title="Floor Selection"
           className={fire_mode ? 'Section--elevator--fire' : null}
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon={doors_open ? 'door-open' : 'door-closed'}
                 content={
@@ -35,8 +35,9 @@ export const Turbolift = (props) => {
                 content="Emergency Stop"
                 onClick={() => act('emergency_stop')}
               />
-            </Fragment>
-          }>
+            </>
+          }
+        >
           {!fire_mode || (
             <Section
               className="Section--elevator--fire"

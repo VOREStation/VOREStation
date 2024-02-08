@@ -1,6 +1,17 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Modal, Section, Dropdown, AnimatedNumber, NoticeBox, Table } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Modal,
+  Section,
+  Dropdown,
+  AnimatedNumber,
+  NoticeBox,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 
 const NIF_WORKING = 0;
@@ -29,7 +40,7 @@ export const NIF = (props) => {
   const [viewingModule, setViewing] = useLocalState('viewingModule', null);
 
   return (
-    <Window theme={theme} width={500} height={400} resizable>
+    <Window theme={theme} width={500} height={400}>
       <Window.Content scrollable>
         {!!last_notification && (
           <NoticeBox info>
@@ -57,7 +68,7 @@ export const NIF = (props) => {
               m={0}
               title={viewingModule.name}
               buttons={
-                <Fragment>
+                <>
                   <Button.Confirm
                     icon="ban"
                     color="bad"
@@ -73,8 +84,9 @@ export const NIF = (props) => {
                     icon="window-close"
                     onClick={() => setViewing(null)}
                   />
-                </Fragment>
-              }>
+                </>
+              }
+            >
               <Box>{viewingModule.desc}</Box>
               <Box>
                 It consumes{' '}
@@ -117,7 +129,8 @@ export const NIF = (props) => {
               selected={settingsOpen}
               onClick={() => setSettingsOpen(!settingsOpen)}
             />
-          }>
+          }
+        >
           {(settingsOpen && <NIFSettings />) || (
             <NIFMain setViewing={setViewing} />
           )}
@@ -193,7 +206,8 @@ const NIFMain = (props) => {
               good: [50, Infinity],
               average: [25, 50],
               bad: [-Infinity, 0],
-            }}>
+            }}
+          >
             {getNifCondition(nif_stat, nif_percent)} (
             <AnimatedNumber value={nif_percent} />
             %)
@@ -208,7 +222,8 @@ const NIFMain = (props) => {
               good: [250, Infinity],
               average: [150, 250],
               bad: [0, 150],
-            }}>
+            }}
+          >
             {getNutritionText(nutrition, isSynthetic)}
           </ProgressBar>
         </LabeledList.Item>
@@ -220,7 +235,7 @@ const NIFMain = (props) => {
               label={module.name}
               key={module.ref}
               buttons={
-                <Fragment>
+                <>
                   <Button.Confirm
                     icon="trash"
                     color="bad"
@@ -236,8 +251,9 @@ const NIFMain = (props) => {
                     tooltip="View Information"
                     tooltipPosition="left"
                   />
-                </Fragment>
-              }>
+                </>
+              }
+            >
               {(module.activates && (
                 <Button
                   fluid

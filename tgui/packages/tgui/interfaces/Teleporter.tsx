@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -23,7 +24,7 @@ export const Teleporter = (props) => {
   } = data;
 
   return (
-    <Window width={300} height={200} resizable>
+    <Window width={300} height={200}>
       <Window.Content>
         <Section>
           <LabeledList>

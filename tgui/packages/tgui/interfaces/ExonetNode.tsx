@@ -1,6 +1,7 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
-import { Button, Box, Flex, LabeledList, Section } from '../components';
+import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -17,7 +18,7 @@ export const ExonetNode = (props) => {
   const { on, allowPDAs, allowCommunicators, allowNewscasters, logs } = data;
 
   return (
-    <Window width={400} height={400} resizable>
+    <Window width={400} height={400}>
       <Window.Content scrollable>
         <Section
           title="Status"
@@ -28,7 +29,8 @@ export const ExonetNode = (props) => {
               content={'Power ' + (on ? 'On' : 'Off')}
               onClick={() => act('toggle_power')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Incoming PDA Messages">
               <Button

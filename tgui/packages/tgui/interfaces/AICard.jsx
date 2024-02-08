@@ -18,7 +18,7 @@ export const AICard = (props) => {
 
   if (has_ai === 0) {
     return (
-      <Window width={600} height={470} resizable>
+      <Window width={600} height={470}>
         <Window.Content>
           <Section title="Stored AI">
             <Box>
@@ -49,7 +49,7 @@ export const AICard = (props) => {
     }
 
     return (
-      <Window width={600} height={470} resizable>
+      <Window width={600} height={470}>
         <Window.Content scrollable>
           <Section title="Stored AI">
             <Box bold display="inline-block">

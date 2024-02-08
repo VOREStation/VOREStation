@@ -1,6 +1,14 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NumberInput, Section, ProgressBar } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  NumberInput,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -37,10 +45,12 @@ export const XenoarchHandheldPowerUtilizer = (props) => {
             <Button
               disabled={!inserted_battery}
               icon="eject"
-              onClick={() => act('ejectbattery')}>
+              onClick={() => act('ejectbattery')}
+            >
               Eject Battery
             </Button>
-          }>
+          }
+        >
           {(inserted_battery && (
             <LabeledList>
               <LabeledList.Item label="Inserted Battery">

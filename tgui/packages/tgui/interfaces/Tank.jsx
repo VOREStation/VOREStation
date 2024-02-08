@@ -1,5 +1,11 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, ProgressBar, Section } from '../components';
+import {
+  Button,
+  LabeledList,
+  NumberInput,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const Tank = (props) => {
@@ -17,7 +23,7 @@ export const Tank = (props) => {
   } = data;
 
   return (
-    <Window width={400} height={320} resizable>
+    <Window width={400} height={320}>
       <Window.Content>
         <Section
           title="Status"
@@ -31,7 +37,8 @@ export const Tank = (props) => {
                 onClick={() => act('toggle')}
               />
             )
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Mask Connected">
               {maskConnected ? 'Yes' : 'No'}
@@ -47,7 +54,8 @@ export const Tank = (props) => {
                   good: [0.35, Infinity],
                   average: [0.15, 0.35],
                   bad: [-Infinity, 0.15],
-                }}>
+                }}
+              >
                 {data.tankPressure + ' kPa'}
               </ProgressBar>
             </LabeledList.Item>

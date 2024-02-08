@@ -1,6 +1,14 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 import { createLogger } from '../logging';
@@ -76,12 +84,12 @@ export const EmbeddedController = (props) => {
   const Component = primaryRoutes[internalTemplateName];
   if (!Component) {
     throw Error(
-      'Unable to find Component for template name: ' + internalTemplateName
+      'Unable to find Component for template name: ' + internalTemplateName,
     );
   }
 
   return (
-    <Window width={450} height={340} resizable>
+    <Window width={450} height={340}>
       <Window.Content>
         <Component />
       </Window.Content>
@@ -123,7 +131,8 @@ const StatusDisplay = (props) => {
               color={bar.color(bar.value)}
               minValue={bar.minValue}
               maxValue={bar.maxValue}
-              value={bar.value}>
+              value={bar.value}
+            >
               {bar.textValue}
             </ProgressBar>
           </LabeledList.Item>
@@ -161,7 +170,7 @@ const StandardControls = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Box>
         <Button
           disabled={data.airlock_disabled}
@@ -194,7 +203,7 @@ const StandardControls = (props) => {
           onClick={() => act('force_int')}
         />
       </Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -207,10 +216,10 @@ const EscapePodStatus = (props) => {
   const { data, act } = useBackend();
 
   const statusToHtml = {
-    'docked': <Armed />,
-    'undocking': <Box color="average">EJECTING-STAND CLEAR!</Box>,
-    'undocked': <Box color="grey">POD EJECTED</Box>,
-    'docking': <Box color="good">INITIALIZING...</Box>,
+    docked: <Armed />,
+    undocking: <Box color="average">EJECTING-STAND CLEAR!</Box>,
+    undocked: <Box color="grey">POD EJECTED</Box>,
+    docking: <Box color="good">INITIALIZING...</Box>,
   };
 
   let dockHatch = <Box color="bad">ERROR</Box>;
@@ -283,10 +292,10 @@ const DockStatus = (props) => {
   const { data, act } = useBackend();
 
   const statusToHtml = {
-    'docked': <Box color="good">DOCKED</Box>,
-    'docking': <Box color="average">DOCKING</Box>,
-    'undocking': <Box color="average">UNDOCKING</Box>,
-    'undocked': <Box color="grey">NOT IN USE</Box>,
+    docked: <Box color="good">DOCKED</Box>,
+    docking: <Box color="average">DOCKING</Box>,
+    undocking: <Box color="average">UNDOCKING</Box>,
+    undocked: <Box color="grey">NOT IN USE</Box>,
   };
 
   let dockStatus = statusToHtml[data.docking_status];
@@ -351,7 +360,7 @@ const AirlockConsoleAdvanced = (props) => {
   ];
 
   return (
-    <Fragment>
+    <>
       <StatusDisplay bars={bars} />
       <Section title="Controls">
         <StandardControls />
@@ -373,7 +382,7 @@ const AirlockConsoleAdvanced = (props) => {
           />
         </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['AirlockConsoleAdvanced'] = AirlockConsoleAdvanced;
@@ -405,7 +414,7 @@ const AirlockConsoleSimple = (props) => {
   ];
 
   return (
-    <Fragment>
+    <>
       <StatusDisplay bars={bars} />
       <Section title="Controls">
         <StandardControls />
@@ -419,7 +428,7 @@ const AirlockConsoleSimple = (props) => {
           />
         </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['AirlockConsoleSimple'] = AirlockConsoleSimple;
@@ -461,7 +470,7 @@ const AirlockConsolePhoron = (props) => {
   ];
 
   return (
-    <Fragment>
+    <>
       <StatusDisplay bars={bars} />
       <Section title="Controls">
         <StandardControls />
@@ -475,7 +484,7 @@ const AirlockConsolePhoron = (props) => {
           />
         </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['AirlockConsolePhoron'] = AirlockConsolePhoron;
@@ -506,7 +515,7 @@ const AirlockConsoleDocking = (props) => {
   ];
 
   return (
-    <Fragment>
+    <>
       <Section
         title="Dock"
         buttons={
@@ -518,7 +527,8 @@ const AirlockConsoleDocking = (props) => {
               onClick={() => act('toggle_override')}
             />
           ) : null
-        }>
+        }
+      >
         <DockStatus />
       </Section>
       <StatusDisplay bars={bars} />
@@ -534,7 +544,7 @@ const AirlockConsoleDocking = (props) => {
           />
         </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['AirlockConsoleDocking'] = AirlockConsoleDocking;
@@ -562,7 +572,7 @@ const DockingConsoleSimple = (props) => {
     <Section
       title="Status"
       buttons={
-        <Fragment>
+        <>
           <Button
             icon="exclamation-triangle"
             disabled={!data.override_enabled}
@@ -575,8 +585,9 @@ const DockingConsoleSimple = (props) => {
             content="Override"
             onClick={() => act('toggle_override')}
           />
-        </Fragment>
-      }>
+        </>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Dock Status">
           <DockStatus />
@@ -597,7 +608,7 @@ primaryRoutes['DockingConsoleSimple'] = DockingConsoleSimple;
 const DockingConsoleMulti = (props) => {
   const { data } = useBackend();
   return (
-    <Fragment>
+    <>
       <Section title="Docking Status">
         <DockStatus />
       </Section>
@@ -608,7 +619,8 @@ const DockingConsoleMulti = (props) => {
               <LabeledList.Item
                 color={airlock.override_enabled ? 'bad' : 'good'}
                 key={airlock.name}
-                label={airlock.name}>
+                label={airlock.name}
+              >
                 {airlock.override_enabled ? 'OVERRIDE ENABLED' : 'STATUS OK'}
               </LabeledList.Item>
             ))}
@@ -623,7 +635,7 @@ const DockingConsoleMulti = (props) => {
           </Flex>
         )}
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['DockingConsoleMulti'] = DockingConsoleMulti;
@@ -646,7 +658,7 @@ const DoorAccessConsole = (props) => {
     <Section
       title="Status"
       buttons={
-        <Fragment>
+        <>
           {/* Interior Button */}
           <Button
             icon={interiorOpen ? 'arrow-left' : 'exclamation-triangle'}
@@ -663,8 +675,9 @@ const DoorAccessConsole = (props) => {
               act(exteriorOpen ? 'cycle_int_door' : 'force_int');
             }}
           />
-        </Fragment>
-      }>
+        </>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Exterior Door Status">
           {data.exterior_status.state === 'closed' ? 'Locked' : 'Open'}
@@ -685,7 +698,7 @@ primaryRoutes['DoorAccessConsole'] = DoorAccessConsole;
 const EscapePodConsole = (props) => {
   const { act, data } = useBackend();
   return (
-    <Fragment>
+    <>
       <EscapePodStatus />
       <Section title="Controls">
         <EscapePodControls />
@@ -706,7 +719,7 @@ const EscapePodConsole = (props) => {
           />
         </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['EscapePodConsole'] = EscapePodConsole;
@@ -718,12 +731,12 @@ primaryRoutes['EscapePodConsole'] = EscapePodConsole;
 const EscapePodBerthConsole = (props) => {
   const { data } = useBackend();
   return (
-    <Fragment>
+    <>
       <EscapePodStatus />
       <Section title="Controls">
         <EscapePodControls />
       </Section>
-    </Fragment>
+    </>
   );
 };
 primaryRoutes['EscapePodBerthConsole'] = EscapePodBerthConsole;

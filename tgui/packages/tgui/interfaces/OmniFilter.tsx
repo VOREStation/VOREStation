@@ -1,8 +1,9 @@
+import { BooleanLike } from 'common/react';
+import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
-import { Fragment } from 'inferno';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-import { BooleanLike } from 'common/react';
 
 const getStatusText = (port) => {
   if (port.input) {
@@ -31,12 +32,12 @@ export const OmniFilter = (props) => {
   const { power, config, ports, set_flow_rate, last_flow_rate } = data;
 
   return (
-    <Window width={360} height={330} resizable>
+    <Window width={360} height={330}>
       <Window.Content>
         <Section
           title={config ? 'Configuration' : 'Status'}
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon="power-off"
                 content={power ? 'On' : 'Off'}
@@ -49,22 +50,23 @@ export const OmniFilter = (props) => {
                 selected={config}
                 onClick={() => act('configure')}
               />
-            </Fragment>
-          }>
+            </>
+          }
+        >
           <LabeledList>
             {ports ? (
               ports.map((port) => (
                 <LabeledList.Item key={port.dir} label={port.dir + ' Port'}>
                   {config ? (
-                    <Fragment>
+                    <>
                       <Button
                         content="IN"
                         selected={port.input}
                         icon="compress-arrows-alt"
                         onClick={() =>
                           act('switch_mode', {
-                            'mode': 'in',
-                            'dir': port.dir,
+                            mode: 'in',
+                            dir: port.dir,
                           })
                         }
                       />
@@ -74,8 +76,8 @@ export const OmniFilter = (props) => {
                         icon="expand-arrows-alt"
                         onClick={() =>
                           act('switch_mode', {
-                            'mode': 'out',
-                            'dir': port.dir,
+                            mode: 'out',
+                            dir: port.dir,
                           })
                         }
                       />
@@ -85,12 +87,12 @@ export const OmniFilter = (props) => {
                         content={port.f_type || 'None'}
                         onClick={() =>
                           act('switch_filter', {
-                            'mode': port.f_type,
-                            'dir': port.dir,
+                            mode: port.f_type,
+                            dir: port.dir,
                           })
                         }
                       />
-                    </Fragment>
+                    </>
                   ) : (
                     getStatusText(port)
                   )}

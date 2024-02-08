@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -39,7 +40,8 @@ export const TransferValve = (props) => {
               disabled={!attached_device}
               onClick={() => act('device')}
             />
-          }>
+          }
+        >
           <LabeledList>
             {attached_device ? (
               <LabeledList.Item label="Attachment">

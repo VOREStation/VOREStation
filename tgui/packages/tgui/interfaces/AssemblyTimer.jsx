@@ -18,10 +18,12 @@ export const AssemblyTimer = (props) => {
                 <Button
                   icon="stopwatch"
                   selected={timing}
-                  onClick={() => act('timing')}>
+                  onClick={() => act('timing')}
+                >
                   {timing ? 'Counting Down' : 'Disabled'}
                 </Button>
-              }>
+              }
+            >
               <NumberInput
                 animated
                 fluid

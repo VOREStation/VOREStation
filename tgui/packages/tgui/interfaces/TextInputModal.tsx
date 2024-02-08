@@ -1,8 +1,8 @@
-import { Loader } from './common/Loader';
-import { InputButtons } from './common/InputButtons';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Section, Stack, TextArea } from '../components';
 import { Window } from '../layouts';
+import { InputButtons } from './common/InputButtons';
+import { Loader } from './common/Loader';
 
 type TextInputData = {
   large_buttons: boolean;
@@ -51,7 +51,8 @@ export const TextInputModal = (props) => {
             act('submit', { entry: input });
             event.preventDefault();
           }
-        }}>
+        }}
+      >
         <Section fill>
           <Stack fill vertical>
             <Stack.Item>

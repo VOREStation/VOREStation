@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -31,18 +31,18 @@ export const CharacterDirectory = (props) => {
 
   const [overwritePrefs, setOverwritePrefs] = useLocalState(
     'overwritePrefs',
-    false
+    false,
   );
 
   return (
     <Window width={640} height={480} resizeable>
       <Window.Content scrollable>
         {(overlay && <ViewCharacter />) || (
-          <Fragment>
+          <>
             <Section
               title="Controls"
               buttons={
-                <Fragment>
+                <>
                   <Box color="label" inline>
                     Save to current preferences slot:&nbsp;
                   </Box>
@@ -52,8 +52,9 @@ export const CharacterDirectory = (props) => {
                     content={overwritePrefs ? 'On' : 'Off'}
                     onClick={() => setOverwritePrefs(!overwritePrefs)}
                   />
-                </Fragment>
-              }>
+                </>
+              }
+            >
               <LabeledList>
                 <LabeledList.Item label="Visibility">
                   <Button
@@ -94,7 +95,7 @@ export const CharacterDirectory = (props) => {
               </LabeledList>
             </Section>
             <CharacterDirectoryList />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>
@@ -113,7 +114,8 @@ const ViewCharacter = (props) => {
           content="Back"
           onClick={() => setOverlay(null)}
         />
-      }>
+      }
+    >
       <Section level={2} title="Species">
         <Box>{overlay.species}</Box>
       </Section>
@@ -158,7 +160,8 @@ const CharacterDirectoryList = (props) => {
       title="Directory"
       buttons={
         <Button icon="sync" content="Refresh" onClick={() => act('refresh')} />
-      }>
+      }
+    >
       <Table>
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
@@ -217,7 +220,8 @@ const SortButton = (props) => {
             setSortId(id);
             setSortOrder(true);
           }
-        }}>
+        }}
+      >
         {children}
         {sortId === id && (
           <Icon name={sortOrder ? 'sort-up' : 'sort-down'} ml="0.25rem;" />

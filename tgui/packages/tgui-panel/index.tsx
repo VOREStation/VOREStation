@@ -11,11 +11,13 @@ import './styles/themes/vchatdark.scss';
 
 import { perf } from 'common/perf';
 import { combineReducers } from 'common/redux';
-import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';
+import { setGlobalStore } from 'tgui/backend';
 import { setupGlobalEvents } from 'tgui/events';
 import { captureExternalLinks } from 'tgui/links';
 import { createRenderer } from 'tgui/renderer';
-import { configureStore, StoreProvider } from 'tgui/store';
+import { configureStore } from 'tgui/store';
+import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';
+
 import { audioMiddleware, audioReducer } from './audio';
 import { chatMiddleware, chatReducer } from './chat';
 import { gameMiddleware, gameReducer } from './game';
@@ -23,7 +25,6 @@ import { setupPanelFocusHacks } from './panelFocus';
 import { pingMiddleware, pingReducer } from './ping';
 import { settingsMiddleware, settingsReducer } from './settings';
 import { telemetryMiddleware } from './telemetry';
-import { setGlobalStore } from 'tgui/backend';
 
 perf.mark('inception', window.performance?.timing?.navigationStart);
 perf.mark('init');
@@ -52,11 +53,7 @@ const renderApp = createRenderer(() => {
   setGlobalStore(store);
 
   const { Panel } = require('./Panel');
-  return (
-    <StoreProvider store={store}>
-      <Panel />
-    </StoreProvider>
-  );
+  return <Panel />;
 });
 
 const setupApp = () => {
@@ -85,14 +82,14 @@ const setupApp = () => {
   Byond.winset('browseroutput', {
     'is-visible': true,
     'is-disabled': false,
-    'pos': '0x0',
-    'size': '0x0',
+    pos: '0x0',
+    size: '0x0',
   });
 
   // Resize the panel to match the non-browser output
   Byond.winget('output').then((output: { size: string }) => {
     Byond.winset('browseroutput', {
-      'size': output.size,
+      size: output.size,
     });
   });
 
@@ -113,7 +110,7 @@ const setupApp = () => {
       ],
       () => {
         renderApp();
-      }
+      },
     );
   }
 };

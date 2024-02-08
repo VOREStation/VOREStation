@@ -1,6 +1,15 @@
 import { round } from 'common/math';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosNetDownloader = (props) => {
@@ -15,7 +24,7 @@ export const NtosNetDownloader = (props) => {
     hackedavailable,
   } = data;
   return (
-    <NtosWindow theme={PC_device_theme} width={480} height={735} resizable>
+    <NtosWindow theme={PC_device_theme} width={480} height={735}>
       <NtosWindow.Content scrollable>
         {!!error && (
           <NoticeBox>
@@ -82,7 +91,8 @@ const Program = (props) => {
               color="green"
               minValue={0}
               maxValue={downloadsize}
-              value={downloadcompletion}>
+              value={downloadcompletion}
+            >
               {round((downloadcompletion / downloadsize) * 100, 1)}% (
               {downloadspeed}GQ/s)
             </ProgressBar>
@@ -95,7 +105,8 @@ const Program = (props) => {
                   act('PRG_removequeued', {
                     filename: program.filename,
                   })
-                }>
+                }
+              >
                 Queued...
               </Button>
             )) || (

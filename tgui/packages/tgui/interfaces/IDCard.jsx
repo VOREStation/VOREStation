@@ -28,7 +28,7 @@ export const IDCard = (props) => {
   ];
 
   return (
-    <Window width={470} height={250} resizable>
+    <Window width={470} height={250}>
       <Window.Content>
         <Section>
           <Flex>
@@ -40,7 +40,8 @@ export const IDCard = (props) => {
                   height: '120px',
                   overflow: 'hidden',
                   outline: '2px solid #4972a1',
-                }}>
+                }}
+              >
                 {(photo_front && (
                   <img
                     src={photo_front.substr(1, photo_front.length - 1)}
@@ -66,7 +67,8 @@ export const IDCard = (props) => {
           <Flex
             className="IDCard__NamePlate"
             align="center"
-            justify="space-around">
+            justify="space-around"
+          >
             <Flex.Item>
               <Box textAlign="center">{registered_name}</Box>
             </Flex.Item>
