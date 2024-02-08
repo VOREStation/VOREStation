@@ -1,5 +1,5 @@
 import { Button } from 'tgui/components';
-import { useDispatch } from 'common/redux';
+import { useDispatch } from 'tgui/backend';
 import { dismissWarning } from './game/actions';
 
 let url: string | null = null;
@@ -13,11 +13,11 @@ setInterval(() => {
   });
 }, 5000);
 
-export const ReconnectButton = (props, context) => {
+export const ReconnectButton = (props) => {
   if (!url) {
     return null;
   }
-  const dispatch = useDispatch(context);
+  const dispatch = useDispatch();
   return (
     <>
       <Button

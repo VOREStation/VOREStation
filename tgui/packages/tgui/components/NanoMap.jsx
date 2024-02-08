@@ -186,8 +186,8 @@ const NanoMapMarker = (props, context) => {
 
 NanoMap.Marker = NanoMapMarker;
 
-const NanoMapZoomer = (props, context) => {
-  const { act, config, data } = useBackend(context);
+const NanoMapZoomer = (props) => {
+  const { act, config, data } = useBackend();
   return (
     <Box className="NanoMap__zoomer">
       <LabeledList>
