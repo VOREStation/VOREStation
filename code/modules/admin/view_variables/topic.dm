@@ -274,6 +274,15 @@
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
 				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+	else if(href_list["fakepdapropconvo"])
+		if(!check_rights(R_FUN)) return
+
+		var/obj/item/device/pda/P = locate(href_list["fakepdapropconvo"])
+		if(!istype(P))
+			to_chat(usr, span_warning("This can only be done to instances of type /pda"))
+			return
+
+		P.createPropFakeConversation_admin(usr)
 
 	else if(href_list["rotatedatum"])
 		if(!check_rights(0))	return
