@@ -1,6 +1,13 @@
 import { round } from 'common/math';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  AnimatedNumber,
+} from '../components';
 import { Window } from '../layouts';
 import { formatPower } from '../format';
 
@@ -32,7 +39,8 @@ export const ICAssembly = (props) => {
                   bad: [0.75, 1],
                 }}
                 value={total_parts / max_components}
-                maxValue={1}>
+                maxValue={1}
+              >
                 {total_parts} / {max_components} (
                 {round((total_parts / max_components) * 100, 1)}%)
               </ProgressBar>
@@ -45,7 +53,8 @@ export const ICAssembly = (props) => {
                   bad: [0.75, 1],
                 }}
                 value={total_complexity / max_complexity}
-                maxValue={1}>
+                maxValue={1}
+              >
                 {total_complexity} / {max_complexity} (
                 {round((total_complexity / max_complexity) * 100, 1)}%)
               </ProgressBar>
@@ -59,7 +68,8 @@ export const ICAssembly = (props) => {
                     good: [0.75, 1],
                   }}
                   value={battery_charge / battery_max}
-                  maxValue={1}>
+                  maxValue={1}
+                >
                   {battery_charge} / {battery_max} (
                   {round((battery_charge / battery_max) * 100, 1)}%)
                 </ProgressBar>
@@ -106,27 +116,32 @@ const ICAssemblyCircuits = (props) => {
           <LabeledList.Item key={circuit.ref} label={circuit.name}>
             <Button
               icon="eye"
-              onClick={() => act('open_circuit', { ref: circuit.ref })}>
+              onClick={() => act('open_circuit', { ref: circuit.ref })}
+            >
               View
             </Button>
             <Button
               icon="eye"
-              onClick={() => act('rename_circuit', { ref: circuit.ref })}>
+              onClick={() => act('rename_circuit', { ref: circuit.ref })}
+            >
               Rename
             </Button>
             <Button
               icon="eye"
-              onClick={() => act('scan_circuit', { ref: circuit.ref })}>
+              onClick={() => act('scan_circuit', { ref: circuit.ref })}
+            >
               Debugger Scan
             </Button>
             <Button
               icon="eye"
-              onClick={() => act('remove_circuit', { ref: circuit.ref })}>
+              onClick={() => act('remove_circuit', { ref: circuit.ref })}
+            >
               Remove
             </Button>
             <Button
               icon="eye"
-              onClick={() => act('bottom_circuit', { ref: circuit.ref })}>
+              onClick={() => act('bottom_circuit', { ref: circuit.ref })}
+            >
               Move to Bottom
             </Button>
           </LabeledList.Item>

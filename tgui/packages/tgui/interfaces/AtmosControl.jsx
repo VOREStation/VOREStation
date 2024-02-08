@@ -38,7 +38,7 @@ export const AtmosControlContent = (props) => {
             color={
               alarm.danger === 2 ? 'bad' : alarm.danger === 1 ? 'average' : ''
             }
-            onClick={() => act('alarm', { 'alarm': alarm.ref })}
+            onClick={() => act('alarm', { alarm: alarm.ref })}
           />
         ))}
       </Section>
@@ -61,7 +61,7 @@ export const AtmosControlContent = (props) => {
                 icon="bell"
                 tooltip={cm.name}
                 color={cm.danger ? 'red' : 'green'}
-                onClick={() => act('alarm', { 'alarm': cm.ref })}
+                onClick={() => act('alarm', { alarm: cm.ref })}
               />
             ))}
         </NanoMap>
@@ -75,13 +75,15 @@ export const AtmosControlContent = (props) => {
         <Tabs.Tab
           key="AlarmView"
           selected={0 === tabIndex}
-          onClick={() => setTabIndex(0)}>
+          onClick={() => setTabIndex(0)}
+        >
           <Icon name="table" /> Alarm View
         </Tabs.Tab>
         <Tabs.Tab
           key="MapView"
           selected={1 === tabIndex}
-          onClick={() => setTabIndex(1)}>
+          onClick={() => setTabIndex(1)}
+        >
           <Icon name="map-marked-alt" /> Map View
         </Tabs.Tab>
       </Tabs>

@@ -1,6 +1,17 @@
 import { BooleanLike } from '../../common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Divider, Flex, Input, Knob, LabeledList, NumberInput, Section, Tabs, TextArea } from '../components';
+import {
+  Button,
+  Divider,
+  Flex,
+  Input,
+  Knob,
+  LabeledList,
+  NumberInput,
+  Section,
+  Tabs,
+  TextArea,
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -72,21 +83,21 @@ const GeneralMobSettings = (props) => {
   const [health, setHealth] = useLocalState('health', data.health);
   const [meleeDamageLower, setMeleeDamageLower] = useLocalState(
     'meleeDamageLower',
-    data.melee_damage_lower
+    data.melee_damage_lower,
   );
   const [meleeDamageUpper, setMeleeDamageUpper] = useLocalState(
     'meleeDamageUpper',
-    data.melee_damage_upper
+    data.melee_damage_upper,
   );
   const [desc, setDesc] = useLocalState('desc', data.default_desc);
   const [flavorText, setFlavorText] = useLocalState(
     'flavorText',
-    data.default_flavor_text
+    data.default_flavor_text,
   );
 
   const [sizeMultiplier, setSizeMultiplier] = useLocalState(
     'sizeMultiplier',
-    100
+    100,
   );
 
   const [x, setX] = useLocalState('x', data.initial_x);
@@ -187,7 +198,8 @@ const GeneralMobSettings = (props) => {
                   content="Use Custom AI"
                   onClick={() => act('toggle_custom_ai')}
                 />
-              }>
+              }
+            >
               <LabeledList>
                 <LabeledList.Item>
                   <Button
@@ -294,7 +306,8 @@ const GeneralMobSettings = (props) => {
             z: data.loc_lock ? data.loc_z : z,
             radius: radius,
           })
-        }>
+        }
+      >
         Spawn
       </Button>
     </>

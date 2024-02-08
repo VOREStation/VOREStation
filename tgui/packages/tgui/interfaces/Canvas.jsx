@@ -65,7 +65,8 @@ class PaintCanvas extends Component {
         width={width * dotsize || 300}
         height={height * dotsize || 300}
         {...rest}
-        onClick={(e) => this.clickwrapper(e)}>
+        onClick={(e) => this.clickwrapper(e)}
+      >
         Canvas failed to render.
       </canvas>
     );
@@ -85,7 +86,8 @@ export const Canvas = (props) => {
   return (
     <Window
       width={Math.min(700, width * dotsize + 72)}
-      height={Math.min(700, height * dotsize + 72)}>
+      height={Math.min(700, height * dotsize + 72)}
+    >
       <Window.Content>
         <Box textAlign="center">
           <PaintCanvas

@@ -36,7 +36,8 @@ const VendingRow = (props) => {
             (product.amount <= 0 && 'bad') ||
             (product.amount <= product.max_amount / 2 && 'average') ||
             'good'
-          }>
+          }
+        >
           {product.amount} in stock
         </Box>
       </Table.Cell>
@@ -49,7 +50,7 @@ const VendingRow = (props) => {
           content={product.price ? 'Buy (' + product.price + '₮)' : 'Vend'}
           onClick={() =>
             act('vend', {
-              'vend': product.key,
+              vend: product.key,
             })
           }
         />

@@ -108,7 +108,8 @@ const ActiveWarrant = (props) => {
             Back
           </Button>
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item
           label={warrantnameLabel}
@@ -124,14 +125,16 @@ const ActiveWarrant = (props) => {
             )) || (
               <Button icon="pen" onClick={() => act('editwarrantnamecustom')} />
             )
-          }>
+          }
+        >
           {warrantname}
         </LabeledList.Item>
         <LabeledList.Item
           label={warrantchargesLabel}
           buttons={
             <Button icon="pen" onClick={() => act('editwarrantcharges')} />
-          }>
+          }
+        >
           {warrantcharges}
         </LabeledList.Item>
         <LabeledList.Item
@@ -141,7 +144,8 @@ const ActiveWarrant = (props) => {
               icon="balance-scale"
               onClick={() => act('editwarrantauth')}
             />
-          }>
+          }
+        >
           {warrantauth}
         </LabeledList.Item>
       </LabeledList>

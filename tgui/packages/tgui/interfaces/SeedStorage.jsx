@@ -35,7 +35,8 @@ export const SeedStorage = (props) => {
                 <Button
                   fluid
                   icon="download"
-                  onClick={() => act('vend', { id: seed.id })}>
+                  onClick={() => act('vend', { id: seed.id })}
+                >
                   Vend
                 </Button>
               </Flex.Item>
@@ -43,7 +44,8 @@ export const SeedStorage = (props) => {
                 <Button
                   fluid
                   icon="trash"
-                  onClick={() => act('purge', { id: seed.id })}>
+                  onClick={() => act('purge', { id: seed.id })}
+                >
                   Purge
                 </Button>
               </Flex.Item>

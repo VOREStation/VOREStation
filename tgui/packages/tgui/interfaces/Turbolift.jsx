@@ -36,7 +36,8 @@ export const Turbolift = (props) => {
                 onClick={() => act('emergency_stop')}
               />
             </>
-          }>
+          }
+        >
           {!fire_mode || (
             <Section
               className="Section--elevator--fire"

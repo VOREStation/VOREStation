@@ -1,7 +1,13 @@
 import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
-import { Button, Knob, LabeledControls, LabeledList, Section } from '../components';
+import {
+  Button,
+  Knob,
+  LabeledControls,
+  LabeledList,
+  Section,
+} from '../components';
 import { T0C } from '../constants';
 import { Window } from '../layouts';
 

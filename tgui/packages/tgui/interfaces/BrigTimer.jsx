@@ -30,7 +30,8 @@ export const BrigTimer = (props) => {
               )) ||
                 null}
             </>
-          }>
+          }
+        >
           <NumberInput
             animated
             fluid

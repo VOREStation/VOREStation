@@ -132,13 +132,13 @@ export class NanoMap extends Component {
       height: mapSize,
       'margin-top': offsetY + 'px',
       'margin-left': offsetX + 'px',
-      'overflow': 'hidden',
-      'position': 'relative',
+      overflow: 'hidden',
+      position: 'relative',
       'background-image': 'url(' + mapUrl + ')',
       'background-size': 'cover',
       'background-repeat': 'no-repeat',
       'text-align': 'center',
-      'cursor': dragging ? 'move' : 'auto',
+      cursor: dragging ? 'move' : 'auto',
     };
 
     return (
@@ -147,7 +147,8 @@ export class NanoMap extends Component {
           style={newStyle}
           textAlign="center"
           onMouseDown={this.handleDragStart}
-          onClick={this.handleOnClick}>
+          onClick={this.handleOnClick}
+        >
           <Box>{children}</Box>
         </Box>
         <NanoMapZoomer zoom={zoom} onZoom={this.handleZoom} />
@@ -176,7 +177,8 @@ const NanoMapMarker = (props, context) => {
         lineHeight="0"
         bottom={ry + 'px'}
         left={rx + 'px'}
-        onMouseDown={handleOnClick}>
+        onMouseDown={handleOnClick}
+      >
         <Icon name={icon} color={color} fontSize="6px" />
         <Tooltip content={tooltip} />
       </Box>
@@ -210,7 +212,7 @@ const NanoMapZoomer = (props) => {
                 selected={~~level === ~~config.mapZLevel}
                 content={level}
                 onClick={() => {
-                  act('setZLevel', { 'mapZLevel': level });
+                  act('setZLevel', { mapZLevel: level });
                 }}
               />
             ))}

@@ -21,7 +21,7 @@ export const suspendRenderer = () => {
 };
 
 type CreateRenderer = <T extends unknown[] = [unknown]>(
-  getVNode?: (...args: T) => ReactNode
+  getVNode?: (...args: T) => ReactNode,
 ) => (...args: T) => void;
 
 enum Render {

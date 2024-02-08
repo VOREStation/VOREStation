@@ -59,32 +59,37 @@ const NewscasterMainMenu = (props) => {
             fluid
             icon="eye"
             onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWWANTED)}
-            color="bad">
+            color="bad"
+          >
             Read WANTED Issue
           </Button>
         )}
         <Button
           fluid
           icon="eye"
-          onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
+          onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
+        >
           View Feed Channels
         </Button>
         <Button
           fluid
           icon="plus"
-          onClick={() => setScreen(NEWSCASTER_SCREEN_NEWCHANNEL)}>
+          onClick={() => setScreen(NEWSCASTER_SCREEN_NEWCHANNEL)}
+        >
           Create Feed Channel
         </Button>
         <Button
           fluid
           icon="plus"
-          onClick={() => setScreen(NEWSCASTER_SCREEN_NEWSTORY)}>
+          onClick={() => setScreen(NEWSCASTER_SCREEN_NEWSTORY)}
+        >
           Create Feed Message
         </Button>
         <Button
           fluid
           icon="print"
-          onClick={() => setScreen(NEWSCASTER_SCREEN_PRINT)}>
+          onClick={() => setScreen(NEWSCASTER_SCREEN_PRINT)}
+        >
           Print Newspaper
         </Button>
       </Section>
@@ -93,7 +98,8 @@ const NewscasterMainMenu = (props) => {
           <Button
             fluid
             icon="plus"
-            onClick={() => setScreen(NEWSCASTER_SCREEN_NEWWANTED)}>
+            onClick={() => setScreen(NEWSCASTER_SCREEN_NEWWANTED)}
+          >
             Manage &quot;Wanted&quot; Issue
           </Button>
         </Section>
@@ -116,7 +122,8 @@ const NewscasterNewChannel = (props) => {
         <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
           Back
         </Button>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Channel Name">
           <Input
@@ -132,7 +139,8 @@ const NewscasterNewChannel = (props) => {
           <Button
             icon={c_locked ? 'lock' : 'lock-open'}
             selected={!c_locked}
-            onClick={() => act('set_channel_lock')}>
+            onClick={() => act('set_channel_lock')}
+          >
             {c_locked ? 'No' : 'Yes'}
           </Button>
         </LabeledList.Item>
@@ -141,14 +149,16 @@ const NewscasterNewChannel = (props) => {
         fluid
         color="good"
         icon="plus"
-        onClick={() => act('submit_new_channel')}>
+        onClick={() => act('submit_new_channel')}
+      >
         Submit Channel
       </Button>
       <Button
         fluid
         color="bad"
         icon="undo"
-        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}
+      >
         Cancel
       </Button>
     </Section>
@@ -169,7 +179,8 @@ const NewscasterViewList = (props) => {
         <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
           Back
         </Button>
-      }>
+      }
+    >
       {channels.map((channel) => (
         <Button
           fluid
@@ -179,7 +190,8 @@ const NewscasterViewList = (props) => {
           onClick={() => {
             act('show_channel', { show_channel: channel.ref });
             setScreen(NEWSCASTER_SCREEN_SELECTEDCHANNEL);
-          }}>
+          }}
+        >
           {decodeHtmlEntities(channel.name)}
         </Button>
       ))}
@@ -201,7 +213,8 @@ const NewscasterNewStory = (props) => {
         <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
           Back
         </Button>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Receiving Channel">
           <Button fluid onClick={() => act('set_channel_receiving')}>
@@ -257,14 +270,16 @@ const NewscasterNewStory = (props) => {
         fluid
         color="good"
         icon="plus"
-        onClick={() => act('submit_new_message')}>
+        onClick={() => act('submit_new_message')}
+      >
         Submit Message
       </Button>
       <Button
         fluid
         color="bad"
         icon="undo"
-        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}
+      >
         Cancel
       </Button>
     </Section>
@@ -285,7 +300,8 @@ const NewscasterPrint = (props) => {
         <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
           Back
         </Button>
-      }>
+      }
+    >
       <Box color="label" mb={1}>
         Newscaster currently serves a total of {total_num} Feed channels,{' '}
         {active_num} of which are active, and a total of {message_num} Feed
@@ -301,14 +317,16 @@ const NewscasterPrint = (props) => {
         fluid
         color="good"
         icon="plus"
-        onClick={() => act('print_paper')}>
+        onClick={() => act('print_paper')}
+      >
         Print Paper
       </Button>
       <Button
         fluid
         color="bad"
         icon="undo"
-        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}
+      >
         Cancel
       </Button>
     </Section>
@@ -329,7 +347,8 @@ const NewscasterNewWanted = (props) => {
         <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
           Back
         </Button>
-      }>
+      }
+    >
       <LabeledList>
         {!!wanted_issue && (
           <LabeledList.Item label="Already In Circulation">
@@ -365,7 +384,8 @@ const NewscasterNewWanted = (props) => {
         fluid
         color="good"
         icon="plus"
-        onClick={() => act('submit_wanted')}>
+        onClick={() => act('submit_wanted')}
+      >
         Submit Wanted Issue
       </Button>
       {!!wanted_issue && (
@@ -373,7 +393,8 @@ const NewscasterNewWanted = (props) => {
           fluid
           color="average"
           icon="minus"
-          onClick={() => act('cancel_wanted')}>
+          onClick={() => act('cancel_wanted')}
+        >
           Take Down Issue
         </Button>
       )}
@@ -381,7 +402,8 @@ const NewscasterNewWanted = (props) => {
         fluid
         color="bad"
         icon="undo"
-        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
+        onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}
+      >
         Cancel
       </Button>
     </Section>
@@ -403,7 +425,8 @@ const NewscasterViewWanted = (props) => {
           <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
             Back
           </Button>
-        }>
+        }
+      >
         There are no wanted issues currently outstanding.
       </Section>
     );
@@ -417,7 +440,8 @@ const NewscasterViewWanted = (props) => {
         <Button icon="undo" onClick={() => setScreen(NEWSCASTER_SCREEN_MAIN)}>
           Back
         </Button>
-      }>
+      }
+    >
       <Box color="white">
         <LabeledList>
           <LabeledList.Item label="Submitted by" color="good">
@@ -453,10 +477,12 @@ const NewscasterViewSelected = (props) => {
         buttons={
           <Button
             icon="undo"
-            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
+            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
+          >
             Back
           </Button>
-        }>
+        }
+      >
         The channel you were looking for no longer exists.
       </Section>
     );
@@ -480,11 +506,13 @@ const NewscasterViewSelected = (props) => {
           )}
           <Button
             icon="undo"
-            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}>
+            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
+          >
             Back
           </Button>
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Channel Created By">
           {(securityCaster && (

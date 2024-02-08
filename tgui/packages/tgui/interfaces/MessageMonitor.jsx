@@ -1,7 +1,17 @@
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Dropdown, Flex, Icon, Input, LabeledList, Section, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Flex,
+  Icon,
+  Input,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 import { TemporaryNotice } from './common/TemporaryNotice';
 import { FullscreenNotice } from './common/FullscreenNotice';
@@ -181,31 +191,36 @@ const MessageMonitorContent = (props) => {
         <Tabs.Tab
           key="Main"
           selected={0 === tabIndex}
-          onClick={() => setTabIndex(0)}>
+          onClick={() => setTabIndex(0)}
+        >
           <Icon name="bars" /> Main Menu
         </Tabs.Tab>
         <Tabs.Tab
           key="MessageLogs"
           selected={1 === tabIndex}
-          onClick={() => setTabIndex(1)}>
+          onClick={() => setTabIndex(1)}
+        >
           <Icon name="font" /> Message Logs
         </Tabs.Tab>
         <Tabs.Tab
           key="RequestLogs"
           selected={2 === tabIndex}
-          onClick={() => setTabIndex(2)}>
+          onClick={() => setTabIndex(2)}
+        >
           <Icon name="bold" /> Request Logs
         </Tabs.Tab>
         <Tabs.Tab
           key="AdminMessage"
           selected={3 === tabIndex}
-          onClick={() => setTabIndex(3)}>
+          onClick={() => setTabIndex(3)}
+        >
           <Icon name="comment-alt" /> Admin Messaging
         </Tabs.Tab>
         <Tabs.Tab
           key="SpamFilter"
           selected={4 === tabIndex}
-          onClick={() => setTabIndex(4)}>
+          onClick={() => setTabIndex(4)}
+        >
           <Icon name="comment-slash" /> Spam Filter
         </Tabs.Tab>
         <Tabs.Tab key="Logout" color="red" onClick={() => act('deauth')}>
@@ -239,7 +254,8 @@ const MessageMonitorMain = (props) => {
             onClick={() => act('active')}
           />
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Server Status">
           <Box color="good">Good</Box>
@@ -283,7 +299,8 @@ const MessageMonitorLogs = (props) => {
           content="Delete All"
           onClick={() => act(pda ? 'del_pda' : 'del_rc')}
         />
-      }>
+      }
+    >
       <Flex wrap="wrap">
         {logs.map((log, i) => (
           <Flex.Item m="2px" key={log.ref} basis="49%" grow={i % 2}>
@@ -302,7 +319,8 @@ const MessageMonitorLogs = (props) => {
                     })
                   }
                 />
-              }>
+              }
+            >
               {rc ? (
                 <LabeledList>
                   <LabeledList.Item label="Message">
@@ -310,7 +328,8 @@ const MessageMonitorLogs = (props) => {
                   </LabeledList.Item>
                   <LabeledList.Item
                     label="Verification"
-                    color={log.id_auth === 'Unauthenticated' ? 'bad' : 'good'}>
+                    color={log.id_auth === 'Unauthenticated' ? 'bad' : 'good'}
+                  >
                     {decodeHtmlEntities(log.id_auth)}
                   </LabeledList.Item>
                   <LabeledList.Item label="Stamp">{log.stamp}</LabeledList.Item>
@@ -364,7 +383,7 @@ const MessageMonitorAdmin = (props) => {
             mb={-0.7}
             onSelected={(key) =>
               act('set_recipient', {
-                'val': possibleRecipients[key],
+                val: possibleRecipients[key],
               })
             }
           />
@@ -407,7 +426,8 @@ const MessageMonitorSpamFilter = (props) => {
                 content="Delete"
                 onClick={() => act('deltoken', { deltoken: spam.index })}
               />
-            }>
+            }
+          >
             {spam.token}
           </LabeledList.Item>
         ))}

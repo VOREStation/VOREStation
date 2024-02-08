@@ -61,7 +61,8 @@ const TelecommsMultitoolMenuStatus = (props) => {
           content={on ? 'On' : 'Off'}
           onClick={() => act('toggle')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Identification String">
           <Button icon="pen" content={id} onClick={() => act('id')} />
@@ -219,7 +220,8 @@ const TelecommsMultitoolMenuPolymorphicOptions = (props) => {
         ) : null}
         {use_broadcast_range || use_receive_range ? (
           <LabeledList.Item
-            label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}>
+            label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}
+          >
             <NumberInput
               value={range}
               minValue={minRange}

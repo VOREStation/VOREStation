@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 import { round } from 'common/math';
 
@@ -21,7 +28,8 @@ export const PortableGenerator = (props) => {
                 icon={data.active ? 'power-off' : 'times'}
                 onClick={() => act('toggle_power')}
                 selected={data.active}
-                disabled={!data.ready_to_boot}>
+                disabled={!data.ready_to_boot}
+              >
                 {data.active ? 'On' : 'Off'}
               </Button>
             </LabeledList.Item>
@@ -33,11 +41,13 @@ export const PortableGenerator = (props) => {
                     ml={1}
                     icon="eject"
                     disabled={data.active}
-                    onClick={() => act('eject')}>
+                    onClick={() => act('eject')}
+                  >
                     Eject
                   </Button>
                 )
-              }>
+              }
+            >
               <Box color={stackPercentState}>
                 {data.fuel_stored}cm&sup3; {data.sheet_name}
               </Box>
@@ -49,7 +59,8 @@ export const PortableGenerator = (props) => {
                   good: [0.5, Infinity],
                   average: [0.15, 0.5],
                   bad: [-Infinity, 0.15],
-                }}>
+                }}
+              >
                 {data.fuel_stored}cm&sup3; / {data.fuel_capacity}cm&sup3;
               </ProgressBar>
             </LabeledList.Item>
@@ -60,7 +71,8 @@ export const PortableGenerator = (props) => {
               <ProgressBar
                 value={data.temperature_current}
                 maxValue={data.temperature_max + 30}
-                color={data.temperature_overheat ? 'bad' : 'good'}>
+                color={data.temperature_overheat ? 'bad' : 'good'}
+              >
                 {round(data.temperature_current)}&deg;C
               </ProgressBar>
             </LabeledList.Item>
@@ -70,7 +82,8 @@ export const PortableGenerator = (props) => {
           <LabeledList>
             <LabeledList.Item
               label="Current output"
-              color={data.unsafe_output ? 'bad' : null}>
+              color={data.unsafe_output ? 'bad' : null}
+            >
               {data.power_output}
             </LabeledList.Item>
             <LabeledList.Item label="Adjust output">

@@ -2,7 +2,17 @@ import { round } from 'common/math';
 import { formatPower } from '../format';
 import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Icon, LabeledList, ProgressBar, Stack, Section, Tabs, Slider } from '../components';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Stack,
+  Section,
+  Tabs,
+  Slider,
+} from '../components';
 import { Window } from '../layouts';
 import { capitalize } from 'common/string';
 
@@ -35,13 +45,15 @@ export const RCONContent = (props) => {
         <Tabs.Tab
           key="SMESs"
           selected={0 === tabIndex}
-          onClick={() => setTabIndex(0)}>
+          onClick={() => setTabIndex(0)}
+        >
           <Icon name="power-off" /> SMESs
         </Tabs.Tab>
         <Tabs.Tab
           key="Breakers"
           selected={1 === tabIndex}
-          onClick={() => setTabIndex(1)}>
+          onClick={() => setTabIndex(1)}
+        >
           <Icon name="bolt" /> Breakers
         </Tabs.Tab>
       </Tabs>
@@ -81,9 +93,10 @@ const RCONSmesList = (props) => {
                 act('set_smes_page', {
                   index: i,
                 })
-              }>
+              }
+            >
               {i}
-            </Button>
+            </Button>,
           );
         }
         return row;
@@ -125,7 +138,8 @@ const SMESItem = (props) => {
                 good: [0.5, Infinity],
                 average: [0.15, 0.5],
                 bad: [-Infinity, 0.15],
-              }}>
+              }}
+            >
               {round(charge / (1000 * 60), 1)} kWh /{' '}
               {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
             </ProgressBar>

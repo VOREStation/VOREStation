@@ -51,7 +51,8 @@ export const OmniFilter = (props) => {
                 onClick={() => act('configure')}
               />
             </>
-          }>
+          }
+        >
           <LabeledList>
             {ports ? (
               ports.map((port) => (
@@ -64,8 +65,8 @@ export const OmniFilter = (props) => {
                         icon="compress-arrows-alt"
                         onClick={() =>
                           act('switch_mode', {
-                            'mode': 'in',
-                            'dir': port.dir,
+                            mode: 'in',
+                            dir: port.dir,
                           })
                         }
                       />
@@ -75,8 +76,8 @@ export const OmniFilter = (props) => {
                         icon="expand-arrows-alt"
                         onClick={() =>
                           act('switch_mode', {
-                            'mode': 'out',
-                            'dir': port.dir,
+                            mode: 'out',
+                            dir: port.dir,
                           })
                         }
                       />
@@ -86,8 +87,8 @@ export const OmniFilter = (props) => {
                         content={port.f_type || 'None'}
                         onClick={() =>
                           act('switch_filter', {
-                            'mode': port.f_type,
-                            'dir': port.dir,
+                            mode: port.f_type,
+                            dir: port.dir,
                           })
                         }
                       />

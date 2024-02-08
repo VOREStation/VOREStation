@@ -1,6 +1,14 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Dropdown, NumberInput, LabeledList, NoticeBox, Section } from '../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  NumberInput,
+  LabeledList,
+  NoticeBox,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const SuitCycler = (props) => {
@@ -45,7 +53,8 @@ const SuitCyclerContent = (props) => {
         title="Storage"
         buttons={
           <Button icon="lock" content="Lock" onClick={() => act('lock')} />
-        }>
+        }
+      >
         {!!(occupied && safeties) && (
           <NoticeBox>
             Biological entity detected in suit chamber. Please remove before

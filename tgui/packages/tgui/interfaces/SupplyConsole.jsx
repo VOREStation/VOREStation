@@ -2,8 +2,19 @@ import { filter, sortBy } from 'common/collections';
 import { Fragment } from 'react';
 import { formatTime } from '../format';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Section, Tabs, AnimatedNumber, Stack } from '../components';
-import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
+import {
+  Box,
+  Button,
+  LabeledList,
+  Section,
+  Tabs,
+  AnimatedNumber,
+  Stack,
+} from '../components';
+import {
+  ComplexModal,
+  modalRegisterBodyOverride,
+} from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
 import { flow } from 'common/fp';
 
@@ -25,11 +36,13 @@ const viewCrateContents = (modal) => {
           disabled={cost > supply_points}
           onClick={() => act('request_crate', { ref: ref })}
         />
-      }>
+      }
+    >
       <Section
         title={'Contains' + (random ? ' any ' + random + ' of:' : '')}
         scrollable
-        height="200px">
+        height="200px"
+      >
         {manifest.map((m) => (
           <Box key={m}>{m}</Box>
         ))}
@@ -120,7 +133,8 @@ const SupplyConsoleShuttleStatus = (props) => {
                   />
                 ) : null}
               </>
-            }>
+            }
+          >
             {shuttle.location}
           </LabeledList.Item>
           <LabeledList.Item label="Engine">{shuttle.engine}</LabeledList.Item>
@@ -148,31 +162,36 @@ const SupplyConsoleMenu = (props) => {
         <Tabs.Tab
           icon="box"
           selected={tabIndex === 0}
-          onClick={() => setTabIndex(0)}>
+          onClick={() => setTabIndex(0)}
+        >
           Request
         </Tabs.Tab>
         <Tabs.Tab
           icon="check-circle-o"
           selected={tabIndex === 1}
-          onClick={() => setTabIndex(1)}>
+          onClick={() => setTabIndex(1)}
+        >
           Accepted
         </Tabs.Tab>
         <Tabs.Tab
           icon="circle-o"
           selected={tabIndex === 2}
-          onClick={() => setTabIndex(2)}>
+          onClick={() => setTabIndex(2)}
+        >
           Requests
         </Tabs.Tab>
         <Tabs.Tab
           icon="book"
           selected={tabIndex === 3}
-          onClick={() => setTabIndex(3)}>
+          onClick={() => setTabIndex(3)}
+        >
           Order history
         </Tabs.Tab>
         <Tabs.Tab
           icon="book"
           selected={tabIndex === 4}
-          onClick={() => setTabIndex(4)}>
+          onClick={() => setTabIndex(4)}
+        >
           Export history
         </Tabs.Tab>
       </Tabs>
@@ -192,7 +211,7 @@ const SupplyConsoleMenuOrder = (props) => {
 
   const [activeCategory, setActiveCategory] = useLocalState(
     'activeCategory',
-    null
+    null,
   );
 
   const viewingPacks = flow([
@@ -284,7 +303,7 @@ const SupplyConsoleMenuOrderList = (props) => {
   const { orders, order_auth, supply_points } = data;
 
   const displayedOrders = orders.filter(
-    (val) => val.status === mode || mode === 'All'
+    (val) => val.status === mode || mode === 'All',
   );
 
   if (!displayedOrders.length) {
@@ -317,7 +336,8 @@ const SupplyConsoleMenuOrderList = (props) => {
                 onClick={() => act('delete_order', { ref: order.ref })}
               />
             ) : null
-          }>
+          }
+        >
           <LabeledList>
             {order.entries.map((field) =>
               field.entry ? (
@@ -337,10 +357,11 @@ const SupplyConsoleMenuOrderList = (props) => {
                         }}
                       />
                     ) : null
-                  }>
+                  }
+                >
                   {field.entry}
                 </LabeledList.Item>
-              ) : null
+              ) : null,
             )}
             {mode === 'All' ? (
               <LabeledList.Item label="Status">{order.status}</LabeledList.Item>
@@ -398,7 +419,8 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                       }
                     />
                   ) : null
-                }>
+                }
+              >
                 {title.entry}
               </LabeledList.Item>
             ))}
@@ -439,7 +461,8 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                         />
                       </>
                     ) : null
-                  }>
+                  }
+                >
                   {item.quantity}x -&gt; {item.value} points
                 </LabeledList.Item>
               ))

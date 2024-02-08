@@ -72,7 +72,7 @@ const Multipliers = (props) => {
 
   let maxM = Math.min(
     maxMultiplier,
-    Math.floor(recipe.max_res_amount / recipe.res_amount)
+    Math.floor(recipe.max_res_amount / recipe.res_amount),
   );
 
   let multipliers = [5, 10, 25];
@@ -90,7 +90,7 @@ const Multipliers = (props) => {
               multiplier: multiplier,
             })
           }
-        />
+        />,
       );
     }
   }
@@ -105,7 +105,7 @@ const Multipliers = (props) => {
             multiplier: maxM,
           })
         }
-      />
+      />,
     );
   }
 

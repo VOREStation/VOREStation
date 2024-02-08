@@ -38,7 +38,8 @@ export const NtosMain = (props) => {
       }
       theme={device_theme}
       width={400}
-      height={500}>
+      height={500}
+    >
       <NtosWindow.Content scrollable>
         {!!has_light && (
           <Section>
@@ -46,7 +47,8 @@ export const NtosMain = (props) => {
               width="144px"
               icon="lightbulb"
               selected={light_on}
-              onClick={() => act('PC_toggle_light')}>
+              onClick={() => act('PC_toggle_light')}
+            >
               Flashlight: {light_on ? 'ON' : 'OFF'}
             </Button>
             <Button ml={1} onClick={() => act('PC_light_color')}>
@@ -64,7 +66,8 @@ export const NtosMain = (props) => {
               disabled={!login.IDName}
               onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
             />
-          }>
+          }
+        >
           <Table>
             <Table.Row>ID Name: {login.IDName}</Table.Row>
             <Table.Row>Assignment: {login.IDJob}</Table.Row>
@@ -131,7 +134,8 @@ export const NtosMain = (props) => {
                       act('PC_setautorun', {
                         name: program.name,
                       })
-                    }>
+                    }
+                  >
                     AR
                   </Button>
                 </Table.Cell>

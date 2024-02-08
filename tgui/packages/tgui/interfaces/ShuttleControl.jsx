@@ -1,7 +1,14 @@
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 /* Helpers */
@@ -94,7 +101,8 @@ const ShuttleControlSharedShuttleControls = (props) => {
             onClick={() => act('move')}
             disabled={!can_launch}
             icon="rocket"
-            fluid>
+            fluid
+          >
             Launch Shuttle
           </Button>
         </Flex.Item>
@@ -103,7 +111,8 @@ const ShuttleControlSharedShuttleControls = (props) => {
             onClick={() => act('cancel')}
             disabled={!can_cancel}
             icon="ban"
-            fluid>
+            fluid
+          >
             Cancel Launch
           </Button>
         </Flex.Item>
@@ -113,7 +122,8 @@ const ShuttleControlSharedShuttleControls = (props) => {
             color="bad"
             disabled={!can_force}
             icon="exclamation-triangle"
-            fluid>
+            fluid
+          >
             Force Launch
           </Button>
         </Flex.Item>
@@ -145,7 +155,8 @@ const ShuttleControlConsoleMulti = (props) => {
               <Button
                 selected={cloaked}
                 icon={cloaked ? 'eye' : 'eye-o'}
-                onClick={() => act('toggle_cloaked')}>
+                onClick={() => act('toggle_cloaked')}
+              >
                 {cloaked ? 'Enabled' : 'Disabled'}
               </Button>
             </LabeledList.Item>
@@ -155,7 +166,8 @@ const ShuttleControlConsoleMulti = (props) => {
             <Button
               icon="taxi"
               disabled={!can_pick}
-              onClick={() => act('pick')}>
+              onClick={() => act('pick')}
+            >
               {destination_name}
             </Button>
           </LabeledList.Item>
@@ -179,7 +191,8 @@ const ShuttleControlConsoleExploration = (props) => {
             <Button
               icon="taxi"
               disabled={!can_pick}
-              onClick={() => act('pick')}>
+              onClick={() => act('pick')}
+            >
               {destination_name}
             </Button>
           </LabeledList.Item>
@@ -247,7 +260,8 @@ const ShuttleControlConsoleWeb = (props) => {
             </Button>
           )) ||
           null
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Engines">
             {(shuttle_state === 'idle' && (
@@ -278,7 +292,8 @@ const ShuttleControlConsoleWeb = (props) => {
                           docking_status !== 'undocked' &&
                           docking_status !== 'docked'
                         }
-                        onClick={() => act('dock_command')}>
+                        onClick={() => act('dock_command')}
+                      >
                         Dock
                       </Button>
                       <Button
@@ -287,11 +302,13 @@ const ShuttleControlConsoleWeb = (props) => {
                           docking_status !== 'docked' &&
                           docking_status !== 'undocked'
                         }
-                        onClick={() => act('undock_command')}>
+                        onClick={() => act('undock_command')}
+                      >
                         Undock
                       </Button>
                     </>
-                  }>
+                  }
+                >
                   <Box bold inline>
                     {getDockingStatus(docking_status, docking_override)}
                   </Box>
@@ -303,7 +320,8 @@ const ShuttleControlConsoleWeb = (props) => {
                   <Button
                     selected={cloaked}
                     icon={cloaked ? 'eye' : 'eye-o'}
-                    onClick={() => act('toggle_cloaked')}>
+                    onClick={() => act('toggle_cloaked')}
+                  >
                     {cloaked ? 'Enabled' : 'Disabled'}
                   </Button>
                 </LabeledList.Item>
@@ -314,7 +332,8 @@ const ShuttleControlConsoleWeb = (props) => {
                   <Button
                     selected={autopilot}
                     icon={autopilot ? 'eye' : 'eye-o'}
-                    onClick={() => act('toggle_autopilot')}>
+                    onClick={() => act('toggle_autopilot')}
+                  >
                     {autopilot ? 'Enabled' : 'Disabled'}
                   </Button>
                 </LabeledList.Item>
@@ -332,9 +351,8 @@ const ShuttleControlConsoleWeb = (props) => {
                   <LabeledList.Item label={route.name} key={route.name}>
                     <Button
                       icon="rocket"
-                      onClick={() =>
-                        act('traverse', { traverse: route.index })
-                      }>
+                      onClick={() => act('traverse', { traverse: route.index })}
+                    >
                       {route.travel_time}
                     </Button>
                   </LabeledList.Item>
@@ -356,7 +374,8 @@ const ShuttleControlConsoleWeb = (props) => {
                 color="good"
                 minValue={0}
                 maxValue={100}
-                value={travel_progress}>
+                value={travel_progress}
+              >
                 {time_left}s
               </ProgressBar>
             </LabeledList.Item>
@@ -451,10 +470,10 @@ const ShuttleControlConsoleWeb = (props) => {
 // This may look tempting to convert to require() or some kind of dynamic call
 // Don't do it. XSS abound.
 const SubtemplateList = {
-  'ShuttleControlConsoleDefault': <ShuttleControlConsoleDefault />,
-  'ShuttleControlConsoleMulti': <ShuttleControlConsoleMulti />,
-  'ShuttleControlConsoleExploration': <ShuttleControlConsoleExploration />,
-  'ShuttleControlConsoleWeb': <ShuttleControlConsoleWeb />,
+  ShuttleControlConsoleDefault: <ShuttleControlConsoleDefault />,
+  ShuttleControlConsoleMulti: <ShuttleControlConsoleMulti />,
+  ShuttleControlConsoleExploration: <ShuttleControlConsoleExploration />,
+  ShuttleControlConsoleWeb: <ShuttleControlConsoleWeb />,
 };
 
 export const ShuttleControl = (props) => {
@@ -463,7 +482,8 @@ export const ShuttleControl = (props) => {
   return (
     <Window
       width={470}
-      height={subtemplate === 'ShuttleControlConsoleWeb' ? 560 : 370}>
+      height={subtemplate === 'ShuttleControlConsoleWeb' ? 560 : 370}
+    >
       <Window.Content>{SubtemplateList[subtemplate]}</Window.Content>
     </Window>
   );

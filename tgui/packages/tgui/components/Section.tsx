@@ -75,7 +75,8 @@ export const Section = (props: SectionProps) => {
         className,
         computeBoxClassName(rest),
       ])}
-      {...computeBoxProps(rest)}>
+      {...computeBoxProps(rest)}
+    >
       {hasTitle && (
         <div className="Section__title">
           <span className="Section__titleText">{title}</span>
@@ -89,7 +90,8 @@ export const Section = (props: SectionProps) => {
             'Section__content',
             !!stretchContents && 'Section__content--stretchContents', // VOREStation Addition
             !!noTopPadding && 'Section__content--noTopPadding', // VOREStation Addition
-          ])}>
+          ])}
+        >
           {children}
         </div>
       </div>

@@ -24,7 +24,8 @@ export const TankDispenser = (props) => {
                   disabled={!plasma}
                   onClick={() => act('plasma')}
                 />
-              }>
+              }
+            >
               {plasma}
             </LabeledList.Item>
             <LabeledList.Item
@@ -36,7 +37,8 @@ export const TankDispenser = (props) => {
                   disabled={!oxygen}
                   onClick={() => act('oxygen')}
                 />
-              }>
+              }
+            >
               {oxygen}
             </LabeledList.Item>
           </LabeledList>

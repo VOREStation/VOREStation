@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, LabeledList, ProgressBar, Section } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const pAIDoorjack = (props) => {
@@ -35,7 +42,8 @@ export const pAIDoorjack = (props) => {
                         good: [67, Infinity],
                         average: [33, 67],
                         bad: [-Infinity, 33],
-                      }}>
+                      }}
+                    >
                       <AnimatedNumber value={progress_a} />.
                       <AnimatedNumber value={progress_b} />%
                     </ProgressBar>

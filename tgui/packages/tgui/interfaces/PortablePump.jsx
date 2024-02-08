@@ -25,7 +25,8 @@ export const PortablePump = (props) => {
               selected={direction}
               onClick={() => act('direction')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Output">
               <Slider
