@@ -1,7 +1,8 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Button, Section } from '../components';
 import { BooleanLike } from 'common/react';
+
+import { useBackend } from '../backend';
+import { Button, Section } from '../components';
+import { Window } from '../layouts';
 
 const ModeSpan = {
   'Hold': '<span class="badge text-bg-secondary">Hold</span>',

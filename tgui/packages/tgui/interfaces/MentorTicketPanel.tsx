@@ -72,8 +72,8 @@ export const MentorTicketPanel = (props) => {
               <div dangerouslySetInnerHTML={{ __html: actions }} />
             </LabeledList.Item>
             <LabeledList.Item label="Log">
-              {Object.keys(log).map((L) => (
-                <div dangerouslySetInnerHTML={{ __html: log[L] }} />
+              {Object.keys(log).map((L, i) => (
+                <div key={i} dangerouslySetInnerHTML={{ __html: log[L] }} />
               ))}
             </LabeledList.Item>
           </LabeledList>

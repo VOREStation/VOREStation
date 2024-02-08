@@ -1,8 +1,9 @@
+import { decodeHtmlEntities } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Box, Section, Table } from '../components';
-import { Window } from '../layouts';
 import { COLORS } from '../constants';
-import { decodeHtmlEntities } from 'common/string';
+import { Window } from '../layouts';
 
 /*
  * Shared by the following templates (and used individually too)

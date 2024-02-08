@@ -2,8 +2,9 @@ import { filter } from 'common/collections';
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { Fragment } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
-import { Box, ByondUi, Button, Flex, Icon, LabeledList, Input, Section, Table } from '../components';
+import { Box, Button, ByondUi, Flex, Icon, Input, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 import { CrewManifestContent } from './CrewManifest';
 

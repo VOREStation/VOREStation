@@ -4,10 +4,9 @@
  * @license MIT
  */
 
-import { Icon, Section, Stack } from './components';
-
-import { Window } from './layouts';
 import { useBackend } from './backend';
+import { Icon, Section, Stack } from './components';
+import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces');
 
