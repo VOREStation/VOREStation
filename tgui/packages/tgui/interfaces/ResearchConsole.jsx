@@ -1,7 +1,20 @@
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend, useLocalState, useSharedState } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Tabs, Input, NumberInput, Table, Divider } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Tabs,
+  Input,
+  NumberInput,
+  Table,
+  Divider,
+} from '../components';
 import { Window } from '../layouts';
 
 const ResearchConsoleViewResearch = (props) => {
@@ -16,7 +29,8 @@ const ResearchConsoleViewResearch = (props) => {
         <Button icon="print" onClick={() => act('print', { print: 1 })}>
           Print This Page
         </Button>
-      }>
+      }
+    >
       <Table>
         {tech.map((thing) => (
           <Table.Row key={thing.name}>
@@ -87,7 +101,8 @@ const ResearchConsoleViewDesigns = (props) => {
           </Button>
           {<PaginationChevrons target={'design_page'} /> || null}
         </>
-      }>
+      }
+    >
       <Input
         fluid
         placeholder="Search for..."
@@ -131,7 +146,8 @@ const TechDisk = (props) => {
             content="Back"
             onClick={() => setSaveDialog(false)}
           />
-        }>
+        }
+      >
         <LabeledList>
           {tech.map((level) => (
             <LabeledList.Item label={level.name} key={level.name}>
@@ -140,7 +156,8 @@ const TechDisk = (props) => {
                 onClick={() => {
                   setSaveDialog(false);
                   act('copy_tech', { copy_tech_ID: level.id });
-                }}>
+                }}
+              >
                 Copy To Disk
               </Button>
             </LabeledList.Item>
@@ -217,7 +234,8 @@ const DataDisk = (props) => {
             />
             {<PaginationChevrons target={'design_page'} /> || null}
           </>
-        }>
+        }
+      >
         <Input
           fluid
           placeholder="Search for..."
@@ -234,7 +252,8 @@ const DataDisk = (props) => {
                   onClick={() => {
                     setSaveDialog(false);
                     act('copy_design', { copy_design_ID: item.id });
-                  }}>
+                  }}
+                >
                   Copy To Disk
                 </Button>
               </LabeledList.Item>
@@ -347,7 +366,8 @@ const ResearchConsoleDestructiveAnalyzer = (props) => {
             mt={1}
             color="red"
             icon="eraser"
-            onClick={() => act('deconstruct')}>
+            onClick={() => act('deconstruct')}
+          >
             Deconstruct Item
           </Button>
           <Button icon="eject" onClick={() => act('eject_item')}>
@@ -371,7 +391,8 @@ const ResearchConsoleBuildMenu = (props) => {
   return (
     <Section
       title={<PaginationTitle target="builder_page" title="Designs" />}
-      buttons={<PaginationChevrons target={'builder_page'} />}>
+      buttons={<PaginationChevrons target={'builder_page'} />}
+    >
       <Input
         fluid
         placeholder="Search for..."
@@ -392,7 +413,8 @@ const ResearchConsoleBuildMenu = (props) => {
                   icon="wrench"
                   onClick={() =>
                     act(buildName, { build: design.id, imprint: design.id })
-                  }>
+                  }
+                >
                   Build
                 </Button>
                 {buildFiveName && (
@@ -403,7 +425,8 @@ const ResearchConsoleBuildMenu = (props) => {
                         build: design.id,
                         imprint: design.id,
                       })
-                    }>
+                    }
+                  >
                     x5
                   </Button>
                 )}
@@ -502,7 +525,8 @@ const ResearchConsoleConstructor = (props) => {
         <Tabs.Tab
           icon="wrench"
           selected={protoTab === 0}
-          onClick={() => setProtoTab(0)}>
+          onClick={() => setProtoTab(0)}
+        >
           Build
         </Tabs.Tab>
         <Tabs.Tab
@@ -510,19 +534,22 @@ const ResearchConsoleConstructor = (props) => {
           iconSpin={queueSpin}
           color={queueColor}
           selected={protoTab === 1}
-          onClick={() => setProtoTab(1)}>
+          onClick={() => setProtoTab(1)}
+        >
           Queue
         </Tabs.Tab>
         <Tabs.Tab
           icon="cookie-bite"
           selected={protoTab === 2}
-          onClick={() => setProtoTab(2)}>
+          onClick={() => setProtoTab(2)}
+        >
           Mat Storage
         </Tabs.Tab>
         <Tabs.Tab
           icon="flask"
           selected={protoTab === 3}
-          onClick={() => setProtoTab(3)}>
+          onClick={() => setProtoTab(3)}
+        >
           Chem Storage
         </Tabs.Tab>
       </Tabs>
@@ -551,7 +578,8 @@ const ResearchConsoleConstructor = (props) => {
                               act(removeQueueAction, {
                                 [removeQueueAction]: item.index,
                               })
-                            }>
+                            }
+                          >
                             Remove
                           </Button>
                         </Box>
@@ -571,7 +599,8 @@ const ResearchConsoleConstructor = (props) => {
                         act(removeQueueAction, {
                           [removeQueueAction]: item.index,
                         })
-                      }>
+                      }
+                    >
                       Remove
                     </Button>
                   </LabeledList.Item>
@@ -584,7 +613,7 @@ const ResearchConsoleConstructor = (props) => {
             {mats.map((mat) => {
               const [ejectAmt, setEjectAmt] = useLocalState(
                 'ejectAmt' + mat.name,
-                0
+                0,
               );
               return (
                 <LabeledList.Item
@@ -608,7 +637,8 @@ const ResearchConsoleConstructor = (props) => {
                             [ejectSheetAction]: mat.name,
                             amount: ejectAmt,
                           });
-                        }}>
+                        }}
+                      >
                         Num
                       </Button>
                       <Button
@@ -619,11 +649,13 @@ const ResearchConsoleConstructor = (props) => {
                             [ejectSheetAction]: mat.name,
                             amount: 50,
                           })
-                        }>
+                        }
+                      >
                         All
                       </Button>
                     </>
-                  }>
+                  }
+                >
                   {mat.amount} cm&sup3;
                 </LabeledList.Item>
               );
@@ -640,9 +672,8 @@ const ResearchConsoleConstructor = (props) => {
                     <Button
                       ml={1}
                       icon="eject"
-                      onClick={() =>
-                        act(ejectChemAction, { dispose: chem.id })
-                      }>
+                      onClick={() => act(ejectChemAction, { dispose: chem.id })}
+                    >
                       Purge
                     </Button>
                   </LabeledList.Item>
@@ -674,13 +705,15 @@ const ResearchConsoleSettings = (props) => {
         <Tabs.Tab
           icon="cogs"
           onClick={() => setSettingsTab(0)}
-          selected={settingsTab === 0}>
+          selected={settingsTab === 0}
+        >
           General
         </Tabs.Tab>
         <Tabs.Tab
           icon="link"
           onClick={() => setSettingsTab(1)}
-          selected={settingsTab === 1}>
+          selected={settingsTab === 1}
+        >
           Device Linkages
         </Tabs.Tab>
       </Tabs>
@@ -718,9 +751,8 @@ const ResearchConsoleSettings = (props) => {
                 <LabeledList.Item label="Destructive Analyzer">
                   <Button
                     icon="unlink"
-                    onClick={() =>
-                      act('disconnect', { disconnect: 'destroy' })
-                    }>
+                    onClick={() => act('disconnect', { disconnect: 'destroy' })}
+                  >
                     Disconnect
                   </Button>
                 </LabeledList.Item>
@@ -730,7 +762,8 @@ const ResearchConsoleSettings = (props) => {
                 <LabeledList.Item label="Protolathe">
                   <Button
                     icon="unlink"
-                    onClick={() => act('disconnect', { disconnect: 'lathe' })}>
+                    onClick={() => act('disconnect', { disconnect: 'lathe' })}
+                  >
                     Disconnect
                   </Button>
                 </LabeledList.Item>
@@ -742,7 +775,8 @@ const ResearchConsoleSettings = (props) => {
                     icon="unlink"
                     onClick={() =>
                       act('disconnect', { disconnect: 'imprinter' })
-                    }>
+                    }
+                  >
                     Disconnect
                   </Button>
                 </LabeledList.Item>
@@ -807,7 +841,8 @@ export const ResearchConsole = (props) => {
               icon={obj.icon}
               selected={menu === i}
               disabled={allTabsDisabled}
-              onClick={() => setMenu(i)}>
+              onClick={() => setMenu(i)}
+            >
               {obj.name}
             </Tabs.Tab>
           ))}

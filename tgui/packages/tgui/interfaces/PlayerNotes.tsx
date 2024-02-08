@@ -22,7 +22,8 @@ export const PlayerNotes = (props) => {
       title={'Player Notes'}
       theme={device_theme}
       width={400}
-      height={500}>
+      height={500}
+    >
       <Window.Content scrollable>
         <Section title="Player notes">
           <Button icon="filter" onClick={() => act('filter_player_notes')}>
@@ -60,7 +61,8 @@ export const PlayerNotes = (props) => {
                       act('show_player_info', {
                         name: ckey.name,
                       })
-                    }>
+                    }
+                  >
                     {ckey.name}
                   </Button>
                 </Table.Cell>
@@ -78,9 +80,10 @@ export const PlayerNotes = (props) => {
                     act('set_page', {
                       index: i,
                     })
-                  }>
+                  }
+                >
                   {i}
-                </Button>
+                </Button>,
               );
             }
             return row;

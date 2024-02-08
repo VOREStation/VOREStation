@@ -52,7 +52,8 @@ const PlantAnalyzerContent = (props) => {
             onClick={() => act('close')}
           />
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Plant Name">
           {seed.name}#{seed.uid}

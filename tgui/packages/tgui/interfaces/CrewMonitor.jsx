@@ -130,13 +130,15 @@ export const CrewMonitorContent = (props) => {
         <Tabs.Tab
           key="DataView"
           selected={0 === tabIndex}
-          onClick={() => setTabIndex(0)}>
+          onClick={() => setTabIndex(0)}
+        >
           <Icon name="table" /> Data View
         </Tabs.Tab>
         <Tabs.Tab
           key="MapView"
           selected={1 === tabIndex}
-          onClick={() => setTabIndex(1)}>
+          onClick={() => setTabIndex(1)}
+        >
           <Icon name="map-marked-alt" /> Map View
         </Tabs.Tab>
       </Tabs>
@@ -153,7 +155,7 @@ const CrewMonitorMapView = (props) => {
       <NanoMap onZoom={(v) => setZoom(v)}>
         {data.crewmembers
           .filter(
-            (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel
+            (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel,
           )
           .map((cm) => (
             <NanoMap.Marker

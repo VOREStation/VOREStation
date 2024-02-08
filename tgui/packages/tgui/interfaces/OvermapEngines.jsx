@@ -1,6 +1,14 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Section, AnimatedNumber, Collapsible } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  AnimatedNumber,
+  Collapsible,
+} from '../components';
 import { Window } from '../layouts';
 
 export const OvermapEngines = (props) => {
@@ -29,7 +37,8 @@ export const OvermapEnginesContent = (props) => {
             <Button
               icon="power-off"
               selected={global_state}
-              onClick={() => act('global_toggle')}>
+              onClick={() => act('global_toggle')}
+            >
               {global_state ? 'Shut All Engines Down' : 'Start All Engines'}
             </Button>
           </LabeledList.Item>
@@ -68,7 +77,8 @@ export const OvermapEnginesContent = (props) => {
                   // "Engine " + (i + 1)
                   //   + " | Thrust: " + engine.eng_thrust
                   //   + " | Limit: " + engine.eng_thrust_limiter + "%"
-                }>
+                }
+              >
                 <Section width="127%">
                   <LabeledList>
                     <LabeledList.Item label="Type">
@@ -82,7 +92,8 @@ export const OvermapEnginesContent = (props) => {
                               ? 'good'
                               : 'average'
                             : 'bad'
-                        }>
+                        }
+                      >
                         {engine.eng_on
                           ? engine.eng_on === 1
                             ? 'Online'
@@ -113,7 +124,8 @@ export const OvermapEnginesContent = (props) => {
                       <Button
                         onClick={() =>
                           act('set_limit', { engine: engine.eng_reference })
-                        }>
+                        }
+                      >
                         {engine.eng_thrust_limiter}%
                       </Button>
                       <Button
@@ -139,7 +151,8 @@ export const OvermapEnginesContent = (props) => {
                 icon="power-off"
                 onClick={() =>
                   act('toggle_engine', { engine: engine.eng_reference })
-                }>
+                }
+              >
                 {engine.eng_on
                   ? engine.eng_on === 1
                     ? 'Shutoff'

@@ -47,7 +47,8 @@ export const Microwave = (props) => {
                     Eject
                   </Button>
                 </>
-              }>
+              }
+            >
               <LabeledList>
                 {items.map((item) => (
                   <LabeledList.Item key={item.name} label={item.name}>

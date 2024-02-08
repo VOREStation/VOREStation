@@ -46,19 +46,22 @@ export const PrisonerManagement = (props) => {
                         <Button
                           onClick={() =>
                             act('inject', { imp: chem.ref, val: 1 })
-                          }>
+                          }
+                        >
                           (1)
                         </Button>
                         <Button
                           onClick={() =>
                             act('inject', { imp: chem.ref, val: 5 })
-                          }>
+                          }
+                        >
                           (5)
                         </Button>
                         <Button
                           onClick={() =>
                             act('inject', { imp: chem.ref, val: 10 })
-                          }>
+                          }
+                        >
                           (10)
                         </Button>
                       </Table.Cell>

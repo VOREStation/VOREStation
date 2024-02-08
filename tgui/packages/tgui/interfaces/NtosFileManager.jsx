@@ -39,7 +39,8 @@ export const NtosFileManager = (props) => {
                   onClick={() => act('PRG_closefile')}
                 />
               </>
-            }>
+            }
+          >
             {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
              * It should be safe enough to support pencode in this way.
              */}

@@ -1,17 +1,30 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Collapsible, Icon, Input, LabeledList, Section, Tabs } from '../components';
-import { ComplexModal, modalOpen, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
+import {
+  Box,
+  Button,
+  Collapsible,
+  Icon,
+  Input,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
+import {
+  ComplexModal,
+  modalOpen,
+  modalRegisterBodyOverride,
+} from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
 
 const severities = {
-  'Minor': 'good',
-  'Medium': 'average',
+  Minor: 'good',
+  Medium: 'average',
   'Dangerous!': 'bad',
-  'Harmful': 'bad',
+  Harmful: 'bad',
   'BIOHAZARD THREAT!': 'bad',
 };
 
@@ -32,7 +45,8 @@ const virusModalBodyOverride = (modal) => {
       title={virus.name || 'Virus'}
       buttons={
         <Button icon="times" color="red" onClick={() => act('modal_close')} />
-      }>
+      }
+    >
       <Box mx="0.5rem">
         <LabeledList>
           <LabeledList.Item label="Spread">
@@ -233,7 +247,8 @@ const MedicalRecordsViewGeneral = (_properties) => {
               key={i}
               display="inline-block"
               textAlign="center"
-              color="label">
+              color="label"
+            >
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -355,9 +370,9 @@ const MedicalRecordsMedbots = (_properties) => {
                 <Box mt="0.5rem">
                   {medbot.use_beaker
                     ? 'Reservoir: ' +
-                    medbot.total_volume +
-                    '/' +
-                    medbot.maximum_volume
+                      medbot.total_volume +
+                      '/' +
+                      medbot.maximum_volume
                     : 'Using internal synthesizer.'}
                 </Box>
               </>
@@ -378,25 +393,29 @@ const MedicalRecordsNavigation = (_properties) => {
     <Tabs>
       <Tabs.Tab
         selected={screen === 2}
-        onClick={() => act('screen', { screen: 2 })}>
+        onClick={() => act('screen', { screen: 2 })}
+      >
         <Icon name="list" />
         List Records
       </Tabs.Tab>
       <Tabs.Tab
         selected={screen === 5}
-        onClick={() => act('screen', { screen: 5 })}>
+        onClick={() => act('screen', { screen: 5 })}
+      >
         <Icon name="database" />
         Virus Database
       </Tabs.Tab>
       <Tabs.Tab
         selected={screen === 6}
-        onClick={() => act('screen', { screen: 6 })}>
+        onClick={() => act('screen', { screen: 6 })}
+      >
         <Icon name="plus-square" />
         Medbot Tracking
       </Tabs.Tab>
       <Tabs.Tab
         selected={screen === 3}
-        onClick={() => act('screen', { screen: 3 })}>
+        onClick={() => act('screen', { screen: 3 })}
+      >
         <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>

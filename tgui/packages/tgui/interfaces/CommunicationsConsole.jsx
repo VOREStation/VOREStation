@@ -252,7 +252,8 @@ const CommunicationsConsoleMessage = (props) => {
             disabled={!authenticated}
             onClick={() => act('messagelist')}
           />
-        }>
+        }
+      >
         <Box>{message_current.contents}</Box>
       </Section>
     );
@@ -289,7 +290,8 @@ const CommunicationsConsoleMessage = (props) => {
           content="Back To Main Menu"
           onClick={() => act('main')}
         />
-      }>
+      }
+    >
       <LabeledList>
         {(messages.length && messageRows) || (
           <LabeledList.Item label="404" color="bad">
@@ -326,7 +328,8 @@ const CommunicationsConsoleStatusDisplay = (props) => {
           content="Back To Main Menu"
           onClick={() => act('main')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Presets">{presetButtons}</LabeledList.Item>
         <LabeledList.Item label="Message Line 1">

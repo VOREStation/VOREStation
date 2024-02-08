@@ -1,5 +1,13 @@
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, Tabs, Stack } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Tabs,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 import { sortBy, filter } from 'common/collections';
 
@@ -64,11 +72,11 @@ const ICPrinterCategories = (props) => {
 
   const [categoryTarget, setcategoryTarget] = useSharedState(
     'categoryTarget',
-    null
+    null,
   );
 
   const selectedCategory = filter((cat) => cat.name === categoryTarget)(
-    categories
+    categories,
   )[0];
 
   return (
@@ -80,7 +88,8 @@ const ICPrinterCategories = (props) => {
               <Tabs.Tab
                 selected={categoryTarget === cat.name}
                 onClick={() => setcategoryTarget(cat.name)}
-                key={cat.name}>
+                key={cat.name}
+              >
                 {cat.name}
               </Tabs.Tab>
             ))}
@@ -100,13 +109,15 @@ const ICPrinterCategories = (props) => {
                         <Button
                           disabled={!canBuild(item, data)}
                           icon="print"
-                          onClick={() => act('build', { build: item.path })}>
+                          onClick={() => act('build', { build: item.path })}
+                        >
                           Print
                         </Button>
-                      }>
+                      }
+                    >
                       {item.desc}
                     </LabeledList.Item>
-                  )
+                  ),
                 )}
               </LabeledList>
             </Section>

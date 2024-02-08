@@ -4,9 +4,9 @@ import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 const State = {
-  'open': 'Open',
-  'resolved': 'Resolved',
-  'unknown': 'Unknown',
+  open: 'Open',
+  resolved: 'Resolved',
+  unknown: 'Unknown',
 };
 
 type Data = {
@@ -50,7 +50,8 @@ export const MentorTicketPanel = (props) => {
               />{' '}
               <Button content="Legacy UI" onClick={() => act('legacy')} />
             </Box>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Mentor Help Ticket">
               #{id}: <div dangerouslySetInnerHTML={{ __html: name }} />

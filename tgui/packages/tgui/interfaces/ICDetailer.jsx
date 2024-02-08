@@ -27,12 +27,12 @@ export const ICDetailer = (props) => {
               style={
                 color_list[key] === detail_color
                   ? {
-                    border: '4px solid black',
-                    'border-radius': 0,
-                  }
+                      border: '4px solid black',
+                      'border-radius': 0,
+                    }
                   : {
-                    'border-radius': 0,
-                  }
+                      'border-radius': 0,
+                    }
               }
               backgroundColor={color_list[key]}
             />

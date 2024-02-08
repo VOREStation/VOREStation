@@ -1,6 +1,13 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  NoticeBox,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const RoboticsControlConsole = (props) => {
@@ -82,13 +89,15 @@ const Cyborgs = (props) => {
               }
             />
           </>
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Status">
             <Box
               color={
                 cyborg.status ? 'bad' : cyborg.locked_down ? 'average' : 'good'
-              }>
+              }
+            >
               {cyborg.status
                 ? 'Not Responding'
                 : cyborg.locked_down

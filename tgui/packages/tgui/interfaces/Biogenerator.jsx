@@ -1,11 +1,19 @@
 import { createSearch } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
+import {
+  Box,
+  Button,
+  Collapsible,
+  Dropdown,
+  Flex,
+  Input,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 const sortTypes = {
-  'Alphabetical': (a, b) => a - b,
+  Alphabetical: (a, b) => a - b,
   'By availability': (a, b) => -(a.affordable - b.affordable),
   'By price': (a, b) => a.price - b.price,
 };
@@ -30,7 +38,8 @@ export const Biogenerator = (props) => {
                 ml={1}
                 icon="eject"
                 disabled={!data.beaker}
-                onClick={() => act('detach')}>
+                onClick={() => act('detach')}
+              >
                 Eject Beaker
               </Button>
             </Section>
@@ -153,7 +162,8 @@ const BiogeneratorItemsCategory = (properties) => {
             lineHeight="20px"
             style={{
               float: 'left',
-            }}>
+            }}
+          >
             {item.name}
           </Box>
           <Button

@@ -56,7 +56,8 @@ export const Autolathe = (props) => {
               selected={categories[category]}
               onSelected={(val) => setCategory(categories.indexOf(val))}
             />
-          }>
+          }
+        >
           <Input
             fluid
             placeholder="Search for..."
@@ -71,7 +72,8 @@ export const Autolathe = (props) => {
                   icon="hammer"
                   iconSpin={busy === recipe.name}
                   disabled={!canBeMade(recipe, materials, 1)}
-                  onClick={() => act('make', { make: recipe.ref })}>
+                  onClick={() => act('make', { make: recipe.ref })}
+                >
                   {toTitleCase(recipe.name)}
                 </Button>
                 {(!recipe.is_stack && (
@@ -81,7 +83,8 @@ export const Autolathe = (props) => {
                       disabled={!canBeMade(recipe, materials, 5)}
                       onClick={() =>
                         act('make', { make: recipe.ref, multiplier: 5 })
-                      }>
+                      }
+                    >
                       x5
                     </Button>
                     <Button
@@ -89,7 +92,8 @@ export const Autolathe = (props) => {
                       disabled={!canBeMade(recipe, materials, 10)}
                       onClick={() =>
                         act('make', { make: recipe.ref, multiplier: 10 })
-                      }>
+                      }
+                    >
                       x10
                     </Button>
                   </Box>
@@ -101,7 +105,7 @@ export const Autolathe = (props) => {
                   Object.keys(recipe.requirements)
                     .map(
                       (mat) =>
-                        toTitleCase(mat) + ': ' + recipe.requirements[mat]
+                        toTitleCase(mat) + ': ' + recipe.requirements[mat],
                     )
                     .join(', ')) || <Box>No resources required.</Box>}
               </Flex.Item>

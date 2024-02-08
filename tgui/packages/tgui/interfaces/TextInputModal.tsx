@@ -51,7 +51,8 @@ export const TextInputModal = (props) => {
             act('submit', { entry: input });
             event.preventDefault();
           }
-        }}>
+        }}
+      >
         <Section fill>
           <Stack fill vertical>
             <Stack.Item>

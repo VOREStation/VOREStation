@@ -86,7 +86,8 @@ const CfStep2 = (props) => {
         <Box bold color="good">
           {data.totalprice}₮
         </Box>
-      }>
+      }
+    >
       <Table>
         <Table.Row>
           <Table.Cell bold position="relative">

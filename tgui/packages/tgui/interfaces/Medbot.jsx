@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, NumberInput } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  NumberInput,
+} from '../components';
 import { Window } from '../layouts';
 
 export const Medbot = (props) => {
@@ -31,11 +38,13 @@ export const Medbot = (props) => {
             <Button icon="power-off" selected={on} onClick={() => act('power')}>
               {on ? 'On' : 'Off'}
             </Button>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item
               label="Maintenance Panel"
-              color={open ? 'bad' : 'good'}>
+              color={open ? 'bad' : 'good'}
+            >
               {open ? 'Open' : 'Closed'}
             </LabeledList.Item>
             <LabeledList.Item
@@ -44,10 +53,12 @@ export const Medbot = (props) => {
                 <Button
                   disabled={!beaker}
                   icon="eject"
-                  onClick={() => act('eject')}>
+                  onClick={() => act('eject')}
+                >
                   Eject
                 </Button>
-              }>
+              }
+            >
               {(beaker && (
                 <ProgressBar value={beaker_total} maxValue={beaker_max}>
                   {beaker_total} / {beaker_max}
@@ -56,7 +67,8 @@ export const Medbot = (props) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Behavior Controls"
-              color={locked ? 'good' : 'bad'}>
+              color={locked ? 'good' : 'bad'}
+            >
               {locked ? 'Locked' : 'Unlocked'}
             </LabeledList.Item>
           </LabeledList>
@@ -87,7 +99,8 @@ export const Medbot = (props) => {
                   fluid
                   icon={use_beaker ? 'toggle-on' : 'toggle-off'}
                   selected={use_beaker}
-                  onClick={() => act('use_beaker')}>
+                  onClick={() => act('use_beaker')}
+                >
                   {use_beaker
                     ? 'Loaded Beaker (When available)'
                     : 'Internal Synthesizer'}
@@ -98,7 +111,8 @@ export const Medbot = (props) => {
                   fluid
                   icon={declare_treatment ? 'toggle-on' : 'toggle-off'}
                   selected={declare_treatment}
-                  onClick={() => act('declaretreatment')}>
+                  onClick={() => act('declaretreatment')}
+                >
                   {declare_treatment ? 'On' : 'Off'}
                 </Button>
               </LabeledList.Item>
@@ -107,7 +121,8 @@ export const Medbot = (props) => {
                   fluid
                   icon={vocal ? 'toggle-on' : 'toggle-off'}
                   selected={vocal}
-                  onClick={() => act('togglevoice')}>
+                  onClick={() => act('togglevoice')}
+                >
                   {vocal ? 'On' : 'Off'}
                 </Button>
               </LabeledList.Item>

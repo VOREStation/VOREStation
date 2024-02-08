@@ -42,7 +42,8 @@ export const PressureRegulator = (props) => {
               selected={on}
               onClick={() => act('toggle_valve')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item
               label="Pressure Regulation"
@@ -89,7 +90,8 @@ export const PressureRegulator = (props) => {
                     onClick={() => act('set_press', { press: 'set' })}
                   />
                 </>
-              }>
+              }
+            >
               {pressure_set / 100} kPa
             </LabeledList.Item>
             <LabeledList.Item
@@ -112,7 +114,8 @@ export const PressureRegulator = (props) => {
                     onClick={() => act('set_flow_rate', { press: 'set' })}
                   />
                 </>
-              }>
+              }
+            >
               {set_flow_rate / 10} L/s
             </LabeledList.Item>
           </LabeledList>

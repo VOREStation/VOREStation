@@ -18,10 +18,12 @@ export const AssemblyProx = (props) => {
                 <Button
                   icon="stopwatch"
                   selected={timing}
-                  onClick={() => act('timing')}>
+                  onClick={() => act('timing')}
+                >
                   {timing ? 'Counting Down' : 'Disabled'}
                 </Button>
-              }>
+              }
+            >
               <NumberInput
                 animated
                 fluid
@@ -49,7 +51,8 @@ export const AssemblyProx = (props) => {
                 mr={1}
                 icon={scanning ? 'lock' : 'lock-open'}
                 selected={scanning}
-                onClick={() => act('scanning')}>
+                onClick={() => act('scanning')}
+              >
                 {scanning ? 'ARMED' : 'Unarmed'}
               </Button>
               Movement sensor is active when armed!

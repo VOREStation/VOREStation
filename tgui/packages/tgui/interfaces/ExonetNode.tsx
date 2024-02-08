@@ -29,7 +29,8 @@ export const ExonetNode = (props) => {
               content={'Power ' + (on ? 'On' : 'Off')}
               onClick={() => act('toggle_power')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Incoming PDA Messages">
               <Button

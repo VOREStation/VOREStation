@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Button, Flex, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
+import {
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+  AnimatedNumber,
+} from '../components';
 import { Window } from '../layouts';
 
 export const CookingAppliance = (props) => {
@@ -23,7 +30,8 @@ export const CookingAppliance = (props) => {
               <ProgressBar
                 color={temperatureEnough ? 'good' : 'blue'}
                 value={temperature}
-                maxValue={optimalTemp}>
+                maxValue={optimalTemp}
+              >
                 <AnimatedNumber value={temperature} />
                 &deg;C / {optimalTemp}&deg;C
               </ProgressBar>
@@ -50,12 +58,14 @@ export const CookingAppliance = (props) => {
                 <LabeledList.Item
                   label={'Slot #' + (i + 1)}
                   verticalAlign="middle"
-                  key={i}>
+                  key={i}
+                >
                   <Flex spacing={1}>
                     <Flex.Item>
                       <Button
                         disabled={!containersRemovable}
-                        onClick={() => act('slot', { slot: i + 1 })}>
+                        onClick={() => act('slot', { slot: i + 1 })}
+                      >
                         {content.container || 'No Container'}
                       </Button>
                     </Flex.Item>
@@ -63,7 +73,8 @@ export const CookingAppliance = (props) => {
                       <ProgressBar
                         color={content.progressText[0]}
                         value={content.progress}
-                        maxValue={1}>
+                        maxValue={1}
+                      >
                         {content.progressText[1]}
                       </ProgressBar>
                     </Flex.Item>

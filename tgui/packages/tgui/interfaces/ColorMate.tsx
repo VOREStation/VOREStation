@@ -34,7 +34,8 @@ export const ColorMate = (props) => {
                   <Button
                     fluid
                     icon="eye-dropper"
-                    onClick={() => act('select')}>
+                    onClick={() => act('select')}
+                  >
                     Select Color
                   </Button>
                   <Button fluid icon="fill-drip" onClick={() => act('paint')}>

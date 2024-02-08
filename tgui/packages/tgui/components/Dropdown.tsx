@@ -88,7 +88,7 @@ export function Dropdown(props: Props) {
       const endIndex = options.length - 1;
 
       let selectedIndex = options.findIndex(
-        (option) => getOptionValue(option) === selected
+        (option) => getOptionValue(option) === selected,
       );
 
       if (selectedIndex < 0) {
@@ -104,7 +104,7 @@ export function Dropdown(props: Props) {
 
       onSelected?.(getOptionValue(options[newIndex]));
     },
-    [disabled, onSelected, options, selected]
+    [disabled, onSelected, options, selected],
   );
 
   /** Allows the menu to be scrollable on open */
@@ -123,7 +123,8 @@ export function Dropdown(props: Props) {
         <div
           className="Layout Dropdown__menu"
           style={{ minWidth: menuWidth }}
-          ref={innerRef}>
+          ref={innerRef}
+        >
           {options.length === 0 && (
             <div className="Dropdown__menuentry">No options</div>
           )}
@@ -141,13 +142,15 @@ export function Dropdown(props: Props) {
                 onClick={() => {
                   setOpen(false);
                   onSelected?.(value);
-                }}>
+                }}
+              >
                 {typeof option === 'string' ? option : option.displayText}
               </div>
             );
           })}
         </div>
-      }>
+      }
+    >
       <div>
         <div className="Dropdown" style={{ width: unit(width) }}>
           <div
@@ -165,7 +168,8 @@ export function Dropdown(props: Props) {
               }
               setOpen(!open);
               onClick?.(event);
-            }}>
+            }}
+          >
             {icon && (
               <Icon
                 mr={1}
@@ -178,7 +182,8 @@ export function Dropdown(props: Props) {
               className="Dropdown__selected-text"
               style={{
                 overflow: clipSelectedText ? 'hidden' : 'visible',
-              }}>
+              }}
+            >
               {displayText || selected}
             </span>
             {!noChevron && (

@@ -39,7 +39,8 @@ export const TraitSelection = (props) => {
               <Tabs.Tab
                 key={name}
                 selected={name === selection}
-                onClick={() => act('select_trait', { name })}>
+                onClick={() => act('select_trait', { name })}
+              >
                 <Box inline>{name}</Box>
               </Tabs.Tab>
             ))}

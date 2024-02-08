@@ -1,7 +1,18 @@
 /* eslint react/no-danger: "off" */
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Button, Box, Section, Table, LabeledList, Input, Tabs, Flex, AnimatedNumber, ProgressBar } from '../components';
+import {
+  Button,
+  Box,
+  Section,
+  Table,
+  LabeledList,
+  Input,
+  Tabs,
+  Flex,
+  AnimatedNumber,
+  ProgressBar,
+} from '../components';
 import { NtosWindow } from '../layouts';
 import { round } from 'common/math';
 
@@ -91,7 +102,8 @@ const NtosEmailClientContent = (props) => {
             onClick={() => act('logout')}
           />
         </>
-      }>
+      }
+    >
       {content}
     </Section>
   );
@@ -107,17 +119,20 @@ const NtosEmailClientInbox = (props) => {
       <Tabs>
         <Tabs.Tab
           selected={folder === 'Inbox'}
-          onClick={() => act('set_folder', { 'set_folder': 'Inbox' })}>
+          onClick={() => act('set_folder', { set_folder: 'Inbox' })}
+        >
           Inbox
         </Tabs.Tab>
         <Tabs.Tab
           selected={folder === 'Spam'}
-          onClick={() => act('set_folder', { 'set_folder': 'Spam' })}>
+          onClick={() => act('set_folder', { set_folder: 'Spam' })}
+        >
           Spam
         </Tabs.Tab>
         <Tabs.Tab
           selected={folder === 'Deleted'}
-          onClick={() => act('set_folder', { 'set_folder': 'Deleted' })}>
+          onClick={() => act('set_folder', { set_folder: 'Deleted' })}
+        >
           Deleted
         </Tabs.Tab>
       </Tabs>
@@ -225,7 +240,8 @@ export const NtosEmailClientViewMessage = (props) => {
             />
           </>
         )
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="From">{cur_source}</LabeledList.Item>
         <LabeledList.Item label="At">{cur_timestamp}</LabeledList.Item>
@@ -263,7 +279,8 @@ const NtosEmailClientAddressBook = (props) => {
           icon="times"
           onClick={() => act('set_recipient', { set_recipient: null })}
         />
-      }>
+      }
+    >
       {accounts.map((acc) => (
         <Button
           key={acc.login}
@@ -300,7 +317,8 @@ const NtosEmailClientNewMessage = (props) => {
           </Button>
           <Button color="bad" icon="times" onClick={() => act('cancel')} />
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Title">
           <Input
@@ -335,7 +353,8 @@ const NtosEmailClientNewMessage = (props) => {
               <Button
                 color="bad"
                 icon="times"
-                onClick={() => act('remove_attachment')}>
+                onClick={() => act('remove_attachment')}
+              >
                 Remove Attachment
               </Button>
             )) || (
@@ -343,7 +362,8 @@ const NtosEmailClientNewMessage = (props) => {
                 Add Attachment
               </Button>
             )
-          }>
+          }
+        >
           {(msg_hasattachment && (
             <Box inline>
               {msg_attachment_filename} ({msg_attachment_size}GQ)
@@ -386,7 +406,8 @@ const NtosEmailClientError = (props) => {
           content="Return"
           onClick={() => act('reset')}
         />
-      }>
+      }
+    >
       <Box color="bad">{error}</Box>
     </Section>
   );

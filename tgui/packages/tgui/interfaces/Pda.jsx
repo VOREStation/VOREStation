@@ -60,7 +60,8 @@ export const Pda = (props) => {
                 {app.name}
               </Box>
             }
-            p={1}>
+            p={1}
+          >
             <App />
           </Section>
         )}
@@ -166,7 +167,8 @@ const PDAFooter = (props) => {
       bottom="0%"
       left="0%"
       right="0%"
-      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}>
+      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}
+    >
       <Flex>
         <Flex.Item basis="33%">
           <Button

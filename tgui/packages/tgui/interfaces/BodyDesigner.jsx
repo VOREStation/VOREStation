@@ -1,6 +1,14 @@
 import { capitalize } from 'common/string';
 import { useBackend } from '../backend';
-import { Box, ByondUi, Button, Flex, LabeledList, Section, ColorBox } from '../components';
+import {
+  Box,
+  ByondUi,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  ColorBox,
+} from '../components';
 import { Window } from '../layouts';
 
 export const BodyDesigner = (props) => {
@@ -70,7 +78,8 @@ const BodyDesignerBodyRecords = (props) => {
           content="Back"
           onClick={() => act('menu', { menu: 'Main' })}
         />
-      }>
+      }
+    >
       {bodyrecords.map((record) => (
         <Button
           icon="eye"
@@ -95,7 +104,8 @@ const BodyDesignerStockRecords = (props) => {
           content="Back"
           onClick={() => act('menu', { menu: 'Main' })}
         />
-      }>
+      }
+    >
       {stock_bodyrecords.map((record) => (
         <Button
           icon="eye"
@@ -122,7 +132,8 @@ const BodyDesignerSpecificRecord = (props) => {
               content="Back"
               onClick={() => act('menu', { menu: 'Main' })}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Name">
               {activeBodyRecord.real_name}
@@ -324,7 +335,8 @@ const BodyDesignerOOCNotes = (props) => {
           onClick={() => act('menu', { menu: 'Specific Record' })}
         />
       }
-      style={{ 'word-break': 'break-all' }}>
+      style={{ 'word-break': 'break-all' }}
+    >
       {(activeBodyRecord && activeBodyRecord.booc) ||
         'ERROR: Body record not found!'}
     </Section>
@@ -332,7 +344,7 @@ const BodyDesignerOOCNotes = (props) => {
 };
 
 const MenuToTemplate = {
-  'Main': <BodyDesignerMain />,
+  Main: <BodyDesignerMain />,
   'Body Records': <BodyDesignerBodyRecords />,
   'Stock Records': <BodyDesignerStockRecords />,
   'Specific Record': <BodyDesignerSpecificRecord />,

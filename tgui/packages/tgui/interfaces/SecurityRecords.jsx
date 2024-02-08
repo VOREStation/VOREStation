@@ -1,6 +1,14 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Input, LabeledList, Section, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
 import { ComplexModal, modalOpen } from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
@@ -182,7 +190,8 @@ const SecurityRecordsViewGeneral = (_properties) => {
               key={i}
               display="inline-block"
               textAlign="center"
-              color="label">
+              color="label"
+            >
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -279,13 +288,15 @@ const SecurityRecordsNavigation = (_properties) => {
       <Tabs.Tab
         selected={screen === 2}
         icon="list"
-        onClick={() => act('screen', { screen: 2 })}>
+        onClick={() => act('screen', { screen: 2 })}
+      >
         List Records
       </Tabs.Tab>
       <Tabs.Tab
         icon="wrench"
         selected={screen === 3}
-        onClick={() => act('screen', { screen: 3 })}>
+        onClick={() => act('screen', { screen: 3 })}
+      >
         Record Maintenance
       </Tabs.Tab>
     </Tabs>

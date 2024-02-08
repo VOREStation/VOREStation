@@ -15,7 +15,8 @@ export const MiningUser = (props) => {
             verticalAlign="middle"
             style={{
               float: 'left',
-            }}>
+            }}
+          >
             Logged in as {id.name}.<br />
             You have {id.points.toLocaleString('en-US')} points.
           </Box>

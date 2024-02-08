@@ -1,7 +1,14 @@
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Dropdown, Section, LabeledList, AnimatedNumber } from '../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Section,
+  LabeledList,
+  AnimatedNumber,
+} from '../components';
 import { Window } from '../layouts';
 import { MiningUser } from './common/Mining';
 
@@ -30,17 +37,20 @@ export const MiningOreProcessingConsole = (props) => {
               <Button
                 icon="bolt"
                 selected={speed}
-                onClick={() => act('speed_toggle')}>
+                onClick={() => act('speed_toggle')}
+              >
                 {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
               </Button>
               <Button
                 icon="power-off"
                 selected={power}
-                onClick={() => act('power')}>
+                onClick={() => act('power')}
+              >
                 {power ? 'Smelting' : 'Not Smelting'}
               </Button>
             </>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item
               label="Current unclaimed points"
@@ -48,10 +58,12 @@ export const MiningOreProcessingConsole = (props) => {
                 <Button
                   disabled={unclaimedPoints < 1}
                   icon="download"
-                  onClick={() => act('claim')}>
+                  onClick={() => act('claim')}
+                >
                   Claim
                 </Button>
-              }>
+              }
+            >
               <AnimatedNumber value={unclaimedPoints} />
             </LabeledList.Item>
           </LabeledList>
@@ -110,10 +122,12 @@ const MOPCOres = (props) => {
         <Button
           icon={showAllOres ? 'toggle-on' : 'toggle-off'}
           selected={showAllOres}
-          onClick={() => act('showAllOres')}>
+          onClick={() => act('showAllOres')}
+        >
           {showAllOres ? 'All Ores' : 'Ores in Machine'}
         </Button>
-      }>
+      }
+    >
       <LabeledList>
         {(ores.length &&
           ores.sort(oreSorter).map((ore) => (
@@ -138,7 +152,8 @@ const MOPCOres = (props) => {
                     })
                   }
                 />
-              }>
+              }
+            >
               <Box inline>
                 <AnimatedNumber value={ore.amount} />
               </Box>

@@ -1,6 +1,14 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 import { createLogger } from '../logging';
@@ -76,7 +84,7 @@ export const EmbeddedController = (props) => {
   const Component = primaryRoutes[internalTemplateName];
   if (!Component) {
     throw Error(
-      'Unable to find Component for template name: ' + internalTemplateName
+      'Unable to find Component for template name: ' + internalTemplateName,
     );
   }
 
@@ -123,7 +131,8 @@ const StatusDisplay = (props) => {
               color={bar.color(bar.value)}
               minValue={bar.minValue}
               maxValue={bar.maxValue}
-              value={bar.value}>
+              value={bar.value}
+            >
               {bar.textValue}
             </ProgressBar>
           </LabeledList.Item>
@@ -207,10 +216,10 @@ const EscapePodStatus = (props) => {
   const { data, act } = useBackend();
 
   const statusToHtml = {
-    'docked': <Armed />,
-    'undocking': <Box color="average">EJECTING-STAND CLEAR!</Box>,
-    'undocked': <Box color="grey">POD EJECTED</Box>,
-    'docking': <Box color="good">INITIALIZING...</Box>,
+    docked: <Armed />,
+    undocking: <Box color="average">EJECTING-STAND CLEAR!</Box>,
+    undocked: <Box color="grey">POD EJECTED</Box>,
+    docking: <Box color="good">INITIALIZING...</Box>,
   };
 
   let dockHatch = <Box color="bad">ERROR</Box>;
@@ -283,10 +292,10 @@ const DockStatus = (props) => {
   const { data, act } = useBackend();
 
   const statusToHtml = {
-    'docked': <Box color="good">DOCKED</Box>,
-    'docking': <Box color="average">DOCKING</Box>,
-    'undocking': <Box color="average">UNDOCKING</Box>,
-    'undocked': <Box color="grey">NOT IN USE</Box>,
+    docked: <Box color="good">DOCKED</Box>,
+    docking: <Box color="average">DOCKING</Box>,
+    undocking: <Box color="average">UNDOCKING</Box>,
+    undocked: <Box color="grey">NOT IN USE</Box>,
   };
 
   let dockStatus = statusToHtml[data.docking_status];
@@ -518,7 +527,8 @@ const AirlockConsoleDocking = (props) => {
               onClick={() => act('toggle_override')}
             />
           ) : null
-        }>
+        }
+      >
         <DockStatus />
       </Section>
       <StatusDisplay bars={bars} />
@@ -576,7 +586,8 @@ const DockingConsoleSimple = (props) => {
             onClick={() => act('toggle_override')}
           />
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Dock Status">
           <DockStatus />
@@ -608,7 +619,8 @@ const DockingConsoleMulti = (props) => {
               <LabeledList.Item
                 color={airlock.override_enabled ? 'bad' : 'good'}
                 key={airlock.name}
-                label={airlock.name}>
+                label={airlock.name}
+              >
                 {airlock.override_enabled ? 'OVERRIDE ENABLED' : 'STATUS OK'}
               </LabeledList.Item>
             ))}
@@ -664,7 +676,8 @@ const DoorAccessConsole = (props) => {
             }}
           />
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Exterior Door Status">
           {data.exterior_status.state === 'closed' ? 'Locked' : 'Open'}

@@ -41,7 +41,8 @@ const NewsTargetFeed = (props) => {
           icon="chevron-up"
           onClick={() => act('newsfeed', { newsfeed: null })}
         />
-      }>
+      }
+    >
       {(target_feed.messages.length &&
         target_feed.messages.map((message) => (
           <Section key={message.ref}>

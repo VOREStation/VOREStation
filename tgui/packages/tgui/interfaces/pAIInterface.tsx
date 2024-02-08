@@ -26,7 +26,7 @@ export const pAIInterface = (props) => {
               key={emote.id}
               content={emote.name}
               selected={emote.id === current_emotion}
-              onClick={() => act('image', { 'image': emote.id })}
+              onClick={() => act('image', { image: emote.id })}
             />
           ))}
         </Section>
@@ -38,7 +38,7 @@ export const pAIInterface = (props) => {
                   key={app.id}
                   content={app.name}
                   selected={app.on}
-                  onClick={() => act('software', { 'software': app.id })}
+                  onClick={() => act('software', { software: app.id })}
                 />
               ))}
             </LabeledList.Item>
@@ -49,7 +49,7 @@ export const pAIInterface = (props) => {
                   key={app.id}
                   content={app.name + ' (' + app.ram + ')'}
                   disabled={app.ram > available_ram}
-                  onClick={() => act('purchase', { 'purchase': app.id })}
+                  onClick={() => act('purchase', { purchase: app.id })}
                 />
               ))}
             </LabeledList.Item>

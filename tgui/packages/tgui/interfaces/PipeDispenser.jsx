@@ -41,7 +41,8 @@ export const PipeDispenser = (props) => {
                 key={category.cat_name}
                 icon={ICON_BY_CATEGORY_NAME[category.cat_name]}
                 selected={category.cat_name === shownCategory.cat_name}
-                onClick={() => setCategoryName(category.cat_name)}>
+                onClick={() => setCategoryName(category.cat_name)}
+              >
                 {category.cat_name}
               </Tabs.Tab>
             ))}

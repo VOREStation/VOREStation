@@ -14,7 +14,8 @@ export const TelecommsMachineBrowser = (props) => {
         {temp ? (
           <NoticeBox
             danger={temp.color === 'bad'}
-            warning={temp.color !== 'bad'}>
+            warning={temp.color !== 'bad'}
+          >
             <Box display="inline-box" verticalAlign="middle">
               {temp.text}
             </Box>
@@ -45,7 +46,8 @@ export const TelecommsMachineBrowser = (props) => {
                     onClick={() => act('release')}
                   />
                 </>
-              }>
+              }
+            >
               <Button
                 content={network}
                 icon="pen"
@@ -94,7 +96,8 @@ const TelecommsBrowser = (props) => {
             onClick={() => act('mainmenu')}
           />
         )
-      }>
+      }
+    >
       <Box color="label">
         <u>Linked entities</u>
       </Box>
@@ -103,7 +106,8 @@ const TelecommsBrowser = (props) => {
           list.map((machine) => (
             <LabeledList.Item
               key={machine.id}
-              label={machine.name + ' (' + machine.id + ')'}>
+              label={machine.name + ' (' + machine.id + ')'}
+            >
               <Button
                 content="View"
                 icon="eye"

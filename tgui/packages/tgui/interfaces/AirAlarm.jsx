@@ -25,7 +25,7 @@ export const AirAlarm = (props) => {
 const AirAlarmStatus = (props) => {
   const { data } = useBackend();
   const entries = (data.environment_data || []).filter(
-    (entry) => entry.value >= 0.01
+    (entry) => entry.value >= 0.01,
   );
   const dangerMap = {
     0: {
@@ -53,7 +53,8 @@ const AirAlarmStatus = (props) => {
                 <LabeledList.Item
                   key={entry.name}
                   label={getGasLabel(entry.name)}
-                  color={status.color}>
+                  color={status.color}
+                >
                   {toFixed(entry.value, 2)}
                   {entry.unit}
                 </LabeledList.Item>
@@ -64,7 +65,8 @@ const AirAlarmStatus = (props) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Area status"
-              color={data.atmos_alarm || data.fire_alarm ? 'bad' : 'good'}>
+              color={data.atmos_alarm || data.fire_alarm ? 'bad' : 'good'}
+            >
               {(data.atmos_alarm && 'Atmosphere Alarm') ||
                 (data.fire_alarm && 'Fire Alarm') ||
                 'Nominal'}
@@ -95,17 +97,17 @@ const AirAlarmUnlockedControl = (props) => {
           <Button
             selected={rcon === 1}
             content="Off"
-            onClick={() => act('rcon', { 'rcon': 1 })}
+            onClick={() => act('rcon', { rcon: 1 })}
           />
           <Button
             selected={rcon === 2}
             content="Auto"
-            onClick={() => act('rcon', { 'rcon': 2 })}
+            onClick={() => act('rcon', { rcon: 2 })}
           />
           <Button
             selected={rcon === 3}
             content="On"
-            onClick={() => act('rcon', { 'rcon': 3 })}
+            onClick={() => act('rcon', { rcon: 3 })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Thermostat">
@@ -157,7 +159,8 @@ const AirAlarmControl = (props) => {
             onClick={() => setScreen()}
           />
         )
-      }>
+      }
+    >
       <Component />
     </Section>
   );

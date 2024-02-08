@@ -82,14 +82,14 @@ const setupApp = () => {
   Byond.winset('browseroutput', {
     'is-visible': true,
     'is-disabled': false,
-    'pos': '0x0',
-    'size': '0x0',
+    pos: '0x0',
+    size: '0x0',
   });
 
   // Resize the panel to match the non-browser output
   Byond.winget('output').then((output: { size: string }) => {
     Byond.winset('browseroutput', {
-      'size': output.size,
+      size: output.size,
     });
   });
 
@@ -110,7 +110,7 @@ const setupApp = () => {
       ],
       () => {
         renderApp();
-      }
+      },
     );
   }
 };

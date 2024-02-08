@@ -4,10 +4,10 @@ import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 const State = {
-  'open': 'Open',
-  'resolved': 'Resolved',
-  'closed': 'Closed',
-  'unknown': 'Unknown',
+  open: 'Open',
+  resolved: 'Resolved',
+  closed: 'Closed',
+  unknown: 'Unknown',
 };
 
 type Data = {
@@ -51,7 +51,8 @@ export const AdminTicketPanel = (props) => {
               />{' '}
               <Button content="Legacy UI" onClick={() => act('legacy')} />
             </Box>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Admin Help Ticket">
               #{id}: <div dangerouslySetInnerHTML={{ __html: name }} />

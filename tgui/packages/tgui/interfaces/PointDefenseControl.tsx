@@ -32,10 +32,12 @@ export const PointDefenseControl = (props) => {
                   <Button
                     selected={pd.active}
                     icon="power-off"
-                    onClick={() => act('toggle_active', { target: pd.ref })}>
+                    onClick={() => act('toggle_active', { target: pd.ref })}
+                  >
                     {pd.active ? 'Online' : 'Offline'}
                   </Button>
-                }>
+                }
+              >
                 <LabeledList>
                   <LabeledList.Item label="Effective range">
                     {pd.effective_range}

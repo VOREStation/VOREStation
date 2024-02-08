@@ -1,6 +1,13 @@
 import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, NoticeBox } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  NoticeBox,
+} from '../components';
 import { Window } from '../layouts';
 import { toTitleCase } from 'common/string';
 import { Materials } from './ExosuitFabricator';
@@ -47,7 +54,8 @@ export const PartsLathe = (props) => {
                   <Button icon="eject" onClick={() => act('ejectBoard')}>
                     Eject
                   </Button>
-                }>
+                }
+              >
                 {toTitleCase(copyBoard)}
               </LabeledList.Item>
             </LabeledList>
@@ -74,7 +82,8 @@ export const PartsLathe = (props) => {
                   <Button
                     ml={1}
                     icon="times"
-                    onClick={() => act('cancel', { cancel: i + 1 })}>
+                    onClick={() => act('cancel', { cancel: i + 1 })}
+                  >
                     Cancel
                   </Button>
                 )) ||
@@ -88,7 +97,8 @@ export const PartsLathe = (props) => {
               <Box key={recipe.name}>
                 <Button
                   icon="wrench"
-                  onClick={() => act('queue', { queue: recipe.type })}>
+                  onClick={() => act('queue', { queue: recipe.type })}
+                >
                   {toTitleCase(recipe.name)}
                 </Button>
               </Box>
