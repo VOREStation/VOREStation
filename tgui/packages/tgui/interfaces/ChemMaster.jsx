@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -342,17 +343,15 @@ const ChemMasterProductionChemical = (props) => {
         <br />
         <Button onClick={() => modalOpen('change_pill_style')}>
           <div
-            style={
-              'display: inline-block;' +
-              'width: 16px;' +
-              'height: 16px;' +
-              'vertical-align: middle;' +
-              'background: url(pill' +
-              data.pillsprite +
-              '.png);' +
-              'background-size: 200%;' +
-              'background-position: left -10px bottom -6px;'
-            }
+            style={{
+              display: 'inline-block',
+              width: '16px;',
+              height: '16px',
+              verticalAlign: 'middle;',
+              background: 'url(pill' + data.pillsprite + '.png)',
+              backgroundSize: '200%',
+              backgroundPosition: 'left -10px bottom -6px',
+            }}
           />
           Style
         </Button>
@@ -386,17 +385,15 @@ const ChemMasterProductionChemical = (props) => {
         <br />
         <Button mb="0.5rem" onClick={() => modalOpen('change_bottle_style')}>
           <div
-            style={
-              'display: inline-block;' +
-              'width: 16px;' +
-              'height: 16px;' +
-              'vertical-align: middle;' +
-              'background: url(bottle-' +
-              data.bottlesprite +
-              '.png);' +
-              'background-size: 200%;' +
-              'background-position: left -10px bottom -6px;'
-            }
+            style={{
+              display: 'inline-block',
+              width: '16px',
+              height: '16px',
+              verticalAlign: 'middle',
+              background: 'url(bottle-' + data.bottlesprite + '.png)',
+              backgroundSize: '200%',
+              backgroundPosition: 'left -10px bottom -6px',
+            }}
           />
           Style
         </Button>
