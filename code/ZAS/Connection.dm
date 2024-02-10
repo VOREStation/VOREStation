@@ -166,3 +166,7 @@ Class Procs:
 
 
 	//to_world("valid.")
+
+#undef CONNECTION_DIRECT
+#undef CONNECTION_SPACE
+#undef CONNECTION_INVALID
