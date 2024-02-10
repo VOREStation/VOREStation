@@ -1,4 +1,6 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Button,
   Dimmer,
@@ -56,7 +58,7 @@ export const PersonalCrafting = (props) => {
     }
   }
   // Sort out the tab state
-  const [tab, setTab] = useLocalState('tab', categories[0]?.name);
+  const [tab, setTab] = useState(categories[0]?.name);
   const shownRecipes = recipes.filter((recipe) => recipe.category === tab);
   return (
     <Window title="Crafting Menu" width={700} height={800}>

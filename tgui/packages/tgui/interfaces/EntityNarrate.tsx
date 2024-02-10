@@ -1,6 +1,7 @@
 import { BooleanLike } from 'common/react';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -169,7 +170,7 @@ export const ModeSelector = (props) => {
 
 export const NarrationInput = (props) => {
   const { act, data } = useBackend<data>();
-  const [narration, setNarration] = useLocalState('narration', '');
+  const [narration, setNarration] = useState('');
   return (
     <Section
       title="Narration Text"

@@ -1,5 +1,6 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
@@ -27,12 +28,9 @@ export const CharacterDirectory = (props) => {
 
   const { personalVisibility, personalTag, personalErpTag } = data;
 
-  const [overlay, setOverlay] = useLocalState('overlay', null);
+  const [overlay, setOverlay] = useState(null);
 
-  const [overwritePrefs, setOverwritePrefs] = useLocalState(
-    'overwritePrefs',
-    false,
-  );
+  const [overwritePrefs, setOverwritePrefs] = useState(false);
 
   return (
     <Window width={640} height={480} resizeable>
@@ -103,7 +101,7 @@ export const CharacterDirectory = (props) => {
 };
 
 const ViewCharacter = (props) => {
-  const [overlay, setOverlay] = useLocalState('overlay', null);
+  const [overlay, setOverlay] = useState(null);
 
   return (
     <Section
@@ -151,9 +149,9 @@ const CharacterDirectoryList = (props) => {
 
   const { directory } = data;
 
-  const [sortId, _setSortId] = useLocalState('sortId', 'name');
-  const [sortOrder, _setSortOrder] = useLocalState('sortOrder', 'name');
-  const [overlay, setOverlay] = useLocalState('overlay', null);
+  const [sortId, _setSortId] = useState('name');
+  const [sortOrder, _setSortOrder] = useState('name');
+  const [overlay, setOverlay] = useState(null);
 
   return (
     <Section
@@ -205,8 +203,8 @@ const SortButton = (props) => {
   const { id, children } = props;
 
   // Hey, same keys mean same data~
-  const [sortId, setSortId] = useLocalState('sortId', 'name');
-  const [sortOrder, setSortOrder] = useLocalState('sortOrder', 'name');
+  const [sortId, setSortId] = useState('name');
+  const [sortOrder, setSortOrder] = useState('name');
 
   return (
     <Table.Cell collapsing>

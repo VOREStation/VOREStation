@@ -1,16 +1,17 @@
 import { sortBy } from 'common/collections';
 import { capitalize, decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
   ByondUi,
+  ColorBox,
   Flex,
   LabeledList,
   Section,
   Tabs,
-  ColorBox,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -62,7 +63,7 @@ export const AppearanceChanger = (props) => {
     firstAccesibleTab = 5;
   }
 
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', firstAccesibleTab);
+  const [tabIndex, setTabIndex] = useState(firstAccesibleTab);
 
   return (
     <Window width={700} height={650} title={decodeHtmlEntities(title)}>

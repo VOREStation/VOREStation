@@ -1,12 +1,14 @@
-import { Flex, Button, Box, LabeledList, Section } from '../components';
-import { useBackend, useLocalState } from '../backend';
-import { Window } from '../layouts';
 import { toTitleCase } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Flex, LabeledList, Section } from '../components';
+import { Window } from '../layouts';
 
 export const AreaScrubberControl = (props) => {
   const { act, data } = useBackend();
 
-  const [showArea, setShowArea] = useLocalState('showArea', false);
+  const [showArea, setShowArea] = useState(false);
 
   const { scrubbers } = data;
 

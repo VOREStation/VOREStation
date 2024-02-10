@@ -5,7 +5,7 @@
  */
 
 import { toFixed } from 'common/math';
-import { useLocalState } from 'tgui/backend';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Box,
@@ -90,7 +90,7 @@ export const SettingsGeneral = (props) => {
   const { theme, fontFamily, fontSize, lineHeight, showReconnectWarning } =
     useSelector(selectSettings);
   const dispatch = useDispatch();
-  const [freeFont, setFreeFont] = useLocalState('freeFont', false);
+  const [freeFont, setFreeFont] = useState(false);
   return (
     <Section>
       <LabeledList>
@@ -352,8 +352,8 @@ export const ExportTab = (props) => {
     totalStoredMessages,
     storedTypes,
   } = useSelector(selectSettings);
-  const [purgeConfirm, setPurgeConfirm] = useLocalState('purgeConfirm', 0);
-  const [logConfirm, setLogConfirm] = useLocalState('logConfirm', 0);
+  const [purgeConfirm, setPurgeConfirm] = useState(0);
+  const [logConfirm, setLogConfirm] = useState(0);
   return (
     <Section>
       <Flex align="baseline">

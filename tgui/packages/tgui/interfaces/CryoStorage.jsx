@@ -1,5 +1,7 @@
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Tabs, NoticeBox } from '../components';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, NoticeBox, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
 export const CryoStorage = (props) => {
@@ -7,7 +9,7 @@ export const CryoStorage = (props) => {
 
   const { real_name, allow_items } = data;
 
-  const [tab, setTab] = useLocalState('tab', 0);
+  const [tab, setTab] = useState(0);
 
   return (
     <Window width={400} height={600}>
