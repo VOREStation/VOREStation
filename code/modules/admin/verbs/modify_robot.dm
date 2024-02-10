@@ -1,5 +1,5 @@
 //Allows to add and remove modules from borgs
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in player_list)
+/client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
 	set name = "Modify Robot Module"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin"
@@ -12,7 +12,8 @@
 	if(!target.module.modules)
 		return
 
-	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_APPLY_UPGRADE, MODIFIY_ROBOT_SUPP_ADD, MODIFIY_ROBOT_SUPP_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE, MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_RESET_MODULE)
+	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_APPLY_UPGRADE, MODIFIY_ROBOT_SUPP_ADD, MODIFIY_ROBOT_SUPP_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE,
+		MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_RESET_MODULE, MODIFIY_ROBOT_TOGGLE_ERT, MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
 
 	while(TRUE)
 		var/modification_choice = tgui_input_list(usr, "Select if you want to add or remove a module to/from [target]","Choice", modification_options)
@@ -279,3 +280,19 @@
 					continue
 				target.module_reset()
 				to_chat(usr, "<span class='danger'>You resetted [target]'s module selection.</span>")
+			if(MODIFIY_ROBOT_TOGGLE_ERT)
+				target.crisis_override = !target.crisis_override
+				to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
+				if(tgui_alert(usr, "Do you want to reset the module as well to allow selection?","Confirm",list("Yes","No"))=="No")
+					continue
+				target.module_reset()
+			if(MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
+				for(var/obj in target.contents)
+					if(istype(obj, /obj/item/weapon/card/id/synthetic))
+						var/obj/item/weapon/card/id/synthetic/card = obj
+						if(access_cent_specops in card.access)
+							card.access -= get_all_centcom_access()
+							to_chat(usr, "<span class='danger'>You revoke central access from [target].</span>")
+						else
+							card.access += get_all_centcom_access()
+							to_chat(usr, "<span class='danger'>You grant central access to [target].</span>")
