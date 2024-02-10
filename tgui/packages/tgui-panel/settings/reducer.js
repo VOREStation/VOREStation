@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import { MESSAGE_TYPES } from '../chat/constants';
 import {
   addHighlightSetting,
   changeSettingsTab,
@@ -13,6 +14,7 @@ import {
   toggleSettings,
   updateHighlightSetting,
   updateSettings,
+  updateToggle,
 } from './actions';
 import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
 import { createDefaultHighlightSetting } from './model';
@@ -41,11 +43,20 @@ const initialState = {
   showReconnectWarning: true,
   visibleMessageLimit: 2500,
   persistentMessageLimit: 1000,
+  saveInterval: 10,
   combineMessageLimit: 5,
   combineIntervalLimit: 5,
   totalStoredMessages: 0,
-  logRetainDays: -1,
-  logLineCount: -1,
+  logRetainRounds: 2,
+  logEnable: true,
+  logLineCount: 0,
+  logLimit: 10000,
+  storedRounds: 0,
+  exportStart: 0,
+  exportEnd: 0,
+  lastId: null,
+  initialized: false,
+  storedTypes: {},
 };
 
 export const settingsReducer = (state = initialState, action) => {
@@ -54,6 +65,14 @@ export const settingsReducer = (state = initialState, action) => {
     return {
       ...state,
       ...payload,
+    };
+  }
+  if (type === updateToggle.type) {
+    const { type } = payload;
+    state.storedTypes[type] = !state.storedTypes[type];
+    return {
+      ...state,
+      storedTypes: { ...state.storedTypes },
     };
   }
   if (type === loadSettings.type) {
@@ -67,6 +86,17 @@ export const settingsReducer = (state = initialState, action) => {
       ...state,
       ...payload,
     };
+    nextState.initialized = true;
+    let newFilters = {};
+    for (let typeDef of MESSAGE_TYPES) {
+      // alert(typeDef.type);
+      if (nextState.storedTypes[typeDef.type] === null) {
+        newFilters[typeDef.type] = true;
+      } else {
+        newFilters[typeDef.type] = nextState.storedTypes[typeDef.type];
+      }
+    }
+    nextState.storedTypes = newFilters;
     // Lazy init the list for compatibility reasons
     if (!nextState.highlightSettings) {
       nextState.highlightSettings = [defaultHighlightSetting.id];

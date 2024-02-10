@@ -11,6 +11,8 @@ import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
 export const canPageAcceptType = (page, type) =>
   type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
 
+export const canStoreType = (storedTypes, type) => storedTypes[type];
+
 export const createPage = (obj) => {
   let acceptedTypes = {};
 
@@ -43,6 +45,7 @@ export const createMainPage = () => {
 
 export const createMessage = (payload) => ({
   createdAt: Date.now(),
+  roundId: null,
   ...payload,
 });
 
@@ -52,6 +55,7 @@ export const serializeMessage = (message, archive = false) => ({
   html: archive ? message.node.outerHTML : message.html,
   times: message.times,
   createdAt: message.createdAt,
+  roundId: message.roundId,
 });
 
 export const isSameMessage = (a, b) =>
