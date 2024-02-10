@@ -1,18 +1,19 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
-import {
-  ComplexModal,
-  modalRegisterBodyOverride,
-} from '../interfaces/common/ComplexModal';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Flex,
-  NoticeBox,
   LabeledList,
+  NoticeBox,
   Section,
   Tabs,
 } from '../components';
+import {
+  ComplexModal,
+  modalRegisterBodyOverride,
+} from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
 
 const virusModalBodyOverride = (modal) => {
@@ -86,7 +87,7 @@ export const PathogenicIsolator = (props) => {
 
   const { isolating } = data;
 
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   let tab = null;
   if (tabIndex === 0) {

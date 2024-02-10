@@ -1,9 +1,9 @@
 import { filter } from 'common/collections';
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { Fragment } from 'react';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -62,7 +62,7 @@ export const Communicator = (props) => {
    * 1: Popup Video
    * 2: Minimized Video
    */
-  const [videoSetting, setVideoSetting] = useLocalState('videoSetting', 0);
+  const [videoSetting, setVideoSetting] = useState(0);
 
   return (
     <Window width={475} height={700}>
@@ -834,10 +834,7 @@ const MessagingThreadTab = (props) => {
 
   const { targetAddressName, targetAddress, imList } = data;
 
-  const [clipboardMode, setClipboardMode] = useLocalState(
-    'clipboardMode',
-    false,
-  );
+  const [clipboardMode, setClipboardMode] = useState(false);
 
   if (clipboardMode) {
     return (

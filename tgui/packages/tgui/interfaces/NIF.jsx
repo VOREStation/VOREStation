@@ -1,15 +1,16 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
-  LabeledList,
-  ProgressBar,
-  Modal,
-  Section,
   Dropdown,
-  AnimatedNumber,
+  LabeledList,
+  Modal,
   NoticeBox,
+  ProgressBar,
+  Section,
   Table,
 } from '../components';
 import { Window } from '../layouts';
@@ -36,8 +37,8 @@ export const NIF = (props) => {
 
   const { theme, last_notification } = data;
 
-  const [settingsOpen, setSettingsOpen] = useLocalState('settingsOpen', false);
-  const [viewingModule, setViewing] = useLocalState('viewingModule', null);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [viewingModule, setViewing] = useState(null);
 
   return (
     <Window theme={theme} width={500} height={400}>
