@@ -806,14 +806,14 @@
 
 	return
 
-/mob/living/silicon/robot/proc/module_reset()
+/mob/living/silicon/robot/proc/module_reset(var/notify = TRUE)
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
 	hud_used.update_robot_modules_display(TRUE)
 	modtype = initial(modtype)
 	hands.icon_state = get_hud_module_icon()
-
-	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
+	if(notify)
+		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
 	module.Destroy()
 	module = null

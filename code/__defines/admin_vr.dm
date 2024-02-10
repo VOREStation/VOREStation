@@ -13,6 +13,7 @@
 #define MODIFIY_ROBOT_RADIOC_REMOVE	"Remove a Radio Channel"
 #define MODIFIY_ROBOT_COMP_ADD		"Replace a Component"
 #define MODIFIY_ROBOT_COMP_REMOVE	"Remove a Component"
+#define MODIFIY_ROBOT_SWAP_MODULE	"Swap a Robot Module"
 #define MODIFIY_ROBOT_RESET_MODULE	"Fully Reset Robot Module"
 #define MODIFIY_ROBOT_TOGGLE_ERT	"Toggle ERT Module Overwrite"
 #define MODIFIY_ROBOT_TOGGLE_CENT_ACCESS	"Toggle Central Access Codes"
