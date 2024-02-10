@@ -86,6 +86,11 @@
 		<option value='?_src_=vars;[HrefToken()];emp=\ref[src]'>Trigger EM pulse</option>
 		"}
 
+/obj/item/device/pda/get_view_variables_options()
+	return ..() + {"
+		<option value='?_src_=vars;[HrefToken()];fakepdapropconvo=\ref[src]'>Add Fake Prop Conversation</option>
+		"}
+
 /datum/proc/get_variables()
 	. = vars - VV_hidden()
 	if(!usr || !check_rights(R_ADMIN|R_DEBUG, FALSE))

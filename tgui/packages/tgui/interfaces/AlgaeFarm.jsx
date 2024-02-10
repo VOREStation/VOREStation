@@ -1,5 +1,13 @@
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Table } from '../components';
+import {
+  Box,
+  Button,
+  NoticeBox,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 import { capitalize } from 'common/string';
 
@@ -18,7 +26,7 @@ export const AlgaeFarm = (props) => {
   } = data;
 
   return (
-    <Window width={500} height={300} resizable>
+    <Window width={500} height={300}>
       <Window.Content>
         {errorText && (
           <NoticeBox warning>
@@ -36,7 +44,8 @@ export const AlgaeFarm = (props) => {
               selected={usePower === 2}
               onClick={() => act('toggle')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Flow Rate">
               {last_flow_rate} L/s
@@ -48,11 +57,13 @@ export const AlgaeFarm = (props) => {
             {materials.map((material) => (
               <LabeledList.Item
                 key={material.name}
-                label={capitalize(material.display)}>
+                label={capitalize(material.display)}
+              >
                 <ProgressBar
                   width="80%"
                   value={material.qty}
-                  maxValue={material.max}>
+                  maxValue={material.max}
+                >
                   {material.qty}/{material.max}
                 </ProgressBar>
                 <Button

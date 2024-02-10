@@ -17,7 +17,7 @@ export const GravityGenerator = (props) => {
   }
 
   return (
-    <Window width={500} height={400} resizable>
+    <Window width={500} height={400}>
       <Window.Content>
         <Section
           title="Status"
@@ -34,7 +34,8 @@ export const GravityGenerator = (props) => {
               }
               onClick={() => act('gentoggle')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Breaker Setting">
               {breaker ? 'Generator Enabled' : 'Generator Disabled'}

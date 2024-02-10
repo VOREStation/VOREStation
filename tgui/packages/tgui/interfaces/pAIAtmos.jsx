@@ -23,7 +23,7 @@ export const pAIAtmos = (props) => {
   const { aircontents } = data;
 
   return (
-    <Window width={450} height={600} resizable>
+    <Window width={450} height={600}>
       <Window.Content scrollable>
         <Section>
           <LabeledList>
@@ -31,7 +31,7 @@ export const pAIAtmos = (props) => {
               (i) =>
                 i.val !== '0' ||
                 i.entry === 'Pressure' ||
-                i.entry === 'Temperature'
+                i.entry === 'Temperature',
             )(aircontents).map((item) => (
               <LabeledList.Item
                 key={item.entry}
@@ -41,8 +41,9 @@ export const pAIAtmos = (props) => {
                   item.bad_low,
                   item.poor_low,
                   item.poor_high,
-                  item.bad_high
-                )}>
+                  item.bad_high,
+                )}
+              >
                 {item.val}
                 {decodeHtmlEntities(item.units)}
               </LabeledList.Item>

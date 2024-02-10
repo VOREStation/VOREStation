@@ -1,6 +1,13 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Button, Box, Section, LabeledList, NumberInput, AnimatedNumber } from '../components';
+import {
+  Button,
+  Box,
+  Section,
+  LabeledList,
+  NumberInput,
+  AnimatedNumber,
+} from '../components';
 import { round } from 'common/math';
 import { formatSiUnit, formatPower } from '../format';
 
@@ -17,7 +24,7 @@ export const ShieldCapacitor = (props) => {
   } = data;
 
   return (
-    <Window width={500} height={400} resizable>
+    <Window width={500} height={400}>
       <Window.Content>
         <Section
           title="Status"
@@ -28,7 +35,8 @@ export const ShieldCapacitor = (props) => {
               content={active ? 'Online' : 'Offline'}
               onClick={() => act('toggle')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Capacitor Status">
               {time_since_fail > 2 ? (

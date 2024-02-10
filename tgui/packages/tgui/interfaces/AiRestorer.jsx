@@ -1,11 +1,18 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const AiRestorer = () => {
   return (
-    <Window width={370} height={360} resizable>
+    <Window width={370} height={360}>
       <Window.Content scrollable>
         <AiRestorerContent />
       </Window.Content>
@@ -26,7 +33,7 @@ export const AiRestorerContent = (props) => {
     ejectable,
   } = data;
   return (
-    <Fragment>
+    <>
       {error && <NoticeBox textAlign="center">{error}</NoticeBox>}
       {!!ejectable && (
         <Button
@@ -44,7 +51,8 @@ export const AiRestorerContent = (props) => {
             <Box inline bold color={isDead ? 'bad' : 'good'}>
               {isDead ? 'Nonfunctional' : 'Functional'}
             </Box>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Integrity">
               <ProgressBar
@@ -81,6 +89,6 @@ export const AiRestorerContent = (props) => {
           </Section>
         </Section>
       )}
-    </Fragment>
+    </>
   );
 };

@@ -173,7 +173,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/narrate_mob,	//VOREStation Add
 	/client/proc/narrate_mob_args, //VOREStation Add
 	/client/proc/getPlayerStatus, //VORESTation Add
-	/client/proc/manage_event_triggers
+	/client/proc/manage_event_triggers,
+	/client/proc/fake_pdaconvos
 
 	)
 

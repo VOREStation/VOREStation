@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, Dropdown } from '../components';
 import { Window } from '../layouts';
@@ -9,7 +9,7 @@ export const DroneConsole = (props) => {
   const { drones, areas, selected_area, fabricator, fabPower } = data;
 
   return (
-    <Window width={600} height={350} resizable>
+    <Window width={600} height={350}>
       <Window.Content scrollable>
         <Section
           title="Drone Fabricator"
@@ -21,7 +21,8 @@ export const DroneConsole = (props) => {
               content={fabPower ? 'Enabled' : 'Disabled'}
               onClick={() => act('toggle_fab')}
             />
-          }>
+          }
+        >
           {!fabricator ? (
             <Box color="bad">
               Fabricator not detected.
@@ -56,7 +57,7 @@ export const DroneConsole = (props) => {
                   key={drone.name}
                   label={drone.name}
                   buttons={
-                    <Fragment>
+                    <>
                       <Button
                         icon="sync"
                         content="Resync"
@@ -68,8 +69,9 @@ export const DroneConsole = (props) => {
                         content="Shutdown"
                         onClick={() => act('shutdown', { ref: drone.ref })}
                       />
-                    </Fragment>
-                  }>
+                    </>
+                  }
+                >
                   <LabeledList>
                     <LabeledList.Item label="Location">
                       {drone.loc}

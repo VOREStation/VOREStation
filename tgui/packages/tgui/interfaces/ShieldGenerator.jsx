@@ -1,7 +1,14 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Fragment } from 'inferno';
-import { Button, Box, Section, LabeledList, NumberInput, Icon } from '../components';
+import { Fragment } from 'react';
+import {
+  Button,
+  Box,
+  Section,
+  LabeledList,
+  NumberInput,
+  Icon,
+} from '../components';
 import { round } from 'common/math';
 import { formatSiUnit, formatPower } from '../format';
 import { FullscreenNotice } from './common/FullscreenNotice';
@@ -12,7 +19,7 @@ export const ShieldGenerator = (props) => {
   const { locked } = data;
 
   return (
-    <Window width={500} height={400} resizable>
+    <Window width={500} height={400}>
       <Window.Content>
         {locked ? <ShieldGeneratorLocked /> : <ShieldGeneratorContent />}
       </Window.Content>
@@ -59,7 +66,7 @@ const ShieldGeneratorContent = (props) => {
 
   const capacitorLen = (capacitors || []).length;
   return (
-    <Fragment>
+    <>
       <Section title="Status">
         <LabeledList>
           <LabeledList.Item label="Field Status">
@@ -74,7 +81,7 @@ const ShieldGeneratorContent = (props) => {
             {(target_field_strength &&
               round(
                 (100 * average_field_strength) / target_field_strength,
-                1
+                1,
               )) ||
               'NA'}
             %)
@@ -132,7 +139,8 @@ const ShieldGeneratorContent = (props) => {
             selected={active}
             onClick={() => act('toggle')}
           />
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Coverage Radius">
             <NumberInput
@@ -182,6 +190,6 @@ const ShieldGeneratorContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };

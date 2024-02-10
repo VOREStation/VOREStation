@@ -1,4 +1,4 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -6,7 +6,7 @@ import { OvermapFlightData, OvermapPanControls } from './common/Overmap';
 
 export const OvermapHelm = (props) => {
   return (
-    <Window width={565} height={545} resizable>
+    <Window width={565} height={545}>
       <Window.Content>
         <OvermapHelmContent />
       </Window.Content>
@@ -16,7 +16,7 @@ export const OvermapHelm = (props) => {
 
 export const OvermapHelmContent = (props) => {
   return (
-    <Fragment>
+    <>
       <Flex>
         <Flex.Item basis="40%" height="180px">
           <OvermapFlightDataWrap />
@@ -29,7 +29,7 @@ export const OvermapHelmContent = (props) => {
         </Flex.Item>
       </Flex>
       <OvermapNavComputer />
-    </Fragment>
+    </>
   );
 };
 
@@ -41,7 +41,8 @@ export const OvermapFlightDataWrap = (props) => {
   return (
     <fieldset
       style={{ height: '100%', border: '1px solid #4972a1', margin: 'none' }}
-      className="Section">
+      className="Section"
+    >
       <legend>Flight Data</legend>
       <OvermapFlightData />
     </fieldset>
@@ -56,7 +57,8 @@ const OvermapManualControl = (props) => {
   return (
     <fieldset
       style={{ height: '100%', border: '1px solid #4972a1' }}
-      className="Section">
+      className="Section"
+    >
       <legend>Manual Control</legend>
       <Flex align="center" justify="center">
         <Flex.Item>
@@ -70,7 +72,8 @@ const OvermapManualControl = (props) => {
         <Button
           selected={manual_control}
           onClick={() => act('manual')}
-          icon="compass">
+          icon="compass"
+        >
           {manual_control ? 'Enabled' : 'Disabled'}
         </Button>
       </Box>
@@ -86,7 +89,8 @@ const OvermapAutopilot = (props) => {
     return (
       <fieldset
         style={{ height: '100%', border: '1px solid #4972a1' }}
-        className="Section">
+        className="Section"
+      >
         <legend>Autopilot</legend>
         <Box textAlign="center" color="bad" fontSize={1.2}>
           AUTOPILOT DISABLED
@@ -114,23 +118,25 @@ const OvermapAutopilot = (props) => {
   return (
     <fieldset
       style={{ height: '100%', border: '1px solid #4972a1' }}
-      className="Section">
+      className="Section"
+    >
       <legend>Autopilot</legend>
       <LabeledList>
         <LabeledList.Item label="Target">
           {(dest && (
-            <Fragment>
+            <>
               <Button onClick={() => act('setcoord', { setx: true })}>
                 {d_x}
               </Button>
               <Button onClick={() => act('setcoord', { sety: true })}>
                 {d_y}
               </Button>
-            </Fragment>
+            </>
           )) || (
             <Button
               icon="pen"
-              onClick={() => act('setcoord', { setx: true, sety: true })}>
+              onClick={() => act('setcoord', { setx: true, sety: true })}
+            >
               None
             </Button>
           )}
@@ -147,14 +153,16 @@ const OvermapAutopilot = (props) => {
         selected={autopilot}
         disabled={!dest}
         icon="robot"
-        onClick={() => act('apilot')}>
+        onClick={() => act('apilot')}
+      >
         {autopilot ? 'Engaged' : 'Disengaged'}
       </Button>
       <Button
         fluid
         color="good"
         icon="exclamation-triangle"
-        onClick={() => act('apilot_lock')}>
+        onClick={() => act('apilot_lock')}
+      >
         Lock Autopilot
       </Button>
     </fieldset>
@@ -181,7 +189,8 @@ const OvermapNavComputer = (props) => {
           <Button
             fluid
             icon="save"
-            onClick={() => act('add', { add: 'current' })}>
+            onClick={() => act('add', { add: 'current' })}
+          >
             Save Current Position
           </Button>
         </Flex.Item>
@@ -189,7 +198,8 @@ const OvermapNavComputer = (props) => {
           <Button
             fluid
             icon="sticky-note"
-            onClick={() => act('add', { add: 'new' })}>
+            onClick={() => act('add', { add: 'new' })}
+          >
             Add New Entry
           </Button>
         </Flex.Item>
@@ -210,12 +220,14 @@ const OvermapNavComputer = (props) => {
               <Table.Cell collapsing>
                 <Button
                   icon="rocket"
-                  onClick={() => act('setds', { x: loc.x, y: loc.y })}>
+                  onClick={() => act('setds', { x: loc.x, y: loc.y })}
+                >
                   Plot Course
                 </Button>
                 <Button
                   icon="trash"
-                  onClick={() => act('remove', { remove: loc.reference })}>
+                  onClick={() => act('remove', { remove: loc.reference })}
+                >
                   Remove
                 </Button>
               </Table.Cell>

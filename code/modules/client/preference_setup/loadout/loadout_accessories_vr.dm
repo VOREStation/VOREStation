@@ -156,3 +156,27 @@ Talon pin
 /datum/gear/accessory/antediluvian/loin
 	display_name = "antediluvian loincloth"
 	path = /obj/item/clothing/accessory/antediluvian/loincloth
+
+//Replikant accessories
+
+/datum/gear/accessory/sleekpatch
+	display_name = "sleek uniform patch"
+	path = /obj/item/clothing/accessory/sleekpatch
+
+/datum/gear/accessory/poncho/roles/cloak/custom/gestaltjacket
+	display_name = "sleek uniform jacket"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom/gestaltjacket
+
+/datum/gear/accessory/replika
+	display_name = "replikant vest selection"
+	path = /obj/item/clothing/accessory/replika
+
+/datum/gear/accessory/replika/New()
+	..()
+	var/list/replika_vests = list(
+	"controller replikant chestplate" = /obj/item/clothing/accessory/replika/klbr,
+	"combat-engineer replikant chestplate" = /obj/item/clothing/accessory/replika/lstr,
+	"security-controller replikant chestplate" = /obj/item/clothing/accessory/replika/stcr,
+	"security-technician replikant chestplate" = /obj/item/clothing/accessory/replika/star
+	)
+	gear_tweaks += new/datum/gear_tweak/path(replika_vests)

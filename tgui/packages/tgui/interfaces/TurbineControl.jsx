@@ -1,6 +1,12 @@
 import { formatPower } from '../format';
 import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, LabeledList, Section } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const TurbineControl = (props) => {
@@ -19,7 +25,7 @@ export const TurbineControl = (props) => {
   } = data;
 
   return (
-    <Window width={520} height={440} resizable>
+    <Window width={520} height={440}>
       <Window.Content scrollable>
         <Section title="Turbine Controller">
           <LabeledList>

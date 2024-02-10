@@ -22,7 +22,7 @@ export const Holodeck = (props) => {
   }
 
   return (
-    <Window width={400} height={610} resizable>
+    <Window width={400} height={610}>
       <Window.Content scrollable>
         <Section title="Programs">
           {programsToShow.map((prog) => (
@@ -44,7 +44,8 @@ export const Holodeck = (props) => {
               fluid
               disabled={emagged}
               color={safetyDisabled ? 'good' : 'bad'}
-              onClick={() => act('AIoverride')}>
+              onClick={() => act('AIoverride')}
+            >
               {!!emagged && 'Error, unable to control. '}
               {safetyDisabled ? 'Enable Safeties' : 'Disable Safeties'}
             </Button>
@@ -63,7 +64,8 @@ export const Holodeck = (props) => {
               <Button
                 icon="user-astronaut"
                 selected={gravity}
-                onClick={() => act('gravity')}>
+                onClick={() => act('gravity')}
+              >
                 {gravity ? 'Enabled' : 'Disabled'}
               </Button>
             </LabeledList.Item>

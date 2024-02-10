@@ -1,6 +1,14 @@
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Dimmer, Icon, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Dimmer,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 import { FullscreenNotice } from './common/FullscreenNotice';
@@ -17,7 +25,7 @@ export const APC = (props) => {
   }
 
   return (
-    <Window width={450} height={475} resizable>
+    <Window width={450} height={475}>
       <Window.Content scrollable>{body}</Window.Content>
     </Window>
   );
@@ -77,16 +85,16 @@ const ApcContent = (props) => {
   const adjustedCellChange = data.powerCellStatus / 100;
 
   return (
-    <Fragment>
+    <>
       <InterfaceLockNoticeBox
         deny={data.emagged}
         denialMessage={
-          <Fragment>
+          <>
             <Box color="bad" fontSize="1.5rem">
               Fault in ID authenticator.
             </Box>
             <Box color="bad">Please contact maintenance for service.</Box>
-          </Fragment>
+          </>
         }
       />
       <Section title="Power Status">
@@ -103,7 +111,8 @@ const ApcContent = (props) => {
                 disabled={locked}
                 onClick={() => act('breaker')}
               />
-            }>
+            }
+          >
             [ {externalPowerStatus.externalPowerText} ]
           </LabeledList.Item>
           <LabeledList.Item label="Power Cell">
@@ -120,7 +129,8 @@ const ApcContent = (props) => {
                 disabled={locked}
                 onClick={() => act('charge')}
               />
-            }>
+            }
+          >
             [ {chargingStatus.chargingText} ]
           </LabeledList.Item>
         </LabeledList>
@@ -134,11 +144,12 @@ const ApcContent = (props) => {
                 key={channel.title}
                 label={channel.title}
                 buttons={
-                  <Fragment>
+                  <>
                     <Box
                       inline
                       mx={2}
-                      color={channel.status >= 2 ? 'good' : 'bad'}>
+                      color={channel.status >= 2 ? 'good' : 'bad'}
+                    >
                       {channel.status >= 2 ? 'On' : 'Off'}
                     </Box>
                     <Button
@@ -165,8 +176,9 @@ const ApcContent = (props) => {
                       disabled={locked}
                       onClick={() => act('channel', topicParams.off)}
                     />
-                  </Fragment>
-                }>
+                  </>
+                }
+              >
                 {channel.powerLoad} W
               </LabeledList.Item>
             );
@@ -192,7 +204,8 @@ const ApcContent = (props) => {
               onClick={() => act('overload')}
             />
           )
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item
             label="Cover Lock"
@@ -209,7 +222,7 @@ const ApcContent = (props) => {
           <LabeledList.Item
             label="Night Shift Lighting"
             buttons={
-              <Fragment>
+              <>
                 <Button
                   icon="lightbulb-o"
                   content="Disabled"
@@ -240,7 +253,7 @@ const ApcContent = (props) => {
                     })
                   }
                 />
-              </Fragment>
+              </>
             }
           />
           <LabeledList.Item
@@ -256,7 +269,7 @@ const ApcContent = (props) => {
           />
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };
 

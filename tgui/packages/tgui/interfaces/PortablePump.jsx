@@ -13,7 +13,7 @@ export const PortablePump = (props) => {
     max_pressure,
   } = data;
   return (
-    <Window width={330} height={375} resizable>
+    <Window width={330} height={375}>
       <Window.Content scrollable>
         <PortableBasicInfo />
         <Section
@@ -25,7 +25,8 @@ export const PortablePump = (props) => {
               selected={direction}
               onClick={() => act('direction')}
             />
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Output">
               <Slider
