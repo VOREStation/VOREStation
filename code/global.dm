@@ -1,8 +1,3 @@
-//#define TESTING
-#if DM_VERSION < 512
-#error This compiler is out of date Please update to at least BYOND 512.
-#endif
-
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
 var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
