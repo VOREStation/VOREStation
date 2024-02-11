@@ -31,3 +31,4 @@ temp.dmi
 
 node_modules/
 package-lock.json
+html/changelogs/example.yml
