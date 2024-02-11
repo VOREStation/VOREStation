@@ -1,16 +1,17 @@
+import { round } from 'common/math';
+import { toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
+  Flex,
   LabeledList,
   ProgressBar,
   Section,
-  Flex,
-  AnimatedNumber,
 } from '../components';
 import { Window } from '../layouts';
-import { round } from 'common/math';
-import { toTitleCase } from 'common/string';
 
 // As of 2020-08-06 this isn't actually ever used, but it needs to exist because that's what tgui_modules expect
 export const SupermatterMonitor = (props) => (

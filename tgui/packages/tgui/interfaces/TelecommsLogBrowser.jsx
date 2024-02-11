@@ -1,12 +1,12 @@
 import { round } from 'common/math';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Flex,
-  NoticeBox,
   LabeledList,
+  NoticeBox,
   Section,
 } from '../components';
 import { Window } from '../layouts';

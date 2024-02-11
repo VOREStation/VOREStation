@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Slider, Section } from '../components';
+import { Box, Button, Flex, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
 export const GeneralAtmoControl = (props) => {

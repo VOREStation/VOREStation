@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-import { formatCommaNumber } from '../format';
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,6 +7,7 @@ import {
   ProgressBar,
   Section,
 } from '../components';
+import { formatCommaNumber } from '../format';
 import { Window } from '../layouts';
 
 export const DishIncubator = (props) => {

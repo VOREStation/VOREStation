@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, ProgressBar, LabeledList, Box, Section } from '../components';
+import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const AICard = (props) => {

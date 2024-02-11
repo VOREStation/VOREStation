@@ -1,13 +1,14 @@
 import { round } from 'common/math';
+
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Button,
+  Knob,
+  LabeledControls,
   LabeledList,
   Section,
-  Knob,
   Slider,
-  LabeledControls,
-  AnimatedNumber,
 } from '../components';
 import { Window } from '../layouts';
 

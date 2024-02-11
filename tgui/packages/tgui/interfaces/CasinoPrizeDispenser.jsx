@@ -1,5 +1,5 @@
 import { createSearch } from 'common/string';
-import { Fragment } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
 import {
   Box,

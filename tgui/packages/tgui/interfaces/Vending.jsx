@@ -1,5 +1,5 @@
 import { classes } from 'common/react';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';

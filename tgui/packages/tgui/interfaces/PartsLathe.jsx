@@ -1,15 +1,15 @@
-import { Fragment } from 'react';
+import { toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
   LabeledList,
+  NoticeBox,
   ProgressBar,
   Section,
-  NoticeBox,
 } from '../components';
 import { Window } from '../layouts';
-import { toTitleCase } from 'common/string';
 import { Materials } from './ExosuitFabricator';
 
 export const PartsLathe = (props) => {

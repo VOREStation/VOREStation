@@ -1,11 +1,12 @@
 import { toFixed } from 'common/math';
 import { Fragment } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
-import { getGasLabel, getGasColor } from '../constants';
+import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
+import { Scrubber, Vent } from './common/AtmosControls';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
-import { Vent, Scrubber } from './common/AtmosControls';
 
 export const AirAlarm = (props) => {
   const { act, data } = useBackend();
