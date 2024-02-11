@@ -1312,6 +1312,7 @@
 #include "code\game\objects\items\weapons\handcuffs_vr.dm"
 #include "code\game\objects\items\weapons\improvised_components.dm"
 #include "code\game\objects\items\weapons\inducer_vr.dm"
+#include "code\game\objects\items\weapons\joke.dm"
 #include "code\game\objects\items\weapons\keys.dm"
 #include "code\game\objects\items\weapons\manuals.dm"
 #include "code\game\objects\items\weapons\manuals_vr.dm"
