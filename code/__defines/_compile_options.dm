@@ -8,6 +8,7 @@
 								*/
 
 // ZAS Compile Options
+//#define FIREDBG		// Uncomment to turn on ZAS debugging related to fire stuff.
 //#define ZASDBG	 	// Uncomment to turn on super detailed ZAS debugging that probably won't even compile.
 #define MULTIZAS		// Uncomment to turn on Multi-Z ZAS Support!
 

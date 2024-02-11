@@ -26,10 +26,19 @@
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
 	verbs += PROC_REF(select_size)
+	verbs += PROC_REF(spin_dial)
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
 	select_size()
+
+/obj/item/weapon/gun/energy/sizegun/proc/spin_dial()
+	set name = "Spin Size Dial"
+	set category = "Object"
+	set src in view(1)
+
+	size_set_to = (rand(25,200)) /100
+	usr.visible_message("<span class='warning'>\The [usr] spins the size dial to a random value!</span>","<span class='notice'>You spin the dial to a random value!</span>")
 
 /obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
 	. = ..()
