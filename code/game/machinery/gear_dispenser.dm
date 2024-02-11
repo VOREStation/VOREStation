@@ -21,8 +21,8 @@ var/list/dispenser_presets = list()
 	if(LAZYLEN(req_one_access))
 		var/accesses = user.GetAccess()
 		return has_access(null, req_one_access, accesses)
-	
-	return 1	
+
+	return 1
 
 /datum/gear_disp/proc/spawn_gear(var/turf/T, var/mob/living/carbon/human/user)
 	var/list/spawned = list()
@@ -40,7 +40,7 @@ var/list/dispenser_presets = list()
 /datum/gear_disp/custom/allowed(var/mob/living/carbon/human/user)
 	if(ckey_allowed && user.ckey != ckey_allowed)
 		return 0
-	
+
 	if(character_allowed && user.real_name != character_allowed)
 		return 0
 
@@ -81,7 +81,7 @@ var/list/dispenser_presets = list()
 
 	voidsuit = new voidsuit_type(T)
 	spawned += voidsuit // We only add the voidsuit so the game doesn't try to put the tank/helmet/boots etc into their hands
-	
+
 	// If we're supposed to make a helmet
 	if(voidhelmet_type)
 		// The coder may not have realized this type spawns its own helmet
@@ -98,7 +98,7 @@ var/list/dispenser_presets = list()
 		else
 			magboots = new magboots_type(voidsuit)
 			voidsuit.boots = magboots
-	
+
 	if(refit)
 		voidsuit.refit_for_species(user.species?.get_bodytype()) // does helmet and boots if they're attached
 
@@ -112,7 +112,7 @@ var/list/dispenser_presets = list()
 		else if(user.species?.breath_type)
 			if(voidsuit.tank)
 				error("[src] created a voidsuit [voidsuit] and wants to add a tank but it already has one")
-			else	
+			else
 				//Create a tank (if such a thing exists for this species)
 				var/tanktext = "/obj/item/weapon/tank/" + "[user.species?.breath_type]"
 				var/obj/item/weapon/tank/tankpath = text2path(tanktext)
@@ -135,7 +135,7 @@ var/list/dispenser_presets = list()
 /datum/gear_disp/voidsuit/custom/allowed(var/mob/living/carbon/human/user)
 	if(ckey_allowed && user.ckey != ckey_allowed)
 		return 0
-	
+
 	if(character_allowed && user.real_name != character_allowed)
 		return 0
 
@@ -172,7 +172,7 @@ var/list/dispenser_presets = list()
 	if(one_setting)
 		one_setting = new one_setting
 	dispenses = real_gear_list
-	
+
 
 /obj/machinery/gear_dispenser/attack_hand(var/mob/living/carbon/human/user)
 	if(!can_use(user))
@@ -180,18 +180,18 @@ var/list/dispenser_presets = list()
 	dispenser_flags |= GD_BUSY
 	if(!(dispenser_flags & GD_ONEITEM))
 		var/list/gear_list = get_gear_list(user)
-		
+
 		if(!LAZYLEN(gear_list))
 			to_chat(user, "<span class='warning'>\The [src] doesn't have anything to dispense for you!</span>")
 			dispenser_flags &= ~GD_BUSY
 			return
-		
+
 		var/choice = tgui_input_list(usr, "Select equipment to dispense.", "Equipment Dispenser", gear_list)
-		
+
 		if(!choice)
 			dispenser_flags &= ~GD_BUSY
 			return
-		
+
 		dispense(gear_list[choice],user)
 	else
 		dispense(one_setting,user)
@@ -223,7 +223,7 @@ var/list/dispenser_presets = list()
 	else
 		audible_message("!'^&YouVE alreaDY pIC&$!Ked UP yOU%r Ge^!ar.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
-		return 1	
+		return 1
 	// And finally
 	if(allowed(user))
 		return 1
@@ -261,7 +261,7 @@ var/list/dispenser_presets = list()
 	var/turf/T = get_turf(src)
 	if(!(S && T)) // in case we got destroyed while we slept
 		return 1
-	
+
 	S.spawn_gear(T, user)
 
 	if(emagged)
@@ -323,15 +323,15 @@ var/list/dispenser_presets = list()
 
 /obj/machinery/gear_dispenser/suit_fancy/update_icon()
 	cut_overlays()
-	
+
 	if(special_frame)
 		add_overlay(special_frame)
-	
+
 	if(needs_power && inoperable())
 		add_overlay("nopower")
 	else
 		add_overlay("light1")
-	
+
 	if(held_gear_disp)
 		add_overlay("fullsuit")
 		if(operable())
@@ -686,7 +686,7 @@ var/list/dispenser_presets = list()
 		"gearlist": ["/obj/random/trash"]
 	}
 ]"}
-	
+
 	/**
 	 * Needs to be valid json with keys of:
 	 * "menuoption" = string for the name
@@ -696,12 +696,12 @@ var/list/dispenser_presets = list()
 	var/input = tgui_input_text(usr, "Paste new gear pack JSON below. See example/code comments.", "Admin-load Dispenser", example, multiline = TRUE)
 	if(!input)
 		return
-	
+
 	var/list/parsed = json_decode(input)
-	
+
 	if(!islist(parsed))
 		return
-	
+
 	var/list/running = list()
 	for(var/entry in parsed)
 		if(!islist(entry))
@@ -710,7 +710,7 @@ var/list/dispenser_presets = list()
 		var/option_name = this_entry["menuoption"]
 		var/list/types = this_entry["gearlist"]
 		var/list/access = this_entry["req_one_access"]
-	
+
 		if(!option_name || !islist(types))
 			continue
 
@@ -721,15 +721,15 @@ var/list/dispenser_presets = list()
 			var/tnew = text2path(t)
 			if(ispath(tnew))
 				types += tnew
-	
+
 		var/datum/gear_disp/G = new()
-	
+
 		G.name = option_name
 		G.to_spawn = types
-	
+
 		if(LAZYLEN(access))
 			G.req_one_access = access
-		
+
 		running[option_name] = G
 	to_chat(usr, "[src] added [running.len] entries")
 	dispenses = running
@@ -946,3 +946,9 @@ var/list/dispenser_presets = list()
 		/datum/gear_disp/adventure_box/light,
 		/datum/gear_disp/adventure_box/weapon
 		)
+
+#undef GD_BUSY
+#undef GD_ONEITEM
+#undef GD_NOGREED
+#undef GD_UNLIMITED
+#undef GD_UNIQUE

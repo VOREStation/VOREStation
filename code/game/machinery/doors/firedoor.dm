@@ -1,4 +1,3 @@
-
 #define FIREDOOR_MAX_PRESSURE_DIFF 25 // kPa
 #define FIREDOOR_MAX_TEMP 50 // °C
 #define FIREDOOR_MIN_TEMP 0
@@ -519,3 +518,11 @@
 	icon = 'icons/obj/doors/DoorHazardGlass.dmi'
 	icon_state = "door_open"
 	glass = 1
+
+#undef FIREDOOR_MAX_PRESSURE_DIFF
+#undef FIREDOOR_MAX_TEMP
+#undef FIREDOOR_MIN_TEMP
+
+#undef FIREDOOR_ALERT_HOT
+#undef FIREDOOR_ALERT_COLD
+// Not used #undef FIREDOOR_ALERT_LOWPRESS

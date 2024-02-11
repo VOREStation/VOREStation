@@ -1,9 +1,3 @@
-//Dat AI vore yo
-#define HOLO_ORIGINAL_COLOR null //Original hologram color: "#7db4e1"
-#define HOLO_HARDLIGHT_COLOR "#d97de0"
-#define HOLO_ORIGINAL_ALPHA 120
-#define HOLO_HARDLIGHT_ALPHA 200
-
 /obj/effect/overlay/aiholo
 	var/mob/living/bellied //Only belly one person at a time. No huge vore-organs setup for AIs.
 	var/mob/living/silicon/ai/master //This will receive the AI controlling the Hologram. For referencing purposes.
