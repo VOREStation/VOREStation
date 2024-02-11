@@ -37,8 +37,8 @@
 *.zip binary
 
 ## Merger hooks, run tools/hooks/install.bat or install.sh to set up
-*.dmm text eol=lf merge=dmm
-*.dmi binary merge=dmi
+#*.dmm text eol=lf merge=dmm
+#*.dmi binary merge=dmi
 
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab
