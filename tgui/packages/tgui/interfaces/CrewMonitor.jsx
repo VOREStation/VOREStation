@@ -1,9 +1,9 @@
 import { sortBy } from 'common/collections';
 import { flow } from 'common/fp';
+
 import { useBackend, useLocalState } from '../backend';
+import { Box, Button, Icon, NanoMap, Table, Tabs } from '../components';
 import { Window } from '../layouts';
-import { NanoMap, Box, Table, Button, Tabs, Icon } from '../components';
-import { Fragment } from 'inferno';
 
 const getStatText = (cm) => {
   if (cm.dead) {
@@ -29,7 +29,7 @@ const getStatColor = (cm) => {
 
 export const CrewMonitor = () => {
   return (
-    <Window width={800} height={600} resizable>
+    <Window width={800} height={600}>
       <Window.Content>
         <CrewMonitorContent />
       </Window.Content>
@@ -125,23 +125,25 @@ export const CrewMonitorContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab
           key="DataView"
           selected={0 === tabIndex}
-          onClick={() => setTabIndex(0)}>
+          onClick={() => setTabIndex(0)}
+        >
           <Icon name="table" /> Data View
         </Tabs.Tab>
         <Tabs.Tab
           key="MapView"
           selected={1 === tabIndex}
-          onClick={() => setTabIndex(1)}>
+          onClick={() => setTabIndex(1)}
+        >
           <Icon name="map-marked-alt" /> Map View
         </Tabs.Tab>
       </Tabs>
       <Box m={2}>{body}</Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -153,7 +155,7 @@ const CrewMonitorMapView = (props) => {
       <NanoMap onZoom={(v) => setZoom(v)}>
         {data.crewmembers
           .filter(
-            (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel
+            (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel,
           )
           .map((cm) => (
             <NanoMap.Marker

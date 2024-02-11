@@ -1,9 +1,11 @@
-import { Loader } from './common/Loader';
-import { InputButtons } from './common/InputButtons';
+import { useState } from 'react';
+
 import { KEY_ENTER, KEY_ESCAPE } from '../../common/keycodes';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Box, Button, RestrictedInput, Section, Stack } from '../components';
 import { Window } from '../layouts';
+import { InputButtons } from './common/InputButtons';
+import { Loader } from './common/Loader';
 
 type NumberInputData = {
   init_value: number;
@@ -18,7 +20,7 @@ type NumberInputData = {
 export const NumberInputModal = (props) => {
   const { act, data } = useBackend<NumberInputData>();
   const { init_value, large_buttons, message = '', timeout, title } = data;
-  const [input, setInput] = useLocalState('input', init_value);
+  const [input, setInput] = useState(init_value);
   const onChange = (value: number) => {
     if (value === input) {
       return;
@@ -49,7 +51,8 @@ export const NumberInputModal = (props) => {
           if (keyCode === KEY_ESCAPE) {
             act('cancel');
           }
-        }}>
+        }}
+      >
         <Section fill>
           <Stack fill vertical>
             <Stack.Item grow>

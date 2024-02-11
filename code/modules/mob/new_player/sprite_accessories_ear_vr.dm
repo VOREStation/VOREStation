@@ -456,6 +456,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp_jackal-inner"
 
+/datum/sprite_accessory/ears/fox
+	name = "fox ears"
+	desc = ""
+	icon_state = "fox"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "fox-inner"
+
 /datum/sprite_accessory/ears/bunny_floppy
 	name = "floopy bunny ears (colorable)"
 	desc = ""

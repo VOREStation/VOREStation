@@ -1,7 +1,15 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 const stats = [
@@ -37,7 +45,7 @@ export const Sleeper = (props) => {
   const { hasOccupant } = data;
   const body = hasOccupant ? <SleeperMain /> : <SleeperEmpty />;
   return (
-    <Window width={550} height={760} resizable>
+    <Window width={550} height={760}>
       <Window.Content className="Layout__content--flexColumn">
         {body}
       </Window.Content>
@@ -49,7 +57,7 @@ const SleeperMain = (props) => {
   const { act, data } = useBackend();
   const { occupant, dialysis, stomachpumping } = data;
   return (
-    <Fragment>
+    <>
       <SleeperOccupant />
       <SleeperDamage />
       <SleeperDialysisPump
@@ -63,7 +71,7 @@ const SleeperMain = (props) => {
         actToDo="togglepump"
       />
       <SleeperChemicals />
-    </Fragment>
+    </>
   );
 };
 
@@ -74,7 +82,7 @@ const SleeperOccupant = (props) => {
     <Section
       title="Occupant"
       buttons={
-        <Fragment>
+        <>
           <Box color="label" inline>
             Auto-eject if dead:&nbsp;
           </Box>
@@ -92,8 +100,9 @@ const SleeperOccupant = (props) => {
             onClick={() => act('ejectify')}
           />
           <Button content={stasis} onClick={() => act('changestasis')} />
-        </Fragment>
-      }>
+        </>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Name">{occupant.name}</LabeledList.Item>
         <LabeledList.Item label="Health">
@@ -105,7 +114,8 @@ const SleeperOccupant = (props) => {
               good: [0.5, Infinity],
               average: [0, 0.5],
               bad: [-Infinity, 0],
-            }}>
+            }}
+          >
             {round(occupant.health, 0)}
           </ProgressBar>
         </LabeledList.Item>
@@ -117,13 +127,14 @@ const SleeperOccupant = (props) => {
             min="0"
             max={occupant.maxTemp}
             value={occupant.bodyTemperature / occupant.maxTemp}
-            color={tempColors[occupant.temperatureSuitability + 3]}>
+            color={tempColors[occupant.temperatureSuitability + 3]}
+          >
             {round(occupant.btCelsius, 0)}&deg;C,
             {round(occupant.btFaren, 0)}&deg;F
           </ProgressBar>
         </LabeledList.Item>
         {!!occupant.hasBlood && (
-          <Fragment>
+          <>
             <LabeledList.Item label="Blood Level">
               <ProgressBar
                 min="0"
@@ -133,14 +144,15 @@ const SleeperOccupant = (props) => {
                   bad: [-Infinity, 0.6],
                   average: [0.6, 0.9],
                   good: [0.6, Infinity],
-                }}>
+                }}
+              >
                 {occupant.bloodPercent}%, {occupant.bloodLevel}cl
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item label="Pulse" verticalAlign="middle">
               {occupant.pulse} BPM
             </LabeledList.Item>
-          </Fragment>
+          </>
         )}
       </LabeledList>
     </Section>
@@ -160,7 +172,8 @@ const SleeperDamage = (props) => {
               min="0"
               max="100"
               value={occupant[d[1]] / 100}
-              ranges={damageRange}>
+              ranges={damageRange}
+            >
               {round(occupant[d[1]], 0)}
             </ProgressBar>
           </LabeledList.Item>
@@ -179,7 +192,7 @@ const SleeperDialysisPump = (props) => {
     <Section
       title={title}
       buttons={
-        <Fragment>
+        <>
           <Button
             disabled={!isBeakerLoaded || beakerFreeSpace <= 0}
             selected={canDialysis}
@@ -193,8 +206,9 @@ const SleeperDialysisPump = (props) => {
             content="Eject"
             onClick={() => act('removebeaker')}
           />
-        </Fragment>
-      }>
+        </>
+      }
+    >
       {isBeakerLoaded ? (
         <LabeledList>
           <LabeledList.Item label="Remaining Space">
@@ -206,7 +220,8 @@ const SleeperDialysisPump = (props) => {
                 good: [0.5, Infinity],
                 average: [0.25, 0.5],
                 bad: [-Infinity, 0.25],
-              }}>
+              }}
+            >
               {beakerFreeSpace}u
             </ProgressBar>
           </LabeledList.Item>
@@ -250,14 +265,16 @@ const SleeperChemicals = (props) => {
               level="3"
               mx="0"
               lineHeight="18px"
-              buttons={odWarning}>
+              buttons={odWarning}
+            >
               <Flex align="flex-start">
                 <ProgressBar
                   min="0"
                   max={maxchem}
                   value={chem.occ_amount / maxchem}
                   color={barColor}
-                  mr="0.5rem">
+                  mr="0.5rem"
+                >
                   {chem.pretty_amount}/{maxchem}u
                 </ProgressBar>
                 {amounts.map((a, i) => (

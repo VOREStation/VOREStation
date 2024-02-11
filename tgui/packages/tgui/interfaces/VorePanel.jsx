@@ -1,37 +1,48 @@
 import { capitalize } from 'common/string';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs, Divider } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Collapsible,
+  Icon,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Tabs,
+  Divider,
+} from '../components';
 import { Window } from '../layouts';
 import { classes } from 'common/react';
 
 const stats = [null, 'average', 'bad'];
 
 const digestModeToColor = {
-  'Hold': null,
-  'Digest': 'red',
-  'Absorb': 'purple',
-  'Unabsorb': 'purple',
-  'Drain': 'orange',
-  'Selective': 'orange',
-  'Shrink': 'teal',
-  'Grow': 'teal',
+  Hold: null,
+  Digest: 'red',
+  Absorb: 'purple',
+  Unabsorb: 'purple',
+  Drain: 'orange',
+  Selective: 'orange',
+  Shrink: 'teal',
+  Grow: 'teal',
   'Size Steal': 'teal',
-  'Heal': 'green',
+  Heal: 'green',
   'Encase In Egg': 'blue',
 };
 
 const digestModeToPreyMode = {
-  'Hold': 'being held.',
-  'Digest': 'being digested.',
-  'Absorb': 'being absorbed.',
-  'Unabsorb': 'being unabsorbed.',
-  'Drain': 'being drained.',
-  'Selective': 'being processed.',
-  'Shrink': 'being shrunken.',
-  'Grow': 'being grown.',
+  Hold: 'being held.',
+  Digest: 'being digested.',
+  Absorb: 'being absorbed.',
+  Unabsorb: 'being unabsorbed.',
+  Drain: 'being drained.',
+  Selective: 'being processed.',
+  Shrink: 'being shrunken.',
+  Grow: 'being grown.',
   'Size Steal': 'having your size stolen.',
-  'Heal': 'being healed.',
+  Heal: 'being healed.',
   'Encase In Egg': 'being encased in an egg.',
 };
 
@@ -53,7 +64,7 @@ export const VorePanel = (props) => {
   tabs[1] = <VoreUserPreferences />;
 
   return (
-    <Window width={890} height={660} theme="abstract" resizable>
+    <Window width={890} height={660} theme="abstract">
       <Window.Content scrollable>
         {(data.unsaved_changes && (
           <NoticeBox danger>
@@ -164,13 +175,15 @@ const VoreBellySelectionAndCustomization = (props) => {
                 key={belly.name}
                 selected={belly.selected}
                 textColor={digestModeToColor[belly.digest_mode]}
-                onClick={() => act('bellypick', { bellypick: belly.ref })}>
+                onClick={() => act('bellypick', { bellypick: belly.ref })}
+              >
                 <Box
                   inline
                   textColor={
                     (belly.selected && digestModeToColor[belly.digest_mode]) ||
                     null
-                  }>
+                  }
+                >
                   {belly.name} ({belly.contents})
                 </Box>
               </Tabs.Tab>
@@ -217,7 +230,7 @@ const VoreSelectedBelly = (props) => {
   tabs[6] = <VoreContentsPanel outside contents={contents} />;
 
   return (
-    <Fragment>
+    <>
       <Tabs>
         <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
           Controls
@@ -242,7 +255,7 @@ const VoreSelectedBelly = (props) => {
         </Tabs.Tab>
       </Tabs>
       {tabs[tabIndex] || 'Error'}
-    </Fragment>
+    </>
   );
 };
 
@@ -257,7 +270,7 @@ const VoreSelectedBellyControls = (props) => {
       <LabeledList.Item
         label="Name"
         buttons={
-          <Fragment>
+          <>
             <Button
               icon="arrow-up"
               tooltipPosition="left"
@@ -270,8 +283,9 @@ const VoreSelectedBellyControls = (props) => {
               tooltip="Move this belly tab down."
               onClick={() => act('move_belly', { dir: 1 })}
             />
-          </Fragment>
-        }>
+          </>
+        }
+      >
         <Button
           onClick={() => act('set_attribute', { attribute: 'b_name' })}
           content={belly_name}
@@ -328,7 +342,8 @@ const VoreSelectedBellyDescriptions = (props) => {
             onClick={() => act('set_attribute', { attribute: 'b_desc' })}
             icon="pen"
           />
-        }>
+        }
+      >
         {desc}
       </LabeledList.Item>
       <LabeledList.Item
@@ -340,7 +355,8 @@ const VoreSelectedBellyDescriptions = (props) => {
             }
             icon="pen"
           />
-        }>
+        }
+      >
         {absorbed_desc}
       </LabeledList.Item>
       <LabeledList.Item label="Vore Verb">
@@ -731,7 +747,7 @@ const VoreSelectedBellyOptions = (props) => {
             />
           </LabeledList.Item>
           {(contaminates && (
-            <Fragment>
+            <>
               <LabeledList.Item label="Contamination Flavor">
                 <Button
                   onClick={() =>
@@ -752,7 +768,7 @@ const VoreSelectedBellyOptions = (props) => {
                   content={capitalize(contaminate_color)}
                 />
               </LabeledList.Item>
-            </Fragment>
+            </>
           )) ||
             null}
           <LabeledList.Item label="Nutritional Gain">
@@ -1034,7 +1050,7 @@ const VoreSelectedBellyVisuals = (props) => {
   } = belly;
 
   return (
-    <Fragment>
+    <>
       <Section title="Belly Fullscreens Preview and Coloring">
         <Flex direction="row">
           <Box
@@ -1049,7 +1065,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 attribute: 'b_fullscreen_color',
                 val: null,
               })
-            }>
+            }
+          >
             Select Primary Color
           </Button>
           <Box
@@ -1064,7 +1081,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 attribute: 'b_fullscreen_color_secondary',
                 val: null,
               })
-            }>
+            }
+          >
             Select Secondary Color
           </Button>
           <Box
@@ -1079,7 +1097,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 attribute: 'b_fullscreen_color_trinary',
                 val: null,
               })
-            }>
+            }
+          >
             Select Trinary Color
           </Button>
           <LabeledList.Item label="Enable Coloration">
@@ -1132,7 +1151,8 @@ const VoreSelectedBellyVisuals = (props) => {
             selected={belly_fullscreen === '' || belly_fullscreen === null}
             onClick={() =>
               act('set_attribute', { attribute: 'b_fullscreen', val: null })
-            }>
+            }
+          >
             Disabled
           </Button>
           {Object.keys(possible_fullscreens).map((key) => (
@@ -1144,7 +1164,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 selected={key === belly_fullscreen}
                 onClick={() =>
                   act('set_attribute', { attribute: 'b_fullscreen', val: key })
-                }>
+                }
+              >
                 <Box
                   className={classes(['vore240x240', key])}
                   style={{
@@ -1156,7 +1177,7 @@ const VoreSelectedBellyVisuals = (props) => {
           ))}
         </Section>
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -1176,7 +1197,8 @@ const VoreSelectedBellyInteractions = (props) => {
           selected={escapable}
           content={escapable ? 'Interactions On' : 'Interactions Off'}
         />
-      }>
+      }
+    >
       {escapable ? (
         <LabeledList>
           <LabeledList.Item label="Escape Chance">
@@ -1280,13 +1302,14 @@ const VoreContentsPanel = (props) => {
   const { contents, belly, outside = false } = props;
 
   return (
-    <Fragment>
+    <>
       {(outside && (
         <Button
           textAlign="center"
           fluid
           mb={1}
-          onClick={() => act('pick_from_outside', { 'pickall': true })}>
+          onClick={() => act('pick_from_outside', { pickall: true })}
+        >
           All
         </Button>
       )) ||
@@ -1307,11 +1330,12 @@ const VoreContentsPanel = (props) => {
                   act(
                     thing.outside ? 'pick_from_outside' : 'pick_from_inside',
                     {
-                      'pick': thing.ref,
-                      'belly': belly,
-                    }
+                      pick: thing.ref,
+                      belly: belly,
+                    },
                   )
-                }>
+                }
+              >
                 <img
                   src={'data:image/jpeg;base64, ' + thing.icon}
                   width="64px"
@@ -1339,18 +1363,19 @@ const VoreContentsPanel = (props) => {
                   act(
                     thing.outside ? 'pick_from_outside' : 'pick_from_inside',
                     {
-                      'pick': thing.ref,
-                      'belly': belly,
-                    }
+                      pick: thing.ref,
+                      belly: belly,
+                    },
                   )
-                }>
+                }
+              >
                 Interact
               </Button>
             </LabeledList.Item>
           ))}
         </LabeledList>
       )}
-    </Fragment>
+    </>
   );
 };
 
@@ -1747,10 +1772,12 @@ const VoreUserPreferences = (props) => {
         <Button
           icon="eye"
           selected={show_pictures}
-          onClick={() => act('show_pictures')}>
+          onClick={() => act('show_pictures')}
+        >
           Contents Preference: {show_pictures ? 'Show Pictures' : 'Show List'}
         </Button>
-      }>
+      }
+    >
       <Flex spacing={1} wrap="wrap" justify="center">
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.digestion} />

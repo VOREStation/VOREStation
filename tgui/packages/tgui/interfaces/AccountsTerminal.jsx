@@ -1,5 +1,13 @@
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, LabeledList, Input, Section, Table, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  Input,
+  Section,
+  Table,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 
 export const AccountsTerminal = (props) => {
@@ -42,19 +50,22 @@ const AccountTerminalContent = (props) => {
         <Tabs.Tab
           selected={!creating_new_account && !detailed_account_view}
           icon="home"
-          onClick={() => act('view_accounts_list')}>
+          onClick={() => act('view_accounts_list')}
+        >
           Home
         </Tabs.Tab>
         <Tabs.Tab
           selected={creating_new_account}
           icon="cog"
-          onClick={() => act('create_account')}>
+          onClick={() => act('create_account')}
+        >
           New Account
         </Tabs.Tab>
         <Tabs.Tab
           disabled={creating_new_account}
           icon="print"
-          onClick={() => act('print')}>
+          onClick={() => act('print')}
+        >
           Print
         </Tabs.Tab>
       </Tabs>
@@ -121,7 +132,8 @@ const DetailedView = (props) => {
           content="Suspend"
           onClick={() => act('toggle_suspension')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Account Number">
           #{account_number}
@@ -201,13 +213,14 @@ const ListView = (props) => {
             <LabeledList.Item
               label={acc.owner_name + acc.suspended}
               color={acc.suspended ? 'bad' : null}
-              key={acc.account_index}>
+              key={acc.account_index}
+            >
               <Button
                 fluid
                 content={'#' + acc.account_number}
                 onClick={() =>
                   act('view_account_detail', {
-                    'account_index': acc.account_index,
+                    account_index: acc.account_index,
                   })
                 }
               />

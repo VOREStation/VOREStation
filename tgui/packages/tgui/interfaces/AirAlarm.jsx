@@ -1,5 +1,5 @@
 import { toFixed } from 'common/math';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { getGasLabel, getGasColor } from '../constants';
@@ -11,7 +11,7 @@ export const AirAlarm = (props) => {
   const { act, data } = useBackend();
   const locked = data.locked && !data.siliconUser && !data.remoteUser;
   return (
-    <Window width={440} height={650} resizable>
+    <Window width={440} height={650}>
       <Window.Content scrollable>
         <InterfaceLockNoticeBox />
         <AirAlarmStatus />
@@ -25,7 +25,7 @@ export const AirAlarm = (props) => {
 const AirAlarmStatus = (props) => {
   const { data } = useBackend();
   const entries = (data.environment_data || []).filter(
-    (entry) => entry.value >= 0.01
+    (entry) => entry.value >= 0.01,
   );
   const dangerMap = {
     0: {
@@ -46,14 +46,15 @@ const AirAlarmStatus = (props) => {
     <Section title="Air Status">
       <LabeledList>
         {(entries.length > 0 && (
-          <Fragment>
+          <>
             {entries.map((entry) => {
               const status = dangerMap[entry.danger_level] || dangerMap[0];
               return (
                 <LabeledList.Item
                   key={entry.name}
                   label={getGasLabel(entry.name)}
-                  color={status.color}>
+                  color={status.color}
+                >
                   {toFixed(entry.value, 2)}
                   {entry.unit}
                 </LabeledList.Item>
@@ -64,12 +65,13 @@ const AirAlarmStatus = (props) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Area status"
-              color={data.atmos_alarm || data.fire_alarm ? 'bad' : 'good'}>
+              color={data.atmos_alarm || data.fire_alarm ? 'bad' : 'good'}
+            >
               {(data.atmos_alarm && 'Atmosphere Alarm') ||
                 (data.fire_alarm && 'Fire Alarm') ||
                 'Nominal'}
             </LabeledList.Item>
-          </Fragment>
+          </>
         )) || (
           <LabeledList.Item label="Warning" color="bad">
             Cannot obtain air sample for analysis.
@@ -95,17 +97,17 @@ const AirAlarmUnlockedControl = (props) => {
           <Button
             selected={rcon === 1}
             content="Off"
-            onClick={() => act('rcon', { 'rcon': 1 })}
+            onClick={() => act('rcon', { rcon: 1 })}
           />
           <Button
             selected={rcon === 2}
             content="Auto"
-            onClick={() => act('rcon', { 'rcon': 2 })}
+            onClick={() => act('rcon', { rcon: 2 })}
           />
           <Button
             selected={rcon === 3}
             content="On"
-            onClick={() => act('rcon', { 'rcon': 3 })}
+            onClick={() => act('rcon', { rcon: 3 })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Thermostat">
@@ -157,7 +159,8 @@ const AirAlarmControl = (props) => {
             onClick={() => setScreen()}
           />
         )
-      }>
+      }
+    >
       <Component />
     </Section>
   );
@@ -171,7 +174,7 @@ const AirAlarmControlHome = (props) => {
   const [screen, setScreen] = useLocalState('screen');
   const { mode, atmos_alarm } = data;
   return (
-    <Fragment>
+    <>
       <Button
         icon={atmos_alarm ? 'exclamation-triangle' : 'exclamation'}
         color={atmos_alarm && 'caution'}
@@ -213,7 +216,7 @@ const AirAlarmControlHome = (props) => {
         content="Alarm Thresholds"
         onClick={() => setScreen('thresholds')}
       />
-    </Fragment>
+    </>
   );
 };
 

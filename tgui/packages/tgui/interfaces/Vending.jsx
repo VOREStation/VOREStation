@@ -1,5 +1,5 @@
 import { classes } from 'common/react';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
@@ -36,7 +36,8 @@ const VendingRow = (props) => {
             (product.amount <= 0 && 'bad') ||
             (product.amount <= product.max_amount / 2 && 'average') ||
             'good'
-          }>
+          }
+        >
           {product.amount} in stock
         </Box>
       </Table.Cell>
@@ -49,7 +50,7 @@ const VendingRow = (props) => {
           content={product.price ? 'Buy (' + product.price + '₮)' : 'Vend'}
           onClick={() =>
             act('vend', {
-              'vend': product.key,
+              vend: product.key,
             })
           }
         />
@@ -63,7 +64,7 @@ export const Vending = (props) => {
   const { panel } = data;
 
   return (
-    <Window width={450} height={600} resizable>
+    <Window width={450} height={600}>
       <Window.Content scrollable>
         <VendingProducts />
         {panel ? <VendingMaintenance /> : null}
@@ -79,7 +80,7 @@ export const VendingProducts = (props) => {
   // Just in case we still have undefined values in the list
   let myproducts = products.filter((item) => !!item);
   return (
-    <Fragment>
+    <>
       {!!chargesMoney && (
         <Section title="User">
           {(user && (
@@ -110,7 +111,7 @@ export const VendingProducts = (props) => {
           }
         />
       )}
-    </Fragment>
+    </>
   );
 };
 

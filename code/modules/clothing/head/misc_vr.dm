@@ -172,3 +172,12 @@
 	icon = 'icons/inventory/head/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "tiny_tophat"
+
+//Replikant Hat
+
+/obj/item/clothing/head/eulrhat
+	name = "sleek side cap"
+	desc = "A simple wedge cap with red accents, popular with biosynthetic personnel."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "eulrhat"

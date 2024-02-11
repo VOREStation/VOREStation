@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -14,7 +15,7 @@ export const InventoryPanel = (props) => {
   const { slots, internalsValid } = data;
 
   return (
-    <Window width={400} height={200} resizable>
+    <Window width={400} height={200}>
       <Window.Content scrollable>
         <Section>
           <LabeledList>
@@ -25,7 +26,8 @@ export const InventoryPanel = (props) => {
                   <Button
                     mb={-1}
                     icon={slot.item ? 'hand-paper' : 'gift'}
-                    onClick={() => act(slot.act)}>
+                    onClick={() => act(slot.act)}
+                  >
                     {slot.item || 'Nothing'}
                   </Button>
                 </LabeledList.Item>

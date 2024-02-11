@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 export const SmartVend = (props) => {
   const { act, config, data } = useBackend();
   return (
-    <Window width={500} height={550} resizable>
+    <Window width={500} height={550}>
       <Window.Content scrollable>
         <Section title="Storage">
           {(data.secure && (

@@ -18,7 +18,7 @@ export const PlayerNotesInfo = (props) => {
       theme={device_theme}
       width={400}
       height={500}
-      resizable>
+    >
       <Window.Content scrollable>
         <Section title={`Player age: ${age}`}>
           <Table>
@@ -40,7 +40,8 @@ export const PlayerNotesInfo = (props) => {
                         ckey: ckey,
                         index: index + 1,
                       })
-                    }>
+                    }
+                  >
                     Remove
                   </Button>
                 </Table.Cell>
@@ -54,7 +55,8 @@ export const PlayerNotesInfo = (props) => {
             act('add_player_info', {
               ckey: ckey,
             })
-          }>
+          }
+        >
           Add Comment
         </Button>
       </Window.Content>

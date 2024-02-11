@@ -12,7 +12,7 @@ export const FileCabinet = (props) => {
   const sortedContents = sortBy((val) => val.name)(contents || []);
 
   return (
-    <Window width={350} height={300} resizable>
+    <Window width={350} height={300}>
       <Window.Content scrollable>
         <Section>
           {sortedContents.map((item) => (

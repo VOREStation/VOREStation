@@ -1,12 +1,19 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section, AnimatedNumber, Box } from '../components';
+import {
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+  AnimatedNumber,
+  Box,
+} from '../components';
 import { Window } from '../layouts';
 
 export const AtmosFilter = (props) => {
   const { act, data } = useBackend();
   const filterTypes = data.filter_types || [];
   return (
-    <Window width={390} height={187} resizable>
+    <Window width={390} height={187}>
       <Window.Content>
         <Section>
           <LabeledList>

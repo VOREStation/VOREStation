@@ -1,5 +1,6 @@
-import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
@@ -27,22 +28,19 @@ export const CharacterDirectory = (props) => {
 
   const { personalVisibility, personalTag, personalErpTag } = data;
 
-  const [overlay, setOverlay] = useLocalState('overlay', null);
+  const [overlay, setOverlay] = useState(null);
 
-  const [overwritePrefs, setOverwritePrefs] = useLocalState(
-    'overwritePrefs',
-    false
-  );
+  const [overwritePrefs, setOverwritePrefs] = useState(false);
 
   return (
     <Window width={640} height={480} resizeable>
       <Window.Content scrollable>
         {(overlay && <ViewCharacter />) || (
-          <Fragment>
+          <>
             <Section
               title="Controls"
               buttons={
-                <Fragment>
+                <>
                   <Box color="label" inline>
                     Save to current preferences slot:&nbsp;
                   </Box>
@@ -52,8 +50,9 @@ export const CharacterDirectory = (props) => {
                     content={overwritePrefs ? 'On' : 'Off'}
                     onClick={() => setOverwritePrefs(!overwritePrefs)}
                   />
-                </Fragment>
-              }>
+                </>
+              }
+            >
               <LabeledList>
                 <LabeledList.Item label="Visibility">
                   <Button
@@ -94,7 +93,7 @@ export const CharacterDirectory = (props) => {
               </LabeledList>
             </Section>
             <CharacterDirectoryList />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>
@@ -102,7 +101,7 @@ export const CharacterDirectory = (props) => {
 };
 
 const ViewCharacter = (props) => {
-  const [overlay, setOverlay] = useLocalState('overlay', null);
+  const [overlay, setOverlay] = useState(null);
 
   return (
     <Section
@@ -113,7 +112,8 @@ const ViewCharacter = (props) => {
           content="Back"
           onClick={() => setOverlay(null)}
         />
-      }>
+      }
+    >
       <Section level={2} title="Species">
         <Box>{overlay.species}</Box>
       </Section>
@@ -149,16 +149,17 @@ const CharacterDirectoryList = (props) => {
 
   const { directory } = data;
 
-  const [sortId, _setSortId] = useLocalState('sortId', 'name');
-  const [sortOrder, _setSortOrder] = useLocalState('sortOrder', 'name');
-  const [overlay, setOverlay] = useLocalState('overlay', null);
+  const [sortId, _setSortId] = useState('name');
+  const [sortOrder, _setSortOrder] = useState('name');
+  const [overlay, setOverlay] = useState(null);
 
   return (
     <Section
       title="Directory"
       buttons={
         <Button icon="sync" content="Refresh" onClick={() => act('refresh')} />
-      }>
+      }
+    >
       <Table>
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
@@ -202,8 +203,8 @@ const SortButton = (props) => {
   const { id, children } = props;
 
   // Hey, same keys mean same data~
-  const [sortId, setSortId] = useLocalState('sortId', 'name');
-  const [sortOrder, setSortOrder] = useLocalState('sortOrder', 'name');
+  const [sortId, setSortId] = useState('name');
+  const [sortOrder, setSortOrder] = useState('name');
 
   return (
     <Table.Cell collapsing>
@@ -217,7 +218,8 @@ const SortButton = (props) => {
             setSortId(id);
             setSortOrder(true);
           }
-        }}>
+        }}
+      >
         {children}
         {sortId === id && (
           <Icon name={sortOrder ? 'sort-up' : 'sort-down'} ml="0.25rem;" />

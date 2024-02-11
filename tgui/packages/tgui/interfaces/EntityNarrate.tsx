@@ -1,6 +1,16 @@
 import { BooleanLike } from 'common/react';
-import { useBackend, useLocalState } from '../backend';
-import { Flex, Tabs, Section, Button, Box, TextArea, Divider } from '../components';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Section,
+  Tabs,
+  TextArea,
+} from '../components';
 import { Window } from '../layouts';
 
 type data = {
@@ -18,7 +28,7 @@ type data = {
 export const EntityNarrate = (props) => {
   const { act, data } = useBackend<data>();
   return (
-    <Window width={800} height={470} theme="abstract" resizable>
+    <Window width={800} height={470} theme="abstract">
       <Window.Content scrollable>
         <Section>
           <Flex>
@@ -73,13 +83,15 @@ export const EntitySelection = (props) => {
               content="Multi-Selection"
               onClick={() => act('change_mode_multi')}
             />
-          }>
+          }
+        >
           <Tabs vertical>
             {entity_names.map((name) => (
               <Tabs.Tab
                 key={name}
                 selected={multi_id_selection.includes(name)}
-                onClick={() => act('select_entity', { id_selected: name })}>
+                onClick={() => act('select_entity', { id_selected: name })}
+              >
                 <Box inline>{name}</Box>
               </Tabs.Tab>
             ))}
@@ -158,7 +170,7 @@ export const ModeSelector = (props) => {
 
 export const NarrationInput = (props) => {
   const { act, data } = useBackend<data>();
-  const [narration, setNarration] = useLocalState('narration', '');
+  const [narration, setNarration] = useState('');
   return (
     <Section
       title="Narration Text"
@@ -167,7 +179,8 @@ export const NarrationInput = (props) => {
           onClick={() => act('narrate', { message: narration })}
           content="Send Narration"
         />
-      }>
+      }
+    >
       <Flex>
         <Flex.Item width="85%">
           <TextArea

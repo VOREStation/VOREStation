@@ -1,5 +1,6 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -34,7 +35,8 @@ export const MuleBot = (props) => {
                   disabled={!load}
                   onClick={() => act('unload')}
                 />
-              }>
+              }
+            >
               {load ? load : 'None.'}
             </LabeledList.Item>
           </LabeledList>
@@ -60,11 +62,12 @@ const MuleBotClosed = (props) => {
           disabled={locked && !issilicon}
           onClick={() => act('power')}
         />
-      }>
+      }
+    >
       {locked && !issilicon ? (
         <Box color="bad">This interface is currently locked.</Box>
       ) : (
-        <Fragment>
+        <>
           <Button
             fluid
             icon="stop"
@@ -113,7 +116,7 @@ const MuleBotClosed = (props) => {
             }
             onClick={() => act('cargotypes')}
           />
-        </Fragment>
+        </>
       )}
     </Section>
   );

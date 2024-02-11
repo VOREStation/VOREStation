@@ -1,14 +1,23 @@
-import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Icon, Input, LabeledList, Section, Tabs } from '../components';
-import { ComplexModal, modalOpen } from './common/ComplexModal';
+import { filter } from 'common/collections';
+import { flow } from 'common/fp';
+import { createSearch } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Icon,
+  Input,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
+import { ComplexModal, modalOpen } from './common/ComplexModal';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
-import { createSearch } from 'common/string';
-import { filter } from 'common/collections';
-import { flow } from 'common/fp';
 
 const doEdit = (field) => {
   modalOpen('edit', {
@@ -22,7 +31,7 @@ export const GeneralRecords = (_properties) => {
   const { authenticated, screen } = data;
   if (!authenticated) {
     return (
-      <Window width={800} height={380} resizable>
+      <Window width={800} height={380}>
         <Window.Content>
           <LoginScreen />
         </Window.Content>
@@ -43,7 +52,7 @@ export const GeneralRecords = (_properties) => {
   }
 
   return (
-    <Window width={800} height={640} resizable>
+    <Window width={800} height={640}>
       <ComplexModal />
       <Window.Content className="Layout__content--flexColumn" scrollable>
         <LoginInfo />
@@ -79,11 +88,11 @@ const selectRecords = (records, searchText = '') => {
 const GeneralRecordsList = (_properties) => {
   const { act, data } = useBackend();
 
-  const [searchText, setSearchText] = useLocalState('searchText', '');
+  const [searchText, setSearchText] = useState('');
 
   const records = selectRecords(data.records, searchText);
   return (
-    <Fragment>
+    <>
       <Box mb="0.2rem">
         <Button icon="pen" content="New Record" onClick={() => act('new')} />
       </Box>
@@ -103,7 +112,7 @@ const GeneralRecordsList = (_properties) => {
           />
         ))}
       </Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -122,7 +131,7 @@ const GeneralRecordsView = (_properties) => {
   const { act, data } = useBackend();
   const { general, printing } = data;
   return (
-    <Fragment>
+    <>
       <Section title="General Data" level={2} mt="-6px">
         <GeneralRecordsViewGeneral />
       </Section>
@@ -150,7 +159,7 @@ const GeneralRecordsView = (_properties) => {
           onClick={() => act('screen', { screen: 2 })}
         />
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -171,7 +180,7 @@ const GeneralRecordsViewGeneral = (_properties) => {
     );
   }
   return (
-    <Fragment>
+    <>
       <Box width="50%" float="left">
         <LabeledList>
           {general.fields.map((field, i) => (
@@ -226,7 +235,8 @@ const GeneralRecordsViewGeneral = (_properties) => {
               key={i}
               display="inline-block"
               textAlign="center"
-              color="label">
+              color="label"
+            >
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -240,7 +250,7 @@ const GeneralRecordsViewGeneral = (_properties) => {
             </Box>
           ))}
       </Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -251,13 +261,15 @@ const GeneralRecordsNavigation = (_properties) => {
     <Tabs>
       <Tabs.Tab
         selected={screen === 2}
-        onClick={() => act('screen', { screen: 2 })}>
+        onClick={() => act('screen', { screen: 2 })}
+      >
         <Icon name="list" />
         List Records
       </Tabs.Tab>
       <Tabs.Tab
         selected={screen === 3}
-        onClick={() => act('screen', { screen: 3 })}>
+        onClick={() => act('screen', { screen: 3 })}
+      >
         <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>

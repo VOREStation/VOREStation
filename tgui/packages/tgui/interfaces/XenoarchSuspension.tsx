@@ -1,5 +1,6 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'inferno';
+import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -26,16 +27,18 @@ export const XenoarchSuspension = (props) => {
             <Button
               icon={locked ? 'lock' : 'lock-open'}
               selected={!locked}
-              onClick={() => act('lock')}>
+              onClick={() => act('lock')}
+            >
               {locked ? 'Locked' : 'Unlocked'}
             </Button>
-          }>
+          }
+        >
           {(locked && (
             <Box color="bad">
               This interface is locked. Swipe an ID card to unlock it.
             </Box>
           )) || (
-            <Fragment>
+            <>
               <LabeledList>
                 <LabeledList.Item label="Cell Charge">
                   {(cell && (
@@ -56,12 +59,13 @@ export const XenoarchSuspension = (props) => {
                 mt={1}
                 icon="meteor"
                 selected={suspension_field}
-                onClick={() => act('toggle_field')}>
+                onClick={() => act('toggle_field')}
+              >
                 {suspension_field
                   ? 'Disengage Suspension Field'
                   : 'Engage Suspension Field'}
               </Button>
-            </Fragment>
+            </>
           )}
         </Section>
       </Window.Content>

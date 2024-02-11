@@ -1,7 +1,8 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-
 /* This is all basically stolen from routes.js. */
 import { routingError } from '../routes';
 
@@ -43,14 +44,10 @@ export const Pda = (props) => {
 
   let App = getPdaApp(app.template);
 
-  const [settingsMode, setSettingsMode] = useLocalState('settingsMode', false);
+  const [settingsMode, setSettingsMode] = useState(false);
 
   return (
-    <Window
-      width={580}
-      height={670}
-      theme={useRetro ? 'pda-retro' : null}
-      resizable>
+    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}
@@ -64,7 +61,8 @@ export const Pda = (props) => {
                 {app.name}
               </Box>
             }
-            p={1}>
+            p={1}
+          >
             <App />
           </Section>
         )}
@@ -170,7 +168,8 @@ const PDAFooter = (props) => {
       bottom="0%"
       left="0%"
       right="0%"
-      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}>
+      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}
+    >
       <Flex>
         <Flex.Item basis="33%">
           <Button

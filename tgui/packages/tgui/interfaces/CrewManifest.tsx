@@ -1,8 +1,9 @@
+import { decodeHtmlEntities } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Box, Section, Table } from '../components';
-import { Window } from '../layouts';
 import { COLORS } from '../constants';
-import { decodeHtmlEntities } from 'common/string';
+import { Window } from '../layouts';
 
 /*
  * Shared by the following templates (and used individually too)
@@ -50,13 +51,15 @@ export const CrewManifestContent = (props) => {
                   backgroundColor={COLORS.manifest[cat.cat.toLowerCase()]}
                   m={-1}
                   pt={1}
-                  pb={1}>
+                  pb={1}
+                >
                   <Box ml={1} textAlign="center" fontSize={1.4}>
                     {cat.cat}
                   </Box>
                 </Box>
               }
-              key={cat.cat}>
+              key={cat.cat}
+            >
               <Table>
                 <Table.Row header color="white">
                   <Table.Cell>Name</Table.Cell>
@@ -72,7 +75,7 @@ export const CrewManifestContent = (props) => {
                 ))}
               </Table>
             </Section>
-          )
+          ),
       )}
     </Section>
   );

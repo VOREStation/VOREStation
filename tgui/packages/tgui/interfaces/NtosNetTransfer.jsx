@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Button, Box, LabeledList, ProgressBar, Section, Icon } from '../components';
+import {
+  Button,
+  Box,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Icon,
+} from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosNetTransfer = (props) => {
@@ -20,7 +27,7 @@ export const NtosNetTransfer = (props) => {
   }
 
   return (
-    <NtosWindow width={575} height={700} resizable>
+    <NtosWindow width={575} height={700}>
       <NtosWindow.Content scrollable>{body}</NtosWindow.Content>
     </NtosWindow>
   );
@@ -36,7 +43,8 @@ const P2PError = (props) => {
         <Button icon="undo" onClick={() => act('PRG_reset')}>
           Reset
         </Button>
-      }>
+      }
+    >
       Additional Information: {error}
     </Section>
   );
@@ -108,7 +116,8 @@ const P2PUploadServer = (props) => {
         <Button icon="undo" onClick={() => act('PRG_reset')}>
           Cancel
         </Button>
-      }>
+      }
+    >
       <Button fluid icon="lock" onClick={() => act('PRG_setpassword')}>
         Set Password
       </Button>
@@ -118,7 +127,8 @@ const P2PUploadServer = (props) => {
             key={file.uid}
             fluid
             icon="upload"
-            onClick={() => act('PRG_uploadfile', { uid: file.uid })}>
+            onClick={() => act('PRG_uploadfile', { uid: file.uid })}
+          >
             {file.filename} ({file.size}GQ)
           </Button>
         ))}
@@ -137,7 +147,8 @@ const P2PAvailable = (props) => {
         <Button icon="upload" onClick={() => act('PRG_uploadmenu')}>
           Send File
         </Button>
-      }>
+      }
+    >
       {(servers.length && (
         <LabeledList>
           {servers.map((server) => (
@@ -146,7 +157,8 @@ const P2PAvailable = (props) => {
               {server.filename}&nbsp; ({server.size}GQ)&nbsp;
               <Button
                 icon="download"
-                onClick={() => act('PRG_downloadfile', { uid: server.uid })}>
+                onClick={() => act('PRG_downloadfile', { uid: server.uid })}
+              >
                 Download
               </Button>
             </LabeledList.Item>

@@ -1,5 +1,15 @@
-import { useBackend, useLocalState } from '../backend';
-import { Button, Dimmer, Flex, Icon, LabeledList, Section, Tabs } from '../components';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Button,
+  Dimmer,
+  Flex,
+  Icon,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 
 export const PersonalCrafting = (props) => {
@@ -48,7 +58,7 @@ export const PersonalCrafting = (props) => {
     }
   }
   // Sort out the tab state
-  const [tab, setTab] = useLocalState('tab', categories[0]?.name);
+  const [tab, setTab] = useState(categories[0]?.name);
   const shownRecipes = recipes.filter((recipe) => recipe.category === tab);
   return (
     <Window title="Crafting Menu" width={700} height={800}>
@@ -74,7 +84,8 @@ export const PersonalCrafting = (props) => {
                 onClick={() => act('toggle_recipes')}
               />
             </>
-          }>
+          }
+        >
           <Flex>
             <Flex.Item>
               <Tabs vertical>
@@ -88,7 +99,8 @@ export const PersonalCrafting = (props) => {
                         category: category.category,
                         subcategory: category.subcategory,
                       });
-                    }}>
+                    }}
+                  >
                     {category.name}
                   </Tabs.Tab>
                 ))}
@@ -134,7 +146,8 @@ const CraftingList = (props) => {
                 })
               }
             />
-          }>
+          }
+        >
           {craftable.req_text}
         </LabeledList.Item>
       );
@@ -156,7 +169,8 @@ const CraftingList = (props) => {
               })
             }
           />
-        }>
+        }
+      >
         <LabeledList>
           {!!craftable.req_text && (
             <LabeledList.Item label="Required">

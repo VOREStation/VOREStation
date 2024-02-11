@@ -8,7 +8,7 @@ export const NtosUAV = (props) => {
   const { current_uav, signal_strength, in_use, paired_uavs } = data;
 
   return (
-    <NtosWindow width={600} height={500} resizable>
+    <NtosWindow width={600} height={500}>
       <NtosWindow.Content>
         <Section title="Selected UAV">
           <LabeledList>
@@ -23,7 +23,8 @@ export const NtosUAV = (props) => {
                 <Button
                   icon="power-off"
                   selected={current_uav.power}
-                  onClick={() => act('power_uav')}>
+                  onClick={() => act('power_uav')}
+                >
                   {current_uav.power ? 'Online' : 'Offline'}
                 </Button>
               )) ||
@@ -35,7 +36,8 @@ export const NtosUAV = (props) => {
                   icon="power-off"
                   selected={in_use}
                   disabled={!current_uav.power}
-                  onClick={() => act('view_uav')}>
+                  onClick={() => act('view_uav')}
+                >
                   {current_uav.power ? 'Available' : 'Unavailable'}
                 </Button>
               )) ||
@@ -52,8 +54,9 @@ export const NtosUAV = (props) => {
                     fluid
                     icon="quidditch"
                     onClick={() =>
-                      act('switch_uav', { 'switch_uav': uav.uavref })
-                    }>
+                      act('switch_uav', { switch_uav: uav.uavref })
+                    }
+                  >
                     {uav.name}
                   </Button>
                 </Flex.Item>
@@ -61,7 +64,7 @@ export const NtosUAV = (props) => {
                   <Button
                     color="bad"
                     icon="times"
-                    onClick={() => act('del_uav', { 'del_uav': uav.uavref })}
+                    onClick={() => act('del_uav', { del_uav: uav.uavref })}
                   />
                 </Flex.Item>
               </Flex>
