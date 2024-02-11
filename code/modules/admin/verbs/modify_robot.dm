@@ -3,7 +3,7 @@
 	set name = "Modify Robot Module"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT))
+	if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT|R_EVENT))
 		return
 
 	if(!istype(target) || !target.module)
@@ -13,7 +13,7 @@
 		return
 
 	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_APPLY_UPGRADE, MODIFIY_ROBOT_SUPP_ADD, MODIFIY_ROBOT_SUPP_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE,
-		MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_RESET_MODULE, MODIFIY_ROBOT_TOGGLE_ERT, MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
+		MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_SWAP_MODULE, MODIFIY_ROBOT_RESET_MODULE, MODIFIY_ROBOT_TOGGLE_ERT, MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
 
 	while(TRUE)
 		var/modification_choice = tgui_input_list(usr, "Select if you want to add or remove a module to/from [target]","Choice", modification_options)
@@ -275,17 +275,34 @@
 						if(selected_component == "power cell")
 							target.cell = null
 					to_chat(usr, "<span class='danger'>You removed \"[C]\" from [target]</span>")
+			if(MODIFIY_ROBOT_SWAP_MODULE)
+				var/selected_module = tgui_input_list(usr, "Which Module would you like to use?", "Module", robot_modules)
+				if(!selected_module || selected_module == "Cancel")
+					continue
+				if(!(selected_module in robot_modules))
+					continue
+				target.uneq_all()
+				target.hud_used.update_robot_modules_display(TRUE)
+				target.modtype = initial(target.modtype)
+				target.module.Reset(target)
+				target.module.Destroy()
+				target.modtype = selected_module
+				var/module_type = robot_modules[selected_module]
+				target.transform_with_anim()
+				new module_type(target)
+				target.hands.icon_state = target.get_hud_module_icon()
+				target.hud_used.update_robot_modules_display()
 			if(MODIFIY_ROBOT_RESET_MODULE)
 				if(tgui_alert(usr, "Are you sure that you want to reset the entire module?","Confirm",list("Yes","No"))=="No")
 					continue
-				target.module_reset()
+				target.module_reset(FALSE)
 				to_chat(usr, "<span class='danger'>You resetted [target]'s module selection.</span>")
 			if(MODIFIY_ROBOT_TOGGLE_ERT)
 				target.crisis_override = !target.crisis_override
 				to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
 				if(tgui_alert(usr, "Do you want to reset the module as well to allow selection?","Confirm",list("Yes","No"))=="No")
 					continue
-				target.module_reset()
+				target.module_reset(FALSE)
 			if(MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
 				for(var/obj in target.contents)
 					if(istype(obj, /obj/item/weapon/card/id/synthetic))
