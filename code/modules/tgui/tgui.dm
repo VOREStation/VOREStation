@@ -11,7 +11,7 @@
 	var/mob/user
 	/// The object which owns the UI.
 	var/datum/src_object
-	/// The title of te UI.
+	/// The title of the UI.
 	var/title
 	/// The window_id for browse() and onclose().
 	var/datum/tgui_window/window
@@ -76,22 +76,29 @@
 	if(ui_x && ui_y)
 		src.window_size = list(ui_x, ui_y)
 
+/datum/tgui/Destroy()
+	user = null
+	src_object = null
+	return ..()
+
 /**
  * public
  *
  * Open this UI (and initialize it with data).
+ *
+ * return bool - TRUE if a new pooled window is opened, FALSE in all other situations including if a new pooled window didn't open because one already exists.
  */
 /datum/tgui/proc/open()
 	if(!user.client)
-		return null
+		return FALSE
 	if(window)
-		return null
+		return FALSE
 	process_status()
 	if(status < STATUS_UPDATE)
-		return null
+		return FALSE
 	window = SStgui.request_pooled_window(user)
 	if(!window)
-		return null
+		return FALSE
 	opened_at = world.time
 	window.acquire_lock(src)
 	if(!window.is_ready())
@@ -114,10 +121,14 @@
 		window.set_mouse_macro()
 	SStgui.on_open(src)
 
+	return TRUE
+
 /**
  * public
  *
- * Close the UI, and all its children.
+ * Close the UI.
+ *
+ * optional can_be_suspended bool
  */
 /datum/tgui/proc/close(can_be_suspended = TRUE, logout = FALSE)
 	if(closing)
@@ -146,7 +157,7 @@
  *
  * Enable/disable auto-updating of the UI.
  *
- * required autoupdate bool Enable/disable auto-updating.
+ * required value bool Enable/disable auto-updating.
  */
 /datum/tgui/proc/set_autoupdate(autoupdate)
 	src.autoupdate = autoupdate
@@ -178,6 +189,8 @@
  * Makes an asset available to use in tgui.
  *
  * required asset datum/asset
+ *
+ * return bool - true if an asset was actually sent
  */
 /datum/tgui/proc/send_asset(datum/asset/asset)
 	if(!window)
@@ -282,14 +295,12 @@
 		return
 	// Validate ping
 	if(!initialized && world.time - opened_at > TGUI_PING_TIMEOUT)
-		// #ifdef TGUI_DEBUGGING // Always log zombie windows
 		log_tgui(user, \
 			"Error: Zombie window detected, killing it with fire.\n" \
 			+ "window_id: [window.id]\n" \
 			+ "opened_at: [opened_at]\n" \
 			+ "world.time: [world.time]")
 		close(can_be_suspended = FALSE)
-		// #endif
 		return
 	// Update through a normal call to ui_interact
 	if(status != STATUS_DISABLED && (autoupdate || force))
@@ -321,9 +332,7 @@
 /**
  * private
  *
- * Handle clicks from the UI.
- * Call the src_object's ui_act() if status is UI_INTERACTIVE.
- * If the src_object's ui_act() returns 1, update all UIs attacked to it.
+ * Callback for handling incoming tgui messages.
  */
 /datum/tgui/proc/on_message(type, list/payload, list/href_list)
 	// Pass act type messages to tgui_act
