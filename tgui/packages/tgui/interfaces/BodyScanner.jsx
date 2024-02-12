@@ -373,7 +373,7 @@ const BodyScannerMainOrgansExternal = (props) => {
           <Table.Cell textAlign="right">Injuries</Table.Cell>
         </Table.Row>
         {props.organs.map((o, i) => (
-          <Table.Row key={i} textTransform="capitalize">
+          <Table.Row key={i} style={{ textTransform: 'capitalize' }}>
             <Table.Cell width="33%">{o.name}</Table.Cell>
             <Table.Cell textAlign="center" q>
               <ProgressBar
@@ -450,7 +450,7 @@ const BodyScannerMainOrgansInternal = (props) => {
           <Table.Cell textAlign="right">Injuries</Table.Cell>
         </Table.Row>
         {props.organs.map((o, i) => (
-          <Table.Row key={i} textTransform="capitalize">
+          <Table.Row key={i} style={{ textTransform: 'capitalize' }}>
             <Table.Cell width="33%">{o.name}</Table.Cell>
             <Table.Cell textAlign="center">
               <ProgressBar

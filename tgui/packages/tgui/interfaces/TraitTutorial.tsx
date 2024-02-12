@@ -65,7 +65,7 @@ export const TraitDescription = (props) => {
   const { descriptions, categories, tutorials } = data;
 
   return (
-    <Section StackWrap>
+    <Section>
       <b>Name:</b> {name}
       <br />
       <b>Category:</b> {categories[name]}
