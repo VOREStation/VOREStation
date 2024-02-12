@@ -27,7 +27,10 @@
   @include meta.load-css('~tgui/styles/components/ProgressBar.scss');
 
   // Components specific to tgui-panel
-  @include meta.load-css('../components/Chat.scss');
+  @include meta.load-css(
+    '../components/Chat.scss',
+    $with: ('text-color': #ffffff)
+  );
 
   // Layouts
   @include meta.load-css('~tgui/styles/layouts/Layout.scss');
