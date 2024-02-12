@@ -1,9 +1,9 @@
 import { round } from 'common/math';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
-import { Button, Section, NumberInput, Flex } from '../components';
-import { Window } from '../layouts';
+import { Button, Flex, NumberInput, Section } from '../components';
 import { formatTime } from '../format';
+import { Window } from '../layouts';
 
 export const BrigTimer = (props) => {
   const { act, data } = useBackend();

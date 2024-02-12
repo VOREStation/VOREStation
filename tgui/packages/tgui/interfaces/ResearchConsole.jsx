@@ -1,19 +1,20 @@
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'react';
+
 import { useBackend, useLocalState, useSharedState } from '../backend';
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Icon,
+  Input,
   LabeledList,
+  NumberInput,
   ProgressBar,
   Section,
-  Tabs,
-  Input,
-  NumberInput,
   Table,
-  Divider,
+  Tabs,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -564,10 +565,14 @@ const ResearchConsoleConstructor = (props) => {
         (protoTab === 1 && (
           <LabeledList>
             {(queue.length &&
-              queue.map((item) => {
+              queue.map((item, index) => {
                 if (item.index === 1) {
                   return (
-                    <LabeledList.Item label={item.name} labelColor="bad">
+                    <LabeledList.Item
+                      key={index}
+                      label={item.name}
+                      labelColor="bad"
+                    >
                       {!busy ? (
                         <Box>
                           (Awaiting Materials)

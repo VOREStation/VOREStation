@@ -1,16 +1,16 @@
-import { Fragment } from 'react';
+import { decodeHtmlEntities } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
   LabeledList,
+  NoticeBox,
   ProgressBar,
   Section,
-  NoticeBox,
   Slider,
 } from '../components';
 import { Window } from '../layouts';
-import { decodeHtmlEntities } from 'common/string';
 
 export const XenoarchSpectrometer = (props) => {
   const { act, data } = useBackend();

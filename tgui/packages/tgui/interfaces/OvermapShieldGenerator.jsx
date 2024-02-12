@@ -1,12 +1,11 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
   LabeledList,
   ProgressBar,
   Section,
-  AnimatedNumber,
 } from '../components';
 import { Window } from '../layouts';
 

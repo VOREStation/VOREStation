@@ -1,15 +1,16 @@
 import { round } from 'common/math';
+
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
   LabeledList,
   ProgressBar,
   Section,
-  AnimatedNumber,
 } from '../components';
-import { Window } from '../layouts';
 import { formatPower } from '../format';
+import { Window } from '../layouts';
 
 export const ICAssembly = (props) => {
   const { act, data } = useBackend();

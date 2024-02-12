@@ -1,3 +1,5 @@
+import { round } from 'common/math';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -10,7 +12,6 @@ import {
 } from '../components';
 import { formatPower } from '../format';
 import { Window } from '../layouts';
-import { round } from 'common/math';
 
 // Common power multiplier
 const POWER_MUL = 1e3;

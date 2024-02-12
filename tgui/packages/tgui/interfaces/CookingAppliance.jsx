@@ -1,11 +1,11 @@
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Button,
   Flex,
   LabeledList,
   ProgressBar,
   Section,
-  AnimatedNumber,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -46,7 +46,7 @@ export const CookingAppliance = (props) => {
             {our_contents.map((content, i) => {
               if (content.empty) {
                 return (
-                  <LabeledList.Item label={'Slot #' + (i + 1)}>
+                  <LabeledList.Item key={i} label={'Slot #' + (i + 1)}>
                     <Button onClick={() => act('slot', { slot: i + 1 })}>
                       Empty
                     </Button>

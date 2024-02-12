@@ -1,13 +1,14 @@
 import { capitalize } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   Box,
-  ByondUi,
   Button,
+  ByondUi,
+  ColorBox,
   Flex,
   LabeledList,
   Section,
-  ColorBox,
 } from '../components';
 import { Window } from '../layouts';
 

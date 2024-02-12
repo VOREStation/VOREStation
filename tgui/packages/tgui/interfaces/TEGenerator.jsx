@@ -1,8 +1,9 @@
 import { round } from 'common/math';
+
 import { useBackend } from '../backend';
 import { Box, Flex, LabeledList, ProgressBar, Section } from '../components';
+import { formatPower, formatSiUnit } from '../format';
 import { Window } from '../layouts';
-import { formatSiUnit, formatPower } from '../format';
 
 export const TEGenerator = (props) => {
   const { data } = useBackend();

@@ -1,15 +1,16 @@
+import { capitalize } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
-  NoticeBox,
   LabeledList,
+  NoticeBox,
   ProgressBar,
   Section,
   Table,
 } from '../components';
 import { Window } from '../layouts';
-import { capitalize } from 'common/string';
 
 export const AlgaeFarm = (props) => {
   const { act, data } = useBackend();

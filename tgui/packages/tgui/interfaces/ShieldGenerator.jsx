@@ -1,16 +1,16 @@
+import { round } from 'common/math';
+
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Fragment } from 'react';
 import {
-  Button,
   Box,
-  Section,
+  Button,
+  Icon,
   LabeledList,
   NumberInput,
-  Icon,
+  Section,
 } from '../components';
-import { round } from 'common/math';
-import { formatSiUnit, formatPower } from '../format';
+import { formatPower, formatSiUnit } from '../format';
+import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
 export const ShieldGenerator = (props) => {

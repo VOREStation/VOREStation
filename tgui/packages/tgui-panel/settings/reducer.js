@@ -89,8 +89,10 @@ export const settingsReducer = (state = initialState, action) => {
     nextState.initialized = true;
     let newFilters = {};
     for (let typeDef of MESSAGE_TYPES) {
-      // alert(typeDef.type);
-      if (nextState.storedTypes[typeDef.type] === null) {
+      if (
+        nextState.storedTypes[typeDef.type] === null ||
+        nextState.storedTypes[typeDef.type] === undefined
+      ) {
         newFilters[typeDef.type] = true;
       } else {
         newFilters[typeDef.type] = nextState.storedTypes[typeDef.type];

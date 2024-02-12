@@ -1,13 +1,14 @@
 import { classes } from 'common/react';
 import { capitalize } from 'common/string';
+
 import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
   ColorBox,
-  Stack,
   LabeledList,
   Section,
+  Stack,
   Tabs,
 } from '../components';
 import { Window } from '../layouts';

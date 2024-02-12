@@ -1,13 +1,12 @@
-import { Fragment } from 'react';
 import { useBackend, useSharedState } from '../backend';
 import {
   Button,
-  LabeledList,
-  Section,
-  Tabs,
-  NoticeBox,
-  Table,
   Input,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Table,
+  Tabs,
 } from '../components';
 import { Window } from '../layouts';
 

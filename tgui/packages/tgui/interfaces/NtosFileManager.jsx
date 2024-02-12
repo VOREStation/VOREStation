@@ -1,7 +1,7 @@
 /* eslint react/no-danger: "off" */
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
-import { Button, Section, Table, Flex } from '../components';
+import { Button, Flex, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosFileManager = (props) => {
