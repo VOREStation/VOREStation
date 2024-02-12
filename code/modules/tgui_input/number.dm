@@ -15,7 +15,7 @@
  * * timeout - The timeout of the number input, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * round_value - whether the inputted number is rounded down into an integer.
  */
-/proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = INFINITY, min_value = -INFINITY, timeout = 0, round_value = FALSE)
+/proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = INFINITY, min_value = -INFINITY, timeout = 0, round_value = TRUE, ui_state = GLOB.tgui_always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -23,12 +23,16 @@
 			var/client/client = user
 			user = client.mob
 		else
-			return
+			return null
+
+	if (isnull(user.client))
+		return null
+
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.tgui_input_mode)
 		var/input_number = input(user, message, title, default) as null|num
 		return clamp(round_value ? round(input_number) : input_number, min_value, max_value)
-	var/datum/tgui_input_number/number_input = new(user, message, title, default, max_value, min_value, timeout, round_value)
+	var/datum/tgui_input_number/number_input = new(user, message, title, default, max_value, min_value, timeout, round_value, ui_state)
 	number_input.tgui_interact(user)
 	number_input.wait()
 	if (number_input)
@@ -62,14 +66,17 @@
 	var/timeout
 	/// The title of the TGUI window
 	var/title
+	/// The TGUI UI state that will be returned in ui_state(). Default: always_state
+	var/datum/tgui_state/state
 
-/datum/tgui_input_number/New(mob/user, message, title, default, max_value, min_value, timeout, round_value)
+/datum/tgui_input_number/New(mob/user, message, title, default, max_value, min_value, timeout, round_value, ui_state)
 	src.default = default
 	src.max_value = max_value
 	src.message = message
 	src.min_value = min_value
 	src.title = title
 	src.round_value = round_value
+	src.state = ui_state
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
@@ -85,8 +92,9 @@
 	if(default > max_value)
 		CRASH("Default value is greater than max value.")
 
-/datum/tgui_input_number/Destroy(force, ...)
+/datum/tgui_input_number/Destroy(force)
 	SStgui.close_uis(src)
+	state = null
 	return ..()
 
 /**
@@ -108,7 +116,7 @@
 	closed = TRUE
 
 /datum/tgui_input_number/tgui_state(mob/user)
-	return GLOB.tgui_always_state
+	return state
 
 /datum/tgui_input_number/tgui_static_data(mob/user)
 	var/list/data = list()
@@ -119,6 +127,7 @@
 	data["min_value"] = min_value
 	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons
 	data["title"] = title
+	data["round_value"] = round_value
 	return data
 
 /datum/tgui_input_number/tgui_data(mob/user)
@@ -135,8 +144,7 @@
 		if("submit")
 			if(!isnum(params["entry"]))
 				CRASH("A non number was input into tgui input number by [usr]")
-			//var/choice = round_value ? round(params["entry"]) : params["entry"]
-			var/choice = params["entry"]
+			var/choice = round_value ? round(params["entry"]) : params["entry"]
 			if(choice > max_value)
 				CRASH("A number greater than the max value was input into tgui input number by [usr]")
 			if(choice < min_value)
