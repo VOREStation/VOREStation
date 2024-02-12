@@ -40,6 +40,10 @@
 #*.dmm text eol=lf merge=dmm
 #*.dmi binary merge=dmi
 
+# old dmi icon merger hook
+# needs additional setup, see tools/dmitool/merging.txt
+*.dmi merge=merge-dmi
+
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab
 
