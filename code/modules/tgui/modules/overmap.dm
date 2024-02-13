@@ -438,7 +438,7 @@
 		/* END ENGINES */
 		/* SENSORS */
 		if("range")
-			var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range)
+			var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range, round_value = FALSE)
 			if(nrange)
 				sensors.set_range(CLAMP(nrange, 1, world.view))
 			. = TRUE
