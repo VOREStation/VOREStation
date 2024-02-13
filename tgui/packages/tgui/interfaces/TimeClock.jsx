@@ -1,13 +1,13 @@
 import { toFixed } from 'common/math';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Flex,
   LabeledList,
-  Section,
   NoticeBox,
+  Section,
 } from '../components';
 import { Window } from '../layouts';
 import { RankIcon } from './common/RankIcon';

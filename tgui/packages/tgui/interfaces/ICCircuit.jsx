@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
+import { decodeHtmlEntities } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
-import { Window } from '../layouts';
-import { decodeHtmlEntities } from 'common/string';
 import { formatPower } from '../format';
+import { Window } from '../layouts';
 
 export const ICCircuit = (props) => {
   const { act, data } = useBackend();

@@ -1,8 +1,9 @@
 import { sortBy } from 'common/collections';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Icon, NanoMap, Section, Tabs } from '../components';
 import { Window } from '../layouts';
-import { Fragment } from 'react';
-import { Button, Box, Tabs, Icon, Section, NanoMap } from '../components';
-import { useBackend, useLocalState } from '../backend';
 import { createLogger } from '../logging';
 const logger = createLogger('fuck');
 
@@ -23,8 +24,8 @@ export const AtmosControlContent = (props) => {
 
   // sortedAlarms = sortedAlarms.slice(1, 3);
 
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
-  const [zoom, setZoom] = useLocalState('zoom', 1);
+  const [tabIndex, setTabIndex] = useState(0);
+  const [zoom, setZoom] = useState(1);
 
   let body;
   // Alarms View

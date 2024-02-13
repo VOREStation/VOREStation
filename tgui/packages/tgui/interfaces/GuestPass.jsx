@@ -1,5 +1,6 @@
 /* eslint react/no-danger: "off" */
 import { sortBy } from 'common/collections';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';

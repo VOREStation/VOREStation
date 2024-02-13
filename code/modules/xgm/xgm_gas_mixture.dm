@@ -189,6 +189,7 @@
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
 	//return R_IDEAL_GAS_EQUATION * ( log (1 + IDEAL_GAS_ENTROPY_CONSTANT/partial_pressure) + 20 )
 
+#undef SPECIFIC_ENTROPY_VACUUM
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()

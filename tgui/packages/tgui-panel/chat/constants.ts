@@ -26,6 +26,7 @@ export const MESSAGE_TYPE_LOCALCHAT = 'localchat';
 export const MESSAGE_TYPE_NPCEMOTE = 'npcemote';
 export const MESSAGE_TYPE_PLOCALCHAT = 'plocalchat';
 export const MESSAGE_TYPE_VORE = 'vore';
+export const MESSAGE_TYPE_HIVEMIND = 'hivemind';
 export const MESSAGE_TYPE_RADIO = 'radio';
 export const MESSAGE_TYPE_NIF = 'nif';
 export const MESSAGE_TYPE_INFO = 'info';
@@ -82,11 +83,17 @@ export const MESSAGE_TYPES = [
     selector: '.valert, .vwarning, .vnotice, .vdanger',
   },
   {
+    type: MESSAGE_TYPE_HIVEMIND,
+    name: 'Global Say',
+    description: 'All global languages (Hivemind / Binary)',
+    selector: '.hivemind, .binarysay',
+  },
+  {
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
     selector:
-      '.alert, .minorannounce, .syndradio, .centradio, .airadio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .binarysay, .newscaster, .resonate, .abductor, .alien, .changeling',
+      '.alert, .minorannounce, .syndradio, .centradio, .airadio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster, .resonate, .abductor, .alien, .changeling',
   },
   {
     type: MESSAGE_TYPE_NIF,

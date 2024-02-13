@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { NtosWindow } from '../layouts';

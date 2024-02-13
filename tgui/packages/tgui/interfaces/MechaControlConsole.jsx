@@ -1,16 +1,16 @@
-import { Fragment } from 'react';
+import { decodeHtmlEntities, toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
-  Modal,
   LabeledList,
+  Modal,
+  NoticeBox,
   ProgressBar,
   Section,
-  NoticeBox,
 } from '../components';
 import { Window } from '../layouts';
-import { toTitleCase, decodeHtmlEntities } from 'common/string';
 
 export const MechaControlConsole = (props) => {
   const { act, data } = useBackend();

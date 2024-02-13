@@ -1,6 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -13,8 +14,8 @@ import {
   Tabs,
 } from '../components';
 import { Window } from '../layouts';
-import { TemporaryNotice } from './common/TemporaryNotice';
 import { FullscreenNotice } from './common/FullscreenNotice';
+import { TemporaryNotice } from './common/TemporaryNotice';
 
 export const MessageMonitor = (props) => {
   const { act, data } = useBackend();
@@ -170,7 +171,7 @@ const MessageMonitorContent = (props) => {
 
   const { linkedServer } = data;
 
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   let body;
   if (tabIndex === 0) {

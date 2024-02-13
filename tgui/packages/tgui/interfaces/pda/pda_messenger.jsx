@@ -1,6 +1,8 @@
-import { decodeHtmlEntities } from 'common/string';
 import { filter } from 'common/collections';
-import { useBackend, useLocalState } from '../../backend';
+import { decodeHtmlEntities } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
 
 export const pda_messenger = (props) => {
@@ -43,10 +45,7 @@ const ActiveConversation = (props) => {
     useRetro,
   } = data;
 
-  const [clipboardMode, setClipboardMode] = useLocalState(
-    'clipboardMode',
-    false,
-  );
+  const [clipboardMode, setClipboardMode] = useState(false);
 
   let body = (
     <Section

@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import {
   Box,
@@ -10,8 +9,8 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
-import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 import { FullscreenNotice } from './common/FullscreenNotice';
+import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 export const APC = (props) => {
   const { act, data } = useBackend();

@@ -1,9 +1,9 @@
 import { filter } from 'common/collections';
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { Fragment } from 'react';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -62,7 +62,7 @@ export const Communicator = (props) => {
    * 1: Popup Video
    * 2: Minimized Video
    */
-  const [videoSetting, setVideoSetting] = useLocalState('videoSetting', 0);
+  const [videoSetting, setVideoSetting] = useState(0);
 
   return (
     <Window width={475} height={700}>
@@ -80,7 +80,7 @@ export const Communicator = (props) => {
               height="88%"
               mb={1}
               style={{
-                'overflow-y': 'auto',
+                overflowY: 'auto',
               }}
             >
               {TabToTemplate[currentTab] || <TemplateError />}
@@ -154,7 +154,7 @@ const VideoComm = (props) => {
           position: 'absolute',
           right: '5px',
           bottom: '50px',
-          'z-index': 1,
+          zIndex: '1',
         }}
       >
         <Section p={0} m={0}>
@@ -834,10 +834,7 @@ const MessagingThreadTab = (props) => {
 
   const { targetAddressName, targetAddress, imList } = data;
 
-  const [clipboardMode, setClipboardMode] = useLocalState(
-    'clipboardMode',
-    false,
-  );
+  const [clipboardMode, setClipboardMode] = useState(false);
 
   if (clipboardMode) {
     return (
@@ -846,8 +843,8 @@ const MessagingThreadTab = (props) => {
           <Box
             inline
             style={{
-              'white-space': 'nowrap',
-              'overflow-x': 'hidden',
+              whiteSpace: 'nowrap',
+              overflowX: 'hidden',
             }}
             width="90%"
           >
@@ -873,7 +870,7 @@ const MessagingThreadTab = (props) => {
         <Section
           style={{
             height: '95%',
-            'overflow-y': 'auto',
+            overflowY: 'auto',
           }}
         >
           {imList.map(
@@ -908,8 +905,8 @@ const MessagingThreadTab = (props) => {
         <Box
           inline
           style={{
-            'white-space': 'nowrap',
-            'overflow-x': 'hidden',
+            whiteSpace: 'nowrap',
+            overflowX: 'hidden',
           }}
           width="100%"
         >
@@ -935,7 +932,7 @@ const MessagingThreadTab = (props) => {
       <Section
         style={{
           height: '95%',
-          'overflow-y': 'auto',
+          overflowY: 'auto',
         }}
       >
         {imList.map(
@@ -1129,8 +1126,8 @@ const NoteTab = (props) => {
         width="100%"
         height="100%"
         style={{
-          'word-break': 'break-all',
-          'overflow-y': 'auto',
+          wordBreak: 'break-all',
+          overflowY: 'auto',
         }}
       >
         {note}

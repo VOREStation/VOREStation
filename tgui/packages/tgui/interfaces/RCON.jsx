@@ -1,20 +1,21 @@
 import { round } from 'common/math';
-import { formatPower } from '../format';
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { capitalize } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Icon,
   LabeledList,
   ProgressBar,
-  Stack,
   Section,
-  Tabs,
   Slider,
+  Stack,
+  Tabs,
 } from '../components';
+import { formatPower } from '../format';
 import { Window } from '../layouts';
-import { capitalize } from 'common/string';
 
 // Common power multiplier
 const POWER_MUL = 1e3;
@@ -30,7 +31,7 @@ export const RCON = (props) => {
 };
 
 export const RCONContent = (props) => {
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   let body;
   if (tabIndex === 0) {

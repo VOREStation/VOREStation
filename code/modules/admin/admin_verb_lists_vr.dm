@@ -517,6 +517,7 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/check_ai_laws,                     //shows AI and borg laws,
 	/client/proc/rename_silicon,            //properly renames silicons,
 	/client/proc/manage_silicon_laws,       // Allows viewing and editing silicon laws. ,
+	/client/proc/modify_robot,
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,                        //admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,                                      //talk in deadchat using our ckey/fakekey,

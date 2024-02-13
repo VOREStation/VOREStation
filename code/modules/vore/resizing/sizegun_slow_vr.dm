@@ -3,7 +3,7 @@
 
 /obj/item/device/slow_sizegun
 	name = "gradual size gun"
-	desc = "A highly advanced ray gun, designed for progressive and gradual changing of size."
+	desc = "A highly advanced ray gun, designed for progressive and gradual changing of size. Size trading can be toggled on via alt-clicking."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun-old-0"
 	var/base_icon_state = "sizegun-old"
@@ -17,6 +17,7 @@
 	var/dorm_size = TRUE
 	var/size_increment = 0.01
 	var/current_target
+	var/trading = 0
 
 /obj/item/device/slow_sizegun/update_icon()
 	icon_state = "[base_icon_state]-[sizeshift_mode]"
@@ -50,6 +51,9 @@
 	if(unresizable)
 		return TRUE
 
+	if(trading == 1 && !(user.resizable))
+		return TRUE
+
 	if(!(target.has_large_resize_bounds()) && (target.size_multiplier >= RESIZE_MAXIMUM) && sizeshift_mode == SIZE_GROW)
 		return TRUE
 
@@ -60,6 +64,18 @@
 		return TRUE
 
 	if(target.size_multiplier <= RESIZE_MINIMUM_DORMS && sizeshift_mode == SIZE_SHRINK)
+		return TRUE
+
+	if(trading == 1 && !(user.has_large_resize_bounds()) && (user.size_multiplier >= RESIZE_MAXIMUM) && sizeshift_mode == SIZE_GROW)
+		return TRUE
+
+	if(trading == 1 && user.size_multiplier >= RESIZE_MAXIMUM_DORMS && sizeshift_mode == SIZE_GROW)
+		return TRUE
+
+	if(trading == 1 && !(user.has_large_resize_bounds()) && (user.size_multiplier <= RESIZE_MINIMUM) && sizeshift_mode == SIZE_SHRINK)
+		return TRUE
+
+	if(trading == 1 && user.size_multiplier <= RESIZE_MINIMUM_DORMS && sizeshift_mode == SIZE_SHRINK)
 		return TRUE
 
 	return FALSE
@@ -81,6 +97,7 @@
 		return
 
 	var/mob/living/L = target
+	var/mob/living/U = user
 
 	if(get_dist(target, user) > beam_range)
 		to_chat(user, span("warning", "You are too far away from \the [target] to affect it. Get closer."))
@@ -98,6 +115,9 @@
 			return
 
 	if(!(L.resizable))
+		unresizable = TRUE
+
+	if(trading == 1 && !(user.resizable))
 		unresizable = TRUE
 
 	if(unresizable)
@@ -119,14 +139,25 @@
 
 	var/active_hand = user.get_active_hand()
 
-	while(!should_stop(target, user, active_hand))
-		stoplag(3)
+	if (trading == 0)
+		while(!should_stop(target, user, active_hand))
+			stoplag(3)
 
-		if(sizeshift_mode == SIZE_SHRINK)
-			L.resize((L.size_multiplier - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
-		else if(sizeshift_mode == SIZE_GROW)
-			L.resize((L.size_multiplier + size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
+			if(sizeshift_mode == SIZE_SHRINK)
+				L.resize((L.size_multiplier - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
+			else if(sizeshift_mode == SIZE_GROW)
+				L.resize((L.size_multiplier + size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
 
+	if (trading == 1)
+		while(!should_stop(target, user, active_hand))
+			stoplag(3)
+
+			if(sizeshift_mode == SIZE_SHRINK)
+				L.resize((L.size_multiplier - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
+				U.resize((U.size_multiplier + size_increment), uncapped = U.has_large_resize_bounds(), aura_animation = FALSE)
+			else if(sizeshift_mode == SIZE_GROW)
+				L.resize((L.size_multiplier + size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
+				U.resize((U.size_multiplier - size_increment), uncapped = U.has_large_resize_bounds(), aura_animation = FALSE)
 	busy = FALSE
 	current_target = null
 
@@ -219,3 +250,13 @@
 /obj/item/device/slow_sizegun/proc/color_box(list/box_segments, new_color, new_time)
 	for(var/i in box_segments)
 		animate(i, color = new_color, time = new_time)
+
+//Alt click to activate size trading
+
+/obj/item/device/slow_sizegun/AltClick(mob/user)
+	if (trading == 0)
+		trading = 1
+		to_chat(user, span("notice", "\The [src] will now trade your targets size for your own."))
+	else
+		trading = 0
+		to_chat(user, span("notice", "\The [src] will no longer trade your targets size for your own."))

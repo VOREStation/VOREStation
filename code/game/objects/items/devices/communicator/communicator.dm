@@ -376,3 +376,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		return
 
 	icon_state = initial(icon_state)
+
+#undef HOMETAB
+#undef PHONTAB
+#undef CONTTAB
+#undef MESSTAB
+#undef NEWSTAB
+#undef NOTETAB
+#undef WTHRTAB
+#undef MANITAB
+#undef SETTTAB

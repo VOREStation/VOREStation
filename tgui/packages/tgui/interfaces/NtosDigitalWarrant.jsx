@@ -1,8 +1,8 @@
+import { filter } from 'common/collections';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
-import { filter } from 'common/collections';
-import { Fragment } from 'react';
 
 export const NtosDigitalWarrant = (props) => {
   const { act, data } = useBackend();

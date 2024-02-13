@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Button, LabeledList, Box, Section } from '../components';
+import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const CommunicationsConsole = (props) => {

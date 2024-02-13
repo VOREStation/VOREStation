@@ -1,4 +1,5 @@
-import { Fragment } from 'react';
+import { capitalize, toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,7 +10,6 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
-import { capitalize, toTitleCase } from 'common/string';
 
 export const RIGSuit = (props) => {
   const { act, data } = useBackend();

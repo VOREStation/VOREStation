@@ -1,7 +1,8 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-
 /* This is all basically stolen from routes.js. */
 import { routingError } from '../routes';
 
@@ -43,7 +44,7 @@ export const Pda = (props) => {
 
   let App = getPdaApp(app.template);
 
-  const [settingsMode, setSettingsMode] = useLocalState('settingsMode', false);
+  const [settingsMode, setSettingsMode] = useState(false);
 
   return (
     <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null}>

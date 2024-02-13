@@ -1,11 +1,10 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import {
   Box,
   Button,
   LabeledList,
-  ProgressBar,
   NoticeBox,
+  ProgressBar,
   Section,
 } from '../components';
 import { Window } from '../layouts';

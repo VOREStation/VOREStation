@@ -1,5 +1,5 @@
-import { Box, Flex, LabeledList, Section, Icon } from '../components';
 import { useBackend } from '../backend';
+import { Box, Flex, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 import { RankIcon } from './common/RankIcon';
 

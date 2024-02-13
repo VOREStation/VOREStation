@@ -1,13 +1,12 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
+  Collapsible,
   Flex,
   LabeledList,
   Section,
-  AnimatedNumber,
-  Collapsible,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -100,11 +99,15 @@ export const OvermapEnginesContent = (props) => {
                             : 'Booting'
                           : 'Offline'}
                       </Box>
-                      {engine.eng_status.map((status) => {
+                      {engine.eng_status.map((status, index) => {
                         if (Array.isArray(status)) {
-                          return <Box color={status[1]}>{status[0]}</Box>;
+                          return (
+                            <Box key={index} color={status[1]}>
+                              {status[0]}
+                            </Box>
+                          );
                         } else {
-                          return <Box>{status}</Box>;
+                          return <Box key={index}>{status}</Box>;
                         }
                       })}
                     </LabeledList.Item>

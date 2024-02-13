@@ -1,6 +1,6 @@
 /* eslint react/no-danger: "off" */
 import { useBackend } from '../backend';
-import { Button, Box, Section, Table } from '../components';
+import { Box, Button, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosWordProcessor = (props) => {

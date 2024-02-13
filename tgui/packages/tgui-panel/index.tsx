@@ -7,6 +7,7 @@
 // Themes
 import './styles/main.scss';
 import './styles/themes/light.scss';
+import './styles/themes/vchatlight.scss';
 import './styles/themes/vchatdark.scss';
 
 import { perf } from 'common/perf';
