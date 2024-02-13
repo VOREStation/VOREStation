@@ -1,7 +1,6 @@
-import { Window } from '../layouts';
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 
 export const ResleevingPod = (model) => {
   const { data } = useBackend();

@@ -1,3 +1,5 @@
+import { round } from 'common/math';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,7 +11,6 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
-import { round } from 'common/math';
 
 export const SolarControl = (props) => {
   const { act, data } = useBackend();

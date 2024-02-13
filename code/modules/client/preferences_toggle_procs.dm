@@ -379,17 +379,6 @@
 		You will have to reload TGChat and/or reconnect to the server for these changes to take place. \
 		TGChat message persistence is not guaranteed if you change this again before the start of the next round.")
 
-/client/verb/toggle_tgui_inputlock()
-	set name = "Toggle TGUI Input Lock"
-	set category = "Preferences"
-	set desc = "Toggles whether or not pressing the 'Enter' key in TGUI input sends the message or creates a new line."
-
-	prefs.tgui_input_lock = !prefs.tgui_input_lock	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	to_chat(src, span_notice("You have toggled TGUI input lock: [prefs.tgui_input_lock ? "ON" : "OFF"] \n \
-	This setting determines whether pressing enter on TGUI input sends the input, or creates a newline."))
-
 /client/verb/toggle_chat_timestamps()
 	set name = "Toggle Chat Timestamps"
 	set category = "Preferences"

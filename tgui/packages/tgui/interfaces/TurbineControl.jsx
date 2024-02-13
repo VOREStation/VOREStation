@@ -1,4 +1,3 @@
-import { formatPower } from '../format';
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -7,6 +6,7 @@ import {
   LabeledList,
   Section,
 } from '../components';
+import { formatPower } from '../format';
 import { Window } from '../layouts';
 
 export const TurbineControl = (props) => {

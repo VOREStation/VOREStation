@@ -1,6 +1,7 @@
 import { map } from 'common/collections';
+
 import { useBackend } from '../backend';
-import { Button, Box, NoticeBox, Section, Table } from '../components';
+import { Box, Button, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const SmartVend = (props) => {

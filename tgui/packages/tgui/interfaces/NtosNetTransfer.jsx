@@ -1,11 +1,11 @@
 import { useBackend } from '../backend';
 import {
-  Button,
   Box,
+  Button,
+  Icon,
   LabeledList,
   ProgressBar,
   Section,
-  Icon,
 } from '../components';
 import { NtosWindow } from '../layouts';
 

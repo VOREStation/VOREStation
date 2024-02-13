@@ -1,5 +1,4 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'react';
 
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';

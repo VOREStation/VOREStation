@@ -1,7 +1,6 @@
 import { round } from 'common/math';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import {
   Box,
   Button,
@@ -9,10 +8,11 @@ import {
   Icon,
   Knob,
   LabeledList,
+  ProgressBar,
   Section,
   Tabs,
-  ProgressBar,
 } from '../components';
+import { Window } from '../layouts';
 
 const stats = [
   ['good', 'Conscious'],

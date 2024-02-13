@@ -1,8 +1,9 @@
-import { useBackend } from '../backend';
-import { Button, Flex, LabeledList, Section, Collapsible } from '../components';
-import { Window } from '../layouts';
-import { toTitleCase } from 'common/string';
 import { sortBy } from 'common/collections';
+import { toTitleCase } from 'common/string';
+
+import { useBackend } from '../backend';
+import { Button, Collapsible, Flex, LabeledList, Section } from '../components';
+import { Window } from '../layouts';
 
 export const SeedStorage = (props) => {
   const { act, data } = useBackend();

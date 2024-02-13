@@ -1,12 +1,11 @@
 import { useBackend } from '../../backend';
-import { Fragment } from 'react';
 import {
-  Box,
-  Section,
-  LabeledList,
-  Button,
   AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
   ProgressBar,
+  Section,
 } from '../../components';
 
 export const PortableBasicInfo = (props) => {

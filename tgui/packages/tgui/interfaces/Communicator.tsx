@@ -80,7 +80,7 @@ export const Communicator = (props) => {
               height="88%"
               mb={1}
               style={{
-                'overflow-y': 'auto',
+                overflowY: 'auto',
               }}
             >
               {TabToTemplate[currentTab] || <TemplateError />}
@@ -154,7 +154,7 @@ const VideoComm = (props) => {
           position: 'absolute',
           right: '5px',
           bottom: '50px',
-          'z-index': 1,
+          zIndex: '1',
         }}
       >
         <Section p={0} m={0}>
@@ -843,8 +843,8 @@ const MessagingThreadTab = (props) => {
           <Box
             inline
             style={{
-              'white-space': 'nowrap',
-              'overflow-x': 'hidden',
+              whiteSpace: 'nowrap',
+              overflowX: 'hidden',
             }}
             width="90%"
           >
@@ -870,7 +870,7 @@ const MessagingThreadTab = (props) => {
         <Section
           style={{
             height: '95%',
-            'overflow-y': 'auto',
+            overflowY: 'auto',
           }}
         >
           {imList.map(
@@ -905,8 +905,8 @@ const MessagingThreadTab = (props) => {
         <Box
           inline
           style={{
-            'white-space': 'nowrap',
-            'overflow-x': 'hidden',
+            whiteSpace: 'nowrap',
+            overflowX: 'hidden',
           }}
           width="100%"
         >
@@ -932,7 +932,7 @@ const MessagingThreadTab = (props) => {
       <Section
         style={{
           height: '95%',
-          'overflow-y': 'auto',
+          overflowY: 'auto',
         }}
       >
         {imList.map(
@@ -1126,8 +1126,8 @@ const NoteTab = (props) => {
         width="100%"
         height="100%"
         style={{
-          'word-break': 'break-all',
-          'overflow-y': 'auto',
+          wordBreak: 'break-all',
+          overflowY: 'auto',
         }}
       >
         {note}

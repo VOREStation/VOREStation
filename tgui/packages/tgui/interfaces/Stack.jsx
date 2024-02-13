@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, Section, Collapsible, Table } from '../components';
+import { Box, Button, Collapsible, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const Stack = (props) => {
@@ -34,7 +34,7 @@ const RecipeList = (props) => {
 
   // let newSortedKeys = nonCategories.concat(categories);
 
-  return sortedKeys.map((title) => {
+  return sortedKeys.map((title, index) => {
     // if (title === "--DIVIDER--") {
     //   return (
     //     <Box mt={1} mb={1}>
@@ -45,14 +45,14 @@ const RecipeList = (props) => {
     let recipe = recipes[title];
     if (recipe.ref === undefined) {
       return (
-        <Collapsible ml={1} mb={-0.7} color="label" title={title}>
+        <Collapsible key={index} ml={1} mb={-0.7} color="label" title={title}>
           <Box ml={1}>
             <RecipeList recipes={recipe} />
           </Box>
         </Collapsible>
       );
     } else {
-      return <Recipe title={title} recipe={recipe} />;
+      return <Recipe key={index} title={title} recipe={recipe} />;
     }
   });
 };

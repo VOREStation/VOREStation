@@ -1,10 +1,11 @@
-import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
+import { flow } from 'common/fp';
+import { createSearch, toTitleCase } from 'common/string';
+
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, Flex, Input, Section, Dropdown } from '../components';
+import { Box, Button, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 import { Materials } from './ExosuitFabricator';
-import { createSearch, toTitleCase } from 'common/string';
 
 const canBeMade = (recipe, materials, mult = 1) => {
   if (recipe.requirements === null) {

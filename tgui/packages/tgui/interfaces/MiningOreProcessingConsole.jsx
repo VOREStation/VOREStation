@@ -1,13 +1,13 @@
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
   Dropdown,
-  Section,
   LabeledList,
-  AnimatedNumber,
+  Section,
 } from '../components';
 import { Window } from '../layouts';
 import { MiningUser } from './common/Mining';

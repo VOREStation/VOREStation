@@ -1,5 +1,5 @@
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -419,11 +419,11 @@ const ShuttleControlConsoleWeb = (props) => {
       {(Object.keys(sensors).length && (
         <Section title="Sensors">
           <LabeledList>
-            {Object.keys(sensors).map((key) => {
+            {Object.keys(sensors).map((key, index) => {
               let sensor = sensors[key];
               if (sensor.reading !== -1) {
                 return (
-                  <LabeledList.Item label={key} color="bad">
+                  <LabeledList.Item key={index} label={key} color="bad">
                     Unable to get sensor air reading.
                   </LabeledList.Item>
                 );
