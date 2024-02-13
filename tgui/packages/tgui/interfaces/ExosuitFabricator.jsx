@@ -1,23 +1,24 @@
-import { classes } from 'common/react';
 import { uniqBy } from 'common/collections';
+import { toFixed } from 'common/math';
+import { classes } from 'common/react';
+import { createSearch, toTitleCase } from 'common/string';
+import { Fragment } from 'react';
+
 import { useBackend, useSharedState } from '../backend';
-import { formatSiUnit, formatMoney } from '../format';
 import {
-  Flex,
-  Section,
-  Tabs,
   Box,
   Button,
-  ProgressBar,
-  NumberInput,
+  Flex,
   Icon,
   Input,
+  NumberInput,
+  ProgressBar,
+  Section,
+  Tabs,
   Tooltip,
 } from '../components';
-import { Fragment } from 'react';
+import { formatMoney, formatSiUnit } from '../format';
 import { Window } from '../layouts';
-import { createSearch, toTitleCase } from 'common/string';
-import { toFixed } from 'common/math';
 
 const MATERIAL_KEYS = {
   steel: 'sheet-metal_3',

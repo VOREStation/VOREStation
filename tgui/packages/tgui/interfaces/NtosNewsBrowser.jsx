@@ -1,15 +1,14 @@
 /* eslint react/no-danger: "off" */
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
   Button,
   LabeledList,
+  NoticeBox,
   ProgressBar,
   Section,
-  NoticeBox,
 } from '../components';
 import { NtosWindow } from '../layouts';
-import { resolveAsset } from '../assets';
-import { Fragment } from 'react';
 
 export const NtosNewsBrowser = (props) => {
   const { act, data } = useBackend();

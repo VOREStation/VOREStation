@@ -1,15 +1,16 @@
+import { round } from 'common/math';
+
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import {
-  Button,
+  AnimatedNumber,
   Box,
-  Section,
+  Button,
   LabeledList,
   NumberInput,
-  AnimatedNumber,
+  Section,
 } from '../components';
-import { round } from 'common/math';
-import { formatSiUnit, formatPower } from '../format';
+import { formatPower, formatSiUnit } from '../format';
+import { Window } from '../layouts';
 
 export const ShieldCapacitor = (props) => {
   const { act, data } = useBackend();

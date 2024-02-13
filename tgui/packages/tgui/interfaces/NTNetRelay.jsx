@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Box, Icon, LabeledList, Section } from '../components';
+import { Box, Button, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 

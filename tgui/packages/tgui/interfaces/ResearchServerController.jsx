@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
+import { filter } from 'common/collections';
+
 import { useBackend, useSharedState } from '../backend';
 import { Box, Button, LabeledList, Section, Tabs } from '../components';
 import { Window } from '../layouts';
-import { filter } from 'common/collections';
 
 export const ResearchServerController = (props) => {
   const { act, data } = useBackend();

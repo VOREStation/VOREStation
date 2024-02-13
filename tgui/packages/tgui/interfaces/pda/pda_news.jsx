@@ -1,5 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'react';
+
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
 

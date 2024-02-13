@@ -204,7 +204,7 @@
 				OutputBeaker = null
 
 		if("adjust temp")
-			target_temp = tgui_input_number(usr, "Choose a target temperature.", "Temperature.", T20C)
+			target_temp = tgui_input_number(usr, "Choose a target temperature.", "Temperature.", T20C, round_value = FALSE)
 			target_temp = CLAMP(target_temp, min_temp, max_temp)
 
 	update_icon()

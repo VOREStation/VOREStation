@@ -1,20 +1,20 @@
+import { classes } from 'common/react';
 import { capitalize } from 'common/string';
-import { Fragment } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
-  Flex,
   Collapsible,
+  Divider,
+  Flex,
   Icon,
   LabeledList,
   NoticeBox,
   Section,
   Tabs,
-  Divider,
 } from '../components';
 import { Window } from '../layouts';
-import { classes } from 'common/react';
 
 const stats = [null, 'average', 'bad'];
 
@@ -1155,8 +1155,8 @@ const VoreSelectedBellyVisuals = (props) => {
           >
             Disabled
           </Button>
-          {Object.keys(possible_fullscreens).map((key) => (
-            <span style={{ width: '256px' }}>
+          {Object.keys(possible_fullscreens).map((key, index) => (
+            <span key={index} style={{ width: '256px' }}>
               <Button
                 key={key}
                 width="256px"

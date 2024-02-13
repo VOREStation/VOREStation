@@ -16,9 +16,6 @@
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = INFINITY, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE)
-	if (istext(user))
-		stack_trace("tgui_input_text() received text for user instead of mob")
-		return
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -27,6 +24,10 @@
 			user = client.mob
 		else
 			return
+
+	if(isnull(user.client))
+		return null
+
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.tgui_input_mode)
 		if(encode)
@@ -40,11 +41,7 @@
 			else
 				return input(user, message, title, default) as text|null
 
-	//Client has TGUI input lock on; override whatever prevent_enter was specified beforehand
-	if(user.client.prefs.tgui_input_lock)
-		prevent_enter = TRUE
-
-	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout, prevent_enter)
+	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout)
 	text_input.tgui_interact(user)
 	text_input.wait()
 	if (text_input)
@@ -79,9 +76,7 @@
 	/// The title of the TGUI window
 	var/title
 
-	var/prevent_enter
-
-/datum/tgui_input_text/New(mob/user, message, title, default, max_length, multiline, encode, timeout, prevent_enter)
+/datum/tgui_input_text/New(mob/user, message, title, default, max_length, multiline, encode, timeout)
 	src.default = default
 	src.encode = encode
 	src.max_length = max_length
@@ -92,18 +87,17 @@
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
-	src.prevent_enter = prevent_enter
 
-/datum/tgui_input_text/Destroy(force, ...)
+/datum/tgui_input_text/Destroy(force)
 	SStgui.close_uis(src)
-	. = ..()
+	return ..()
 
 /**
  * Waits for a user's response to the tgui_text_input's prompt before returning. Returns early if
  * the window was closed by the user.
  */
 /datum/tgui_input_text/proc/wait()
-	while (!entry && !closed)
+	while (!entry && !closed && !QDELETED(src))
 		stoplag(1)
 
 /datum/tgui_input_text/tgui_interact(mob/user, datum/tgui/ui)
@@ -128,7 +122,6 @@
 	data["placeholder"] = default // Default is a reserved keyword
 	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons
 	data["title"] = title
-	data["prevent_enter"] = prevent_enter
 	return data
 
 /datum/tgui_input_text/tgui_data(mob/user)
@@ -143,77 +136,27 @@
 		return
 	switch(action)
 		if("submit")
-			if(length(params["entry"]) > max_length)
-				return
-			if(encode && (length(html_encode(params["entry"])) > max_length))
-				to_chat(usr, span_notice("Your message was clipped due to special character usage."))
+			if(max_length)
+				if(length(params["entry"]) > max_length)
+					CRASH("[usr] typed a text string longer than the max length")
+				if(encode && (length(html_encode(params["entry"])) > max_length))
+					to_chat(usr, span_notice("Your message was clipped due to special character usage."))
 			set_entry(params["entry"])
 			closed = TRUE
 			SStgui.close_uis(src)
 			return TRUE
 		if("cancel")
-			SStgui.close_uis(src)
 			closed = TRUE
+			SStgui.close_uis(src)
 			return TRUE
 
+/**
+ * Sets the return value for the tgui text proc.
+ * If html encoding is enabled, the text will be encoded.
+ * This can sometimes result in a string that is longer than the max length.
+ * If the string is longer than the max length, it will be clipped.
+ */
 /datum/tgui_input_text/proc/set_entry(entry)
 	if(!isnull(entry))
 		var/converted_entry = encode ? html_encode(entry) : entry
-		//converted_entry = readd_quotes(converted_entry)
 		src.entry = trim(converted_entry, max_length)
-
-/**
- * Creates an asynchronous TGUI input text window with an associated callback.
- *
- * This proc should be used to create inputs that invoke a callback with the user's chosen option.
- * Arguments:
- * * user - The user to show the input box to.
- * * message - The content of the input box, shown in the body of the TGUI window.
- * * title - The title of the input box, shown on the top of the TGUI window.
- * * default - The default value pre-populated in the input box.
- * * callback - The callback to be invoked when a choice is made.
- * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
- */
-/proc/tgui_input_text_async(mob/user, message, title, default, datum/callback/callback, max_length, multiline, encode, timeout = 60 SECONDS)
-	if (istext(user))
-		stack_trace("tgui_input_text_async() received text for user instead of mob")
-		return
-	if (!user)
-		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
-			var/client/client = user
-			user = client.mob
-		else
-			return
-	var/datum/tgui_input_text/async/input = new(user, message, title, default, callback, max_length, multiline, encode, timeout)
-	input.tgui_interact(user)
-
-/**
- * # async tgui_text_input
- *
- * An asynchronous version of tgui_text_input to be used with callbacks instead of waiting on user responses.
- */
-/datum/tgui_input_text/async
-	/// The callback to be invoked by the tgui_text_input upon having a choice made.
-	var/datum/callback/callback
-
-/datum/tgui_input_text/async/New(mob/user, message, title, default, callback, max_length, multiline, encode, timeout)
-	..(user, title, message, default, max_length, multiline, encode, timeout)
-	src.callback = callback
-
-/datum/tgui_input_text/async/Destroy(force, ...)
-	QDEL_NULL(callback)
-	. = ..()
-
-/datum/tgui_input_text/async/tgui_close(mob/user)
-	. = ..()
-	qdel(src)
-
-/datum/tgui_input_text/async/set_entry(entry)
-	. = ..()
-	if(!isnull(src.entry))
-		callback?.InvokeAsync(src.entry)
-
-/datum/tgui_input_text/async/wait()
-	return
