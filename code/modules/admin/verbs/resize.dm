@@ -5,7 +5,7 @@
     if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT))
         return
 
-    var/size_multiplier = tgui_input_number(usr, "Input size multiplier.", "Resize", 1)
+    var/size_multiplier = tgui_input_number(usr, "Input size multiplier.", "Resize", 1, round_value=FALSE)
     if(!size_multiplier)
         return //cancelled
 

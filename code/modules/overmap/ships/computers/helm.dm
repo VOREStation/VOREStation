@@ -172,10 +172,10 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 					R.fields["x"] = linked.x
 					R.fields["y"] = linked.y
 				if("new")
-					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x)
+					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x, world.maxx, 1)
 					if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 						return TRUE
-					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y)
+					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y, world.maxy, 1)
 					if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 						return FALSE
 					R.fields["x"] = CLAMP(newx, 1, world.maxx)
@@ -192,14 +192,14 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 		if("setcoord")
 			if(params["setx"])
-				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx)
+				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx, world.maxx, 1)
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return
 				if(newx)
 					dx = CLAMP(newx, 1, world.maxx)
 
 			if(params["sety"])
-				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy)
+				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy, world.maxy, 1)
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return
 				if(newy)
@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000)
+			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
