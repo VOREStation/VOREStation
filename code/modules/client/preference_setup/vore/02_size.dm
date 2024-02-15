@@ -162,7 +162,7 @@
 		var/weight_loss_rate = tgui_input_number(user, "Choose your character's rate of weight loss between 100% \
 			(full realism body fat loss) and 0% (no body fat loss).\n\
 			(If you want to disable weight loss, set this to 0.01 round it to 0%.)\
-			([WEIGHT_CHANGE_MIN]-[WEIGHT_CHANGE_MAX])", "Character Preference", pref.weight_loss, WEIGHT_CHANGE_MAX, WEIGHT_CHANGE_MIN round_value=FALSE)
+			([WEIGHT_CHANGE_MIN]-[WEIGHT_CHANGE_MAX])", "Character Preference", pref.weight_loss, WEIGHT_CHANGE_MAX, WEIGHT_CHANGE_MIN, round_value=FALSE)
 		if(weight_loss_rate)
 			pref.weight_loss = round(text2num(weight_loss_rate),1)
 			return TOPIC_REFRESH

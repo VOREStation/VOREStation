@@ -545,7 +545,7 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount =  tgui_input_number(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0, min_value=-INFINIT, round_value=FALSE)
+		var/amount =  tgui_input_number(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0, min_value=-INFINITY, round_value=FALSE)
 
 		if(!L)
 			to_chat(usr, "Mob doesn't exist anymore")
