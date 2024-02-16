@@ -28,7 +28,7 @@
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/min_force = 10 //minimum amount of force needed to damage the door with a melee weapon
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
-	var/repairing = 0
+	//var/repairing = 0 //VOREstation Edit: We're not using materials anymore
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
@@ -226,6 +226,9 @@
 	if(istype(I))
 		if(attackby_vr(I, user))	//VOREStation begin: Fireproofing
 			return					//VOREStation begin: Fireproofing
+		// VOREstation Removal: Removing Material requirements to repair doors because they're unnessesary tedium when you
+		// can just remove the electronics and put them back in to repair it for free.
+		/*
 		if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 			if(stat & BROKEN)
 				to_chat(user, "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>")
@@ -258,23 +261,26 @@
 				to_chat(user, "<span class='notice'>You fit [amount_given] [stack.singular_name]\s to damaged and broken parts on \the [src].</span>")
 
 			return
-
-		if(repairing && I.has_tool_quality(TOOL_WELDER))
+		*/ // VOREstation Removal End
+		//Vorestation Edit: Removing material requirements from repairs
+		if(health < maxhealth && I.has_tool_quality(TOOL_WELDER))
 			if(!density)
 				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 				return
 
 			var/obj/item/weapon/weldingtool/welder = I.get_welder()
 			if(welder.remove_fuel(0,user))
-				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [get_material_name()] into place.</span>")
+				to_chat(user, "<span class='notice'>You start to fix dents and repair \the [src].</span>")
 				playsound(src, welder.usesound, 50, 1)
-				if(do_after(user, (5 * repairing) * welder.toolspeed) && welder && welder.isOn())
+				var/repairtime = maxhealth - health //Since we're not using materials anymore... We'll just calculate how much damage there is to repair.
+				if(do_after(user, repairtime * welder.toolspeed) && welder && welder.isOn())
 					to_chat(user, "<span class='notice'>You finish repairing the damage to \the [src].</span>")
-					health = between(health, health + repairing*DOOR_REPAIR_AMOUNT, maxhealth)
+					//health = between(health, health + repairing*DOOR_REPAIR_AMOUNT, maxhealth)
+					health = maxhealth
 					update_icon()
-					repairing = 0
+					//repairing = 0
 			return
-
+		/*
 		if(repairing && I.has_tool_quality(TOOL_CROWBAR))
 			var/datum/material/mat = get_material()
 			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc, repairing)
@@ -282,7 +288,7 @@
 			to_chat(user, "<span class='notice'>You remove \the [repairing_sheet].</span>")
 			playsound(src, I.usesound, 100, 1)
 			return
-
+		*/ //VOREstation Edit End.
 		//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
 		if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
 			var/obj/item/weapon/W = I
