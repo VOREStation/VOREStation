@@ -1460,42 +1460,42 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				host.vore_selected.shrink_grow_size = (new_grow*0.01)
 			. = TRUE
 		if("b_nutritionpercent")
-			var/new_nutrition = tgui_input_number(user, "Choose the nutrition gain percentage you will receive per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", host.vore_selected.nutrition_percent, 100, 0.01)
+			var/new_nutrition = tgui_input_number(user, "Choose the nutrition gain percentage you will receive per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", host.vore_selected.nutrition_percent, 100, 0.01, round_value=FALSE)
 			if(new_nutrition == null)
 				return FALSE
 			var/new_new_nutrition = CLAMP(new_nutrition, 0.01, 100)
 			host.vore_selected.nutrition_percent = new_new_nutrition
 			. = TRUE
 		if("b_burn_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", host.vore_selected.digest_burn, 6, 0)
+			var/new_damage = tgui_input_number(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", host.vore_selected.digest_burn, 6, 0, round_value=FALSE)
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_burn = new_new_damage
 			. = TRUE
 		if("b_brute_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of brute damage prey will take per tick. Ranges from 0 to 6", "Set Belly Brute Damage.", host.vore_selected.digest_brute, 6, 0)
+			var/new_damage = tgui_input_number(user, "Choose the amount of brute damage prey will take per tick. Ranges from 0 to 6", "Set Belly Brute Damage.", host.vore_selected.digest_brute, 6, 0, round_value=FALSE)
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_brute = new_new_damage
 			. = TRUE
 		if("b_oxy_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of suffocation damage prey will take per tick. Ranges from 0 to 12.", "Set Belly Suffocation Damage.", host.vore_selected.digest_oxy, 12, 0)
+			var/new_damage = tgui_input_number(user, "Choose the amount of suffocation damage prey will take per tick. Ranges from 0 to 12.", "Set Belly Suffocation Damage.", host.vore_selected.digest_oxy, 12, 0, round_value=FALSE)
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 12)
 			host.vore_selected.digest_oxy = new_new_damage
 			. = TRUE
 		if("b_tox_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of toxins damage prey will take per tick. Ranges from 0 to 6", "Set Belly Toxins Damage.", host.vore_selected.digest_tox, 6, 0)
+			var/new_damage = tgui_input_number(user, "Choose the amount of toxins damage prey will take per tick. Ranges from 0 to 6", "Set Belly Toxins Damage.", host.vore_selected.digest_tox, 6, 0, round_value=FALSE)
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_tox = new_new_damage
 			. = TRUE
 		if("b_clone_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of brute DNA damage (clone) prey will take per tick. Ranges from 0 to 6", "Set Belly Clone Damage.", host.vore_selected.digest_clone, 6, 0)
+			var/new_damage = tgui_input_number(user, "Choose the amount of brute DNA damage (clone) prey will take per tick. Ranges from 0 to 6", "Set Belly Clone Damage.", host.vore_selected.digest_clone, 6, 0, round_value=FALSE)
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 6)

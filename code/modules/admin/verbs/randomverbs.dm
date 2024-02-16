@@ -694,13 +694,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
 
-	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"))
+	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"), min_value=-1)
 	if(devastation == null) return
-	var/heavy = tgui_input_number(usr, "Range of heavy impact. -1 to none", text("Input"))
+	var/heavy = tgui_input_number(usr, "Range of heavy impact. -1 to none", text("Input"), min_value=-1)
 	if(heavy == null) return
-	var/light = tgui_input_number(usr, "Range of light impact. -1 to none", text("Input"))
+	var/light = tgui_input_number(usr, "Range of light impact. -1 to none", text("Input"), min_value=-1)
 	if(light == null) return
-	var/flash = tgui_input_number(usr, "Range of flash. -1 to none", text("Input"))
+	var/flash = tgui_input_number(usr, "Range of flash. -1 to none", text("Input"), min_value=-1)
 	if(flash == null) return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))

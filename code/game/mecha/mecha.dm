@@ -2580,7 +2580,7 @@
 		if(!in_range(src, usr))	return
 		var/mob/user = top_filter.getMob("user")
 		if(user)
-			var/new_pressure = tgui_input_number(user,"Input new output pressure","Pressure setting",internal_tank_valve)
+			var/new_pressure = tgui_input_number(user,"Input new output pressure","Pressure setting",internal_tank_valve, round_value=FALSE)
 			if(new_pressure)
 				internal_tank_valve = new_pressure
 				to_chat(user, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
