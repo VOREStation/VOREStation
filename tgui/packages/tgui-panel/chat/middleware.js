@@ -165,6 +165,7 @@ export const chatMiddleware = (store) => {
       settings.logLimit,
       settings.storedTypes,
       game.roundId,
+      settings.prependTimestamps,
     );
     // Load the chat once settings are loaded
     if (!initialized && settings.initialized) {
