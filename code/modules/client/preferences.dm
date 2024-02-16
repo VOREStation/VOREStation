@@ -368,9 +368,9 @@ var/list/preferences_datums = list()
 			open_load_dialog(usr)
 			return 1
 	else if(href_list["resetslot"])
-		if("No" == tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
+		if("Yes" != tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
 			return 0
-		if("No" == tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
+		if("Yes" != tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
 			return 0
 		load_character(SAVE_RESET)
 		sanitize_preferences()
