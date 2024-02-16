@@ -103,7 +103,7 @@
 
 		var/severity = tgui_input_number(usr, "How much damage should the bleeding internal wound cause? \
 		Bleed timer directly correlates with this. 0 cancels. Input is rounded to nearest integer.",
-		"Wound Severity", 0, min_value = 0, round_value = TRUE )
+		"Wound Severity", 0)
 		if(!severity) return
 
 		var/obj/item/organ/external/chosen_organ = tgui_input_list(usr, "Choose an external organ to inflict IB on!", "Organ Choice", H.organs)
@@ -545,7 +545,7 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount =  tgui_input_number(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0)
+		var/amount =  tgui_input_number(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0, min_value=-INFINITY, round_value=FALSE)
 
 		if(!L)
 			to_chat(usr, "Mob doesn't exist anymore")
