@@ -40,17 +40,25 @@
 		gas_data.specific_heat[gas.id] = gas.specific_heat
 		gas_data.molar_mass[gas.id] = gas.molar_mass
 		if(gas.tile_overlay)
-			gas_data.tile_overlay[gas.id] = new /atom/movable/gas_visuals(null, gas.tile_overlay)
-		if(gas.overlay_limit)	
+			gas_data.tile_overlay[gas.id] = gas.tile_overlay
+		if(gas.overlay_limit)
 			gas_data.overlay_limit[gas.id] = gas.overlay_limit
 		gas_data.flags[gas.id] = gas.flags
 
 	return 1
 
-/atom/movable/gas_visuals
+/obj/effect/gas_overlay
+	name = "gas"
+	desc = "You shouldn't be clicking this."
 	icon = 'icons/effects/tile_effects.dmi'
+	icon_state = "generic"
+	layer = GASFIRE_LAYER
+	appearance_flags = PIXEL_SCALE | RESET_COLOR
 	mouse_opacity = 0
-	plane = ABOVE_MOB_PLANE
-/atom/movable/gas_visuals/New(newloc, ico)
-	..()
-	icon_state = ico
+	var/gas_id
+
+/obj/effect/gas_overlay/Initialize(mapload, gas)
+	. = ..()
+	gas_id = gas
+	if(gas_data.tile_overlay[gas_id])
+		icon_state = gas_data.tile_overlay[gas_id]
