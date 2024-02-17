@@ -7,12 +7,14 @@
 //			/mob/living/stat_mob: The mob whose stat changed
 //			/old_stat: Status before the change.
 //			/new_stat: Status after the change.
-
-GLOBAL_DATUM_INIT(stat_set_event, /decl/observ/stat_set, new)
+/*
+stat_set_event, /decl/observ/stat_set, new)
 
 /decl/observ/stat_set
 	name = "Stat Set"
 	expected_type = /mob/living
+*/
+//Deprecated in favor of Comsigs
 
 /****************
 * Stat Handling *
@@ -21,7 +23,7 @@ GLOBAL_DATUM_INIT(stat_set_event, /decl/observ/stat_set, new)
 	var/old_stat = stat
 	. = ..()
 	if(stat != old_stat)
-		GLOB.stat_set_event.raise_event(src, old_stat, new_stat)
+		SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, old_stat, new_stat)
 
 		if(isbelly(src.loc))
 			var/obj/belly/ourbelly = src.loc

@@ -444,11 +444,11 @@
 
 /obj/item/integrated_circuit/output/holographic_projector/Initialize()
 	. = ..()
-	GLOB.moved_event.register(src, src, PROC_REF(on_moved))
+	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(on_moved))
 
 /obj/item/integrated_circuit/output/holographic_projector/Destroy()
 	destroy_hologram()
-	GLOB.moved_event.unregister(src, src, PROC_REF(on_moved))
+	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
 	return ..()
 
 /obj/item/integrated_circuit/output/holographic_projector/do_work()

@@ -732,7 +732,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		H.set_viewsize(viewsize)
 		zoom = 1
-		GLOB.moved_event.register(H, src, PROC_REF(zoom))
+		RegisterSignal(H, COMSIG_OBSERVER_MOVED, PROC_REF(zoom))
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
@@ -761,7 +761,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(!H.hud_used.hud_shown)
 			H.toggle_zoom_hud()
 		zoom = 0
-		GLOB.moved_event.unregister(H, src, PROC_REF(zoom))
+		UnregisterSignal(H, COMSIG_OBSERVER_MOVED)
 
 		H.client.pixel_x = 0
 		H.client.pixel_y = 0

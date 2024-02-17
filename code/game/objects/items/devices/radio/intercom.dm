@@ -20,13 +20,13 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		GLOB.apc_event.register(A, src, /atom/proc/update_icon)
+		RegisterSignal(A, COMSIG_OBSERVER_APC, /atom/proc/update_icon)
 	update_icon()
 
 /obj/item/device/radio/intercom/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		GLOB.apc_event.unregister(A, src, /atom/proc/update_icon)
+		UnregisterSignal(A, COMSIG_OBSERVER_APC)
 	return ..()
 
 /obj/item/device/radio/intercom/custom
