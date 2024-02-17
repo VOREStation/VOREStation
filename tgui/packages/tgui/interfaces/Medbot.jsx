@@ -3,9 +3,9 @@ import {
   Box,
   Button,
   LabeledList,
+  NumberInput,
   ProgressBar,
   Section,
-  NumberInput,
 } from '../components';
 import { Window } from '../layouts';
 

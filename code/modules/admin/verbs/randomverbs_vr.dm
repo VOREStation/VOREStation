@@ -63,6 +63,8 @@
 	new_mob.key = picked_client.key //Finally put them in the mob
 	if(organs)
 		new_mob.copy_from_prefs_vr()
+		if(LAZYLEN(new_mob.vore_organs))
+			new_mob.vore_selected = new_mob.vore_organs[1]
 
 	log_admin("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].")
 	message_admins("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].", 1)

@@ -1,11 +1,12 @@
 import { toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import {
-  Button,
-  Section,
-  LabeledList,
   AnimatedNumber,
+  Button,
+  LabeledList,
   NumberInput,
+  Section,
 } from '../components';
 import { Window } from '../layouts';
 

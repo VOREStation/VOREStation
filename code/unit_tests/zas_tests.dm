@@ -120,3 +120,7 @@
 /datum/unit_test/zas_area_test/cargo_bay
 	name = "ZAS: Cargo Bay"
 	area_path = /area/quartermaster/storage
+
+#undef UT_NORMAL
+#undef UT_VACUUM
+#undef UT_NORMAL_COLD

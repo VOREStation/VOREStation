@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 import { BooleanLike } from '../../common/react';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Button,
   Divider,
@@ -46,7 +48,7 @@ type Data = {
 export const MobSpawner = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const [tabIndex, setTabIndex] = useLocalState('panelTabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const tabs: any = [];
 
@@ -73,38 +75,30 @@ export const MobSpawner = (props) => {
 const GeneralMobSettings = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const [amount, setAmount] = useLocalState('amount', 1);
-  const [name, setName] = useLocalState('name', data.default_path_name);
-  const [ai_type] = useLocalState('aiType', data.ai_type);
-  const [use_custom_ai] = useLocalState('toggleCustomAi', data.use_custom_ai);
-  const [faction] = useLocalState('setMobFaction', data.faction);
-  const [intent] = useLocalState('setIntent', data.intent);
-  const [maxHealth, setMaxHealth] = useLocalState('maxHealth', data.max_health);
-  const [health, setHealth] = useLocalState('health', data.health);
-  const [meleeDamageLower, setMeleeDamageLower] = useLocalState(
-    'meleeDamageLower',
+  const [amount, setAmount] = useState(1);
+  const [name, setName] = useState(data.default_path_name);
+  const [ai_type] = useState(data.ai_type);
+  const [use_custom_ai] = useState(data.use_custom_ai);
+  const [faction] = useState(data.faction);
+  const [intent] = useState(data.intent);
+  const [maxHealth, setMaxHealth] = useState(data.max_health);
+  const [health, setHealth] = useState(data.health);
+  const [meleeDamageLower, setMeleeDamageLower] = useState(
     data.melee_damage_lower,
   );
-  const [meleeDamageUpper, setMeleeDamageUpper] = useLocalState(
-    'meleeDamageUpper',
+  const [meleeDamageUpper, setMeleeDamageUpper] = useState(
     data.melee_damage_upper,
   );
-  const [desc, setDesc] = useLocalState('desc', data.default_desc);
-  const [flavorText, setFlavorText] = useLocalState(
-    'flavorText',
-    data.default_flavor_text,
-  );
+  const [desc, setDesc] = useState(data.default_desc);
+  const [flavorText, setFlavorText] = useState(data.default_flavor_text);
 
-  const [sizeMultiplier, setSizeMultiplier] = useLocalState(
-    'sizeMultiplier',
-    100,
-  );
+  const [sizeMultiplier, setSizeMultiplier] = useState(100);
 
-  const [x, setX] = useLocalState('x', data.initial_x);
-  const [y, setY] = useLocalState('y', data.initial_y);
-  const [z, setZ] = useLocalState('z', data.initial_z);
+  const [x, setX] = useState(data.initial_x);
+  const [y, setY] = useState(data.initial_y);
+  const [z, setZ] = useState(data.initial_z);
 
-  const [radius, setRadius] = useLocalState('radius', 0);
+  const [radius, setRadius] = useState(0);
 
   return (
     <>

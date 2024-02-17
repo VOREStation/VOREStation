@@ -1,5 +1,5 @@
 import { round } from 'common/math';
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import {
   Box,

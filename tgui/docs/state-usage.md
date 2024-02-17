@@ -28,11 +28,3 @@ useEffect(() => {
 const [count, setCount] = useState(0);
 const isEven = count % 2 === 0; // Derived state
 ```
-1 change: 1 addition & 0 deletions 1
-tgui/packages/tgui/backend.ts
-Viewed
-@@ -316,6 +316,7 @@ type StateWithSetter<T> = [T, (nextState: T) => void];
- * @param context React context.
- * @param key Key which uniquely identifies this state in Redux store.
- * @param initialState Initializes your global variable with this value.
- *

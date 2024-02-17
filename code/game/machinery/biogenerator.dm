@@ -305,3 +305,6 @@
 
 	build_eff = man_rating
 	eat_eff = bin_rating
+
+#undef BIOGEN_ITEM
+#undef BIOGEN_REAGENT

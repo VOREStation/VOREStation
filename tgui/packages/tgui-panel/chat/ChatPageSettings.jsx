@@ -13,6 +13,7 @@ import {
   Section,
   Stack,
 } from 'tgui/components';
+
 import {
   moveChatPageLeft,
   moveChatPageRight,
@@ -38,6 +39,22 @@ export const ChatPageSettings = (props) => {
                 updateChatPage({
                   pageId: page.id,
                   name: value,
+                }),
+              )
+            }
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Button.Checkbox
+            content="Mute"
+            checked={page.hideUnreadCount}
+            icon={page.hideUnreadCount ? 'bell-slash' : 'bell'}
+            tooltip="Disables unread counter"
+            onClick={() =>
+              dispatch(
+                updateChatPage({
+                  pageId: page.id,
+                  hideUnreadCount: !page.hideUnreadCount,
                 }),
               )
             }

@@ -1,6 +1,7 @@
 import { Component } from 'react';
-import { Box, Button, Icon, Tooltip, LabeledList, Slider } from '.';
+
 import { useBackend } from '../backend';
+import { Box, Button, Icon, LabeledList, Slider, Tooltip } from '.';
 
 const pauseEvent = (e) => {
   if (e.stopPropagation) {

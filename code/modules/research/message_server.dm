@@ -428,3 +428,6 @@ var/obj/machinery/blackbox_recorder/blackbox
 	if(!FV) return
 
 	FV.add_details(details)
+
+#undef MESSAGE_SERVER_SPAM_REJECT
+#undef MESSAGE_SERVER_DEFAULT_SPAM_LIMIT

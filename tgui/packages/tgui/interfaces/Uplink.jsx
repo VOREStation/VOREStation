@@ -1,16 +1,17 @@
 import { createSearch, decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'react';
+import { useState } from 'react';
+
 import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
   Flex,
   Input,
+  LabeledList,
+  NoticeBox,
   Section,
   Table,
   Tabs,
-  NoticeBox,
-  LabeledList,
 } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
@@ -20,7 +21,7 @@ const MAX_SEARCH_RESULTS = 25;
 export const Uplink = (props) => {
   const { data } = useBackend();
 
-  const [screen, setScreen] = useLocalState('screen', 0);
+  const [screen, setScreen] = useState(0);
 
   const { telecrystals } = data;
   return (
@@ -148,11 +149,8 @@ export const GenericUplink = (props) => {
   const { currencyAmount = 0, currencySymbol = '₮' } = props;
   const { act, data } = useBackend();
   const { compactMode, lockable, categories = [] } = data;
-  const [searchText, setSearchText] = useLocalState('searchText', '');
-  const [selectedCategory, setSelectedCategory] = useLocalState(
-    'category',
-    categories[0]?.name,
-  );
+  const [searchText, setSearchText] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]?.name);
   const testSearch = createSearch(searchText, (item) => {
     return item.name + item.desc;
   });

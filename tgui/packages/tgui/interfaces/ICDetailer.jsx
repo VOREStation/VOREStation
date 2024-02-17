@@ -1,7 +1,8 @@
+import { toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Button, Section } from '../components';
 import { Window } from '../layouts';
-import { toTitleCase } from 'common/string';
 
 export const ICDetailer = (props) => {
   const { act, data } = useBackend();

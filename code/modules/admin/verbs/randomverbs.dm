@@ -100,7 +100,7 @@
 				to_chat(M, "<B>You hear a voice in your head...</B> <i>[msg]</i>")
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	msg = "<span class='adminnotice'><b> SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] :</b> [msg]</span>"
+	msg = "<span class='pm adminnotice'><b> SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] :</b> [msg]</span>"
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -148,7 +148,7 @@
 
 	to_chat(M, msg)
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
-	msg = "<span class='adminnotice'><b> DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]):</b> [msg]<BR></span>"
+	msg = "<span class='pm adminnotice'><b> DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]):</b> [msg]<BR></span>"
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -694,13 +694,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
 
-	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"))
+	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"), min_value=-1)
 	if(devastation == null) return
-	var/heavy = tgui_input_number(usr, "Range of heavy impact. -1 to none", text("Input"))
+	var/heavy = tgui_input_number(usr, "Range of heavy impact. -1 to none", text("Input"), min_value=-1)
 	if(heavy == null) return
-	var/light = tgui_input_number(usr, "Range of light impact. -1 to none", text("Input"))
+	var/light = tgui_input_number(usr, "Range of light impact. -1 to none", text("Input"), min_value=-1)
 	if(light == null) return
-	var/flash = tgui_input_number(usr, "Range of flash. -1 to none", text("Input"))
+	var/flash = tgui_input_number(usr, "Range of flash. -1 to none", text("Input"), min_value=-1)
 	if(flash == null) return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))

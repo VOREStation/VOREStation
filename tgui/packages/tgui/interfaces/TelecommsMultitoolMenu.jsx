@@ -1,8 +1,7 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section, NumberInput } from '../components';
-import { TemporaryNotice } from './common/TemporaryNotice';
+import { Box, Button, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
+import { TemporaryNotice } from './common/TemporaryNotice';
 
 export const TelecommsMultitoolMenu = (props) => {
   const { act, data } = useBackend();

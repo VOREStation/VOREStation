@@ -375,7 +375,12 @@ img.icon.bigicon {
 .infoplain,
 .oocplain,
 .warningplain,
-.chatexport {
+.chatexport,
+.body {
+}
+
+.hivemind {
+  font-style: italic;
   color: #ffffff;
 }
 
@@ -397,7 +402,8 @@ img.icon.bigicon {
 }
 
 .binarysay {
-  color: #1e90ff;
+  font-style: italic;
+  color: #ffffff;
 }
 
 .binarysay a {

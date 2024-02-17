@@ -297,7 +297,7 @@
 		if ("Badmin") severity = 99
 
 	D.makerandom(severity)
-	D.infectionchance = tgui_input_number(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance)
+	D.infectionchance = tgui_input_number(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance, 100, 1)
 
 	if(istype(T,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = T

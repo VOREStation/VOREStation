@@ -1,22 +1,23 @@
 import { filter, sortBy } from 'common/collections';
-import { Fragment } from 'react';
-import { formatTime } from '../format';
-import { useBackend, useLocalState } from '../backend';
+import { flow } from 'common/fp';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
+  AnimatedNumber,
   Box,
   Button,
   LabeledList,
   Section,
-  Tabs,
-  AnimatedNumber,
   Stack,
+  Tabs,
 } from '../components';
+import { formatTime } from '../format';
 import {
   ComplexModal,
   modalRegisterBodyOverride,
 } from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
-import { flow } from 'common/fp';
 
 const viewCrateContents = (modal) => {
   const { act, data } = useBackend();
@@ -154,7 +155,7 @@ const SupplyConsoleMenu = (props) => {
 
   const { order_auth } = data;
 
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <Section title="Menu">
@@ -209,10 +210,7 @@ const SupplyConsoleMenuOrder = (props) => {
 
   const { categories, supply_packs, contraband, supply_points } = data;
 
-  const [activeCategory, setActiveCategory] = useLocalState(
-    'activeCategory',
-    null,
-  );
+  const [activeCategory, setActiveCategory] = useState(null);
 
   const viewingPacks = flow([
     filter((val) => val.group === activeCategory),
@@ -339,9 +337,10 @@ const SupplyConsoleMenuOrderList = (props) => {
           }
         >
           <LabeledList>
-            {order.entries.map((field) =>
+            {order.entries.map((field, i) =>
               field.entry ? (
                 <LabeledList.Item
+                  key={i}
                   label={field.field}
                   buttons={
                     order_auth ? (

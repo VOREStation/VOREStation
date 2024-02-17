@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Slider, Section } from '../components';
+import { Box, Button, Flex, LabeledList, Section, Slider } from '../components';
 import { BeakerContents } from '../interfaces/common/BeakerContents';
 import { Window } from '../layouts';
 
@@ -28,6 +27,7 @@ const ChemDispenserSettings = (properties) => {
         <LabeledList.Item label="Dispense" verticalAlign="middle">
           {dispenseAmounts.map((a, i) => (
             <Button
+              key={i}
               textAlign="center"
               selected={amount === a}
               content={a + 'u'}

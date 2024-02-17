@@ -755,6 +755,14 @@
 	clip_mask_icon = null
 	clip_mask_state = null
 
+//grallstonefist: Ranihrönn Skrolk
+/datum/sprite_accessory/tail/taur/altmermaid/orcamermaid
+	name = "Mermaid Orca (Taur)"
+	icon_state = "orcamermaid_s"
+	can_ride = 1
+	do_colouration = 0
+	ckeys_allowed = list("grallstonefist")
+
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
 	name = "Feline (wickedtemp) (Taur)"

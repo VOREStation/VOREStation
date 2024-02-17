@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import {
   Box,
@@ -10,7 +9,6 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
-
 import { createLogger } from '../logging';
 const logger = createLogger('fuck');
 

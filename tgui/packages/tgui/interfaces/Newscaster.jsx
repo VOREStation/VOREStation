@@ -1,7 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'react';
+
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, Flex, LabeledList, Input, Section } from '../components';
+import { Box, Button, Flex, Input, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 import { TemporaryNotice } from './common/TemporaryNotice';
 

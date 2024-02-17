@@ -1,13 +1,12 @@
+import { useBackend } from '../backend';
 import {
-  Section,
   Box,
   Button,
-  NoticeBox,
   LabeledList,
+  NoticeBox,
   NumberInput,
+  Section,
 } from '../components';
-import { useBackend } from '../backend';
-import { Fragment } from 'react';
 import { NtosWindow } from '../layouts';
 
 export const NtosNetMonitor = (props) => {

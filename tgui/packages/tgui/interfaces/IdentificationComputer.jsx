@@ -1,5 +1,7 @@
 import { sortBy } from 'common/collections';
+import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -12,7 +14,6 @@ import {
   Tabs,
 } from '../components';
 import { Window } from '../layouts';
-import { decodeHtmlEntities } from 'common/string';
 import { CrewManifestContent } from './CrewManifest';
 
 export const IdentificationComputer = () => {

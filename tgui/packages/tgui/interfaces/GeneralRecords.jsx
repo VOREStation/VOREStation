@@ -1,5 +1,9 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { filter } from 'common/collections';
+import { flow } from 'common/fp';
+import { createSearch } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,14 +13,11 @@ import {
   Section,
   Tabs,
 } from '../components';
-import { ComplexModal, modalOpen } from './common/ComplexModal';
 import { Window } from '../layouts';
+import { ComplexModal, modalOpen } from './common/ComplexModal';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
-import { createSearch } from 'common/string';
-import { filter } from 'common/collections';
-import { flow } from 'common/fp';
 
 const doEdit = (field) => {
   modalOpen('edit', {
@@ -87,7 +88,7 @@ const selectRecords = (records, searchText = '') => {
 const GeneralRecordsList = (_properties) => {
   const { act, data } = useBackend();
 
-  const [searchText, setSearchText] = useLocalState('searchText', '');
+  const [searchText, setSearchText] = useState('');
 
   const records = selectRecords(data.records, searchText);
   return (
