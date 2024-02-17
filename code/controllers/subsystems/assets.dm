@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(assets)
 
 	transport.Initialize(cache)
 
+	subsystem_initialized = TRUE
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/assets/Recover()
