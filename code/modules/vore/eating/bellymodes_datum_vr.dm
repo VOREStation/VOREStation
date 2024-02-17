@@ -335,7 +335,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		lets_announce = TRUE
 	else if(new_percent <= 25 && old_percent > 25)
 		lets_announce = TRUE
-	else if(new_percent <= 5 && old_percent > 5)
+	else if(new_percent <= 0 && old_percent > 0)
 		lets_announce = TRUE
 
 	if(lets_announce)
