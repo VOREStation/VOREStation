@@ -77,7 +77,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		L.looking_elsewhere = 1
 		L.handle_vision()
 	user.set_viewsize(world.view + extra_view)
-	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/machinery/computer/ship/proc/unlook)
+	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/machinery/computer/ship/proc/unlook, override = TRUE) //This needs override or else it will spam runtimes because it is called repeatedly.
 	// TODO GLOB.stat_set_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
