@@ -1751,7 +1751,11 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/quantumpad,
+/turf/simulated/floor,
 /area/stellardelight/deck1/aft)
 "do" = (
 /obj/machinery/conveyor{
@@ -5548,6 +5552,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "lf" = (
@@ -7087,16 +7094,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/stellardelight/deck1/exploshuttle)
 "on" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/smartfridge/sheets/persistent,
+/turf/simulated/floor,
 /area/stellardelight/deck1/mining)
 "oo" = (
 /obj/effect/floor_decal/industrial/warning/corner,
@@ -18404,17 +18404,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
-"Nm" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/angled{
-	dir = 1;
-	name = "night shift APC";
-	nightshift_setting = 2
-	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
-/area/stellardelight/deck1/mining)
 "No" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -22428,6 +22417,14 @@
 /obj/structure/table/standard,
 /obj/machinery/recharger{
 	pixel_y = 5
+	},
+/obj/machinery/power/apc/angled{
+	dir = 1;
+	name = "night shift APC";
+	nightshift_setting = 2
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
@@ -33963,9 +33960,9 @@ ip
 CG
 cA
 hg
-dl
-Nm
 on
+wp
+pV
 pR
 rI
 SS
