@@ -89,12 +89,11 @@
 // 99% of machines are always on a turf anyway, very few need recursive move handling.
 /obj/machinery/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	world.log << "Moved call [old_loc] [loc]"
 	update_power_on_move(src, old_loc, loc)
 	if(ismovable(old_loc)) // Unregister recursive movement.
 		UnregisterSignal(old_loc, COMSIG_OBSERVER_MOVED)
 	if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
-		RegisterSignal(loc, COMSIG_OBSERVER_MOVED, PROC_REF(update_power_on_move))
+		RegisterSignal(loc, COMSIG_OBSERVER_MOVED, PROC_REF(update_power_on_move), override = TRUE)
 
 /obj/machinery/proc/update_power_on_move(atom/movable/mover, atom/old_loc, atom/new_loc)
 	var/area/old_area = get_area(old_loc)
