@@ -458,8 +458,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 
 		// --- Some more pre-message formatting ---
-		var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
-		var/part_d = "</span>"
 		var/part_e = "</span>"
 
 
@@ -510,9 +508,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	 /* ###### Send the message ###### */
 	  	/* --- Process all the mobs that heard a masked voice (understood) --- */
+		//Is all of the extra definitions necessary? No. But the linter is out for blood, so who am I to question it?
 		if(length(heard_masked))
 			for (var/mob/R in heard_masked)
 				var/part_b = "[icon2html(radio,R.client)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+				var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
+				var/part_d = "</span>"
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 0, name)
 				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
@@ -521,6 +522,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_normal))
 			for (var/mob/R in heard_normal)
 				var/part_b = "[icon2html(radio,R.client)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+				var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
+				var/part_d = "</span>"
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 0, realname)
 				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
@@ -529,6 +532,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_voice))
 			for (var/mob/R in heard_voice)
 				var/part_b = "[icon2html(radio,R.client)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+				var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
+				var/part_d = "</span>"
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M,0, vname)
 				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
@@ -538,6 +543,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_garbled))
 			for (var/mob/R in heard_garbled)
 				var/part_b = "[icon2html(radio,R.client)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+				var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
+				var/part_d = "</span>"
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 1, vname)
 				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
@@ -546,6 +553,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_gibberish))
 			for (var/mob/R in heard_gibberish)
 				var/part_b = "[icon2html(radio,R.client)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+				var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
+				var/part_d = "</span>"
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 1)
 				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'

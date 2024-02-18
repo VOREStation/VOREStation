@@ -360,7 +360,7 @@
 	show_static()
 	video_source = null
 
-	. = "<span class='danger'>[icon2html(src)] [reason ? reason : "Video session ended"].</span>"
+	. = "<span class='danger'>[bicon(src)] [reason ? reason : "Video session ended"].</span>"
 
 	visible_message(.)
 	update_icon()
