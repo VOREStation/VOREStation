@@ -64,7 +64,7 @@ var
 	Class: operator
 	See <Binary Operators> and <Unary Operators> for subtypes.
 */
-/node/expression/operator
+/node/expression/op
 	var/node/expression/exp
 	var/tmp/name
 	var/tmp/precedence
