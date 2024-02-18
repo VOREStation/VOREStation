@@ -100,7 +100,7 @@
 	if(istype(O,/obj/item/stack/material))
 		if(O.get_material_name() == MAT_PLASTIC)
 			var/obj/item/stack/S = O
-			var/input_amount = tgui_input_number(user, "How many sheets would you like to add?", "Add plastic", 0, S.get_amount(), 0, 0, TRUE)
+			var/input_amount = tgui_input_number(user, "How many sheets would you like to add?", "Add plastic", 0, S.get_amount())
 			if(input_amount == 0)
 				return
 			var/plastic_input = input_amount * value_plastic
@@ -179,7 +179,7 @@
 			if(!beaker.reagents.total_volume)
 				to_chat(user, SPAN_WARNING("Chemical storage is empty!"))
 				return
-			var/injector_amount = tgui_input_number(user, "How many injectors would you like?", "Make small injectors", 0, 100, 0, 0, TRUE)
+			var/injector_amount = tgui_input_number(user, "How many injectors would you like?", "Make small injectors", 0, 100)
 			if(injector_amount > 0)
 				switch(material)
 					if("mold plastic")
@@ -210,7 +210,7 @@
 			if(!beaker.reagents.total_volume)
 				to_chat(user, SPAN_WARNING("Chemical storage is empty!"))
 				return
-			var/injector_amount = tgui_input_number(user, "How many injectors would you like?", "Make large injectors", 0, 100, 0, 0, TRUE)
+			var/injector_amount = tgui_input_number(user, "How many injectors would you like?", "Make large injectors", 0, 100)
 			if(injector_amount > 0)
 				switch(material)
 					if("mold plastic")
