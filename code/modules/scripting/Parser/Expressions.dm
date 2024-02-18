@@ -88,7 +88,7 @@ See Also:
 - <GetBinaryOperator()>
 - <GetUnaryOperator()>
 */
-/n_Parser/nS_Parser/proc/GetOperator(O, type=/node/expression/operator, L[])
+/n_Parser/nS_Parser/proc/GetOperator(O, type=/node/expression/op, L[])
 	if(istype(O, type)) return O		//O is already the desired type
 	if(istype(O, /token)) O=O:value //sets O to text
 	if(istext(O))										//sets O to path
