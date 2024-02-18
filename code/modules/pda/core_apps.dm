@@ -60,7 +60,7 @@
 
 		// display greeting!
 		greeted = TRUE
-		note = "Your station has chosen the [pda.model_name]!"
+		note = "Thank you for choosing the [pda.model_name]!"
 		notetitle = "Congratulations!"
 
 /datum/data/pda/app/notekeeper/update_ui(mob/user as mob, list/data)
