@@ -4,7 +4,7 @@
 /n_Interpreter/proc/Eval(node/expression/exp)
 	if(istype(exp, /node/expression/FunctionCall))
 		return RunFunction(exp)
-	else if(istype(exp, /node/expression/operator))
+	else if(istype(exp, /node/expression/op))
 		return EvalOperator(exp)
 	else if(istype(exp, /node/expression/value/literal))
 		var/node/expression/value/literal/lit=exp
