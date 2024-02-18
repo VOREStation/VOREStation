@@ -69,11 +69,11 @@ var
 	var/tmp/name
 	var/tmp/precedence
 
-/node/expression/operator/New()
+/node/expression/op/New()
 	.=..()
 	if(!src.name) src.name="[src.type]"
 
-/node/expression/operator/ToString()
+/node/expression/op/ToString()
 	return "operator: [name]"
 
 /*
