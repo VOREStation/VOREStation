@@ -133,7 +133,7 @@ export const CameraConsoleContent = (props) => {
             <Flex.Item>
               <Button
                 width="22px"
-                icon="ban"
+                icon="undo"
                 color="red"
                 onClick={() => {
                   setNetworkFilter('');

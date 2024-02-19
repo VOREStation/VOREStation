@@ -1,4 +1,5 @@
-import { useLocalState } from '../backend';
+import { useState } from 'react';
+
 import { Tabs } from '../components';
 import { Window } from '../layouts';
 import { OvermapEnginesContent } from './OvermapEngines';
@@ -6,7 +7,7 @@ import { OvermapHelmContent } from './OvermapHelm';
 import { OvermapShipSensorsContent } from './OvermapShipSensors';
 
 export const OvermapFull = (props) => {
-  const [tab, setTab] = useLocalState('overmapFullState', 0);
+  const [tab, setTab] = useState(0);
 
   return (
     <Window width={800} height={800}>

@@ -46,12 +46,16 @@ export const Pda = (props) => {
 
   const [settingsMode, setSettingsMode] = useState(false);
 
+  function handleSettingsMode(value) {
+    setSettingsMode(value);
+  }
+
   return (
     <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}
-          setSettingsMode={setSettingsMode}
+          onSettingsMode={handleSettingsMode}
         />
         {(settingsMode && <PDASettings />) || (
           <Section
@@ -67,7 +71,7 @@ export const Pda = (props) => {
           </Section>
         )}
         <Box mb={8} />
-        <PDAFooter setSettingsMode={setSettingsMode} />
+        <PDAFooter onSettingsMode={handleSettingsMode} />
       </Window.Content>
     </Window>
   );
@@ -75,8 +79,6 @@ export const Pda = (props) => {
 
 const PDAHeader = (props) => {
   const { act, data } = useBackend();
-
-  const { settingsMode, setSettingsMode } = props;
 
   const { idInserted, idLink, cartridge_name, stationTime } = data;
 
@@ -98,8 +100,8 @@ const PDAHeader = (props) => {
         </Flex.Item>
         <Flex.Item>
           <Button
-            selected={settingsMode}
-            onClick={() => setSettingsMode(!settingsMode)}
+            selected={props.settingsMode}
+            onClick={() => props.onSettingsMode(!props.settingsMode)}
             icon="cog"
           />
           <Button onClick={() => act('Retro')} icon="adjust" />
@@ -158,8 +160,6 @@ const PDASettings = (props) => {
 const PDAFooter = (props) => {
   const { act, data } = useBackend();
 
-  const { setSettingsMode } = props;
-
   const { app, useRetro } = data;
 
   return (
@@ -193,7 +193,7 @@ const PDAFooter = (props) => {
             mb={0}
             fontSize={1.7}
             onClick={() => {
-              setSettingsMode(false);
+              props.onSettingsMode(false);
               act('Home');
             }}
           />
