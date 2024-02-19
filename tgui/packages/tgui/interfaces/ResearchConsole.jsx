@@ -875,7 +875,11 @@ export const ResearchConsole = (props) => {
             ''
           )) ||
           (menu === 1 && (
-            <ResearchConsoleConstructor name="Circuit Imprinter" />
+            <ResearchConsoleConstructor
+              name="Circuit Imprinter"
+              protoTab={protoTab}
+              onProtoTab={setProtoTab}
+            />
           )) ||
           (menu === 2 && (
             <ResearchConsoleDestructiveAnalyzer name="Circuit Imprinter" />
