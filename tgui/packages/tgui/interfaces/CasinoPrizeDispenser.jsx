@@ -35,6 +35,7 @@ export const CasinoPrizeDispenser = () => {
   function handleDescending(value) {
     setDescending(value);
   }
+
   return (
     <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
