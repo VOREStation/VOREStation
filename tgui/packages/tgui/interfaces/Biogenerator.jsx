@@ -14,7 +14,7 @@ import {
 import { Window } from '../layouts';
 
 const sortTypes = {
-  Alphabetical: (a, b) => a - b,
+  Alphabetical: (a, b) => a.name > b.name,
   'By availability': (a, b) => -(a.affordable - b.affordable),
   'By price': (a, b) => a.price - b.price,
 };
@@ -174,9 +174,9 @@ const canBuyItem = (item, data) => {
   return true;
 };
 
-const BiogeneratorItemsCategory = (properties) => {
+const BiogeneratorItemsCategory = (props) => {
   const { act, data } = useBackend();
-  const { title, items, ...rest } = properties;
+  const { title, items, ...rest } = props;
   return (
     <Collapsible open title={title} {...rest}>
       {items.map((item) => (

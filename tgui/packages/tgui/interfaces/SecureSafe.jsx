@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Grid, NoticeBox, Section } from '../components';
+import { Box, Button, Flex, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 const NukeKeypad = (props) => {
@@ -12,9 +12,9 @@ const NukeKeypad = (props) => {
   const { locked, l_setshort, code, emagged } = data;
   return (
     <Box width="185px">
-      <Grid width="1px">
+      <Table width="1px">
         {keypadKeys.map((keyColumn) => (
-          <Grid.Column key={keyColumn[0]}>
+          <Table.Cell key={keyColumn[0]}>
             {keyColumn.map((key) => (
               <Button
                 fluid
@@ -35,9 +35,9 @@ const NukeKeypad = (props) => {
                 onClick={() => act('type', { digit: key })}
               />
             ))}
-          </Grid.Column>
+          </Table.Cell>
         ))}
-      </Grid>
+      </Table>
     </Box>
   );
 };
