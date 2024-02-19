@@ -32,11 +32,11 @@ export const CrewMonitor = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [zoom, setZoom] = useState(1);
 
-  function hadnleTabIndex(value) {
+  function handleTabIndex(value) {
     setTabIndex(value);
   }
 
-  function hadnleZoom(value) {
+  function handleZoom(value) {
     setZoom(value);
   }
 
@@ -46,8 +46,8 @@ export const CrewMonitor = () => {
         <CrewMonitorContent
           tabIndex={tabIndex}
           zoom={zoom}
-          onTabIndex={hadnleTabIndex}
-          onZoom={hadnleZoom}
+          onTabIndex={handleTabIndex}
+          onZoom={handleZoom}
         />
       </Window.Content>
     </Window>
