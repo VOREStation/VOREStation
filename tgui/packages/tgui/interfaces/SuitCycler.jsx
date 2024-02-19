@@ -20,7 +20,7 @@ export const SuitCycler = (props) => {
     (!!departments && departments[0]) || null,
   );
 
-  const [selectedSpecies, serSelectedSpecies] = useState(
+  const [selectedSpecies, setSelectedSpecies] = useState(
     (!!species && species[0]) || null,
   );
 
@@ -29,7 +29,7 @@ export const SuitCycler = (props) => {
   }
 
   function handleSelectedSpecies(value) {
-    serSelectedSpecies(value);
+    setSelectedSpecies(value);
   }
 
   let subTemplate = (
