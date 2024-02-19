@@ -14,8 +14,8 @@
 		spellremove(src)
 	ghostize()
 	QDEL_NULL(plane_holder)
-	..()
-	return QDEL_HINT_HARDDEL_NOW
+	. = ..()
+	//return QDEL_HINT_HARDDEL_NOW
 
 /mob/proc/remove_screen_obj_references()
 	hands = null
