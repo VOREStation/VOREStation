@@ -45,7 +45,7 @@ var/list/GPS_list = list()
 
 	if(istype(loc, /mob))
 		holder = loc
-		RegisterSignal(holder, COMSIG_OBSERVER_MOVED, PROC_REF(update_compass))
+		RegisterSignal(holder, COMSIG_OBSERVER_MOVED, PROC_REF(update_compass), override = TRUE)
 		//GLOB.dir_set_event.register(holder, src, PROC_REF(update_compass))
 
 	if(holder && tracking)
