@@ -709,7 +709,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
 
-	if(!M)
+	if(!isliving(M))
 		return 0
 	//ChompEDIT END
 
