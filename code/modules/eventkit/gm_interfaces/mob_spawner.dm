@@ -91,6 +91,7 @@
 		if("select_path")
 			var/list/choices = typesof(/mob)
 			var/newPath = tgui_input_list(usr, "Please select the new path of the mob you want to spawn.", items = choices)
+
 			path = newPath
 			new_path = TRUE
 			return TRUE
@@ -111,7 +112,9 @@
 			loc_lock = !loc_lock
 			return TRUE
 		if("start_spawn")
-			if("Yes" != tgui_alert(usr, "Are you sure that you want to start spawning your custom mobs?", "Confirmation", list("Yes", "Cancel")))
+			var/confirm = tgui_alert(usr, "Are you sure that you want to start spawning your custom mobs?", "Confirmation", list("Yes", "Cancel"))
+
+			if(confirm != "Yes")
 				return FALSE
 
 			var/amount = params["amount"]

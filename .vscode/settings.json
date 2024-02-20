@@ -27,7 +27,7 @@
     ],
     "tgstationTestExplorer.project.resultsType": "json",
     "[dm]": {
-        "files.eol": "\r\n",
+        "files.eol": "\n",
         "editor.detectIndentation": false,
         "editor.insertSpaces": false
     },
