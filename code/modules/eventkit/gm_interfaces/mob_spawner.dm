@@ -47,37 +47,36 @@
 		data["loc_y"] = usr.y
 		data["loc_z"] = usr.z
 
-	data["path"] = path;
 	data["use_custom_ai"] = use_custom_ai
+	if(new_path)
+		data["path"] = path;
+		if(path)
+			var/mob/M = new path()
+			if(M)
+				data["path_name"] = M.name
+				data["desc"] = M.desc
+				data["flavor_text"] = M.flavor_text
+				if(istype(M, /mob/living))
+					var/mob/living/L = M
 
+					// AI Stuff
+					ai_type = (L.ai_holder_type ? L.ai_holder_type : /datum/ai_holder/simple_mob/inert)
+					faction = (L.faction ? L.faction : "neutral")
+					intent  = (L.a_intent ? L.a_intent : I_HELP)
+					new_path = FALSE
 
-	if(path)
-		var/mob/M = new path()
-		if(M)
-			data["default_path_name"] = M.name
-			data["default_desc"] = M.desc
-			data["default_flavor_text"] = M.flavor_text
-			if(new_path && istype(M, /mob/living))
-				var/mob/living/L = M
-
-				// AI Stuff
-				ai_type = (L.ai_holder_type ? L.ai_holder_type : /datum/ai_holder/simple_mob/inert)
-				faction = (L.faction ? L.faction : "neutral")
-				intent  = (L.a_intent ? L.a_intent : I_HELP)
-				new_path = FALSE
-
-				data["max_health"] = L.maxHealth
-				data["health"] = L.health
-				if(istype(L, /mob/living/simple_mob))
-					var/mob/living/simple_mob/S = L
-					data["melee_damage_lower"] = S.melee_damage_lower ? S.melee_damage_lower : 0
-					data["melee_damage_upper"] = S.melee_damage_upper ? S.melee_damage_upper : 0
-					qdel(S)
-				qdel(L)
-		qdel(M)
-		data["ai_type"] = ai_type
-		data["faction"] = faction
-		data["intent"]	= intent
+					data["max_health"] = L.maxHealth
+					data["health"] = L.health
+					if(istype(L, /mob/living/simple_mob))
+						var/mob/living/simple_mob/S = L
+						data["melee_damage_lower"] = S.melee_damage_lower ? S.melee_damage_lower : 0
+						data["melee_damage_upper"] = S.melee_damage_upper ? S.melee_damage_upper : 0
+						qdel(S)
+					qdel(L)
+			qdel(M)
+	data["ai_type"] = ai_type
+	data["faction"] = faction
+	data["intent"]	= intent
 
 
 	return data
@@ -92,7 +91,6 @@
 		if("select_path")
 			var/list/choices = typesof(/mob)
 			var/newPath = tgui_input_list(usr, "Please select the new path of the mob you want to spawn.", items = choices)
-
 			path = newPath
 			new_path = TRUE
 			return TRUE
@@ -113,9 +111,7 @@
 			loc_lock = !loc_lock
 			return TRUE
 		if("start_spawn")
-			var/confirm = tgui_alert(usr, "Are you sure that you want to start spawning your custom mobs?", "Confirmation", list("Yes", "Cancel"))
-
-			if(confirm != "Yes")
+			if("Yes" != tgui_alert(usr, "Are you sure that you want to start spawning your custom mobs?", "Confirmation", list("Yes", "Cancel")))
 				return FALSE
 
 			var/amount = params["amount"]
