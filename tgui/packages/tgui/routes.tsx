@@ -10,7 +10,7 @@ import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces');
 
-const routingError =
+export const routingError =
   (type: 'notFound' | 'missingExport', name: string) => () => {
     return (
       <Window>

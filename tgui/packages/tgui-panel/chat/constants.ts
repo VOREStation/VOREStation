@@ -62,7 +62,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_NPCEMOTE, // Needs to be first
     name: 'NPC Emotes / Says',
     description: 'In-character emotes and says from NPCs',
-    selector: '.npcemote, .npcsay :not(.radio)',
+    selector: '.npcemote, .npcsay',
   },
   {
     type: MESSAGE_TYPE_LOCALCHAT,
