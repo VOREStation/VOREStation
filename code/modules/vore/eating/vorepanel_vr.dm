@@ -862,6 +862,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 								SEND_SOUND(ourtarget, sound(get_sfx("classic_death_sounds")))
 							else
 								SEND_SOUND(ourtarget, sound(get_sfx("fancy_death_prey")))
+						ourtarget.mind?.vore_death = TRUE
 						b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")

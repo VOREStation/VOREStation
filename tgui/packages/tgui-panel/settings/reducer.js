@@ -41,6 +41,7 @@ const initialState = {
     activeTab: SETTINGS_TABS[0].id,
   },
   showReconnectWarning: true,
+  prependTimestamps: false,
   visibleMessageLimit: 2500,
   persistentMessageLimit: 1000,
   saveInterval: 10,
