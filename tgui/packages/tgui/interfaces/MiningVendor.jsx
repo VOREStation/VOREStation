@@ -45,7 +45,7 @@ export const MiningVendor = (props) => {
           searchText={searchText}
           sortOrder={sortOrder}
           descending={descending}
-          onSearchText={hadndleSearchText}
+          onSearchText={handleSearchText}
           onSortOrder={handleSortOrder}
           onDescending={handleDescending}
         />
