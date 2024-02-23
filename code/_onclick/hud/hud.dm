@@ -215,12 +215,12 @@ var/list/global_huds = list(
 	wiz_energy_display = null
 	blobpwrdisplay = null
 	blobhealthdisplay = null
-	r_hand_hud_object = null
-	l_hand_hud_object = null
+	QDEL_NULL(r_hand_hud_object) //ChompEDIT - fix hard qdels
+	QDEL_NULL(l_hand_hud_object) //ChompEDIT - fix hard qdels
 	action_intent = null
 	move_intent = null
-	adding = null
-	other = null
+	QDEL_NULL_LIST(adding) //ChompEDIT - fix hard qdels
+	QDEL_NULL_LIST(other) //ChompEDIT - fix hard qdels
 	other_important = null
 	hotkeybuttons = null
 //	item_action_list = null // ?

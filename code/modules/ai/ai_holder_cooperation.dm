@@ -18,8 +18,9 @@
 		build_faction_friends()
 
 /datum/ai_holder/Destroy()
-	if(faction_friends && faction_friends.len) //This list is shared amongst the faction
-		faction_friends -= src
+	if(faction_friends) //ChompEDIT - a runtime
+		if(faction_friends.len) //This list is shared amongst the faction
+			faction_friends -= src
 	return ..()
 
 // Handles everything about that list.

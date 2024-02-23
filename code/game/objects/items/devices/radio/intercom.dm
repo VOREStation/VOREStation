@@ -27,6 +27,8 @@
 	var/area/A = get_area(src)
 	if(A)
 		UnregisterSignal(A, COMSIG_OBSERVER_APC)
+	if(circuit) //ChompEDIT START - qdel refs
+		QDEL_NULL(circuit) //ChompEDIT START - qdel refs
 	return ..()
 
 /obj/item/device/radio/intercom/custom

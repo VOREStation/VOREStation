@@ -42,7 +42,8 @@
 			var/turf/get_dat_turf = get_turf(src)
 			tf_mob_holder.loc = get_dat_turf
 			tf_mob_holder.forceMove(get_dat_turf)
-		QDEL_LIST_NULL(tf_mob_holder.vore_organs)
+		if(tf_mob_holder.vore_organs) //ChompEDIT - qdel refs
+			QDEL_LIST_NULL(tf_mob_holder.vore_organs) //ChompEDIT - qdel refs
 		tf_mob_holder.vore_organs = list()
 		for(var/obj/belly/B as anything in vore_organs)
 			B.loc = tf_mob_holder
@@ -50,14 +51,19 @@
 			B.owner = tf_mob_holder
 			tf_mob_holder.vore_organs |= B
 			vore_organs -= B
-
 	if(tf_mob_holder)
 		tf_mob_holder = null
 	//VOREStation Addition End
-
-	qdel(selected_image)
-	QDEL_NULL(vorePanel) //VOREStation Add
-	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+	//ChompEDIT START
+	if(hud_list) //prune out images in hud_list
+		for(var/item in hud_list)
+			if(item)
+				item = null
+	//ChompEDIT END
+	if(selected_image) //ChompEDIT - /image
+		selected_image = null //ChompEDIT - /image
+	//QDEL_NULL(vorePanel) //VOREStation Add //ChompEDIT - move to /mob
+	//QDEL_LIST_NULL(vore_organs) //VOREStation Add //ChompEDIT - move to /mob
 	temp_language_sources = null //VOREStation Add
 	temp_languages = null //VOREStation Add
 
@@ -75,7 +81,15 @@
 			internal_organs -= OR
 			qdel(OR)
 
-	return ..()
+	//ChompEDIT start - fix hard qdels - Handle modular_chomp/code/modules/mob/living/living.dm destroys
+	if(deaf_loop)
+		QDEL_NULL(deaf_loop)
+	if(firesoundloop)
+		QDEL_NULL(firesoundloop)
+	// QDEL_NULL(stunnedloop)
+	//ChompEDIT End
+
+	. = ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))

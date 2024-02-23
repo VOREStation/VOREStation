@@ -8,7 +8,7 @@
 /mob/living/Destroy()
 	for(var/datum/soul_link/S as anything in owned_soul_links)
 		S.owner_died(FALSE)
-		qdel(S) // If the owner is destroy()'d, the soullink is destroy()'d.
+		QDEL_NULL(S) // If the owner is destroy()'d, the soullink is destroy()'d. //ChompEDIT - fix hard qdels
 	owned_soul_links = null
 	for(var/datum/soul_link/S as anything in shared_soul_links)
 		S.sharer_died(FALSE)

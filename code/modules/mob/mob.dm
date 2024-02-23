@@ -3,7 +3,8 @@
 	dead_mob_list -= src
 	living_mob_list -= src
 	unset_machine()
-	qdel(hud_used)
+	if(hud_used) //ChompEDIT - fix hard qdels
+		QDEL_NULL(hud_used) //ChompEDIT - fix hard qdels
 	clear_fullscreen()
 	if(client)
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
@@ -13,7 +14,21 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
-	QDEL_NULL(plane_holder)
+	if(focus)
+		focus = null
+	if(plane_holder)
+		QDEL_NULL(plane_holder)
+
+	if(ability_master)
+		QDEL_NULL(ability_master)
+
+	previewing_belly = null
+
+	vore_selected = null
+	if(vore_organs)
+		QDEL_NULL_LIST(vore_organs)
+	if(vorePanel)
+		QDEL_NULL(vorePanel)
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW
 
@@ -1204,6 +1219,15 @@
 		exploit_addons |= I
 		var/exploitmsg = html_decode("\n" + "Has " + I.name + ".")
 		exploit_record += exploitmsg
+
+//ChompEDIT START - fix hard qdels - qdelling exploitable objects need to wipe their reference if they are deleted
+/obj/Destroy()
+	if(istype(src.loc, /mob))
+		var/mob/holder = src.loc
+		if(src in holder.exploit_addons)
+			holder.exploit_addons -= src
+	. = ..()
+//ChompEDIT END
 
 /client/proc/check_has_body_select()
 	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)

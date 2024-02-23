@@ -747,7 +747,18 @@
 	return
 
 /obj/structure/disposalholder/Destroy()
-	qdel(gas)
+	//QDEL_NULL(gas) //ChompEDIT datum/gas_mixture doesn't refback, so no need to qdel
+	//ChompEDIT - safetycheck for stuck atom/movables
+	var/turf/qdelloc = get_turf(src)
+	if(qdelloc)
+		if(contents)
+			log_and_message_admins("A disposal holder was deleted with contents at [qdelloc.x],[qdelloc.y],[qdelloc.z]")
+			for(var/atom/movable/AM in contents)
+				AM.loc = qdelloc
+	else
+		if(contents)
+			log_and_message_admins("A disposal holder was deleted with contents in nullspace")
+	//ChompEDIT END
 	active = 0
 	return ..()
 

@@ -54,9 +54,8 @@
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, starts_on = light_on)
 
 /atom/movable/Destroy()
-	. = ..()
 	for(var/atom/movable/AM in contents)
-		qdel(AM)
+		QDEL_NULL(AM) //CHOMPEdit - fix hard qdels
 
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
@@ -73,6 +72,7 @@
 	if(orbiting)
 		stop_orbit()
 	QDEL_NULL(riding_datum) //VOREStation Add
+	. = ..()
 
 /atom/movable/vv_edit_var(var_name, var_value)
 	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.

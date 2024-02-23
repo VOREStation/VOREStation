@@ -74,13 +74,14 @@
 	set_light(0)
 	return ..()
 
+/* //ChompEDIT STart - fix hard qdels - move overrides to code/modules/mob/living/carbon/human.dm
 /mob/living/carbon/human/Destroy()
 	if(stored_blob)
 		stored_blob.drop_l_hand()
 		stored_blob.drop_r_hand()
-		stored_blob = null
-		qdel(stored_blob)
+		QDEL_NULL(stored_blob) //ChompEDIT - fix hard qdels
 	return ..()
+*/ //ChompEDIT End
 
 /mob/living/simple_mob/slime/promethean/Stat()
 	..()

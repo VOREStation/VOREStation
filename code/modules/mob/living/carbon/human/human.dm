@@ -57,10 +57,28 @@
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
-	for(var/organ in organs)
-		qdel(organ)
-	QDEL_NULL(nif)	//VOREStation Add
+	if(organs) //ChompEDIT - fix hard qdels
+		QDEL_NULL_LIST(organs) //ChompEDIT - fix hard qdels
+	if(nif) //ChompEDIT - fix hard qdels
+		QDEL_NULL(nif)	//VOREStation Add //ChompEDIT - fix hard qdels
 	worn_clothing.Cut()
+
+	//ChompEDIT start - fix hard qdels - Handle code/modules/organs/blood.dm destroys
+	if(vessel)
+		QDEL_NULL(vessel)
+	//ChompEDIT End
+
+	//ChompEDIT start - fix hard qdels - Handle code/modules/mob/living/carbon/human/species/station/prommie_blob.dm destroys
+	if(stored_blob)
+		stored_blob.drop_l_hand()
+		stored_blob.drop_r_hand()
+		QDEL_NULL(stored_blob)
+	//ChompEDIT End
+
+	//ChompEDIT start - fix hard qdels - Handle code/modules/mob/living/carbon/human/human_vr.dm destroys
+	alt_farmanimals -= src
+	//ChompEDIT END
+
 	return ..()
 
 /mob/living/carbon/human/Stat()
