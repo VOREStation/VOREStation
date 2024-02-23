@@ -24,7 +24,7 @@ export const CasinoPrizeDispenser = () => {
   const [sortOrder, setSortOrder] = useState('Alphabetical');
   const [descending, setDescending] = useState(false);
 
-  function hadndleSearchText(value) {
+  function handleSearchText(value) {
     setSearchText(value);
   }
 
