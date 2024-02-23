@@ -19,9 +19,9 @@ import { Window } from '../layouts';
 type Data = {
   path: string;
 
-  default_path_name: string;
-  default_desc: string;
-  default_flavor_text: string;
+  path_name: string;
+  desc: string;
+  flavor_text: string;
 
   use_custom_ai: BooleanLike;
   ai_type: string;
@@ -49,14 +49,102 @@ export const MobSpawner = (props) => {
   const { act, data } = useBackend<Data>();
 
   const [tabIndex, setTabIndex] = useState(0);
+  const [radius, setRadius] = useState(0);
+  const [forceUpdate, renderData] = useState();
+  const [x, setX] = useState(data.initial_x);
+  const [y, setY] = useState(data.initial_y);
+  const [z, setZ] = useState(data.initial_z);
+  const [sizeMultiplier, setSizeMultiplier] = useState(100);
+  const [amount, setAmount] = useState(1);
+
+  function handleHealth(value) {
+    data.health = value;
+    renderData(value);
+  }
+
+  function handleMaxHealth(value) {
+    data.max_health = value;
+    renderData(value);
+  }
+
+  function handleMeleeDamageLower(value) {
+    data.melee_damage_lower = value;
+    renderData(value);
+  }
+
+  function handleMeleeDamageupper(value) {
+    data.melee_damage_upper = value;
+    renderData(value);
+  }
+
+  function handleName(value) {
+    data.path_name = value;
+    renderData(value);
+  }
+
+  function handleDesc(value) {
+    data.desc = value;
+    renderData(value);
+  }
+
+  function handleFlavor(value) {
+    data.flavor_text = value;
+    renderData(value);
+  }
+
+  function handleRadius(value) {
+    setRadius(value);
+  }
+
+  function handleX(value) {
+    setX(value);
+  }
+
+  function handleY(value) {
+    setY(value);
+  }
+
+  function handleZ(value) {
+    setZ(value);
+  }
+
+  function handleSizeMultiplier(value) {
+    setSizeMultiplier(value);
+  }
+
+  function handleAmount(value) {
+    setAmount(value);
+  }
 
   const tabs: any = [];
 
-  tabs[0] = <GeneralMobSettings />;
+  tabs[0] = (
+    <GeneralMobSettings
+      radius={radius}
+      x={x}
+      y={y}
+      z={z}
+      sizeMultiplier={sizeMultiplier}
+      amount={amount}
+      onRadius={handleRadius}
+      onHealth={handleHealth}
+      onMaxHealth={handleMaxHealth}
+      onMeleeDamageLower={handleMeleeDamageLower}
+      onMeleeDamageupper={handleMeleeDamageupper}
+      onName={handleName}
+      onDesc={handleDesc}
+      onFlavor={handleFlavor}
+      onX={handleX}
+      onY={handleY}
+      onZ={handleZ}
+      onSizeMultiplier={handleSizeMultiplier}
+      onAmount={handleAmount}
+    />
+  );
   tabs[1] = <VoreMobSettings />;
 
   return (
-    <Window width={890} height={660} theme="abstract">
+    <Window width={890} height={880} theme="abstract">
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
@@ -74,32 +162,6 @@ export const MobSpawner = (props) => {
 
 const GeneralMobSettings = (props) => {
   const { act, data } = useBackend<Data>();
-
-  const [amount, setAmount] = useState(1);
-  const [name, setName] = useState(data.default_path_name);
-  const [ai_type] = useState(data.ai_type);
-  const [use_custom_ai] = useState(data.use_custom_ai);
-  const [faction] = useState(data.faction);
-  const [intent] = useState(data.intent);
-  const [maxHealth, setMaxHealth] = useState(data.max_health);
-  const [health, setHealth] = useState(data.health);
-  const [meleeDamageLower, setMeleeDamageLower] = useState(
-    data.melee_damage_lower,
-  );
-  const [meleeDamageUpper, setMeleeDamageUpper] = useState(
-    data.melee_damage_upper,
-  );
-  const [desc, setDesc] = useState(data.default_desc);
-  const [flavorText, setFlavorText] = useState(data.default_flavor_text);
-
-  const [sizeMultiplier, setSizeMultiplier] = useState(100);
-
-  const [x, setX] = useState(data.initial_x);
-  const [y, setY] = useState(data.initial_y);
-  const [z, setZ] = useState(data.initial_z);
-
-  const [radius, setRadius] = useState(0);
-
   return (
     <>
       <Section title="General">
@@ -107,8 +169,8 @@ const GeneralMobSettings = (props) => {
           <LabeledList.Item label="Mob Name">
             <Input
               fluid
-              value={name || data.default_path_name}
-              onChange={(e, val) => setName(val)}
+              value={data.path_name}
+              onChange={(e, val) => props.onName(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
@@ -120,19 +182,19 @@ const GeneralMobSettings = (props) => {
           </LabeledList.Item>
           <LabeledList.Item label="Spawn Amount">
             <NumberInput
-              value={amount}
+              value={props.amount}
               minValue={0}
               maxValue={256}
-              onChange={(e, val) => setAmount(val)}
+              onChange={(e, val) => props.onAmount(val)}
             />
           </LabeledList.Item>
-          <LabeledList.Item label={'Size (' + sizeMultiplier + '%)'}>
+          <LabeledList.Item label={'Size (' + props.sizeMultiplier + '%)'}>
             <Knob
-              value={sizeMultiplier}
+              value={props.sizeMultiplier}
               minValue={50}
               maxValue={200}
               unit="%"
-              onChange={(e, val) => setSizeMultiplier(val)}
+              onChange={(e, val) => props.onSizeMultiplier(val)}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -144,22 +206,22 @@ const GeneralMobSettings = (props) => {
               <LabeledList>
                 <LabeledList.Item label="Spawn (X/Y/Z) Coords">
                   <NumberInput
-                    value={data.loc_lock ? data.loc_x : x}
+                    value={data.loc_lock ? data.loc_x : props.x}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => setX(val)}
+                    onChange={(e, val) => props.onX(val)}
                   />
                   <NumberInput
-                    value={data.loc_lock ? data.loc_y : y}
+                    value={data.loc_lock ? data.loc_y : props.y}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => setY(val)}
+                    onChange={(e, val) => props.onY(val)}
                   />
                   <NumberInput
-                    value={data.loc_lock ? data.loc_z : z}
+                    value={data.loc_lock ? data.loc_z : props.z}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => setZ(val)}
+                    onChange={(e, val) => props.onZ(val)}
                   />
                   <Button.Checkbox
                     content="Lock coords to self"
@@ -169,11 +231,11 @@ const GeneralMobSettings = (props) => {
                 </LabeledList.Item>
                 <LabeledList.Item label="Spawn Radius (WIP)">
                   <NumberInput
-                    value={radius}
+                    value={props.radius}
                     disabled
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => setRadius(val)}
+                    onChange={(e, val) => props.onRadius(val)}
                   />
                 </LabeledList.Item>
               </LabeledList>
@@ -187,7 +249,7 @@ const GeneralMobSettings = (props) => {
               title="AI settings"
               buttons={
                 <Button
-                  selected={use_custom_ai}
+                  selected={data.use_custom_ai}
                   fill
                   content="Use Custom AI"
                   onClick={() => act('toggle_custom_ai')}
@@ -198,21 +260,21 @@ const GeneralMobSettings = (props) => {
                 <LabeledList.Item>
                   <Button
                     fluid
-                    content={ai_type || 'Choose AI Type'}
+                    content={data.ai_type || 'Choose AI Type'}
                     onClick={(val) => act('set_ai_path')}
                   />
                 </LabeledList.Item>
                 <LabeledList.Item>
                   <Button
                     fluid
-                    content={faction || 'Set Faction'}
+                    content={data.faction || 'Set Faction'}
                     onClick={(val) => act('set_faction')}
                   />
                 </LabeledList.Item>
                 <LabeledList.Item>
                   <Button
                     fluid
-                    content={intent || 'Set Intent'}
+                    content={data.intent || 'Set Intent'}
                     onClick={(val) => act('set_intent')}
                   />
                 </LabeledList.Item>
@@ -220,36 +282,36 @@ const GeneralMobSettings = (props) => {
             </Section>
             <Section title="Health & Damage">
               <LabeledList>
-                {(maxHealth && (
+                {(data.max_health && (
                   <>
                     <LabeledList.Item label="Max Health">
                       <NumberInput
-                        value={maxHealth}
-                        onChange={(e, val) => setMaxHealth(val)}
+                        value={data.max_health}
+                        onChange={(e, val) => props.onMaxHealth(val)}
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Health">
                       <NumberInput
-                        value={health}
-                        onChange={(e, val) => setHealth(val)}
+                        value={data.health}
+                        onChange={(e, val) => props.onHealth(val)}
                       />
                     </LabeledList.Item>
                     <br />
                   </>
                 )) ||
                   "Note: Only available for '/mob/living'"}
-                {(meleeDamageLower && (
+                {(data.melee_damage_lower && (
                   <>
                     <LabeledList.Item label="Melee Damage (Lower)">
                       <NumberInput
-                        value={meleeDamageLower}
-                        onChange={(e, val) => setMeleeDamageLower(val)}
+                        value={data.melee_damage_lower}
+                        onChange={(e, val) => props.onMeleeDamageLower(val)}
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Melee Damage (Upper)">
                       <NumberInput
-                        value={meleeDamageUpper}
-                        onChange={(e, val) => setMeleeDamageUpper(val)}
+                        value={data.melee_damage_upper}
+                        onChange={(e, val) => props.onMeleeDamageUpper(val)}
                       />
                     </LabeledList.Item>
                   </>
@@ -267,8 +329,8 @@ const GeneralMobSettings = (props) => {
             <br />
             <TextArea
               height={'18rem'}
-              onChange={(e, val) => setDesc(val)}
-              value={desc || data.default_desc}
+              onChange={(e, val) => props.onDesc(val)}
+              value={data.desc}
             />
           </Flex.Item>
           <Flex.Item width="50%">
@@ -276,34 +338,34 @@ const GeneralMobSettings = (props) => {
             <br />
             <TextArea
               height={'18rem'}
-              value={flavorText || data.default_flavor_text}
-              onChange={(e, val) => setFlavorText(val)}
+              value={data.flavor_text}
+              onChange={(e, val) => props.onFlavor(val)}
             />
           </Flex.Item>
         </Flex>
       </Section>
       <Button
+        fill
+        content="Spawn"
         color="teal"
-        onCLick={() =>
+        onClick={() =>
           act('start_spawn', {
-            amount: amount,
-            name: name || data.default_path_name,
-            desc: desc || data.default_desc,
-            max_health: maxHealth || data.max_health,
-            health: health || data.health,
-            melee_damage_lower: meleeDamageLower || data.melee_damage_lower,
-            melee_damage_upper: meleeDamageUpper || data.melee_damage_upper,
-            flavor_text: flavorText || data.default_flavor_text,
-            size_multiplier: sizeMultiplier * 0.01,
-            x: data.loc_lock ? data.loc_x : x,
-            y: data.loc_lock ? data.loc_y : y,
-            z: data.loc_lock ? data.loc_z : z,
-            radius: radius,
+            amount: props.amount,
+            name: data.path_name,
+            desc: data.desc,
+            max_health: data.max_health,
+            health: data.health,
+            melee_damage_lower: data.melee_damage_lower,
+            melee_damage_upper: data.melee_damage_upper,
+            flavor_text: data.flavor_text,
+            size_multiplier: props.sizeMultiplier * 0.01,
+            x: data.loc_lock ? data.loc_x : props.x,
+            y: data.loc_lock ? data.loc_y : props.y,
+            z: data.loc_lock ? data.loc_z : props.z,
+            radius: props.radius,
           })
         }
-      >
-        Spawn
-      </Button>
+      />
     </>
   );
 };

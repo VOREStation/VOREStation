@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
@@ -10,6 +10,13 @@ import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 export const AirAlarm = (props) => {
   const { act, data } = useBackend();
+
+  const [screen, setScreen] = useState('');
+
+  function handleSetScreen(value) {
+    setScreen(value);
+  }
+
   const locked = data.locked && !data.siliconUser && !data.remoteUser;
   return (
     <Window width={440} height={650}>
@@ -17,7 +24,9 @@ export const AirAlarm = (props) => {
         <InterfaceLockNoticeBox />
         <AirAlarmStatus />
         <AirAlarmUnlockedControl />
-        {!locked && <AirAlarmControl />}
+        {!locked && (
+          <AirAlarmControl screen={screen} onScreen={handleSetScreen} />
+        )}
       </Window.Content>
     </Window>
   );
@@ -146,23 +155,22 @@ const AIR_ALARM_ROUTES = {
 };
 
 const AirAlarmControl = (props) => {
-  const [screen, setScreen] = useLocalState('screen');
-  const route = AIR_ALARM_ROUTES[screen] || AIR_ALARM_ROUTES.home;
+  const route = AIR_ALARM_ROUTES[props.screen] || AIR_ALARM_ROUTES.home;
   const Component = route.component();
   return (
     <Section
       title={route.title}
       buttons={
-        screen && (
+        props.screen && (
           <Button
             icon="arrow-left"
             content="Back"
-            onClick={() => setScreen()}
+            onClick={() => props.onScreen()}
           />
         )
       }
     >
-      <Component />
+      <Component onScreen={props.onScreen} />
     </Section>
   );
 };
@@ -172,7 +180,6 @@ const AirAlarmControl = (props) => {
 
 const AirAlarmControlHome = (props) => {
   const { act, data } = useBackend();
-  const [screen, setScreen] = useLocalState('screen');
   const { mode, atmos_alarm } = data;
   return (
     <>
@@ -197,25 +204,25 @@ const AirAlarmControlHome = (props) => {
       <Button
         icon="sign-out-alt"
         content="Vent Controls"
-        onClick={() => setScreen('vents')}
+        onClick={() => props.onScreen('vents')}
       />
       <Box mt={1} />
       <Button
         icon="filter"
         content="Scrubber Controls"
-        onClick={() => setScreen('scrubbers')}
+        onClick={() => props.onScreen('scrubbers')}
       />
       <Box mt={1} />
       <Button
         icon="cog"
         content="Operating Mode"
-        onClick={() => setScreen('modes')}
+        onClick={() => props.onScreen('modes')}
       />
       <Box mt={1} />
       <Button
         icon="chart-bar"
         content="Alarm Thresholds"
-        onClick={() => setScreen('thresholds')}
+        onClick={() => props.onScreen('thresholds')}
       />
     </>
   );

@@ -1,7 +1,8 @@
 import { classes } from 'common/react';
 import { capitalize } from 'common/string';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -170,7 +171,7 @@ const LayerSection = (props) => {
 const PipeTypeSection = (props) => {
   const { act, data } = useBackend();
   const { categories = [] } = data;
-  const [categoryName, setCategoryName] = useLocalState('categoryName');
+  const [categoryName, setCategoryName] = useState('categoryName');
   const shownCategory =
     categories.find((category) => category.cat_name === categoryName) ||
     categories[0];

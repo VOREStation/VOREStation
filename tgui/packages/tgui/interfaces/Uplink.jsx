@@ -1,7 +1,7 @@
 import { createSearch, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -231,7 +231,7 @@ export const GenericUplink = (props) => {
 const ItemList = (props) => {
   const { compactMode, currencyAmount, currencySymbol } = props;
   const { act } = useBackend();
-  const [hoveredItem, setHoveredItem] = useLocalState('hoveredItem', {});
+  const [hoveredItem, setHoveredItem] = useState({});
   const hoveredCost = (hoveredItem && hoveredItem.cost) || 0;
   // Append extra hover data to items
   const items = props.items.map((item) => {

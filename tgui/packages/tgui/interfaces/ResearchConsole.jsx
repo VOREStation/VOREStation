@@ -1,7 +1,7 @@
 import { toTitleCase } from 'common/string';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
-import { useBackend, useLocalState, useSharedState } from '../backend';
+import { useBackend, useSharedState } from '../backend';
 import {
   Box,
   Button,
@@ -135,9 +135,7 @@ const TechDisk = (props) => {
     return null;
   }
 
-  const [saveDialog, setSaveDialog] = useSharedState('saveDialogTech', false);
-
-  if (saveDialog) {
+  if (props.saveDialog) {
     return (
       <Section
         title="Load Technology to Disk"
@@ -145,7 +143,7 @@ const TechDisk = (props) => {
           <Button
             icon="arrow-left"
             content="Back"
-            onClick={() => setSaveDialog(false)}
+            onClick={() => props.onSaveDialog(false)}
           />
         }
       >
@@ -155,7 +153,7 @@ const TechDisk = (props) => {
               <Button
                 icon="save"
                 onClick={() => {
-                  setSaveDialog(false);
+                  props.onSaveDialog(false);
                   act('copy_tech', { copy_tech_ID: level.id });
                 }}
               >
@@ -195,7 +193,7 @@ const TechDisk = (props) => {
       )) || (
         <Box>
           <Box>This disk has no data stored on it.</Box>
-          <Button icon="save" onClick={() => setSaveDialog(true)}>
+          <Button icon="save" onClick={() => props.onSaveDialog(true)}>
             Load Tech To Disk
           </Button>
           <Button icon="eject" onClick={() => act('eject_tech')}>
@@ -218,9 +216,7 @@ const DataDisk = (props) => {
     return null;
   }
 
-  const [saveDialog, setSaveDialog] = useSharedState('saveDialogData', false);
-
-  if (saveDialog) {
+  if (props.saveDialog) {
     return (
       <Section
         title={
@@ -231,7 +227,7 @@ const DataDisk = (props) => {
             <Button
               icon="arrow-left"
               content="Back"
-              onClick={() => setSaveDialog(false)}
+              onClick={() => props.onSaveDialog(false)}
             />
             {<PaginationChevrons target={'design_page'} /> || null}
           </>
@@ -251,7 +247,7 @@ const DataDisk = (props) => {
                 <Button
                   icon="save"
                   onClick={() => {
-                    setSaveDialog(false);
+                    props.onSaveDialog(false);
                     act('copy_design', { copy_design_ID: item.id });
                   }}
                 >
@@ -297,7 +293,7 @@ const DataDisk = (props) => {
       )) || (
         <Box>
           <Box mb={0.5}>This disk has no data stored on it.</Box>
-          <Button icon="save" onClick={() => setSaveDialog(true)}>
+          <Button icon="save" onClick={() => props.onSaveDialog(true)}>
             Load Design To Disk
           </Button>
           <Button icon="eject" onClick={() => act('eject_design')}>
@@ -320,8 +316,16 @@ const ResearchConsoleDisk = (props) => {
 
   return (
     <Section title="Disk Operations">
-      <TechDisk disk={t_disk} />
-      <DataDisk disk={d_disk} />
+      <TechDisk
+        disk={t_disk}
+        saveDialog={props.saveDialogTech}
+        onSaveDialog={props.onSaveDialogTech}
+      />
+      <DataDisk
+        disk={d_disk}
+        saveDialog={SaveDialogDesign}
+        onSaveDialog={onSaveDialogDesign}
+      />
     </Section>
   );
 };
@@ -485,8 +489,6 @@ const ResearchConsoleConstructor = (props) => {
     queue,
   } = linked;
 
-  const [protoTab, setProtoTab] = useSharedState('protoTab', 0);
-
   let queueColor = 'transparent';
   let queueSpin = false;
   let queueIcon = 'layer-group';
@@ -525,8 +527,8 @@ const ResearchConsoleConstructor = (props) => {
       <Tabs mt={1}>
         <Tabs.Tab
           icon="wrench"
-          selected={protoTab === 0}
-          onClick={() => setProtoTab(0)}
+          selected={props.protoTab === 0}
+          onClick={() => props.onProtoTab(0)}
         >
           Build
         </Tabs.Tab>
@@ -534,27 +536,27 @@ const ResearchConsoleConstructor = (props) => {
           icon={queueIcon}
           iconSpin={queueSpin}
           color={queueColor}
-          selected={protoTab === 1}
-          onClick={() => setProtoTab(1)}
+          selected={props.protoTab === 1}
+          onClick={() => props.onProtoTab(1)}
         >
           Queue
         </Tabs.Tab>
         <Tabs.Tab
           icon="cookie-bite"
-          selected={protoTab === 2}
-          onClick={() => setProtoTab(2)}
+          selected={props.protoTab === 2}
+          onClick={() => props.onProtoTab(2)}
         >
           Mat Storage
         </Tabs.Tab>
         <Tabs.Tab
           icon="flask"
-          selected={protoTab === 3}
-          onClick={() => setProtoTab(3)}
+          selected={props.protoTab === 3}
+          onClick={() => props.onProtoTab(3)}
         >
           Chem Storage
         </Tabs.Tab>
       </Tabs>
-      {(protoTab === 0 && (
+      {(props.protoTab === 0 && (
         <ResearchConsoleBuildMenu
           target={linked}
           designs={designs}
@@ -562,7 +564,7 @@ const ResearchConsoleConstructor = (props) => {
           buildFiveName={name === 'Protolathe' ? 'buildfive' : null}
         />
       )) ||
-        (protoTab === 1 && (
+        (props.protoTab === 1 && (
           <LabeledList>
             {(queue.length &&
               queue.map((item, index) => {
@@ -613,13 +615,10 @@ const ResearchConsoleConstructor = (props) => {
               })) || <Box m={1}>Queue Empty.</Box>}
           </LabeledList>
         )) ||
-        (protoTab === 2 && (
+        (props.protoTab === 2 && (
           <LabeledList>
             {mats.map((mat) => {
-              const [ejectAmt, setEjectAmt] = useLocalState(
-                'ejectAmt' + mat.name,
-                0,
-              );
+              const [ejectAmt, setEjectAmt] = useState(0);
               return (
                 <LabeledList.Item
                   label={toTitleCase(mat.name)}
@@ -667,7 +666,7 @@ const ResearchConsoleConstructor = (props) => {
             })}
           </LabeledList>
         )) ||
-        (protoTab === 3 && (
+        (props.protoTab === 3 && (
           <Box>
             <LabeledList>
               {(reagents.length &&
@@ -702,27 +701,25 @@ const ResearchConsoleSettings = (props) => {
 
   const { sync, linked_destroy, linked_imprinter, linked_lathe } = data.info;
 
-  const [settingsTab, setSettingsTab] = useSharedState('settingsTab', 0);
-
   return (
     <Section title="Settings">
       <Tabs>
         <Tabs.Tab
           icon="cogs"
-          onClick={() => setSettingsTab(0)}
-          selected={settingsTab === 0}
+          onClick={() => props.onSettingsTab(0)}
+          selected={props.settingsTab === 0}
         >
           General
         </Tabs.Tab>
         <Tabs.Tab
           icon="link"
-          onClick={() => setSettingsTab(1)}
-          selected={settingsTab === 1}
+          onClick={() => props.onSettingsTab(1)}
+          selected={props.settingsTab === 1}
         >
           Device Linkages
         </Tabs.Tab>
       </Tabs>
-      {(settingsTab === 0 && (
+      {(props.settingsTab === 0 && (
         <Box>
           {(sync && (
             <>
@@ -746,7 +743,7 @@ const ResearchConsoleSettings = (props) => {
           </Button>
         </Box>
       )) ||
-        (settingsTab === 1 && (
+        (props.settingsTab === 1 && (
           <Box>
             <Button fluid icon="sync" mb={1} onClick={() => act('find_device')}>
               Re-sync with Nearby Devices
@@ -798,30 +795,28 @@ const menus = [
   {
     name: 'Protolathe',
     icon: 'wrench',
-    template: <ResearchConsoleConstructor name="Protolathe" />,
   },
   {
     name: 'Circuit Imprinter',
     icon: 'digital-tachograph',
-    template: <ResearchConsoleConstructor name="Circuit Imprinter" />,
   },
   {
     name: 'Destructive Analyzer',
     icon: 'eraser',
-    template: <ResearchConsoleDestructiveAnalyzer />,
   },
-  { name: 'Settings', icon: 'cog', template: <ResearchConsoleSettings /> },
+  {
+    name: 'Settings',
+    icon: 'cog',
+  },
   {
     name: 'Research List',
     icon: 'flask',
-    template: <ResearchConsoleViewResearch />,
   },
   {
     name: 'Design List',
     icon: 'file',
-    template: <ResearchConsoleViewDesigns />,
   },
-  { name: 'Disk Operations', icon: 'save', template: <ResearchConsoleDisk /> },
+  { name: 'Disk Operations', icon: 'save' },
 ];
 
 export const ResearchConsole = (props) => {
@@ -830,6 +825,16 @@ export const ResearchConsole = (props) => {
   const { busy_msg, locked } = data;
 
   const [menu, setMenu] = useSharedState('rdmenu', 0);
+  const [protoTab, setProtoTab] = useSharedState('protoTab', 0);
+  const [settingsTab, setSettingsTab] = useSharedState('settingsTab', 0);
+  const [saveDialogTech, setSaveDialogTech] = useSharedState(
+    'saveDialogTech',
+    false,
+  );
+  const [saveDialogDesign, setSaveDialogDesign] = useSharedState(
+    'saveDialogData',
+    false,
+  );
 
   let allTabsDisabled = false;
   if (busy_msg || locked) {
@@ -845,7 +850,7 @@ export const ResearchConsole = (props) => {
               key={i}
               icon={obj.icon}
               selected={menu === i}
-              disabled={allTabsDisabled}
+              settingsTab={settingsTab}
               onClick={() => setMenu(i)}
             >
               {obj.name}
@@ -860,7 +865,41 @@ export const ResearchConsole = (props) => {
               </Button>
             </Section>
           )) ||
-          menus[menu].template}
+          (menu === 0 ? (
+            <ResearchConsoleConstructor
+              name="Protolathe"
+              protoTab={protoTab}
+              onProtoTab={setProtoTab}
+            />
+          ) : (
+            ''
+          )) ||
+          (menu === 1 && (
+            <ResearchConsoleConstructor
+              name="Circuit Imprinter"
+              protoTab={protoTab}
+              onProtoTab={setProtoTab}
+            />
+          )) ||
+          (menu === 2 && (
+            <ResearchConsoleDestructiveAnalyzer name="Circuit Imprinter" />
+          )) ||
+          (menu === 3 && (
+            <ResearchConsoleSettings
+              settingsTab={settingsTab}
+              onSettingsTab={setSettingsTab}
+            />
+          )) ||
+          (menu === 4 && <ResearchConsoleViewResearch />) ||
+          (menu === 5 && <ResearchConsoleViewDesigns />) ||
+          (menu === 6 && (
+            <ResearchConsoleDisk
+              saveDialogTech={saveDialogTech}
+              saveDialogDesign={saveDialogDesign}
+              onSaveDialogTech={setSaveDialogTech}
+              onSaveDialogDesign={setSaveDialogDesign}
+            />
+          ))}
       </Window.Content>
     </Window>
   );
