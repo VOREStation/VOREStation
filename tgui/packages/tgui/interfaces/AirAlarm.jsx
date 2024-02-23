@@ -25,7 +25,7 @@ export const AirAlarm = (props) => {
         <AirAlarmStatus />
         <AirAlarmUnlockedControl />
         {!locked && (
-          <AirAlarmControl screen={screen} onScreen={hadndleSetScreen} />
+          <AirAlarmControl screen={screen} onScreen={handleSetScreen} />
         )}
       </Window.Content>
     </Window>
