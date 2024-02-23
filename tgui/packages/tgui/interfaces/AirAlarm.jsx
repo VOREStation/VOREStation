@@ -13,7 +13,7 @@ export const AirAlarm = (props) => {
 
   const [screen, setScreen] = useState('');
 
-  function hadndleSetScreen(value) {
+  function handleSetScreen(value) {
     setScreen(value);
   }
 
