@@ -15,8 +15,7 @@
 	return ..()
 
 /mob/living/Destroy()
-	if(say_list) //ChompEDIT - fix hard qdels
-		QDEL_NULL(say_list) //ChompEDIT - fix hard qdels
+	QDEL_NULL(say_list)
 	return ..()
 
 
