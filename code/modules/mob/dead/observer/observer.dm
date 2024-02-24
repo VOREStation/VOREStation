@@ -460,6 +460,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(target != src)
 		if(following && following == target)
 			return
+		if(following) //ChompEDIT - qdel refs - glitchy follow behavior
+			src.stop_following()  //ChompEDIT - qdel refs - glitchy follow behavior
 		following = target
 		to_chat(src, "<span class='notice'>Now following [target]</span>")
 		if(ismob(target))
