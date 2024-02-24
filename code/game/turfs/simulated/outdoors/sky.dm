@@ -14,7 +14,7 @@
 
 /turf/simulated/sky/Initialize()
 	. = ..()
-	SSplanets.addTurf(src)
+	//SSplanets.addTurf(src)	VOREStation edit - Handled by parent
 	set_light(2, 2, "#FFFFFF")
 
 /turf/simulated/sky/north
