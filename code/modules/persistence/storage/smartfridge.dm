@@ -33,7 +33,7 @@
 /datum/persistent/storage/smartfridge/sheet_storage/lossy
 	name = "sheet storage lossy"
 	min_storage = 20	//if the amount is at or below this, don't cull
-	max_storage = 400	//if the amount is above this, cull it to this amount THEN do math
+	max_storage = 500	//if the amount is above this, cull it to this amount THEN do math
 	stacks_go_missing = TRUE
 	minimum_storage_reserve = TRUE
 
