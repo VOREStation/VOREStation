@@ -25,6 +25,19 @@
 	verbs |= /mob/proc/insidePanel
 	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
+//ChompEDIT START - qdel refs
+/mob/new_player/Destroy()
+	if(panel)
+		QDEL_NULL(panel)
+	if(created_for)
+		created_for = null
+
+	//From code/modules/mob/new_player/login.dm
+	if(my_client)
+		my_client = null
+	. = ..()
+//ChompEDIT END
+
 /mob/new_player/verb/new_player_panel()
 	set src = usr
 	new_player_panel_proc()
