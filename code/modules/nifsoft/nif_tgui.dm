@@ -112,6 +112,7 @@
 /obj/item/device/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
+	data["valid_themes"] = valid_ui_themes
 	data["theme"] = save_data["ui_theme"]
 	data["last_notification"] = last_notification
 

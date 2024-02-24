@@ -11,7 +11,7 @@ export const TankDispenser = (props) => {
   const { act, data } = useBackend<Data>();
   const { plasma, oxygen } = data;
   return (
-    <Window width={275} height={103} resizable>
+    <Window width={275} height={103}>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -24,7 +24,8 @@ export const TankDispenser = (props) => {
                   disabled={!plasma}
                   onClick={() => act('plasma')}
                 />
-              }>
+              }
+            >
               {plasma}
             </LabeledList.Item>
             <LabeledList.Item
@@ -36,7 +37,8 @@ export const TankDispenser = (props) => {
                   disabled={!oxygen}
                   onClick={() => act('oxygen')}
                 />
-              }>
+              }
+            >
               {oxygen}
             </LabeledList.Item>
           </LabeledList>

@@ -1,11 +1,10 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, LabeledList, Box, Section } from '../components';
+import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const CommunicationsConsole = (props) => {
   return (
-    <Window width={400} height={600} resizable>
+    <Window width={400} height={600}>
       <Window.Content scrollable>
         <CommunicationsConsoleContent />
       </Window.Content>
@@ -37,10 +36,10 @@ export const CommunicationsConsoleContent = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <CommunicationsConsoleAuth />
       {mainTemplate}
-    </Fragment>
+    </>
   );
 };
 
@@ -87,7 +86,7 @@ const CommunicationsConsoleMain = (props) => {
   });
 
   return (
-    <Fragment>
+    <>
       <Section title="Site Manager-Only Actions">
         <LabeledList>
           <LabeledList.Item label="Announcement">
@@ -161,7 +160,7 @@ const CommunicationsConsoleMain = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -185,7 +184,7 @@ const CommunicationsConsoleAuth = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Section title="Authentication">
         <LabeledList>
           {(is_ai && (
@@ -231,7 +230,7 @@ const CommunicationsConsoleAuth = (props) => {
           )}
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };
 
@@ -252,7 +251,8 @@ const CommunicationsConsoleMessage = (props) => {
             disabled={!authenticated}
             onClick={() => act('messagelist')}
           />
-        }>
+        }
+      >
         <Box>{message_current.contents}</Box>
       </Section>
     );
@@ -289,7 +289,8 @@ const CommunicationsConsoleMessage = (props) => {
           content="Back To Main Menu"
           onClick={() => act('main')}
         />
-      }>
+      }
+    >
       <LabeledList>
         {(messages.length && messageRows) || (
           <LabeledList.Item label="404" color="bad">
@@ -326,7 +327,8 @@ const CommunicationsConsoleStatusDisplay = (props) => {
           content="Back To Main Menu"
           onClick={() => act('main')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Presets">{presetButtons}</LabeledList.Item>
         <LabeledList.Item label="Message Line 1">

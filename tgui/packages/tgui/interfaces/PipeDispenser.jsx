@@ -1,4 +1,6 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 import { ICON_BY_CATEGORY_NAME } from './RapidPipeDispenser';
@@ -7,12 +9,12 @@ export const PipeDispenser = (props) => {
   const { act, data } = useBackend();
   const { disposals, p_layer, pipe_layers, categories = [] } = data;
 
-  const [categoryName, setCategoryName] = useLocalState('categoryName');
+  const [categoryName, setCategoryName] = useState('categoryName');
   const shownCategory =
     categories.find((category) => category.cat_name === categoryName) ||
     categories[0];
   return (
-    <Window width={425} height={515} resizable>
+    <Window width={425} height={515}>
       <Window.Content scrollable>
         {!disposals && (
           <Section title="Layer">
@@ -41,7 +43,8 @@ export const PipeDispenser = (props) => {
                 key={category.cat_name}
                 icon={ICON_BY_CATEGORY_NAME[category.cat_name]}
                 selected={category.cat_name === shownCategory.cat_name}
-                onClick={() => setCategoryName(category.cat_name)}>
+                onClick={() => setCategoryName(category.cat_name)}
+              >
                 {category.cat_name}
               </Tabs.Tab>
             ))}

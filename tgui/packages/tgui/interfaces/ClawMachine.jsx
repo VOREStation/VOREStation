@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, ProgressBar, Box, LabeledList } from '../components';
+import { Box, Button, LabeledList, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
 export const ClawMachine = (props) => {
@@ -60,7 +60,7 @@ export const ClawMachine = (props) => {
     );
   }
   return (
-    <Window resizable>
+    <Window>
       <center>{body}</center>
     </Window>
   );

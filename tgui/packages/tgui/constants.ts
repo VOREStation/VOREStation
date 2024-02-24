@@ -91,94 +91,94 @@ export const CSS_COLORS = [
 // go use /client/verb/generate_tgui_radio_constants() in communications.dm.
 export const RADIO_CHANNELS = [
   {
-    'name': 'Mercenary',
-    'freq': 1213,
-    'color': '#6D3F40',
+    name: 'Mercenary',
+    freq: 1213,
+    color: '#6D3F40',
   },
   {
-    'name': 'Raider',
-    'freq': 1277,
-    'color': '#6D3F40',
+    name: 'Raider',
+    freq: 1277,
+    color: '#6D3F40',
   },
   {
-    'name': 'Special Ops',
-    'freq': 1341,
-    'color': '#5C5C8A',
+    name: 'Special Ops',
+    freq: 1341,
+    color: '#5C5C8A',
   },
   {
-    'name': 'AI Private',
-    'freq': 1343,
-    'color': '#FF00FF',
+    name: 'AI Private',
+    freq: 1343,
+    color: '#FF00FF',
   },
   {
-    'name': 'Response Team',
-    'freq': 1345,
-    'color': '#5C5C8A',
+    name: 'Response Team',
+    freq: 1345,
+    color: '#5C5C8A',
   },
   {
-    'name': 'Supply',
-    'freq': 1347,
-    'color': '#5F4519',
+    name: 'Supply',
+    freq: 1347,
+    color: '#5F4519',
   },
   {
-    'name': 'Service',
-    'freq': 1349,
-    'color': '#6eaa2c',
+    name: 'Service',
+    freq: 1349,
+    color: '#6eaa2c',
   },
   {
-    'name': 'Science',
-    'freq': 1351,
-    'color': '#993399',
+    name: 'Science',
+    freq: 1351,
+    color: '#993399',
   },
   {
-    'name': 'Command',
-    'freq': 1353,
-    'color': '#193A7A',
+    name: 'Command',
+    freq: 1353,
+    color: '#193A7A',
   },
   {
-    'name': 'Medical',
-    'freq': 1355,
-    'color': '#008160',
+    name: 'Medical',
+    freq: 1355,
+    color: '#008160',
   },
   {
-    'name': 'Engineering',
-    'freq': 1357,
-    'color': '#A66300',
+    name: 'Engineering',
+    freq: 1357,
+    color: '#A66300',
   },
   {
-    'name': 'Security',
-    'freq': 1359,
-    'color': '#A30000',
+    name: 'Security',
+    freq: 1359,
+    color: '#A30000',
   },
   {
-    'name': 'Explorer',
-    'freq': 1361,
-    'color': '#555555',
+    name: 'Explorer',
+    freq: 1361,
+    color: '#555555',
   },
   {
-    'name': 'Talon',
-    'freq': 1363,
-    'color': '#555555',
+    name: 'Talon',
+    freq: 1363,
+    color: '#555555',
   },
   {
-    'name': 'Common',
-    'freq': 1459,
-    'color': '#008000',
+    name: 'Common',
+    freq: 1459,
+    color: '#008000',
   },
   {
-    'name': 'Entertainment',
-    'freq': 1461,
-    'color': '#339966',
+    name: 'Entertainment',
+    freq: 1461,
+    color: '#339966',
   },
   {
-    'name': 'Security(I)',
-    'freq': 1475,
-    'color': '#008000',
+    name: 'Security(I)',
+    freq: 1475,
+    color: '#008000',
   },
   {
-    'name': 'Medical(I)',
-    'freq': 1485,
-    'color': '#008000',
+    name: 'Medical(I)',
+    freq: 1485,
+    color: '#008000',
   },
 ] as const;
 
@@ -187,58 +187,58 @@ Entries must match /code/defines/gases.dm entries.
 */
 const GASES = [
   {
-    'id': 'oxygen',
-    'name': 'Oxygen',
-    'label': 'O₂',
-    'color': 'blue',
+    id: 'oxygen',
+    name: 'Oxygen',
+    label: 'O₂',
+    color: 'blue',
   },
   {
-    'id': 'nitrogen',
-    'name': 'Nitrogen',
-    'label': 'N₂',
-    'color': 'green',
+    id: 'nitrogen',
+    name: 'Nitrogen',
+    label: 'N₂',
+    color: 'green',
   },
   {
-    'id': 'carbon_dioxide',
-    'name': 'Carbon Dioxide',
-    'label': 'CO₂',
-    'color': 'grey',
+    id: 'carbon_dioxide',
+    name: 'Carbon Dioxide',
+    label: 'CO₂',
+    color: 'grey',
   },
   {
-    'id': 'phoron',
-    'name': 'Phoron',
-    'label': 'Phoron',
-    'color': 'pink',
+    id: 'phoron',
+    name: 'Phoron',
+    label: 'Phoron',
+    color: 'pink',
   },
   {
-    'id': 'volatile_fuel',
-    'name': 'Volatile Fuel',
-    'label': 'EXP',
-    'color': 'teal',
+    id: 'volatile_fuel',
+    name: 'Volatile Fuel',
+    label: 'EXP',
+    color: 'teal',
   },
   {
-    'id': 'nitrous_oxide',
-    'name': 'Nitrous Oxide',
-    'label': 'N₂O',
-    'color': 'red',
+    id: 'nitrous_oxide',
+    name: 'Nitrous Oxide',
+    label: 'N₂O',
+    color: 'red',
   },
   {
-    'id': 'other',
-    'name': 'Other',
-    'label': 'Other',
-    'color': 'white',
+    id: 'other',
+    name: 'Other',
+    label: 'Other',
+    color: 'white',
   },
   {
-    'id': 'pressure',
-    'name': 'Pressure',
-    'label': 'Pressure',
-    'color': 'average',
+    id: 'pressure',
+    name: 'Pressure',
+    label: 'Pressure',
+    color: 'average',
   },
   {
-    'id': 'temperature',
-    'name': 'Temperature',
-    'label': 'Temperature',
-    'color': 'yellow',
+    id: 'temperature',
+    name: 'Temperature',
+    label: 'Temperature',
+    color: 'yellow',
   },
 ] as const;
 
@@ -252,7 +252,7 @@ export const getGasLabel = (gasId: string, fallbackValue?: string) => {
 
   const gasSearchId = gasId.toLowerCase();
   const gasSearchName = gasId.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-    letter.toUpperCase()
+    letter.toUpperCase(),
   );
 
   for (let idx = 0; idx < GASES.length; idx++) {
@@ -272,7 +272,7 @@ export const getGasColor = (gasId: string) => {
 
   const gasSearchId = gasId.toLowerCase();
   const gasSearchName = gasId.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-    letter.toUpperCase()
+    letter.toUpperCase(),
   );
 
   for (let idx = 0; idx < GASES.length; idx++) {
@@ -292,7 +292,7 @@ export const getGasFromId = (gasId: string): Gas | undefined => {
 
   const gasSearchId = gasId.toLowerCase();
   const gasSearchName = gasId.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-    letter.toUpperCase()
+    letter.toUpperCase(),
   );
 
   for (let idx = 0; idx < GASES.length; idx++) {

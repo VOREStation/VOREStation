@@ -352,7 +352,7 @@
 			P.info += "<b>Time of scan:</b> [stationtime2text()]<br><br>"
 			P.info += "[generate_printing_text()]"
 			P.info += "<br><br><b>Notes:</b><br>"
-			P.name = "Body Scan - [name] ([stationtime2text()]"
+			P.name = "Body Scan - [name] ([stationtime2text()])"
 		else
 			return FALSE
 

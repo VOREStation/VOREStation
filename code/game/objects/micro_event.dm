@@ -17,7 +17,7 @@
 				shrinking = FALSE
 				our_message = "What should the size limit be? Anyone under this limit will be grown to this size. (1 = 100%, etc)"
 
-			size_limit = tgui_input_number(user, our_message, "Pick a Size", 1)
+			size_limit = tgui_input_number(user, our_message, "Pick a Size", 1, round_value=FALSE)
 
 	return ..()
 

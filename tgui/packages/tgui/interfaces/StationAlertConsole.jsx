@@ -1,10 +1,10 @@
 import { useBackend } from '../backend';
-import { Section, Button, Box } from '../components';
+import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
 
 export const StationAlertConsole = () => {
   return (
-    <Window width={425} height={600} resizable>
+    <Window width={425} height={600}>
       <Window.Content scrollable>
         <StationAlertConsoleContent />
       </Window.Content>

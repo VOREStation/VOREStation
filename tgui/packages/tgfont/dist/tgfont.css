@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'tgfont';
-  src: url('./tgfont.woff2?958b912b123580c55529f68c4e2261bd') format('woff2'),
+  src:
+    url('./tgfont.woff2?958b912b123580c55529f68c4e2261bd') format('woff2'),
     url('./tgfont.eot?958b912b123580c55529f68c4e2261bd#iefix')
       format('embedded-opentype');
 }

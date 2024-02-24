@@ -75,6 +75,10 @@ em						{font-style: normal;font-weight: bold;}
 .srvradio				{color: #6eaa2c;}
 .expradio				{color: #555555;}
 
+/* Global Languages */
+.hivemind				{font-style: italic;}
+.binarysay				{font-style: italic;}
+
 /* Miscellaneous */
 .name					{font-weight: bold;}
 .say					{}

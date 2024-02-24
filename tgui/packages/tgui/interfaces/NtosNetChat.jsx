@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, Input, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -28,7 +27,8 @@ export const NtosNetChat = (props) => {
                 verticalAlign="top"
                 style={{
                   width: '200px',
-                }}>
+                }}
+              >
                 <Box height="560px" overflowY="scroll">
                   <Button.Input
                     fluid
@@ -111,14 +111,15 @@ export const NtosNetChat = (props) => {
                 verticalAlign="top"
                 style={{
                   width: '150px',
-                }}>
+                }}
+              >
                 <Box height="465px" overflowY="scroll">
                   {clients.map((client) => (
                     <Box key={client.name}>{client.name}</Box>
                   ))}
                 </Box>
                 {in_channel && authorized && (
-                  <Fragment>
+                  <>
                     <Button.Input
                       fluid
                       content="Save log..."
@@ -134,10 +135,10 @@ export const NtosNetChat = (props) => {
                       content="Leave Channel"
                       onClick={() => act('PRG_leavechannel')}
                     />
-                  </Fragment>
+                  </>
                 )}
                 {!!is_operator && authed && (
-                  <Fragment>
+                  <>
                     <Button.Confirm
                       fluid
                       content="Delete Channel"
@@ -161,7 +162,7 @@ export const NtosNetChat = (props) => {
                         })
                       }
                     />
-                  </Fragment>
+                  </>
                 )}
               </Table.Cell>
             </Table.Row>

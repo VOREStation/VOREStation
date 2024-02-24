@@ -59,7 +59,7 @@ function task-prettier {
 }
 
 function task-prettify {
-  yarn prettierx --write packages @Args
+  yarn prettier --write packages @Args
 }
 
 ## Run a linter through all packages

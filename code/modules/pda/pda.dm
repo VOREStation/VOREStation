@@ -140,13 +140,24 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	new /obj/item/weapon/pen(src)
 	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
 	switch(pdachoice)
-		if(1) icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
-		if(2) icon = 'icons/obj/pda_slim.dmi'
-		if(3) icon = 'icons/obj/pda_old.dmi'
-		if(4) icon = 'icons/obj/pda_rugged.dmi'
-		if(5) icon = 'icons/obj/pda_holo.dmi'
+		if(1)
+			icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
+			model_name = "Thinktronic 5230 Personal Data Assistant"
+		if(2)
+			icon = 'icons/obj/pda_slim.dmi'
+			model_name = "Ward-Takahashi SlimFit™ Personal Data Assistant"
+		if(3)
+			icon = 'icons/obj/pda_old.dmi'
+			model_name = "Thinktronic 5120 Personal Data Assistant"
+		if(4)
+			icon = 'icons/obj/pda_rugged.dmi'
+			model_name = "Hephaestus WARDEN Personal Data Assistant"
+		if(5)
+			icon = 'icons/obj/pda_holo.dmi'
+			model_name = "LunaCorp Holo-PDAssistant"
 		if(6)
 			icon = 'icons/obj/pda_wrist.dmi'
+			model_name = "Omnitech K100 Personal Data Assistant"
 			item_state = icon_state
 			item_icons = list(
 				slot_belt_str = 'icons/mob/pda_wrist.dmi',
@@ -159,9 +170,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				SPECIES_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 				SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 			)
-		if(7) icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
+		if(7)
+			icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
+			model_name = "Slider® Personal Data Assistant"
 		if(8)
 			icon = 'icons/obj/pda_vintage.dmi'
+			model_name = "\[ERR:INVALID_MANUFACTURER_ID\] Personal Data Assistant"
 			desc = "A vintage communication device. This device has been refitted for compatibility with modern messaging systems, ROM cartridges and ID cards. Despite its heavy modifications it does not feature voice communication."
 
 		else

@@ -1,8 +1,17 @@
+import { round } from 'common/math';
+
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar, Section, Slider } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Slider,
+} from '../components';
 import { formatPower } from '../format';
 import { Window } from '../layouts';
-import { round } from 'common/math';
 
 // Common power multiplier
 const POWER_MUL = 1e3;
@@ -29,7 +38,7 @@ export const Smes = (props) => {
   const outputState =
     (outputting && 'good') || (charge > 0 && 'average') || 'bad';
   return (
-    <Window width={340} height={350} resizable>
+    <Window width={340} height={350}>
       <Window.Content>
         <Section title="Stored Energy">
           <ProgressBar
@@ -38,7 +47,8 @@ export const Smes = (props) => {
               good: [0.5, Infinity],
               average: [0.15, 0.5],
               bad: [-Infinity, 0.15],
-            }}>
+            }}
+          >
             {round(charge / (1000 * 60), 1)} kWh /{' '}
             {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
           </ProgressBar>
@@ -51,10 +61,12 @@ export const Smes = (props) => {
                 <Button
                   icon={inputAttempt ? 'sync-alt' : 'times'}
                   selected={inputAttempt}
-                  onClick={() => act('tryinput')}>
+                  onClick={() => act('tryinput')}
+                >
                   {inputAttempt ? 'On' : 'Off'}
                 </Button>
-              }>
+              }
+            >
               <Box color={inputState}>
                 {(capacityPercent >= 100 && 'Fully Charged') ||
                   (inputting && 'Charging') ||
@@ -134,10 +146,12 @@ export const Smes = (props) => {
                 <Button
                   icon={outputAttempt ? 'power-off' : 'times'}
                   selected={outputAttempt}
-                  onClick={() => act('tryoutput')}>
+                  onClick={() => act('tryoutput')}
+                >
                   {outputAttempt ? 'On' : 'Off'}
                 </Button>
-              }>
+              }
+            >
               <Box color={outputState}>
                 {outputting
                   ? 'Sending'

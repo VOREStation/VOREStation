@@ -638,3 +638,5 @@
 				PR.icon_state = "paper_words"
 				PR.forceMove(loc)
 				busy_msg = null
+
+#undef ENTRIES_PER_RDPAGE

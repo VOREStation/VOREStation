@@ -18,7 +18,7 @@ export const RogueZones = (props) => {
     can_recall_shuttle,
   } = data;
   return (
-    <Window width={360} height={250} resizable>
+    <Window width={360} height={250}>
       <Window.Content>
         <Section title="Current Area">
           <LabeledList>
@@ -32,12 +32,14 @@ export const RogueZones = (props) => {
                   <Button
                     color="bad"
                     icon="rocket"
-                    onClick={() => act('recall_shuttle')}>
+                    onClick={() => act('recall_shuttle')}
+                  >
                     Recall Shuttle
                   </Button>
                 )) ||
                 null
-              }>
+              }
+            >
               {shuttle_location}
             </LabeledList.Item>
             {(occupied && (
@@ -58,10 +60,12 @@ export const RogueZones = (props) => {
               disabled={!scan_ready}
               fluid
               icon="search"
-              onClick={() => act('scan_for_new')}>
+              onClick={() => act('scan_for_new')}
+            >
               Scan For Asteroids
             </Button>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Scn Ramestat Core">
               <ProgressBar

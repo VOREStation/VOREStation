@@ -29,7 +29,6 @@ var/list/preferences_datums = list()
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
 	var/tgui_input_mode = FALSE			// All the Input Boxes (Text,Number,List,Alert)
-	var/tgui_input_lock = FALSE
 	var/tgui_large_buttons = TRUE
 	var/tgui_swapped_buttons = FALSE
 	var/obfuscate_key = FALSE
@@ -369,9 +368,9 @@ var/list/preferences_datums = list()
 			open_load_dialog(usr)
 			return 1
 	else if(href_list["resetslot"])
-		if("No" == tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
+		if("Yes" != tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
 			return 0
-		if("No" == tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
+		if("Yes" != tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
 			return 0
 		load_character(SAVE_RESET)
 		sanitize_preferences()

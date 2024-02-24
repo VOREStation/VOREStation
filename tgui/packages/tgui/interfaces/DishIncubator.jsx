@@ -1,7 +1,13 @@
-import { Fragment } from 'inferno';
-import { formatCommaNumber } from '../format';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
+import { formatCommaNumber } from '../format';
 import { Window } from '../layouts';
 
 export const DishIncubator = (props) => {
@@ -37,7 +43,8 @@ export const DishIncubator = (props) => {
               content={on ? 'On' : 'Off'}
               onClick={() => act('power')}
             />
-          }>
+          }
+        >
           <Flex spacing={1} mb={1}>
             <Flex.Item grow={1}>
               <Button
@@ -79,7 +86,8 @@ export const DishIncubator = (props) => {
                 color={
                   radiation >= 50 ? 'bad' : growth >= 25 ? 'average' : 'good'
                 }
-                value={radiation}>
+                value={radiation}
+              >
                 {formatCommaNumber(radiation * 10000)} &micro;Sv
               </ProgressBar>
             </LabeledList.Item>
@@ -100,7 +108,7 @@ export const DishIncubator = (props) => {
         <Section
           title={can_breed_virus ? 'Vial' : 'Chemicals'}
           buttons={
-            <Fragment>
+            <>
               <Button
                 icon="eject"
                 content={'Eject ' + (can_breed_virus ? 'Vial' : 'Chemicals')}
@@ -113,8 +121,9 @@ export const DishIncubator = (props) => {
                 disabled={!can_breed_virus}
                 onClick={() => act('virus')}
               />
-            </Fragment>
-          }>
+            </>
+          }
+        >
           {(chemicals_inserted && (
             <Box>
               <LabeledList>
@@ -122,13 +131,15 @@ export const DishIncubator = (props) => {
                   <ProgressBar
                     minValue={0}
                     maxValue={max_chemical_volume}
-                    value={chemical_volume}>
+                    value={chemical_volume}
+                  >
                     {chemical_volume}/{max_chemical_volume}
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item
                   label="Breeding Environment"
-                  color={can_breed_virus ? 'good' : 'average'}>
+                  color={can_breed_virus ? 'good' : 'average'}
+                >
                   {dish_inserted
                     ? can_breed_virus
                       ? 'Suitable'
@@ -153,7 +164,8 @@ export const DishIncubator = (props) => {
               disabled={!dish_inserted}
               onClick={() => act('ejectdish')}
             />
-          }>
+          }
+        >
           {dish_inserted ? (
             virus ? (
               <LabeledList>

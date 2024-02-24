@@ -1106,7 +1106,7 @@ var/global/list/light_type_cache = list()
 					brightness_range = new_range
 
 			if("Normal Brightness")
-				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_brightness_power])", "", init_brightness_power, init_brightness_power, 0.01, 0)
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_brightness_power])", "", init_brightness_power, init_brightness_power, 0.01, round_value=FALSE)
 				if(new_power)
 					brightness_power = new_power
 
@@ -1121,7 +1121,7 @@ var/global/list/light_type_cache = list()
 					nightshift_range = new_range
 
 			if("Nightshift Brightness")
-				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_nightshift_power])", "", init_nightshift_power, init_nightshift_power, 0.01)
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_nightshift_power])", "", init_nightshift_power, init_nightshift_power, 0.01, round_value=FALSE)
 				if(new_power)
 					nightshift_power = new_power
 

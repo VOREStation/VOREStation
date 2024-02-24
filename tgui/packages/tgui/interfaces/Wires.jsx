@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -10,7 +9,7 @@ export const Wires = (props) => {
   const statuses = data.status || [];
 
   return (
-    <Window width={350} height={150 + wires.length * 30} resizable>
+    <Window width={350} height={150 + wires.length * 30}>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -22,7 +21,7 @@ export const Wires = (props) => {
                 labelColor={wire.seen_color}
                 color={wire.seen_color}
                 buttons={
-                  <Fragment>
+                  <>
                     <Button
                       content={wire.cut ? 'Mend' : 'Cut'}
                       onClick={() =>
@@ -47,8 +46,9 @@ export const Wires = (props) => {
                         })
                       }
                     />
-                  </Fragment>
-                }>
+                  </>
+                }
+              >
                 {!!wire.wire && <i>({wire.wire})</i>}
               </LabeledList.Item>
             ))}

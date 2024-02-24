@@ -1,4 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
+
 import { useBackend } from '../../backend';
 import { Button, LabeledList, NumberInput, Section } from '../../components';
 
@@ -34,7 +35,8 @@ export const Vent = (props) => {
             })
           }
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Mode">
           <Button
@@ -154,7 +156,8 @@ export const Scrubber = (props) => {
             })
           }
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Mode">
           <Button

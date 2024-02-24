@@ -12,6 +12,7 @@
 	var/m_hidden = 0 // Is the PDA hidden from the PDA list?
 	var/active_conversation = null // New variable that allows us to only view a single conversation.
 	var/list/conversations = list()    // For keeping up with who we have PDA messsages from.
+	var/list/fakepdas = list() //So that fake PDAs show up in conversations for props. Namedlist of "fakeName" = fakeRef
 
 /datum/data/pda/app/messenger/start()
 	. = ..()
@@ -42,6 +43,8 @@
 				convopdas.Add(list(list("Name" = "[P]", "Reference" = "\ref[P]", "Detonate" = "[P.detonate]", "inconvo" = "1")))
 			else
 				pdas.Add(list(list("Name" = "[P]", "Reference" = "\ref[P]", "Detonate" = "[P.detonate]", "inconvo" = "0")))
+		for(var/fakeRef in fakepdas)
+			convopdas.Add(list(list("Name" = "[fakepdas[fakeRef]]", "Reference" = "[fakeRef]", "Detonate" = "0", "inconvo" = "1")))
 
 		data["convopdas"] = convopdas
 		data["pdas"] = pdas
@@ -242,3 +245,13 @@
 			var/datum/data/pda/app/messenger/P = target.find_program(/datum/data/pda/app/messenger)
 			if(P)
 				P.receive_message(modified_message, "\ref[M]")
+
+/*
+Generalized proc to handle GM fake prop messages, or future fake prop messages from mapping landmarks.
+We need a separate proc for this due to the "target" component and creation of a fake conversation entry.
+Invoked by /obj/item/device/pda/proc/createPropFakeConversation_admin(var/mob/M)
+*/
+/datum/data/pda/app/messenger/proc/createFakeMessage(fakeName, fakeRef, fakeJob, sent, message)
+	receive_message(list("sent" = sent, "owner" = "[fakeName]", "job" = "[fakeJob]", "message" = "[message]", "target" = "[fakeRef]"), fakeRef)
+	if(!fakepdas[fakeRef])
+		fakepdas[fakeRef] = fakeName

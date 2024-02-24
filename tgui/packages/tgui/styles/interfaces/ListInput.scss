@@ -12,7 +12,6 @@
 
 .ListInput__Section .Section__titleText {
   font-size: base.em(12px);
-  white-space: pre-line;
 }
 
 .ListInput__Loader {
@@ -23,7 +22,9 @@
 
 .ListInput__LoaderProgress {
   position: absolute;
-  transition: background-color 500ms ease-out, width 500ms ease-out;
+  transition:
+    background-color 500ms ease-out,
+    width 500ms ease-out;
   background-color: colors.bg(colors.$primary);
   height: 100%;
 }

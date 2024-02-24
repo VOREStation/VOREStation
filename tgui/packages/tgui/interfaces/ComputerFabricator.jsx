@@ -1,4 +1,5 @@
 import { multiline } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Box, Button, Grid, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
@@ -6,7 +7,7 @@ import { Window } from '../layouts';
 export const ComputerFabricator = (props) => {
   const { act, data } = useBackend();
   return (
-    <Window title="Personal Computer Vendor" width={500} height={420} resizable>
+    <Window title="Personal Computer Vendor" width={500} height={420}>
       <Window.Content>
         <Section italic fontSize="20px">
           Your perfect device, only three steps away...
@@ -86,7 +87,8 @@ const CfStep2 = (props) => {
         <Box bold color="good">
           {data.totalprice}₮
         </Box>
-      }>
+      }
+    >
       <Table>
         <Table.Row>
           <Table.Cell bold position="relative">
