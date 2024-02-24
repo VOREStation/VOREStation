@@ -35,24 +35,6 @@
 		QDEL_NULL(vorePanel)
 	//ChompEDIT block End
 
-	if(mind)
-		// First remove the self references for qdel
-		if(mind.current == src)
-			mind.current = null
-		if(mind.original == src)
-			mind.original = null
-		// Then figure out if we null or qdel
-		if(istype(src, /mob/new_player)) //NEW_PLAYERS have vestigial minds that can be deleted.
-			//make sure that the mind datum is fully dereferenced before actually trying to delete it, just incase a valid mob/living mind somehow got here
-			if(!mind.current && !mind.original) //are we dereferenced
-				if(mind in ticker.minds) //check the ticker for a datum/mind reference
-					ticker.minds.RemoveAll(mind)
-				QDEL_NULL(mind) //mind blown
-			else //We have a mind but it's still referenced to something else....
-				mind = null //mind changed. don't delete, leave in just incase
-		else // Anything NOT a NEWPLAYER minds need to be dereferenced, BUT we don't qdel the mind. This leaves a sort of log in ticker.minds of a player's activity, and this we want to keep. If it's not in the ticker, it self deletes.
-			mind = null
-
 	//ChompEDIT end
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW
