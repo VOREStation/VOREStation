@@ -94,18 +94,6 @@
 		QDEL_NULL(reagents)
 	if(light)
 		QDEL_NULL(light)
-
-	//ChompEDIT START - fix hard qdels - Handle code/modules/entropics_vr/alternate_appearance.dm destroys
-	if(alternate_appearances)
-		for(var/appearance in alternate_appearances)
-			if(appearance)
-				remove_alt_appearance(appearance)
-	if(viewing_alternate_appearances)
-		for(var/appearance in viewing_alternate_appearances)
-			if(viewing_alternate_appearances)
-				remove_alt_appearance(viewing_alternate_appearances)
-	//ChompEDIT END
-
 	return ..()
 
 // Called after all object's normal initialize() if initialize() returns INITIALIZE_HINT_LATELOAD
